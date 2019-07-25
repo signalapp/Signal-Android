@@ -1,18 +1,17 @@
 package org.thoughtcrime.securesms.mediapreview;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.ThumbnailView;
-import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mms.GlideRequests;
-import org.thoughtcrime.securesms.util.StableIdGenerator;
+import org.thoughtcrime.securesms.util.adapter.StableIdGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,11 +24,12 @@ public class MediaRailAdapter extends RecyclerView.Adapter<MediaRailAdapter.Medi
   private final GlideRequests            glideRequests;
   private final List<Media>              media;
   private final RailItemListener         listener;
-  private final boolean                  editable;
   private final StableIdGenerator<Media> stableIdGenerator;
 
   private RailItemAddListener addListener;
-  private int activePosition;
+  private int                 activePosition;
+  private boolean             editable;
+  private boolean             interactive;
 
   public MediaRailAdapter(@NonNull GlideRequests glideRequests, @NonNull RailItemListener listener, boolean editable) {
     this.glideRequests     = glideRequests;
@@ -37,6 +37,7 @@ public class MediaRailAdapter extends RecyclerView.Adapter<MediaRailAdapter.Medi
     this.listener          = listener;
     this.editable          = editable;
     this.stableIdGenerator = new StableIdGenerator<>();
+    this.interactive       = true;
 
     setHasStableIds(true);
   }
@@ -58,7 +59,7 @@ public class MediaRailAdapter extends RecyclerView.Adapter<MediaRailAdapter.Medi
   public void onBindViewHolder(@NonNull MediaRailViewHolder viewHolder, int i) {
     switch (getItemViewType(i)) {
       case TYPE_MEDIA:
-        ((MediaViewHolder) viewHolder).bind(media.get(i), i == activePosition, glideRequests, listener, i - activePosition, editable);
+        ((MediaViewHolder) viewHolder).bind(media.get(i), i == activePosition, glideRequests, listener, i - activePosition, editable, interactive);
         break;
       case TYPE_BUTTON:
         ((ButtonViewHolder) viewHolder).bind(addListener);
@@ -122,6 +123,16 @@ public class MediaRailAdapter extends RecyclerView.Adapter<MediaRailAdapter.Medi
     notifyDataSetChanged();
   }
 
+  public void setEditable(boolean editable) {
+    this.editable = editable;
+    notifyDataSetChanged();
+  }
+
+  public void setInteractive(boolean interactive) {
+    this.interactive = interactive;
+    notifyDataSetChanged();
+  }
+
   static abstract class MediaRailViewHolder extends RecyclerView.ViewHolder {
     public MediaRailViewHolder(@NonNull View itemView) {
       super(itemView);
@@ -146,16 +157,17 @@ public class MediaRailAdapter extends RecyclerView.Adapter<MediaRailAdapter.Medi
     }
 
     void bind(@NonNull Media media, boolean isActive, @NonNull GlideRequests glideRequests,
-              @NonNull RailItemListener railItemListener, int distanceFromActive, boolean editable)
+              @NonNull RailItemListener railItemListener, int distanceFromActive, boolean editable,
+              boolean interactive)
     {
       image.setImageResource(glideRequests, media.getUri());
       image.setOnClickListener(v -> railItemListener.onRailItemClicked(distanceFromActive));
 
-      outline.setVisibility(isActive ? View.VISIBLE : View.GONE);
+      outline.setVisibility(isActive && interactive ? View.VISIBLE : View.GONE);
 
       captionIndicator.setVisibility(media.getCaption().isPresent() ? View.VISIBLE : View.GONE);
 
-      if (editable && isActive) {
+      if (editable && isActive && interactive) {
         deleteButton.setVisibility(View.VISIBLE);
         deleteButton.setOnClickListener(v -> railItemListener.onRailItemDeleteClicked(distanceFromActive));
       } else {

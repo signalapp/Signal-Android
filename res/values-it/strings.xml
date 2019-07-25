@@ -54,12 +54,14 @@
   <string name="DraftDatabase_Draft_video_snippet">(video)</string>
   <string name="DraftDatabase_Draft_location_snippet">(posizione)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(risposta)</string>
-  <!--AttchmentManager-->
+  <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Impossibile trovare un\'app per selezionare il file.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal richiede l\'autorizzazione all\'accesso della memoria per allegare foto, video o audio, ma è stata negata in modo permanente. Si prega di continuare con il menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Archiviazione\".</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal richiede l\'autorizzazione alla lettura dei contatti per allegare le informazioni di contatto, ma è stata negata in modo permanente. Si prega di continuare con il menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Contatti\".</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal richiede l\'autorizzazione alla geolocalizzazione per allegare una posizione, ma è stata negata in modo permanente. Si prega di continuare con il menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Posizione\".</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal richiede l\'autorizzazione all\'uso della fotocamera per scattare foto, ma è stata negata in modo permanente. Si prega di continuare al menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Fotocamera\".</string>
+  <!--AttachmentUploadJob-->
+  <string name="AttachmentUploadJob_uploading_media">Caricamento media...</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Errore nel riprodurre l\'audio!</string>
   <!--BlockedContactsActivity-->
@@ -73,6 +75,16 @@
   <string name="CallScreen_Incoming_call">Chiamata in arrivo</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Salvataggio immagine fallito.</string>
+  <!--CameraContacts-->
+  <string name="CameraContacts_recent_contacts">Contatti recenti</string>
+  <string name="CameraContacts_signal_contacts">Contatti Signal</string>
+  <string name="CameraContacts_signal_groups">Gruppi Signal</string>
+  <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">Puoi condividere con un massimo di %d conversazioni.</string>
+  <string name="CameraContacts_select_signal_recipients">Seleziona destinatari Signal</string>
+  <string name="CameraContacts_no_signal_contacts">Nessun contatto Signal</string>
+  <string name="CameraContacts_you_can_only_use_the_camera_button">Puoi solo usare il bottone camera per inviare foto a contatti Signal.</string>
+  <string name="CameraContacts_cant_find_who_youre_looking_for">Non riesci a trovare chi stai cercando?</string>
+  <string name="CameraContacts_invite_a_contact_to_join_signal">Invita un contatto a unirsi a Signal</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Elimina</string>
   <string name="ClearProfileActivity_remove_profile_photo">Rimuovere foto profilo?</string>
@@ -231,6 +243,8 @@
   <string name="ConversationListItem_key_exchange_message">Messaggio per lo scambio della chiave</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Conversazioni archiviate (%d)</string>
+  <!--ConversationTitleView-->
+  <string name="ConversationTitleView_verified">Verificato</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity_your_profile_info">Il tuo profilo</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Errore salvando la foto del profilo</string>
@@ -338,7 +352,7 @@ I suoi messaggi e le chiamate sono state disabilitate, si prega di provare e ri-
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Tieni premuto per registrare un messaggio vocale, rilascia per inviare</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">Condividi</string>
-  <string name="InviteActivity_choose_contacts">Scegli contatti.</string>
+  <string name="InviteActivity_choose_contacts">Scegli contatti</string>
   <string name="InviteActivity_cancel">Annulla</string>
   <string name="InviteActivity_sending">Invio...</string>
   <string name="InviteActivity_heart_content_description">Cuore</string>
@@ -405,6 +419,8 @@ I suoi messaggi e le chiamate sono state disabilitate, si prega di provare e ri-
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Un elemento è stato rimosso perchè supera la dimensione massima</string>
   <string name="MediaSendActivity_camera_unavailable">Fotocamera non disponibile.</string>
   <string name="MediaSendActivity_message_to_s">Messaggio a %s</string>
+  <string name="MediaSendActivity_message">Messaggio</string>
+  <string name="MediaSendActivity_select_recipients">Seleziona destinatari</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Non puoi condividere più di %d elemento.</item>
     <item quantity="other">Non puoi condividere più di %d elementi.</item>
@@ -465,6 +481,11 @@ I suoi messaggi e le chiamate sono state disabilitate, si prega di provare e ri-
   <string name="PassphrasePromptActivity_watermark_content_description">Icona Signal</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Inserisci password</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Password non valida!</string>
+  <!--PlacePickerActivity-->
+  <string name="PlacePickerActivity_title">Mappa</string>
+  <string name="PlacePickerActivity_not_a_valid_address">Indirizzo non valido</string>
+  <string name="PlacePickerActivity_drop_pin">Posiziona l\'indicatore</string>
+  <string name="PlacePickerActivity_accept_address">Accetta indirizzo</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">La versione di Google Play Services installata non funziona correttamente. Reinstallalo e riprova.</string>
   <!--RatingManager-->
@@ -539,6 +560,10 @@ Sii te stesso in ogni messaggio.</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Riceverai un codice di verifica. Potrebbero applicarsi costi del tuo gestore.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Inserisci il codice che abbiamo inviato a %s</string>
   <string name="RegistrationActivity_call">Chiama</string>
+  <!--RevealableMessageView-->
+  <string name="RevealableMessageView_view_photo">Visualizza foto</string>
+  <string name="RevealableMessageView_viewed">Visualizzata</string>
+  <string name="RevealableMessageView_photo">Foto</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Salvataggio modifiche all\'immagine fallito</string>
   <!--Search-->
@@ -571,6 +596,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="SmsMessageRecord_secure_session_reset_s">%s ha resettato la sessione sicura.</string>
   <string name="SmsMessageRecord_duplicate_message">Messaggio duplicato.</string>
   <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Questo messaggio non può essere elaborato poiché è stato inviato da una versione più recente di Signal. Puoi chiedere al tuo contatto di inviare di nuovo questo messaggio dopo che hai aggiornato.</string>
+  <string name="SmsMessageRecord_error_handling_incoming_message">Errore messaggio in arrivo</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Adesivi</string>
   <!--StickerManagementAdapter-->
@@ -597,6 +623,8 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="ThreadRecord_called_you">Ti ha chiamato</string>
   <string name="ThreadRecord_missed_call">Chiamata persa</string>
   <string name="ThreadRecord_media_message">Messaggio multimediale</string>
+  <string name="ThreadRecord_sticker">Adesivo</string>
+  <string name="ThreadRecord_disappearing_photo">Foto a scomparsa</string>
   <string name="ThreadRecord_s_is_on_signal">%s è su Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Messaggi a scomparsa disabilitati</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">La scomparsa dei messaggi è settata a %s</string>
@@ -671,11 +699,12 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="MessageNotifier_mark_read">Segna come già letto</string>
   <string name="MessageNotifier_media_message">Messaggio multimediale</string>
   <string name="MessageNotifier_sticker">Adesivo</string>
+  <string name="MessageNotifier_disappearing_photo">Foto a scomparsa</string>
   <string name="MessageNotifier_reply">Rispondi</string>
   <string name="MessageNotifier_signal_message">Messaggio Signal</string>
   <string name="MessageNotifier_unsecured_sms">SMS non sicuro</string>
-  <string name="MessageNotifier_pending_signal_messages">Messaggi Signal in attesa</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">Hai messaggi Signal in attesa, tocca per aprire e ricevere</string>
+  <string name="MessageNotifier_you_may_have_new_messages">Potresti avere nuovi messaggi</string>
+  <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Apri Signal per controllare le notifiche recenti.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Contatto</string>
   <!--Notification Channels-->
@@ -1317,7 +1346,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="RegistrationLockDialog_disable">Disabilita</string>
   <string name="preferences_chats__backups">Backup</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal è bloccato</string>
-  <string name="prompt_passphrase_activity__tap_to_unlock">TAPPA PER SBLOCCARE</string>
+  <string name="prompt_passphrase_activity__tap_to_unlock">TOCCA PER SBLOCCARE</string>
   <string name="RegistrationLockDialog_reminder">Promemoria:</string>
   <string name="recipient_preferences__about">A riguardo</string>
   <!--EOF-->

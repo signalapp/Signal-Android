@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.jobmanager;
 
 import android.app.Application;
 import android.os.PowerManager;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.annimon.stream.Stream;
 
@@ -23,7 +23,7 @@ class JobRunner extends Thread {
   private final JobController jobController;
 
   JobRunner(@NonNull Application application, int id, @NonNull JobController jobController) {
-    super("JobRunner-" + id);
+    super("signal-JobRunner-" + id);
 
     this.application   = application;
     this.id            = id;

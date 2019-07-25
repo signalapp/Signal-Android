@@ -63,12 +63,15 @@
     <string name="DraftDatabase_Draft_location_snippet">(location)</string>
     <string name="DraftDatabase_Draft_quote_snippet">(reply)</string>
 
-    <!-- AttchmentManager -->
+    <!-- AttachmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">Can\'t find an app to select media.</string>
     <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal requires permission to use the external storage in order to attach photos, videos, or audio, but that permission has been permanently denied. Please continue to the app settings menu, select \"Permissions\", and enable \"Storage\".</string>
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal requires permission to view your contacts in order to attach contact information, but that permission has been permanently denied. Please continue to the app settings menu, select \"Permissions\", and enable \"Contacts\".</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal requires permission to view your location in order to attach a location, but that permission has been permanently denied. Please continue to the app settings menu, select \"Permissions\", and enable \"Location\".</string>
     <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal requires permission to use the camera in order to take photos, but that permission has been permanently denied. Please continue to the app settings menu, select \"Permissions\", and enable \"Camera\".</string>
+
+    <!-- AttachmentUploadJob -->
+    <string name="AttachmentUploadJob_uploading_media">Uploading media...</string>
 
     <!-- AudioSlidePlayer -->
     <string name="AudioSlidePlayer_error_playing_audio">Error playing audio!</string>
@@ -87,6 +90,17 @@
 
     <!-- CameraActivity -->
     <string name="CameraActivity_image_save_failure">Failed to save image.</string>
+
+    <!-- CameraContacts -->
+    <string name="CameraContacts_recent_contacts">Recent contacts</string>
+    <string name="CameraContacts_signal_contacts">Signal contacts</string>
+    <string name="CameraContacts_signal_groups">Signal groups</string>
+    <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">You can share with a maximum of %d conversations.</string>
+    <string name="CameraContacts_select_signal_recipients">Select Signal recipients</string>
+    <string name="CameraContacts_no_signal_contacts">No Signal contacts</string>
+    <string name="CameraContacts_you_can_only_use_the_camera_button">You can only use the camera button to send photos to Signal contacts. </string>
+    <string name="CameraContacts_cant_find_who_youre_looking_for">Can\'t find who you\'re looking for?</string>
+    <string name="CameraContacts_invite_a_contact_to_join_signal">Invite a contact to join Signal</string>
 
     <!-- ClearProfileActivity -->
     <string name="ClearProfileActivity_remove">Remove</string>
@@ -268,6 +282,9 @@
 
     <!-- ConversationListItemAction -->
     <string name="ConversationListItemAction_archived_conversations_d">Archived conversations (%d)</string>
+
+    <!-- ConversationTitleView -->
+    <string name="ConversationTitleView_verified">Verified</string>
 
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity_your_profile_info">Your profile information</string>
@@ -488,6 +505,10 @@
     <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">One or more attachments could not be added because it exceeds the file size limit.</string>
     <string name="MediaSendActivity_camera_unavailable">Camera unavailable.</string>
     <string name="MediaSendActivity_message_to_s">Message to %s</string>
+    <string name="MediaSendActivity_message">Message</string>
+    <string name="MediaSendActivity_select_recipients">Select recipients</string>
+    <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal needs access to your contacts in order to display them.</string>
+    <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal needs Contacts permission in order to show your contacts, but it has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Contacts\".</string>
     <plurals name="MediaSendActivity_cant_share_more_than_n_items">
         <item quantity="one">You can\'t share more than %d item.</item>
         <item quantity="other">You can\'t share more than %d items.</item>
@@ -557,6 +578,13 @@
     <string name="PassphrasePromptActivity_watermark_content_description">Signal icon</string>
     <string name="PassphrasePromptActivity_ok_button_content_description">Submit passphrase</string>
     <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Invalid passphrase!</string>
+
+    <!-- PlacePickerActivity -->
+    <string name="PlacePickerActivity_title">Map</string>
+
+    <string name="PlacePickerActivity_not_a_valid_address">Not a valid Address</string>
+    <string name="PlacePickerActivity_drop_pin">Drop pin</string>
+    <string name="PlacePickerActivity_accept_address">Accept address</string>
 
     <!-- PlayServicesProblemFragment -->
     <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">The version of Google Play Services you have installed is not functioning correctly.  Please reinstall Google Play Services and try again.</string>
@@ -635,6 +663,11 @@
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Enter the code we sent to %s</string>
     <string name="RegistrationActivity_call">Call me</string>
 
+    <!-- RevealableMessageView -->
+    <string name="RevealableMessageView_view_photo">View Photo</string>
+    <string name="RevealableMessageView_viewed">Viewed</string>
+    <string name="RevealableMessageView_photo">Photo</string>
+
     <!-- ScribbleActivity -->
     <string name="ScribbleActivity_save_failure">Failed to save image changes</string>
 
@@ -669,6 +702,7 @@
     <string name="SmsMessageRecord_secure_session_reset_s">%s reset the secure session.</string>
     <string name="SmsMessageRecord_duplicate_message">Duplicate message.</string>
     <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">This message could not be processed because it was sent from a newer version of Signal. You can ask your contact to send this message again after you update.</string>
+    <string name="SmsMessageRecord_error_handling_incoming_message">Error handling incoming message</string>
 
     <!-- StickerManagementActivity -->
     <string name="StickerManagementActivity_stickers">Stickers</string>
@@ -699,6 +733,8 @@
     <string name="ThreadRecord_called_you">Called you</string>
     <string name="ThreadRecord_missed_call">Missed call</string>
     <string name="ThreadRecord_media_message">Media message</string>
+    <string name="ThreadRecord_sticker">Sticker</string>
+    <string name="ThreadRecord_disappearing_photo">Disappearing photo</string>
     <string name="ThreadRecord_s_is_on_signal">%s now uses Signal!</string>
     <string name="ThreadRecord_disappearing_messages_disabled">Disappearing messages disabled</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">Disappearing message time set to %s</string>
@@ -787,11 +823,12 @@
     <string name="MessageNotifier_mark_read">Mark read</string>
     <string name="MessageNotifier_media_message">Media message</string>
     <string name="MessageNotifier_sticker">Sticker</string>
+    <string name="MessageNotifier_disappearing_photo">Disappearing photo</string>
     <string name="MessageNotifier_reply">Reply</string>
     <string name="MessageNotifier_signal_message">Signal Message</string>
     <string name="MessageNotifier_unsecured_sms">Unsecured SMS</string>
-    <string name="MessageNotifier_pending_signal_messages">Pending Signal messages</string>
-    <string name="MessageNotifier_you_have_pending_signal_messages">You have pending Signal messages, tap to open and retrieve</string>
+    <string name="MessageNotifier_you_may_have_new_messages">You may have new messages</string>
+    <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Open Signal to check for recent notifications.</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">Contact</string>
 

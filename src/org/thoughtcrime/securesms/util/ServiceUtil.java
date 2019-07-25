@@ -3,15 +3,17 @@ package org.thoughtcrime.securesms.util;
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.NotificationManager;
+import android.app.job.JobScheduler;
 import android.content.Context;
+import android.hardware.display.DisplayManager;
 import android.media.AudioManager;
 import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.PowerManager;
 import android.os.Vibrator;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
 import android.view.WindowManager;
@@ -52,6 +54,15 @@ public class ServiceUtil {
 
   public static Vibrator getVibrator(Context context) {
     return  (Vibrator)context.getSystemService(Context.VIBRATOR_SERVICE);
+  }
+
+  public static DisplayManager getDisplayManager(@NonNull Context context) {
+    return (DisplayManager) context.getSystemService(Context.DISPLAY_SERVICE);
+  }
+
+  @RequiresApi(26)
+  public static JobScheduler getJobScheduler(Context context) {
+    return (JobScheduler) context.getSystemService(JobScheduler.class);
   }
 
   @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)

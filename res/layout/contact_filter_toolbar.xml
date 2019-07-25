@@ -21,7 +21,6 @@
                       android:layout_gravity="center_vertical"
                       android:gravity="center_vertical"
                       android:textCursorDrawable="@null"
-                      android:textSize="18sp"
                       android:fontFamily="sans-serif"/>
 
             <org.thoughtcrime.securesms.components.AnimatingToggle

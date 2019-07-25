@@ -51,12 +51,14 @@
   <string name="DraftDatabase_Draft_video_snippet">(動画)</string>
   <string name="DraftDatabase_Draft_location_snippet">(位置情報)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(返信)</string>
-  <!--AttchmentManager-->
+  <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">ファイルを開くアプリが見つかりません。</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signalに写真や動画、音声データを添付するには、ストレージへのアクセスを許可する必要がありますが、無効になっています。アプリ設定から、アプリの権限を選び、ストレージへのアクセス許可を有効にしてください。</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signalで連絡先を添付するには、連絡先へのアクセスを許可する必要がありますが、無効になっています。アプリ設定メニューから、アプリの権限を選び、連絡先へのアクセス許可を有効にしてください。</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signalで位置情報を添付するには、位置情報へのアクセスを許可する必要がありますが、無効になっています。アプリ設定メニューから、『アプリの権限』を選び、『位置情報』へのアクセス許可を有効にしてください。</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signalで写真を撮るには、カメラへのアクセスを許可する必要がありますが、無効になっています。アプリ設定メニューから、『アプリの権限』を選び、『カメラ』へのアクセス許可を有効にしてください。</string>
+  <!--AttachmentUploadJob-->
+  <string name="AttachmentUploadJob_uploading_media">アップロード中...</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">音声再生中にエラーがありました！</string>
   <!--BlockedContactsActivity-->
@@ -70,6 +72,10 @@
   <string name="CallScreen_Incoming_call">着信</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">画像を保存できませんでした。</string>
+  <!--CameraContacts-->
+  <string name="CameraContacts_signal_contacts">Signalの連絡先</string>
+  <string name="CameraContacts_signal_groups">Signalのグループ</string>
+  <string name="CameraContacts_invite_a_contact_to_join_signal">連絡先をSignalへ招待する</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">削除</string>
   <string name="ClearProfileActivity_remove_profile_photo">プロフィール画像を消去しますか？</string>
@@ -217,6 +223,8 @@
   <string name="ConversationListItem_key_exchange_message">鍵交換のメッセージ</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">アーカイブ済みの会話 (%d)</string>
+  <!--ConversationTitleView-->
+  <string name="ConversationTitleView_verified">検証済み</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity_your_profile_info">プロフィール情報</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">プロフィール画像の設定に失敗しました。</string>
@@ -386,6 +394,7 @@
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">サイズの上限を超えたため、項目が削除されました。</string>
   <string name="MediaSendActivity_camera_unavailable">カメラは利用できません。</string>
   <string name="MediaSendActivity_message_to_s">%s へメッセージ</string>
+  <string name="MediaSendActivity_message">メッセージ</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="other">%d以上のアイテムを共有できません</item>
   </plurals>
@@ -445,6 +454,11 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Signalアイコン</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">パスフレーズを設定</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">無効なパスフレーズです！</string>
+  <!--PlacePickerActivity-->
+  <string name="PlacePickerActivity_title">地図</string>
+  <string name="PlacePickerActivity_not_a_valid_address">無効なアドレスです</string>
+  <string name="PlacePickerActivity_drop_pin">ピンを落とす</string>
+  <string name="PlacePickerActivity_accept_address">アドレスを受け入れる</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">インストールされているGoogle Play開発者サービスのバージョンは正しく動作していません。Google Play開発者サービスを再インストールして再挑戦してみてください。</string>
   <!--RatingManager-->
@@ -514,6 +528,10 @@
   <string name="RegistrationActivity_you_will_receive_a_verification_code">認証コードが届きます。通信料金がかかるかもしれません。</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">%sに送ったコードを入力してください</string>
   <string name="RegistrationActivity_call">通話</string>
+  <!--RevealableMessageView-->
+  <string name="RevealableMessageView_view_photo">写真を見る</string>
+  <string name="RevealableMessageView_viewed">閲覧済み</string>
+  <string name="RevealableMessageView_photo">写真</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">画像の変更を保存できませんでした</string>
   <!--Search-->
@@ -543,6 +561,7 @@
   <string name="SmsMessageRecord_secure_session_reset_s">%sがセキュアセッションを設定し直しました。</string>
   <string name="SmsMessageRecord_duplicate_message">重複メッセージ</string>
   <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">このメッセージは、新しいバージョンのSignalから送信されたため、表示できません。アップデートしてから、メッセージの再送を依頼してください。</string>
+  <string name="SmsMessageRecord_error_handling_incoming_message">受信中にエラー</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">ステッカー</string>
   <!--StickerManagementAdapter-->
@@ -569,6 +588,8 @@
   <string name="ThreadRecord_called_you">着信</string>
   <string name="ThreadRecord_missed_call">不在着信</string>
   <string name="ThreadRecord_media_message">メディアでのメッセージ</string>
+  <string name="ThreadRecord_sticker">ステッカー</string>
+  <string name="ThreadRecord_disappearing_photo">消える写真</string>
   <string name="ThreadRecord_s_is_on_signal">%sがSignalに登録しています！</string>
   <string name="ThreadRecord_disappearing_messages_disabled">消えるメッセージが無効にされました</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">消えるメッセージの消去時間が%sに設定されました</string>
@@ -643,11 +664,12 @@
   <string name="MessageNotifier_mark_read">既読にする</string>
   <string name="MessageNotifier_media_message">メディアメッセージ</string>
   <string name="MessageNotifier_sticker">ステッカー</string>
+  <string name="MessageNotifier_disappearing_photo">消える写真</string>
   <string name="MessageNotifier_reply">返信</string>
   <string name="MessageNotifier_signal_message">Signalメッセージ</string>
   <string name="MessageNotifier_unsecured_sms">安全でないSMS</string>
-  <string name="MessageNotifier_pending_signal_messages">保留中のメッセージ</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">保留中のメッセージがあります。取得するにはタップしてください。</string>
+  <string name="MessageNotifier_you_may_have_new_messages">新しいメッセージがあるかも</string>
+  <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">通知を確認するため、Signalを開いてください</string>
   <string name="MessageNotifier_contact_message">%2$s%1$s</string>
   <string name="MessageNotifier_unknown_contact_message">連絡先</string>
   <!--Notification Channels-->

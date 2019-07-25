@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.components;
 
 import android.content.Context;
 import android.graphics.Rect;
-import android.support.v7.widget.Toolbar;
+import androidx.appcompat.widget.Toolbar;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;

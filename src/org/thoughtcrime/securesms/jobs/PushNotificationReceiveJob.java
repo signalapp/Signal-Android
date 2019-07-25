@@ -1,28 +1,25 @@
 package org.thoughtcrime.securesms.jobs;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.dependencies.InjectableType;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
 import java.io.IOException;
 
-import javax.inject.Inject;
-
-public class PushNotificationReceiveJob extends PushReceivedJob implements InjectableType {
+public class PushNotificationReceiveJob extends PushReceivedJob {
 
   public static final String KEY = "PushNotificationReceiveJob";
 
   private static final String TAG = PushNotificationReceiveJob.class.getSimpleName();
-
-  @Inject SignalServiceMessageReceiver receiver;
 
   public PushNotificationReceiveJob(Context context) {
     this(new Job.Parameters.Builder()
@@ -50,7 +47,7 @@ public class PushNotificationReceiveJob extends PushReceivedJob implements Injec
 
   @Override
   public void onRun() throws IOException {
-    pullAndProcessMessages(receiver, TAG, System.currentTimeMillis());
+    pullAndProcessMessages(ApplicationDependencies.getSignalServiceMessageReceiver(), TAG, System.currentTimeMillis());
   }
 
   public void pullAndProcessMessages(SignalServiceMessageReceiver receiver, String tag, long startTime) throws IOException {
@@ -61,6 +58,7 @@ public class PushNotificationReceiveJob extends PushReceivedJob implements Injec
         Log.i(tag, "Successfully processed an envelope." + timeSuffix(startTime));
       });
       TextSecurePreferences.setNeedsMessagePull(context, false);
+      MessageNotifier.cancelMessagesPending(context);
     }
   }
   @Override

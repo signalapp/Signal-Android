@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android">
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout android:layout_width="match_parent"
                   android:layout_height="match_parent"
@@ -65,7 +67,7 @@
                            android:visibility="visible"
                            android:focusable="true"
                            android:background="@drawable/circle_touch_highlight_background"
-                           android:src="@drawable/ic_dashboard_white_24dp" />
+                           app:srcCompat="@drawable/ic_dashboard_24" />
 
                 <ImageView android:id="@+id/view_stream"
                            android:layout_width="wrap_content"
@@ -76,7 +78,7 @@
                            android:clickable="true"
                            android:focusable="true"
                            android:background="@drawable/circle_touch_highlight_background"
-                           android:src="@drawable/ic_view_stream_white_24dp" />
+                           app:srcCompat="@drawable/ic_view_stream_24" />
 
             </org.thoughtcrime.securesms.components.AnimatingToggle>
 

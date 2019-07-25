@@ -9,7 +9,7 @@
     tools:parentTag="android.widget.LinearLayout"
     tools:background="@color/core_grey_60">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -22,6 +22,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="10dp"
             android:orientation="horizontal"
+            android:gravity="center_vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -40,6 +41,14 @@
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:padding="8dp"
                 android:src="@drawable/ic_undo_32" />
+
+            <ImageView
+                android:id="@+id/scribble_save_button"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:padding="8dp"
+                android:src="@drawable/ic_download_32" />
 
             <ImageView
                 android:id="@+id/scribble_text_button"
@@ -105,7 +114,7 @@
             app:pickerBorderWidth="3dp"
             app:pickerColors="@array/scribble_colors" />
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/scribble_color_palette"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
@@ -148,6 +157,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </merge>

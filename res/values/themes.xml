@@ -219,6 +219,7 @@
         <item name="conversation_item_sticky_date_background">@drawable/sticky_date_header_background_light</item>
         <item name="conversation_item_sticky_date_text_color">@color/core_grey_60</item>
         <item name="conversation_item_image_outline_color">@color/transparent_black_30</item>
+        <item name="conversation_item_reveal_viewed_background_color">@color/core_white</item>
 
         <item name="quick_camera_icon">@drawable/quick_camera_light</item>
         <item name="quick_mic_icon">@drawable/ic_mic_grey600_24dp</item>
@@ -265,6 +266,8 @@
 
         <item name="conversation_icon_attach_audio">@drawable/ic_audio_light</item>
         <item name="conversation_icon_attach_video">@drawable/ic_video_light</item>
+
+        <item name="registration_lock_reminder_view_pin_text_color">@color/core_black</item>
 
         <item name="reminder_header_background">#ff1d85d7</item>
 
@@ -353,6 +356,7 @@
         <item name="conversation_item_sticky_date_background">@drawable/sticky_date_header_background_dark</item>
         <item name="conversation_item_sticky_date_text_color">@color/core_grey_25</item>
         <item name="conversation_item_image_outline_color">@color/transparent_white_30</item>
+        <item name="conversation_item_reveal_viewed_background_color">@color/core_black</item>
 
         <item name="contact_list_divider">@drawable/contact_list_divider_dark</item>
 
@@ -447,6 +451,8 @@
         <item name="conversation_icon_attach_audio">@drawable/ic_audio_dark</item>
         <item name="conversation_icon_attach_video">@drawable/ic_video_dark</item>
 
+        <item name="registration_lock_reminder_view_pin_text_color">@color/core_white</item>
+
         <item name="reminder_header_background">@color/textsecure_primary_dark</item>
 
         <item name="sticker_management_icon">@drawable/sticker_button_dark</item>
@@ -481,9 +487,6 @@
         <item name="android:windowBackground">@drawable/permission_rationale_dialog_corners</item>
     </style>
 
-    <style name="TextSecure.ScribbleTheme" parent="TextSecure.DarkNoActionBar">
-    </style>
-
     <style name="TextSecure.MediaSendProgressDialog" parent="@android:style/Theme.Dialog">
         <item name="android:background">@color/core_grey_95</item>
     </style>
@@ -492,6 +495,10 @@
     </style>
 
     <style name="TextSecure.DarkRegistrationTheme" parent="TextSecure.DarkNoActionBar">
+    </style>
+
+    <style name="TextSecure.FullScreenMedia" parent="TextSecure.DarkNoActionBar">
+        <item name="android:windowFullscreen">true</item>
     </style>
 
 </resources>

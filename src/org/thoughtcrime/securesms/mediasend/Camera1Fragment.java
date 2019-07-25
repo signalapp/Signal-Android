@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.mediasend;
 
 import android.annotation.SuppressLint;
-import android.arch.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProviders;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
@@ -9,11 +9,10 @@ import android.graphics.Point;
 import android.graphics.PointF;
 import android.graphics.SurfaceTexture;
 import android.graphics.drawable.Drawable;
-import android.hardware.Camera;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import android.view.Display;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
@@ -22,14 +21,16 @@ import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.MultiTransformation;
 import com.bumptech.glide.load.Transformation;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
@@ -38,14 +39,20 @@ import com.bumptech.glide.request.transition.Transition;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.Stopwatch;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.ByteArrayOutputStream;
 
-public class Camera1Fragment extends Fragment implements TextureView.SurfaceTextureListener,
+/**
+ * Camera capture implemented with the legacy camera API's. Should only be used if sdk < 21.
+ */
+public class Camera1Fragment extends Fragment implements CameraFragment,
+                                                         TextureView.SurfaceTextureListener,
                                                          Camera1Controller.EventListener
 {
 
@@ -104,6 +111,9 @@ public class Camera1Fragment extends Fragment implements TextureView.SurfaceText
 
     GestureDetector gestureDetector = new GestureDetector(flipGestureListener);
     cameraPreview.setOnTouchListener((v, event) -> gestureDetector.onTouchEvent(event));
+
+    viewModel.getMostRecentMediaItem(requireContext()).observe(this, this::presentRecentItemThumbnail);
+    viewModel.getHudState().observe(this, this::presentHud);
   }
 
   @Override
@@ -126,9 +136,6 @@ public class Camera1Fragment extends Fragment implements TextureView.SurfaceText
     });
 
     orderEnforcer.run(Stage.CAMERA_PROPERTIES_AVAILABLE, this::updatePreviewScale);
-
-    requireActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-    requireActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
   }
 
   @Override
@@ -178,10 +185,46 @@ public class Camera1Fragment extends Fragment implements TextureView.SurfaceText
     controller.onCameraError();
   }
 
+  private void presentRecentItemThumbnail(Optional<Media> media) {
+    if (media == null) {
+      return;
+    }
+
+    ImageView thumbnail = controlsContainer.findViewById(R.id.camera_gallery_button);
+
+    if (media.isPresent()) {
+      thumbnail.setVisibility(View.VISIBLE);
+      Glide.with(this)
+           .load(new DecryptableUri(media.get().getUri()))
+           .centerCrop()
+           .into(thumbnail);
+    } else {
+      thumbnail.setVisibility(View.GONE);
+      thumbnail.setImageResource(0);
+    }
+  }
+
+  private void presentHud(@Nullable MediaSendViewModel.HudState state) {
+    if (state == null) return;
+
+    View     countButton     = controlsContainer.findViewById(R.id.camera_count_button);
+    TextView countButtonText = controlsContainer.findViewById(R.id.mediasend_count_button_text);
+
+    if (state.getButtonState() == MediaSendViewModel.ButtonState.COUNT) {
+      countButton.setVisibility(View.VISIBLE);
+      countButtonText.setText(String.valueOf(state.getSelectionCount()));
+    } else {
+      countButton.setVisibility(View.GONE);
+    }
+  }
+
   @SuppressLint("ClickableViewAccessibility")
   private void initControls() {
-    flipButton    = getView().findViewById(R.id.camera_flip_button);
-    captureButton = getView().findViewById(R.id.camera_capture_button);
+    flipButton    = requireView().findViewById(R.id.camera_flip_button);
+    captureButton = requireView().findViewById(R.id.camera_capture_button);
+
+    View galleryButton = requireView().findViewById(R.id.camera_gallery_button);
+    View countButton   = requireView().findViewById(R.id.camera_count_button);
 
     captureButton.setOnTouchListener((v, event) -> {
       switch (event.getAction()) {
@@ -221,6 +264,11 @@ public class Camera1Fragment extends Fragment implements TextureView.SurfaceText
         flipButton.setVisibility(View.GONE);
       }
     });
+
+    galleryButton.setOnClickListener(v -> controller.onGalleryClicked());
+    countButton.setOnClickListener(v -> controller.onCameraCountButtonClicked());
+
+    viewModel.onCameraControlsInitialized();
   }
 
   private void onCaptureClicked() {
@@ -318,12 +366,6 @@ public class Camera1Fragment extends Fragment implements TextureView.SurfaceText
       return true;
     }
   };
-
-  public interface Controller {
-    void onCameraError();
-    void onImageCaptured(@NonNull byte[] data, int width, int height);
-    int getDisplayRotation();
-  }
 
   private enum Stage {
     SURFACE_AVAILABLE, CAMERA_PROPERTIES_AVAILABLE

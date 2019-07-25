@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.crypto;
 
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.util.Conversions;
 
@@ -75,8 +75,9 @@ public class ModernDecryptingPartInputStream {
     for (;;) {
       int read = in.read(buffer, offset, buffer.length-offset);
 
-      if (read + offset < buffer.length) offset += read;
-      else                               return;
+      if (read == -1)                         throw new IOException("Prematurely reached end of stream!");
+      else if (read + offset < buffer.length) offset += read;
+      else                                    return;
     }
   }
 

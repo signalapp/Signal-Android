@@ -6,10 +6,10 @@ import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.support.annotation.MainThread;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.SearchView;
-import android.support.v7.widget.Toolbar;
+import androidx.annotation.MainThread;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
 import android.util.AttributeSet;
 import android.view.MenuItem;
 import android.view.View;
@@ -56,7 +56,7 @@ public class SearchToolbar extends LinearLayout {
 
     this.searchItem = toolbar.getMenu().findItem(R.id.action_filter_search);
     SearchView searchView = (SearchView) searchItem.getActionView();
-    EditText   searchText = searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
+    EditText   searchText = searchView.findViewById(R.id.search_src_text);
 
     searchView.setSubmitButtonEnabled(false);
 

@@ -60,12 +60,14 @@
   <string name="DraftDatabase_Draft_video_snippet">(vaizdas)</string>
   <string name="DraftDatabase_Draft_location_snippet">(vieta)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(atsakymas)</string>
-  <!--AttchmentManager-->
+  <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Nerasta programėlė medijos pasirinkimui.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Norint pridėti nuotraukas, vaizdo įrašus ar garsą, Signal reikia saugyklos leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymų meniu, pasirinkite \"Leidimai\" ir įjunkite \"Saugyklą\".</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Norint pridėti kontaktinę informaciją, Signal reikia adresatų leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymų meniu, pasirinkite \"Leidimai\" ir įjunkite \"Adresatus\".</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Norint pridėti vietą, Signal reikia vietos leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymų meniu, pasirinkite \"Leidimai\" ir įjunkite \"Vietą\".</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Norint fotografuoti, Signal reikia kameros leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymų meniu, pasirinkite \"Leidimai\" ir įjunkite \"Kamerą\".</string>
+  <!--AttachmentUploadJob-->
+  <string name="AttachmentUploadJob_uploading_media">Įkeliama medija...</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Klaida atkuriant garso įrašą!</string>
   <!--BlockedContactsActivity-->
@@ -79,11 +81,22 @@
   <string name="CallScreen_Incoming_call">Gaunamasis skambutis</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Nepavyko įrašyti paveikslo</string>
+  <!--CameraContacts-->
+  <string name="CameraContacts_recent_contacts">Paskiausi adresatai</string>
+  <string name="CameraContacts_signal_contacts">Signal adresatai</string>
+  <string name="CameraContacts_signal_groups">Signal grupės</string>
+  <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">Galite bendrinti daugiausiai su %d pokalbių.</string>
+  <string name="CameraContacts_select_signal_recipients">Pasirinkti Signal gavėjus</string>
+  <string name="CameraContacts_no_signal_contacts">Nėra Signal adresatų</string>
+  <string name="CameraContacts_you_can_only_use_the_camera_button">Galite naudoti kameros mygtuką tik tam, kad siųstumėte nuotraukas Signal adresatams.</string>
+  <string name="CameraContacts_cant_find_who_youre_looking_for">Nerandate ieškomo žmogaus?</string>
+  <string name="CameraContacts_invite_a_contact_to_join_signal">Pakvieskite adresatą prisijungti prie Signal</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Šalinti</string>
   <string name="ClearProfileActivity_remove_profile_photo">Šalinti profilio nuotrauką?</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Nerasta jokios saityno naršyklės.</string>
+  <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Mobilusis skambutis jau vyksta.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Jūsų saugumo numeris su %1$s pasikeitė. Tai gali reikšti, kad kažkas bando perimti jūsų susirašinėjimą arba, kad %2$s, tiesiog, iš naujo įdiegė Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Jūs, tikriausiai, norėtumėte patvirtinti savo saugumo numerį su šiuo adresatu.</string>
@@ -258,6 +271,8 @@
   <string name="ConversationListItem_key_exchange_message">Šifro apsikeitimo žinutė</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Archyvuoti pokalbiai (%d)</string>
+  <!--ConversationTitleView-->
+  <string name="ConversationTitleView_verified">Patvirtinta(-s)</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity_your_profile_info">Jūsų profilio informacija</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Klaida, nustatant profilio nuotrauką</string>
@@ -439,6 +454,8 @@
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Elementas buvo pašalintas, nes jis viršijo leidžiamą dydį</string>
   <string name="MediaSendActivity_camera_unavailable">Kamera neprieinama.</string>
   <string name="MediaSendActivity_message_to_s">Žinutė skirta %s</string>
+  <string name="MediaSendActivity_message">Žinutė</string>
+  <string name="MediaSendActivity_select_recipients">Pasirinkti gavėjus</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Jūs negalite bendrinti daugiau nei %d elementą.</item>
     <item quantity="few">Jūs negalite bendrinti daugiau nei %d elementų.</item>
@@ -502,6 +519,11 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Signal piktograma</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Pateikti slaptafrazę</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Neteisinga slaptafrazė!</string>
+  <!--PlacePickerActivity-->
+  <string name="PlacePickerActivity_title">Žemėlapis</string>
+  <string name="PlacePickerActivity_not_a_valid_address">Neteisingas adresas</string>
+  <string name="PlacePickerActivity_drop_pin">Įsmeigti smeigtuką</string>
+  <string name="PlacePickerActivity_accept_address">Priimti adresą</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Jūsų turima įdiegta „Google Play“ paslaugų versija nefunkcionuoja tinkamai. Prašome iš naujo įdiegti „Google Play“ paslaugas ir bandyti dar kartą.</string>
   <!--RatingManager-->
@@ -580,6 +602,10 @@
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Gausite patvirtinimo kodą. Gali būti taikomi mobiliojo ryšio tinklo operatoriaus mokesčiai.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Įveskite kodą, kurį išsiuntėme į %s</string>
   <string name="RegistrationActivity_call">Skambinti</string>
+  <!--RevealableMessageView-->
+  <string name="RevealableMessageView_view_photo">Žiūrėti nuotrauką</string>
+  <string name="RevealableMessageView_viewed">Peržiūrėta</string>
+  <string name="RevealableMessageView_photo">Nuotrauka</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Nepavyko įrašyti paveikslo pakeitimų</string>
   <!--Search-->
@@ -613,6 +639,7 @@
   <string name="SmsMessageRecord_secure_session_reset_s">%s atstatė saugųjį seansą.</string>
   <string name="SmsMessageRecord_duplicate_message">Dviguba žinutė.</string>
   <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Šios žinutės nepavyko apdoroti, nes ji buvo išsiųsta, naudojant naujesnę Signal versiją. Kai atsinaujinsite programėlę, galite paprašyti adresato, kad išsiųstų jums šią žinutę dar kartą.</string>
+  <string name="SmsMessageRecord_error_handling_incoming_message">Klaida, apdorojant gaunamą žinutę</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Lipdukai</string>
   <!--StickerManagementAdapter-->
@@ -639,6 +666,8 @@
   <string name="ThreadRecord_called_you">Jums skambino</string>
   <string name="ThreadRecord_missed_call">Praleistas skambutis</string>
   <string name="ThreadRecord_media_message">Medijos žinutė</string>
+  <string name="ThreadRecord_sticker">Lipdukas</string>
+  <string name="ThreadRecord_disappearing_photo">Išnykstanti nuotrauka</string>
   <string name="ThreadRecord_s_is_on_signal">%s atėjo į Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Išnykstančios žinutės išjungtos</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Išnykstančių žinučių laikas nustatytas į %s</string>
@@ -713,11 +742,12 @@
   <string name="MessageNotifier_mark_read">Žymėti kaip skaitytą</string>
   <string name="MessageNotifier_media_message">Medijos žinutė</string>
   <string name="MessageNotifier_sticker">Lipdukas</string>
+  <string name="MessageNotifier_disappearing_photo">Išnykstanti nuotrauka</string>
   <string name="MessageNotifier_reply">Atsakyti</string>
   <string name="MessageNotifier_signal_message">Signal žinutė</string>
   <string name="MessageNotifier_unsecured_sms">Neapsaugota SMS</string>
-  <string name="MessageNotifier_pending_signal_messages">Laukiančios Signal žinutės</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">Jūs turite laukiančių Signal žinučių, bakstelėkite, norėdami atverti ir jas gauti</string>
+  <string name="MessageNotifier_you_may_have_new_messages">Gali būti, kad gavote naujų žinučių</string>
+  <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Atverkite Signal, norėdami patikrinti paskiausius pranešimus.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Adresatas</string>
   <!--Notification Channels-->

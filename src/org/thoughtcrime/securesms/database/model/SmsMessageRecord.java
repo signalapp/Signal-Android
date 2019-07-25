@@ -18,7 +18,7 @@
 package org.thoughtcrime.securesms.database.model;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.text.SpannableString;
 
 import org.thoughtcrime.securesms.R;
@@ -86,6 +86,8 @@ public class SmsMessageRecord extends MessageRecord {
       return emphasisAdded(context.getString(R.string.SmsMessageRecord_secure_session_reset_s, getIndividualRecipient().toShortString()));
     } else if (SmsDatabase.Types.isUnsupportedMessageType(type)) {
       return emphasisAdded(context.getString(R.string.SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version));
+    } else if (SmsDatabase.Types.isInvalidMessageType(type)) {
+      return emphasisAdded(context.getString(R.string.SmsMessageRecord_error_handling_incoming_message));
     } else {
       return super.getDisplayBody(context);
     }

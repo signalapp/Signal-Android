@@ -24,9 +24,9 @@ import android.graphics.Bitmap;
 import android.media.MediaMetadataRetriever;
 import android.net.Uri;
 import android.os.Build;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.VisibleForTesting;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
 import android.text.TextUtils;
 import android.util.Pair;
 
@@ -232,7 +232,7 @@ public class AttachmentDatabase extends Database {
 
     try {
       cursor = database.query(TABLE_NAME, PROJECTION, MMS_ID + " = ?", new String[] {mmsId+""},
-                              null, null, null);
+                              null, null, UNIQUE_ID + " ASC, " + ROW_ID + " ASC");
 
       while (cursor != null && cursor.moveToNext()) {
         results.addAll(getAttachment(cursor));
@@ -242,6 +242,15 @@ public class AttachmentDatabase extends Database {
     } finally {
       if (cursor != null)
         cursor.close();
+    }
+  }
+
+  public boolean hasAttachmentFilesForMessage(long mmsId) {
+    String   selection = MMS_ID + " = ? AND (" + DATA + " NOT NULL OR " + TRANSFER_STATE + " != ?)";
+    String[] args      = new String[] { String.valueOf(mmsId), String.valueOf(TRANSFER_PROGRESS_DONE) };
+
+    try (Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, null, selection, args, null, null, "1")) {
+      return cursor != null && cursor.moveToFirst();
     }
   }
 
@@ -263,7 +272,7 @@ public class AttachmentDatabase extends Database {
   }
 
   @SuppressWarnings("ResultOfMethodCallIgnored")
-  void deleteAttachmentsForMessage(long mmsId) {
+  public void deleteAttachmentsForMessage(long mmsId) {
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
     Cursor cursor           = null;
 
@@ -282,6 +291,44 @@ public class AttachmentDatabase extends Database {
     database.delete(TABLE_NAME, MMS_ID + " = ?", new String[] {mmsId + ""});
     notifyAttachmentListeners();
   }
+
+  public void deleteAttachmentFilesForMessage(long mmsId) {
+    SQLiteDatabase database = databaseHelper.getWritableDatabase();
+    Cursor cursor           = null;
+
+    try {
+      cursor = database.query(TABLE_NAME, new String[] {DATA, THUMBNAIL, CONTENT_TYPE}, MMS_ID + " = ?",
+          new String[] {mmsId+""}, null, null, null);
+
+      while (cursor != null && cursor.moveToNext()) {
+        deleteAttachmentOnDisk(cursor.getString(0), cursor.getString(1), cursor.getString(2));
+      }
+    } finally {
+      if (cursor != null)
+        cursor.close();
+    }
+
+    ContentValues values = new ContentValues();
+    values.put(DATA, (String) null);
+    values.put(DATA_RANDOM, (byte[]) null);
+    values.put(THUMBNAIL, (String) null);
+    values.put(THUMBNAIL_RANDOM, (byte[]) null);
+    values.put(FILE_NAME, (String) null);
+    values.put(CAPTION, (String) null);
+    values.put(SIZE, 0);
+    values.put(WIDTH, 0);
+    values.put(HEIGHT, 0);
+    values.put(TRANSFER_STATE, TRANSFER_PROGRESS_DONE);
+
+    database.update(TABLE_NAME, values, MMS_ID + " = ?", new String[] {mmsId + ""});
+    notifyAttachmentListeners();
+
+    long threadId = DatabaseFactory.getMmsDatabase(context).getThreadIdForMessage(mmsId);
+    if (threadId > 0) {
+      notifyConversationListeners(threadId);
+    }
+  }
+
 
   public void deleteAttachment(@NonNull AttachmentId id) {
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
@@ -371,6 +418,44 @@ public class AttachmentDatabase extends Database {
     }
 
     thumbnailExecutor.submit(new ThumbnailFetchCallable(attachmentId));
+  }
+
+  public void copyAttachmentData(@NonNull AttachmentId sourceId, @NonNull AttachmentId destinationId)
+      throws MmsException, IOException
+  {
+    DatabaseAttachment sourceAttachment = getAttachment(sourceId);
+
+    if (sourceAttachment == null) {
+      throw new MmsException("Cannot find attachment for source!");
+    }
+
+    SQLiteDatabase database       = databaseHelper.getWritableDatabase();
+    DataInfo       copyToDataInfo = getAttachmentDataFileInfo(destinationId, DATA);
+
+    if (copyToDataInfo == null) {
+      throw new MmsException("No attachment data found for destination!");
+    }
+
+    copyToDataInfo = setAttachmentData(copyToDataInfo.file, getAttachmentStream(sourceId, 0));
+
+    ContentValues contentValues = new ContentValues();
+
+    contentValues.put(SIZE, copyToDataInfo.length);
+    contentValues.put(DATA_RANDOM, copyToDataInfo.random);
+
+    contentValues.put(TRANSFER_STATE, sourceAttachment.getTransferState());
+    contentValues.put(CONTENT_LOCATION, sourceAttachment.getLocation());
+    contentValues.put(DIGEST, sourceAttachment.getDigest());
+    contentValues.put(CONTENT_DISPOSITION, sourceAttachment.getKey());
+    contentValues.put(NAME, sourceAttachment.getRelay());
+    contentValues.put(SIZE, sourceAttachment.getSize());
+    contentValues.put(FAST_PREFLIGHT_ID, sourceAttachment.getFastPreflightId());
+    contentValues.put(WIDTH, sourceAttachment.getWidth());
+    contentValues.put(HEIGHT, sourceAttachment.getHeight());
+    contentValues.put(CONTENT_TYPE, sourceAttachment.getContentType());
+
+
+    database.update(TABLE_NAME, contentValues, PART_ID_WHERE, destinationId.toStrings());
   }
 
   public void updateAttachmentAfterUpload(@NonNull AttachmentId id, @NonNull Attachment attachment) {

@@ -4,8 +4,8 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.util.AttributeSet;
 import org.thoughtcrime.securesms.logging.Log;
 import android.util.Pair;
@@ -57,6 +57,9 @@ public class ZoomingImageView extends FrameLayout {
     this.subsamplingImageView = findViewById(R.id.subsampling_image_view);
 
     this.subsamplingImageView.setOrientation(SubsamplingScaleImageView.ORIENTATION_USE_EXIF);
+
+    this.photoView.setOnClickListener(v -> ZoomingImageView.this.callOnClick());
+    this.subsamplingImageView.setOnClickListener(v -> ZoomingImageView.this.callOnClick());
   }
 
   @SuppressLint("StaticFieldLeak")

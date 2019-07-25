@@ -1,32 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="16dp"
-    android:layout_gravity="bottom">
+    android:layout_height="match_parent">
 
     <Button
         android:id="@+id/camera_capture_button"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:background="@drawable/ic_camera_shutter" />
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/ic_camera_shutter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
         android:id="@+id/camera_flip_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toStartOf="@+id/camera_capture_button"
-        android:layout_marginEnd="40dp"
-        android:layout_centerVertical="true"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="14dp"
         android:src="@drawable/ic_switch_camera_32"
         android:scaleType="fitCenter"
         android:background="?selectableItemBackgroundBorderless"
         android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:visibility="visible" />
+    
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/camera_gallery_button"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="32dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintTop_toTopOf="@id/camera_capture_button"
+        app:layout_constraintBottom_toBottomOf="@id/camera_capture_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:riv_corner_radius="4dp"
+        app:riv_border_color="@color/core_white"
+        app:riv_border_width="2dp"/>
+
+    <include
+        android:id="@+id/camera_count_button"
+        layout="@layout/mediasend_count_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="11dp"
+        android:layout_marginBottom="14dp"
+        android:layout_marginEnd="32dp"
+        android:layout_gravity="bottom|end"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="@id/camera_capture_button"
+        app:layout_constraintBottom_toBottomOf="@id/camera_capture_button"
+        app:layout_constraintEnd_toEndOf="parent"
         tools:visibility="visible" />
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 

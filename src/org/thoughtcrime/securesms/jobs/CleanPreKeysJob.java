@@ -1,17 +1,16 @@
 package org.thoughtcrime.securesms.jobs;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
+import org.thoughtcrime.securesms.crypto.storage.SignalProtocolStoreImpl;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.crypto.PreKeyUtil;
-import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.whispersystems.libsignal.InvalidKeyIdException;
 import org.whispersystems.libsignal.state.SignedPreKeyRecord;
 import org.whispersystems.libsignal.state.SignedPreKeyStore;
-import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
@@ -22,20 +21,13 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import javax.inject.Inject;
-
-import static org.thoughtcrime.securesms.dependencies.AxolotlStorageModule.SignedPreKeyStoreFactory;
-
-public class CleanPreKeysJob extends BaseJob implements InjectableType {
+public class CleanPreKeysJob extends BaseJob {
 
   public static final String KEY = "CleanPreKeysJob";
 
   private static final String TAG = CleanPreKeysJob.class.getSimpleName();
 
   private static final long ARCHIVE_AGE = TimeUnit.DAYS.toMillis(7);
-
-  @Inject SignalServiceAccountManager accountManager;
-  @Inject SignedPreKeyStoreFactory signedPreKeyStoreFactory;
 
   public CleanPreKeysJob() {
     this(new Job.Parameters.Builder()
@@ -64,7 +56,7 @@ public class CleanPreKeysJob extends BaseJob implements InjectableType {
       Log.i(TAG, "Cleaning prekeys...");
 
       int                activeSignedPreKeyId = PreKeyUtil.getActiveSignedPreKeyId(context);
-      SignedPreKeyStore  signedPreKeyStore    = signedPreKeyStoreFactory.create();
+      SignedPreKeyStore  signedPreKeyStore    = new SignalProtocolStoreImpl(context);
 
       if (activeSignedPreKeyId < 0) return;
 

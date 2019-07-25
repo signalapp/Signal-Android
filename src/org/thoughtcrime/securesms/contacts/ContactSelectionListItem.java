@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.contacts;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
@@ -94,8 +94,6 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientM
       recipient.removeListener(this);
       recipient = null;
     }
-
-    contactPhotoImage.clear(glideRequests);
   }
 
   private void setText(int type, String name, String number, String label) {

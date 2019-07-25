@@ -33,11 +33,12 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.service.notification.StatusBarNotification;
-import android.support.annotation.NonNull;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationManagerCompat;
+import androidx.annotation.NonNull;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import android.text.TextUtils;
 
+import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.contactshare.ContactUtil;
@@ -120,12 +121,16 @@ public class MessageNotifier {
   }
 
   public static void notifyMessagesPending(Context context) {
-    if (!TextSecurePreferences.isNotificationsEnabled(context)) {
+    if (!TextSecurePreferences.isNotificationsEnabled(context) || ApplicationContext.getInstance(context).isAppVisible()) {
       return;
     }
 
     PendingMessageNotificationBuilder builder = new PendingMessageNotificationBuilder(context, TextSecurePreferences.getNotificationPrivacy(context));
     ServiceUtil.getNotificationManager(context).notify(PENDING_MESSAGES_ID, builder.build());
+  }
+
+  public static void cancelMessagesPending(Context context) {
+    ServiceUtil.getNotificationManager(context).cancel(PENDING_MESSAGES_ID);
   }
 
   public static void cancelDelayedNotifications() {
@@ -141,7 +146,7 @@ public class MessageNotifier {
         StatusBarNotification[] activeNotifications = notifications.getActiveNotifications();
 
         for (StatusBarNotification activeNotification : activeNotifications) {
-          if (activeNotification.getId() != CallNotificationBuilder.WEBRTC_NOTIFICATION) {
+          if (!CallNotificationBuilder.isWebRtcNotification(activeNotification.getId())) {
             notifications.cancel(activeNotification.getId());
           }
         }
@@ -162,11 +167,11 @@ public class MessageNotifier {
         for (StatusBarNotification notification : activeNotifications) {
           boolean validNotification = false;
 
-          if (notification.getId() != SUMMARY_NOTIFICATION_ID &&
-              notification.getId() != CallNotificationBuilder.WEBRTC_NOTIFICATION   &&
-              notification.getId() != KeyCachingService.SERVICE_RUNNING_ID          &&
-              notification.getId() != IncomingMessageObserver.FOREGROUND_ID         &&
-              notification.getId() != PENDING_MESSAGES_ID)
+          if (notification.getId() != SUMMARY_NOTIFICATION_ID               &&
+              notification.getId() != KeyCachingService.SERVICE_RUNNING_ID  &&
+              notification.getId() != IncomingMessageObserver.FOREGROUND_ID &&
+              notification.getId() != PENDING_MESSAGES_ID                   &&
+              !CallNotificationBuilder.isWebRtcNotification(notification.getId()))
           {
             for (NotificationItem item : notificationState.getNotifications()) {
               if (notification.getId() == (SUMMARY_NOTIFICATION_ID + item.getThreadId())) {
@@ -315,15 +320,17 @@ public class MessageNotifier {
     long timestamp = notifications.get(0).getTimestamp();
     if (timestamp != 0) builder.setWhen(timestamp);
 
-    ReplyMethod replyMethod = ReplyMethod.forRecipient(context, recipient);
+    if (!KeyCachingService.isLocked(context)) {
+      ReplyMethod replyMethod = ReplyMethod.forRecipient(context, recipient);
 
-    builder.addActions(notificationState.getMarkAsReadIntent(context, notificationId),
-                       notificationState.getQuickReplyIntent(context, notifications.get(0).getRecipient()),
-                       notificationState.getRemoteReplyIntent(context, notifications.get(0).getRecipient(), replyMethod),
-                       replyMethod);
+      builder.addActions(notificationState.getMarkAsReadIntent(context, notificationId),
+                         notificationState.getQuickReplyIntent(context, notifications.get(0).getRecipient()),
+                         notificationState.getRemoteReplyIntent(context, notifications.get(0).getRecipient(), replyMethod),
+                         replyMethod);
 
-    builder.addAndroidAutoAction(notificationState.getAndroidAutoReplyIntent(context, notifications.get(0).getRecipient()),
-                                 notificationState.getAndroidAutoHeardIntent(context, notificationId), notifications.get(0).getTimestamp());
+      builder.addAndroidAutoAction(notificationState.getAndroidAutoReplyIntent(context, notifications.get(0).getRecipient()),
+                                   notificationState.getAndroidAutoHeardIntent(context, notificationId), notifications.get(0).getTimestamp());
+    }
 
     ListIterator<NotificationItem> iterator = notifications.listIterator(notifications.size());
 
@@ -458,6 +465,8 @@ public class MessageNotifier {
       } else if (record.isMms() && ((MmsMessageRecord) record).getSlideDeck().getStickerSlide() != null) {
         body = SpanUtil.italic(context.getString(R.string.MessageNotifier_sticker));
         slideDeck = ((MmsMessageRecord) record).getSlideDeck();
+      } else if (record.isMms() && ((MmsMessageRecord) record).getRevealDuration() > 0) {
+        body = SpanUtil.italic(context.getString(R.string.MessageNotifier_disappearing_photo));
       } else if (record.isMms() && TextUtils.isEmpty(body) && !((MmsMessageRecord) record).getSlideDeck().getSlides().isEmpty()) {
         body = SpanUtil.italic(context.getString(R.string.MessageNotifier_media_message));
         slideDeck = ((MediaMmsMessageRecord)record).getSlideDeck();

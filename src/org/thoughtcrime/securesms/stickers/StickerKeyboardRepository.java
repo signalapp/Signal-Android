@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.stickers;
 
 import android.database.Cursor;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.database.StickerDatabase;
 import org.thoughtcrime.securesms.database.StickerDatabase.StickerPackRecordReader;

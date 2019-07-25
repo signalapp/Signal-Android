@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.jobmanager.impl;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;

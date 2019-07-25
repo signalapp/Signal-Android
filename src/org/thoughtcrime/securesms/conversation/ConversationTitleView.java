@@ -2,8 +2,8 @@ package org.thoughtcrime.securesms.conversation;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
@@ -32,6 +32,7 @@ public class ConversationTitleView extends RelativeLayout {
   private TextView        subtitle;
   private ImageView       verified;
   private View            subtitleContainer;
+  private View            verifiedSubtitle;
 
   public ConversationTitleView(Context context) {
     this(context, null);
@@ -51,6 +52,7 @@ public class ConversationTitleView extends RelativeLayout {
     this.subtitle          = ViewUtil.findById(this, R.id.subtitle);
     this.verified          = ViewUtil.findById(this, R.id.verified_indicator);
     this.subtitleContainer = ViewUtil.findById(this, R.id.subtitle_container);
+    this.verifiedSubtitle  = ViewUtil.findById(this, R.id.verified_subtitle);
     this.avatar            = ViewUtil.findById(this, R.id.contact_photo_image);
 
     ViewUtil.setTextViewGravityStart(this.title, getContext());
@@ -58,6 +60,8 @@ public class ConversationTitleView extends RelativeLayout {
   }
 
   public void setTitle(@NonNull GlideRequests glideRequests, @Nullable Recipient recipient) {
+    this.subtitleContainer.setVisibility(View.VISIBLE);
+
     if      (recipient == null) setComposeTitle();
     else                        setRecipientTitle(recipient);
 
@@ -72,10 +76,14 @@ public class ConversationTitleView extends RelativeLayout {
     if (recipient != null) {
       this.avatar.setAvatar(glideRequests, recipient, false);
     }
+
+    updateVerifiedSubtitleVisibility();
   }
 
   public void setVerified(boolean verified) {
     this.verified.setVisibility(verified ? View.VISIBLE : View.GONE);
+
+    updateVerifiedSubtitleVisibility();
   }
 
   @Override
@@ -113,7 +121,6 @@ public class ConversationTitleView extends RelativeLayout {
                                 .collect(Collectors.joining(", ")));
 
     this.subtitle.setVisibility(View.VISIBLE);
-    this.subtitleContainer.setVisibility(VISIBLE);
   }
 
   private void setSelfTitle() {
@@ -124,7 +131,6 @@ public class ConversationTitleView extends RelativeLayout {
   @SuppressLint("SetTextI18n")
   private void setNonContactRecipientTitle(Recipient recipient) {
     this.title.setText(recipient.getAddress().serialize());
-    this.subtitleContainer.setVisibility(VISIBLE);
 
     if (TextUtils.isEmpty(recipient.getProfileName())) {
       this.subtitle.setText(null);
@@ -138,10 +144,16 @@ public class ConversationTitleView extends RelativeLayout {
   private void setContactRecipientTitle(Recipient recipient) {
     this.title.setText(recipient.getName());
 
-    if (recipient.getCustomLabel() != null) this.subtitle.setText(recipient.getCustomLabel());
-    else                                    this.subtitle.setText(recipient.getAddress().serialize());
+    if (TextUtils.isEmpty(recipient.getCustomLabel())) {
+      this.subtitle.setText(null);
+      this.subtitle.setVisibility(View.GONE);
+    } else {
+      this.subtitle.setText(recipient.getCustomLabel());
+      this.subtitle.setVisibility(View.VISIBLE);
+    }
+  }
 
-    this.subtitle.setVisibility(View.VISIBLE);
-    this.subtitleContainer.setVisibility(VISIBLE);
+  private void updateVerifiedSubtitleVisibility() {
+    verifiedSubtitle.setVisibility(subtitle.getVisibility() != VISIBLE && verified.getVisibility() == VISIBLE ? VISIBLE : GONE);
   }
 }

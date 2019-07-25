@@ -54,12 +54,14 @@
   <string name="DraftDatabase_Draft_video_snippet">(vídeo)</string>
   <string name="DraftDatabase_Draft_location_snippet">(posición)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(responder)</string>
-  <!--AttchmentManager-->
+  <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">No se pudo encontrar una aplicación para el contenido seleccionado.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal necesita acceso al almacenamiento de tu teléfono para adjuntar fotos, vídeos o audio. Por favor, ve al menú de configuración de la aplicación, selecciona «Permisos» y activa «Almacenamiento».</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal necesita acceso a los contactos en tu teléfono para adjuntar información de contactos en tus chats. Por favor, ve al menú de configuración de la aplicación, selecciona «Permisos» y activa «Contactos».</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal necesita acceso a tu posición para adjuntar la información en tus chats. Por favor, ve al menú de configuración de la aplicación, selecciona «Permisos» y activa «Ubicación».</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal necesita acceso a la cámara para tomar fotos y verificar las cifras de seguridad de tus chats. Por favor, ve al menú de configuración de la aplicación, selecciona «Permisos» y activa «Cámara».</string>
+  <!--AttachmentUploadJob-->
+  <string name="AttachmentUploadJob_uploading_media">Subiendo archivo ...</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">¡Fallo al reproducir sonido!</string>
   <!--BlockedContactsActivity-->
@@ -73,6 +75,16 @@
   <string name="CallScreen_Incoming_call">Llamada entrante</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Fallo al guardar la imagen.</string>
+  <!--CameraContacts-->
+  <string name="CameraContacts_recent_contacts">Contactos recientes</string>
+  <string name="CameraContacts_signal_contacts">Contactos de Signal</string>
+  <string name="CameraContacts_signal_groups">Grupos de Signal</string>
+  <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">Puedes compartir con un máximo de %d chats.</string>
+  <string name="CameraContacts_select_signal_recipients">Selecciona contactos de Signal</string>
+  <string name="CameraContacts_no_signal_contacts">No hay contactos de Signal</string>
+  <string name="CameraContacts_you_can_only_use_the_camera_button">Sólo puedes usar el botón de ma cámara para enviar fotos a contactos en Signal.</string>
+  <string name="CameraContacts_cant_find_who_youre_looking_for">¿No encuentras a quien buscas?</string>
+  <string name="CameraContacts_invite_a_contact_to_join_signal">Invita a un contacto a usar Signal</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Eliminar</string>
   <string name="ClearProfileActivity_remove_profile_photo">¿Eliminar foto de perfil?</string>
@@ -231,6 +243,8 @@
   <string name="ConversationListItem_key_exchange_message">Mensaje de intercambio de claves</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Chats archivados (%d)</string>
+  <!--ConversationTitleView-->
+  <string name="ConversationTitleView_verified">Verificado</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity_your_profile_info">Información de perfil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Fallo al establecer la foto de perfil</string>
@@ -404,6 +418,8 @@
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Se eliminó un objeto ya que excedía el límite de tamaño</string>
   <string name="MediaSendActivity_camera_unavailable">Cámara no disponible.</string>
   <string name="MediaSendActivity_message_to_s">Mensaje para %s</string>
+  <string name="MediaSendActivity_message">Mensaje</string>
+  <string name="MediaSendActivity_select_recipients">Selecciona contactos</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">No se puede compartir más de %d objeto.</item>
     <item quantity="other">No se pueden compartir más de %d objetos.</item>
@@ -465,6 +481,11 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Icono de Signal</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Enviar clave de acceso</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">¡Clave de acceso no válida!</string>
+  <!--PlacePickerActivity-->
+  <string name="PlacePickerActivity_title">Mapa</string>
+  <string name="PlacePickerActivity_not_a_valid_address">La dirección no es válida</string>
+  <string name="PlacePickerActivity_drop_pin">Situar chincheta</string>
+  <string name="PlacePickerActivity_accept_address">Aceptar dirección</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">La versión de Google Play Services que has instalado no funciona correctamente. Por favor, reinstala Google Play Services e inténtalo de nuevo.</string>
   <!--RatingManager-->
@@ -541,6 +562,10 @@ número de teléfono
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Recibirás un código de verificación SMS. Se aplican las tarifas de tu operador.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Introduce el código que hemos enviado a %s</string>
   <string name="RegistrationActivity_call">Llamada</string>
+  <!--RevealableMessageView-->
+  <string name="RevealableMessageView_view_photo">Ver foto</string>
+  <string name="RevealableMessageView_viewed">Visto</string>
+  <string name="RevealableMessageView_photo">Foto</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Fallo al guardar los cambios de la imagen</string>
   <!--Search-->
@@ -574,6 +599,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="SmsMessageRecord_secure_session_reset_s">%s reinició la sesión segura.</string>
   <string name="SmsMessageRecord_duplicate_message">Duplicar mensaje.</string>
   <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Fallo al procesar el mensaje, ya que ha sido enviado con una versión más actual de Signal. Puedes pedir a tu contacto que vuelva a enviar el mensaje tras haber actualizado tu versión de Signal.</string>
+  <string name="SmsMessageRecord_error_handling_incoming_message">Fallo al procesar el mensaje recibido</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Cromos</string>
   <!--StickerManagementAdapter-->
@@ -600,6 +626,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ThreadRecord_called_you">Te ha llamado</string>
   <string name="ThreadRecord_missed_call">Llamada perdida</string>
   <string name="ThreadRecord_media_message">Mensaje multimedia</string>
+  <string name="ThreadRecord_sticker">Cromo</string>
+  <string name="ThreadRecord_disappearing_photo">Foto con caducidad</string>
   <string name="ThreadRecord_s_is_on_signal">¡%s usa Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Desaparición de mensajes desactivada.</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">El tiempo de desaparición de mensajes se ha fijado en %s</string>
@@ -674,11 +702,12 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="MessageNotifier_mark_read">Marcar como leído</string>
   <string name="MessageNotifier_media_message">Mensaje multimedia</string>
   <string name="MessageNotifier_sticker">Cromo</string>
+  <string name="MessageNotifier_disappearing_photo">Foto con caducidad</string>
   <string name="MessageNotifier_reply">Responder</string>
   <string name="MessageNotifier_signal_message">Mensaje de Signal</string>
   <string name="MessageNotifier_unsecured_sms">SMS no cifrado</string>
-  <string name="MessageNotifier_pending_signal_messages">Mensajes de Signal pendientes</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">Tienes mensajes de Signal pendientes, toca para abrir y descargar</string>
+  <string name="MessageNotifier_you_may_have_new_messages">Puedes tener nuevos mensajes</string>
+  <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Abre Signal para comprobar las últimas notificaciones.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Contacto</string>
   <!--Notification Channels-->

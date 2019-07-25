@@ -54,12 +54,14 @@
   <string name="DraftDatabase_Draft_video_snippet">(film)</string>
   <string name="DraftDatabase_Draft_location_snippet">(plats)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(svar)</string>
-  <!--AttchmentManager-->
+  <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Kan inte hitta app för att välja media.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal behöver behörigheten Lagring för att bifoga bilder, video och ljud men har nekats den permanent. Fortsätt till inställningsmenyn för Appar och aviseringar, välj \"Behörigheter\" och aktivera \"Lagring\".</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal behöver behörigheten Kontakter för att bifoga kontaktinformation men har nekats den permanent. Fortsätt till inställningsmenyn för Appar och aviseringar, välj \"Behörigheter\" och aktivera \"Kontakter\".</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal behöver behörigheten Plats för att bifoga platser men har nekats den permanent. Fortsätt till inställningsmenyn för Appar och aviseringar, välj \"Behörigheter\" och aktivera \"Plats\".</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal behöver behörigheten Kamera för att ta bilder men har nekats den permanent. Fortsätt till inställningsmenyn för Appar och aviseringar, välj \"Behörigheter\" och aktivera \"Kamera\".</string>
+  <!--AttachmentUploadJob-->
+  <string name="AttachmentUploadJob_uploading_media">Ladda upp media...</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Fel vid uppspelning av ljud!</string>
   <!--BlockedContactsActivity-->
@@ -73,6 +75,7 @@
   <string name="CallScreen_Incoming_call">Inkommande samtal</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Misslyckades med att spara bilden.</string>
+  <!--CameraContacts-->
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Ta bort</string>
   <string name="ClearProfileActivity_remove_profile_photo">Ta bort profilbild?</string>
@@ -231,6 +234,8 @@
   <string name="ConversationListItem_key_exchange_message">Nyckelutbytesmeddelande</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Arkiverade konversationer (%d)</string>
+  <!--ConversationTitleView-->
+  <string name="ConversationTitleView_verified">Verifierat</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity_your_profile_info">Din profilinfo</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Gick ej att välja profilbild</string>
@@ -239,7 +244,7 @@
   <string name="CreateProfileActivity_too_long">För långt</string>
   <string name="CreateProfileActivity_profile_name">Profilnamn</string>
   <string name="CreateProfileActivity_set_up_your_profile">Ställ in din profil</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal-profiler är end-to-end krypterade och Signal-tjänsten har aldrig tillgång till denna information.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal-profiler är end-to-end-krypterade och Signal-tjänsten har aldrig tillgång till denna information.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Använder anpassade: %s</string>
   <string name="CustomDefaultPreference_using_default">Använder standard: %s</string>
@@ -404,6 +409,7 @@
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Ett objekt togs bort eftersom det överskred storleksgränsen</string>
   <string name="MediaSendActivity_camera_unavailable">Kamera otillgänglig.</string>
   <string name="MediaSendActivity_message_to_s">Meddelande till %s</string>
+  <string name="MediaSendActivity_message">Meddelande</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Du kan inte dela mer än %d objekt.</item>
     <item quantity="other">Du kan inte dela mer än %d objekt.</item>
@@ -425,7 +431,7 @@
   <string name="MessageRecord_you_disabled_disappearing_messages">Du stängde av att meddelanden försvinner.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s stängde av att meddelanden försvinner.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Du satte tid innan meddelanden försvinner till %1$s.</string>
-  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$ssatte tid innan meddelanden försvinner till %2$s. </string>
+  <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s satte tid innan meddelanden försvinner till %2$s. </string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Ditt säkerhetsnummer med %s har ändrats.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Du markerade ditt säkerhetsnummer med %s verifierad</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Du markerade ditt säkerhetsnummer med %s verifierad från en annan enhet</string>
@@ -464,6 +470,11 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Signal-ikon</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Skicka lösenord</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Fel lösenord!</string>
+  <!--PlacePickerActivity-->
+  <string name="PlacePickerActivity_title">Karta</string>
+  <string name="PlacePickerActivity_not_a_valid_address">Inte en giltig adress</string>
+  <string name="PlacePickerActivity_drop_pin">Släpp stift</string>
+  <string name="PlacePickerActivity_accept_address">Acceptera adress</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Versionen av Google Play-tjänster du har installerat fungerar inte korrekt. Installera om Google Play-tjänster och försök igen.</string>
   <!--RatingManager-->
@@ -537,6 +548,8 @@ angav (%s) är ogiltigt.</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Du kommer att få en verifieringskod. Din operatör kan ta betalt för det. </string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Ange koden vi skickade till %s</string>
   <string name="RegistrationActivity_call">Ring</string>
+  <!--RevealableMessageView-->
+  <string name="RevealableMessageView_photo">Foto</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Misslyckades med att spara bildändringar</string>
   <!--Search-->
@@ -568,6 +581,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s startar om den säkra sessionen.</string>
   <string name="SmsMessageRecord_duplicate_message">Duplicerat meddelande.</string>
   <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Det här meddelandet kunde inte behandlas eftersom det skickades från en nyare version av Signal. Du kan be din kontakt att skicka det här meddelandet igen när du har uppdaterat.</string>
+  <string name="SmsMessageRecord_error_handling_incoming_message">Fel med att hantera inkommande meddelande</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Stickers</string>
   <!--StickerManagementAdapter-->
@@ -594,6 +608,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ThreadRecord_called_you">Ringde dig</string>
   <string name="ThreadRecord_missed_call">Missat samtal</string>
   <string name="ThreadRecord_media_message">Mediameddelande</string>
+  <string name="ThreadRecord_sticker">Klistermärke</string>
   <string name="ThreadRecord_s_is_on_signal">%s finns på Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Försvinnande meddelanden inaktiverat</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Tiden för försvinnande meddelanden inställd till %s</string>
@@ -671,8 +686,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="MessageNotifier_reply">Svara</string>
   <string name="MessageNotifier_signal_message">Signal-meddelande</string>
   <string name="MessageNotifier_unsecured_sms">Osäkert SMS</string>
-  <string name="MessageNotifier_pending_signal_messages">Väntande Signal-meddelanden</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">Du har väntande Signal-meddelanden, tryck för att öppna och hämta</string>
+  <string name="MessageNotifier_you_may_have_new_messages">Du kan ha nya meddelanden</string>
+  <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Öppna Signal för att kontrollera efter senaste aviseringar.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Kontakt</string>
   <!--Notification Channels-->
@@ -1016,7 +1031,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Använd Signal för alla inkommande multimedia-meddelanden</string>
   <string name="preferences__pref_enter_sends_title">Entertangenten skickar</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Entertangenten skickar textmeddelanden</string>
-  <string name="preferences__send_link_previews">Sicka länkförhandsvisning</string>
+  <string name="preferences__send_link_previews">Skicka länkförhandsvisning</string>
   <string name="preferences__previews_are_supported_for">Förhandsvisningar stöds för Imgur-, Instagram-, Pinterest-, Reddit- och YouTube-länkar.</string>
   <string name="preferences__choose_identity">Välj identitet</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Välj din kontakt från kontaktlistan.</string>

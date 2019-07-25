@@ -1,8 +1,8 @@
 package org.thoughtcrime.securesms.components.recyclerview;
 
 
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class DeleteItemAnimator extends DefaultItemAnimator {
 

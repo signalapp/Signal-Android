@@ -1,15 +1,18 @@
 package org.thoughtcrime.securesms.scribbles;
 
+import android.Manifest;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.imageeditor.ColorableRenderer;
@@ -17,14 +20,23 @@ import org.thoughtcrime.securesms.imageeditor.ImageEditorView;
 import org.thoughtcrime.securesms.imageeditor.Renderer;
 import org.thoughtcrime.securesms.imageeditor.model.EditorElement;
 import org.thoughtcrime.securesms.imageeditor.model.EditorModel;
-import org.thoughtcrime.securesms.imageeditor.renderers.TextRenderer;
+import org.thoughtcrime.securesms.imageeditor.renderers.MultiLineTextRenderer;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mediasend.MediaSendPageFragment;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.mms.PushMediaConstraints;
+import org.thoughtcrime.securesms.permissions.Permissions;
+import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.scribbles.widget.VerticalSlideColorPicker;
+import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.ParcelUtil;
+import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
+import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -132,8 +144,6 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
     if (restoredModel != null) {
       editorModel = restoredModel;
       restoredModel = null;
-    } else if (savedInstanceState != null) {
-      editorModel = new Data(savedInstanceState).readModel();
     }
 
     if (editorModel == null) {
@@ -146,12 +156,6 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
     imageEditorView.setModel(editorModel);
 
     refreshUniqueColors();
-  }
-
-  @Override
-  public void onSaveInstanceState(@NonNull Bundle outState) {
-    super.onSaveInstanceState(outState);
-    new Data(outState).writeModel(imageEditorView.getModel());
   }
 
   @Override
@@ -213,10 +217,10 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
   }
 
   protected void addText() {
-    String        initialText = "";
-    int           color       = imageEditorHud.getActiveColor();
-    TextRenderer  renderer    = new TextRenderer(initialText, color);
-    EditorElement element     = new EditorElement(renderer);
+    String                initialText = "";
+    int                   color       = imageEditorHud.getActiveColor();
+    MultiLineTextRenderer renderer    = new MultiLineTextRenderer(initialText, color);
+    EditorElement         element     = new EditorElement(renderer);
 
     imageEditorView.getModel().addElementCentered(element, 1);
     imageEditorView.invalidate();
@@ -296,6 +300,36 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
   }
 
   @Override
+  public void onSave() {
+    SaveAttachmentTask.showWarningDialog(requireContext(), (dialogInterface, i) -> {
+      Permissions.with(this)
+                 .request(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)
+                 .ifNecessary()
+                 .withPermanentDenialDialog(getString(R.string.MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied))
+                 .onAnyDenied(() -> Toast.makeText(requireContext(), R.string.MediaPreviewActivity_unable_to_write_to_external_storage_without_permission, Toast.LENGTH_LONG).show())
+                 .onAllGranted(() -> {
+                   SimpleTask.run(() -> {
+                     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+                     Bitmap                image        = imageEditorView.getModel().render(requireContext());
+
+                     image.compress(Bitmap.CompressFormat.JPEG, 80, outputStream);
+
+                     return BlobProvider.getInstance()
+                                        .forData(outputStream.toByteArray())
+                                        .withMimeType(MediaUtil.IMAGE_JPEG)
+                                        .createForSingleUseInMemory();
+
+                   }, uri -> {
+                     SaveAttachmentTask saveTask = new SaveAttachmentTask(requireContext());
+                     SaveAttachmentTask.Attachment attachment = new SaveAttachmentTask.Attachment(uri, MediaUtil.IMAGE_JPEG, System.currentTimeMillis(), null);
+                     saveTask.executeOnExecutor(SignalExecutors.BOUNDED, attachment);
+                   });
+                 })
+                 .execute();
+    });
+  }
+
+  @Override
   public void onFlipHorizontal() {
     imageEditorView.getModel().flipHorizontal();
   }
@@ -346,7 +380,7 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
      public void onEntitySingleTap(@Nullable EditorElement editorElement) {
        currentSelection = editorElement;
        if (currentSelection != null) {
-         if (editorElement.getRenderer() instanceof TextRenderer) {
+         if (editorElement.getRenderer() instanceof MultiLineTextRenderer) {
            setTextElement(editorElement, (ColorableRenderer) editorElement.getRenderer(), imageEditorView.isTextEditing());
          } else {
            imageEditorHud.enterMode(ImageEditorHud.Mode.MOVE_DELETE);
@@ -357,7 +391,7 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
      @Override
       public void onEntityDoubleTap(@NonNull EditorElement editorElement) {
         currentSelection = editorElement;
-        if (editorElement.getRenderer() instanceof TextRenderer) {
+        if (editorElement.getRenderer() instanceof MultiLineTextRenderer) {
           setTextElement(editorElement, (ColorableRenderer) editorElement.getRenderer(), true);
         }
       }

@@ -51,12 +51,14 @@
   <string name="DraftDatabase_Draft_video_snippet">（影片）</string>
   <string name="DraftDatabase_Draft_location_snippet">（位置）</string>
   <string name="DraftDatabase_Draft_quote_snippet">（回覆）</string>
-  <!--AttchmentManager-->
+  <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">找不到合適的應用程式來選擇媒體檔案。</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal 需要儲存的權限，以存取照片、影片或聲音檔。但是現在被設定為永久拒絕存取。請到應用程式設定中，選擇「權限」及開啟「儲存」。 </string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal 需要聯絡人的權限以存取聯絡人資訊，但是現在被設定為永久拒絕存取。請到應用程式設定中，選取「權限」，並啟用「聯絡人」的權限。</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal 需要位置的權限以存取位置資訊，但是現在被設定為永久拒絕存取。請到應用程式設定中，選取「權限」，並啟用「位置」的權限。</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal 需要相機的權限用以拍照，但是現在被設定為永久拒絕使用。請到應用程式設定中，選取「權限」，並啟用「相機」的權限。</string>
+  <!--AttachmentUploadJob-->
+  <string name="AttachmentUploadJob_uploading_media">上傳媒體檔案</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">播放音訊時出現錯誤！</string>
   <!--BlockedContactsActivity-->
@@ -70,6 +72,16 @@
   <string name="CallScreen_Incoming_call">來電</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">儲存照片失敗。</string>
+  <!--CameraContacts-->
+  <string name="CameraContacts_recent_contacts">最近的聯絡人</string>
+  <string name="CameraContacts_signal_contacts">Signal 聯絡人</string>
+  <string name="CameraContacts_signal_groups">Signal 群組</string>
+  <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">你可以分享最多%d的對話。</string>
+  <string name="CameraContacts_select_signal_recipients">選擇 Signal 收件人</string>
+  <string name="CameraContacts_no_signal_contacts">沒有 Signal 聯絡人</string>
+  <string name="CameraContacts_you_can_only_use_the_camera_button">你只能使用相機按鈕將照片傳送到 Signal 聯絡人。</string>
+  <string name="CameraContacts_cant_find_who_youre_looking_for">找不到你要找的人？</string>
+  <string name="CameraContacts_invite_a_contact_to_join_signal">邀請一個聯絡人來使用 Signal </string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">移除</string>
   <string name="ClearProfileActivity_remove_profile_photo">移除頭像照片？</string>
@@ -217,6 +229,8 @@
   <string name="ConversationListItem_key_exchange_message">金鑰交換訊息</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">存檔對話 (%d)</string>
+  <!--ConversationTitleView-->
+  <string name="ConversationTitleView_verified">已驗證</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity_your_profile_info">你的個人資訊</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">頭像照片設定出現錯誤</string>
@@ -386,6 +400,8 @@
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">一個項目因為超過容量的限制而被移除</string>
   <string name="MediaSendActivity_camera_unavailable">相機無法使用。</string>
   <string name="MediaSendActivity_message_to_s">傳訊息給 %s</string>
+  <string name="MediaSendActivity_message">訊息</string>
+  <string name="MediaSendActivity_select_recipients">選擇收件人</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="other">你無法分享超過 %d 個項目。</item>
   </plurals>
@@ -445,6 +461,11 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Signal 圖示</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">送出密碼</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">無效的密碼！</string>
+  <!--PlacePickerActivity-->
+  <string name="PlacePickerActivity_title">地圖</string>
+  <string name="PlacePickerActivity_not_a_valid_address">非有效的地址</string>
+  <string name="PlacePickerActivity_drop_pin">標註地圖</string>
+  <string name="PlacePickerActivity_accept_address">接受地址</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">您目前安裝的 Google Play 服務版本無法正常運作。請重新安裝 Google Play 服務然後重試。</string>
   <!--RatingManager-->
@@ -518,6 +539,10 @@
   <string name="RegistrationActivity_you_will_receive_a_verification_code">你將收到驗證碼。各電信公司的收費費率可能有所不同。</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">輸入我們傳送給 %s 的驗證碼</string>
   <string name="RegistrationActivity_call">撥打</string>
+  <!--RevealableMessageView-->
+  <string name="RevealableMessageView_view_photo">查看照片</string>
+  <string name="RevealableMessageView_viewed">已查看</string>
+  <string name="RevealableMessageView_photo">照片</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">無法儲存圖片的變更</string>
   <!--Search-->
@@ -550,6 +575,7 @@
   <string name="SmsMessageRecord_secure_session_reset_s">%s 重設安全對話。</string>
   <string name="SmsMessageRecord_duplicate_message">複製訊息</string>
   <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">無法處理此訊息，因為它是從較新版本的Signal 傳送的。 更新後，你可以要求你的聯絡人再次傳送此訊息。</string>
+  <string name="SmsMessageRecord_error_handling_incoming_message">在處理來訊時出現錯誤</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">貼圖</string>
   <!--StickerManagementAdapter-->
@@ -576,6 +602,8 @@
   <string name="ThreadRecord_called_you">來電</string>
   <string name="ThreadRecord_missed_call">未接來電</string>
   <string name="ThreadRecord_media_message">媒體訊息</string>
+  <string name="ThreadRecord_sticker">貼圖</string>
+  <string name="ThreadRecord_disappearing_photo">銷毀照片</string>
   <string name="ThreadRecord_s_is_on_signal">%s 在 Signal 了！</string>
   <string name="ThreadRecord_disappearing_messages_disabled">自動銷毀訊息功能已被關閉。</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">訊息銷毀時間設定為 %s</string>
@@ -651,11 +679,12 @@
   <string name="MessageNotifier_mark_read">標示已讀</string>
   <string name="MessageNotifier_media_message">媒體訊息</string>
   <string name="MessageNotifier_sticker">貼圖</string>
+  <string name="MessageNotifier_disappearing_photo">銷毀照片</string>
   <string name="MessageNotifier_reply">回覆</string>
   <string name="MessageNotifier_signal_message">Signal 訊息</string>
   <string name="MessageNotifier_unsecured_sms">不安全的簡訊</string>
-  <string name="MessageNotifier_pending_signal_messages">擱置的 Signal 訊息</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">你有擱置的 Signal 訊息，輕觸打開及取得訊息</string>
+  <string name="MessageNotifier_you_may_have_new_messages">你有新訊息</string>
+  <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">開啟 Signal 以查驗最近的通知。</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">聯絡人</string>
   <!--Notification Channels-->

@@ -5,22 +5,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/conversation_list_toolbar_background"
-        android:theme="?attr/actionBarStyle"
-        app:contentInsetStartWithNavigation="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:navigationIcon="?homeAsUpIndicator"
-        tools:background="#ff007f00">
+        android:layout_height="wrap_content">
 
-        <include layout="@layout/conversation_title_view" />
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/conversation_list_toolbar_background"
+            android:theme="?attr/actionBarStyle"
+            app:contentInsetStartWithNavigation="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="?homeAsUpIndicator"
+            tools:background="#ff007f00">
 
-    </android.support.v7.widget.Toolbar>
+            <include layout="@layout/conversation_title_view" />
+
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
 
     <org.thoughtcrime.securesms.components.InputAwareLayout
         android:id="@+id/layout_container"

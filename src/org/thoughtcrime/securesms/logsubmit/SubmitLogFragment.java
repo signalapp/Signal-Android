@@ -21,6 +21,7 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.AlertDialog;
+import android.app.usage.UsageStatsManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -31,10 +32,6 @@ import android.os.Build;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.text.ClipboardManager;
 import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
@@ -48,6 +45,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.thoughtcrime.securesms.ApplicationContext;
@@ -55,6 +58,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.logsubmit.util.Scrubber;
+import org.thoughtcrime.securesms.util.BucketInfo;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 
@@ -67,6 +71,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Locale;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -93,6 +98,7 @@ public class SubmitLogFragment extends Fragment {
 
   private static final String HEADER_SYSINFO = "========== SYSINFO ========";
   private static final String HEADER_JOBS    = "=========== JOBS =========";
+  private static final String HEADER_POWER   = "========== POWER =========";
   private static final String HEADER_LOGCAT  = "========== LOGCAT ========";
   private static final String HEADER_LOGGER  = "========== LOGGER ========";
 
@@ -371,14 +377,34 @@ public class SubmitLogFragment extends Fragment {
       String scrubbedLogcat = scrubber.scrub(logcat);
       Log.i(TAG, "Scrub logcat: " + (System.currentTimeMillis() - t4) + " ms");
 
-      return HEADER_SYSINFO + "\n\n" +
-             buildDescription(context) + "\n\n\n" +
-             HEADER_JOBS + "\n\n" +
-             scrubber.scrub(ApplicationContext.getInstance(context).getJobManager().getDebugInfo()) + "\n\n" +
-             HEADER_LOGCAT + "\n\n" +
-             scrubbedLogcat + "\n\n\n" +
-             HEADER_LOGGER + "\n\n" +
-             newLogs;
+
+      StringBuilder stringBuilder = new StringBuilder();
+
+      stringBuilder.append(HEADER_SYSINFO)
+                   .append("\n\n")
+                   .append(buildDescription(context))
+                   .append("\n\n\n")
+                   .append(HEADER_JOBS)
+                   .append("\n\n")
+                   .append(scrubber.scrub(ApplicationContext.getInstance(context).getJobManager().getDebugInfo()))
+                   .append("\n\n\n");
+
+      if (VERSION.SDK_INT >= 28) {
+        stringBuilder.append(HEADER_POWER)
+                     .append("\n\n")
+                     .append(buildPower(context))
+                     .append("\n\n\n");
+      }
+
+      stringBuilder.append(HEADER_LOGCAT)
+                   .append("\n\n")
+                   .append(scrubbedLogcat)
+                   .append("\n\n\n")
+                   .append(HEADER_LOGGER)
+                   .append("\n\n")
+                   .append(newLogs);
+
+      return stringBuilder.toString();
     }
 
     @Override
@@ -466,11 +492,11 @@ public class SubmitLogFragment extends Fragment {
   }
 
   public static String getMemoryUsage(Context context) {
-    Runtime info = Runtime.getRuntime();
-    info.totalMemory();
+    Runtime info        = Runtime.getRuntime();
+    long    totalMemory = info.totalMemory();
     return String.format(Locale.ENGLISH, "%dM (%.2f%% free, %dM max)",
-                         asMegs(info.totalMemory()),
-                         (float)info.freeMemory() / info.totalMemory() * 100f,
+                         asMegs(totalMemory),
+                         (float)info.freeMemory() / totalMemory * 100f,
                          asMegs(info.maxMemory()));
   }
 
@@ -485,7 +511,7 @@ public class SubmitLogFragment extends Fragment {
     return activityManager.getMemoryClass() + lowMem;
   }
 
-  private static String buildDescription(Context context) {
+  private static CharSequence buildDescription(Context context) {
     final PackageManager pm      = context.getPackageManager();
     final StringBuilder  builder = new StringBuilder();
 
@@ -513,7 +539,23 @@ public class SubmitLogFragment extends Fragment {
       builder.append("Unknown\n");
     }
 
-    return builder.toString();
+    return builder;
+  }
+
+  @RequiresApi(28)
+  private static CharSequence buildPower(@NonNull Context context) {
+    final UsageStatsManager usageStatsManager = (UsageStatsManager) context.getSystemService(Context.USAGE_STATS_SERVICE);
+
+    if (usageStatsManager == null) {
+      return "UsageStatsManager not available";
+    }
+
+    BucketInfo info = BucketInfo.getInfo(usageStatsManager, TimeUnit.DAYS.toMillis(3));
+
+    return new StringBuilder().append("Current bucket: ").append(BucketInfo.bucketToString(info.getCurrentBucket())).append('\n')
+                              .append("Highest bucket: ").append(BucketInfo.bucketToString(info.getBestBucket())).append('\n')
+                              .append("Lowest bucket : ").append(BucketInfo.bucketToString(info.getWorstBucket())).append("\n\n")
+                              .append(info.getHistory());
   }
 
   private static Iterable<String> getSupportedAbis() {

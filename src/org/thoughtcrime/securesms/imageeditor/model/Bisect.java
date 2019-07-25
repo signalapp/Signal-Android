@@ -1,8 +1,8 @@
 package org.thoughtcrime.securesms.imageeditor.model;
 
 import android.graphics.Matrix;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 final class Bisect {
 
@@ -83,7 +83,7 @@ final class Bisect {
          inBoundsValue = nextValueToTry;
 
          // if first success or closer to out of bounds than the current closest
-         if (!haveResult || Math.abs(nextValueToTry) < Math.abs(successValue)) {
+         if (!haveResult || Math.abs(nextValueToTry - outOfBoundsValue) < Math.abs(successValue - outOfBoundsValue)) {
            haveResult = true;
            successValue = nextValueToTry;
            closestSuccessful.set(elementMatrix);

@@ -4,8 +4,8 @@ package org.thoughtcrime.securesms.video;
 import android.annotation.TargetApi;
 import android.media.MediaDataSource;
 import android.os.Build;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.crypto.AttachmentSecret;
 import org.thoughtcrime.securesms.crypto.ClassicDecryptingPartInputStream;

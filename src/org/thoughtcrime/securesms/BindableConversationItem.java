@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.view.View;
 
 import org.thoughtcrime.securesms.contactshare.Contact;
@@ -38,6 +38,7 @@ public interface BindableConversationItem extends Unbindable {
     void onLinkPreviewClicked(@NonNull LinkPreview linkPreview);
     void onMoreTextClicked(@NonNull Address conversationAddress, long messageId, boolean isMms);
     void onStickerClicked(@NonNull StickerLocator stickerLocator);
+    void onRevealableMessageClicked(@NonNull MmsMessageRecord messageRecord);
     void onSharedContactDetailsClicked(@NonNull Contact contact, @NonNull View avatarTransitionView);
     void onAddToContactsClicked(@NonNull Contact contact);
     void onMessageSharedContactClicked(@NonNull List<Recipient> choices);

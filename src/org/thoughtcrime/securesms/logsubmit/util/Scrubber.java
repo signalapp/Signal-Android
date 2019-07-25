@@ -25,10 +25,15 @@ import java.util.regex.Pattern;
  */
 public class Scrubber {
   private static final String TAG = Scrubber.class.getSimpleName();
-  private static final Pattern E164_PATTERN = Pattern.compile("\\+\\d{10,15}");
+
+  private static final Pattern E164_PATTERN    = Pattern.compile("\\+\\d{10,15}");
+  private static final Pattern GROUPID_PATTERN = Pattern.compile("__textsecure_group__![^\\s]+");
+  private static final Pattern EMAIL_PATTERN   = Pattern.compile("[^\\s]+@[^\\s]+");
 
   private static final Pattern[] DEFAULTS = new Pattern[] {
-      E164_PATTERN
+      E164_PATTERN,
+      GROUPID_PATTERN,
+      EMAIL_PATTERN
   };
 
   private final Pattern[] patterns;

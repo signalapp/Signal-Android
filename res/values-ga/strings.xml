@@ -63,12 +63,13 @@
   <string name="DraftDatabase_Draft_video_snippet">(físeán)</string>
   <string name="DraftDatabase_Draft_location_snippet">(suíomh)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(freagair)</string>
-  <!--AttchmentManager-->
+  <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Ní féidir teacht ar fheidhmchláirín chun meán a roghnú.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Tá gá ag Signal le cead stóras chun griangraif a thógáil, ach ní ceadaítear é go deo. Lean ar aghaidh, le do thoil, go socruithe aipe, roghnaigh \"Ceadanna\", agus cumasaigh \"Stóras\".</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Tá gá ag Signal le cead teagmhálaí chun eolas teagmhálaí a cheangail, ach ní ceadaítear é go deo. Lean ar aghaidh, le do thoil, go socruithe aipe, roghnaigh \"Ceadanna\", agus cumasaigh \"Teagmhálaí\". </string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Tá gá ag Signal le cead áite i gcomhair do áit a cheangail, ach ní ceadaítear é go deo. Lean ar aghaidh, le do thoil, go socruithe aipe, roghnaigh \"Ceadanna\", agus cumasaigh \"Áit\". </string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Tá gá ag Signal le cead cheamara chun griangraif a thógáil, ach ní ceadaítear é go deo. Lean ar aghaidh, le do thoil, go socruithe aipe, roghnaigh \"Ceadanna\", agus cumasaigh \"Ceamara\". </string>
+  <!--AttachmentUploadJob-->
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Tharla botún ag seinm na fuaime!</string>
   <!--BlockedContactsActivity-->
@@ -214,6 +215,8 @@
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Teachtaireacht malartú eocharacha</string>
   <!--ConversationListItemAction-->
+  <!--ConversationTitleView-->
+  <string name="ConversationTitleView_verified">Fíordheimhnithe</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity_your_profile_info">Do eolas próifíle</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Tharla botún ag athrú do ghrianghraf próifíle</string>
@@ -408,6 +411,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Deilbhín Signal</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Seol isteach an nath faire</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Nath faire neamhbhailí!</string>
+  <!--PlacePickerActivity-->
   <!--PlayServicesProblemFragment-->
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Tabhair do mheas faoin bhfeidhmchláirín seo</string>
@@ -573,8 +577,6 @@ a shonrú</string>
   <string name="MessageNotifier_reply">Freagair</string>
   <string name="MessageNotifier_signal_message">Teachtaireacht Signal</string>
   <string name="MessageNotifier_unsecured_sms">SMS nach bhfuil slán</string>
-  <string name="MessageNotifier_pending_signal_messages">Ar feitheamh ar teachtaireachtaí Signal</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">Tá teachtaireachtaí Signal ar feitheamh agat, cnag chun iad a oscailt agus a athfháil.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Teagmhálaí</string>
   <!--Notification Channels-->

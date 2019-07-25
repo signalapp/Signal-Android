@@ -49,12 +49,13 @@
   <string name="DraftDatabase_Draft_video_snippet">(วิดีโอ)</string>
   <string name="DraftDatabase_Draft_location_snippet">(ตำแหน่งที่ตั้ง)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(ตอบกลับ)</string>
-  <!--AttchmentManager-->
+  <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">ไม่พบแอปสำหรับสื่อที่เลือก</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">เพื่อที่จะแนบรูปภาพ วิดีโอ หรือเสียงได้ Signal ต้องได้รับอนุญาตให้เข้าถึงที่เก็บข้อมูล แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"ที่เก็บข้อมูล\"</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">เพื่อที่จะแนบข้อมูลผู้ติดต่อได้ Signal ต้องได้รับอนุญาตให้เข้าถึงผู้ติดต่อ แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"ผู้ติดต่อ\"</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">เพื่อที่จะแนบข้อมูลตำแหน่งที่ตั้งได้ Signal ต้องได้รับอนุญาตให้เข้าถึงตำแหน่งที่ตั้ง แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"ตำแหน่งที่ตั้ง\"</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">เพื่อที่จะถ่ายรูปได้ Signal ต้องได้รับอนุญาตให้เข้าถึงกล้อง แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"กล้อง\"</string>
+  <!--AttachmentUploadJob-->
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">เกิดข้อผิดพลาดในการเล่นเสียง</string>
   <!--BlockedContactsActivity-->
@@ -67,6 +68,7 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">สายเรียกเข้า</string>
   <!--CameraActivity-->
+  <!--CameraContacts-->
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">เอาออก</string>
   <string name="ClearProfileActivity_remove_profile_photo">ลบรูปโปรไฟล์หรือไม่</string>
@@ -202,6 +204,8 @@
   <string name="ConversationListItem_key_exchange_message">ข้อความแลกเปลี่ยนคีย์</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">การสนทนาที่ถูกเก็บในที่เก็บถาวร (%d)</string>
+  <!--ConversationTitleView-->
+  <string name="ConversationTitleView_verified">ตรวจยืนยันแล้ว</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity_your_profile_info">ข้อมูลโปรไฟล์ของคุณ</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">การตั้งค่ารูปโปรไฟล์ผิดพลาด</string>
@@ -349,6 +353,7 @@
   <!--MediaPickerActivity-->
   <!--MediaPickerItemFragment-->
   <!--MediaSendActivity-->
+  <string name="MediaSendActivity_message">ข้อความ</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">สื่อทั้งหมด</string>
   <!--MessageRecord-->
@@ -406,6 +411,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">ไอคอน Signal</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">ส่งวลีรหัสผ่าน</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">วลีรหัสผ่านไม่ถูกต้อง</string>
+  <!--PlacePickerActivity-->
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">เวอร์ชันของ Google Play Services ที่คุณมีอยู่ทำงานไม่ถูกต้อง โปรดติดตั้ง Google Play Services ใหม่และลองอีกครั้ง</string>
   <!--RatingManager-->
@@ -467,6 +473,8 @@
   <string name="RegistrationActivity_next">ต่อไป</string>
   <string name="RegistrationActivity_continue">ดำเนินการต่อ</string>
   <string name="RegistrationActivity_call">โทร</string>
+  <!--RevealableMessageView-->
+  <string name="RevealableMessageView_photo">รูปภาพ</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">บันทึกการเปลี่ยนแปลงของภาพล้มเหลว</string>
   <!--Search-->
@@ -498,6 +506,7 @@
   <string name="SmsMessageRecord_secure_session_reset">คุณได้ทำการรีเซ็ตเซสชันที่ปลอดภัย</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s ได้ทำการรีเซ็ตเซสชันที่ปลอดภัย</string>
   <string name="SmsMessageRecord_duplicate_message">ข้อความซ้ำ</string>
+  <string name="SmsMessageRecord_error_handling_incoming_message">เกิดข้อผิดพลาดในการจัดการข้อความขาเข้า</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">สติกเกอร์</string>
   <!--StickerManagementAdapter-->
@@ -590,8 +599,6 @@
   <string name="MessageNotifier_reply">ตอบกลับ</string>
   <string name="MessageNotifier_signal_message">ข้อความ Signal</string>
   <string name="MessageNotifier_unsecured_sms">SMS ที่ไม่ปลอดภัย</string>
-  <string name="MessageNotifier_pending_signal_messages">ข้อความ Signal ที่รอดำเนินการ</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">คุณมีข้อความ Signal ที่รอดำเนินการอยู่ แตะเพื่อเปิดและดึงข้อความ</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">ผู้ติดต่อ</string>
   <!--Notification Channels-->

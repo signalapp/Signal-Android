@@ -7,10 +7,10 @@ import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.PointF;
 import android.graphics.RectF;
-import android.support.annotation.ColorInt;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.view.GestureDetectorCompat;
+import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.view.GestureDetectorCompat;
 import android.util.AttributeSet;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -20,7 +20,7 @@ import org.thoughtcrime.securesms.imageeditor.model.EditorElement;
 import org.thoughtcrime.securesms.imageeditor.model.EditorModel;
 import org.thoughtcrime.securesms.imageeditor.model.ThumbRenderer;
 import org.thoughtcrime.securesms.imageeditor.renderers.BezierDrawingRenderer;
-import org.thoughtcrime.securesms.imageeditor.renderers.TextRenderer;
+import org.thoughtcrime.securesms.imageeditor.renderers.MultiLineTextRenderer;
 
 /**
  * ImageEditorView
@@ -106,23 +106,23 @@ public final class ImageEditorView extends FrameLayout {
     addView(editText);
     editText.clearFocus();
     editText.setOnEndEdit(this::doneTextEditing);
+    editText.setOnEditOrSelectionChange(this::zoomToFitText);
     return editText;
   }
 
   public void startTextEditing(@NonNull EditorElement editorElement, boolean incognitoKeyboardEnabled, boolean selectAll) {
-    Renderer renderer = editorElement.getRenderer();
-    if (renderer instanceof TextRenderer) {
-      TextRenderer textRenderer = (TextRenderer) renderer;
-
+    if (editorElement.getRenderer() instanceof MultiLineTextRenderer) {
       editText.setIncognitoKeyboardEnabled(incognitoKeyboardEnabled);
-      editText.setCurrentTextEntity(textRenderer);
+      editText.setCurrentTextEditorElement(editorElement);
       if (selectAll) {
         editText.selectAll();
       }
       editText.requestFocus();
-
-      getModel().zoomTo(editorElement, Bounds.TOP / 2, true);
     }
+  }
+
+  private void zoomToFitText(@NonNull EditorElement editorElement, @NonNull MultiLineTextRenderer textRenderer) {
+      getModel().zoomToTextElement(editorElement, textRenderer);
   }
 
   public boolean isTextEditing() {
@@ -132,7 +132,7 @@ public final class ImageEditorView extends FrameLayout {
   public void doneTextEditing() {
     getModel().zoomOut();
     if (editText.getCurrentTextEntity() != null) {
-      editText.setCurrentTextEntity(null);
+      editText.setCurrentTextEditorElement(null);
       editText.hideKeyboard();
       if (tapListener != null) {
         tapListener.onEntityDown(null);
@@ -148,7 +148,8 @@ public final class ImageEditorView extends FrameLayout {
     rendererContext.save();
     try {
       rendererContext.canvasMatrix.initial(viewMatrix);
-      model.draw(rendererContext);
+
+      model.draw(rendererContext, editText.getCurrentTextEditorElement());
     } finally {
       rendererContext.restore();
     }

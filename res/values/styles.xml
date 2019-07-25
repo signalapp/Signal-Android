@@ -91,19 +91,12 @@
     <style name="TextSecure.TitleTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="android:textColor">@color/white</item>
         <item name="android:textColorHint">#BFffffff</item>
+        <item name="android:textSize">18sp</item>
     </style>
 
     <style name="TextSecure.SubtitleTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Subtitle">
         <item name="android:textColor">#BFffffff</item>
-    </style>
-
-    <style name="NotificationText">
-      <item name="android:textColor">?android:attr/textColorPrimary</item>
-    </style>
-
-    <style name="NotificationTitle">
-      <item name="android:textColor">?android:attr/textColorPrimary</item>
-      <item name="android:textStyle">bold</item>
+        <item name="android:textSize">13sp</item>
     </style>
 
     <style name="Registration.Description" parent="@android:style/TextAppearance">

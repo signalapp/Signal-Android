@@ -6,7 +6,7 @@
   <string name="delete">Excluir</string>
   <string name="please_wait">Aguarde...</string>
   <string name="save">Salvar</string>
-  <string name="note_to_self">Recado pra mim</string>
+  <string name="note_to_self">Nota para mim</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Nova mensagem</string>
   <!--AlbumThumbnailView-->
@@ -54,12 +54,13 @@
   <string name="DraftDatabase_Draft_video_snippet">(vídeo)</string>
   <string name="DraftDatabase_Draft_location_snippet">(local)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(resposta)</string>
-  <!--AttchmentManager-->
+  <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Não foi possível encontrar um aplicativo para selecionar arquivos.</string>
-  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">O Signal precisa da permissão Memória para anexar fotos, vídeos, ou áudios, mas ela foi permanentemente negada. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"Memória\".</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">O Signal precisa da permissão de Armazenamento para anexar fotos, vídeos ou áudio, mas ela foi permanentemente negada. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"Armazenamento\".</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">O Signal precisa da permissão Contatos para anexar informações de contato, mas ela foi permanentemente negada. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"Contatos\".</string>
-  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">O Signal precisa da permissão Local para anexar uma localização, mas ela foi permanentemente negada. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"Local\".</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">O Signal precisa da permissão Localização para anexar uma localização, mas ela foi permanentemente negada. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"Localização\".</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">O Signal precisa da permissão Câmera para tirar fotos, mas ela foi permanentemente negada. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"Câmera\".</string>
+  <!--AttachmentUploadJob-->
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Erro ao tocar áudio!</string>
   <!--BlockedContactsActivity-->
@@ -73,11 +74,13 @@
   <string name="CallScreen_Incoming_call">Recebendo chamada</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Falha ao salvar imagem.</string>
+  <!--CameraContacts-->
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Remover</string>
   <string name="ClearProfileActivity_remove_profile_photo">Remover foto do perfil?</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Nenhum navegador encontrado.</string>
+  <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Uma chamada já está em andamento.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Seu número de segurança com %1$s mudou. Isso pode significar que alguém está tentando interceptar a sua comunicação ou que %2$s simplesmente reinstalou o Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Talvez você queira verificar seu número de segurança com esse contato.</string>
@@ -148,9 +151,9 @@
   <string name="ConversationActivity_quick_camera_unavailable">Câmera indisponível</string>
   <string name="ConversationActivity_unable_to_record_audio">Não foi possível gravar o áudio!</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Não há nenhum aplicativo disponível no seu dispositivo para abrir este link.</string>
-  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Para enviar mensagens de áudio permita ao Signal acessar o microfone.</string>
+  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Para enviar mensagens de áudio, permita ao Signal acesso ao seu microfone.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">O Signal precisa da permissão Microfone para enviar mensagens de áudio, mas ela foi permanentemente negada. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"Microfone\".</string>
-  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Para chamar %s o Signal precisa de acesso ao microfone e à câmera.</string>
+  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Para chamar %s o Signal precisa de acesso ao seu microfone e câmera.</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">O Signal precisa das permissões Microfone e Câmera para chamar %s, mas elas foram permanentemente negadas. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"Microfone\" e \"Câmera\".</string>
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Para tirar fotos e fazer vídeos permita ao Signal acessar a câmera.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">O Signal precisa da permissão Câmera para tirar fotos e fazer vídeos, mas ela foi permanentemente negada. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"Câmera\".</string>
@@ -162,6 +165,7 @@
   <string name="ConversationActivity_search_position">%1$d de %2$d</string>
   <string name="ConversationActivity_no_results">Nenhum resultado</string>
   <string name="ConversationActivity_sticker_pack_installed">Pacote de figurinhas instalado</string>
+  <string name="ConversationActivity_new_say_it_with_stickers">Use os novos stickers!</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d mensagem não lida</item>
@@ -226,11 +230,13 @@
     <item quantity="other">%d conversas movidas para a caixa de entrada</item>
   </plurals>
   <!--ConversationListItem-->
-  <string name="ConversationListItem_key_exchange_message">Mensagem de intercâmbio de chaves</string>
+  <string name="ConversationListItem_key_exchange_message">Mensagem de troca de chaves</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Conversas arquivadas (%d)</string>
+  <!--ConversationTitleView-->
+  <string name="ConversationTitleView_verified">Verificado</string>
   <!--CreateProfileActivity-->
-  <string name="CreateProfileActivity_your_profile_info">Informações do seu perfil</string>
+  <string name="CreateProfileActivity_your_profile_info">Ver informações do perfil</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Erro ao definir foto do perfil</string>
   <string name="CreateProfileActivity_problem_setting_profile">Problema ao definir perfil</string>
   <string name="CreateProfileActivity_profile_photo">Foto do perfil</string>
@@ -402,6 +408,7 @@
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Um item foi removido porque excedeu o limite de tamanho</string>
   <string name="MediaSendActivity_camera_unavailable">Câmera indisponível.</string>
   <string name="MediaSendActivity_message_to_s">Mensagem para %s</string>
+  <string name="MediaSendActivity_message">Mensagem</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Você não pode compartilhar mais de %d item.</item>
     <item quantity="other">Você não pode compartilhar mais de %d itens.</item>
@@ -463,6 +470,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Ícone do Signal</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Enviar frase-chave</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Frase-chave inválida!</string>
+  <!--PlacePickerActivity-->
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">A versão instalada do Serviços Google Play não está funcionando corretamente. Favor reinstalar o Serviços Google Play e tentar novamente.</string>
   <!--RatingManager-->
@@ -523,9 +531,9 @@
   <string name="RegistrationActivity_no_browser">Nenhum navegador foi encontrado para abrir o link.</string>
   <string name="RegistrationActivity_more_information">Mais informações</string>
   <string name="RegistrationActivity_less_information">Menos informações</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">O Signal precisa de acesso aos seus contatos e mídias para conectar-se a amigos, trocar mensagens, e fazer chamadas seguras</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">O Signal precisa de acesso aos seus contatos e arquivos de mídia para poder se conectar a amigos, trocar mensagens, e fazer chamadas seguras</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Não é possível conectar ao serviço. Favor verificar a conexão à rede e tentar novamente.</string>
-  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Para verificar seu número de telefone de maneira fácil, o Signal pode automaticamente detectar seu código de verificação se você permitir ao Signal acessar mensagens SMS.</string>
+  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Para verificar facilmente seu número de telefone, o Signal pode detectar automaticamente seu código de verificação desde que você permita ao Signal acessar suas mensagens SMS.</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Você está agora a %d passo de submeter um log de depuração.</item>
     <item quantity="other">Você está agora a %d passos de submeter um log de depuração</item>
@@ -539,6 +547,8 @@
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Você vai receber um código de verificação. Taxas da operadora podem ser aplicadas.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Insira o código que enviamos para %s</string>
   <string name="RegistrationActivity_call">Ligar</string>
+  <!--RevealableMessageView-->
+  <string name="RevealableMessageView_photo">Foto</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Falha ao salvar alterações na imagem</string>
   <!--Search-->
@@ -571,6 +581,8 @@
   <string name="SmsMessageRecord_secure_session_reset">Você reiniciou a sessão segura.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s reiniciou a sessão segura.</string>
   <string name="SmsMessageRecord_duplicate_message">Mensagem duplicada.</string>
+  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Essa mensagem não pôde ser processada porque foi enviada de uma versão mais recente do Signal. Peça ao seu contato para enviar outra mensagem após a atualização.</string>
+  <string name="SmsMessageRecord_error_handling_incoming_message">Erro ao receber mensagem</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Figurinhas</string>
   <!--StickerManagementAdapter-->
@@ -579,21 +591,25 @@
   <string name="StickerManagementAdapter_signal_artist_series">Série Signal Artist</string>
   <string name="StickerManagementAdapter_no_stickers_installed">Nenhuma figurinha instalada</string>
   <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Figurinhas de mensagens recebidas aparecerão aqui</string>
+  <string name="StickerManagementAdapter_untitled">Sem título</string>
   <string name="StickerManagementAdapter_unknown">Desconhecida</string>
   <!--StickerPackPreviewActivity-->
+  <string name="StickerPackPreviewActivity_untitled">Sem título</string>
   <string name="StickerPackPreviewActivity_unknown">Desconhecida</string>
   <string name="StickerPackPreviewActivity_install">Instalar</string>
   <string name="StickerPackPreviewActivity_remove">Remover</string>
   <string name="StickerPackPreviewActivity_stickers">Figurinhas</string>
+  <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Falha ao carregar o pacote de stickers</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Grupo atualizado</string>
   <string name="ThreadRecord_left_the_group">Você saiu do grupo</string>
   <string name="ThreadRecord_secure_session_reset">Sessão segura reiniciada.</string>
   <string name="ThreadRecord_draft">Rascunho:</string>
   <string name="ThreadRecord_called">Ligação efetuada</string>
-  <string name="ThreadRecord_called_you">Ligação recebida</string>
+  <string name="ThreadRecord_called_you">Ligou para você</string>
   <string name="ThreadRecord_missed_call">Ligação perdida</string>
   <string name="ThreadRecord_media_message">MMS</string>
+  <string name="ThreadRecord_sticker">Figurinha</string>
   <string name="ThreadRecord_s_is_on_signal">%s está no Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Mensagens efêmeras desabilitadas</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Expiração da mensagem efêmera definida para %s</string>
@@ -601,12 +617,13 @@
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Seu número de segurança com %s mudou.</string>
   <string name="ThreadRecord_you_marked_verified">Você marcou como verificado</string>
   <string name="ThreadRecord_you_marked_unverified">Você marcou como não verificado</string>
+  <string name="ThreadRecord_message_could_not_be_processed">A mensagem não pôde ser processada</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Atualização do Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Uma nova versão do Signal está disponível, clique para atualizar.</string>
   <!--UnknownSenderView-->
   <string name="UnknownSenderView_block_s">Bloquear %s?</string>
-  <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Contatos bloqueados não irão mais conseguir enviar mensagens nem ligar para você.</string>
+  <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Contatos bloqueados não irão mais conseguir enviar mensagens ou ligar para você.</string>
   <string name="UnknownSenderView_block">Bloquear</string>
   <string name="UnknownSenderView_share_profile_with_s">Compartilhar perfil com %s?</string>
   <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">O jeito mais fácil de compartilhar as informações do seu perfil é adicionar o remetente aos seus contatos. Caso não queira adicioná-lo, você ainda pode compartilhar as informações do seu perfil desta maneira.</string>
@@ -670,8 +687,8 @@
   <string name="MessageNotifier_reply">Responder</string>
   <string name="MessageNotifier_signal_message">Mensagem no Signal</string>
   <string name="MessageNotifier_unsecured_sms">SMS inseguro</string>
-  <string name="MessageNotifier_pending_signal_messages">Mensagens Signal pendentes</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">Você tem mensagens Signal pendentes. Clique para abrir e recuperá-las.</string>
+  <string name="MessageNotifier_you_may_have_new_messages">Você pode ter novas mensagens</string>
+  <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Abra o Signal para verificar por novas notificações</string>
   <string name="MessageNotifier_contact_message">%1$s%2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Contato</string>
   <!--Notification Channels-->
@@ -1302,7 +1319,7 @@
   <string name="RegistrationActivity_registration_lock_pin">PIN de Desbloqueio de Cadastro</string>
   <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Este número de telefone está com o Bloqueio de Cadastro ativo. Por favor, insira o PIN de Desbloqueio de Cadastro.</string>
   <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">O Bloqueio de Cadastro está ativo para seu número de telefone. Para ajudar você a memorizar seu PIN de Desbloqueio de Cadastro, o Signal pedirá que o confirme periodicamente.</string>
-  <string name="RegistrationLockDialog_i_forgot_my_pin">Eu esqueci meu PIN.</string>
+  <string name="RegistrationLockDialog_i_forgot_my_pin">Esqueci meu PIN.</string>
   <string name="RegistrationLockDialog_forgotten_pin">Esqueceu o PIN?</string>
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">O Bloqueio de Cadastro ajuda a proteger seu número de telefone de tentativas de cadastro não autorizadas. Esse recurso pode ser desativado a qualquer instante nas configurações de privacidade do Signal.</string>
   <string name="RegistrationLockDialog_registration_lock">Bloqueio de Cadastro</string>

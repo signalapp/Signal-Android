@@ -20,7 +20,7 @@ package org.thoughtcrime.securesms.database;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Pair;
 
@@ -219,6 +219,10 @@ public class SmsDatabase extends MessagingDatabase {
 
   public void markAsUnsupportedProtocolVersion(long id) {
     updateTypeBitmask(id, Types.BASE_TYPE_MASK, Types.UNSUPPORTED_MESSAGE_TYPE);
+  }
+
+  public void markAsInvalidMessage(long id) {
+    updateTypeBitmask(id, Types.BASE_TYPE_MASK, Types.INVALID_MESSAGE_TYPE);
   }
 
   public void markAsLegacyVersion(long id) {
@@ -883,7 +887,8 @@ public class SmsDatabase extends MessagingDatabase {
                                   addressDeviceId,
                                   dateSent, dateReceived, deliveryReceiptCount, type,
                                   threadId, status, mismatches, subscriptionId,
-                                  expiresIn, expireStarted, readReceiptCount, unidentified);
+                                  expiresIn, expireStarted,
+                                  readReceiptCount, unidentified);
     }
 
     private List<IdentityKeyMismatch> getMismatches(String document) {

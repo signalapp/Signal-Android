@@ -2,8 +2,8 @@ package org.thoughtcrime.securesms.jobs;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.text.TextUtils;
 
 import com.annimon.stream.Stream;
@@ -297,7 +297,6 @@ public abstract class PushSendJob extends SendJob {
     } catch (InvalidCertificateException e) {
       Log.w(TAG, "Certificate was invalid at send time. Fetching a new one.", e);
       RotateCertificateJob certificateJob = new RotateCertificateJob(context);
-      ApplicationContext.getInstance(context).injectDependencies(certificateJob);
       certificateJob.onRun();
     }
   }

@@ -1,9 +1,9 @@
 package org.thoughtcrime.securesms.util;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.WorkerThread;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.WorkerThread;
 
 import com.google.protobuf.ByteString;
 
@@ -15,7 +15,6 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
-import org.thoughtcrime.securesms.sms.MessageSender;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.IOException;
@@ -74,7 +73,7 @@ public class GroupUtil {
                                             .setType(GroupContext.Type.QUIT)
                                             .build();
 
-    return Optional.of(new OutgoingGroupMediaMessage(groupRecipient, groupContext, null, System.currentTimeMillis(), 0, null, Collections.emptyList(), Collections.emptyList()));
+    return Optional.of(new OutgoingGroupMediaMessage(groupRecipient, groupContext, null, System.currentTimeMillis(), 0, 0, null, Collections.emptyList(), Collections.emptyList()));
   }
 
 

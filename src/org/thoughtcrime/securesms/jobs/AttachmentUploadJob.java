@@ -1,15 +1,17 @@
 package org.thoughtcrime.securesms.jobs;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.greenrobot.eventbus.EventBus;
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.attachments.PointerAttachment;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.dependencies.InjectableType;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -19,6 +21,8 @@ import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.mms.MediaStream;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.PartAuthority;
+import org.thoughtcrime.securesms.service.GenericForegroundService;
+import org.thoughtcrime.securesms.service.NotificationController;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -30,9 +34,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.concurrent.TimeUnit;
 
-import javax.inject.Inject;
-
-public class AttachmentUploadJob extends BaseJob implements InjectableType {
+public class AttachmentUploadJob extends BaseJob {
 
   public static final String KEY = "AttachmentUploadJob";
 
@@ -41,8 +43,12 @@ public class AttachmentUploadJob extends BaseJob implements InjectableType {
   private static final String KEY_ROW_ID    = "row_id";
   private static final String KEY_UNIQUE_ID = "unique_id";
 
-  private AttachmentId               attachmentId;
-  @Inject SignalServiceMessageSender messageSender;
+  /**
+   * Foreground notification shows while uploading attachments above this.
+   */
+  private static final int FOREGROUND_LIMIT = 10 * 1024 * 1024;
+
+  private AttachmentId attachmentId;
 
   public AttachmentUploadJob(AttachmentId attachmentId) {
     this(new Job.Parameters.Builder()
@@ -72,20 +78,32 @@ public class AttachmentUploadJob extends BaseJob implements InjectableType {
 
   @Override
   public void onRun() throws Exception {
-    AttachmentDatabase database           = DatabaseFactory.getAttachmentDatabase(context);
-    DatabaseAttachment databaseAttachment = database.getAttachment(attachmentId);
+    SignalServiceMessageSender messageSender      = ApplicationDependencies.getSignalServiceMessageSender();
+    AttachmentDatabase         database           = DatabaseFactory.getAttachmentDatabase(context);
+    DatabaseAttachment         databaseAttachment = database.getAttachment(attachmentId);
 
     if (databaseAttachment == null) {
       throw new IllegalStateException("Cannot find the specified attachment.");
     }
 
-    MediaConstraints               mediaConstraints = MediaConstraints.getPushMediaConstraints();
-    Attachment                     scaledAttachment = scaleAndStripExif(database, mediaConstraints, databaseAttachment);
-    SignalServiceAttachment        localAttachment  = getAttachmentFor(scaledAttachment);
-    SignalServiceAttachmentPointer remoteAttachment = messageSender.uploadAttachment(localAttachment.asStream(), databaseAttachment.isSticker());
-    Attachment                     attachment       = PointerAttachment.forPointer(Optional.of(remoteAttachment), null, databaseAttachment.getFastPreflightId()).get();
+    MediaConstraints mediaConstraints = MediaConstraints.getPushMediaConstraints();
+    Attachment       scaledAttachment = scaleAndStripExif(database, mediaConstraints, databaseAttachment);
 
-    database.updateAttachmentAfterUpload(databaseAttachment.getAttachmentId(), attachment);
+    try (NotificationController notification = getNotificationForAttachment(scaledAttachment)) {
+      SignalServiceAttachment        localAttachment  = getAttachmentFor(scaledAttachment, notification);
+      SignalServiceAttachmentPointer remoteAttachment = messageSender.uploadAttachment(localAttachment.asStream(), databaseAttachment.isSticker());
+      Attachment                     attachment       = PointerAttachment.forPointer(Optional.of(remoteAttachment), null, databaseAttachment.getFastPreflightId()).get();
+
+      database.updateAttachmentAfterUpload(databaseAttachment.getAttachmentId(), attachment);
+    }
+  }
+
+  private @Nullable NotificationController getNotificationForAttachment(@NonNull Attachment attachment) {
+    if (attachment.getSize() >= FOREGROUND_LIMIT) {
+      return GenericForegroundService.startForegroundTask(context, context.getString(R.string.AttachmentUploadJob_uploading_media));
+    } else {
+      return null;
+    }
   }
 
   @Override
@@ -96,7 +114,7 @@ public class AttachmentUploadJob extends BaseJob implements InjectableType {
     return exception instanceof IOException;
   }
 
-  private SignalServiceAttachment getAttachmentFor(Attachment attachment) {
+  private SignalServiceAttachment getAttachmentFor(Attachment attachment, @Nullable NotificationController notification) {
     try {
       if (attachment.getDataUri() == null || attachment.getSize() == 0) throw new IOException("Assertion failed, outgoing attachment has no data!");
       InputStream is = PartAuthority.getAttachmentStream(context, attachment.getDataUri());
@@ -109,7 +127,12 @@ public class AttachmentUploadJob extends BaseJob implements InjectableType {
                                     .withWidth(attachment.getWidth())
                                     .withHeight(attachment.getHeight())
                                     .withCaption(attachment.getCaption())
-                                    .withListener((total, progress) -> EventBus.getDefault().postSticky(new PartProgressEvent(attachment, total, progress)))
+                                    .withListener((total, progress) -> {
+                                      EventBus.getDefault().postSticky(new PartProgressEvent(attachment, total, progress));
+                                      if (notification != null) {
+                                        notification.setProgress(total, progress);
+                                      }
+                                    })
                                     .build();
     } catch (IOException ioe) {
       Log.w(TAG, "Couldn't open attachment", ioe);

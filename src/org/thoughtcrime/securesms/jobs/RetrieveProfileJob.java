@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.jobs;
 
 
 import android.app.Application;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.text.TextUtils;
 
 import org.thoughtcrime.securesms.ApplicationContext;
@@ -11,7 +11,7 @@ import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase.UnidentifiedAccessMode;
-import org.thoughtcrime.securesms.dependencies.InjectableType;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
@@ -33,14 +33,11 @@ import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
-import org.whispersystems.signalservice.api.util.InvalidNumberException;
 
 import java.io.IOException;
 import java.util.List;
 
-import javax.inject.Inject;
-
-public class RetrieveProfileJob extends BaseJob implements InjectableType {
+public class RetrieveProfileJob extends BaseJob {
 
   public static final String KEY = "RetrieveProfileJob";
 
@@ -48,9 +45,7 @@ public class RetrieveProfileJob extends BaseJob implements InjectableType {
 
   private static final String KEY_ADDRESS = "address";
 
-  @Inject SignalServiceMessageReceiver receiver;
-
-  private Recipient recipient;
+  private final Recipient recipient;
 
   public RetrieveProfileJob(@NonNull Recipient recipient) {
     this(new Job.Parameters.Builder()
@@ -76,13 +71,9 @@ public class RetrieveProfileJob extends BaseJob implements InjectableType {
   }
 
   @Override
-  public void onRun() throws IOException, InvalidKeyException {
-    try {
-      if (recipient.isGroupRecipient()) handleGroupRecipient(recipient);
-      else                              handleIndividualRecipient(recipient);
-    } catch (InvalidNumberException e) {
-      Log.w(TAG, e);
-    }
+  public void onRun() throws IOException {
+    if (recipient.isGroupRecipient()) handleGroupRecipient(recipient);
+    else                              handleIndividualRecipient(recipient);
   }
 
   @Override
@@ -93,9 +84,12 @@ public class RetrieveProfileJob extends BaseJob implements InjectableType {
   @Override
   public void onCanceled() {}
 
-  private void handleIndividualRecipient(Recipient recipient)
-      throws IOException, InvalidKeyException, InvalidNumberException
-  {
+  private void handleIndividualRecipient(Recipient recipient) throws IOException {
+     if (recipient.getAddress().isPhone()) handlePhoneNumberRecipient(recipient);
+     else                                  Log.w(TAG, "Skipping fetching profile of non-phone recipient");
+  }
+
+  private void handlePhoneNumberRecipient(Recipient recipient) throws IOException {
     String                       number             = recipient.getAddress().toPhoneString();
     Optional<UnidentifiedAccess> unidentifiedAccess = getUnidentifiedAccess(recipient);
 
@@ -117,9 +111,7 @@ public class RetrieveProfileJob extends BaseJob implements InjectableType {
     setUnidentifiedAccessMode(recipient, profile.getUnidentifiedAccess(), profile.isUnrestrictedUnidentifiedAccess());
   }
 
-  private void handleGroupRecipient(Recipient group)
-      throws IOException, InvalidKeyException, InvalidNumberException
-  {
+  private void handleGroupRecipient(Recipient group) throws IOException {
     List<Recipient> recipients = DatabaseFactory.getGroupDatabase(context).getGroupMembers(group.getAddress().toGroupString(), false);
 
     for (Recipient recipient : recipients) {
@@ -143,6 +135,7 @@ public class RetrieveProfileJob extends BaseJob implements InjectableType {
       }
     }
 
+    SignalServiceMessageReceiver receiver = ApplicationDependencies.getSignalServiceMessageReceiver();
     return receiver.retrieveProfile(new SignalServiceAddress(number), unidentifiedAccess);
   }
 

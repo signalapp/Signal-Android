@@ -54,12 +54,13 @@
   <string name="DraftDatabase_Draft_video_snippet">(video)</string>
   <string name="DraftDatabase_Draft_location_snippet">(stad)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(svar)</string>
-  <!--AttchmentManager-->
+  <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Fann ingen program for valt medium.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal treng tilgang til lagring for å legga ved bilete, film eller lydklipp, men tilgangen er permanent avslått. Opna app-innstillingsmenyen og vel «Tilgang» – eventuelt «Tillatelser» – og skru på «Lagring».</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal treng tilgang til kontaktar for å legga til kontaktinformasjon som vedlegg, men tilgangen er permanent avslått. Opna app-innstillingsmenyen og vel «Tilgang» – eventuelt «Tillatelser» – og skru på «Kontaktar».</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal treng tilgang til posisjon for å legga til posisjon som vedlegg, men tilgangen er permanent avslått. Opna app-innstillingsmenyen og vel «Tilgang» – eventuelt «Tillatelser» – og skru på «Posisjon».</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal treng tilgang til kameraet for å ta bilete, men tilgangen er permanent avslått. Opna app-innstillingsmenyen og vel «Tilgang» – eventuelt «Tillatelser» – og skru på «Kamera».</string>
+  <!--AttachmentUploadJob-->
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Det oppstod ein feil under lydavspeling.</string>
   <!--BlockedContactsActivity-->
@@ -73,6 +74,7 @@
   <string name="CallScreen_Incoming_call">Inngåande samtale</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Klarte ikkje lagra biletet.</string>
+  <!--CameraContacts-->
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Fjern</string>
   <string name="ClearProfileActivity_remove_profile_photo">Fjern profilbilete?</string>
@@ -228,6 +230,8 @@
   <string name="ConversationListItem_key_exchange_message">Nøkkelutvekslingsmelding</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Arkiverte samtalar (%d)</string>
+  <!--ConversationTitleView-->
+  <string name="ConversationTitleView_verified">Godkjent</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity_your_profile_info">Din profilinfo</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Klarte ikkje endra profilbilete</string>
@@ -455,6 +459,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Signal-ikon</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Send inn passordfrase</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Ugyldig passordfrase.</string>
+  <!--PlacePickerActivity-->
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Versjonen av Google Play-tenester som er installert på denne eininga fungerer ikkje skikkeleg. Installer Google Play-tenester på nytt og prøv igjen.</string>
   <!--RatingManager-->
@@ -531,6 +536,8 @@ Ver deg sjølv i kvar einaste melding.</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Du vil få ei stadfestingskode. Operatøren din kan ta betalt for meldinga.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Skriv inn koden me sende til %s</string>
   <string name="RegistrationActivity_call">Ring</string>
+  <!--RevealableMessageView-->
+  <string name="RevealableMessageView_photo">Bilde</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Klarte ikkje lagra biletendringane</string>
   <!--Search-->
@@ -560,6 +567,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="SmsMessageRecord_secure_session_reset">Du tilbakestilte sikker økt.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s tilbakestilte sikker økt.</string>
   <string name="SmsMessageRecord_duplicate_message">Dupliser melding.</string>
+  <string name="SmsMessageRecord_error_handling_incoming_message">Feil ved handtering av innkommande melding</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Klistremerke</string>
   <!--StickerManagementAdapter-->
@@ -652,8 +660,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="MessageNotifier_reply">Svar</string>
   <string name="MessageNotifier_signal_message">Signal-melding</string>
   <string name="MessageNotifier_unsecured_sms">Usikra SMS</string>
-  <string name="MessageNotifier_pending_signal_messages">Uhenta Signal-meldingar</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">Du har uhenta Signal-meldingar, klikk for å opna og henta</string>
   <string name="MessageNotifier_contact_message">%1$s%2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Kontakt</string>
   <!--Notification Channels-->
