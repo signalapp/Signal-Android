@@ -26,7 +26,7 @@ import java.util.List;
  */
 class CameraContactsRepository {
 
-  private static final int RECENT_MAX = 7;
+  private static final int RECENT_MAX = 25;
 
   private final Context           context;
   private final ThreadDatabase    threadDatabase;
@@ -89,6 +89,10 @@ class CameraContactsRepository {
 
   @WorkerThread
   private @NonNull List<Recipient> getGroups(@NonNull String query) {
+    if (TextUtils.isEmpty(query)) {
+      return Collections.emptyList();
+    }
+
     List<Recipient> recipients = new ArrayList<>();
 
     try (GroupDatabase.Reader reader = groupDatabase.getGroupsFilteredByTitle(query)) {
