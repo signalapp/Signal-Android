@@ -191,12 +191,12 @@
     <string name="ConversationActivity_unable_to_record_audio">Unable to record audio!</string>
     <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">There is no app available to handle this link on your device.</string>
 
-    <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">To record audio messages, allow Signal access to your microphone.</string>
+    <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">To record audio messages, Signal requires permission to use your microphone.</string>
     <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal requires permission to use the microphone in order to record audio messages, but that permission has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Microphone\".</string>
-    <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">To call %s, Signal requires access to your microphone and camera.</string>
+    <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">To call %s, Signal requires permission to use your microphone and camera.</string>
     <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal requires permissions to use the microphone and the camera in order to call %s, but those permission have been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Microphone\" and \"Camera\".</string>
-    <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">To capture photos and video, allow Signal access to the camera.</string>
-    <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal requires permission to make user of the camera in order to take photos or record video, but that permission has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Camera\".</string>
+    <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">To capture photos and video, Signal requires permission to use the camera.</string>
+    <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal requires permission to use the camera in order to take photos or record video, but that permission has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Camera\".</string>
     <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal requires permission to use the camera, in order to take photos or record video</string>
 
     <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
@@ -507,8 +507,8 @@
     <string name="MediaSendActivity_message_to_s">Message to %s</string>
     <string name="MediaSendActivity_message">Message</string>
     <string name="MediaSendActivity_select_recipients">Select recipients</string>
-    <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal needs access to your contacts in order to display them.</string>
-    <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal needs Contacts permission in order to show your contacts, but it has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Contacts\".</string>
+    <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal needs permission to view your contacts in order to display them.</string>
+    <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal requires permission to view your contacts in order to display your contacts, but that permission has been permanently denied. Please continue to the app settings menu, select \"Permissions\", and enable \"Contacts\".</string>
     <plurals name="MediaSendActivity_cant_share_more_than_n_items">
         <item quantity="one">You can\'t share more than %d item.</item>
         <item quantity="other">You can\'t share more than %d items.</item>
@@ -646,7 +646,7 @@
     <string name="RegistrationActivity_no_browser">Unable to open this link. No web browser found.</string>
     <string name="RegistrationActivity_more_information">More information</string>
     <string name="RegistrationActivity_less_information">Less information</string>
-    <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal requires permission to view your contacts, in order to send messages and initiate calls to your contacts. Signal also requires access to media on your device in order to add files as attachments. Finally, Signal requires permission to make view your call status so Signal calls won't interfere with other calls.</string>
+    <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal requires permission to view your contacts, in order to send messages and initiate calls to your contacts. Signal also requires permission to access media on your device in order to add files as attachments. Finally, Signal requires permission to view your call status, so Signal calls won't interfere with other calls.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Unable to connect to service. Please check network connection and try again.</string>
     <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">To easily verify your phone number, Signal can automatically detect your verification code if you allow Signal to view SMS messages.</string>
     <plurals name="RegistrationActivity_debug_log_hint">
@@ -805,8 +805,8 @@
     <string name="MediaPreviewActivity_you">You</string>
     <string name="MediaPreviewActivity_unssuported_media_type">Unsupported media type</string>
     <string name="MediaPreviewActivity_draft">Draft</string>
-    <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal requires permission to use the external storage in order to save to the external storage, but that permission has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Storage\".</string>
-    <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Unable to save to external storage without permission</string>
+    <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal requires permission to use the external storage in order to save media to the external storage, but that permission has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Storage\".</string>
+    <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Unable to save media to external storage without permission</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_title">Delete media?</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_message">The selected media will be permanently deleted.</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_message_entire_message_including_text">The selected media message including the text will be permanently deleted.</string>
@@ -876,7 +876,7 @@
     <string name="VideoPlayer_error_playing_video">Error playing video</string>
 
     <!-- WebRtcCallActivity -->
-    <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">To answer the call from %s, give Signal access to your microphone.</string>
+    <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">To answer the call from %s, Signal requires permission to use your microphone.</string>
     <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal requires permissions to use the microphone and the camera in order to make or receive calls, but those permissions have been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Microphone\" and \"Camera\".</string>
 
     <!-- WebRtcCallScreen -->
@@ -930,7 +930,7 @@
     <string name="blocked_contacts_fragment__no_blocked_contacts">No blocked contacts</string>
 
     <!-- contact_selection_list_fragment -->
-    <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal requires access to your contacts in order to display them.</string>
+    <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal requires permission to view your contacts in order to display them.</string>
     <string name="contact_selection_list_fragment__show_contacts">Show Contacts</string>
 
     <!-- conversation_activity -->
