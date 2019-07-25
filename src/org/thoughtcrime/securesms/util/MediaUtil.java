@@ -280,16 +280,17 @@ public class MediaUtil {
     return sections.length > 1 ? sections[0] : null;
   }
 
-  public static class ThumbnailData {
-    Bitmap bitmap;
-    float aspectRatio;
+  public static class ThumbnailData implements AutoCloseable {
 
-    public ThumbnailData(Bitmap bitmap) {
+    @NonNull private final Bitmap bitmap;
+             private final float  aspectRatio;
+
+    public ThumbnailData(@NonNull Bitmap bitmap) {
       this.bitmap      = bitmap;
       this.aspectRatio = (float) bitmap.getWidth() / (float) bitmap.getHeight();
     }
 
-    public Bitmap getBitmap() {
+    public @NonNull Bitmap getBitmap() {
       return bitmap;
     }
 
@@ -299,6 +300,11 @@ public class MediaUtil {
 
     public InputStream toDataStream() {
       return BitmapUtil.toCompressedJpeg(bitmap);
+    }
+
+    @Override
+    public void close() {
+     bitmap.recycle();
     }
   }
 }

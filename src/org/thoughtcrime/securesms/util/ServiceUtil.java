@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.util;
 
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.app.AlarmManager;
 import android.app.NotificationManager;
 import android.app.job.JobScheduler;
@@ -68,5 +69,9 @@ public class ServiceUtil {
   @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
   public static @Nullable SubscriptionManager getSubscriptionManager(@NonNull Context context) {
     return (SubscriptionManager) context.getSystemService(Context.TELEPHONY_SUBSCRIPTION_SERVICE);
+  }
+
+  public static ActivityManager getActivityManager(@NonNull Context context) {
+    return (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
   }
 }

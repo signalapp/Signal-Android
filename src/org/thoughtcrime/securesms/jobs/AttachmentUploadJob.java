@@ -18,8 +18,6 @@ import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
-import org.thoughtcrime.securesms.mms.MediaStream;
-import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.service.GenericForegroundService;
 import org.thoughtcrime.securesms.service.NotificationController;
@@ -48,13 +46,26 @@ public class AttachmentUploadJob extends BaseJob {
    */
   private static final int FOREGROUND_LIMIT = 10 * 1024 * 1024;
 
-  private AttachmentId attachmentId;
+  /**
+   * The {@link PartProgressEvent} on the {@link EventBus} is shared between transcoding and uploading.
+   * <p>
+   * This number is the ratio that represents the transcoding effort, after which it will hand
+   * over to the to complete the progress.
+   */
+  private static final double ENCODING_PROGRESS_RATIO = 0.75;
 
-  public AttachmentUploadJob(AttachmentId attachmentId) {
+  private final AttachmentId               attachmentId;
+
+  public static AttachmentUploadJob fromAttachment(DatabaseAttachment databaseAttachment) {
+    return new AttachmentUploadJob(databaseAttachment.getAttachmentId(), MediaUtil.isVideo(databaseAttachment) && MediaConstraints.isVideoTranscodeAvailable());
+  }
+
+  private AttachmentUploadJob(AttachmentId attachmentId, boolean isVideoTranscode) {
     this(new Job.Parameters.Builder()
                            .addConstraint(NetworkConstraint.KEY)
                            .setLifespan(TimeUnit.DAYS.toMillis(1))
                            .setMaxAttempts(Parameters.UNLIMITED)
+                           .setQueue(isVideoTranscode ? "VIDEO_TRANSCODE" : null)
                            .build(),
          attachmentId);
   }
@@ -86,11 +97,13 @@ public class AttachmentUploadJob extends BaseJob {
       throw new IllegalStateException("Cannot find the specified attachment.");
     }
 
-    MediaConstraints mediaConstraints = MediaConstraints.getPushMediaConstraints();
-    Attachment       scaledAttachment = scaleAndStripExif(database, mediaConstraints, databaseAttachment);
+    MediaConstraints mediaConstraints       = MediaConstraints.getPushMediaConstraints();
+    Attachment       scaledAttachment       = scaleAndStripExif(database, mediaConstraints, databaseAttachment);
+    boolean          videoTranscodeOccurred = databaseAttachment != scaledAttachment && MediaUtil.isVideo(scaledAttachment);
+    double           progressStartPoint     = videoTranscodeOccurred ? ENCODING_PROGRESS_RATIO : 0;
 
     try (NotificationController notification = getNotificationForAttachment(scaledAttachment)) {
-      SignalServiceAttachment        localAttachment  = getAttachmentFor(scaledAttachment, notification);
+      SignalServiceAttachment        localAttachment  = getAttachmentFor(scaledAttachment, notification, progressStartPoint);
       SignalServiceAttachmentPointer remoteAttachment = messageSender.uploadAttachment(localAttachment.asStream(), databaseAttachment.isSticker());
       Attachment                     attachment       = PointerAttachment.forPointer(Optional.of(remoteAttachment), null, databaseAttachment.getFastPreflightId()).get();
 
@@ -114,7 +127,12 @@ public class AttachmentUploadJob extends BaseJob {
     return exception instanceof IOException;
   }
 
-  private SignalServiceAttachment getAttachmentFor(Attachment attachment, @Nullable NotificationController notification) {
+  /**
+   * @param progressStartPoint A value from 0..1 that represents any progress already shown.
+   *                           The {@link PartProgressEvent} of this task will fit in the remaining
+   *                           1 - progressStartPoint.
+   */
+  private SignalServiceAttachment getAttachmentFor(Attachment attachment, @Nullable NotificationController notification, double progressStartPoint) {
     try {
       if (attachment.getDataUri() == null || attachment.getSize() == 0) throw new IOException("Assertion failed, outgoing attachment has no data!");
       InputStream is = PartAuthority.getAttachmentStream(context, attachment.getDataUri());
@@ -128,7 +146,8 @@ public class AttachmentUploadJob extends BaseJob {
                                     .withHeight(attachment.getHeight())
                                     .withCaption(attachment.getCaption())
                                     .withListener((total, progress) -> {
-                                      EventBus.getDefault().postSticky(new PartProgressEvent(attachment, total, progress));
+                                      long cumulativeProgress = (long) ((1.0 - progressStartPoint) * progress + total * progressStartPoint);
+                                      EventBus.getDefault().postSticky(new PartProgressEvent(attachment, total, cumulativeProgress));
                                       if (notification != null) {
                                         notification.setProgress(total, progress);
                                       }
@@ -142,26 +161,21 @@ public class AttachmentUploadJob extends BaseJob {
 
   private Attachment scaleAndStripExif(@NonNull AttachmentDatabase attachmentDatabase,
                                        @NonNull MediaConstraints constraints,
-                                       @NonNull Attachment attachment)
+                                       @NonNull DatabaseAttachment attachment)
       throws UndeliverableMessageException
   {
-    try {
-      if (constraints.isSatisfied(context, attachment)) {
-        if (MediaUtil.isJpeg(attachment)) {
-          MediaStream stripped = constraints.getResizedMedia(context, attachment);
-          return attachmentDatabase.updateAttachmentData(attachment, stripped);
-        } else {
-          return attachment;
-        }
-      } else if (constraints.canResize(attachment)) {
-        MediaStream resized = constraints.getResizedMedia(context, attachment);
-        return attachmentDatabase.updateAttachmentData(attachment, resized);
-      } else {
-        throw new UndeliverableMessageException("Size constraints could not be met!");
-      }
-    } catch (IOException | MmsException e) {
-      throw new UndeliverableMessageException(e);
-    }
+    MediaResizer mediaResizer = new MediaResizer(context, constraints);
+
+    MediaResizer.ProgressListener progressListener = (progress, total) -> {
+                                                       PartProgressEvent event = new PartProgressEvent(attachment,
+                                                                                                       total,
+                                                                                                       (long) (progress * ENCODING_PROGRESS_RATIO));
+                                                       EventBus.getDefault().postSticky(event);
+                                                     };
+
+    return mediaResizer.scaleAndStripExifToDatabase(attachmentDatabase,
+                                                    attachment,
+                                                    progressListener);
   }
 
   public static final class Factory implements Job.Factory<AttachmentUploadJob> {

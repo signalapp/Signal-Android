@@ -40,6 +40,11 @@ final class MmsMediaConstraints extends MediaConstraints {
   }
 
   @Override
+  public int getUncompressedVideoMaxSize(Context context) {
+    return Math.max(getVideoMaxSize(context), 15 * 1024 * 1024);
+  }
+
+  @Override
   public int getAudioMaxSize(Context context) {
     return getMaxMessageSize(context);
   }

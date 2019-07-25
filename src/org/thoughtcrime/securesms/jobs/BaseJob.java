@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.jobs;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobLogger;
@@ -33,4 +34,20 @@ public abstract class BaseJob extends Job {
   protected abstract void onRun() throws Exception;
 
   protected abstract boolean onShouldRetry(@NonNull Exception e);
+
+  protected void log(@NonNull String tag, @NonNull String message) {
+    Log.i(tag, JobLogger.format(this, message));
+  }
+
+  protected void warn(@NonNull String tag, @NonNull String message) {
+    warn(tag, message, null);
+  }
+
+  protected void warn(@NonNull String tag, @Nullable Throwable t) {
+    warn(tag, "", t);
+  }
+
+  protected void warn(@NonNull String tag, @NonNull String message, @Nullable Throwable t) {
+    Log.w(tag, JobLogger.format(this, message), t);
+  }
 }

@@ -105,7 +105,7 @@ public abstract class Slide {
 
   public @NonNull String getContentDescription() { return ""; }
 
-  public Attachment asAttachment() {
+  public @NonNull Attachment asAttachment() {
     return attachment;
   }
 

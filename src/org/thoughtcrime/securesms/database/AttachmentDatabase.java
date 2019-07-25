@@ -16,19 +16,21 @@
  */
 package org.thoughtcrime.securesms.database;
 
-import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.media.MediaDataSource;
 import android.media.MediaMetadataRetriever;
 import android.net.Uri;
 import android.os.Build;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.VisibleForTesting;
 import android.text.TextUtils;
 import android.util.Pair;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.annotation.VisibleForTesting;
 
 import com.bumptech.glide.Glide;
 
@@ -495,13 +497,12 @@ public class AttachmentDatabase extends Database {
     return insertedAttachments;
   }
 
-  public @NonNull Attachment updateAttachmentData(@NonNull Attachment attachment,
-                                                  @NonNull MediaStream mediaStream)
+  public @NonNull DatabaseAttachment updateAttachmentData(@NonNull DatabaseAttachment databaseAttachment,
+                                                          @NonNull MediaStream mediaStream)
       throws MmsException
   {
-    SQLiteDatabase     database           = databaseHelper.getWritableDatabase();
-    DatabaseAttachment databaseAttachment = (DatabaseAttachment) attachment;
-    DataInfo           dataInfo           = getAttachmentDataFileInfo(databaseAttachment.getAttachmentId(), DATA);
+    SQLiteDatabase database = databaseHelper.getWritableDatabase();
+    DataInfo       dataInfo = getAttachmentDataFileInfo(databaseAttachment.getAttachmentId(), DATA);
 
     if (dataInfo == null) {
       throw new MmsException("No attachment data found!");
@@ -839,8 +840,9 @@ public class AttachmentDatabase extends Database {
         Bitmap bitmap = MediaUtil.getVideoThumbnail(context, attachment.getDataUri());
 
         if (bitmap != null) {
-          ThumbnailData thumbnailData = new ThumbnailData(bitmap);
-          updateAttachmentThumbnail(attachmentId, thumbnailData.toDataStream(), thumbnailData.getAspectRatio());
+          try (ThumbnailData thumbnailData = new ThumbnailData(bitmap)) {
+            updateAttachmentThumbnail(attachmentId, thumbnailData.toDataStream(), thumbnailData.getAspectRatio());
+          }
         } else {
           Log.w(TAG, "Retrieving video thumbnail failed, submitting thumbnail generation job...");
           thumbnailExecutor.submit(new ThumbnailFetchCallable(attachmentId));
@@ -912,44 +914,51 @@ public class AttachmentDatabase extends Database {
         return null;
       }
 
-      ThumbnailData data = null;
-
       if (MediaUtil.isVideoType(attachment.getContentType())) {
-        data = generateVideoThumbnail(attachmentId);
+
+        try (ThumbnailData data = generateVideoThumbnail(attachmentId)) {
+
+          if (data != null) {
+            updateAttachmentThumbnail(attachmentId, data.toDataStream(), data.getAspectRatio());
+
+            return getDataStream(attachmentId, THUMBNAIL, 0);
+          }
+        }
       }
 
-      if (data == null) {
-        return null;
-      }
-
-      updateAttachmentThumbnail(attachmentId, data.toDataStream(), data.getAspectRatio());
-
-      return getDataStream(attachmentId, THUMBNAIL, 0);
+      return null;
     }
 
-    @SuppressLint("NewApi")
-    private ThumbnailData generateVideoThumbnail(AttachmentId attachmentId) {
-      if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+    private ThumbnailData generateVideoThumbnail(AttachmentId attachmentId) throws IOException {
+      if (Build.VERSION.SDK_INT < 23) {
         Log.w(TAG, "Video thumbnails not supported...");
         return null;
       }
 
-      DataInfo dataInfo = getAttachmentDataFileInfo(attachmentId, DATA);
+      try (MediaDataSource dataSource = mediaDataSourceFor(attachmentId)) {
+        if (dataSource == null) return null;
 
-      if (dataInfo == null) {
-        Log.w(TAG, "No data file found for video thumbnail...");
-        return null;
+        MediaMetadataRetriever retriever = new MediaMetadataRetriever();
+        retriever.setDataSource(dataSource);
+
+        Bitmap bitmap = retriever.getFrameAtTime(1000);
+
+        Log.i(TAG, "Generated video thumbnail...");
+        return bitmap != null ? new ThumbnailData(bitmap) : null;
       }
-
-      EncryptedMediaDataSource dataSource = new EncryptedMediaDataSource(attachmentSecret, dataInfo.file, dataInfo.random, dataInfo.length);
-      MediaMetadataRetriever   retriever  = new MediaMetadataRetriever();
-      retriever.setDataSource(dataSource);
-
-      Bitmap bitmap = retriever.getFrameAtTime(1000);
-
-      Log.i(TAG, "Generated video thumbnail...");
-      return new ThumbnailData(bitmap);
     }
+  }
+
+  @RequiresApi(23)
+  public @Nullable MediaDataSource mediaDataSourceFor(@NonNull AttachmentId attachmentId) {
+    DataInfo dataInfo = getAttachmentDataFileInfo(attachmentId, DATA);
+
+    if (dataInfo == null) {
+      Log.w(TAG, "No data file found for video attachment...");
+      return null;
+    }
+
+    return EncryptedMediaDataSource.createFor(attachmentSecret, dataInfo.file, dataInfo.random, dataInfo.length);
   }
 
   private static class DataInfo {

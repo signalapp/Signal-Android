@@ -72,6 +72,7 @@
 
     <!-- AttachmentUploadJob -->
     <string name="AttachmentUploadJob_uploading_media">Uploading media...</string>
+    <string name="AttachmentUploadJob_compressing_video_start">Compressing video...</string>
 
     <!-- AudioSlidePlayer -->
     <string name="AudioSlidePlayer_error_playing_audio">Error playing audio!</string>

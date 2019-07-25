@@ -20,6 +20,8 @@ import android.app.Application;
 import android.content.Context;
 import androidx.annotation.NonNull;
 
+import com.annimon.stream.Stream;
+
 import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
@@ -133,14 +135,14 @@ public class MessageSender {
       return;
     }
 
-    ThreadDatabase           threadDatabase     = DatabaseFactory.getThreadDatabase(context);
-    MmsDatabase              mmsDatabase        = DatabaseFactory.getMmsDatabase(context);
-    AttachmentDatabase       attachmentDatabase = DatabaseFactory.getAttachmentDatabase(context);
-    List<List<AttachmentId>> attachmentIds      = new ArrayList<>(messages.get(0).getAttachments().size());
-    List<Long>               messageIds         = new ArrayList<>(messages.size());
+    ThreadDatabase                 threadDatabase      = DatabaseFactory.getThreadDatabase(context);
+    MmsDatabase                    mmsDatabase         = DatabaseFactory.getMmsDatabase(context);
+    AttachmentDatabase             attachmentDatabase  = DatabaseFactory.getAttachmentDatabase(context);
+    List<List<DatabaseAttachment>> databaseAttachments = new ArrayList<>(messages.get(0).getAttachments().size());
+    List<Long>                     messageIds          = new ArrayList<>(messages.size());
 
     for (int i = 0; i < messages.get(0).getAttachments().size(); i++) {
-      attachmentIds.add(new ArrayList<>(messages.size()));
+      databaseAttachments.add(new ArrayList<>(messages.size()));
     }
 
     try {
@@ -152,13 +154,13 @@ public class MessageSender {
           long                     messageId         = mmsDatabase.insertMessageOutbox(message, allocatedThreadId, false, null);
           List<DatabaseAttachment> attachments       = attachmentDatabase.getAttachmentsForMessage(messageId);
 
-          if (attachments.size() != attachmentIds.size()) {
-            Log.w(TAG, "Got back an attachment list that was a different size than expected. Expected: " + attachmentIds.size() + "  Actual: "+ attachments.size());
+          if (attachments.size() != databaseAttachments.size()) {
+            Log.w(TAG, "Got back an attachment list that was a different size than expected. Expected: " + databaseAttachments.size() + "  Actual: "+ attachments.size());
             return;
           }
 
           for (int i = 0; i < attachments.size(); i++) {
-            attachmentIds.get(i).add(attachments.get(i).getAttachmentId());
+            databaseAttachments.get(i).add(attachments.get(i));
           }
 
           messageIds.add(messageId);
@@ -169,16 +171,20 @@ public class MessageSender {
         mmsDatabase.endTransaction();
       }
 
-      List<AttachmentUploadJob> uploadJobs  = new ArrayList<>(attachmentIds.size());
-      List<AttachmentCopyJob>   copyJobs    = new ArrayList<>(attachmentIds.size());
-      List<Job>                 messageJobs = new ArrayList<>(attachmentIds.get(0).size());
+      List<AttachmentUploadJob> uploadJobs  = new ArrayList<>(databaseAttachments.size());
+      List<AttachmentCopyJob>   copyJobs    = new ArrayList<>(databaseAttachments.size());
+      List<Job>                 messageJobs = new ArrayList<>(databaseAttachments.get(0).size());
 
-      for (List<AttachmentId> idList : attachmentIds) {
-        uploadJobs.add(new AttachmentUploadJob(idList.get(0)));
+      for (List<DatabaseAttachment> attachmentList : databaseAttachments) {
+        DatabaseAttachment source = attachmentList.get(0);
 
-        if (idList.size() > 1) {
-          AttachmentId       sourceId       = idList.get(0);
-          List<AttachmentId> destinationIds = idList.subList(1, idList.size());
+        uploadJobs.add(AttachmentUploadJob.fromAttachment(source));
+
+        if (attachmentList.size() > 1) {
+          AttachmentId       sourceId       = source.getAttachmentId();
+          List<AttachmentId> destinationIds = Stream.of(attachmentList.subList(1, attachmentList.size()))
+                                                    .map(DatabaseAttachment::getAttachmentId)
+                                                    .toList();
 
           copyJobs.add(new AttachmentCopyJob(sourceId, destinationIds));
         }
