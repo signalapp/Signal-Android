@@ -89,7 +89,6 @@ import org.whispersystems.libsignal.state.PreKeyBundle;
 import org.whispersystems.libsignal.state.SignalProtocolStore;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
-import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
 import org.whispersystems.signalservice.api.messages.SignalServiceContent;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage.Preview;
@@ -490,14 +489,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
       Log.d("Loki", "Sending a ping back to " + content.getSender() + ".");
       String contactID = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(threadId).getAddress().toString();
-      SignalServiceMessageSender messageSender = ApplicationContext.getInstance(context).communicationModule.provideSignalMessageSender();
-      SignalServiceAddress address = new SignalServiceAddress(contactID);
-      SignalServiceDataMessage message = new SignalServiceDataMessage(System.currentTimeMillis(), "");
-      try {
-        messageSender.sendMessage(0, address, Optional.absent(), message); // The message ID doesn't matter
-      } catch (Exception e) {
-        Log.d("Loki", "Failed to send background message to: " + contactID + ".");
-      }
+      sendBackgroundMessage(contactID);
 
       SecurityEvent.broadcastSecurityUpdateEvent(context);
       MessageNotifier.updateNotification(context, threadId);
@@ -919,11 +911,11 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   }
 
   private void sendBackgroundMessage(String contactHexEncodedPublicKey) {
+    SignalServiceMessageSender messageSender = ApplicationContext.getInstance(context).communicationModule.provideSignalMessageSender();
+    SignalServiceAddress address = new SignalServiceAddress(contactHexEncodedPublicKey);
+    SignalServiceDataMessage message = new SignalServiceDataMessage(System.currentTimeMillis(), "");
     try {
-      SignalServiceAddress address = new SignalServiceAddress(contactHexEncodedPublicKey);
-      SignalServiceDataMessage message = new SignalServiceDataMessage(System.currentTimeMillis(), "");
-      Optional<UnidentifiedAccessPair> access = Optional.absent();
-      messageSender.sendMessage(0, address, access, message); // The message ID doesn't matter
+      messageSender.sendMessage(0, address, Optional.absent(), message); // The message ID doesn't matter
     } catch (Exception e) {
       Log.d("Loki", "Failed to send background message to: " + contactHexEncodedPublicKey + ".");
     }
