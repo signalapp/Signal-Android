@@ -82,6 +82,15 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">נכשל בשמירת תמונה.</string>
   <!--CameraContacts-->
+  <string name="CameraContacts_recent_contacts">אנשי קשר אחרונים</string>
+  <string name="CameraContacts_signal_contacts">אנשי קשר של Signal</string>
+  <string name="CameraContacts_signal_groups">קבוצות Signal</string>
+  <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">אתה יכול לשתף עם מרב של %d שיחות.</string>
+  <string name="CameraContacts_select_signal_recipients">בחר מקבלי Signal</string>
+  <string name="CameraContacts_no_signal_contacts">אין אנשי קשר של Signal.</string>
+  <string name="CameraContacts_you_can_only_use_the_camera_button">אתה יכול להשתמש רק בכפתור המצלמה כדי לשלוח תצלומים אל אנשי קשר של Signal.</string>
+  <string name="CameraContacts_cant_find_who_youre_looking_for">אינך מוצא מה שאתה מחפש?</string>
+  <string name="CameraContacts_invite_a_contact_to_join_signal">הזמן איש קשר להצטרף אל Signal</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">הסר</string>
   <string name="ClearProfileActivity_remove_profile_photo">להסיר תצלום פרופיל?</string>
@@ -446,7 +455,9 @@
   <string name="MediaSendActivity_camera_unavailable">מצלמה אינה זמינה.</string>
   <string name="MediaSendActivity_message_to_s">שלח הודעה אל %s</string>
   <string name="MediaSendActivity_message">הודעה</string>
+  <string name="MediaSendActivity_select_recipients">בחר מקבלים</string>
   <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal צריך הרשאה אל אנשי הקשר שלך על מנת להציגם.</string>
+  <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal צריך הרשאת אנשי קשר על מנת להראות את אנשי הקשר שלך, אבל היא נדחתה לצמיתות. אנא המשך אל הגדרות היישום, בחר \"הרשאות\" ואפשר את \"אנשי קשר\".</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">אינך יכול לשתף יותר מפריט %d.</item>
     <item quantity="two">אינך יכול לשתף יותר מ־%d פריטים.</item>
@@ -590,6 +601,8 @@
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">הכנס את הקוד ששלחנו אל %s</string>
   <string name="RegistrationActivity_call">חייג</string>
   <!--RevealableMessageView-->
+  <string name="RevealableMessageView_view_photo">הצג תצלום</string>
+  <string name="RevealableMessageView_viewed">הוצג</string>
   <string name="RevealableMessageView_photo">תצלום</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">נכשל בשמירת שינויי תמונה</string>
@@ -650,6 +663,7 @@
   <string name="ThreadRecord_missed_call">שיחה שלא נענתה</string>
   <string name="ThreadRecord_media_message">הודעת מדיה</string>
   <string name="ThreadRecord_sticker">מדבקה</string>
+  <string name="ThreadRecord_disappearing_photo">תצלום נעלם</string>
   <string name="ThreadRecord_s_is_on_signal">%s משתמש ב-Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">הודעות נעלמות הושבתו</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">זמן הודעות נעלמות הוגדר אל %s</string>
@@ -724,6 +738,7 @@
   <string name="MessageNotifier_mark_read">סמן כנקרא</string>
   <string name="MessageNotifier_media_message">הודעת מדיה</string>
   <string name="MessageNotifier_sticker">מדבקה</string>
+  <string name="MessageNotifier_disappearing_photo">תצלום נעלם</string>
   <string name="MessageNotifier_reply">השב</string>
   <string name="MessageNotifier_signal_message">הודעת Signal</string>
   <string name="MessageNotifier_unsecured_sms">מסרון בלתי מאובטח</string>

@@ -82,6 +82,15 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Obrázok sa nepodarilo uložiť.</string>
   <!--CameraContacts-->
+  <string name="CameraContacts_recent_contacts">Nedávne kontakty</string>
+  <string name="CameraContacts_signal_contacts">Kontakty Signal</string>
+  <string name="CameraContacts_signal_groups">Skupiny Signal</string>
+  <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">Zdieľať môžete max. %d konverzácie/-í.</string>
+  <string name="CameraContacts_select_signal_recipients">Vybrať príjemcov Signal</string>
+  <string name="CameraContacts_no_signal_contacts">Žiadne kontakty Signal</string>
+  <string name="CameraContacts_you_can_only_use_the_camera_button">Na odoslanie fotiek kontaktom Signal môžete použiť tlačidlo fotoaparátu.</string>
+  <string name="CameraContacts_cant_find_who_youre_looking_for">Nenašli ste hľadaný kontakt?</string>
+  <string name="CameraContacts_invite_a_contact_to_join_signal">Pozvite kontakt, aby použival Signal</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Odstrániť</string>
   <string name="ClearProfileActivity_remove_profile_photo">Odstrániť profilovú fotku?</string>
@@ -446,7 +455,9 @@
   <string name="MediaSendActivity_camera_unavailable">Kamera je nedostupná.</string>
   <string name="MediaSendActivity_message_to_s">Správa pre %s</string>
   <string name="MediaSendActivity_message">Správa</string>
+  <string name="MediaSendActivity_select_recipients">Vybrať príjemcov</string>
   <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal potrebuje prístup k Vašim kontaktom, aby ich mohol zobraziť.</string>
+  <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal potrebuje prístup k povoleniu Kontakty, aby mohol zobraziť vaše kontakty, ale prístup bol natrvalo zakázaný. Prejdite do nastavení aplikácie, zvoľte \"Povolenia\", a povoľte \"Kontakty\".</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Nemôžete zdieľať viac ako %d položku.</item>
     <item quantity="few">Nemôžete zdieľať viac ako %d položiky.</item>
@@ -512,6 +523,8 @@
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Mapa</string>
   <string name="PlacePickerActivity_not_a_valid_address">Neplatná adresa</string>
+  <string name="PlacePickerActivity_drop_pin">Umiestniť značku</string>
+  <string name="PlacePickerActivity_accept_address">Prijať adresu</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Verzia aplikácie Google Play Services ktorú máte nainštalovanú nefunguje správne. Prosím preinštalujte Google Play Services a skúste znova.</string>
   <!--RatingManager-->
@@ -591,6 +604,8 @@ telefónne číslo
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Zadajte kód, ktorý sme odoslali na %s</string>
   <string name="RegistrationActivity_call">Zavolať</string>
   <!--RevealableMessageView-->
+  <string name="RevealableMessageView_view_photo">Zobraziť fotku</string>
+  <string name="RevealableMessageView_viewed">Zobrazené</string>
   <string name="RevealableMessageView_photo">Fotka</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Nepodarilo sa uložiť zmeny v obrázku</string>
@@ -653,6 +668,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="ThreadRecord_missed_call">Zmeškaný hovor</string>
   <string name="ThreadRecord_media_message">Multimediálna správa</string>
   <string name="ThreadRecord_sticker">Nálepka</string>
+  <string name="ThreadRecord_disappearing_photo">Miznúca fotka</string>
   <string name="ThreadRecord_s_is_on_signal">%s je na Signale!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Miznúce správy vypnuté</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Čas miznúcich správ bol nastavený na %s</string>
@@ -727,6 +743,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="MessageNotifier_mark_read">Označiť ako prečítané</string>
   <string name="MessageNotifier_media_message">Multimediálna správa</string>
   <string name="MessageNotifier_sticker">Nálepka</string>
+  <string name="MessageNotifier_disappearing_photo">Miznúca fotka</string>
   <string name="MessageNotifier_reply">Odpovedať</string>
   <string name="MessageNotifier_signal_message">Signal správa</string>
   <string name="MessageNotifier_unsecured_sms">Nezabezpečená SMS</string>

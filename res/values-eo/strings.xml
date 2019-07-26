@@ -421,6 +421,7 @@
   <string name="MediaSendActivity_message">Mesaĝo</string>
   <string name="MediaSendActivity_select_recipients">Elekti ricevontojn</string>
   <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal bezonas aliri viajn kontaktojn por montri ilin.</string>
+  <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal bezonas permeson legi kontaktojn por serĉi en viaj kontaktoj, sed ĝi estis porĉiame malakceptita. Bonvolu daŭrigi al la aplikaĵaj agordoj, elekti „Permesoj“, kaj ŝalti „Kontaktoj“.</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Vi ne povas kunhavigi pli ol %d elementon.</item>
     <item quantity="other">Vi ne povas kunhavigi pli ol %d elementojn.</item>

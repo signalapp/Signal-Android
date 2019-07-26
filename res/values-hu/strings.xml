@@ -422,6 +422,7 @@
   <string name="MediaSendActivity_message">Üzenetek</string>
   <string name="MediaSendActivity_select_recipients">Címzettek kiválasztása</string>
   <string name="MediaSendActivity_signal_needs_access_to_your_contacts">A Signal-nak szüksége van a névjegyeidhez való hozzáférésre annak érdekében, hogy megjelenítse őket.</string>
+  <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">A Signal-nak szüksége van a Névjegyek engedélyre annak érdekében, hogy megjelenítse kontaktjaidat, de ez jelenleg meg van tagadva. Kérlek menj az alkalmazás-beállításokhoz, válaszd az \"Engedélyek\" menüpontot, majd  engedélyezd a \"Névjegyek\"-et.</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Nem oszthatsz meg többet, mint %d db elem.</item>
     <item quantity="other">Nem oszthatsz meg többet, mint %d db elem.</item>

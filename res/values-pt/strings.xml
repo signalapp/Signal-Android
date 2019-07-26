@@ -82,7 +82,7 @@
   <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">Pode partilhar com o máximo de %d conversações.</string>
   <string name="CameraContacts_select_signal_recipients">Selecione os destinatários Signal</string>
   <string name="CameraContacts_no_signal_contacts">Sem contactos Signal</string>
-  <string name="CameraContacts_you_can_only_use_the_camera_button">Pode usar o botão da câmara apenas para enviar fotografias para contactos Signal.</string>
+  <string name="CameraContacts_you_can_only_use_the_camera_button">Apenas pode utilizar o botão da câmara para enviar fotografias para contactos Signal.</string>
   <string name="CameraContacts_cant_find_who_youre_looking_for">Não consegue encontrar ninguém?</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">Convide um contacto para se juntar ao Signal</string>
   <!--ClearProfileActivity-->
@@ -421,6 +421,7 @@
   <string name="MediaSendActivity_message">Mensagem</string>
   <string name="MediaSendActivity_select_recipients">Selecionar destinatários</string>
   <string name="MediaSendActivity_signal_needs_access_to_your_contacts">O Signal precisa de ter acesso aos contactos para os poder mostrar.</string>
+  <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">O Signal requer permissão de acesso aos contactos para mostrar os seus contactos, mas esta foi negada permanentemente. Por favor, aceda às definições da aplicação, selecione \"Permissões\" e ative \"Contactos\".</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Não pode partilhar mais do que %d item.</item>
     <item quantity="other">Não pode partilhar mais do que %d itens.</item>

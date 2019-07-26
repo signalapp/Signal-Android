@@ -1157,7 +1157,7 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <string name="preferences_communication__sealed_sender_display_indicators">Toon of verzegelde afzender is gebruikt</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">Laat een statusicoon zien als je tikt op ‘Berichtdetails’ bij berichten die zijn afgeleverd met een verzegelde afzender.</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Van iedereen toestaan</string>
-  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Schakel verzegelde afzender in voor berichten afkomstig van niet-contactpersonen en mensen voor wie je je profiel niet zichtbaar hebt gemaakt.</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Schakel verzegelde afzender in voor berichten afkomstig van niet-contactpersonen en mensen voor wie je je profiel niet zichtbaar hebt gemaakt. Dit verhoogt de kans dat je ongewenste berichten ontvangt.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Meer leren hierover</string>
   <!--****************************************-->
   <!--menus-->

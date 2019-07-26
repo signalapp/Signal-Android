@@ -73,8 +73,10 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">画像を保存できませんでした。</string>
   <!--CameraContacts-->
+  <string name="CameraContacts_recent_contacts">最近使った連絡先</string>
   <string name="CameraContacts_signal_contacts">Signalの連絡先</string>
   <string name="CameraContacts_signal_groups">Signalのグループ</string>
+  <string name="CameraContacts_no_signal_contacts">Signalの連絡先はありません</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">連絡先をSignalへ招待する</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">削除</string>

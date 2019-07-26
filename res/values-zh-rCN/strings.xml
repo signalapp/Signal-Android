@@ -73,6 +73,15 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">未能保存图像。</string>
   <!--CameraContacts-->
+  <string name="CameraContacts_recent_contacts">最近联系人</string>
+  <string name="CameraContacts_signal_contacts">Signal 联系人</string>
+  <string name="CameraContacts_signal_groups">Signal 群组</string>
+  <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">您最多可以与 %d 个会话共享</string>
+  <string name="CameraContacts_select_signal_recipients">选择 Signal 收件人</string>
+  <string name="CameraContacts_no_signal_contacts">没有 Signal 联系人</string>
+  <string name="CameraContacts_you_can_only_use_the_camera_button">您可以仅使用相机按钮来发送照片给 Signal 联系人</string>
+  <string name="CameraContacts_cant_find_who_youre_looking_for">找不到您要找的人？</string>
+  <string name="CameraContacts_invite_a_contact_to_join_signal">邀请联系人加入 Signal</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">删除</string>
   <string name="ClearProfileActivity_remove_profile_photo">删除头像</string>
@@ -392,7 +401,9 @@
   <string name="MediaSendActivity_camera_unavailable">摄像头不可用。</string>
   <string name="MediaSendActivity_message_to_s">发送给 %s 的消息</string>
   <string name="MediaSendActivity_message">消息</string>
+  <string name="MediaSendActivity_select_recipients">选择收件人</string>
   <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal 需要访问您的联系人才能显示他们。</string>
+  <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal 需要通讯录权限来显示您的联系人，但是该请求已经被永久拒绝。请进入应用设置，选择权限，然后启用“通讯录”。</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="other">您最多分享 %d 项。</item>
   </plurals>
@@ -531,6 +542,8 @@
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">请输入我们发送到%s的验证码</string>
   <string name="RegistrationActivity_call">拨号</string>
   <!--RevealableMessageView-->
+  <string name="RevealableMessageView_view_photo">查看照片</string>
+  <string name="RevealableMessageView_viewed">已阅</string>
   <string name="RevealableMessageView_photo">图片</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">无法保存图像更改</string>
@@ -590,6 +603,7 @@
   <string name="ThreadRecord_missed_call">未接来电</string>
   <string name="ThreadRecord_media_message">多媒体信息</string>
   <string name="ThreadRecord_sticker">表情</string>
+  <string name="ThreadRecord_disappearing_photo">闪照</string>
   <string name="ThreadRecord_s_is_on_signal">%s 在 Signal 上！</string>
   <string name="ThreadRecord_disappearing_messages_disabled">阅后即焚功能已关闭</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">信息销毁时间设置为 %s</string>
@@ -664,6 +678,7 @@
   <string name="MessageNotifier_mark_read">标记为已读</string>
   <string name="MessageNotifier_media_message">媒体信息</string>
   <string name="MessageNotifier_sticker">表情包</string>
+  <string name="MessageNotifier_disappearing_photo">闪照</string>
   <string name="MessageNotifier_reply">回复</string>
   <string name="MessageNotifier_signal_message">Signal 消息</string>
   <string name="MessageNotifier_unsecured_sms">未加密的短信</string>

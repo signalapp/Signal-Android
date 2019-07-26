@@ -456,7 +456,8 @@
   <string name="MediaSendActivity_message_to_s">Сообщение %s</string>
   <string name="MediaSendActivity_message">Сообщение</string>
   <string name="MediaSendActivity_select_recipients">Выберите получателей</string>
-  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal необходимо разрешение на доступ к вашим контактам, чтобы отобразить их.</string>
+  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal необходим доступ к вашим контактам, чтобы отобразить их.</string>
+  <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal требуется разрешение на доступ к контактам для показа ваших контактов, но оно было вами отклонено. Пожалуйста, перейдите в Настройки, выберите «Приложения», найдите Signal, затем выберите «Разрешения» и включите «Контакты».</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Вы не можете поделиться больше, чем %d элементом.</item>
     <item quantity="few">Вы не можете поделиться больше, чем %d элементами.</item>
@@ -825,7 +826,7 @@
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Нет заблокированных контактов</string>
   <!--contact_selection_list_fragment-->
-  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal необходимо разрешение на доступ к вашим контактам, чтобы отобразить их.</string>
+  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal необходим доступ к вашим контактам, чтобы отобразить их.</string>
   <string name="contact_selection_list_fragment__show_contacts">Показать контакты</string>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Сообщение Signal</string>

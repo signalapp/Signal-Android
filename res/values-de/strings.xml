@@ -421,6 +421,7 @@
   <string name="MediaSendActivity_message">Nachricht</string>
   <string name="MediaSendActivity_select_recipients">Empfänger auswählen</string>
   <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal benötigt Zugriff auf deine Kontakte, um sie anzeigen zu können.</string>
+  <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal benötigt die Berechtigung »Kontakte« für das Anzeigen deiner Kontakte, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Kontakte«.</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Du kannst nicht mehr als %d Element teilen.</item>
     <item quantity="other">Du kannst nicht mehr als %d Elemente teilen.</item>

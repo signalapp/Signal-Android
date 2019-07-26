@@ -76,6 +76,15 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Fejl ved forsøg på at gemme billede</string>
   <!--CameraContacts-->
+  <string name="CameraContacts_recent_contacts">Seneste kontakter</string>
+  <string name="CameraContacts_signal_contacts">Signal kontakter</string>
+  <string name="CameraContacts_signal_groups">Signal grupper</string>
+  <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">Du kan dele med højst %d samtaler</string>
+  <string name="CameraContacts_select_signal_recipients">Vælg Signal modtagere</string>
+  <string name="CameraContacts_no_signal_contacts">Ingen Signal kontakter</string>
+  <string name="CameraContacts_you_can_only_use_the_camera_button">Du kan kun bruge kameraknappen, til at sende billeder til Signal kontakter</string>
+  <string name="CameraContacts_cant_find_who_youre_looking_for">Kan du ikke finde den du leder efter?</string>
+  <string name="CameraContacts_invite_a_contact_to_join_signal">Inviter en kontakt til at bruge Signal</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Fjern</string>
   <string name="ClearProfileActivity_remove_profile_photo">Fjern profilbillede?</string>
@@ -411,7 +420,9 @@
   <string name="MediaSendActivity_camera_unavailable">Kamera utilgængeligt</string>
   <string name="MediaSendActivity_message_to_s">Besked til %s</string>
   <string name="MediaSendActivity_message">Besked</string>
+  <string name="MediaSendActivity_select_recipients">Vælg modtagere</string>
   <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal kræver tilladelse til at tilgå dine kontakter, for at kunne vise dem</string>
+  <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal kræver tilladelse til at tilgå dine kontakter, hvilket det er blevet nægtet. Gå venligst via appens menu til Indstillinger, vælg \"Tilladelser\" og tilvælg \"Kontakter\"</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Du kan ikke dele flere end %d fil.</item>
     <item quantity="other">Du kan ikke dele flere end %d filer</item>
@@ -554,6 +565,8 @@ nummer (%s) er ugyldigt</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Indtast verifikationskoden sendt til %s</string>
   <string name="RegistrationActivity_call">Ring op</string>
   <!--RevealableMessageView-->
+  <string name="RevealableMessageView_view_photo">Vis billed</string>
+  <string name="RevealableMessageView_viewed">Er set</string>
   <string name="RevealableMessageView_photo">Billed</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Fejl ved forsøg på at gemme redigeret billede</string>
@@ -588,7 +601,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="SmsMessageRecord_secure_session_reset_s">%s har nulstillet den sikre session</string>
   <string name="SmsMessageRecord_duplicate_message">Dupliker besked</string>
   <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Beskeden kunne ikke håndteres, fordi den er sendt fra en nyere version af Signal. Du kan bede din kontakt om at sende beskeden igen, efter du har opdateret</string>
-  <string name="SmsMessageRecord_error_handling_incoming_message">Fejl i forbindelse med indgående besked</string>
+  <string name="SmsMessageRecord_error_handling_incoming_message">Fejl ved håndtering af indgående besked</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Klistermærker</string>
   <!--StickerManagementAdapter-->
@@ -616,6 +629,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="ThreadRecord_missed_call">Mistet opkald</string>
   <string name="ThreadRecord_media_message">Mediebesked</string>
   <string name="ThreadRecord_sticker">Klistermærke</string>
+  <string name="ThreadRecord_disappearing_photo">Billed med tidsudløb</string>
   <string name="ThreadRecord_s_is_on_signal">%s er på Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Beskeder med tidsudløb deaktiveret</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Beskeder udløber efter %s</string>
@@ -690,6 +704,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="MessageNotifier_mark_read">Markér som læst</string>
   <string name="MessageNotifier_media_message">Mediebesked</string>
   <string name="MessageNotifier_sticker">Klistermærke</string>
+  <string name="MessageNotifier_disappearing_photo">Billed med tidsudløb</string>
   <string name="MessageNotifier_reply">Svar</string>
   <string name="MessageNotifier_signal_message">Signalbesked</string>
   <string name="MessageNotifier_unsecured_sms">Usikret SMS</string>

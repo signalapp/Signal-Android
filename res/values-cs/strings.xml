@@ -82,6 +82,7 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Nepodařilo se uložit obrázek.</string>
   <!--CameraContacts-->
+  <string name="CameraContacts_cant_find_who_youre_looking_for">Nemůžete najít, co jste hledali?</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Odebrat</string>
   <string name="ClearProfileActivity_remove_profile_photo">Odebrat profilovou fotografii?</string>
@@ -446,6 +447,7 @@
   <string name="MediaSendActivity_camera_unavailable">Kamera není dostupná.</string>
   <string name="MediaSendActivity_message_to_s">Zpráva %s</string>
   <string name="MediaSendActivity_message">Zpráva</string>
+  <string name="MediaSendActivity_select_recipients">Zvolte příjemce</string>
   <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signál potřebuje přístup k vašim kontaktům aby je mohl zobrazit.</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Nemůžete sdílet více než  %d položku.</item>
@@ -589,6 +591,7 @@ telefonní číslo</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Zadejte kód který jsme odeslali %s</string>
   <string name="RegistrationActivity_call">Volat</string>
   <!--RevealableMessageView-->
+  <string name="RevealableMessageView_view_photo">Zobrazit fotku</string>
   <string name="RevealableMessageView_photo">Fotografie</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Nepodařilo se uložit změny v obrázku.</string>

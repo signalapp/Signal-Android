@@ -76,6 +76,15 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Kuvan tallennus epäonnistui.</string>
   <!--CameraContacts-->
+  <string name="CameraContacts_recent_contacts">Viimeisimmät yhteystiedot</string>
+  <string name="CameraContacts_signal_contacts">Signal-yhteystiedot</string>
+  <string name="CameraContacts_signal_groups">Signal-ryhmät</string>
+  <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">%d keskustelua on enimmäismäärä, joihin voit jakaa. </string>
+  <string name="CameraContacts_select_signal_recipients">Valitse Signal -vastaanottajat liitteelle:</string>
+  <string name="CameraContacts_no_signal_contacts">Ei Signal-yhteystietoja</string>
+  <string name="CameraContacts_you_can_only_use_the_camera_button">Voit käyttää kamerapainiketta vain valokuvien lähettämiseen Signal -yhteystiedoillesi.</string>
+  <string name="CameraContacts_cant_find_who_youre_looking_for">Etkö löydä ketä olet etsimässä?</string>
+  <string name="CameraContacts_invite_a_contact_to_join_signal">Kutsu yhteystieto Signaliin</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Poista</string>
   <string name="ClearProfileActivity_remove_profile_photo">Poista profiilikuva?</string>
@@ -410,7 +419,9 @@
   <string name="MediaSendActivity_camera_unavailable">Kamera ei käytettävissä</string>
   <string name="MediaSendActivity_message_to_s">Vastaanottaja: %s</string>
   <string name="MediaSendActivity_message">Viesti</string>
+  <string name="MediaSendActivity_select_recipients">Valitse vastaanottajat</string>
   <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal tarvitsee luvan yhteystietoihisi, jotta se voisi näyttää ne.</string>
+  <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal tarvitsee lupaa käyttää laitteesi yhteystietoja niiden näyttämistä varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Jatka sovellusten asetuksiin, valitse \"Sovelluksen käyttöoikeudet\" ja laita päälle  \"Yhteystiedot\".</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Et voi jakaa useampaa kuin %d kappaletta.</item>
     <item quantity="other">Et voi jakaa useampaa kuin %d kappaletta.</item>
@@ -563,12 +574,12 @@ puhelinnumero</string>
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Lisää yhteystietoihin</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Kutsu Signaliin</string>
-  <string name="SharedContactDetailsActivity_signal_message">Signal viesti</string>
+  <string name="SharedContactDetailsActivity_signal_message">Signal-viesti</string>
   <string name="SharedContactDetailsActivity_signal_call">Signal-puhelu</string>
   <!--SharedContactView-->
   <string name="SharedContactView_add_to_contacts">Lisää yhteystietoihin</string>
   <string name="SharedContactView_invite_to_signal">Kutsu Signaliin</string>
-  <string name="SharedContactView_message">Signal viesti</string>
+  <string name="SharedContactView_message">Signal-viesti</string>
   <!--Slide-->
   <string name="Slide_image">Kuva</string>
   <string name="Slide_sticker">Tarra</string>
@@ -612,6 +623,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ThreadRecord_missed_call">Vastaamatta jäänyt puhelu</string>
   <string name="ThreadRecord_media_message">Mediaviesti</string>
   <string name="ThreadRecord_sticker">Tarra</string>
+  <string name="ThreadRecord_disappearing_photo">Katoava kuva</string>
   <string name="ThreadRecord_s_is_on_signal">%s käyttää Signalia!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Katoavat viestit poistettu käytöstä</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Katoavien viestien ajaksi asetettu %s</string>
@@ -686,6 +698,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="MessageNotifier_mark_read">Luettu</string>
   <string name="MessageNotifier_media_message">Mediaviesti</string>
   <string name="MessageNotifier_sticker">Tarra</string>
+  <string name="MessageNotifier_disappearing_photo">Katoava kuva</string>
   <string name="MessageNotifier_reply">Vastaa</string>
   <string name="MessageNotifier_signal_message">Signal viesti</string>
   <string name="MessageNotifier_unsecured_sms">Salaamaton SMS-viesti</string>
@@ -1078,10 +1091,10 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="preferences__mms_user_agent">MMS User Agent</string>
   <string name="preferences__advanced_mms_access_point_names">Manuaaliset MMS-asetukset</string>
   <string name="preferences__mmsc_url">MMSC URL</string>
-  <string name="preferences__mms_proxy_host">MMS välityspalvelin</string>
-  <string name="preferences__mms_proxy_port">MMS välityspalvelimen portti</string>
-  <string name="preferences__mmsc_username">MMSC käyttäjänimi</string>
-  <string name="preferences__mmsc_password">MMSC salasana</string>
+  <string name="preferences__mms_proxy_host">MMS-välityspalvelin</string>
+  <string name="preferences__mms_proxy_port">MMS-välityspalvelimen portti</string>
+  <string name="preferences__mmsc_username">MMSC-käyttäjänimi</string>
+  <string name="preferences__mmsc_password">MMSC-salasana</string>
   <string name="preferences__sms_delivery_reports">SMS toimitusvahvistukset</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Pyydä vahvistus jokaisen lähetetyn tekstiviestin toimituksesta</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Poista vanhimpia viestejä automaattisesti, kun keskustelu ylittää määritetyn pituusrajan</string>
@@ -1130,7 +1143,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="preferences_chats__show_invitation_prompts">Näytä kutsukehotukset</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Näytä kehotuksia kutsua yhteystietoja, jotka eivät vielä käytä Signalia</string>
   <string name="preferences_chats__message_text_size">Viestien tekstin koko</string>
-  <string name="preferences_events__contact_joined_signal">Yhteistietosi liittyi Signaliin</string>
+  <string name="preferences_events__contact_joined_signal">Yhteystietosi liittyi Signaliin</string>
   <string name="preferences_notifications__priority">Prioriteetti</string>
   <string name="preferences_communication__category_sealed_sender">Sinetöity lähettäjä</string>
   <string name="preferences_communication__sealed_sender_display_indicators">Näytä tilaindikaattori</string>

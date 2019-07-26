@@ -79,6 +79,15 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Spremanje slike nije uspjelo.</string>
   <!--CameraContacts-->
+  <string name="CameraContacts_recent_contacts">Nedavni kontakti</string>
+  <string name="CameraContacts_signal_contacts">Signal kontakti</string>
+  <string name="CameraContacts_signal_groups">Signal grupe</string>
+  <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">Možete dijeliti s najviše %d razgovora.</string>
+  <string name="CameraContacts_select_signal_recipients">Odaberi Signal primatelje</string>
+  <string name="CameraContacts_no_signal_contacts">Nema Signal kontakata</string>
+  <string name="CameraContacts_you_can_only_use_the_camera_button">Okidač kamere možete samo koristiti za slanje fotografija Signal kontaktima.</string>
+  <string name="CameraContacts_cant_find_who_youre_looking_for">Niste našli što tražite?</string>
+  <string name="CameraContacts_invite_a_contact_to_join_signal">Pozovi kontakt da pristupi Signal-u</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Ukloni</string>
   <string name="ClearProfileActivity_remove_profile_photo">Ukloni profilnu sliku?</string>
@@ -428,7 +437,9 @@
   <string name="MediaSendActivity_camera_unavailable">Kamera nije dostupna</string>
   <string name="MediaSendActivity_message_to_s">Poruka za %s</string>
   <string name="MediaSendActivity_message">Poruka</string>
+  <string name="MediaSendActivity_select_recipients">Odaberi primatelje</string>
   <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal zahtjeva pristup vašim kontaktima kako bi ih mogao prikazati.</string>
+  <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal zahtijeva dozvolu pristupa telefonskim kontaktima za pretraživanje vaših kontakta, no to je trajno odbijeno. Otvorite opcije aplikacije, odaberite \"Dozvole\" i odobrite pristup telefonskim kontaktima.</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Ne možete dijeliti više od %dstavke.</item>
     <item quantity="few">Ne možete dijeliti više od %d stavki.</item>
@@ -571,6 +582,8 @@ telefona</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Unesite kôd koji smo poslali na %s</string>
   <string name="RegistrationActivity_call">Poziv</string>
   <!--RevealableMessageView-->
+  <string name="RevealableMessageView_view_photo">Pogledaj fotografiju</string>
+  <string name="RevealableMessageView_viewed">Pregledano</string>
   <string name="RevealableMessageView_photo">Fotografija</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Slikovne promjene nisu uspjele.</string>
@@ -603,6 +616,7 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s resetiranje sigurne sesije.</string>
   <string name="SmsMessageRecord_duplicate_message">Dupla poruka.</string>
   <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Poruku nije moguće obraditi jer je poslana novijom verzijom Signala. Ažurirajte vaš Signal i zatražite da vam se poruka ponovo pošalje.</string>
+  <string name="SmsMessageRecord_error_handling_incoming_message">Pogreška prilikom upravljanja ulaznom porukom</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Naljepnice</string>
   <!--StickerManagementAdapter-->
@@ -630,6 +644,7 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="ThreadRecord_missed_call">Propušteni poziv</string>
   <string name="ThreadRecord_media_message">Multimedijalna poruka</string>
   <string name="ThreadRecord_sticker">Stiker</string>
+  <string name="ThreadRecord_disappearing_photo">Nestajuća fotografija</string>
   <string name="ThreadRecord_s_is_on_signal">%s je dostupan na Signalu!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Nestajuće poruke su isključene</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Vrijeme nestajanja poruke postavljeno na %s</string>
@@ -704,6 +719,7 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="MessageNotifier_mark_read">Označi pročitano</string>
   <string name="MessageNotifier_media_message">Multimedijalna poruka</string>
   <string name="MessageNotifier_sticker">Stiker</string>
+  <string name="MessageNotifier_disappearing_photo">Nestajuća fotografija</string>
   <string name="MessageNotifier_reply">Odgovori</string>
   <string name="MessageNotifier_signal_message">Signal poruka</string>
   <string name="MessageNotifier_unsecured_sms">Nesigurni SMS</string>

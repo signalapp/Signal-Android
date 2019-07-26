@@ -457,6 +457,7 @@
   <string name="MediaSendActivity_message">Wiadomość</string>
   <string name="MediaSendActivity_select_recipients">Wybierz odbiorców</string>
   <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal wymaga dostępu do Twoich kontaktów w celu wyświetlenia ich.</string>
+  <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal wymaga pozwolenia na dostęp do kontaktów aby wyświetlić Twoje kontakty, ale zostało one na stałe odrzucone. Przejdź do menu ustawień aplikacji, wybierz \"Uprawnienia\" i włącz \"Kontakty\".</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Nie można udostępnić więcej niż %d plik multimediów.</item>
     <item quantity="few">Nie można udostępnić więcej niż %d multimediów.</item>

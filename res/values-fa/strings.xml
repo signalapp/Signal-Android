@@ -6,7 +6,7 @@
   <string name="delete">حذف</string>
   <string name="please_wait">لطفاً صبر کنید...</string>
   <string name="save">ذخیره</string>
-  <string name="note_to_self">یادداشت به خود</string>
+  <string name="note_to_self">یادداشت برای خود</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">پیام جدید</string>
   <!--AlbumThumbnailView-->

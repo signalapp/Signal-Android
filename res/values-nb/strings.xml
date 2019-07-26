@@ -76,6 +76,14 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Kunne ikke lagre bildet.</string>
   <!--CameraContacts-->
+  <string name="CameraContacts_recent_contacts">Nylige kontakter</string>
+  <string name="CameraContacts_signal_contacts">Signal kontakter</string>
+  <string name="CameraContacts_signal_groups">Signal grupper</string>
+  <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">Du kan dele med maksimalt %d samtaler.</string>
+  <string name="CameraContacts_no_signal_contacts">Ingen Signal kontakter</string>
+  <string name="CameraContacts_you_can_only_use_the_camera_button">Du kan bare bruke kameraknappen til å sende bilder til Signal kontakter.</string>
+  <string name="CameraContacts_cant_find_who_youre_looking_for">Finner du ikke den du leter etter?</string>
+  <string name="CameraContacts_invite_a_contact_to_join_signal">Inviter en kontakt for å bli med i Signal</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Fjern</string>
   <string name="ClearProfileActivity_remove_profile_photo">Fjerne profilbilde?</string>
@@ -411,6 +419,7 @@
   <string name="MediaSendActivity_message_to_s">Melding til %s</string>
   <string name="MediaSendActivity_message">Melding</string>
   <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal må ha tilgang til kontaktene dine for å kunne vise dem.</string>
+  <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal trenger tillatelse til kontakter for å kunne vise kontaktene dine, men det har blitt avslått permanent. Fortsett med appinnstillingene, velg \"Tillatelser\" og aktiver \"Kontakter\".</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Du kan ikke dele mer enn %d fil.</item>
     <item quantity="other">Du kan ikke dele mer enn %d filer.</item>
