@@ -1379,7 +1379,7 @@
     <string name="preferences_communication__sealed_sender_display_indicators">Show sealed sender indicator</string>
     <string name="preferences_communication__sealed_sender_display_indicators_description">Show a status icon when you select "Message details" on messages that were delivered using sealed sender.</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone">Allow from anyone</string>
-    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Enable sealed sender for incoming messages from non-contacts and people to whom you have not made your profile visible.</string>
+    <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Enable sealed sender for incoming messages from non-contacts and people to whom you have not made your profile visible. This comes at the increased risk of receiving unwanted messages.</string>
     <string name="preferences_communication__sealed_sender_learn_more">Learn more</string>
 
     <!-- **************************************** -->
