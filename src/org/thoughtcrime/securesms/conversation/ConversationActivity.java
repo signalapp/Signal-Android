@@ -90,7 +90,6 @@ import org.thoughtcrime.securesms.MediaOverviewActivity;
 import org.thoughtcrime.securesms.MuteDialog;
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
 import org.thoughtcrime.securesms.PromptMmsActivity;
-import network.loki.messenger.R;
 import org.thoughtcrime.securesms.RegistrationActivity;
 import org.thoughtcrime.securesms.ShortcutLauncherActivity;
 import org.thoughtcrime.securesms.TransportOption;
@@ -228,6 +227,8 @@ import java.util.Locale;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
+
+import network.loki.messenger.R;
 
 import static org.thoughtcrime.securesms.TransportOption.Type;
 import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
@@ -2716,7 +2717,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     String contactID = DatabaseFactory.getThreadDatabase(this).getRecipientForThreadId(this.threadId).getAddress().toString();
     SignalServiceMessageSender messageSender = ApplicationContext.getInstance(this).communicationModule.provideSignalMessageSender();
     SignalServiceAddress address = new SignalServiceAddress(contactID);
-    SignalServiceDataMessage message = new SignalServiceDataMessage(System.currentTimeMillis(), null);
+    SignalServiceDataMessage message = new SignalServiceDataMessage(System.currentTimeMillis(), "");
     try {
       messageSender.sendMessage(0, address, Optional.absent(), message); // The message ID doesn't matter
     } catch (Exception e) {
