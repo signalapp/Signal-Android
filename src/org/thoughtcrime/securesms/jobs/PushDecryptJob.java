@@ -5,6 +5,8 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
@@ -911,14 +913,20 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   }
 
   private void sendBackgroundMessage(String contactHexEncodedPublicKey) {
-    SignalServiceMessageSender messageSender = ApplicationContext.getInstance(context).communicationModule.provideSignalMessageSender();
-    SignalServiceAddress address = new SignalServiceAddress(contactHexEncodedPublicKey);
-    SignalServiceDataMessage message = new SignalServiceDataMessage(System.currentTimeMillis(), "");
-    try {
-      messageSender.sendMessage(0, address, Optional.absent(), message); // The message ID doesn't matter
-    } catch (Exception e) {
-      Log.d("Loki", "Failed to send background message to: " + contactHexEncodedPublicKey + ".");
-    }
+    new Handler(Looper.getMainLooper()).post(new Runnable() {
+
+      @Override
+      public void run() {
+        SignalServiceMessageSender messageSender = ApplicationContext.getInstance(context).communicationModule.provideSignalMessageSender();
+        SignalServiceAddress address = new SignalServiceAddress(contactHexEncodedPublicKey);
+        SignalServiceDataMessage message = new SignalServiceDataMessage(System.currentTimeMillis(), "");
+        try {
+          messageSender.sendMessage(0, address, Optional.absent(), message); // The message ID doesn't matter
+        } catch (Exception e) {
+          Log.d("Loki", "Failed to send background message to: " + contactHexEncodedPublicKey + ".");
+        }
+      }
+    });
   }
 
   private long handleSynchronizeSentTextMessage(@NonNull SentTranscriptMessage message)

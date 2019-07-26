@@ -1558,7 +1558,7 @@
     <!-- New conversation activity -->
     <string name="activity_new_conversation_title">New Conversation</string>
     <string name="activity_new_conversation_public_key_edit_text_label">Public Key</string>
-    <string name="activity_new_conversation_public_key_explanation">Enter the public key of the person you\'d like to securely message. They can share their public key with you by going into Loki Messenger\'s in-app settings and clicking "Share Public Key".</string>
+    <string name="activity_new_conversation_public_key_explanation">Enter the public key of the person you\'d like to securely message. They can share their public key with you by going into Loki Messenger\'s in-app settings and clicking \"Share Public Key\".</string>
     <string name="activity_new_conversation_button_title">Next</string>
     <string name="activity_new_conversation_invalid_public_key_message">Invalid Public Key</string>
     <!-- Friend request view -->
