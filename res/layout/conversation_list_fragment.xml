@@ -59,14 +59,16 @@
                 android:id="@+id/list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:paddingBottom="150dp"
                 android:scrollbars="vertical"
                 android:nextFocusDown="@+id/fab"
                 android:nextFocusForward="@+id/fab"
+                android:clipToPadding="false"
                 tools:listitem="@layout/conversation_list_item_view" />
 
     </LinearLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <org.thoughtcrime.securesms.components.registration.PulsingFloatingActionButton
         android:id="@+id/camera_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
