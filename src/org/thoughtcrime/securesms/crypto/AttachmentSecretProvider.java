@@ -73,7 +73,7 @@ public class AttachmentSecretProvider {
 
   private AttachmentSecret getEncryptedAttachmentSecret(@NonNull String serializedEncryptedSecret) {
     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-      throw new AssertionError("OS downgrade not supported. KeyStore sealed data exists on platform < M!");
+      throw new AssertionError("OS downgrade not supported. KeyStore sealed data exists on platform >= M!");
     } else {
       KeyStoreHelper.SealedData encryptedSecret = KeyStoreHelper.SealedData.fromString(serializedEncryptedSecret);
       return AttachmentSecret.fromString(new String(KeyStoreHelper.unseal(encryptedSecret)));
