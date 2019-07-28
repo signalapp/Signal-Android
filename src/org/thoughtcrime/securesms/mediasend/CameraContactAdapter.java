@@ -119,8 +119,7 @@ class CameraContactAdapter extends SectionedRecyclerViewAdapter<String, CameraCo
 
   @Override
   public int getItemCount() {
-    int count = super.getItemCount();
-    return count > 0 ? count + 1 : 0;
+    return super.getItemCount() + 1;
   }
 
   public void setContacts(@NonNull CameraContacts contacts, @NonNull Collection<Recipient> selected) {
@@ -140,8 +139,7 @@ class CameraContactAdapter extends SectionedRecyclerViewAdapter<String, CameraCo
   }
 
   private boolean isInvitePosition(int globalPosition) {
-    int count = getItemCount();
-    return count > 0 && globalPosition == getItemCount() - 1;
+    return globalPosition == getItemCount() - 1;
   }
 
   public static class ContactSection extends SectionedRecyclerViewAdapter.Section<String> {

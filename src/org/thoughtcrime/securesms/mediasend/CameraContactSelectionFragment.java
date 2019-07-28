@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.mediasend;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -163,11 +164,13 @@ public class CameraContactSelectionFragment extends Fragment implements CameraCo
     contactViewModel.getContacts().observe(getViewLifecycleOwner(), contactState -> {
       if (contactState == null) return;
 
-      if (contactState.getContacts().isEmpty()) {
+      if (contactState.getContacts().isEmpty() && TextUtils.isEmpty(contactState.getQuery())) {
         cameraContactsEmpty.setVisibility(View.VISIBLE);
+        contactList.setVisibility(View.GONE);
         selectionFooterGroup.setVisibility(View.GONE);
       } else {
         cameraContactsEmpty.setVisibility(View.GONE);
+        contactList.setVisibility(View.VISIBLE);
 
         sendButton.setOnClickListener(v -> controller.onCameraContactsSendClicked(contactState.getSelected()));
 

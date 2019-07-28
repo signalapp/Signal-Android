@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.mediasend;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -24,6 +25,8 @@ class CameraContactSelectionViewModel extends ViewModel {
   private final SingleLiveEvent<Error>        error;
   private final Set<Recipient>                selected;
 
+  private String currentQuery;
+
   private CameraContactSelectionViewModel(@NonNull CameraContactsRepository repository) {
     this.repository = repository;
     this.contacts   = new MutableLiveData<>();
@@ -32,7 +35,7 @@ class CameraContactSelectionViewModel extends ViewModel {
 
     repository.getCameraContacts(cameraContacts -> {
       Util.runOnMain(() -> {
-        contacts.postValue(new ContactState(cameraContacts, new ArrayList<>(selected)));
+        contacts.postValue(new ContactState(cameraContacts, new ArrayList<>(selected), currentQuery));
       });
     });
   }
@@ -50,9 +53,11 @@ class CameraContactSelectionViewModel extends ViewModel {
   }
 
   void onQueryUpdated(String query) {
+    this.currentQuery = query;
+
     repository.getCameraContacts(query, cameraContacts -> {
       Util.runOnMain(() -> {
-        contacts.postValue(new ContactState(cameraContacts, new ArrayList<>(selected)));
+        contacts.postValue(new ContactState(cameraContacts, new ArrayList<>(selected), query));
       });
     });
   }
@@ -60,7 +65,7 @@ class CameraContactSelectionViewModel extends ViewModel {
   void onRefresh() {
     repository.getCameraContacts(cameraContacts -> {
       Util.runOnMain(() -> {
-        contacts.postValue(new ContactState(cameraContacts, new ArrayList<>(selected)));
+        contacts.postValue(new ContactState(cameraContacts, new ArrayList<>(selected), currentQuery));
       });
     });
   }
@@ -77,17 +82,19 @@ class CameraContactSelectionViewModel extends ViewModel {
     ContactState currentState = contacts.getValue();
 
     if (currentState != null) {
-      contacts.setValue(new ContactState(currentState.getContacts(), new ArrayList<>(selected)));
+      contacts.setValue(new ContactState(currentState.getContacts(), new ArrayList<>(selected), currentQuery));
     }
   }
 
   static class ContactState {
-    private final CameraContacts contacts;
+    private final CameraContacts  contacts;
     private final List<Recipient> selected;
+    private final String          query;
 
-    ContactState(CameraContacts contacts, List<Recipient> selected) {
+    ContactState(@NonNull CameraContacts contacts, @NonNull List<Recipient> selected, @Nullable String query) {
       this.contacts = contacts;
       this.selected = selected;
+      this.query    = query;
     }
 
     public CameraContacts getContacts() {
@@ -96,6 +103,10 @@ class CameraContactSelectionViewModel extends ViewModel {
 
     public List<Recipient> getSelected() {
       return selected;
+    }
+
+    public @Nullable String getQuery() {
+      return query;
     }
   }
 

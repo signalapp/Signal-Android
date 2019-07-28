@@ -73,6 +73,7 @@
         android:id="@+id/camera_contacts_list"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@id/camera_contacts_footer_barrier"
         app:layout_constraintTop_toBottomOf="@id/camera_contacts_toolbar" />
 
