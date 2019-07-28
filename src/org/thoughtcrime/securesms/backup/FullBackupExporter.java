@@ -213,6 +213,8 @@ public class FullBackupExporter extends FullBackupBase {
         else                                       inputStream = ClassicDecryptingPartInputStream.createFor(attachmentSecret, new File(data));
 
         outputStream.write(new AttachmentId(rowId, uniqueId), inputStream, size);
+        outputStream.close();
+        inputStream.close();
       }
     } catch (IOException e) {
       Log.w(TAG, e);
@@ -249,6 +251,8 @@ public class FullBackupExporter extends FullBackupBase {
     while ((read = inputStream.read(buffer, 0, buffer.length)) != -1) {
       result += read;
     }
+
+    inputStream.close();
 
     return result;
   }

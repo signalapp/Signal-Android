@@ -37,18 +37,19 @@ public class ModernEncryptingPartOutputStream {
       Mac mac = Mac.getInstance("HmacSHA256");
       mac.init(new SecretKeySpec(attachmentSecret.getModernKey(), "HmacSHA256"));
 
-      FileOutputStream fileOutputStream = new FileOutputStream(file);
-      byte[]           iv               = new byte[16];
-      byte[]           key              = mac.doFinal(random);
+      try(FileOutputStream fileOutputStream = new FileOutputStream(file)) {
+        byte[] iv = new byte[16];
+        byte[] key = mac.doFinal(random);
 
-      Cipher cipher = Cipher.getInstance("AES/CTR/NoPadding");
-      cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(key, "AES"), new IvParameterSpec(iv));
+        Cipher cipher = Cipher.getInstance("AES/CTR/NoPadding");
+        cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(key, "AES"), new IvParameterSpec(iv));
 
-      if (inline) {
-        fileOutputStream.write(random);
+        if (inline) {
+          fileOutputStream.write(random);
+        }
+
+        return new Pair<>(random, new CipherOutputStream(fileOutputStream, cipher));
       }
-
-      return new Pair<>(random, new CipherOutputStream(fileOutputStream, cipher));
     } catch (NoSuchAlgorithmException | InvalidKeyException | InvalidAlgorithmParameterException | NoSuchPaddingException e) {
       throw new AssertionError(e);
     }

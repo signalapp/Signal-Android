@@ -106,12 +106,11 @@ public class UpdateApkReadyListener extends BroadcastReceiver {
 
       byte[]          theirDigest     = Hex.fromStringCondensed(theirEncodedDigest);
       DownloadManager downloadManager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
-      FileInputStream fin             = new FileInputStream(downloadManager.openDownloadedFile(downloadId).getFileDescriptor());
-      byte[]          ourDigest       = FileUtils.getFileDigest(fin);
+      try(FileInputStream fin             = new FileInputStream(downloadManager.openDownloadedFile(downloadId).getFileDescriptor())) {
+        byte[] ourDigest = FileUtils.getFileDigest(fin);
 
-      fin.close();
-
-      return MessageDigest.isEqual(ourDigest, theirDigest);
+        return MessageDigest.isEqual(ourDigest, theirDigest);
+      }
     } catch (IOException e) {
       Log.w(TAG, e);
       return false;

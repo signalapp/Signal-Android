@@ -39,20 +39,22 @@ class EncryptedCoder {
       Mac    mac    = Mac.getInstance("HmacSHA256");
       mac.init(new SecretKeySpec(masterKey, "HmacSHA256"));
 
-      FileOutputStream fileOutputStream = new FileOutputStream(file);
-      byte[]           iv               = new byte[16];
-      byte[]           key              = mac.doFinal(random);
+      try (FileOutputStream fileOutputStream = new FileOutputStream(file)) {
+        byte[] iv = new byte[16];
+        byte[] key = mac.doFinal(random);
 
-      Cipher cipher = Cipher.getInstance("AES/CTR/NoPadding");
-      cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(key, "AES"), new IvParameterSpec(iv));
+        Cipher cipher = Cipher.getInstance("AES/CTR/NoPadding");
+        cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(key, "AES"), new IvParameterSpec(iv));
 
-      fileOutputStream.write(MAGIC_BYTES);
-      fileOutputStream.write(random);
+        fileOutputStream.write(MAGIC_BYTES);
+        fileOutputStream.write(random);
 
-      CipherOutputStream outputStream = new CipherOutputStream(fileOutputStream, cipher);
-      outputStream.write(MAGIC_BYTES);
+        try (CipherOutputStream outputStream = new CipherOutputStream(fileOutputStream, cipher)) {
+          outputStream.write(MAGIC_BYTES);
 
-      return outputStream;
+          return outputStream;
+        }
+      }
     } catch (NoSuchAlgorithmException | InvalidKeyException | NoSuchPaddingException | InvalidAlgorithmParameterException e) {
       throw new AssertionError(e);
     }

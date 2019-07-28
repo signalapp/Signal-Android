@@ -52,9 +52,9 @@ public class AvatarHelper {
     if (data == null)  {
       delete(context, address);
     } else {
-      FileOutputStream out = new FileOutputStream(getAvatarFile(context, address));
-      out.write(data);
-      out.close();
+      try (FileOutputStream out = new FileOutputStream(getAvatarFile(context, address))) {
+        out.write(data);
+      }
     }
   }
 
