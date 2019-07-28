@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.mediasend;
 
+import android.Manifest;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.database.Cursor;
@@ -17,6 +18,7 @@ import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.mms.PartAuthority;
+import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
@@ -69,6 +71,10 @@ class MediaRepository {
 
   @WorkerThread
   private @NonNull List<MediaFolder> getFolders(@NonNull Context context) {
+    if (!Permissions.hasAll(context, Manifest.permission.READ_EXTERNAL_STORAGE)) {
+      return Collections.emptyList();
+    }
+
     FolderResult imageFolders       = getFolders(context, Images.Media.EXTERNAL_CONTENT_URI);
     FolderResult videoFolders       = getFolders(context, Video.Media.EXTERNAL_CONTENT_URI);
     Map<String, FolderData> folders = new HashMap<>(imageFolders.getFolderData());
@@ -151,6 +157,10 @@ class MediaRepository {
 
   @WorkerThread
   private @NonNull List<Media> getMediaInBucket(@NonNull Context context, @NonNull String bucketId) {
+    if (!Permissions.hasAll(context, Manifest.permission.READ_EXTERNAL_STORAGE)) {
+      return Collections.emptyList();
+    }
+
     List<Media> images = getMediaInBucket(context, bucketId, Images.Media.EXTERNAL_CONTENT_URI, true);
     List<Media> videos = getMediaInBucket(context, bucketId, Video.Media.EXTERNAL_CONTENT_URI, false);
     List<Media> media  = new ArrayList<>(images.size() + videos.size());
@@ -201,6 +211,10 @@ class MediaRepository {
 
   @WorkerThread
   private List<Media> getPopulatedMedia(@NonNull Context context, @NonNull List<Media> media) {
+    if (!Permissions.hasAll(context, Manifest.permission.READ_EXTERNAL_STORAGE)) {
+      return media;
+    }
+
     return Stream.of(media).map(m -> {
       try {
         if (isPopulated(m)) {
@@ -218,6 +232,10 @@ class MediaRepository {
 
   @WorkerThread
   private Optional<Media> getMostRecentItem(@NonNull Context context) {
+    if (!Permissions.hasAll(context, Manifest.permission.READ_EXTERNAL_STORAGE)) {
+      return Optional.absent();
+    }
+
     List<Media> media = getMediaInBucket(context, Media.ALL_MEDIA_BUCKET_ID, Images.Media.EXTERNAL_CONTENT_URI, true);
     return media.size() > 0 ? Optional.of(media.get(0)) : Optional.absent();
   }
