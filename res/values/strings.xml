@@ -1336,6 +1336,8 @@
     <string name="preferences_advanced__always_relay_calls">Always relay calls</string>
     <string name="preferences_app_protection__app_access">App access</string>
     <string name="preferences_app_protection__communication">Communication</string>
+    <string name="preferences_app_protection__screenlock_requires_lollipop">Using the system screenlock requires Android 5.0 (Lollipop) or higher.</string>
+    <string name="preferences_app_protection__android_version_too_low">Android version too low</string>
     <string name="preferences_chats__chats">Chats</string>
     <string name="preferences_notifications__messages">Messages</string>
     <string name="preferences_notifications__events">Events</string>
