@@ -53,6 +53,7 @@ import org.thoughtcrime.securesms.logging.CustomSignalProtocolLogger;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.logging.PersistentLogger;
 import org.thoughtcrime.securesms.logging.UncaughtExceptionLogger;
+import org.thoughtcrime.securesms.migrations.ApplicationMigrations;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.providers.BlobProvider;
@@ -114,6 +115,7 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
     initializeCrashHandling();
     initializeAppDependencies();
     initializeJobManager();
+    initializeApplicationMigrations();
     initializeMessageRetrieval();
     initializeExpiringMessageManager();
     initializeRevealableMessageManager();
@@ -130,6 +132,7 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
     initializeCameraX();
     NotificationChannels.create(this);
     ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
+    jobManager.beginJobLoop();
   }
 
   @Override
@@ -221,6 +224,10 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
                                                                        .setConstraintObservers(JobManagerFactories.getConstraintObservers(this))
                                                                        .setJobStorage(new FastJobStorage(DatabaseFactory.getJobDatabase(this)))
                                                                        .build());
+  }
+
+  private void initializeApplicationMigrations() {
+    ApplicationMigrations.onApplicationCreate(this, jobManager);
   }
 
   public void initializeMessageRetrieval() {

@@ -13,6 +13,9 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraintObserver;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkOrCellServiceConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraintObserver;
+import org.thoughtcrime.securesms.migrations.DatabaseMigrationJob;
+import org.thoughtcrime.securesms.migrations.LegacyMigrationJob;
+import org.thoughtcrime.securesms.migrations.MigrationCompleteJob;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -71,6 +74,11 @@ public final class JobManagerFactories {
       put(TrimThreadJob.KEY,                         new TrimThreadJob.Factory());
       put(TypingSendJob.KEY,                         new TypingSendJob.Factory());
       put(UpdateApkJob.KEY,                          new UpdateApkJob.Factory());
+
+      // Migrations
+      put(DatabaseMigrationJob.KEY,                  new DatabaseMigrationJob.Factory());
+      put(LegacyMigrationJob.KEY,                    new LegacyMigrationJob.Factory());
+      put(MigrationCompleteJob.KEY,                  new MigrationCompleteJob.Factory());
 
       // Dead jobs
       put("PushContentReceiveJob",                   new FailingJob.Factory());

@@ -199,8 +199,9 @@ public abstract class Job {
 
   public static final class Parameters {
 
-    public static final int IMMORTAL  = -1;
-    public static final int UNLIMITED = -1;
+    public static final String MIGRATION_QUEUE_KEY = "MIGRATION";
+    public static final int    IMMORTAL            = -1;
+    public static final int    UNLIMITED           = -1;
 
     private final long         createTime;
     private final long         lifespan;
@@ -255,16 +256,41 @@ public abstract class Job {
       return constraintKeys;
     }
 
+    public Builder toBuilder() {
+      return new Builder(createTime, maxBackoff, lifespan, maxAttempts, maxInstances, queue, constraintKeys);
+    }
+
 
     public static final class Builder {
 
-      private long         createTime     = System.currentTimeMillis();
-      private long         maxBackoff     = TimeUnit.SECONDS.toMillis(30);
-      private long         lifespan       = IMMORTAL;
-      private int          maxAttempts    = 1;
-      private int          maxInstances   = UNLIMITED;
-      private String       queue          = null;
-      private List<String> constraintKeys = new LinkedList<>();
+      private long         createTime;
+      private long         maxBackoff;
+      private long         lifespan;
+      private int          maxAttempts;
+      private int          maxInstances;
+      private String       queue;
+      private List<String> constraintKeys;
+
+      public Builder() {
+        this(System.currentTimeMillis(), TimeUnit.SECONDS.toMillis(30), IMMORTAL, 1, UNLIMITED, null, new LinkedList<>());
+      }
+
+      private Builder(long createTime,
+                      long maxBackoff,
+                      long lifespan,
+                      int maxAttempts,
+                      int maxInstances,
+                      @Nullable String queue,
+                      @NonNull List<String> constraintKeys)
+      {
+        this.createTime     = createTime;
+        this.maxBackoff     = maxBackoff;
+        this.lifespan       = lifespan;
+        this.maxAttempts    = maxAttempts;
+        this.maxInstances   = maxInstances;
+        this.queue          = queue;
+        this.constraintKeys = constraintKeys;
+      }
 
       /** Should only be invoked by {@link JobController} */
       Builder setCreateTime(long createTime) {

@@ -31,15 +31,17 @@ public class JobManager implements ConstraintObserver.Notifier {
 
   private static final String TAG = JobManager.class.getSimpleName();
 
+  private final Application     application;
+  private final Configuration   configuration;
   private final ExecutorService executor;
   private final JobController   jobController;
-  private final JobRunner[]     jobRunners;
 
   private final Set<EmptyQueueListener> emptyQueueListeners = new CopyOnWriteArraySet<>();
 
   public JobManager(@NonNull Application application, @NonNull Configuration configuration) {
+    this.application   = application;
+    this.configuration = configuration;
     this.executor      = configuration.getExecutorFactory().newSingleThreadExecutor("signal-JobManager");
-    this.jobRunners    = new JobRunner[configuration.getJobThreadCount()];
     this.jobController = new JobController(application,
                                            configuration.getJobStorage(),
                                            configuration.getJobInstantiator(),
@@ -58,11 +60,6 @@ public class JobManager implements ConstraintObserver.Notifier {
 
       jobController.init();
 
-      for (int i = 0; i < jobRunners.length; i++) {
-        jobRunners[i] = new JobRunner(application, i + 1, jobController);
-        jobRunners[i].start();
-      }
-
       for (ConstraintObserver constraintObserver : configuration.getConstraintObservers()) {
         constraintObserver.register(this);
       }
@@ -70,7 +67,17 @@ public class JobManager implements ConstraintObserver.Notifier {
       if (Build.VERSION.SDK_INT < 26) {
         application.startService(new Intent(application, KeepAliveService.class));
       }
+    });
+  }
 
+  /**
+   * Begins the execution of jobs.
+   */
+  public void beginJobLoop() {
+    executor.execute(() -> {
+      for (int i = 0; i < configuration.getJobThreadCount(); i++) {
+        new JobRunner(application, i + 1, jobController).start();
+      }
       wakeUp();
     });
   }
@@ -112,7 +119,7 @@ public class JobManager implements ConstraintObserver.Notifier {
   }
 
   /**
-   * Adds a listener to that will be notified when the job queue has been drained.
+   * Adds a listener that will be notified when the job queue has been drained.
    */
   void addOnEmptyQueueListener(@NonNull EmptyQueueListener listener) {
     executor.execute(() -> {

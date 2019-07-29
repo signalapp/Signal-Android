@@ -17,6 +17,9 @@
     <!-- AlbumThumbnailView -->
     <string name="AlbumThumbnailView_plus">\+%d</string>
 
+    <!-- ApplicationMigrationActivity -->
+    <string name="ApplicationMigrationActivity__signal_is_updating">Signal is updating...</string>
+
     <!-- ApplicationPreferencesActivity -->
     <string name="ApplicationPreferencesActivity_currently_s">Currently: %s</string>
     <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">You haven\'t set a passphrase yet!</string>
@@ -1113,8 +1116,6 @@
     <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">This could take a moment. Please be patient, we\'ll notify you when the import is complete.</string>
     <string name="database_migration_activity__importing">IMPORTING</string>
 
-    <!-- database_upgrade_activity -->
-    <string name="database_upgrade_activity__updating_database">Updating database...</string>
 
     <string name="import_fragment__import_system_sms_database">Import system SMS database</string>
     <string name="import_fragment__import_the_database_from_the_default_system">Import the database from the default system messenger app</string>

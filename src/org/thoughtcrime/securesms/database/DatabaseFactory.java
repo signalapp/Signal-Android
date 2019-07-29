@@ -21,7 +21,6 @@ import androidx.annotation.NonNull;
 
 import net.sqlcipher.database.SQLiteDatabase;
 
-import org.thoughtcrime.securesms.DatabaseUpgradeActivity;
 import org.thoughtcrime.securesms.contacts.ContactsDatabase;
 import org.thoughtcrime.securesms.crypto.AttachmentSecret;
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
@@ -31,6 +30,7 @@ import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.helpers.ClassicOpenHelper;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherMigrationHelper;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
+import org.thoughtcrime.securesms.migrations.LegacyMigrationJob;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 public class DatabaseFactory {
@@ -184,18 +184,18 @@ public class DatabaseFactory {
   }
 
   public void onApplicationLevelUpgrade(@NonNull Context context, @NonNull MasterSecret masterSecret,
-                                        int fromVersion, DatabaseUpgradeActivity.DatabaseUpgradeListener listener)
+                                        int fromVersion, LegacyMigrationJob.DatabaseUpgradeListener listener)
   {
     databaseHelper.getWritableDatabase();
 
     ClassicOpenHelper legacyOpenHelper = null;
 
-    if (fromVersion < DatabaseUpgradeActivity.ASYMMETRIC_MASTER_SECRET_FIX_VERSION) {
+    if (fromVersion < LegacyMigrationJob.ASYMMETRIC_MASTER_SECRET_FIX_VERSION) {
       legacyOpenHelper = new ClassicOpenHelper(context);
       legacyOpenHelper.onApplicationLevelUpgrade(context, masterSecret, fromVersion, listener);
     }
 
-    if (fromVersion < DatabaseUpgradeActivity.SQLCIPHER && TextSecurePreferences.getNeedsSqlCipherMigration(context)) {
+    if (fromVersion < LegacyMigrationJob.SQLCIPHER && TextSecurePreferences.getNeedsSqlCipherMigration(context)) {
       if (legacyOpenHelper == null) {
         legacyOpenHelper = new ClassicOpenHelper(context);
       }
@@ -205,5 +205,9 @@ public class DatabaseFactory {
                                                  databaseHelper.getWritableDatabase(),
                                                  listener);
     }
+  }
+
+  public void triggerDatabaseAccess() {
+    databaseHelper.getWritableDatabase();
   }
 }
