@@ -111,7 +111,7 @@
         <item name="android:shadowRadius">0.0</item>
         <item name="android:lineSpacingMultiplier">1.25</item>
     </style>
-    
+
     <style name="Registration.Label" parent="@android:style/TextAppearance">
         <item name="android:textSize">12.0sp</item>
         <item name="android:typeface">sans</item>
@@ -126,11 +126,11 @@
         <item name="android:shadowRadius">0.0</item>
         <item name="android:lineSpacingMultiplier">1.25</item>
     </style>
-    
+
     <style name="Registration.BigLabel" parent="@style/Registration.Label">
         <item name="android:textSize">20sp</item>
     </style>
-    
+
     <style name="Registration.Constant" parent="@android:style/TextAppearance">
         <item name="android:typeface">sans</item>
         <item name="android:textStyle">normal</item>
@@ -139,7 +139,7 @@
         <item name="android:shadowDx">1.0</item>
         <item name="android:shadowDy">1.0</item>
         <item name="android:shadowRadius">0.0</item>
-        <item name="android:lineSpacingMultiplier">1.25</item>        
+        <item name="android:lineSpacingMultiplier">1.25</item>
     </style>
 
     <!-- For Holo Light Dialog Activity Styling Emulation -->
@@ -233,6 +233,23 @@
 
     <style name="Color1SwitchStyle">
         <item name="colorControlActivated">@color/white</item>
+    </style>
+
+    <style name="WebRtcCallScreenTextWhite">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="WebRtcCallScreenTextWhite.Small">
+        <item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
+    </style>
+
+    <style name="WebRtcCallScreenTextWhite.Medium">
+        <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+    </style>
+
+    <style name="WebRtcCallScreenTextWhite.ExtraLarge">
+        <item name="android:textAppearance">?android:attr/textAppearanceLarge</item>
+        <item name="android:textSize">40sp</item>
     </style>
 
 </resources>

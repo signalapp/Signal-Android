@@ -884,6 +884,17 @@
     <!-- WebRtcCallControls -->
     <string name="WebRtcCallControls_tap_to_enable_your_video">Tap to enable your video</string>
 
+    <!-- WebRtcCallControls Content Descriptions -->
+    <string name="WebRtcCallControls_contact_photo_description">Contact photo</string>
+    <string name="WebRtcCallControls_speaker_button_description">Speaker</string>
+    <string name="WebRtcCallControls_bluetooth_button_description">Bluetooth</string>
+    <string name="WebRtcCallControls_mute_button_description">Mute</string>
+    <string name="WebRtcCallControls_your_camera_button_description">Your camera</string>
+    <string name="WebRtcCallControls_switch_to_rear_camera_button_description">Switch to rear camera</string>
+
+    <string name="WebRtcCallControls_answer_call_description">Answer call</string>
+    <string name="WebRtcCallControls_reject_call_description">Reject call</string>
+
     <!-- attachment_type_selector -->
     <string name="attachment_type_selector__audio">Audio</string>
     <string name="attachment_type_selector__audio_description">Audio</string>
@@ -1149,8 +1160,6 @@
 
     <!--- redphone_call_controls -->
     <string name="redphone_call_card__signal_call">Signal Call</string>
-    <string name="redphone_call_controls__mute">Mute</string>
-    <string name="redphone_call_controls__flip_camera_rear">Switch Cameras</string>
 
     <!-- registration_activity -->
     <string name="registration_activity__phone_number">PHONE NUMBER</string>

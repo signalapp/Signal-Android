@@ -18,6 +18,7 @@ import androidx.annotation.RequiresApi;
 import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
 import android.view.WindowManager;
+import android.view.accessibility.AccessibilityManager;
 import android.view.inputmethod.InputMethodManager;
 
 public class ServiceUtil {
@@ -59,6 +60,10 @@ public class ServiceUtil {
 
   public static DisplayManager getDisplayManager(@NonNull Context context) {
     return (DisplayManager) context.getSystemService(Context.DISPLAY_SERVICE);
+  }
+
+  public static AccessibilityManager getAccessibilityManager(@NonNull Context context) {
+    return (AccessibilityManager) context.getSystemService(Context.ACCESSIBILITY_SERVICE);
   }
 
   @RequiresApi(26)
