@@ -182,9 +182,9 @@ class MediaRepository {
     String[] projection;
 
     if (hasOrientation) {
-      projection = new String[]{Images.Media._ID, Images.Media.MIME_TYPE, Images.Media.DATE_TAKEN, Images.Media.ORIENTATION, Images.Media.WIDTH, Images.Media.HEIGHT, Images.Media.SIZE};
+      projection = new String[]{Images.Media.DATA, Images.Media.MIME_TYPE, Images.Media.DATE_TAKEN, Images.Media.ORIENTATION, Images.Media.WIDTH, Images.Media.HEIGHT, Images.Media.SIZE};
     } else {
-      projection = new String[]{Images.Media._ID, Images.Media.MIME_TYPE, Images.Media.DATE_TAKEN, Images.Media.WIDTH, Images.Media.HEIGHT, Images.Media.SIZE};
+      projection = new String[]{Images.Media.DATA, Images.Media.MIME_TYPE, Images.Media.DATE_TAKEN, Images.Media.WIDTH, Images.Media.HEIGHT, Images.Media.SIZE};
     }
 
     if (Media.ALL_MEDIA_BUCKET_ID.equals(bucketId)) {
@@ -194,7 +194,8 @@ class MediaRepository {
 
     try (Cursor cursor = context.getContentResolver().query(contentUri, projection, selection, selectionArgs, sortBy)) {
       while (cursor != null && cursor.moveToNext()) {
-        Uri    uri         = Uri.withAppendedPath(contentUri, cursor.getString(cursor.getColumnIndexOrThrow(Images.Media._ID)));
+        String path        = cursor.getString(cursor.getColumnIndexOrThrow(projection[0]));
+        Uri    uri         = Uri.fromFile(new File(path));
         String mimetype    = cursor.getString(cursor.getColumnIndexOrThrow(Images.Media.MIME_TYPE));
         long   dateTaken   = cursor.getLong(cursor.getColumnIndexOrThrow(Images.Media.DATE_TAKEN));
         int    orientation = hasOrientation ? cursor.getInt(cursor.getColumnIndexOrThrow(Images.Media.ORIENTATION)) : 0;

@@ -23,6 +23,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.load.Key;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.signature.MediaStoreSignature;
 
 import org.thoughtcrime.securesms.R;
@@ -30,6 +31,8 @@ import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
 import org.thoughtcrime.securesms.database.loaders.RecentPhotosLoader;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.util.ViewUtil;
+
+import java.io.File;
 
 public class RecentPhotoViewRail extends FrameLayout implements LoaderManager.LoaderCallbacks<Cursor> {
 
@@ -103,7 +106,7 @@ public class RecentPhotoViewRail extends FrameLayout implements LoaderManager.Lo
     public void onBindItemViewHolder(RecentPhotoViewHolder viewHolder, @NonNull Cursor cursor) {
       viewHolder.imageView.setImageDrawable(null);
 
-      long   id           = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Images.ImageColumns._ID));
+      String path         = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.ImageColumns.DATA));
       long   dateTaken    = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Images.ImageColumns.DATE_TAKEN));
       long   dateModified = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Images.ImageColumns.DATE_MODIFIED));
       String mimeType     = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.ImageColumns.MIME_TYPE));
@@ -113,7 +116,7 @@ public class RecentPhotoViewRail extends FrameLayout implements LoaderManager.Lo
       int    width        = cursor.getInt(cursor.getColumnIndexOrThrow(getWidthColumn(orientation)));
       int    height       = cursor.getInt(cursor.getColumnIndexOrThrow(getHeightColumn(orientation)));
 
-      final Uri uri = Uri.withAppendedPath(baseUri, Long.toString(id));
+      final Uri uri = Uri.fromFile(new File(path));
 
       Key signature = new MediaStoreSignature(mimeType, dateModified, orientation);
 
@@ -121,6 +124,7 @@ public class RecentPhotoViewRail extends FrameLayout implements LoaderManager.Lo
               .load(uri)
               .signature(signature)
               .diskCacheStrategy(DiskCacheStrategy.NONE)
+              .transition(DrawableTransitionOptions.withCrossFade())
               .into(viewHolder.imageView);
 
       viewHolder.imageView.setOnClickListener(v -> {
