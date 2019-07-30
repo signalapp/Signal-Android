@@ -134,7 +134,7 @@ public class ConversationItemFooter extends LinearLayout {
                                          messageRecord.getExpiresIn());
         this.timerView.startAnimation();
 
-        if (messageRecord.getExpireStarted() + messageRecord.getExpiresIn() <= System.currentTimeMillis()) {
+        if (this.timerView.isExpired()) {
           ApplicationContext.getInstance(getContext()).getExpiringMessageManager().checkSchedule();
         }
       } else if (!messageRecord.isOutgoing() && !messageRecord.isMediaPending()) {

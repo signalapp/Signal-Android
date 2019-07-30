@@ -166,7 +166,7 @@ public class ConversationUpdateItem extends LinearLayout
                                 messageRecord.getExpiresIn());
         timer.startAnimation();
 
-        if (messageRecord.getExpireStarted() + messageRecord.getExpiresIn() <= System.currentTimeMillis()) {
+        if (timer.isExpired()) {
           ApplicationContext.getInstance(getContext()).getExpiringMessageManager().checkSchedule();
         }
       } else if (!messageRecord.isOutgoing()) {
