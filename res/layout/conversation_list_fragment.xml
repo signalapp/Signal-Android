@@ -75,10 +75,10 @@
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="88dp"
-        android:src="@drawable/ic_camera_alt_white_24dp"
-        android:tint="@color/core_grey_60"
+        android:src="@drawable/ic_camera_filled_24"
+        android:tint="?conversation_list_camera_icon_tint"
         android:focusable="true"
-        app:backgroundTint="@color/core_white"/>
+        app:backgroundTint="?conversation_list_camera_button_background"/>
 
     <org.thoughtcrime.securesms.components.registration.PulsingFloatingActionButton
             android:id="@+id/fab"
