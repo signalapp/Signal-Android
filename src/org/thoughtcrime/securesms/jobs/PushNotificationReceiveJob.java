@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.jobs;
 import android.content.Context;
 import androidx.annotation.NonNull;
 
+import org.thoughtcrime.securesms.IncomingMessageProcessor.Processor;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -15,7 +16,7 @@ import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException
 
 import java.io.IOException;
 
-public class PushNotificationReceiveJob extends PushReceivedJob {
+public class PushNotificationReceiveJob extends BaseJob {
 
   public static final String KEY = "PushNotificationReceiveJob";
 
@@ -51,10 +52,10 @@ public class PushNotificationReceiveJob extends PushReceivedJob {
   }
 
   public void pullAndProcessMessages(SignalServiceMessageReceiver receiver, String tag, long startTime) throws IOException {
-    synchronized (PushReceivedJob.RECEIVE_LOCK) {
+    try (Processor processor = ApplicationDependencies.getIncomingMessageProcessor().acquire()) {
       receiver.retrieveMessages(envelope -> {
         Log.i(tag, "Retrieved an envelope." + timeSuffix(startTime));
-        processEnvelope(envelope);
+        processor.processEnvelope(envelope);
         Log.i(tag, "Successfully processed an envelope." + timeSuffix(startTime));
       });
       TextSecurePreferences.setNeedsMessagePull(context, false);

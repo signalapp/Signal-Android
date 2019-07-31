@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 
 import org.greenrobot.eventbus.EventBus;
 import org.thoughtcrime.securesms.BuildConfig;
+import org.thoughtcrime.securesms.IncomingMessageProcessor;
 import org.thoughtcrime.securesms.crypto.storage.SignalProtocolStoreImpl;
 import org.thoughtcrime.securesms.events.ReminderUpdateEvent;
 import org.thoughtcrime.securesms.logging.Log;
@@ -36,6 +37,7 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
   private SignalServiceAccountManager  accountManager;
   private SignalServiceMessageSender   messageSender;
   private SignalServiceMessageReceiver messageReceiver;
+  private IncomingMessageProcessor     incomingMessageProcessor;
 
   public ApplicationDependencyProvider(@NonNull Context context, @NonNull SignalServiceNetworkAccess networkAccess) {
     this.context       = context.getApplicationContext();
@@ -91,6 +93,15 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
   @Override
   public @NonNull SignalServiceNetworkAccess getSignalServiceNetworkAccess() {
     return networkAccess;
+  }
+
+  @Override
+  public @NonNull IncomingMessageProcessor getIncomingMessageProcessor() {
+    if (incomingMessageProcessor == null) {
+      incomingMessageProcessor = new IncomingMessageProcessor(context);
+    }
+
+    return incomingMessageProcessor;
   }
 
   private static class DynamicCredentialsProvider implements CredentialsProvider {

@@ -4,6 +4,7 @@ import android.app.Application;
 
 import androidx.annotation.NonNull;
 
+import org.thoughtcrime.securesms.IncomingMessageProcessor;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
@@ -51,6 +52,11 @@ public class ApplicationDependencies {
     return instance.provider.getSignalServiceNetworkAccess();
   }
 
+  public static synchronized @NonNull IncomingMessageProcessor getIncomingMessageProcessor() {
+    assertInitialization();
+    return instance.provider.getIncomingMessageProcessor();
+  }
+
   private static void assertInitialization() {
     if (instance == null) {
       throw new UninitializedException();
@@ -62,6 +68,7 @@ public class ApplicationDependencies {
     @NonNull SignalServiceMessageSender getSignalServiceMessageSender();
     @NonNull SignalServiceMessageReceiver getSignalServiceMessageReceiver();
     @NonNull SignalServiceNetworkAccess getSignalServiceNetworkAccess();
+    @NonNull IncomingMessageProcessor getIncomingMessageProcessor();
   }
 
   private static class UninitializedException extends IllegalStateException {

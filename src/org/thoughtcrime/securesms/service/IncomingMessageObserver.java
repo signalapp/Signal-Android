@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 
+import org.thoughtcrime.securesms.IncomingMessageProcessor.Processor;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.ConstraintObserver;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
@@ -20,7 +21,6 @@ import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.jobs.PushContentReceiveJob;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -157,7 +157,9 @@ public class IncomingMessageObserver implements ConstraintObserver.Notifier {
               localPipe.read(REQUEST_TIMEOUT_MINUTES, TimeUnit.MINUTES,
                              envelope -> {
                                Log.i(TAG, "Retrieved envelope! " + String.valueOf(envelope.getSource()));
-                               new PushContentReceiveJob(context).processEnvelope(envelope);
+                               try (Processor processor = ApplicationDependencies.getIncomingMessageProcessor().acquire()) {
+                                 processor.processEnvelope(envelope);
+                               }
                              });
             } catch (TimeoutException e) {
               Log.w(TAG, "Application level read timeout...");
