@@ -129,9 +129,14 @@ class KeyPairActivity : BaseActionBarActivity() {
             Mode.Register -> keyPair = this.keyPair!!
             Mode.Restore -> {
                 val mnemonic = mnemonicEditText.text.toString()
-                val hexEncodedPrivateKey = MnemonicCodec(languageFileDirectory).decode(mnemonic)
-                IdentityKeyUtil.generateIdentityKeyPair(this, hexEncodedPrivateKey)
-                keyPair = IdentityKeyUtil.getIdentityKeyPair(this)
+                try {
+                    val hexEncodedPrivateKey = MnemonicCodec(languageFileDirectory).decode(mnemonic)
+                    IdentityKeyUtil.generateIdentityKeyPair(this, hexEncodedPrivateKey)
+                    keyPair = IdentityKeyUtil.getIdentityKeyPair(this)
+                } catch (e: Exception) {
+                    val message = if (e is MnemonicCodec.DecodingError) e.description else MnemonicCodec.DecodingError.Generic.description
+                    return Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+                }
             }
         }
         val publicKey = keyPair.publicKey
