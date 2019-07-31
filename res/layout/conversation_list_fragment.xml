@@ -75,6 +75,7 @@
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="88dp"
+        android:contentDescription="@string/conversation_list_fragment__open_camera_description"
         android:src="@drawable/ic_camera_filled_24"
         android:tint="?conversation_list_camera_icon_tint"
         android:focusable="true"

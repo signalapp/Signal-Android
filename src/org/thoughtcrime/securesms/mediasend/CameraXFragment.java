@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
@@ -166,26 +165,10 @@ public class CameraXFragment extends Fragment implements CameraFragment {
     View galleryButton = requireView().findViewById(R.id.camera_gallery_button);
     View countButton   = requireView().findViewById(R.id.camera_count_button);
 
-    captureButton.setOnTouchListener((v, event) -> {
-      switch (event.getAction()) {
-        case MotionEvent.ACTION_DOWN:
-          Animation shrinkAnimation = AnimationUtils.loadAnimation(getContext(), R.anim.camera_capture_button_shrink);
-          shrinkAnimation.setFillAfter(true);
-          shrinkAnimation.setFillEnabled(true);
-          captureButton.startAnimation(shrinkAnimation);
-          onCaptureClicked();
-          break;
-        case MotionEvent.ACTION_UP:
-        case MotionEvent.ACTION_CANCEL:
-        case MotionEvent.ACTION_OUTSIDE:
-          Animation growAnimation = AnimationUtils.loadAnimation(getContext(), R.anim.camera_capture_button_grow);
-          growAnimation.setFillAfter(true);
-          growAnimation.setFillEnabled(true);
-          captureButton.startAnimation(growAnimation);
-          captureButton.setEnabled(false);
-          break;
-      }
-      return true;
+    captureButton.setOnClickListener(v -> {
+      captureButton.setEnabled(false);
+      flipButton.setEnabled(false);
+      onCaptureClicked();
     });
 
     if (camera.hasCameraWithLensFacing(CameraX.LensFacing.FRONT) && camera.hasCameraWithLensFacing(CameraX.LensFacing.BACK)) {
@@ -203,13 +186,14 @@ public class CameraXFragment extends Fragment implements CameraFragment {
       GestureDetector gestureDetector = new GestureDetector(requireContext(), new GestureDetector.SimpleOnGestureListener() {
         @Override
         public boolean onDoubleTap(MotionEvent e) {
-          flipButton.performClick();
+          if (flipButton.isEnabled()) {
+            flipButton.performClick();
+          }
           return true;
         }
       });
 
       camera.setOnTouchListener((v, event) -> gestureDetector.onTouchEvent(event));
-
 
     } else {
       flipButton.setVisibility(View.GONE);

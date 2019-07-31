@@ -92,6 +92,11 @@
     <!-- CameraActivity -->
     <string name="CameraActivity_image_save_failure">Failed to save image.</string>
 
+    <!-- CameraXFragment -->
+    <string name="CameraXFragment_capture_description">Capture</string>
+    <string name="CameraXFragment_change_camera_description">Change camera</string>
+    <string name="CameraXFragment_open_gallery_description">Open gallery</string>
+
     <!-- CameraContacts -->
     <string name="CameraContacts_recent_contacts">Recent contacts</string>
     <string name="CameraContacts_signal_contacts">Signal contacts</string>
@@ -102,6 +107,7 @@
     <string name="CameraContacts_you_can_only_use_the_camera_button">You can only use the camera button to send photos to Signal contacts. </string>
     <string name="CameraContacts_cant_find_who_youre_looking_for">Can\'t find who you\'re looking for?</string>
     <string name="CameraContacts_invite_a_contact_to_join_signal">Invite a contact to join Signal</string>
+    <string name="CameraContacts__menu_search">Search</string>
 
     <!-- ClearProfileActivity -->
     <string name="ClearProfileActivity_remove">Remove</string>
@@ -484,6 +490,7 @@
 
     <!-- MediaPickerActivity -->
     <string name="MediaPickerActivity_send_to">Send to %s</string>
+    <string name="MediaPickerActivity__menu_open_camera">Open camera</string>
 
     <!-- MediaPickerItemFragment -->
     <string name="MediaPickerItemFragment_tap_to_select">Tap to select</string>
@@ -501,6 +508,7 @@
         <item quantity="one">You can\'t share more than %d item.</item>
         <item quantity="other">You can\'t share more than %d items.</item>
     </plurals>
+    <string name="MediaSendActivity_select_recipients_description">Select recipients</string>
 
     <!-- MediaRepository -->
     <string name="MediaRepository_all_media">All media</string>
@@ -1423,6 +1431,7 @@
 
     <!-- conversation_list_fragment -->
     <string name="conversation_list_fragment__fab_content_description">New conversation</string>
+    <string name="conversation_list_fragment__open_camera_description">Open Camera</string>
     <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Give your inbox something to write home about. Get started by messaging a friend.</string>
 
 
