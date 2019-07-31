@@ -18,12 +18,12 @@ public class OutgoingSecureMediaMessage extends OutgoingMediaMessage {
                                     long sentTimeMillis,
                                     int distributionType,
                                     long expiresIn,
-                                    long revealDuration,
+                                    boolean viewOnce,
                                     @Nullable QuoteModel quote,
                                     @NonNull List<Contact> contacts,
                                     @NonNull List<LinkPreview> previews)
   {
-    super(recipient, body, attachments, sentTimeMillis, -1, expiresIn, revealDuration, distributionType, quote, contacts, previews, Collections.emptyList(), Collections.emptyList());
+    super(recipient, body, attachments, sentTimeMillis, -1, expiresIn, viewOnce, distributionType, quote, contacts, previews, Collections.emptyList(), Collections.emptyList());
   }
 
   public OutgoingSecureMediaMessage(OutgoingMediaMessage base) {

@@ -80,8 +80,6 @@ import org.thoughtcrime.securesms.mms.StickerSlide;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.revealable.RevealExpirationInfo;
-import org.thoughtcrime.securesms.revealable.RevealableMessageManager;
 import org.thoughtcrime.securesms.service.WebRtcCallService;
 import org.thoughtcrime.securesms.sms.IncomingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.IncomingEndSessionMessage;
@@ -112,13 +110,13 @@ import org.whispersystems.signalservice.api.messages.calls.HangupMessage;
 import org.whispersystems.signalservice.api.messages.calls.IceUpdateMessage;
 import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
 import org.whispersystems.signalservice.api.messages.calls.SignalServiceCallMessage;
-import org.whispersystems.signalservice.api.messages.multidevice.MessageTimerReadMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.ReadMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.RequestMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.SentTranscriptMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.StickerPackOperationMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.VerifiedMessage;
+import org.whispersystems.signalservice.api.messages.multidevice.ViewOnceOpenMessage;
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.internal.push.UnsupportedDataMessageException;
@@ -283,7 +281,7 @@ public class PushDecryptJob extends BaseJob {
         if      (syncMessage.getSent().isPresent())                  handleSynchronizeSentMessage(content, syncMessage.getSent().get());
         else if (syncMessage.getRequest().isPresent())               handleSynchronizeRequestMessage(syncMessage.getRequest().get());
         else if (syncMessage.getRead().isPresent())                  handleSynchronizeReadMessage(syncMessage.getRead().get(), content.getTimestamp());
-        else if (syncMessage.getMessageTimerRead().isPresent())      handleSynchronizeMessageTimerReadMessage(syncMessage.getMessageTimerRead().get(), content.getTimestamp());
+        else if (syncMessage.getViewOnceOpen().isPresent())          handleSynchronizeViewOnceOpenMessage(syncMessage.getViewOnceOpen().get(), content.getTimestamp());
         else if (syncMessage.getVerified().isPresent())              handleSynchronizeVerifiedMessage(syncMessage.getVerified().get());
         else if (syncMessage.getStickerPackOperations().isPresent()) handleSynchronizeStickerPackOperation(syncMessage.getStickerPackOperations().get());
         else                                                         Log.w(TAG, "Contains no known sync types...");
@@ -431,7 +429,7 @@ public class PushDecryptJob extends BaseJob {
     IncomingTextMessage incomingTextMessage = new IncomingTextMessage(Address.fromExternal(context, content.getSender()),
                                                                       content.getSenderDevice(),
                                                                       content.getTimestamp(),
-                                                                      "", Optional.absent(), 0, 0,
+                                                                      "", Optional.absent(), 0,
                                                                       content.isNeedsReceipt());
 
     Long threadId;
@@ -515,7 +513,7 @@ public class PushDecryptJob extends BaseJob {
       IncomingMediaMessage mediaMessage = new IncomingMediaMessage(Address.fromExternal(context, content.getSender()),
                                                                    message.getTimestamp(), -1,
                                                                    message.getExpiresInSeconds() * 1000L, true,
-                                                                   0,
+                                                                   false,
                                                                    content.isNeedsReceipt(),
                                                                    Optional.absent(),
                                                                    message.getGroupInfo(),
@@ -676,11 +674,14 @@ public class PushDecryptJob extends BaseJob {
     MessageNotifier.updateNotification(context);
   }
 
-  private void handleSynchronizeMessageTimerReadMessage(@NonNull MessageTimerReadMessage timerMessage, long envelopeTimestamp) {
-    SyncMessageId messageId = new SyncMessageId(Address.fromExternal(context, timerMessage.getSender()), timerMessage.getTimestamp());
+  private void handleSynchronizeViewOnceOpenMessage(@NonNull ViewOnceOpenMessage openMessage, long envelopeTimestamp) {
+    Address       author    = Address.fromExternal(context, openMessage.getSender());
+    long          timestamp = openMessage.getTimestamp();
+    MessageRecord record    = DatabaseFactory.getMmsSmsDatabase(context).getMessageFor(timestamp, author);
 
-    DatabaseFactory.getMmsDatabase(context).markRevealStarted(messageId, envelopeTimestamp);
-    ApplicationContext.getInstance(context).getRevealableMessageManager().scheduleIfNecessary();
+    if (record != null && record.isMms()) {
+      DatabaseFactory.getAttachmentDatabase(context).deleteAttachmentFilesForMessage(record.getId());
+    }
 
     MessageNotifier.setLastDesktopActivityTimestamp(envelopeTimestamp);
     MessageNotifier.cancelDelayedNotifications();
@@ -707,7 +708,7 @@ public class PushDecryptJob extends BaseJob {
       IncomingMediaMessage        mediaMessage   = new IncomingMediaMessage(Address.fromExternal(context, content.getSender()),
                                                                             message.getTimestamp(), -1,
                                                                             message.getExpiresInSeconds() * 1000L, false,
-                                                                            message.getMessageTimerInSeconds() * 1000,
+                                                                            message.isViewOnce(),
                                                                             content.isNeedsReceipt(),
                                                                             message.getBody(),
                                                                             message.getGroupInfo(),
@@ -747,8 +748,8 @@ public class PushDecryptJob extends BaseJob {
     if (insertResult.isPresent()) {
       MessageNotifier.updateNotification(context, insertResult.get().getThreadId());
 
-      if (message.getMessageTimerInSeconds() > 0) {
-        ApplicationContext.getInstance(context).getRevealableMessageManager().scheduleIfNecessary();
+      if (message.isViewOnce()) {
+        ApplicationContext.getInstance(context).getViewOnceMessageManager().scheduleIfNecessary();
       }
     }
   }
@@ -780,8 +781,8 @@ public class PushDecryptJob extends BaseJob {
     Optional<Attachment>        sticker         = getStickerAttachment(message.getMessage().getSticker());
     Optional<List<Contact>>     sharedContacts  = getContacts(message.getMessage().getSharedContacts());
     Optional<List<LinkPreview>> previews        = getLinkPreviews(message.getMessage().getPreviews(), message.getMessage().getBody().or(""));
-    long                        messageTimer    = message.getMessage().getMessageTimerInSeconds() * 1000;
-    List<Attachment>            syncAttachments = messageTimer == 0 ? PointerAttachment.forPointers(message.getMessage().getAttachments()) : Collections.emptyList();
+    boolean                     viewOnce        = message.getMessage().isViewOnce();
+    List<Attachment>            syncAttachments = viewOnce ? Collections.emptyList() : PointerAttachment.forPointers(message.getMessage().getAttachments());
 
     if (sticker.isPresent()) {
       syncAttachments.add(sticker.get());
@@ -791,7 +792,7 @@ public class PushDecryptJob extends BaseJob {
                                                                  syncAttachments,
                                                                  message.getTimestamp(), -1,
                                                                  message.getMessage().getExpiresInSeconds() * 1000,
-                                                                 messageTimer,
+                                                                 viewOnce,
                                                                  ThreadDatabase.DistributionTypes.DEFAULT, quote.orNull(),
                                                                  sharedContacts.or(Collections.emptyList()),
                                                                  previews.or(Collections.emptyList()),
@@ -921,7 +922,6 @@ public class PushDecryptJob extends BaseJob {
                                                                 message.getTimestamp(), body,
                                                                 message.getGroupInfo(),
                                                                 message.getExpiresInSeconds() * 1000L,
-                                                                message.getMessageTimerInSeconds() * 1000L,
                                                                 content.isNeedsReceipt());
 
       textMessage = new IncomingEncryptedMessage(textMessage, body);
@@ -956,7 +956,7 @@ public class PushDecryptJob extends BaseJob {
     long              messageId;
 
     if (isGroup) {
-      OutgoingMediaMessage outgoingMediaMessage = new OutgoingMediaMessage(recipient, new SlideDeck(), body, message.getTimestamp(), -1, expiresInMillis, 0, ThreadDatabase.DistributionTypes.DEFAULT, null, Collections.emptyList(), Collections.emptyList());
+      OutgoingMediaMessage outgoingMediaMessage = new OutgoingMediaMessage(recipient, new SlideDeck(), body, message.getTimestamp(), -1, expiresInMillis, false, ThreadDatabase.DistributionTypes.DEFAULT, null, Collections.emptyList(), Collections.emptyList());
       outgoingMediaMessage = new OutgoingSecureMediaMessage(outgoingMediaMessage);
 
       messageId = DatabaseFactory.getMmsDatabase(context).insertMessageOutbox(outgoingMediaMessage, threadId, false, GroupReceiptDatabase.STATUS_UNKNOWN, null);
@@ -1195,7 +1195,7 @@ public class PushDecryptJob extends BaseJob {
   }
 
   private boolean isInvalidMessage(@NonNull SignalServiceDataMessage message) {
-    if (message.getMessageTimerInSeconds() > 0) {
+    if (message.isViewOnce()) {
       return !message.getAttachments().isPresent()       ||
              message.getAttachments().get().size() != 1  ||
              !MediaUtil.isImageType(message.getAttachments().get().get(0).getContentType().toLowerCase());
@@ -1229,7 +1229,7 @@ public class PushDecryptJob extends BaseJob {
       if (message.isMms()) {
         MmsMessageRecord mmsMessage = (MmsMessageRecord) message;
 
-        if (mmsMessage.getRevealDuration() == 0) {
+        if (!mmsMessage.isViewOnce()) {
           attachments = mmsMessage.getSlideDeck().asAttachments();
 
           if (attachments.isEmpty()) {
@@ -1335,7 +1335,7 @@ public class PushDecryptJob extends BaseJob {
     SmsDatabase         database    = DatabaseFactory.getSmsDatabase(context);
     IncomingTextMessage textMessage = new IncomingTextMessage(Address.fromExternal(context, sender),
                                                               senderDevice, timestamp, "",
-                                                              group, 0, 0, false);
+                                                              group, 0, false);
 
     textMessage = new IncomingEncryptedMessage(textMessage, "");
     return database.insertMessageInbox(textMessage);

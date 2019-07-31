@@ -17,18 +17,18 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 
-class RevealableMessageViewModel extends ViewModel {
+class ViewOnceMessageViewModel extends ViewModel {
 
-  private static final String TAG = Log.tag(RevealableMessageViewModel.class);
+  private static final String TAG = Log.tag(ViewOnceMessageViewModel.class);
 
   private final Application                                 application;
-  private final RevealableMessageRepository                 repository;
+  private final ViewOnceMessageRepository                   repository;
   private final MutableLiveData<Optional<MmsMessageRecord>> message;
   private final ContentObserver                             observer;
 
-  private RevealableMessageViewModel(@NonNull Application application,
-                                     long messageId,
-                                     @NonNull RevealableMessageRepository repository)
+  private ViewOnceMessageViewModel(@NonNull Application application,
+                                   long messageId,
+                                   @NonNull ViewOnceMessageRepository repository)
   {
     this.application = application;
     this.repository  = repository;
@@ -74,13 +74,13 @@ class RevealableMessageViewModel extends ViewModel {
 
   static class Factory extends ViewModelProvider.NewInstanceFactory {
 
-    private final Application                 application;
-    private final long                        messageId;
-    private final RevealableMessageRepository repository;
+    private final Application               application;
+    private final long                      messageId;
+    private final ViewOnceMessageRepository repository;
 
     Factory(@NonNull Application application,
             long messageId,
-            @NonNull RevealableMessageRepository repository)
+            @NonNull ViewOnceMessageRepository repository)
     {
       this.application = application;
       this.messageId   = messageId;
@@ -90,7 +90,7 @@ class RevealableMessageViewModel extends ViewModel {
     @Override
     public @NonNull <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
       //noinspection ConstantConditions
-      return modelClass.cast(new RevealableMessageViewModel(application, messageId, repository));
+      return modelClass.cast(new ViewOnceMessageViewModel(application, messageId, repository));
     }
   }
 }

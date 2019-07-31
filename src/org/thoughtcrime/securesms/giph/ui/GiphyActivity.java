@@ -121,7 +121,7 @@ public class GiphyActivity extends PassphraseRequiredActionBarActivity
           return BlobProvider.getInstance()
                              .forData(data)
                              .withMimeType(MediaUtil.IMAGE_GIF)
-                             .createForSingleSessionOnDisk(GiphyActivity.this, e -> Log.w(TAG, "Failed to write to disk.", e));
+                             .createForSingleSessionOnDisk(GiphyActivity.this);
         } catch (InterruptedException | ExecutionException | IOException e) {
           Log.w(TAG, e);
           return null;

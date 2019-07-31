@@ -71,8 +71,7 @@ public class MmsSmsDatabase extends Database {
                                               MmsDatabase.QUOTE_ATTACHMENT,
                                               MmsDatabase.SHARED_CONTACTS,
                                               MmsDatabase.LINK_PREVIEWS,
-                                              MmsDatabase.REVEAL_DURATION,
-                                              MmsDatabase.REVEAL_START_TIME};
+                                              MmsDatabase.VIEW_ONCE};
 
   public MmsSmsDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
     super(context, databaseHelper);
@@ -273,8 +272,7 @@ public class MmsSmsDatabase extends Database {
                               MmsDatabase.QUOTE_ATTACHMENT,
                               MmsDatabase.SHARED_CONTACTS,
                               MmsDatabase.LINK_PREVIEWS,
-                              MmsDatabase.REVEAL_DURATION,
-                              MmsDatabase.REVEAL_START_TIME};
+                              MmsDatabase.VIEW_ONCE};
 
     String[] smsProjection = {SmsDatabase.DATE_SENT + " AS " + MmsSmsColumns.NORMALIZED_DATE_SENT,
                               SmsDatabase.DATE_RECEIVED + " AS " + MmsSmsColumns.NORMALIZED_DATE_RECEIVED,
@@ -301,8 +299,7 @@ public class MmsSmsDatabase extends Database {
                               MmsDatabase.QUOTE_ATTACHMENT,
                               MmsDatabase.SHARED_CONTACTS,
                               MmsDatabase.LINK_PREVIEWS,
-                              MmsDatabase.REVEAL_DURATION,
-                              MmsDatabase.REVEAL_START_TIME};
+                              MmsDatabase.VIEW_ONCE};
 
     SQLiteQueryBuilder mmsQueryBuilder = new SQLiteQueryBuilder();
     SQLiteQueryBuilder smsQueryBuilder = new SQLiteQueryBuilder();
@@ -373,8 +370,7 @@ public class MmsSmsDatabase extends Database {
     mmsColumnsPresent.add(MmsDatabase.QUOTE_ATTACHMENT);
     mmsColumnsPresent.add(MmsDatabase.SHARED_CONTACTS);
     mmsColumnsPresent.add(MmsDatabase.LINK_PREVIEWS);
-    mmsColumnsPresent.add(MmsDatabase.REVEAL_DURATION);
-    mmsColumnsPresent.add(MmsDatabase.REVEAL_START_TIME);
+    mmsColumnsPresent.add(MmsDatabase.VIEW_ONCE);
 
     Set<String> smsColumnsPresent = new HashSet<>();
     smsColumnsPresent.add(MmsSmsColumns.ID);

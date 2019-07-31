@@ -351,7 +351,7 @@
         <attr name="labeledEditText_textLayout" format="reference" />
     </declare-styleable>
 
-    <declare-styleable name="RevealableMessageView">
+    <declare-styleable name="ViewOnceMessageView">
         <attr name="revealable_unopenedForegroundColor" format="color" />
         <attr name="revealable_openedForegroundColor" format="color" />
     </declare-styleable>

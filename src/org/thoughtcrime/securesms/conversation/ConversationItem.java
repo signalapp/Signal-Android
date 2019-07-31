@@ -68,7 +68,7 @@ import org.thoughtcrime.securesms.components.DocumentView;
 import org.thoughtcrime.securesms.components.LinkPreviewView;
 import org.thoughtcrime.securesms.components.Outliner;
 import org.thoughtcrime.securesms.components.QuoteView;
-import org.thoughtcrime.securesms.revealable.RevealableMessageView;
+import org.thoughtcrime.securesms.revealable.ViewOnceMessageView;
 import org.thoughtcrime.securesms.components.SharedContactView;
 import org.thoughtcrime.securesms.components.StickerView;
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
@@ -99,7 +99,7 @@ import org.thoughtcrime.securesms.mms.SlidesClickedListener;
 import org.thoughtcrime.securesms.mms.TextSlide;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
-import org.thoughtcrime.securesms.revealable.RevealableUtil;
+import org.thoughtcrime.securesms.revealable.ViewOnceUtil;
 import org.thoughtcrime.securesms.stickers.StickerUrl;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.DynamicTheme;
@@ -163,7 +163,7 @@ public class ConversationItem extends LinearLayout
   private           Stub<SharedContactView>         sharedContactStub;
   private           Stub<LinkPreviewView>           linkPreviewStub;
   private           Stub<StickerView>               stickerStub;
-  private           Stub<RevealableMessageView>     revealableStub;
+  private           Stub<ViewOnceMessageView>     revealableStub;
   private @Nullable EventListener                   eventListener;
 
   private int defaultBubbleColor;
@@ -175,7 +175,7 @@ public class ConversationItem extends LinearLayout
   private final SharedContactEventListener      sharedContactEventListener  = new SharedContactEventListener();
   private final SharedContactClickListener      sharedContactClickListener  = new SharedContactClickListener();
   private final LinkPreviewClickListener        linkPreviewClickListener    = new LinkPreviewClickListener();
-  private final RevealableMessageClickListener  revealableClickListener     = new RevealableMessageClickListener();
+  private final ViewOnceMessageClickListener    revealableClickListener     = new ViewOnceMessageClickListener();
 
   private final Context context;
 
@@ -314,7 +314,7 @@ public class ConversationItem extends LinearLayout
   protected void dispatchDraw(Canvas canvas) {
     super.dispatchDraw(canvas);
 
-    if (!messageRecord.isOutgoing() && hasRevealableMessage(messageRecord) && RevealableUtil.isRevealExpired((MmsMessageRecord) messageRecord)) {
+    if (!messageRecord.isOutgoing() && isViewOnceMessage(messageRecord) && ViewOnceUtil.isViewed((MmsMessageRecord) messageRecord)) {
       outliner.setColor(ThemeUtil.getThemedColor(context, R.attr.conversation_item_sent_text_secondary_color));
       outliner.draw(canvas, bodyBubble.getTop() + getPaddingTop(), bodyBubble.getRight(), bodyBubble.getBottom() + getPaddingTop(), bodyBubble.getLeft());
     }
@@ -324,7 +324,7 @@ public class ConversationItem extends LinearLayout
     int availableWidth;
     if (hasAudio(messageRecord)) {
       availableWidth = audioViewStub.get().getMeasuredWidth() + ViewUtil.getLeftMargin(audioViewStub.get()) + ViewUtil.getRightMargin(audioViewStub.get());
-    } else if (!hasRevealableMessage(messageRecord) && (hasThumbnail(messageRecord) || hasBigImageLinkPreview(messageRecord))) {
+    } else if (!isViewOnceMessage(messageRecord) && (hasThumbnail(messageRecord) || hasBigImageLinkPreview(messageRecord))) {
       availableWidth = mediaThumbnailStub.get().getMeasuredWidth();
     } else {
       availableWidth = bodyBubble.getMeasuredWidth() - bodyBubble.getPaddingLeft() - bodyBubble.getPaddingRight();
@@ -361,7 +361,7 @@ public class ConversationItem extends LinearLayout
       bodyBubble.getBackground().setColorFilter(defaultBubbleColor, PorterDuff.Mode.MULTIPLY);
       footer.setTextColor(ThemeUtil.getThemedColor(context, R.attr.conversation_item_sent_text_secondary_color));
       footer.setIconColor(ThemeUtil.getThemedColor(context, R.attr.conversation_item_sent_icon_color));
-    } else if (hasRevealableMessage(messageRecord) && RevealableUtil.isRevealExpired((MmsMessageRecord) messageRecord)) {
+    } else if (isViewOnceMessage(messageRecord) && ViewOnceUtil.isViewed((MmsMessageRecord) messageRecord)) {
       bodyBubble.getBackground().setColorFilter(ThemeUtil.getThemedColor(context, R.attr.conversation_item_reveal_viewed_background_color), PorterDuff.Mode.MULTIPLY);
       footer.setTextColor(ThemeUtil.getThemedColor(context, R.attr.conversation_item_sent_text_secondary_color));
       footer.setIconColor(ThemeUtil.getThemedColor(context, R.attr.conversation_item_sent_icon_color));
@@ -440,7 +440,7 @@ public class ConversationItem extends LinearLayout
            !hasDocument(messageRecord)      &&
            !hasSharedContact(messageRecord) &&
            !hasSticker(messageRecord)       &&
-           !hasRevealableMessage(messageRecord);
+           !isViewOnceMessage(messageRecord);
   }
 
   private boolean hasDocument(MessageRecord messageRecord) {
@@ -477,8 +477,8 @@ public class ConversationItem extends LinearLayout
            !StickerUrl.isValidShareLink(linkPreview.getUrl());
   }
 
-  private boolean hasRevealableMessage(MessageRecord messageRecord) {
-    return messageRecord.isMms() && ((MmsMessageRecord) messageRecord).getRevealDuration() > 0;
+  private boolean isViewOnceMessage(MessageRecord messageRecord) {
+    return messageRecord.isMms() && ((MmsMessageRecord) messageRecord).isViewOnce();
   }
 
   private void setBodyText(MessageRecord messageRecord, @Nullable String searchQuery) {
@@ -512,7 +512,7 @@ public class ConversationItem extends LinearLayout
   {
     boolean showControls = !messageRecord.isFailed();
 
-    if (hasRevealableMessage(messageRecord)) {
+    if (isViewOnceMessage(messageRecord)) {
       revealableStub.get().setVisibility(VISIBLE);
       if (mediaThumbnailStub.resolved()) mediaThumbnailStub.get().setVisibility(View.GONE);
       if (audioViewStub.resolved())      audioViewStub.get().setVisibility(View.GONE);
@@ -928,7 +928,7 @@ public class ConversationItem extends LinearLayout
   }
 
   private void setGroupAuthorColor(@NonNull MessageRecord messageRecord) {
-    if (!messageRecord.isOutgoing() && hasRevealableMessage(messageRecord) && RevealableUtil.isRevealExpired((MmsMessageRecord) messageRecord)) {
+    if (!messageRecord.isOutgoing() && isViewOnceMessage(messageRecord) && ViewOnceUtil.isViewed((MmsMessageRecord) messageRecord)) {
       groupSender.setTextColor(ThemeUtil.getThemedColor(context, R.attr.conversation_sticker_author_color));
       groupSenderProfileName.setTextColor(ThemeUtil.getThemedColor(context, R.attr.conversation_sticker_author_color));
     } else if (hasSticker(messageRecord)) {
@@ -1169,13 +1169,13 @@ public class ConversationItem extends LinearLayout
     }
   }
 
-  private class RevealableMessageClickListener implements View.OnClickListener {
+  private class ViewOnceMessageClickListener implements View.OnClickListener {
     @Override
     public void onClick(View view) {
-      RevealableMessageView revealView = (RevealableMessageView) view;
+      ViewOnceMessageView revealView = (ViewOnceMessageView) view;
 
-      if (eventListener != null && batchSelected.isEmpty() && messageRecord.isMms() && RevealableUtil.isViewable((MmsMessageRecord) messageRecord)) {
-        eventListener.onRevealableMessageClicked((MmsMessageRecord) messageRecord);
+      if (eventListener != null && batchSelected.isEmpty() && messageRecord.isMms() && ViewOnceUtil.isViewable((MmsMessageRecord) messageRecord)) {
+        eventListener.onViewOnceMessageClicked((MmsMessageRecord) messageRecord);
       } else if (batchSelected.isEmpty() && messageRecord.isMms() && revealView.requiresTapToDownload((MmsMessageRecord) messageRecord)) {
         singleDownloadClickListener.onClick(view, ((MmsMessageRecord) messageRecord).getSlideDeck().getThumbnailSlide());
       } else {

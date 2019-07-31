@@ -336,7 +336,7 @@
               android:windowSoftInputMode="stateUnchanged"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
-    <activity android:name=".revealable.RevealableMessageActivity"
+    <activity android:name=".revealable.ViewOnceMessageActivity"
               android:launchMode="singleTask"
               android:theme="@style/TextSecure.FullScreenMedia"
               android:windowSoftInputMode="stateHidden"
@@ -584,7 +584,7 @@
 
     <receiver android:name=".service.ExpirationListener" />
 
-    <receiver android:name=".revealable.RevealableMessageManager$RevealAlarm" />
+    <receiver android:name=".revealable.ViewOnceMessageManager$ViewOnceAlarm" />
 
     <provider android:name=".providers.PartProvider"
               android:grantUriPermissions="true"

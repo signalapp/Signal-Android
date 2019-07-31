@@ -20,14 +20,14 @@ import org.thoughtcrime.securesms.service.TimedEventManager;
 /**
  * Manages clearing removable message content after they're opened.
  */
-public class RevealableMessageManager extends TimedEventManager<RevealExpirationInfo> {
+public class ViewOnceMessageManager extends TimedEventManager<ViewOnceExpirationInfo> {
 
-  private static final String TAG = Log.tag(RevealableMessageManager.class);
+  private static final String TAG = Log.tag(ViewOnceMessageManager.class);
 
   private final MmsDatabase        mmsDatabase;
   private final AttachmentDatabase attachmentDatabase;
 
-  public RevealableMessageManager(@NonNull Application application) {
+  public ViewOnceMessageManager(@NonNull Application application) {
     super(application, "RevealableMessageManager");
 
     this.mmsDatabase        = DatabaseFactory.getMmsDatabase(application);
@@ -38,8 +38,8 @@ public class RevealableMessageManager extends TimedEventManager<RevealExpiration
 
   @WorkerThread
   @Override
-  protected @Nullable RevealExpirationInfo getNextClosestEvent() {
-    RevealExpirationInfo expirationInfo = mmsDatabase.getNearestExpiringRevealableMessage();
+  protected @Nullable ViewOnceExpirationInfo getNextClosestEvent() {
+    ViewOnceExpirationInfo expirationInfo = mmsDatabase.getNearestExpiringViewOnceMessage();
 
     if (expirationInfo != null) {
       Log.i(TAG, "Next closest expiration is in " + getDelayForEvent(expirationInfo) + " ms for messsage " + expirationInfo.getMessageId() + ".");
@@ -52,41 +52,34 @@ public class RevealableMessageManager extends TimedEventManager<RevealExpiration
 
   @WorkerThread
   @Override
-  protected void executeEvent(@NonNull RevealExpirationInfo event) {
+  protected void executeEvent(@NonNull ViewOnceExpirationInfo event) {
     Log.i(TAG, "Deleting attachments for message " + event.getMessageId());
     attachmentDatabase.deleteAttachmentFilesForMessage(event.getMessageId());
   }
 
   @WorkerThread
   @Override
-  protected long getDelayForEvent(@NonNull RevealExpirationInfo event) {
-    if (event.getRevealStartTime() == 0) {
-      long expiresAt = event.getReceiveTime() + RevealableUtil.MAX_LIFESPAN;
-      long timeLeft  = expiresAt - System.currentTimeMillis();
+  protected long getDelayForEvent(@NonNull ViewOnceExpirationInfo event) {
+    long expiresAt = event.getReceiveTime() + ViewOnceUtil.MAX_LIFESPAN;
+    long timeLeft  = expiresAt - System.currentTimeMillis();
 
-      return Math.max(0, timeLeft);
-    } else {
-      long timeSinceStart = System.currentTimeMillis() - event.getRevealStartTime();
-      long timeLeft       = event.getRevealDuration() - timeSinceStart;
-
-      return Math.max(0, timeLeft);
-    }
+    return Math.max(0, timeLeft);
   }
 
   @AnyThread
   @Override
   protected void scheduleAlarm(@NonNull Application application, long delay) {
-    setAlarm(application, delay, RevealAlarm.class);
+    setAlarm(application, delay, ViewOnceAlarm.class);
   }
 
-  public static class RevealAlarm extends BroadcastReceiver {
+  public static class ViewOnceAlarm extends BroadcastReceiver {
 
-    private static final String TAG = Log.tag(RevealAlarm.class);
+    private static final String TAG = Log.tag(ViewOnceAlarm.class);
 
     @Override
     public void onReceive(Context context, Intent intent) {
       Log.d(TAG, "onReceive()");
-      ApplicationContext.getInstance(context).getRevealableMessageManager().scheduleIfNecessary();
+      ApplicationContext.getInstance(context).getViewOnceMessageManager().scheduleIfNecessary();
     }
   }
 }

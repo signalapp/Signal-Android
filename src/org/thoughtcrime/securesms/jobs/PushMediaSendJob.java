@@ -164,11 +164,8 @@ public class PushMediaSendJob extends PushSendJob {
         expirationManager.scheduleDeletion(messageId, true, message.getExpiresIn());
       }
 
-      if (message.getRevealDuration() > 0) {
-        database.markRevealStarted(messageId);
-        ApplicationContext.getInstance(context)
-                          .getRevealableMessageManager()
-                          .scheduleIfNecessary();
+      if (message.isViewOnce()) {
+        DatabaseFactory.getAttachmentDatabase(context).deleteAttachmentFilesForMessage(messageId);
       }
 
       log(TAG, "Sent message: " + messageId);
@@ -230,7 +227,7 @@ public class PushMediaSendJob extends PushSendJob {
                                                                                             .withAttachments(serviceAttachments)
                                                                                             .withTimestamp(message.getSentTimeMillis())
                                                                                             .withExpiration((int)(message.getExpiresIn() / 1000))
-                                                                                            .withMessageTimer((int) message.getRevealDuration() / 1000)
+                                                                                            .withViewOnce(message.isViewOnce())
                                                                                             .withProfileKey(profileKey.orNull())
                                                                                             .withQuote(quote.orNull())
                                                                                             .withSticker(sticker.orNull())

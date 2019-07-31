@@ -3,8 +3,6 @@ package org.thoughtcrime.securesms.revealable;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.os.Handler;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -26,9 +24,9 @@ import org.thoughtcrime.securesms.events.PartProgressEvent;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.Util;
 
-public class RevealableMessageView extends LinearLayout {
+public class ViewOnceMessageView extends LinearLayout {
 
-  private static final String TAG = Log.tag(RevealableMessageView.class);
+  private static final String TAG = Log.tag(ViewOnceMessageView.class);
 
   private ImageView     icon;
   private ProgressWheel progress;
@@ -38,12 +36,12 @@ public class RevealableMessageView extends LinearLayout {
   private int           openedForegroundColor;
   private int           foregroundColor;
 
-  public RevealableMessageView(Context context) {
+  public ViewOnceMessageView(Context context) {
     super(context);
     init(null);
   }
 
-  public RevealableMessageView(Context context, @Nullable AttributeSet attrs) {
+  public ViewOnceMessageView(Context context, @Nullable AttributeSet attrs) {
     super(context, attrs);
     init(attrs);
   }
@@ -53,10 +51,10 @@ public class RevealableMessageView extends LinearLayout {
     setOrientation(LinearLayout.HORIZONTAL);
 
     if (attrs != null) {
-      TypedArray typedArray = getContext().getTheme().obtainStyledAttributes(attrs, R.styleable.RevealableMessageView, 0, 0);
+      TypedArray typedArray = getContext().getTheme().obtainStyledAttributes(attrs, R.styleable.ViewOnceMessageView, 0, 0);
 
-      unopenedForegroundColor = typedArray.getColor(R.styleable.RevealableMessageView_revealable_unopenedForegroundColor, Color.BLACK);
-      openedForegroundColor   = typedArray.getColor(R.styleable.RevealableMessageView_revealable_openedForegroundColor, Color.BLACK);
+      unopenedForegroundColor = typedArray.getColor(R.styleable.ViewOnceMessageView_revealable_unopenedForegroundColor, Color.BLACK);
+      openedForegroundColor   = typedArray.getColor(R.styleable.ViewOnceMessageView_revealable_openedForegroundColor, Color.BLACK);
 
       typedArray.recycle();
     }
@@ -101,12 +99,17 @@ public class RevealableMessageView extends LinearLayout {
   }
 
   private void presentText(@NonNull MmsMessageRecord messageRecord) {
-    if (downloadInProgress(messageRecord) && messageRecord.isOutgoing()) {
+    if (messageRecord.isOutgoing()) {
+      foregroundColor = openedForegroundColor;
+      text.setText(R.string.RevealableMessageView_photo);
+      icon.setImageResource(R.drawable.ic_play_outline_24);
+      progress.setVisibility(GONE);
+    } else if (ViewOnceUtil.isViewable(messageRecord)) {
       foregroundColor = unopenedForegroundColor;
       text.setText(R.string.RevealableMessageView_view_photo);
-      icon.setImageResource(0);
-      progress.setVisibility(VISIBLE);
-    } else if (downloadInProgress(messageRecord)) {
+      icon.setImageResource(R.drawable.ic_play_solid_24);
+      progress.setVisibility(GONE);
+    } else if (networkInProgress(messageRecord)) {
       foregroundColor = unopenedForegroundColor;
       text.setText("");
       icon.setImageResource(0);
@@ -115,16 +118,6 @@ public class RevealableMessageView extends LinearLayout {
       foregroundColor = unopenedForegroundColor;
       text.setText(formatFileSize(messageRecord));
       icon.setImageResource(R.drawable.ic_arrow_down_circle_outline_24);
-      progress.setVisibility(GONE);
-    } else if (RevealableUtil.isViewable(messageRecord)) {
-      foregroundColor = unopenedForegroundColor;
-      text.setText(R.string.RevealableMessageView_view_photo);
-      icon.setImageResource(R.drawable.ic_play_solid_24);
-      progress.setVisibility(GONE);
-    } else if (messageRecord.isOutgoing()) {
-      foregroundColor = openedForegroundColor;
-      text.setText(R.string.RevealableMessageView_photo);
-      icon.setImageResource(R.drawable.ic_play_outline_24);
       progress.setVisibility(GONE);
     } else {
       foregroundColor = openedForegroundColor;
@@ -139,7 +132,7 @@ public class RevealableMessageView extends LinearLayout {
     progress.setRimColor(Color.TRANSPARENT);
   }
 
-  private boolean downloadInProgress(@NonNull MmsMessageRecord messageRecord) {
+  private boolean networkInProgress(@NonNull MmsMessageRecord messageRecord) {
     if (messageRecord.getSlideDeck().getThumbnailSlide() == null) return false;
 
     Attachment attachment = messageRecord.getSlideDeck().getThumbnailSlide().asAttachment();

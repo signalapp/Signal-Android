@@ -27,7 +27,6 @@ import org.thoughtcrime.securesms.database.OneTimePreKeyDatabase;
 import org.thoughtcrime.securesms.database.SearchDatabase;
 import org.thoughtcrime.securesms.database.SessionDatabase;
 import org.thoughtcrime.securesms.database.SignedPreKeyDatabase;
-import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.StickerDatabase;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
@@ -254,19 +253,19 @@ public class FullBackupExporter extends FullBackupBase {
   }
 
   private static boolean isNonExpiringMessage(@NonNull Cursor cursor) {
-    return cursor.getInt(cursor.getColumnIndexOrThrow(MmsSmsColumns.EXPIRES_IN))    <= 0 &&
-           cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.REVEAL_DURATION)) <= 0;
+    return cursor.getInt(cursor.getColumnIndexOrThrow(MmsSmsColumns.EXPIRES_IN)) <= 0 &&
+           cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.VIEW_ONCE))    <= 0;
   }
 
   private static boolean isForNonExpiringMessage(@NonNull SQLiteDatabase db, long mmsId) {
-    String[] columns = new String[] { MmsDatabase.EXPIRES_IN, MmsDatabase.REVEAL_DURATION };
+    String[] columns = new String[] { MmsDatabase.EXPIRES_IN, MmsDatabase.VIEW_ONCE};
     String   where   = MmsDatabase.ID + " = ?";
     String[] args    = new String[] { String.valueOf(mmsId) };
 
     try (Cursor mmsCursor = db.query(MmsDatabase.TABLE_NAME, columns, where, args, null, null, null)) {
       if (mmsCursor != null && mmsCursor.moveToFirst()) {
-        return mmsCursor.getLong(mmsCursor.getColumnIndexOrThrow(MmsDatabase.EXPIRES_IN))      == 0 &&
-               mmsCursor.getLong(mmsCursor.getColumnIndexOrThrow(MmsDatabase.REVEAL_DURATION)) == 0;
+        return mmsCursor.getLong(mmsCursor.getColumnIndexOrThrow(MmsDatabase.EXPIRES_IN)) == 0 &&
+               mmsCursor.getLong(mmsCursor.getColumnIndexOrThrow(MmsDatabase.VIEW_ONCE))  == 0;
       }
     }
 

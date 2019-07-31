@@ -16,25 +16,25 @@ import org.thoughtcrime.securesms.util.JsonUtils;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
-import org.whispersystems.signalservice.api.messages.multidevice.MessageTimerReadMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
+import org.whispersystems.signalservice.api.messages.multidevice.ViewOnceOpenMessage;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.concurrent.TimeUnit;
 
-public class MultiDeviceRevealUpdateJob extends BaseJob {
+public class MultiDeviceViewOnceOpenJob extends BaseJob {
 
   public static final String KEY = "MultiDeviceRevealUpdateJob";
 
-  private static final String TAG = MultiDeviceRevealUpdateJob.class.getSimpleName();
+  private static final String TAG = Log.tag(MultiDeviceViewOnceOpenJob.class);
 
   private static final String KEY_MESSAGE_ID = "message_id";
 
   private SerializableSyncMessageId messageId;
 
-  public MultiDeviceRevealUpdateJob(SyncMessageId messageId) {
+  public MultiDeviceViewOnceOpenJob(SyncMessageId messageId) {
     this(new Parameters.Builder()
                        .addConstraint(NetworkConstraint.KEY)
                        .setLifespan(TimeUnit.DAYS.toMillis(1))
@@ -43,7 +43,7 @@ public class MultiDeviceRevealUpdateJob extends BaseJob {
          messageId);
   }
 
-  private MultiDeviceRevealUpdateJob(@NonNull Parameters parameters, @NonNull SyncMessageId syncMessageId) {
+  private MultiDeviceViewOnceOpenJob(@NonNull Parameters parameters, @NonNull SyncMessageId syncMessageId) {
     super(parameters);
     this.messageId = new SerializableSyncMessageId(syncMessageId.getAddress().toPhoneString(), syncMessageId.getTimetamp());
   }
@@ -74,9 +74,9 @@ public class MultiDeviceRevealUpdateJob extends BaseJob {
     }
 
     SignalServiceMessageSender messageSender = ApplicationDependencies.getSignalServiceMessageSender();
-    MessageTimerReadMessage    timerMessage  = new MessageTimerReadMessage(messageId.sender, messageId.timestamp);
+    ViewOnceOpenMessage        openMessage  = new ViewOnceOpenMessage(messageId.sender, messageId.timestamp);
 
-    messageSender.sendMessage(SignalServiceSyncMessage.forMessageTimerRead(timerMessage), UnidentifiedAccessUtil.getAccessForSync(context));
+    messageSender.sendMessage(SignalServiceSyncMessage.forViewOnceOpen(openMessage), UnidentifiedAccessUtil.getAccessForSync(context));
   }
 
   @Override
@@ -105,9 +105,9 @@ public class MultiDeviceRevealUpdateJob extends BaseJob {
     }
   }
 
-  public static final class Factory implements Job.Factory<MultiDeviceRevealUpdateJob> {
+  public static final class Factory implements Job.Factory<MultiDeviceViewOnceOpenJob> {
     @Override
-    public @NonNull MultiDeviceRevealUpdateJob create(@NonNull Parameters parameters, @NonNull Data data) {
+    public @NonNull MultiDeviceViewOnceOpenJob create(@NonNull Parameters parameters, @NonNull Data data) {
       SerializableSyncMessageId messageId;
 
       try {
@@ -118,7 +118,7 @@ public class MultiDeviceRevealUpdateJob extends BaseJob {
 
       SyncMessageId syncMessageId = new SyncMessageId(Address.fromSerialized(messageId.sender), messageId.timestamp);
 
-      return new MultiDeviceRevealUpdateJob(parameters, syncMessageId);
+      return new MultiDeviceViewOnceOpenJob(parameters, syncMessageId);
     }
   }
 }

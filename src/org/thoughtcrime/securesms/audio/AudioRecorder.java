@@ -50,7 +50,7 @@ public class AudioRecorder {
         captureUri = BlobProvider.getInstance()
                                  .forData(new ParcelFileDescriptor.AutoCloseInputStream(fds[0]), 0)
                                  .withMimeType(MediaUtil.AUDIO_AAC)
-                                 .createForSingleSessionOnDisk(context, e -> Log.w(TAG, "Error during recording", e));
+                                 .createForSingleSessionOnDiskAsync(context, () -> Log.i(TAG, "Write successful."), e -> Log.w(TAG, "Error during recording", e));
         audioCodec = new AudioCodec();
 
         audioCodec.start(new ParcelFileDescriptor.AutoCloseOutputStream(fds[1]));

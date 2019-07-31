@@ -25,6 +25,8 @@ import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * Allows for the creation and retrieval of blobs.
@@ -173,7 +175,34 @@ public class BlobProvider {
   }
 
   @WorkerThread
-  private synchronized @NonNull Uri writeBlobSpecToDisk(@NonNull Context context, @NonNull BlobSpec blobSpec, @Nullable ErrorListener errorListener) throws IOException {
+  private synchronized @NonNull Uri writeBlobSpecToDisk(@NonNull Context context, @NonNull BlobSpec blobSpec)
+      throws IOException
+  {
+    CountDownLatch               latch     = new CountDownLatch(1);
+    AtomicReference<IOException> exception = new AtomicReference<>(null);
+    Uri                          uri       = writeBlobSpecToDiskAsync(context, blobSpec, latch::countDown, exception::set);
+
+    try {
+      latch.await();
+    } catch (InterruptedException e) {
+      throw new IOException(e);
+    }
+
+    if (exception.get() != null) {
+      throw exception.get();
+    }
+
+    return uri;
+  }
+
+
+  @WorkerThread
+  private synchronized @NonNull Uri writeBlobSpecToDiskAsync(@NonNull Context context,
+                                                             @NonNull BlobSpec blobSpec,
+                                                             @Nullable SuccessListener successListener,
+                                                             @Nullable ErrorListener errorListener)
+      throws IOException
+  {
     AttachmentSecret attachmentSecret = AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret();
     String           directory        = getDirectory(blobSpec.getStorageType());
     File             outputFile       = new File(getOrCreateCacheDirectory(context, directory), buildFileName(blobSpec.id));
@@ -182,6 +211,10 @@ public class BlobProvider {
     SignalExecutors.UNBOUNDED.execute(() -> {
       try {
         Util.copy(blobSpec.getData(), outputStream);
+
+        if (successListener != null) {
+          successListener.onSuccess();
+        }
       } catch (IOException e) {
         if (errorListener != null) {
           errorListener.onError(e);
@@ -258,8 +291,23 @@ public class BlobProvider {
      * period from one {@link Application#onCreate()} to the next.
      */
     @WorkerThread
-    public Uri createForSingleSessionOnDisk(@NonNull Context context, @Nullable ErrorListener errorListener) throws IOException {
-      return writeBlobSpecToDisk(context, buildBlobSpec(StorageType.SINGLE_SESSION_DISK), errorListener);
+    public Uri createForSingleSessionOnDisk(@NonNull Context context) throws IOException {
+      return writeBlobSpecToDisk(context, buildBlobSpec(StorageType.SINGLE_SESSION_DISK));
+    }
+
+    /**
+     * Create a blob that will exist for a single app session. An app session is defined as the
+     * period from one {@link Application#onCreate()} to the next. The file will be created on disk
+     * synchronously, but the data will copied asynchronously. This is helpful when the copy is
+     * long-running, such as in the case of recording a voice note.
+     */
+    @WorkerThread
+    public Uri createForSingleSessionOnDiskAsync(@NonNull Context context,
+                                                 @Nullable SuccessListener successListener,
+                                                 @Nullable ErrorListener errorListener)
+        throws IOException
+    {
+      return writeBlobSpecToDiskAsync(context, buildBlobSpec(StorageType.SINGLE_SESSION_DISK), successListener, errorListener);
     }
 
     /**
@@ -267,8 +315,25 @@ public class BlobProvider {
      * eventually call {@link BlobProvider#delete(Context, Uri)} when the blob is no longer in use.
      */
     @WorkerThread
-    public Uri createForMultipleSessionsOnDisk(@NonNull Context context, @Nullable ErrorListener errorListener) throws IOException {
-      return writeBlobSpecToDisk(context, buildBlobSpec(StorageType.MULTI_SESSION_DISK), errorListener);
+    public Uri createForMultipleSessionsOnDisk(@NonNull Context context) throws IOException {
+      return writeBlobSpecToDisk(context, buildBlobSpec(StorageType.MULTI_SESSION_DISK));
+    }
+
+    /**
+     * Create a blob that will exist for multiple app sessions. The file will be created on disk
+     * synchronously, but the data will copied asynchronously. This is helpful when the copy is
+     * long-running, such as in the case of recording a voice note.
+     *
+     * It is the caller's responsibility to eventually call {@link BlobProvider#delete(Context, Uri)}
+     * when the blob is no longer in use.
+     */
+    @WorkerThread
+    public Uri createForMultipleSessionsOnDiskAsync(@NonNull Context context,
+                                                    @Nullable SuccessListener successListener,
+                                                    @Nullable ErrorListener errorListener)
+        throws IOException
+    {
+      return writeBlobSpecToDiskAsync(context, buildBlobSpec(StorageType.MULTI_SESSION_DISK), successListener, errorListener);
     }
   }
 
@@ -309,6 +374,11 @@ public class BlobProvider {
     public Uri createForSingleSessionInMemory() {
       return writeBlobSpecToMemory(buildBlobSpec(StorageType.SINGLE_SESSION_MEMORY), data);
     }
+  }
+
+  public interface SuccessListener {
+    @WorkerThread
+    void onSuccess();
   }
 
   public interface ErrorListener {

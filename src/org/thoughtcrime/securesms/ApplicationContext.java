@@ -62,7 +62,7 @@ import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.service.IncomingMessageObserver;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.service.LocalBackupListener;
-import org.thoughtcrime.securesms.revealable.RevealableMessageManager;
+import org.thoughtcrime.securesms.revealable.ViewOnceMessageManager;
 import org.thoughtcrime.securesms.service.RotateSenderCertificateListener;
 import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener;
 import org.thoughtcrime.securesms.service.UpdateApkRefreshListener;
@@ -92,7 +92,7 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
   private static final String TAG = ApplicationContext.class.getSimpleName();
 
   private ExpiringMessageManager   expiringMessageManager;
-  private RevealableMessageManager revealableMessageManager;
+  private ViewOnceMessageManager viewOnceMessageManager;
   private TypingStatusRepository   typingStatusRepository;
   private TypingStatusSender       typingStatusSender;
   private JobManager               jobManager;
@@ -157,8 +157,8 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
     return expiringMessageManager;
   }
 
-  public RevealableMessageManager getRevealableMessageManager() {
-    return revealableMessageManager;
+  public ViewOnceMessageManager getViewOnceMessageManager() {
+    return viewOnceMessageManager;
   }
 
   public TypingStatusRepository getTypingStatusRepository() {
@@ -252,7 +252,7 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
   }
 
   private void initializeRevealableMessageManager() {
-    this.revealableMessageManager = new RevealableMessageManager(this);
+    this.viewOnceMessageManager = new ViewOnceMessageManager(this);
   }
 
   private void initializeTypingStatusRepository() {

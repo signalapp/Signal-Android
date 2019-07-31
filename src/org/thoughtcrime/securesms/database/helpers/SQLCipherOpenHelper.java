@@ -67,11 +67,13 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int JOBMANAGER_STRIKES_BACK          = 20;
   private static final int STICKERS                         = 21;
   private static final int REVEALABLE_MESSAGES              = 22;
+  private static final int VIEW_ONCE_ONLY                   = 23;
 
-  private static final int    DATABASE_VERSION = 22;
+  private static final int    DATABASE_VERSION = 23;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
+
   private final DatabaseSecret databaseSecret;
 
   public SQLCipherOpenHelper(@NonNull Context context, @NonNull DatabaseSecret databaseSecret) {
@@ -469,6 +471,11 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
         db.execSQL("ALTER TABLE thread ADD COLUMN snippet_content_type TEXT DEFAULT NULL");
         db.execSQL("ALTER TABLE thread ADD COLUMN snippet_extras TEXT DEFAULT NULL");
+      }
+
+      if (oldVersion < VIEW_ONCE_ONLY) {
+        db.execSQL("UPDATE mms SET reveal_duration = 1 WHERE reveal_duration > 0");
+        db.execSQL("UPDATE mms SET reveal_start_time = 0");
       }
 
       db.setTransactionSuccessful();

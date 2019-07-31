@@ -86,7 +86,7 @@ dependencies {
     implementation 'org.conscrypt:conscrypt-android:2.0.0'
     implementation 'org.signal:aesgcmprovider:0.0.3'
 
-    implementation 'org.whispersystems:signal-service-android:2.13.6'
+    implementation 'org.whispersystems:signal-service-android:2.13.7'
 
     implementation 'org.whispersystems:webrtc-android:M75'
 
@@ -193,7 +193,7 @@ dependencyVerification {
         'com.google.android.exoplayer:exoplayer-core:b6ab34abac36bc2bc6934b7a50008162feca2c0fde91aaf1e8c1c22f2c16e2c0',
         'org.conscrypt:conscrypt-android:400ca559a49b860a82862b22cee0e3110764bdcf7ee7c79e7479895c25cdfc09',
         'org.signal:aesgcmprovider:6eb4422e8a618b3b76cb2096a3619d251f9e27989dc68307a1e5414c3710f2d1',
-        'org.whispersystems:signal-service-android:fa8c1b82d066bd6902ffd7e3a0c4343c3afa0379c26c78c06323c300d5afca7b',
+        'org.whispersystems:signal-service-android:5115aa434c52ca671c513995e6ae67d73f3abaaa605f9e6cf64c2e01da961c7e',
         'org.whispersystems:webrtc-android:f8231bb57923afb243760213dc58924e85cce42f2f3cc8cb33a6d883672a921a',
         'me.leolin:ShortcutBadger:e3cb3e7625892129b0c92dd5e4bc649faffdd526d5af26d9c45ee31ff8851774',
         'se.emilsjolander:stickylistheaders:a08ca948aa6b220f09d82f16bbbac395f6b78897e9eeac6a9f0b0ba755928eeb',
@@ -265,7 +265,7 @@ dependencyVerification {
         'androidx.constraintlayout:constraintlayout-solver:965c177e64fbd81bd1d27b402b66ef9d7bc7b5cb5f718044bf7a453abc542045',
         'com.google.auto.value:auto-value-annotations:0e951fee8c31f60270bc46553a8586001b7b93dbb12aec06373aa99a150392c0',
         'org.signal:signal-metadata-android:02323bc29317fa9d3b62fab0b507c94ba2e9bcc4a78d588888ffd313853757b3',
-        'org.whispersystems:signal-service-java:b36c460bb8ed8ff134c35df87781dea2f30bc33fa8a10c8c3d9314dae752a7da',
+        'org.whispersystems:signal-service-java:34c1efbfdc9cca44946a92f1ba330066bc533056a4db3359a1af96e519893b2e',
         'com.github.bumptech.glide:disklrucache:4696a81340eb6beee21ab93f703ed6e7ae49fb4ce3bc2fbc546e5bacd21b96b9',
         'com.github.bumptech.glide:annotations:702a7521cb3f6d7e55edd66e90bda1a1975baf971d25f75b75638579f86bc69b',
         'com.nineoldandroids:library:68025a14e3e7673d6ad2f95e4b46d78d7d068343aa99256b686fe59de1b3163a',
@@ -277,12 +277,12 @@ dependencyVerification {
         'org.whispersystems:signal-protocol-java:7f6df67a963acbab7716424b01b12fa7279f18a9623a2a7c8ba7b1c285830168',
         'com.google.protobuf:protobuf-java:e0c1c64575c005601725e7c6a02cebf9e1285e888f756b2a1d73ffa8d725cc74',
         'com.googlecode.libphonenumber:libphonenumber:dbf4bf566d17a60044c19e282a619684e4b4abb0f9f9f24f843c55d19826ab5e',
-        'com.fasterxml.jackson.core:jackson-databind:2351c3eba73a545db9079f5d6d768347ad72666537362c8220fe3e950a55a864',
+        'com.fasterxml.jackson.core:jackson-databind:fb262d42ea2de98044b62d393950a5aa050435fec38bbcadf2325cf7dc41b848',
         'com.squareup.okhttp3:okhttp:07c3d82ca7eaf4722f00b2da807dc7860f6169ae60cfedcf5d40218f90880a46',
         'org.threeten:threetenbp:f4c23ffaaed717c3b99c003e0ee02d6d66377fd47d866fec7d971bd8644fc1a7',
         'org.whispersystems:curve25519-android:b502bcf83efe001f09a7a9efda6f0fa772c43ed5924e97816296ed3503caa092',
         'com.fasterxml.jackson.core:jackson-annotations:45d32ac61ef8a744b464c54c2b3414be571016dd46bfc2bec226761cf7ae457a',
-        'com.fasterxml.jackson.core:jackson-core:d934dab0bd48994eeea2c1b493cb547158a338a80b58c4fbc8e85fb0905e105f',
+        'com.fasterxml.jackson.core:jackson-core:3083079be6088db2ed0a0c6ff92204e0aa48fa1de9db5b59c468f35acf882c2c',
         'com.squareup.okio:okio:693fa319a7e8843300602b204023b7674f106ebcb577f2dd5807212b66118bd2',
         'org.whispersystems:curve25519-java:0aadd43cf01d11e9b58f867b3c4f25c3194e8b0623d1953d32dfbfbee009e38d',
     ]

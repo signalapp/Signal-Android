@@ -55,13 +55,13 @@ public class MediaMmsMessageRecord extends MmsMessageRecord {
                                List<IdentityKeyMismatch> mismatches,
                                List<NetworkFailure> failures, int subscriptionId,
                                long expiresIn, long expireStarted,
-                               long revealDuration, long revealStartTime, int readReceiptCount,
+                               boolean viewOnce, int readReceiptCount,
                                @Nullable Quote quote, @NonNull List<Contact> contacts,
                                @NonNull List<LinkPreview> linkPreviews, boolean unidentified)
   {
     super(id, body, conversationRecipient, individualRecipient, recipientDeviceId, dateSent,
           dateReceived, threadId, Status.STATUS_NONE, deliveryReceiptCount, mailbox, mismatches, failures,
-          subscriptionId, expiresIn, expireStarted, revealDuration, revealStartTime, slideDeck,
+          subscriptionId, expiresIn, expireStarted, viewOnce, slideDeck,
           readReceiptCount, quote, contacts, linkPreviews, unidentified);
     this.partCount = partCount;
   }

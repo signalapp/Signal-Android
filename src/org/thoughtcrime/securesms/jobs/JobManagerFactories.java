@@ -41,10 +41,10 @@ public final class JobManagerFactories {
       put(MultiDeviceGroupUpdateJob.KEY,             new MultiDeviceGroupUpdateJob.Factory());
       put(MultiDeviceProfileKeyUpdateJob.KEY,        new MultiDeviceProfileKeyUpdateJob.Factory());
       put(MultiDeviceReadUpdateJob.KEY,              new MultiDeviceReadUpdateJob.Factory());
-      put(MultiDeviceRevealUpdateJob.KEY,            new MultiDeviceRevealUpdateJob.Factory());
       put(MultiDeviceStickerPackOperationJob.KEY,    new MultiDeviceStickerPackOperationJob.Factory());
       put(MultiDeviceStickerPackSyncJob.KEY,         new MultiDeviceStickerPackSyncJob.Factory());
       put(MultiDeviceVerifiedUpdateJob.KEY,          new MultiDeviceVerifiedUpdateJob.Factory());
+      put(MultiDeviceViewOnceOpenJob.KEY,            new MultiDeviceViewOnceOpenJob.Factory());
       put(PushContentReceiveJob.KEY,                 new PushContentReceiveJob.Factory());
       put(PushDecryptJob.KEY,                        new PushDecryptJob.Factory());
       put(PushGroupSendJob.KEY,                      new PushGroupSendJob.Factory());

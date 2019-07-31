@@ -195,11 +195,8 @@ public class PushGroupSendJob extends PushSendJob {
                             .scheduleDeletion(messageId, true, message.getExpiresIn());
         }
 
-        if (message.getRevealDuration() > 0) {
-          database.markRevealStarted(messageId);
-          ApplicationContext.getInstance(context)
-                            .getRevealableMessageManager()
-                            .scheduleIfNecessary();
+        if (message.isViewOnce()) {
+          DatabaseFactory.getAttachmentDatabase(context).deleteAttachmentFilesForMessage(messageId);
         }
       } else if (!networkFailures.isEmpty()) {
         throw new RetryLaterException();
@@ -269,7 +266,7 @@ public class PushGroupSendJob extends PushSendJob {
                                                                       .withAttachments(attachmentPointers)
                                                                       .withBody(message.getBody())
                                                                       .withExpiration((int)(message.getExpiresIn() / 1000))
-                                                                      .withMessageTimer((int)(message.getRevealDuration() / 1000))
+                                                                      .withViewOnce(message.isViewOnce())
                                                                       .asExpirationUpdate(message.isExpirationUpdate())
                                                                       .withProfileKey(profileKey.orNull())
                                                                       .withQuote(quote.orNull())
