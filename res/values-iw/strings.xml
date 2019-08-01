@@ -310,9 +310,9 @@
   <string name="DeviceListItem_last_active_s">היה פעיל לאחרונה %s</string>
   <string name="DeviceListItem_today">היום</string>
   <!--DocumentView-->
-  <string name="DocumentView_unknown_file">קובץ לא ידוע</string>
+  <string name="DocumentView_unknown_file">קובץ בלתי ידוע</string>
   <!--DozeReminder-->
-  <string name="DozeReminder_optimize_for_missing_play_services">מטב עבור שירותי Play חסרים</string>
+  <string name="DozeReminder_optimize_for_missing_play_services">מִטּוּב עבור שירותי Play חסרים</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">מכשיר זה אינו תומך בשירותי Play. הקש כדי להשבית מיטובי סוללה של מערכת שמונעים מ-Signal לאחזר הודעות בעת אי־פעילות.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">שתף עם</string>
@@ -355,10 +355,10 @@
   <string name="GroupCreateActivity_actionbar_edit_title">ערוך קבוצה</string>
   <string name="GroupCreateActivity_group_name_hint">שם הקבוצה</string>
   <string name="GroupCreateActivity_actionbar_mms_title">קבוצת MMS חדשה</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">בחרת איש קשר שאינו תומך בקבוצות Signal, אז קבוצה זו תהיה MMS.</string>
+  <string name="GroupCreateActivity_contacts_dont_support_push">בחרת איש קשר שאינו תומך בקבוצות Signal, לכן קבוצה זו תהיה MMS.</string>
   <string name="GroupCreateActivity_youre_not_registered_for_signal">אינך רשום עבור הודעות ושיחות של Signal, כך שקבוצות Signal מושבתות. אנא נסה להירשם שוב בהגדרות &lt; מתקדם.</string>
   <string name="GroupCreateActivity_contacts_no_members">צריך להיות לפחות אדם אחד בקבוצה הזאת!</string>
-  <string name="GroupCreateActivity_contacts_invalid_number">לאחד החברים בקבוצה שלך יש מספר שאי־אפשר לקרוא נכון. נא לתקן את זה או להסיר את איש הקשר הזה ולנסות שוב.</string>
+  <string name="GroupCreateActivity_contacts_invalid_number">לאחד החברים בקבוצה שלך יש מספר שאי־אפשר לקרוא נכון. נא לתקן או להסיר את איש הקשר הזה ולנסות שוב.</string>
   <string name="GroupCreateActivity_avatar_content_description">יצגן קבוצה</string>
   <string name="GroupCreateActivity_menu_apply_button">החל</string>
   <string name="GroupCreateActivity_creating_group">יוצר את %1$s…</string>
@@ -451,12 +451,12 @@
   <string name="MediaPickerItemFragment_tap_to_select">הקש כדי לבחור</string>
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">הוסף כיתוב...</string>
-  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">פריט נמחק מאחר שהוא חרג ממגבלת הגודל</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">פריט נמחק מאחר וחרג ממגבלת הגודל</string>
   <string name="MediaSendActivity_camera_unavailable">מצלמה אינה זמינה.</string>
   <string name="MediaSendActivity_message_to_s">שלח הודעה אל %s</string>
   <string name="MediaSendActivity_message">הודעה</string>
   <string name="MediaSendActivity_select_recipients">בחר מקבלים</string>
-  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal צריך הרשאה אל אנשי הקשר שלך על מנת להציגם.</string>
+  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal צריך הרשאה לאנשי הקשר שלך על מנת להציגם.</string>
   <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal צריך הרשאת אנשי קשר על מנת להראות את אנשי הקשר שלך, אבל היא נדחתה לצמיתות. אנא המשך אל הגדרות היישום, בחר \"הרשאות\" ואפשר את \"אנשי קשר\".</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">אינך יכול לשתף יותר מפריט %d.</item>
@@ -526,7 +526,7 @@
   <string name="PlacePickerActivity_drop_pin">זרוק מצביע</string>
   <string name="PlacePickerActivity_accept_address">קבל כתובת</string>
   <!--PlayServicesProblemFragment-->
-  <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">הגרסה של שירותי Google Play המותקנת מתפקדת כראוי. אנא התקן מחדש את שירותי Google Play ונסה שוב.</string>
+  <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">הגרסה של שירותי Google Play המותקנת אינה מתפקדת כראוי. אנא התקן מחדש את שירותי Google Play ונסה שוב.</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">דרג יישום זה</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">אם אתה נהנה להשתמש ביישום זה, אנא הקדש רגע כדי לעזור לנו לדרג אותו.</string>
@@ -692,7 +692,7 @@
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">איש הקשר שלך מריץ גרסה ישנה של Signal. אנא בקש ממנו לעדכן לפני וידוא מספר הביטחון שלך.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">איש הקשר שלך מריץ גרסה חדשה יותר של Signal עם תסדיר בלתי־תואם של קוד QR. אנא עדכן כדי להשוות.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">קוד ה־QR הסרוק הוא אינו קוד וידוא המתוסדר כראוי של מספר ביטחון. אנא נסה לסרוק שוב.</string>
-  <string name="VerifyIdentityActivity_share_safety_number_via">שתף מספר ביטחון דרך...</string>
+  <string name="VerifyIdentityActivity_share_safety_number_via">שתף מספר ביטחון באמצעות...</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">מספר ביטחון Signal שלנו:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">נראה שאין לך יישומים לשתף בהם.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">לא נמצא מספר ביטחון להשוואה בלוח העריכה</string>

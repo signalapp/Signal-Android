@@ -82,6 +82,15 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Methu cadw delwedd</string>
   <!--CameraContacts-->
+  <string name="CameraContacts_recent_contacts">Cysylltiadau diweddar</string>
+  <string name="CameraContacts_signal_contacts">Cysylltiadau Signal</string>
+  <string name="CameraContacts_signal_groups">Grwpiau Signal</string>
+  <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">Gallwch rannu gydag uchafswm o %d sgyrsiau</string>
+  <string name="CameraContacts_select_signal_recipients">Dewis derbynwyr Signal</string>
+  <string name="CameraContacts_no_signal_contacts">Dim cysylltiadau Signal</string>
+  <string name="CameraContacts_you_can_only_use_the_camera_button">Gallwch ddefnyddio botwm y camera dim ond i anfon lluniau i gysylltiadau Signal.</string>
+  <string name="CameraContacts_cant_find_who_youre_looking_for">Methu canfod y person rydych yn chwilio amdani/o</string>
+  <string name="CameraContacts_invite_a_contact_to_join_signal">Gwahodd cysylltiad i ymuno â Signal</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Tynnu</string>
   <string name="ClearProfileActivity_remove_profile_photo">Tynnu\'r llun proffil?</string>
@@ -447,7 +456,10 @@ Send neges heb ei ddiogelu?</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Cafodd eitem ei thynnu gan ei bod yn fwy na\'r maint mwyaf</string>
   <string name="MediaSendActivity_camera_unavailable">Camera ddim ar gael</string>
   <string name="MediaSendActivity_message_to_s">Neges i %s</string>
+  <string name="MediaSendActivity_message">Neges</string>
+  <string name="MediaSendActivity_select_recipients">Dewis derbynwyr</string>
   <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Mae ar Signal angen mynediad i\'ch cysylltiadau er mwyn eu harddangos.</string>
+  <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Mae Signal angen caniatad Contacts er mwyn dangos eich cysylltiadau, ond mae wedi ei wrthod yn barhaol. Ewch i osodiadau\'r ap, dewis \"Permissions\", a galluogi \"Contacts\".</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Nid oes modd rhannu mwy na %d eitem.</item>
     <item quantity="two">Nid oes modd rhannu mwy na %d eitem.</item>
@@ -591,6 +603,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Rhowch y cod dilysu a anfonwyd i %s.</string>
   <string name="RegistrationActivity_call">Galw</string>
   <!--RevealableMessageView-->
+  <string name="RevealableMessageView_view_photo">Gweld Llun</string>
+  <string name="RevealableMessageView_viewed">Gwelwyd</string>
   <string name="RevealableMessageView_photo">Llun</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Methu cadw newidiadau i ddelweddau</string>
@@ -623,6 +637,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s ailosod y sesiwn ddiogel.</string>
   <string name="SmsMessageRecord_duplicate_message">Neges ddyblyg.</string>
   <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Nid oedd modd prosesu\'r neges gan ei fod wedi ei anfon o fersiwn mwy diweddar o Signal. Gallwch ofyn i\'ch cysylltiad ail anfon y neges ar ôl i chi ddiweddaru.</string>
+  <string name="SmsMessageRecord_error_handling_incoming_message">Gwall wrth drin derbyn neges</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Sticeri</string>
   <!--StickerManagementAdapter-->
@@ -650,6 +665,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="ThreadRecord_missed_call">Galwad coll</string>
   <string name="ThreadRecord_media_message">Neges cyfryngau</string>
   <string name="ThreadRecord_sticker">Sticer</string>
+  <string name="ThreadRecord_disappearing_photo">Llun yn diflannu</string>
   <string name="ThreadRecord_s_is_on_signal">Mae %s ar Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Negeseuon diflanedig wedi\'u hanalluogi</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Amser neges diflanedig wedi\'i osod i %s</string>
@@ -724,6 +740,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="MessageNotifier_mark_read">Marcio wedi\'i ddarllen</string>
   <string name="MessageNotifier_media_message">Neges cyfryngau</string>
   <string name="MessageNotifier_sticker">Sticer</string>
+  <string name="MessageNotifier_disappearing_photo">Llun yn diflannu</string>
   <string name="MessageNotifier_reply">Ymateb</string>
   <string name="MessageNotifier_signal_message">Neges Signal</string>
   <string name="MessageNotifier_unsecured_sms">SMS anniogel</string>

@@ -421,6 +421,7 @@
   <string name="MediaSendActivity_message">Mensagem</string>
   <string name="MediaSendActivity_select_recipients">Selecionar destinatários</string>
   <string name="MediaSendActivity_signal_needs_access_to_your_contacts">O Signal precisa de acesso aos seus contatos para poder exibi-los.</string>
+  <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">O Signal precisa da permissão Contatos para exibir seus contatos, mas ela foi permanentemente negada. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"Contatos\".</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Você não pode compartilhar mais de %d item.</item>
     <item quantity="other">Você não pode compartilhar mais de %d itens.</item>

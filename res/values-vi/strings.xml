@@ -73,6 +73,15 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Không thể lưu ảnh.</string>
   <!--CameraContacts-->
+  <string name="CameraContacts_recent_contacts">Liên hệ gần đây</string>
+  <string name="CameraContacts_signal_contacts">Liên hệ Signal</string>
+  <string name="CameraContacts_signal_groups">Nhóm Signal</string>
+  <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">Bạn có thể chia sẻ với tối đa %d cuộc trò chuyện.</string>
+  <string name="CameraContacts_select_signal_recipients">Chọn người nhận Signal</string>
+  <string name="CameraContacts_no_signal_contacts">Không có liên hệ Signal</string>
+  <string name="CameraContacts_you_can_only_use_the_camera_button">Bạn chỉ có thể dùng nút chụp ảnh để gửi ảnh cho các liên hệ Signal.</string>
+  <string name="CameraContacts_cant_find_who_youre_looking_for">Không tìm thấy người bạn cần tìm?</string>
+  <string name="CameraContacts_invite_a_contact_to_join_signal">Mời một liên hệ dùng Signal</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Loại bỏ</string>
   <string name="ClearProfileActivity_remove_profile_photo">Bỏ ảnh đại diện?</string>
@@ -391,7 +400,10 @@
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Một mục đã bị loại bỏ vì quá kích cỡ giới hạn</string>
   <string name="MediaSendActivity_camera_unavailable">Máy ảnh không khả dụng</string>
   <string name="MediaSendActivity_message_to_s">Tin nhắn đến %s</string>
+  <string name="MediaSendActivity_message">Tin nhắn</string>
+  <string name="MediaSendActivity_select_recipients">Chọn người nhận</string>
   <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal cần quyền truy cập danh bạ để hiển thị chúng.</string>
+  <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal cần quyền truy cập Danh bạ để hiển thị các liên hệ của bạn, nhưng đã bị từ chối vĩnh viễn. Vui lòng mở cài đặt ứng dụng, chọn \"Quyền\" và bật \"Danh bạ\".</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="other">Bạn không thể chia sẻ quá %d mục.</item>
   </plurals>
@@ -591,7 +603,7 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <string name="ThreadRecord_missed_call">Cuộc gọi nhỡ</string>
   <string name="ThreadRecord_media_message">Tin nhắn đa phương tiện</string>
   <string name="ThreadRecord_sticker">Nhãn dán</string>
-  <string name="ThreadRecord_disappearing_photo">Ảnh đã biến mất</string>
+  <string name="ThreadRecord_disappearing_photo">Ảnh tự huỷ</string>
   <string name="ThreadRecord_s_is_on_signal">%s đang sử dụng Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Tin nhắn tự hủy đã được vô hiệu hóa</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Tin nhắn sẽ tự hủy sau %s</string>
@@ -666,7 +678,7 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <string name="MessageNotifier_mark_read">Đánh dấu đã đọc</string>
   <string name="MessageNotifier_media_message">Tin nhắn đa phương tiện</string>
   <string name="MessageNotifier_sticker">Nhãn dán</string>
-  <string name="MessageNotifier_disappearing_photo">Ảnh đã biến mất</string>
+  <string name="MessageNotifier_disappearing_photo">Ảnh tự huỷ</string>
   <string name="MessageNotifier_reply">Trả lời</string>
   <string name="MessageNotifier_signal_message">Tin nhắn Signal</string>
   <string name="MessageNotifier_unsecured_sms">SMS không bảo mật</string>

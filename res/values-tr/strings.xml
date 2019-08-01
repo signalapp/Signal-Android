@@ -76,6 +76,15 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Resim kaydedilemedi.</string>
   <!--CameraContacts-->
+  <string name="CameraContacts_recent_contacts">Son kişiler</string>
+  <string name="CameraContacts_signal_contacts">Signal kişileri</string>
+  <string name="CameraContacts_signal_groups">Signal grupları</string>
+  <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">En fazla %d sohbetle paylaşabilirsiniz.</string>
+  <string name="CameraContacts_select_signal_recipients">Signal alıcılarını seçin</string>
+  <string name="CameraContacts_no_signal_contacts">Hiç Signal kişiniz yok</string>
+  <string name="CameraContacts_you_can_only_use_the_camera_button">Kamera tuşunu yalnızca Signal kişilerine fotoğraf göndermek için kullanabilirsiniz.</string>
+  <string name="CameraContacts_cant_find_who_youre_looking_for">Aradığınız kişiyi bulamadınız mı?</string>
+  <string name="CameraContacts_invite_a_contact_to_join_signal">Signal\'e katılması için bir kişiyi davet edin</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Kaldır</string>
   <string name="ClearProfileActivity_remove_profile_photo">Profil fotoğrafı kaldırılsın mı?</string>
@@ -410,7 +419,9 @@
   <string name="MediaSendActivity_camera_unavailable">Kamera kullanılamıyor.</string>
   <string name="MediaSendActivity_message_to_s">%s kişisine mesaj</string>
   <string name="MediaSendActivity_message">İleti</string>
+  <string name="MediaSendActivity_select_recipients">Alıcıları seçin</string>
   <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal\'in kişilerinizi gösterebilmek için erişime ihtiyacı var.</string>
+  <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Kişilerinizi göstermek için Signal\'in kişiler iznine ihtiyacı var fakat bu izin kalıcı olarak reddedilmiş. Lütfen uygulamanın ayarlarına girip \"İzinleri\" seçin ve \"Kişileri\" etkinleştirin.</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">%d öğeden daha fazlasını paylaşamazsınız.</item>
     <item quantity="other">%d öğeden daha fazlasını paylaşamazsınız.</item>

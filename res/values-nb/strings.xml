@@ -80,6 +80,7 @@
   <string name="CameraContacts_signal_contacts">Signal kontakter</string>
   <string name="CameraContacts_signal_groups">Signal grupper</string>
   <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">Du kan dele med maksimalt %d samtaler.</string>
+  <string name="CameraContacts_select_signal_recipients">Velg Signal mottakere</string>
   <string name="CameraContacts_no_signal_contacts">Ingen Signal kontakter</string>
   <string name="CameraContacts_you_can_only_use_the_camera_button">Du kan bare bruke kameraknappen til å sende bilder til Signal kontakter.</string>
   <string name="CameraContacts_cant_find_who_youre_looking_for">Finner du ikke den du leter etter?</string>
@@ -418,6 +419,7 @@
   <string name="MediaSendActivity_camera_unavailable">Kamera utilgjengelig.</string>
   <string name="MediaSendActivity_message_to_s">Melding til %s</string>
   <string name="MediaSendActivity_message">Melding</string>
+  <string name="MediaSendActivity_select_recipients">Velg mottakere</string>
   <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal må ha tilgang til kontaktene dine for å kunne vise dem.</string>
   <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal trenger tillatelse til kontakter for å kunne vise kontaktene dine, men det har blitt avslått permanent. Fortsett med appinnstillingene, velg \"Tillatelser\" og aktiver \"Kontakter\".</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
@@ -484,6 +486,7 @@
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Kart</string>
   <string name="PlacePickerActivity_not_a_valid_address">Ikke en gyldig adresse</string>
+  <string name="PlacePickerActivity_drop_pin">Slipp nål</string>
   <string name="PlacePickerActivity_accept_address">Godta adresse</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Versjonen av Google Play Tjenester som er installert på denne enheten fungerer ikke skikkelig. Installer Google Play Tjenester på nytt og prøv igjen.</string>
@@ -599,6 +602,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--StickerManagementAdapter-->
   <string name="StickerManagementAdapter_installed_stickers">Installerte klistremerker</string>
   <string name="StickerManagementAdapter_stickers_you_received">Klistremerker du mottok</string>
+  <string name="StickerManagementAdapter_signal_artist_series">Signal Artist Serier</string>
   <string name="StickerManagementAdapter_no_stickers_installed">Ingen klistremerker installert</string>
   <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Klistremerker fra innkommende meldinger vises her</string>
   <string name="StickerManagementAdapter_untitled">Uten navn</string>
@@ -620,6 +624,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="ThreadRecord_missed_call">Ubesvart anrop</string>
   <string name="ThreadRecord_media_message">Mediemelding</string>
   <string name="ThreadRecord_sticker">Klistremerke</string>
+  <string name="ThreadRecord_disappearing_photo">Forsvinner foto</string>
   <string name="ThreadRecord_s_is_on_signal"> %s er på Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Forsvinnende meldinger deaktivert</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Utløpstid for meldinger endret til %s</string>
@@ -694,6 +699,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="MessageNotifier_mark_read">Merk som lest</string>
   <string name="MessageNotifier_media_message">Mediemelding</string>
   <string name="MessageNotifier_sticker">Klistremerke</string>
+  <string name="MessageNotifier_disappearing_photo">Forsvinner foto</string>
   <string name="MessageNotifier_reply">Svar</string>
   <string name="MessageNotifier_signal_message">Signal-melding</string>
   <string name="MessageNotifier_unsecured_sms">Usikret SMS</string>

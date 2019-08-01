@@ -30,7 +30,7 @@
   <string name="ApplicationPreferencesActivity_unregistering">Disiscriviti</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Disiscrizione da messaggi e chiamate Signal...</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Disattivare i messaggi e le chiamate di Signal?</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Disabilita i messaggi di Signal annullando la tua registrazione sul server. Avrai bisogno di registrare di nuovo il tuo numero di telefono per usare di nuovo i messaggi di Signal in futuro.</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Disabilita i messaggi e le chiamate di Signal annullando la tua registrazione sul server. Dovrai registrare di nuovo il tuo numero di telefono per usare messaggi e chiamate di Signal in futuro.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Errore durante la connessione al server!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS Abilitati</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Tocca per cambiare l\'applicazione predefinita per gli SMS</string>
@@ -56,10 +56,10 @@
   <string name="DraftDatabase_Draft_quote_snippet">(risposta)</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Impossibile trovare un\'app per selezionare il file.</string>
-  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal richiede l\'autorizzazione all\'accesso della memoria per allegare foto, video o audio, ma è stata negata in modo permanente. Si prega di continuare con il menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Archiviazione\".</string>
-  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal richiede l\'autorizzazione alla lettura dei contatti per allegare le informazioni di contatto, ma è stata negata in modo permanente. Si prega di continuare con il menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Contatti\".</string>
-  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal richiede l\'autorizzazione alla geolocalizzazione per allegare una posizione, ma è stata negata in modo permanente. Si prega di continuare con il menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Posizione\".</string>
-  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal richiede l\'autorizzazione all\'uso della fotocamera per scattare foto, ma è stata negata in modo permanente. Si prega di continuare al menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Fotocamera\".</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal richiede l\'autorizzazione all\'accesso della memoria per allegare foto, video o audio, ma questa è stata negata in modo permanente. Si prega di aprire il menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Archiviazione\".</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal richiede l\'autorizzazione alla lettura dei contatti per allegare le informazioni di contatto, ma questa è stata negata in modo permanente. Si prega di aprire il menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Contatti\".</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal richiede l\'autorizzazione alla geolocalizzazione per allegare una posizione, ma questa è stata negata in modo permanente. Si prega di aprire il menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Posizione\".</string>
+  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal richiede l\'autorizzazione all\'uso della fotocamera per scattare foto, ma questa è stata negata in modo permanente. Si prega di aprire il menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Fotocamera\".</string>
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">Caricamento media...</string>
   <!--AudioSlidePlayer-->
@@ -1332,7 +1332,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Hai sbagliato il PIN di blocco registrazione troppe volte. Per favore riprova tra un giorno.</string>
   <string name="RegistrationActivity_error_connecting_to_service">Errore durante la connessione al servizio</string>
   <string name="RegistrationActivity_oh_no">Oh no!</string>
-  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">La registrazione di questo numero di telefono sarà possibile senza il PIN di blocco della registrazione dopo che saranno trascorsi 7 giorni da quando questo numero di telefono è stato attivo su Signal. Hai %d giorni rimanenti.</string>
+  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">La registrazione di questo numero di telefono sarà possibile senza il PIN di blocco della registrazione dopo che saranno trascorsi 7 giorni dall\'ultima volta in cui questo numero di telefono è stato attivo su Signal. Hai %d giorni rimanenti.</string>
   <string name="RegistrationActivity_registration_lock_pin">PIN di blocco registrazione</string>
   <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Questo numero di telefono ha il blocco registrazione attivo. Per favore inserisci il PIN di blocco registrazione.</string>
   <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Il PIN di blocco registrazione è abilitato sul tuo numero di telefono. Per aiutarti a memorizzarlo Signal ti chiederà periodicamente di confermarlo.</string>
@@ -1341,7 +1341,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Il blocco registrazione aiuta a proteggere il tuo numero di telefono da tentativi non autorizzati di registrazione. Questa funzionalità può essere disabilitata in ogni momento dalle impostazioni Privacy di Signal</string>
   <string name="RegistrationLockDialog_registration_lock">Blocco registrazione</string>
   <string name="RegistrationLockDialog_enable">Abilita</string>
-  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">.Il PIN di blocco registrazione deve essere almeno di 4 cifre</string>
+  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">Il PIN di blocco registrazione deve essere almeno di 4 cifre.</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">I due PIN inseriti non corrispondono.</string>
   <string name="RegistrationLockDialog_error_connecting_to_the_service">Errore durante la connessione al servizio</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">Disabilitare PIN di blocco registrazione?</string>

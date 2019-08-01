@@ -169,7 +169,7 @@
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">На вашем устройстве нет приложения для открытия этой ссылки.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Для отправки аудиосообщений разрешите Signal доступ к микрофону.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal требуется разрешение на доступ к микрофону для отправки аудиосообщений, но оно было вами отклонено. Пожалуйста, перейдите в Настройки, выберите «Приложения», найдите Signal, затем выберите «Разрешения» и включите «Микрофон».</string>
-  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Чтобы позвонить %s, Signal требуется доступ к вашему микрофону и камере.</string>
+  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Чтобы позвонить %s, Signal необходим доступ к вашим микрофону и камере.</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal требуются разрешения на доступ к микрофону и камере для звонка %s, но они были вами отклонены. Пожалуйста, перейдите в Настройки, выберите «Приложения», найдите Signal, затем выберите «Разрешения» и включите «Микрофон» и «Камера».</string>
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Для создания фото и видео разрешите Signal доступ к камере.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal требуется разрешение на доступ к камере, чтобы снимать фото или видео, но оно было вами отклонено. Пожалуйста, перейдите в Настройки, выберите «Приложения», найдите Signal, затем выберите «Разрешения» и включите «Камера».</string>
@@ -281,7 +281,7 @@
   <string name="CreateProfileActivity_too_long">Слишком длинно</string>
   <string name="CreateProfileActivity_profile_name">Имя профиля</string>
   <string name="CreateProfileActivity_set_up_your_profile">Настройте свой профиль</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Профили Signal защищены сквозным шифрованием, и сервис Signal никогда не имеет доступ к этой информации.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Профили Signal защищены сквозным шифрованием, и сервис Signal никогда не имеет доступа к этой информации.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Пользовательское: %s</string>
   <string name="CustomDefaultPreference_using_default">Используется по умолчанию: %s</string>
@@ -483,10 +483,10 @@
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Вы установили таймер исчезающих сообщений — %1$s.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s установил(-а) таймер исчезающих сообщений на %2$s.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">Ваш код безопасности с %s изменился.</string>
-  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Вы отметили код безопасности с %s как подтвержденный</string>
-  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Вы отметили код безопасности с %s как подтвержденный с другого устройства</string>
-  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Вы отметили код безопасности с %s как неподтвержденный</string>
-  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Вы отметили код безопасности с %s как неподтвержденный с другого устройства</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Вы отметили свой код безопасности с %s как подтвержденный</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Вы отметили свой код безопасности с %s как подтвержденный с другого устройства</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Вы отметили свой код безопасности с %s как неподтвержденный</string>
+  <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Вы отметили свой код безопасности с %s как неподтвержденный с другого устройства</string>
   <!--PassphraseChangeActivity-->
   <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Парольные фразы не совпадают!</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">Неверная старая парольная фраза!</string>
