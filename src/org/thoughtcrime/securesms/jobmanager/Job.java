@@ -175,6 +175,23 @@ public abstract class Job {
       return runtimeException;
     }
 
+    @Override
+    public @NonNull String toString() {
+      switch (resultType) {
+        case SUCCESS:
+        case RETRY:
+          return resultType.toString();
+        case FAILURE:
+          if (runtimeException == null) {
+            return resultType.toString();
+          } else {
+            return "FATAL_FAILURE";
+          }
+      }
+
+      return "UNKNOWN?";
+    }
+
     private enum ResultType {
       SUCCESS, FAILURE, RETRY
     }
