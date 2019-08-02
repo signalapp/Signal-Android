@@ -94,7 +94,7 @@ public class AttachmentUploadJob extends BaseJob {
     DatabaseAttachment         databaseAttachment = database.getAttachment(attachmentId);
 
     if (databaseAttachment == null) {
-      throw new IllegalStateException("Cannot find the specified attachment.");
+      throw new InvalidAttachmentException("Cannot find the specified attachment.");
     }
 
     MediaConstraints mediaConstraints       = MediaConstraints.getPushMediaConstraints();
@@ -132,7 +132,9 @@ public class AttachmentUploadJob extends BaseJob {
    *                           The {@link PartProgressEvent} of this task will fit in the remaining
    *                           1 - progressStartPoint.
    */
-  private SignalServiceAttachment getAttachmentFor(Attachment attachment, @Nullable NotificationController notification, double progressStartPoint) {
+  private @NonNull SignalServiceAttachment getAttachmentFor(Attachment attachment, @Nullable NotificationController notification, double progressStartPoint)
+      throws InvalidAttachmentException
+  {
     try {
       if (attachment.getDataUri() == null || attachment.getSize() == 0) throw new IOException("Assertion failed, outgoing attachment has no data!");
       InputStream is = PartAuthority.getAttachmentStream(context, attachment.getDataUri());
@@ -154,9 +156,8 @@ public class AttachmentUploadJob extends BaseJob {
                                     })
                                     .build();
     } catch (IOException ioe) {
-      Log.w(TAG, "Couldn't open attachment", ioe);
+      throw new InvalidAttachmentException(ioe);
     }
-    return null;
   }
 
   private Attachment scaleAndStripExif(@NonNull AttachmentDatabase attachmentDatabase,
@@ -176,6 +177,16 @@ public class AttachmentUploadJob extends BaseJob {
     return mediaResizer.scaleAndStripExifToDatabase(attachmentDatabase,
                                                     attachment,
                                                     progressListener);
+  }
+
+  private class InvalidAttachmentException extends Exception {
+    InvalidAttachmentException(String message) {
+      super(message);
+    }
+
+    InvalidAttachmentException(Exception e) {
+      super(e);
+    }
   }
 
   public static final class Factory implements Job.Factory<AttachmentUploadJob> {
