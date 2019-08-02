@@ -170,7 +170,7 @@ dependencies {
     testImplementation 'org.robolectric:shadows-multidex:4.2'
 
     // Loki
-    implementation "com.github.loki-project:loki-messenger-android-service:master-SNAPSHOT"
+    implementation "com.github.loki-project:loki-messenger-android-service:dev-SNAPSHOT"
     implementation "org.signal:signal-metadata-android:0.0.3"
     implementation "com.google.protobuf:protobuf-java:2.5.0"
     implementation "com.googlecode.libphonenumber:libphonenumber:8.10.7"
