@@ -5,7 +5,6 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Path;
 import android.graphics.drawable.Drawable;
 import android.provider.ContactsContract;
 import android.util.AttributeSet;
@@ -20,7 +19,6 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
-import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientExporter;
@@ -28,8 +26,9 @@ import org.thoughtcrime.securesms.util.ThemeUtil;
 
 import java.util.Objects;
 
-public class AvatarImageView extends AppCompatImageView {
+public final class AvatarImageView extends AppCompatImageView {
 
+  @SuppressWarnings("unused")
   private static final String TAG = AvatarImageView.class.getSimpleName();
 
   private static final Paint LIGHT_THEME_OUTLINE_PAINT = new Paint();
@@ -100,6 +99,7 @@ public class AvatarImageView extends AppCompatImageView {
       RecipientContactPhoto photo = new RecipientContactPhoto(recipient);
 
       if (!photo.equals(recipientContactPhoto)) {
+        requestManager.clear(this);
         recipientContactPhoto = photo;
 
         Drawable fallbackContactPhotoDrawable = photo.recipient.getFallbackContactPhotoDrawable(getContext(), inverted);
@@ -119,6 +119,7 @@ public class AvatarImageView extends AppCompatImageView {
       setAvatarClickHandler(recipient, quickContactEnabled);
     } else {
       recipientContactPhoto = null;
+      requestManager.clear(this);
       setImageDrawable(unknownRecipientDrawable);
       super.setOnClickListener(listener);
     }
