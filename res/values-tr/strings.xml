@@ -75,6 +75,7 @@
   <string name="CallScreen_Incoming_call">Gelen arama</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Resim kaydedilemedi.</string>
+  <!--CameraXFragment-->
   <!--CameraContacts-->
   <string name="CameraContacts_recent_contacts">Son kişiler</string>
   <string name="CameraContacts_signal_contacts">Signal kişileri</string>
@@ -85,6 +86,7 @@
   <string name="CameraContacts_you_can_only_use_the_camera_button">Kamera tuşunu yalnızca Signal kişilerine fotoğraf göndermek için kullanabilirsiniz.</string>
   <string name="CameraContacts_cant_find_who_youre_looking_for">Aradığınız kişiyi bulamadınız mı?</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">Signal\'e katılması için bir kişiyi davet edin</string>
+  <string name="CameraContacts__menu_search">Ara</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Kaldır</string>
   <string name="ClearProfileActivity_remove_profile_photo">Profil fotoğrafı kaldırılsın mı?</string>
@@ -426,6 +428,7 @@
     <item quantity="one">%d öğeden daha fazlasını paylaşamazsınız.</item>
     <item quantity="other">%d öğeden daha fazlasını paylaşamazsınız.</item>
   </plurals>
+  <string name="MediaSendActivity_select_recipients_description">Alıcıları seçin</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Tüm içerik</string>
   <!--MessageRecord-->
@@ -756,6 +759,11 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="WebRtcCallScreen_end_call">Aramayı sonlandır</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Görüntünüzü etkinleştirmek için dokunun</string>
+  <!--WebRtcCallControls Content Descriptions-->
+  <string name="WebRtcCallControls_contact_photo_description">Kişi fotoğrafı</string>
+  <string name="WebRtcCallControls_speaker_button_description">Hoparlör</string>
+  <string name="WebRtcCallControls_mute_button_description">Sessiz</string>
+  <string name="WebRtcCallControls_answer_call_description">Cevapla</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__audio">Ses</string>
   <string name="attachment_type_selector__audio_description">Ses</string>
@@ -778,6 +786,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="change_passphrase_activity__repeat_new_passphrase">Yeni parolayı tekrarlayın</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">İsim veya numara girin</string>
+  <!--contact_filter_toolbar-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Kişi yok.</string>
   <string name="contact_selection_group_activity__finding_contacts">Kişiler yükleniyor...</string>
@@ -967,8 +976,6 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="recipient_preferences__ringtone">Zil sesi</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal Araması</string>
-  <string name="redphone_call_controls__mute">Sessiz</string>
-  <string name="redphone_call_controls__flip_camera_rear">Kamerayı Değiştir</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">TELEFON NUMARASI</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal mevcut telefon numaranızı ve adres defterinizi kullanarak iletişim kurmayı kolaylaştırır. Zaten sizinle telefon aracılığı ile nasıl iletişim kuracağını bilen arkadaşlarınız ve kişileriniz,sizinle Signal kullanarak kolayca iletişime geçebilecek.\n\nKayıt işlemi, bazı iletişim bilgilerini sunucuya iletir. Bunlar saklanmaz.</string>

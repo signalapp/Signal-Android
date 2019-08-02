@@ -81,8 +81,15 @@
   <string name="CallScreen_Incoming_call">Příchozí hovor</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Nepodařilo se uložit obrázek.</string>
+  <!--CameraXFragment-->
   <!--CameraContacts-->
+  <string name="CameraContacts_recent_contacts">Nedávné kontakty</string>
+  <string name="CameraContacts_signal_contacts">Signal kontakty</string>
+  <string name="CameraContacts_signal_groups">Signal skupiny</string>
+  <string name="CameraContacts_no_signal_contacts">Žádné Signal kontakty</string>
+  <string name="CameraContacts_you_can_only_use_the_camera_button">Pro odeslání obrázků Signal kontaktům můžete použít pouze tlačítko fotoaparátu.</string>
   <string name="CameraContacts_cant_find_who_youre_looking_for">Nemůžete najít, co jste hledali?</string>
+  <string name="CameraContacts__menu_search">Hledat</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Odebrat</string>
   <string name="ClearProfileActivity_remove_profile_photo">Odebrat profilovou fotografii?</string>
@@ -455,6 +462,7 @@
     <item quantity="many">Nemůžete sdílet více než  %d položek.</item>
     <item quantity="other">Nemůžete sdílet více než  %d položek.</item>
   </plurals>
+  <string name="MediaSendActivity_select_recipients_description">Zvolte příjemce</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Všechna media</string>
   <!--MessageRecord-->
@@ -592,6 +600,7 @@ telefonní číslo</string>
   <string name="RegistrationActivity_call">Volat</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_view_photo">Zobrazit fotku</string>
+  <string name="RevealableMessageView_viewed">Zobrazeno</string>
   <string name="RevealableMessageView_photo">Fotografie</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Nepodařilo se uložit změny v obrázku.</string>
@@ -651,6 +660,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="ThreadRecord_missed_call">Zmeškaný hovor</string>
   <string name="ThreadRecord_media_message">Multimediální zpráva</string>
   <string name="ThreadRecord_sticker">Nálepka</string>
+  <string name="ThreadRecord_disappearing_photo">Mizející obrázek</string>
   <string name="ThreadRecord_s_is_on_signal">%s má Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Mizení zpráv je zakázáno</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Čas zmizení zprávy nastaven na %s</string>
@@ -725,6 +735,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="MessageNotifier_mark_read">Označit jako přečtené</string>
   <string name="MessageNotifier_media_message">Multimediální zpráva</string>
   <string name="MessageNotifier_sticker">Nálepka</string>
+  <string name="MessageNotifier_disappearing_photo">Mizející obrázek</string>
   <string name="MessageNotifier_reply">Odpověď</string>
   <string name="MessageNotifier_signal_message">Zpráva Signal</string>
   <string name="MessageNotifier_unsecured_sms">Nezabezpečená SMS</string>
@@ -779,6 +790,11 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="WebRtcCallScreen_end_call">Ukončit hovor</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Ťuknutím povolíte video</string>
+  <!--WebRtcCallControls Content Descriptions-->
+  <string name="WebRtcCallControls_contact_photo_description">Fotografie kontaktu</string>
+  <string name="WebRtcCallControls_speaker_button_description">Nahlas</string>
+  <string name="WebRtcCallControls_mute_button_description">Ztlumit</string>
+  <string name="WebRtcCallControls_answer_call_description">Přijmout hovor</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__audio">Audio</string>
   <string name="attachment_type_selector__audio_description">Audio</string>
@@ -801,6 +817,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="change_passphrase_activity__repeat_new_passphrase">Zopakujte nové heslo</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Zadejte jméno nebo číslo</string>
+  <!--contact_filter_toolbar-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Žádný kontakt</string>
   <string name="contact_selection_group_activity__finding_contacts">Načítám kontakty...</string>
@@ -1004,8 +1021,6 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="recipient_preferences__ringtone">Vyzvánění</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal volání</string>
-  <string name="redphone_call_controls__mute">Ztlumit</string>
-  <string name="redphone_call_controls__flip_camera_rear">Přepnout foťák</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">Telefonní číslo</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal umožňuje snadnou komunikaci použitím vašeho telefonního čísla a kontaktů. Přátelé a ostatní, kteří vědí, jak vás kontaktovat prostřednictvím telefonu, Vás budou moci snadno kontaktovat i pomocí aplikace Signal.\n\nRegistrace odesílá některé kontaktní údaje na server, kde ale nejsou uloženy.</string>

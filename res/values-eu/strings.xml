@@ -75,7 +75,9 @@
   <string name="CallScreen_Incoming_call">Sarrerako dei</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Ezin izan da irudia gorde.</string>
+  <!--CameraXFragment-->
   <!--CameraContacts-->
+  <string name="CameraContacts__menu_search">Bilatu</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Ezabatu</string>
   <string name="ClearProfileActivity_remove_profile_photo">Profileko argazkia ezabatu?</string>
@@ -741,6 +743,11 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="WebRtcCallScreen_end_call">Amaitu deia</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Ukitu zure bideoa gaitzeko</string>
+  <!--WebRtcCallControls Content Descriptions-->
+  <string name="WebRtcCallControls_contact_photo_description">Kontaktuaren argazkia</string>
+  <string name="WebRtcCallControls_speaker_button_description">Bozgorailua</string>
+  <string name="WebRtcCallControls_mute_button_description">Isildu</string>
+  <string name="WebRtcCallControls_answer_call_description">Erantzun deia</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__audio">Audioa</string>
   <string name="attachment_type_selector__audio_description">Audioa</string>
@@ -763,6 +770,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="change_passphrase_activity__repeat_new_passphrase">Errepikatu pasahitz berria</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Idatzi izena edo zenbakia</string>
+  <!--contact_filter_toolbar-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Kontakturik ez.</string>
   <string name="contact_selection_group_activity__finding_contacts">Kontaktuak kargatzen...</string>
@@ -953,8 +961,6 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den zifratu gabeko babeskopi
   <string name="recipient_preferences__ringtone">dei-hots tonua</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal deia</string>
-  <string name="redphone_call_controls__mute">Isildu</string>
-  <string name="redphone_call_controls__flip_camera_rear">Aldatu kamera</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">TELEFONO ZENBAKIA</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signalek komunikatzea erraz bihurtzen du, zure telefono zenbaki eta helbide-liburua erabiliz. Zurekin harremanetan nola jarri dakiten lagunek eta kontaktuek modu errazean egin ahal izango dute Signalen bitartez.\n\nErregistratzeak kontakturako informazioa igortzen du zerbitzarira. Ez da gordetzen.</string>

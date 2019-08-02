@@ -75,6 +75,7 @@
   <string name="CallScreen_Incoming_call">Saapuva puhelu</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Kuvan tallennus epäonnistui.</string>
+  <!--CameraXFragment-->
   <!--CameraContacts-->
   <string name="CameraContacts_recent_contacts">Viimeisimmät yhteystiedot</string>
   <string name="CameraContacts_signal_contacts">Signal-yhteystiedot</string>
@@ -85,6 +86,7 @@
   <string name="CameraContacts_you_can_only_use_the_camera_button">Voit käyttää kamerapainiketta vain valokuvien lähettämiseen Signal -yhteystiedoillesi.</string>
   <string name="CameraContacts_cant_find_who_youre_looking_for">Etkö löydä ketä olet etsimässä?</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">Kutsu yhteystieto Signaliin</string>
+  <string name="CameraContacts__menu_search">Hae</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Poista</string>
   <string name="ClearProfileActivity_remove_profile_photo">Poista profiilikuva?</string>
@@ -426,6 +428,7 @@
     <item quantity="one">Et voi jakaa useampaa kuin %d kappaletta.</item>
     <item quantity="other">Et voi jakaa useampaa kuin %d kappaletta.</item>
   </plurals>
+  <string name="MediaSendActivity_select_recipients_description">Valitse vastaanottajat</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Kaikki media</string>
   <!--MessageRecord-->
@@ -751,6 +754,11 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="WebRtcCallScreen_end_call">Lopeta puhelu</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Käytä video-tilaa napauttamalla</string>
+  <!--WebRtcCallControls Content Descriptions-->
+  <string name="WebRtcCallControls_contact_photo_description">Yhteystiedon kuva</string>
+  <string name="WebRtcCallControls_speaker_button_description">Kaiutin</string>
+  <string name="WebRtcCallControls_mute_button_description">Mykistä</string>
+  <string name="WebRtcCallControls_answer_call_description">Vastaa puheluun</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__audio">Äänitallenne</string>
   <string name="attachment_type_selector__audio_description">Äänitallenne</string>
@@ -773,6 +781,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="change_passphrase_activity__repeat_new_passphrase">Toista uusi salalause</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Syötä nimi tai numero</string>
+  <!--contact_filter_toolbar-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Ei yhteystietoja.</string>
   <string name="contact_selection_group_activity__finding_contacts">Ladataan yhteystietoja…</string>
@@ -962,8 +971,6 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="recipient_preferences__ringtone">Ilmoitusääni</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal-puhelu</string>
-  <string name="redphone_call_controls__mute">Mykistä</string>
-  <string name="redphone_call_controls__flip_camera_rear">Vaihda kameraa</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">PUHELINNUMERO</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal tekee kommunikoinnista helppoa käyttämällä hyödyksi olemassaolevaa puhelinnumeroasi ja yhteystietojasi. Ystäväsi, jotka tuntevat sinut puhelinnumerosi kautta, voivat ottaa sinuun yhteyttä jatkossa myös Signalin kautta.\n\nRekisteröityminen siirtää joitakin yhteystietoja väliaikaisesti palvelimelle. Niitä ei kuitenkaan tallenneta sinne.</string>

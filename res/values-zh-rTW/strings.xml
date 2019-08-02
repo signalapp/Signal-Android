@@ -72,6 +72,7 @@
   <string name="CallScreen_Incoming_call">來電</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">儲存照片失敗。</string>
+  <!--CameraXFragment-->
   <!--CameraContacts-->
   <string name="CameraContacts_recent_contacts">最近的聯絡人</string>
   <string name="CameraContacts_signal_contacts">Signal 聯絡人</string>
@@ -82,6 +83,7 @@
   <string name="CameraContacts_you_can_only_use_the_camera_button">你只能使用相機按鈕將照片傳送到 Signal 聯絡人。</string>
   <string name="CameraContacts_cant_find_who_youre_looking_for">找不到你要找的人？</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">邀請一個聯絡人來使用 Signal </string>
+  <string name="CameraContacts__menu_search">搜尋</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">移除</string>
   <string name="ClearProfileActivity_remove_profile_photo">移除頭像照片？</string>
@@ -407,6 +409,7 @@
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="other">你無法分享超過 %d 個項目。</item>
   </plurals>
+  <string name="MediaSendActivity_select_recipients_description">選擇收件人</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">所有的媒體</string>
   <!--MessageRecord-->
@@ -733,6 +736,11 @@
   <string name="WebRtcCallScreen_end_call">結束通話</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">輕觸開啟你的視訊</string>
+  <!--WebRtcCallControls Content Descriptions-->
+  <string name="WebRtcCallControls_contact_photo_description">聯絡人的相片</string>
+  <string name="WebRtcCallControls_speaker_button_description">揚聲器</string>
+  <string name="WebRtcCallControls_mute_button_description">靜音對話</string>
+  <string name="WebRtcCallControls_answer_call_description">接聽通話</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__audio">音訊</string>
   <string name="attachment_type_selector__audio_description">音訊</string>
@@ -755,6 +763,7 @@
   <string name="change_passphrase_activity__repeat_new_passphrase">重複新密碼</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">輸入名字或號碼</string>
+  <!--contact_filter_toolbar-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">無聯絡人</string>
   <string name="contact_selection_group_activity__finding_contacts">載入聯絡人中…</string>
@@ -937,8 +946,6 @@
   <string name="recipient_preferences__ringtone">鈴聲</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal 通話</string>
-  <string name="redphone_call_controls__mute">靜音</string>
-  <string name="redphone_call_controls__flip_camera_rear">切換相機</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">手機號碼</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal 使用你現在的手機號碼和通訊簿，讓通訊變得簡單。知道如何用手機聯繫你的朋友與聯絡人們，他們會更容易的透過 Signal 與你保持聯絡。\n\n註冊時，會傳輸一些聯絡資訊到伺服器，這些聯絡資訊並不會被儲存。</string>

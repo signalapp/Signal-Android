@@ -68,6 +68,7 @@
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Norint fotografuoti, Signal reikia kameros leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymų meniu, pasirinkite \"Leidimai\" ir įjunkite \"Kamerą\".</string>
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">Įkeliama medija...</string>
+  <string name="AttachmentUploadJob_compressing_video_start">Glaudinamas vaizdo įrašas...</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Klaida atkuriant garso įrašą!</string>
   <!--BlockedContactsActivity-->
@@ -81,6 +82,10 @@
   <string name="CallScreen_Incoming_call">Gaunamasis skambutis</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Nepavyko įrašyti paveikslo</string>
+  <!--CameraXFragment-->
+  <string name="CameraXFragment_capture_description">Fotografuoti</string>
+  <string name="CameraXFragment_change_camera_description">Keisti kamerą</string>
+  <string name="CameraXFragment_open_gallery_description">Atverti galeriją</string>
   <!--CameraContacts-->
   <string name="CameraContacts_recent_contacts">Paskiausi adresatai</string>
   <string name="CameraContacts_signal_contacts">Signal adresatai</string>
@@ -91,6 +96,7 @@
   <string name="CameraContacts_you_can_only_use_the_camera_button">Galite naudoti kameros mygtuką tik tam, kad siųstumėte nuotraukas Signal adresatams.</string>
   <string name="CameraContacts_cant_find_who_youre_looking_for">Nerandate ieškomo žmogaus?</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">Pakvieskite adresatą prisijungti prie Signal</string>
+  <string name="CameraContacts__menu_search">Ieškoti</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Šalinti</string>
   <string name="ClearProfileActivity_remove_profile_photo">Šalinti profilio nuotrauką?</string>
@@ -282,6 +288,7 @@
   <string name="CreateProfileActivity_profile_name">Profilio vardas</string>
   <string name="CreateProfileActivity_set_up_your_profile">Nusistatykite savo profilį</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal profiliai yra užšifruoti ištisiniu būdu, o Signal paslauga niekada neturi prieigos prie šios informacijos.</string>
+  <string name="CreateProfileActivity_set_avatar_description">Nustatyti avatarą</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Naudojamas tinkintas: %s</string>
   <string name="CustomDefaultPreference_using_default">Naudojamas numatytasis: %s</string>
@@ -447,6 +454,7 @@
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Klaida, atsiunčiant MMS žinutę, bakstelėkite, norėdami bandyti dar kartą</string>
   <!--MediaPickerActivity-->
   <string name="MediaPickerActivity_send_to">Siųsti kontaktui %s</string>
+  <string name="MediaPickerActivity__menu_open_camera">Atverti kamerą</string>
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">Bakstelėkite, norėdami pasirinkti</string>
   <!--MediaSendActivity-->
@@ -464,6 +472,7 @@
     <item quantity="many">Jūs negalite bendrinti daugiau nei %d elementų.</item>
     <item quantity="other">Jūs negalite bendrinti daugiau nei %d elementą.</item>
   </plurals>
+  <string name="MediaSendActivity_select_recipients_description">Pasirinkti gavėjus</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Visa medija</string>
   <!--MessageRecord-->
@@ -799,6 +808,15 @@
   <string name="WebRtcCallScreen_end_call">Baigti skambutį</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Bakstelėkite, norėdami įjungti savo vaizdą</string>
+  <!--WebRtcCallControls Content Descriptions-->
+  <string name="WebRtcCallControls_contact_photo_description">Adresato nuotrauka</string>
+  <string name="WebRtcCallControls_speaker_button_description">Garsiakalbis</string>
+  <string name="WebRtcCallControls_bluetooth_button_description">Bluetooth</string>
+  <string name="WebRtcCallControls_mute_button_description">Nutildyti</string>
+  <string name="WebRtcCallControls_your_camera_button_description">Jūsų kamera</string>
+  <string name="WebRtcCallControls_switch_to_rear_camera_button_description">Perjungti į galinę kamerą</string>
+  <string name="WebRtcCallControls_answer_call_description">Atsiliepti į skambutį</string>
+  <string name="WebRtcCallControls_reject_call_description">Atmesti skambutį</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__audio">Garsas</string>
   <string name="attachment_type_selector__audio_description">Garso įrašai</string>
@@ -821,6 +839,10 @@
   <string name="change_passphrase_activity__repeat_new_passphrase">Pakartokite naują slaptafrazę</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Įveskite vardą ar numerį</string>
+  <!--contact_filter_toolbar-->
+  <string name="contact_filter_toolbar__clear_entered_text_description">Išvalyti įvestą tekstą</string>
+  <string name="contact_filter_toolbar__show_keyboard_description">Rodyti klaviatūrą</string>
+  <string name="contact_filter_toolbar__show_dial_pad_description">Rodyti numerio rinkimo klaviatūrą</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Nėra jokių adresatų.</string>
   <string name="contact_selection_group_activity__finding_contacts">Įkeliami adresatai…</string>
@@ -1024,8 +1046,6 @@
   <string name="recipient_preferences__ringtone">Skambučio melodija</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal skambutis</string>
-  <string name="redphone_call_controls__mute">Nutildyti</string>
-  <string name="redphone_call_controls__flip_camera_rear">Perjungti kamerą</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">TELEFONO NUMERIS</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal padaro bendravimą, naudojant jūsų esamą telefono numerį ir adresų knygą, lengvą. Draugai ir adresatai, kurie jau žino kaip susisiekti su jumis telefonu, galės lengvai su jumis susisiekti, naudojant Signal.\n\nRegistracija persiunčia kai kurią kontaktinę informaciją į serverį. Ši informacija nėra kaupiama.</string>
@@ -1245,6 +1265,7 @@
   <string name="conversation_list_batch_archive__menu_archive_selected">Archyvas pasirinktas</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Išarchyvuoti pasirinktus</string>
   <!--conversation_list-->
+  <string name="conversation_list_settings_shortcut">Nustatymų šaukinys</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Adresato nuotraukos paveikslas</string>
   <string name="conversation_list_item_view__archived">Archyvuota</string>
@@ -1252,6 +1273,7 @@
   <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Tuščia. Nieko nėra.\nNieko nepraleidote!</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Naujas pokalbis</string>
+  <string name="conversation_list_fragment__open_camera_description">Atverti kamerą</string>
   <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Pradėkite, bendraudami su draugais.</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Atstatyti saugųjį seansą</string>

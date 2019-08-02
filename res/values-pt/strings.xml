@@ -75,6 +75,7 @@
   <string name="CallScreen_Incoming_call">A receber chamada</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Não foi possível guardar a imagem.</string>
+  <!--CameraXFragment-->
   <!--CameraContacts-->
   <string name="CameraContacts_recent_contacts">Contactos recentes</string>
   <string name="CameraContacts_signal_contacts">Contactos Signal</string>
@@ -85,6 +86,7 @@
   <string name="CameraContacts_you_can_only_use_the_camera_button">Apenas pode utilizar o botão da câmara para enviar fotografias para contactos Signal.</string>
   <string name="CameraContacts_cant_find_who_youre_looking_for">Não consegue encontrar ninguém?</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">Convide um contacto para se juntar ao Signal</string>
+  <string name="CameraContacts__menu_search">Procurar</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Remover</string>
   <string name="ClearProfileActivity_remove_profile_photo">Remover a foto do perfil?</string>
@@ -426,6 +428,7 @@
     <item quantity="one">Não pode partilhar mais do que %d item.</item>
     <item quantity="other">Não pode partilhar mais do que %d itens.</item>
   </plurals>
+  <string name="MediaSendActivity_select_recipients_description">Selecionar destinatários</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Toda a multimédia</string>
   <!--MessageRecord-->
@@ -753,6 +756,11 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="WebRtcCallScreen_end_call">Terminar chamada</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Toque para ligar o vídeo</string>
+  <!--WebRtcCallControls Content Descriptions-->
+  <string name="WebRtcCallControls_contact_photo_description">Foto de contacto</string>
+  <string name="WebRtcCallControls_speaker_button_description">Alta voz</string>
+  <string name="WebRtcCallControls_mute_button_description">Silenciar</string>
+  <string name="WebRtcCallControls_answer_call_description">Atender chamada</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__audio">Áudio</string>
   <string name="attachment_type_selector__audio_description">Áudio</string>
@@ -775,6 +783,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="change_passphrase_activity__repeat_new_passphrase">Repita a frase-passe nova</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Introduza o nome ou número</string>
+  <!--contact_filter_toolbar-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Sem contactos.</string>
   <string name="contact_selection_group_activity__finding_contacts">A carregar contactos…</string>
@@ -964,8 +973,6 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="recipient_preferences__ringtone">Toque</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Chamada do Signal</string>
-  <string name="redphone_call_controls__mute">Silenciar</string>
-  <string name="redphone_call_controls__flip_camera_rear">Mudar de câmera</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">NÚMERO TELEFONE</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">O Signal facilita as suas comunicações, já que utiliza o seu número e a sua lista telefónica já existente. Amigos e contactos que já lhe conseguem ligar por telemóvel vão poder facilmente entrar em contacto consigo pelo Signal.\n\nO registo envia algumas informações de contacto para o servidor. Estas não são armazenadas.</string>

@@ -78,6 +78,7 @@
   <string name="CallScreen_Incoming_call">Dolazni poziv</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Spremanje slike nije uspjelo.</string>
+  <!--CameraXFragment-->
   <!--CameraContacts-->
   <string name="CameraContacts_recent_contacts">Nedavni kontakti</string>
   <string name="CameraContacts_signal_contacts">Signal kontakti</string>
@@ -88,6 +89,7 @@
   <string name="CameraContacts_you_can_only_use_the_camera_button">Okidač kamere možete samo koristiti za slanje fotografija Signal kontaktima.</string>
   <string name="CameraContacts_cant_find_who_youre_looking_for">Niste našli što tražite?</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">Pozovi kontakt da pristupi Signal-u</string>
+  <string name="CameraContacts__menu_search">Traži</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Ukloni</string>
   <string name="ClearProfileActivity_remove_profile_photo">Ukloni profilnu sliku?</string>
@@ -445,6 +447,7 @@
     <item quantity="few">Ne možete dijeliti više od %d stavki.</item>
     <item quantity="other">Ne možete dijeliti više od %dstavki.</item>
   </plurals>
+  <string name="MediaSendActivity_select_recipients_description">Odaberi primatelje</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Svi mediji</string>
   <!--MessageRecord-->
@@ -773,6 +776,11 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="WebRtcCallScreen_end_call">Završi poziv</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Pritisnite da omogućite svoj video</string>
+  <!--WebRtcCallControls Content Descriptions-->
+  <string name="WebRtcCallControls_contact_photo_description">Slika kontakta</string>
+  <string name="WebRtcCallControls_speaker_button_description">Zvučnik</string>
+  <string name="WebRtcCallControls_mute_button_description">Nijemo</string>
+  <string name="WebRtcCallControls_answer_call_description">Prihvati poziv</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__audio">Zvuk</string>
   <string name="attachment_type_selector__audio_description">Zvuk</string>
@@ -795,6 +803,7 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="change_passphrase_activity__repeat_new_passphrase">Ponovite novu lozinku</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Unesite ime ili broj</string>
+  <!--contact_filter_toolbar-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Nema kontakata.</string>
   <string name="contact_selection_group_activity__finding_contacts">Učitavanje kontakata...</string>
@@ -992,8 +1001,6 @@ Uvezi nekriptiranu kopiju. Kompatibilno s \'SMSBackup And Restore\'.</string>
   <string name="recipient_preferences__ringtone">Melodija</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal poziv</string>
-  <string name="redphone_call_controls__mute">Utišaj</string>
-  <string name="redphone_call_controls__flip_camera_rear">Zamijeni kamere</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">TELEFONSKI BROJ</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal olakšava komunikaciju koristeći postojeće telefonske brojeve iz vašeg imenika. Prijatelji i kontakti koji već znaju vaš broj telefona će biti u mogućnosti lako vas kontaktirati putem Signala.\n\nRegistracija šalje neke kontakt podatke na poslužitelj, ali se oni ne spremaju.</string>

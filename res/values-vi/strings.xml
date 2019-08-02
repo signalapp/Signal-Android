@@ -72,6 +72,7 @@
   <string name="CallScreen_Incoming_call">Cuộc gọi đến</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Không thể lưu ảnh.</string>
+  <!--CameraXFragment-->
   <!--CameraContacts-->
   <string name="CameraContacts_recent_contacts">Liên hệ gần đây</string>
   <string name="CameraContacts_signal_contacts">Liên hệ Signal</string>
@@ -82,6 +83,7 @@
   <string name="CameraContacts_you_can_only_use_the_camera_button">Bạn chỉ có thể dùng nút chụp ảnh để gửi ảnh cho các liên hệ Signal.</string>
   <string name="CameraContacts_cant_find_who_youre_looking_for">Không tìm thấy người bạn cần tìm?</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">Mời một liên hệ dùng Signal</string>
+  <string name="CameraContacts__menu_search">Tìm kiếm</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Loại bỏ</string>
   <string name="ClearProfileActivity_remove_profile_photo">Bỏ ảnh đại diện?</string>
@@ -407,6 +409,7 @@
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="other">Bạn không thể chia sẻ quá %d mục.</item>
   </plurals>
+  <string name="MediaSendActivity_select_recipients_description">Chọn người nhận</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Đa phương tiện</string>
   <!--MessageRecord-->
@@ -730,6 +733,11 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <string name="WebRtcCallScreen_end_call">Kết thúc cuộc gọi</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Nhấn để cho phép quay video</string>
+  <!--WebRtcCallControls Content Descriptions-->
+  <string name="WebRtcCallControls_contact_photo_description">Ảnh liên hệ</string>
+  <string name="WebRtcCallControls_speaker_button_description">Loa</string>
+  <string name="WebRtcCallControls_mute_button_description">Im lặng</string>
+  <string name="WebRtcCallControls_answer_call_description">Trả lời cuộc gọi</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__audio">Âm thanh</string>
   <string name="attachment_type_selector__audio_description">Âm thanh</string>
@@ -752,6 +760,7 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <string name="change_passphrase_activity__repeat_new_passphrase">Lặp lại mật khẩu mới</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Điền tên hoặc số</string>
+  <!--contact_filter_toolbar-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Không có liên hệ.</string>
   <string name="contact_selection_group_activity__finding_contacts">Đang tải danh bạ...</string>
@@ -934,8 +943,6 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <string name="recipient_preferences__ringtone">Nhạc chuông</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Cuộc gọi Signal</string>
-  <string name="redphone_call_controls__mute">Im lặng</string>
-  <string name="redphone_call_controls__flip_camera_rear">Chuyển máy ảnh</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">SỐ ĐIỆN THOẠI</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal giúp bạn giao tiếp dễ dàng hơn bằng cách sử dụng số điện thoại và danh bạ của bạn. Bạn bè và liên hệ đã liên lạc với bạn qua điện thoại sẽ dễ dàng sử dụng Signal.\n\nViệc đăng kí sẽ gửi một số dữ liệu đến máy chủ. Dữ liệu này không được lưu.</string>

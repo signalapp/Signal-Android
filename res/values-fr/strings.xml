@@ -75,6 +75,7 @@
   <string name="CallScreen_Incoming_call">Appel entrant</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Échec d’enregistrement de l’image.</string>
+  <!--CameraXFragment-->
   <!--CameraContacts-->
   <string name="CameraContacts_recent_contacts">Contacts récents</string>
   <string name="CameraContacts_signal_contacts">Contacts Signal</string>
@@ -82,6 +83,7 @@
   <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">Vous pouvez partager un maximum de %d conversations.</string>
   <string name="CameraContacts_no_signal_contacts">Aucun contact Signal</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">Inviter un contact à rejoindre Signal</string>
+  <string name="CameraContacts__menu_search">Chercher</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Supprimer</string>
   <string name="ClearProfileActivity_remove_profile_photo">Supprimer la photo de profil ?</string>
@@ -422,6 +424,7 @@
     <item quantity="one">Vous ne pouvez pas partager plus d’%d élément.</item>
     <item quantity="other">Vous ne pouvez pas partager plus de %d éléments.</item>
   </plurals>
+  <string name="MediaSendActivity_select_recipients_description">Sélectionner des destinataires</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Tous les médias</string>
   <!--MessageRecord-->
@@ -744,6 +747,11 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="WebRtcCallScreen_end_call">Raccrocher</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Touchez pour activer votre vidéo</string>
+  <!--WebRtcCallControls Content Descriptions-->
+  <string name="WebRtcCallControls_contact_photo_description">Photo du contact</string>
+  <string name="WebRtcCallControls_speaker_button_description">Haut-parleur</string>
+  <string name="WebRtcCallControls_mute_button_description">Couper le microphone</string>
+  <string name="WebRtcCallControls_answer_call_description">Répondre à l’appel</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__audio">Son</string>
   <string name="attachment_type_selector__audio_description">Son</string>
@@ -766,6 +774,7 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="change_passphrase_activity__repeat_new_passphrase">Répéter la nouvelle phrase de passe</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Saisir un nom ou un numéro</string>
+  <!--contact_filter_toolbar-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Aucun contact.</string>
   <string name="contact_selection_group_activity__finding_contacts">Chargement des contacts…</string>
@@ -955,8 +964,6 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="recipient_preferences__ringtone">Sonnerie</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Appel Signal</string>
-  <string name="redphone_call_controls__mute">Couper</string>
-  <string name="redphone_call_controls__flip_camera_rear">Intervertir les appareils photos</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">NUMÉRO DE TÉLÉPHONE</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal facilite la communication en utilisant vos numéro de téléphone et carnet d’adresses existants. Les amis et contacts qui savent déjà comment vous joindre par téléphone pourront facilement vous contacter avec Signal.\n\nL’inscription transmet des renseignements de contact au serveur. Ils ne sont pas conservés.</string>

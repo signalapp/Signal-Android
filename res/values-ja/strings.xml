@@ -72,12 +72,16 @@
   <string name="CallScreen_Incoming_call">着信</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">画像を保存できませんでした。</string>
+  <!--CameraXFragment-->
   <!--CameraContacts-->
   <string name="CameraContacts_recent_contacts">最近使った連絡先</string>
   <string name="CameraContacts_signal_contacts">Signalの連絡先</string>
   <string name="CameraContacts_signal_groups">Signalのグループ</string>
+  <string name="CameraContacts_select_signal_recipients">Signal上の送信先を選択</string>
   <string name="CameraContacts_no_signal_contacts">Signalの連絡先はありません</string>
+  <string name="CameraContacts_cant_find_who_youre_looking_for">探している人が見つかりませんか？</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">連絡先をSignalへ招待する</string>
+  <string name="CameraContacts__menu_search">検索</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">削除</string>
   <string name="ClearProfileActivity_remove_profile_photo">プロフィール画像を消去しますか？</string>
@@ -389,6 +393,7 @@
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">MMSメッセージのダウンロード中にエラーが発生しました。タップして再試行してください。</string>
   <!--MediaPickerActivity-->
   <string name="MediaPickerActivity_send_to">%sに送信</string>
+  <string name="MediaPickerActivity__menu_open_camera">カメラを開く</string>
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">タップで選択</string>
   <!--MediaSendActivity-->
@@ -397,10 +402,12 @@
   <string name="MediaSendActivity_camera_unavailable">カメラは利用できません。</string>
   <string name="MediaSendActivity_message_to_s">%s へメッセージ</string>
   <string name="MediaSendActivity_message">メッセージ</string>
+  <string name="MediaSendActivity_select_recipients">送信先を選択</string>
   <string name="MediaSendActivity_signal_needs_access_to_your_contacts">連絡先を表示するには、Signalの連絡先へのアクセスを許可してください。</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="other">%d以上のアイテムを共有できません</item>
   </plurals>
+  <string name="MediaSendActivity_select_recipients_description">送信先を選択</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">すべてのメディア</string>
   <!--MessageRecord-->
@@ -719,6 +726,12 @@
   <string name="WebRtcCallScreen_end_call">通話を切る</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">タップして動画を有効にする</string>
+  <!--WebRtcCallControls Content Descriptions-->
+  <string name="WebRtcCallControls_contact_photo_description">連絡先の写真</string>
+  <string name="WebRtcCallControls_speaker_button_description">スピーカー</string>
+  <string name="WebRtcCallControls_bluetooth_button_description">Bluetooth</string>
+  <string name="WebRtcCallControls_mute_button_description">ミュート</string>
+  <string name="WebRtcCallControls_answer_call_description">電話に出る</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__audio">音声</string>
   <string name="attachment_type_selector__audio_description">音声</string>
@@ -741,6 +754,7 @@
   <string name="change_passphrase_activity__repeat_new_passphrase">新しいパスワードを再入力</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">名前もしくは番号を入力</string>
+  <!--contact_filter_toolbar-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">連絡先はありません。</string>
   <string name="contact_selection_group_activity__finding_contacts">連絡先を読み込み中…</string>
@@ -923,8 +937,6 @@
   <string name="recipient_preferences__ringtone">着信音</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal通話</string>
-  <string name="redphone_call_controls__mute">ミュート</string>
-  <string name="redphone_call_controls__flip_camera_rear">カメラを切り替える</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">電話番号</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">コミュニケーションを簡単にするために、Signalはあなたの連絡先の電話番号を活用します。あなたの電話番号を以前から知っている人はSignalを使って簡単にあなたに連絡することができます。\n\n登録を行うと連絡先に関する情報の一部がサーバーに送信されますが、保存はされません。</string>
@@ -1148,6 +1160,7 @@
   <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">ゼロ、何もなし。\n全て既読しました！</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">新しい会話</string>
+  <string name="conversation_list_fragment__open_camera_description">カメラを開く</string>
   <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">友達にメッセージを送って始めましょう！</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">安全なセッションをリセット</string>

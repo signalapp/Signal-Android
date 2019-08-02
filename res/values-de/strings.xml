@@ -62,6 +62,7 @@
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal benötigt die Berechtigung »Kamera« für die Aufnahme von Fotos, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Kamera«.</string>
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">Medieninhalte werden hochgeladen …</string>
+  <string name="AttachmentUploadJob_compressing_video_start">Video wird komprimiert …</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Fehler bei der Audiowiedergabe</string>
   <!--BlockedContactsActivity-->
@@ -75,6 +76,10 @@
   <string name="CallScreen_Incoming_call">Eingehender Anruf</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Speichern des Bildes gescheitert.</string>
+  <!--CameraXFragment-->
+  <string name="CameraXFragment_capture_description">Aufnehmen</string>
+  <string name="CameraXFragment_change_camera_description">Kamera wechseln</string>
+  <string name="CameraXFragment_open_gallery_description">Galerie öffnen</string>
   <!--CameraContacts-->
   <string name="CameraContacts_recent_contacts">Letzte Kontakte</string>
   <string name="CameraContacts_signal_contacts">Signal-Kontakte</string>
@@ -85,6 +90,7 @@
   <string name="CameraContacts_you_can_only_use_the_camera_button">Mit der Kameraschaltfläche kannst du Fotos nur an Signal-Kontakte senden.</string>
   <string name="CameraContacts_cant_find_who_youre_looking_for">Nicht gefunden, wen du suchst?</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">Lade einen Kontakt zu Signal ein</string>
+  <string name="CameraContacts__menu_search">Suchen</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Entfernen</string>
   <string name="ClearProfileActivity_remove_profile_photo">Profilfoto entfernen?</string>
@@ -254,6 +260,7 @@
   <string name="CreateProfileActivity_profile_name">Profilname</string>
   <string name="CreateProfileActivity_set_up_your_profile">Dein Profil einrichten</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal-Profile sind Ende-zu-Ende-verschlüsselt. Der Signal-Dienst hat daher niemals Zugriff auf diese Informationen.</string>
+  <string name="CreateProfileActivity_set_avatar_description">Avatar festlegen</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Benutzerdefiniert: %s</string>
   <string name="CustomDefaultPreference_using_default">Standard: %s</string>
@@ -411,6 +418,7 @@
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Fehler beim Herunterladen der MMS. Für erneuten Versuch antippen.</string>
   <!--MediaPickerActivity-->
   <string name="MediaPickerActivity_send_to">An %s senden</string>
+  <string name="MediaPickerActivity__menu_open_camera">Kamera öffnen</string>
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">Zum Auswählen antippen</string>
   <!--MediaSendActivity-->
@@ -426,6 +434,7 @@
     <item quantity="one">Du kannst nicht mehr als %d Element teilen.</item>
     <item quantity="other">Du kannst nicht mehr als %d Elemente teilen.</item>
   </plurals>
+  <string name="MediaSendActivity_select_recipients_description">Empfänger auswählen</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Alle Medieninhalte</string>
   <!--MessageRecord-->
@@ -746,6 +755,15 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="WebRtcCallScreen_end_call">Anruf beenden</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Zum Aktivieren deiner Videoübertragung antippen</string>
+  <!--WebRtcCallControls Content Descriptions-->
+  <string name="WebRtcCallControls_contact_photo_description">Kontaktbild</string>
+  <string name="WebRtcCallControls_speaker_button_description">Lautsprecher</string>
+  <string name="WebRtcCallControls_bluetooth_button_description">Bluetooth</string>
+  <string name="WebRtcCallControls_mute_button_description">Stummschalten</string>
+  <string name="WebRtcCallControls_your_camera_button_description">Deine Kamera</string>
+  <string name="WebRtcCallControls_switch_to_rear_camera_button_description">Zu hinterer Kamera wechseln</string>
+  <string name="WebRtcCallControls_answer_call_description">Anruf annehmen</string>
+  <string name="WebRtcCallControls_reject_call_description">Anruf ablehnen</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__audio">Audio</string>
   <string name="attachment_type_selector__audio_description">Audio</string>
@@ -768,6 +786,10 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="change_passphrase_activity__repeat_new_passphrase">Neue Passphrase wiederholen</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Name/Nummer eingeben</string>
+  <!--contact_filter_toolbar-->
+  <string name="contact_filter_toolbar__clear_entered_text_description">Texteingabe leeren</string>
+  <string name="contact_filter_toolbar__show_keyboard_description">Tastatur anzeigen</string>
+  <string name="contact_filter_toolbar__show_dial_pad_description">Wähltasten anzeigen</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Keine Kontakte.</string>
   <string name="contact_selection_group_activity__finding_contacts">Kontakte werden geladen …</string>
@@ -957,8 +979,6 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="recipient_preferences__ringtone">Klingelton</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal-Anruf</string>
-  <string name="redphone_call_controls__mute">Stummschalten</string>
-  <string name="redphone_call_controls__flip_camera_rear">Kamera wechseln</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">RUFNUMMER</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal macht Kommunikation einfach, indem es deine bereits bestehende Rufnummer und dein Adressbuch verwendet. Freunde und Kontakte, die bereits deine Rufnummer kennen, können so über Signal leicht mit dir Kontakt aufnehmen.\n\nBeim Registrieren werden einige Kontaktinformationen an den Server übermittelt. Diese werden nicht gespeichert.</string>
@@ -1176,6 +1196,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="conversation_list_batch_archive__menu_archive_selected">Ausgewählte archivieren</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Ausgewählte in Eingang verschieben</string>
   <!--conversation_list-->
+  <string name="conversation_list_settings_shortcut">Einstellungsverknüpfung</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Kontaktbild</string>
   <string name="conversation_list_item_view__archived">Archiviert</string>
@@ -1183,6 +1204,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Nix. Nada. Niente.\nAlles erledigt!</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Neue Unterhaltung</string>
+  <string name="conversation_list_fragment__open_camera_description">Kamera öffnen</string>
   <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Erwecke deinen Posteingang zum Leben. Leg los und schreib einem Freund.</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Verschlüsselung neu starten</string>

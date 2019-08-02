@@ -75,6 +75,7 @@
   <string name="CallScreen_Incoming_call">Inkommande samtal</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Misslyckades med att spara bilden.</string>
+  <!--CameraXFragment-->
   <!--CameraContacts-->
   <string name="CameraContacts_recent_contacts">Senaste kontakter</string>
   <string name="CameraContacts_signal_contacts">Signal-kontakter</string>
@@ -85,6 +86,7 @@
   <string name="CameraContacts_you_can_only_use_the_camera_button">Du kan bara använda kameraknappen för att skicka foton till Signal-kontakter.</string>
   <string name="CameraContacts_cant_find_who_youre_looking_for">Kan du inte hitta den du letar efter?</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">Bjud in en kontakt för att gå med i Signal</string>
+  <string name="CameraContacts__menu_search">Sök</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Ta bort</string>
   <string name="ClearProfileActivity_remove_profile_photo">Ta bort profilbild?</string>
@@ -426,6 +428,7 @@
     <item quantity="one">Du kan inte dela mer än %d objekt.</item>
     <item quantity="other">Du kan inte dela mer än %d objekt.</item>
   </plurals>
+  <string name="MediaSendActivity_select_recipients_description">Välj mottagare</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">All media</string>
   <!--MessageRecord-->
@@ -751,6 +754,11 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="WebRtcCallScreen_end_call">Avsluta samtal</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Tryck för att aktivera video</string>
+  <!--WebRtcCallControls Content Descriptions-->
+  <string name="WebRtcCallControls_contact_photo_description">Kontaktfoto</string>
+  <string name="WebRtcCallControls_speaker_button_description">Högtalare</string>
+  <string name="WebRtcCallControls_mute_button_description">Mikrofon av</string>
+  <string name="WebRtcCallControls_answer_call_description">Svara på samtal</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__audio">Ljud</string>
   <string name="attachment_type_selector__audio_description">Ljud</string>
@@ -773,6 +781,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="change_passphrase_activity__repeat_new_passphrase">Upprepa ny lösenfras</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Ange namn eller nummer</string>
+  <!--contact_filter_toolbar-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Inga kontakter.</string>
   <string name="contact_selection_group_activity__finding_contacts">Läser in kontakter…</string>
@@ -962,8 +971,6 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="recipient_preferences__ringtone">Rington</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal-samtal</string>
-  <string name="redphone_call_controls__mute">Tysta</string>
-  <string name="redphone_call_controls__flip_camera_rear">Byt kamera</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">TELEFONNUMMER</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal gör det lätt att kommunicera genom att använda ditt mobilnummer och din kontaktbok. Vänner och kontakter som redan har ditt nummer kommer lätt kunna kontakta dig med Signal.\n\nRegistreringen skickar viss kontaktinformation till servern. Informationen lagras ej.</string>

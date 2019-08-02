@@ -81,6 +81,7 @@
   <string name="CallScreen_Incoming_call">Prichádzajúce volanie</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Obrázok sa nepodarilo uložiť.</string>
+  <!--CameraXFragment-->
   <!--CameraContacts-->
   <string name="CameraContacts_recent_contacts">Nedávne kontakty</string>
   <string name="CameraContacts_signal_contacts">Kontakty Signal</string>
@@ -91,6 +92,7 @@
   <string name="CameraContacts_you_can_only_use_the_camera_button">Na odoslanie fotiek kontaktom Signal môžete použiť tlačidlo fotoaparátu.</string>
   <string name="CameraContacts_cant_find_who_youre_looking_for">Nenašli ste hľadaný kontakt?</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">Pozvite kontakt, aby použival Signal</string>
+  <string name="CameraContacts__menu_search">Hľadať</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Odstrániť</string>
   <string name="ClearProfileActivity_remove_profile_photo">Odstrániť profilovú fotku?</string>
@@ -464,6 +466,7 @@
     <item quantity="many">Nemôžete zdieľať viac ako %d položiek.</item>
     <item quantity="other">Nemôžete zdieľať viac ako %d položiek.</item>
   </plurals>
+  <string name="MediaSendActivity_select_recipients_description">Vybrať príjemcov</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Všetky médiá</string>
   <!--MessageRecord-->
@@ -798,6 +801,11 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="WebRtcCallScreen_end_call">Ukončiť hovor</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Ťuknutím zapnete video</string>
+  <!--WebRtcCallControls Content Descriptions-->
+  <string name="WebRtcCallControls_contact_photo_description">Fotka kontaktu</string>
+  <string name="WebRtcCallControls_speaker_button_description">Reproduktor</string>
+  <string name="WebRtcCallControls_mute_button_description">Stlmiť</string>
+  <string name="WebRtcCallControls_answer_call_description">Prijať hovor</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__audio">Zvuk</string>
   <string name="attachment_type_selector__audio_description">Zvuk</string>
@@ -820,6 +828,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="change_passphrase_activity__repeat_new_passphrase">Zopakujte nové heslo</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Zadajte meno alebo číslo</string>
+  <!--contact_filter_toolbar-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Žiadne kontakty.</string>
   <string name="contact_selection_group_activity__finding_contacts">Načítavanie kontaktov…</string>
@@ -1023,8 +1032,6 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="recipient_preferences__ringtone">Zvonenie</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal hovor</string>
-  <string name="redphone_call_controls__mute">Stíšiť</string>
-  <string name="redphone_call_controls__flip_camera_rear">Prepnúť kameru</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">TELEFÓNNE ČÍSLO </string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal uľahčuje komunikáciu použitím vášho telefónneho čísla a kontaktov. Vaši priatelia, ktorí už vedia ako sa s vami spojiť cez telefón vás budú môcť ľahko kontaktovať cez Signal.\n\nPočas registrácie sa prenesú niektoré informácie o kontaktoch na server, ktoré sa ďalej neukladajú.</string>

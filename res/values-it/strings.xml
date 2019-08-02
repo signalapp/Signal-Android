@@ -75,6 +75,7 @@
   <string name="CallScreen_Incoming_call">Chiamata in arrivo</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Salvataggio immagine fallito.</string>
+  <!--CameraXFragment-->
   <!--CameraContacts-->
   <string name="CameraContacts_recent_contacts">Contatti recenti</string>
   <string name="CameraContacts_signal_contacts">Contatti Signal</string>
@@ -85,6 +86,7 @@
   <string name="CameraContacts_you_can_only_use_the_camera_button">Puoi solo usare il bottone camera per inviare foto a contatti Signal.</string>
   <string name="CameraContacts_cant_find_who_youre_looking_for">Non riesci a trovare chi stai cercando?</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">Invita un contatto a unirsi a Signal</string>
+  <string name="CameraContacts__menu_search">Cerca</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Elimina</string>
   <string name="ClearProfileActivity_remove_profile_photo">Rimuovere foto profilo?</string>
@@ -427,6 +429,7 @@ I suoi messaggi e le chiamate sono state disabilitate, si prega di provare e ri-
     <item quantity="one">Non puoi condividere più di %d elemento.</item>
     <item quantity="other">Non puoi condividere più di %d elementi.</item>
   </plurals>
+  <string name="MediaSendActivity_select_recipients_description">Seleziona destinatari</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Tutti i file multimediali</string>
   <!--MessageRecord-->
@@ -754,6 +757,11 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="WebRtcCallScreen_end_call">Termina chiamata</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Tocca per abilitare il tuo video</string>
+  <!--WebRtcCallControls Content Descriptions-->
+  <string name="WebRtcCallControls_contact_photo_description">Foto del contatto</string>
+  <string name="WebRtcCallControls_speaker_button_description">Vivavoce</string>
+  <string name="WebRtcCallControls_mute_button_description">Muto</string>
+  <string name="WebRtcCallControls_answer_call_description">Rispondi</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__audio">Audio</string>
   <string name="attachment_type_selector__audio_description">Audio</string>
@@ -776,6 +784,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="change_passphrase_activity__repeat_new_passphrase">Ripeti la nuova password</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Inserisci nome o numero</string>
+  <!--contact_filter_toolbar-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Nessun contatto.</string>
   <string name="contact_selection_group_activity__finding_contacts">Caricamento contatti...</string>
@@ -965,8 +974,6 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="recipient_preferences__ringtone">Suoneria</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Chiamata Signal</string>
-  <string name="redphone_call_controls__mute">Togli l\'audio</string>
-  <string name="redphone_call_controls__flip_camera_rear">Cambia fotocamera</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">NUMERO DI TELEFONO</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal rende facile comunicare usando il tuo numero di telefono e la tua rubrica. Gli amici e i contatti che sanno già come chiamarti per telefono potranno mettersi in contatto facilmente con Signal.\n\nLa registrazione trasmette alcune informazioni di contatto al sever. Non vengono salvate.</string>

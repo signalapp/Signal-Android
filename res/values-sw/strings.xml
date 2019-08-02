@@ -60,7 +60,9 @@
   <string name="CallScreen_Incoming_call">Simu inaingia</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">imeshindikana kuhifadhi picha</string>
+  <!--CameraXFragment-->
   <!--CameraContacts-->
+  <string name="CameraContacts__menu_search">Tafuta</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Ondoa</string>
   <string name="ClearProfileActivity_remove_profile_photo">Ondoa picha ya faili</string>
@@ -566,6 +568,10 @@ nambari yako ya simu</string>
   <string name="WebRtcCallScreen_end_call">mwisho wa kuongea na simu</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">gusa kuwezesha video yako</string>
+  <!--WebRtcCallControls Content Descriptions-->
+  <string name="WebRtcCallControls_contact_photo_description">wasiliana na picha</string>
+  <string name="WebRtcCallControls_mute_button_description">zima kwa siri</string>
+  <string name="WebRtcCallControls_answer_call_description">kupokea simu</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__audio">Sauti</string>
   <string name="attachment_type_selector__audio_description">Sauti</string>
@@ -588,6 +594,7 @@ nambari yako ya simu</string>
   <string name="change_passphrase_activity__repeat_new_passphrase">rudia passphrase mpya</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">ingiza jina au namba</string>
+  <!--contact_filter_toolbar-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">hakuna anwani</string>
   <string name="contact_selection_group_activity__finding_contacts">kupakia mawasiliano</string>
@@ -733,8 +740,6 @@ nambari yako ya simu</string>
   <string name="recipient_preferences__ringtone">muito</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">wito wa Signal</string>
-  <string name="redphone_call_controls__mute">zima kwa siri</string>
-  <string name="redphone_call_controls__flip_camera_rear">kubadili kamera</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">namba ya simu</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal inafanya kuwa rahisi kuwasiliana kwa kutumia nambari yako ya simu iliyopo na kitabu cha anwani. Marafiki na washirika ambao tayari wanajua jinsi ya kuwasiliana na wewe kwa simu wataweza kuwasiliana kwa urahisi na Signal. \ N \ nUsaili inatuma maelezo ya mawasiliano kwenye seva. Haihifadhiwa.</string>

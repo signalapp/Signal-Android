@@ -68,7 +68,9 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">အဝင်ဖုန်း​</string>
   <!--CameraActivity-->
+  <!--CameraXFragment-->
   <!--CameraContacts-->
+  <string name="CameraContacts__menu_search">ရှာရန်</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">ဖယ်ရှားသည် </string>
   <string name="ClearProfileActivity_remove_profile_photo">ဓါတ်ပုံ ဖယ်ရှားမှာလား ?</string>
@@ -616,6 +618,11 @@
   <string name="WebRtcCallScreen_end_call">ဖုန်းချမည်</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">ဗီဒီယိုဖွင့်လို့ရရန် နှိပ်ပါ</string>
+  <!--WebRtcCallControls Content Descriptions-->
+  <string name="WebRtcCallControls_contact_photo_description">လိပ်စာပါ ဓာတ်ပုံ</string>
+  <string name="WebRtcCallControls_speaker_button_description">စပီကာ </string>
+  <string name="WebRtcCallControls_mute_button_description">အသံတိတ်ထားမည်</string>
+  <string name="WebRtcCallControls_answer_call_description">ဖုန်းကိုင်မည်</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__audio">အသံ</string>
   <string name="attachment_type_selector__audio_description">အသံ</string>
@@ -638,6 +645,7 @@
   <string name="change_passphrase_activity__repeat_new_passphrase">စကားဝှက်အသစ်ကိုထပ်ထည့်ပါ</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">နာမည် သို့မဟုတ် နံပါတ်ထည့်ပါ</string>
+  <!--contact_filter_toolbar-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">လိပ်စာများ မရှိ။</string>
   <string name="contact_selection_group_activity__finding_contacts">လိပ်စာများ ရှာဖွေနေသည် ...</string>
@@ -804,8 +812,6 @@
   <string name="recipient_preferences__ringtone">ဖုန်းသံစဉ်များ</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal ခေါ်ဆိုမှု</string>
-  <string name="redphone_call_controls__mute">အသံပိတ်သည်</string>
-  <string name="redphone_call_controls__flip_camera_rear">ကင်မရာ၏ ဦးတည်ရာကို ပြောင်းလဲမည်</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">ဖုန်းနံပါတ်</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal သည် သင့်လက်ရှိဖုန်းနံပါတ် နှင့် လိပ်စာစာအုပ်ကို အသုံးပြု၍ ဆက်သွယ်နိုင်စေသည်။ သင့်ဖုန်းနံပါတ်နှင့်ဆက်သွယ်မှုရှိသည့် မိတ်ဆွေများနှင့် လူများသည် Signal ဖြင့် သင့်ကို အလွယ်တကူဆက်သွယ်နိုင်ပါသည်။ \n\nစာရင်းသွင်းခြင်း ကသင့်အဆက်အသွယ်များ၏အချက်အလက်ကို ဆာဗာသို့ ပေးပို့သည်။ သိမ်းဆည်းထားခြင်းမရှိပါ။ </string>

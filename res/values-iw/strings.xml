@@ -81,6 +81,7 @@
   <string name="CallScreen_Incoming_call">שיחה נכנסת</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">נכשל בשמירת תמונה.</string>
+  <!--CameraXFragment-->
   <!--CameraContacts-->
   <string name="CameraContacts_recent_contacts">אנשי קשר אחרונים</string>
   <string name="CameraContacts_signal_contacts">אנשי קשר של Signal</string>
@@ -91,6 +92,7 @@
   <string name="CameraContacts_you_can_only_use_the_camera_button">אתה יכול להשתמש רק בכפתור המצלמה כדי לשלוח תצלומים אל אנשי קשר של Signal.</string>
   <string name="CameraContacts_cant_find_who_youre_looking_for">אינך מוצא מה שאתה מחפש?</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">הזמן איש קשר להצטרף אל Signal</string>
+  <string name="CameraContacts__menu_search">חיפוש</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">הסר</string>
   <string name="ClearProfileActivity_remove_profile_photo">להסיר תצלום פרופיל?</string>
@@ -464,6 +466,7 @@
     <item quantity="many">אינך יכול לשתף יותר מ־%d פריטים.</item>
     <item quantity="other">אינך יכול לשתף יותר מ־%d פריטים.</item>
   </plurals>
+  <string name="MediaSendActivity_select_recipients_description">בחר מקבלים</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">כל המדיה</string>
   <!--MessageRecord-->
@@ -793,6 +796,11 @@
   <string name="WebRtcCallScreen_end_call">סיים שיחה</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">הקש כדי לאפשר את הוידיאו שלך</string>
+  <!--WebRtcCallControls Content Descriptions-->
+  <string name="WebRtcCallControls_contact_photo_description">תצלום איש קשר</string>
+  <string name="WebRtcCallControls_speaker_button_description">רמקול</string>
+  <string name="WebRtcCallControls_mute_button_description">השתק</string>
+  <string name="WebRtcCallControls_answer_call_description">ענה לשיחה</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__audio">שמע</string>
   <string name="attachment_type_selector__audio_description">שמע</string>
@@ -815,6 +823,7 @@
   <string name="change_passphrase_activity__repeat_new_passphrase">חזור על משפט סיסמה חדש</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">הכנס שם או מספר</string>
+  <!--contact_filter_toolbar-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">אין אנשי קשר.</string>
   <string name="contact_selection_group_activity__finding_contacts">טוען אנשי קשר...</string>
@@ -1018,8 +1027,6 @@
   <string name="recipient_preferences__ringtone">צלצול</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">שיחת Signal</string>
-  <string name="redphone_call_controls__mute">השתק</string>
-  <string name="redphone_call_controls__flip_camera_rear">החלף מצלמות</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">מספר טלפון</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal מסייע לתקשר ע\"י שימוש במספר הטלפון ובפנקס הכתובות הקיימים שלך. חברים ואנשי קשר שיודעים כבר איך ליצור איתך קשר בטלפון, יוכלו לשמור על קשר בקלות ב־Signal.\n\nרישום משדר מידע מסוים של אנשי קשר אל השרת. הוא לא מאוחסן.</string>

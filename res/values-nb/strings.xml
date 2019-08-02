@@ -75,6 +75,7 @@
   <string name="CallScreen_Incoming_call">Inngående samtale</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Kunne ikke lagre bildet.</string>
+  <!--CameraXFragment-->
   <!--CameraContacts-->
   <string name="CameraContacts_recent_contacts">Nylige kontakter</string>
   <string name="CameraContacts_signal_contacts">Signal kontakter</string>
@@ -85,6 +86,7 @@
   <string name="CameraContacts_you_can_only_use_the_camera_button">Du kan bare bruke kameraknappen til å sende bilder til Signal kontakter.</string>
   <string name="CameraContacts_cant_find_who_youre_looking_for">Finner du ikke den du leter etter?</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">Inviter en kontakt for å bli med i Signal</string>
+  <string name="CameraContacts__menu_search">Søk</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Fjern</string>
   <string name="ClearProfileActivity_remove_profile_photo">Fjerne profilbilde?</string>
@@ -426,6 +428,7 @@
     <item quantity="one">Du kan ikke dele mer enn %d fil.</item>
     <item quantity="other">Du kan ikke dele mer enn %d filer.</item>
   </plurals>
+  <string name="MediaSendActivity_select_recipients_description">Velg mottakere</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Alle medier</string>
   <!--MessageRecord-->
@@ -752,6 +755,11 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="WebRtcCallScreen_end_call">Avslutt samtale</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Trykk for å ta i bruk video</string>
+  <!--WebRtcCallControls Content Descriptions-->
+  <string name="WebRtcCallControls_contact_photo_description">Kontaktfoto</string>
+  <string name="WebRtcCallControls_speaker_button_description">Høyttaler</string>
+  <string name="WebRtcCallControls_mute_button_description">Demp</string>
+  <string name="WebRtcCallControls_answer_call_description">Svar på anrop</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__audio">Lyd</string>
   <string name="attachment_type_selector__audio_description">Lyd</string>
@@ -774,6 +782,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="change_passphrase_activity__repeat_new_passphrase">Gjenta ny passord</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Skriv inn navn eller nummer</string>
+  <!--contact_filter_toolbar-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">ingen kontakter.</string>
   <string name="contact_selection_group_activity__finding_contacts">Laster inn kontakter …</string>
@@ -964,8 +973,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="recipient_preferences__ringtone">Ringetone</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal-samtale</string>
-  <string name="redphone_call_controls__mute">Demp</string>
-  <string name="redphone_call_controls__flip_camera_rear">Bytt kamera</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">TELEFONNUMMER</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal gjør det enkelt å kommunisere ved å bruke telefonnummeret og adresseboka du allerede har. Venner og kontakter som allerede vet hvordan de kontakter deg via telefon kan enkelt ta kontakt via Signal.\n\nRegistrering overfører noe kontaktinformasjon til Signal-tjeneren. Dette blir ikke lagret.</string>

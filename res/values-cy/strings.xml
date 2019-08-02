@@ -81,6 +81,7 @@
   <string name="CallScreen_Incoming_call">Galwad i mewn</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Methu cadw delwedd</string>
+  <!--CameraXFragment-->
   <!--CameraContacts-->
   <string name="CameraContacts_recent_contacts">Cysylltiadau diweddar</string>
   <string name="CameraContacts_signal_contacts">Cysylltiadau Signal</string>
@@ -91,6 +92,7 @@
   <string name="CameraContacts_you_can_only_use_the_camera_button">Gallwch ddefnyddio botwm y camera dim ond i anfon lluniau i gysylltiadau Signal.</string>
   <string name="CameraContacts_cant_find_who_youre_looking_for">Methu canfod y person rydych yn chwilio amdani/o</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">Gwahodd cysylltiad i ymuno â Signal</string>
+  <string name="CameraContacts__menu_search">Chwilio</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Tynnu</string>
   <string name="ClearProfileActivity_remove_profile_photo">Tynnu\'r llun proffil?</string>
@@ -466,6 +468,7 @@ Send neges heb ei ddiogelu?</string>
     <item quantity="many">Nid oes modd rhannu mwy na %d eitem.</item>
     <item quantity="other">Nid oes modd rhannu mwy na %d eitem.</item>
   </plurals>
+  <string name="MediaSendActivity_select_recipients_description">Dewis derbynwyr</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Pob cyfrwng</string>
   <!--MessageRecord-->
@@ -795,6 +798,10 @@ Send neges heb ei ddiogelu?</string>
   <string name="WebRtcCallScreen_end_call">Gorffen galwad</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Tapio i alluog\'ch fideo</string>
+  <!--WebRtcCallControls Content Descriptions-->
+  <string name="WebRtcCallControls_contact_photo_description">Llun cyswllt</string>
+  <string name="WebRtcCallControls_mute_button_description">Tewi</string>
+  <string name="WebRtcCallControls_answer_call_description">Ateb galwad</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__audio">Sain</string>
   <string name="attachment_type_selector__audio_description">Sain</string>
@@ -817,6 +824,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="change_passphrase_activity__repeat_new_passphrase">Aildeipio\'r cyfrinair newydd</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Rhowch enw neu rif</string>
+  <!--contact_filter_toolbar-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Dim cysylltiadau.</string>
   <string name="contact_selection_group_activity__finding_contacts">Llwytho cysylltiadau...</string>
@@ -1020,8 +1028,6 @@ Send neges heb ei ddiogelu?</string>
   <string name="recipient_preferences__ringtone">Tôn canu</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Galwad Signal</string>
-  <string name="redphone_call_controls__mute">Tewi</string>
-  <string name="redphone_call_controls__flip_camera_rear">Newid Camera</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">RHIF FFÔN</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Mae Signal yn ei gwneud hi\'n hawdd i gyfathrebu trwy ddefnyddio\'ch rhif ffôn a\'ch llyfr cyfeiriadau. Bydd cyfeillion a chysylltiadau sydd eisoes yn gwybod sut i gysylltu â chi dros y ffôn yn gallu cysylltu â Signal yn rhwydd.\n\nMae cofrestru\'n trosglwyddo peth gwybodaeth cyswllt i\'r gweinydd. Nid yw\'n cael ei gadw.</string>

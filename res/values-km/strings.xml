@@ -71,7 +71,9 @@
   <string name="CallScreen_Incoming_call">ការហៅចូល</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">បរាជ័យការរក្សារូបភាព</string>
+  <!--CameraXFragment-->
   <!--CameraContacts-->
+  <string name="CameraContacts__menu_search">ស្វែងរក</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">លុបចេញ</string>
   <string name="ClearProfileActivity_remove_profile_photo">លុបរូបថតប្រវត្តិរូប?</string>
@@ -708,6 +710,11 @@
   <string name="WebRtcCallScreen_end_call">បញ្ចប់ការហៅ</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">ចុច ដើម្បីបើកវីដេអូរបស់អ្នក</string>
+  <!--WebRtcCallControls Content Descriptions-->
+  <string name="WebRtcCallControls_contact_photo_description">រូបភាពទំនាក់ទំនង</string>
+  <string name="WebRtcCallControls_speaker_button_description">បំពងសំឡេង</string>
+  <string name="WebRtcCallControls_mute_button_description">បិទសំឡេង</string>
+  <string name="WebRtcCallControls_answer_call_description">ទទួលការហៅ</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__audio">សំឡេង</string>
   <string name="attachment_type_selector__audio_description">សំឡេង</string>
@@ -730,6 +737,7 @@
   <string name="change_passphrase_activity__repeat_new_passphrase">ឃ្លាសម្ងាត់ថ្មីម្តងទៀត</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">បញ្ចូលឈ្មោះ និងលេខទូរស័ព្ទ</string>
+  <!--contact_filter_toolbar-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">គ្មានបញ្ជីលេខទំនាក់ទំនង។</string>
   <string name="contact_selection_group_activity__finding_contacts">កំពុងផ្ទុកបញ្ជីទំនាក់ទំនង...</string>
@@ -912,8 +920,6 @@
   <string name="recipient_preferences__ringtone">សំឡេងរោទិ៍</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">ការហៅSignal</string>
-  <string name="redphone_call_controls__mute">បិទសំឡេង</string>
-  <string name="redphone_call_controls__flip_camera_rear">ផ្លាស់ប្តូរកាមេរ៉ា</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">លេខទូរស័ព្ទ</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal បានធ្វើឲ្យការទំនាក់ទំនងងាយស្រួល ដោយប្រើប្រាស់លេខទូរស័ព្ទ និងបញ្ជីទំនាក់ទំនងរបស់អ្នក។ មិត្តភក្តិ និងលេខទំនាក់ទំនង ដែលដឹងពីរបៀបទាក់ទងអ្នកតាមលេខទូរស័ព្ទ គឺអាចទាក់ទងអ្នក យ៉ាងងាយស្រួលតាម Signal.\n\nការចុះឈ្មោះ នឹងបញ្ជូនព័ត៌មានទំនាក់ទំនងមួយចំនួនទៅកាន់ម៉ាស៊ីនមេ។ តែវាមិនរក្សាទុកអ្វីឡើយ។</string>

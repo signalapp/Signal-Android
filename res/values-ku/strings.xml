@@ -74,7 +74,9 @@
   <string name="CallScreen_Incoming_call">Banga tê</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Tomarkirina wêne têk çû.</string>
+  <!--CameraXFragment-->
   <!--CameraContacts-->
+  <string name="CameraContacts__menu_search">Lê bigere</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Rake</string>
   <string name="ClearProfileActivity_remove_profile_photo">Bila wêneyê profîlê were rakirin?</string>
@@ -685,6 +687,10 @@
   <string name="WebRtcCallScreen_end_call">Bangê biqedîne</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Ji bo vîdyoya xwe çalak bikî bitepîne</string>
+  <!--WebRtcCallControls Content Descriptions-->
+  <string name="WebRtcCallControls_contact_photo_description">Wêneyê berdengî</string>
+  <string name="WebRtcCallControls_mute_button_description">Bêdengkirin</string>
+  <string name="WebRtcCallControls_answer_call_description">Bangê bibersivîne</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__audio">Deng</string>
   <string name="attachment_type_selector__audio_description">Deng</string>
@@ -707,6 +713,7 @@
   <string name="change_passphrase_activity__repeat_new_passphrase">Şifreya nû dubare bikin</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Navek an hejmarek binivîse</string>
+  <!--contact_filter_toolbar-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Berdeng tune ne</string>
   <string name="contact_selection_group_activity__finding_contacts">Berdeng tên barkirin...</string>
@@ -892,8 +899,6 @@
   <string name="recipient_preferences__ringtone">Dengê zengilê</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Gaziya Signalê</string>
-  <string name="redphone_call_controls__mute">Bêdengkirin</string>
-  <string name="redphone_call_controls__flip_camera_rear">Kamera ya din bikarbînin</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">HEJMARA TELEFONÊ</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Bi Signal ê ragihandin hêsan e. Ew hejmara telefon û pirtûka navnîşana te bikartîne. Heval û têkiliyên te yên ku jixwe dizanin ku wê çawa bi telefonê li te bigerin wê karibin bi rehetî bi Signal ê bi te re têkiliyê deynin.\n\nKiryara tomarbûnê hinek agahî dişîne rajekarê, lê ew vê depo nake.</string>

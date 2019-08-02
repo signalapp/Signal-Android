@@ -75,7 +75,9 @@
   <string name="CallScreen_Incoming_call">Thirrje ardhëse</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">S\’u arrit të ruhej figura.</string>
+  <!--CameraXFragment-->
   <!--CameraContacts-->
+  <string name="CameraContacts__menu_search">Kërko</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Hiqe</string>
   <string name="ClearProfileActivity_remove_profile_photo">Të hiqet foto profili?</string>
@@ -737,6 +739,11 @@
   <string name="WebRtcCallScreen_end_call">Përfundoje thirrjen</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Prekeni që të aktivizoni videon tuaj</string>
+  <!--WebRtcCallControls Content Descriptions-->
+  <string name="WebRtcCallControls_contact_photo_description">Foto kontakti</string>
+  <string name="WebRtcCallControls_speaker_button_description">Altoparlant</string>
+  <string name="WebRtcCallControls_mute_button_description">Heshtoje</string>
+  <string name="WebRtcCallControls_answer_call_description">Përgjigju thirrjes</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__audio">Audio</string>
   <string name="attachment_type_selector__audio_description">Audio</string>
@@ -759,6 +766,7 @@
   <string name="change_passphrase_activity__repeat_new_passphrase">Përsëritni frazëkalimin e ri</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Jepni emër ose numër</string>
+  <!--contact_filter_toolbar-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">S\’ka kontakte.</string>
   <string name="contact_selection_group_activity__finding_contacts">Po ngarkohen kontakte…</string>
@@ -948,8 +956,6 @@
   <string name="recipient_preferences__ringtone">Zile</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Thirrje përmes Signal-i</string>
-  <string name="redphone_call_controls__mute">Heshtoje</string>
-  <string name="redphone_call_controls__flip_camera_rear">Ndërroni Kamera</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">NUMËR TELEFONI</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal e bën të lehtë të komunikoni duke përdorur numrin tuaj ekzistues të telefonit dhe librin e adresave. Shokë dhe kontakte, që dinë tashmë si të lidhen me ju përmes telefonit, do të jenë në gjendje të lidhen me ju lehtësisht përmes Signal-it.\n\nRegjistrimi transmeton te shërbyesi disa të dhëna kontakti. Të cilat nuk depozitohen.</string>
