@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.jobs;
 
 import android.content.Context;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 
@@ -16,7 +17,7 @@ import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.RecipientDatabase.UnidentifiedAccessMode;
-import org.thoughtcrime.securesms.dependencies.InjectableType;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
@@ -46,17 +47,13 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.inject.Inject;
-
-public class PushMediaSendJob extends PushSendJob implements InjectableType {
+public class PushMediaSendJob extends PushSendJob {
 
   public static final String KEY = "PushMediaSendJob";
 
   private static final String TAG = PushMediaSendJob.class.getSimpleName();
 
   private static final String KEY_MESSAGE_ID = "message_id";
-
-  @Inject SignalServiceMessageSender messageSender;
 
   private long messageId;
 
@@ -72,6 +69,10 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
   @WorkerThread
   public static void enqueue(@NonNull Context context, @NonNull JobManager jobManager, long messageId, @NonNull Address destination) {
     try {
+      if (!destination.isPhone()) {
+        throw new AssertionError();
+      }
+
       MmsDatabase          database    = DatabaseFactory.getMmsDatabase(context);
       OutgoingMediaMessage message     = database.getOutgoingMessage(messageId);
       List<Attachment>     attachments = new LinkedList<>();
@@ -80,7 +81,7 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
       attachments.addAll(Stream.of(message.getLinkPreviews()).filter(p -> p.getThumbnail().isPresent()).map(p -> p.getThumbnail().get()).toList());
       attachments.addAll(Stream.of(message.getSharedContacts()).filter(c -> c.getAvatar() != null).map(c -> c.getAvatar().getAttachment()).withoutNulls().toList());
 
-      List<AttachmentUploadJob> attachmentJobs = Stream.of(attachments).map(a -> new AttachmentUploadJob(((DatabaseAttachment) a).getAttachmentId())).toList();
+      List<AttachmentUploadJob> attachmentJobs = Stream.of(attachments).map(a -> AttachmentUploadJob.fromAttachment((DatabaseAttachment) a)).toList();
 
       if (attachmentJobs.isEmpty()) {
         jobManager.add(new PushMediaSendJob(messageId, destination));
@@ -163,6 +164,13 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
         expirationManager.scheduleDeletion(messageId, true, message.getExpiresIn());
       }
 
+      if (message.getRevealDuration() > 0) {
+        database.markRevealStarted(messageId);
+        ApplicationContext.getInstance(context)
+                          .getRevealableMessageManager()
+                          .scheduleIfNecessary();
+      }
+
       log(TAG, "Sent message: " + messageId);
 
     } catch (InsecureFallbackApprovalException ifae) {
@@ -197,10 +205,19 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
       throw new UndeliverableMessageException("No destination address.");
     }
 
+    final Address destination = message.getRecipient().getAddress();
+
+    if (!destination.isPhone()) {
+      if (destination.isEmail()) throw new UndeliverableMessageException("Not e164, is email");
+      if (destination.isGroup()) throw new UndeliverableMessageException("Not e164, is group");
+      throw new UndeliverableMessageException("Not e164, unknown");
+    }
+
     try {
       rotateSenderCertificateIfNecessary();
 
-      SignalServiceAddress                       address            = getPushAddress(message.getRecipient().getAddress());
+      SignalServiceMessageSender                 messageSender      = ApplicationDependencies.getSignalServiceMessageSender();
+      SignalServiceAddress                       address            = getPushAddress(destination);
       List<Attachment>                           attachments        = Stream.of(message.getAttachments()).filterNot(Attachment::isSticker).toList();
       List<SignalServiceAttachment>              serviceAttachments = getAttachmentPointersFor(attachments);
       Optional<byte[]>                           profileKey         = getProfileKey(message.getRecipient());
@@ -213,6 +230,7 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
                                                                                             .withAttachments(serviceAttachments)
                                                                                             .withTimestamp(message.getSentTimeMillis())
                                                                                             .withExpiration((int)(message.getExpiresIn() / 1000))
+                                                                                            .withMessageTimer((int) message.getRevealDuration() / 1000)
                                                                                             .withProfileKey(profileKey.orNull())
                                                                                             .withQuote(quote.orNull())
                                                                                             .withSticker(sticker.orNull())

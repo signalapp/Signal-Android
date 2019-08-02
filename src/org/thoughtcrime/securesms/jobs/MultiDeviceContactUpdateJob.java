@@ -17,7 +17,7 @@ import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
-import org.thoughtcrime.securesms.dependencies.InjectableType;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
@@ -47,9 +47,7 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.concurrent.TimeUnit;
 
-import javax.inject.Inject;
-
-public class MultiDeviceContactUpdateJob extends BaseJob implements InjectableType {
+public class MultiDeviceContactUpdateJob extends BaseJob {
 
   public static final String KEY = "MultiDeviceContactUpdateJob";
 
@@ -59,8 +57,6 @@ public class MultiDeviceContactUpdateJob extends BaseJob implements InjectableTy
 
   private static final String KEY_ADDRESS    = "address";
   private static final String KEY_FORCE_SYNC = "force_sync";
-
-  @Inject SignalServiceMessageSender messageSender;
 
   private @Nullable String address;
 
@@ -146,7 +142,7 @@ public class MultiDeviceContactUpdateJob extends BaseJob implements InjectableTy
                                       Optional.absent()));
 
       out.close();
-      sendUpdate(messageSender, contactDataFile, false);
+      sendUpdate(ApplicationDependencies.getSignalServiceMessageSender(), contactDataFile, false);
 
     } catch(InvalidNumberException e) {
       Log.w(TAG, e);
@@ -208,7 +204,7 @@ public class MultiDeviceContactUpdateJob extends BaseJob implements InjectableTy
       }
 
       out.close();
-      sendUpdate(messageSender, contactDataFile, true);
+      sendUpdate(ApplicationDependencies.getSignalServiceMessageSender(), contactDataFile, true);
     } catch(InvalidNumberException e) {
       Log.w(TAG, e);
     } finally {

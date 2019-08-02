@@ -11,6 +11,7 @@ import androidx.loader.app.LoaderManager;
 import androidx.loader.content.Loader;
 import androidx.appcompat.app.AlertDialog;
 
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.devicelist.Device;
 import org.thoughtcrime.securesms.jobs.RefreshUnidentifiedDeliveryAbilityJob;
 import org.thoughtcrime.securesms.logging.Log;
@@ -26,7 +27,6 @@ import android.widget.Toast;
 import com.melnykov.fab.FloatingActionButton;
 
 import org.thoughtcrime.securesms.database.loaders.DeviceListLoader;
-import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ViewUtil;
@@ -36,23 +36,19 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
-import javax.inject.Inject;
-
 public class DeviceListFragment extends ListFragment
     implements LoaderManager.LoaderCallbacks<List<Device>>,
-               ListView.OnItemClickListener, InjectableType, Button.OnClickListener
+               ListView.OnItemClickListener, Button.OnClickListener
 {
 
   private static final String TAG = DeviceListFragment.class.getSimpleName();
 
-  @Inject
-  SignalServiceAccountManager accountManager;
-
-  private Locale                 locale;
-  private View                   empty;
-  private View                   progressContainer;
-  private FloatingActionButton   addDeviceButton;
-  private Button.OnClickListener addDeviceButtonListener;
+  private SignalServiceAccountManager accountManager;
+  private Locale                      locale;
+  private View                        empty;
+  private View                        progressContainer;
+  private FloatingActionButton        addDeviceButton;
+  private Button.OnClickListener      addDeviceButtonListener;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -63,7 +59,7 @@ public class DeviceListFragment extends ListFragment
   @Override
   public void onAttach(Activity activity) {
     super.onAttach(activity);
-    ApplicationContext.getInstance(activity).injectDependencies(this);
+    this.accountManager = ApplicationDependencies.getSignalServiceAccountManager();
   }
 
   @Override

@@ -24,6 +24,7 @@ public class IncomingMediaMessage {
   private final int           subscriptionId;
   private final long          expiresIn;
   private final boolean       expirationUpdate;
+  private final long          revealDuration;
   private final QuoteModel    quote;
   private final boolean       unidentified;
 
@@ -39,6 +40,7 @@ public class IncomingMediaMessage {
                               int subscriptionId,
                               long expiresIn,
                               boolean expirationUpdate,
+                              long revealDuration,
                               boolean unidentified)
   {
     this.from             = from;
@@ -49,6 +51,7 @@ public class IncomingMediaMessage {
     this.subscriptionId   = subscriptionId;
     this.expiresIn        = expiresIn;
     this.expirationUpdate = expirationUpdate;
+    this.revealDuration   = revealDuration;
     this.quote            = null;
     this.unidentified     = unidentified;
 
@@ -60,6 +63,7 @@ public class IncomingMediaMessage {
                               int subscriptionId,
                               long expiresIn,
                               boolean expirationUpdate,
+                              long revealDuration,
                               boolean unidentified,
                               Optional<String> body,
                               Optional<SignalServiceGroup> group,
@@ -76,6 +80,7 @@ public class IncomingMediaMessage {
     this.subscriptionId   = subscriptionId;
     this.expiresIn        = expiresIn;
     this.expirationUpdate = expirationUpdate;
+    this.revealDuration   = revealDuration;
     this.quote            = quote.orNull();
     this.unidentified     = unidentified;
 
@@ -125,6 +130,10 @@ public class IncomingMediaMessage {
 
   public long getExpiresIn() {
     return expiresIn;
+  }
+
+  public long getRevealDuration() {
+    return revealDuration;
   }
 
   public boolean isGroupMessage() {

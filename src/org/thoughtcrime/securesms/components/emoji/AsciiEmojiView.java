@@ -47,13 +47,14 @@ public class AsciiEmojiView extends View {
     float overflow = paint.measureText(emoji) / (getWidth() - getPaddingLeft() - getPaddingRight());
     if (overflow > 1f) {
       paint.setTextSize(targetFontSize / overflow);
-      yPos = (int) ((canvas.getHeight() / 2) - ((paint.descent() + paint.ascent()) / 2));
+      yPos = (int) ((getHeight() / 2) - ((paint.descent() + paint.ascent()) / 2));
     }
     canvas.drawText(emoji, xPos, yPos, paint);
   }
 
   @Override
   protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+    //noinspection SuspiciousNameCombination
     super.onMeasure(widthMeasureSpec, widthMeasureSpec);
   }
 }

@@ -4,15 +4,17 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.RotateAnimation;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,13 +25,17 @@ import androidx.camera.core.ImageProxy;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.bumptech.glide.Glide;
+
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mediasend.camerax.CameraXUtil;
 import org.thoughtcrime.securesms.mediasend.camerax.CameraXView;
+import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.util.Stopwatch;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
+import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.IOException;
 
@@ -84,6 +90,9 @@ public class CameraXFragment extends Fragment implements CameraFragment {
     camera.setCameraLensFacing(CameraXUtil.toLensFacing(TextSecurePreferences.getDirectCaptureCameraId(requireContext())));
 
     onOrientationChanged(getResources().getConfiguration().orientation);
+
+    viewModel.getMostRecentMediaItem(requireContext()).observe(this, this::presentRecentItemThumbnail);
+    viewModel.getHudState().observe(this, this::presentHud);
   }
 
   @Override
@@ -116,31 +125,50 @@ public class CameraXFragment extends Fragment implements CameraFragment {
     initControls();
   }
 
+  private void presentRecentItemThumbnail(Optional<Media> media) {
+    if (media == null) {
+      return;
+    }
+
+    ImageView thumbnail = controlsContainer.findViewById(R.id.camera_gallery_button);
+
+    if (media.isPresent()) {
+      thumbnail.setVisibility(View.VISIBLE);
+      Glide.with(this)
+           .load(new DecryptableUri(media.get().getUri()))
+           .centerCrop()
+           .into(thumbnail);
+    } else {
+      thumbnail.setVisibility(View.GONE);
+      thumbnail.setImageResource(0);
+    }
+  }
+
+  private void presentHud(@Nullable MediaSendViewModel.HudState state) {
+    if (state == null) return;
+
+    View     countButton     = controlsContainer.findViewById(R.id.camera_count_button);
+    TextView countButtonText = controlsContainer.findViewById(R.id.mediasend_count_button_text);
+
+    if (state.getButtonState() == MediaSendViewModel.ButtonState.COUNT) {
+      countButton.setVisibility(View.VISIBLE);
+      countButtonText.setText(String.valueOf(state.getSelectionCount()));
+    } else {
+      countButton.setVisibility(View.GONE);
+    }
+  }
+
   @SuppressLint({"ClickableViewAccessibility", "MissingPermission"})
   private void initControls() {
     View flipButton    = requireView().findViewById(R.id.camera_flip_button);
     View captureButton = requireView().findViewById(R.id.camera_capture_button);
+    View galleryButton = requireView().findViewById(R.id.camera_gallery_button);
+    View countButton   = requireView().findViewById(R.id.camera_count_button);
 
-    captureButton.setOnTouchListener((v, event) -> {
-      switch (event.getAction()) {
-        case MotionEvent.ACTION_DOWN:
-          Animation shrinkAnimation = AnimationUtils.loadAnimation(getContext(), R.anim.camera_capture_button_shrink);
-          shrinkAnimation.setFillAfter(true);
-          shrinkAnimation.setFillEnabled(true);
-          captureButton.startAnimation(shrinkAnimation);
-          onCaptureClicked();
-          break;
-        case MotionEvent.ACTION_UP:
-        case MotionEvent.ACTION_CANCEL:
-        case MotionEvent.ACTION_OUTSIDE:
-          Animation growAnimation = AnimationUtils.loadAnimation(getContext(), R.anim.camera_capture_button_grow);
-          growAnimation.setFillAfter(true);
-          growAnimation.setFillEnabled(true);
-          captureButton.startAnimation(growAnimation);
-          captureButton.setEnabled(false);
-          break;
-      }
-      return true;
+    captureButton.setOnClickListener(v -> {
+      captureButton.setEnabled(false);
+      flipButton.setEnabled(false);
+      onCaptureClicked();
     });
 
     if (camera.hasCameraWithLensFacing(CameraX.LensFacing.FRONT) && camera.hasCameraWithLensFacing(CameraX.LensFacing.BACK)) {
@@ -154,9 +182,27 @@ public class CameraXFragment extends Fragment implements CameraFragment {
         animation.setInterpolator(new DecelerateInterpolator());
         flipButton.startAnimation(animation);
       });
+
+      GestureDetector gestureDetector = new GestureDetector(requireContext(), new GestureDetector.SimpleOnGestureListener() {
+        @Override
+        public boolean onDoubleTap(MotionEvent e) {
+          if (flipButton.isEnabled()) {
+            flipButton.performClick();
+          }
+          return true;
+        }
+      });
+
+      camera.setOnTouchListener((v, event) -> gestureDetector.onTouchEvent(event));
+
     } else {
       flipButton.setVisibility(View.GONE);
     }
+
+    galleryButton.setOnClickListener(v -> controller.onGalleryClicked());
+    countButton.setOnClickListener(v -> controller.onCameraCountButtonClicked());
+
+    viewModel.onCameraControlsInitialized();
   }
 
   private void onCaptureClicked() {
@@ -168,8 +214,7 @@ public class CameraXFragment extends Fragment implements CameraFragment {
         SimpleTask.run(CameraXFragment.this.getLifecycle(), () -> {
           stopwatch.split("captured");
           try {
-            byte[] bytes = CameraXUtil.toJpegBytes(image, rotationDegrees, camera.getCameraLensFacing() == CameraX.LensFacing.FRONT);
-            return new CaptureResult(bytes, image.getWidth(), image.getHeight());
+            return CameraXUtil.toJpeg(image, rotationDegrees, camera.getCameraLensFacing() == CameraX.LensFacing.FRONT);
           } catch (IOException e) {
             return null;
           } finally {
@@ -180,7 +225,7 @@ public class CameraXFragment extends Fragment implements CameraFragment {
           stopwatch.stop(TAG);
 
           if (result != null) {
-            controller.onImageCaptured(result.data, result.width, result.height);
+            controller.onImageCaptured(result.getData(), result.getWidth(), result.getHeight());
           } else {
             controller.onCameraError();
           }
@@ -192,17 +237,5 @@ public class CameraXFragment extends Fragment implements CameraFragment {
         controller.onCameraError();
       }
     });
-  }
-
-  private static final class CaptureResult {
-    public final byte[] data;
-    public final int    width;
-    public final int    height;
-
-    private CaptureResult(byte[] data, int width, int height) {
-      this.data = data;
-      this.width = width;
-      this.height = height;
-    }
   }
 }

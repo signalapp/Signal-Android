@@ -71,6 +71,7 @@ import org.thoughtcrime.securesms.conversation.ConversationAdapter.HeaderViewHol
 import org.thoughtcrime.securesms.conversation.ConversationAdapter.ItemClickListener;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.MessagingDatabase;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.loaders.ConversationLoader;
@@ -78,6 +79,7 @@ import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
+import org.thoughtcrime.securesms.jobs.MultiDeviceRevealUpdateJob;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.longmessage.LongMessageActivity;
@@ -88,6 +90,8 @@ import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.profiles.UnknownSenderView;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.revealable.RevealableMessageActivity;
+import org.thoughtcrime.securesms.revealable.RevealableUtil;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
@@ -955,6 +959,38 @@ public class ConversationFragment extends Fragment
     public void onStickerClicked(@NonNull StickerLocator sticker) {
       if (getContext() != null && getActivity() != null) {
         startActivity(StickerPackPreviewActivity.getIntent(sticker.getPackId(), sticker.getPackKey()));
+      }
+    }
+
+    @Override
+    public void onRevealableMessageClicked(@NonNull MmsMessageRecord messageRecord) {
+      if (messageRecord.getRevealDuration() == 0) {
+        throw new AssertionError("Non-revealable message clicked.");
+      }
+
+      if (messageRecord.getRevealStartTime() == 0) {
+        SimpleTask.run(getLifecycle(), () -> {
+          if (!messageRecord.isOutgoing()) {
+            Log.i(TAG, "Marking revealable message as opened.");
+
+            DatabaseFactory.getMmsDatabase(requireContext()).markRevealStarted(messageRecord.getId());
+
+            ApplicationContext.getInstance(requireContext())
+                              .getRevealableMessageManager()
+                              .scheduleIfNecessary();
+
+            ApplicationContext.getInstance(requireContext())
+                              .getJobManager()
+                              .add(new MultiDeviceRevealUpdateJob(new MessagingDatabase.SyncMessageId(messageRecord.getIndividualRecipient().getAddress(), messageRecord.getDateSent())));
+          } else {
+            Log.i(TAG, "Opening your own revealable message. It will automatically be marked as opened when it is sent.");
+          }
+          return null;
+        }, (nothing) -> {
+          startActivity(RevealableMessageActivity.getIntent(requireContext(), messageRecord.getId()));
+        });
+      } else if (RevealableUtil.isViewable(messageRecord)) {
+        startActivity(RevealableMessageActivity.getIntent(requireContext(), messageRecord.getId()));
       }
     }
 

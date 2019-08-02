@@ -36,7 +36,6 @@ import android.os.Bundle;
 import android.os.Vibrator;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.appcompat.widget.SwitchCompat;
@@ -89,6 +88,7 @@ import org.whispersystems.libsignal.fingerprint.NumericFingerprintGenerator;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
+import java.util.Locale;
 
 import static org.whispersystems.libsignal.SessionCipher.SESSION_LOCK;
 
@@ -487,11 +487,10 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
       valueAnimator.setObjectValues(0, Integer.parseInt(segment));
 
       valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-        @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
         @Override
         public void onAnimationUpdate(ValueAnimator animation) {
           int value = (int) animation.getAnimatedValue();
-          codeView.setText(String.format("%05d", value));
+          codeView.setText(String.format(Locale.getDefault(), "%05d", value));
         }
       });
 

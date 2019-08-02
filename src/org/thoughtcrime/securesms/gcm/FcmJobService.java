@@ -10,10 +10,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
 import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.dependencies.InjectableType;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
@@ -21,19 +20,15 @@ import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 
 import java.io.IOException;
 
-import javax.inject.Inject;
-
 /**
  * Pulls down messages. Used when we fail to pull down messages in {@link FcmService}.
  */
 @RequiresApi(26)
-public class FcmJobService extends JobService implements InjectableType {
+public class FcmJobService extends JobService {
 
   private static final String TAG = FcmJobService.class.getSimpleName();
 
   private static final int ID = 1337;
-
-  @Inject SignalServiceMessageReceiver messageReceiver;
 
   @RequiresApi(26)
   public static void schedule(@NonNull Context context) {
@@ -48,7 +43,6 @@ public class FcmJobService extends JobService implements InjectableType {
   @Override
   public boolean onStartJob(JobParameters params) {
     Log.d(TAG, "onStartJob()");
-    ApplicationContext.getInstance(getApplicationContext()).injectDependencies(this);
 
     if (ApplicationContext.getInstance(getApplicationContext()).isAppVisible()) {
       Log.i(TAG, "App is foregrounded. No need to run.");
@@ -57,11 +51,12 @@ public class FcmJobService extends JobService implements InjectableType {
 
     SignalExecutors.UNBOUNDED.execute(() -> {
       try {
+        SignalServiceMessageReceiver messageReceiver = ApplicationDependencies.getSignalServiceMessageReceiver();
         new PushNotificationReceiveJob(getApplicationContext()).pullAndProcessMessages(messageReceiver, TAG, System.currentTimeMillis());
+        Log.i(TAG, "Successfully retrieved messages.");
         jobFinished(params, false);
       } catch (IOException e) {
-        Log.w(TAG, "Failed to pull. Notifying and scheduling a retry.", e);
-        MessageNotifier.notifyMessagesPending(getApplicationContext());
+        Log.w(TAG, "Failed to pull. Scheduling a retry.", e);
         jobFinished(params, true);
       }
     });

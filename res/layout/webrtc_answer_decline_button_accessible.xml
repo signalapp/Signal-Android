@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/merge"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:background="#7f000000"
+    tools:orientation="vertical"
+    tools:parentTag="android.widget.LinearLayout">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:clipToPadding="false"
+        android:padding="16dp">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/answer"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:background="@drawable/circle_tintable"
+            android:contentDescription="@string/WebRtcCallControls_answer_call_description"
+            android:src="@drawable/ic_phone_grey600_32dp"
+            android:tint="@color/white"
+            app:backgroundTint="@color/green_600"
+            tools:layout_editor_absoluteX="12dp" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/reject"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="64dp"
+            android:background="@drawable/circle_tintable"
+            android:contentDescription="@string/WebRtcCallControls_reject_call_description"
+            android:src="@drawable/ic_call_end_white_48dp"
+            app:backgroundTint="@color/red_500" />
+
+    </LinearLayout>
+
+</merge>

@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.jobs;
 
 import androidx.annotation.NonNull;
 
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
@@ -11,7 +12,6 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.IdentityDatabase.VerifiedStatus;
-import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -26,9 +26,7 @@ import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-import javax.inject.Inject;
-
-public class MultiDeviceVerifiedUpdateJob extends BaseJob implements InjectableType {
+public class MultiDeviceVerifiedUpdateJob extends BaseJob {
 
   public static final String KEY = "MultiDeviceVerifiedUpdateJob";
 
@@ -38,8 +36,6 @@ public class MultiDeviceVerifiedUpdateJob extends BaseJob implements InjectableT
   private static final String KEY_IDENTITY_KEY    = "identity_key";
   private static final String KEY_VERIFIED_STATUS = "verified_status";
   private static final String KEY_TIMESTAMP       = "timestamp";
-
-  @Inject SignalServiceMessageSender messageSender;
 
   private String         destination;
   private byte[]         identityKey;
@@ -100,6 +96,7 @@ public class MultiDeviceVerifiedUpdateJob extends BaseJob implements InjectableT
         return;
       }
 
+      SignalServiceMessageSender    messageSender        = ApplicationDependencies.getSignalServiceMessageSender();
       Address                       canonicalDestination = Address.fromSerialized(destination);
       VerifiedMessage.VerifiedState verifiedState        = getVerifiedState(verifiedStatus);
       VerifiedMessage               verifiedMessage      = new VerifiedMessage(canonicalDestination.toPhoneString(), new IdentityKey(identityKey, 0), verifiedState, timestamp);

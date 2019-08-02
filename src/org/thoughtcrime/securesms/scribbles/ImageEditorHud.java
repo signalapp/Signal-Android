@@ -36,6 +36,7 @@ public final class ImageEditorHud extends LinearLayout {
   private View                     textButton;
   private View                     stickerButton;
   private View                     undoButton;
+  private View                     saveButton;
   private View                     deleteButton;
   private View                     confirmButton;
   private VerticalSlideColorPicker colorPicker;
@@ -81,6 +82,7 @@ public final class ImageEditorHud extends LinearLayout {
     textButton       = findViewById(R.id.scribble_text_button);
     stickerButton    = findViewById(R.id.scribble_sticker_button);
     undoButton       = findViewById(R.id.scribble_undo_button);
+    saveButton       = findViewById(R.id.scribble_save_button);
     deleteButton     = findViewById(R.id.scribble_delete_button);
     confirmButton    = findViewById(R.id.scribble_confirm_button);
     colorPicker      = findViewById(R.id.scribble_color_picker);
@@ -100,7 +102,7 @@ public final class ImageEditorHud extends LinearLayout {
   }
 
   private void initializeVisibilityMap() {
-    setVisibleViewsWhenInMode(Mode.NONE, drawButton, highlightButton, textButton, stickerButton, cropButton, undoButton);
+    setVisibleViewsWhenInMode(Mode.NONE, drawButton, highlightButton, textButton, stickerButton, cropButton, undoButton, saveButton);
 
     setVisibleViewsWhenInMode(Mode.DRAW, confirmButton, undoButton, colorPicker, colorPalette);
 
@@ -145,6 +147,7 @@ public final class ImageEditorHud extends LinearLayout {
     highlightButton.setOnClickListener(v -> setMode(Mode.HIGHLIGHT));
     textButton.setOnClickListener(v -> setMode(Mode.TEXT));
     stickerButton.setOnClickListener(v -> setMode(Mode.MOVE_DELETE));
+    saveButton.setOnClickListener(v -> eventListener.onSave());
   }
 
   public void setColorPalette(@NonNull Set<Integer> colors) {
@@ -241,6 +244,7 @@ public final class ImageEditorHud extends LinearLayout {
     void onColorChange(int color);
     void onUndo();
     void onDelete();
+    void onSave();
     void onFlipHorizontal();
     void onRotate90AntiClockwise();
     void onCropAspectLock(boolean locked);
@@ -264,6 +268,10 @@ public final class ImageEditorHud extends LinearLayout {
 
     @Override
     public void onDelete() {
+    }
+
+    @Override
+    public void onSave() {
     }
 
     @Override

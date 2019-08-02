@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.jobs;
 
 import androidx.annotation.NonNull;
 
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
@@ -10,7 +11,6 @@ import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
-import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
@@ -28,15 +28,11 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-import javax.inject.Inject;
-
-public class MultiDeviceProfileKeyUpdateJob extends BaseJob implements InjectableType {
+public class MultiDeviceProfileKeyUpdateJob extends BaseJob {
 
   public static String KEY = "MultiDeviceProfileKeyUpdateJob";
 
   private static final String TAG = MultiDeviceProfileKeyUpdateJob.class.getSimpleName();
-
-  @Inject SignalServiceMessageSender messageSender;
 
   public MultiDeviceProfileKeyUpdateJob() {
     this(new Job.Parameters.Builder()
@@ -81,6 +77,7 @@ public class MultiDeviceProfileKeyUpdateJob extends BaseJob implements Injectabl
 
     out.close();
 
+    SignalServiceMessageSender    messageSender    = ApplicationDependencies.getSignalServiceMessageSender();
     SignalServiceAttachmentStream attachmentStream = SignalServiceAttachment.newStreamBuilder()
                                                                             .withStream(new ByteArrayInputStream(baos.toByteArray()))
                                                                             .withContentType("application/octet-stream")

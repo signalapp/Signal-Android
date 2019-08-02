@@ -27,8 +27,9 @@ public class CameraXUtil {
 
   private static final String TAG = Log.tag(CameraXUtil.class);
 
+  @SuppressWarnings("SuspiciousNameCombination")
   @RequiresApi(21)
-  public static byte[] toJpegBytes(@NonNull ImageProxy image, int rotation, boolean flip) throws IOException {
+  public static ImageResult toJpeg(@NonNull ImageProxy image, int rotation, boolean flip) throws IOException {
     ImageProxy.PlaneProxy[] planes   = image.getPlanes();
     ByteBuffer              buffer   = planes[0].getBuffer();
     Rect                    cropRect = shouldCropImage(image) ? image.getCropRect() : null;
@@ -40,7 +41,17 @@ public class CameraXUtil {
       data = transformByteArray(data, cropRect, rotation, flip);
     }
 
-    return data;
+    int width  = cropRect != null ? (cropRect.right - cropRect.left) : image.getWidth();
+    int height = cropRect != null ? (cropRect.bottom - cropRect.top) : image.getHeight();
+
+    if (rotation == 90 || rotation == 270) {
+      int swap = width;
+
+      width  = height;
+      height = swap;
+    }
+
+    return new ImageResult(data, width, height);
   }
 
   public static int toCameraDirectionInt(@Nullable CameraX.LensFacing facing) {
@@ -118,5 +129,29 @@ public class CameraXUtil {
     }
 
     return out.toByteArray();
+  }
+
+  public static class ImageResult {
+    private final byte[] data;
+    private final int    width;
+    private final int    height;
+
+    public ImageResult(@NonNull byte[] data, int width, int height) {
+      this.data   = data;
+      this.width  = width;
+      this.height = height;
+    }
+
+    public byte[] getData() {
+      return data;
+    }
+
+    public int getWidth() {
+      return width;
+    }
+
+    public int getHeight() {
+      return height;
+    }
   }
 }

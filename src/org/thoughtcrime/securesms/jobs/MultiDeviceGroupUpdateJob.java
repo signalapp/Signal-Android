@@ -7,7 +7,7 @@ import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
-import org.thoughtcrime.securesms.dependencies.InjectableType;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
@@ -34,15 +34,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import javax.inject.Inject;
-
-public class MultiDeviceGroupUpdateJob extends BaseJob implements InjectableType {
+public class MultiDeviceGroupUpdateJob extends BaseJob {
 
   public static final String KEY = "MultiDeviceGroupUpdateJob";
 
   private static final String TAG = MultiDeviceGroupUpdateJob.class.getSimpleName();
-
-  @Inject SignalServiceMessageSender messageSender;
 
   public MultiDeviceGroupUpdateJob() {
     this(new Job.Parameters.Builder()
@@ -106,7 +102,7 @@ public class MultiDeviceGroupUpdateJob extends BaseJob implements InjectableType
       out.close();
 
       if (contactDataFile.exists() && contactDataFile.length() > 0) {
-        sendUpdate(messageSender, contactDataFile);
+        sendUpdate(ApplicationDependencies.getSignalServiceMessageSender(), contactDataFile);
       } else {
         Log.w(TAG, "No groups present for sync message...");
       }

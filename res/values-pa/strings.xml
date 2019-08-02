@@ -74,6 +74,7 @@
   <string name="CallScreen_Incoming_call">ਆਉਣ ਵਾਲੀ ਕਾਲ </string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">ਫੋਟ ਨੂੰ ਦਰਜ ਕਰਨ ਵਿਚ ਅਸਫਲ </string>
+  <!--CameraContacts-->
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">ਹਟਾਓ </string>
   <string name="ClearProfileActivity_remove_profile_photo">ਪ੍ਰੋਫਾਈਲ ਫੋਟੋ ਨੂੰ ਹਟਾਓ  ?</string>
@@ -407,6 +408,7 @@
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">ਆਈਟਮ ਹਟਾਈ ਗਈ ਸੀ ਕਿਉਂਕਿ ਇਹ ਆਕਾਰ ਦੀ ਸੀਮਾ ਤੋਂ ਵੱਧ ਗਈ ਸੀ</string>
   <string name="MediaSendActivity_camera_unavailable">ਕੈਮਰਾ ਅਣਉਪਲਬਧ.</string>
   <string name="MediaSendActivity_message_to_s">%s ਨੂੰ ਸੁਨੇਹਾ</string>
+  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal ਨੂੰ ਉਹਨਾਂ ਨੂੰ ਪ੍ਰਦਰਸ਼ਿਤ ਕਰਨ ਲਈ ਤੁਹਾਡੇ ਸੰਪਰਕਾਂ ਤੱਕ ਪਹੁੰਚ ਦੀ ਲੋੜ ਹੈ</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">ਤੁਸੀਂ %d ਤੋਂ ਵੱਧ ਆਈਟਮਾਂ ਸ਼ੇਅਰ ਨਹੀਂ ਕਰ ਸਕਦੇ</item>
     <item quantity="other">ਤੁਸੀਂ %d ਤੋਂ ਵੱਧ ਆਈਟਮਾਂ ਸ਼ੇਅਰ ਨਹੀਂ ਕਰ ਸਕਦੇ|</item>
@@ -541,6 +543,8 @@
   <string name="RegistrationActivity_you_will_receive_a_verification_code">ਤੁਹਾਨੂੰ ਇੱਕ ਪੁਸ਼ਟੀਕਰਣ ਕੋਡ ਮਿਲੇਗਾ. ਕੈਰੀਅਰ ਦਰ ਲਾਗੂ ਹੋ ਸਕਦੀ ਹੈ</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">%s ਨੂੰ ਭੇਜਿਆ ਗਿਆ  ਕੋਡ ਦਰਜ ਕਰੋ </string>
   <string name="RegistrationActivity_call">ਕਾਲ</string>
+  <!--RevealableMessageView-->
+  <string name="RevealableMessageView_photo">ਫੋਟੋ</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">ਚਿੱਤਰ ਬਦਲਾਅ ਨੂੰ ਸੁਰੱਖਿਅਤ ਕਰਨ ਵਿੱਚ ਅਸਫਲ</string>
   <!--Search-->
@@ -598,6 +602,7 @@
   <string name="ThreadRecord_called_you">ਤੁਹਾਨੂੰ ਕਾਲ ਕੀਤੀ</string>
   <string name="ThreadRecord_missed_call">ਮਿਸਡ ਕਾਲ</string>
   <string name="ThreadRecord_media_message">ਮੀਡੀਆ ਸੁਨੇਹਾ</string>
+  <string name="ThreadRecord_sticker">ਸਟਿੱਕਰ</string>
   <string name="ThreadRecord_s_is_on_signal">%s Signal ਤੇ ਹੈ! </string>
   <string name="ThreadRecord_disappearing_messages_disabled">ਅਲੋਪ ਹੋਣ ਵਾਲੇ ਸੁਨੇਹੇ ਅਸਮਰੱਥ</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">ਗੁੰਮ ਹੋਣ ਵਾਲੇ ਸੁਨੇਹਿਆਂ ਦਾ ਸਮਾਂ %s ਤੇ ਸੈੱਟ ਕੀਤਾ ਗਿਆ</string>

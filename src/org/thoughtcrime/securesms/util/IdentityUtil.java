@@ -78,7 +78,7 @@ public class IdentityUtil {
         SignalServiceGroup group = new SignalServiceGroup(groupRecord.getId());
 
         if (remote) {
-          IncomingTextMessage incoming = new IncomingTextMessage(recipient.getAddress(), 1, time, null, Optional.of(group), 0, false);
+          IncomingTextMessage incoming = new IncomingTextMessage(recipient.getAddress(), 1, time, null, Optional.of(group), 0, 0, false);
 
           if (verified) incoming = new IncomingIdentityVerifiedMessage(incoming);
           else          incoming = new IncomingIdentityDefaultMessage(incoming);
@@ -98,7 +98,7 @@ public class IdentityUtil {
     }
 
     if (remote) {
-      IncomingTextMessage incoming = new IncomingTextMessage(recipient.getAddress(), 1, time, null, Optional.absent(), 0, false);
+      IncomingTextMessage incoming = new IncomingTextMessage(recipient.getAddress(), 1, time, null, Optional.absent(), 0, 0, false);
 
       if (verified) incoming = new IncomingIdentityVerifiedMessage(incoming);
       else          incoming = new IncomingIdentityDefaultMessage(incoming);
@@ -128,14 +128,14 @@ public class IdentityUtil {
     while ((groupRecord = reader.getNext()) != null) {
       if (groupRecord.getMembers().contains(recipient.getAddress()) && groupRecord.isActive()) {
         SignalServiceGroup            group       = new SignalServiceGroup(groupRecord.getId());
-        IncomingTextMessage           incoming    = new IncomingTextMessage(recipient.getAddress(), 1, time, null, Optional.of(group), 0, false);
+        IncomingTextMessage           incoming    = new IncomingTextMessage(recipient.getAddress(), 1, time, null, Optional.of(group), 0, 0, false);
         IncomingIdentityUpdateMessage groupUpdate = new IncomingIdentityUpdateMessage(incoming);
 
         smsDatabase.insertMessageInbox(groupUpdate);
       }
     }
 
-    IncomingTextMessage           incoming         = new IncomingTextMessage(recipient.getAddress(), 1, time, null, Optional.absent(), 0, false);
+    IncomingTextMessage           incoming         = new IncomingTextMessage(recipient.getAddress(), 1, time, null, Optional.absent(), 0, 0, false);
     IncomingIdentityUpdateMessage individualUpdate = new IncomingIdentityUpdateMessage(incoming);
     Optional<InsertResult>        insertResult     = smsDatabase.insertMessageInbox(individualUpdate);
 

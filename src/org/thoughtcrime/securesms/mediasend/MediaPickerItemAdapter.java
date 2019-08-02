@@ -14,7 +14,7 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.util.MediaUtil;
-import org.thoughtcrime.securesms.util.StableIdGenerator;
+import org.thoughtcrime.securesms.util.adapter.StableIdGenerator;
 
 import java.util.ArrayList;
 import java.util.Collection;

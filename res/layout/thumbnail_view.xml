@@ -33,13 +33,14 @@
         tools:visibility="visible">
 
         <ImageView
-            android:layout_width="19dp"
+            android:layout_width="24dp"
             android:layout_height="24dp"
-            android:layout_marginStart="17dp"
-            android:layout_marginTop="12dp"
+            android:layout_gravity="center"
+            android:paddingLeft="5dp"
             android:tint="@color/core_blue"
             android:scaleType="fitXY"
-            app:srcCompat="@drawable/triangle_right" />
+            app:srcCompat="@drawable/triangle_right"
+            tools:ignore="RtlHardcoded,RtlSymmetry" />
 
     </FrameLayout>
 

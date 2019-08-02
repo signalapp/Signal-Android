@@ -36,11 +36,9 @@ import org.signal.aesgcmprovider.AesGcmProvider;
 import org.thoughtcrime.securesms.components.TypingStatusRepository;
 import org.thoughtcrime.securesms.components.TypingStatusSender;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.dependencies.AxolotlStorageModule;
-import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.dependencies.SignalCommunicationModule;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencyProvider;
 import org.thoughtcrime.securesms.gcm.FcmJobService;
-import org.thoughtcrime.securesms.jobmanager.DependencyInjector;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.impl.JsonDataSerializer;
 import org.thoughtcrime.securesms.jobs.CreateSignedPreKeyJob;
@@ -64,6 +62,7 @@ import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.service.IncomingMessageObserver;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.service.LocalBackupListener;
+import org.thoughtcrime.securesms.revealable.RevealableMessageManager;
 import org.thoughtcrime.securesms.service.RotateSenderCertificateListener;
 import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener;
 import org.thoughtcrime.securesms.service.UpdateApkRefreshListener;
@@ -80,8 +79,6 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-import dagger.ObjectGraph;
-
 /**
  * Will be called once when the TextSecure process is created.
  *
@@ -90,17 +87,17 @@ import dagger.ObjectGraph;
  *
  * @author Moxie Marlinspike
  */
-public class ApplicationContext extends MultiDexApplication implements DependencyInjector, DefaultLifecycleObserver {
+public class ApplicationContext extends MultiDexApplication implements DefaultLifecycleObserver {
 
   private static final String TAG = ApplicationContext.class.getSimpleName();
 
-  private ExpiringMessageManager  expiringMessageManager;
-  private TypingStatusRepository  typingStatusRepository;
-  private TypingStatusSender      typingStatusSender;
-  private JobManager              jobManager;
-  private IncomingMessageObserver incomingMessageObserver;
-  private ObjectGraph             objectGraph;
-  private PersistentLogger        persistentLogger;
+  private ExpiringMessageManager   expiringMessageManager;
+  private RevealableMessageManager revealableMessageManager;
+  private TypingStatusRepository   typingStatusRepository;
+  private TypingStatusSender       typingStatusSender;
+  private JobManager               jobManager;
+  private IncomingMessageObserver  incomingMessageObserver;
+  private PersistentLogger         persistentLogger;
 
   private volatile boolean isAppVisible;
 
@@ -115,10 +112,11 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     initializeSecurityProvider();
     initializeLogging();
     initializeCrashHandling();
-    initializeDependencyInjection();
+    initializeAppDependencies();
     initializeJobManager();
     initializeMessageRetrieval();
     initializeExpiringMessageManager();
+    initializeRevealableMessageManager();
     initializeTypingStatusRepository();
     initializeTypingStatusSender();
     initializeGcmCheck();
@@ -151,19 +149,16 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     MessageNotifier.setVisibleThread(-1);
   }
 
-  @Override
-  public void injectDependencies(Object object) {
-    if (object instanceof InjectableType) {
-      objectGraph.inject(object);
-    }
-  }
-
   public JobManager getJobManager() {
     return jobManager;
   }
 
   public ExpiringMessageManager getExpiringMessageManager() {
     return expiringMessageManager;
+  }
+
+  public RevealableMessageManager getRevealableMessageManager() {
+    return revealableMessageManager;
   }
 
   public TypingStatusRepository getTypingStatusRepository() {
@@ -225,7 +220,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
                                                                        .setConstraintFactories(JobManagerFactories.getConstraintFactories(this))
                                                                        .setConstraintObservers(JobManagerFactories.getConstraintObservers(this))
                                                                        .setJobStorage(new FastJobStorage(DatabaseFactory.getJobDatabase(this)))
-                                                                       .setDependencyInjector(this)
                                                                        .build());
   }
 
@@ -233,9 +227,8 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     this.incomingMessageObserver = new IncomingMessageObserver(this);
   }
 
-  private void initializeDependencyInjection() {
-    this.objectGraph = ObjectGraph.create(new SignalCommunicationModule(this, new SignalServiceNetworkAccess(this)),
-                                          new AxolotlStorageModule(this));
+  private void initializeAppDependencies() {
+    ApplicationDependencies.init(new ApplicationDependencyProvider(this, new SignalServiceNetworkAccess(this)));
   }
 
   private void initializeGcmCheck() {
@@ -256,6 +249,10 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
 
   private void initializeExpiringMessageManager() {
     this.expiringMessageManager = new ExpiringMessageManager(this);
+  }
+
+  private void initializeRevealableMessageManager() {
+    this.revealableMessageManager = new RevealableMessageManager(this);
   }
 
   private void initializeTypingStatusRepository() {

@@ -26,6 +26,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.annimon.stream.Stream;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import net.sqlcipher.database.SQLiteDatabase;
 
@@ -44,12 +45,15 @@ import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.DelimiterUtil;
+import org.thoughtcrime.securesms.util.JsonUtils;
+import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.Closeable;
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -71,6 +75,8 @@ public class ThreadDatabase extends Database {
   private static final String ERROR                  = "error";
   public  static final String SNIPPET_TYPE           = "snippet_type";
   public  static final String SNIPPET_URI            = "snippet_uri";
+  public  static final String SNIPPET_CONTENT_TYPE   = "snippet_content_type";
+  public  static final String SNIPPET_EXTRAS         = "snippet_extras";
   public  static final String ARCHIVED               = "archived";
   public  static final String STATUS                 = "status";
   public  static final String DELIVERY_RECEIPT_COUNT = "delivery_receipt_count";
@@ -85,6 +91,7 @@ public class ThreadDatabase extends Database {
     SNIPPET_CHARSET + " INTEGER DEFAULT 0, " + READ + " INTEGER DEFAULT 1, "                       +
     TYPE + " INTEGER DEFAULT 0, " + ERROR + " INTEGER DEFAULT 0, "                                 +
     SNIPPET_TYPE + " INTEGER DEFAULT 0, " + SNIPPET_URI + " TEXT DEFAULT NULL, "                   +
+    SNIPPET_CONTENT_TYPE + " TEXT DEFAULT NULL, " + SNIPPET_EXTRAS + " TEXT DEFAULT NULL, "      +
     ARCHIVED + " INTEGER DEFAULT 0, " + STATUS + " INTEGER DEFAULT 0, "                            +
     DELIVERY_RECEIPT_COUNT + " INTEGER DEFAULT 0, " + EXPIRES_IN + " INTEGER DEFAULT 0, "          +
     LAST_SEEN + " INTEGER DEFAULT 0, " + HAS_SENT + " INTEGER DEFAULT 0, "                         +
@@ -97,7 +104,7 @@ public class ThreadDatabase extends Database {
 
   private static final String[] THREAD_PROJECTION = {
       ID, DATE, MESSAGE_COUNT, ADDRESS, SNIPPET, SNIPPET_CHARSET, READ, UNREAD_COUNT, TYPE, ERROR, SNIPPET_TYPE,
-      SNIPPET_URI, ARCHIVED, STATUS, DELIVERY_RECEIPT_COUNT, EXPIRES_IN, LAST_SEEN, READ_RECEIPT_COUNT
+      SNIPPET_URI, SNIPPET_CONTENT_TYPE, SNIPPET_EXTRAS, ARCHIVED, STATUS, DELIVERY_RECEIPT_COUNT, EXPIRES_IN, LAST_SEEN, READ_RECEIPT_COUNT
   };
 
   private static final List<String> TYPED_THREAD_PROJECTION = Stream.of(THREAD_PROJECTION)
@@ -130,15 +137,28 @@ public class ThreadDatabase extends Database {
   }
 
   private void updateThread(long threadId, long count, String body, @Nullable Uri attachment,
+                            @Nullable String contentType, @Nullable Extra extra,
                             long date, int status, int deliveryReceiptCount, long type, boolean unarchive,
                             long expiresIn, int readReceiptCount)
   {
+    String extraSerialized = null;
+
+    if (extra != null) {
+      try {
+        extraSerialized = JsonUtils.toJson(extra);
+      } catch (IOException e) {
+        throw new AssertionError(e);
+      }
+    }
+
     ContentValues contentValues = new ContentValues(7);
     contentValues.put(DATE, date - date % 1000);
     contentValues.put(MESSAGE_COUNT, count);
     contentValues.put(SNIPPET, body);
     contentValues.put(SNIPPET_URI, attachment == null ? null : attachment.toString());
     contentValues.put(SNIPPET_TYPE, type);
+    contentValues.put(SNIPPET_CONTENT_TYPE, contentType);
+    contentValues.put(SNIPPET_EXTRAS, extraSerialized);
     contentValues.put(STATUS, status);
     contentValues.put(DELIVERY_RECEIPT_COUNT, deliveryReceiptCount);
     contentValues.put(READ_RECEIPT_COUNT, readReceiptCount);
@@ -357,6 +377,14 @@ public class ThreadDatabase extends Database {
     return db.rawQuery(query, null);
   }
 
+  public Cursor getRecentPushConversationList(int limit) {
+    SQLiteDatabase db    = databaseHelper.getReadableDatabase();
+    String         where = MESSAGE_COUNT + " != 0 AND (" + RecipientDatabase.REGISTERED + " = " + RecipientDatabase.RegisteredState.REGISTERED.getId() + " OR " + GroupDatabase.GROUP_ID + " NOT NULL)";
+    String         query = createQuery(where, limit);
+
+    return db.rawQuery(query, null);
+  }
+
   public Cursor getConversationList() {
     return getConversationList("0");
   }
@@ -571,6 +599,7 @@ public class ThreadDatabase extends Database {
 
       if (reader != null && (record = reader.getNext()) != null) {
         updateThread(threadId, count, getFormattedBodyFor(record), getAttachmentUriFor(record),
+                     getContentTypeFor(record), getExtrasFor(record),
                      record.getTimestamp(), record.getDeliveryStatus(), record.getDeliveryReceiptCount(),
                      record.getType(), unarchive, record.getExpiresIn(), record.getReadReceiptCount());
         notifyConversationListListeners();
@@ -601,10 +630,33 @@ public class ThreadDatabase extends Database {
     SlideDeck slideDeck = ((MediaMmsMessageRecord)record).getSlideDeck();
     Slide     thumbnail = slideDeck.getThumbnailSlide();
 
-    if (thumbnail != null) {
+    if (thumbnail != null && ((MmsMessageRecord) record).getRevealDuration() == 0) {
       return thumbnail.getThumbnailUri();
     }
 
+    return null;
+  }
+
+  private @Nullable String getContentTypeFor(MessageRecord record) {
+    if (record.isMms()) {
+      SlideDeck slideDeck = ((MmsMessageRecord) record).getSlideDeck();
+
+      if (slideDeck.getSlides().size() > 0) {
+        return slideDeck.getSlides().get(0).getContentType();
+      }
+    }
+
+    return null;
+  }
+
+  private @Nullable Extra getExtrasFor(MessageRecord record) {
+    if (record.isMms() && ((MmsMessageRecord) record).getRevealDuration() > 0) {
+      return Extra.forRevealableMessage();
+    } else if (record.isMms() && ((MmsMessageRecord) record).getSlideDeck().getStickerSlide() != null) {
+      return Extra.forSticker();
+    } else if (record.isMms() && ((MmsMessageRecord) record).getSlideDeck().getSlides().size() > 1) {
+      return Extra.forAlbum();
+    }
     return null;
   }
 
@@ -686,12 +738,24 @@ public class ThreadDatabase extends Database {
       long               expiresIn            = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.EXPIRES_IN));
       long               lastSeen             = cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.LAST_SEEN));
       Uri                snippetUri           = getSnippetUri(cursor);
+      String             contentType          = cursor.getString(cursor.getColumnIndexOrThrow(ThreadDatabase.SNIPPET_CONTENT_TYPE));
+      String             extraString          = cursor.getString(cursor.getColumnIndexOrThrow(ThreadDatabase.SNIPPET_EXTRAS));
 
       if (!TextSecurePreferences.isReadReceiptsEnabled(context)) {
         readReceiptCount = 0;
       }
 
-      return new ThreadRecord(body, snippetUri, recipient, date, count,
+      Extra extra = null;
+
+      if (extraString != null) {
+        try {
+          extra = JsonUtils.fromJson(extraString, Extra.class);
+        } catch (IOException e) {
+          Log.w(TAG, "Failed to decode extras!");
+        }
+      }
+
+      return new ThreadRecord(body, snippetUri, contentType, extra, recipient, date, count,
                               unreadCount, threadId, deliveryReceiptCount, status, type,
                               distributionType, archived, expiresIn, lastSeen, readReceiptCount);
     }
@@ -714,6 +778,47 @@ public class ThreadDatabase extends Database {
       if (cursor != null) {
         cursor.close();
       }
+    }
+  }
+
+  public static final class Extra {
+
+    @JsonProperty private final boolean isRevealable;
+    @JsonProperty private final boolean isSticker;
+    @JsonProperty private final boolean isAlbum;
+
+    public Extra(@JsonProperty("isRevealable") boolean isRevealable,
+                 @JsonProperty("isSticker") boolean isSticker,
+                 @JsonProperty("isAlbum") boolean isAlbum)
+    {
+      this.isRevealable = isRevealable;
+      this.isSticker    = isSticker;
+      this.isAlbum      = isAlbum;
+    }
+
+    public static @NonNull Extra forRevealableMessage() {
+      return new Extra(true, false, false);
+    }
+
+    public static @NonNull Extra forSticker() {
+      return new Extra(false, true, false);
+    }
+
+    public static @NonNull Extra forAlbum() {
+      return new Extra(false, false, true);
+    }
+
+
+    public boolean isRevealable() {
+      return isRevealable;
+    }
+
+    public boolean isSticker() {
+      return isSticker;
+    }
+
+    public boolean isAlbum() {
+      return isAlbum;
     }
   }
 }

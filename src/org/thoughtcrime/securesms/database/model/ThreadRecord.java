@@ -29,8 +29,11 @@ import android.text.style.StyleSpan;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.SmsDatabase;
+import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.database.ThreadDatabase.Extra;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
+import org.thoughtcrime.securesms.util.MediaUtil;
 
 /**
  * The message record model which represents thread heading messages.
@@ -41,6 +44,8 @@ import org.thoughtcrime.securesms.util.ExpirationUtil;
 public class ThreadRecord extends DisplayRecord {
 
   private @Nullable final Uri     snippetUri;
+  private @Nullable final String  contentType;
+  private @Nullable final Extra   extra;
   private           final long    count;
   private           final int     unreadCount;
   private           final int     distributionType;
@@ -49,6 +54,7 @@ public class ThreadRecord extends DisplayRecord {
   private           final long    lastSeen;
 
   public ThreadRecord(@NonNull String body, @Nullable Uri snippetUri,
+                      @Nullable String contentType, @Nullable Extra extra,
                       @NonNull Recipient recipient, long date, long count, int unreadCount,
                       long threadId, int deliveryReceiptCount, int status, long snippetType,
                       int distributionType, boolean archived, long expiresIn, long lastSeen,
@@ -56,6 +62,8 @@ public class ThreadRecord extends DisplayRecord {
   {
     super(body, recipient, date, date, threadId, status, deliveryReceiptCount, snippetType, readReceiptCount);
     this.snippetUri       = snippetUri;
+    this.contentType      = contentType;
+    this.extra            = extra;
     this.count            = count;
     this.unreadCount      = unreadCount;
     this.distributionType = distributionType;
@@ -113,7 +121,13 @@ public class ThreadRecord extends DisplayRecord {
       return emphasisAdded(context.getString(R.string.ThreadRecord_message_could_not_be_processed));
     } else {
       if (TextUtils.isEmpty(getBody())) {
-        return new SpannableString(emphasisAdded(context.getString(R.string.ThreadRecord_media_message)));
+        if (extra != null && extra.isSticker()) {
+          return new SpannableString(emphasisAdded(context.getString(R.string.ThreadRecord_sticker)));
+        } else if (extra != null && extra.isRevealable() && MediaUtil.isImageType(contentType)) {
+          return new SpannableString(emphasisAdded(context.getString(R.string.ThreadRecord_disappearing_photo)));
+        } else {
+          return new SpannableString(emphasisAdded(context.getString(R.string.ThreadRecord_media_message)));
+        }
       } else {
         return new SpannableString(getBody());
       }

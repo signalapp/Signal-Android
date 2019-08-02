@@ -75,8 +75,8 @@ public class FullBackupExporter extends FullBackupBase {
     int          count  = 0;
 
     for (String table : tables) {
-      if (table.equals(SmsDatabase.TABLE_NAME) || table.equals(MmsDatabase.TABLE_NAME)) {
-        count = exportTable(table, input, outputStream, cursor -> cursor.getInt(cursor.getColumnIndexOrThrow(MmsSmsColumns.EXPIRES_IN)) <= 0, null, count);
+      if (table.equals(MmsDatabase.TABLE_NAME)) {
+        count = exportTable(table, input, outputStream, FullBackupExporter::isNonExpiringMessage, null, count);
       } else if (table.equals(GroupReceiptDatabase.TABLE_NAME)) {
         count = exportTable(table, input, outputStream, cursor -> isForNonExpiringMessage(input, cursor.getLong(cursor.getColumnIndexOrThrow(GroupReceiptDatabase.MMS_ID))), null, count);
       } else if (table.equals(AttachmentDatabase.TABLE_NAME)) {
@@ -253,14 +253,20 @@ public class FullBackupExporter extends FullBackupBase {
     return result;
   }
 
+  private static boolean isNonExpiringMessage(@NonNull Cursor cursor) {
+    return cursor.getInt(cursor.getColumnIndexOrThrow(MmsSmsColumns.EXPIRES_IN))    <= 0 &&
+           cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.REVEAL_DURATION)) <= 0;
+  }
+
   private static boolean isForNonExpiringMessage(@NonNull SQLiteDatabase db, long mmsId) {
-    String[] columns = new String[] { MmsDatabase.EXPIRES_IN };
+    String[] columns = new String[] { MmsDatabase.EXPIRES_IN, MmsDatabase.REVEAL_DURATION };
     String   where   = MmsDatabase.ID + " = ?";
     String[] args    = new String[] { String.valueOf(mmsId) };
 
     try (Cursor mmsCursor = db.query(MmsDatabase.TABLE_NAME, columns, where, args, null, null, null)) {
       if (mmsCursor != null && mmsCursor.moveToFirst()) {
-        return mmsCursor.getLong(0) == 0;
+        return mmsCursor.getLong(mmsCursor.getColumnIndexOrThrow(MmsDatabase.EXPIRES_IN))      == 0 &&
+               mmsCursor.getLong(mmsCursor.getColumnIndexOrThrow(MmsDatabase.REVEAL_DURATION)) == 0;
       }
     }
 

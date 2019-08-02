@@ -42,6 +42,7 @@ public class IncomingTextMessage implements Parcelable {
   private final boolean push;
   private final int     subscriptionId;
   private final long    expiresInMillis;
+  private final long    revealDuration;
   private final boolean unidentified;
 
   public IncomingTextMessage(@NonNull Context context, @NonNull SmsMessage message, int subscriptionId) {
@@ -55,6 +56,7 @@ public class IncomingTextMessage implements Parcelable {
     this.sentTimestampMillis  = message.getTimestampMillis();
     this.subscriptionId       = subscriptionId;
     this.expiresInMillis      = 0;
+    this.revealDuration       = 0;
     this.groupId              = null;
     this.push                 = false;
     this.unidentified         = false;
@@ -62,7 +64,7 @@ public class IncomingTextMessage implements Parcelable {
 
   public IncomingTextMessage(Address sender, int senderDeviceId, long sentTimestampMillis,
                              String encodedBody, Optional<SignalServiceGroup> group,
-                             long expiresInMillis, boolean unidentified)
+                             long expiresInMillis, long revealDuration, boolean unidentified)
   {
     this.message              = encodedBody;
     this.sender               = sender;
@@ -75,6 +77,7 @@ public class IncomingTextMessage implements Parcelable {
     this.push                 = true;
     this.subscriptionId       = -1;
     this.expiresInMillis      = expiresInMillis;
+    this.revealDuration       = revealDuration;
     this.unidentified         = unidentified;
 
     if (group.isPresent()) {
@@ -97,6 +100,7 @@ public class IncomingTextMessage implements Parcelable {
     this.push                 = (in.readInt() == 1);
     this.subscriptionId       = in.readInt();
     this.expiresInMillis      = in.readLong();
+    this.revealDuration       = in.readLong();
     this.unidentified         = in.readInt() == 1;
   }
 
@@ -113,6 +117,7 @@ public class IncomingTextMessage implements Parcelable {
     this.push                 = base.isPush();
     this.subscriptionId       = base.getSubscriptionId();
     this.expiresInMillis      = base.getExpiresIn();
+    this.revealDuration       = base.getRevealDuration();
     this.unidentified         = base.isUnidentified();
   }
 
@@ -135,6 +140,7 @@ public class IncomingTextMessage implements Parcelable {
     this.push                 = fragments.get(0).isPush();
     this.subscriptionId       = fragments.get(0).getSubscriptionId();
     this.expiresInMillis      = fragments.get(0).getExpiresIn();
+    this.revealDuration       = fragments.get(0).getRevealDuration();
     this.unidentified         = fragments.get(0).isUnidentified();
   }
 
@@ -152,6 +158,7 @@ public class IncomingTextMessage implements Parcelable {
     this.push                 = true;
     this.subscriptionId       = -1;
     this.expiresInMillis      = 0;
+    this.revealDuration       = 0;
     this.unidentified         = false;
   }
 
@@ -161,6 +168,10 @@ public class IncomingTextMessage implements Parcelable {
 
   public long getExpiresIn() {
     return expiresInMillis;
+  }
+
+  public long getRevealDuration() {
+    return revealDuration;
   }
 
   public long getSentTimestampMillis() {
@@ -269,6 +280,8 @@ public class IncomingTextMessage implements Parcelable {
     out.writeParcelable(groupId, flags);
     out.writeInt(push ? 1 : 0);
     out.writeInt(subscriptionId);
+    out.writeLong(expiresInMillis);
+    out.writeLong(revealDuration);
     out.writeInt(unidentified ? 1 : 0);
   }
 }

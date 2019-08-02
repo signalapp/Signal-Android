@@ -26,12 +26,13 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Build.VERSION;
 import android.os.Bundle;
+
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
+import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.core.content.ContextCompat;
-import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.preference.Preference;
 
 import org.thoughtcrime.securesms.preferences.AdvancedPreferenceFragment;
@@ -272,6 +273,9 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
 
           FragmentManager     fragmentManager     = getActivity().getSupportFragmentManager();
           FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+          fragmentTransaction.setCustomAnimations(R.anim.slide_from_end, R.anim.slide_to_start, R.anim.slide_from_start, R.anim.slide_to_end);
+
           fragmentTransaction.replace(android.R.id.content, fragment);
           fragmentTransaction.addToBackStack(null);
           fragmentTransaction.commit();

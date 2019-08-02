@@ -96,8 +96,7 @@
                  tools:replace="android:allowBackup"
                  android:allowBackup="false"
                  android:theme="@style/TextSecure.LightTheme"
-                 android:largeHeap="true"
-                 android:networkSecurityConfig="@xml/local_audio_server_config">
+                 android:largeHeap="true">
 
     <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -300,7 +299,7 @@
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
         <activity android:name=".mediasend.MediaSendActivity"
-                  android:theme="@style/TextSecure.DarkNoActionBar"
+                  android:theme="@style/TextSecure.FullScreenMedia"
                   android:windowSoftInputMode="stateHidden"
                   android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
@@ -335,6 +334,13 @@
               android:launchMode="singleTask"
               android:theme="@style/TextSecure.LightNoActionBar"
               android:windowSoftInputMode="stateUnchanged"
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
+
+    <activity android:name=".revealable.RevealableMessageActivity"
+              android:launchMode="singleTask"
+              android:theme="@style/TextSecure.FullScreenMedia"
+              android:windowSoftInputMode="stateHidden"
+              android:excludeFromRecents="true"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".stickers.StickerManagementActivity"
@@ -577,6 +583,8 @@
     </receiver>
 
     <receiver android:name=".service.ExpirationListener" />
+
+    <receiver android:name=".revealable.RevealableMessageManager$RevealAlarm" />
 
     <provider android:name=".providers.PartProvider"
               android:grantUriPermissions="true"

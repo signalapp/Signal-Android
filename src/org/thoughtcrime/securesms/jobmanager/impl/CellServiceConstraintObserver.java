@@ -13,9 +13,19 @@ public class CellServiceConstraintObserver implements ConstraintObserver {
 
   private static final String REASON = CellServiceConstraintObserver.class.getSimpleName();
 
-  private Notifier notifier;
+  private Notifier     notifier;
+  private ServiceState lastKnownState;
 
-  public CellServiceConstraintObserver(@NonNull Application application) {
+  private static CellServiceConstraintObserver instance;
+
+  public static synchronized CellServiceConstraintObserver getInstance(@NonNull Application application) {
+    if (instance == null) {
+      instance = new CellServiceConstraintObserver(application);
+    }
+    return instance;
+  }
+
+  private CellServiceConstraintObserver(@NonNull Application application) {
     TelephonyManager     telephonyManager     = (TelephonyManager) application.getSystemService(Context.TELEPHONY_SERVICE);
     ServiceStateListener serviceStateListener = new ServiceStateListener();
 
@@ -27,9 +37,15 @@ public class CellServiceConstraintObserver implements ConstraintObserver {
     this.notifier = notifier;
   }
 
+  public boolean hasService() {
+    return lastKnownState != null && lastKnownState.getState() == ServiceState.STATE_IN_SERVICE;
+  }
+
   private class ServiceStateListener extends PhoneStateListener {
     @Override
     public void onServiceStateChanged(ServiceState serviceState) {
+      lastKnownState = serviceState;
+
       if (serviceState.getState() == ServiceState.STATE_IN_SERVICE && notifier != null) {
         notifier.onConstraintMet(REASON);
       }

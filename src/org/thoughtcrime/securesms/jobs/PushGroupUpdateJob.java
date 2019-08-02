@@ -8,7 +8,7 @@ import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
-import org.thoughtcrime.securesms.dependencies.InjectableType;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
@@ -32,9 +32,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import javax.inject.Inject;
-
-public class PushGroupUpdateJob extends BaseJob implements InjectableType {
+public class PushGroupUpdateJob extends BaseJob {
 
   public static final String KEY = "PushGroupUpdateJob";
 
@@ -42,8 +40,6 @@ public class PushGroupUpdateJob extends BaseJob implements InjectableType {
 
   private static final String KEY_SOURCE   = "source";
   private static final String KEY_GROUP_ID = "group_id";
-
-  @Inject SignalServiceMessageSender messageSender;
 
   private String source;
   private byte[] groupId;
@@ -118,6 +114,7 @@ public class PushGroupUpdateJob extends BaseJob implements InjectableType {
                                                                .withExpiration(groupRecipient.getExpireMessages())
                                                                .build();
 
+    SignalServiceMessageSender messageSender = ApplicationDependencies.getSignalServiceMessageSender();
     messageSender.sendMessage(new SignalServiceAddress(source),
                               UnidentifiedAccessUtil.getAccessFor(context, Recipient.from(context, Address.fromSerialized(source), false)),
                               message);

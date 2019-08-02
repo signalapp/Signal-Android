@@ -20,7 +20,7 @@ public class SimpleTask {
       return;
     }
 
-    AsyncTask.THREAD_POOL_EXECUTOR.execute(() -> {
+    SignalExecutors.BOUNDED.execute(() -> {
       final E result = backgroundTask.run();
 
       if (isValid(lifecycle)) {
@@ -38,7 +38,7 @@ public class SimpleTask {
    * the main thread. Essentially {@link AsyncTask}, but lambda-compatible.
    */
   public static <E> void run(@NonNull BackgroundTask<E> backgroundTask, @NonNull ForegroundTask<E> foregroundTask) {
-    AsyncTask.THREAD_POOL_EXECUTOR.execute(() -> {
+    SignalExecutors.BOUNDED.execute(() -> {
       final E result = backgroundTask.run();
       Util.runOnMain(() -> foregroundTask.run(result));
     });

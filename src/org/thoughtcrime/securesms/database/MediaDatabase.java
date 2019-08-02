@@ -47,6 +47,7 @@ public class MediaDatabase extends Database {
         + "WHERE " + AttachmentDatabase.MMS_ID + " IN (SELECT " + MmsSmsColumns.ID
         + " FROM " + MmsDatabase.TABLE_NAME
         + " WHERE " + MmsDatabase.THREAD_ID + " = ?) AND (%s) AND "
+        + MmsDatabase.REVEAL_DURATION + " = 0 AND "
         + AttachmentDatabase.DATA + " IS NOT NULL AND "
         + AttachmentDatabase.QUOTE + " = 0 AND "
         + AttachmentDatabase.STICKER_PACK_ID + " IS NULL "

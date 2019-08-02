@@ -5,7 +5,7 @@ import androidx.annotation.NonNull;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.PreKeyUtil;
-import org.thoughtcrime.securesms.dependencies.InjectableType;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
@@ -21,17 +21,13 @@ import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException
 import java.io.IOException;
 import java.util.List;
 
-import javax.inject.Inject;
-
-public class RefreshPreKeysJob extends BaseJob implements InjectableType {
+public class RefreshPreKeysJob extends BaseJob {
 
   public static final String KEY = "RefreshPreKeysJob";
 
   private static final String TAG = RefreshPreKeysJob.class.getSimpleName();
 
   private static final int PREKEY_MINIMUM = 10;
-
-  @Inject SignalServiceAccountManager accountManager;
 
   public RefreshPreKeysJob() {
     this(new Job.Parameters.Builder()
@@ -58,6 +54,8 @@ public class RefreshPreKeysJob extends BaseJob implements InjectableType {
   @Override
   public void onRun() throws IOException {
     if (!TextSecurePreferences.isPushRegistered(context)) return;
+
+    SignalServiceAccountManager accountManager = ApplicationDependencies.getSignalServiceAccountManager();
 
     int availableKeys = accountManager.getPreKeysCount();
 

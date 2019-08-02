@@ -37,7 +37,7 @@ import org.thoughtcrime.securesms.components.emoji.MediaKeyboard;
 import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.database.Address;
-import org.thoughtcrime.securesms.dependencies.InjectableType;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.MultiDeviceProfileKeyUpdateJob;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.GlideApp;
@@ -64,10 +64,8 @@ import java.io.IOException;
 import java.security.SecureRandom;
 import java.util.concurrent.ExecutionException;
 
-import javax.inject.Inject;
-
 @SuppressLint("StaticFieldLeak")
-public class CreateProfileActivity extends BaseActionBarActivity implements InjectableType {
+public class CreateProfileActivity extends BaseActionBarActivity {
 
   private static final String TAG = CreateProfileActivity.class.getSimpleName();
 
@@ -76,8 +74,6 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
 
   private final DynamicTheme    dynamicTheme    = new DynamicRegistrationTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
-
-  @Inject SignalServiceAccountManager accountManager;
 
   private InputAwareLayout       container;
   private ImageView              avatar;
@@ -106,8 +102,6 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
     initializeEmojiInput();
     initializeProfileName(getIntent().getBooleanExtra(EXCLUDE_SYSTEM, false));
     initializeProfileAvatar(getIntent().getBooleanExtra(EXCLUDE_SYSTEM, false));
-
-    ApplicationContext.getInstance(this).injectDependencies(this);
   }
 
   @Override
@@ -361,8 +355,9 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
     new AsyncTask<Void, Void, Boolean>() {
       @Override
       protected Boolean doInBackground(Void... params) {
-        Context context    = CreateProfileActivity.this;
-        byte[]  profileKey = ProfileKeyUtil.getProfileKey(CreateProfileActivity.this);
+        Context                     context        = CreateProfileActivity.this;
+        byte[]                      profileKey     = ProfileKeyUtil.getProfileKey(CreateProfileActivity.this);
+        SignalServiceAccountManager accountManager = ApplicationDependencies.getSignalServiceAccountManager();
 
         try {
           accountManager.setProfileName(profileKey, name);

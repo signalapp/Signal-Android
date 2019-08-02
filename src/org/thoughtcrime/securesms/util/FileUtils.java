@@ -7,13 +7,15 @@ import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public class FileUtils {
+public final class FileUtils {
 
   static {
     System.loadLibrary("native-utils");
   }
 
   public static native int getFileDescriptorOwner(FileDescriptor fileDescriptor);
+
+  static native int createMemoryFileDescriptor(String name);
 
   public static byte[] getFileDigest(FileInputStream fin) throws IOException {
     try {

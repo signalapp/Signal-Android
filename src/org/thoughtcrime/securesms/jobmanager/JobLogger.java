@@ -3,6 +3,8 @@ package org.thoughtcrime.securesms.jobmanager;
 import androidx.annotation.NonNull;
 import android.text.TextUtils;
 
+import java.util.Locale;
+
 public class JobLogger {
 
   public static String format(@NonNull Job job, @NonNull String event) {
@@ -18,7 +20,8 @@ public class JobLogger {
                                                                                                   : String.valueOf(job.getParameters().getMaxAttempts());
     String lifespan            = job.getParameters().getLifespan() == Job.Parameters.IMMORTAL ? "Immortal"
                                                                                               : String.valueOf(job.getParameters().getLifespan()) + " ms";
-    return String.format("[%s][%s]%s %s (Time Since Submission: %d ms, Lifespan: %s, Run Attempt: %d/%s)",
+    return String.format(Locale.US,
+                         "[%s][%s]%s %s (Time Since Submission: %d ms, Lifespan: %s, Run Attempt: %d/%s)",
                          id, job.getClass().getSimpleName(), tag, event, timeSinceSubmission, lifespan, runAttempt, maxAttempts);
   }
 }

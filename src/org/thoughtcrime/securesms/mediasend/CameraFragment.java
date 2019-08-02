@@ -21,6 +21,8 @@ public interface CameraFragment {
   interface Controller {
     void onCameraError();
     void onImageCaptured(@NonNull byte[] data, int width, int height);
+    void onGalleryClicked();
     int getDisplayRotation();
+    void onCameraCountButtonClicked();
   }
 }

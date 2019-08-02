@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
-import org.thoughtcrime.securesms.dependencies.InjectableType;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
@@ -26,9 +26,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
-import javax.inject.Inject;
-
-public class AvatarDownloadJob extends BaseJob implements InjectableType {
+public class AvatarDownloadJob extends BaseJob {
 
   public static final String KEY = "AvatarDownloadJob";
 
@@ -37,8 +35,6 @@ public class AvatarDownloadJob extends BaseJob implements InjectableType {
   private static final int MAX_AVATAR_SIZE = 20 * 1024 * 1024;
 
   private static final String KEY_GROUP_ID = "group_id";
-
-  @Inject SignalServiceMessageReceiver receiver;
 
   private byte[] groupId;
 
@@ -92,6 +88,7 @@ public class AvatarDownloadJob extends BaseJob implements InjectableType {
         attachment = File.createTempFile("avatar", "tmp", context.getCacheDir());
         attachment.deleteOnExit();
 
+        SignalServiceMessageReceiver   receiver    = ApplicationDependencies.getSignalServiceMessageReceiver();
         SignalServiceAttachmentPointer pointer     = new SignalServiceAttachmentPointer(avatarId, contentType, key, Optional.of(0), Optional.absent(), 0, 0, digest, fileName, false, Optional.absent());
         InputStream                    inputStream = receiver.retrieveAttachment(pointer, attachment, MAX_AVATAR_SIZE);
         Bitmap                         avatar      = BitmapUtil.createScaledBitmap(context, new AttachmentModel(attachment, key, 0, digest), 500, 500);

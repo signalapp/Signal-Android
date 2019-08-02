@@ -3,6 +3,8 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <unistd.h>
+#include <linux/memfd.h>
+#include <syscall.h>
 
 jint JNICALL Java_org_thoughtcrime_securesms_util_FileUtils_getFileDescriptorOwner
   (JNIEnv *env, jclass clazz, jobject fileDescriptor)
@@ -28,4 +30,16 @@ jint JNICALL Java_org_thoughtcrime_securesms_util_FileUtils_getFileDescriptorOwn
   }
 
   return stat_struct.st_uid;
+}
+
+JNIEXPORT jint JNICALL Java_org_thoughtcrime_securesms_util_FileUtils_createMemoryFileDescriptor
+  (JNIEnv *env, jclass clazz, jstring jname)
+{
+  const char *name = env->GetStringUTFChars(jname, NULL);
+
+  int fd = syscall(SYS_memfd_create, name, MFD_CLOEXEC);
+
+  env->ReleaseStringUTFChars(jname, name);
+
+  return fd;
 }

@@ -36,7 +36,6 @@ class JobController {
   private final JobInstantiator        jobInstantiator;
   private final ConstraintInstantiator constraintInstantiator;
   private final Data.Serializer        dataSerializer;
-  private final DependencyInjector     dependencyInjector;
   private final Scheduler              scheduler;
   private final Debouncer              debouncer;
   private final Callback               callback;
@@ -47,7 +46,6 @@ class JobController {
                 @NonNull JobInstantiator jobInstantiator,
                 @NonNull ConstraintInstantiator constraintInstantiator,
                 @NonNull Data.Serializer dataSerializer,
-                @NonNull DependencyInjector dependencyInjector,
                 @NonNull Scheduler scheduler,
                 @NonNull Debouncer debouncer,
                 @NonNull Callback callback)
@@ -57,7 +55,6 @@ class JobController {
     this.jobInstantiator        = jobInstantiator;
     this.constraintInstantiator = constraintInstantiator;
     this.dataSerializer         = dataSerializer;
-    this.dependencyInjector     = dependencyInjector;
     this.scheduler              = scheduler;
     this.debouncer              = debouncer;
     this.callback               = callback;
@@ -327,8 +324,6 @@ class JobController {
     job.setRunAttempt(jobSpec.getRunAttempt());
     job.setNextRunAttemptTime(jobSpec.getNextRunAttemptTime());
     job.setContext(application);
-
-    dependencyInjector.injectDependencies(job);
 
     return job;
   }

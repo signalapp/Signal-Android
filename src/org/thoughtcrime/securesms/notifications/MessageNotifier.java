@@ -465,6 +465,8 @@ public class MessageNotifier {
       } else if (record.isMms() && ((MmsMessageRecord) record).getSlideDeck().getStickerSlide() != null) {
         body = SpanUtil.italic(context.getString(R.string.MessageNotifier_sticker));
         slideDeck = ((MmsMessageRecord) record).getSlideDeck();
+      } else if (record.isMms() && ((MmsMessageRecord) record).getRevealDuration() > 0) {
+        body = SpanUtil.italic(context.getString(R.string.MessageNotifier_disappearing_photo));
       } else if (record.isMms() && TextUtils.isEmpty(body) && !((MmsMessageRecord) record).getSlideDeck().getSlides().isEmpty()) {
         body = SpanUtil.italic(context.getString(R.string.MessageNotifier_media_message));
         slideDeck = ((MediaMmsMessageRecord)record).getSlideDeck();

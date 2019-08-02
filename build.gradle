@@ -86,9 +86,9 @@ dependencies {
     implementation 'org.conscrypt:conscrypt-android:2.0.0'
     implementation 'org.signal:aesgcmprovider:0.0.3'
 
-    implementation 'org.whispersystems:signal-service-android:2.13.4'
+    implementation 'org.whispersystems:signal-service-android:2.13.6'
 
-    implementation 'org.whispersystems:webrtc-android:M74'
+    implementation 'org.whispersystems:webrtc-android:M75'
 
     implementation "me.leolin:ShortcutBadger:1.1.16"
     implementation 'se.emilsjolander:stickylistheaders:2.7.0'
@@ -105,10 +105,7 @@ dependencies {
     implementation 'com.theartofdev.edmodo:android-image-cropper:2.8.0'
     implementation 'com.melnykov:floatingactionbutton:1.3.0'
     implementation 'com.google.zxing:android-integration:3.1.0'
-    implementation 'com.squareup.dagger:dagger:1.2.2'
-    annotationProcessor 'com.squareup.dagger:dagger-compiler:1.2.2'
     implementation 'mobi.upod:time-duration-picker:1.1.3'
-    compileOnly 'com.squareup.dagger:dagger-compiler:1.2.2'
     implementation 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
     implementation 'com.google.zxing:core:3.2.1'
     implementation ('com.davemorrissey.labs:subsampling-scale-image-view:3.6.0') {
@@ -196,8 +193,8 @@ dependencyVerification {
         'com.google.android.exoplayer:exoplayer-core:b6ab34abac36bc2bc6934b7a50008162feca2c0fde91aaf1e8c1c22f2c16e2c0',
         'org.conscrypt:conscrypt-android:400ca559a49b860a82862b22cee0e3110764bdcf7ee7c79e7479895c25cdfc09',
         'org.signal:aesgcmprovider:6eb4422e8a618b3b76cb2096a3619d251f9e27989dc68307a1e5414c3710f2d1',
-        'org.whispersystems:signal-service-android:324997cab4036afb3383f4d4f98047db5f112ca32b9bc712a2e7ff6234ca7b9b',
-        'org.whispersystems:webrtc-android:2f7befaa3b47a04d244a4eef7c03c2d49c1685a6f92fc505cd5f4ac7eca2dc18',
+        'org.whispersystems:signal-service-android:fa8c1b82d066bd6902ffd7e3a0c4343c3afa0379c26c78c06323c300d5afca7b',
+        'org.whispersystems:webrtc-android:f8231bb57923afb243760213dc58924e85cce42f2f3cc8cb33a6d883672a921a',
         'me.leolin:ShortcutBadger:e3cb3e7625892129b0c92dd5e4bc649faffdd526d5af26d9c45ee31ff8851774',
         'se.emilsjolander:stickylistheaders:a08ca948aa6b220f09d82f16bbbac395f6b78897e9eeac6a9f0b0ba755928eeb',
         'com.jpardogo.materialtabstrip:library:c6ef812fba4f74be7dc4a905faa4c2908cba261a94c13d4f96d5e67e4aad4aaa',
@@ -207,7 +204,6 @@ dependencyVerification {
         'com.makeramen:roundedimageview:1f5a1865796b308c6cdd114acc6e78408b110f0a62fc63553278fbeacd489cd1',
         'org.greenrobot:eventbus:180d4212467df06f2fbc9c8d8a2984533ac79c87769ad883bc421612f0b4e17c',
         'com.google.zxing:android-integration:89e56aadf1164bd71e57949163c53abf90af368b51669c0d4a47a163335f95c4',
-        'com.squareup.dagger:dagger:789aca24537022e49f91fc6444078d9de8f1dd99e1bfb090f18491b186967883',
         'com.amulyakhare:com.amulyakhare.textdrawable:54c92b5fba38cfd316a07e5a30528068f45ce8515a6890f1297df4c401af5dcb',
         'com.google.zxing:core:b4d82452e7a6bf6ec2698904b332431717ed8f9a850224f295aec89de80f2259',
         'com.davemorrissey.labs:subsampling-scale-image-view:550c5baa07e0bb4ff0a18b705e96d34436d22619248bd8c08c08c730b1f55cfe',
@@ -269,11 +265,10 @@ dependencyVerification {
         'androidx.constraintlayout:constraintlayout-solver:965c177e64fbd81bd1d27b402b66ef9d7bc7b5cb5f718044bf7a453abc542045',
         'com.google.auto.value:auto-value-annotations:0e951fee8c31f60270bc46553a8586001b7b93dbb12aec06373aa99a150392c0',
         'org.signal:signal-metadata-android:02323bc29317fa9d3b62fab0b507c94ba2e9bcc4a78d588888ffd313853757b3',
-        'org.whispersystems:signal-service-java:6a1218cd6cebe6afbb613a00110a5c72708b3af5a7896d495ac4ed50ba58f07e',
+        'org.whispersystems:signal-service-java:b36c460bb8ed8ff134c35df87781dea2f30bc33fa8a10c8c3d9314dae752a7da',
         'com.github.bumptech.glide:disklrucache:4696a81340eb6beee21ab93f703ed6e7ae49fb4ce3bc2fbc546e5bacd21b96b9',
         'com.github.bumptech.glide:annotations:702a7521cb3f6d7e55edd66e90bda1a1975baf971d25f75b75638579f86bc69b',
         'com.nineoldandroids:library:68025a14e3e7673d6ad2f95e4b46d78d7d068343aa99256b686fe59de1b3163a',
-        'javax.inject:javax.inject:91c77044a50c481636c32d916fd89c9118a72195390452c81065080f957de7ff',
         'com.klinkerapps:logger:177e325259a8b111ad6745ec10db5861723c99f402222b80629f576f49408541',
         'com.google.android:flexbox:a9989fd13ae2ee42765dfc515fe362edf4f326e74925d02a10369df8092a4935',
         'org.jsoup:jsoup:abeaf34795a4de70f72aed6de5966d2955ec7eb348eeb813324f23c999575473',
@@ -293,8 +288,8 @@ dependencyVerification {
     ]
 }
 
-def canonicalVersionCode = 507
-def canonicalVersionName = "4.43.8"
+def canonicalVersionCode = 516
+def canonicalVersionName = "4.45.0"
 
 def postFixSize = 10
 def abiPostFix = ['armeabi-v7a' : 1,
@@ -375,7 +370,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'),
                           'proguard-firebase-messaging.pro',
                           'proguard-google-play-services.pro',
-                          'proguard-dagger.pro',
                           'proguard-jackson.pro',
                           'proguard-sqlite.pro',
                           'proguard-appcompat-v7.pro',

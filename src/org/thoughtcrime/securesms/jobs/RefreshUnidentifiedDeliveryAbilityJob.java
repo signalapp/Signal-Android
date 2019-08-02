@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.jobs;
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
-import org.thoughtcrime.securesms.dependencies.InjectableType;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
@@ -21,15 +21,11 @@ import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException
 
 import java.io.IOException;
 
-import javax.inject.Inject;
-
-public class RefreshUnidentifiedDeliveryAbilityJob extends BaseJob implements InjectableType {
+public class RefreshUnidentifiedDeliveryAbilityJob extends BaseJob {
 
   public static final String KEY = "RefreshUnidentifiedDeliveryAbilityJob";
 
   private static final String TAG = RefreshUnidentifiedDeliveryAbilityJob.class.getSimpleName();
-
-  @Inject SignalServiceMessageReceiver receiver;
 
   public RefreshUnidentifiedDeliveryAbilityJob() {
     this(new Job.Parameters.Builder()
@@ -73,7 +69,8 @@ public class RefreshUnidentifiedDeliveryAbilityJob extends BaseJob implements In
   }
 
   private SignalServiceProfile retrieveProfile(@NonNull String number) throws IOException {
-    SignalServiceMessagePipe pipe = IncomingMessageObserver.getPipe();
+    SignalServiceMessageReceiver receiver = ApplicationDependencies.getSignalServiceMessageReceiver();
+    SignalServiceMessagePipe     pipe     = IncomingMessageObserver.getPipe();
 
     if (pipe != null) {
       try {

@@ -45,7 +45,6 @@ public class JobManager implements ConstraintObserver.Notifier {
                                            configuration.getJobInstantiator(),
                                            configuration.getConstraintFactories(),
                                            configuration.getDataSerializer(),
-                                           configuration.getDependencyInjector(),
                                            Build.VERSION.SDK_INT < 26 ? new AlarmManagerScheduler(application)
                                                                       : new CompositeScheduler(new InAppScheduler(this), new JobSchedulerScheduler(application)),
                                            new Debouncer(500),
@@ -183,7 +182,7 @@ public class JobManager implements ConstraintObserver.Notifier {
       return then(Collections.singletonList(job));
     }
 
-    public Chain then(@NonNull List<Job> jobs) {
+    public Chain then(@NonNull List<? extends Job> jobs) {
       if (!jobs.isEmpty()) {
         this.jobs.add(new ArrayList<>(jobs));
       }
@@ -208,7 +207,6 @@ public class JobManager implements ConstraintObserver.Notifier {
     private final List<ConstraintObserver> constraintObservers;
     private final Data.Serializer          dataSerializer;
     private final JobStorage               jobStorage;
-    private final DependencyInjector       dependencyInjector;
 
     private Configuration(int jobThreadCount,
                           @NonNull ExecutorFactory executorFactory,
@@ -216,8 +214,7 @@ public class JobManager implements ConstraintObserver.Notifier {
                           @NonNull ConstraintInstantiator constraintInstantiator,
                           @NonNull List<ConstraintObserver> constraintObservers,
                           @NonNull Data.Serializer dataSerializer,
-                          @NonNull JobStorage jobStorage,
-                          @NonNull DependencyInjector dependencyInjector)
+                          @NonNull JobStorage jobStorage)
     {
       this.executorFactory        = executorFactory;
       this.jobThreadCount         = jobThreadCount;
@@ -226,7 +223,6 @@ public class JobManager implements ConstraintObserver.Notifier {
       this.constraintObservers    = constraintObservers;
       this.dataSerializer         = dataSerializer;
       this.jobStorage             = jobStorage;
-      this.dependencyInjector     = dependencyInjector;
     }
 
     int getJobThreadCount() {
@@ -258,10 +254,6 @@ public class JobManager implements ConstraintObserver.Notifier {
       return jobStorage;
     }
 
-    @NonNull DependencyInjector getDependencyInjector() {
-      return dependencyInjector;
-    }
-
     public static class Builder {
 
       private ExecutorFactory                 executorFactory     = new DefaultExecutorFactory();
@@ -271,7 +263,6 @@ public class JobManager implements ConstraintObserver.Notifier {
       private List<ConstraintObserver>        constraintObservers = new ArrayList<>();
       private Data.Serializer                 dataSerializer      = new JsonDataSerializer();
       private JobStorage                      jobStorage          = null;
-      private DependencyInjector              dependencyInjector  = o -> { /*noop*/ };
 
       public @NonNull Builder setJobThreadCount(int jobThreadCount) {
         this.jobThreadCount = jobThreadCount;
@@ -308,11 +299,6 @@ public class JobManager implements ConstraintObserver.Notifier {
         return this;
       }
 
-      public @NonNull Builder setDependencyInjector(@NonNull DependencyInjector dependencyInjector) {
-        this.dependencyInjector = dependencyInjector;
-        return this;
-      }
-
       public @NonNull Configuration build() {
         return new Configuration(jobThreadCount,
                                  executorFactory,
@@ -320,8 +306,7 @@ public class JobManager implements ConstraintObserver.Notifier {
                                  new ConstraintInstantiator(constraintFactories),
                                  new ArrayList<>(constraintObservers),
                                  dataSerializer,
-                                 jobStorage,
-                                 dependencyInjector);
+                                 jobStorage);
       }
     }
   }

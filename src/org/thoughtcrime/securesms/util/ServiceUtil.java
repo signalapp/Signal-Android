@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.util;
 
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.app.AlarmManager;
 import android.app.NotificationManager;
 import android.app.job.JobScheduler;
@@ -17,6 +18,7 @@ import androidx.annotation.RequiresApi;
 import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
 import android.view.WindowManager;
+import android.view.accessibility.AccessibilityManager;
 import android.view.inputmethod.InputMethodManager;
 
 public class ServiceUtil {
@@ -60,6 +62,10 @@ public class ServiceUtil {
     return (DisplayManager) context.getSystemService(Context.DISPLAY_SERVICE);
   }
 
+  public static AccessibilityManager getAccessibilityManager(@NonNull Context context) {
+    return (AccessibilityManager) context.getSystemService(Context.ACCESSIBILITY_SERVICE);
+  }
+
   @RequiresApi(26)
   public static JobScheduler getJobScheduler(Context context) {
     return (JobScheduler) context.getSystemService(JobScheduler.class);
@@ -68,5 +74,9 @@ public class ServiceUtil {
   @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP_MR1)
   public static @Nullable SubscriptionManager getSubscriptionManager(@NonNull Context context) {
     return (SubscriptionManager) context.getSystemService(Context.TELEPHONY_SUBSCRIPTION_SERVICE);
+  }
+
+  public static ActivityManager getActivityManager(@NonNull Context context) {
+    return (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
   }
 }

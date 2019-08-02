@@ -67,6 +67,7 @@
 
                 <ImageView
                     android:id="@+id/avatar"
+                    android:contentDescription="@string/CreateProfileActivity_set_avatar_description"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     app:layout_constraintBottom_toBottomOf="@+id/avatar_background"

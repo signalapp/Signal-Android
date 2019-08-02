@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.ConstraintObserver;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraintObserver;
@@ -19,7 +20,6 @@ import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobs.PushContentReceiveJob;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
@@ -31,9 +31,7 @@ import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
-import javax.inject.Inject;
-
-public class IncomingMessageObserver implements InjectableType, ConstraintObserver.Notifier {
+public class IncomingMessageObserver implements ConstraintObserver.Notifier {
 
   private static final String TAG = IncomingMessageObserver.class.getSimpleName();
 
@@ -43,19 +41,19 @@ public class IncomingMessageObserver implements InjectableType, ConstraintObserv
   private static SignalServiceMessagePipe pipe             = null;
   private static SignalServiceMessagePipe unidentifiedPipe = null;
 
-  private final Context           context;
-  private final NetworkConstraint networkConstraint;
+  private final Context                      context;
+  private final NetworkConstraint            networkConstraint;
+  private final SignalServiceMessageReceiver receiver;
+  private final SignalServiceNetworkAccess   networkAccess;
 
   private boolean appVisible;
 
-  @Inject SignalServiceMessageReceiver receiver;
-  @Inject SignalServiceNetworkAccess   networkAccess;
 
   public IncomingMessageObserver(@NonNull Context context) {
-    ApplicationContext.getInstance(context).injectDependencies(this);
-
-    this.context            = context;
+    this.context           = context;
     this.networkConstraint = new NetworkConstraint.Factory(ApplicationContext.getInstance(context)).create();
+    this.receiver          = ApplicationDependencies.getSignalServiceMessageReceiver();
+    this.networkAccess     = ApplicationDependencies.getSignalServiceNetworkAccess();
 
     new NetworkConstraintObserver(ApplicationContext.getInstance(context)).register(this);
     new MessageRetrievalThread().start();

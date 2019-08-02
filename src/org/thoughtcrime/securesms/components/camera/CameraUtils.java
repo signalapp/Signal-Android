@@ -15,6 +15,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 
 @SuppressWarnings("deprecation")
 public class CameraUtils {
@@ -30,7 +31,8 @@ public class CameraUtils {
     final int    targetHeight = displayOrientation % 180 == 90 ? width  : height;
     final double targetRatio  = (double) targetWidth / targetHeight;
 
-    Log.d(TAG, String.format("getPreferredPreviewSize(%d, %d, %d) -> target %dx%d, AR %.02f",
+    Log.d(TAG, String.format(Locale.US,
+                             "getPreferredPreviewSize(%d, %d, %d) -> target %dx%d, AR %.02f",
                              displayOrientation, width, height,
                              targetWidth, targetHeight, targetRatio));
 
@@ -39,7 +41,7 @@ public class CameraUtils {
     List<Size> bigEnough = new LinkedList<>();
 
     for (Size size : sizes) {
-      Log.d(TAG, String.format("  %dx%d (%.02f)", size.width, size.height, (float)size.width / size.height));
+      Log.d(TAG, String.format(Locale.US, "  %dx%d (%.02f)", size.width, size.height, (float)size.width / size.height));
 
       if (size.height == size.width * targetRatio && size.height >= targetHeight && size.width >= targetWidth) {
         ideals.add(size);

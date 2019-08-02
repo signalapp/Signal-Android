@@ -23,6 +23,7 @@ public final class JobManagerFactories {
 
   public static Map<String, Job.Factory> getJobFactories(@NonNull Application application) {
     return new HashMap<String, Job.Factory>() {{
+      put(AttachmentCopyJob.KEY,                     new AttachmentCopyJob.Factory());
       put(AttachmentDownloadJob.KEY,                 new AttachmentDownloadJob.Factory());
       put(AttachmentUploadJob.KEY,                   new AttachmentUploadJob.Factory());
       put(AvatarDownloadJob.KEY,                     new AvatarDownloadJob.Factory());
@@ -40,6 +41,7 @@ public final class JobManagerFactories {
       put(MultiDeviceGroupUpdateJob.KEY,             new MultiDeviceGroupUpdateJob.Factory());
       put(MultiDeviceProfileKeyUpdateJob.KEY,        new MultiDeviceProfileKeyUpdateJob.Factory());
       put(MultiDeviceReadUpdateJob.KEY,              new MultiDeviceReadUpdateJob.Factory());
+      put(MultiDeviceRevealUpdateJob.KEY,            new MultiDeviceRevealUpdateJob.Factory());
       put(MultiDeviceStickerPackOperationJob.KEY,    new MultiDeviceStickerPackOperationJob.Factory());
       put(MultiDeviceStickerPackSyncJob.KEY,         new MultiDeviceStickerPackSyncJob.Factory());
       put(MultiDeviceVerifiedUpdateJob.KEY,          new MultiDeviceVerifiedUpdateJob.Factory());
@@ -83,7 +85,7 @@ public final class JobManagerFactories {
   }
 
   public static List<ConstraintObserver> getConstraintObservers(@NonNull Application application) {
-    return Arrays.asList(new CellServiceConstraintObserver(application),
+    return Arrays.asList(CellServiceConstraintObserver.getInstance(application),
                          new NetworkConstraintObserver(application),
                          new SqlCipherMigrationConstraintObserver());
   }

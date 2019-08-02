@@ -57,7 +57,7 @@
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">No s\'ha trobat cap aplicació compatible.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">El Signal necessita el permís de l\'emmagatzematge per tal d\'adjuntar fotografies, vídeos o àudio, però s\'ha denegat permanentment. Si us plau, continueu cap al menú de configuració de l\'aplicació, seleccioneu Permisos i habiliteu-hi l\'emmagatzematge.</string>
-  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">El Signal necessita el permís dels contactes per tal d\'adjuntar-ne informació, però s\'ha denegat permanentment. Si us plau, continueu cap al menú de configuració de l\'aplicació, seleccioneu Permisos i habiliteu-hi els contactes.</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">El Signal necessita el permís de l\'aplicació dels contactes per tal d\'adjuntar-ne informació, però s\'ha denegat permanentment. Si us plau, continueu cap al menú de configuració de l\'aplicació, seleccioneu Permisos i habiliteu-hi els contactes.</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">El Signal necessita el permís de la ubicació per tal d\'adjuntar-ne informació, però s\'ha denegat permanentment. Si us plau, continueu cap al menú de configuració de l\'aplicació, seleccioneu Permisos i habiliteu-hi la ubicació.</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">El Signal necessita el permís de la càmera per tal d\'adjuntar-ne informació, però s\'ha denegat permanentment. Si us plau, continueu cap al menú de configuració de l\'aplicació, seleccioneu Permisos i habiliteu-hi la càmera.</string>
   <!--AttachmentUploadJob-->
@@ -75,6 +75,16 @@
   <string name="CallScreen_Incoming_call">Trucada rebuda</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">No s\'ha pogut desar la imatge.</string>
+  <!--CameraContacts-->
+  <string name="CameraContacts_recent_contacts">Contactes recents</string>
+  <string name="CameraContacts_signal_contacts">Contactes de Signal</string>
+  <string name="CameraContacts_signal_groups">Grups de Signal</string>
+  <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">Podeu compartir un màxim de %d converses.</string>
+  <string name="CameraContacts_select_signal_recipients">Seleccioneu els destinataris de Signal</string>
+  <string name="CameraContacts_no_signal_contacts">No hi ha contactes de Signal</string>
+  <string name="CameraContacts_you_can_only_use_the_camera_button">Només podeu usar el botó de la càmera per enviar fotografies a contactes de Signal.</string>
+  <string name="CameraContacts_cant_find_who_youre_looking_for">No trobeu qui busqueu?</string>
+  <string name="CameraContacts_invite_a_contact_to_join_signal">Convideu un contacte a Signal</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Suprimeix</string>
   <string name="ClearProfileActivity_remove_profile_photo">Voleu suprimir la foto de perfil?</string>
@@ -408,6 +418,10 @@
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">S\'ha suprimit un element perquè excedia el límit de la mida.</string>
   <string name="MediaSendActivity_camera_unavailable">Càmera no disponible</string>
   <string name="MediaSendActivity_message_to_s">Missatge per a %s</string>
+  <string name="MediaSendActivity_message">Missatge</string>
+  <string name="MediaSendActivity_select_recipients">Seleccioneu destinataris</string>
+  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">El Signal necessita accés als contactes per tal de mostrar-los.</string>
+  <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">El Signal necessita el permís de l\'aplicació de contactes per tal de mostrar-ne els vostres, però s\'ha denegat permanentment. Si us plau, continueu cap al menú de configuració de l\'aplicació, seleccioneu Permisos i habiliteu-hi els contactes.</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">No podeu compartir més de %d elements.</item>
     <item quantity="other">No podeu compartir més de %d elements.</item>
@@ -546,6 +560,10 @@ especificat (%s) no és vàlid.</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Rebreu un codi de verificació. La vostra operadora podria aplicar algun càrrec.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Introduïu el codi que hem enviat a %s</string>
   <string name="RegistrationActivity_call">Truca</string>
+  <!--RevealableMessageView-->
+  <string name="RevealableMessageView_view_photo">Mostra la fotografia</string>
+  <string name="RevealableMessageView_viewed">Vista</string>
+  <string name="RevealableMessageView_photo">Foto</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">No s\'ha pogut desar els canvis en la imatge</string>
   <!--Search-->
@@ -577,6 +595,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="SmsMessageRecord_secure_session_reset_s">%s ha restablit la sessió segura.</string>
   <string name="SmsMessageRecord_duplicate_message">Missatge duplicat.</string>
   <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">No s’ha pogut processar aquest missatge perquè s’ha enviat des d’una versió més recent del Signal. Podeu demanar al vostre contacte que enviï aquest missatge un cop l\'hàgiu actualitzat.  </string>
+  <string name="SmsMessageRecord_error_handling_incoming_message">S\'ha produït un error en gestionar el missatge rebut</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Adhesius</string>
   <!--StickerManagementAdapter-->
@@ -603,6 +622,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ThreadRecord_called_you">Us ha trucat</string>
   <string name="ThreadRecord_missed_call">Trucada perduda</string>
   <string name="ThreadRecord_media_message">Missatge multimèdia</string>
+  <string name="ThreadRecord_sticker">Adhesiu</string>
+  <string name="ThreadRecord_disappearing_photo">Fotografia efímera</string>
   <string name="ThreadRecord_s_is_on_signal">%s és al Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Missatges efímers inhabilitats</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">El temps del missatge efímer s\'ha establit a %s</string>
@@ -677,6 +698,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="MessageNotifier_mark_read">Marca\'l com a llegit</string>
   <string name="MessageNotifier_media_message">Missatge multimèdia</string>
   <string name="MessageNotifier_sticker">Adhesiu</string>
+  <string name="MessageNotifier_disappearing_photo">Fotografia efímera</string>
   <string name="MessageNotifier_reply">Respon</string>
   <string name="MessageNotifier_signal_message">Missatge del Signal</string>
   <string name="MessageNotifier_unsecured_sms">SMS no segur</string>
@@ -757,7 +779,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Foto del contacte</string>
   <!--ContactSelectionListFragment-->
-  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">El Signal necessita el permís dels contactes per tal de mostrar-ne els vostres, però s\'ha denegat permanentment. Si us plau, continueu cap al menú de configuració de l\'aplicació, seleccioneu Permisos i habiliteu-hi els contactes.</string>
+  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">El Signal necessita el permís de l\'aplicació dels contactes per tal de mostrar-ne els vostres, però s\'ha denegat permanentment. Si us plau, continueu cap al menú de configuració de l\'aplicació, seleccioneu Permisos i habiliteu-hi els contactes.</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Error en recuperar els contactes. Comproveu la connexió de xarxa.</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">No hi ha cap contacte blocat</string>
@@ -1243,7 +1265,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">El Signal necessita el permís d\'SMS per tal d\'enviar missatges SMS, però s\'ha denegat permanentment. Si us plau, continueu cap al menú de configuració de l\'aplicació, seleccioneu Permisos i habiliteu-hi l\'SMS.</string>
   <string name="Permissions_continue">Continua</string>
   <string name="Permissions_not_now">Ara no</string>
-  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">El Signal necessita el permís dels contactes per tal de cercar-ne els vostres, però s\'ha denegat permanentment. Si us plau, continueu cap al menú de configuració de l\'aplicació, seleccioneu Permisos i habiliteu-hi els contactes.</string>
+  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">El Signal necessita el permís de l\'aplicació dels contactes per tal de cercar-ne els vostres, però s\'ha denegat permanentment. Si us plau, continueu cap al menú de configuració de l\'aplicació, seleccioneu Permisos i habiliteu-hi els contactes.</string>
   <string name="conversation_activity__enable_signal_messages">HABILITA ELS MISSATGES DE SIGNAL</string>
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Migració de la base de dades del Signal</string>
   <string name="PushDecryptJob_new_locked_message">Missatge blocat nou</string>

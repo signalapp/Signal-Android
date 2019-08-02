@@ -10,7 +10,7 @@ import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.dependencies.InjectableType;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -33,9 +33,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
-import javax.inject.Inject;
-
-public class AttachmentDownloadJob extends BaseJob implements InjectableType {
+public class AttachmentDownloadJob extends BaseJob {
 
   public static final String KEY = "AttachmentDownloadJob";
 
@@ -46,8 +44,6 @@ public class AttachmentDownloadJob extends BaseJob implements InjectableType {
   private static final String KEY_PART_ROW_ID   = "part_row_id";
   private static final String KEY_PAR_UNIQUE_ID = "part_unique_id";
   private static final String KEY_MANUAL        = "part_manual";
-
-  @Inject SignalServiceMessageReceiver messageReceiver;
 
   private long    messageId;
   private long    partRowId;
@@ -164,8 +160,9 @@ public class AttachmentDownloadJob extends BaseJob implements InjectableType {
     try {
       attachmentFile = createTempFile();
 
-      SignalServiceAttachmentPointer pointer = createAttachmentPointer(attachment);
-      InputStream                    stream  = messageReceiver.retrieveAttachment(pointer, attachmentFile, MAX_ATTACHMENT_SIZE, (total, progress) -> EventBus.getDefault().postSticky(new PartProgressEvent(attachment, total, progress)));
+      SignalServiceMessageReceiver   messageReceiver = ApplicationDependencies.getSignalServiceMessageReceiver();
+      SignalServiceAttachmentPointer pointer         = createAttachmentPointer(attachment);
+      InputStream                    stream          = messageReceiver.retrieveAttachment(pointer, attachmentFile, MAX_ATTACHMENT_SIZE, (total, progress) -> EventBus.getDefault().postSticky(new PartProgressEvent(attachment, total, progress)));
 
       database.insertAttachmentsForPlaceholder(messageId, attachmentId, stream);
     } catch (InvalidPartException | NonSuccessfulResponseCodeException | InvalidMessageException | MmsException e) {

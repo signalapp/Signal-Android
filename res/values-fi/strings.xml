@@ -4,7 +4,7 @@
   <string name="yes">Kyllä</string>
   <string name="no">Ei</string>
   <string name="delete">Poista</string>
-  <string name="please_wait">Odota hetki...</string>
+  <string name="please_wait">Odota hetki…</string>
   <string name="save">Tallenna</string>
   <string name="note_to_self">Viestit itselleni</string>
   <!--AbstractNotificationBuilder-->
@@ -28,7 +28,7 @@
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Tämä avaa Signalin ja viesti-ilmoitusten lukituksen pysyvästi.</string>
   <string name="ApplicationPreferencesActivity_disable">Poista käytöstä</string>
   <string name="ApplicationPreferencesActivity_unregistering">Puretaan rekisteröintiä</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Puretaan rekisteröintiä Signal-viesteistä ja -puheluista...</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Puretaan rekisteröintiä Signal-viesteistä ja -puheluista…</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Otetaanko Signal-viestit ja -puhelut pois käytöstä?</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Tämä ottaa Signal-viestit ja -puhelut pois käytöstä  purkamalla rekisteröitymisesi palvelimelta. Jos haluat käyttää niitä jatkossa, täytyy sinun rekisteröityä puhelinnumerollasi uudelleen.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Virhe yhdistettäessä palvelimeen!</string>
@@ -61,6 +61,7 @@
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal tarvitsee lupaa käyttää sijaintitietoja sijainnin liittämistä varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Sijainti\".</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal tarvitsee lupaa käyttää kameraa kuvien ottamista varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Kamera\".</string>
   <!--AttachmentUploadJob-->
+  <string name="AttachmentUploadJob_uploading_media">Lähetetään media…</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Virhe toistettaessa äänitallennetta!</string>
   <!--BlockedContactsActivity-->
@@ -74,6 +75,16 @@
   <string name="CallScreen_Incoming_call">Saapuva puhelu</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Kuvan tallennus epäonnistui.</string>
+  <!--CameraContacts-->
+  <string name="CameraContacts_recent_contacts">Viimeisimmät yhteystiedot</string>
+  <string name="CameraContacts_signal_contacts">Signal-yhteystiedot</string>
+  <string name="CameraContacts_signal_groups">Signal-ryhmät</string>
+  <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">%d keskustelua on enimmäismäärä, joihin voit jakaa. </string>
+  <string name="CameraContacts_select_signal_recipients">Valitse Signal -vastaanottajat liitteelle:</string>
+  <string name="CameraContacts_no_signal_contacts">Ei Signal-yhteystietoja</string>
+  <string name="CameraContacts_you_can_only_use_the_camera_button">Voit käyttää kamerapainiketta vain valokuvien lähettämiseen Signal -yhteystiedoillesi.</string>
+  <string name="CameraContacts_cant_find_who_youre_looking_for">Etkö löydä ketä olet etsimässä?</string>
+  <string name="CameraContacts_invite_a_contact_to_join_signal">Kutsu yhteystieto Signaliin</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Poista</string>
   <string name="ClearProfileActivity_remove_profile_photo">Poista profiilikuva?</string>
@@ -407,6 +418,10 @@
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Kohde poistettiin, koska se ylitti kokorajan</string>
   <string name="MediaSendActivity_camera_unavailable">Kamera ei käytettävissä</string>
   <string name="MediaSendActivity_message_to_s">Vastaanottaja: %s</string>
+  <string name="MediaSendActivity_message">Viesti</string>
+  <string name="MediaSendActivity_select_recipients">Valitse vastaanottajat</string>
+  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal tarvitsee luvan yhteystietoihisi, jotta se voisi näyttää ne.</string>
+  <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal tarvitsee lupaa käyttää laitteesi yhteystietoja niiden näyttämistä varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Jatka sovellusten asetuksiin, valitse \"Sovelluksen käyttöoikeudet\" ja laita päälle  \"Yhteystiedot\".</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Et voi jakaa useampaa kuin %d kappaletta.</item>
     <item quantity="other">Et voi jakaa useampaa kuin %d kappaletta.</item>
@@ -468,6 +483,10 @@
   <string name="PassphrasePromptActivity_ok_button_content_description">Syötä salalause</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Salalause ei kelpaa!</string>
   <!--PlacePickerActivity-->
+  <string name="PlacePickerActivity_title">Kartta</string>
+  <string name="PlacePickerActivity_not_a_valid_address">Osoite ei kelvollinen</string>
+  <string name="PlacePickerActivity_drop_pin">Pudota tappi</string>
+  <string name="PlacePickerActivity_accept_address">Hyväksy osoite</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Käyttämäsi versio Google Play Servicestä ei toimi kunnolla. Asenna Google Play Services uudelleen ja yritä uudestaan.</string>
   <!--RatingManager-->
@@ -541,6 +560,10 @@ puhelinnumero</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Saat vahvistuskoodin. Matkapuhelinoperaattorisi hinnat voivat olla voimassa.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Syötä koodi, jonka lähetimme numeroon %s</string>
   <string name="RegistrationActivity_call">Soita</string>
+  <!--RevealableMessageView-->
+  <string name="RevealableMessageView_view_photo">Näytä kuva</string>
+  <string name="RevealableMessageView_viewed">Nähty</string>
+  <string name="RevealableMessageView_photo">Kuva</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Kuvaan tehtyjen muutosten tallentaminen ei onnistunut.</string>
   <!--Search-->
@@ -551,12 +574,12 @@ puhelinnumero</string>
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Lisää yhteystietoihin</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Kutsu Signaliin</string>
-  <string name="SharedContactDetailsActivity_signal_message">Signal viesti</string>
+  <string name="SharedContactDetailsActivity_signal_message">Signal-viesti</string>
   <string name="SharedContactDetailsActivity_signal_call">Signal-puhelu</string>
   <!--SharedContactView-->
   <string name="SharedContactView_add_to_contacts">Lisää yhteystietoihin</string>
   <string name="SharedContactView_invite_to_signal">Kutsu Signaliin</string>
-  <string name="SharedContactView_message">Signal viesti</string>
+  <string name="SharedContactView_message">Signal-viesti</string>
   <!--Slide-->
   <string name="Slide_image">Kuva</string>
   <string name="Slide_sticker">Tarra</string>
@@ -572,6 +595,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="SmsMessageRecord_secure_session_reset_s">%s alusti suojatun istunnon.</string>
   <string name="SmsMessageRecord_duplicate_message">Viestin kaksoiskappale.</string>
   <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Tätä viestiä ei voitu käsitellä, koska se lähetettiin uudemmasta Signal-versiosta. Voit pyytää yhteystietoasi lähettämään viestin uudelleen sen jälkeen kun olet päivittänyt.</string>
+  <string name="SmsMessageRecord_error_handling_incoming_message">Virhe saapuvan viestin käsittelyssä</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Tarrat</string>
   <!--StickerManagementAdapter-->
@@ -598,6 +622,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ThreadRecord_called_you">Soitti sinulle</string>
   <string name="ThreadRecord_missed_call">Vastaamatta jäänyt puhelu</string>
   <string name="ThreadRecord_media_message">Mediaviesti</string>
+  <string name="ThreadRecord_sticker">Tarra</string>
+  <string name="ThreadRecord_disappearing_photo">Katoava kuva</string>
   <string name="ThreadRecord_s_is_on_signal">%s käyttää Signalia!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Katoavat viestit poistettu käytöstä</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Katoavien viestien ajaksi asetettu %s</string>
@@ -672,6 +698,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="MessageNotifier_mark_read">Luettu</string>
   <string name="MessageNotifier_media_message">Mediaviesti</string>
   <string name="MessageNotifier_sticker">Tarra</string>
+  <string name="MessageNotifier_disappearing_photo">Katoava kuva</string>
   <string name="MessageNotifier_reply">Vastaa</string>
   <string name="MessageNotifier_signal_message">Signal viesti</string>
   <string name="MessageNotifier_unsecured_sms">Salaamaton SMS-viesti</string>
@@ -1064,10 +1091,10 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="preferences__mms_user_agent">MMS User Agent</string>
   <string name="preferences__advanced_mms_access_point_names">Manuaaliset MMS-asetukset</string>
   <string name="preferences__mmsc_url">MMSC URL</string>
-  <string name="preferences__mms_proxy_host">MMS välityspalvelin</string>
-  <string name="preferences__mms_proxy_port">MMS välityspalvelimen portti</string>
-  <string name="preferences__mmsc_username">MMSC käyttäjänimi</string>
-  <string name="preferences__mmsc_password">MMSC salasana</string>
+  <string name="preferences__mms_proxy_host">MMS-välityspalvelin</string>
+  <string name="preferences__mms_proxy_port">MMS-välityspalvelimen portti</string>
+  <string name="preferences__mmsc_username">MMSC-käyttäjänimi</string>
+  <string name="preferences__mmsc_password">MMSC-salasana</string>
   <string name="preferences__sms_delivery_reports">SMS toimitusvahvistukset</string>
   <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Pyydä vahvistus jokaisen lähetetyn tekstiviestin toimituksesta</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Poista vanhimpia viestejä automaattisesti, kun keskustelu ylittää määritetyn pituusrajan</string>
@@ -1116,7 +1143,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="preferences_chats__show_invitation_prompts">Näytä kutsukehotukset</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Näytä kehotuksia kutsua yhteystietoja, jotka eivät vielä käytä Signalia</string>
   <string name="preferences_chats__message_text_size">Viestien tekstin koko</string>
-  <string name="preferences_events__contact_joined_signal">Yhteistietosi liittyi Signaliin</string>
+  <string name="preferences_events__contact_joined_signal">Yhteystietosi liittyi Signaliin</string>
   <string name="preferences_notifications__priority">Prioriteetti</string>
   <string name="preferences_communication__category_sealed_sender">Sinetöity lähettäjä</string>
   <string name="preferences_communication__sealed_sender_display_indicators">Näytä tilaindikaattori</string>

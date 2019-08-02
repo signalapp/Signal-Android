@@ -26,6 +26,8 @@
     <dimen name="album_5_cell_size_big">104dp</dimen>
     <dimen name="album_5_cell_size_small">69dp</dimen>
 
+    <dimen name="camera_contacts_horizontal_margin">16dp</dimen>
+
     <dimen name="message_corner_radius">16dp</dimen>
     <dimen name="message_corner_collapse_radius">4dp</dimen>
     <dimen name="message_bubble_corner_radius">2dp</dimen>
@@ -46,6 +48,7 @@
 
     <dimen name="media_picker_folder_width">175dp</dimen>
     <dimen name="media_picker_item_width">85dp</dimen>
+    <dimen name="media_picker_rail_padding_affordance">130dp</dimen>
 
     <dimen name="media_keyboard_provider_icon_padding">5dp</dimen>
     <dimen name="media_keyboard_provider_icon_margin">4dp</dimen>

@@ -81,6 +81,16 @@
   <string name="CallScreen_Incoming_call">Gaunamasis skambutis</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Nepavyko įrašyti paveikslo</string>
+  <!--CameraContacts-->
+  <string name="CameraContacts_recent_contacts">Paskiausi adresatai</string>
+  <string name="CameraContacts_signal_contacts">Signal adresatai</string>
+  <string name="CameraContacts_signal_groups">Signal grupės</string>
+  <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">Galite bendrinti daugiausiai su %d pokalbių.</string>
+  <string name="CameraContacts_select_signal_recipients">Pasirinkti Signal gavėjus</string>
+  <string name="CameraContacts_no_signal_contacts">Nėra Signal adresatų</string>
+  <string name="CameraContacts_you_can_only_use_the_camera_button">Galite naudoti kameros mygtuką tik tam, kad siųstumėte nuotraukas Signal adresatams.</string>
+  <string name="CameraContacts_cant_find_who_youre_looking_for">Nerandate ieškomo žmogaus?</string>
+  <string name="CameraContacts_invite_a_contact_to_join_signal">Pakvieskite adresatą prisijungti prie Signal</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Šalinti</string>
   <string name="ClearProfileActivity_remove_profile_photo">Šalinti profilio nuotrauką?</string>
@@ -444,6 +454,10 @@
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Elementas buvo pašalintas, nes jis viršijo leidžiamą dydį</string>
   <string name="MediaSendActivity_camera_unavailable">Kamera neprieinama.</string>
   <string name="MediaSendActivity_message_to_s">Žinutė skirta %s</string>
+  <string name="MediaSendActivity_message">Žinutė</string>
+  <string name="MediaSendActivity_select_recipients">Pasirinkti gavėjus</string>
+  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Norint rodyti jūsų adresatus, Signal reikia prieigos prie jų.</string>
+  <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Norint rodyti jūsų adresatus, Signal reikia adresatų leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymų meniu, pasirinkite \"Leidimai\" ir įjunkite \"Adresatus\".</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Jūs negalite bendrinti daugiau nei %d elementą.</item>
     <item quantity="few">Jūs negalite bendrinti daugiau nei %d elementų.</item>
@@ -590,6 +604,10 @@
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Gausite patvirtinimo kodą. Gali būti taikomi mobiliojo ryšio tinklo operatoriaus mokesčiai.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Įveskite kodą, kurį išsiuntėme į %s</string>
   <string name="RegistrationActivity_call">Skambinti</string>
+  <!--RevealableMessageView-->
+  <string name="RevealableMessageView_view_photo">Žiūrėti nuotrauką</string>
+  <string name="RevealableMessageView_viewed">Peržiūrėta</string>
+  <string name="RevealableMessageView_photo">Nuotrauka</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Nepavyko įrašyti paveikslo pakeitimų</string>
   <!--Search-->
@@ -623,6 +641,7 @@
   <string name="SmsMessageRecord_secure_session_reset_s">%s atstatė saugųjį seansą.</string>
   <string name="SmsMessageRecord_duplicate_message">Dviguba žinutė.</string>
   <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Šios žinutės nepavyko apdoroti, nes ji buvo išsiųsta, naudojant naujesnę Signal versiją. Kai atsinaujinsite programėlę, galite paprašyti adresato, kad išsiųstų jums šią žinutę dar kartą.</string>
+  <string name="SmsMessageRecord_error_handling_incoming_message">Klaida, apdorojant gaunamą žinutę</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Lipdukai</string>
   <!--StickerManagementAdapter-->
@@ -649,6 +668,8 @@
   <string name="ThreadRecord_called_you">Jums skambino</string>
   <string name="ThreadRecord_missed_call">Praleistas skambutis</string>
   <string name="ThreadRecord_media_message">Medijos žinutė</string>
+  <string name="ThreadRecord_sticker">Lipdukas</string>
+  <string name="ThreadRecord_disappearing_photo">Išnykstanti nuotrauka</string>
   <string name="ThreadRecord_s_is_on_signal">%s atėjo į Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Išnykstančios žinutės išjungtos</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Išnykstančių žinučių laikas nustatytas į %s</string>
@@ -723,6 +744,7 @@
   <string name="MessageNotifier_mark_read">Žymėti kaip skaitytą</string>
   <string name="MessageNotifier_media_message">Medijos žinutė</string>
   <string name="MessageNotifier_sticker">Lipdukas</string>
+  <string name="MessageNotifier_disappearing_photo">Išnykstanti nuotrauka</string>
   <string name="MessageNotifier_reply">Atsakyti</string>
   <string name="MessageNotifier_signal_message">Signal žinutė</string>
   <string name="MessageNotifier_unsecured_sms">Neapsaugota SMS</string>
@@ -1309,7 +1331,7 @@
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Norint siųsti SMS žinutes, Signal reikia SMS leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymus, pasirinkite \"Leidimai\" ir įjunkite \"SMS\".</string>
   <string name="Permissions_continue">Tęsti</string>
   <string name="Permissions_not_now">Ne dabar</string>
-  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Norint rodyti jūsų adresatus, Signal reikia adresatų leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymų meniu, pasirinkite \"Leidimai\" ir įjunkite \"Adresatus\".</string>
+  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Norint atlikti paiešką tarp adresatų, Signal reikia adresatų leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymų meniu, pasirinkite \"Leidimai\" ir įjunkite \"Adresatus\".</string>
   <string name="conversation_activity__enable_signal_messages">ĮJUNGTI SIGNAL ŽINUTES</string>
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Perkeliama Signal duomenų bazė</string>
   <string name="PushDecryptJob_new_locked_message">Nauja užrakinta žinutė</string>

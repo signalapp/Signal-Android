@@ -22,6 +22,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="10dp"
             android:orientation="horizontal"
+            android:gravity="center_vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -40,6 +41,14 @@
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:padding="8dp"
                 android:src="@drawable/ic_undo_32" />
+
+            <ImageView
+                android:id="@+id/scribble_save_button"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:padding="8dp"
+                android:src="@drawable/ic_download_32" />
 
             <ImageView
                 android:id="@+id/scribble_text_button"
