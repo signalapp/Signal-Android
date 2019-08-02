@@ -69,7 +69,7 @@ final class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
      * EGL context and surface will be made current.  Creates a Surface that can be passed
      * to MediaCodec.configure().
      */
-    public OutputSurface(int width, int height) {
+    OutputSurface(int width, int height) throws TranscodingException {
         if (width <= 0 || height <= 0) {
             throw new IllegalArgumentException();
         }
@@ -84,7 +84,7 @@ final class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
      * Creates an OutputSurface using the current EGL context.  Creates a Surface that can be
      * passed to MediaCodec.configure().
      */
-    public OutputSurface() {
+    OutputSurface() throws TranscodingException {
         setup();
     }
 
@@ -92,7 +92,7 @@ final class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
      * Creates instances of TextureRender and SurfaceTexture, and a Surface associated
      * with the SurfaceTexture.
      */
-    private void setup() {
+    private void setup() throws TranscodingException {
         mTextureRender = new TextureRender();
         mTextureRender.surfaceCreated();
 
@@ -122,11 +122,11 @@ final class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
     /**
      * Prepares EGL.  We want a GLES 2.0 context and a surface that supports pbuffer.
      */
-    private void eglSetup(int width, int height) {
+    private void eglSetup(int width, int height) throws TranscodingException {
         mEGL = (EGL10)EGLContext.getEGL();
         mEGLDisplay = mEGL.eglGetDisplay(EGL10.EGL_DEFAULT_DISPLAY);
         if (!mEGL.eglInitialize(mEGLDisplay, null)) {
-            throw new RuntimeException("unable to initialize EGL10");
+            throw new TranscodingException("unable to initialize EGL10");
         }
 
         // Configure EGL for pbuffer and OpenGL ES 2.0.  We want enough RGB bits
@@ -142,7 +142,7 @@ final class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
         EGLConfig[] configs = new EGLConfig[1];
         int[] numConfigs = new int[1];
         if (!mEGL.eglChooseConfig(mEGLDisplay, attribList, configs, 1, numConfigs)) {
-            throw new RuntimeException("unable to find RGB888+pbuffer EGL config");
+            throw new TranscodingException("unable to find RGB888+pbuffer EGL config");
         }
 
         // Configure context for OpenGL ES 2.0.
@@ -154,7 +154,7 @@ final class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
                 attrib_list);
         checkEglError("eglCreateContext");
         if (mEGLContext == null) {
-            throw new RuntimeException("null context");
+            throw new TranscodingException("null context");
         }
 
         // Create a pbuffer surface.  By using this for output, we can use glReadPixels
@@ -167,7 +167,7 @@ final class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
         mEGLSurface = mEGL.eglCreatePbufferSurface(mEGLDisplay, configs[0], surfaceAttribs);
         checkEglError("eglCreatePbufferSurface");
         if (mEGLSurface == null) {
-            throw new RuntimeException("surface was null");
+            throw new TranscodingException("surface was null");
         }
     }
 
@@ -206,13 +206,13 @@ final class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
     /**
      * Makes our EGL context and surface current.
      */
-    public void makeCurrent() {
+    private void makeCurrent() throws TranscodingException {
         if (mEGL == null) {
-            throw new RuntimeException("not configured for makeCurrent");
+            throw new TranscodingException("not configured for makeCurrent");
         }
         checkEglError("before makeCurrent");
         if (!mEGL.eglMakeCurrent(mEGLDisplay, mEGLSurface, mEGLSurface, mEGLContext)) {
-            throw new RuntimeException("eglMakeCurrent failed");
+            throw new TranscodingException("eglMakeCurrent failed");
         }
     }
 
@@ -226,7 +226,7 @@ final class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
     /**
      * Replaces the fragment shader.
      */
-    public void changeFragmentShader(String fragmentShader) {
+    void changeFragmentShader(String fragmentShader) throws TranscodingException {
         mTextureRender.changeFragmentShader(fragmentShader);
     }
 
@@ -235,36 +235,38 @@ final class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
      * the OutputSurface object, after the onFrameAvailable callback has signaled that new
      * data is available.
      */
-    public void awaitNewImage() {
-        final int TIMEOUT_MS = 500;
+    void awaitNewImage() throws TranscodingException {
+        final int TIMEOUT_MS = 750;
 
         synchronized (mFrameSyncObject) {
+            final long expireTime = System.currentTimeMillis() + TIMEOUT_MS;
+
             while (!mFrameAvailable) {
                 try {
                     // Wait for onFrameAvailable() to signal us.  Use a timeout to avoid
                     // stalling the test if it doesn't arrive.
                     mFrameSyncObject.wait(TIMEOUT_MS);
-                    if (!mFrameAvailable) {
-                        // TODO: if "spurious wakeup", continue while loop
-                        throw new RuntimeException("Surface frame wait timed out");
+
+                    if (!mFrameAvailable && System.currentTimeMillis() > expireTime) {
+                        throw new TranscodingException("Surface frame wait timed out");
                     }
                 } catch (InterruptedException ie) {
                     // shouldn't happen
-                    throw new RuntimeException(ie);
+                    throw new TranscodingException(ie);
                 }
             }
             mFrameAvailable = false;
         }
 
         // Latch the data.
-        mTextureRender.checkGlError("before updateTexImage");
+        TextureRender.checkGlError("before updateTexImage");
         mSurfaceTexture.updateTexImage();
     }
 
     /**
      * Draws the data from SurfaceTexture onto the current EGL surface.
      */
-    public void drawImage() {
+    void drawImage() throws TranscodingException {
         mTextureRender.drawFrame(mSurfaceTexture);
     }
 
@@ -273,7 +275,11 @@ final class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
         if (VERBOSE) Log.d(TAG, "new frame available");
         synchronized (mFrameSyncObject) {
             if (mFrameAvailable) {
-                throw new RuntimeException("mFrameAvailable already set, frame could be dropped");
+                try {
+                    throw new TranscodingException("mFrameAvailable already set, frame could be dropped");
+                } catch (TranscodingException e) {
+                    e.printStackTrace();
+                }
             }
             mFrameAvailable = true;
             mFrameSyncObject.notifyAll();
@@ -283,7 +289,7 @@ final class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
     /**
      * Checks for EGL errors.
      */
-    private void checkEglError(String msg) {
+    private void checkEglError(String msg) throws TranscodingException {
         boolean failed = false;
         int error;
         while ((error = mEGL.eglGetError()) != EGL10.EGL_SUCCESS) {
@@ -291,7 +297,7 @@ final class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
             failed = true;
         }
         if (failed) {
-            throw new RuntimeException("EGL error encountered (see log)");
+            throw new TranscodingException("EGL error encountered (see log)");
         }
     }
 }

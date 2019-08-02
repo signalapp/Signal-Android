@@ -14,7 +14,7 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.MediaStream;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.util.MemoryFileDescriptor;
-import org.thoughtcrime.securesms.video.videoconverter.BadVideoException;
+import org.thoughtcrime.securesms.video.videoconverter.EncodingException;
 import org.thoughtcrime.securesms.video.videoconverter.MediaConverter;
 
 import java.io.Closeable;
@@ -80,7 +80,7 @@ public final class InMemoryTranscoder implements Closeable {
                               : OUTPUT_FORMAT;
   }
 
-  public @NonNull MediaStream transcode(@NonNull Progress progress) throws IOException, UndeliverableMessageException, BadVideoException {
+  public @NonNull MediaStream transcode(@NonNull Progress progress) throws IOException, UndeliverableMessageException, EncodingException {
     if (memoryFile != null) throw new AssertionError("Not expecting to reuse transcoder");
 
     float durationSec = duration / 1000f;

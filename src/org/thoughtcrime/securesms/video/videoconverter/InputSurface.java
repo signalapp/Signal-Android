@@ -52,7 +52,7 @@ final class InputSurface {
     /**
      * Creates an InputSurface from a Surface.
      */
-    public InputSurface(Surface surface) {
+    InputSurface(Surface surface) throws TranscodingException {
         if (surface == null) {
             throw new NullPointerException();
         }
@@ -64,15 +64,15 @@ final class InputSurface {
     /**
      * Prepares EGL.  We want a GLES 2.0 context and a surface that supports recording.
      */
-    private void eglSetup() {
+    private void eglSetup() throws TranscodingException {
         mEGLDisplay = EGL14.eglGetDisplay(EGL14.EGL_DEFAULT_DISPLAY);
         if (mEGLDisplay == EGL14.EGL_NO_DISPLAY) {
-            throw new RuntimeException("unable to get EGL14 display");
+            throw new TranscodingException("unable to get EGL14 display");
         }
         int[] version = new int[2];
         if (!EGL14.eglInitialize(mEGLDisplay, version, 0, version, 1)) {
             mEGLDisplay = null;
-            throw new RuntimeException("unable to initialize EGL14");
+            throw new TranscodingException("unable to initialize EGL14");
         }
 
         // Configure EGL for pbuffer and OpenGL ES 2.0.  We want enough RGB bits
@@ -89,7 +89,7 @@ final class InputSurface {
         int[] numConfigs = new int[1];
         if (!EGL14.eglChooseConfig(mEGLDisplay, attribList, 0, configs, 0, configs.length,
                 numConfigs, 0)) {
-            throw new RuntimeException("unable to find RGB888+recordable ES2 EGL config");
+            throw new TranscodingException("unable to find RGB888+recordable ES2 EGL config");
         }
 
         // Configure context for OpenGL ES 2.0.
@@ -101,7 +101,7 @@ final class InputSurface {
                 attrib_list, 0);
         checkEglError("eglCreateContext");
         if (mEGLContext == null) {
-            throw new RuntimeException("null context");
+            throw new TranscodingException("null context");
         }
 
         // Create a window surface, and attach it to the Surface we received.
@@ -112,7 +112,7 @@ final class InputSurface {
                 surfaceAttribs, 0);
         checkEglError("eglCreateWindowSurface");
         if (mEGLSurface == null) {
-            throw new RuntimeException("surface was null");
+            throw new TranscodingException("surface was null");
         }
     }
 
@@ -143,16 +143,16 @@ final class InputSurface {
     /**
      * Makes our EGL context and surface current.
      */
-    public void makeCurrent() {
+    void makeCurrent() throws TranscodingException {
         if (!EGL14.eglMakeCurrent(mEGLDisplay, mEGLSurface, mEGLSurface, mEGLContext)) {
-            throw new RuntimeException("eglMakeCurrent failed");
+            throw new TranscodingException("eglMakeCurrent failed");
         }
     }
 
     /**
      * Calls eglSwapBuffers.  Use this to "publish" the current frame.
      */
-    public boolean swapBuffers() {
+    boolean swapBuffers() {
         return EGL14.eglSwapBuffers(mEGLDisplay, mEGLSurface);
     }
 
@@ -166,14 +166,14 @@ final class InputSurface {
     /**
      * Sends the presentation time stamp to EGL.  Time is expressed in nanoseconds.
      */
-    public void setPresentationTime(long nsecs) {
+    void setPresentationTime(long nsecs) {
         EGLExt.eglPresentationTimeANDROID(mEGLDisplay, mEGLSurface, nsecs);
     }
 
     /**
      * Checks for EGL errors.
      */
-    private void checkEglError(String msg) {
+    private static void checkEglError(String msg) throws TranscodingException {
         boolean failed = false;
         int error;
         while ((error = EGL14.eglGetError()) != EGL14.EGL_SUCCESS) {
@@ -181,7 +181,7 @@ final class InputSurface {
             failed = true;
         }
         if (failed) {
-            throw new RuntimeException("EGL error encountered (see log)");
+            throw new TranscodingException("EGL error encountered (see log)");
         }
     }
 }

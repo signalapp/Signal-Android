@@ -67,7 +67,7 @@ final class VideoTrackConverter {
             final long timeTo,
             final int videoResolution,
             final int videoBitrate,
-            final @NonNull String videoCodec) throws IOException {
+            final @NonNull String videoCodec) throws IOException, TranscodingException {
 
         final MediaExtractor videoExtractor = input.createExtractor();
         final int videoInputTrack = getAndSelectVideoTrackIndex(videoExtractor);
@@ -85,7 +85,7 @@ final class VideoTrackConverter {
             final long timeTo,
             final int videoResolution,
             final int videoBitrate,
-            final @NonNull String videoCodec) throws IOException {
+            final @NonNull String videoCodec) throws IOException, TranscodingException {
 
         mTimeFrom = timeFrom;
         mTimeTo = timeTo;
@@ -175,7 +175,7 @@ final class VideoTrackConverter {
         }
     }
 
-    void step() throws IOException {
+    void step() throws IOException, TranscodingException {
         // Extract video from file and feed to decoder.
         // Do not extract video if we have determined the output format but we are not yet
         // ready to mux the frames.

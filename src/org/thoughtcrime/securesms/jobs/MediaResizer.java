@@ -22,7 +22,7 @@ import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.video.InMemoryTranscoder;
-import org.thoughtcrime.securesms.video.videoconverter.BadVideoException;
+import org.thoughtcrime.securesms.video.videoconverter.EncodingException;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -114,7 +114,7 @@ final class MediaResizer {
           }
         }
       }
-    } catch (IOException | MmsException | BadVideoException e) {
+    } catch (IOException | MmsException | EncodingException e) {
       throw new UndeliverableMessageException("Failed to transcode", e);
     }
   }

@@ -79,7 +79,7 @@ final class TextureRender {
     private int maPositionHandle;
     private int maTextureHandle;
 
-    public TextureRender() {
+    TextureRender() {
         mTriangleVertices = ByteBuffer.allocateDirect(
             mTriangleVerticesData.length * FLOAT_SIZE_BYTES)
                 .order(ByteOrder.nativeOrder()).asFloatBuffer();
@@ -88,11 +88,11 @@ final class TextureRender {
         Matrix.setIdentityM(mSTMatrix, 0);
     }
 
-    public int getTextureId() {
+    int getTextureId() {
         return mTextureID;
     }
 
-    public void drawFrame(SurfaceTexture st) {
+    void drawFrame(SurfaceTexture st) throws TranscodingException {
         checkGlError("onDrawFrame start");
         st.getTransformMatrix(mSTMatrix);
 
@@ -131,32 +131,32 @@ final class TextureRender {
     /**
      * Initializes GL state.  Call this after the EGL surface has been created and made current.
      */
-    public void surfaceCreated() {
+    void surfaceCreated() throws TranscodingException {
         mProgram = createProgram(VERTEX_SHADER, FRAGMENT_SHADER);
         if (mProgram == 0) {
-            throw new RuntimeException("failed creating program");
+            throw new TranscodingException("failed creating program");
         }
         maPositionHandle = GLES20.glGetAttribLocation(mProgram, "aPosition");
         checkGlError("glGetAttribLocation aPosition");
         if (maPositionHandle == -1) {
-            throw new RuntimeException("Could not get attrib location for aPosition");
+            throw new TranscodingException("Could not get attrib location for aPosition");
         }
         maTextureHandle = GLES20.glGetAttribLocation(mProgram, "aTextureCoord");
         checkGlError("glGetAttribLocation aTextureCoord");
         if (maTextureHandle == -1) {
-            throw new RuntimeException("Could not get attrib location for aTextureCoord");
+            throw new TranscodingException("Could not get attrib location for aTextureCoord");
         }
 
         muMVPMatrixHandle = GLES20.glGetUniformLocation(mProgram, "uMVPMatrix");
         checkGlError("glGetUniformLocation uMVPMatrix");
         if (muMVPMatrixHandle == -1) {
-            throw new RuntimeException("Could not get attrib location for uMVPMatrix");
+            throw new TranscodingException("Could not get attrib location for uMVPMatrix");
         }
 
         muSTMatrixHandle = GLES20.glGetUniformLocation(mProgram, "uSTMatrix");
         checkGlError("glGetUniformLocation uSTMatrix");
         if (muSTMatrixHandle == -1) {
-            throw new RuntimeException("Could not get attrib location for uSTMatrix");
+            throw new TranscodingException("Could not get attrib location for uSTMatrix");
         }
 
         int[] textures = new int[1];
@@ -180,15 +180,15 @@ final class TextureRender {
     /**
      * Replaces the fragment shader.
      */
-    public void changeFragmentShader(String fragmentShader) {
+    public void changeFragmentShader(String fragmentShader) throws TranscodingException {
         GLES20.glDeleteProgram(mProgram);
         mProgram = createProgram(VERTEX_SHADER, fragmentShader);
         if (mProgram == 0) {
-            throw new RuntimeException("failed creating program");
+            throw new TranscodingException("failed creating program");
         }
     }
 
-    private int loadShader(int shaderType, String source) {
+    private static int loadShader(int shaderType, String source) throws TranscodingException {
         int shader = GLES20.glCreateShader(shaderType);
         checkGlError("glCreateShader type=" + shaderType);
         GLES20.glShaderSource(shader, source);
@@ -204,7 +204,7 @@ final class TextureRender {
         return shader;
     }
 
-    private int createProgram(String vertexSource, String fragmentSource) {
+    private int createProgram(String vertexSource, String fragmentSource) throws TranscodingException {
         int vertexShader = loadShader(GLES20.GL_VERTEX_SHADER, vertexSource);
         if (vertexShader == 0) {
             return 0;
@@ -235,11 +235,15 @@ final class TextureRender {
         return program;
     }
 
-    public void checkGlError(String op) {
+    static void checkGlError(String msg) throws TranscodingException {
+        boolean failed = false;
         int error;
         while ((error = GLES20.glGetError()) != GLES20.GL_NO_ERROR) {
-            Log.e(TAG, op + ": glError " + error);
-            throw new RuntimeException(op + ": glError " + error);
+            Log.e(TAG, msg + ": GLES20 error: 0x" + Integer.toHexString(error));
+            failed = true;
+        }
+        if (failed) {
+            throw new TranscodingException("GLES20 error encountered (see log)");
         }
     }
 }
