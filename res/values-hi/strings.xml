@@ -378,6 +378,7 @@
   <!--MediaPickerActivity-->
   <!--MediaPickerItemFragment-->
   <!--MediaSendActivity-->
+  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">आपके संपर्कों को प्रदर्शित करने के लिए Signal को आपके संपर्कों तक पहुंच की आवश्यकता है।</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">सभी मीडिया</string>
   <!--MessageRecord-->

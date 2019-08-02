@@ -101,15 +101,4 @@ public final class PushChallengeRequestTest {
 
     assertFalse(challenge.isPresent());
   }
-
-  @Test
-  public void getPushChallengeBlocking_returns_absent_if_any_RuntimeException_is_thrown() throws IOException {
-    SignalServiceAccountManager signal = mock(SignalServiceAccountManager.class);
-
-    doThrow(new RuntimeException()).when(signal).requestPushChallenge(any(), any());
-
-    Optional<String> challenge = PushChallengeRequest.getPushChallengeBlocking(signal, Optional.of("token"), "+123456", 500L);
-
-    assertFalse(challenge.isPresent());
-  }
 }

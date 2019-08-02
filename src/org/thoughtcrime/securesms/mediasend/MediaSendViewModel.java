@@ -466,7 +466,7 @@ class MediaSendViewModel extends ViewModel {
                            .filter(m -> {
                              return (MediaUtil.isImageType(m.getMimeType()) && !MediaUtil.isGif(m.getMimeType()))               ||
                                     (MediaUtil.isGif(m.getMimeType()) && m.getSize() < mediaConstraints.getGifMaxSize(context)) ||
-                                    (MediaUtil.isVideoType(m.getMimeType()) && m.getSize() < mediaConstraints.getVideoMaxSize(context));
+                                    (MediaUtil.isVideoType(m.getMimeType()) && m.getSize() < mediaConstraints.getUncompressedVideoMaxSize(context));
                            }).toList();
 
   }

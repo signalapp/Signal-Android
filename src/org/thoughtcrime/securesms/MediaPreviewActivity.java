@@ -47,6 +47,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import org.thoughtcrime.securesms.animation.DepthPageTransformer;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.components.viewpager.ExtendedOnPageChangedListener;
 import org.thoughtcrime.securesms.database.Address;
@@ -192,6 +193,7 @@ public final class MediaPreviewActivity extends PassphraseRequiredActionBarActiv
   private void initializeViews() {
     mediaPager = findViewById(R.id.media_pager);
     mediaPager.setOffscreenPageLimit(1);
+    mediaPager.setPageTransformer(true, new DepthPageTransformer());
 
     viewPagerListener = new ViewPagerListener();
     mediaPager.addOnPageChangeListener(viewPagerListener);

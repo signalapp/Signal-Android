@@ -408,6 +408,7 @@
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">ਆਈਟਮ ਹਟਾਈ ਗਈ ਸੀ ਕਿਉਂਕਿ ਇਹ ਆਕਾਰ ਦੀ ਸੀਮਾ ਤੋਂ ਵੱਧ ਗਈ ਸੀ</string>
   <string name="MediaSendActivity_camera_unavailable">ਕੈਮਰਾ ਅਣਉਪਲਬਧ.</string>
   <string name="MediaSendActivity_message_to_s">%s ਨੂੰ ਸੁਨੇਹਾ</string>
+  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal ਨੂੰ ਉਹਨਾਂ ਨੂੰ ਪ੍ਰਦਰਸ਼ਿਤ ਕਰਨ ਲਈ ਤੁਹਾਡੇ ਸੰਪਰਕਾਂ ਤੱਕ ਪਹੁੰਚ ਦੀ ਲੋੜ ਹੈ</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">ਤੁਸੀਂ %d ਤੋਂ ਵੱਧ ਆਈਟਮਾਂ ਸ਼ੇਅਰ ਨਹੀਂ ਕਰ ਸਕਦੇ</item>
     <item quantity="other">ਤੁਸੀਂ %d ਤੋਂ ਵੱਧ ਆਈਟਮਾਂ ਸ਼ੇਅਰ ਨਹੀਂ ਕਰ ਸਕਦੇ|</item>

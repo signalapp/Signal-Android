@@ -368,6 +368,7 @@
   <!--MediaPickerActivity-->
   <!--MediaPickerItemFragment-->
   <!--MediaSendActivity-->
+  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal mutsunmi kikinpa mashi yupaykunaman yaykushpa rikuchinkapak.</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Tukuylla uyayrikuchik</string>
   <!--MessageRecord-->

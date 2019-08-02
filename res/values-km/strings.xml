@@ -391,6 +391,7 @@
   <string name="MediaSendActivity_camera_unavailable">កាមេរ៉ាមិនដំណើរការ</string>
   <string name="MediaSendActivity_message_to_s">សារទៅកាន់ %s</string>
   <string name="MediaSendActivity_message">សារ</string>
+  <string name="MediaSendActivity_signal_needs_access_to_your_contacts"> Signal ត្រូវការចូលប្រើប្រាស់បញ្ជីទំនាក់ទំនងរបស់អ្នក ដើម្បីបង្ហាញវា។ </string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="other">អ្នកមិនអាចចែករំលែកចំនួនលើសពី %d ។</item>
   </plurals>

@@ -72,6 +72,7 @@
 
     <!-- AttachmentUploadJob -->
     <string name="AttachmentUploadJob_uploading_media">Uploading media...</string>
+    <string name="AttachmentUploadJob_compressing_video_start">Compressing video...</string>
 
     <!-- AudioSlidePlayer -->
     <string name="AudioSlidePlayer_error_playing_audio">Error playing audio!</string>
@@ -91,6 +92,11 @@
     <!-- CameraActivity -->
     <string name="CameraActivity_image_save_failure">Failed to save image.</string>
 
+    <!-- CameraXFragment -->
+    <string name="CameraXFragment_capture_description">Capture</string>
+    <string name="CameraXFragment_change_camera_description">Change camera</string>
+    <string name="CameraXFragment_open_gallery_description">Open gallery</string>
+
     <!-- CameraContacts -->
     <string name="CameraContacts_recent_contacts">Recent contacts</string>
     <string name="CameraContacts_signal_contacts">Signal contacts</string>
@@ -101,6 +107,7 @@
     <string name="CameraContacts_you_can_only_use_the_camera_button">You can only use the camera button to send photos to Signal contacts. </string>
     <string name="CameraContacts_cant_find_who_youre_looking_for">Can\'t find who you\'re looking for?</string>
     <string name="CameraContacts_invite_a_contact_to_join_signal">Invite a contact to join Signal</string>
+    <string name="CameraContacts__menu_search">Search</string>
 
     <!-- ClearProfileActivity -->
     <string name="ClearProfileActivity_remove">Remove</string>
@@ -295,6 +302,7 @@
     <string name="CreateProfileActivity_profile_name">Profile Name</string>
     <string name="CreateProfileActivity_set_up_your_profile">Set up your profile</string>
     <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Your Signal Profile will be visible only to people who are in your contact list, to people who you intitiated a conversation with, and to people for who you explicitly gave permission by tapping on the banner \'make my profile visible\'. Signal profiles are end-to-end encrypted, so even the Signal service never has access to your profile information.</string>
+    <string name="CreateProfileActivity_set_avatar_description">Set avatar</string>
 
     <!-- CustomDefaultPreference -->
     <string name="CustomDefaultPreference_using_custom">Using custom setting: %s</string>
@@ -496,6 +504,7 @@
 
     <!-- MediaPickerActivity -->
     <string name="MediaPickerActivity_send_to">Send to %s</string>
+    <string name="MediaPickerActivity__menu_open_camera">Open camera</string>
 
     <!-- MediaPickerItemFragment -->
     <string name="MediaPickerItemFragment_tap_to_select">Tap to select</string>
@@ -513,6 +522,7 @@
         <item quantity="one">You can\'t share more than %d item.</item>
         <item quantity="other">You can\'t share more than %d items.</item>
     </plurals>
+    <string name="MediaSendActivity_select_recipients_description">Select recipients</string>
 
     <!-- MediaRepository -->
     <string name="MediaRepository_all_media">All media</string>
@@ -889,6 +899,17 @@
     <!-- WebRtcCallControls -->
     <string name="WebRtcCallControls_tap_to_enable_your_video">Tap to enable your video</string>
 
+    <!-- WebRtcCallControls Content Descriptions -->
+    <string name="WebRtcCallControls_contact_photo_description">Contact photo</string>
+    <string name="WebRtcCallControls_speaker_button_description">Speaker</string>
+    <string name="WebRtcCallControls_bluetooth_button_description">Bluetooth</string>
+    <string name="WebRtcCallControls_mute_button_description">Mute</string>
+    <string name="WebRtcCallControls_your_camera_button_description">Your camera</string>
+    <string name="WebRtcCallControls_switch_to_rear_camera_button_description">Switch to rear camera</string>
+
+    <string name="WebRtcCallControls_answer_call_description">Answer call</string>
+    <string name="WebRtcCallControls_reject_call_description">Reject call</string>
+
     <!-- attachment_type_selector -->
     <string name="attachment_type_selector__audio">Audio</string>
     <string name="attachment_type_selector__audio_description">Audio</string>
@@ -914,6 +935,11 @@
 
     <!-- contact_selection_activity -->
     <string name="contact_selection_activity__enter_name_or_number">Enter name or number</string>
+
+    <!-- contact_filter_toolbar -->
+    <string name="contact_filter_toolbar__clear_entered_text_description">Clear entered text</string>
+    <string name="contact_filter_toolbar__show_keyboard_description">Show keyboard</string>
+    <string name="contact_filter_toolbar__show_dial_pad_description">Show dialpad</string>
 
     <!-- contact_selection_group_activity -->
     <string name="contact_selection_group_activity__no_contacts">No contacts.</string>
@@ -1168,8 +1194,6 @@
 
     <!--- redphone_call_controls -->
     <string name="redphone_call_card__signal_call">Signal Call</string>
-    <string name="redphone_call_controls__mute">Mute</string>
-    <string name="redphone_call_controls__flip_camera_rear">Switch cameras</string>
 
     <!-- registration_activity -->
     <string name="registration_activity__phone_number">PHONE NUMBER</string>
@@ -1422,6 +1446,7 @@
     <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Unarchive selected</string>
 
     <!-- conversation_list -->
+    <string name="conversation_list_settings_shortcut">Settings shortcut</string>
 
     <!-- conversation_list_item_view -->
     <string name="conversation_list_item_view__contact_photo_image">Contact Photo Image</string>
@@ -1433,6 +1458,7 @@
 
     <!-- conversation_list_fragment -->
     <string name="conversation_list_fragment__fab_content_description">New conversation</string>
+    <string name="conversation_list_fragment__open_camera_description">Open Camera</string>
     <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Give your inbox something to write home about. Get started by messaging a friend.</string>
 
 

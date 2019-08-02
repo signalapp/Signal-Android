@@ -382,6 +382,7 @@
   <!--MediaPickerItemFragment-->
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_camera_unavailable">కెమెరా అందుబాటులో లేదు.</string>
+  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">మీ పరిచయాలను Signal ప్రదర్శించడానికి పరిచయాలకు ప్రాప్యత అవసరం</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">అన్ని మీడియా</string>
   <!--MessageRecord-->

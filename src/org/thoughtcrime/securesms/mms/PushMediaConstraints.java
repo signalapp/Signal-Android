@@ -37,6 +37,18 @@ public class PushMediaConstraints extends MediaConstraints {
   }
 
   @Override
+  public int getUncompressedVideoMaxSize(Context context) {
+    return isVideoTranscodeAvailable() ? 200 * MB
+                                       : getVideoMaxSize(context);
+  }
+
+  @Override
+  public int getCompressedVideoMaxSize(Context context) {
+    return Util.isLowMemory(context) ? 30 * MB
+                                     : 50 * MB;
+  }
+
+  @Override
   public int getAudioMaxSize(Context context) {
     return 100 * MB;
   }

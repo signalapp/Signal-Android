@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.components.webrtc;
 
-
 import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ArgbEvaluator;
@@ -8,25 +7,29 @@ import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.accessibility.AccessibilityManager;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
-public class WebRtcAnswerDeclineButton extends LinearLayout implements View.OnTouchListener {
+public final class WebRtcAnswerDeclineButton extends LinearLayout {
 
   @SuppressWarnings("unused")
-  private static final String TAG = WebRtcAnswerDeclineButton.class.getSimpleName();
+  private static final String TAG = Log.tag(WebRtcAnswerDeclineButton.class);
 
   private static final int TOTAL_TIME = 1000;
   private static final int SHAKE_TIME = 200;
@@ -40,22 +43,8 @@ public class WebRtcAnswerDeclineButton extends LinearLayout implements View.OnTo
   private static final int ANSWER_THRESHOLD  = 112;
   private static final int DECLINE_THRESHOLD = 56;
 
-  private TextView  swipeUpText;
-  private ImageView fab;
-  private TextView  swipeDownText;
-
-  private ImageView arrowOne;
-  private ImageView arrowTwo;
-  private ImageView arrowThree;
-  private ImageView arrowFour;
-
-  private float lastY;
-
-  private boolean animating = false;
-  private boolean complete  = false;
-
-  private AnimatorSet animatorSet;
-  private AnswerDeclineListener listener;
+            private AnswerDeclineListener listener;
+  @Nullable private DragToAnswer          dragToAnswerListener;
 
   public WebRtcAnswerDeclineButton(Context context) {
     super(context);
@@ -72,41 +61,27 @@ public class WebRtcAnswerDeclineButton extends LinearLayout implements View.OnTo
     initialize();
   }
 
-  @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-  public WebRtcAnswerDeclineButton(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-    super(context, attrs, defStyleAttr, defStyleRes);
-    initialize();
-  }
-
   private void initialize() {
     setOrientation(LinearLayout.VERTICAL);
     setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
-    inflate(getContext(), R.layout.webrtc_answer_decline_button, this);
+    AccessibilityManager accessibilityManager    = ServiceUtil.getAccessibilityManager(getContext());
+    boolean              isExploreByTouchEnabled = accessibilityManager.isTouchExplorationEnabled();
 
-    this.swipeUpText   = findViewById(R.id.swipe_up_text);
-    this.fab           = findViewById(R.id.answer);
-    this.swipeDownText = findViewById(R.id.swipe_down_text);
+    if (isExploreByTouchEnabled) {
+      inflate(getContext(), R.layout.webrtc_answer_decline_button_accessible, this);
 
-    this.arrowOne   = findViewById(R.id.arrow_one);
-    this.arrowTwo   = findViewById(R.id.arrow_two);
-    this.arrowThree = findViewById(R.id.arrow_three);
-    this.arrowFour  = findViewById(R.id.arrow_four);
+      findViewById(R.id.answer).setOnClickListener((view) -> listener.onAnswered());
+      findViewById(R.id.reject).setOnClickListener((view) -> listener.onDeclined());
 
-    this.fab.setOnTouchListener(this);
-  }
+    } else {
+      inflate(getContext(), R.layout.webrtc_answer_decline_button, this);
 
-  public void startRingingAnimation() {
-    if (!animating) {
-      animating = true;
-      animateElements(0);
-    }
-  }
+      ImageView answer = findViewById(R.id.answer);
 
-  public void stopRingingAnimation() {
-    if (animating) {
-      animating = false;
-      resetElements();
+      dragToAnswerListener = new DragToAnswer(answer, this);
+
+      answer.setOnTouchListener(dragToAnswerListener);
     }
   }
 
@@ -114,132 +89,199 @@ public class WebRtcAnswerDeclineButton extends LinearLayout implements View.OnTo
     this.listener = listener;
   }
 
-  @Override
-  public boolean onTouch(View v, MotionEvent event) {
+  public void startRingingAnimation() {
+    if (dragToAnswerListener != null) {
+      dragToAnswerListener.startRingingAnimation();
+    }
+  }
 
-    switch (event.getAction()) {
-      case MotionEvent.ACTION_DOWN:
-        resetElements();
-        swipeUpText.animate().alpha(0).setDuration(200).start();
-        swipeDownText.animate().alpha(0).setDuration(200).start();
-        lastY = event.getRawY();
-        break;
-      case MotionEvent.ACTION_CANCEL:
-      case MotionEvent.ACTION_UP:
-        swipeUpText.clearAnimation();
-        swipeDownText.clearAnimation();
-        swipeUpText.setAlpha(1);
-        swipeDownText.setAlpha(1);
-        fab.setRotation(0);
+  public void stopRingingAnimation() {
+    if (dragToAnswerListener != null) {
+      dragToAnswerListener.stopRingingAnimation();
+    }
+  }
 
-        if (Build.VERSION.SDK_INT >= 21) {
-          fab.getDrawable().setTint(getResources().getColor(R.color.green_600));
-          fab.getBackground().setTint(Color.WHITE);
-        }
+  private class DragToAnswer implements View.OnTouchListener {
 
-        animating = true;
-        animateElements(0);
-        break;
-      case MotionEvent.ACTION_MOVE:
-        float difference = event.getRawY() - lastY;
+    private final TextView  swipeUpText;
+    private final ImageView answer;
+    private final TextView  swipeDownText;
 
-        float differenceThreshold;
-        float percentageToThreshold;
-        int   backgroundColor;
-        int   foregroundColor;
+    private final ImageView arrowOne;
+    private final ImageView arrowTwo;
+    private final ImageView arrowThree;
+    private final ImageView arrowFour;
 
-        if (difference <= 0) {
-          differenceThreshold   = ViewUtil.dpToPx(getContext(), ANSWER_THRESHOLD);
-          percentageToThreshold = Math.min(1, (difference * -1) / differenceThreshold);
-          backgroundColor       = (int) new ArgbEvaluator().evaluate(percentageToThreshold, getResources().getColor(R.color.green_100), getResources().getColor(R.color.green_600));
+    private float lastY;
 
-          if (percentageToThreshold > 0.5) {
-            foregroundColor = Color.WHITE;
-          } else {
-            foregroundColor = getResources().getColor(R.color.green_600);
-          }
+    private boolean animating = false;
+    private boolean complete  = false;
 
-          fab.setTranslationY(difference);
+    private AnimatorSet animatorSet;
 
-          if (percentageToThreshold == 1 && listener != null) {
-            fab.setVisibility(View.INVISIBLE);
-            lastY = event.getRawY();
-            if (!complete) {
-              complete = true;
-              listener.onAnswered();
-            }
-          }
-        } else {
-          differenceThreshold = ViewUtil.dpToPx(getContext(), DECLINE_THRESHOLD);
-          percentageToThreshold = Math.min(1, difference / differenceThreshold);
-          backgroundColor = (int) new ArgbEvaluator().evaluate(percentageToThreshold, getResources().getColor(R.color.red_100), getResources().getColor(R.color.red_600));
+    private DragToAnswer(@NonNull ImageView answer, WebRtcAnswerDeclineButton view) {
+      this.swipeUpText   = view.findViewById(R.id.swipe_up_text);
+      this.answer        = answer;
+      this.swipeDownText = view.findViewById(R.id.swipe_down_text);
 
-          if (percentageToThreshold > 0.5) {
-            foregroundColor = Color.WHITE;
-          } else {
-            foregroundColor = getResources().getColor(R.color.green_600);
-          }
-
-          fab.setRotation(135 * percentageToThreshold);
-
-          if (percentageToThreshold == 1 && listener != null) {
-            fab.setVisibility(View.INVISIBLE);
-            lastY = event.getRawY();
-
-            if (!complete) {
-              complete = true;
-              listener.onDeclined();
-            }
-          }
-        }
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-          fab.getBackground().setTint(backgroundColor);
-          fab.getDrawable().setTint(foregroundColor);
-        }
-
-        break;
+      this.arrowOne   = view.findViewById(R.id.arrow_one);
+      this.arrowTwo   = view.findViewById(R.id.arrow_two);
+      this.arrowThree = view.findViewById(R.id.arrow_three);
+      this.arrowFour  = view.findViewById(R.id.arrow_four);
     }
 
-    return true;
-  }
+    private void startRingingAnimation() {
+      if (!animating) {
+        animating = true;
+        animateElements(0);
+      }
+    }
 
-  private void animateElements(int delay) {
-    ObjectAnimator fabUp    = getUpAnimation(fab);
-    ObjectAnimator fabDown  = getDownAnimation(fab);
-    ObjectAnimator fabShake = getShakeAnimation(fab);
+    private void stopRingingAnimation() {
+      if (animating) {
+        animating = false;
+        resetElements();
+      }
+    }
 
-    animatorSet = new AnimatorSet();
-    animatorSet.play(fabUp).with(getUpAnimation(swipeUpText));
-    animatorSet.play(fabShake).after(fabUp);
-    animatorSet.play(fabDown).with(getDownAnimation(swipeUpText)).after(fabShake);
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
 
-    animatorSet.play(getFadeOut(swipeDownText)).with(fabUp);
-    animatorSet.play(getFadeIn(swipeDownText)).after(fabDown);
+      switch (event.getAction()) {
+        case MotionEvent.ACTION_DOWN:
+          resetElements();
+          swipeUpText.animate().alpha(0).setDuration(200).start();
+          swipeDownText.animate().alpha(0).setDuration(200).start();
+          lastY = event.getRawY();
+          break;
+        case MotionEvent.ACTION_CANCEL:
+        case MotionEvent.ACTION_UP:
+          swipeUpText.clearAnimation();
+          swipeDownText.clearAnimation();
+          swipeUpText.setAlpha(1);
+          swipeDownText.setAlpha(1);
+          answer.setRotation(0);
 
-    animatorSet.play(getShimmer(arrowFour, arrowThree, arrowTwo, arrowOne));
+          if (Build.VERSION.SDK_INT >= 21) {
+            answer.getDrawable().setTint(getResources().getColor(R.color.green_600));
+            answer.getBackground().setTint(Color.WHITE);
+          }
 
-    animatorSet.addListener(new Animator.AnimatorListener() {
-      @Override
-      public void onAnimationStart(Animator animation) {
+          animating = true;
+          animateElements(0);
+          break;
+        case MotionEvent.ACTION_MOVE:
+          float difference = event.getRawY() - lastY;
+
+          float differenceThreshold;
+          float percentageToThreshold;
+          int   backgroundColor;
+          int   foregroundColor;
+
+          if (difference <= 0) {
+            differenceThreshold   = ViewUtil.dpToPx(getContext(), ANSWER_THRESHOLD);
+            percentageToThreshold = Math.min(1, (difference * -1) / differenceThreshold);
+            backgroundColor       = (int) new ArgbEvaluator().evaluate(percentageToThreshold, getResources().getColor(R.color.green_100), getResources().getColor(R.color.green_600));
+
+            if (percentageToThreshold > 0.5) {
+              foregroundColor = Color.WHITE;
+            } else {
+              foregroundColor = getResources().getColor(R.color.green_600);
+            }
+
+            answer.setTranslationY(difference);
+
+            if (percentageToThreshold == 1 && listener != null) {
+              answer.setVisibility(View.INVISIBLE);
+              lastY = event.getRawY();
+              if (!complete) {
+                complete = true;
+                listener.onAnswered();
+              }
+            }
+          } else {
+            differenceThreshold = ViewUtil.dpToPx(getContext(), DECLINE_THRESHOLD);
+            percentageToThreshold = Math.min(1, difference / differenceThreshold);
+            backgroundColor = (int) new ArgbEvaluator().evaluate(percentageToThreshold, getResources().getColor(R.color.red_100), getResources().getColor(R.color.red_600));
+
+            if (percentageToThreshold > 0.5) {
+              foregroundColor = Color.WHITE;
+            } else {
+              foregroundColor = getResources().getColor(R.color.green_600);
+            }
+
+            answer.setRotation(135 * percentageToThreshold);
+
+            if (percentageToThreshold == 1 && listener != null) {
+              answer.setVisibility(View.INVISIBLE);
+              lastY = event.getRawY();
+
+              if (!complete) {
+                complete = true;
+                listener.onDeclined();
+              }
+            }
+          }
+
+          if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            answer.getBackground().setTint(backgroundColor);
+            answer.getDrawable().setTint(foregroundColor);
+          }
+
+          break;
       }
 
-      @Override
-      public void onAnimationEnd(Animator animation) {
-        if (animating) animateElements(1000);
-      }
+      return true;
+    }
 
-      @Override
-      public void onAnimationCancel(Animator animation) {}
-      @Override
-      public void onAnimationRepeat(Animator animation) {}
-    });
+    private void animateElements(int delay) {
+      ObjectAnimator fabUp    = getUpAnimation(answer);
+      ObjectAnimator fabDown  = getDownAnimation(answer);
+      ObjectAnimator fabShake = getShakeAnimation(answer);
 
-    animatorSet.setStartDelay(delay);
-    animatorSet.start();
+      animatorSet = new AnimatorSet();
+      animatorSet.play(fabUp).with(getUpAnimation(swipeUpText));
+      animatorSet.play(fabShake).after(fabUp);
+      animatorSet.play(fabDown).with(getDownAnimation(swipeUpText)).after(fabShake);
+
+      animatorSet.play(getFadeOut(swipeDownText)).with(fabUp);
+      animatorSet.play(getFadeIn(swipeDownText)).after(fabDown);
+
+      animatorSet.play(getShimmer(arrowFour, arrowThree, arrowTwo, arrowOne));
+
+      animatorSet.addListener(new Animator.AnimatorListener() {
+        @Override
+        public void onAnimationStart(Animator animation) {
+        }
+
+        @Override
+        public void onAnimationEnd(Animator animation) {
+          if (animating) animateElements(1000);
+        }
+
+        @Override
+        public void onAnimationCancel(Animator animation) {}
+        @Override
+        public void onAnimationRepeat(Animator animation) {}
+      });
+
+      animatorSet.setStartDelay(delay);
+      animatorSet.start();
+    }
+
+    private void resetElements() {
+      animating = false;
+      complete  = false;
+
+      if (animatorSet != null) animatorSet.cancel();
+
+      swipeUpText.setTranslationY(0);
+      answer.setTranslationY(0);
+      swipeDownText.setAlpha(1);
+    }
   }
 
-  private Animator getShimmer(View... targets) {
+  private static Animator getShimmer(View... targets) {
     AnimatorSet animatorSet  = new AnimatorSet();
     int         evenDuration = SHIMMER_TOTAL / targets.length;
     int         interval     = 75;
@@ -252,29 +294,29 @@ public class WebRtcAnswerDeclineButton extends LinearLayout implements View.OnTo
     return animatorSet;
   }
 
-  private ObjectAnimator getShimmer(View target, int duration) {
+  private static ObjectAnimator getShimmer(View target, int duration) {
     ObjectAnimator shimmer = ObjectAnimator.ofFloat(target, "alpha", 0, 1, 0);
     shimmer.setDuration(duration);
 
     return shimmer;
   }
 
-  private ObjectAnimator getShakeAnimation(View target) {
+  private static ObjectAnimator getShakeAnimation(View target) {
     ObjectAnimator animator = ObjectAnimator.ofFloat(target, "translationX", 0, 25, -25, 25, -25,15, -15, 6, -6, 0);
     animator.setDuration(SHAKE_TIME);
 
     return animator;
   }
 
-  private ObjectAnimator getUpAnimation(View target) {
-    ObjectAnimator animator = ObjectAnimator.ofFloat(target, "translationY", 0, -1 * ViewUtil.dpToPx(getContext(), 32));
+  private static ObjectAnimator getUpAnimation(View target) {
+    ObjectAnimator animator = ObjectAnimator.ofFloat(target, "translationY", 0, -1 * ViewUtil.dpToPx(target.getContext(), 32));
     animator.setInterpolator(new AccelerateInterpolator());
     animator.setDuration(UP_TIME);
 
     return animator;
   }
 
-  private ObjectAnimator getDownAnimation(View target) {
+  private static ObjectAnimator getDownAnimation(View target) {
     ObjectAnimator animator = ObjectAnimator.ofFloat(target, "translationY", 0);
     animator.setInterpolator(new DecelerateInterpolator());
     animator.setDuration(DOWN_TIME);
@@ -282,27 +324,16 @@ public class WebRtcAnswerDeclineButton extends LinearLayout implements View.OnTo
     return animator;
   }
 
-  private ObjectAnimator getFadeOut(View target) {
+  private static ObjectAnimator getFadeOut(View target) {
     ObjectAnimator animator = ObjectAnimator.ofFloat(target, "alpha", 1, 0);
     animator.setDuration(FADE_OUT_TIME);
     return animator;
   }
 
-  private ObjectAnimator getFadeIn(View target) {
+  private static ObjectAnimator getFadeIn(View target) {
     ObjectAnimator animator = ObjectAnimator.ofFloat(target, "alpha", 0, 1);
     animator.setDuration(FADE_IN_TIME);
     return animator;
-  }
-
-  private void resetElements() {
-    animating = false;
-    complete  = false;
-    
-    if (animatorSet != null) animatorSet.cancel();
-
-    swipeUpText.setTranslationY(0);
-    fab.setTranslationY(0);
-    swipeDownText.setAlpha(1);
   }
 
   public interface AnswerDeclineListener {

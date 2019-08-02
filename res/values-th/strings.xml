@@ -354,6 +354,7 @@
   <!--MediaPickerItemFragment-->
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_message">ข้อความ</string>
+  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal ต้องการเข้าถึงผู้ติดต่อของคุณ เพื่อที่จะแสดงข้อมูลเหล่านั้นได้</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">สื่อทั้งหมด</string>
   <!--MessageRecord-->

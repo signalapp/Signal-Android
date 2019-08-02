@@ -94,7 +94,7 @@ public class PushGroupSendJob extends PushSendJob {
       attachments.addAll(Stream.of(message.getLinkPreviews()).filter(p -> p.getThumbnail().isPresent()).map(p -> p.getThumbnail().get()).toList());
       attachments.addAll(Stream.of(message.getSharedContacts()).filter(c -> c.getAvatar() != null).map(c -> c.getAvatar().getAttachment()).withoutNulls().toList());
 
-      List<AttachmentUploadJob> attachmentJobs = Stream.of(attachments).map(a -> new AttachmentUploadJob(((DatabaseAttachment) a).getAttachmentId())).toList();
+      List<AttachmentUploadJob> attachmentJobs = Stream.of(attachments).map(a -> AttachmentUploadJob.fromAttachment((DatabaseAttachment) a)).toList();
 
       if (attachmentJobs.isEmpty()) {
         jobManager.add(new PushGroupSendJob(messageId, destination, filterAddress));

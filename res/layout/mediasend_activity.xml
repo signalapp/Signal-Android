@@ -142,6 +142,7 @@
                     android:layout_gravity="bottom|end"
                     android:padding="6dp"
                     android:background="@drawable/media_continue_button_background"
+                    android:contentDescription="@string/MediaSendActivity_select_recipients_description"
                     android:visibility="gone"
                     app:srcCompat="@drawable/ic_continue_24"
                     tools:visibility="visible"/>
