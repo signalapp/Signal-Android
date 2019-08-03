@@ -10,12 +10,12 @@ If you are looking for support, please visit our support center:
 https://support.signal.org/
 or email support@signal.org
 
-Let's begin with a checklist: Replace the empty checkboxes [ ] below with checked ones [x] accordingly. -->
+Let's begin with a checklist: Replace the empty checkboxes [] below with checked ones [x] accordingly. -->
 
-- [ ] I have searched open and closed issues for duplicates
-- [ ] I am submitting a bug report for existing functionality that does not work as intended
-- [ ] I have read https://github.com/signalapp/Signal-Android/wiki/Submitting-useful-bug-reports
-- [ ] This isn't a feature request or a discussion topic
+- [] I have searched open and closed issues for duplicates
+- [] I am submitting a bug report for existing functionality that does not work as intended
+- [] I have read https://github.com/signalapp/Signal-Android/wiki/Submitting-useful-bug-reports
+- [] This isn't a feature request or a discussion topic
 
 ----------------------------------------
 
