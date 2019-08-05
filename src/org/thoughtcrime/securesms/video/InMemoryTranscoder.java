@@ -12,7 +12,6 @@ import com.google.android.exoplayer2.util.MimeTypes;
 
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.MediaStream;
-import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.util.MemoryFileDescriptor;
 import org.thoughtcrime.securesms.video.videoconverter.EncodingException;
 import org.thoughtcrime.securesms.video.videoconverter.MediaConverter;
@@ -53,12 +52,17 @@ public final class InMemoryTranscoder implements Closeable {
   /**
    * @param upperSizeLimit A upper size to transcode to. The actual output size can be up to 10% smaller.
    */
-  public InMemoryTranscoder(@NonNull Context context, @NonNull MediaDataSource dataSource, long upperSizeLimit) throws IOException {
+  public InMemoryTranscoder(@NonNull Context context, @NonNull MediaDataSource dataSource, long upperSizeLimit) throws IOException, VideoSourceException {
     this.context    = context;
     this.dataSource = dataSource;
 
     final MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
-    mediaMetadataRetriever.setDataSource(dataSource);
+    try {
+      mediaMetadataRetriever.setDataSource(dataSource);
+    } catch (RuntimeException e) {
+      Log.w(TAG, "Unable to read datasource", e);
+      throw new VideoSourceException("Unable to read datasource", e);
+    }
 
     long upperSizeLimitWithMargin = (long) (upperSizeLimit / 1.1);
 
@@ -80,7 +84,7 @@ public final class InMemoryTranscoder implements Closeable {
                               : OUTPUT_FORMAT;
   }
 
-  public @NonNull MediaStream transcode(@NonNull Progress progress) throws IOException, UndeliverableMessageException, EncodingException {
+  public @NonNull MediaStream transcode(@NonNull Progress progress) throws IOException, EncodingException, VideoSizeException {
     if (memoryFile != null) throw new AssertionError("Not expecting to reuse transcoder");
 
     float durationSec = duration / 1000f;
@@ -107,7 +111,7 @@ public final class InMemoryTranscoder implements Closeable {
                              numberFormat.format(inputBitRate)));
 
     if (fileSizeEstimate > upperSizeLimit) {
-      throw new UndeliverableMessageException("Size constraints could not be met!");
+      throw new VideoSizeException("Size constraints could not be met!");
     }
 
     memoryFile = MemoryFileDescriptor.newMemoryFileDescriptor(context,
@@ -153,7 +157,7 @@ public final class InMemoryTranscoder implements Closeable {
                              numberFormat.format(bitRate(outSize, duration))));
 
     if (outSize > upperSizeLimit) {
-      throw new UndeliverableMessageException("Size constraints could not be met!");
+      throw new VideoSizeException("Size constraints could not be met!");
     }
 
     memoryFile.seek(0);
@@ -185,8 +189,20 @@ public final class InMemoryTranscoder implements Closeable {
     return Math.max(MINIMUM_TARGET_VIDEO_BITRATE, Math.min(MAXIMUM_TARGET_VIDEO_BITRATE, (int) bitRateToFixTarget));
   }
 
-  private static long getDuration(MediaMetadataRetriever mediaMetadataRetriever) {
-    return Long.parseLong(mediaMetadataRetriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION));
+  private static long getDuration(MediaMetadataRetriever mediaMetadataRetriever) throws VideoSourceException {
+    String durationString = mediaMetadataRetriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION);
+    if (durationString == null) {
+      throw new VideoSourceException("Cannot determine duration of video, null meta data");
+    }
+    try {
+      long duration = Long.parseLong(durationString);
+      if (duration <= 0) {
+        throw new VideoSourceException("Cannot determine duration of video, meta data: " + durationString);
+      }
+      return duration;
+    } catch (NumberFormatException e) {
+      throw new VideoSourceException("Cannot determine duration of video, meta data: " + durationString, e);
+    }
   }
 
   private static boolean containsLocation(MediaMetadataRetriever mediaMetadataRetriever) {

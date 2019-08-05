@@ -11,6 +11,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.mms.MediaStream;
@@ -22,6 +23,8 @@ import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.video.InMemoryTranscoder;
+import org.thoughtcrime.securesms.video.VideoSourceException;
+import org.thoughtcrime.securesms.video.VideoSizeException;
 import org.thoughtcrime.securesms.video.videoconverter.EncodingException;
 
 import java.io.ByteArrayInputStream;
@@ -30,6 +33,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 final class MediaResizer {
+
+  private static final String TAG = Log.tag(MediaResizer.class);
 
   @NonNull private final Context          context;
   @NonNull private final MediaConstraints constraints;
@@ -114,7 +119,14 @@ final class MediaResizer {
           }
         }
       }
-    } catch (IOException | MmsException | EncodingException e) {
+    } catch (VideoSourceException | EncodingException e) {
+      if (attachment.getSize() > constraints.getVideoMaxSize(context)) {
+        throw new UndeliverableMessageException("Duration not found, attachment too large to skip transcode", e);
+      } else {
+        Log.w(TAG, "Duration not found, video small enough to skip transcode", e);
+        return attachment;
+      }
+    } catch (IOException | MmsException | VideoSizeException e) {
       throw new UndeliverableMessageException("Failed to transcode", e);
     }
   }
