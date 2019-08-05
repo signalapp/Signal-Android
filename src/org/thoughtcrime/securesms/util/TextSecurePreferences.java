@@ -12,12 +12,10 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 
-import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraintObserver;
-import org.thoughtcrime.securesms.logging.Log;
-
 import org.greenrobot.eventbus.EventBus;
-import network.loki.messenger.R;
+import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraintObserver;
 import org.thoughtcrime.securesms.lock.RegistrationLockReminders;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference;
 import org.whispersystems.libsignal.util.Medium;
 
@@ -27,6 +25,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+
+import network.loki.messenger.R;
 
 public class TextSecurePreferences {
 
@@ -1127,6 +1127,7 @@ public class TextSecurePreferences {
     }
   }
 
+  // region Loki
   public static long getBackgroundPollTime(Context context) {
     return getLongPreference(context, "background_poll_time", 0L);
   }
@@ -1134,4 +1135,13 @@ public class TextSecurePreferences {
   public static void setBackgroundPollTime(Context context, long backgroundPollTime) {
     setLongPreference(context, "background_poll_time", backgroundPollTime);
   }
+
+  public static boolean isPublicChatSetUp(Context context) {
+    return getBooleanPreference(context, "is_public_chat_set_up", false);
+  }
+
+  public static void markPublicChatSetUp(Context context) {
+    setBooleanPreference(context, "is_public_chat_set_up", true);
+  }
+  // endregion
 }

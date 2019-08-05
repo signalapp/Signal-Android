@@ -37,6 +37,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.dependencies.AxolotlStorageModule;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.dependencies.SignalCommunicationModule;
+import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.jobmanager.DependencyInjector;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.impl.JsonDataSerializer;
@@ -396,11 +397,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     // TODO: Implement
   }
 
-  public void startLongPollingIfNeeded() {
-    setUpLongPollingIfNeeded();
-    if (lokiLongPoller != null) { lokiLongPoller.startIfNeeded(); }
-  }
-
   private void setUpLongPollingIfNeeded() {
     if (lokiLongPoller != null) return;
     String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this);
@@ -417,6 +413,18 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         return Unit.INSTANCE;
       }
     });
+  }
+
+  public void startLongPollingIfNeeded() {
+    setUpLongPollingIfNeeded();
+    if (lokiLongPoller != null) { lokiLongPoller.startIfNeeded(); }
+  }
+
+  public void setUpPublicChatIfNeeded() {
+    boolean isPublicChatSetUp = TextSecurePreferences.isPublicChatSetUp(this);
+    if (isPublicChatSetUp) return;
+    GroupManager.createGroup(this, new HashSet<>(), null, "Loki Public Chat", false);
+    TextSecurePreferences.markPublicChatSetUp(this);
   }
   // endregion
 }

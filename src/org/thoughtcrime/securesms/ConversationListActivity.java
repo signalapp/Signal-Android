@@ -81,6 +81,9 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
   protected void onPreCreate() {
     dynamicTheme.onCreate(this);
     dynamicLanguage.onCreate(this);
+    if (TextSecurePreferences.getLocalNumber(this) != null) {
+      ApplicationContext.getInstance(this).setUpPublicChatIfNeeded();
+    }
   }
 
   @Override
