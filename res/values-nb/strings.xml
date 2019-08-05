@@ -62,6 +62,7 @@
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal krever tillatelse fra systemet for å kunne ta bilder, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Kamera».</string>
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">Laster opp media...</string>
+  <string name="AttachmentUploadJob_compressing_video_start">Komprimerer video...</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Det oppstod en feil under lydavspilling.</string>
   <!--BlockedContactsActivity-->
@@ -76,6 +77,8 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Kunne ikke lagre bildet.</string>
   <!--CameraXFragment-->
+  <string name="CameraXFragment_change_camera_description">Bytt kamera</string>
+  <string name="CameraXFragment_open_gallery_description">Åpne galleri</string>
   <!--CameraContacts-->
   <string name="CameraContacts_recent_contacts">Nylige kontakter</string>
   <string name="CameraContacts_signal_contacts">Signal kontakter</string>
@@ -256,6 +259,7 @@
   <string name="CreateProfileActivity_profile_name">Profilnavn</string>
   <string name="CreateProfileActivity_set_up_your_profile">Sett opp din profil</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal-profiler er kryptert fra ende til ende, og Signal-tjenesten har aldri tilgang til denne informasjonen.</string>
+  <string name="CreateProfileActivity_set_avatar_description">Sett avatar</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Bruker selvvalgt: %s</string>
   <string name="CustomDefaultPreference_using_default">Bruker forvalgt: %s</string>
@@ -413,6 +417,7 @@
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Feil under nedlasting av MMS-melding. Trykk for å prøve igjen</string>
   <!--MediaPickerActivity-->
   <string name="MediaPickerActivity_send_to">Send til %s</string>
+  <string name="MediaPickerActivity__menu_open_camera">Åpne kamera</string>
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">Trykk for å velge</string>
   <!--MediaSendActivity-->
@@ -758,8 +763,12 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--WebRtcCallControls Content Descriptions-->
   <string name="WebRtcCallControls_contact_photo_description">Kontaktfoto</string>
   <string name="WebRtcCallControls_speaker_button_description">Høyttaler</string>
+  <string name="WebRtcCallControls_bluetooth_button_description">Bluetooth</string>
   <string name="WebRtcCallControls_mute_button_description">Demp</string>
+  <string name="WebRtcCallControls_your_camera_button_description">Ditt kamera</string>
+  <string name="WebRtcCallControls_switch_to_rear_camera_button_description">Bytt til bak kamera</string>
   <string name="WebRtcCallControls_answer_call_description">Svar på anrop</string>
+  <string name="WebRtcCallControls_reject_call_description">Avvis samtale</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__audio">Lyd</string>
   <string name="attachment_type_selector__audio_description">Lyd</string>
@@ -783,6 +792,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Skriv inn navn eller nummer</string>
   <!--contact_filter_toolbar-->
+  <string name="contact_filter_toolbar__clear_entered_text_description">Fjern inntastet tekst</string>
+  <string name="contact_filter_toolbar__show_keyboard_description">Vis tastatur</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">ingen kontakter.</string>
   <string name="contact_selection_group_activity__finding_contacts">Laster inn kontakter …</string>
@@ -1190,6 +1201,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Arkiver utvalg</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Angre arkivering av utvalg</string>
   <!--conversation_list-->
+  <string name="conversation_list_settings_shortcut">Innstillinger snarvei</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Kontaktfoto</string>
   <string name="conversation_list_item_view__archived">Arkivert</string>
@@ -1197,6 +1209,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Zip. Zilch. Zero. Nada.\nDu er i rute!</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Ny samtale</string>
+  <string name="conversation_list_fragment__open_camera_description">Åpne Kamera</string>
   <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Kom i gang ved å sende en melding til en venn.</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Tilbakestill sikker økt</string>

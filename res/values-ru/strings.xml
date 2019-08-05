@@ -1215,7 +1215,7 @@
   <string name="preferences_notifications__messages">Сообщения</string>
   <string name="preferences_notifications__events">События</string>
   <string name="preferences_notifications__in_chat_sounds">Звуки внутри чата</string>
-  <string name="preferences_notifications__show">Показать</string>
+  <string name="preferences_notifications__show">Показывать</string>
   <string name="preferences_notifications__calls">Звонки</string>
   <string name="preferences_notifications__ringtone">Мелодия</string>
   <string name="preferences_chats__show_invitation_prompts">Показывать предложения пригласить</string>
@@ -1279,7 +1279,7 @@
   <string name="conversation__menu_add_attachment">Добавить вложение</string>
   <string name="conversation__menu_edit_group">Редактировать группу</string>
   <string name="conversation__menu_leave_group">Покинуть группу</string>
-  <string name="conversation__menu_view_all_media">Все медиа-файлы</string>
+  <string name="conversation__menu_view_all_media">Все медиа</string>
   <string name="conversation__menu_conversation_settings">Настройки разговора</string>
   <string name="conversation__menu_add_shortcut">Добавить на главный экран</string>
   <!--conversation_popup-->
