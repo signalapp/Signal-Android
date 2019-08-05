@@ -111,7 +111,6 @@ import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSy
 import org.whispersystems.signalservice.api.messages.multidevice.VerifiedMessage;
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
-import org.whispersystems.signalservice.loki.api.LokiGroupChatAPI;
 import org.whispersystems.signalservice.loki.crypto.LokiServiceCipher;
 import org.whispersystems.signalservice.loki.messaging.LokiMessageFriendRequestStatus;
 import org.whispersystems.signalservice.loki.messaging.LokiServiceMessage;
@@ -831,13 +830,10 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     }
 
     Long threadId;
-    boolean isLokiPublicChatMessage;
 
     if (smsMessageId.isPresent() && !message.getGroupInfo().isPresent()) {
-      isLokiPublicChatMessage = false;
       threadId = database.updateBundleMessageBody(smsMessageId.get(), body).second;
     } else {
-      isLokiPublicChatMessage = new String(message.getGroupInfo().get().getGroupId()).equals("loki-group-chat-" + LokiGroupChatAPI.getPublicChatID());
       notifyTypingStoppedFromIncomingMessage(recipient, content.getSender(), content.getSenderDevice());
 
       IncomingTextMessage textMessage = new IncomingTextMessage(Address.fromSerialized(content.getSender()),
@@ -856,7 +852,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       if (smsMessageId.isPresent()) database.deleteMessage(smsMessageId.get());
     }
 
-    if (threadId != null && !isLokiPublicChatMessage) {
+    if (threadId != null) {
       MessageNotifier.updateNotification(context, threadId);
     }
   }
