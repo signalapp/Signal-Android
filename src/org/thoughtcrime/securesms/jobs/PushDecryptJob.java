@@ -111,6 +111,7 @@ import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSy
 import org.whispersystems.signalservice.api.messages.multidevice.VerifiedMessage;
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
+import org.whispersystems.signalservice.loki.api.LokiGroupChatAPI;
 import org.whispersystems.signalservice.loki.crypto.LokiServiceCipher;
 import org.whispersystems.signalservice.loki.messaging.LokiMessageFriendRequestStatus;
 import org.whispersystems.signalservice.loki.messaging.LokiServiceMessage;
@@ -240,12 +241,12 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
   private void handleMessage(@NonNull SignalServiceEnvelope envelope, @NonNull Optional<Long> smsMessageId) {
     try {
-      GroupDatabase        groupDatabase = DatabaseFactory.getGroupDatabase(context);
-      SignalProtocolStore  axolotlStore  = new SignalProtocolStoreImpl(context);
-      LokiThreadDatabase lokiThreadDatabase = DatabaseFactory.getLokiThreadDatabase(context);
+      GroupDatabase            groupDatabase            = DatabaseFactory.getGroupDatabase(context);
+      SignalProtocolStore      axolotlStore             = new SignalProtocolStoreImpl(context);
+      LokiThreadDatabase       lokiThreadDatabase       = DatabaseFactory.getLokiThreadDatabase(context);
       LokiPreKeyRecordDatabase lokiPreKeyRecordDatabase = DatabaseFactory.getLokiPreKeyRecordDatabase(context);
-      SignalServiceAddress localAddress  = new SignalServiceAddress(TextSecurePreferences.getLocalNumber(context));
-      LokiServiceCipher    cipher        = new LokiServiceCipher(localAddress, axolotlStore, lokiThreadDatabase, lokiPreKeyRecordDatabase, UnidentifiedAccessUtil.getCertificateValidator());
+      SignalServiceAddress     localAddress             = new SignalServiceAddress(TextSecurePreferences.getLocalNumber(context));
+      LokiServiceCipher        cipher                   = new LokiServiceCipher(localAddress, axolotlStore, lokiThreadDatabase, lokiPreKeyRecordDatabase, UnidentifiedAccessUtil.getCertificateValidator());
 
       // Loki - Handle session reset logic
       if (!envelope.isFriendRequest() && cipher.getSessionStatus(envelope) == null && envelope.isPreKeySignalMessage()) {
@@ -816,7 +817,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     return threadId;
   }
 
-  private void handleTextMessage(@NonNull SignalServiceContent content,
+  public void handleTextMessage(@NonNull SignalServiceContent content,
                                  @NonNull SignalServiceDataMessage message,
                                  @NonNull Optional<Long> smsMessageId)
       throws StorageFailedException
@@ -830,10 +831,13 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     }
 
     Long threadId;
+    boolean isLokiPublicChatMessage;
 
     if (smsMessageId.isPresent() && !message.getGroupInfo().isPresent()) {
+      isLokiPublicChatMessage = false;
       threadId = database.updateBundleMessageBody(smsMessageId.get(), body).second;
     } else {
+      isLokiPublicChatMessage = new String(message.getGroupInfo().get().getGroupId()).equals("loki-group-chat-" + LokiGroupChatAPI.getPublicChatID());
       notifyTypingStoppedFromIncomingMessage(recipient, content.getSender(), content.getSenderDevice());
 
       IncomingTextMessage textMessage = new IncomingTextMessage(Address.fromSerialized(content.getSender()),
@@ -852,7 +856,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       if (smsMessageId.isPresent()) database.deleteMessage(smsMessageId.get());
     }
 
-    if (threadId != null) {
+    if (threadId != null && !isLokiPublicChatMessage) {
       MessageNotifier.updateNotification(context, threadId);
     }
   }

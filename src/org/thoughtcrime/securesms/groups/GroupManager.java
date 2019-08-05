@@ -42,9 +42,21 @@ public class GroupManager {
                                                        @Nullable String         name,
                                                                  boolean        mms)
   {
+    GroupDatabase database = DatabaseFactory.getGroupDatabase(context);
+    String id = GroupUtil.getEncodedId(database.allocateGroupId(), mms);
+    return createGroup(id, context, members, avatar, name, mms);
+  }
+
+  public static @NonNull GroupActionResult createGroup(@NonNull  String         id,
+                                                       @NonNull  Context        context,
+                                                       @NonNull  Set<Recipient> members,
+                                                       @Nullable Bitmap         avatar,
+                                                       @Nullable String         name,
+                                                                 boolean        mms)
+  {
     final byte[]        avatarBytes     = BitmapUtil.toByteArray(avatar);
     final GroupDatabase groupDatabase   = DatabaseFactory.getGroupDatabase(context);
-    final String        groupId         = GroupUtil.getEncodedId(groupDatabase.allocateGroupId(), mms);
+    final String        groupId         = GroupUtil.getEncodedId(id.getBytes(), mms);
     final Recipient     groupRecipient  = Recipient.from(context, Address.fromSerialized(groupId), false);
     final Set<Address>  memberAddresses = getMemberAddresses(members);
 
