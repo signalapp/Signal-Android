@@ -76,9 +76,11 @@
     <dimen name="sticker_page_item_padding">8dp</dimen>
     <dimen name="sticker_page_item_divisor">88dp</dimen>
     <dimen name="sticker_page_item_multiplier">8dp</dimen>
-    <dimen name="sticker_preview_sticker_size">96dp</dimen>
 
     <dimen name="sticker_management_horizontal_margin">16dp</dimen>
+
+    <dimen name="sticker_preview_sticker_size">96dp</dimen>
+    <dimen name="sticker_preview_gutter_size">16dp</dimen>
 
     <dimen name="tooltip_popup_margin">8dp</dimen>
 
