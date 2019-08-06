@@ -610,7 +610,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     MenuInflater inflater = this.getMenuInflater();
     menu.clear();
 
-    if (isSecureText) {
+    boolean isLokiPublicChat = isGroupConversation(); // TODO: Figure out a better way of determining this
+
+    if (isSecureText && !isLokiPublicChat) { // TODO:
       if (recipient.getExpireMessages() > 0) {
         inflater.inflate(R.menu.conversation_expiring_on, menu);
 
@@ -630,7 +632,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       if (isSecureText) inflater.inflate(R.menu.conversation_callable_secure, menu);
       else              inflater.inflate(R.menu.conversation_callable_insecure, menu);
        */
-    } else if (isGroupConversation()) {
+    } else if (isGroupConversation() && !isLokiPublicChat) {
       inflater.inflate(R.menu.conversation_group_options, menu);
 
       if (!isPushGroupConversation()) {

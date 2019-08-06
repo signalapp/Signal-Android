@@ -14,12 +14,13 @@ import android.widget.TextView;
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
-import network.loki.messenger.R;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ViewUtil;
+
+import network.loki.messenger.R;
 
 public class ConversationTitleView extends RelativeLayout {
 
@@ -120,7 +121,7 @@ public class ConversationTitleView extends RelativeLayout {
                                 .map(Recipient::toShortString)
                                 .collect(Collectors.joining(", ")));
 
-    this.subtitle.setVisibility(View.VISIBLE);
+    this.subtitle.setVisibility(View.GONE);
     this.subtitleContainer.setVisibility(VISIBLE);
   }
 
