@@ -46,14 +46,4 @@ public abstract class SendJob extends BaseJob {
       database.markAttachmentUploaded(messageId, attachment);
     }
   }
-
-  protected List<Attachment> scaleAndStripExifFromAttachments(@NonNull MediaConstraints constraints,
-                                                              @NonNull List<Attachment> attachments)
-      throws UndeliverableMessageException
-  {
-    MediaResizer       mediaResizer       = new MediaResizer(context, constraints);
-    AttachmentDatabase attachmentDatabase = DatabaseFactory.getAttachmentDatabase(context);
-
-    return mediaResizer.scaleAndStripExifToDatabase(attachmentDatabase, attachments);
-  }
 }

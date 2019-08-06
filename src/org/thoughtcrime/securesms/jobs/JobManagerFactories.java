@@ -29,6 +29,7 @@ public final class JobManagerFactories {
       put(AttachmentCopyJob.KEY,                     new AttachmentCopyJob.Factory());
       put(AttachmentDownloadJob.KEY,                 new AttachmentDownloadJob.Factory());
       put(AttachmentUploadJob.KEY,                   new AttachmentUploadJob.Factory());
+      put(AttachmentCompressionJob.KEY,              new AttachmentCompressionJob.Factory());
       put(AvatarDownloadJob.KEY,                     new AvatarDownloadJob.Factory());
       put(CleanPreKeysJob.KEY,                       new CleanPreKeysJob.Factory());
       put(CreateSignedPreKeyJob.KEY,                 new CreateSignedPreKeyJob.Factory());
@@ -82,6 +83,8 @@ public final class JobManagerFactories {
 
       // Dead jobs
       put("PushContentReceiveJob",                   new FailingJob.Factory());
+      put("AttachmentUploadJob",                     new FailingJob.Factory());
+      put("MmsSendJob",                              new FailingJob.Factory());
     }};
   }
 
