@@ -318,19 +318,16 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
       if (Build.VERSION.SDK_INT >= 21) {
         TextSecurePreferences.setScreenLockEnabled(getContext(), screenlockEnabled);
         enableScreenLock.setChecked(screenlockEnabled);
-      }
-      else {
-        if (screenlockEnabled) {
-          TextSecurePreferences.setScreenLockEnabled(getContext(), false);
-          enableScreenLock.setChecked(false);
+      } else if (screenlockEnabled) {
+        TextSecurePreferences.setScreenLockEnabled(getContext(), false);
+        enableScreenLock.setChecked(false);
 
-          AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-          builder.setTitle(R.string.preferences_app_protection__android_version_too_low);
-          builder.setMessage(R.string.preferences_app_protection__screenlock_requires_lollipop);
-          builder.setIconAttribute(R.attr.dialog_alert_icon);
-          builder.setPositiveButton(android.R.string.ok, null);
-          builder.show();
-        }
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle(R.string.preferences_app_protection__android_version_too_low);
+        builder.setMessage(R.string.preferences_app_protection__screenlock_requires_lollipop);
+        builder.setIconAttribute(R.attr.dialog_alert_icon);
+        builder.setPositiveButton(android.R.string.ok, null);
+        builder.show();
       }
       return false;
     }
