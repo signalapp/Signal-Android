@@ -43,7 +43,6 @@ public class IncomingMessageObserver implements ConstraintObserver.Notifier {
 
   private final Context                      context;
   private final NetworkConstraint            networkConstraint;
-  private final SignalServiceMessageReceiver receiver;
   private final SignalServiceNetworkAccess   networkAccess;
 
   private boolean appVisible;
@@ -52,7 +51,6 @@ public class IncomingMessageObserver implements ConstraintObserver.Notifier {
   public IncomingMessageObserver(@NonNull Context context) {
     this.context           = context;
     this.networkConstraint = new NetworkConstraint.Factory(ApplicationContext.getInstance(context)).create();
-    this.receiver          = ApplicationDependencies.getSignalServiceMessageReceiver();
     this.networkAccess     = ApplicationDependencies.getSignalServiceNetworkAccess();
 
     new NetworkConstraintObserver(ApplicationContext.getInstance(context)).register(this);
@@ -144,6 +142,8 @@ public class IncomingMessageObserver implements ConstraintObserver.Notifier {
         waitForConnectionNecessary();
 
         Log.i(TAG, "Making websocket connection....");
+        SignalServiceMessageReceiver receiver = ApplicationDependencies.getSignalServiceMessageReceiver();
+
         pipe             = receiver.createMessagePipe();
         unidentifiedPipe = receiver.createUnidentifiedMessagePipe();
 

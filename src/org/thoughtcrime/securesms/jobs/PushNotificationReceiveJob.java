@@ -47,7 +47,7 @@ public class PushNotificationReceiveJob extends BaseJob {
   @Override
   public void onRun() throws IOException {
     MessageRetriever retriever = ApplicationDependencies.getMessageRetriever();
-    boolean          result    = retriever.retrieveMessages(context, new RestStrategy(context));
+    boolean          result    = retriever.retrieveMessages(context, new RestStrategy());
 
     if (result) {
       Log.i(TAG, "Successfully pulled messages.");

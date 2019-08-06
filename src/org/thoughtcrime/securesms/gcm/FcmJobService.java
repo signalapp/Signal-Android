@@ -49,7 +49,7 @@ public class FcmJobService extends JobService {
     SignalExecutors.UNBOUNDED.execute(() -> {
       Context          context   = getApplicationContext();
       MessageRetriever retriever = ApplicationDependencies.getMessageRetriever();
-      boolean          success   = retriever.retrieveMessages(context, new RestStrategy(context));
+      boolean          success   = retriever.retrieveMessages(context, new RestStrategy(), new RestStrategy());
 
       if (success) {
         Log.i(TAG, "Successfully retrieved messages.");

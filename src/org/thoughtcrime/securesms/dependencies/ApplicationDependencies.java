@@ -75,6 +75,11 @@ public class ApplicationDependencies {
     return messageReceiver;
   }
 
+  public static synchronized void resetSignalServiceMessageReceiver() {
+    assertInitialization();
+    messageReceiver = null;
+  }
+
   public static synchronized @NonNull SignalServiceNetworkAccess getSignalServiceNetworkAccess() {
     assertInitialization();
     return provider.provideSignalServiceNetworkAccess();
