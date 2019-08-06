@@ -24,7 +24,7 @@ class LokiGroupChatPoller(private val context: Context, private val groupID: Lon
     }
 
     companion object {
-        private val pollInterval: Long = 5 * 1000
+        private val pollInterval: Long = 4 * 1000
     }
 
     fun startIfNeeded() {
