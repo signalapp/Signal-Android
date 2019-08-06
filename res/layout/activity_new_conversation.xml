@@ -17,6 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
+            app:labeledEditText_background="@color/loki_darkest_gray"
             app:labeledEditText_label="@string/activity_new_conversation_public_key_edit_text_label"/>
 
         <TextView

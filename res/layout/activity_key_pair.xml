@@ -73,6 +73,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginBottom="20dp"
             android:visibility="gone"
+            app:labeledEditText_background="@color/loki_darkest_gray"
             app:labeledEditText_label="@string/activity_key_pair_mnemonic_edit_text_label"/>
 
         <Button
