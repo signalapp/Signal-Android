@@ -35,84 +35,54 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
   private final Context                    context;
   private final SignalServiceNetworkAccess networkAccess;
 
-  private SignalServiceAccountManager  accountManager;
-  private SignalServiceMessageSender   messageSender;
-  private SignalServiceMessageReceiver messageReceiver;
-  private IncomingMessageProcessor     incomingMessageProcessor;
-  private MessageRetriever             messageRetriever;
-
   public ApplicationDependencyProvider(@NonNull Context context, @NonNull SignalServiceNetworkAccess networkAccess) {
     this.context       = context.getApplicationContext();
     this.networkAccess = networkAccess;
   }
 
   @Override
-  public @NonNull SignalServiceAccountManager getSignalServiceAccountManager() {
-    if (accountManager == null) {
-      this.accountManager = new SignalServiceAccountManager(networkAccess.getConfiguration(context),
-          new DynamicCredentialsProvider(context),
-          BuildConfig.USER_AGENT);
-    }
-
-    return accountManager;
+  public @NonNull SignalServiceAccountManager provideSignalServiceAccountManager() {
+    return new SignalServiceAccountManager(networkAccess.getConfiguration(context),
+                                           new DynamicCredentialsProvider(context),
+                                           BuildConfig.USER_AGENT);
   }
 
   @Override
-  public @NonNull SignalServiceMessageSender getSignalServiceMessageSender() {
-    if (this.messageSender == null) {
-      this.messageSender = new SignalServiceMessageSender(networkAccess.getConfiguration(context),
-                                                          new DynamicCredentialsProvider(context),
-                                                          new SignalProtocolStoreImpl(context),
-                                                          BuildConfig.USER_AGENT,
-                                                          TextSecurePreferences.isMultiDevice(context),
-                                                          Optional.fromNullable(IncomingMessageObserver.getPipe()),
-                                                          Optional.fromNullable(IncomingMessageObserver.getUnidentifiedPipe()),
-                                                          Optional.of(new SecurityEventListener(context)));
-    }else {
-      this.messageSender.setMessagePipe(IncomingMessageObserver.getPipe(), IncomingMessageObserver.getUnidentifiedPipe());
-      this.messageSender.setIsMultiDevice(TextSecurePreferences.isMultiDevice(context));
-    }
-
-    return this.messageSender;
+  public @NonNull SignalServiceMessageSender provideSignalServiceMessageSender() {
+      return new SignalServiceMessageSender(networkAccess.getConfiguration(context),
+                                            new DynamicCredentialsProvider(context),
+                                            new SignalProtocolStoreImpl(context),
+                                            BuildConfig.USER_AGENT,
+                                            TextSecurePreferences.isMultiDevice(context),
+                                            Optional.fromNullable(IncomingMessageObserver.getPipe()),
+                                            Optional.fromNullable(IncomingMessageObserver.getUnidentifiedPipe()),
+                                            Optional.of(new SecurityEventListener(context)));
   }
 
   @Override
-  public @NonNull SignalServiceMessageReceiver getSignalServiceMessageReceiver() {
-    if (this.messageReceiver == null) {
-      SleepTimer sleepTimer = TextSecurePreferences.isFcmDisabled(context) ? new RealtimeSleepTimer(context)
-                                                                           : new UptimeSleepTimer();
-
-      this.messageReceiver = new SignalServiceMessageReceiver(networkAccess.getConfiguration(context),
-                                                              new DynamicCredentialsProvider(context),
-                                                              BuildConfig.USER_AGENT,
-                                                              new PipeConnectivityListener(),
-                                                              sleepTimer);
-    }
-
-    return this.messageReceiver;
+  public @NonNull SignalServiceMessageReceiver provideSignalServiceMessageReceiver() {
+    SleepTimer sleepTimer = TextSecurePreferences.isFcmDisabled(context) ? new RealtimeSleepTimer(context)
+                                                                         : new UptimeSleepTimer();
+    return new SignalServiceMessageReceiver(networkAccess.getConfiguration(context),
+                                            new DynamicCredentialsProvider(context),
+                                            BuildConfig.USER_AGENT,
+                                            new PipeConnectivityListener(),
+                                            sleepTimer);
   }
 
   @Override
-  public @NonNull SignalServiceNetworkAccess getSignalServiceNetworkAccess() {
+  public @NonNull SignalServiceNetworkAccess provideSignalServiceNetworkAccess() {
     return networkAccess;
   }
 
   @Override
-  public @NonNull IncomingMessageProcessor getIncomingMessageProcessor() {
-    if (incomingMessageProcessor == null) {
-      incomingMessageProcessor = new IncomingMessageProcessor(context);
-    }
-
-    return incomingMessageProcessor;
+  public @NonNull IncomingMessageProcessor provideIncomingMessageProcessor() {
+    return new IncomingMessageProcessor(context);
   }
 
   @Override
-  public @NonNull MessageRetriever getMessageRetriever() {
-    if (messageRetriever == null) {
-      messageRetriever = new MessageRetriever();
-    }
-
-    return messageRetriever;
+  public @NonNull MessageRetriever provideMessageRetriever() {
+    return new MessageRetriever();
   }
 
   private static class DynamicCredentialsProvider implements CredentialsProvider {

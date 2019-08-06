@@ -234,7 +234,7 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
   }
 
   private void initializeAppDependencies() {
-    ApplicationDependencies.init(new ApplicationDependencyProvider(this, new SignalServiceNetworkAccess(this)));
+    ApplicationDependencies.init(this, new ApplicationDependencyProvider(this, new SignalServiceNetworkAccess(this)));
   }
 
   private void initializeGcmCheck() {
