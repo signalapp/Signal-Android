@@ -6,10 +6,11 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 
 import org.thoughtcrime.securesms.BaseActionBarActivity;
-import network.loki.messenger.R;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+
+import network.loki.messenger.R;
 
 public class WelcomeActivity extends BaseActionBarActivity {
 
@@ -33,7 +34,7 @@ public class WelcomeActivity extends BaseActionBarActivity {
   private void onContinueClicked() {
     Permissions.with(this)
         .request(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)
-        .ifNecessary()
+        .ifNecessary(false)
         .withRationaleDialog(getString(R.string.activity_landing_permission_dialog_message), R.drawable.ic_folder_white_48dp)
         .onAnyResult(() -> {
           TextSecurePreferences.setHasSeenWelcomeScreen(WelcomeActivity.this, true);
