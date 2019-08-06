@@ -678,6 +678,12 @@ public class ConversationItem extends LinearLayout
   }
 
   private void setContactPhoto(@NonNull Recipient recipient) {
+    LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams)bodyBubble.getLayoutParams();
+    float scale = getResources().getDisplayMetrics().density;
+    float marginInDP = groupThread ? 44 : 8;
+    int marginInPX = Math.round(marginInDP * scale);
+    layoutParams.setMarginStart(marginInPX);
+    bodyBubble.setLayoutParams(layoutParams);
     if (contactPhoto == null) return;
     contactPhoto.setAvatar(glideRequests, recipient, true);
   }

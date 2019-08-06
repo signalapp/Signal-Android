@@ -35,6 +35,7 @@
                 android:foreground="@drawable/contact_photo_background"
                 android:layout_width="@dimen/conversation_item_avatar_size"
                 android:layout_height="@dimen/conversation_item_avatar_size"
+                android:layout_marginBottom="2dp"
                 android:cropToPadding="true"
                 android:contentDescription="@string/conversation_item_received__contact_photo_description" />
 
@@ -55,7 +56,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/message_bubble_edge_margin"
                 android:layout_marginStart="8dp"
-                android:layout_toEndOf="@id/contact_photo_container"
                 android:orientation="vertical"
                 android:clipToPadding="false"
                 android:clipChildren="false"
