@@ -152,9 +152,11 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
       return STATE_WELCOME_SCREEN;
     } else if (!TextSecurePreferences.hasPromptedPushRegistration(this)) {
       return STATE_PROMPT_PUSH_REGISTRATION;
-    } else if (ExperienceUpgradeActivity.isUpdate(this)) {
-      return STATE_EXPERIENCE_UPGRADE;
-    } else {
+    }
+//    else if (ExperienceUpgradeActivity.isUpdate(this)) {
+//      return STATE_EXPERIENCE_UPGRADE;
+//    }
+    else {
       return STATE_NORMAL;
     }
   }
