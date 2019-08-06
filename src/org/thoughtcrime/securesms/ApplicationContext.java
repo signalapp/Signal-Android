@@ -56,6 +56,7 @@ import org.thoughtcrime.securesms.logging.PersistentLogger;
 import org.thoughtcrime.securesms.logging.UncaughtExceptionLogger;
 import org.thoughtcrime.securesms.loki.BackgroundPollWorker;
 import org.thoughtcrime.securesms.loki.LokiAPIDatabase;
+import org.thoughtcrime.securesms.loki.LokiGroupChatPoller;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
@@ -114,6 +115,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
 
   // Loki
   private LokiLongPoller lokiLongPoller = null;
+  private LokiGroupChatPoller lokiGroupChatPoller = null;
   public SignalCommunicationModule communicationModule;
 
   private volatile boolean isAppVisible;
@@ -421,12 +423,19 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     if (lokiLongPoller != null) { lokiLongPoller.startIfNeeded(); }
   }
 
-  public void setUpPublicChatIfNeeded() {
+  private void setUpPublicChatIfNeeded() {
+    if (lokiGroupChatPoller != null) return;
+    lokiGroupChatPoller = new LokiGroupChatPoller(this, LokiGroupChatAPI.getPublicChatID());
     boolean isPublicChatSetUp = TextSecurePreferences.isPublicChatSetUp(this);
     if (isPublicChatSetUp) return;
     String id = "loki-group-chat-" + LokiGroupChatAPI.getPublicChatID();
     GroupManager.createGroup(id, this, new HashSet<>(), null, "Loki Public Chat", false);
     TextSecurePreferences.markPublicChatSetUp(this);
+  }
+
+  public void startPublicChatPollingIfNeeded() {
+    setUpPublicChatIfNeeded();
+    lokiGroupChatPoller.startIfNeeded();
   }
   // endregion
 }
