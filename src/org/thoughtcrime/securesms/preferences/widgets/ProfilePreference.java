@@ -1,6 +1,8 @@
 package org.thoughtcrime.securesms.preferences.widgets;
 
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.graphics.Outline;
 import android.os.Build;
@@ -14,15 +16,18 @@ import android.view.ViewOutlineProvider;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.lelloman.identicon.drawable.ClassicIdenticonDrawable;
 
-import network.loki.messenger.R;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
+import network.loki.messenger.R;
+
 public class ProfilePreference extends Preference {
 
+  private View containerView;
   private ImageView avatarView;
   private TextView  profileNameView;
   private TextView  profileNumberView;
@@ -55,6 +60,8 @@ public class ProfilePreference extends Preference {
   @Override
   public void onBindViewHolder(PreferenceViewHolder viewHolder) {
     super.onBindViewHolder(viewHolder);
+
+    containerView     = viewHolder.itemView;
     avatarView        = (ImageView)viewHolder.findViewById(R.id.avatar);
     profileNameView   = (TextView)viewHolder.findViewById(R.id.profile_name);
     profileNumberView = (TextView)viewHolder.findViewById(R.id.number);
@@ -68,6 +75,15 @@ public class ProfilePreference extends Preference {
     String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(getContext());
     final Address localAddress = Address.fromSerialized(userHexEncodedPublicKey);
     final String  profileName  = TextSecurePreferences.getProfileName(getContext());
+
+    Context context = getContext();
+    containerView.setOnLongClickListener(v -> {
+      ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+      ClipData clip = ClipData.newPlainText("Public Key", userHexEncodedPublicKey);
+      clipboard.setPrimaryClip(clip);
+      Toast.makeText(context, R.string.activity_settings_public_key_copied_message, Toast.LENGTH_SHORT).show();
+      return true;
+    });
 
     avatarView.setOutlineProvider(new ViewOutlineProvider() {
 

@@ -111,7 +111,7 @@ class KeyPairActivity : BaseActionBarActivity() {
     // region Interaction
     private fun copy() {
         val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-        val clip = ClipData.newPlainText("mnemonic", mnemonic)
+        val clip = ClipData.newPlainText("Mnemonic", mnemonic)
         clipboard.primaryClip = clip
         Toast.makeText(this, R.string.activity_key_pair_mnemonic_copied_message, Toast.LENGTH_SHORT).show()
     }
