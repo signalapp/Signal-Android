@@ -36,6 +36,7 @@ import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.push.AccountManagerFactory;
 import org.thoughtcrime.securesms.push.IasTrustStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.sms.IncomingJoinedMessage;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -77,19 +78,19 @@ public class DirectoryHelper {
     if (TextUtils.isEmpty(TextSecurePreferences.getLocalNumber(context))) return;
     if (!Permissions.hasAll(context, Manifest.permission.WRITE_CONTACTS)) return;
 
-    List<Address> newlyActiveUsers = refreshDirectory(context, AccountManagerFactory.createManager(context));
+    List<RecipientId> newlyActiveUsers = refreshDirectory(context, AccountManagerFactory.createManager(context));
 
     if (TextSecurePreferences.isMultiDevice(context)) {
       ApplicationContext.getInstance(context)
                         .getJobManager()
-                        .add(new MultiDeviceContactUpdateJob(context));
+                        .add(new MultiDeviceContactUpdateJob());
     }
 
     if (notifyOfNewUsers) notifyNewUsers(context, newlyActiveUsers);
   }
 
   @SuppressLint("CheckResult")
-  private static @NonNull List<Address> refreshDirectory(@NonNull Context context, @NonNull SignalServiceAccountManager accountManager)
+  private static @NonNull List<RecipientId> refreshDirectory(@NonNull Context context, @NonNull SignalServiceAccountManager accountManager)
       throws IOException
   {
     if (TextUtils.isEmpty(TextSecurePreferences.getLocalNumber(context))) {
@@ -114,7 +115,7 @@ public class DirectoryHelper {
 
       if (!contactServiceResult.isPresent()) {
         Log.i(TAG, "[Batch] New contact discovery service failed, so we're skipping the comparison.");
-        return legacyResult.getNewlyActiveAddresses();
+        return legacyResult.getNewlyActiveRecipients();
       }
 
       if (legacyResult.getNumbers().size() == contactServiceResult.get().size() && legacyResult.getNumbers().containsAll(contactServiceResult.get())) {
@@ -125,7 +126,7 @@ public class DirectoryHelper {
         accountManager.reportContactDiscoveryServiceMismatch();
       }
 
-      return legacyResult.getNewlyActiveAddresses();
+      return legacyResult.getNewlyActiveRecipients();
 
     } catch (InterruptedException e) {
       throw new IOException("[Batch] Operation was interrupted.", e);
@@ -147,7 +148,7 @@ public class DirectoryHelper {
     SignalServiceAccountManager   accountManager    = AccountManagerFactory.createManager(context);
 
     Future<RegisteredState>   legacyRequest         = getLegacyRegisteredState(context, accountManager, recipientDatabase, recipient);
-    List<Future<Set<String>>> contactServiceRequest = getContactServiceDirectoryResult(context, accountManager, Collections.singleton(recipient.getAddress().serialize()));
+    List<Future<Set<String>>> contactServiceRequest = getContactServiceDirectoryResult(context, accountManager, Collections.singleton(recipient.requireAddress().serialize()));
 
     try {
       RegisteredState       legacyState          = legacyRequest.get();
@@ -182,11 +183,13 @@ public class DirectoryHelper {
     }
   }
 
-  private static void updateContactsDatabase(@NonNull Context context, @NonNull List<Address> activeAddresses, boolean removeMissing) {
+  private static void updateContactsDatabase(@NonNull Context context, @NonNull List<RecipientId> activeIds, boolean removeMissing) {
     Optional<AccountHolder> account = getOrCreateAccount(context);
 
     if (account.isPresent()) {
       try {
+        List<Address> activeAddresses = Stream.of(activeIds).map(Recipient::resolved).map(Recipient::requireAddress).toList();
+
         DatabaseFactory.getContactsDatabase(context).removeDeletedRawContacts(account.get().getAccount());
         DatabaseFactory.getContactsDatabase(context).setRegisteredUsers(account.get().getAccount(), activeAddresses, removeMissing);
 
@@ -198,14 +201,15 @@ public class DirectoryHelper {
             String number = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.NUMBER));
 
             if (!TextUtils.isEmpty(number)) {
-              Address   address         = Address.fromExternal(context, number);
-              String    displayName     = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
-              String    contactPhotoUri = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.PHOTO_URI));
-              String    contactLabel    = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.LABEL));
-              Uri       contactUri      = ContactsContract.Contacts.getLookupUri(cursor.getLong(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone._ID)),
-                                                                                 cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.LOOKUP_KEY)));
+              RecipientId recipientId     = Recipient.external(context, number).getId();
+              String      displayName     = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
+              String      contactPhotoUri = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.PHOTO_URI));
+              String      contactLabel    = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.LABEL));
+              Uri         contactUri      = ContactsContract.Contacts.getLookupUri(cursor.getLong(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone._ID)),
+                                                                                   cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.LOOKUP_KEY)));
 
-              handle.setSystemContactInfo(address, displayName, contactPhotoUri, contactLabel, contactUri.toString());
+
+              handle.setSystemContactInfo(recipientId, displayName, contactPhotoUri, contactLabel, contactUri.toString());
             }
           }
         } finally {
@@ -227,12 +231,13 @@ public class DirectoryHelper {
   }
 
   private static void notifyNewUsers(@NonNull  Context context,
-                                     @NonNull  List<Address> newUsers)
+                                     @NonNull  List<RecipientId> newUsers)
   {
     if (!TextSecurePreferences.isNewContactsNotificationEnabled(context)) return;
 
-    for (Address newUser: newUsers) {
-      if (!SessionUtil.hasSession(context, newUser) && !Util.isOwnNumber(context, newUser)) {
+    for (RecipientId newUser: newUsers) {
+      Recipient recipient = Recipient.resolved(newUser);
+      if (!SessionUtil.hasSession(context, recipient.requireAddress()) && !recipient.isLocalNumber()) {
         IncomingJoinedMessage  message      = new IncomingJoinedMessage(newUser);
         Optional<InsertResult> insertResult = DatabaseFactory.getSmsDatabase(context).insertMessageInbox(message);
 
@@ -287,34 +292,34 @@ public class DirectoryHelper {
       List<ContactTokenDetails> activeTokens = accountManager.getContacts(eligibleContactNumbers);
 
       if (activeTokens != null) {
-        List<Address> activeAddresses   = new LinkedList<>();
-        List<Address> inactiveAddresses = new LinkedList<>();
+        List<RecipientId> activeIds   = new LinkedList<>();
+        List<RecipientId> inactiveIds = new LinkedList<>();
 
         Set<String> inactiveContactNumbers = new HashSet<>(eligibleContactNumbers);
 
         for (ContactTokenDetails activeToken : activeTokens) {
-          activeAddresses.add(Address.fromSerialized(activeToken.getNumber()));
+          activeIds.add(recipientDatabase.getOrInsertFromE164(activeToken.getNumber()));
           inactiveContactNumbers.remove(activeToken.getNumber());
         }
 
         for (String inactiveContactNumber : inactiveContactNumbers) {
-          inactiveAddresses.add(Address.fromSerialized(inactiveContactNumber));
+          inactiveIds.add(recipientDatabase.getOrInsertFromE164(inactiveContactNumber));
         }
 
-        Set<Address>  currentActiveAddresses = new HashSet<>(recipientDatabase.getRegistered());
-        Set<Address>  contactAddresses       = new HashSet<>(recipientDatabase.getSystemContacts());
-        List<Address> newlyActiveAddresses   = Stream.of(activeAddresses)
-                                                     .filter(address -> !currentActiveAddresses.contains(address))
-                                                     .filter(contactAddresses::contains)
-                                                     .toList();
+        Set<RecipientId>  currentActiveIds = new HashSet<>(recipientDatabase.getRegistered());
+        Set<RecipientId>  contactIds       = new HashSet<>(recipientDatabase.getSystemContacts());
+        List<RecipientId> newlyActiveIds   = Stream.of(activeIds)
+                                                   .filter(id -> !currentActiveIds.contains(id))
+                                                   .filter(contactIds::contains)
+                                                   .toList();
 
-        recipientDatabase.setRegistered(activeAddresses, inactiveAddresses);
-        updateContactsDatabase(context, activeAddresses, true);
+        recipientDatabase.setRegistered(activeIds, inactiveIds);
+        updateContactsDatabase(context, activeIds, true);
 
-        Set<String> activeContactNumbers = Stream.of(activeAddresses).map(Address::serialize).collect(Collectors.toSet());
+        Set<String> activeContactNumbers = Stream.of(activeIds).map(Recipient::resolved).map(Recipient::requireAddress).map(Address::serialize).collect(Collectors.toSet());
 
         if (TextSecurePreferences.hasSuccessfullyRetrievedDirectory(context)) {
-          return new DirectoryResult(activeContactNumbers, newlyActiveAddresses);
+          return new DirectoryResult(activeContactNumbers, newlyActiveIds);
         } else {
           TextSecurePreferences.setHasSuccessfullyRetrievedDirectory(context, true);
           return new DirectoryResult(activeContactNumbers);
@@ -332,27 +337,27 @@ public class DirectoryHelper {
     return SignalExecutors.UNBOUNDED.submit(() -> {
       boolean                       activeUser    = recipient.resolve().getRegistered() == RegisteredState.REGISTERED;
       boolean                       systemContact = recipient.isSystemContact();
-      String                        number        = recipient.getAddress().serialize();
+      String                        number        = recipient.requireAddress().serialize();
       Optional<ContactTokenDetails> details       = accountManager.getContact(number);
 
       if (details.isPresent()) {
-        recipientDatabase.setRegistered(recipient, RegisteredState.REGISTERED);
+        recipientDatabase.setRegistered(recipient.getId(), RegisteredState.REGISTERED);
 
         if (Permissions.hasAll(context, Manifest.permission.WRITE_CONTACTS)) {
-          updateContactsDatabase(context, Util.asList(recipient.getAddress()), false);
+          updateContactsDatabase(context, Util.asList(recipient.getId()), false);
         }
 
         if (!activeUser && TextSecurePreferences.isMultiDevice(context)) {
-          ApplicationContext.getInstance(context).getJobManager().add(new MultiDeviceContactUpdateJob(context));
+          ApplicationContext.getInstance(context).getJobManager().add(new MultiDeviceContactUpdateJob());
         }
 
         if (!activeUser && systemContact && !TextSecurePreferences.getNeedsSqlCipherMigration(context)) {
-          notifyNewUsers(context, Collections.singletonList(recipient.getAddress()));
+          notifyNewUsers(context, Collections.singletonList(recipient.getId()));
         }
 
         return RegisteredState.REGISTERED;
       } else {
-        recipientDatabase.setRegistered(recipient, RegisteredState.NOT_REGISTERED);
+        recipientDatabase.setRegistered(recipient.getId(), RegisteredState.NOT_REGISTERED);
         return RegisteredState.NOT_REGISTERED;
       }
     });
@@ -475,24 +480,24 @@ public class DirectoryHelper {
 
   private static class DirectoryResult {
 
-    private final Set<String>   numbers;
-    private final List<Address> newlyActiveAddresses;
+    private final Set<String>       numbers;
+    private final List<RecipientId> newlyActiveRecipients;
 
     DirectoryResult(@NonNull Set<String> numbers) {
       this(numbers, Collections.emptyList());
     }
 
-    DirectoryResult(@NonNull Set<String> numbers, @NonNull List<Address> newlyActiveAddresses) {
-      this.numbers              = numbers;
-      this.newlyActiveAddresses = newlyActiveAddresses;
+    DirectoryResult(@NonNull Set<String> numbers, @NonNull List<RecipientId> newlyActiveRecipients) {
+      this.numbers               = numbers;
+      this.newlyActiveRecipients = newlyActiveRecipients;
     }
 
     Set<String> getNumbers() {
       return numbers;
     }
 
-    List<Address> getNewlyActiveAddresses() {
-      return newlyActiveAddresses;
+    List<RecipientId> getNewlyActiveRecipients() {
+      return newlyActiveRecipients;
     }
   }
 

@@ -14,7 +14,7 @@ public enum ReplyMethod {
   UnsecuredSmsMessage;
 
   public static @NonNull ReplyMethod forRecipient(Context context, Recipient recipient) {
-    if (recipient.isGroupRecipient()) {
+    if (recipient.isGroup()) {
       return ReplyMethod.GroupMessage;
     } else if (TextSecurePreferences.isPushRegistered(context) && recipient.getRegistered() == RecipientDatabase.RegisteredState.REGISTERED && !recipient.isForceSmsSelection()) {
       return ReplyMethod.SecureMessage;

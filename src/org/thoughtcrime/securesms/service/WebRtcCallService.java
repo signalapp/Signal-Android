@@ -29,7 +29,6 @@ import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.WebRtcCallActivity;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
-import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase.VibrateState;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -38,6 +37,7 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.FutureTaskListener;
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
 import org.thoughtcrime.securesms.util.ServiceUtil;
@@ -121,7 +121,7 @@ public class WebRtcCallService extends Service implements PeerConnection.Observe
 
   private static final String DATA_CHANNEL_NAME = "signaling";
 
-  public static final String EXTRA_REMOTE_ADDRESS     = "remote_address";
+  public static final String EXTRA_REMOTE_RECIPIENT   = "remote_recipient";
   public static final String EXTRA_MUTE               = "mute_value";
   public static final String EXTRA_AVAILABLE          = "enabled_value";
   public static final String EXTRA_REMOTE_DESCRIPTION = "remote_description";
@@ -378,7 +378,7 @@ public class WebRtcCallService extends Service implements PeerConnection.Observe
           boolean isSystemContact = false;
 
           if (Permissions.hasAny(WebRtcCallService.this, Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS)) {
-            isSystemContact = ContactAccessor.getInstance().isSystemContact(WebRtcCallService.this, recipient.getAddress().serialize());
+            isSystemContact = ContactAccessor.getInstance().isSystemContact(WebRtcCallService.this, recipient.requireAddress().serialize());
           }
 
           boolean isAlwaysTurn = TextSecurePreferences.isTurnOnly(WebRtcCallService.this);
@@ -436,7 +436,7 @@ public class WebRtcCallService extends Service implements PeerConnection.Observe
     bluetoothStateManager.setWantsConnection(true);
 
     setCallInProgressNotification(TYPE_OUTGOING_RINGING, recipient);
-    DatabaseFactory.getSmsDatabase(this).insertOutgoingCall(recipient.getAddress());
+    DatabaseFactory.getSmsDatabase(this).insertOutgoingCall(recipient.getId());
 
     timeoutExecutor.schedule(new TimeoutRunnable(this.callId), 2, TimeUnit.MINUTES);
 
@@ -683,7 +683,7 @@ public class WebRtcCallService extends Service implements PeerConnection.Observe
         Intent intent = new Intent(WebRtcCallService.this, WebRtcCallService.class);
         intent.setAction(ACTION_LOCAL_HANGUP);
         intent.putExtra(EXTRA_CALL_ID, intent.getLongExtra(EXTRA_CALL_ID, -1));
-        intent.putExtra(EXTRA_REMOTE_ADDRESS, intent.getStringExtra(EXTRA_REMOTE_ADDRESS));
+        intent.putExtra(EXTRA_REMOTE_RECIPIENT, (RecipientId) intent.getParcelableExtra(EXTRA_REMOTE_RECIPIENT));
 
         startService(intent);
       }
@@ -715,7 +715,7 @@ public class WebRtcCallService extends Service implements PeerConnection.Observe
   }
 
   private void insertMissedCall(@NonNull Recipient recipient, boolean signal) {
-    Pair<Long, Long> messageAndThreadId = DatabaseFactory.getSmsDatabase(this).insertMissedCall(recipient.getAddress());
+    Pair<Long, Long> messageAndThreadId = DatabaseFactory.getSmsDatabase(this).insertMissedCall(recipient.getId());
     MessageNotifier.updateNotification(this, messageAndThreadId.second, signal);
   }
 
@@ -729,14 +729,14 @@ public class WebRtcCallService extends Service implements PeerConnection.Observe
       throw new AssertionError("assert");
     }
 
-    DatabaseFactory.getSmsDatabase(this).insertReceivedCall(recipient.getAddress());
+    DatabaseFactory.getSmsDatabase(this).insertReceivedCall(recipient.getId());
 
     this.peerConnection.setAudioEnabled(true);
     this.peerConnection.setVideoEnabled(false);
     this.dataChannel.send(new DataChannel.Buffer(ByteBuffer.wrap(Data.newBuilder().setConnected(Connected.newBuilder().setId(this.callId)).build().toByteArray()), false));
 
     intent.putExtra(EXTRA_CALL_ID, callId);
-    intent.putExtra(EXTRA_REMOTE_ADDRESS, recipient.getAddress());
+    intent.putExtra(EXTRA_REMOTE_RECIPIENT, recipient.getId());
     handleCallConnected(intent);
   }
 
@@ -753,7 +753,7 @@ public class WebRtcCallService extends Service implements PeerConnection.Observe
     this.dataChannel.send(new DataChannel.Buffer(ByteBuffer.wrap(Data.newBuilder().setHangup(Hangup.newBuilder().setId(this.callId)).build().toByteArray()), false));
     sendMessage(this.recipient, SignalServiceCallMessage.forHangup(new HangupMessage(this.callId)));
 
-    DatabaseFactory.getSmsDatabase(this).insertMissedCall(recipient.getAddress());
+    DatabaseFactory.getSmsDatabase(this).insertMissedCall(recipient.getId());
 
     this.terminate();
   }
@@ -1005,7 +1005,7 @@ public class WebRtcCallService extends Service implements PeerConnection.Observe
     Callable<Boolean> callable = new Callable<Boolean>() {
       @Override
       public Boolean call() throws Exception {
-        messageSender.sendCallMessage(new SignalServiceAddress(recipient.getAddress().toPhoneString()),
+        messageSender.sendCallMessage(new SignalServiceAddress(recipient.requireAddress().toPhoneString()),
                                       UnidentifiedAccessUtil.getAccessFor(WebRtcCallService.this, recipient),
                                       callMessage);
         return true;
@@ -1032,10 +1032,10 @@ public class WebRtcCallService extends Service implements PeerConnection.Observe
   ///
 
   private @NonNull Recipient getRemoteRecipient(Intent intent) {
-    Address remoteAddress = intent.getParcelableExtra(EXTRA_REMOTE_ADDRESS);
-    if (remoteAddress == null) throw new AssertionError("No recipient in intent!");
+    RecipientId recipientId = intent.getParcelableExtra(EXTRA_REMOTE_RECIPIENT);
+    if (recipientId == null) throw new AssertionError("No recipient in intent!");
 
-    return Recipient.from(this, remoteAddress, true);
+    return Recipient.resolved(recipientId);
   }
 
   private long getCallId(Intent intent) {

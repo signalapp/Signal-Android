@@ -4,6 +4,7 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.annimon.stream.Stream;
 import com.google.android.mms.pdu_alt.CharacterSets;
 import com.google.android.mms.pdu_alt.EncodedStringValue;
 import com.google.android.mms.pdu_alt.PduBody;
@@ -28,6 +29,8 @@ import org.thoughtcrime.securesms.mms.MmsRadioException;
 import org.thoughtcrime.securesms.mms.PartParser;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.providers.BlobProvider;
+import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
@@ -39,6 +42,7 @@ import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -155,18 +159,6 @@ public class MmsDownloadJob extends BaseJob {
       handleDownloadError(messageId, threadId,
                           MmsDatabase.Status.DOWNLOAD_SOFT_FAILURE,
                           automatic);
-    } catch (DuplicateMessageException e) {
-      Log.w(TAG, e);
-      database.markAsDecryptDuplicate(messageId, threadId);
-    } catch (LegacyMessageException e) {
-      Log.w(TAG, e);
-      database.markAsLegacyVersion(messageId, threadId);
-    } catch (NoSessionException e) {
-      Log.w(TAG, e);
-      database.markAsNoSession(messageId, threadId);
-    } catch (InvalidMessageException e) {
-      Log.w(TAG, e);
-      database.markAsDecryptFailed(messageId, threadId);
     }
   }
 
@@ -188,40 +180,39 @@ public class MmsDownloadJob extends BaseJob {
 
   private void storeRetrievedMms(String contentLocation,
                                  long messageId, long threadId, RetrieveConf retrieved,
-                                 int subscriptionId, @Nullable Address notificationFrom)
-      throws MmsException, NoSessionException, DuplicateMessageException, InvalidMessageException,
-             LegacyMessageException
+                                 int subscriptionId, @Nullable RecipientId notificationFrom)
+      throws MmsException
   {
-    MmsDatabase           database    = DatabaseFactory.getMmsDatabase(context);
-    Optional<Address>     group       = Optional.absent();
-    Set<Address>          members     = new HashSet<>();
-    String                body        = null;
-    List<Attachment>      attachments = new LinkedList<>();
+    MmsDatabase      database    = DatabaseFactory.getMmsDatabase(context);
+    Optional<String> group       = Optional.absent();
+    Set<RecipientId> members     = new HashSet<>();
+    String           body        = null;
+    List<Attachment> attachments = new LinkedList<>();
 
-    Address               from;
+    RecipientId      from;
 
     if (retrieved.getFrom() != null) {
-      from = Address.fromExternal(context, Util.toIsoString(retrieved.getFrom().getTextString()));
+      from = Recipient.external(context, Util.toIsoString(retrieved.getFrom().getTextString())).getId();
     } else if (notificationFrom != null) {
       from = notificationFrom;
     } else {
-      from = Address.UNKNOWN;
+      from = RecipientId.UNKNOWN;
     }
 
     if (retrieved.getTo() != null) {
       for (EncodedStringValue toValue : retrieved.getTo()) {
-        members.add(Address.fromExternal(context, Util.toIsoString(toValue.getTextString())));
+        members.add(Recipient.external(context, Util.toIsoString(toValue.getTextString())).getId());
       }
     }
 
     if (retrieved.getCc() != null) {
       for (EncodedStringValue ccValue : retrieved.getCc()) {
-        members.add(Address.fromExternal(context, Util.toIsoString(ccValue.getTextString())));
+        members.add(Recipient.external(context, Util.toIsoString(ccValue.getTextString())).getId());
       }
     }
 
     members.add(from);
-    members.add(Address.fromExternal(context, TextSecurePreferences.getLocalNumber(context)));
+    members.add(Recipient.self().getId());
 
     if (retrieved.getBody() != null) {
       body = PartParser.getMessageText(retrieved.getBody());
@@ -244,7 +235,8 @@ public class MmsDownloadJob extends BaseJob {
     }
 
     if (members.size() > 2) {
-      group = Optional.of(Address.fromSerialized(DatabaseFactory.getGroupDatabase(context).getOrCreateGroupForMembers(new LinkedList<>(members), true)));
+      List<RecipientId> recipients = new ArrayList<>(members);
+      group = Optional.of(DatabaseFactory.getGroupDatabase(context).getOrCreateGroupForMembers(recipients, true));
     }
 
     IncomingMediaMessage   message      = new IncomingMediaMessage(from, group, body, retrieved.getDate() * 1000L, attachments, subscriptionId, 0, false, false, false);

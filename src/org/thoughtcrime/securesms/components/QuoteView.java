@@ -26,14 +26,15 @@ import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
+import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
+import org.thoughtcrime.securesms.recipients.RecipientForeverObserver;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.util.List;
 
-public class QuoteView extends FrameLayout implements RecipientModifiedListener {
+public class QuoteView extends FrameLayout implements RecipientForeverObserver {
 
   private static final String TAG = QuoteView.class.getSimpleName();
 
@@ -52,16 +53,16 @@ public class QuoteView extends FrameLayout implements RecipientModifiedListener 
   private TextView  attachmentNameView;
   private ImageView dismissView;
 
-  private long       id;
-  private Recipient  author;
-  private String     body;
-  private TextView   mediaDescriptionText;
-  private TextView   missingLinkText;
-  private SlideDeck  attachments;
-  private int        messageType;
-  private int        largeCornerRadius;
-  private int        smallCornerRadius;
-  private CornerMask cornerMask;
+  private long          id;
+  private LiveRecipient author;
+  private String        body;
+  private TextView      mediaDescriptionText;
+  private TextView      missingLinkText;
+  private SlideDeck     attachments;
+  private int           messageType;
+  private int           largeCornerRadius;
+  private int           smallCornerRadius;
+  private CornerMask    cornerMask;
 
 
   public QuoteView(Context context) {
@@ -137,6 +138,12 @@ public class QuoteView extends FrameLayout implements RecipientModifiedListener 
     cornerMask.mask(canvas);
   }
 
+  @Override
+  protected void onDetachedFromWindow() {
+    super.onDetachedFromWindow();
+    if (author != null) author.removeForeverObserver(this);
+  }
+
   public void setQuote(GlideRequests glideRequests,
                        long id,
                        @NonNull Recipient author,
@@ -144,14 +151,14 @@ public class QuoteView extends FrameLayout implements RecipientModifiedListener 
                        boolean originalMissing,
                        @NonNull SlideDeck attachments)
   {
-    if (this.author != null) this.author.removeListener(this);
+    if (this.author != null) this.author.removeForeverObserver(this);
 
     this.id          = id;
-    this.author      = author;
+    this.author      = author.live();
     this.body        = body;
     this.attachments = attachments;
 
-    author.addListener(this);
+    this.author.observeForever(this);
     setQuoteAuthor(author);
     setQuoteText(body, attachments);
     setQuoteAttachment(glideRequests, attachments);
@@ -164,7 +171,7 @@ public class QuoteView extends FrameLayout implements RecipientModifiedListener 
   }
 
   public void dismiss() {
-    if (this.author != null) this.author.removeListener(this);
+    if (this.author != null) this.author.removeForeverObserver(this);
 
     this.id     = 0;
     this.author = null;
@@ -174,17 +181,13 @@ public class QuoteView extends FrameLayout implements RecipientModifiedListener 
   }
 
   @Override
-  public void onModified(Recipient recipient) {
-    Util.runOnMain(() -> {
-      if (recipient == author) {
-        setQuoteAuthor(recipient);
-      }
-    });
+  public void onRecipientChanged(@NonNull Recipient recipient) {
+    setQuoteAuthor(recipient);
   }
 
   private void setQuoteAuthor(@NonNull Recipient author) {
     boolean outgoing    = messageType != MESSAGE_TYPE_INCOMING;
-    boolean isOwnNumber = Util.isOwnNumber(getContext(), author.getAddress());
+    boolean isOwnNumber = Util.isOwnNumber(getContext(), author.requireAddress());
 
     authorView.setText(isOwnNumber ? getContext().getString(R.string.QuoteView_you)
                                    : author.toShortString());
@@ -259,7 +262,7 @@ public class QuoteView extends FrameLayout implements RecipientModifiedListener 
 
   private void setQuoteMissingFooter(boolean missing) {
     footerView.setVisibility(missing ? VISIBLE : GONE);
-    footerView.setBackgroundColor(author.getColor().toQuoteFooterColor(getContext(), messageType != MESSAGE_TYPE_INCOMING));
+    footerView.setBackgroundColor(author.get().getColor().toQuoteFooterColor(getContext(), messageType != MESSAGE_TYPE_INCOMING));
   }
 
   public long getQuoteId() {
@@ -267,7 +270,7 @@ public class QuoteView extends FrameLayout implements RecipientModifiedListener 
   }
 
   public Recipient getAuthor() {
-    return author;
+    return author.get();
   }
 
   public String getBody() {

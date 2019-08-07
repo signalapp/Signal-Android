@@ -223,7 +223,7 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
                                                                        .setConstraintFactories(JobManagerFactories.getConstraintFactories(this))
                                                                        .setConstraintObservers(JobManagerFactories.getConstraintObservers(this))
                                                                        .setJobStorage(new FastJobStorage(DatabaseFactory.getJobDatabase(this)))
-                                                                       .setJobMigrator(new JobMigrator(TextSecurePreferences.getJobManagerVersion(this), 1, JobManagerFactories.getJobMigrations()))
+                                                                       .setJobMigrator(new JobMigrator(TextSecurePreferences.getJobManagerVersion(this), 2, JobManagerFactories.getJobMigrations(this)))
                                                                        .build());
   }
 
@@ -338,7 +338,7 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
 
   private void executePendingContactSync() {
     if (TextSecurePreferences.needsFullContactSync(this)) {
-      ApplicationContext.getInstance(this).getJobManager().add(new MultiDeviceContactUpdateJob(this, true));
+      ApplicationContext.getInstance(this).getJobManager().add(new MultiDeviceContactUpdateJob(true));
     }
   }
 

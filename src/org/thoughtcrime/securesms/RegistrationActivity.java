@@ -71,6 +71,7 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.push.AccountManagerFactory;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.registration.CaptchaActivity;
 import org.thoughtcrime.securesms.registration.PushChallengeRequest;
 import org.thoughtcrime.securesms.service.DirectoryRefreshListener;
@@ -735,7 +736,7 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
     TextSecurePreferences.setWebsocketRegistered(RegistrationActivity.this, true);
 
     DatabaseFactory.getIdentityDatabase(RegistrationActivity.this)
-                   .saveIdentity(Address.fromSerialized(registrationState.e164number),
+                   .saveIdentity(Recipient.external(RegistrationActivity.this, registrationState.e164number).getId(),
                                  identityKey.getPublicKey(), IdentityDatabase.VerifiedStatus.VERIFIED,
                                  true, System.currentTimeMillis(), true);
 

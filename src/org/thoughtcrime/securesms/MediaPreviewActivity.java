@@ -63,12 +63,11 @@ import org.thoughtcrime.securesms.mediapreview.MediaRailAdapter;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.AttachmentUtil;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask.Attachment;
-import org.thoughtcrime.securesms.util.Util;
 
 import java.util.HashMap;
 import java.util.Locale;
@@ -78,15 +77,14 @@ import java.util.Map;
  * Activity for displaying media attachments in-app
  */
 public final class MediaPreviewActivity extends PassphraseRequiredActionBarActivity
-  implements RecipientModifiedListener,
-             LoaderManager.LoaderCallbacks<Pair<Cursor, Integer>>,
+  implements LoaderManager.LoaderCallbacks<Pair<Cursor, Integer>>,
              MediaRailAdapter.RailItemListener,
              MediaPreviewFragment.Events
 {
 
   private final static String TAG = MediaPreviewActivity.class.getSimpleName();
 
-  public static final String ADDRESS_EXTRA        = "address";
+  public static final String RECIPIENT_EXTRA      = "recipient_id";
   public static final String DATE_EXTRA           = "date";
   public static final String SIZE_EXTRA           = "size";
   public static final String CAPTION_EXTRA        = "caption";
@@ -136,11 +134,6 @@ public final class MediaPreviewActivity extends PassphraseRequiredActionBarActiv
   @Override
   public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
     Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
-  }
-
-  @Override
-  public void onModified(Recipient recipient) {
-    Util.runOnMain(this::initializeActionBar);
   }
 
   @Override
@@ -223,7 +216,7 @@ public final class MediaPreviewActivity extends PassphraseRequiredActionBarActiv
   }
 
   private void initializeResources() {
-    Address address = getIntent().getParcelableExtra(ADDRESS_EXTRA);
+    RecipientId recipientId = getIntent().getParcelableExtra(RECIPIENT_EXTRA);
 
     initialMediaUri  = getIntent().getData();
     initialMediaType = getIntent().getType();
@@ -232,8 +225,8 @@ public final class MediaPreviewActivity extends PassphraseRequiredActionBarActiv
     leftIsRecent     = getIntent().getBooleanExtra(LEFT_IS_RECENT_EXTRA, false);
     restartItem      = -1;
 
-    if (address != null) {
-      conversationRecipient = Recipient.from(this, address, true);
+    if (recipientId != null) {
+      conversationRecipient = Recipient.live(recipientId).get();
     } else {
       conversationRecipient = null;
     }
@@ -305,7 +298,7 @@ public final class MediaPreviewActivity extends PassphraseRequiredActionBarActiv
 
   private void showOverview() {
     Intent intent = new Intent(this, MediaOverviewActivity.class);
-    intent.putExtra(MediaOverviewActivity.ADDRESS_EXTRA, conversationRecipient.getAddress());
+    intent.putExtra(MediaOverviewActivity.RECIPIENT_EXTRA, conversationRecipient.getId());
     startActivity(intent);
   }
 
@@ -491,7 +484,7 @@ public final class MediaPreviewActivity extends PassphraseRequiredActionBarActiv
 
       if (adapter != null) {
         MediaItem item = adapter.getMediaItemFor(position);
-        if (item.recipient != null) item.recipient.addListener(MediaPreviewActivity.this);
+        if (item.recipient != null) item.recipient.live().observe(MediaPreviewActivity.this, r -> initializeActionBar());
         viewModel.setActiveAlbumRailItem(MediaPreviewActivity.this, position);
         initializeActionBar();
       }
@@ -504,7 +497,7 @@ public final class MediaPreviewActivity extends PassphraseRequiredActionBarActiv
 
       if (adapter != null) {
         MediaItem item = adapter.getMediaItemFor(position);
-        if (item.recipient != null) item.recipient.removeListener(MediaPreviewActivity.this);
+        if (item.recipient != null) item.recipient.live().removeObservers(MediaPreviewActivity.this);
 
         adapter.pause(position);
       }
@@ -682,11 +675,11 @@ public final class MediaPreviewActivity extends PassphraseRequiredActionBarActiv
     public MediaItem getMediaItemFor(int position) {
       cursor.moveToPosition(getCursorPosition(position));
       MediaRecord mediaRecord = MediaRecord.from(context, cursor);
-      Address     address     = mediaRecord.getAddress();
+      RecipientId recipientId = mediaRecord.getRecipientId();
 
       if (mediaRecord.getAttachment().getDataUri() == null) throw new AssertionError();
 
-      return new MediaItem(address != null ? Recipient.from(context, address,true) : null,
+      return new MediaItem(Recipient.live(recipientId).get(),
                            mediaRecord.getAttachment(),
                            mediaRecord.getAttachment().getDataUri(),
                            mediaRecord.getContentType(),

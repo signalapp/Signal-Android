@@ -14,12 +14,12 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraintObserver;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkOrCellServiceConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraintObserver;
+import org.thoughtcrime.securesms.jobmanager.migrations.RecipientIdJobMigration;
 import org.thoughtcrime.securesms.migrations.DatabaseMigrationJob;
 import org.thoughtcrime.securesms.migrations.LegacyMigrationJob;
 import org.thoughtcrime.securesms.migrations.MigrationCompleteJob;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,7 +35,7 @@ public final class JobManagerFactories {
       put(AvatarDownloadJob.KEY,                     new AvatarDownloadJob.Factory());
       put(CleanPreKeysJob.KEY,                       new CleanPreKeysJob.Factory());
       put(CreateSignedPreKeyJob.KEY,                 new CreateSignedPreKeyJob.Factory());
-      put(DirectoryRefreshJob.KEY,                   new DirectoryRefreshJob.Factory(application));
+      put(DirectoryRefreshJob.KEY,                   new DirectoryRefreshJob.Factory());
       put(FcmRefreshJob.KEY,                         new FcmRefreshJob.Factory());
       put(LocalBackupJob.KEY,                        new LocalBackupJob.Factory());
       put(MmsDownloadJob.KEY,                        new MmsDownloadJob.Factory());
@@ -61,13 +61,13 @@ public final class JobManagerFactories {
       put(RefreshPreKeysJob.KEY,                     new RefreshPreKeysJob.Factory());
       put(RefreshUnidentifiedDeliveryAbilityJob.KEY, new RefreshUnidentifiedDeliveryAbilityJob.Factory());
       put(RequestGroupInfoJob.KEY,                   new RequestGroupInfoJob.Factory());
-      put(RetrieveProfileAvatarJob.KEY,              new RetrieveProfileAvatarJob.Factory(application));
-      put(RetrieveProfileJob.KEY,                    new RetrieveProfileJob.Factory(application));
+      put(RetrieveProfileAvatarJob.KEY,              new RetrieveProfileAvatarJob.Factory());
+      put(RetrieveProfileJob.KEY,                    new RetrieveProfileJob.Factory());
       put(RotateCertificateJob.KEY,                  new RotateCertificateJob.Factory());
       put(RotateProfileKeyJob.KEY,                   new RotateProfileKeyJob.Factory());
       put(RotateSignedPreKeyJob.KEY,                 new RotateSignedPreKeyJob.Factory());
       put(SendDeliveryReceiptJob.KEY,                new SendDeliveryReceiptJob.Factory());
-      put(SendReadReceiptJob.KEY,                    new SendReadReceiptJob.Factory());
+      put(SendReadReceiptJob.KEY,                    new SendReadReceiptJob.Factory(application));
       put(ServiceOutageDetectionJob.KEY,             new ServiceOutageDetectionJob.Factory());
       put(SmsReceiveJob.KEY,                         new SmsReceiveJob.Factory());
       put(SmsSendJob.KEY,                            new SmsSendJob.Factory());
@@ -105,7 +105,7 @@ public final class JobManagerFactories {
                          new SqlCipherMigrationConstraintObserver());
   }
 
-  public static List<JobMigration> getJobMigrations() {
-    return Collections.emptyList();
+  public static List<JobMigration> getJobMigrations(@NonNull Application application) {
+    return Arrays.asList(new RecipientIdJobMigration(application));
   }
 }

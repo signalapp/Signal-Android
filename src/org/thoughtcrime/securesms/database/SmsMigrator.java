@@ -22,15 +22,18 @@ import android.database.sqlite.SQLiteException;
 import android.net.Uri;
 import androidx.annotation.Nullable;
 
+import com.annimon.stream.Stream;
+
 import net.sqlcipher.database.SQLiteDatabase;
 import net.sqlcipher.database.SQLiteStatement;
 
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import java.util.StringTokenizer;
@@ -38,6 +41,20 @@ import java.util.StringTokenizer;
 public class SmsMigrator {
 
   private static final String TAG = SmsMigrator.class.getSimpleName();
+
+  private static class SystemColumns {
+    private static final String ADDRESS            = "address";
+    private static final String PERSON             = "person";
+    private static final String DATE_RECEIVED      = "date";
+    private static final String PROTOCOL           = "protocol";
+    private static final String READ               = "read";
+    private static final String STATUS             = "status";
+    private static final String TYPE               = "type";
+    private static final String SUBJECT            = "subject";
+    private static final String REPLY_PATH_PRESENT = "reply_path_present";
+    private static final String BODY               = "body";
+    private static final String SERVICE_CENTER     = "service_center";
+  }
 
   private static void addStringToStatement(SQLiteStatement statement, Cursor cursor,
                                            int index, String key)
@@ -85,23 +102,22 @@ public class SmsMigrator {
            ourType == MmsSmsColumns.Types.BASE_SENT_FAILED_TYPE;
   }
 
-  private static void getContentValuesForRow(Context context, Cursor cursor,
-                                             long threadId, SQLiteStatement statement)
-  {
-    String theirAddress = cursor.getString(cursor.getColumnIndexOrThrow(SmsDatabase.ADDRESS));
-    statement.bindString(1, Address.fromExternal(context, theirAddress).serialize());
+  private static void getContentValuesForRow(Context context, Cursor cursor, long threadId, SQLiteStatement statement) {
+    String      address = cursor.getString(cursor.getColumnIndexOrThrow(SystemColumns.ADDRESS));
+    RecipientId id      = Recipient.external(context, address).getId();
 
-    addIntToStatement(statement, cursor, 2, SmsDatabase.PERSON);
-    addIntToStatement(statement, cursor, 3, SmsDatabase.DATE_RECEIVED);
-    addIntToStatement(statement, cursor, 4, SmsDatabase.DATE_RECEIVED);
-    addIntToStatement(statement, cursor, 5, SmsDatabase.PROTOCOL);
-    addIntToStatement(statement, cursor, 6, SmsDatabase.READ);
-    addIntToStatement(statement, cursor, 7, SmsDatabase.STATUS);
-    addTranslatedTypeToStatement(statement, cursor, 8, SmsDatabase.TYPE);
-    addIntToStatement(statement, cursor, 9, SmsDatabase.REPLY_PATH_PRESENT);
-    addStringToStatement(statement, cursor, 10, SmsDatabase.SUBJECT);
-    addStringToStatement(statement, cursor, 11, SmsDatabase.BODY);
-    addStringToStatement(statement, cursor, 12, SmsDatabase.SERVICE_CENTER);
+    statement.bindString(1, id.serialize());
+    addIntToStatement(statement, cursor, 2, SystemColumns.PERSON);
+    addIntToStatement(statement, cursor, 3, SystemColumns.DATE_RECEIVED);
+    addIntToStatement(statement, cursor, 4, SystemColumns.DATE_RECEIVED);
+    addIntToStatement(statement, cursor, 5, SystemColumns.PROTOCOL);
+    addIntToStatement(statement, cursor, 6, SystemColumns.READ);
+    addIntToStatement(statement, cursor, 7, SystemColumns.STATUS);
+    addTranslatedTypeToStatement(statement, cursor, 8, SystemColumns.TYPE);
+    addIntToStatement(statement, cursor, 9, SystemColumns.REPLY_PATH_PRESENT);
+    addStringToStatement(statement, cursor, 10, SystemColumns.SUBJECT);
+    addStringToStatement(statement, cursor, 11, SystemColumns.BODY);
+    addStringToStatement(statement, cursor, 12, SystemColumns.SERVICE_CENTER);
 
     statement.bindLong(13, threadId);
   }
@@ -136,7 +152,7 @@ public class SmsMigrator {
       String address          = getTheirCanonicalAddress(context, theirRecipientId);
 
       if (address != null) {
-        recipientList.add(Recipient.from(context, Address.fromExternal(context, address), true));
+        recipientList.add(Recipient.external(context, address));
       }
     }
 
@@ -212,17 +228,14 @@ public class SmsMigrator {
             long ourThreadId = threadDatabase.getThreadIdFor(ourRecipients.iterator().next());
             migrateConversation(context, listener, progress, theirThreadId, ourThreadId);
           } else if (ourRecipients.size() > 1) {
-            ourRecipients.add(Recipient.from(context, Address.fromSerialized(TextSecurePreferences.getLocalNumber(context)), true));
+            ourRecipients.add(Recipient.self());
 
-            List<Address> memberAddresses = new LinkedList<>();
+            List<RecipientId> recipientIds = Stream.of(ourRecipients).map(Recipient::getId).toList();
 
-            for (Recipient recipient : ourRecipients) {
-              memberAddresses.add(recipient.getAddress());
-            }
-
-            String    ourGroupId        = DatabaseFactory.getGroupDatabase(context).getOrCreateGroupForMembers(memberAddresses, true);
-            Recipient ourGroupRecipient = Recipient.from(context, Address.fromSerialized(ourGroupId), true);
-            long      ourThreadId       = threadDatabase.getThreadIdFor(ourGroupRecipient, ThreadDatabase.DistributionTypes.CONVERSATION);
+            String      ourGroupId          = DatabaseFactory.getGroupDatabase(context).getOrCreateGroupForMembers(recipientIds, true);
+            RecipientId ourGroupRecipientId = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(ourGroupId);
+            Recipient   ourGroupRecipient   = Recipient.resolved(ourGroupRecipientId);
+            long        ourThreadId         = threadDatabase.getThreadIdFor(ourGroupRecipient, ThreadDatabase.DistributionTypes.CONVERSATION);
 
             migrateConversation(context, listener, progress, theirThreadId, ourThreadId);
           }

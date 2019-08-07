@@ -84,13 +84,13 @@ public class TypingSendJob extends BaseJob {
     List<Recipient>  recipients = Collections.singletonList(recipient);
     Optional<byte[]> groupId    = Optional.absent();
 
-    if (recipient.isGroupRecipient()) {
-      recipients = DatabaseFactory.getGroupDatabase(context).getGroupMembers(recipient.getAddress().toGroupString(), false);
-      groupId    = Optional.of(GroupUtil.getDecodedId(recipient.getAddress().toGroupString()));
+    if (recipient.isGroup()) {
+      recipients = DatabaseFactory.getGroupDatabase(context).getGroupMembers(recipient.requireAddress().toGroupString(), false);
+      groupId    = Optional.of(GroupUtil.getDecodedId(recipient.requireAddress().toGroupString()));
     }
 
     SignalServiceMessageSender             messageSender      = ApplicationDependencies.getSignalServiceMessageSender();
-    List<SignalServiceAddress>             addresses          = Stream.of(recipients).map(r -> new SignalServiceAddress(r.getAddress().serialize())).toList();
+    List<SignalServiceAddress>             addresses          = Stream.of(recipients).map(r -> new SignalServiceAddress(r.requireAddress().serialize())).toList();
     List<Optional<UnidentifiedAccessPair>> unidentifiedAccess = Stream.of(recipients).map(r -> UnidentifiedAccessUtil.getAccessFor(context, r)).toList();
     SignalServiceTypingMessage             typingMessage      = new SignalServiceTypingMessage(typing ? Action.STARTED : Action.STOPPED, System.currentTimeMillis(), groupId);
 

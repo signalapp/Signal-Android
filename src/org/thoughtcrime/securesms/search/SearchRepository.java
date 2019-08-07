@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.search.model.MessageResult;
 import org.thoughtcrime.securesms.search.model.SearchResult;
 import org.thoughtcrime.securesms.util.Stopwatch;
@@ -132,10 +133,10 @@ public class SearchRepository {
   }
 
   private CursorList<ThreadRecord> queryConversations(@NonNull String query) {
-    List<String>  numbers   = contactAccessor.getNumbersForThreadSearchFilter(context, query);
-    List<Address> addresses = Stream.of(numbers).map(number -> Address.fromExternal(context, number)).toList();
+    List<String>      numbers      = contactAccessor.getNumbersForThreadSearchFilter(context, query);
+    List<RecipientId> recipientIds = Stream.of(numbers).map(number -> Recipient.external(context, number)).map(Recipient::getId).toList();
 
-    Cursor conversations = threadDatabase.getFilteredConversationList(addresses);
+    Cursor conversations = threadDatabase.getFilteredConversationList(recipientIds);
     return conversations != null ? new CursorList<>(conversations, new ThreadModelBuilder(threadDatabase))
                                  : CursorList.emptyList();
   }
@@ -184,8 +185,7 @@ public class SearchRepository {
 
     @Override
     public Recipient build(@NonNull Cursor cursor) {
-      Address address = Address.fromExternal(context, cursor.getString(1));
-      return Recipient.from(context, address, false);
+      return Recipient.external(context, cursor.getString(1));
     }
   }
 
@@ -213,13 +213,13 @@ public class SearchRepository {
 
     @Override
     public MessageResult build(@NonNull Cursor cursor) {
-      Address   conversationAddress   = Address.fromSerialized(cursor.getString(cursor.getColumnIndex(SearchDatabase.CONVERSATION_ADDRESS)));
-      Address   messageAddress        = Address.fromSerialized(cursor.getString(cursor.getColumnIndexOrThrow(SearchDatabase.MESSAGE_ADDRESS)));
-      Recipient conversationRecipient = Recipient.from(context, conversationAddress, false);
-      Recipient messageRecipient      = Recipient.from(context, messageAddress, false);
-      String    body                  = cursor.getString(cursor.getColumnIndexOrThrow(SearchDatabase.SNIPPET));
-      long      receivedMs            = cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsColumns.NORMALIZED_DATE_RECEIVED));
-      long      threadId              = cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsColumns.THREAD_ID));
+      RecipientId conversationRecipientId = RecipientId.from(cursor.getLong(cursor.getColumnIndex(SearchDatabase.CONVERSATION_RECIPIENT)));
+      RecipientId messageRecipientId      = RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(SearchDatabase.MESSAGE_RECIPIENT)));
+      Recipient   conversationRecipient   = Recipient.live(conversationRecipientId).get();
+      Recipient   messageRecipient        = Recipient.live(messageRecipientId).get();
+      String      body                    = cursor.getString(cursor.getColumnIndexOrThrow(SearchDatabase.SNIPPET));
+      long        receivedMs              = cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsColumns.NORMALIZED_DATE_RECEIVED));
+      long        threadId                = cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsColumns.THREAD_ID));
 
       return new MessageResult(conversationRecipient, messageRecipient, body, threadId, receivedMs);
     }

@@ -27,23 +27,23 @@ public abstract class JobMigration {
     return endVersion;
   }
 
-  protected static class JobData {
+  public static class JobData {
 
     private final String factoryKey;
     private final String queueKey;
     private final Data   data;
 
-    JobData(@NonNull String factoryKey, @Nullable String queueKey, @NonNull Data data) {
+    public JobData(@NonNull String factoryKey, @Nullable String queueKey, @NonNull Data data) {
       this.factoryKey = factoryKey;
       this.queueKey   = queueKey;
       this.data       = data;
     }
 
-    protected @NonNull JobData withQueueKey(@Nullable String newQueueKey) {
+    public @NonNull JobData withQueueKey(@Nullable String newQueueKey) {
       return new JobData(factoryKey, newQueueKey, data);
     }
 
-    protected @NonNull JobData withData(@NonNull Data newData) {
+    public @NonNull JobData withData(@NonNull Data newData) {
       return new JobData(factoryKey, queueKey, newData);
     }
 

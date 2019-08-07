@@ -5,13 +5,14 @@ import androidx.annotation.NonNull;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
-import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.JsonUtils;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
@@ -45,7 +46,7 @@ public class MultiDeviceViewOnceOpenJob extends BaseJob {
 
   private MultiDeviceViewOnceOpenJob(@NonNull Parameters parameters, @NonNull SyncMessageId syncMessageId) {
     super(parameters);
-    this.messageId = new SerializableSyncMessageId(syncMessageId.getAddress().toPhoneString(), syncMessageId.getTimetamp());
+    this.messageId = new SerializableSyncMessageId(syncMessageId.getRecipientId().serialize(), syncMessageId.getTimetamp());
   }
 
   @Override
@@ -74,7 +75,8 @@ public class MultiDeviceViewOnceOpenJob extends BaseJob {
     }
 
     SignalServiceMessageSender messageSender = ApplicationDependencies.getSignalServiceMessageSender();
-    ViewOnceOpenMessage        openMessage  = new ViewOnceOpenMessage(messageId.sender, messageId.timestamp);
+    Recipient                  recipient     = Recipient.resolved(RecipientId.from(messageId.recipientId));
+    ViewOnceOpenMessage        openMessage   = new ViewOnceOpenMessage(recipient.requireAddress().serialize(), messageId.timestamp);
 
     messageSender.sendMessage(SignalServiceSyncMessage.forViewOnceOpen(openMessage), UnidentifiedAccessUtil.getAccessForSync(context));
   }
@@ -94,14 +96,14 @@ public class MultiDeviceViewOnceOpenJob extends BaseJob {
     private static final long serialVersionUID = 1L;
 
     @JsonProperty
-    private final String sender;
+    private final String recipientId;
 
     @JsonProperty
     private final long   timestamp;
 
-    private SerializableSyncMessageId(@JsonProperty("sender") String sender, @JsonProperty("timestamp") long timestamp) {
-      this.sender = sender;
-      this.timestamp = timestamp;
+    private SerializableSyncMessageId(@JsonProperty("recipientId") String recipientId, @JsonProperty("timestamp") long timestamp) {
+      this.recipientId = recipientId;
+      this.timestamp   = timestamp;
     }
   }
 
@@ -116,7 +118,7 @@ public class MultiDeviceViewOnceOpenJob extends BaseJob {
         throw new AssertionError(e);
       }
 
-      SyncMessageId syncMessageId = new SyncMessageId(Address.fromSerialized(messageId.sender), messageId.timestamp);
+      SyncMessageId syncMessageId = new SyncMessageId(RecipientId.from(messageId.recipientId), messageId.timestamp);
 
       return new MultiDeviceViewOnceOpenJob(parameters, syncMessageId);
     }

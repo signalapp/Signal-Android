@@ -1,13 +1,13 @@
 package org.thoughtcrime.securesms.dependencies;
 
 import android.app.Application;
-import android.content.Context;
 
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.IncomingMessageProcessor;
 import org.thoughtcrime.securesms.gcm.MessageRetriever;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
+import org.thoughtcrime.securesms.recipients.LiveRecipientCache;
 import org.thoughtcrime.securesms.service.IncomingMessageObserver;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
@@ -32,6 +32,7 @@ public class ApplicationDependencies {
   private static SignalServiceMessageReceiver messageReceiver;
   private static IncomingMessageProcessor     incomingMessageProcessor;
   private static MessageRetriever             messageRetriever;
+  private static LiveRecipientCache           recipientCache;
 
   public static synchronized void init(@NonNull Application application, @NonNull Provider provider) {
     if (ApplicationDependencies.application != null || ApplicationDependencies.provider != null) {
@@ -105,6 +106,16 @@ public class ApplicationDependencies {
     return messageRetriever;
   }
 
+  public static synchronized @NonNull LiveRecipientCache getRecipientCache() {
+    assertInitialization();
+
+    if (recipientCache == null) {
+      recipientCache = provider.provideRecipientCache();
+    }
+
+    return recipientCache;
+  }
+
   private static void assertInitialization() {
     if (application == null || provider == null) {
       throw new UninitializedException();
@@ -118,6 +129,8 @@ public class ApplicationDependencies {
     @NonNull SignalServiceNetworkAccess provideSignalServiceNetworkAccess();
     @NonNull IncomingMessageProcessor provideIncomingMessageProcessor();
     @NonNull MessageRetriever provideMessageRetriever();
+    @NonNull
+    LiveRecipientCache provideRecipientCache();
   }
 
   private static class UninitializedException extends IllegalStateException {

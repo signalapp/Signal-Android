@@ -44,7 +44,6 @@ import org.thoughtcrime.securesms.components.emoji.EmojiKeyboardProvider;
 import org.thoughtcrime.securesms.components.emoji.EmojiToggle;
 import org.thoughtcrime.securesms.components.emoji.MediaKeyboard;
 import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher;
-import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.imageeditor.model.EditorModel;
 import org.thoughtcrime.securesms.logging.Log;
@@ -59,7 +58,9 @@ import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.mms.VideoSlide;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.providers.BlobProvider;
+import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.scribbles.ImageEditorFragment;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.CharacterCalculator.CharacterState;
@@ -106,7 +107,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
   public static final String EXTRA_VIEW_ONCE = "view_once";
 
 
-  private static final String KEY_ADDRESS   = "address";
+  private static final String KEY_RECIPIENT = "recipient_id";
   private static final String KEY_BODY      = "body";
   private static final String KEY_MEDIA     = "media";
   private static final String KEY_TRANSPORT = "transport";
@@ -118,7 +119,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
   private static final String TAG_CAMERA        = "camera";
   private static final String TAG_CONTACTS      = "contacts";
 
-  private @Nullable Recipient recipient;
+  private @Nullable LiveRecipient recipient;
 
   private TransportOption    transport;
   private MediaSendViewModel viewModel;
@@ -150,7 +151,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
    */
   public static Intent buildGalleryIntent(@NonNull Context context, @NonNull Recipient recipient, @NonNull String body, @NonNull TransportOption transport) {
     Intent intent = new Intent(context, MediaSendActivity.class);
-    intent.putExtra(KEY_ADDRESS, recipient.getAddress());
+    intent.putExtra(KEY_RECIPIENT, recipient.getId());
     intent.putExtra(KEY_TRANSPORT, transport);
     intent.putExtra(KEY_BODY, body);
     return intent;
@@ -214,16 +215,16 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
     mediaRail           = findViewById(R.id.mediasend_media_rail);
     emojiDrawer         = new Stub<>(findViewById(R.id.mediasend_emoji_drawer_stub));
 
-    Address address = getIntent().getParcelableExtra(KEY_ADDRESS);
-    if (address != null) {
-      recipient = Recipient.from(this, address, true);
+    RecipientId recipientId = getIntent().getParcelableExtra(KEY_RECIPIENT);
+    if (recipientId != null) {
+      recipient = Recipient.live(recipientId);
     }
 
     viewModel = ViewModelProviders.of(this, new MediaSendViewModel.Factory(getApplication(), new MediaRepository())).get(MediaSendViewModel.class);
     transport = getIntent().getParcelableExtra(KEY_TRANSPORT);
 
     viewModel.setTransport(transport);
-    viewModel.setRecipient(recipient);
+    viewModel.setRecipient(recipient != null ? recipient.get() : null);
     viewModel.onBodyChanged(getIntent().getStringExtra(KEY_BODY));
 
     List<Media> media    = getIntent().getParcelableArrayListExtra(KEY_MEDIA);
@@ -243,7 +244,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
                                  .replace(R.id.mediasend_fragment_container, fragment, TAG_SEND)
                                  .commit();
     } else {
-      MediaPickerFolderFragment fragment = MediaPickerFolderFragment.newInstance(this, recipient);
+      MediaPickerFolderFragment fragment = MediaPickerFolderFragment.newInstance(this, recipient != null ? recipient.get() : null);
       getSupportFragmentManager().beginTransaction()
                                  .replace(R.id.mediasend_fragment_container, fragment, TAG_FOLDER_PICKER)
                                  .commit();
@@ -304,16 +305,11 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
 
     composeText.append(viewModel.getBody());
 
-    if (recipient == null) {
-      composeText.setHint(R.string.MediaSendActivity_message);
-    } else if (recipient.isLocalNumber()) {
-      composeText.setHint(getString(R.string.note_to_self), null);
-    } else {
-      String displayName = Optional.fromNullable(recipient.getName())
-                                   .or(Optional.fromNullable(recipient.getProfileName())
-                                   .or(recipient.getAddress().serialize()));
-      composeText.setHint(getString(R.string.MediaSendActivity_message_to_s, displayName), null);
+    if (recipient != null) {
+      recipient.observe(this, this::presentRecipient);
     }
+
+    presentRecipient(recipient != null ? recipient.get() : null);
 
     composeText.setOnEditorActionListener((v, actionId, event) -> {
       boolean isSend = actionId == EditorInfo.IME_ACTION_SEND;
@@ -427,7 +423,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
 
   @Override
   public void onGalleryClicked() {
-    MediaPickerFolderFragment folderFragment = MediaPickerFolderFragment.newInstance(this, recipient);
+    MediaPickerFolderFragment folderFragment = MediaPickerFolderFragment.newInstance(this, recipient != null ? recipient.get() : null);
 
     getSupportFragmentManager().beginTransaction()
                                .replace(R.id.mediasend_fragment_container, folderFragment, TAG_FOLDER_PICKER)
@@ -505,7 +501,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
 
   public void onAddMediaClicked(@NonNull String bucketId) {
     // TODO: Get actual folder title somehow
-    MediaPickerFolderFragment folderFragment = MediaPickerFolderFragment.newInstance(this, recipient);
+    MediaPickerFolderFragment folderFragment = MediaPickerFolderFragment.newInstance(this, recipient != null ? recipient.get() : null);
     MediaPickerItemFragment   itemFragment   = MediaPickerItemFragment.newInstance(bucketId, "", viewModel.getMaxSelection());
 
     getSupportFragmentManager().beginTransaction()
@@ -648,6 +644,20 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
           break;
       }
     });
+  }
+
+  private void presentRecipient(@Nullable Recipient recipient) {
+    if (recipient == null) {
+      composeText.setHint(R.string.MediaSendActivity_message);
+    } else if (recipient.isLocalNumber()) {
+      composeText.setHint(getString(R.string.note_to_self), null);
+    } else {
+      String displayName = Optional.fromNullable(recipient.getName())
+                                   .or(Optional.fromNullable(recipient.getProfileName())
+                                               .or(recipient.requireAddress().serialize()));
+      composeText.setHint(getString(R.string.MediaSendActivity_message_to_s, displayName), null);
+    }
+
   }
 
   private void navigateToMediaSend(@NonNull Locale locale) {

@@ -217,13 +217,13 @@ public class InviteActivity extends PassphraseRequiredActionBarActivity implemen
       if (context == null) return null;
 
       for (String number : numbers) {
-        Recipient recipient      = Recipient.from(context, Address.fromExternal(context, number), false);
+        Recipient recipient      = Recipient.external(context, number);
         int       subscriptionId = recipient.getDefaultSubscriptionId().or(-1);
 
         MessageSender.send(context, new OutgoingTextMessage(recipient, message, subscriptionId), -1L, true, null);
 
         if (recipient.getContactUri() != null) {
-          DatabaseFactory.getRecipientDatabase(context).setSeenInviteReminder(recipient, true);
+          DatabaseFactory.getRecipientDatabase(context).setSeenInviteReminder(recipient.getId(), true);
         }
       }
 

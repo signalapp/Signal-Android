@@ -9,6 +9,7 @@ import android.text.TextUtils;
 
 import org.thoughtcrime.securesms.WebRtcCallActivity;
 import org.thoughtcrime.securesms.database.Address;
+import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.service.WebRtcCallService;
 
 public class VoiceCallShare extends Activity {
@@ -27,12 +28,12 @@ public class VoiceCallShare extends Activity {
 
         if (cursor != null && cursor.moveToNext()) {
           String  destination = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.RawContacts.Data.DATA1));
-          Address address     = Address.fromExternal(this, destination);
+          Address address     = Address.fromSerialized(PhoneNumberFormatter.get(this).format(destination));
           
           if (!TextUtils.isEmpty(destination)) {
             Intent serviceIntent = new Intent(this, WebRtcCallService.class);
             serviceIntent.setAction(WebRtcCallService.ACTION_OUTGOING_CALL);
-            serviceIntent.putExtra(WebRtcCallService.EXTRA_REMOTE_ADDRESS, address);
+            serviceIntent.putExtra(WebRtcCallService.EXTRA_REMOTE_RECIPIENT, address);
             startService(serviceIntent);
 
             Intent activityIntent = new Intent(this, WebRtcCallActivity.class);

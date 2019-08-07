@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 import android.telephony.SmsMessage;
 
 import org.thoughtcrime.securesms.database.Address;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroup;
@@ -30,23 +31,23 @@ public class IncomingTextMessage implements Parcelable {
   };
   private static final String TAG = IncomingTextMessage.class.getSimpleName();
 
-  private final String  message;
-  private       Address sender;
-  private final int     senderDeviceId;
-  private final int     protocol;
-  private final String  serviceCenterAddress;
-  private final boolean replyPathPresent;
-  private final String  pseudoSubject;
-  private final long    sentTimestampMillis;
-  private final Address groupId;
-  private final boolean push;
-  private final int     subscriptionId;
-  private final long    expiresInMillis;
-  private final boolean unidentified;
+  private final String      message;
+  private       RecipientId sender;
+  private final int         senderDeviceId;
+  private final int         protocol;
+  private final String      serviceCenterAddress;
+  private final boolean     replyPathPresent;
+  private final String      pseudoSubject;
+  private final long        sentTimestampMillis;
+  private final Address     groupId;
+  private final boolean     push;
+  private final int         subscriptionId;
+  private final long        expiresInMillis;
+  private final boolean     unidentified;
 
-  public IncomingTextMessage(@NonNull Context context, @NonNull SmsMessage message, int subscriptionId) {
+  public IncomingTextMessage(@NonNull RecipientId sender, @NonNull SmsMessage message, int subscriptionId) {
     this.message              = message.getDisplayMessageBody();
-    this.sender               = Address.fromExternal(context, message.getDisplayOriginatingAddress());
+    this.sender               = sender;
     this.senderDeviceId       = SignalServiceAddress.DEFAULT_DEVICE_ID;
     this.protocol             = message.getProtocolIdentifier();
     this.serviceCenterAddress = message.getServiceCenterAddress();
@@ -60,7 +61,7 @@ public class IncomingTextMessage implements Parcelable {
     this.unidentified         = false;
   }
 
-  public IncomingTextMessage(Address sender, int senderDeviceId, long sentTimestampMillis,
+  public IncomingTextMessage(@NonNull RecipientId sender, int senderDeviceId, long sentTimestampMillis,
                              String encodedBody, Optional<SignalServiceGroup> group,
                              long expiresInMillis, boolean unidentified)
   {
@@ -138,7 +139,7 @@ public class IncomingTextMessage implements Parcelable {
     this.unidentified         = fragments.get(0).isUnidentified();
   }
 
-  protected IncomingTextMessage(@NonNull Address sender, @Nullable Address groupId)
+  protected IncomingTextMessage(@NonNull RecipientId sender, @Nullable Address groupId)
   {
     this.message              = "";
     this.sender               = sender;
@@ -179,7 +180,7 @@ public class IncomingTextMessage implements Parcelable {
     return new IncomingTextMessage(this, message);
   }
 
-  public Address getSender() {
+  public RecipientId getSender() {
     return sender;
   }
 

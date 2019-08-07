@@ -110,7 +110,7 @@ public class MessageNotifier {
       sendInThreadNotification(context, recipient);
     } else {
       Intent intent = new Intent(context, ConversationActivity.class);
-      intent.putExtra(ConversationActivity.ADDRESS_EXTRA, recipient.getAddress());
+      intent.putExtra(ConversationActivity.RECIPIENT_EXTRA, recipient.getId());
       intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, threadId);
       intent.setData((Uri.parse("custom://" + System.currentTimeMillis())));
 

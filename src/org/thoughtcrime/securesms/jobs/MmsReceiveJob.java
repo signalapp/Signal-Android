@@ -101,7 +101,7 @@ public class MmsReceiveJob extends BaseJob {
 
   private boolean isBlocked(GenericPdu pdu) {
     if (pdu.getFrom() != null && pdu.getFrom().getTextString() != null) {
-      Recipient recipients = Recipient.from(context, Address.fromExternal(context, Util.toIsoString(pdu.getFrom().getTextString())), false);
+      Recipient recipients = Recipient.external(context, Util.toIsoString(pdu.getFrom().getTextString()));
       return recipients.isBlocked();
     }
 

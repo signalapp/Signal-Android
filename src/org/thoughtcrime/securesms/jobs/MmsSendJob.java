@@ -45,7 +45,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.util.Hex;
-import org.thoughtcrime.securesms.util.NumberUtil;
+import org.thoughtcrime.securesms.phonenumbers.NumberUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 
@@ -221,7 +221,7 @@ public final class MmsSendJob extends SendJob {
   {
     SendReq          req               = new SendReq();
     String           lineNumber        = getMyNumber(context);
-    Address          destination       = message.getRecipient().getAddress();
+    Address          destination       = message.getRecipient().requireAddress();
     MediaConstraints mediaConstraints  = MediaConstraints.getMmsMediaConstraints(message.getSubscriptionId());
     List<Attachment> scaledAttachments = message.getAttachments();
 
@@ -236,9 +236,9 @@ public final class MmsSendJob extends SendJob {
 
       for (Recipient member : members) {
         if (message.getDistributionType() == ThreadDatabase.DistributionTypes.BROADCAST) {
-          req.addBcc(new EncodedStringValue(member.getAddress().serialize()));
+          req.addBcc(new EncodedStringValue(member.requireAddress().serialize()));
         } else {
-          req.addTo(new EncodedStringValue(member.getAddress().serialize()));
+          req.addTo(new EncodedStringValue(member.requireAddress().serialize()));
         }
       }
     } else {

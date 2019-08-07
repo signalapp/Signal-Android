@@ -55,7 +55,7 @@ public class GroupShareProfileView extends FrameLayout {
             .setTitle(R.string.GroupShareProfileView_share_your_profile_name_and_photo_with_this_group)
             .setMessage(R.string.GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group)
             .setPositiveButton(R.string.GroupShareProfileView_make_visible, (dialog, which) -> {
-              DatabaseFactory.getRecipientDatabase(getContext()).setProfileSharing(recipient, true);
+              DatabaseFactory.getRecipientDatabase(getContext()).setProfileSharing(recipient.getId(), true);
             })
             .setNegativeButton(android.R.string.cancel, null)
             .show();

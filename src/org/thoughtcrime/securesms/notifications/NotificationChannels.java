@@ -99,7 +99,7 @@ public class NotificationChannels {
         NotificationManager notificationManager = ServiceUtil.getNotificationManager(context);
         if (!channelExists(notificationManager.getNotificationChannel(recipient.getNotificationChannel()))) {
           String id = createChannelFor(context, recipient);
-          db.setNotificationChannel(recipient, id);
+          db.setNotificationChannel(recipient.getId(), id);
         }
       }
     }
@@ -144,9 +144,9 @@ public class NotificationChannels {
     VibrateState vibrateState     = recipient.getMessageVibrate();
     boolean      vibrationEnabled = vibrateState == VibrateState.DEFAULT ? TextSecurePreferences.isNotificationVibrateEnabled(context) : vibrateState == VibrateState.ENABLED;
     Uri          messageRingtone  = recipient.getMessageRingtone() != null ? recipient.getMessageRingtone() : getMessageRingtone(context);
-    String       displayName      = getChannelDisplayNameFor(context, recipient.getName(), recipient.getProfileName(), recipient.getAddress());
+    String       displayName      = getChannelDisplayNameFor(context, recipient.getName(), recipient.getProfileName(), recipient.requireAddress());
 
-    return createChannelFor(context, recipient.getAddress(), displayName, messageRingtone, vibrationEnabled);
+    return createChannelFor(context, recipient.requireAddress(), displayName, messageRingtone, vibrationEnabled);
   }
 
   /**
@@ -245,7 +245,7 @@ public class NotificationChannels {
   }
 
   public static synchronized @Nullable Uri getMessageRingtone(@NonNull Context context, @NonNull Recipient recipient) {
-    if (!supported() || recipient.getNotificationChannel() == null) {
+    if (!supported() || recipient.resolve().getNotificationChannel() == null) {
       return null;
     }
 
@@ -287,13 +287,13 @@ public class NotificationChannels {
     }
     Log.i(TAG, "Updating recipient message ringtone with URI: " + String.valueOf(uri));
 
-    String  newChannelId = generateChannelIdFor(recipient.getAddress());
+    String  newChannelId = generateChannelIdFor(recipient.requireAddress());
     boolean success      = updateExistingChannel(ServiceUtil.getNotificationManager(context),
                                                  recipient.getNotificationChannel(),
-                                                 generateChannelIdFor(recipient.getAddress()),
+                                                 generateChannelIdFor(recipient.requireAddress()),
                                                  channel -> channel.setSound(uri == null ? Settings.System.DEFAULT_NOTIFICATION_URI : uri, getRingtoneAudioAttributes()));
 
-    DatabaseFactory.getRecipientDatabase(context).setNotificationChannel(recipient, success ? newChannelId : null);
+    DatabaseFactory.getRecipientDatabase(context).setNotificationChannel(recipient.getId(), success ? newChannelId : null);
     ensureCustomChannelConsistency(context);
   }
 
@@ -354,13 +354,13 @@ public class NotificationChannels {
     Log.i(TAG, "Updating recipient vibrate with value: " + vibrateState);
 
     boolean enabled      = vibrateState == VibrateState.DEFAULT ? getMessageVibrate(context) : vibrateState == VibrateState.ENABLED;
-    String  newChannelId = generateChannelIdFor(recipient.getAddress());
+    String  newChannelId = generateChannelIdFor(recipient.requireAddress());
     boolean success      = updateExistingChannel(ServiceUtil.getNotificationManager(context),
                                                  recipient.getNotificationChannel(),
                                                  newChannelId,
                                                  channel -> channel.enableVibration(enabled));
 
-    DatabaseFactory.getRecipientDatabase(context).setNotificationChannel(recipient, success ? newChannelId : null);
+    DatabaseFactory.getRecipientDatabase(context).setNotificationChannel(recipient.getId(), success ? newChannelId : null);
     ensureCustomChannelConsistency(context);
   }
 
@@ -382,7 +382,7 @@ public class NotificationChannels {
     }
 
     NotificationChannel channel = new NotificationChannel(recipient.getNotificationChannel(),
-                                                          getChannelDisplayNameFor(context, recipient.getName(), recipient.getProfileName(), recipient.getAddress()),
+                                                          getChannelDisplayNameFor(context, recipient.getName(), recipient.getProfileName(), recipient.requireAddress()),
                                                           NotificationManager.IMPORTANCE_HIGH);
     channel.setGroup(CATEGORY_MESSAGES);
     notificationManager.createNotificationChannel(channel);
@@ -415,7 +415,7 @@ public class NotificationChannels {
 
     for (Recipient customRecipient : customRecipients) {
       if (!existingChannelIds.contains(customRecipient.getNotificationChannel())) {
-        db.setNotificationChannel(customRecipient, null);
+        db.setNotificationChannel(customRecipient.getId(), null);
       }
     }
   }
@@ -515,10 +515,10 @@ public class NotificationChannels {
       while ((recipient = recipients.getNext()) != null) {
         assert recipient.getNotificationChannel() != null;
 
-        String  newChannelId = generateChannelIdFor(recipient.getAddress());
+        String  newChannelId = generateChannelIdFor(recipient.requireAddress());
         boolean success      = updateExistingChannel(notificationManager, recipient.getNotificationChannel(), newChannelId, channel -> setLedPreference(channel, color));
 
-        database.setNotificationChannel(recipient, success ? newChannelId : null);
+        database.setNotificationChannel(recipient.getId(), success ? newChannelId : null);
       }
     }
 

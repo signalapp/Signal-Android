@@ -24,6 +24,7 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -55,48 +56,46 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
 
   private static final long FULL_SYNC_TIME = TimeUnit.HOURS.toMillis(6);
 
-  private static final String KEY_ADDRESS    = "address";
+  private static final String KEY_RECIPIENT  = "recipient";
   private static final String KEY_FORCE_SYNC = "force_sync";
 
-  private @Nullable String address;
+  private @Nullable RecipientId recipientId;
 
   private boolean forceSync;
 
-  public MultiDeviceContactUpdateJob(@NonNull Context context) {
-    this(context, false);
+  public MultiDeviceContactUpdateJob() {
+    this(false);
   }
 
-  public MultiDeviceContactUpdateJob(@NonNull Context context, boolean forceSync) {
-    this(context, null, forceSync);
+  public MultiDeviceContactUpdateJob(boolean forceSync) {
+    this(null, forceSync);
   }
 
-  public MultiDeviceContactUpdateJob(@NonNull Context context, @Nullable Address address) {
-    this(context, address, true);
+  public MultiDeviceContactUpdateJob(@Nullable RecipientId recipientId) {
+    this(recipientId, true);
   }
 
-  public MultiDeviceContactUpdateJob(@NonNull Context context, @Nullable Address address, boolean forceSync) {
+  public MultiDeviceContactUpdateJob(@Nullable RecipientId recipientId, boolean forceSync) {
     this(new Job.Parameters.Builder()
                            .addConstraint(NetworkConstraint.KEY)
                            .setQueue("MultiDeviceContactUpdateJob")
                            .setLifespan(TimeUnit.DAYS.toMillis(1))
                            .setMaxAttempts(Parameters.UNLIMITED)
                            .build(),
-         address,
+         recipientId,
          forceSync);
   }
 
-  private MultiDeviceContactUpdateJob(@NonNull Job.Parameters parameters, @Nullable Address address, boolean forceSync) {
+  private MultiDeviceContactUpdateJob(@NonNull Job.Parameters parameters, @Nullable RecipientId recipientId, boolean forceSync) {
     super(parameters);
 
-    this.forceSync = forceSync;
-
-    if (address != null) this.address = address.serialize();
-    else                 this.address = null;
+    this.recipientId = recipientId;
+    this.forceSync   = forceSync;
   }
 
   @Override
   public @NonNull Data serialize() {
-    return new Data.Builder().putString(KEY_ADDRESS, address)
+    return new Data.Builder().putString(KEY_RECIPIENT, recipientId != null ? recipientId.serialize() : null)
                              .putBoolean(KEY_FORCE_SYNC, forceSync)
                              .build();
   }
@@ -115,22 +114,22 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
       return;
     }
 
-    if (address == null) generateFullContactUpdate();
-    else                 generateSingleContactUpdate(Address.fromSerialized(address));
+    if (recipientId == null) generateFullContactUpdate();
+    else                     generateSingleContactUpdate(recipientId);
   }
 
-  private void generateSingleContactUpdate(@NonNull Address address)
+  private void generateSingleContactUpdate(@NonNull RecipientId recipientId)
       throws IOException, UntrustedIdentityException, NetworkException
   {
     File contactDataFile = createTempFile("multidevice-contact-update");
 
     try {
       DeviceContactsOutputStream                out             = new DeviceContactsOutputStream(new FileOutputStream(contactDataFile));
-      Recipient                                 recipient       = Recipient.from(context, address, false);
-      Optional<IdentityDatabase.IdentityRecord> identityRecord  = DatabaseFactory.getIdentityDatabase(context).getIdentity(address);
+      Recipient                                 recipient       = Recipient.resolved(recipientId);
+      Optional<IdentityDatabase.IdentityRecord> identityRecord  = DatabaseFactory.getIdentityDatabase(context).getIdentity(recipient.getId());
       Optional<VerifiedMessage>                 verifiedMessage = getVerifiedMessage(recipient, identityRecord);
 
-      out.write(new DeviceContact(address.toPhoneString(),
+      out.write(new DeviceContact(recipient.requireAddress().toPhoneString(),
                                   Optional.fromNullable(recipient.getName()),
                                   getAvatar(recipient.getContactUri()),
                                   Optional.fromNullable(recipient.getColor().serialize()),
@@ -181,9 +180,8 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
 
       for (ContactData contactData : contacts) {
         Uri                                       contactUri  = Uri.withAppendedPath(ContactsContract.Contacts.CONTENT_URI, String.valueOf(contactData.id));
-        Address                                   address     = Address.fromExternal(context, contactData.numbers.get(0).number);
-        Recipient                                 recipient   = Recipient.from(context, address, false);
-        Optional<IdentityDatabase.IdentityRecord> identity    = DatabaseFactory.getIdentityDatabase(context).getIdentity(address);
+        Recipient                                 recipient   = Recipient.external(context, contactData.numbers.get(0).number);
+        Optional<IdentityDatabase.IdentityRecord> identity    = DatabaseFactory.getIdentityDatabase(context).getIdentity(recipient.getId());
         Optional<VerifiedMessage>                 verified    = getVerifiedMessage(recipient, identity);
         Optional<String>                          name        = Optional.fromNullable(contactData.name);
         Optional<String>                          color       = Optional.of(recipient.getColor().serialize());
@@ -191,11 +189,11 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
         boolean                                   blocked     = recipient.isBlocked();
         Optional<Integer>                         expireTimer = recipient.getExpireMessages() > 0 ? Optional.of(recipient.getExpireMessages()) : Optional.absent();
 
-        out.write(new DeviceContact(address.toPhoneString(), name, getAvatar(contactUri), color, verified, profileKey, blocked, expireTimer));
+        out.write(new DeviceContact(recipient.requireAddress().toPhoneString(), name, getAvatar(contactUri), color, verified, profileKey, blocked, expireTimer));
       }
 
       if (ProfileKeyUtil.hasProfileKey(context)) {
-        Recipient self = Recipient.from(context, Address.fromSerialized(TextSecurePreferences.getLocalNumber(context)), false);
+        Recipient self = Recipient.self();
         out.write(new DeviceContact(TextSecurePreferences.getLocalNumber(context),
                                     Optional.absent(), Optional.absent(),
                                     Optional.of(self.getColor().serialize()), Optional.absent(),
@@ -302,7 +300,7 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
   private Optional<VerifiedMessage> getVerifiedMessage(Recipient recipient, Optional<IdentityDatabase.IdentityRecord> identity) throws InvalidNumberException {
     if (!identity.isPresent()) return Optional.absent();
 
-    String      destination = recipient.getAddress().toPhoneString();
+    String      destination = recipient.requireAddress().toPhoneString();
     IdentityKey identityKey = identity.get().getIdentityKey();
 
     VerifiedMessage.VerifiedState state;
@@ -334,8 +332,8 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
   public static final class Factory implements Job.Factory<MultiDeviceContactUpdateJob> {
     @Override
     public @NonNull MultiDeviceContactUpdateJob create(@NonNull Parameters parameters, @NonNull Data data) {
-      String  serialized = data.getString(KEY_ADDRESS);
-      Address address    = serialized != null ? Address.fromSerialized(serialized) : null;
+      String      serialized = data.getString(KEY_RECIPIENT);
+      RecipientId address    = serialized != null ? RecipientId.from(serialized) : null;
 
       return new MultiDeviceContactUpdateJob(parameters, address, data.getBoolean(KEY_FORCE_SYNC));
     }

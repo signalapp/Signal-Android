@@ -135,7 +135,7 @@ public class SearchFragment extends Fragment implements SearchListAdapter.EventL
   @Override
   public void onContactClicked(@NonNull Recipient contact) {
     Intent intent = new Intent(getContext(), ConversationActivity.class);
-    intent.putExtra(ConversationActivity.ADDRESS_EXTRA, contact.getAddress());
+    intent.putExtra(ConversationActivity.RECIPIENT_EXTRA, contact.getId());
 
     long existingThread = DatabaseFactory.getThreadDatabase(getContext()).getThreadIdIfExistsFor(contact);
 

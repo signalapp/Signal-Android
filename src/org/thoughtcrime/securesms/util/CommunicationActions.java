@@ -43,7 +43,7 @@ public class CommunicationActions {
         .onAllGranted(() -> {
           Intent intent = new Intent(activity, WebRtcCallService.class);
           intent.setAction(WebRtcCallService.ACTION_OUTGOING_CALL);
-          intent.putExtra(WebRtcCallService.EXTRA_REMOTE_ADDRESS, recipient.getAddress());
+          intent.putExtra(WebRtcCallService.EXTRA_REMOTE_RECIPIENT, recipient.getId());
           activity.startService(intent);
 
           Intent activityIntent = new Intent(activity, WebRtcCallActivity.class);
@@ -71,7 +71,7 @@ public class CommunicationActions {
       @Override
       protected void onPostExecute(Long threadId) {
         Intent intent = new Intent(context, ConversationActivity.class);
-        intent.putExtra(ConversationActivity.ADDRESS_EXTRA, recipient.getAddress());
+        intent.putExtra(ConversationActivity.RECIPIENT_EXTRA, recipient.getId());
         intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, threadId);
         intent.putExtra(ConversationActivity.TIMING_EXTRA, System.currentTimeMillis());
 

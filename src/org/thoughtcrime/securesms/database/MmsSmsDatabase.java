@@ -27,6 +27,8 @@ import net.sqlcipher.database.SQLiteQueryBuilder;
 import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.util.HashSet;
@@ -44,7 +46,7 @@ public class MmsSmsDatabase extends Database {
   private static final String[] PROJECTION = {MmsSmsColumns.ID, MmsSmsColumns.UNIQUE_ROW_ID,
                                               SmsDatabase.BODY, SmsDatabase.TYPE,
                                               MmsSmsColumns.THREAD_ID,
-                                              SmsDatabase.ADDRESS, SmsDatabase.ADDRESS_DEVICE_ID, SmsDatabase.SUBJECT,
+                                              SmsDatabase.RECIPIENT_ID, SmsDatabase.ADDRESS_DEVICE_ID, SmsDatabase.SUBJECT,
                                               MmsSmsColumns.NORMALIZED_DATE_SENT,
                                               MmsSmsColumns.NORMALIZED_DATE_RECEIVED,
                                               MmsDatabase.MESSAGE_TYPE, MmsDatabase.MESSAGE_BOX,
@@ -77,7 +79,7 @@ public class MmsSmsDatabase extends Database {
     super(context, databaseHelper);
   }
 
-  public @Nullable MessageRecord getMessageFor(long timestamp, Address author) {
+  public @Nullable MessageRecord getMessageFor(long timestamp, RecipientId author) {
     MmsSmsDatabase db = DatabaseFactory.getMmsSmsDatabase(context);
 
     try (Cursor cursor = queryTables(PROJECTION, MmsSmsColumns.NORMALIZED_DATE_SENT + " = " + timestamp, null, null)) {
@@ -86,8 +88,8 @@ public class MmsSmsDatabase extends Database {
       MessageRecord messageRecord;
 
       while ((messageRecord = reader.getNext()) != null) {
-        if ((Util.isOwnNumber(context, author) && messageRecord.isOutgoing()) ||
-            (!Util.isOwnNumber(context, author) && messageRecord.getIndividualRecipient().getAddress().equals(author)))
+        if ((Recipient.resolved(author).isLocalNumber() && messageRecord.isOutgoing()) ||
+            (!Recipient.resolved(author).isLocalNumber() && messageRecord.getIndividualRecipient().getId().equals(author)))
         {
           return messageRecord;
         }
@@ -164,19 +166,18 @@ public class MmsSmsDatabase extends Database {
     DatabaseFactory.getMmsDatabase(context).incrementReceiptCount(syncMessageId, timestamp, false, true);
   }
 
-  public int getQuotedMessagePosition(long threadId, long quoteId, @NonNull Address address) {
+  public int getQuotedMessagePosition(long threadId, long quoteId, @NonNull RecipientId recipientId) {
     String order     = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " DESC";
     String selection = MmsSmsColumns.THREAD_ID + " = " + threadId;
 
-    try (Cursor cursor = queryTables(new String[]{ MmsSmsColumns.NORMALIZED_DATE_SENT, MmsSmsColumns.ADDRESS }, selection, order, null)) {
-      String  serializedAddress = address.serialize();
-      boolean isOwnNumber       = Util.isOwnNumber(context, address);
+    try (Cursor cursor = queryTables(new String[]{ MmsSmsColumns.NORMALIZED_DATE_SENT, MmsSmsColumns.RECIPIENT_ID}, selection, order, null)) {
+      boolean isOwnNumber = Recipient.resolved(recipientId).isLocalNumber();
 
       while (cursor != null && cursor.moveToNext()) {
-        boolean quoteIdMatches = cursor.getLong(0) == quoteId;
-        boolean addressMatches = serializedAddress.equals(cursor.getString(1));
+        boolean quoteIdMatches     = cursor.getLong(0) == quoteId;
+        boolean recipientIdMatches = recipientId.equals(RecipientId.from(cursor.getLong(1)));
 
-        if (quoteIdMatches && (addressMatches || isOwnNumber)) {
+        if (quoteIdMatches && (recipientIdMatches || isOwnNumber)) {
           return cursor.getPosition();
         }
       }
@@ -184,19 +185,18 @@ public class MmsSmsDatabase extends Database {
     return -1;
   }
 
-  public int getMessagePositionInConversation(long threadId, long receivedTimestamp, @NonNull Address address) {
+  public int getMessagePositionInConversation(long threadId, long receivedTimestamp, @NonNull RecipientId recipientId) {
     String order     = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " DESC";
     String selection = MmsSmsColumns.THREAD_ID + " = " + threadId;
 
-    try (Cursor cursor = queryTables(new String[]{ MmsSmsColumns.NORMALIZED_DATE_RECEIVED, MmsSmsColumns.ADDRESS }, selection, order, null)) {
-      String  serializedAddress = address.serialize();
-      boolean isOwnNumber       = Util.isOwnNumber(context, address);
+    try (Cursor cursor = queryTables(new String[]{ MmsSmsColumns.NORMALIZED_DATE_RECEIVED, MmsSmsColumns.RECIPIENT_ID}, selection, order, null)) {
+      boolean isOwnNumber = Recipient.resolved(recipientId).isLocalNumber();
 
       while (cursor != null && cursor.moveToNext()) {
-        boolean timestampMatches = cursor.getLong(0) == receivedTimestamp;
-        boolean addressMatches   = serializedAddress.equals(cursor.getString(1));
+        boolean timestampMatches   = cursor.getLong(0) == receivedTimestamp;
+        boolean recipientIdMatches = recipientId.equals(RecipientId.from(cursor.getLong(1)));
 
-        if (timestampMatches && (addressMatches || isOwnNumber)) {
+        if (timestampMatches && (recipientIdMatches || isOwnNumber)) {
           return cursor.getPosition();
         }
       }
@@ -255,7 +255,7 @@ public class MmsSmsDatabase extends Database {
                                   "'" + AttachmentDatabase.STICKER_ID + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.STICKER_ID +
                                   ")) AS " + AttachmentDatabase.ATTACHMENT_JSON_ALIAS,
                               SmsDatabase.BODY, MmsSmsColumns.READ, MmsSmsColumns.THREAD_ID,
-                              SmsDatabase.TYPE, SmsDatabase.ADDRESS, SmsDatabase.ADDRESS_DEVICE_ID, SmsDatabase.SUBJECT, MmsDatabase.MESSAGE_TYPE,
+                              SmsDatabase.TYPE, SmsDatabase.RECIPIENT_ID, SmsDatabase.ADDRESS_DEVICE_ID, SmsDatabase.SUBJECT, MmsDatabase.MESSAGE_TYPE,
                               MmsDatabase.MESSAGE_BOX, SmsDatabase.STATUS, MmsDatabase.PART_COUNT,
                               MmsDatabase.CONTENT_LOCATION, MmsDatabase.TRANSACTION_ID,
                               MmsDatabase.MESSAGE_SIZE, MmsDatabase.EXPIRY, MmsDatabase.STATUS,
@@ -282,7 +282,7 @@ public class MmsSmsDatabase extends Database {
                                   + " AS " + MmsSmsColumns.UNIQUE_ROW_ID,
                               "NULL AS " + AttachmentDatabase.ATTACHMENT_JSON_ALIAS,
                               SmsDatabase.BODY, MmsSmsColumns.READ, MmsSmsColumns.THREAD_ID,
-                              SmsDatabase.TYPE, SmsDatabase.ADDRESS, SmsDatabase.ADDRESS_DEVICE_ID, SmsDatabase.SUBJECT, MmsDatabase.MESSAGE_TYPE,
+                              SmsDatabase.TYPE, SmsDatabase.RECIPIENT_ID, SmsDatabase.ADDRESS_DEVICE_ID, SmsDatabase.SUBJECT, MmsDatabase.MESSAGE_TYPE,
                               MmsDatabase.MESSAGE_BOX, SmsDatabase.STATUS, MmsDatabase.PART_COUNT,
                               MmsDatabase.CONTENT_LOCATION, MmsDatabase.TRANSACTION_ID,
                               MmsDatabase.MESSAGE_SIZE, MmsDatabase.EXPIRY, MmsDatabase.STATUS,
@@ -318,7 +318,7 @@ public class MmsSmsDatabase extends Database {
     mmsColumnsPresent.add(MmsSmsColumns.READ);
     mmsColumnsPresent.add(MmsSmsColumns.THREAD_ID);
     mmsColumnsPresent.add(MmsSmsColumns.BODY);
-    mmsColumnsPresent.add(MmsSmsColumns.ADDRESS);
+    mmsColumnsPresent.add(MmsSmsColumns.RECIPIENT_ID);
     mmsColumnsPresent.add(MmsSmsColumns.ADDRESS_DEVICE_ID);
     mmsColumnsPresent.add(MmsSmsColumns.DELIVERY_RECEIPT_COUNT);
     mmsColumnsPresent.add(MmsSmsColumns.READ_RECEIPT_COUNT);
@@ -375,7 +375,7 @@ public class MmsSmsDatabase extends Database {
     Set<String> smsColumnsPresent = new HashSet<>();
     smsColumnsPresent.add(MmsSmsColumns.ID);
     smsColumnsPresent.add(MmsSmsColumns.BODY);
-    smsColumnsPresent.add(MmsSmsColumns.ADDRESS);
+    smsColumnsPresent.add(MmsSmsColumns.RECIPIENT_ID);
     smsColumnsPresent.add(MmsSmsColumns.ADDRESS_DEVICE_ID);
     smsColumnsPresent.add(MmsSmsColumns.READ);
     smsColumnsPresent.add(MmsSmsColumns.THREAD_ID);

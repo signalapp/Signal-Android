@@ -24,9 +24,10 @@ import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.GlideRequests;
+import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
-import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.recipients.RecipientForeverObserver;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -35,7 +36,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-public class SharedContactView extends LinearLayout implements RecipientModifiedListener {
+public class SharedContactView extends LinearLayout implements RecipientForeverObserver {
 
   private ImageView              avatarView;
   private TextView               nameView;
@@ -51,7 +52,7 @@ public class SharedContactView extends LinearLayout implements RecipientModified
   private int           bigCornerRadius;
   private int           smallCornerRadius;
 
-  private final Map<String, Recipient> activeRecipients = new HashMap<>();
+  private final Map<RecipientId, LiveRecipient> activeRecipients = new HashMap<>();
 
   public SharedContactView(Context context) {
     super(context);
@@ -114,12 +115,16 @@ public class SharedContactView extends LinearLayout implements RecipientModified
     this.locale        = locale;
     this.contact       = contact;
 
-    Stream.of(activeRecipients.values()).forEach(recipient ->  recipient.removeListener(this));
+    Stream.of(activeRecipients.values()).forEach(recipient ->  recipient.removeForeverObserver(this));
     this.activeRecipients.clear();
 
     presentContact(contact);
     presentAvatar(contact.getAvatarAttachment() != null ? contact.getAvatarAttachment().getDataUri() : null);
     presentActionButtons(ContactUtil.getRecipients(getContext(), contact));
+
+    for (LiveRecipient recipient : activeRecipients.values()) {
+      recipient.observeForever(this);
+    }
   }
 
   public void setSingularStyle() {
@@ -150,8 +155,8 @@ public class SharedContactView extends LinearLayout implements RecipientModified
   }
 
   @Override
-  public void onModified(Recipient recipient) {
-    Util.runOnMain(() -> presentActionButtons(Collections.singletonList(recipient)));
+  public void onRecipientChanged(@NonNull Recipient recipient) {
+    presentActionButtons(Collections.singletonList(recipient.getId()));
   }
 
   private void presentContact(@Nullable Contact contact) {
@@ -180,21 +185,19 @@ public class SharedContactView extends LinearLayout implements RecipientModified
     }
   }
 
-  private void presentActionButtons(@NonNull List<Recipient> recipients) {
-    for (Recipient recipient : recipients) {
-      activeRecipients.put(recipient.getAddress().serialize(), recipient);
+  private void presentActionButtons(@NonNull List<RecipientId> recipients) {
+    for (RecipientId recipientId : recipients) {
+      activeRecipients.put(recipientId, Recipient.live(recipientId));
     }
 
     List<Recipient> pushUsers   = new ArrayList<>(recipients.size());
     List<Recipient> systemUsers = new ArrayList<>(recipients.size());
 
-    for (Recipient recipient : activeRecipients.values()) {
-      recipient.addListener(this);
-
-      if (recipient.getRegistered() == RecipientDatabase.RegisteredState.REGISTERED) {
-        pushUsers.add(recipient);
-      } else if (recipient.isSystemContact()) {
-        systemUsers.add(recipient);
+    for (LiveRecipient recipient : activeRecipients.values()) {
+      if (recipient.get().getRegistered() == RecipientDatabase.RegisteredState.REGISTERED) {
+        pushUsers.add(recipient.get());
+      } else if (recipient.get().isSystemContact()) {
+        systemUsers.add(recipient.get());
       }
     }
 

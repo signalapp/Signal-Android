@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.contactshare.Contact.PostalAddress;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.PartAuthority;
+import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
@@ -267,7 +268,7 @@ public class ContactRepository {
     }
 
     for (Phone phoneNumber : phoneNumbers) {
-      AvatarInfo recipientAvatar = getRecipientAvatarInfo(Address.fromExternal(context, phoneNumber.getNumber()));
+      AvatarInfo recipientAvatar = getRecipientAvatarInfo(PhoneNumberFormatter.get(context).format(phoneNumber.getNumber()));
       if (recipientAvatar != null) {
         return recipientAvatar;
       }
@@ -286,8 +287,8 @@ public class ContactRepository {
   }
 
   @WorkerThread
-  private @Nullable AvatarInfo getRecipientAvatarInfo(@NonNull Address address) {
-    Recipient    recipient    = Recipient.from(context, address, false);
+  private @Nullable AvatarInfo getRecipientAvatarInfo(String address) {
+    Recipient    recipient    = Recipient.external(context, address);
     ContactPhoto contactPhoto = recipient.getContactPhoto();
 
     if (contactPhoto != null) {

@@ -27,7 +27,6 @@ import androidx.loader.content.CursorLoader;
 import android.text.TextUtils;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
@@ -36,7 +35,7 @@ import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.NumberUtil;
+import org.thoughtcrime.securesms.phonenumbers.NumberUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -170,7 +169,7 @@ public class ContactsCursorLoader extends CursorLoader {
       ThreadRecord threadRecord;
       while ((threadRecord = reader.getNext()) != null) {
         recentConversations.addRow(new Object[] { threadRecord.getRecipient().toShortString(),
-                                                  threadRecord.getRecipient().getAddress().serialize(),
+                                                  threadRecord.getRecipient().requireAddress().serialize(),
                                                   ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE,
                                                   "",
                                                   ContactsDatabase.RECENT_TYPE });
@@ -230,7 +229,7 @@ public class ContactsCursorLoader extends CursorLoader {
       final MatrixCursor matrix = new MatrixCursor(CONTACT_PROJECTION);
       while (cursor.moveToNext()) {
         final String    number    = cursor.getString(cursor.getColumnIndexOrThrow(ContactsDatabase.NUMBER_COLUMN));
-        final Recipient recipient = Recipient.from(getContext(), Address.fromExternal(getContext(), number), false);
+        final Recipient recipient = Recipient.external(getContext(), number);
 
         if (recipient.resolve().getRegistered() != RecipientDatabase.RegisteredState.REGISTERED) {
           matrix.addRow(new Object[]{cursor.getString(cursor.getColumnIndexOrThrow(ContactsDatabase.NAME_COLUMN)),

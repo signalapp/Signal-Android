@@ -34,6 +34,7 @@ import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.BitmapUtil;
@@ -69,9 +70,9 @@ public abstract class PushSendJob extends SendJob {
     super(parameters);
   }
 
-  protected static Job.Parameters constructParameters(Address destination) {
+  protected static Job.Parameters constructParameters(@NonNull Recipient recipient) {
     return new Parameters.Builder()
-                         .setQueue(destination.serialize())
+                         .setQueue(recipient.getId().toQueueKey())
                          .addConstraint(NetworkConstraint.KEY)
                          .setLifespan(TimeUnit.DAYS.toMillis(1))
                          .setMaxAttempts(Parameters.UNLIMITED)
@@ -223,7 +224,7 @@ public abstract class PushSendJob extends SendJob {
 
     long                                                  quoteId          = message.getOutgoingQuote().getId();
     String                                                quoteBody        = message.getOutgoingQuote().getText();
-    Address                                               quoteAuthor      = message.getOutgoingQuote().getAuthor();
+    RecipientId                                           quoteAuthor      = message.getOutgoingQuote().getAuthor();
     List<SignalServiceDataMessage.Quote.QuotedAttachment> quoteAttachments = new LinkedList<>();
 
     for (Attachment attachment : message.getOutgoingQuote().getAttachments()) {
@@ -259,7 +260,7 @@ public abstract class PushSendJob extends SendJob {
       }
     }
 
-    return Optional.of(new SignalServiceDataMessage.Quote(quoteId, new SignalServiceAddress(quoteAuthor.serialize()), quoteBody, quoteAttachments));
+    return Optional.of(new SignalServiceDataMessage.Quote(quoteId, new SignalServiceAddress(Recipient.resolved(quoteAuthor).requireAddress().serialize()), quoteBody, quoteAttachments));
   }
 
   protected Optional<SignalServiceDataMessage.Sticker> getStickerFor(OutgoingMediaMessage message) {

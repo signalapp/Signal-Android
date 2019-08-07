@@ -105,7 +105,7 @@ public class ConversationTitleView extends RelativeLayout {
   }
 
   private void setRecipientTitle(Recipient recipient) {
-    if      (recipient.isGroupRecipient())           setGroupRecipientTitle(recipient);
+    if      (recipient.isGroup())           setGroupRecipientTitle(recipient);
     else if (recipient.isLocalNumber())              setSelfTitle();
     else if (TextUtils.isEmpty(recipient.getName())) setNonContactRecipientTitle(recipient);
     else                                             setContactRecipientTitle(recipient);
@@ -116,7 +116,7 @@ public class ConversationTitleView extends RelativeLayout {
 
     this.title.setText(recipient.getName());
     this.subtitle.setText(Stream.of(recipient.getParticipants())
-                                .filter(r -> !r.getAddress().serialize().equals(localNumber))
+                                .filter(r -> !r.requireAddress().serialize().equals(localNumber))
                                 .map(Recipient::toShortString)
                                 .collect(Collectors.joining(", ")));
 
@@ -130,7 +130,7 @@ public class ConversationTitleView extends RelativeLayout {
 
   @SuppressLint("SetTextI18n")
   private void setNonContactRecipientTitle(Recipient recipient) {
-    this.title.setText(recipient.getAddress().serialize());
+    this.title.setText(recipient.requireAddress().serialize());
 
     if (TextUtils.isEmpty(recipient.getProfileName())) {
       this.subtitle.setText(null);

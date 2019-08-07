@@ -52,8 +52,8 @@ import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
+import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
@@ -73,14 +73,14 @@ import java.util.Locale;
 /**
  * @author Jake McGinty
  */
-public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity implements LoaderCallbacks<Cursor>, RecipientModifiedListener {
+public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity implements LoaderCallbacks<Cursor> {
   private final static String TAG = MessageDetailsActivity.class.getSimpleName();
 
-  public final static String MESSAGE_ID_EXTRA     = "message_id";
-  public final static String THREAD_ID_EXTRA      = "thread_id";
-  public final static String IS_PUSH_GROUP_EXTRA  = "is_push_group";
-  public final static String TYPE_EXTRA           = "type";
-  public final static String ADDRESS_EXTRA        = "address";
+  public static final String MESSAGE_ID_EXTRA    = "message_id";
+  public static final String THREAD_ID_EXTRA     = "thread_id";
+  public static final String IS_PUSH_GROUP_EXTRA = "is_push_group";
+  public static final String TYPE_EXTRA          = "type";
+  public static final String RECIPIENT_EXTRA     = "recipient_id";
 
   private GlideRequests    glideRequests;
   private long             threadId;
@@ -149,10 +149,10 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
     assert getSupportActionBar() != null;
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-    Recipient recipient = Recipient.from(this, getIntent().getParcelableExtra(ADDRESS_EXTRA), true);
-    recipient.addListener(this);
+    LiveRecipient recipient = Recipient.live(getIntent().getParcelableExtra(RECIPIENT_EXTRA));
+    recipient.observe(this, r -> setActionBarColor(r.getColor()));
 
-    setActionBarColor(recipient.getColor());
+    setActionBarColor(recipient.get().getColor());
   }
 
   private void setActionBarColor(MaterialColor color) {
@@ -162,11 +162,6 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
       getWindow().setStatusBarColor(color.toStatusBarColor(this));
     }
-  }
-
-  @Override
-  public void onModified(final Recipient recipient) {
-    Util.runOnMain(() -> setActionBarColor(recipient.getColor()));
   }
 
   private void initializeResources() {
@@ -366,20 +361,20 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
 
       List<RecipientDeliveryStatus> recipients = new LinkedList<>();
 
-      if (!messageRecord.getRecipient().isGroupRecipient()) {
+      if (!messageRecord.getRecipient().isGroup()) {
         recipients.add(new RecipientDeliveryStatus(messageRecord.getRecipient(), getStatusFor(messageRecord.getDeliveryReceiptCount(), messageRecord.getReadReceiptCount(), messageRecord.isPending()), messageRecord.isUnidentified(), -1));
       } else {
         List<GroupReceiptInfo> receiptInfoList = DatabaseFactory.getGroupReceiptDatabase(context).getGroupReceiptInfo(messageRecord.getId());
 
         if (receiptInfoList.isEmpty()) {
-          List<Recipient> group = DatabaseFactory.getGroupDatabase(context).getGroupMembers(messageRecord.getRecipient().getAddress().toGroupString(), false);
+          List<Recipient> group = DatabaseFactory.getGroupDatabase(context).getGroupMembers(messageRecord.getRecipient().requireAddress().toGroupString(), false);
 
           for (Recipient recipient : group) {
             recipients.add(new RecipientDeliveryStatus(recipient, RecipientDeliveryStatus.Status.UNKNOWN, false, -1));
           }
         } else {
           for (GroupReceiptInfo info : receiptInfoList) {
-            recipients.add(new RecipientDeliveryStatus(Recipient.from(context, info.getAddress(), true),
+            recipients.add(new RecipientDeliveryStatus(Recipient.resolved(info.getRecipientId()),
                                                        getStatusFor(info.getStatus(), messageRecord.isPending(), messageRecord.isFailed()),
                                                        info.isUnidentified(),
                                                        info.getTimestamp()));

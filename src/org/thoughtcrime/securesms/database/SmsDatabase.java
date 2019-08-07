@@ -38,6 +38,7 @@ import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.jobs.TrimThreadJob;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.sms.IncomingGroupMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
@@ -73,7 +74,7 @@ public class SmsDatabase extends MessagingDatabase {
   public  static final String SERVICE_CENTER     = "service_center";
 
   public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ID + " integer PRIMARY KEY, "                +
-    THREAD_ID + " INTEGER, " + ADDRESS + " TEXT, " + ADDRESS_DEVICE_ID + " INTEGER DEFAULT 1, " + PERSON + " INTEGER, " +
+    THREAD_ID + " INTEGER, " + RECIPIENT_ID + " INTEGER, " + ADDRESS_DEVICE_ID + " INTEGER DEFAULT 1, " + PERSON + " INTEGER, " +
     DATE_RECEIVED  + " INTEGER, " + DATE_SENT + " INTEGER, " + PROTOCOL + " INTEGER, " + READ + " INTEGER DEFAULT 0, " +
     STATUS + " INTEGER DEFAULT -1," + TYPE + " INTEGER, " + REPLY_PATH_PRESENT + " INTEGER, " +
     DELIVERY_RECEIPT_COUNT + " INTEGER DEFAULT 0," + SUBJECT + " TEXT, " + BODY + " TEXT, " +
@@ -91,7 +92,7 @@ public class SmsDatabase extends MessagingDatabase {
   };
 
   private static final String[] MESSAGE_PROJECTION = new String[] {
-      ID, THREAD_ID, ADDRESS, ADDRESS_DEVICE_ID, PERSON,
+      ID, THREAD_ID, RECIPIENT_ID, ADDRESS_DEVICE_ID, PERSON,
       DATE_RECEIVED + " AS " + NORMALIZED_DATE_RECEIVED,
       DATE_SENT + " AS " + NORMALIZED_DATE_SENT,
       PROTOCOL, READ, STATUS, TYPE,
@@ -100,8 +101,8 @@ public class SmsDatabase extends MessagingDatabase {
       NOTIFIED, READ_RECEIPT_COUNT, UNIDENTIFIED
   };
 
-  private static final EarlyReceiptCache earlyDeliveryReceiptCache = new EarlyReceiptCache();
-  private static final EarlyReceiptCache earlyReadReceiptCache     = new EarlyReceiptCache();
+  private static final EarlyReceiptCache earlyDeliveryReceiptCache = new EarlyReceiptCache("SmsDelivery");
+  private static final EarlyReceiptCache earlyReadReceiptCache     = new EarlyReceiptCache("SmsRead");
 
   public SmsDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
     super(context, databaseHelper);
@@ -310,17 +311,17 @@ public class SmsDatabase extends MessagingDatabase {
     boolean        foundMessage = false;
 
     try {
-      cursor = database.query(TABLE_NAME, new String[] {ID, THREAD_ID, ADDRESS, TYPE},
+      cursor = database.query(TABLE_NAME, new String[] {ID, THREAD_ID, RECIPIENT_ID, TYPE},
                               DATE_SENT + " = ?", new String[] {String.valueOf(messageId.getTimetamp())},
                               null, null, null, null);
 
       while (cursor.moveToNext()) {
         if (Types.isOutgoingMessageType(cursor.getLong(cursor.getColumnIndexOrThrow(TYPE)))) {
-          Address theirAddress = messageId.getAddress();
-          Address ourAddress   = Address.fromSerialized(cursor.getString(cursor.getColumnIndexOrThrow(ADDRESS)));
-          String  columnName   = deliveryReceipt ? DELIVERY_RECEIPT_COUNT : READ_RECEIPT_COUNT;
+          RecipientId theirRecipientId = messageId.getRecipientId();
+          RecipientId outRecipientId   = RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(RECIPIENT_ID)));
+          String      columnName       = deliveryReceipt ? DELIVERY_RECEIPT_COUNT : READ_RECEIPT_COUNT;
 
-          if (ourAddress.equals(theirAddress)) {
+          if (outRecipientId.equals(theirRecipientId)) {
             long threadId = cursor.getLong(cursor.getColumnIndexOrThrow(THREAD_ID));
 
             database.execSQL("UPDATE " + TABLE_NAME +
@@ -336,8 +337,8 @@ public class SmsDatabase extends MessagingDatabase {
       }
 
       if (!foundMessage) {
-        if (deliveryReceipt) earlyDeliveryReceiptCache.increment(messageId.getTimetamp(), messageId.getAddress());
-        if (readReceipt)     earlyReadReceiptCache.increment(messageId.getTimetamp(), messageId.getAddress());
+        if (deliveryReceipt) earlyDeliveryReceiptCache.increment(messageId.getTimetamp(), messageId.getRecipientId());
+        if (readReceipt)     earlyReadReceiptCache.increment(messageId.getTimetamp(), messageId.getRecipientId());
       }
 
     } finally {
@@ -352,15 +353,15 @@ public class SmsDatabase extends MessagingDatabase {
     Cursor                 cursor   = null;
 
     try {
-      cursor = database.query(TABLE_NAME, new String[] {ID, THREAD_ID, ADDRESS, TYPE, EXPIRES_IN, EXPIRE_STARTED},
+      cursor = database.query(TABLE_NAME, new String[] {ID, THREAD_ID, RECIPIENT_ID, TYPE, EXPIRES_IN, EXPIRE_STARTED},
                               DATE_SENT + " = ?", new String[] {String.valueOf(messageId.getTimetamp())},
                               null, null, null, null);
 
       while (cursor.moveToNext()) {
-        Address theirAddress = messageId.getAddress();
-        Address ourAddress   = Address.fromSerialized(cursor.getString(cursor.getColumnIndexOrThrow(ADDRESS)));
+        RecipientId theirRecipientId = messageId.getRecipientId();
+        RecipientId outRecipientId   = RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(RECIPIENT_ID)));
 
-        if (ourAddress.equals(theirAddress)) {
+        if (outRecipientId.equals(theirRecipientId)) {
           long id            = cursor.getLong(cursor.getColumnIndexOrThrow(ID));
           long threadId      = cursor.getLong(cursor.getColumnIndexOrThrow(THREAD_ID));
           long expiresIn     = cursor.getLong(cursor.getColumnIndexOrThrow(EXPIRES_IN));
@@ -405,11 +406,11 @@ public class SmsDatabase extends MessagingDatabase {
 
     database.beginTransaction();
     try {
-      cursor = database.query(TABLE_NAME, new String[] {ID, ADDRESS, DATE_SENT, TYPE, EXPIRES_IN, EXPIRE_STARTED}, where, arguments, null, null, null);
+      cursor = database.query(TABLE_NAME, new String[] {ID, RECIPIENT_ID, DATE_SENT, TYPE, EXPIRES_IN, EXPIRE_STARTED}, where, arguments, null, null, null);
 
       while (cursor != null && cursor.moveToNext()) {
         if (Types.isSecureType(cursor.getLong(3))) {
-          SyncMessageId  syncMessageId  = new SyncMessageId(Address.fromSerialized(cursor.getString(1)), cursor.getLong(2));
+          SyncMessageId  syncMessageId  = new SyncMessageId(RecipientId.from(cursor.getLong(1)), cursor.getLong(2));
           ExpirationInfo expirationInfo = new ExpirationInfo(cursor.getLong(0), cursor.getLong(4), cursor.getLong(5), false);
 
           results.add(new MarkedMessageInfo(syncMessageId, expirationInfo));
@@ -461,7 +462,7 @@ public class SmsDatabase extends MessagingDatabase {
 
       ContentValues contentValues = new ContentValues();
       contentValues.put(TYPE, (record.getType() & ~Types.BASE_TYPE_MASK) | Types.BASE_INBOX_TYPE);
-      contentValues.put(ADDRESS, record.getIndividualRecipient().getAddress().serialize());
+      contentValues.put(RECIPIENT_ID, record.getIndividualRecipient().getId().serialize());
       contentValues.put(ADDRESS_DEVICE_ID, record.getRecipientDeviceId());
       contentValues.put(DATE_RECEIVED, System.currentTimeMillis());
       contentValues.put(DATE_SENT, record.getDateSent());
@@ -485,24 +486,24 @@ public class SmsDatabase extends MessagingDatabase {
     }
   }
 
-  public @NonNull Pair<Long, Long> insertReceivedCall(@NonNull Address address) {
+  public @NonNull Pair<Long, Long> insertReceivedCall(@NonNull RecipientId address) {
     return insertCallLog(address, Types.INCOMING_CALL_TYPE, false);
   }
 
-  public @NonNull Pair<Long, Long> insertOutgoingCall(@NonNull Address address) {
+  public @NonNull Pair<Long, Long> insertOutgoingCall(@NonNull RecipientId address) {
     return insertCallLog(address, Types.OUTGOING_CALL_TYPE, false);
   }
 
-  public @NonNull Pair<Long, Long> insertMissedCall(@NonNull Address address) {
+  public @NonNull Pair<Long, Long> insertMissedCall(@NonNull RecipientId address) {
     return insertCallLog(address, Types.MISSED_CALL_TYPE, true);
   }
 
-  private @NonNull Pair<Long, Long> insertCallLog(@NonNull Address address, long type, boolean unread) {
-    Recipient recipient = Recipient.from(context, address, true);
+  private @NonNull Pair<Long, Long> insertCallLog(@NonNull RecipientId recipientId, long type, boolean unread) {
+    Recipient recipient = Recipient.resolved(recipientId);
     long      threadId  = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
 
     ContentValues values = new ContentValues(6);
-    values.put(ADDRESS, address.serialize());
+    values.put(RECIPIENT_ID, recipientId.serialize());
     values.put(ADDRESS_DEVICE_ID,  1);
     values.put(DATE_RECEIVED, System.currentTimeMillis());
     values.put(DATE_SENT, System.currentTimeMillis());
@@ -547,14 +548,15 @@ public class SmsDatabase extends MessagingDatabase {
     if      (message.isIdentityVerified())    type |= Types.KEY_EXCHANGE_IDENTITY_VERIFIED_BIT;
     else if (message.isIdentityDefault())     type |= Types.KEY_EXCHANGE_IDENTITY_DEFAULT_BIT;
 
-    Recipient recipient = Recipient.from(context, message.getSender(), true);
+    Recipient recipient = Recipient.resolved(message.getSender());
 
     Recipient groupRecipient;
 
     if (message.getGroupId() == null) {
       groupRecipient = null;
     } else {
-      groupRecipient = Recipient.from(context, message.getGroupId(), true);
+      RecipientId id = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(message.getGroupId().serialize());
+      groupRecipient = Recipient.resolved(id);
     }
 
     boolean    unread     = (org.thoughtcrime.securesms.util.Util.isDefaultSmsProvider(context) ||
@@ -567,7 +569,7 @@ public class SmsDatabase extends MessagingDatabase {
     else                        threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient);
 
     ContentValues values = new ContentValues(6);
-    values.put(ADDRESS, message.getSender().serialize());
+    values.put(RECIPIENT_ID, message.getSender().serialize());
     values.put(ADDRESS_DEVICE_ID,  message.getSenderDeviceId());
     values.put(DATE_RECEIVED, System.currentTimeMillis());
     values.put(DATE_SENT, message.getSentTimestampMillis());
@@ -602,7 +604,7 @@ public class SmsDatabase extends MessagingDatabase {
       }
 
       if (message.getSubscriptionId() != -1) {
-        DatabaseFactory.getRecipientDatabase(context).setDefaultSubscriptionId(recipient, message.getSubscriptionId());
+        DatabaseFactory.getRecipientDatabase(context).setDefaultSubscriptionId(recipient.getId(), message.getSubscriptionId());
       }
 
       notifyConversationListeners(threadId);
@@ -632,12 +634,12 @@ public class SmsDatabase extends MessagingDatabase {
     if      (message.isIdentityVerified()) type |= Types.KEY_EXCHANGE_IDENTITY_VERIFIED_BIT;
     else if (message.isIdentityDefault())  type |= Types.KEY_EXCHANGE_IDENTITY_DEFAULT_BIT;
 
-    Address            address               = message.getRecipient().getAddress();
-    Map<Address, Long> earlyDeliveryReceipts = earlyDeliveryReceiptCache.remove(date);
-    Map<Address, Long> earlyReadReceipts     = earlyReadReceiptCache.remove(date);
+    RecipientId            recipientId           = message.getRecipient().getId();
+    Map<RecipientId, Long> earlyDeliveryReceipts = earlyDeliveryReceiptCache.remove(date);
+    Map<RecipientId, Long> earlyReadReceipts     = earlyReadReceiptCache.remove(date);
 
     ContentValues contentValues = new ContentValues(6);
-    contentValues.put(ADDRESS, address.serialize());
+    contentValues.put(RECIPIENT_ID, recipientId.serialize());
     contentValues.put(THREAD_ID, threadId);
     contentValues.put(BODY, message.getMessageBody());
     contentValues.put(DATE_RECEIVED, System.currentTimeMillis());
@@ -650,7 +652,7 @@ public class SmsDatabase extends MessagingDatabase {
     contentValues.put(READ_RECEIPT_COUNT, Stream.of(earlyReadReceipts.values()).mapToLong(Long::longValue).sum());
 
     SQLiteDatabase db        = databaseHelper.getWritableDatabase();
-    long           messageId = db.insert(TABLE_NAME, ADDRESS, contentValues);
+    long           messageId = db.insert(TABLE_NAME, null, contentValues);
 
     if (insertListener != null) {
       insertListener.onComplete();
@@ -724,7 +726,7 @@ public class SmsDatabase extends MessagingDatabase {
 
   private boolean isDuplicate(IncomingTextMessage message, long threadId) {
     SQLiteDatabase database = databaseHelper.getReadableDatabase();
-    Cursor         cursor   = database.query(TABLE_NAME, null, DATE_SENT + " = ? AND " + ADDRESS + " = ? AND " + THREAD_ID + " = ?",
+    Cursor         cursor   = database.query(TABLE_NAME, null, DATE_SENT + " = ? AND " + RECIPIENT_ID + " = ? AND " + THREAD_ID + " = ?",
                                              new String[]{String.valueOf(message.getSentTimestampMillis()), message.getSender().serialize(), String.valueOf(threadId)},
                                              null, null, null, "1");
 
@@ -783,19 +785,19 @@ public class SmsDatabase extends MessagingDatabase {
   }
 
   /*package*/ SQLiteStatement createInsertStatement(SQLiteDatabase database) {
-    return database.compileStatement("INSERT INTO " + TABLE_NAME + " (" + ADDRESS + ", " +
-                                                                      PERSON + ", " +
-                                                                      DATE_SENT + ", " +
-                                                                      DATE_RECEIVED  + ", " +
-                                                                      PROTOCOL + ", " +
-                                                                      READ + ", " +
-                                                                      STATUS + ", " +
-                                                                      TYPE + ", " +
-                                                                      REPLY_PATH_PRESENT + ", " +
-                                                                      SUBJECT + ", " +
-                                                                      BODY + ", " +
-                                                                      SERVICE_CENTER +
-                                                                      ", " + THREAD_ID + ") " +
+    return database.compileStatement("INSERT INTO " + TABLE_NAME + " (" + RECIPIENT_ID + ", " +
+                                                                          PERSON + ", " +
+                                                                          DATE_SENT + ", " +
+                                                                          DATE_RECEIVED  + ", " +
+                                                                          PROTOCOL + ", " +
+                                                                          READ + ", " +
+                                                                          STATUS + ", " +
+                                                                          TYPE + ", " +
+                                                                          REPLY_PATH_PRESENT + ", " +
+                                                                          SUBJECT + ", " +
+                                                                          BODY + ", " +
+                                                                          SERVICE_CENTER +
+                                                                          ", " + THREAD_ID + ") " +
                                      " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
   }
 
@@ -859,7 +861,7 @@ public class SmsDatabase extends MessagingDatabase {
 
     public SmsMessageRecord getCurrent() {
       long    messageId            = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.ID));
-      Address address              = Address.fromSerialized(cursor.getString(cursor.getColumnIndexOrThrow(SmsDatabase.ADDRESS)));
+      long    recipientId          = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.RECIPIENT_ID));
       int     addressDeviceId      = cursor.getInt(cursor.getColumnIndexOrThrow(SmsDatabase.ADDRESS_DEVICE_ID));
       long    type                 = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.TYPE));
       long    dateReceived         = cursor.getLong(cursor.getColumnIndexOrThrow(SmsDatabase.NORMALIZED_DATE_RECEIVED));
@@ -880,7 +882,7 @@ public class SmsDatabase extends MessagingDatabase {
       }
 
       List<IdentityKeyMismatch> mismatches = getMismatches(mismatchDocument);
-      Recipient                 recipient  = Recipient.from(context, address, true);
+      Recipient                 recipient  = Recipient.live(RecipientId.from(recipientId)).get();
 
       return new SmsMessageRecord(messageId, body, recipient,
                                   recipient,

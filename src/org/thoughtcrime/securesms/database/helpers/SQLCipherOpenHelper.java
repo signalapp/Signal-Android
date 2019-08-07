@@ -7,6 +7,8 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.SystemClock;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import android.text.TextUtils;
 
 import net.sqlcipher.database.SQLiteDatabase;
@@ -36,8 +38,13 @@ import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.jobs.RefreshPreKeysJob;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
+import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.service.KeyCachingService;
+import org.thoughtcrime.securesms.util.DelimiterUtil;
+import org.thoughtcrime.securesms.util.GroupUtil;
+import org.thoughtcrime.securesms.phonenumbers.NumberUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.Util;
 
 import java.io.File;
 
@@ -68,8 +75,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int STICKERS                         = 21;
   private static final int REVEALABLE_MESSAGES              = 22;
   private static final int VIEW_ONCE_ONLY                   = 23;
+  private static final int RECIPIENT_IDS                    = 24;
 
-  private static final int    DATABASE_VERSION = 23;
+  private static final int    DATABASE_VERSION = 25;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -287,18 +295,18 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
         try (Cursor cursor = db.rawQuery("SELECT recipient_ids, system_display_name, signal_profile_name, notification, vibrate FROM recipient_preferences WHERE notification NOT NULL OR vibrate != 0", null)) {
           while (cursor != null && cursor.moveToNext()) {
-            String  addressString   = cursor.getString(cursor.getColumnIndexOrThrow("recipient_ids"));
-            Address address         = Address.fromExternal(context, addressString);
+            String  rawAddress      = cursor.getString(cursor.getColumnIndexOrThrow("recipient_ids"));
+            String  address         = PhoneNumberFormatter.get(context).format(rawAddress);
             String  systemName      = cursor.getString(cursor.getColumnIndexOrThrow("system_display_name"));
             String  profileName     = cursor.getString(cursor.getColumnIndexOrThrow("signal_profile_name"));
             String  messageSound    = cursor.getString(cursor.getColumnIndexOrThrow("notification"));
             Uri     messageSoundUri = messageSound != null ? Uri.parse(messageSound) : null;
             int     vibrateState    = cursor.getInt(cursor.getColumnIndexOrThrow("vibrate"));
-            String  displayName     = NotificationChannels.getChannelDisplayNameFor(context, systemName, profileName, address);
+            String  displayName     = NotificationChannels.getChannelDisplayNameFor(context, systemName, profileName, Address.fromSerialized(address));
             boolean vibrateEnabled  = vibrateState == 0 ? TextSecurePreferences.isNotificationVibrateEnabled(context) : vibrateState == 1;
 
-            if (address.isGroup()) {
-              try(Cursor groupCursor = db.rawQuery("SELECT title FROM groups WHERE group_id = ?", new String[] { address.toGroupString() })) {
+            if (GroupUtil.isEncodedGroup(address)) {
+              try(Cursor groupCursor = db.rawQuery("SELECT title FROM groups WHERE group_id = ?", new String[] { address })) {
                 if (groupCursor != null && groupCursor.moveToFirst()) {
                   String title = groupCursor.getString(groupCursor.getColumnIndexOrThrow("title"));
 
@@ -309,11 +317,11 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
               }
             }
 
-            String channelId = NotificationChannels.createChannelFor(context, address, displayName, messageSoundUri, vibrateEnabled);
+            String channelId = NotificationChannels.createChannelFor(context, Address.fromSerialized(address), displayName, messageSoundUri, vibrateEnabled);
 
             ContentValues values = new ContentValues(1);
             values.put("notification_channel", channelId);
-            db.update("recipient_preferences", values, "recipient_ids = ?", new String[] { addressString });
+            db.update("recipient_preferences", values, "recipient_ids = ?", new String[] { rawAddress });
           }
         }
       }
@@ -476,6 +484,10 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
       if (oldVersion < VIEW_ONCE_ONLY) {
         db.execSQL("UPDATE mms SET reveal_duration = 1 WHERE reveal_duration > 0");
         db.execSQL("UPDATE mms SET reveal_start_time = 0");
+      }
+
+      if (oldVersion < RECIPIENT_IDS) {
+        RecipientIdMigrationHelper.execute(db);
       }
 
       db.setTransactionSuccessful();

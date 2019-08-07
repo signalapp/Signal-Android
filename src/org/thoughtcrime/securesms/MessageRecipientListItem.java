@@ -25,6 +25,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
 import org.thoughtcrime.securesms.MessageDetailsRecipientAdapter.RecipientDeliveryStatus;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.components.DeliveryStatusView;
@@ -34,9 +36,8 @@ import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
+import org.thoughtcrime.securesms.recipients.RecipientForeverObserver;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
 
 /**
  * A simple view to show the recipients of a message
@@ -44,7 +45,7 @@ import org.thoughtcrime.securesms.util.Util;
  * @author Jake McGinty
  */
 public class MessageRecipientListItem extends RelativeLayout
-    implements RecipientModifiedListener
+    implements RecipientForeverObserver
 {
   @SuppressWarnings("unused")
   private final static String TAG = MessageRecipientListItem.class.getSimpleName();
@@ -84,10 +85,12 @@ public class MessageRecipientListItem extends RelativeLayout
                   final RecipientDeliveryStatus member,
                   final boolean isPushGroup)
   {
+    if (this.member != null) this.member.getRecipient().live().removeForeverObserver(this);
+
     this.glideRequests = glideRequests;
     this.member        = member;
 
-    member.getRecipient().addListener(this);
+    member.getRecipient().live().observeForever(this);
     fromView.setText(member.getRecipient());
     contactPhotoImage.setAvatar(glideRequests, member.getRecipient(), false);
     setIssueIndicators(record, isPushGroup);
@@ -138,7 +141,7 @@ public class MessageRecipientListItem extends RelativeLayout
   private NetworkFailure getNetworkFailure(final MessageRecord record) {
     if (record.hasNetworkFailures()) {
       for (final NetworkFailure failure : record.getNetworkFailures()) {
-        if (failure.getAddress().equals(member.getRecipient().getAddress())) {
+        if (failure.getRecipientId(getContext()).equals(member.getRecipient().getId())) {
           return failure;
         }
       }
@@ -149,7 +152,7 @@ public class MessageRecipientListItem extends RelativeLayout
   private IdentityKeyMismatch getKeyMismatch(final MessageRecord record) {
     if (record.isIdentityMismatchFailure()) {
       for (final IdentityKeyMismatch mismatch : record.getIdentityKeyMismatches()) {
-        if (mismatch.getAddress().equals(member.getRecipient().getAddress())) {
+        if (mismatch.getRecipientId(getContext()).equals(member.getRecipient().getId())) {
           return mismatch;
         }
       }
@@ -158,14 +161,12 @@ public class MessageRecipientListItem extends RelativeLayout
   }
 
   public void unbind() {
-    if (this.member != null && this.member.getRecipient() != null) this.member.getRecipient().removeListener(this);
+    if (this.member != null && this.member.getRecipient() != null) this.member.getRecipient().live().removeForeverObserver(this);
   }
 
   @Override
-  public void onModified(final Recipient recipient) {
-    Util.runOnMain(() -> {
-      fromView.setText(recipient);
-      contactPhotoImage.setAvatar(glideRequests, recipient, false);
-    });
+  public void onRecipientChanged(@NonNull Recipient recipient) {
+    fromView.setText(recipient);
+    contactPhotoImage.setAvatar(glideRequests, recipient, false);
   }
 }

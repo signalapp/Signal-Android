@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.gcm.MessageRetriever;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.push.SecurityEventListener;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
+import org.thoughtcrime.securesms.recipients.LiveRecipientCache;
 import org.thoughtcrime.securesms.service.IncomingMessageObserver;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -83,6 +84,12 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
   @Override
   public @NonNull MessageRetriever provideMessageRetriever() {
     return new MessageRetriever();
+  }
+
+  @Override
+  public @NonNull
+  LiveRecipientCache provideRecipientCache() {
+    return new LiveRecipientCache(context);
   }
 
   private static class DynamicCredentialsProvider implements CredentialsProvider {

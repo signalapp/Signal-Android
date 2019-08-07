@@ -27,13 +27,13 @@ import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
+import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
-import org.thoughtcrime.securesms.util.Util;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -43,7 +43,7 @@ import java.util.Map;
 
 import static org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.*;
 
-public class SharedContactDetailsActivity extends PassphraseRequiredActionBarActivity implements RecipientModifiedListener {
+public class SharedContactDetailsActivity extends PassphraseRequiredActionBarActivity {
 
   private static final int    CODE_ADD_EDIT_CONTACT = 2323;
   private static final String KEY_CONTACT           = "contact";
@@ -64,7 +64,7 @@ public class SharedContactDetailsActivity extends PassphraseRequiredActionBarAct
   private final DynamicTheme    dynamicTheme    = new DynamicNoActionBarTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
-  private final Map<String, Recipient> activeRecipients = new HashMap<>();
+  private final Map<RecipientId, LiveRecipient> activeRecipients = new HashMap<>();
 
   public static Intent getIntent(@NonNull Context context, @NonNull Contact contact) {
     Intent intent = new Intent(context, SharedContactDetailsActivity.class);
@@ -97,6 +97,10 @@ public class SharedContactDetailsActivity extends PassphraseRequiredActionBarAct
     presentContact(contact);
     presentActionButtons(ContactUtil.getRecipients(this, contact));
     presentAvatar(contact.getAvatarAttachment() != null ? contact.getAvatarAttachment().getDataUri() : null);
+
+    for (LiveRecipient recipient : activeRecipients.values()) {
+      recipient.observe(this, r -> presentActionButtons(Collections.singletonList(r.getId())));
+    }
   }
 
   @Override
@@ -144,11 +148,6 @@ public class SharedContactDetailsActivity extends PassphraseRequiredActionBarAct
     glideRequests = GlideApp.with(this);
   }
 
-  @Override
-  public void onModified(Recipient recipient) {
-    Util.runOnMain(() -> presentActionButtons(Collections.singletonList(recipient)));
-  }
-
   @SuppressLint("StaticFieldLeak")
   private void presentContact(@Nullable Contact contact) {
     this.contact = contact;
@@ -193,21 +192,19 @@ public class SharedContactDetailsActivity extends PassphraseRequiredActionBarAct
     }
   }
 
-  private void presentActionButtons(@NonNull List<Recipient> recipients) {
-    for (Recipient recipient : recipients) {
-      activeRecipients.put(recipient.getAddress().serialize(), recipient);
+  private void presentActionButtons(@NonNull List<RecipientId> recipients) {
+    for (RecipientId recipientId : recipients) {
+      activeRecipients.put(recipientId, Recipient.live(recipientId));
     }
 
     List<Recipient> pushUsers   = new ArrayList<>(recipients.size());
     List<Recipient> systemUsers = new ArrayList<>(recipients.size());
 
-    for (Recipient recipient : activeRecipients.values()) {
-      recipient.addListener(this);
-
-      if (recipient.getRegistered() == RecipientDatabase.RegisteredState.REGISTERED) {
-        pushUsers.add(recipient);
-      } else if (recipient.isSystemContact()) {
-        systemUsers.add(recipient);
+    for (LiveRecipient recipient : activeRecipients.values()) {
+      if (recipient.get().getRegistered() == RecipientDatabase.RegisteredState.REGISTERED) {
+        pushUsers.add(recipient.get());
+      } else if (recipient.get().isSystemContact()) {
+        systemUsers.add(recipient.get());
       }
     }
 
@@ -230,7 +227,7 @@ public class SharedContactDetailsActivity extends PassphraseRequiredActionBarAct
 
       inviteButtonView.setOnClickListener(v -> {
         ContactUtil.selectRecipientThroughDialog(this, systemUsers, dynamicLanguage.getCurrentLocale(), recipient -> {
-          CommunicationActions.composeSmsThroughDefaultApp(this, recipient.getAddress(), getString(R.string.InviteActivity_lets_switch_to_signal, getString(R.string.install_url)));
+          CommunicationActions.composeSmsThroughDefaultApp(this, recipient.requireAddress(), getString(R.string.InviteActivity_lets_switch_to_signal, getString(R.string.install_url)));
         });
       });
     } else {

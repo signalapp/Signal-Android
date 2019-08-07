@@ -46,7 +46,7 @@ public class UnknownSenderView extends FrameLayout {
           new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... params) {
-              DatabaseFactory.getRecipientDatabase(context).setBlocked(recipient, true);
+              DatabaseFactory.getRecipientDatabase(context).setBlocked(recipient.getId(), true);
               if (threadId != -1) DatabaseFactory.getThreadDatabase(context).setHasSent(threadId, true);
               return null;
             }
@@ -72,7 +72,7 @@ public class UnknownSenderView extends FrameLayout {
           new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(Void... params) {
-              DatabaseFactory.getRecipientDatabase(context).setProfileSharing(recipient, true);
+              DatabaseFactory.getRecipientDatabase(context).setProfileSharing(recipient.getId(), true);
               if (threadId != -1) DatabaseFactory.getThreadDatabase(context).setHasSent(threadId, true);
               return null;
             }

@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms.util;
+package org.thoughtcrime.securesms.phonenumbers;
 
 import android.telephony.PhoneNumberUtils;
 
@@ -33,26 +33,4 @@ public class NumberUtil {
   public static boolean isValidSmsOrEmail(String number) {
     return PhoneNumberUtils.isWellFormedSmsAddress(number) || isValidEmail(number);
   }
-
-//  public static boolean isValidSmsOrEmailOrGroup(String number) {
-//    return PhoneNumberUtils.isWellFormedSmsAddress(number) ||
-//        isValidEmail(number) ||
-//        GroupUtil.isEncodedGroup(number);
-//  }
-//
-//  public static String filterNumber(String number) {
-//    if (number == null) return null;
-//
-//    int length            = number.length();
-//    StringBuilder builder = new StringBuilder(length);
-//
-//    for (int i = 0; i < length; i++) {
-//      char character = number.charAt(i);
-//
-//      if (Character.isDigit(character) || character == '+')
-//        builder.append(character);
-//    }
-//
-//    return builder.toString();
-//  }
 }

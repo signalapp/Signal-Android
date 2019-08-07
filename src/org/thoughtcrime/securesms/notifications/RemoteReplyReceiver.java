@@ -25,11 +25,11 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import androidx.core.app.RemoteInput;
 
-import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
@@ -43,10 +43,10 @@ import java.util.List;
  */
 public class RemoteReplyReceiver extends BroadcastReceiver {
 
-  public static final String TAG           = RemoteReplyReceiver.class.getSimpleName();
-  public static final String REPLY_ACTION  = "org.thoughtcrime.securesms.notifications.WEAR_REPLY";
-  public static final String ADDRESS_EXTRA = "address";
-  public static final String REPLY_METHOD  = "reply_method";
+  public static final String TAG             = RemoteReplyReceiver.class.getSimpleName();
+  public static final String REPLY_ACTION    = "org.thoughtcrime.securesms.notifications.WEAR_REPLY";
+  public static final String RECIPIENT_EXTRA = "recipient_extra";
+  public static final String REPLY_METHOD    = "reply_method";
 
   @SuppressLint("StaticFieldLeak")
   @Override
@@ -57,11 +57,11 @@ public class RemoteReplyReceiver extends BroadcastReceiver {
 
     if (remoteInput == null) return;
 
-    final Address      address      = intent.getParcelableExtra(ADDRESS_EXTRA);
+    final RecipientId  recipientId  = intent.getParcelableExtra(RECIPIENT_EXTRA);
     final ReplyMethod  replyMethod  = (ReplyMethod) intent.getSerializableExtra(REPLY_METHOD);
     final CharSequence responseText = remoteInput.getCharSequence(MessageNotifier.EXTRA_REMOTE_REPLY);
 
-    if (address     == null) throw new AssertionError("No address specified");
+    if (recipientId == null) throw new AssertionError("No recipientId specified");
     if (replyMethod == null) throw new AssertionError("No reply method specified");
 
     if (responseText != null) {
@@ -70,9 +70,9 @@ public class RemoteReplyReceiver extends BroadcastReceiver {
         protected Void doInBackground(Void... params) {
           long threadId;
 
-          Recipient recipient = Recipient.from(context, address, false);
-          int  subscriptionId = recipient.getDefaultSubscriptionId().or(-1);
-          long expiresIn      = recipient.getExpireMessages() * 1000L;
+          Recipient recipient      = Recipient.resolved(recipientId);
+          int       subscriptionId = recipient.getDefaultSubscriptionId().or(-1);
+          long      expiresIn      = recipient.getExpireMessages() * 1000L;
 
           switch (replyMethod) {
             case GroupMessage: {

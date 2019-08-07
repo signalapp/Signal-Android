@@ -51,7 +51,6 @@ import android.widget.Toast;
 
 import com.codewaves.stickyheadergrid.StickyHeaderGridLayoutManager;
 
-import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
 import org.thoughtcrime.securesms.database.MediaDatabase;
 import org.thoughtcrime.securesms.database.loaders.BucketedThreadMediaLoader;
@@ -59,14 +58,15 @@ import org.thoughtcrime.securesms.database.loaders.BucketedThreadMediaLoader.Buc
 import org.thoughtcrime.securesms.database.loaders.ThreadMediaLoader;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.permissions.Permissions;
+import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.AttachmentUtil;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
-import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 
@@ -83,15 +83,15 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity {
   @SuppressWarnings("unused")
   private final static String TAG = MediaOverviewActivity.class.getSimpleName();
 
-  public static final String ADDRESS_EXTRA   = "address";
+  public static final String RECIPIENT_EXTRA = "recipient_id";
 
   private final DynamicTheme    dynamicTheme    = new DynamicNoActionBarTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
-  private Toolbar      toolbar;
-  private TabLayout    tabLayout;
-  private ViewPager    viewPager;
-  private Recipient    recipient;
+  private Toolbar       toolbar;
+  private TabLayout     tabLayout;
+  private ViewPager     viewPager;
+  private LiveRecipient recipient;
 
   @Override
   protected void onPreCreate() {
@@ -129,21 +129,19 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity {
   }
 
   private void initializeResources() {
-    Address address = getIntent().getParcelableExtra(ADDRESS_EXTRA);
+    RecipientId recipientId = getIntent().getParcelableExtra(RECIPIENT_EXTRA);
 
     this.viewPager = ViewUtil.findById(this, R.id.pager);
     this.toolbar   = ViewUtil.findById(this, R.id.toolbar);
     this.tabLayout = ViewUtil.findById(this, R.id.tab_layout);
-    this.recipient = Recipient.from(this, address, true);
+    this.recipient = Recipient.live(recipientId);
   }
 
   private void initializeToolbar() {
     setSupportActionBar(this.toolbar);
-    getSupportActionBar().setTitle(recipient.toShortString());
+    getSupportActionBar().setTitle(recipient.get().toShortString());
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    this.recipient.addListener(recipient -> {
-      Util.runOnMain(() -> getSupportActionBar().setTitle(recipient.toShortString()));
-    });
+    this.recipient.observe(this, recipient -> getSupportActionBar().setTitle(recipient.toShortString()));
   }
 
   public void onEnterMultiSelect() {
@@ -171,7 +169,7 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity {
       else                    throw new AssertionError();
 
       Bundle args = new Bundle();
-      args.putString(MediaOverviewGalleryFragment.ADDRESS_EXTRA, recipient.getAddress().serialize());
+      args.putParcelable(MediaOverviewGalleryFragment.RECIPIENT_EXTRA, recipient.getId());
       args.putSerializable(MediaOverviewGalleryFragment.LOCALE_EXTRA, dynamicLanguage.getCurrentLocale());
 
       fragment.setArguments(args);
@@ -194,8 +192,8 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity {
 
   public static abstract class MediaOverviewFragment<T> extends Fragment implements LoaderManager.LoaderCallbacks<T> {
 
-    public static final String ADDRESS_EXTRA = "address";
-    public static final String LOCALE_EXTRA  = "locale_extra";
+    public static final String RECIPIENT_EXTRA = "recipient_id";
+    public static final String LOCALE_EXTRA    = "locale_extra";
 
     protected TextView     noMedia;
     protected Recipient    recipient;
@@ -206,13 +204,13 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity {
     public void onCreate(Bundle bundle) {
       super.onCreate(bundle);
 
-      String       address      = getArguments().getString(ADDRESS_EXTRA);
-      Locale       locale       = (Locale)getArguments().getSerializable(LOCALE_EXTRA);
+      RecipientId recipientId  = getArguments().getParcelable(RECIPIENT_EXTRA);
+      Locale      locale       = (Locale)getArguments().getSerializable(LOCALE_EXTRA);
 
-      if (address == null)      throw new AssertionError();
+      if (recipientId == null)  throw new AssertionError();
       if (locale == null)       throw new AssertionError();
 
-      this.recipient    = Recipient.from(getContext(), Address.fromSerialized(address), true);
+      this.recipient    = Recipient.live(recipientId).get();
       this.locale       = locale;
 
       getLoaderManager().initLoader(0, null, this);
@@ -258,7 +256,7 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity {
 
     @Override
     public @NonNull Loader<BucketedThreadMedia> onCreateLoader(int i, Bundle bundle) {
-      return new BucketedThreadMediaLoader(getContext(), recipient.getAddress());
+      return new BucketedThreadMediaLoader(getContext(), recipient.getId());
     }
 
     @Override
@@ -308,7 +306,7 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity {
       Intent intent = new Intent(context, MediaPreviewActivity.class);
       intent.putExtra(MediaPreviewActivity.DATE_EXTRA, mediaRecord.getDate());
       intent.putExtra(MediaPreviewActivity.SIZE_EXTRA, mediaRecord.getAttachment().getSize());
-      intent.putExtra(MediaPreviewActivity.ADDRESS_EXTRA, recipient.getAddress());
+      intent.putExtra(MediaPreviewActivity.RECIPIENT_EXTRA, recipient.getId());
       intent.putExtra(MediaPreviewActivity.OUTGOING_EXTRA, mediaRecord.isOutgoing());
       intent.putExtra(MediaPreviewActivity.LEFT_IS_RECENT_EXTRA, true);
 
@@ -497,13 +495,13 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity {
 
     @Override
     public @NonNull Loader<Cursor> onCreateLoader(int id, Bundle args) {
-      return new ThreadMediaLoader(getContext(), recipient.getAddress(), false);
+      return new ThreadMediaLoader(requireContext(), recipient.getId(), false);
     }
 
     @Override
     public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
       ((CursorRecyclerViewAdapter)this.recyclerView.getAdapter()).changeCursor(data);
-      getActivity().invalidateOptionsMenu();
+      requireActivity().invalidateOptionsMenu();
 
       this.noMedia.setVisibility(data.getCount() > 0 ? View.GONE : View.VISIBLE);
     }

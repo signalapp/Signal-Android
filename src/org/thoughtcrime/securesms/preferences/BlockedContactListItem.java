@@ -9,16 +9,17 @@ import android.widget.TextView;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.mms.GlideRequests;
+import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
+import org.thoughtcrime.securesms.recipients.RecipientForeverObserver;
 import org.thoughtcrime.securesms.util.Util;
 
-public class BlockedContactListItem extends RelativeLayout implements RecipientModifiedListener {
+public class BlockedContactListItem extends RelativeLayout implements RecipientForeverObserver {
 
   private AvatarImageView contactPhotoImage;
   private TextView        nameView;
   private GlideRequests   glideRequests;
-  private Recipient       recipient;
+  private LiveRecipient   recipient;
 
   public BlockedContactListItem(Context context) {
     super(context);
@@ -39,26 +40,33 @@ public class BlockedContactListItem extends RelativeLayout implements RecipientM
     this.nameView          = findViewById(R.id.name);
   }
 
-  public void set(@NonNull GlideRequests glideRequests, @NonNull Recipient recipients) {
-    this.glideRequests = glideRequests;
-    this.recipient     = recipients;
+  @Override
+  protected void onDetachedFromWindow() {
+    super.onDetachedFromWindow();
+    if (this.recipient != null) {
+      recipient.removeForeverObserver(this);
+    }
+  }
 
-    onModified(recipients);
-    recipients.addListener(this);
+  public void set(@NonNull GlideRequests glideRequests, @NonNull LiveRecipient recipient) {
+    this.glideRequests = glideRequests;
+    this.recipient     = recipient;
+
+    onRecipientChanged(recipient.get());
+
+    this.recipient.observeForever(this);
   }
 
   @Override
-  public void onModified(final Recipient recipients) {
+  public void onRecipientChanged(@NonNull Recipient recipient) {
     final AvatarImageView contactPhotoImage = this.contactPhotoImage;
     final TextView        nameView          = this.nameView;
 
-    Util.runOnMain(() -> {
-      contactPhotoImage.setAvatar(glideRequests, recipients, false);
-      nameView.setText(recipients.toShortString());
-    });
+    contactPhotoImage.setAvatar(glideRequests, recipient, false);
+    nameView.setText(recipient.toShortString());
   }
 
   public Recipient getRecipient() {
-    return recipient;
+    return recipient.get();
   }
 }

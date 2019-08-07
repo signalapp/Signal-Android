@@ -124,7 +124,7 @@ public class NotificationState {
     Intent intent = new Intent(RemoteReplyReceiver.REPLY_ACTION);
     intent.setClass(context, RemoteReplyReceiver.class);
     intent.setData((Uri.parse("custom://"+System.currentTimeMillis())));
-    intent.putExtra(RemoteReplyReceiver.ADDRESS_EXTRA, recipient.getAddress());
+    intent.putExtra(RemoteReplyReceiver.RECIPIENT_EXTRA, recipient.getId());
     intent.putExtra(RemoteReplyReceiver.REPLY_METHOD, replyMethod);
     intent.setPackage(context.getPackageName());
 
@@ -138,7 +138,7 @@ public class NotificationState {
     intent.addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
     intent.setClass(context, AndroidAutoReplyReceiver.class);
     intent.setData((Uri.parse("custom://"+System.currentTimeMillis())));
-    intent.putExtra(AndroidAutoReplyReceiver.ADDRESS_EXTRA, recipient.getAddress());
+    intent.putExtra(AndroidAutoReplyReceiver.RECIPIENT_EXTRA, recipient.getId());
     intent.putExtra(AndroidAutoReplyReceiver.THREAD_ID_EXTRA, (long)threads.toArray()[0]);
     intent.setPackage(context.getPackageName());
 
@@ -168,7 +168,7 @@ public class NotificationState {
     if (threads.size() != 1) throw new AssertionError("We only support replies to single thread notifications! " + threads.size());
 
     Intent     intent           = new Intent(context, ConversationPopupActivity.class);
-    intent.putExtra(ConversationActivity.ADDRESS_EXTRA, recipient.getAddress());
+    intent.putExtra(ConversationActivity.RECIPIENT_EXTRA, recipient.getId());
     intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, (long)threads.toArray()[0]);
     intent.setData((Uri.parse("custom://"+System.currentTimeMillis())));
 

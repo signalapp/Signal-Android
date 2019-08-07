@@ -75,11 +75,10 @@ public class IncomingMessageProcessor {
 
     public void processEnvelope(@NonNull SignalServiceEnvelope envelope) {
       if (envelope.hasSource()) {
-        Address   source    = Address.fromExternal(context, envelope.getSource());
-        Recipient recipient = Recipient.from(context, source, false);
+        Recipient recipient = Recipient.external(context, envelope.getSource());
 
         if (!isActiveNumber(recipient)) {
-          recipientDatabase.setRegistered(recipient, RecipientDatabase.RegisteredState.REGISTERED);
+          recipientDatabase.setRegistered(recipient.getId(), RecipientDatabase.RegisteredState.REGISTERED);
           jobManager.add(new DirectoryRefreshJob(recipient, false));
         }
       }
@@ -101,9 +100,8 @@ public class IncomingMessageProcessor {
 
     private void processReceipt(@NonNull SignalServiceEnvelope envelope) {
       Log.i(TAG, String.format(Locale.ENGLISH, "Received receipt: (XXXXX, %d)", envelope.getTimestamp()));
-      mmsSmsDatabase.incrementDeliveryReceiptCount(new SyncMessageId(Address.fromExternal(context, envelope.getSource()),
-              envelope.getTimestamp()),
-          System.currentTimeMillis());
+      mmsSmsDatabase.incrementDeliveryReceiptCount(new SyncMessageId(Recipient.external(context, envelope.getSource()).getId(), envelope.getTimestamp()),
+                                                   System.currentTimeMillis());
     }
 
     private boolean isActiveNumber(@NonNull Recipient recipient) {

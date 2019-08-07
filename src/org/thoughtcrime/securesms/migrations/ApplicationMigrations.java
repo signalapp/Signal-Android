@@ -38,7 +38,8 @@ public class ApplicationMigrations {
   private static final MutableLiveData<Boolean> UI_BLOCKING_MIGRATION_RUNNING = new MutableLiveData<>();
 
   private static final class Version {
-    static final int LEGACY = 455;
+    static final int LEGACY       = 455;
+    static final int RECIPIENT_ID = 525; // TODO [greyson] USE PROPER APPLICATION VERSION
   }
 
   /**
@@ -126,6 +127,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.LEGACY) {
       jobs.add(new LegacyMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.RECIPIENT_ID) {
+      jobs.add(new DatabaseMigrationJob());
     }
 
     return jobs;

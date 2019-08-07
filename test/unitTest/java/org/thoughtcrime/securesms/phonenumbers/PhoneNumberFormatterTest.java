@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.database;
+package org.thoughtcrime.securesms.phonenumbers;
 
 
 import org.junit.Before;
@@ -6,32 +6,32 @@ import org.junit.Test;
 
 import static junit.framework.Assert.assertEquals;
 
-public class AddressTest {
+public class PhoneNumberFormatterTest {
 
   @Before
   public void setup() {}
 
   @Test
   public void testAddressString() throws Exception {
-    Address.ExternalAddressFormatter formatter = new Address.ExternalAddressFormatter("+14152222222");
+    PhoneNumberFormatter formatter = new PhoneNumberFormatter("+14152222222");
     assertEquals(formatter.format("bonbon"), "bonbon");
   }
 
   @Test
   public void testAddressShortCode() throws Exception {
-    Address.ExternalAddressFormatter formatter = new Address.ExternalAddressFormatter("+14152222222");
+    PhoneNumberFormatter formatter = new PhoneNumberFormatter("+14152222222");
     assertEquals(formatter.format("40404"), "40404");
   }
 
   @Test
   public void testEmailAddress() throws Exception {
-    Address.ExternalAddressFormatter formatter = new Address.ExternalAddressFormatter("+14152222222");
+    PhoneNumberFormatter formatter = new PhoneNumberFormatter("+14152222222");
     assertEquals(formatter.format("junk@junk.net"), "junk@junk.net");
   }
 
   @Test
   public void testNumberArbitrary() throws Exception {
-    Address.ExternalAddressFormatter formatter = new Address.ExternalAddressFormatter("+14152222222");
+    PhoneNumberFormatter formatter = new PhoneNumberFormatter("+14152222222");
     assertEquals(formatter.format("(415) 111-1122"), "+14151111122");
     assertEquals(formatter.format("(415) 111 1123"), "+14151111123");
     assertEquals(formatter.format("415-111-1124"), "+14151111124");
@@ -42,13 +42,13 @@ public class AddressTest {
     assertEquals(formatter.format("911"), "911");
     assertEquals(formatter.format("+456-7890"), "+4567890");
 
-    formatter = new Address.ExternalAddressFormatter("+442079460010");
+    formatter = new PhoneNumberFormatter("+442079460010");
     assertEquals(formatter.format("(020) 7946 0018"), "+442079460018");
   }
 
   @Test
   public void testUsNumbers() {
-    Address.ExternalAddressFormatter formatter = new Address.ExternalAddressFormatter("+16105880522");
+    PhoneNumberFormatter formatter = new PhoneNumberFormatter("+16105880522");
 
     assertEquals("+551234567890", formatter.format("+551234567890"));
     assertEquals("+11234567890", formatter.format("(123) 456-7890"));
@@ -62,7 +62,7 @@ public class AddressTest {
 
   @Test
   public void testBrNumbers() {
-    Address.ExternalAddressFormatter formatter = new Address.ExternalAddressFormatter("+5521912345678");
+    PhoneNumberFormatter formatter = new PhoneNumberFormatter("+5521912345678");
 
     assertEquals("+16105880522", formatter.format("+16105880522"));
     assertEquals("+552187654321", formatter.format("8765 4321"));
@@ -80,13 +80,13 @@ public class AddressTest {
 
   @Test
   public void testGroup() throws Exception {
-    Address.ExternalAddressFormatter formatter = new Address.ExternalAddressFormatter("+14152222222");
+    PhoneNumberFormatter formatter = new PhoneNumberFormatter("+14152222222");
     assertEquals(formatter.format("__textsecure_group__!foobar"), "__textsecure_group__!foobar");
   }
 
   @Test
   public void testLostLocalNumber() throws Exception {
-    Address.ExternalAddressFormatter formatter = new Address.ExternalAddressFormatter("US", true);
+    PhoneNumberFormatter formatter = new PhoneNumberFormatter("US", true);
     assertEquals(formatter.format("(415) 111-1122"), "+14151111122");
   }
 }

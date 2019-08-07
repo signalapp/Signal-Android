@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.util.GroupUtil;
@@ -57,32 +58,37 @@ public class PushGroupSendJob extends PushSendJob {
 
   private static final String TAG = PushGroupSendJob.class.getSimpleName();
 
-  private static final String KEY_MESSAGE_ID     = "message_id";
-  private static final String KEY_FILTER_ADDRESS = "filter_address";
+  private static final String KEY_MESSAGE_ID       = "message_id";
+  private static final String KEY_FILTER_RECIPIENT = "filter_recipient";
 
-  private long   messageId;
-  private String filterAddress;
+  private long        messageId;
+  private RecipientId filterRecipient;
 
-  public PushGroupSendJob(long messageId, @NonNull Address destination, @Nullable Address filterAddress) {
+  public PushGroupSendJob(long messageId, @NonNull RecipientId destination, @Nullable RecipientId filterRecipient) {
     this(new Job.Parameters.Builder()
-                           .setQueue(destination.toGroupString())
+                           .setQueue(destination.toQueueKey())
                            .addConstraint(NetworkConstraint.KEY)
                            .setLifespan(TimeUnit.DAYS.toMillis(1))
                            .setMaxAttempts(Parameters.UNLIMITED)
                            .build(),
-         messageId, filterAddress);
+         messageId, filterRecipient);
 
   }
 
-  private PushGroupSendJob(@NonNull Job.Parameters parameters, long messageId, @Nullable Address filterAddress) {
+  private PushGroupSendJob(@NonNull Job.Parameters parameters, long messageId, @Nullable RecipientId filterRecipient) {
     super(parameters);
 
-    this.messageId     = messageId;
-    this.filterAddress = filterAddress == null ? null :filterAddress.toPhoneString();
+    this.messageId       = messageId;
+    this.filterRecipient = filterRecipient;
   }
 
   @WorkerThread
-  public static void enqueue(@NonNull Context context, @NonNull JobManager jobManager, long messageId, @NonNull Address destination, @Nullable Address filterAddress) {
+  public static void enqueue(@NonNull Context context,
+                             @NonNull JobManager jobManager,
+                             long messageId,
+                             @NonNull RecipientId destination,
+                             @Nullable RecipientId filterAddress)
+  {
     try {
       MmsDatabase          database                    = DatabaseFactory.getMmsDatabase(context);
       OutgoingMediaMessage message                     = database.getOutgoingMessage(messageId);
@@ -101,7 +107,7 @@ public class PushGroupSendJob extends PushSendJob {
   @Override
   public @NonNull Data serialize() {
     return new Data.Builder().putLong(KEY_MESSAGE_ID, messageId)
-                             .putString(KEY_FILTER_ADDRESS, filterAddress)
+                             .putString(KEY_FILTER_RECIPIENT, filterRecipient != null ? filterRecipient.serialize() : null)
                              .build();
   }
 
@@ -132,18 +138,18 @@ public class PushGroupSendJob extends PushSendJob {
     try {
       log(TAG, "Sending message: " + messageId);
 
-      List<Address> target;
+      List<RecipientId> target;
 
-      if      (filterAddress != null)              target = Collections.singletonList(Address.fromSerialized(filterAddress));
-      else if (!existingNetworkFailures.isEmpty()) target = Stream.of(existingNetworkFailures).map(NetworkFailure::getAddress).toList();
-      else                                         target = getGroupMessageRecipients(message.getRecipient().getAddress().toGroupString(), messageId);
+      if      (filterRecipient != null)            target = Collections.singletonList(Recipient.resolved(filterRecipient).getId());
+      else if (!existingNetworkFailures.isEmpty()) target = Stream.of(existingNetworkFailures).map(nf -> nf.getRecipientId(context)).toList();
+      else                                         target = getGroupMessageRecipients(message.getRecipient().requireAddress().toGroupString(), messageId);
 
       List<SendMessageResult>   results                  = deliver(message, target);
-      List<NetworkFailure>      networkFailures          = Stream.of(results).filter(SendMessageResult::isNetworkFailure).map(result -> new NetworkFailure(Address.fromSerialized(result.getAddress().getNumber()))).toList();
-      List<IdentityKeyMismatch> identityMismatches       = Stream.of(results).filter(result -> result.getIdentityFailure() != null).map(result -> new IdentityKeyMismatch(Address.fromSerialized(result.getAddress().getNumber()), result.getIdentityFailure().getIdentityKey())).toList();
-      Set<Address>              successAddresses         = Stream.of(results).filter(result -> result.getSuccess() != null).map(result -> Address.fromSerialized(result.getAddress().getNumber())).collect(Collectors.toSet());
-      List<NetworkFailure>      resolvedNetworkFailures  = Stream.of(existingNetworkFailures).filter(failure -> successAddresses.contains(failure.getAddress())).toList();
-      List<IdentityKeyMismatch> resolvedIdentityFailures = Stream.of(existingIdentityMismatches).filter(failure -> successAddresses.contains(failure.getAddress())).toList();
+      List<NetworkFailure>      networkFailures          = Stream.of(results).filter(SendMessageResult::isNetworkFailure).map(result -> new NetworkFailure(Recipient.external(context, result.getAddress().getNumber()).getId())).toList();
+      List<IdentityKeyMismatch> identityMismatches       = Stream.of(results).filter(result -> result.getIdentityFailure() != null).map(result -> new IdentityKeyMismatch(Recipient.external(context, result.getAddress().getNumber()).getId(), result.getIdentityFailure().getIdentityKey())).toList();
+      Set<RecipientId>          successIds               = Stream.of(results).filter(result -> result.getSuccess() != null).map(result -> result.getAddress().getNumber()).map(a -> Recipient.external(context, a).getId()).collect(Collectors.toSet());
+      List<NetworkFailure>      resolvedNetworkFailures  = Stream.of(existingNetworkFailures).filter(failure -> successIds.contains(failure.getRecipientId(context))).toList();
+      List<IdentityKeyMismatch> resolvedIdentityFailures = Stream.of(existingIdentityMismatches).filter(failure -> successIds.contains(failure.getRecipientId(context))).toList();
       List<SendMessageResult>   successes                = Stream.of(results).filter(result -> result.getSuccess() != null).toList();
 
       for (NetworkFailure resolvedFailure : resolvedNetworkFailures) {
@@ -152,7 +158,7 @@ public class PushGroupSendJob extends PushSendJob {
       }
 
       for (IdentityKeyMismatch resolvedIdentity : resolvedIdentityFailures) {
-        database.removeMismatchedIdentity(messageId, resolvedIdentity.getAddress(), resolvedIdentity.getIdentityKey());
+        database.removeMismatchedIdentity(messageId, resolvedIdentity.getRecipientId(context), resolvedIdentity.getIdentityKey());
         existingIdentityMismatches.remove(resolvedIdentity);
       }
 
@@ -161,11 +167,11 @@ public class PushGroupSendJob extends PushSendJob {
       }
 
       for (IdentityKeyMismatch mismatch : identityMismatches) {
-        database.addMismatchedIdentity(messageId, mismatch.getAddress(), mismatch.getIdentityKey());
+        database.addMismatchedIdentity(messageId, mismatch.getRecipientId(context), mismatch.getIdentityKey());
       }
 
       for (SendMessageResult success : successes) {
-        DatabaseFactory.getGroupReceiptDatabase(context).setUnidentified(Address.fromSerialized(success.getAddress().getNumber()),
+        DatabaseFactory.getGroupReceiptDatabase(context).setUnidentified(Recipient.external(context, success.getAddress().getNumber()).getId(),
                                                                          messageId,
                                                                          success.getSuccess().isUnidentified());
       }
@@ -210,25 +216,24 @@ public class PushGroupSendJob extends PushSendJob {
     DatabaseFactory.getMmsDatabase(context).markAsSentFailed(messageId);
   }
 
-  private List<SendMessageResult> deliver(OutgoingMediaMessage message, @NonNull List<Address> destinations)
+  private List<SendMessageResult> deliver(OutgoingMediaMessage message, @NonNull List<RecipientId> destinations)
       throws IOException, UntrustedIdentityException, UndeliverableMessageException {
     rotateSenderCertificateIfNecessary();
 
     SignalServiceMessageSender                 messageSender      = ApplicationDependencies.getSignalServiceMessageSender();
-    String                                     groupId            = message.getRecipient().getAddress().toGroupString();
+    String                                     groupId            = message.getRecipient().requireAddress().toGroupString();
     Optional<byte[]>                           profileKey         = getProfileKey(message.getRecipient());
     Optional<Quote>                            quote              = getQuoteFor(message);
     Optional<SignalServiceDataMessage.Sticker> sticker            = getStickerFor(message);
     List<SharedContact>                        sharedContacts     = getSharedContactsFor(message);
     List<Preview>                              previews           = getPreviewsFor(message);
-    List<SignalServiceAddress>                 addresses          = Stream.of(destinations).map(this::getPushAddress).toList();
+    List<SignalServiceAddress>                 addresses          = Stream.of(destinations).map(Recipient::resolved).map(Recipient::requireAddress).map(this::getPushAddress).toList();
     List<Attachment>                           attachments        = Stream.of(message.getAttachments()).filterNot(Attachment::isSticker).toList();
     List<SignalServiceAttachment>              attachmentPointers = getAttachmentPointersFor(attachments);
     boolean                                    isRecipientUpdate  = destinations.size() != DatabaseFactory.getGroupReceiptDatabase(context).getGroupReceiptInfo(messageId).size();
 
     List<Optional<UnidentifiedAccessPair>> unidentifiedAccess = Stream.of(addresses)
-                                                                      .map(address -> Address.fromSerialized(address.getNumber()))
-                                                                      .map(address -> Recipient.from(context, address, false))
+                                                                      .map(address -> Recipient.external(context, address.getNumber()))
                                                                       .map(recipient -> UnidentifiedAccessUtil.getAccessFor(context, recipient))
                                                                       .toList();
 
@@ -266,19 +271,19 @@ public class PushGroupSendJob extends PushSendJob {
     }
   }
 
-  private @NonNull List<Address> getGroupMessageRecipients(String groupId, long messageId) {
+  private @NonNull List<RecipientId> getGroupMessageRecipients(String groupId, long messageId) {
     List<GroupReceiptInfo> destinations = DatabaseFactory.getGroupReceiptDatabase(context).getGroupReceiptInfo(messageId);
-    if (!destinations.isEmpty()) return Stream.of(destinations).map(GroupReceiptInfo::getAddress).toList();
+    if (!destinations.isEmpty()) return Stream.of(destinations).map(GroupReceiptInfo::getRecipientId).toList();
 
     List<Recipient> members = DatabaseFactory.getGroupDatabase(context).getGroupMembers(groupId, false);
-    return Stream.of(members).map(Recipient::getAddress).toList();
+    return Stream.of(members).map(Recipient::getId).toList();
   }
 
   public static class Factory implements Job.Factory<PushGroupSendJob> {
     @Override
     public @NonNull PushGroupSendJob create(@NonNull Parameters parameters, @NonNull org.thoughtcrime.securesms.jobmanager.Data data) {
-      String  address = data.getString(KEY_FILTER_ADDRESS);
-      Address filter  = address != null ? Address.fromSerialized(data.getString(KEY_FILTER_ADDRESS)) : null;
+      String      raw    = data.getString(KEY_FILTER_RECIPIENT);
+      RecipientId filter = raw != null ? RecipientId.from(raw) : null;
 
       return new PushGroupSendJob(parameters, data.getLong(KEY_MESSAGE_ID), filter);
     }

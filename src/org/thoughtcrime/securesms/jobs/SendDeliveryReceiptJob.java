@@ -11,6 +11,7 @@ import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.SignalServiceReceiptMessage;
@@ -25,42 +26,42 @@ public class SendDeliveryReceiptJob extends BaseJob {
 
   public static final String KEY = "SendDeliveryReceiptJob";
 
-  private static final String KEY_ADDRESS    = "address";
+  private static final String KEY_RECIPIENT  = "recipient";
   private static final String KEY_MESSAGE_ID = "message_id";
   private static final String KEY_TIMESTAMP  = "timestamp";
 
   private static final String TAG = SendReadReceiptJob.class.getSimpleName();
 
-  private String address;
-  private long   messageId;
-  private long   timestamp;
+  private RecipientId recipientId;
+  private long        messageId;
+  private long        timestamp;
 
-  public SendDeliveryReceiptJob(@NonNull Address address, long messageId) {
+  public SendDeliveryReceiptJob(@NonNull RecipientId recipientId, long messageId) {
     this(new Job.Parameters.Builder()
                            .addConstraint(NetworkConstraint.KEY)
                            .setLifespan(TimeUnit.DAYS.toMillis(1))
                            .setMaxAttempts(Parameters.UNLIMITED)
                            .build(),
-         address,
+         recipientId,
          messageId,
          System.currentTimeMillis());
   }
 
   private SendDeliveryReceiptJob(@NonNull Job.Parameters parameters,
-                                 @NonNull Address address,
+                                 @NonNull RecipientId recipientId,
                                  long messageId,
                                  long timestamp)
   {
     super(parameters);
 
-    this.address   = address.serialize();
-    this.messageId = messageId;
-    this.timestamp = timestamp;
+    this.recipientId = recipientId;
+    this.messageId   = messageId;
+    this.timestamp   = timestamp;
   }
 
   @Override
   public @NonNull Data serialize() {
-    return new Data.Builder().putString(KEY_ADDRESS, address)
+    return new Data.Builder().putString(KEY_RECIPIENT, recipientId.serialize())
                              .putLong(KEY_MESSAGE_ID, messageId)
                              .putLong(KEY_TIMESTAMP, timestamp)
                              .build();
@@ -74,13 +75,14 @@ public class SendDeliveryReceiptJob extends BaseJob {
   @Override
   public void onRun() throws IOException, UntrustedIdentityException {
     SignalServiceMessageSender  messageSender  = ApplicationDependencies.getSignalServiceMessageSender();
-    SignalServiceAddress        remoteAddress  = new SignalServiceAddress(address);
+    Recipient                   recipient      = Recipient.resolved(recipientId);
+    SignalServiceAddress        remoteAddress  = new SignalServiceAddress(recipient.requireAddress().serialize());
     SignalServiceReceiptMessage receiptMessage = new SignalServiceReceiptMessage(SignalServiceReceiptMessage.Type.DELIVERY,
                                                                                  Collections.singletonList(messageId),
                                                                                  timestamp);
 
     messageSender.sendReceipt(remoteAddress,
-                              UnidentifiedAccessUtil.getAccessFor(context, Recipient.from(context, Address.fromSerialized(address), false)),
+                              UnidentifiedAccessUtil.getAccessFor(context, recipient),
                               receiptMessage);
   }
 
@@ -92,14 +94,14 @@ public class SendDeliveryReceiptJob extends BaseJob {
 
   @Override
   public void onCanceled() {
-    Log.w(TAG, "Failed to send delivery receipt to: " + address);
+    Log.w(TAG, "Failed to send delivery receipt to: " + recipientId);
   }
 
   public static final class Factory implements Job.Factory<SendDeliveryReceiptJob> {
     @Override
     public @NonNull SendDeliveryReceiptJob create(@NonNull Parameters parameters, @NonNull Data data) {
       return new SendDeliveryReceiptJob(parameters,
-                                        Address.fromSerialized(data.getString(KEY_ADDRESS)),
+                                        RecipientId.from(data.getString(KEY_RECIPIENT)),
                                         data.getLong(KEY_MESSAGE_ID),
                                         data.getLong(KEY_TIMESTAMP));
     }

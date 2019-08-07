@@ -1,11 +1,9 @@
 package org.thoughtcrime.securesms.jobs;
 
 
-import android.app.Application;
 import androidx.annotation.NonNull;
 import android.text.TextUtils;
 
-import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -15,6 +13,7 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
@@ -35,14 +34,14 @@ public class RetrieveProfileAvatarJob extends BaseJob {
   private static final int MAX_PROFILE_SIZE_BYTES = 20 * 1024 * 1024;
 
   private static final String KEY_PROFILE_AVATAR = "profile_avatar";
-  private static final String KEY_ADDRESS        = "address";
+  private static final String KEY_RECIPIENT      = "recipient";
 
   private String    profileAvatar;
   private Recipient recipient;
 
   public RetrieveProfileAvatarJob(Recipient recipient, String profileAvatar) {
     this(new Job.Parameters.Builder()
-                           .setQueue("RetrieveProfileAvatarJob" + recipient.getAddress().serialize())
+                           .setQueue("RetrieveProfileAvatarJob::" + recipient.getId().toQueueKey())
                            .addConstraint(NetworkConstraint.KEY)
                            .setLifespan(TimeUnit.HOURS.toMillis(1))
                            .setMaxInstances(1)
@@ -61,7 +60,7 @@ public class RetrieveProfileAvatarJob extends BaseJob {
   @Override
   public @NonNull Data serialize() {
     return new Data.Builder().putString(KEY_PROFILE_AVATAR, profileAvatar)
-                             .putString(KEY_ADDRESS, recipient.getAddress().serialize())
+                             .putString(KEY_RECIPIENT, recipient.getId().serialize())
                              .build();
   }
 
@@ -86,9 +85,9 @@ public class RetrieveProfileAvatarJob extends BaseJob {
     }
 
     if (TextUtils.isEmpty(profileAvatar)) {
-      Log.w(TAG, "Removing profile avatar (no url) for: " + recipient.getAddress().serialize());
-      AvatarHelper.delete(context, recipient.getAddress());
-      database.setProfileAvatar(recipient, profileAvatar);
+      Log.w(TAG, "Removing profile avatar (no url) for: " + recipient.requireAddress().serialize());
+      AvatarHelper.delete(context, recipient.requireAddress());
+      database.setProfileAvatar(recipient.getId(), profileAvatar);
       return;
     }
 
@@ -105,11 +104,11 @@ public class RetrieveProfileAvatarJob extends BaseJob {
         throw new IOException("Failed to copy stream. Likely a Conscrypt issue.", e);
       }
 
-      decryptDestination.renameTo(AvatarHelper.getAvatarFile(context, recipient.getAddress()));
+      decryptDestination.renameTo(AvatarHelper.getAvatarFile(context, recipient.requireAddress()));
     } catch (PushNetworkException e) {
       if (e.getCause() instanceof NonSuccessfulResponseCodeException) {
-        Log.w(TAG, "Removing profile avatar (no image available) for: " + recipient.getAddress().serialize());
-        AvatarHelper.delete(context, recipient.getAddress());
+        Log.w(TAG, "Removing profile avatar (no image available) for: " + recipient.requireAddress().serialize());
+        AvatarHelper.delete(context, recipient.requireAddress());
       } else {
         throw e;
       }
@@ -117,7 +116,7 @@ public class RetrieveProfileAvatarJob extends BaseJob {
       if (downloadDestination != null) downloadDestination.delete();
     }
 
-    database.setProfileAvatar(recipient, profileAvatar);
+    database.setProfileAvatar(recipient.getId(), profileAvatar);
   }
 
   @Override
@@ -132,16 +131,10 @@ public class RetrieveProfileAvatarJob extends BaseJob {
 
   public static final class Factory implements Job.Factory<RetrieveProfileAvatarJob> {
 
-    private final Application application;
-
-    public Factory(Application application) {
-      this.application = application;
-    }
-
     @Override
     public @NonNull RetrieveProfileAvatarJob create(@NonNull Parameters parameters, @NonNull Data data) {
       return new RetrieveProfileAvatarJob(parameters,
-                                          Recipient.from(application, Address.fromSerialized(data.getString(KEY_ADDRESS)), true),
+                                          Recipient.resolved(RecipientId.from(data.getString(KEY_RECIPIENT))),
                                           data.getString(KEY_PROFILE_AVATAR));
     }
   }

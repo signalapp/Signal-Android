@@ -46,7 +46,7 @@ public class DirectShareService extends ChooserTargetService {
       ThreadRecord record;
 
       while ((record = reader.getNext()) != null && results.size() < 10) {
-          Recipient recipient = Recipient.from(this, record.getRecipient().getAddress(), false);
+          Recipient recipient = Recipient.resolved(record.getRecipient().getId());
           String    name      = recipient.toShortString();
 
           Bitmap avatar;
@@ -68,18 +68,13 @@ public class DirectShareService extends ChooserTargetService {
             avatar = getFallbackDrawable(recipient);
           }
 
-          Parcel parcel = Parcel.obtain();
-          parcel.writeParcelable(recipient.getAddress(), 0);
-
           Bundle bundle = new Bundle();
           bundle.putLong(ShareActivity.EXTRA_THREAD_ID, record.getThreadId());
-          bundle.putByteArray(ShareActivity.EXTRA_ADDRESS_MARSHALLED, parcel.marshall());
+          bundle.putString(ShareActivity.EXTRA_RECIPIENT_ID, recipient.getId().serialize());
           bundle.putInt(ShareActivity.EXTRA_DISTRIBUTION_TYPE, record.getDistributionType());
           bundle.setClassLoader(getClassLoader());
 
           results.add(new ChooserTarget(name, Icon.createWithBitmap(avatar), 1.0f, componentName, bundle));
-          parcel.recycle();
-
       }
 
       return results;

@@ -12,7 +12,6 @@ import android.text.method.LinkMovementMethod;
 import android.widget.TextView;
 
 import org.thoughtcrime.securesms.crypto.storage.TextSecureIdentityKeyStore;
-import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
@@ -22,6 +21,7 @@ import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.jobs.PushDecryptJob;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.VerifySpan;
@@ -46,7 +46,7 @@ public class ConfirmIdentityDialog extends AlertDialog {
   {
     super(context);
 
-      Recipient       recipient       = Recipient.from(context, mismatch.getAddress(), false);
+      Recipient       recipient       = Recipient.resolved(mismatch.getRecipientId(context));
       String          name            = recipient.toShortString();
       String          introduction    = context.getString(R.string.ConfirmIdentityDialog_your_safety_number_with_s_has_changed, name, name);
       SpannableString spannableString = new SpannableString(introduction + " " +
@@ -59,7 +59,7 @@ public class ConfirmIdentityDialog extends AlertDialog {
       setTitle(name);
       setMessage(spannableString);
 
-      setButton(AlertDialog.BUTTON_POSITIVE, context.getString(R.string.ConfirmIdentityDialog_accept), new AcceptListener(messageRecord, mismatch, recipient.getAddress()));
+      setButton(AlertDialog.BUTTON_POSITIVE, context.getString(R.string.ConfirmIdentityDialog_accept), new AcceptListener(messageRecord, mismatch, recipient.getId()));
       setButton(AlertDialog.BUTTON_NEGATIVE, context.getString(android.R.string.cancel),               new CancelListener());
   }
 
@@ -78,12 +78,12 @@ public class ConfirmIdentityDialog extends AlertDialog {
 
     private final MessageRecord       messageRecord;
     private final IdentityKeyMismatch mismatch;
-    private final Address             address;
+    private final RecipientId         recipientId;
 
-    private AcceptListener(MessageRecord messageRecord, IdentityKeyMismatch mismatch, Address address) {
+    private AcceptListener(MessageRecord messageRecord, IdentityKeyMismatch mismatch, RecipientId recipientId) {
       this.messageRecord = messageRecord;
       this.mismatch      = mismatch;
-      this.address       = address;
+      this.recipientId   = recipientId;
     }
 
     @SuppressLint("StaticFieldLeak")
@@ -94,7 +94,7 @@ public class ConfirmIdentityDialog extends AlertDialog {
         @Override
         protected Void doInBackground(Void... params) {
           synchronized (SESSION_LOCK) {
-            SignalProtocolAddress      mismatchAddress  = new SignalProtocolAddress(address.toPhoneString(), 1);
+            SignalProtocolAddress      mismatchAddress  = new SignalProtocolAddress(Recipient.resolved(recipientId).requireAddress().toPhoneString(), 1);
             TextSecureIdentityKeyStore identityKeyStore = new TextSecureIdentityKeyStore(getContext());
 
             identityKeyStore.saveIdentity(mismatchAddress, mismatch.getIdentityKey(), true);
@@ -137,17 +137,17 @@ public class ConfirmIdentityDialog extends AlertDialog {
 
           if (messageRecord.isMms()) {
             mmsDatabase.removeMismatchedIdentity(messageRecord.getId(),
-                                                 mismatch.getAddress(),
+                                                 mismatch.getRecipientId(getContext()),
                                                  mismatch.getIdentityKey());
 
-            if (messageRecord.getRecipient().isPushGroupRecipient()) {
-              MessageSender.resendGroupMessage(getContext(), messageRecord, mismatch.getAddress());
+            if (messageRecord.getRecipient().isPushGroup()) {
+              MessageSender.resendGroupMessage(getContext(), messageRecord, Recipient.resolved(mismatch.getRecipientId(getContext())).getId());
             } else {
               MessageSender.resend(getContext(), messageRecord);
             }
           } else {
             smsDatabase.removeMismatchedIdentity(messageRecord.getId(),
-                                                 mismatch.getAddress(),
+                                                 mismatch.getRecipientId(getContext()),
                                                  mismatch.getIdentityKey());
 
             MessageSender.resend(getContext(), messageRecord);
@@ -160,13 +160,13 @@ public class ConfirmIdentityDialog extends AlertDialog {
             SmsDatabase  smsDatabase  = DatabaseFactory.getSmsDatabase(getContext());
 
             smsDatabase.removeMismatchedIdentity(messageRecord.getId(),
-                                                 mismatch.getAddress(),
+                                                 mismatch.getRecipientId(getContext()),
                                                  mismatch.getIdentityKey());
 
             boolean legacy = !messageRecord.isContentBundleKeyExchange();
 
             SignalServiceEnvelope envelope = new SignalServiceEnvelope(SignalServiceProtos.Envelope.Type.PREKEY_BUNDLE_VALUE,
-                                                                       messageRecord.getIndividualRecipient().getAddress().toPhoneString(),
+                                                                       messageRecord.getIndividualRecipient().requireAddress().toPhoneString(),
                                                                        messageRecord.getRecipientDeviceId(),
                                                                        messageRecord.getDateSent(),
                                                                        legacy ? Base64.decode(messageRecord.getBody()) : null,

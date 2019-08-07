@@ -126,7 +126,7 @@ public final class AvatarImageView extends AppCompatImageView {
   }
 
   private void setAvatarClickHandler(final Recipient recipient, boolean quickContactEnabled) {
-    if (!recipient.isGroupRecipient() && quickContactEnabled) {
+    if (!recipient.isGroup() && quickContactEnabled) {
       super.setOnClickListener(v -> {
         if (recipient.getContactUri() != null) {
           ContactsContract.QuickContact.showQuickContact(getContext(), AvatarImageView.this, recipient.getContactUri(), ContactsContract.QuickContact.MODE_LARGE, null);

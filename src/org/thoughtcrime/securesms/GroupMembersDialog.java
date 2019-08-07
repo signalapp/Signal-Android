@@ -32,7 +32,7 @@ public class GroupMembersDialog extends AsyncTask<Void, Void, List<Recipient>> {
 
   @Override
   protected List<Recipient> doInBackground(Void... params) {
-    return DatabaseFactory.getGroupDatabase(context).getGroupMembers(recipient.getAddress().toGroupString(), true);
+    return DatabaseFactory.getGroupDatabase(context).getGroupMembers(recipient.requireAddress().toGroupString(), true);
   }
 
   @Override
@@ -66,7 +66,7 @@ public class GroupMembersDialog extends AsyncTask<Void, Void, List<Recipient>> {
 
       if (recipient.getContactUri() != null) {
         Intent intent = new Intent(context, RecipientPreferenceActivity.class);
-        intent.putExtra(RecipientPreferenceActivity.ADDRESS_EXTRA, recipient.getAddress());
+        intent.putExtra(RecipientPreferenceActivity.RECIPIENT_ID, recipient.getId());
 
         context.startActivity(intent);
       } else {
@@ -123,7 +123,7 @@ public class GroupMembersDialog extends AsyncTask<Void, Void, List<Recipient>> {
     }
 
     private boolean isLocalNumber(Recipient recipient) {
-      return Util.isOwnNumber(context, recipient.getAddress());
+      return Util.isOwnNumber(context, recipient.requireAddress());
     }
   }
 }

@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,38 +9,36 @@ import androidx.core.app.TaskStackBuilder;
 import androidx.appcompat.app.AppCompatActivity;
 import android.widget.Toast;
 
-import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 
 public class ShortcutLauncherActivity extends AppCompatActivity {
 
-  private static final String KEY_SERIALIZED_ADDRESS = "serialized_address";
+  private static final String KEY_RECIPIENT = "recipient_id";
 
-  public static Intent createIntent(@NonNull Context context, @NonNull Address address) {
+  public static Intent createIntent(@NonNull Context context, @NonNull RecipientId recipientId) {
     Intent intent = new Intent(context, ShortcutLauncherActivity.class);
     intent.setAction(Intent.ACTION_MAIN);
-    intent.putExtra(KEY_SERIALIZED_ADDRESS, address.serialize());
+    intent.putExtra(KEY_RECIPIENT, recipientId.serialize());
 
     return intent;
   }
 
-  @SuppressLint("StaticFieldLeak")
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
-    String serializedAddress = getIntent().getStringExtra(KEY_SERIALIZED_ADDRESS);
+    String rawId = getIntent().getStringExtra(KEY_RECIPIENT);
 
-    if (serializedAddress == null) {
+    if (rawId == null) {
       Toast.makeText(this, R.string.ShortcutLauncherActivity_invalid_shortcut, Toast.LENGTH_SHORT).show();
       startActivity(new Intent(this, ConversationListActivity.class));
       finish();
       return;
     }
 
-    Address          address   = Address.fromSerialized(serializedAddress);
-    Recipient        recipient = Recipient.from(this, address, true);
+    Recipient        recipient = Recipient.live(RecipientId.from(rawId)).get();
     TaskStackBuilder backStack = TaskStackBuilder.create(this)
                                                  .addNextIntent(new Intent(this, ConversationListActivity.class));
 

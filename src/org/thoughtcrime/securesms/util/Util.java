@@ -103,11 +103,21 @@ public class Util {
   }
 
   public static String join(long[] list, String delimeter) {
+    List<Long> boxed = new ArrayList<>(list.length);
+
+    for (int i = 0; i < list.length; i++) {
+      boxed.add(list[i]);
+    }
+
+    return join(boxed, delimeter);
+  }
+
+  public static String join(List<Long> list, String delimeter) {
     StringBuilder sb = new StringBuilder();
 
-    for (int j=0;j<list.length;j++) {
+    for (int j = 0; j < list.size(); j++) {
       if (j != 0) sb.append(delimeter);
-      sb.append(list[j]);
+      sb.append(list.get(j));
     }
 
     return sb.toString();

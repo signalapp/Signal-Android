@@ -13,13 +13,14 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.mms.GlideRequests;
+import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
+import org.thoughtcrime.securesms.recipients.RecipientForeverObserver;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
-public class ContactSelectionListItem extends LinearLayout implements RecipientModifiedListener {
+public class ContactSelectionListItem extends LinearLayout implements RecipientForeverObserver {
 
   @SuppressWarnings("unused")
   private static final String TAG = ContactSelectionListItem.class.getSimpleName();
@@ -31,7 +32,7 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientM
   private CheckBox        checkBox;
 
   private String        number;
-  private Recipient     recipient;
+  private LiveRecipient recipient;
   private GlideRequests glideRequests;
 
   public ContactSelectionListItem(Context context) {
@@ -60,22 +61,22 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientM
 
     if (type == ContactsDatabase.NEW_TYPE) {
       this.recipient = null;
-      this.contactPhotoImage.setAvatar(glideRequests, Recipient.from(getContext(), Address.UNKNOWN, true), false);
+      this.contactPhotoImage.setAvatar(glideRequests, Recipient.UNKNOWN, false);
     } else if (!TextUtils.isEmpty(number)) {
-      Address address = Address.fromExternal(getContext(), number);
-      this.recipient = Recipient.from(getContext(), address, true);
-      this.recipient.addListener(this);
+      // TODO [greyson] We really don't want to have to do a read like this here
+      this.recipient = Recipient.external(getContext(), number).live();
+      this.recipient.observeForever(this);
 
-      if (this.recipient.getName() != null) {
-        name = this.recipient.getName();
+      if (this.recipient.get().getName() != null) {
+        name = this.recipient.get().getName();
       }
     }
 
     this.nameView.setTextColor(color);
     this.numberView.setTextColor(color);
-    this.contactPhotoImage.setAvatar(glideRequests, recipient, false);
+    this.contactPhotoImage.setAvatar(glideRequests, recipient != null ? recipient.get() : null, false);
 
-    if (!multiSelect && recipient != null && recipient.isLocalNumber()) {
+    if (!multiSelect && recipient != null && recipient.get().isLocalNumber()) {
       name = getContext().getString(R.string.note_to_self);
     }
 
@@ -91,7 +92,7 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientM
 
   public void unbind(GlideRequests glideRequests) {
     if (recipient != null) {
-      recipient.removeListener(this);
+      recipient.removeForeverObserver(this);
       recipient = null;
     }
   }
@@ -120,12 +121,8 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientM
   }
 
   @Override
-  public void onModified(final Recipient recipient) {
-    if (this.recipient == recipient) {
-      Util.runOnMain(() -> {
-        contactPhotoImage.setAvatar(glideRequests, recipient, false);
-        nameView.setText(recipient.toShortString());
-      });
-    }
+  public void onRecipientChanged(@NonNull Recipient recipient) {
+    contactPhotoImage.setAvatar(glideRequests, recipient, false);
+    nameView.setText(recipient.toShortString());
   }
 }

@@ -40,6 +40,7 @@ import android.util.Pair;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -484,7 +485,7 @@ public class ContactsDatabase {
       cursor = context.getContentResolver().query(currentContactsUri, projection, null, null, null);
 
       while (cursor != null && cursor.moveToNext()) {
-        Address currentAddress              = Address.fromExternal(context, cursor.getString(1));
+        Address currentAddress              = Address.fromSerialized(PhoneNumberFormatter.get(context).format(cursor.getString(1)));
         long    rawContactId                = cursor.getLong(0);
         long    contactId                   = cursor.getLong(3);
         String  supportsVoice               = cursor.getString(2);
@@ -518,7 +519,7 @@ public class ContactsDatabase {
 
       while (numberCursor != null && numberCursor.moveToNext()) {
         String  systemNumber  = numberCursor.getString(0);
-        Address systemAddress = Address.fromExternal(context, systemNumber);
+        Address systemAddress = Address.fromSerialized(PhoneNumberFormatter.get(context).format(systemNumber));
 
         if (systemAddress.equals(address)) {
           idCursor = context.getContentResolver().query(RawContacts.CONTENT_URI,

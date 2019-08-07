@@ -17,12 +17,14 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import org.thoughtcrime.securesms.database.Address;
+import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.loaders.BlockedContactsLoader;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.preferences.BlockedContactListItem;
+import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 
@@ -79,6 +81,12 @@ public class BlockedContactsActivity extends PassphraseRequiredActionBarActivity
     }
 
     @Override
+    public void onStart() {
+      super.onStart();
+      getLoaderManager().restartLoader(0, null, this);
+    }
+
+    @Override
     public void onActivityCreated(Bundle bundle) {
       super.onActivityCreated(bundle);
       getListView().setOnItemClickListener(this);
@@ -107,7 +115,7 @@ public class BlockedContactsActivity extends PassphraseRequiredActionBarActivity
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
       Recipient recipient = ((BlockedContactListItem)view).getRecipient();
       Intent    intent    = new Intent(getActivity(), RecipientPreferenceActivity.class);
-      intent.putExtra(RecipientPreferenceActivity.ADDRESS_EXTRA, recipient.getAddress());
+      intent.putExtra(RecipientPreferenceActivity.RECIPIENT_ID, recipient.getId());
 
       startActivity(intent);
     }
@@ -129,8 +137,8 @@ public class BlockedContactsActivity extends PassphraseRequiredActionBarActivity
 
       @Override
       public void bindView(View view, Context context, Cursor cursor) {
-        String    address   = cursor.getString(1);
-        Recipient recipient = Recipient.from(context, Address.fromSerialized(address), true);
+        RecipientId   recipientId = RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(RecipientDatabase.ID)));
+        LiveRecipient recipient   = Recipient.live(recipientId);
 
         ((BlockedContactListItem) view).set(glideRequests, recipient);
       }
