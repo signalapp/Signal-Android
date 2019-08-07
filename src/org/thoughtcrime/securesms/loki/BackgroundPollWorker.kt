@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit
 class BackgroundPollWorker : PersistentAlarmManagerListener() {
 
     companion object {
-        private val pollInterval = TimeUnit.MINUTES.toMillis(5)
+        private val pollInterval = TimeUnit.MINUTES.toMillis(2)
 
         @JvmStatic
         fun schedule(context: Context) {
