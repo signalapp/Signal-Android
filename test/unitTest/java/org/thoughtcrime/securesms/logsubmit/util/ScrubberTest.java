@@ -28,11 +28,11 @@ public final class ScrubberTest {
     { "Multiple numbers +447700900001 +447700900002",
       "Multiple numbers +**********01 +**********02" },
 
-    { "One less than shortest number +155556789",
-      "One less than shortest number +155556789" },
+    { "One less than shortest number +155556",
+      "One less than shortest number +155556" },
 
-    { "Shortest number +1555567890",
-      "Shortest number +********90" },
+    { "Shortest number +1555567",
+      "Shortest number +*****67" },
 
     { "Longest number +155556789012345",
       "Longest number +*************45" },
