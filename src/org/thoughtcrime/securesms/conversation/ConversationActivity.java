@@ -232,7 +232,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import kotlin.Unit;
-import kotlin.jvm.functions.Function1;
 import network.loki.messenger.R;
 
 import static org.thoughtcrime.securesms.TransportOption.Type;
@@ -2122,31 +2121,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                                                   final int subscriptionId,
                                                   final boolean initiating)
   {
-    final SettableFuture<Void> future  = new SettableFuture<>();
-
     boolean isLokiPublicChat = isGroupConversation(); // TODO: Figure out a better way of determining this
     if (isLokiPublicChat) {
-      String hexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this);
-      String displayName = DatabaseFactory.getLokiAPIDatabase(this).getUserDisplayName();
-      if (displayName == null) displayName = "Anonymous";
-      long timestamp = new Date().getTime();
-      LokiGroupMessage message = new LokiGroupMessage(hexEncodedPublicKey, displayName, body, timestamp);
-      LokiGroupChatAPI.sendMessage(message, LokiGroupChatAPI.getPublicChatID()).success(new Function1<Unit, Unit>() {
-
-        @Override
-        public Unit invoke(Unit unit) {
-          future.set(null);
-          return Unit.INSTANCE;
-        }
-      }).fail(new Function1<Exception, Unit>() {
-
-        @Override
-        public Unit invoke(Exception e) {
-          future.setException(e);
-          return Unit.INSTANCE;
-        }
-      });
-      return future;
+      try {
+        return sendGroupMessage();
+      } catch (Exception e) {
+        // Do nothing
+      }
     }
 
     if (!isDefaultSms && (!isSecureText || forceSms)) {
@@ -2165,6 +2146,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     OutgoingMediaMessage outgoingMessageCandidate = new OutgoingMediaMessage(recipient, slideDeck, body, System.currentTimeMillis(), subscriptionId, expiresIn, distributionType, inputPanel.getQuote().orNull(), contacts, previews);
 
+    final SettableFuture<Void> future  = new SettableFuture<>();
     final Context              context = getApplicationContext();
 
     final OutgoingMediaMessage outgoingMessage;
@@ -2213,27 +2195,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       throws InvalidMessageException
   {
     boolean isLokiPublicChat = isGroupConversation(); // TODO: Figure out a better way of determining this
-    if (isLokiPublicChat) {
-      String hexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this);
-      String displayName = DatabaseFactory.getLokiAPIDatabase(this).getUserDisplayName();
-      if (displayName == null) displayName = "Anonymous";
-      long timestamp = new Date().getTime();
-      LokiGroupMessage message = new LokiGroupMessage(hexEncodedPublicKey, displayName, getMessage(), timestamp);
-      LokiGroupChatAPI.sendMessage(message, LokiGroupChatAPI.getPublicChatID()).success(new Function1<Unit, Unit>() {
-
-        @Override
-        public Unit invoke(Unit unit) {
-          return Unit.INSTANCE;
-        }
-      }).fail(new Function1<Exception, Unit>() {
-
-        @Override
-        public Unit invoke(Exception e) {
-          return null;
-        }
-      });
-      return;
-    }
+    if (isLokiPublicChat) { sendGroupMessage(); return; }
 
     if (!isDefaultSms && (!isSecureText || forceSms)) {
       showDefaultSmsPrompt();
@@ -2790,6 +2752,23 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     DatabaseFactory.getLokiThreadDatabase(this).setFriendRequestStatus(this.threadId, LokiThreadFriendRequestStatus.NONE);
     String contactID = DatabaseFactory.getThreadDatabase(this).getRecipientForThreadId(this.threadId).getAddress().toString();
     DatabaseFactory.getLokiPreKeyBundleDatabase(this).removePreKeyBundle(contactID);
+  }
+
+  public ListenableFuture<Void> sendGroupMessage() throws InvalidMessageException {
+    final SettableFuture<Void> future  = new SettableFuture<>();
+    String hexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this);
+    String displayName = DatabaseFactory.getLokiAPIDatabase(this).getUserDisplayName();
+    if (displayName == null) displayName = "Anonymous";
+    long timestamp = new Date().getTime();
+    LokiGroupMessage message = new LokiGroupMessage(hexEncodedPublicKey, displayName, getMessage(), timestamp);
+    LokiGroupChatAPI.sendMessage(message, LokiGroupChatAPI.getPublicChatID()).success(unit -> {
+      future.set(null);
+      return Unit.INSTANCE;
+    }).fail(e -> {
+      future.setException(e);
+      return Unit.INSTANCE;
+    });
+    return future;
   }
   // endregion
 }

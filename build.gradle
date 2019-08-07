@@ -356,7 +356,7 @@ def assembleWebsiteDescriptor = { variant, file ->
         descriptorFile.write(descriptor)
     }
 }
-
+/*
 def signProductionRelease = { variant ->
     variant.outputs.collect { output ->
         String apkName    = output.outputFile.name
@@ -397,6 +397,7 @@ tasks.whenTaskAdded { task ->
         task.finalizedBy signProductionWebsiteRelease
     }
 }
+ */
 
 def getLastCommitTimestamp() {
     new ByteArrayOutputStream().withStream { os ->
