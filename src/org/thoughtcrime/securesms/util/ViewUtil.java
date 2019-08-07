@@ -240,4 +240,16 @@ public class ViewUtil {
   public static void setPaddingBottom(@NonNull View view, int padding) {
     view.setPadding(view.getPaddingLeft(), view.getPaddingTop(), view.getPaddingRight(), padding);
   }
+
+  public static boolean isPointInsideView(@NonNull View view, float x, float y) {
+    int[] location = new int[2];
+
+    view.getLocationOnScreen(location);
+
+    int viewX = location[0];
+    int viewY = location[1];
+
+    return x > viewX && x < viewX + view.getWidth() &&
+           y > viewY && y < viewY + view.getHeight();
+  }
 }

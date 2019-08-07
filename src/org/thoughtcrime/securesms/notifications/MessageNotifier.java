@@ -455,6 +455,9 @@ public class MessageNotifier {
       } else if (record.isMms() && !((MmsMessageRecord) record).getSharedContacts().isEmpty()) {
         Contact contact = ((MmsMessageRecord) record).getSharedContacts().get(0);
         body = ContactUtil.getStringSummary(context, contact);
+      } else if (record.isMms() && ((MmsMessageRecord) record).getSlideDeck().getStickerSlide() != null) {
+        body = SpanUtil.italic(context.getString(R.string.MessageNotifier_sticker));
+        slideDeck = ((MmsMessageRecord) record).getSlideDeck();
       } else if (record.isMms() && TextUtils.isEmpty(body) && !((MmsMessageRecord) record).getSlideDeck().getSlides().isEmpty()) {
         body = SpanUtil.italic(context.getString(R.string.MessageNotifier_media_message));
         slideDeck = ((MediaMmsMessageRecord)record).getSlideDeck();

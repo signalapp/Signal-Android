@@ -283,7 +283,7 @@ public class DirectoryHelper {
                                                                   @NonNull RecipientDatabase recipientDatabase,
                                                                   @NonNull Set<String> eligibleContactNumbers)
   {
-    return SignalExecutors.IO.submit(() -> {
+    return SignalExecutors.UNBOUNDED.submit(() -> {
       List<ContactTokenDetails> activeTokens = accountManager.getContacts(eligibleContactNumbers);
 
       if (activeTokens != null) {
@@ -329,7 +329,7 @@ public class DirectoryHelper {
                                                                   @NonNull RecipientDatabase           recipientDatabase,
                                                                   @NonNull Recipient                   recipient)
   {
-    return SignalExecutors.IO.submit(() -> {
+    return SignalExecutors.UNBOUNDED.submit(() -> {
       boolean                       activeUser    = recipient.resolve().getRegistered() == RegisteredState.REGISTERED;
       boolean                       systemContact = recipient.isSystemContact();
       String                        number        = recipient.getAddress().serialize();
@@ -368,7 +368,7 @@ public class DirectoryHelper {
     KeyStore                  iasKeyStore      = getIasKeyStore(context);
 
     for (Set<String> batch : batches) {
-      Future<Set<String>> future = SignalExecutors.IO.submit(() -> {
+      Future<Set<String>> future = SignalExecutors.UNBOUNDED.submit(() -> {
         return new HashSet<>(accountManager.getRegisteredUsers(iasKeyStore, batch, BuildConfig.MRENCLAVE));
       });
       futures.add(future);

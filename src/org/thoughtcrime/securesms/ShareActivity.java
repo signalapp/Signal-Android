@@ -47,6 +47,7 @@ import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.stickers.StickerLocator;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
@@ -254,12 +255,14 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
   }
 
   private Intent getBaseShareIntent(final @NonNull Class<?> target) {
-    final Intent           intent     = new Intent(this, target);
-    final String           textExtra  = getIntent().getStringExtra(Intent.EXTRA_TEXT);
-    final ArrayList<Media> mediaExtra = getIntent().getParcelableArrayListExtra(ConversationActivity.MEDIA_EXTRA);
+    final Intent           intent       = new Intent(this, target);
+    final String           textExtra    = getIntent().getStringExtra(Intent.EXTRA_TEXT);
+    final ArrayList<Media> mediaExtra   = getIntent().getParcelableArrayListExtra(ConversationActivity.MEDIA_EXTRA);
+    final StickerLocator   stickerExtra = getIntent().getParcelableExtra(ConversationActivity.STICKER_EXTRA);
 
     intent.putExtra(ConversationActivity.TEXT_EXTRA, textExtra);
     intent.putExtra(ConversationActivity.MEDIA_EXTRA, mediaExtra);
+    intent.putExtra(ConversationActivity.STICKER_EXTRA, stickerExtra);
 
     if (resolvedExtra != null) intent.setDataAndType(resolvedExtra, mimeType);
 

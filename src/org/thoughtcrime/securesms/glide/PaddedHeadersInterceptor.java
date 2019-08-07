@@ -20,7 +20,7 @@ public class PaddedHeadersInterceptor implements Interceptor {
   private static final int    MAX_RANDOM_BYTES = 64;
 
   @Override
-  public Response intercept(@NonNull Chain chain) throws IOException {
+  public @NonNull Response intercept(@NonNull Chain chain) throws IOException {
     Request padded = chain.request().newBuilder()
                                     .headers(getPaddedHeaders(chain.request().headers()))
                                     .build();

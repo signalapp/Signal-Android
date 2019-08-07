@@ -54,8 +54,7 @@ public class StickerSelectFragment extends Fragment implements LoaderManager.Loa
     return fragment;
   }
 
-  @Nullable
-  public View onCreateView(LayoutInflater inflater,
+  public @Nullable View onCreateView(@NonNull LayoutInflater inflater,
                            @Nullable ViewGroup container,
                            @Nullable Bundle savedInstanceState)
   {
@@ -77,17 +76,17 @@ public class StickerSelectFragment extends Fragment implements LoaderManager.Loa
   }
 
   @Override
-  public Loader<String[]> onCreateLoader(int id, Bundle args) {
+  public @NonNull Loader<String[]> onCreateLoader(int id, Bundle args) {
     return new StickerLoader(getActivity(), assetDirectory);
   }
 
   @Override
-  public void onLoadFinished(Loader<String[]> loader, String[] data) {
+  public void onLoadFinished(@NonNull Loader<String[]> loader, String[] data) {
     recyclerView.setAdapter(new StickersAdapter(getActivity(), glideRequests, data));
   }
 
   @Override
-  public void onLoaderReset(Loader<String[]> loader) {
+  public void onLoaderReset(@NonNull Loader<String[]> loader) {
     recyclerView.setAdapter(null);
   }
 
@@ -108,12 +107,12 @@ public class StickerSelectFragment extends Fragment implements LoaderManager.Loa
     }
 
     @Override
-    public StickerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public @NonNull StickerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
       return new StickerViewHolder(layoutInflater.inflate(R.layout.scribble_sticker_item, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(StickerViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull StickerViewHolder holder, int position) {
       holder.fileName = stickerFiles[position];
 
       glideRequests.load(Uri.parse("file:///android_asset/" + holder.fileName))
@@ -127,7 +126,7 @@ public class StickerSelectFragment extends Fragment implements LoaderManager.Loa
     }
 
     @Override
-    public void onViewRecycled(StickerViewHolder holder) {
+    public void onViewRecycled(@NonNull StickerViewHolder holder) {
       super.onViewRecycled(holder);
       glideRequests.clear(holder.image);
     }

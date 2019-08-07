@@ -1,40 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android"
-       xmlns:app="http://schemas.android.com/apk/res-auto">
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:parentTag="org.thoughtcrime.securesms.components.TransferControlView">
 
     <com.pnikosis.materialishprogress.ProgressWheel
-            android:id="@+id/progress_wheel"
-            android:layout_width="@dimen/transfer_controls_contracted_width"
-            android:layout_height="@dimen/transfer_controls_contracted_width"
-            android:visibility="gone"
-            android:layout_gravity="center"
-            app:matProg_barColor="@color/white"
-            app:matProg_linearProgress="true"
-            app:matProg_spinSpeed="0.333" />
+        android:id="@+id/progress_wheel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:padding="4dp"
+        app:matProg_barColor="@color/core_blue"
+        app:matProg_rimColor="@color/core_grey_05"
+        app:matProg_linearProgress="true"
+        app:matProg_spinSpeed="0.2"
+        app:matProg_barWidth="2dp"
+        app:matProg_rimWidth="2dp"
+        app:matProg_circleRadius="24dp"
+        tools:visibility="visible"/>
 
     <LinearLayout
         android:id="@+id/download_details"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_gravity="center"
+        android:padding="4dp"
         android:gravity="center"
-        android:visibility="gone">
+        android:orientation="horizontal"
+        android:visibility="gone"
+        tools:visibility="visible">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_file_download_white_36dp"/>
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:tint="@color/core_grey_60"
+            app:srcCompat="@drawable/ic_arrow_down_circle_filled" />
 
-        <TextView android:id="@+id/download_details_text"
+        <TextView
+            android:id="@+id/download_details_text"
+            style="@style/Signal.Text.Preview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="15dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            android:fontFamily="sans-serif-medium"
             android:gravity="center"
             android:longClickable="false"
-            android:textColor="?conversation_item_received_text_primary_color"
-            android:textSize="16dp"
-            android:textStyle="bold" />
+            android:textColor="@color/black" />
 
     </LinearLayout>
 

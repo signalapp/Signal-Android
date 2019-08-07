@@ -4,10 +4,6 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import org.thoughtcrime.securesms.jobmanager.Data;
-import org.thoughtcrime.securesms.jobmanager.Job;
-import org.thoughtcrime.securesms.logging.Log;
-
 import com.google.android.mms.pdu_alt.CharacterSets;
 import com.google.android.mms.pdu_alt.EncodedStringValue;
 import com.google.android.mms.pdu_alt.PduBody;
@@ -21,6 +17,9 @@ import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.InsertResult;
 import org.thoughtcrime.securesms.database.MmsDatabase;
+import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.ApnUnavailableException;
 import org.thoughtcrime.securesms.mms.CompatMmsConnection;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
@@ -183,7 +182,7 @@ public class MmsDownloadJob extends BaseJob {
   }
 
   @Override
-  public boolean onShouldRetry(Exception exception) {
+  public boolean onShouldRetry(@NonNull Exception exception) {
     return false;
   }
 
@@ -239,7 +238,7 @@ public class MmsDownloadJob extends BaseJob {
 
           attachments.add(new UriAttachment(uri, Util.toIsoString(part.getContentType()),
                                             AttachmentDatabase.TRANSFER_PROGRESS_DONE,
-                                            part.getData().length, name, false, false, null));
+                                            part.getData().length, name, false, false, null, null));
         }
       }
     }

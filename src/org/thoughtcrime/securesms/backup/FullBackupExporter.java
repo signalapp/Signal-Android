@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.database.SearchDatabase;
 import org.thoughtcrime.securesms.database.SessionDatabase;
 import org.thoughtcrime.securesms.database.SignedPreKeyDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
+import org.thoughtcrime.securesms.database.StickerDatabase;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.util.Conversions;
@@ -80,6 +81,8 @@ public class FullBackupExporter extends FullBackupBase {
         count = exportTable(table, input, outputStream, cursor -> isForNonExpiringMessage(input, cursor.getLong(cursor.getColumnIndexOrThrow(GroupReceiptDatabase.MMS_ID))), null, count);
       } else if (table.equals(AttachmentDatabase.TABLE_NAME)) {
         count = exportTable(table, input, outputStream, cursor -> isForNonExpiringMessage(input, cursor.getLong(cursor.getColumnIndexOrThrow(AttachmentDatabase.MMS_ID))), cursor -> exportAttachment(attachmentSecret, cursor, outputStream), count);
+      } else if (table.equals(StickerDatabase.TABLE_NAME)) {
+        count = exportTable(table, input, outputStream, cursor -> true, cursor -> exportSticker(attachmentSecret, cursor, outputStream), count);
       } else if (!table.equals(SignedPreKeyDatabase.TABLE_NAME)       &&
                  !table.equals(OneTimePreKeyDatabase.TABLE_NAME)      &&
                  !table.equals(SessionDatabase.TABLE_NAME)            &&
@@ -216,6 +219,23 @@ public class FullBackupExporter extends FullBackupBase {
     }
   }
 
+  private static void exportSticker(@NonNull AttachmentSecret attachmentSecret, @NonNull Cursor cursor, @NonNull BackupFrameOutputStream outputStream) {
+    try {
+      long rowId    = cursor.getLong(cursor.getColumnIndexOrThrow(StickerDatabase._ID));
+      long size     = cursor.getLong(cursor.getColumnIndexOrThrow(StickerDatabase.FILE_LENGTH));
+
+      String data   = cursor.getString(cursor.getColumnIndexOrThrow(StickerDatabase.FILE_PATH));
+      byte[] random = cursor.getBlob(cursor.getColumnIndexOrThrow(StickerDatabase.FILE_RANDOM));
+
+      if (!TextUtils.isEmpty(data) && size > 0) {
+        InputStream inputStream = ModernDecryptingPartInputStream.createFor(attachmentSecret, random, new File(data), 0);
+        outputStream.writeSticker(rowId, inputStream, size);
+      }
+    } catch (IOException e) {
+      Log.w(TAG, e);
+    }
+  }
+
   private static long calculateVeryOldStreamLength(@NonNull AttachmentSecret attachmentSecret, @Nullable byte[] random, @NonNull String data) throws IOException {
     long result = 0;
     InputStream inputStream;
@@ -316,6 +336,17 @@ public class FullBackupExporter extends FullBackupBase {
                                                                                         .setAttachmentId(attachmentId.getUniqueId())
                                                                                         .setLength(Util.toIntExact(size))
                                                                                         .build())
+                                                  .build());
+
+      writeStream(in);
+    }
+
+    public void writeSticker(long rowId, @NonNull InputStream in, long size) throws IOException {
+      write(outputStream, BackupProtos.BackupFrame.newBuilder()
+                                                  .setSticker(BackupProtos.Sticker.newBuilder()
+                                                                                  .setRowId(rowId)
+                                                                                  .setLength(Util.toIntExact(size))
+                                                                                  .build())
                                                   .build());
 
       writeStream(in);

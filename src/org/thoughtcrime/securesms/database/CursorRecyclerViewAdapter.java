@@ -130,7 +130,7 @@ public abstract class CursorRecyclerViewAdapter<VH extends RecyclerView.ViewHold
 
   @SuppressWarnings("unchecked")
   @Override
-  public final void onViewRecycled(ViewHolder holder) {
+  public final void onViewRecycled(@NonNull ViewHolder holder) {
     if (!(holder instanceof HeaderFooterViewHolder)) {
       onItemViewRecycled((VH)holder);
     }
@@ -139,7 +139,7 @@ public abstract class CursorRecyclerViewAdapter<VH extends RecyclerView.ViewHold
   public void onItemViewRecycled(VH holder) {}
 
   @Override
-  public final ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+  public @NonNull final ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
     switch (viewType) {
     case HEADER_TYPE: return new HeaderFooterViewHolder(header);
     case FOOTER_TYPE: return new HeaderFooterViewHolder(footer);
@@ -151,7 +151,7 @@ public abstract class CursorRecyclerViewAdapter<VH extends RecyclerView.ViewHold
 
   @SuppressWarnings("unchecked")
   @Override
-  public final void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
+  public final void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
     if (!isHeaderPosition(position) && !isFooterPosition(position)) {
       if (isFastAccessPosition(position)) onBindFastAccessItemViewHolder((VH)viewHolder, position);
       else                                onBindItemViewHolder((VH)viewHolder, getCursorAtPositionOrThrow(position));
@@ -178,9 +178,10 @@ public abstract class CursorRecyclerViewAdapter<VH extends RecyclerView.ViewHold
 
   @Override
   public final long getItemId(int position) {
-    if (isHeaderPosition(position))     return HEADER_ID;
-    if (isFooterPosition(position))     return FOOTER_ID;
-    if (isFastAccessPosition(position)) return getFastAccessItemId(position);
+    if (isHeaderPosition(position))          return HEADER_ID;
+    else if (isFooterPosition(position))     return FOOTER_ID;
+    else if (isFastAccessPosition(position)) return getFastAccessItemId(position);
+
     long itemId = getItemId(getCursorAtPositionOrThrow(position));
     return itemId <= Long.MIN_VALUE + 1 ? itemId + 2 : itemId;
   }

@@ -38,6 +38,7 @@
     <attr name="conversation_transport_push_indicator" format="reference"/>
     <attr name="conversation_transport_popup_background" format="reference"/>
     <attr name="conversation_emoji_toggle" format="reference"/>
+    <attr name="conversation_sticker_toggle" format="reference"/>
     <attr name="conversation_keyboard_toggle" format="reference"/>
     <attr name="conversation_attach_camera" format="reference"/>
     <attr name="conversation_attach_image" format="reference"/>
@@ -47,12 +48,15 @@
     <attr name="conversation_attach" format="reference"/>
     <attr name="conversation_number_picker_text_color_normal" format="reference|color"/>
     <attr name="conversation_number_picker_text_color_selected" format="reference|color"/>
+    <attr name="conversation_sticker_footer_text_color" format="reference|color"/>
+    <attr name="conversation_sticker_footer_icon_color" format="reference|color"/>
+    <attr name="conversation_sticker_author_color" format="reference|color"/>
 
     <attr name="emoji_tab_strip_background" format="color" />
     <attr name="emoji_tab_indicator" format="color" />
     <attr name="emoji_tab_underline" format="color" />
     <attr name="emoji_tab_seperator" format="color" />
-    <attr name="emoji_background" format="color" />
+    <attr name="emoji_drawer_background" format="color" />
     <attr name="emoji_text_color" format="color" />
 
     <attr name="emoji_category_recent" format="reference"/>
@@ -66,8 +70,11 @@
     <attr name="emoji_category_flags" format="reference"/>
     <attr name="emoji_category_emoticons" format="reference"/>
     <attr name="emoji_variation_selector_background" format="reference|color" />
+
     <attr name="quick_camera_icon" format="reference"/>
     <attr name="quick_mic_icon" format="reference"/>
+
+    <attr name="compose_icon_tint" />
 
     <attr name="conversation_item_background" format="reference"/>
     <attr name="conversation_item_bubble_background" format="reference|color"/>
@@ -117,6 +124,8 @@
 
     <attr name="reminder_header_background" format="color"/>
 
+    <attr name="media_keyboard_button_color" format="color" />
+
     <attr name="menu_new_conversation_icon" format="reference" />
     <attr name="menu_search_icon" format="reference" />
     <attr name="menu_call_icon" format="reference" />
@@ -165,6 +174,17 @@
 
     <attr name="search_toolbar_background" format="color"/>
     <attr name="search_background" format="color"/>
+
+    <attr name="sticker_management_icon" format="reference" />
+    <attr name="sticker_management_divider_color" format="color" />
+    <attr name="sticker_management_empty_background_color" format="color" />
+    <attr name="sticker_management_action_button_color" format="color" />
+    <attr name="sticker_popup_background" format="color" />
+    <attr name="sticker_preview_toolbar_background" format="color" />
+    <attr name="sticker_preview_status_bar_color" format="color" />
+    <attr name="sticker_view_missing_background" format="reference|color" />
+
+    <attr name="tooltip_default_color" format="reference|color" />
 
     <attr name="contact_list_divider" format="reference"/>
 

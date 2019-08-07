@@ -60,7 +60,7 @@ public abstract class Job {
    * This is already called by {@link JobController} during job submission, but if you ever run a
    * job without submitting it to the {@link JobManager}, then you'll need to invoke this yourself.
    */
-  protected final void setContext(@NonNull Context context) {
+  public final void setContext(@NonNull Context context) {
     this.context = context;
   }
 

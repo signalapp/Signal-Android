@@ -55,8 +55,8 @@ public class MediaMmsMessageRecord extends MmsMessageRecord {
                                List<IdentityKeyMismatch> mismatches,
                                List<NetworkFailure> failures, int subscriptionId,
                                long expiresIn, long expireStarted, int readReceiptCount,
-                               @Nullable Quote quote, @Nullable List<Contact> contacts,
-                               @Nullable List<LinkPreview> linkPreviews, boolean unidentified)
+                               @Nullable Quote quote, @NonNull List<Contact> contacts,
+                               @NonNull List<LinkPreview> linkPreviews, boolean unidentified)
   {
     super(id, body, conversationRecipient, individualRecipient, recipientDeviceId, dateSent,
           dateReceived, threadId, Status.STATUS_NONE, deliveryReceiptCount, mailbox, mismatches, failures,

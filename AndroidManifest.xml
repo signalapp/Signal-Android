@@ -182,6 +182,21 @@
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
               android:exported="true" />
 
+    <activity android:name=".stickers.StickerPackPreviewActivity"
+              android:theme="@style/TextSecure.LightNoActionBar"
+              android:launchMode="singleTask"
+              android:noHistory="true"
+              android:windowSoftInputMode="stateHidden"
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize">
+        <intent-filter>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="sgnl"
+                android:host="addstickers" />
+        </intent-filter>
+    </activity>
+
     <activity-alias android:name=".RoutingActivity"
                     android:targetActivity="org.thoughtcrime.securesms.ConversationListActivity"
                     android:exported="true">
@@ -319,9 +334,15 @@
               android:windowSoftInputMode="stateUnchanged"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
-     <activity android:name="org.thoughtcrime.securesms.DeviceActivity"
-               android:label="@string/AndroidManifest__linked_devices"
-               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
+    <activity android:name="org.thoughtcrime.securesms.DeviceActivity"
+              android:label="@string/AndroidManifest__linked_devices"
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
+
+    <activity android:name="org.thoughtcrime.securesms.stickers.StickerManagementActivity"
+              android:launchMode="singleTask"
+              android:theme="@style/TextSecure.LightTheme"
+              android:windowSoftInputMode="stateUnchanged"
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name="org.thoughtcrime.securesms.LogSubmitActivity"
               android:label="@string/AndroidManifest__log_submit"
@@ -596,6 +617,14 @@
 
     <provider android:name="org.thoughtcrime.securesms.database.DatabaseContentProviders$Attachment"
               android:authorities="network.loki.securesms.database.attachment"
+              android:exported="false" />
+
+    <provider android:name="org.thoughtcrime.securesms.database.DatabaseContentProviders$Sticker"
+              android:authorities="network.loki.securesms.database.sticker"
+              android:exported="false" />
+
+    <provider android:name="org.thoughtcrime.securesms.database.DatabaseContentProviders$StickerPack"
+              android:authorities="network.loki.securesms.database.stickerpack"
               android:exported="false" />
 
     <receiver android:name="org.thoughtcrime.securesms.service.BootReceiver">

@@ -64,17 +64,17 @@ public class RecentPhotoViewRail extends FrameLayout implements LoaderManager.Lo
   }
 
   @Override
-  public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+  public @NonNull Loader<Cursor> onCreateLoader(int id, Bundle args) {
     return new RecentPhotosLoader(getContext());
   }
 
   @Override
-  public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+  public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
     this.recyclerView.setAdapter(new RecentPhotoAdapter(getContext(), data, RecentPhotosLoader.BASE_URL, listener));
   }
 
   @Override
-  public void onLoaderReset(Loader<Cursor> loader) {
+  public void onLoaderReset(@NonNull Loader<Cursor> loader) {
     ((CursorRecyclerViewAdapter)this.recyclerView.getAdapter()).changeCursor(null);
   }
 

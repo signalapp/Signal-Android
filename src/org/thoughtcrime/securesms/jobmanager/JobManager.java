@@ -237,8 +237,7 @@ public class JobManager implements ConstraintObserver.Notifier {
       return executorFactory;
     }
 
-    @NonNull
-    JobInstantiator getJobInstantiator() {
+    @NonNull JobInstantiator getJobInstantiator() {
       return jobInstantiator;
     }
 

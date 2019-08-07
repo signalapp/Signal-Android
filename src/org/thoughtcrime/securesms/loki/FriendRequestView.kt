@@ -112,7 +112,7 @@ class FriendRequestView(context: Context, attrs: AttributeSet?, defStyleAttr: In
         if (message is MediaMmsMessageRecord && message.quote != null) { visibility = View.GONE; return }
         val isTextMessage = message is SmsMessageRecord
         if (!isTextMessage) return
-        val friendRequestStatus = database.getFriendRequestStatus(message!!.id)
+        val friendRequestStatus = database.getFriendRequestStatus(message.id)
         if (!message.isOutgoing) {
             visibility = if (friendRequestStatus == LokiMessageFriendRequestStatus.NONE) View.GONE else View.VISIBLE
             buttonLinearLayout.visibility = if (friendRequestStatus != LokiMessageFriendRequestStatus.REQUEST_PENDING) View.GONE else View.VISIBLE

@@ -57,6 +57,7 @@ import org.thoughtcrime.securesms.logging.UncaughtExceptionLogger;
 import org.thoughtcrime.securesms.loki.BackgroundPollWorker;
 import org.thoughtcrime.securesms.loki.LokiAPIDatabase;
 import org.thoughtcrime.securesms.loki.LokiGroupChatPoller;
+import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
@@ -108,7 +109,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   private ExpiringMessageManager  expiringMessageManager;
   private TypingStatusRepository  typingStatusRepository;
   private TypingStatusSender      typingStatusSender;
-  private JobManager jobManager;
+  private JobManager              jobManager;
   private IncomingMessageObserver incomingMessageObserver;
   private ObjectGraph             objectGraph;
   private PersistentLogger        persistentLogger;
@@ -166,6 +167,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     isAppVisible = false;
     Log.i(TAG, "App is no longer visible.");
     KeyCachingService.onAppBackgrounded(this);
+    MessageNotifier.setVisibleThread(-1);
     // Loki - Stop long polling if needed
     if (lokiLongPoller != null) { lokiLongPoller.stopIfNeeded(); }
   }

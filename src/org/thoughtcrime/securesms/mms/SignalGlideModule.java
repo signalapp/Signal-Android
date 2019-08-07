@@ -24,16 +24,18 @@ import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.crypto.AttachmentSecret;
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
 import org.thoughtcrime.securesms.giph.model.ChunkedImageUrl;
+import org.thoughtcrime.securesms.glide.ChunkedImageUrlLoader;
 import org.thoughtcrime.securesms.glide.ContactPhotoLoader;
+import org.thoughtcrime.securesms.glide.OkHttpUrlLoader;
 import org.thoughtcrime.securesms.glide.cache.EncryptedBitmapCacheDecoder;
+import org.thoughtcrime.securesms.glide.cache.EncryptedBitmapResourceEncoder;
 import org.thoughtcrime.securesms.glide.cache.EncryptedCacheEncoder;
 import org.thoughtcrime.securesms.glide.cache.EncryptedGifCacheDecoder;
-import org.thoughtcrime.securesms.glide.cache.EncryptedBitmapResourceEncoder;
 import org.thoughtcrime.securesms.glide.cache.EncryptedGifDrawableResourceEncoder;
-import org.thoughtcrime.securesms.glide.ChunkedImageUrlLoader;
-import org.thoughtcrime.securesms.glide.OkHttpUrlLoader;
 import org.thoughtcrime.securesms.mms.AttachmentStreamUriLoader.AttachmentModel;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
+import org.thoughtcrime.securesms.stickers.StickerRemoteUri;
+import org.thoughtcrime.securesms.stickers.StickerRemoteUriLoader;
 
 import java.io.File;
 import java.io.InputStream;
@@ -69,6 +71,7 @@ public class SignalGlideModule extends AppGlideModule {
     registry.append(DecryptableUri.class, InputStream.class, new DecryptableStreamUriLoader.Factory(context));
     registry.append(AttachmentModel.class, InputStream.class, new AttachmentStreamUriLoader.Factory());
     registry.append(ChunkedImageUrl.class, InputStream.class, new ChunkedImageUrlLoader.Factory());
+    registry.append(StickerRemoteUri.class, InputStream.class, new StickerRemoteUriLoader.Factory(context));
     registry.replace(GlideUrl.class, InputStream.class, new OkHttpUrlLoader.Factory());
   }
 

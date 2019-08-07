@@ -91,8 +91,7 @@ public class WebRtcCallControls extends LinearLayout {
       @Override
       public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         listener.onToggle();
-        cameraFlipButton.setBackgroundResource(isChecked ? R.drawable.webrtc_camera_front_button
-                                                         : R.drawable.webrtc_camera_rear_button);
+        updateCameraFlipIcon(isChecked);
         cameraFlipButton.setEnabled(false);
       }
     });
@@ -153,10 +152,17 @@ public class WebRtcCallControls extends LinearLayout {
 
   public void setCameraFlipButtonEnabled(boolean enabled) {
     cameraFlipButton.setChecked(enabled, false);
+    updateCameraFlipIcon(cameraFlipButton.isChecked());
+  }
+
+  private void updateCameraFlipIcon(boolean isChecked) {
+    cameraFlipButton.setBackgroundResource(isChecked ? R.drawable.webrtc_camera_front_button
+                                                     : R.drawable.webrtc_camera_rear_button);
   }
 
   public void setCameraFlipAvailable(boolean available) {
     cameraFlipAvailable = available;
+    cameraFlipButton.setVisibility(cameraFlipAvailable && isVideoEnabled() ? View.VISIBLE : View.GONE);
   }
 
   public void setCameraFlipClickable(boolean clickable) {

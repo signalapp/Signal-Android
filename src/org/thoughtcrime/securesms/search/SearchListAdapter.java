@@ -43,9 +43,8 @@ class SearchListAdapter extends    RecyclerView.Adapter<SearchListAdapter.Search
     this.locale        = locale;
   }
 
-  @NonNull
   @Override
-  public SearchResultViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+  public @NonNull SearchResultViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
     return new SearchResultViewHolder(LayoutInflater.from(parent.getContext())
                                                     .inflate(R.layout.conversation_list_item_view, parent, false));
   }
@@ -74,7 +73,7 @@ class SearchListAdapter extends    RecyclerView.Adapter<SearchListAdapter.Search
   }
 
   @Override
-  public void onViewRecycled(SearchResultViewHolder holder) {
+  public void onViewRecycled(@NonNull SearchResultViewHolder holder) {
     holder.recycle();
   }
 

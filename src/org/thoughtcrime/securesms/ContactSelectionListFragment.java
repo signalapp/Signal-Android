@@ -123,7 +123,7 @@ public class ContactSelectionListFragment extends    Fragment
   }
 
   @Override
-  public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+  public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.contact_selection_list_fragment, container, false);
 
     emptyText               = ViewUtil.findById(view, android.R.id.empty);
@@ -215,14 +215,14 @@ public class ContactSelectionListFragment extends    Fragment
   }
 
   @Override
-  public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+  public @NonNull Loader<Cursor> onCreateLoader(int id, Bundle args) {
     return new ContactsCursorLoader(getActivity(),
                                     getActivity().getIntent().getIntExtra(DISPLAY_MODE, DisplayMode.FLAG_ALL),
                                     cursorFilter, getActivity().getIntent().getBooleanExtra(RECENTS, false));
   }
 
   @Override
-  public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+  public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
     swipeRefresh.setVisibility(View.VISIBLE);
     showContactsLayout.setVisibility(View.GONE);
 
@@ -237,7 +237,7 @@ public class ContactSelectionListFragment extends    Fragment
   }
 
   @Override
-  public void onLoaderReset(Loader<Cursor> loader) {
+  public void onLoaderReset(@NonNull Loader<Cursor> loader) {
     ((CursorRecyclerViewAdapter) recyclerView.getAdapter()).changeCursor(null);
     fastScroller.setVisibility(View.GONE);
   }
