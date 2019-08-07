@@ -11,6 +11,7 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.database.DatabaseFactory
+import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord
 import org.whispersystems.signalservice.loki.messaging.LokiMessageFriendRequestStatus
@@ -104,13 +105,15 @@ class FriendRequestView(context: Context, attrs: AttributeSet?, defStyleAttr: In
     }
 
     private fun updateUI() {
+        val message = message
         val database = DatabaseFactory.getLokiMessageFriendRequestDatabase(context)
         val contactID = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(message!!.threadId)!!.address.toString()
         val contactDisplayName = DatabaseFactory.getLokiUserDisplayNameDatabase(context).getDisplayName(contactID) ?: contactID
+        if (message is MediaMmsMessageRecord && message.quote != null) { visibility = View.GONE; return }
         val isTextMessage = message is SmsMessageRecord
         if (!isTextMessage) return
         val friendRequestStatus = database.getFriendRequestStatus(message!!.id)
-        if (!message!!.isOutgoing) {
+        if (!message.isOutgoing) {
             visibility = if (friendRequestStatus == LokiMessageFriendRequestStatus.NONE) View.GONE else View.VISIBLE
             buttonLinearLayout.visibility = if (friendRequestStatus != LokiMessageFriendRequestStatus.REQUEST_PENDING) View.GONE else View.VISIBLE
             loaderContainer.visibility = if (friendRequestStatus == LokiMessageFriendRequestStatus.REQUEST_SENDING) View.VISIBLE else View.GONE
