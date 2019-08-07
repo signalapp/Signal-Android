@@ -86,7 +86,7 @@ a</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Okakasa oyagala kuva mu kibija kino?</string>
   <string name="ConversationActivity_transport_insecure_sms">Obubaka obutalina bukuumi</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS terina bukumi</string>
-  <string name="ConversationActivity_transport_signal">Signal</string>
+  <string name="ConversationActivity_transport_signal">Loki Messenger</string>
   <string name="ConversationActivity_lets_switch_to_signal">Katudde ku Signal %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Katukozese emboozi eno: %1$s</string>
   <string name="ConversationActivity_specify_recipient">Bambi londa contact</string>

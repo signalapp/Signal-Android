@@ -94,7 +94,7 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Дали сте сигурни дека сакате да ја напуштите групата?</string>
   <string name="ConversationActivity_transport_insecure_sms">Незаштитена SMS порака</string>
   <string name="ConversationActivity_transport_insecure_mms">Незаштитена MMS порака</string>
-  <string name="ConversationActivity_transport_signal">Signal</string>
+  <string name="ConversationActivity_transport_signal">Loki Messenger</string>
   <string name="ConversationActivity_specify_recipient">Изберете контакт</string>
   <string name="ConversationActivity_unblock_this_contact_question">Одблокирај го контактот?</string>
   <string name="ConversationActivity_unblock">Одблокирај</string>
@@ -160,7 +160,7 @@
   <string name="MessageDetailsRecipient_failed_to_send">Неуспешно праќање</string>
   <!--LongMessageActivity-->
   <!--MessageRetrievalService-->
-  <string name="MessageRetrievalService_signal">Signal</string>
+  <string name="MessageRetrievalService_signal">Loki Messenger</string>
   <!--MmsDownloader-->
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media_delete_progress_title">Бришење</string>
@@ -296,7 +296,7 @@
   <string name="SearchToolbar_search">Барај</string>
   <!--ShortcutLauncherActivity-->
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Loki Messenger</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Нова порака</string>
   <!--TransferControlView-->
   <!--UnauthorizedReminder-->

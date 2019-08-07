@@ -135,7 +135,7 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Tem certeza que deseja sair deste grupo?</string>
   <string name="ConversationActivity_transport_insecure_sms">SMS inseguro</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS inseguro</string>
-  <string name="ConversationActivity_transport_signal">Signal</string>
+  <string name="ConversationActivity_transport_signal">Loki Messenger</string>
   <string name="ConversationActivity_lets_switch_to_signal">Vamos mudar para o Signal %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Vamos usar isto para conversar: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Erro ao sair do grupo</string>
@@ -362,7 +362,7 @@
   <string name="LongMessageActivity_message_from_s">Mensagem de %1$s</string>
   <string name="LongMessageActivity_your_message">Sua mensagem</string>
   <!--MessageRetrievalService-->
-  <string name="MessageRetrievalService_signal">Signal</string>
+  <string name="MessageRetrievalService_signal">Loki Messenger</string>
   <string name="MessageRetrievalService_background_connection_enabled">Conexão em segundo plano habilitada</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_reading_mms_settings">Erro ao ler configuracoes de MMS do provedor sem fio </string>
@@ -680,7 +680,7 @@
   <!--ShortcutLauncherActivity-->
   <string name="ShortcutLauncherActivity_invalid_shortcut">Atalho inválido</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Loki Messenger</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nova mensagem</string>
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">

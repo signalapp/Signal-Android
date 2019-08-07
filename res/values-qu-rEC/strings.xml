@@ -128,7 +128,7 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Tantanakuymanta  llukshinkapak munankipachachu</string>
   <string name="ConversationActivity_transport_insecure_sms">SMS mana allikakta yacharinchu</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS mana allikakta yacharinchu</string>
-  <string name="ConversationActivity_transport_signal">Signal</string>
+  <string name="ConversationActivity_transport_signal">Loki Messenger</string>
   <string name="ConversationActivity_lets_switch_to_signal">Signal ukuman yallishunchik: %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Kaywan rimarishun: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Tantanakuymanta mana llukshita usharirkachu</string>
@@ -332,7 +332,7 @@
   <string name="MessageDetailsRecipient_new_safety_number">Mushuk wakaychik yupay</string>
   <!--LongMessageActivity-->
   <!--MessageRetrievalService-->
-  <string name="MessageRetrievalService_signal">Signal</string>
+  <string name="MessageRetrievalService_signal">Loki Messenger</string>
   <string name="MessageRetrievalService_background_connection_enabled">Washa washalla paskarishka sakirin</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_reading_mms_settings">Internetpa MMS configuracionta mana killkakatita usharinchu</string>
@@ -620,7 +620,7 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <!--ShortcutLauncherActivity-->
   <string name="ShortcutLauncherActivity_invalid_shortcut">Ñapash chayak mana allichu</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Loki Messenger</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Mushuk chaski</string>
   <!--TransferControlView-->
   <!--UnauthorizedReminder-->

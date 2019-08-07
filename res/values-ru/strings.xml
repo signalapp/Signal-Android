@@ -141,7 +141,7 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Вы уверены, что хотите покинуть эту группу?</string>
   <string name="ConversationActivity_transport_insecure_sms">Незащищённое SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Незащищённое MMS</string>
-  <string name="ConversationActivity_transport_signal">Signal</string>
+  <string name="ConversationActivity_transport_signal">Loki Messenger</string>
   <string name="ConversationActivity_lets_switch_to_signal">Давайте перейдём на Signal %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Давайте общаться через Signal: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Ошибка при выходе из группы</string>
@@ -394,7 +394,7 @@
   <string name="LongMessageActivity_message_from_s">Сообщение от %1$s</string>
   <string name="LongMessageActivity_your_message">Ваше сообщение</string>
   <!--MessageRetrievalService-->
-  <string name="MessageRetrievalService_signal">Signal</string>
+  <string name="MessageRetrievalService_signal">Loki Messenger</string>
   <string name="MessageRetrievalService_background_connection_enabled">Фоновое соединение включено</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_reading_mms_settings">Ошибка при чтении настроек MMS беспроводного провайдера</string>
@@ -714,7 +714,7 @@
   <!--ShortcutLauncherActivity-->
   <string name="ShortcutLauncherActivity_invalid_shortcut">Недопустимый ярлык</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Loki Messenger</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Новое сообщение</string>
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">

@@ -136,7 +136,7 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Er du sikker, du vil forlade gruppen?</string>
   <string name="ConversationActivity_transport_insecure_sms">Usikret SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Usikret MMS</string>
-  <string name="ConversationActivity_transport_signal">Signal</string>
+  <string name="ConversationActivity_transport_signal">Loki Messenger</string>
   <string name="ConversationActivity_lets_switch_to_signal">Lad os bruge Signal %1$s?</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Lad os bruge Signal til beskeder: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Fejl ved forsøg på at forlade gruppen</string>
@@ -363,7 +363,7 @@
   <string name="LongMessageActivity_message_from_s">Besked fra %1$s</string>
   <string name="LongMessageActivity_your_message">Din besked</string>
   <!--MessageRetrievalService-->
-  <string name="MessageRetrievalService_signal">Signal</string>
+  <string name="MessageRetrievalService_signal">Loki Messenger</string>
   <string name="MessageRetrievalService_background_connection_enabled">Baggrundsforbindelse aktiveret</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_reading_mms_settings">Kunne ikke læse indstillinger for trådløs MMS udbyder</string>
@@ -680,7 +680,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <!--ShortcutLauncherActivity-->
   <string name="ShortcutLauncherActivity_invalid_shortcut">Ugyldig genvej</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Loki Messenger</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Ny besked</string>
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">

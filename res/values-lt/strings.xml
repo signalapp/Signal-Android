@@ -141,7 +141,7 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Ar tikrai norite išeiti iš šios grupės?</string>
   <string name="ConversationActivity_transport_insecure_sms">Nesaugi SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Nesaugi MMS</string>
-  <string name="ConversationActivity_transport_signal">Signal</string>
+  <string name="ConversationActivity_transport_signal">Loki Messenger</string>
   <string name="ConversationActivity_lets_switch_to_signal">Persijunkime į Signal %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Naudokime pokalbiui štai ką: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Klaida, išeinant iš grupės</string>
@@ -394,7 +394,7 @@
   <string name="LongMessageActivity_message_from_s">Žinutė nuo %1$s</string>
   <string name="LongMessageActivity_your_message">Jūsų žinutė</string>
   <!--MessageRetrievalService-->
-  <string name="MessageRetrievalService_signal">Signal</string>
+  <string name="MessageRetrievalService_signal">Loki Messenger</string>
   <string name="MessageRetrievalService_background_connection_enabled">Foninis ryšys įjungtas</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_reading_mms_settings">Klaida, skaitant belaidžio tiekėjo MMS nustatymus</string>
@@ -720,7 +720,7 @@
   <!--ShortcutLauncherActivity-->
   <string name="ShortcutLauncherActivity_invalid_shortcut">Neteisingas šaukinys</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Loki Messenger</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nauja žinutė</string>
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">

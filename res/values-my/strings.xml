@@ -310,7 +310,7 @@
   <string name="MessageDetailsRecipient_new_safety_number">လုံခြုံရေးနံပါတ် အသစ်</string>
   <!--LongMessageActivity-->
   <!--MessageRetrievalService-->
-  <string name="MessageRetrievalService_signal">Signal</string>
+  <string name="MessageRetrievalService_signal">Loki Messenger</string>
   <string name="MessageRetrievalService_background_connection_enabled">အင်တာနက်ဆက်သွယ်မှု နောက်ကွယ်တွင် ဖွင့်ထားသည်</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_reading_mms_settings">အင်တာနက်ဝန်ဆောင်မှုမှ MMS အပြင်အဆင်များ ဖတ်၍မရပါ</string>
@@ -583,7 +583,7 @@
   <string name="SearchToolbar_search">ရှာရန်</string>
   <!--ShortcutLauncherActivity-->
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Loki Messenger</string>
   <string name="SingleRecipientNotificationBuilder_new_message">စာအသစ်</string>
   <!--TransferControlView-->
   <!--UnauthorizedReminder-->

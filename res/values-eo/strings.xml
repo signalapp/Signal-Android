@@ -135,7 +135,7 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Ĉu vi certas, ke vi volas forlasi ĉi tiun grupon?</string>
   <string name="ConversationActivity_transport_insecure_sms">Nesekura SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Nesekura MMS</string>
-  <string name="ConversationActivity_transport_signal">Signal</string>
+  <string name="ConversationActivity_transport_signal">Loki Messenger</string>
   <string name="ConversationActivity_lets_switch_to_signal">Ni ŝanĝiĝu al Signal: %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Ni ekuzu ĉi tion por babili: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Eraro dum forlaso de grupo</string>
@@ -362,7 +362,7 @@
   <string name="LongMessageActivity_message_from_s">Mesaĝo el %1$s</string>
   <string name="LongMessageActivity_your_message">Via mesaĝo</string>
   <!--MessageRetrievalService-->
-  <string name="MessageRetrievalService_signal">Signal</string>
+  <string name="MessageRetrievalService_signal">Loki Messenger</string>
   <string name="MessageRetrievalService_background_connection_enabled">Fona konekto ŝaltita</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_reading_mms_settings">Eraro dum legado de la MMS-agordoj el sen-drata provizanto</string>
@@ -679,7 +679,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--ShortcutLauncherActivity-->
   <string name="ShortcutLauncherActivity_invalid_shortcut">Nevalida ŝparvojo</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Loki Messenger</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nova mesaĝo</string>
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">

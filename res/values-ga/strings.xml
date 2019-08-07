@@ -141,7 +141,7 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">An bhfuil tú cinnte gur mian leat an bhaicle seo a fhágáil?</string>
   <string name="ConversationActivity_transport_insecure_sms">SMS easlán</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS easlán</string>
-  <string name="ConversationActivity_transport_signal">Signal</string>
+  <string name="ConversationActivity_transport_signal">Loki Messenger</string>
   <string name="ConversationActivity_lets_switch_to_signal">Téimís i muinín Signal %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Déanaimís comhrá ar seo: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Tharla botún ag fágáil an bhaicle</string>
@@ -320,7 +320,7 @@
   <string name="MessageDetailsRecipient_new_safety_number">Uimhir shábhála nua</string>
   <!--LongMessageActivity-->
   <!--MessageRetrievalService-->
-  <string name="MessageRetrievalService_signal">Signal</string>
+  <string name="MessageRetrievalService_signal">Loki Messenger</string>
   <!--MmsDownloader-->
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Meáin</string>
@@ -581,7 +581,7 @@ a shonrú</string>
   <!--ShortcutLauncherActivity-->
   <string name="ShortcutLauncherActivity_invalid_shortcut">Aicearra neamhbhailí</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Loki Messenger</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Teachtaireacht nua</string>
   <!--TransferControlView-->
   <!--UnauthorizedReminder-->

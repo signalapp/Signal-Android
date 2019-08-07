@@ -140,7 +140,7 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Ви дійсно хочете покинути цю групу?</string>
   <string name="ConversationActivity_transport_insecure_sms">Незахищене SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Незахищене MMS</string>
-  <string name="ConversationActivity_transport_signal">Signal</string>
+  <string name="ConversationActivity_transport_signal">Loki Messenger</string>
   <string name="ConversationActivity_lets_switch_to_signal">Давай перейдемо у Signal %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Давай використовувати це для чату: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Помилка при виході з групи</string>
@@ -385,7 +385,7 @@
   <string name="LongMessageActivity_message_from_s">Повідомлення від %1$s</string>
   <string name="LongMessageActivity_your_message">Ваше повідомлення</string>
   <!--MessageRetrievalService-->
-  <string name="MessageRetrievalService_signal">Signal</string>
+  <string name="MessageRetrievalService_signal">Loki Messenger</string>
   <string name="MessageRetrievalService_background_connection_enabled">Фонове підключення активоване</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_reading_mms_settings">Помилка читання налаштувань MMS провайдера</string>
@@ -690,7 +690,7 @@
   <string name="SearchToolbar_search">Пошук</string>
   <!--ShortcutLauncherActivity-->
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Loki Messenger</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Нове повідомлення</string>
   <!--TransferControlView-->
   <!--UnauthorizedReminder-->

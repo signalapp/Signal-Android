@@ -135,7 +135,7 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Bu qrupdan çıxmaq istədiyinə əminsən?</string>
   <string name="ConversationActivity_transport_insecure_sms">Zəmanətsiz SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Zəmanətsiz MMS</string>
-  <string name="ConversationActivity_transport_signal">Signal</string>
+  <string name="ConversationActivity_transport_signal">Loki Messenger</string>
   <string name="ConversationActivity_lets_switch_to_signal">Gəl %1$s Signal-a keçək</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Gəl bu söhbətləşməni istifadə edək: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Qrupdan çıxarkən xəta</string>
@@ -362,7 +362,7 @@
   <string name="LongMessageActivity_message_from_s">%1$s tərəfindən mesaj</string>
   <string name="LongMessageActivity_your_message">Sənin mesajın</string>
   <!--MessageRetrievalService-->
-  <string name="MessageRetrievalService_signal">Signal</string>
+  <string name="MessageRetrievalService_signal">Loki Messenger</string>
   <string name="MessageRetrievalService_background_connection_enabled">Pərdə arxası əlaqə aktivləşdirildi</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_reading_mms_settings">Telsiz provayder MMS parametrlərinin oxunmasında xəta</string>
@@ -680,7 +680,7 @@
   <!--ShortcutLauncherActivity-->
   <string name="ShortcutLauncherActivity_invalid_shortcut">Xətalı qısa yol</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Loki Messenger</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Yeni ismarış</string>
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">

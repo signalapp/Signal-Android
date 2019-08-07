@@ -131,7 +131,7 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">क्या आप वाकई इस समूह को छोड़ना चाहते हैं?</string>
   <string name="ConversationActivity_transport_insecure_sms">असुरक्षित एसएमएस</string>
   <string name="ConversationActivity_transport_insecure_mms">असुरक्षित एमएमएस</string>
-  <string name="ConversationActivity_transport_signal">Signal</string>
+  <string name="ConversationActivity_transport_signal">Loki Messenger</string>
   <string name="ConversationActivity_lets_switch_to_signal">%1$s चलो Signal पर स्विच करें</string>
   <string name="ConversationActivity_lets_use_this_to_chat">%1$s चलो चैट करने के लिए इसका इस्तेमाल करते हैं</string>
   <string name="ConversationActivity_error_leaving_group">समूह छोड़ने में त्रुटि</string>
@@ -342,7 +342,7 @@
   <string name="MessageDetailsRecipient_new_safety_number">नई सुरक्षा संख्या</string>
   <!--LongMessageActivity-->
   <!--MessageRetrievalService-->
-  <string name="MessageRetrievalService_signal">Signal</string>
+  <string name="MessageRetrievalService_signal">Loki Messenger</string>
   <string name="MessageRetrievalService_background_connection_enabled">पृष्ठभूमि कनेक्शन सक्षम</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_reading_mms_settings">वायरलेस प्रदाता एमएमएस सेटिंग्स पढ़ने में त्रुटि</string>
@@ -624,7 +624,7 @@
   <!--ShortcutLauncherActivity-->
   <string name="ShortcutLauncherActivity_invalid_shortcut">अमान्य शॉर्टकट</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Loki Messenger</string>
   <string name="SingleRecipientNotificationBuilder_new_message">नया Signal सन्देश</string>
   <!--TransferControlView-->
   <!--UnauthorizedReminder-->

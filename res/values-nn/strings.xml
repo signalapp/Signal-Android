@@ -135,7 +135,7 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Er du sikker på at du vil forlata gruppa?</string>
   <string name="ConversationActivity_transport_insecure_sms">Usikker SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Usikker MMS</string>
-  <string name="ConversationActivity_transport_signal">Signal</string>
+  <string name="ConversationActivity_transport_signal">Loki Messenger</string>
   <string name="ConversationActivity_lets_switch_to_signal">La oss byte til Signal %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">La oss bruka dette til å prata: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Klarte ikkje forlata gruppa</string>
@@ -361,7 +361,7 @@
   <string name="LongMessageActivity_message_from_s">Melding frå %1$s</string>
   <string name="LongMessageActivity_your_message">Di melding</string>
   <!--MessageRetrievalService-->
-  <string name="MessageRetrievalService_signal">Signal</string>
+  <string name="MessageRetrievalService_signal">Loki Messenger</string>
   <string name="MessageRetrievalService_background_connection_enabled">Bakgrunnstilkopling på</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_reading_mms_settings">Klarte ikkje lesa MMS-oppsettet til teleselskapet</string>
@@ -671,7 +671,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <!--ShortcutLauncherActivity-->
   <string name="ShortcutLauncherActivity_invalid_shortcut">Ugyldig snarveg</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Loki Messenger</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Ny melding</string>
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">

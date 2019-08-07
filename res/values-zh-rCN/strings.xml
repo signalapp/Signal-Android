@@ -346,7 +346,7 @@
   <string name="LongMessageActivity_message_from_s">%1$s发来的消息</string>
   <string name="LongMessageActivity_your_message">您的消息</string>
   <!--MessageRetrievalService-->
-  <string name="MessageRetrievalService_signal">Signal</string>
+  <string name="MessageRetrievalService_signal">Loki Messenger</string>
   <string name="MessageRetrievalService_background_connection_enabled">后台数据已启用</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_reading_mms_settings">读取运营商的彩信设定时出错</string>
@@ -654,7 +654,7 @@
   <!--ShortcutLauncherActivity-->
   <string name="ShortcutLauncherActivity_invalid_shortcut">无效的快捷方式</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Loki Messenger</string>
   <string name="SingleRecipientNotificationBuilder_new_message">新信息</string>
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">

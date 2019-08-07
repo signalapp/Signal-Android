@@ -135,7 +135,7 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Сигурен ли си, че искаш да напуснеш тази група?</string>
   <string name="ConversationActivity_transport_insecure_sms">Некриптиран SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Некриптиран MMS</string>
-  <string name="ConversationActivity_transport_signal">Signal</string>
+  <string name="ConversationActivity_transport_signal">Loki Messenger</string>
   <string name="ConversationActivity_lets_switch_to_signal">Да преминем към Signal %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Да използваме следното за чатене: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Грешка при напускане на групата</string>
@@ -362,7 +362,7 @@
   <string name="LongMessageActivity_message_from_s">Съобщение от %1$s</string>
   <string name="LongMessageActivity_your_message">Вашето съобщение</string>
   <!--MessageRetrievalService-->
-  <string name="MessageRetrievalService_signal">Signal</string>
+  <string name="MessageRetrievalService_signal">Loki Messenger</string>
   <string name="MessageRetrievalService_background_connection_enabled">Връзката във фонов режим е активирана</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_reading_mms_settings">Грешка при четенето на MMS настройките на доставчика</string>
@@ -675,7 +675,7 @@
   <!--ShortcutLauncherActivity-->
   <string name="ShortcutLauncherActivity_invalid_shortcut">Невалидена препратка</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Loki Messenger</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Ново съобщение</string>
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">

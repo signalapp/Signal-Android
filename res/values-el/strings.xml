@@ -135,7 +135,7 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Είστε σίγουρος/η πως θέλετε να αποχωρήσετε από την ομάδα;</string>
   <string name="ConversationActivity_transport_insecure_sms">Μη ασφαλές μήνυμα SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Μη ασφαλές μήνυμα πολυμέσων MMS</string>
-  <string name="ConversationActivity_transport_signal">Signal</string>
+  <string name="ConversationActivity_transport_signal">Loki Messenger</string>
   <string name="ConversationActivity_lets_switch_to_signal">Ας χρησιμοποιήσουμε το Signal %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Ας χρησιμοποιήσουμε αυτό για να συνομιλήσουμε: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Πρόβλημα κατά την αποχώρηση από την ομάδα</string>
@@ -362,7 +362,7 @@
   <string name="LongMessageActivity_message_from_s">Μήνυμα από τον/την %1$s</string>
   <string name="LongMessageActivity_your_message">Το μήνυμά σας</string>
   <!--MessageRetrievalService-->
-  <string name="MessageRetrievalService_signal">Signal</string>
+  <string name="MessageRetrievalService_signal">Loki Messenger</string>
   <string name="MessageRetrievalService_background_connection_enabled">Η σύνδεση στο παρασκήνιο ενεργοποιήθηκε</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_reading_mms_settings">Πρόβλημα κατά την ανάκτηση ρυθμίσεων από τον πάροχο για τα MMS </string>
@@ -675,7 +675,7 @@
   <!--ShortcutLauncherActivity-->
   <string name="ShortcutLauncherActivity_invalid_shortcut">Μη έγκυρη συντόμευση</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Loki Messenger</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Νέο μήνυμα</string>
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">

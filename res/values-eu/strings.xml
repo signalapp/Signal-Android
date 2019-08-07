@@ -135,7 +135,7 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Ziur zaude talde hau utzi nahi izateaz?</string>
   <string name="ConversationActivity_transport_insecure_sms">SMS ez segurua</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS ez segurua</string>
-  <string name="ConversationActivity_transport_signal">Signal</string>
+  <string name="ConversationActivity_transport_signal">Loki Messenger</string>
   <string name="ConversationActivity_lets_switch_to_signal">Signalera aldatu dezagun %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Erabili dezagun hau txatarako: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Taldetik irteterakoan huts egin du</string>
@@ -363,7 +363,7 @@
   <string name="LongMessageActivity_message_from_s">Honen mezua: %1$s</string>
   <string name="LongMessageActivity_your_message">Zure mezua</string>
   <!--MessageRetrievalService-->
-  <string name="MessageRetrievalService_signal">Signal</string>
+  <string name="MessageRetrievalService_signal">Loki Messenger</string>
   <string name="MessageRetrievalService_background_connection_enabled">Atzeko planoko konexioa gaituta</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_reading_mms_settings">Errorea hari gabeko hornitzailearen MMS ezarpenak irakurtzerakoan</string>
@@ -681,7 +681,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--ShortcutLauncherActivity-->
   <string name="ShortcutLauncherActivity_invalid_shortcut">Lasterbide baliogabea</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Loki Messenger</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Mezu berria</string>
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">

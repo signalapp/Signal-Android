@@ -125,7 +125,7 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">คุณแน่ใจหรือไหมว่าต้องการออกจากกลุ่มนี้</string>
   <string name="ConversationActivity_transport_insecure_sms">SMS ที่ไม่ปลอดภัย</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS ที่ไม่ปลอดภัย</string>
-  <string name="ConversationActivity_transport_signal">Signal</string>
+  <string name="ConversationActivity_transport_signal">Loki Messenger</string>
   <string name="ConversationActivity_lets_switch_to_signal">เปลี่ยนมาใช้ Signal กันเถอะ %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">ใช้อันนี้คุยกัน: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">เกิดข้อผิดพลาดระหว่างออกจากกลุ่ม</string>
@@ -318,7 +318,7 @@
   <string name="MessageDetailsRecipient_new_safety_number">รหัสความปลอดภัยใหม่</string>
   <!--LongMessageActivity-->
   <!--MessageRetrievalService-->
-  <string name="MessageRetrievalService_signal">Signal</string>
+  <string name="MessageRetrievalService_signal">Loki Messenger</string>
   <string name="MessageRetrievalService_background_connection_enabled">เปิดใช้งานให้การเชื่อมต่อทำงานเบื้องหลัง</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_reading_mms_settings">เกิดข้อผิดพลาดระหว่างอ่านการตั้งค่า MMS ของผู้ให้บริการไร้สาย</string>
@@ -608,7 +608,7 @@
   <!--ShortcutLauncherActivity-->
   <string name="ShortcutLauncherActivity_invalid_shortcut">ชอร์ตคัทใช้ไม่ได้</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Loki Messenger</string>
   <string name="SingleRecipientNotificationBuilder_new_message">ข้อความใหม่</string>
   <!--TransferControlView-->
   <!--UnauthorizedReminder-->

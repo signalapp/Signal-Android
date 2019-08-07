@@ -135,7 +135,7 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Weet je zeker dat je deze groep wilt verlaten?</string>
   <string name="ConversationActivity_transport_insecure_sms">Onbeveiligde sms</string>
   <string name="ConversationActivity_transport_insecure_mms">Onbeveiligde mms</string>
-  <string name="ConversationActivity_transport_signal">Signal</string>
+  <string name="ConversationActivity_transport_signal">Loki Messenger</string>
   <string name="ConversationActivity_lets_switch_to_signal">Laten we Signal gebruiken om een gesprek te voeren %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Laten we chatten met deze berichten app: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Fout bij het verlaten van de groep</string>
@@ -363,7 +363,7 @@ weergaven.</string>
   <string name="LongMessageActivity_message_from_s">Bericht van %1$s</string>
   <string name="LongMessageActivity_your_message">Je bericht</string>
   <!--MessageRetrievalService-->
-  <string name="MessageRetrievalService_signal">Signal</string>
+  <string name="MessageRetrievalService_signal">Loki Messenger</string>
   <string name="MessageRetrievalService_background_connection_enabled">Achtergrondverbinding tot stand gebracht</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_reading_mms_settings">Fout bij het lezen van de mms-instellingen van de provider</string>
@@ -682,7 +682,7 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <!--ShortcutLauncherActivity-->
   <string name="ShortcutLauncherActivity_invalid_shortcut">Ongeldige snelkoppeling</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Loki Messenger</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nieuw bericht</string>
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">

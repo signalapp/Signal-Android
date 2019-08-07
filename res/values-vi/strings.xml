@@ -96,7 +96,7 @@ Bạn sẽ phải đăng ký lại số điện thoại để sử dụng Signal
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Bạn có chắc là muốn rời nhóm?</string>
   <string name="ConversationActivity_transport_insecure_sms">SMS không bảo mật</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS không bảo mật</string>
-  <string name="ConversationActivity_transport_signal">Signal</string>
+  <string name="ConversationActivity_transport_signal">Loki Messenger</string>
   <string name="ConversationActivity_lets_switch_to_signal">Hãy chuyển sang dùng Signal %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Dùng cái này để chat: %1$s</string>
   <string name="ConversationActivity_specify_recipient">Xin chọn một liên lạc</string>
@@ -227,7 +227,7 @@ Bạn sẽ phải đăng ký lại số điện thoại để sử dụng Signal
   <string name="MessageDetailsRecipient_failed_to_send">Gửi đi không được</string>
   <!--LongMessageActivity-->
   <!--MessageRetrievalService-->
-  <string name="MessageRetrievalService_signal">Signal</string>
+  <string name="MessageRetrievalService_signal">Loki Messenger</string>
   <!--MmsDownloader-->
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media_delete_progress_title">Đang xóa</string>
@@ -399,7 +399,7 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <string name="SearchToolbar_search">Tìm kiếm</string>
   <!--ShortcutLauncherActivity-->
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Loki Messenger</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Tin nhắn mới</string>
   <!--TransferControlView-->
   <!--UnauthorizedReminder-->

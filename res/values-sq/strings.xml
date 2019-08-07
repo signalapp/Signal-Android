@@ -135,7 +135,7 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">A jeni i sigurt se dëshironi ta braktisni grupin?</string>
   <string name="ConversationActivity_transport_insecure_sms">SMS i pasigurt</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS i pasigurt</string>
-  <string name="ConversationActivity_transport_signal">Signal</string>
+  <string name="ConversationActivity_transport_signal">Loki Messenger</string>
   <string name="ConversationActivity_lets_switch_to_signal">Le të kalojmë në Signal %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Le ta përdorim këtë për të biseduar: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Gabim braktisje grupi</string>
@@ -362,7 +362,7 @@
   <string name="LongMessageActivity_message_from_s">Mesazh prej %1$s</string>
   <string name="LongMessageActivity_your_message">Mesazhi Juaj</string>
   <!--MessageRetrievalService-->
-  <string name="MessageRetrievalService_signal">Signal</string>
+  <string name="MessageRetrievalService_signal">Loki Messenger</string>
   <string name="MessageRetrievalService_background_connection_enabled">U aktivizua lidhja në prapaskenë</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_reading_mms_settings">Gabim në leximin e rregullimeve për MMS të furnizuesit të rrjetit pa fill</string>
@@ -676,7 +676,7 @@
   <!--ShortcutLauncherActivity-->
   <string name="ShortcutLauncherActivity_invalid_shortcut">Shkurtore e pavlefshme</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Loki Messenger</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Mesazh i ri</string>
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">

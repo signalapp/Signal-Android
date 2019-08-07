@@ -134,7 +134,7 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Bi rastî jî tu dixwaze ji vê komê derkeve?</string>
   <string name="ConversationActivity_transport_insecure_sms">SMSa neparastî</string>
   <string name="ConversationActivity_transport_insecure_mms">MMSa neparastî</string>
-  <string name="ConversationActivity_transport_signal">Signal</string>
+  <string name="ConversationActivity_transport_signal">Loki Messenger</string>
   <string name="ConversationActivity_lets_switch_to_signal">Biçe Signalê %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Ji bo gotûbêjê em vê bikarbînin: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Ji komê derketin pêk nehat</string>
@@ -352,7 +352,7 @@
   <string name="LongMessageActivity_message_from_s">Ji %1$s peyam</string>
   <string name="LongMessageActivity_your_message">Peyama te</string>
   <!--MessageRetrievalService-->
-  <string name="MessageRetrievalService_signal">Signal</string>
+  <string name="MessageRetrievalService_signal">Loki Messenger</string>
   <string name="MessageRetrievalService_background_connection_enabled">Girêdana paşgehîn êdî pêkan e</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_reading_mms_settings">Di xwendina sazkariyên MMSê yên dabînkerê xizmeta bêtêlê de çewtî çêbû</string>
@@ -649,7 +649,7 @@
   <!--ShortcutLauncherActivity-->
   <string name="ShortcutLauncherActivity_invalid_shortcut">Kurterêya nederbasdar</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Loki Messenger</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Peyama nû</string>
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">

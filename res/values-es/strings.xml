@@ -135,7 +135,7 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">¿Estás seguro de que quieres dejar este grupo?</string>
   <string name="ConversationActivity_transport_insecure_sms">SMS no seguro</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS no seguro</string>
-  <string name="ConversationActivity_transport_signal">Signal</string>
+  <string name="ConversationActivity_transport_signal">Loki Messenger</string>
   <string name="ConversationActivity_lets_switch_to_signal">Pasémonos a Signal: %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Usemos esta app para chatear: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Fallo al abandonar el grupo</string>
@@ -362,7 +362,7 @@
   <string name="LongMessageActivity_message_from_s">Mensaje de %1$s</string>
   <string name="LongMessageActivity_your_message">Tu mensaje</string>
   <!--MessageRetrievalService-->
-  <string name="MessageRetrievalService_signal">Signal</string>
+  <string name="MessageRetrievalService_signal">Loki Messenger</string>
   <string name="MessageRetrievalService_background_connection_enabled">Conexión en segundo plano activada</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_reading_mms_settings">Fallo al leer la configuración MMS del proveedor</string>
@@ -680,7 +680,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--ShortcutLauncherActivity-->
   <string name="ShortcutLauncherActivity_invalid_shortcut">Atajo no válido</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Loki Messenger</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nuevo mensaje</string>
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">

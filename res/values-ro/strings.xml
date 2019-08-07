@@ -138,7 +138,7 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Sunteți sigur că doriți să părăsiți acest grup?</string>
   <string name="ConversationActivity_transport_insecure_sms">SMS nesecurizat</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS nesecurizat</string>
-  <string name="ConversationActivity_transport_signal">Signal</string>
+  <string name="ConversationActivity_transport_signal">Loki Messenger</string>
   <string name="ConversationActivity_lets_switch_to_signal">Hai să folosim Signal %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Hai să utilizăm aplicația asta ca să vorbim: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Eroare la parăsirea grupului</string>
@@ -378,7 +378,7 @@
   <string name="LongMessageActivity_message_from_s">Mesaj de la %1$s</string>
   <string name="LongMessageActivity_your_message">Mesajul dvs.</string>
   <!--MessageRetrievalService-->
-  <string name="MessageRetrievalService_signal">Signal</string>
+  <string name="MessageRetrievalService_signal">Loki Messenger</string>
   <string name="MessageRetrievalService_background_connection_enabled">Conexiune în fundal activată</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_reading_mms_settings">Eroare la citirea setărilor MMS ale operatorului wireless</string>
@@ -695,7 +695,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--ShortcutLauncherActivity-->
   <string name="ShortcutLauncherActivity_invalid_shortcut">Scurtătură invalidă</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Loki Messenger</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Mesaj nou</string>
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">

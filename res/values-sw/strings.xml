@@ -277,7 +277,7 @@
   <string name="LongMessageActivity_unable_to_find_message">imeshindikana kutafuta ujumbe</string>
   <string name="LongMessageActivity_your_message">ujumbe wako</string>
   <!--MessageRetrievalService-->
-  <string name="MessageRetrievalService_signal">Signal</string>
+  <string name="MessageRetrievalService_signal">Loki Messenger</string>
   <string name="MessageRetrievalService_background_connection_enabled">kuunganisha ya chinichini imewezeshwa</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_reading_mms_settings">kosa wakati wa kusoma mtoa huduma ya mipangilio ya wireless MMS </string>

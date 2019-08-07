@@ -135,7 +135,7 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Kas soovid kindlasti sellest grupist lahkuda?</string>
   <string name="ConversationActivity_transport_insecure_sms">Ebaturvaline SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Ebaturvaline MMS</string>
-  <string name="ConversationActivity_transport_signal">Signal</string>
+  <string name="ConversationActivity_transport_signal">Loki Messenger</string>
   <string name="ConversationActivity_lets_switch_to_signal">Lähme Signalile üle %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Kasutame seda vestlemiseks: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Grupist lahkumisel tekkis viga</string>
@@ -362,7 +362,7 @@
   <string name="LongMessageActivity_message_from_s">Sõnum kasutajalt %1$s</string>
   <string name="LongMessageActivity_your_message">Sinu sõnum</string>
   <!--MessageRetrievalService-->
-  <string name="MessageRetrievalService_signal">Signal</string>
+  <string name="MessageRetrievalService_signal">Loki Messenger</string>
   <string name="MessageRetrievalService_background_connection_enabled">Taustaühendus lubatud</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_reading_mms_settings">Võrgupakkuja MMS-seadete lugemisel esines viga</string>
@@ -680,7 +680,7 @@
   <!--ShortcutLauncherActivity-->
   <string name="ShortcutLauncherActivity_invalid_shortcut">Sobimatu otsetee</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Loki Messenger</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Uus sõnum</string>
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">

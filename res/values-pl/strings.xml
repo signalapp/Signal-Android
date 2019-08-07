@@ -141,7 +141,7 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Czy na pewno chcesz opuścić grupę?</string>
   <string name="ConversationActivity_transport_insecure_sms">Nieszyfrowany SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Nieszyfrowany MMS</string>
-  <string name="ConversationActivity_transport_signal">Signal</string>
+  <string name="ConversationActivity_transport_signal">Loki Messenger</string>
   <string name="ConversationActivity_lets_switch_to_signal">Zacznij używać Signal %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Zacznij używać Signal: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Błąd podczas opuszczania grupy</string>
@@ -394,7 +394,7 @@
   <string name="LongMessageActivity_message_from_s">Wiadomość od %1$s</string>
   <string name="LongMessageActivity_your_message">Twoja wiadomość</string>
   <!--MessageRetrievalService-->
-  <string name="MessageRetrievalService_signal">Signal</string>
+  <string name="MessageRetrievalService_signal">Loki Messenger</string>
   <string name="MessageRetrievalService_background_connection_enabled">Połączenie w tle jest włączone</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_reading_mms_settings">Błąd odczytu ustawień MMS operatora</string>
@@ -712,7 +712,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--ShortcutLauncherActivity-->
   <string name="ShortcutLauncherActivity_invalid_shortcut">Nieprawidłowy skrót</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Loki Messenger</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nowa wiadomość</string>
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">

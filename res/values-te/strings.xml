@@ -130,7 +130,7 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">మీరు ఈ సమూహాన్ని వదిలిపెట్టాలనుకుంటున్నారా?</string>
   <string name="ConversationActivity_transport_insecure_sms">అసురక్షిత సందేశం</string>
   <string name="ConversationActivity_transport_insecure_mms">అసురక్షిత ఎమ్మెమ్మెస్</string>
-  <string name="ConversationActivity_transport_signal">Signal</string>
+  <string name="ConversationActivity_transport_signal">Loki Messenger</string>
   <string name="ConversationActivity_lets_switch_to_signal">మనం Signal %1$sకు మారుదాం</string>
   <string name="ConversationActivity_lets_use_this_to_chat">ఈ యొక్క చాట్ ని  ఉపయోగించు: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">సమూహం నుండి వైదొలగటంలో లోపం</string>
@@ -344,7 +344,7 @@
   <string name="MessageDetailsRecipient_new_safety_number">నూతన భద్రతా సంఖ్య</string>
   <!--LongMessageActivity-->
   <!--MessageRetrievalService-->
-  <string name="MessageRetrievalService_signal">Signal</string>
+  <string name="MessageRetrievalService_signal">Loki Messenger</string>
   <string name="MessageRetrievalService_background_connection_enabled">నేపధ్యం కనెక్షన్ ప్రారంభించ</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_reading_mms_settings">వైర్లెస్ ప్రొవైడర్ ఎంఎంఎస్ సెట్టింగులను చదువుటలో దోషం</string>
@@ -640,7 +640,7 @@
   <!--ShortcutLauncherActivity-->
   <string name="ShortcutLauncherActivity_invalid_shortcut">చెల్లని సత్వరమార్గం</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Loki Messenger</string>
   <string name="SingleRecipientNotificationBuilder_new_message">కొత్త సందేశం</string>
   <!--TransferControlView-->
   <!--UnauthorizedReminder-->

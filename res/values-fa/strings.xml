@@ -134,7 +134,7 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">آیا شما مطمئن هستید که میخواهید این گروه را ترک کنید؟</string>
   <string name="ConversationActivity_transport_insecure_sms">پیامک نا امن</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS نا امن</string>
-  <string name="ConversationActivity_transport_signal">Signal</string>
+  <string name="ConversationActivity_transport_signal">Loki Messenger</string>
   <string name="ConversationActivity_lets_switch_to_signal">بیایید از این برای Signal استفاده کنیم:  %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">بیایید از این برای چت استفاده کنیم:  %1$s</string>
   <string name="ConversationActivity_error_leaving_group">خطا در ترک کردن گروه</string>
@@ -350,7 +350,7 @@
   <string name="LongMessageActivity_message_from_s">پیام از %1$s</string>
   <string name="LongMessageActivity_your_message">پیام شما</string>
   <!--MessageRetrievalService-->
-  <string name="MessageRetrievalService_signal">Signal</string>
+  <string name="MessageRetrievalService_signal">Loki Messenger</string>
   <string name="MessageRetrievalService_background_connection_enabled">ارتباط در پس‌زمینه فعال شد</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_reading_mms_settings">خطا در هنگام دریافت تنظیمات MMS اپراتور تلفن همراه</string>
@@ -648,7 +648,7 @@
   <!--ShortcutLauncherActivity-->
   <string name="ShortcutLauncherActivity_invalid_shortcut">میانبر نامعتبر</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Loki Messenger</string>
   <string name="SingleRecipientNotificationBuilder_new_message">پیام جدید</string>
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">

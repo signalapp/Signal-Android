@@ -132,7 +132,7 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Apakah Anda yakin ingin meninggalkan grup ini?</string>
   <string name="ConversationActivity_transport_insecure_sms">SMS tidak aman</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS tidak aman</string>
-  <string name="ConversationActivity_transport_signal">Signal</string>
+  <string name="ConversationActivity_transport_signal">Loki Messenger</string>
   <string name="ConversationActivity_lets_switch_to_signal">Ayo pindah ke Signal %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Ayo gunakan ini untuk mengobrol: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Gagal meninggalkan grup</string>
@@ -341,7 +341,7 @@
   <string name="LongMessageActivity_message_from_s">pesan dari %1$s</string>
   <string name="LongMessageActivity_your_message">pesanmu</string>
   <!--MessageRetrievalService-->
-  <string name="MessageRetrievalService_signal">Signal</string>
+  <string name="MessageRetrievalService_signal">Loki Messenger</string>
   <string name="MessageRetrievalService_background_connection_enabled">Koneksi latar belakang diaktifkan</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_reading_mms_settings">Gagal saat membaca pengaturan MMS penyedia nirkabel</string>
@@ -652,7 +652,7 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--ShortcutLauncherActivity-->
   <string name="ShortcutLauncherActivity_invalid_shortcut">Pintasan tidak sah</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Loki Messenger</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Pesan baru</string>
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">

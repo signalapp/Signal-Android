@@ -135,7 +135,7 @@
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">Vuoi davvero lasciare questo gruppo?</string>
   <string name="ConversationActivity_transport_insecure_sms">SMS non sicuro</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS non sicuro</string>
-  <string name="ConversationActivity_transport_signal">Signal</string>
+  <string name="ConversationActivity_transport_signal">Loki Messenger</string>
   <string name="ConversationActivity_lets_switch_to_signal">Passiamo a Signal %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Chattiamo con questa app: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Errore nell\'uscita dal gruppo</string>
@@ -363,7 +363,7 @@ I suoi messaggi e le chiamate sono state disabilitate, si prega di provare e ri-
   <string name="LongMessageActivity_message_from_s">Messaggio da %1$s</string>
   <string name="LongMessageActivity_your_message">Il tuo messaggio</string>
   <!--MessageRetrievalService-->
-  <string name="MessageRetrievalService_signal">Signal</string>
+  <string name="MessageRetrievalService_signal">Loki Messenger</string>
   <string name="MessageRetrievalService_background_connection_enabled">Connessione in background attivata</string>
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_reading_mms_settings">Errore nel leggere le impostazioni MMS per il tuo provider</string>
@@ -677,7 +677,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <!--ShortcutLauncherActivity-->
   <string name="ShortcutLauncherActivity_invalid_shortcut">Scorciatoia non valida</string>
   <!--SingleRecipientNotificationBuilder-->
-  <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
+  <string name="SingleRecipientNotificationBuilder_signal">Loki Messenger</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nuovo messaggio</string>
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">
