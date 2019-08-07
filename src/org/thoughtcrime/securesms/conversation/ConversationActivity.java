@@ -2122,6 +2122,33 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                                                   final int subscriptionId,
                                                   final boolean initiating)
   {
+    final SettableFuture<Void> future  = new SettableFuture<>();
+
+    boolean isLokiPublicChat = isGroupConversation(); // TODO: Figure out a better way of determining this
+    if (isLokiPublicChat) {
+      String hexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this);
+      String displayName = DatabaseFactory.getLokiAPIDatabase(this).getUserDisplayName();
+      if (displayName == null) displayName = "Anonymous";
+      long timestamp = new Date().getTime();
+      LokiGroupMessage message = new LokiGroupMessage(hexEncodedPublicKey, displayName, body, timestamp);
+      LokiGroupChatAPI.sendMessage(message, LokiGroupChatAPI.getPublicChatID()).success(new Function1<Unit, Unit>() {
+
+        @Override
+        public Unit invoke(Unit unit) {
+          future.set(null);
+          return Unit.INSTANCE;
+        }
+      }).fail(new Function1<Exception, Unit>() {
+
+        @Override
+        public Unit invoke(Exception e) {
+          future.setException(e);
+          return Unit.INSTANCE;
+        }
+      });
+      return future;
+    }
+
     if (!isDefaultSms && (!isSecureText || forceSms)) {
       showDefaultSmsPrompt();
       return new SettableFuture<>(null);
@@ -2138,7 +2165,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     OutgoingMediaMessage outgoingMessageCandidate = new OutgoingMediaMessage(recipient, slideDeck, body, System.currentTimeMillis(), subscriptionId, expiresIn, distributionType, inputPanel.getQuote().orNull(), contacts, previews);
 
-    final SettableFuture<Void> future  = new SettableFuture<>();
     final Context              context = getApplicationContext();
 
     final OutgoingMediaMessage outgoingMessage;
@@ -2186,6 +2212,29 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private void sendTextMessage(final boolean forceSms, final long expiresIn, final int subscriptionId, final boolean initiatingConversation)
       throws InvalidMessageException
   {
+    boolean isLokiPublicChat = isGroupConversation(); // TODO: Figure out a better way of determining this
+    if (isLokiPublicChat) {
+      String hexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this);
+      String displayName = DatabaseFactory.getLokiAPIDatabase(this).getUserDisplayName();
+      if (displayName == null) displayName = "Anonymous";
+      long timestamp = new Date().getTime();
+      LokiGroupMessage message = new LokiGroupMessage(hexEncodedPublicKey, displayName, getMessage(), timestamp);
+      LokiGroupChatAPI.sendMessage(message, LokiGroupChatAPI.getPublicChatID()).success(new Function1<Unit, Unit>() {
+
+        @Override
+        public Unit invoke(Unit unit) {
+          return Unit.INSTANCE;
+        }
+      }).fail(new Function1<Exception, Unit>() {
+
+        @Override
+        public Unit invoke(Exception e) {
+          return null;
+        }
+      });
+      return;
+    }
+
     if (!isDefaultSms && (!isSecureText || forceSms)) {
       showDefaultSmsPrompt();
       return;
