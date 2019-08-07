@@ -214,6 +214,9 @@ import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
+import org.whispersystems.signalservice.loki.api.LokiGroupChatAPI;
+import org.whispersystems.signalservice.loki.api.LokiGroupMessage;
+import org.whispersystems.signalservice.loki.messaging.LokiMessageFriendRequestStatus;
 import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus;
 
 import java.io.IOException;
@@ -228,6 +231,8 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import kotlin.Unit;
+import kotlin.jvm.functions.Function1;
 import network.loki.messenger.R;
 
 import static org.thoughtcrime.securesms.TransportOption.Type;
@@ -2715,16 +2720,20 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   // region Loki
   @Override
   public void acceptFriendRequest(@NotNull MessageRecord friendRequest) {
-    DatabaseFactory.getLokiThreadDatabase(this).setFriendRequestStatus(this.threadId, LokiThreadFriendRequestStatus.FRIENDS);
     String contactID = DatabaseFactory.getThreadDatabase(this).getRecipientForThreadId(this.threadId).getAddress().toString();
     SignalServiceMessageSender messageSender = ApplicationContext.getInstance(this).communicationModule.provideSignalMessageSender();
     SignalServiceAddress address = new SignalServiceAddress(contactID);
     SignalServiceDataMessage message = new SignalServiceDataMessage(System.currentTimeMillis(), "");
-    try {
-      messageSender.sendMessage(0, address, Optional.absent(), message); // The message ID doesn't matter
-    } catch (Exception e) {
-      Log.d("Loki", "Failed to send background message to: " + contactID + ".");
-    }
+    Context context = this;
+    AsyncTask.execute(() -> {
+      try {
+        messageSender.sendMessage(0, address, Optional.absent(), message); // The message ID doesn't matter
+        DatabaseFactory.getLokiThreadDatabase(context).setFriendRequestStatus(this.threadId, LokiThreadFriendRequestStatus.FRIENDS);
+        DatabaseFactory.getLokiMessageFriendRequestDatabase(context).setFriendRequestStatus(friendRequest.id, LokiMessageFriendRequestStatus.REQUEST_ACCEPTED);
+      } catch (Exception e) {
+        Log.d("Loki", "Failed to send background message to: " + contactID + ".");
+      }
+    });
   }
 
   @Override

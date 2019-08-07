@@ -3,11 +3,13 @@ package org.thoughtcrime.securesms.loki
 import android.content.Context
 import android.os.Build
 import android.util.AttributeSet
+import android.view.Gravity
 import android.view.View
 import android.widget.Button
 import android.widget.LinearLayout
+import android.widget.ProgressBar
 import android.widget.TextView
-import network.loki.messenger.R;
+import network.loki.messenger.R
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord
@@ -37,6 +39,14 @@ class FriendRequestView(context: Context, attrs: AttributeSet?, defStyleAttr: In
         result.orientation = HORIZONTAL
         result
     }
+
+    private val loaderContainer by lazy {
+        val result = LinearLayout(context)
+        val layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, toPx(50, resources))
+        result.layoutParams = layoutParams
+        result.gravity = Gravity.CENTER
+        result
+    }
     // endregion
 
     // region Initialization
@@ -58,6 +68,14 @@ class FriendRequestView(context: Context, attrs: AttributeSet?, defStyleAttr: In
         addView(topSpacer)
         addView(label)
         if (!message!!.isOutgoing) {
+            val loader = ProgressBar(context)
+            loader.isIndeterminate = true
+            val color = resources.getColorWithID(R.color.white, context.theme)
+            loader.indeterminateDrawable.setColorFilter(color, android.graphics.PorterDuff.Mode.SRC_IN)
+            val loaderLayoutParams = LayoutParams(LayoutParams.MATCH_PARENT, toPx(24, resources))
+            loader.layoutParams = loaderLayoutParams
+            loaderContainer.addView(loader)
+            addView(loaderContainer)
             fun button(): Button {
                 val result = Button(context)
                 result.setBackgroundColor(resources.getColorWithID(R.color.transparent, context.theme))
@@ -65,9 +83,9 @@ class FriendRequestView(context: Context, attrs: AttributeSet?, defStyleAttr: In
                     result.elevation = 0f
                     result.stateListAnimator = null
                 }
-                val layoutParams = LayoutParams(0, toPx(50, resources))
-                layoutParams.weight = 1f
-                result.layoutParams = layoutParams
+                val buttonLayoutParams = LayoutParams(0, toPx(50, resources))
+                buttonLayoutParams.weight = 1f
+                result.layoutParams = buttonLayoutParams
                 return result
             }
             val acceptButton = button()
@@ -91,12 +109,13 @@ class FriendRequestView(context: Context, attrs: AttributeSet?, defStyleAttr: In
         val contactDisplayName = DatabaseFactory.getLokiUserDisplayNameDatabase(context).getDisplayName(contactID) ?: contactID
         val isTextMessage = message is SmsMessageRecord
         if (!isTextMessage) return
+        val friendRequestStatus = database.getFriendRequestStatus(message!!.id)
         if (!message!!.isOutgoing) {
-            val friendRequestStatus = database.getFriendRequestStatus(message!!.id)
             visibility = if (friendRequestStatus == LokiMessageFriendRequestStatus.NONE) View.GONE else View.VISIBLE
             buttonLinearLayout.visibility = if (friendRequestStatus != LokiMessageFriendRequestStatus.REQUEST_PENDING) View.GONE else View.VISIBLE
+            loaderContainer.visibility = if (friendRequestStatus == LokiMessageFriendRequestStatus.REQUEST_SENDING) View.VISIBLE else View.GONE
             val formatID = when (friendRequestStatus) {
-                LokiMessageFriendRequestStatus.NONE, LokiMessageFriendRequestStatus.REQUEST_SENDING_OR_FAILED -> return
+                LokiMessageFriendRequestStatus.NONE, LokiMessageFriendRequestStatus.REQUEST_SENDING, LokiMessageFriendRequestStatus.REQUEST_FAILED -> return
                 LokiMessageFriendRequestStatus.REQUEST_PENDING -> R.string.view_friend_request_incoming_pending_message
                 LokiMessageFriendRequestStatus.REQUEST_ACCEPTED -> R.string.view_friend_request_incoming_accepted_message
                 LokiMessageFriendRequestStatus.REQUEST_REJECTED -> R.string.view_friend_request_incoming_declined_message
@@ -104,12 +123,12 @@ class FriendRequestView(context: Context, attrs: AttributeSet?, defStyleAttr: In
             }
             label.text = resources.getString(formatID, contactDisplayName)
         } else {
-            val friendRequestStatus = database.getFriendRequestStatus(message!!.id)
             visibility = if (friendRequestStatus == LokiMessageFriendRequestStatus.NONE) View.GONE else View.VISIBLE
             buttonLinearLayout.visibility = View.GONE
+            loaderContainer.visibility = View.GONE
             val formatID = when (friendRequestStatus) {
                 LokiMessageFriendRequestStatus.NONE -> return
-                LokiMessageFriendRequestStatus.REQUEST_SENDING_OR_FAILED -> null
+                LokiMessageFriendRequestStatus.REQUEST_SENDING, LokiMessageFriendRequestStatus.REQUEST_FAILED -> null
                 LokiMessageFriendRequestStatus.REQUEST_PENDING, LokiMessageFriendRequestStatus.REQUEST_REJECTED -> R.string.view_friend_request_outgoing_pending_message
                 LokiMessageFriendRequestStatus.REQUEST_ACCEPTED -> R.string.view_friend_request_outgoing_accepted_message
                 LokiMessageFriendRequestStatus.REQUEST_EXPIRED -> R.string.view_friend_request_outgoing_expired_message
@@ -126,13 +145,15 @@ class FriendRequestView(context: Context, attrs: AttributeSet?, defStyleAttr: In
     // region Interaction
     private fun accept() {
         val database = DatabaseFactory.getLokiMessageFriendRequestDatabase(context)
-        database.setFriendRequestStatus(message!!.id, LokiMessageFriendRequestStatus.REQUEST_ACCEPTED)
+        database.setFriendRequestStatus(message!!.id, LokiMessageFriendRequestStatus.REQUEST_SENDING)
+        updateUI()
         delegate?.acceptFriendRequest(message!!)
     }
 
     private fun reject() {
         val database = DatabaseFactory.getLokiMessageFriendRequestDatabase(context)
         database.setFriendRequestStatus(message!!.id, LokiMessageFriendRequestStatus.REQUEST_REJECTED)
+        updateUI()
         delegate?.rejectFriendRequest(message!!)
     }
     // endregion
