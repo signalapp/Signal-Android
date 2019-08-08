@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.dependencies;
 import android.content.Context;
 
 import org.greenrobot.eventbus.EventBus;
-import network.loki.messenger.BuildConfig;
 import org.thoughtcrime.securesms.CreateProfileActivity;
 import org.thoughtcrime.securesms.DeviceListFragment;
 import org.thoughtcrime.securesms.crypto.storage.SignalProtocolStoreImpl;
@@ -23,6 +22,8 @@ import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceGroupUpdateJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceProfileKeyUpdateJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceReadUpdateJob;
+import org.thoughtcrime.securesms.jobs.MultiDeviceStickerPackOperationJob;
+import org.thoughtcrime.securesms.jobs.MultiDeviceStickerPackSyncJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceVerifiedUpdateJob;
 import org.thoughtcrime.securesms.jobs.PushDecryptJob;
 import org.thoughtcrime.securesms.jobs.PushGroupSendJob;
@@ -41,13 +42,18 @@ import org.thoughtcrime.securesms.jobs.RotateProfileKeyJob;
 import org.thoughtcrime.securesms.jobs.RotateSignedPreKeyJob;
 import org.thoughtcrime.securesms.jobs.SendDeliveryReceiptJob;
 import org.thoughtcrime.securesms.jobs.SendReadReceiptJob;
+import org.thoughtcrime.securesms.jobs.StickerDownloadJob;
+import org.thoughtcrime.securesms.jobs.StickerPackDownloadJob;
 import org.thoughtcrime.securesms.jobs.TypingSendJob;
+import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.preferences.AppProtectionPreferenceFragment;
 import org.thoughtcrime.securesms.push.SecurityEventListener;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.service.IncomingMessageObserver;
 import org.thoughtcrime.securesms.service.WebRtcCallService;
+import org.thoughtcrime.securesms.stickers.StickerPackPreviewRepository;
+import org.thoughtcrime.securesms.stickers.StickerRemoteUriLoader;
 import org.thoughtcrime.securesms.util.RealtimeSleepTimer;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -61,6 +67,7 @@ import org.whispersystems.signalservice.api.websocket.ConnectivityListener;
 
 import dagger.Module;
 import dagger.Provides;
+import network.loki.messenger.BuildConfig;
 
 @Module(complete = false, injects = {CleanPreKeysJob.class,
                                      CreateSignedPreKeyJob.class,
@@ -98,7 +105,15 @@ import dagger.Provides;
                                      RefreshUnidentifiedDeliveryAbilityJob.class,
                                      TypingSendJob.class,
                                      AttachmentUploadJob.class,
-                                     PushDecryptJob.class})
+                                     PushDecryptJob.class,
+                                     StickerDownloadJob.class,
+                                     StickerPackPreviewRepository.class,
+                                     StickerRemoteUriLoader.Factory.class,
+                                     StickerPackDownloadJob.class,
+                                     MultiDeviceStickerPackOperationJob.class,
+                                     MultiDeviceStickerPackSyncJob.class,
+                                     LinkPreviewRepository.class})
+
 public class SignalCommunicationModule {
 
   private static final String TAG = SignalCommunicationModule.class.getSimpleName();

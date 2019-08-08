@@ -50,7 +50,7 @@ public class GroupRecordContactPhoto implements ContactPhoto {
   }
 
   @Override
-  public void updateDiskCacheKey(MessageDigest messageDigest) {
+  public void updateDiskCacheKey(@NonNull MessageDigest messageDigest) {
     messageDigest.update(address.serialize().getBytes());
     messageDigest.update(Conversions.longToByteArray(avatarId));
   }

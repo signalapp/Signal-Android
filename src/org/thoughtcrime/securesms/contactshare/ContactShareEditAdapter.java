@@ -37,14 +37,14 @@ public class ContactShareEditAdapter extends RecyclerView.Adapter<ContactShareEd
   }
 
   @Override
-  public ContactEditViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+  public @NonNull ContactEditViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
     return new ContactEditViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_editable_contact, parent, false),
                                      locale,
                                      glideRequests);
   }
 
   @Override
-  public void onBindViewHolder(ContactEditViewHolder holder, int position) {
+  public void onBindViewHolder(@NonNull ContactEditViewHolder holder, int position) {
     holder.bind(position, contacts.get(position), eventListener);
   }
 

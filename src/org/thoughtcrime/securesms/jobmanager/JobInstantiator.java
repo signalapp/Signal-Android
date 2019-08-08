@@ -13,8 +13,7 @@ class JobInstantiator {
     this.jobFactories = new HashMap<>(jobFactories);
   }
 
-  public @NonNull
-  Job instantiate(@NonNull String jobFactoryKey, @NonNull Job.Parameters parameters, @NonNull Data data) {
+  public @NonNull Job instantiate(@NonNull String jobFactoryKey, @NonNull Job.Parameters parameters, @NonNull Data data) {
     if (jobFactories.containsKey(jobFactoryKey)) {
       return jobFactories.get(jobFactoryKey).create(parameters, data);
     } else {

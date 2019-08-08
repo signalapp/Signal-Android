@@ -605,7 +605,11 @@ public class ThreadDatabase extends Database {
     SlideDeck slideDeck = ((MediaMmsMessageRecord)record).getSlideDeck();
     Slide     thumbnail = slideDeck.getThumbnailSlide();
 
-    return thumbnail != null ? thumbnail.getThumbnailUri() : null;
+    if (thumbnail != null) {
+      return thumbnail.getThumbnailUri();
+    }
+
+    return null;
   }
 
   private @NonNull String createQuery(@NonNull String where, int limit) {

@@ -302,10 +302,15 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
   @Override
   protected long getItemId(@NonNull MessageRecord record) {
     if (record.isOutgoing() && record.isMms()) {
-      SlideDeck slideDeck = ((MmsMessageRecord)record).getSlideDeck();
+      MmsMessageRecord mmsRecord = (MmsMessageRecord) record;
+      SlideDeck        slideDeck = mmsRecord.getSlideDeck();
 
       if (slideDeck.getThumbnailSlide() != null && slideDeck.getThumbnailSlide().getFastPreflightId() != null) {
         return Long.valueOf(slideDeck.getThumbnailSlide().getFastPreflightId());
+      }
+
+      if (slideDeck.getStickerSlide() != null && slideDeck.getStickerSlide().getFastPreflightId() != null) {
+        return Long.valueOf(slideDeck.getStickerSlide().getFastPreflightId());
       }
     }
 

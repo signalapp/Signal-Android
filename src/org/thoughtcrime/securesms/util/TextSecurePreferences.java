@@ -180,6 +180,10 @@ public class TextSecurePreferences {
 
   private static final String GIF_GRID_LAYOUT = "pref_gif_grid_layout";
 
+  private static final String SEEN_STICKER_INTRO_TOOLTIP = "pref_seen_sticker_intro_tooltip";
+
+  private static final String MEDIA_KEYBOARD_MODE = "pref_media_keyboard_mode";
+
   public static boolean isScreenLockEnabled(@NonNull Context context) {
     return getBooleanPreference(context, SCREEN_LOCK, false);
   }
@@ -509,13 +513,13 @@ public class TextSecurePreferences {
 
   public static void setFcmToken(Context context, String registrationId) {
     setStringPreference(context, GCM_REGISTRATION_ID_PREF, registrationId);
-    setIntegerPrefrence(context, GCM_REGISTRATION_ID_VERSION_PREF, Util.getCurrentApkReleaseVersion(context));
+    setIntegerPrefrence(context, GCM_REGISTRATION_ID_VERSION_PREF, Util.getCanonicalVersionCode());
   }
 
   public static String getFcmToken(Context context) {
     int storedRegistrationIdVersion = getIntegerPreference(context, GCM_REGISTRATION_ID_VERSION_PREF, 0);
 
-    if (storedRegistrationIdVersion != Util.getCurrentApkReleaseVersion(context)) {
+    if (storedRegistrationIdVersion != Util.getCanonicalVersionCode()) {
       return null;
     } else {
       return getStringPreference(context, GCM_REGISTRATION_ID_PREF, null);
@@ -1078,6 +1082,23 @@ public class TextSecurePreferences {
     setBooleanPreference(context, NEEDS_MESSAGE_PULL, needsMessagePull);
   }
 
+  public static boolean hasSeenStickerIntroTooltip(Context context) {
+    return getBooleanPreference(context, SEEN_STICKER_INTRO_TOOLTIP, false);
+  }
+
+  public static void setHasSeenStickerIntroTooltip(Context context, boolean seenStickerTooltip) {
+    setBooleanPreference(context, SEEN_STICKER_INTRO_TOOLTIP, seenStickerTooltip);
+  }
+
+  public static void setMediaKeyboardMode(Context context, MediaKeyboardMode mode) {
+    setStringPreference(context, MEDIA_KEYBOARD_MODE, mode.name());
+  }
+
+  public static MediaKeyboardMode getMediaKeyboardMode(Context context) {
+    String name = getStringPreference(context, MEDIA_KEYBOARD_MODE, MediaKeyboardMode.EMOJI.name());
+    return MediaKeyboardMode.valueOf(name);
+  }
+
   public static void setBooleanPreference(Context context, String key, boolean value) {
     PreferenceManager.getDefaultSharedPreferences(context).edit().putBoolean(key, value).apply();
   }
@@ -1125,6 +1146,11 @@ public class TextSecurePreferences {
     } else {
       return defaultValues;
     }
+  }
+
+  // NEVER rename these -- they're persisted by name
+  public enum MediaKeyboardMode {
+    EMOJI, STICKER
   }
 
   // region Loki

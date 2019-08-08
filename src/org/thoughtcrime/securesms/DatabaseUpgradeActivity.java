@@ -20,7 +20,6 @@ package org.thoughtcrime.securesms;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -149,7 +148,7 @@ public class DatabaseUpgradeActivity extends BaseActivity {
   }
 
   private boolean needsUpgradeTask() {
-    int currentVersionCode = Util.getCurrentApkReleaseVersion(this);
+    int currentVersionCode = Util.getCanonicalVersionCode();
     int lastSeenVersion    = VersionTracker.getLastSeenVersion(this);
 
     Log.i("DatabaseUpgradeActivity", "LastSeenVersion: " + lastSeenVersion);
@@ -167,14 +166,10 @@ public class DatabaseUpgradeActivity extends BaseActivity {
   }
 
   public static boolean isUpdate(Context context) {
-    try {
-      int currentVersionCode  = context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionCode;
-      int previousVersionCode = VersionTracker.getLastSeenVersion(context);
+    int currentVersionCode  = Util.getCanonicalVersionCode();
+    int previousVersionCode = VersionTracker.getLastSeenVersion(context);
 
-      return previousVersionCode < currentVersionCode;
-    } catch (PackageManager.NameNotFoundException e) {
-      throw new AssertionError(e);
-    }
+    return previousVersionCode < currentVersionCode;
   }
 
   @SuppressLint("StaticFieldLeak")

@@ -301,7 +301,7 @@ public abstract class LegacyMmsConnection {
     }
 
     @Override
-    public String toString() {
+    public @NonNull String toString() {
       return Apn.class.getSimpleName() +
           "{ mmsc: \"" + mmsc + "\"" +
           ", proxy: " + (proxy == null ? "none" : '"' + proxy + '"') +

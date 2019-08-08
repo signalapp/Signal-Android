@@ -124,7 +124,7 @@ public class EmojiParser {
     }
 
     @Override
-    public Iterator<Candidate> iterator() {
+    public @NonNull Iterator<Candidate> iterator() {
       return list.iterator();
     }
   }

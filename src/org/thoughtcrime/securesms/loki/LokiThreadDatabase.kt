@@ -24,8 +24,8 @@ class LokiThreadDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
         @JvmStatic val createSessionResetTableCommand = "CREATE TABLE $sessionResetTableName ($threadID INTEGER PRIMARY KEY, $sessionResetStatus INTEGER DEFAULT 0);"
     }
 
-    override fun getThreadID(hexEncodePubKey: String): Long {
-        val address = Address.fromSerialized(hexEncodePubKey)
+    override fun getThreadID(hexEncodedPublicKey: String): Long {
+        val address = Address.fromSerialized(hexEncodedPublicKey)
         val recipient = Recipient.from(context, address, false)
         return DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient)
     }

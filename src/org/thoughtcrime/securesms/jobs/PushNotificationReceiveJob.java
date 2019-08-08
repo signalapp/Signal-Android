@@ -64,7 +64,7 @@ public class PushNotificationReceiveJob extends PushReceivedJob implements Injec
     }
   }
   @Override
-  public boolean onShouldRetry(Exception e) {
+  public boolean onShouldRetry(@NonNull Exception e) {
     Log.w(TAG, e);
     return e instanceof PushNetworkException;
   }

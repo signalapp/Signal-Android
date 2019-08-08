@@ -232,7 +232,7 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
     private boolean    animateFailureOnDraw = false;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup viewGroup, Bundle bundle) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup viewGroup, Bundle bundle) {
       this.container        = ViewUtil.inflate(inflater, viewGroup, R.layout.verify_display_fragment);
       this.numbersContainer = ViewUtil.findById(container, R.id.number_table);
       this.qrCode           = ViewUtil.findById(container, R.id.qr_code);
@@ -625,7 +625,7 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
     private ScanningThread scanningThread;
     private ScanListener   scanListener;
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup viewGroup, Bundle bundle) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup viewGroup, Bundle bundle) {
       this.container  = ViewUtil.inflate(inflater, viewGroup, R.layout.verify_scan_fragment);
       this.cameraView = ViewUtil.findById(container, R.id.scanner);
 

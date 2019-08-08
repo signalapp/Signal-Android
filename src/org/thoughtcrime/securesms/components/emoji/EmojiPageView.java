@@ -9,8 +9,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 
-import network.loki.messenger.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiPageViewGridAdapter.VariationSelectorListener;
+
+import network.loki.messenger.R;
 
 public class EmojiPageView extends FrameLayout implements VariationSelectorListener {
   private static final String TAG = EmojiPageView.class.getSimpleName();
@@ -24,7 +25,7 @@ public class EmojiPageView extends FrameLayout implements VariationSelectorListe
   private EmojiVariationSelectorPopup      popup;
 
   public EmojiPageView(@NonNull Context context,
-                       @NonNull EmojiSelectionListener emojiSelectionListener,
+                       @NonNull EmojiKeyboardProvider.EmojiEventListener emojiSelectionListener,
                        @NonNull VariationSelectorListener variationSelectorListener)
   {
     super(context);
@@ -37,9 +38,9 @@ public class EmojiPageView extends FrameLayout implements VariationSelectorListe
     scrollDisabler = new ScrollDisabler();
     popup          = new EmojiVariationSelectorPopup(context, emojiSelectionListener);
     adapter        = new EmojiPageViewGridAdapter(EmojiProvider.getInstance(context),
-                                              popup,
-                                              emojiSelectionListener,
-                                              this);
+                                                  popup,
+                                                  emojiSelectionListener,
+                                                  this);
 
     recyclerView.setLayoutManager(layoutManager);
     recyclerView.setAdapter(adapter);
@@ -80,10 +81,6 @@ public class EmojiPageView extends FrameLayout implements VariationSelectorListe
     if (variationSelectorListener != null) {
       variationSelectorListener.onVariationSelectorStateChanged(open);
     }
-  }
-
-  public interface EmojiSelectionListener {
-    void onEmojiSelected(String emoji);
   }
 
   private static class ScrollDisabler implements RecyclerView.OnItemTouchListener {

@@ -1,20 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <org.thoughtcrime.securesms.components.InputPanel
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/bottom_panel"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:clickable="true"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        android:paddingTop="6dp"
-        android:paddingBottom="6dp"
-        android:clipChildren="false"
-        android:clipToPadding="false">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_panel"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:clickable="true"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
+    android:paddingTop="6dp"
+    android:paddingBottom="6dp"
+    android:clipChildren="false"
+    android:clipToPadding="false">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/input_panel_sticker_suggestion"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:background="?emoji_tab_strip_background"
+        android:visibility="gone" />
 
     <FrameLayout
         android:layout_width="0dp"
@@ -200,4 +207,5 @@
             android:background="@drawable/circle_touch_highlight_background" />
 
     </org.thoughtcrime.securesms.components.AnimatingToggle>
+
 </org.thoughtcrime.securesms.components.InputPanel>

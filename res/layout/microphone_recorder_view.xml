@@ -6,14 +6,15 @@
 
     <ImageButton
         android:id="@+id/quick_audio_toggle"
-        android:layout_width="wrap_content"
+        android:layout_width="24dp"
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical"
         android:layout_marginEnd="2dp"
         android:background="@null"
         android:contentDescription="@string/conversation_activity__quick_attachment_drawer_record_and_send_audio_description"
-        android:padding="6dp"
-        android:src="?quick_mic_icon" />
+        android:scaleType="fitCenter"
+        android:tint="?compose_icon_tint"
+        app:srcCompat="@drawable/ic_mic_filled_24" />
 
     <LinearLayout
         android:id="@+id/lock_drop_target"
@@ -53,11 +54,12 @@
         android:layout_height="74dp"
         android:layout_marginStart="-18dp"
         android:layout_marginTop="-18dp"
+        android:padding="18dp"
         android:background="@drawable/circle_tintable"
         android:clickable="false"
-        android:scaleType="center"
-        android:src="@drawable/ic_mic_white_48dp"
         android:visibility="gone"
+        android:tint="@color/core_white"
+        app:srcCompat="@drawable/ic_mic_filled_24"
         tools:ignore="ContentDescription"
         tools:visibility="visible" />
 </merge>

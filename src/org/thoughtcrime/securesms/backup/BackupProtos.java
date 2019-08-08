@@ -2980,6 +2980,483 @@ public final class BackupProtos {
     // @@protoc_insertion_point(class_scope:signal.Attachment)
   }
 
+  public interface StickerOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+
+    // optional uint64 rowId = 1;
+    /**
+     * <code>optional uint64 rowId = 1;</code>
+     */
+    boolean hasRowId();
+    /**
+     * <code>optional uint64 rowId = 1;</code>
+     */
+    long getRowId();
+
+    // optional uint32 length = 2;
+    /**
+     * <code>optional uint32 length = 2;</code>
+     */
+    boolean hasLength();
+    /**
+     * <code>optional uint32 length = 2;</code>
+     */
+    int getLength();
+  }
+  /**
+   * Protobuf type {@code signal.Sticker}
+   */
+  public static final class Sticker extends
+      com.google.protobuf.GeneratedMessage
+      implements StickerOrBuilder {
+    // Use Sticker.newBuilder() to construct.
+    private Sticker(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private Sticker(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final Sticker defaultInstance;
+    public static Sticker getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public Sticker getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private Sticker(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+              bitField0_ |= 0x00000001;
+              rowId_ = input.readUInt64();
+              break;
+            }
+            case 16: {
+              bitField0_ |= 0x00000002;
+              length_ = input.readUInt32();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return org.thoughtcrime.securesms.backup.BackupProtos.internal_static_signal_Sticker_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return org.thoughtcrime.securesms.backup.BackupProtos.internal_static_signal_Sticker_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              org.thoughtcrime.securesms.backup.BackupProtos.Sticker.class, org.thoughtcrime.securesms.backup.BackupProtos.Sticker.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<Sticker> PARSER =
+        new com.google.protobuf.AbstractParser<Sticker>() {
+      public Sticker parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new Sticker(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Sticker> getParserForType() {
+      return PARSER;
+    }
+
+    private int bitField0_;
+    // optional uint64 rowId = 1;
+    public static final int ROWID_FIELD_NUMBER = 1;
+    private long rowId_;
+    /**
+     * <code>optional uint64 rowId = 1;</code>
+     */
+    public boolean hasRowId() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>optional uint64 rowId = 1;</code>
+     */
+    public long getRowId() {
+      return rowId_;
+    }
+
+    // optional uint32 length = 2;
+    public static final int LENGTH_FIELD_NUMBER = 2;
+    private int length_;
+    /**
+     * <code>optional uint32 length = 2;</code>
+     */
+    public boolean hasLength() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>optional uint32 length = 2;</code>
+     */
+    public int getLength() {
+      return length_;
+    }
+
+    private void initFields() {
+      rowId_ = 0L;
+      length_ = 0;
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeUInt64(1, rowId_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeUInt32(2, length_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt64Size(1, rowId_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(2, length_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static org.thoughtcrime.securesms.backup.BackupProtos.Sticker parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.thoughtcrime.securesms.backup.BackupProtos.Sticker parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.thoughtcrime.securesms.backup.BackupProtos.Sticker parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.thoughtcrime.securesms.backup.BackupProtos.Sticker parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.thoughtcrime.securesms.backup.BackupProtos.Sticker parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static org.thoughtcrime.securesms.backup.BackupProtos.Sticker parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static org.thoughtcrime.securesms.backup.BackupProtos.Sticker parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static org.thoughtcrime.securesms.backup.BackupProtos.Sticker parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static org.thoughtcrime.securesms.backup.BackupProtos.Sticker parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static org.thoughtcrime.securesms.backup.BackupProtos.Sticker parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(org.thoughtcrime.securesms.backup.BackupProtos.Sticker prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code signal.Sticker}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements org.thoughtcrime.securesms.backup.BackupProtos.StickerOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return org.thoughtcrime.securesms.backup.BackupProtos.internal_static_signal_Sticker_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return org.thoughtcrime.securesms.backup.BackupProtos.internal_static_signal_Sticker_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                org.thoughtcrime.securesms.backup.BackupProtos.Sticker.class, org.thoughtcrime.securesms.backup.BackupProtos.Sticker.Builder.class);
+      }
+
+      // Construct using org.thoughtcrime.securesms.backup.BackupProtos.Sticker.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        rowId_ = 0L;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        length_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return org.thoughtcrime.securesms.backup.BackupProtos.internal_static_signal_Sticker_descriptor;
+      }
+
+      public org.thoughtcrime.securesms.backup.BackupProtos.Sticker getDefaultInstanceForType() {
+        return org.thoughtcrime.securesms.backup.BackupProtos.Sticker.getDefaultInstance();
+      }
+
+      public org.thoughtcrime.securesms.backup.BackupProtos.Sticker build() {
+        org.thoughtcrime.securesms.backup.BackupProtos.Sticker result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public org.thoughtcrime.securesms.backup.BackupProtos.Sticker buildPartial() {
+        org.thoughtcrime.securesms.backup.BackupProtos.Sticker result = new org.thoughtcrime.securesms.backup.BackupProtos.Sticker(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.rowId_ = rowId_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.length_ = length_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof org.thoughtcrime.securesms.backup.BackupProtos.Sticker) {
+          return mergeFrom((org.thoughtcrime.securesms.backup.BackupProtos.Sticker)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(org.thoughtcrime.securesms.backup.BackupProtos.Sticker other) {
+        if (other == org.thoughtcrime.securesms.backup.BackupProtos.Sticker.getDefaultInstance()) return this;
+        if (other.hasRowId()) {
+          setRowId(other.getRowId());
+        }
+        if (other.hasLength()) {
+          setLength(other.getLength());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        org.thoughtcrime.securesms.backup.BackupProtos.Sticker parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (org.thoughtcrime.securesms.backup.BackupProtos.Sticker) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      // optional uint64 rowId = 1;
+      private long rowId_ ;
+      /**
+       * <code>optional uint64 rowId = 1;</code>
+       */
+      public boolean hasRowId() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>optional uint64 rowId = 1;</code>
+       */
+      public long getRowId() {
+        return rowId_;
+      }
+      /**
+       * <code>optional uint64 rowId = 1;</code>
+       */
+      public Builder setRowId(long value) {
+        bitField0_ |= 0x00000001;
+        rowId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional uint64 rowId = 1;</code>
+       */
+      public Builder clearRowId() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        rowId_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      // optional uint32 length = 2;
+      private int length_ ;
+      /**
+       * <code>optional uint32 length = 2;</code>
+       */
+      public boolean hasLength() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional uint32 length = 2;</code>
+       */
+      public int getLength() {
+        return length_;
+      }
+      /**
+       * <code>optional uint32 length = 2;</code>
+       */
+      public Builder setLength(int value) {
+        bitField0_ |= 0x00000002;
+        length_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional uint32 length = 2;</code>
+       */
+      public Builder clearLength() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        length_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:signal.Sticker)
+    }
+
+    static {
+      defaultInstance = new Sticker(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:signal.Sticker)
+  }
+
   public interface AvatarOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
 
@@ -4507,6 +4984,20 @@ public final class BackupProtos {
      * <code>optional .signal.Avatar avatar = 7;</code>
      */
     org.thoughtcrime.securesms.backup.BackupProtos.AvatarOrBuilder getAvatarOrBuilder();
+
+    // optional .signal.Sticker sticker = 8;
+    /**
+     * <code>optional .signal.Sticker sticker = 8;</code>
+     */
+    boolean hasSticker();
+    /**
+     * <code>optional .signal.Sticker sticker = 8;</code>
+     */
+    org.thoughtcrime.securesms.backup.BackupProtos.Sticker getSticker();
+    /**
+     * <code>optional .signal.Sticker sticker = 8;</code>
+     */
+    org.thoughtcrime.securesms.backup.BackupProtos.StickerOrBuilder getStickerOrBuilder();
   }
   /**
    * Protobuf type {@code signal.BackupFrame}
@@ -4640,6 +5131,19 @@ public final class BackupProtos {
                 avatar_ = subBuilder.buildPartial();
               }
               bitField0_ |= 0x00000040;
+              break;
+            }
+            case 66: {
+              org.thoughtcrime.securesms.backup.BackupProtos.Sticker.Builder subBuilder = null;
+              if (((bitField0_ & 0x00000080) == 0x00000080)) {
+                subBuilder = sticker_.toBuilder();
+              }
+              sticker_ = input.readMessage(org.thoughtcrime.securesms.backup.BackupProtos.Sticker.PARSER, extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(sticker_);
+                sticker_ = subBuilder.buildPartial();
+              }
+              bitField0_ |= 0x00000080;
               break;
             }
           }
@@ -4830,6 +5334,28 @@ public final class BackupProtos {
       return avatar_;
     }
 
+    // optional .signal.Sticker sticker = 8;
+    public static final int STICKER_FIELD_NUMBER = 8;
+    private org.thoughtcrime.securesms.backup.BackupProtos.Sticker sticker_;
+    /**
+     * <code>optional .signal.Sticker sticker = 8;</code>
+     */
+    public boolean hasSticker() {
+      return ((bitField0_ & 0x00000080) == 0x00000080);
+    }
+    /**
+     * <code>optional .signal.Sticker sticker = 8;</code>
+     */
+    public org.thoughtcrime.securesms.backup.BackupProtos.Sticker getSticker() {
+      return sticker_;
+    }
+    /**
+     * <code>optional .signal.Sticker sticker = 8;</code>
+     */
+    public org.thoughtcrime.securesms.backup.BackupProtos.StickerOrBuilder getStickerOrBuilder() {
+      return sticker_;
+    }
+
     private void initFields() {
       header_ = org.thoughtcrime.securesms.backup.BackupProtos.Header.getDefaultInstance();
       statement_ = org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement.getDefaultInstance();
@@ -4838,6 +5364,7 @@ public final class BackupProtos {
       version_ = org.thoughtcrime.securesms.backup.BackupProtos.DatabaseVersion.getDefaultInstance();
       end_ = false;
       avatar_ = org.thoughtcrime.securesms.backup.BackupProtos.Avatar.getDefaultInstance();
+      sticker_ = org.thoughtcrime.securesms.backup.BackupProtos.Sticker.getDefaultInstance();
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -4871,6 +5398,9 @@ public final class BackupProtos {
       }
       if (((bitField0_ & 0x00000040) == 0x00000040)) {
         output.writeMessage(7, avatar_);
+      }
+      if (((bitField0_ & 0x00000080) == 0x00000080)) {
+        output.writeMessage(8, sticker_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -4908,6 +5438,10 @@ public final class BackupProtos {
       if (((bitField0_ & 0x00000040) == 0x00000040)) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(7, avatar_);
+      }
+      if (((bitField0_ & 0x00000080) == 0x00000080)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(8, sticker_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -5023,6 +5557,7 @@ public final class BackupProtos {
           getAttachmentFieldBuilder();
           getVersionFieldBuilder();
           getAvatarFieldBuilder();
+          getStickerFieldBuilder();
         }
       }
       private static Builder create() {
@@ -5069,6 +5604,12 @@ public final class BackupProtos {
           avatarBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000040);
+        if (stickerBuilder_ == null) {
+          sticker_ = org.thoughtcrime.securesms.backup.BackupProtos.Sticker.getDefaultInstance();
+        } else {
+          stickerBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000080);
         return this;
       }
 
@@ -5149,6 +5690,14 @@ public final class BackupProtos {
         } else {
           result.avatar_ = avatarBuilder_.build();
         }
+        if (((from_bitField0_ & 0x00000080) == 0x00000080)) {
+          to_bitField0_ |= 0x00000080;
+        }
+        if (stickerBuilder_ == null) {
+          result.sticker_ = sticker_;
+        } else {
+          result.sticker_ = stickerBuilder_.build();
+        }
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -5185,6 +5734,9 @@ public final class BackupProtos {
         }
         if (other.hasAvatar()) {
           mergeAvatar(other.getAvatar());
+        }
+        if (other.hasSticker()) {
+          mergeSticker(other.getSticker());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -5948,6 +6500,123 @@ public final class BackupProtos {
         return avatarBuilder_;
       }
 
+      // optional .signal.Sticker sticker = 8;
+      private org.thoughtcrime.securesms.backup.BackupProtos.Sticker sticker_ = org.thoughtcrime.securesms.backup.BackupProtos.Sticker.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          org.thoughtcrime.securesms.backup.BackupProtos.Sticker, org.thoughtcrime.securesms.backup.BackupProtos.Sticker.Builder, org.thoughtcrime.securesms.backup.BackupProtos.StickerOrBuilder> stickerBuilder_;
+      /**
+       * <code>optional .signal.Sticker sticker = 8;</code>
+       */
+      public boolean hasSticker() {
+        return ((bitField0_ & 0x00000080) == 0x00000080);
+      }
+      /**
+       * <code>optional .signal.Sticker sticker = 8;</code>
+       */
+      public org.thoughtcrime.securesms.backup.BackupProtos.Sticker getSticker() {
+        if (stickerBuilder_ == null) {
+          return sticker_;
+        } else {
+          return stickerBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>optional .signal.Sticker sticker = 8;</code>
+       */
+      public Builder setSticker(org.thoughtcrime.securesms.backup.BackupProtos.Sticker value) {
+        if (stickerBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          sticker_ = value;
+          onChanged();
+        } else {
+          stickerBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000080;
+        return this;
+      }
+      /**
+       * <code>optional .signal.Sticker sticker = 8;</code>
+       */
+      public Builder setSticker(
+          org.thoughtcrime.securesms.backup.BackupProtos.Sticker.Builder builderForValue) {
+        if (stickerBuilder_ == null) {
+          sticker_ = builderForValue.build();
+          onChanged();
+        } else {
+          stickerBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000080;
+        return this;
+      }
+      /**
+       * <code>optional .signal.Sticker sticker = 8;</code>
+       */
+      public Builder mergeSticker(org.thoughtcrime.securesms.backup.BackupProtos.Sticker value) {
+        if (stickerBuilder_ == null) {
+          if (((bitField0_ & 0x00000080) == 0x00000080) &&
+              sticker_ != org.thoughtcrime.securesms.backup.BackupProtos.Sticker.getDefaultInstance()) {
+            sticker_ =
+              org.thoughtcrime.securesms.backup.BackupProtos.Sticker.newBuilder(sticker_).mergeFrom(value).buildPartial();
+          } else {
+            sticker_ = value;
+          }
+          onChanged();
+        } else {
+          stickerBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000080;
+        return this;
+      }
+      /**
+       * <code>optional .signal.Sticker sticker = 8;</code>
+       */
+      public Builder clearSticker() {
+        if (stickerBuilder_ == null) {
+          sticker_ = org.thoughtcrime.securesms.backup.BackupProtos.Sticker.getDefaultInstance();
+          onChanged();
+        } else {
+          stickerBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000080);
+        return this;
+      }
+      /**
+       * <code>optional .signal.Sticker sticker = 8;</code>
+       */
+      public org.thoughtcrime.securesms.backup.BackupProtos.Sticker.Builder getStickerBuilder() {
+        bitField0_ |= 0x00000080;
+        onChanged();
+        return getStickerFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .signal.Sticker sticker = 8;</code>
+       */
+      public org.thoughtcrime.securesms.backup.BackupProtos.StickerOrBuilder getStickerOrBuilder() {
+        if (stickerBuilder_ != null) {
+          return stickerBuilder_.getMessageOrBuilder();
+        } else {
+          return sticker_;
+        }
+      }
+      /**
+       * <code>optional .signal.Sticker sticker = 8;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          org.thoughtcrime.securesms.backup.BackupProtos.Sticker, org.thoughtcrime.securesms.backup.BackupProtos.Sticker.Builder, org.thoughtcrime.securesms.backup.BackupProtos.StickerOrBuilder> 
+          getStickerFieldBuilder() {
+        if (stickerBuilder_ == null) {
+          stickerBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              org.thoughtcrime.securesms.backup.BackupProtos.Sticker, org.thoughtcrime.securesms.backup.BackupProtos.Sticker.Builder, org.thoughtcrime.securesms.backup.BackupProtos.StickerOrBuilder>(
+                  sticker_,
+                  getParentForChildren(),
+                  isClean());
+          sticker_ = null;
+        }
+        return stickerBuilder_;
+      }
+
       // @@protoc_insertion_point(builder_scope:signal.BackupFrame)
     }
 
@@ -5979,6 +6648,11 @@ public final class BackupProtos {
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_signal_Attachment_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_signal_Sticker_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_signal_Sticker_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
     internal_static_signal_Avatar_descriptor;
   private static
@@ -6017,18 +6691,20 @@ public final class BackupProtos {
       "ameter\030\005 \001(\010\"<\n\020SharedPreference\022\014\n\004file" +
       "\030\001 \001(\t\022\013\n\003key\030\002 \001(\t\022\r\n\005value\030\003 \001(\t\"A\n\nAt" +
       "tachment\022\r\n\005rowId\030\001 \001(\004\022\024\n\014attachmentId\030" +
-      "\002 \001(\004\022\016\n\006length\030\003 \001(\r\"&\n\006Avatar\022\014\n\004name\030",
-      "\001 \001(\t\022\016\n\006length\030\002 \001(\r\"\"\n\017DatabaseVersion" +
-      "\022\017\n\007version\030\001 \001(\r\"\"\n\006Header\022\n\n\002iv\030\001 \001(\014\022" +
-      "\014\n\004salt\030\002 \001(\014\"\203\002\n\013BackupFrame\022\036\n\006header\030" +
-      "\001 \001(\0132\016.signal.Header\022\'\n\tstatement\030\002 \001(\013" +
-      "2\024.signal.SqlStatement\022,\n\npreference\030\003 \001" +
-      "(\0132\030.signal.SharedPreference\022&\n\nattachme" +
-      "nt\030\004 \001(\0132\022.signal.Attachment\022(\n\007version\030" +
-      "\005 \001(\0132\027.signal.DatabaseVersion\022\013\n\003end\030\006 " +
-      "\001(\010\022\036\n\006avatar\030\007 \001(\0132\016.signal.AvatarB1\n!o" +
-      "rg.thoughtcrime.securesms.backupB\014Backup",
-      "Protos"
+      "\002 \001(\004\022\016\n\006length\030\003 \001(\r\"(\n\007Sticker\022\r\n\005rowI",
+      "d\030\001 \001(\004\022\016\n\006length\030\002 \001(\r\"&\n\006Avatar\022\014\n\004nam" +
+      "e\030\001 \001(\t\022\016\n\006length\030\002 \001(\r\"\"\n\017DatabaseVersi" +
+      "on\022\017\n\007version\030\001 \001(\r\"\"\n\006Header\022\n\n\002iv\030\001 \001(" +
+      "\014\022\014\n\004salt\030\002 \001(\014\"\245\002\n\013BackupFrame\022\036\n\006heade" +
+      "r\030\001 \001(\0132\016.signal.Header\022\'\n\tstatement\030\002 \001" +
+      "(\0132\024.signal.SqlStatement\022,\n\npreference\030\003" +
+      " \001(\0132\030.signal.SharedPreference\022&\n\nattach" +
+      "ment\030\004 \001(\0132\022.signal.Attachment\022(\n\007versio" +
+      "n\030\005 \001(\0132\027.signal.DatabaseVersion\022\013\n\003end\030" +
+      "\006 \001(\010\022\036\n\006avatar\030\007 \001(\0132\016.signal.Avatar\022 \n",
+      "\007sticker\030\010 \001(\0132\017.signal.StickerB1\n!org.t" +
+      "houghtcrime.securesms.backupB\014BackupProt" +
+      "os"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -6059,30 +6735,36 @@ public final class BackupProtos {
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signal_Attachment_descriptor,
               new java.lang.String[] { "RowId", "AttachmentId", "Length", });
-          internal_static_signal_Avatar_descriptor =
+          internal_static_signal_Sticker_descriptor =
             getDescriptor().getMessageTypes().get(3);
+          internal_static_signal_Sticker_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_signal_Sticker_descriptor,
+              new java.lang.String[] { "RowId", "Length", });
+          internal_static_signal_Avatar_descriptor =
+            getDescriptor().getMessageTypes().get(4);
           internal_static_signal_Avatar_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signal_Avatar_descriptor,
               new java.lang.String[] { "Name", "Length", });
           internal_static_signal_DatabaseVersion_descriptor =
-            getDescriptor().getMessageTypes().get(4);
+            getDescriptor().getMessageTypes().get(5);
           internal_static_signal_DatabaseVersion_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signal_DatabaseVersion_descriptor,
               new java.lang.String[] { "Version", });
           internal_static_signal_Header_descriptor =
-            getDescriptor().getMessageTypes().get(5);
+            getDescriptor().getMessageTypes().get(6);
           internal_static_signal_Header_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signal_Header_descriptor,
               new java.lang.String[] { "Iv", "Salt", });
           internal_static_signal_BackupFrame_descriptor =
-            getDescriptor().getMessageTypes().get(6);
+            getDescriptor().getMessageTypes().get(7);
           internal_static_signal_BackupFrame_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signal_BackupFrame_descriptor,
-              new java.lang.String[] { "Header", "Statement", "Preference", "Attachment", "Version", "End", "Avatar", });
+              new java.lang.String[] { "Header", "Statement", "Preference", "Attachment", "Version", "End", "Avatar", "Sticker", });
           return null;
         }
       };

@@ -179,7 +179,7 @@ public class BlobProvider {
     File             outputFile       = new File(getOrCreateCacheDirectory(context, directory), buildFileName(blobSpec.id));
     OutputStream     outputStream     = ModernEncryptingPartOutputStream.createFor(attachmentSecret, outputFile, true).second;
 
-    SignalExecutors.IO.execute(() -> {
+    SignalExecutors.UNBOUNDED.execute(() -> {
       try {
         Util.copy(blobSpec.getData(), outputStream);
       } catch (IOException e) {

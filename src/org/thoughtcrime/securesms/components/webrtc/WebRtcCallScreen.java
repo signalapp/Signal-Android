@@ -118,7 +118,7 @@ public class WebRtcCallScreen extends FrameLayout implements RecipientModifiedLi
 
   public void setIncomingCall(Recipient personInfo) {
     setCard(personInfo, getContext().getString(R.string.CallScreen_Incoming_call));
-    endCallButton.setVisibility(View.INVISIBLE);
+    endCallButton.hide();
     incomingCallButton.setVisibility(View.VISIBLE);
     incomingCallButton.startRingingAnimation();
   }
@@ -141,7 +141,7 @@ public class WebRtcCallScreen extends FrameLayout implements RecipientModifiedLi
     this.untrustedIdentityExplanation.setText(spannableString);
     this.untrustedIdentityExplanation.setMovementMethod(LinkMovementMethod.getInstance());
 
-    this.endCallButton.setVisibility(View.INVISIBLE);
+    this.endCallButton.hide();
   }
 
   public void setIncomingCallActionListener(WebRtcAnswerDeclineButton.AnswerDeclineListener listener) {
@@ -203,6 +203,7 @@ public class WebRtcCallScreen extends FrameLayout implements RecipientModifiedLi
     if (this.localRenderLayout.isHidden() == cameraState.isEnabled()) {
       this.localRenderLayout.setHidden(!cameraState.isEnabled());
       this.localRenderLayout.requestLayout();
+      this.localRenderer.setVisibility(cameraState.isEnabled() ? VISIBLE : INVISIBLE);
     }
   }
 

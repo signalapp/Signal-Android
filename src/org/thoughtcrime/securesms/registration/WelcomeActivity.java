@@ -34,7 +34,7 @@ public class WelcomeActivity extends BaseActionBarActivity {
   private void onContinueClicked() {
     Permissions.with(this)
         .request(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)
-        .ifNecessary(false)
+        .ifNecessary()
         .withRationaleDialog(getString(R.string.activity_landing_permission_dialog_message), R.drawable.ic_folder_white_48dp)
         .onAnyResult(() -> {
           TextSecurePreferences.setHasSeenWelcomeScreen(WelcomeActivity.this, true);
@@ -46,7 +46,6 @@ public class WelcomeActivity extends BaseActionBarActivity {
           }
 
           startActivity(nextIntent);
-          overridePendingTransition(R.anim.slide_from_right, R.anim.fade_scale_out);
           finish();
         })
         .execute();

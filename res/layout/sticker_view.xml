@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:parentTag="org.thoughtcrime.securesms.components.StickerView">
+
+    <View
+        android:id="@+id/sticker_missing_shade"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?sticker_view_missing_background"
+        android:visibility="gone"
+        tools:visibility="visible"/>
+
+    <org.thoughtcrime.securesms.components.ThumbnailView
+        android:id="@+id/sticker_thumbnail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:thumbnail_radius="0dp"/>
+
+</merge>
