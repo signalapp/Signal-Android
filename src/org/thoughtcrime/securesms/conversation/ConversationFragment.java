@@ -59,7 +59,6 @@ import com.annimon.stream.Stream;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.MessageDetailsActivity;
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
-import network.loki.messenger.R;
 import org.thoughtcrime.securesms.ShareActivity;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.components.ConversationTypingView;
@@ -112,6 +111,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
+
+import network.loki.messenger.R;
 
 @SuppressLint("StaticFieldLeak")
 public class ConversationFragment extends Fragment
@@ -397,6 +398,13 @@ public class ConversationFragment extends Fragment
                                                         messageRecord.isSecure());
     }
     menu.findItem(R.id.menu_context_copy).setVisible(!actionMessage && hasText);
+
+    boolean isLokiPublicChat = recipient.isGroupRecipient(); // TODO: Figure out a better way of determining this
+
+    if (isLokiPublicChat) {
+      menu.findItem(R.id.menu_context_reply).setVisible(false);
+      menu.findItem(R.id.menu_context_delete_message).setVisible(false);
+    }
   }
 
   private ConversationAdapter getListAdapter() {
