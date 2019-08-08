@@ -14,7 +14,6 @@ import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.GroupReceiptDatabase.GroupReceiptInfo;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
@@ -47,6 +46,7 @@ import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupContext;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -225,7 +225,7 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
 
   private List<SendMessageResult> deliver(OutgoingMediaMessage message, @NonNull List<Address> destinations)
       throws IOException, UntrustedIdentityException, UndeliverableMessageException {
-    rotateSenderCertificateIfNecessary();
+    // rotateSenderCertificateIfNecessary();
 
     String                                     groupId            = message.getRecipient().getAddress().toGroupString();
     Optional<byte[]>                           profileKey         = getProfileKey(message.getRecipient());
@@ -279,11 +279,17 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
   }
 
   private @NonNull List<Address> getGroupMessageRecipients(String groupId, long messageId) {
+    ArrayList<Address> result = new ArrayList<>();
+    result.add(Address.fromSerialized("network.loki.messenger.publicChat"));
+    return result;
+
+    /*
     List<GroupReceiptInfo> destinations = DatabaseFactory.getGroupReceiptDatabase(context).getGroupReceiptInfo(messageId);
     if (!destinations.isEmpty()) return Stream.of(destinations).map(GroupReceiptInfo::getAddress).toList();
 
     List<Recipient> members = DatabaseFactory.getGroupDatabase(context).getGroupMembers(groupId, false);
     return Stream.of(members).map(Recipient::getAddress).toList();
+     */
   }
 
   public static class Factory implements Job.Factory<PushGroupSendJob> {

@@ -3,7 +3,9 @@ package org.thoughtcrime.securesms.loki
 import android.content.Context
 import android.os.Handler
 import android.util.Log
+import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.jobs.PushDecryptJob
+import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.libsignal.util.guava.Optional
 import org.whispersystems.signalservice.api.messages.SignalServiceContent
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage
@@ -38,7 +40,9 @@ class LokiGroupChatPoller(private val context: Context, private val groupID: Lon
     }
 
     private fun poll() {
-        LokiGroupChatAPI.getMessages(groupID).success { messages ->
+        val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context)
+        val database = DatabaseFactory.getLokiAPIDatabase(context)
+        LokiGroupChatAPI(userHexEncodedPublicKey, database).getMessages(groupID).success { messages ->
             messages.map { message ->
                 val id = "loki-group-chat-$groupID".toByteArray()
                 val x1 = SignalServiceGroup(SignalServiceGroup.Type.UPDATE, id, null, null, null)

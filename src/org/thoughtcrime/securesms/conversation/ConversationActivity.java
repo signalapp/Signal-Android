@@ -224,8 +224,6 @@ import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
-import org.whispersystems.signalservice.loki.api.LokiGroupChatAPI;
-import org.whispersystems.signalservice.loki.api.LokiGroupMessage;
 import org.whispersystems.signalservice.loki.messaging.LokiMessageFriendRequestStatus;
 import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus;
 
@@ -240,7 +238,6 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import kotlin.Unit;
 import network.loki.messenger.R;
 
 import static org.thoughtcrime.securesms.TransportOption.Type;
@@ -2216,15 +2213,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                                                   final boolean initiating,
                                                   final boolean clearComposeBox)
   {
-    boolean isLokiPublicChat = isGroupConversation(); // TODO: Figure out a better way of determining this
-    if (isLokiPublicChat) {
-      try {
-        return sendGroupMessage();
-      } catch (Exception e) {
-        // Do nothing
-      }
-    }
-
     if (!isDefaultSms && (!isSecureText || forceSms)) {
       showDefaultSmsPrompt();
       return new SettableFuture<>(null);
@@ -2292,9 +2280,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private void sendTextMessage(final boolean forceSms, final long expiresIn, final int subscriptionId, final boolean initiatingConversation)
       throws InvalidMessageException
   {
-    boolean isLokiPublicChat = isGroupConversation(); // TODO: Figure out a better way of determining this
-    if (isLokiPublicChat) { sendGroupMessage(); return; }
-
     if (!isDefaultSms && (!isSecureText || forceSms)) {
       showDefaultSmsPrompt();
       return;
@@ -2899,23 +2884,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     DatabaseFactory.getLokiThreadDatabase(this).setFriendRequestStatus(this.threadId, LokiThreadFriendRequestStatus.NONE);
     String contactID = DatabaseFactory.getThreadDatabase(this).getRecipientForThreadId(this.threadId).getAddress().toString();
     DatabaseFactory.getLokiPreKeyBundleDatabase(this).removePreKeyBundle(contactID);
-  }
-
-  public ListenableFuture<Void> sendGroupMessage() throws InvalidMessageException {
-    final SettableFuture<Void> future  = new SettableFuture<>();
-    String hexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this);
-    String displayName = DatabaseFactory.getLokiAPIDatabase(this).getUserDisplayName();
-    if (displayName == null) displayName = "Anonymous";
-    long timestamp = new Date().getTime();
-    LokiGroupMessage message = new LokiGroupMessage(hexEncodedPublicKey, displayName, getMessage(), timestamp);
-    LokiGroupChatAPI.sendMessage(message, LokiGroupChatAPI.getPublicChatID()).success(unit -> {
-      future.set(null);
-      return Unit.INSTANCE;
-    }).fail(e -> {
-      future.setException(e);
-      return Unit.INSTANCE;
-    });
-    return future;
   }
   // endregion
 }
