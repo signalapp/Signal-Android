@@ -1546,7 +1546,7 @@
 
     <!-- Landing activity -->
     <string name="activity_landing_title">Loki Messenger</string>
-    <string name="activity_landing_permission_dialog_message">Loki Messenger needs access to your storage to securely exchange messages.</string>
+    <string name="activity_landing_permission_dialog_message">Some features of Loki Messenger (such as automatic message backup) require storage access to work.</string>
     <string name="activity_landing_privacy_policy_button_title">Privacy Policy</string>
     <!-- Account details activity -->
     <string name="activity_account_details_title">Create Your Loki Messenger Account</string>
