@@ -83,7 +83,8 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         return TextSecurePreferences.getProfileName(context)
     }
 
-    override fun setMessageID(signalID: Long, lokiID: Long) {
+    override fun updateMessageIDIfNeeded(signalID: Long, lokiID: Long) {
+        if (signalID == lokiID) return
         DatabaseFactory.getMmsDatabase(context).updateMessageID(signalID, lokiID)
     }
 }
