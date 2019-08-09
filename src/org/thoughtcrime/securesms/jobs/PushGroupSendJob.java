@@ -253,11 +253,13 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
       SignalServiceDataMessage  groupDataMessage = SignalServiceDataMessage.newBuilder()
                                                                            .withTimestamp(message.getSentTimeMillis())
                                                                            .withExpiration(message.getRecipient().getExpireMessages())
-                                                                           .withBody(message.getBody())
                                                                            .asGroupMessage(group)
                                                                            .build();
 
-      return messageSender.sendMessage(messageId, addresses, unidentifiedAccess, groupDataMessage);
+      // Loki - Disable group updates for now
+      List<SendMessageResult> results = new ArrayList<>();
+      for (Address destination : destinations) results.add(SendMessageResult.success(new SignalServiceAddress(destination.toPhoneString()), false, false));
+      return results;
     } else {
       SignalServiceGroup       group        = new SignalServiceGroup(GroupUtil.getDecodedId(groupId));
       SignalServiceDataMessage groupMessage = SignalServiceDataMessage.newBuilder()
