@@ -253,6 +253,7 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
       SignalServiceDataMessage  groupDataMessage = SignalServiceDataMessage.newBuilder()
                                                                            .withTimestamp(message.getSentTimeMillis())
                                                                            .withExpiration(message.getRecipient().getExpireMessages())
+                                                                           .withBody(message.getBody())
                                                                            .asGroupMessage(group)
                                                                            .build();
 
