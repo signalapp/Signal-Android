@@ -891,7 +891,7 @@ public class SmsDatabase extends MessagingDatabase {
       Recipient                 recipient  = Recipient.from(context, address, true);
 
       // Loki - Check to see if this message was a friend request
-      boolean isFriendRequest = DatabaseFactory.getLokiMessageFriendRequestDatabase(context).isFriendRequest(messageId);
+      boolean isFriendRequest = DatabaseFactory.getLokiMessageDatabase(context).isFriendRequest(messageId);
 
       return new SmsMessageRecord(messageId, body, recipient,
                                   recipient,

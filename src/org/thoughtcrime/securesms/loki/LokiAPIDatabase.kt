@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.loki
 import android.content.ContentValues
 import android.content.Context
 import org.thoughtcrime.securesms.database.Database
-import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.loki.api.LokiAPIDatabaseProtocol
@@ -77,15 +76,6 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         val receivedMessageHashValuesAsString = newValue.joinToString(", ")
         val row = wrap(mapOf( userID to userPublicKey, receivedMessageHashValues to receivedMessageHashValuesAsString ))
         database.insertOrUpdate(receivedMessageHashValuesCache, row, "$userID = ?", wrap(userPublicKey))
-    }
-
-    override fun getUserDisplayName(): String? {
-        return TextSecurePreferences.getProfileName(context)
-    }
-
-    override fun updateMessageIDIfNeeded(signalID: Long, lokiID: Long) {
-        if (signalID == lokiID) return
-        DatabaseFactory.getMmsDatabase(context).updateMessageID(signalID, lokiID)
     }
 }
 

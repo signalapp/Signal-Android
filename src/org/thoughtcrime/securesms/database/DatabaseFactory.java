@@ -34,9 +34,9 @@ import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.loki.LokiAPIDatabase;
 import org.thoughtcrime.securesms.loki.LokiPreKeyRecordDatabase;
 import org.thoughtcrime.securesms.loki.LokiPreKeyBundleDatabase;
-import org.thoughtcrime.securesms.loki.LokiMessageFriendRequestDatabase;
+import org.thoughtcrime.securesms.loki.LokiMessageDatabase;
 import org.thoughtcrime.securesms.loki.LokiThreadDatabase;
-import org.thoughtcrime.securesms.loki.LokiUserDisplayNameDatabase;
+import org.thoughtcrime.securesms.loki.LokiUserDatabase;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 public class DatabaseFactory {
@@ -70,9 +70,9 @@ public class DatabaseFactory {
   private final LokiAPIDatabase lokiAPIDatabase;
   private final LokiPreKeyRecordDatabase lokiContactPreKeyDatabase;
   private final LokiPreKeyBundleDatabase lokiPreKeyBundleDatabase;
-  private final LokiMessageFriendRequestDatabase lokiMessageFriendRequestDatabase;
+  private final LokiMessageDatabase lokiMessageDatabase;
   private final LokiThreadDatabase lokiThreadDatabase;
-  private final LokiUserDisplayNameDatabase lokiUserDisplayNameDatabase;
+  private final LokiUserDatabase lokiUserDatabase;
 
   public static DatabaseFactory getInstance(Context context) {
     synchronized (lock) {
@@ -176,16 +176,16 @@ public class DatabaseFactory {
     return getInstance(context).lokiPreKeyBundleDatabase;
   }
 
-  public static LokiMessageFriendRequestDatabase getLokiMessageFriendRequestDatabase(Context context) {
-    return getInstance(context).lokiMessageFriendRequestDatabase;
+  public static LokiMessageDatabase getLokiMessageDatabase(Context context) {
+    return getInstance(context).lokiMessageDatabase;
   }
 
   public static LokiThreadDatabase getLokiThreadDatabase(Context context) {
     return getInstance(context).lokiThreadDatabase;
   }
 
-  public static LokiUserDisplayNameDatabase getLokiUserDisplayNameDatabase(Context context) {
-    return getInstance(context).lokiUserDisplayNameDatabase;
+  public static LokiUserDatabase getLokiUserDatabase(Context context) {
+    return getInstance(context).lokiUserDatabase;
   }
   // endregion
 
@@ -223,9 +223,9 @@ public class DatabaseFactory {
     this.lokiAPIDatabase = new LokiAPIDatabase(context, databaseHelper);
     this.lokiContactPreKeyDatabase = new LokiPreKeyRecordDatabase(context, databaseHelper);
     this.lokiPreKeyBundleDatabase = new LokiPreKeyBundleDatabase(context, databaseHelper);
-    this.lokiMessageFriendRequestDatabase = new LokiMessageFriendRequestDatabase(context, databaseHelper);
+    this.lokiMessageDatabase = new LokiMessageDatabase(context, databaseHelper);
     this.lokiThreadDatabase = new LokiThreadDatabase(context, databaseHelper);
-    this.lokiUserDisplayNameDatabase = new LokiUserDisplayNameDatabase(context, databaseHelper);
+    this.lokiUserDatabase = new LokiUserDatabase(context, databaseHelper);
   }
 
   public void onApplicationLevelUpgrade(@NonNull Context context, @NonNull MasterSecret masterSecret,

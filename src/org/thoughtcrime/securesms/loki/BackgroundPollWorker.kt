@@ -28,9 +28,9 @@ class BackgroundPollWorker : PersistentAlarmManagerListener() {
     override fun onAlarm(context: Context, scheduledTime: Long): Long {
         if (scheduledTime != 0L) {
             val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context)
-            val apiDatabase = DatabaseFactory.getLokiAPIDatabase(context)
+            val lokiAPIDatabase = DatabaseFactory.getLokiAPIDatabase(context)
             try {
-                LokiAPI(userHexEncodedPublicKey, apiDatabase).getMessages().get().forEach {
+                LokiAPI(userHexEncodedPublicKey, lokiAPIDatabase).getMessages().get().forEach {
                     PushContentReceiveJob(context).processEnvelope(SignalServiceEnvelope(it))
                 }
             } catch (exception: Throwable) {

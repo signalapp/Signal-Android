@@ -79,7 +79,7 @@ public class MessageSender {
 
     // Loki - Set the message's friend request status as soon as it has hit the database
     if (message.isFriendRequest) {
-      DatabaseFactory.getLokiMessageFriendRequestDatabase(context).setFriendRequestStatus(messageId, LokiMessageFriendRequestStatus.REQUEST_SENDING);
+      DatabaseFactory.getLokiMessageDatabase(context).setFriendRequestStatus(messageId, LokiMessageFriendRequestStatus.REQUEST_SENDING);
     }
 
     sendTextMessage(context, recipient, forceSms, keyExchange, messageId);

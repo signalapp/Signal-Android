@@ -86,9 +86,9 @@ public class MarkReadReceiver extends BroadcastReceiver {
                                                          .collect(Collectors.groupingBy(SyncMessageId::getAddress));
 
     for (Address address : addressMap.keySet()) {
-      LokiThreadDatabase threadDatabase = DatabaseFactory.getLokiThreadDatabase(context);
-      long threadID = threadDatabase.getThreadID(address.serialize());
-      LokiThreadFriendRequestStatus friendRequestStatus = threadDatabase.getFriendRequestStatus(threadID);
+      LokiThreadDatabase lokiThreadDatabase = DatabaseFactory.getLokiThreadDatabase(context);
+      long threadID = lokiThreadDatabase.getThreadID(address.serialize());
+      LokiThreadFriendRequestStatus friendRequestStatus = lokiThreadDatabase.getFriendRequestStatus(threadID);
       if (friendRequestStatus != LokiThreadFriendRequestStatus.FRIENDS) { return; }
 
       List<Long> timestamps = Stream.of(addressMap.get(address)).map(SyncMessageId::getTimetamp).toList();

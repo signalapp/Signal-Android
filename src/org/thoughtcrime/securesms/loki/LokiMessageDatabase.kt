@@ -8,13 +8,22 @@ import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.whispersystems.signalservice.loki.messaging.LokiMessageDatabaseProtocol
 import org.whispersystems.signalservice.loki.messaging.LokiMessageFriendRequestStatus
 
-class LokiMessageFriendRequestDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), LokiMessageDatabaseProtocol {
+class LokiMessageDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), LokiMessageDatabaseProtocol {
 
     companion object {
         private val tableName = "loki_message_friend_request_database"
         private val messageID = "message_id"
+        private val serverID = "server_id"
         private val friendRequestStatus = "friend_request_status"
-        @JvmStatic val createTableCommand = "CREATE TABLE $tableName ($messageID INTEGER PRIMARY KEY, $friendRequestStatus INTEGER DEFAULT 0);"
+        @JvmStatic val createTableCommand = "CREATE TABLE $tableName ($messageID INTEGER PRIMARY KEY, $serverID INTEGER DEFAULT 0, $friendRequestStatus INTEGER DEFAULT 0);"
+    }
+
+    override fun setServerID(messageID: Long, serverID: Long) {
+        val database = databaseHelper.writableDatabase
+        val contentValues = ContentValues(2)
+        contentValues.put(Companion.messageID, messageID)
+        contentValues.put(Companion.serverID, serverID)
+        database.insertOrUpdate(tableName, contentValues, "${Companion.messageID} = ?", arrayOf( messageID.toString() ))
     }
 
     override fun getFriendRequestStatus(messageID: Long): LokiMessageFriendRequestStatus {

@@ -155,9 +155,10 @@ public class SignalCommunicationModule {
                                                           TextSecurePreferences.getLocalNumber(context),
                                                           DatabaseFactory.getLokiAPIDatabase(context),
                                                           DatabaseFactory.getLokiThreadDatabase(context),
-                                                          DatabaseFactory.getLokiMessageFriendRequestDatabase(context),
+                                                          DatabaseFactory.getLokiMessageDatabase(context),
                                                           DatabaseFactory.getLokiPreKeyBundleDatabase(context),
-                                                          new TextSecureSessionStore(context));
+                                                          new TextSecureSessionStore(context),
+                                                          DatabaseFactory.getLokiUserDatabase(context));
     } else {
       this.messageSender.setMessagePipe(IncomingMessageObserver.getPipe(), IncomingMessageObserver.getUnidentifiedPipe());
       this.messageSender.setIsMultiDevice(TextSecurePreferences.isMultiDevice(context));

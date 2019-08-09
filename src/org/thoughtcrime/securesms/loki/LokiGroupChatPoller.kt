@@ -41,10 +41,10 @@ class LokiGroupChatPoller(private val context: Context, private val groupID: Lon
 
     private fun poll() {
         val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context)
-        val database = DatabaseFactory.getLokiAPIDatabase(context)
-        LokiGroupChatAPI(userHexEncodedPublicKey, database).getMessages(groupID).success { messages ->
+        val lokiUserDatabase = DatabaseFactory.getLokiUserDatabase(context)
+        LokiGroupChatAPI(userHexEncodedPublicKey, lokiUserDatabase).getMessages(groupID).success { messages ->
             messages.map { message ->
-                val id = "loki-group-chat-$groupID".toByteArray()
+                val id = "${LokiGroupChatAPI.serverURL}.$groupID".toByteArray()
                 val x1 = SignalServiceGroup(SignalServiceGroup.Type.UPDATE, id, null, null, null)
                 val x2 = SignalServiceDataMessage(message.timestamp, x1, null, message.body)
                 val senderDisplayName = "${message.displayName} (...${message.hexEncodedPublicKey.takeLast(8)})"

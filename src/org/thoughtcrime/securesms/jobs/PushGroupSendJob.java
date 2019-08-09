@@ -44,6 +44,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceGroup;
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupContext;
+import org.whispersystems.signalservice.loki.api.LokiGroupChatAPI;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -278,7 +279,7 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
 
   private @NonNull List<Address> getGroupMessageRecipients(String groupId, long messageId) {
     ArrayList<Address> result = new ArrayList<>();
-    result.add(Address.fromSerialized("network.loki.messenger.publicChat"));
+    result.add(Address.fromSerialized(LokiGroupChatAPI.getServerURL()));
     return result;
 
     /*

@@ -2872,7 +2872,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       try {
         messageSender.sendMessage(0, address, Optional.absent(), message); // The message ID doesn't matter
         DatabaseFactory.getLokiThreadDatabase(context).setFriendRequestStatus(this.threadId, LokiThreadFriendRequestStatus.FRIENDS);
-        DatabaseFactory.getLokiMessageFriendRequestDatabase(context).setFriendRequestStatus(friendRequest.id, LokiMessageFriendRequestStatus.REQUEST_ACCEPTED);
+        DatabaseFactory.getLokiMessageDatabase(context).setFriendRequestStatus(friendRequest.id, LokiMessageFriendRequestStatus.REQUEST_ACCEPTED);
       } catch (Exception e) {
         Log.d("Loki", "Failed to send background message to: " + contactID + ".");
       }

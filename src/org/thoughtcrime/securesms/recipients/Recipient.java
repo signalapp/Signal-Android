@@ -26,7 +26,6 @@ import android.text.TextUtils;
 
 import com.annimon.stream.function.Consumer;
 
-import network.loki.messenger.R;
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
@@ -59,6 +58,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.WeakHashMap;
 import java.util.concurrent.ExecutionException;
+
+import network.loki.messenger.R;
 
 public class Recipient implements RecipientModifiedListener {
 
@@ -292,7 +293,7 @@ public class Recipient implements RecipientModifiedListener {
   }
 
   public synchronized @Nullable String getName() {
-    String displayName = DatabaseFactory.getLokiUserDisplayNameDatabase(context).getDisplayName(this.address.toString());
+    String displayName = DatabaseFactory.getLokiUserDatabase(context).getDisplayName(this.address.toString());
     if (displayName != null) { return displayName; }
 
     if (this.name == null && isMmsGroupRecipient()) {

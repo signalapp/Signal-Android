@@ -88,7 +88,7 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.FriendRequestView;
 import org.thoughtcrime.securesms.loki.FriendRequestViewDelegate;
-import org.thoughtcrime.securesms.loki.LokiMessageFriendRequestDatabase;
+import org.thoughtcrime.securesms.loki.LokiMessageDatabase;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.PartAuthority;
@@ -979,8 +979,8 @@ public class ConversationItem extends LinearLayout
     int spacingBottom = spacingTop;
 
     boolean isOutgoingStack = current.isOutgoing() && previous.orNull() != null && previous.get().isOutgoing();
-    LokiMessageFriendRequestDatabase friendRequestDatabase = DatabaseFactory.getLokiMessageFriendRequestDatabase(context);
-    boolean isPreviousMessageFriendRequest = previous.orNull() != null && friendRequestDatabase.isFriendRequest(previous.get().id);
+    LokiMessageDatabase lokiMessageDatabase = DatabaseFactory.getLokiMessageDatabase(context);
+    boolean isPreviousMessageFriendRequest = previous.orNull() != null && lokiMessageDatabase.isFriendRequest(previous.get().id);
 
     if (isOutgoingStack && isPreviousMessageFriendRequest) {
       spacingTop = readDimen(context, R.dimen.conversation_vertical_message_spacing_default);

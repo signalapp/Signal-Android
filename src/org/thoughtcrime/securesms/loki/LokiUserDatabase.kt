@@ -6,8 +6,10 @@ import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.Database
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.whispersystems.signalservice.loki.messaging.LokiUserDatabaseProtocol
 
-class LokiUserDisplayNameDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper) {
+class LokiUserDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), LokiUserDatabaseProtocol {
 
     companion object {
         private val tableName = "loki_user_display_name_database"
@@ -16,10 +18,14 @@ class LokiUserDisplayNameDatabase(context: Context, helper: SQLCipherOpenHelper)
         @JvmStatic val createTableCommand = "CREATE TABLE $tableName ($hexEncodedPublicKey TEXT PRIMARY KEY, $displayName TEXT);"
     }
 
-    fun getDisplayName(hexEncodedPublicKey: String): String? {
-        val database = databaseHelper.readableDatabase
-        return database.get(tableName, "${Companion.hexEncodedPublicKey} = ?", arrayOf( hexEncodedPublicKey )) { cursor ->
-            cursor.getString(cursor.getColumnIndexOrThrow(displayName))
+    override fun getDisplayName(hexEncodedPublicKey: String): String? {
+        if (hexEncodedPublicKey == TextSecurePreferences.getLocalNumber(context)) {
+            return TextSecurePreferences.getProfileName(context)
+        } else {
+            val database = databaseHelper.readableDatabase
+            return database.get(tableName, "${Companion.hexEncodedPublicKey} = ?", arrayOf(hexEncodedPublicKey)) { cursor ->
+                cursor.getString(cursor.getColumnIndexOrThrow(displayName))
+            }
         }
     }
 

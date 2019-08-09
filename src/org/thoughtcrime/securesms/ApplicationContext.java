@@ -406,9 +406,9 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     if (lokiLongPoller != null) return;
     String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this);
     if (userHexEncodedPublicKey == null) return;
-    LokiAPIDatabase database = DatabaseFactory.getLokiAPIDatabase(this);
+    LokiAPIDatabase lokiAPIDatabase = DatabaseFactory.getLokiAPIDatabase(this);
     Context context = this;
-    lokiLongPoller = new LokiLongPoller(userHexEncodedPublicKey, database, new Function1<List<SignalServiceProtos.Envelope>, Unit>() {
+    lokiLongPoller = new LokiLongPoller(userHexEncodedPublicKey, lokiAPIDatabase, new Function1<List<SignalServiceProtos.Envelope>, Unit>() {
 
       @Override
       public Unit invoke(List<SignalServiceProtos.Envelope> protos) {
@@ -430,7 +430,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     lokiGroupChatPoller = new LokiGroupChatPoller(this, LokiGroupChatAPI.getPublicChatID());
     boolean isPublicChatSetUp = TextSecurePreferences.isPublicChatSetUp(this);
     if (isPublicChatSetUp) return;
-    String id = "loki-group-chat-" + LokiGroupChatAPI.getPublicChatID();
+    String id = LokiGroupChatAPI.getServerURL() + "." + LokiGroupChatAPI.getPublicChatID();
     GroupManager.createGroup(id, this, new HashSet<>(), null, "Loki Public Chat", false);
     TextSecurePreferences.markPublicChatSetUp(this);
   }

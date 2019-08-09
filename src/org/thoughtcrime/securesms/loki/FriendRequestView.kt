@@ -106,13 +106,13 @@ class FriendRequestView(context: Context, attrs: AttributeSet?, defStyleAttr: In
 
     private fun updateUI() {
         val message = message
-        val database = DatabaseFactory.getLokiMessageFriendRequestDatabase(context)
+        val lokiMessageDatabase = DatabaseFactory.getLokiMessageDatabase(context)
         val contactID = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(message!!.threadId)!!.address.toString()
-        val contactDisplayName = DatabaseFactory.getLokiUserDisplayNameDatabase(context).getDisplayName(contactID) ?: contactID
+        val contactDisplayName = DatabaseFactory.getLokiUserDatabase(context).getDisplayName(contactID) ?: contactID
         if (message is MediaMmsMessageRecord && message.quote != null) { visibility = View.GONE; return }
         val isTextMessage = message is SmsMessageRecord
         if (!isTextMessage) return
-        val friendRequestStatus = database.getFriendRequestStatus(message.id)
+        val friendRequestStatus = lokiMessageDatabase.getFriendRequestStatus(message.id)
         if (!message.isOutgoing) {
             visibility = if (friendRequestStatus == LokiMessageFriendRequestStatus.NONE) View.GONE else View.VISIBLE
             buttonLinearLayout.visibility = if (friendRequestStatus != LokiMessageFriendRequestStatus.REQUEST_PENDING) View.GONE else View.VISIBLE
@@ -147,15 +147,15 @@ class FriendRequestView(context: Context, attrs: AttributeSet?, defStyleAttr: In
 
     // region Interaction
     private fun accept() {
-        val database = DatabaseFactory.getLokiMessageFriendRequestDatabase(context)
-        database.setFriendRequestStatus(message!!.id, LokiMessageFriendRequestStatus.REQUEST_SENDING)
+        val lokiMessageDatabase = DatabaseFactory.getLokiMessageDatabase(context)
+        lokiMessageDatabase.setFriendRequestStatus(message!!.id, LokiMessageFriendRequestStatus.REQUEST_SENDING)
         updateUI()
         delegate?.acceptFriendRequest(message!!)
     }
 
     private fun reject() {
-        val database = DatabaseFactory.getLokiMessageFriendRequestDatabase(context)
-        database.setFriendRequestStatus(message!!.id, LokiMessageFriendRequestStatus.REQUEST_REJECTED)
+        val lokiMessageDatabase = DatabaseFactory.getLokiMessageDatabase(context)
+        lokiMessageDatabase.setFriendRequestStatus(message!!.id, LokiMessageFriendRequestStatus.REQUEST_REJECTED)
         updateUI()
         delegate?.rejectFriendRequest(message!!)
     }

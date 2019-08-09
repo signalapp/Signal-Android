@@ -37,10 +37,10 @@ import org.thoughtcrime.securesms.jobs.RefreshPreKeysJob;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.LokiAPIDatabase;
 import org.thoughtcrime.securesms.loki.LokiPreKeyRecordDatabase;
-import org.thoughtcrime.securesms.loki.LokiMessageFriendRequestDatabase;
+import org.thoughtcrime.securesms.loki.LokiMessageDatabase;
 import org.thoughtcrime.securesms.loki.LokiPreKeyBundleDatabase;
 import org.thoughtcrime.securesms.loki.LokiThreadDatabase;
-import org.thoughtcrime.securesms.loki.LokiUserDisplayNameDatabase;
+import org.thoughtcrime.securesms.loki.LokiUserDatabase;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -126,10 +126,10 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     db.execSQL(LokiAPIDatabase.getCreateReceivedMessageHashValuesTableCommand());
     db.execSQL(LokiPreKeyBundleDatabase.getCreateTableCommand());
     db.execSQL(LokiPreKeyRecordDatabase.getCreateTableCommand());
-    db.execSQL(LokiMessageFriendRequestDatabase.getCreateTableCommand());
+    db.execSQL(LokiMessageDatabase.getCreateTableCommand());
     db.execSQL(LokiThreadDatabase.getCreateFriendRequestTableCommand());
     db.execSQL(LokiThreadDatabase.getCreateSessionResetTableCommand());
-    db.execSQL(LokiUserDisplayNameDatabase.getCreateTableCommand());
+    db.execSQL(LokiUserDatabase.getCreateTableCommand());
 
     executeStatements(db, SmsDatabase.CREATE_INDEXS);
     executeStatements(db, MmsDatabase.CREATE_INDEXS);

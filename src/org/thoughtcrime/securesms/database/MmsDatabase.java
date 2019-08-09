@@ -531,11 +531,6 @@ public class MmsDatabase extends MessagingDatabase {
     updateMessageBodyAndType(messageId, body, Types.ENCRYPTION_MASK, type);
   }
 
-  public void updateMessageID(long oldMessageID, long newMessageID) {
-    SQLiteDatabase db = databaseHelper.getWritableDatabase();
-    db.execSQL("UPDATE " + TABLE_NAME + " SET " + ID + " = ? WHERE " + ID + " = ?", new String[] { newMessageID + "", oldMessageID + "" });
-  }
-
   private Pair<Long, Long> updateMessageBodyAndType(long messageId, String body, long maskOff, long maskOn) {
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
     db.execSQL("UPDATE " + TABLE_NAME + " SET " + BODY + " = ?, " +
