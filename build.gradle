@@ -181,7 +181,7 @@ dependencies {
     implementation "com.github.lelloman:android-identicons:$identicon_version"
 }
 
-def canonicalVersionCode = 6
+def canonicalVersionCode = 7
 def canonicalVersionName = "1.0.0"
 
 def postFixSize = 10
