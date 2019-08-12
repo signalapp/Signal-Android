@@ -231,6 +231,9 @@ public class ContactSelectionListFragment extends    Fragment
     if (useFastScroller) {
       fastScroller.setVisibility(View.VISIBLE);
       fastScroller.setRecyclerView(recyclerView);
+    } else {
+      fastScroller.setRecyclerView(null);
+      fastScroller.setVisibility(View.GONE);
     }
   }
 
