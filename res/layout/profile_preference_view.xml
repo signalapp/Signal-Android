@@ -23,6 +23,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
                 android:textSize="20sp"
+                android:textAlignment="viewStart"
                 tools:text="Voltarine DeClyre"/>
 
         <TextView android:id="@+id/number"

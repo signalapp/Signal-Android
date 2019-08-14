@@ -87,12 +87,7 @@ public class ConversationPopupActivity extends ConversationActivity {
             intent.putExtra(ConversationActivity.ADDRESS_EXTRA, getRecipient().getAddress());
             intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, result);
 
-            if (VERSION.SDK_INT >= VERSION_CODES.JELLY_BEAN) {
-              startActivity(intent, transition.toBundle());
-            } else {
-              startActivity(intent);
-              overridePendingTransition(R.anim.fade_scale_in, R.anim.slide_to_right);
-            }
+            startActivity(intent, transition.toBundle());
 
             finish();
           }

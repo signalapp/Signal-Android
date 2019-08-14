@@ -233,7 +233,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     intent.putExtra(ConversationActivity.STARTING_POSITION_EXTRA, startingPosition);
 
     startActivity(intent);
-    overridePendingTransition(R.anim.slide_from_right, R.anim.fade_scale_out);
+    overridePendingTransition(R.anim.slide_from_end, R.anim.fade_scale_out);
   }
 
   @Override
