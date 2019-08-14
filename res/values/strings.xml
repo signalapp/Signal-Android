@@ -1422,6 +1422,7 @@
 
     <!-- conversation_list -->
     <string name="conversation_list_settings_shortcut">Settings shortcut</string>
+    <string name="conversation_list_search_description">Search</string>
 
     <!-- conversation_list_item_view -->
     <string name="conversation_list_item_view__contact_photo_image">Contact Photo Image</string>
