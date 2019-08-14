@@ -62,7 +62,7 @@ public final class RecyclerViewFastScroller extends LinearLayout {
   };
 
   public interface FastScrollAdapter {
-    CharSequence getBubbleText(int pos);
+    CharSequence getBubbleText(int position);
   }
 
   public RecyclerViewFastScroller(final Context context) {

@@ -4,12 +4,12 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="64dp"
+        android:layout_height="@dimen/contact_selection_item_height"
         android:orientation="horizontal"
         android:gravity="center_vertical"
         android:focusable="true"
         android:background="@drawable/conversation_item_background"
-        android:paddingStart="48dp"
+        android:paddingStart="@dimen/selection_item_header_width"
         android:paddingEnd="24dp">
 
     <org.thoughtcrime.securesms.components.AvatarImageView

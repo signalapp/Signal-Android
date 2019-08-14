@@ -110,4 +110,9 @@
 
     <dimen name="recording_voice_lock_target">-150dp</dimen>
 
+    <dimen name="selection_item_header_height">64dp</dimen>
+    <dimen name="selection_item_header_width">48dp</dimen>
+
+    <dimen name="contact_selection_item_height">@dimen/selection_item_header_height</dimen>
+
 </resources>
