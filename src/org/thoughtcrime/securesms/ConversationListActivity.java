@@ -199,8 +199,11 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
       @Override
       public boolean onPreDraw() {
+        int width = profilePictureImageView.getWidth();
+        int height = profilePictureImageView.getHeight();
+        if (width == 0 || height == 0) return true;
         profilePictureImageView.getViewTreeObserver().removeOnPreDrawListener(this);
-        ClassicIdenticonDrawable identicon = new ClassicIdenticonDrawable(profilePictureImageView.getWidth(), profilePictureImageView.getHeight(), recipient.getAddress().serialize().hashCode());
+        ClassicIdenticonDrawable identicon = new ClassicIdenticonDrawable(width, height, recipient.getAddress().serialize().hashCode());
         profilePictureImageView.setImageDrawable(identicon);
         return true;
       }

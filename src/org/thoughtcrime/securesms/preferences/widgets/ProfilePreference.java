@@ -97,8 +97,11 @@ public class ProfilePreference extends Preference {
 
       @Override
       public boolean onPreDraw() {
+        int width = avatarView.getWidth();
+        int height = avatarView.getHeight();
+        if (width == 0 || height == 0) return true;
         avatarView.getViewTreeObserver().removeOnPreDrawListener(this);
-        ClassicIdenticonDrawable identicon = new ClassicIdenticonDrawable(avatarView.getWidth(), avatarView.getHeight(), userHexEncodedPublicKey.hashCode());
+        ClassicIdenticonDrawable identicon = new ClassicIdenticonDrawable(width, height, userHexEncodedPublicKey.hashCode());
         avatarView.setImageDrawable(identicon);
         return true;
       }
