@@ -19,6 +19,7 @@
     <uses-feature android:name="android.hardware.portrait" android:required="false"/>
     <uses-feature android:name="android.hardware.touchscreen" android:required="false"/>
 
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.USE_FINGERPRINT"/>
     <uses-permission android:name="network.loki.messenger.ACCESS_SECRETS"/>
     <uses-permission android:name="android.permission.READ_PROFILE"/>
