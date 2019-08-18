@@ -139,6 +139,7 @@ public final class MediaConverter {
     }
 
     @WorkerThread
+    @RequiresApi(23)
     public void convert() throws EncodingException, IOException {
         // Exception that may be thrown during release.
         Exception exception = null;
