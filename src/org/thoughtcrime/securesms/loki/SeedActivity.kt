@@ -8,8 +8,8 @@ import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
-import kotlinx.android.synthetic.main.activity_key_pair.*
-import network.loki.messenger.R;
+import kotlinx.android.synthetic.main.activity_seed.*
+import network.loki.messenger.R
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.BaseActionBarActivity
 import org.thoughtcrime.securesms.ConversationListActivity
@@ -17,20 +17,20 @@ import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.IdentityDatabase
+import org.thoughtcrime.securesms.util.Hex
 import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.whispersystems.libsignal.IdentityKeyPair
+import org.whispersystems.curve25519.Curve25519
 import org.whispersystems.libsignal.util.KeyHelper
 import org.whispersystems.signalservice.loki.crypto.MnemonicCodec
-import org.whispersystems.signalservice.loki.utilities.hexEncodedPrivateKey
 import org.whispersystems.signalservice.loki.utilities.hexEncodedPublicKey
 import java.io.File
 import java.io.FileOutputStream
 
-class KeyPairActivity : BaseActionBarActivity() {
+class SeedActivity : BaseActionBarActivity() {
     private lateinit var languageFileDirectory: File
     private var mode = Mode.Register
         set(newValue) { field = newValue; updateUI() }
-    private var keyPair: IdentityKeyPair? = null
+    private var seed: ByteArray? = null
         set(newValue) { field = newValue; updateMnemonic() }
     private var mnemonic: String? = null
         set(newValue) { field = newValue; updateMnemonicTextView() }
@@ -42,9 +42,9 @@ class KeyPairActivity : BaseActionBarActivity() {
     // region Lifecycle
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_key_pair)
+        setContentView(R.layout.activity_seed)
         setUpLanguageFileDirectory()
-        updateKeyPair()
+        updateSeed()
         copyButton.setOnClickListener { copy() }
         toggleModeButton.setOnClickListener { toggleMode() }
         registerOrRestoreButton.setOnClickListener { registerOrRestore() }
@@ -75,9 +75,8 @@ class KeyPairActivity : BaseActionBarActivity() {
     // endregion
 
     // region Updating
-    private fun updateKeyPair() {
-        IdentityKeyUtil.generateIdentityKeys(this)
-        keyPair = IdentityKeyUtil.getIdentityKeyPair(this)
+    private fun updateSeed() {
+        seed = Curve25519.getInstance("best").generateSeed(16)
     }
 
     private fun updateUI() {
@@ -100,7 +99,8 @@ class KeyPairActivity : BaseActionBarActivity() {
     }
 
     private fun updateMnemonic() {
-        mnemonic = MnemonicCodec(languageFileDirectory).encode(keyPair!!.hexEncodedPrivateKey)
+        val hexEncodedSeed = Hex.toStringCondensed(seed)
+        mnemonic = MnemonicCodec(languageFileDirectory).encode(hexEncodedSeed)
     }
 
     private fun updateMnemonicTextView() {
@@ -124,21 +124,24 @@ class KeyPairActivity : BaseActionBarActivity() {
     }
 
     private fun registerOrRestore() {
-        val keyPair: IdentityKeyPair
+        var seed: ByteArray
         when (mode) {
-            Mode.Register -> keyPair = this.keyPair!!
+            Mode.Register -> seed = this.seed!!
             Mode.Restore -> {
                 val mnemonic = mnemonicEditText.text.toString()
                 try {
-                    val hexEncodedPrivateKey = MnemonicCodec(languageFileDirectory).decode(mnemonic)
-                    IdentityKeyUtil.generateIdentityKeyPair(this, hexEncodedPrivateKey)
-                    keyPair = IdentityKeyUtil.getIdentityKeyPair(this)
+                    val hexEncodedSeed = MnemonicCodec(languageFileDirectory).decode(mnemonic)
+                    seed = Hex.fromStringCondensed(hexEncodedSeed)
                 } catch (e: Exception) {
                     val message = if (e is MnemonicCodec.DecodingError) e.description else MnemonicCodec.DecodingError.Generic.description
                     return Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
                 }
             }
         }
+        IdentityKeyUtil.save(this, IdentityKeyUtil.lokiSeedKey, Hex.toStringCondensed(seed))
+        if (seed.count() == 16) seed = seed + seed
+        IdentityKeyUtil.generateIdentityKeyPair(this, seed)
+        val keyPair = IdentityKeyUtil.getIdentityKeyPair(this)
         val publicKey = keyPair.publicKey
         val hexEncodedPublicKey = keyPair.hexEncodedPublicKey
         val registrationID = KeyHelper.generateRegistrationId(false)

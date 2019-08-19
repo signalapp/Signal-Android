@@ -24,14 +24,12 @@ import android.support.annotation.NonNull;
 
 import org.thoughtcrime.securesms.backup.BackupProtos;
 import org.thoughtcrime.securesms.util.Base64;
-import org.thoughtcrime.securesms.util.Hex;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.IdentityKeyPair;
 import org.whispersystems.libsignal.InvalidKeyException;
 import org.whispersystems.libsignal.ecc.Curve;
 import org.whispersystems.libsignal.ecc.ECKeyPair;
 import org.whispersystems.libsignal.ecc.ECPrivateKey;
-import org.whispersystems.libsignal.logging.Log;
 
 import java.io.IOException;
 import java.util.LinkedList;
@@ -53,6 +51,8 @@ public class IdentityKeyUtil {
 
   private static final String IDENTITY_PUBLIC_KEY_PREF                    = "pref_identity_public_v3";
   private static final String IDENTITY_PRIVATE_KEY_PREF                   = "pref_identity_private_v3";
+
+  public static final String lokiSeedKey = "loki_seed";
 
   public static boolean hasIdentityKey(Context context) {
     SharedPreferences preferences = context.getSharedPreferences(MasterSecretUtil.PREFERENCES_NAME, 0);
@@ -86,25 +86,21 @@ public class IdentityKeyUtil {
     }
   }
 
-  public static void generateIdentityKeyPair(Context context, String hexEncodedPrivateKey) {
-    try {
-      byte[] privateKey = Hex.fromStringCondensed(hexEncodedPrivateKey);
-      ECKeyPair keyPair = Curve.generateKeyPair(privateKey);
-      IdentityKey  publicKey = new IdentityKey(keyPair.getPublicKey());
-      save(context, IDENTITY_PUBLIC_KEY_PREF, Base64.encodeBytes(publicKey.serialize()));
-      save(context, IDENTITY_PRIVATE_KEY_PREF, Base64.encodeBytes(keyPair.getPrivateKey().serialize()));
-    } catch (Exception e) {
-      Log.d("Loki", "Couldn't restore key pair from seed due to error: " + e.getMessage() + ".");
+  public static void generateIdentityKeyPair(Context context, byte[] seed) {
+    ECKeyPair keyPair;
+    if (seed != null) {
+      keyPair = Curve.generateKeyPair(seed);
+    } else {
+      keyPair = Curve.generateKeyPair();
     }
+    IdentityKey publicKey = new IdentityKey(keyPair.getPublicKey());
+    ECPrivateKey privateKey = keyPair.getPrivateKey();
+    save(context, IDENTITY_PUBLIC_KEY_PREF, Base64.encodeBytes(publicKey.serialize()));
+    save(context, IDENTITY_PRIVATE_KEY_PREF, Base64.encodeBytes(privateKey.serialize()));
   }
 
-  public static void generateIdentityKeys(Context context) {
-    ECKeyPair    djbKeyPair     = Curve.generateKeyPair();
-    IdentityKey  djbIdentityKey = new IdentityKey(djbKeyPair.getPublicKey());
-    ECPrivateKey djbPrivateKey  = djbKeyPair.getPrivateKey();
-
-    save(context, IDENTITY_PUBLIC_KEY_PREF, Base64.encodeBytes(djbIdentityKey.serialize()));
-    save(context, IDENTITY_PRIVATE_KEY_PREF, Base64.encodeBytes(djbPrivateKey.serialize()));
+  public static void generateIdentityKeyPair(Context context) {
+    generateIdentityKeyPair(context, null);
   }
 
   public static void migrateIdentityKeys(@NonNull Context context,
@@ -120,7 +116,7 @@ public class IdentityKeyUtil {
         delete(context, IDENTITY_PUBLIC_KEY_CIPHERTEXT_LEGACY_PREF);
         delete(context, IDENTITY_PRIVATE_KEY_CIPHERTEXT_LEGACY_PREF);
       } else {
-        generateIdentityKeys(context);
+        generateIdentityKeyPair(context);
       }
     }
   }
@@ -163,12 +159,12 @@ public class IdentityKeyUtil {
     }
   }
 
-  private static String retrieve(Context context, String key) {
+  public static String retrieve(Context context, String key) {
     SharedPreferences preferences = context.getSharedPreferences(MasterSecretUtil.PREFERENCES_NAME, 0);
     return preferences.getString(key, null);
   }
 
-  private static void save(Context context, String key, String value) {
+  public static void save(Context context, String key, String value) {
     SharedPreferences preferences   = context.getSharedPreferences(MasterSecretUtil.PREFERENCES_NAME, 0);
     Editor preferencesEditor        = preferences.edit();
 

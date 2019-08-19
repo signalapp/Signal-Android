@@ -465,7 +465,7 @@
               android:windowSoftInputMode="stateUnchanged"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
-    <activity android:name="org.thoughtcrime.securesms.loki.KeyPairActivity"
+    <activity android:name="org.thoughtcrime.securesms.loki.SeedActivity"
               android:launchMode="singleTask"
               android:theme="@style/TextSecure.DarkRegistrationTheme"
               android:windowSoftInputMode="stateUnchanged"

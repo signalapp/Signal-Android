@@ -29,7 +29,7 @@ class AccountDetailsActivity : BaseActionBarActivity() {
         }
         val inputMethodManager = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(nameEditText.windowToken, 0)
-        startActivity(Intent(this, KeyPairActivity::class.java))
+        startActivity(Intent(this, SeedActivity::class.java))
         finish()
     }
 }
