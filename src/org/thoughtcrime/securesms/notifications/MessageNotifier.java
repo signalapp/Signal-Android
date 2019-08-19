@@ -468,7 +468,7 @@ public class MessageNotifier {
         slideDeck = ((MediaMmsMessageRecord)record).getSlideDeck();
       }
 
-      if (threadRecipients == null || !threadRecipients.isMuted()) {
+      if ((threadRecipients == null || !threadRecipients.isMuted()) && (threadRecipients == null || !threadRecipients.isGroupRecipient())) {
         notificationState.addNotification(new NotificationItem(id, mms, recipient, conversationRecipient, threadRecipients, threadId, body, timestamp, slideDeck));
       }
     }
