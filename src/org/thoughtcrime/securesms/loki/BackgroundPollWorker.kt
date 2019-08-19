@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.loki
 
 import android.content.Context
 import android.content.Intent
+import nl.komponents.kovenant.functional.map
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.jobs.PushContentReceiveJob
 import org.thoughtcrime.securesms.service.PersistentAlarmManagerListener
@@ -30,8 +31,10 @@ class BackgroundPollWorker : PersistentAlarmManagerListener() {
             val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context)
             val lokiAPIDatabase = DatabaseFactory.getLokiAPIDatabase(context)
             try {
-                LokiAPI(userHexEncodedPublicKey, lokiAPIDatabase).getMessages().get().forEach {
-                    PushContentReceiveJob(context).processEnvelope(SignalServiceEnvelope(it))
+                LokiAPI(userHexEncodedPublicKey, lokiAPIDatabase).getMessages().map { messages ->
+                    messages.forEach {
+                        PushContentReceiveJob(context).processEnvelope(SignalServiceEnvelope(it))
+                    }
                 }
             } catch (exception: Throwable) {
                 // Do nothing
