@@ -81,12 +81,9 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
   protected void onPreCreate() {
     dynamicTheme.onCreate(this);
     dynamicLanguage.onCreate(this);
-    /*
-    // TODO: Uncomment this to re-enable group chats
     if (TextSecurePreferences.getLocalNumber(this) != null) {
       ApplicationContext.getInstance(this).startPublicChatPollingIfNeeded();
     }
-     */
   }
 
   @Override

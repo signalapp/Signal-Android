@@ -37,6 +37,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.dependencies.AxolotlStorageModule;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.dependencies.SignalCommunicationModule;
+import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.jobmanager.DependencyInjector;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.impl.JsonDataSerializer;
@@ -77,6 +78,7 @@ import org.webrtc.voiceengine.WebRtcAudioUtils;
 import org.whispersystems.libsignal.logging.SignalProtocolLoggerProvider;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
+import org.whispersystems.signalservice.loki.api.LokiGroupChatAPI;
 import org.whispersystems.signalservice.loki.api.LokiLongPoller;
 import org.whispersystems.signalservice.loki.api.LokiP2PAPI;
 import org.whispersystems.signalservice.loki.api.LokiP2PAPIDelegate;
@@ -423,8 +425,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     if (lokiLongPoller != null) { lokiLongPoller.startIfNeeded(); }
   }
 
-  /*
-  // TODO: Uncomment this to re-enable group chats
   private void setUpPublicChatIfNeeded() {
     if (lokiGroupChatPoller != null) return;
     lokiGroupChatPoller = new LokiGroupChatPoller(this, LokiGroupChatAPI.getPublicChatID());
@@ -439,6 +439,5 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     setUpPublicChatIfNeeded();
     lokiGroupChatPoller.startIfNeeded();
   }
-   */
   // endregion
 }
