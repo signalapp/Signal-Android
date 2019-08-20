@@ -76,7 +76,13 @@ class SeedActivity : BaseActionBarActivity() {
 
     // region Updating
     private fun updateSeed() {
-        seed = Curve25519.getInstance("best").generateSeed(16)
+        val seed = Curve25519.getInstance(Curve25519.BEST).generateSeed(16)
+        try {
+            IdentityKeyUtil.generateIdentityKeyPair(this, seed + seed)
+        } catch (exception: Exception) {
+            return updateSeed()
+        }
+        this.seed = seed
     }
 
     private fun updateUI() {
@@ -138,9 +144,12 @@ class SeedActivity : BaseActionBarActivity() {
                 }
             }
         }
-        IdentityKeyUtil.save(this, IdentityKeyUtil.lokiSeedKey, Hex.toStringCondensed(seed))
+        val hexEncodedSeed = Hex.toStringCondensed(seed)
+        IdentityKeyUtil.save(this, IdentityKeyUtil.lokiSeedKey, hexEncodedSeed)
         if (seed.count() == 16) seed = seed + seed
-        IdentityKeyUtil.generateIdentityKeyPair(this, seed)
+        if (mode == Mode.Restore) {
+            IdentityKeyUtil.generateIdentityKeyPair(this, seed)
+        }
         val keyPair = IdentityKeyUtil.getIdentityKeyPair(this)
         val publicKey = keyPair.publicKey
         val hexEncodedPublicKey = keyPair.hexEncodedPublicKey
