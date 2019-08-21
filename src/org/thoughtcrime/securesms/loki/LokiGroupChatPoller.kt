@@ -37,6 +37,7 @@ class LokiGroupChatPoller(private val context: Context, private val groupID: Lon
 
     fun stop() {
         handler.removeCallbacks(task)
+        hasStarted = false
     }
 
     private fun poll() {
