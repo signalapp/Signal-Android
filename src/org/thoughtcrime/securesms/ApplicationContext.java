@@ -116,7 +116,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
 
   // Loki
   private LokiLongPoller lokiLongPoller = null;
-  private LokiGroupChatPoller lokiGroupChatPoller = null;
+  private LokiGroupChatPoller lokiPublicChatPoller = null;
   public SignalCommunicationModule communicationModule;
 
   private volatile boolean isAppVisible;
@@ -426,8 +426,8 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   }
 
   private void setUpPublicChatIfNeeded() {
-    if (lokiGroupChatPoller != null) return;
-    lokiGroupChatPoller = new LokiGroupChatPoller(this, LokiGroupChatAPI.getPublicChatID());
+    if (lokiPublicChatPoller != null) return;
+    lokiPublicChatPoller = new LokiGroupChatPoller(this, LokiGroupChatAPI.getPublicChatID());
     boolean isPublicChatSetUp = TextSecurePreferences.isPublicChatSetUp(this);
     if (isPublicChatSetUp) return;
     String id = LokiGroupChatAPI.getServerURL() + "." + LokiGroupChatAPI.getPublicChatID();
@@ -437,7 +437,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
 
   public void startPublicChatPollingIfNeeded() {
     setUpPublicChatIfNeeded();
-    lokiGroupChatPoller.startIfNeeded();
+    lokiPublicChatPoller.startIfNeeded();
   }
   // endregion
 }
