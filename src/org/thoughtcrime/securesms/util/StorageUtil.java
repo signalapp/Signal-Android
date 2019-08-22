@@ -1,12 +1,8 @@
 package org.thoughtcrime.securesms.util;
 
 import android.content.Context;
-import android.os.Build;
 import android.os.Environment;
-import android.support.annotation.Nullable;
-
-import com.annimon.stream.Objects;
-import com.annimon.stream.Stream;
+import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
 

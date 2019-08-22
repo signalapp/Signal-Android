@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.mediasend;
 
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,15 +14,12 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.util.MediaUtil;
-import org.thoughtcrime.securesms.util.StableIdGenerator;
+import org.thoughtcrime.securesms.util.adapter.StableIdGenerator;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
 
 public class MediaPickerItemAdapter extends RecyclerView.Adapter<MediaPickerItemAdapter.ItemViewHolder> {
 

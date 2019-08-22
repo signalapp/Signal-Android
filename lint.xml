@@ -11,4 +11,6 @@
     <issue id="ExtraTranslation" severity="warning" />
     <issue id="ImpliedQuantity" severity="warning" />
 
+    <issue id="CanvasSize" severity="error" />
+
 </lint>

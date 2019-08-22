@@ -22,7 +22,7 @@ import android.graphics.Rect;
 import android.os.Build;
 import android.os.Build.VERSION_CODES;
 import android.preference.PreferenceManager;
-import android.support.v7.widget.LinearLayoutCompat;
+import androidx.appcompat.widget.LinearLayoutCompat;
 import android.util.AttributeSet;
 import org.thoughtcrime.securesms.logging.Log;
 import android.view.Surface;

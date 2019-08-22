@@ -5,9 +5,9 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.WorkerThread;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.WorkerThread;
 import android.text.TextUtils;
 import android.util.Pair;
 import android.webkit.MimeTypeMap;
@@ -242,8 +242,6 @@ public class MediaUtil {
   }
 
   public static boolean hasVideoThumbnail(Uri uri) {
-    Log.i(TAG, "Checking: " + uri);
-
     if (uri == null || !ContentResolver.SCHEME_CONTENT.equals(uri.getScheme())) {
       return false;
     }
@@ -282,16 +280,17 @@ public class MediaUtil {
     return sections.length > 1 ? sections[0] : null;
   }
 
-  public static class ThumbnailData {
-    Bitmap bitmap;
-    float aspectRatio;
+  public static class ThumbnailData implements AutoCloseable {
 
-    public ThumbnailData(Bitmap bitmap) {
+    @NonNull private final Bitmap bitmap;
+             private final float  aspectRatio;
+
+    public ThumbnailData(@NonNull Bitmap bitmap) {
       this.bitmap      = bitmap;
       this.aspectRatio = (float) bitmap.getWidth() / (float) bitmap.getHeight();
     }
 
-    public Bitmap getBitmap() {
+    public @NonNull Bitmap getBitmap() {
       return bitmap;
     }
 
@@ -301,6 +300,11 @@ public class MediaUtil {
 
     public InputStream toDataStream() {
       return BitmapUtil.toCompressedJpeg(bitmap);
+    }
+
+    @Override
+    public void close() {
+     bitmap.recycle();
     }
   }
 }

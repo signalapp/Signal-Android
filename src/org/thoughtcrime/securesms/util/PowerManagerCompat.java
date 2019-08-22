@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.util;
 
 import android.os.Build;
 import android.os.PowerManager;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 public class PowerManagerCompat {
 

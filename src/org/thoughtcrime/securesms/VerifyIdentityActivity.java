@@ -34,12 +34,11 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Vibrator;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.widget.SwitchCompat;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.appcompat.widget.SwitchCompat;
 import android.text.Html;
 import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
@@ -89,6 +88,7 @@ import org.whispersystems.libsignal.fingerprint.NumericFingerprintGenerator;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
+import java.util.Locale;
 
 import static org.whispersystems.libsignal.SessionCipher.SESSION_LOCK;
 
@@ -487,11 +487,10 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
       valueAnimator.setObjectValues(0, Integer.parseInt(segment));
 
       valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-        @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
         @Override
         public void onAnimationUpdate(ValueAnimator animation) {
           int value = (int) animation.getAnimatedValue();
-          codeView.setText(String.format("%05d", value));
+          codeView.setText(String.format(Locale.getDefault(), "%05d", value));
         }
       });
 

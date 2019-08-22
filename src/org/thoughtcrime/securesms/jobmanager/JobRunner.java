@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.jobmanager;
 
 import android.app.Application;
 import android.os.PowerManager;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.annimon.stream.Stream;
 
@@ -12,6 +12,14 @@ import org.thoughtcrime.securesms.util.WakeLockUtil;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * A thread that constantly checks for available {@link Job}s owned by the {@link JobController}.
+ * When one is available, this class will execute it and call the appropriate methods on
+ * {@link JobController} based on the result.
+ *
+ * {@link JobRunner} and {@link JobController} were written such that you should be able to have
+ * N concurrent {@link JobRunner}s operating over the same {@link JobController}.
+ */
 class JobRunner extends Thread {
 
   private static final String TAG = JobRunner.class.getSimpleName();
@@ -23,7 +31,7 @@ class JobRunner extends Thread {
   private final JobController jobController;
 
   JobRunner(@NonNull Application application, int id, @NonNull JobController jobController) {
-    super("JobRunner-" + id);
+    super("signal-JobRunner-" + id);
 
     this.application   = application;
     this.id            = id;
@@ -32,25 +40,28 @@ class JobRunner extends Thread {
 
   @Override
   public synchronized void run() {
+    //noinspection InfiniteLoopStatement
     while (true) {
       Job        job    = jobController.pullNextEligibleJobForExecution();
       Job.Result result = run(job);
 
       jobController.onJobFinished(job);
 
-      switch (result) {
-        case SUCCESS:
-          jobController.onSuccess(job);
-          break;
-        case RETRY:
-          jobController.onRetry(job);
-          job.onRetry();
-          break;
-        case FAILURE:
-          List<Job> dependents = jobController.onFailure(job);
-          job.onCanceled();
-          Stream.of(dependents).forEach(Job::onCanceled);
-          break;
+      if (result.isSuccess()) {
+        jobController.onSuccess(job);
+      } else if (result.isRetry()) {
+        jobController.onRetry(job);
+        job.onRetry();
+      } else if (result.isFailure()) {
+        List<Job> dependents = jobController.onFailure(job);
+        job.onCanceled();
+        Stream.of(dependents).forEach(Job::onCanceled);
+
+        if (result.getException() != null) {
+          throw result.getException();
+        }
+      } else {
+        throw new AssertionError("Invalid job result!");
       }
     }
   }
@@ -60,7 +71,7 @@ class JobRunner extends Thread {
 
     if (isJobExpired(job)) {
       Log.w(TAG, JobLogger.format(job, String.valueOf(id), "Failing after surpassing its lifespan."));
-      return Job.Result.FAILURE;
+      return Job.Result.failure();
     }
 
     Job.Result            result   = null;
@@ -71,7 +82,7 @@ class JobRunner extends Thread {
       result = job.run();
     } catch (Exception e) {
       Log.w(TAG, JobLogger.format(job, String.valueOf(id), "Failing due to an unexpected exception."), e);
-      return Job.Result.FAILURE;
+      return Job.Result.failure();
     } finally {
       if (wakeLock != null) {
         WakeLockUtil.release(wakeLock, job.getId());
@@ -80,11 +91,12 @@ class JobRunner extends Thread {
 
     printResult(job, result);
 
-    if (result == Job.Result.RETRY && job.getRunAttempt() + 1 >= job.getParameters().getMaxAttempts() &&
+    if (result.isRetry()                                                &&
+        job.getRunAttempt() + 1 >= job.getParameters().getMaxAttempts() &&
         job.getParameters().getMaxAttempts() != Job.Parameters.UNLIMITED)
     {
       Log.w(TAG, JobLogger.format(job, String.valueOf(id), "Failing after surpassing its max number of attempts."));
-      return Job.Result.FAILURE;
+      return Job.Result.failure();
     }
 
     return result;
@@ -101,7 +113,9 @@ class JobRunner extends Thread {
   }
 
   private void printResult(@NonNull Job job, @NonNull Job.Result result) {
-    if (result == Job.Result.FAILURE) {
+    if (result.getException() != null) {
+      Log.e(TAG, JobLogger.format(job, String.valueOf(id), "Job failed with a fatal exception. Crash imminent."));
+    } else if (result.isFailure()) {
       Log.w(TAG, JobLogger.format(job, String.valueOf(id), "Job failed."));
     } else {
       Log.i(TAG, JobLogger.format(job, String.valueOf(id), "Job finished with result: " + result));

@@ -21,8 +21,8 @@
 package org.thoughtcrime.securesms.components.emoji.parsing;
 
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -42,7 +42,9 @@ public class EmojiParser {
   public @NonNull CandidateList findCandidates(@Nullable CharSequence text) {
     List<Candidate> results = new LinkedList<>();
 
-    if (text == null) return new CandidateList(results, false);
+    if (text == null) {
+      return new CandidateList(results, false);
+    }
 
     boolean allEmojis = text.length() > 0;
 
@@ -61,10 +63,12 @@ public class EmojiParser {
         results.add(new Candidate(i, emojiEnd, drawInfo));
 
         i = emojiEnd - 1;
-      } else {
+      } else if (text.charAt(i) != ' '){
         allEmojis = false;
       }
     }
+
+    allEmojis &= !results.isEmpty();
 
     return new CandidateList(results, allEmojis);
   }

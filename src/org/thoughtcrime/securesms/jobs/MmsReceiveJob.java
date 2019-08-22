@@ -4,7 +4,7 @@ import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.logging.Log;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.util.Pair;
 
 import com.google.android.mms.pdu_alt.GenericPdu;

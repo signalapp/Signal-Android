@@ -18,8 +18,8 @@ package org.thoughtcrime.securesms.database;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import net.sqlcipher.database.SQLiteDatabase;
 import net.sqlcipher.database.SQLiteQueryBuilder;
@@ -70,7 +70,8 @@ public class MmsSmsDatabase extends Database {
                                               MmsDatabase.QUOTE_MISSING,
                                               MmsDatabase.QUOTE_ATTACHMENT,
                                               MmsDatabase.SHARED_CONTACTS,
-                                              MmsDatabase.LINK_PREVIEWS};
+                                              MmsDatabase.LINK_PREVIEWS,
+                                              MmsDatabase.VIEW_ONCE};
 
   public MmsSmsDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
     super(context, databaseHelper);
@@ -270,7 +271,8 @@ public class MmsSmsDatabase extends Database {
                               MmsDatabase.QUOTE_MISSING,
                               MmsDatabase.QUOTE_ATTACHMENT,
                               MmsDatabase.SHARED_CONTACTS,
-                              MmsDatabase.LINK_PREVIEWS};
+                              MmsDatabase.LINK_PREVIEWS,
+                              MmsDatabase.VIEW_ONCE};
 
     String[] smsProjection = {SmsDatabase.DATE_SENT + " AS " + MmsSmsColumns.NORMALIZED_DATE_SENT,
                               SmsDatabase.DATE_RECEIVED + " AS " + MmsSmsColumns.NORMALIZED_DATE_RECEIVED,
@@ -296,7 +298,8 @@ public class MmsSmsDatabase extends Database {
                               MmsDatabase.QUOTE_MISSING,
                               MmsDatabase.QUOTE_ATTACHMENT,
                               MmsDatabase.SHARED_CONTACTS,
-                              MmsDatabase.LINK_PREVIEWS};
+                              MmsDatabase.LINK_PREVIEWS,
+                              MmsDatabase.VIEW_ONCE};
 
     SQLiteQueryBuilder mmsQueryBuilder = new SQLiteQueryBuilder();
     SQLiteQueryBuilder smsQueryBuilder = new SQLiteQueryBuilder();
@@ -367,6 +370,7 @@ public class MmsSmsDatabase extends Database {
     mmsColumnsPresent.add(MmsDatabase.QUOTE_ATTACHMENT);
     mmsColumnsPresent.add(MmsDatabase.SHARED_CONTACTS);
     mmsColumnsPresent.add(MmsDatabase.LINK_PREVIEWS);
+    mmsColumnsPresent.add(MmsDatabase.VIEW_ONCE);
 
     Set<String> smsColumnsPresent = new HashSet<>();
     smsColumnsPresent.add(MmsSmsColumns.ID);

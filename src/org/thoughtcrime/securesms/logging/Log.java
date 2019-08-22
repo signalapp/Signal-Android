@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.logging;
 
-import android.support.annotation.MainThread;
+import androidx.annotation.MainThread;
 
 public class Log {
 

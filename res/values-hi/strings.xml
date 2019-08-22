@@ -52,12 +52,13 @@
   <string name="DraftDatabase_Draft_video_snippet">(वीडियो)</string>
   <string name="DraftDatabase_Draft_location_snippet">( स्थान )</string>
   <string name="DraftDatabase_Draft_quote_snippet">( उत्तर ) </string>
-  <!--AttchmentManager-->
+  <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">मीडिया का चयन करने के लिए कोई ऐप नहीं मिल सकता है</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">फ़ोटो, वीडियो या ऑडियो संलग्न करने के लिए Signal को संग्रहण अनुमति की आवश्यकता होती है, लेकिन इसे स्थायी रूप से अस्वीकार कर दिया गया है। कृपया ऐप सेटिंग्स मेनू पर जारी रखें, \"अनुमतियां\" चुनें, और \"संग्रहण\" सक्षम करें।</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">संपर्क जानकारी संलग्न करने के लिए Signal को संपर्क अनुमति की आवश्यकता होती है, लेकिन इसे स्थायी रूप से अस्वीकार कर दिया गया है। कृपया ऐप सेटिंग्स मेनू पर जारी रखें, \"अनुमतियां\" चुनें, और \"संपर्क\" सक्षम करें।</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">किसी स्थान को संलग्न करने के लिए Signal को स्थान अनुमति की आवश्यकता होती है, लेकिन इसे स्थायी रूप से अस्वीकार कर दिया गया है। कृपया ऐप सेटिंग्स मेनू पर जारी रखें, \"अनुमतियां\" चुनें, और \"स्थान\" सक्षम करें।</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal को फ़ोटो लेने के लिए कैमरा अनुमति की आवश्यकता होती है, लेकिन इसे स्थायी रूप से अस्वीकार कर दिया गया है। कृपया ऐप सेटिंग्स मेनू पर जारी रखें, \"अनुमतियां\" चुनें, और \"कैमरा\" सक्षम करें।</string>
+  <!--AttachmentUploadJob-->
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">ऑडियो बजाने में त्रुटि!</string>
   <!--BlockedContactsActivity-->
@@ -70,6 +71,9 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">आने वाली कॉल</string>
   <!--CameraActivity-->
+  <!--CameraXFragment-->
+  <!--CameraContacts-->
+  <string name="CameraContacts__menu_search">सर्च</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">हटा दें </string>
   <string name="ClearProfileActivity_remove_profile_photo">प्रोफ़ाइल फ़ोटो निकालें?</string>
@@ -133,7 +137,6 @@
   <string name="ConversationActivity_transport_insecure_mms">असुरक्षित एमएमएस</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">%1$s चलो Signal पर स्विच करें</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">%1$s चलो चैट करने के लिए इसका इस्तेमाल करते हैं</string>
   <string name="ConversationActivity_error_leaving_group">समूह छोड़ने में त्रुटि</string>
   <string name="ConversationActivity_specify_recipient">कृपया एक संपर्क चुनें</string>
   <string name="ConversationActivity_unblock_this_contact_question">इस संपर्क को अनवरोधित करें?</string>
@@ -221,6 +224,8 @@
   <string name="ConversationListItem_key_exchange_message">कुंजी विनिमय संदेश</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">संग्रहीत बातचीत (%d)</string>
+  <!--ConversationTitleView-->
+  <string name="ConversationTitleView_verified">सत्यापित</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity_your_profile_info">आपकी प्रोफाइल जानकारी</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">प्रोफाइल फोटो सेट करने में त्रुटि</string>
@@ -375,6 +380,7 @@
   <!--MediaPickerActivity-->
   <!--MediaPickerItemFragment-->
   <!--MediaSendActivity-->
+  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">आपके संपर्कों को प्रदर्शित करने के लिए Signal को आपके संपर्कों तक पहुंच की आवश्यकता है।</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">सभी मीडिया</string>
   <!--MessageRecord-->
@@ -431,6 +437,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Signal आइकन</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">पासफ्रेज जमा करें</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">अमान्य पासफ्रेज</string>
+  <!--PlacePickerActivity-->
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">आपके द्वारा इंस्टॉल की गई Google Play सेवाओं का संस्करण सही ढंग से कार्य नहीं कर रहा है। कृपया Google Play सेवाओं को पुनर्स्थापित करें और पुनः प्रयास करें।</string>
   <!--RatingManager-->
@@ -486,6 +493,8 @@
   <string name="RegistrationActivity_next">अगला</string>
   <string name="RegistrationActivity_continue">आगे </string>
   <string name="RegistrationActivity_call">कोल</string>
+  <!--RevealableMessageView-->
+  <string name="RevealableMessageView_photo">फ़ोटो</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">छवि परिवर्तनों को सहेजने में विफल</string>
   <!--Search-->
@@ -515,6 +524,14 @@
   <string name="SmsMessageRecord_secure_session_reset">आपने सुरक्षित सत्र रीसेट कर दिया है।</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s ने सुरक्षित सत्र को रीसेट कर दिया है </string>
   <string name="SmsMessageRecord_duplicate_message">संदेश डुप्लिकेट करें</string>
+  <!--StickerManagementActivity-->
+  <string name="StickerManagementActivity_stickers">स्टिकर</string>
+  <!--StickerManagementAdapter-->
+  <string name="StickerManagementAdapter_unknown">अनजान</string>
+  <!--StickerPackPreviewActivity-->
+  <string name="StickerPackPreviewActivity_unknown">अनजान</string>
+  <string name="StickerPackPreviewActivity_remove">हटा दें </string>
+  <string name="StickerPackPreviewActivity_stickers">स्टिकर</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">समूह अद्यतन</string>
   <string name="ThreadRecord_left_the_group">समूह छोड़ दिया</string>
@@ -599,8 +616,6 @@
   <string name="MessageNotifier_reply">उत्तर</string>
   <string name="MessageNotifier_signal_message">Signal संदेश</string>
   <string name="MessageNotifier_unsecured_sms">असुरक्षित एसएमएस</string>
-  <string name="MessageNotifier_pending_signal_messages">लंबित Signal संदेश</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">आपके पास Signal संदेश लंबित हैं, खोलने और पुनर्प्राप्त करने के लिए टैप करें</string>
   <string name="MessageNotifier_contact_message">%1$s%2$s</string>
   <string name="MessageNotifier_unknown_contact_message">संपर्क</string>
   <!--Notification Channels-->
@@ -643,6 +658,10 @@
   <string name="WebRtcCallScreen_end_call">कॉल बंद</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">अपने वीडियो को सक्षम करने के लिए टैप करें</string>
+  <!--WebRtcCallControls Content Descriptions-->
+  <string name="WebRtcCallControls_contact_photo_description">संपर्क फोटो</string>
+  <string name="WebRtcCallControls_mute_button_description">शाँत करो </string>
+  <string name="WebRtcCallControls_answer_call_description">कॉल का उत्तर दें</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__audio">ऑडियो</string>
   <string name="attachment_type_selector__audio_description">ऑडियो </string>
@@ -665,6 +684,7 @@
   <string name="change_passphrase_activity__repeat_new_passphrase">नया पासफ्रेज दोहराएं</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">नाम या संख्या दर्ज करें</string>
+  <!--contact_filter_toolbar-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">कोई संपर्क नहीं</string>
   <string name="contact_selection_group_activity__finding_contacts">संपर्क लोड हो रहे हैं</string>
@@ -850,8 +870,6 @@
   <string name="recipient_preferences__ringtone">रिंगटोन</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal कॉल </string>
-  <string name="redphone_call_controls__mute">शाँत करो </string>
-  <string name="redphone_call_controls__flip_camera_rear">कैमरा स्विच करें?</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">फ़ोन नंबर </string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal आपके मौजूदा फोन नंबर और एड्रेस बुक का उपयोग करके संवाद करना आसान बनाता है। दोस्तों और संपर्क जो पहले से ही फोन से संपर्क करने के बारे में जानते हैं, वे Signal द्वारा आसानी से संपर्क में रह सकेंगे । \n\nपंजीकरण सर्वर पर कुछ संपर्क जानकारी प्रसारित करता है। यह संग्रहीत नहीं है।</string>

@@ -1,9 +1,9 @@
 package org.thoughtcrime.securesms.jobs;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
-import org.thoughtcrime.securesms.dependencies.InjectableType;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
@@ -18,9 +18,7 @@ import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException
 import java.util.Collections;
 import java.util.concurrent.TimeUnit;
 
-import javax.inject.Inject;
-
-public class MultiDeviceStickerPackOperationJob extends BaseJob implements InjectableType {
+public class MultiDeviceStickerPackOperationJob extends BaseJob {
 
   private static final String TAG = Log.tag(MultiDeviceStickerPackOperationJob.class);
 
@@ -33,8 +31,6 @@ public class MultiDeviceStickerPackOperationJob extends BaseJob implements Injec
   private final String packId;
   private final String packKey;
   private final Type   type;
-
-  @Inject SignalServiceMessageSender messageSender;
 
   public MultiDeviceStickerPackOperationJob(@NonNull String packId,
                                             @NonNull String packKey,
@@ -92,6 +88,7 @@ public class MultiDeviceStickerPackOperationJob extends BaseJob implements Injec
       default:      throw new AssertionError("No matching type?");
     }
 
+    SignalServiceMessageSender  messageSender        = ApplicationDependencies.getSignalServiceMessageSender();
     StickerPackOperationMessage stickerPackOperation = new StickerPackOperationMessage(packIdBytes, packKeyBytes, remoteType);
 
     messageSender.sendMessage(SignalServiceSyncMessage.forStickerPackOperations(Collections.singletonList(stickerPackOperation)),

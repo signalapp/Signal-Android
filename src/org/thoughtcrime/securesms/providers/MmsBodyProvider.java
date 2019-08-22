@@ -24,7 +24,7 @@ import android.content.UriMatcher;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.ParcelFileDescriptor;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.logging.Log;
 

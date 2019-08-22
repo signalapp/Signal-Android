@@ -7,7 +7,7 @@
           app:showAsAction="always"/>
     <item android:id="@+id/save"
           android:title="@string/media_preview__save_title"
-          android:icon="@drawable/ic_save_white_24dp"
+          android:icon="@drawable/ic_download_filled_white_24"
           app:showAsAction="always"/>
     <item android:id="@+id/media_preview__overview"
           android:title="@string/media_preview__all_media_title"

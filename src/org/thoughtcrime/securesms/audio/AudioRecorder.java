@@ -5,16 +5,16 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Build;
 import android.os.ParcelFileDescriptor;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import org.thoughtcrime.securesms.logging.Log;
 import android.util.Pair;
 
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.util.MediaUtil;
-import org.thoughtcrime.securesms.util.ThreadUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
+import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 
 import java.io.IOException;
 import java.util.concurrent.ExecutorService;
@@ -24,7 +24,7 @@ public class AudioRecorder {
 
   private static final String TAG = AudioRecorder.class.getSimpleName();
 
-  private static final ExecutorService executor = ThreadUtil.newDynamicSingleThreadedExecutor();
+  private static final ExecutorService executor = SignalExecutors.newCachedSingleThreadExecutor("signal-AudioRecorder");
 
   private final Context context;
 
@@ -50,7 +50,7 @@ public class AudioRecorder {
         captureUri = BlobProvider.getInstance()
                                  .forData(new ParcelFileDescriptor.AutoCloseInputStream(fds[0]), 0)
                                  .withMimeType(MediaUtil.AUDIO_AAC)
-                                 .createForSingleSessionOnDisk(context, e -> Log.w(TAG, "Error during recording", e));
+                                 .createForSingleSessionOnDiskAsync(context, () -> Log.i(TAG, "Write successful."), e -> Log.w(TAG, "Error during recording", e));
         audioCodec = new AudioCodec();
 
         audioCodec.start(new ParcelFileDescriptor.AutoCloseOutputStream(fds[1]));

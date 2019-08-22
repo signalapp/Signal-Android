@@ -9,7 +9,7 @@
     android:background="?conversation_background"
     android:visibility="gone"
     tools:visibility="visible"
-    tools:parentTag="android.support.constraint.ConstraintLayout">
+    tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
 
     <TextView
         android:id="@+id/conversation_search_position"

@@ -2,8 +2,8 @@ package org.thoughtcrime.securesms.groups;
 
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.google.protobuf.ByteString;
 
@@ -212,7 +212,7 @@ public class GroupMessageProcessor {
         MmsDatabase               mmsDatabase     = DatabaseFactory.getMmsDatabase(context);
         Address                   addres          = Address.fromExternal(context, GroupUtil.getEncodedId(group.getGroupId(), false));
         Recipient                 recipient       = Recipient.from(context, addres, false);
-        OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(recipient, storage, null, content.getTimestamp(), 0, null, Collections.emptyList(), Collections.emptyList());
+        OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(recipient, storage, null, content.getTimestamp(), 0, false, null, Collections.emptyList(), Collections.emptyList());
         long                      threadId        = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
         long                      messageId       = mmsDatabase.insertMessageOutbox(outgoingMessage, threadId, false, null);
 

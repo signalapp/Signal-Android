@@ -2,8 +2,8 @@ package org.thoughtcrime.securesms.util.dynamiclanguage;
 
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.support.annotation.Nullable;
-import android.support.v4.os.ConfigurationCompat;
+import androidx.annotation.Nullable;
+import androidx.core.os.ConfigurationCompat;
 
 import org.thoughtcrime.securesms.BuildConfig;
 

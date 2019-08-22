@@ -1,11 +1,11 @@
 package org.thoughtcrime.securesms.util;
 
-import android.arch.lifecycle.MutableLiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import java.io.Closeable;
 
 /**
- * Implementation of {@link android.arch.lifecycle.LiveData} that will handle closing the contained
+ * Implementation of {@link androidx.lifecycle.LiveData} that will handle closing the contained
  * {@link Closeable} when the value changes.
  */
 public class CloseableLiveData<E extends Closeable> extends MutableLiveData<E> {

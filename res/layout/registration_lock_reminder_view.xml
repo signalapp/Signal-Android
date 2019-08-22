@@ -23,21 +23,22 @@
 
     </LinearLayout>
 
-    <android.support.design.widget.TextInputLayout
+    <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="40dp"
             android:paddingStart="80dp"
             android:paddingEnd="80dp">
 
-        <android.support.design.widget.TextInputEditText
+        <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/pin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="numberPassword"
+                android:textColor="?attr/registration_lock_reminder_view_pin_text_color"
                 android:hint="@string/registration_lock_reminder_view__enter_pin"/>
 
-    </android.support.design.widget.TextInputLayout>
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView android:id="@+id/reminder"
               android:layout_width="match_parent"

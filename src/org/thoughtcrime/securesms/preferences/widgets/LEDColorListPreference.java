@@ -18,9 +18,9 @@ package org.thoughtcrime.securesms.preferences.widgets;
 
 import android.content.Context;
 import android.graphics.drawable.GradientDrawable;
-import android.support.annotation.NonNull;
-import android.support.v7.preference.ListPreference;
-import android.support.v7.preference.PreferenceViewHolder;
+import androidx.annotation.NonNull;
+import androidx.preference.ListPreference;
+import androidx.preference.PreferenceViewHolder;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 

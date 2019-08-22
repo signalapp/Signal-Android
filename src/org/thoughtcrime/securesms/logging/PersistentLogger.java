@@ -1,8 +1,8 @@
 package org.thoughtcrime.securesms.logging;
 
 import android.content.Context;
-import android.support.annotation.AnyThread;
-import android.support.annotation.WorkerThread;
+import androidx.annotation.AnyThread;
+import androidx.annotation.WorkerThread;
 
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
@@ -48,7 +48,7 @@ public class PersistentLogger extends Log.Logger {
     this.context  = context.getApplicationContext();
     this.secret   = LogSecretProvider.getOrCreateAttachmentSecret(context);
     this.executor = Executors.newSingleThreadExecutor(r -> {
-      Thread thread = new Thread(r, "PersistentLogger");
+      Thread thread = new Thread(r, "signal-PersistentLogger");
       thread.setPriority(Thread.MIN_PRIORITY);
       return thread;
     });

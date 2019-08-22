@@ -2,21 +2,22 @@ package org.thoughtcrime.securesms.jobs;
 
 
 import android.Manifest;
-import android.support.annotation.NonNull;
 
-import org.thoughtcrime.securesms.backup.BackupPassphrase;
-import org.thoughtcrime.securesms.jobmanager.Data;
-import org.thoughtcrime.securesms.jobmanager.Job;
-import org.thoughtcrime.securesms.logging.Log;
+import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.backup.BackupPassphrase;
 import org.thoughtcrime.securesms.backup.FullBackupExporter;
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
+import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.service.GenericForegroundService;
+import org.thoughtcrime.securesms.service.NotificationController;
 import org.thoughtcrime.securesms.util.BackupUtil;
 import org.thoughtcrime.securesms.util.StorageUtil;
 
@@ -62,12 +63,13 @@ public class LocalBackupJob extends BaseJob {
       throw new IOException("No external storage permission!");
     }
 
-    GenericForegroundService.startForegroundTask(context,
-                                                 context.getString(R.string.LocalBackupJob_creating_backup),
-                                                 NotificationChannels.BACKUPS,
-                                                 R.drawable.ic_signal_backup);
+    try (NotificationController notification = GenericForegroundService.startForegroundTask(context,
+                                                                     context.getString(R.string.LocalBackupJob_creating_backup),
+                                                                     NotificationChannels.BACKUPS,
+                                                                     R.drawable.ic_signal_backup))
+    {
+      notification.setIndeterminateProgress();
 
-    try {
       String backupPassword  = BackupPassphrase.get(context);
       File   backupDirectory = StorageUtil.getBackupDirectory();
       String timestamp       = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss", Locale.US).format(new Date());
@@ -96,8 +98,6 @@ public class LocalBackupJob extends BaseJob {
       }
 
       BackupUtil.deleteOldBackups();
-    } finally {
-      GenericForegroundService.stopForegroundTask(context);
     }
   }
 

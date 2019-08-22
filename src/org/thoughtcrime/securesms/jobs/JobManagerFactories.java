@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.jobs;
 
 import android.app.Application;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.jobmanager.Constraint;
 import org.thoughtcrime.securesms.jobmanager.ConstraintObserver;
@@ -23,6 +23,7 @@ public final class JobManagerFactories {
 
   public static Map<String, Job.Factory> getJobFactories(@NonNull Application application) {
     return new HashMap<String, Job.Factory>() {{
+      put(AttachmentCopyJob.KEY,                     new AttachmentCopyJob.Factory());
       put(AttachmentDownloadJob.KEY,                 new AttachmentDownloadJob.Factory());
       put(AttachmentUploadJob.KEY,                   new AttachmentUploadJob.Factory());
       put(AvatarDownloadJob.KEY,                     new AvatarDownloadJob.Factory());
@@ -43,6 +44,7 @@ public final class JobManagerFactories {
       put(MultiDeviceStickerPackOperationJob.KEY,    new MultiDeviceStickerPackOperationJob.Factory());
       put(MultiDeviceStickerPackSyncJob.KEY,         new MultiDeviceStickerPackSyncJob.Factory());
       put(MultiDeviceVerifiedUpdateJob.KEY,          new MultiDeviceVerifiedUpdateJob.Factory());
+      put(MultiDeviceViewOnceOpenJob.KEY,            new MultiDeviceViewOnceOpenJob.Factory());
       put(PushContentReceiveJob.KEY,                 new PushContentReceiveJob.Factory());
       put(PushDecryptJob.KEY,                        new PushDecryptJob.Factory());
       put(PushGroupSendJob.KEY,                      new PushGroupSendJob.Factory());
@@ -83,7 +85,7 @@ public final class JobManagerFactories {
   }
 
   public static List<ConstraintObserver> getConstraintObservers(@NonNull Application application) {
-    return Arrays.asList(new CellServiceConstraintObserver(application),
+    return Arrays.asList(CellServiceConstraintObserver.getInstance(application),
                          new NetworkConstraintObserver(application),
                          new SqlCipherMigrationConstraintObserver());
   }

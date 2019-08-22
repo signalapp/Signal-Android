@@ -1,47 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
-                    xmlns:tools="http://schemas.android.com/tools"
-              android:id="@+id/inCallControls"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:orientation="horizontal"
-              tools:background="@color/textsecure_primary">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/inCallControls"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    tools:background="@color/textsecure_primary"
+    tools:showIn="@layout/webrtc_call_screen">
 
-        <org.thoughtcrime.securesms.components.AccessibleToggleButton
-                android:id="@+id/speakerButton"
-                style="@style/WebRtcCallCompoundButton"
-                android:background="@drawable/webrtc_speaker_button"
-                tools:checked="true"
-                android:layout_marginEnd="15dp"/>
+    <org.thoughtcrime.securesms.components.AccessibleToggleButton
+        android:id="@+id/speakerButton"
+        style="@style/WebRtcCallCompoundButton"
+        android:layout_marginEnd="16dp"
+        android:width="36dp"
+        android:height="36dp"
+        android:background="@drawable/webrtc_speaker_button"
+        android:contentDescription="@string/WebRtcCallControls_speaker_button_description"
+        tools:checked="true" />
 
-        <org.thoughtcrime.securesms.components.AccessibleToggleButton
-                android:id="@+id/bluetoothButton"
-                style="@style/WebRtcCallCompoundButton"
-                android:background="@drawable/webrtc_bluetooth_button"
-                tools:checked="true"
-                android:layout_marginEnd="15dp"
-                android:visibility="gone"/>
+    <org.thoughtcrime.securesms.components.AccessibleToggleButton
+        android:id="@+id/bluetoothButton"
+        style="@style/WebRtcCallCompoundButton"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/webrtc_bluetooth_button"
+        android:contentDescription="@string/WebRtcCallControls_bluetooth_button_description"
+        android:visibility="gone"
+        tools:checked="true"
+        tools:visibility="visible" />
 
-        <org.thoughtcrime.securesms.components.AccessibleToggleButton
-                android:id="@+id/muteButton"
-                style="@style/WebRtcCallCompoundButton"
-                android:background="@drawable/webrtc_mute_button"
-                android:contentDescription="@string/redphone_call_controls__mute"
-                android:layout_marginEnd="15dp"
-                tools:checked="false"
-                />
+    <org.thoughtcrime.securesms.components.AccessibleToggleButton
+        android:id="@+id/muteButton"
+        style="@style/WebRtcCallCompoundButton"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/webrtc_mute_button"
+        android:contentDescription="@string/WebRtcCallControls_mute_button_description"
+        tools:checked="false" />
 
-        <org.thoughtcrime.securesms.components.AccessibleToggleButton
-                android:id="@+id/video_mute_button"
-                style="@style/WebRtcCallCompoundButton"
-                android:layout_marginEnd="15dp"
-                android:background="@drawable/webrtc_video_mute_button"/>
+    <org.thoughtcrime.securesms.components.AccessibleToggleButton
+        android:id="@+id/video_mute_button"
+        style="@style/WebRtcCallCompoundButton"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/webrtc_video_mute_button"
+        android:contentDescription="@string/WebRtcCallControls_your_camera_button_description" />
 
-        <org.thoughtcrime.securesms.components.AccessibleToggleButton
-                android:id="@+id/camera_flip_button"
-                style="@style/WebRtcCallCompoundButton"
-                android:contentDescription="@string/redphone_call_controls__flip_camera_rear"
-                android:background="@drawable/webrtc_camera_rear_button"
-                android:visibility="gone"/>
+    <org.thoughtcrime.securesms.components.AccessibleToggleButton
+        android:id="@+id/camera_flip_button"
+        style="@style/WebRtcCallCompoundButton"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/webrtc_camera_flip_button"
+        android:contentDescription="@string/WebRtcCallControls_switch_to_rear_camera_button_description"
+        android:visibility="gone"
+        tools:visibility="visible" />
 
 </merge>

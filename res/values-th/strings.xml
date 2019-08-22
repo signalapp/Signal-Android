@@ -49,12 +49,13 @@
   <string name="DraftDatabase_Draft_video_snippet">(วิดีโอ)</string>
   <string name="DraftDatabase_Draft_location_snippet">(ตำแหน่งที่ตั้ง)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(ตอบกลับ)</string>
-  <!--AttchmentManager-->
+  <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">ไม่พบแอปสำหรับสื่อที่เลือก</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">เพื่อที่จะแนบรูปภาพ วิดีโอ หรือเสียงได้ Signal ต้องได้รับอนุญาตให้เข้าถึงที่เก็บข้อมูล แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"ที่เก็บข้อมูล\"</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">เพื่อที่จะแนบข้อมูลผู้ติดต่อได้ Signal ต้องได้รับอนุญาตให้เข้าถึงผู้ติดต่อ แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"ผู้ติดต่อ\"</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">เพื่อที่จะแนบข้อมูลตำแหน่งที่ตั้งได้ Signal ต้องได้รับอนุญาตให้เข้าถึงตำแหน่งที่ตั้ง แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"ตำแหน่งที่ตั้ง\"</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">เพื่อที่จะถ่ายรูปได้ Signal ต้องได้รับอนุญาตให้เข้าถึงกล้อง แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"กล้อง\"</string>
+  <!--AttachmentUploadJob-->
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">เกิดข้อผิดพลาดในการเล่นเสียง</string>
   <!--BlockedContactsActivity-->
@@ -67,6 +68,9 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">สายเรียกเข้า</string>
   <!--CameraActivity-->
+  <!--CameraXFragment-->
+  <!--CameraContacts-->
+  <string name="CameraContacts__menu_search">ค้นหา</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">เอาออก</string>
   <string name="ClearProfileActivity_remove_profile_photo">ลบรูปโปรไฟล์หรือไม่</string>
@@ -127,7 +131,6 @@
   <string name="ConversationActivity_transport_insecure_mms">MMS ที่ไม่ปลอดภัย</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">เปลี่ยนมาใช้ Signal กันเถอะ %1$s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">ใช้อันนี้คุยกัน: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">เกิดข้อผิดพลาดระหว่างออกจากกลุ่ม</string>
   <string name="ConversationActivity_specify_recipient">โปรดเลือกผู้ติดต่อ</string>
   <string name="ConversationActivity_unblock_this_contact_question">เลิกปิดกั้นผู้ติดต่อนี้หรือไม่</string>
@@ -203,6 +206,8 @@
   <string name="ConversationListItem_key_exchange_message">ข้อความแลกเปลี่ยนคีย์</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">การสนทนาที่ถูกเก็บในที่เก็บถาวร (%d)</string>
+  <!--ConversationTitleView-->
+  <string name="ConversationTitleView_verified">ตรวจยืนยันแล้ว</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity_your_profile_info">ข้อมูลโปรไฟล์ของคุณ</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">การตั้งค่ารูปโปรไฟล์ผิดพลาด</string>
@@ -350,6 +355,8 @@
   <!--MediaPickerActivity-->
   <!--MediaPickerItemFragment-->
   <!--MediaSendActivity-->
+  <string name="MediaSendActivity_message">ข้อความ</string>
+  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal ต้องการเข้าถึงผู้ติดต่อของคุณ เพื่อที่จะแสดงข้อมูลเหล่านั้นได้</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">สื่อทั้งหมด</string>
   <!--MessageRecord-->
@@ -407,6 +414,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">ไอคอน Signal</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">ส่งวลีรหัสผ่าน</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">วลีรหัสผ่านไม่ถูกต้อง</string>
+  <!--PlacePickerActivity-->
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">เวอร์ชันของ Google Play Services ที่คุณมีอยู่ทำงานไม่ถูกต้อง โปรดติดตั้ง Google Play Services ใหม่และลองอีกครั้ง</string>
   <!--RatingManager-->
@@ -468,6 +476,8 @@
   <string name="RegistrationActivity_next">ต่อไป</string>
   <string name="RegistrationActivity_continue">ดำเนินการต่อ</string>
   <string name="RegistrationActivity_call">โทร</string>
+  <!--RevealableMessageView-->
+  <string name="RevealableMessageView_photo">รูปภาพ</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">บันทึกการเปลี่ยนแปลงของภาพล้มเหลว</string>
   <!--Search-->
@@ -499,6 +509,15 @@
   <string name="SmsMessageRecord_secure_session_reset">คุณได้ทำการรีเซ็ตเซสชันที่ปลอดภัย</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s ได้ทำการรีเซ็ตเซสชันที่ปลอดภัย</string>
   <string name="SmsMessageRecord_duplicate_message">ข้อความซ้ำ</string>
+  <string name="SmsMessageRecord_error_handling_incoming_message">เกิดข้อผิดพลาดในการจัดการข้อความขาเข้า</string>
+  <!--StickerManagementActivity-->
+  <string name="StickerManagementActivity_stickers">สติกเกอร์</string>
+  <!--StickerManagementAdapter-->
+  <string name="StickerManagementAdapter_unknown">ไม่ทราบ</string>
+  <!--StickerPackPreviewActivity-->
+  <string name="StickerPackPreviewActivity_unknown">ไม่ทราบ</string>
+  <string name="StickerPackPreviewActivity_remove">เอาออก</string>
+  <string name="StickerPackPreviewActivity_stickers">สติกเกอร์</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">อัพเดตกลุ่มแล้ว</string>
   <string name="ThreadRecord_left_the_group">ออกจากกลุ่มแล้ว</string>
@@ -583,8 +602,6 @@
   <string name="MessageNotifier_reply">ตอบกลับ</string>
   <string name="MessageNotifier_signal_message">ข้อความ Signal</string>
   <string name="MessageNotifier_unsecured_sms">SMS ที่ไม่ปลอดภัย</string>
-  <string name="MessageNotifier_pending_signal_messages">ข้อความ Signal ที่รอดำเนินการ</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">คุณมีข้อความ Signal ที่รอดำเนินการอยู่ แตะเพื่อเปิดและดึงข้อความ</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">ผู้ติดต่อ</string>
   <!--Notification Channels-->
@@ -627,6 +644,11 @@
   <string name="WebRtcCallScreen_end_call">วางสาย</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">แตะเพื่อเปิดใช้งานวิดีโอของคุณ</string>
+  <!--WebRtcCallControls Content Descriptions-->
+  <string name="WebRtcCallControls_contact_photo_description">ภาพของผู้ติดต่อ</string>
+  <string name="WebRtcCallControls_speaker_button_description">ลำโพง</string>
+  <string name="WebRtcCallControls_mute_button_description">ปิดเสียง</string>
+  <string name="WebRtcCallControls_answer_call_description">รับสาย</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__audio">เสียง</string>
   <string name="attachment_type_selector__audio_description">เสียง</string>
@@ -649,6 +671,7 @@
   <string name="change_passphrase_activity__repeat_new_passphrase">ใส่วลีรหัสผ่านใหม่อีกครั้ง</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">ป้อนชื่อหรือหมายเลข</string>
+  <!--contact_filter_toolbar-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">ไม่มีผู้ติดต่อ</string>
   <string name="contact_selection_group_activity__finding_contacts">กำลังโหลดผู้ติดต่อ…</string>
@@ -822,8 +845,6 @@
   <string name="recipient_preferences__ringtone">เสียงเรียกสาย</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">สาย Signal</string>
-  <string name="redphone_call_controls__mute">ปิดเสียง</string>
-  <string name="redphone_call_controls__flip_camera_rear">สลับกล้อง</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">หมายเลขโทรศัพท์</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal ทำให้การสื่อสารง่ายขึ้นด้วยการใช้หมายเลขโทรศัพท์และผู้ติดต่อที่คุณมีอยู่แล้ว เพื่อนและผู้ติดต่อที่ติดต่อคุณผ่านทางโทรศัพท์ได้ ก็จะสามารถติดต่อคุณผ่าน Signal ได้เช่นกัน การลงทะเบียนจะส่งข้อมูลส่วนหนึ่งของผู้ติดต่อไปที่เซิร์ฟเวอร์แต่จะไม่มีการบันทึกข้อมูลเหล่านั้นไว้</string>

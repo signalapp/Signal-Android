@@ -54,12 +54,15 @@
   <string name="DraftDatabase_Draft_video_snippet">(Video)</string>
   <string name="DraftDatabase_Draft_location_snippet">(Standort)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(Antwort)</string>
-  <!--AttchmentManager-->
+  <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Keine App zur Auswahl der Medieninhalte auffindbar.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal benötigt die Berechtigung »Speicher« für das Anhängen von Fotos, Videos oder Audiodateien, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Speicher«.</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal benötigt die Berechtigung »Kontakte« für das Anhängen von Kontaktinformationen, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Kontakte«.</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal benötigt die Berechtigung »Standort« für das Anhängen von Standorten, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Standort«.</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal benötigt die Berechtigung »Kamera« für die Aufnahme von Fotos, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Kamera«.</string>
+  <!--AttachmentUploadJob-->
+  <string name="AttachmentUploadJob_uploading_media">Medieninhalte werden hochgeladen …</string>
+  <string name="AttachmentUploadJob_compressing_video_start">Video wird komprimiert …</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Fehler bei der Audiowiedergabe</string>
   <!--BlockedContactsActivity-->
@@ -73,11 +76,27 @@
   <string name="CallScreen_Incoming_call">Eingehender Anruf</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Speichern des Bildes gescheitert.</string>
+  <!--CameraXFragment-->
+  <string name="CameraXFragment_capture_description">Aufnehmen</string>
+  <string name="CameraXFragment_change_camera_description">Kamera wechseln</string>
+  <string name="CameraXFragment_open_gallery_description">Galerie öffnen</string>
+  <!--CameraContacts-->
+  <string name="CameraContacts_recent_contacts">Letzte Kontakte</string>
+  <string name="CameraContacts_signal_contacts">Signal-Kontakte</string>
+  <string name="CameraContacts_signal_groups">Signal-Gruppen</string>
+  <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">Du kannst mit maximal %d Unterhaltungen teilen.</string>
+  <string name="CameraContacts_select_signal_recipients">Signal-Empfänger auswählen</string>
+  <string name="CameraContacts_no_signal_contacts">Keine Signal-Kontakte</string>
+  <string name="CameraContacts_you_can_only_use_the_camera_button">Mit der Kameraschaltfläche kannst du Fotos nur an Signal-Kontakte senden.</string>
+  <string name="CameraContacts_cant_find_who_youre_looking_for">Nicht gefunden, wen du suchst?</string>
+  <string name="CameraContacts_invite_a_contact_to_join_signal">Lade einen Kontakt zu Signal ein</string>
+  <string name="CameraContacts__menu_search">Suchen</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Entfernen</string>
   <string name="ClearProfileActivity_remove_profile_photo">Profilfoto entfernen?</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Kein Webbrowser gefunden.</string>
+  <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Derzeit läuft bereits ein Mobilfunkanruf.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Deine gemeinsame Sicherheitsnummer mit %1$s hat sich geändert. Dies könnte bedeuten, dass jemand versucht, eure Kommunikation abzuhören. Oder %2$s hat Signal einfach erneut installiert.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Vielleicht möchtest du deine Sicherheitsnummer mit diesem Kontakt verifizieren.</string>
@@ -137,7 +156,6 @@
   <string name="ConversationActivity_transport_insecure_mms">Unsichere MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Lass uns zu »Signal« wechseln: %1$s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">Unterhalten wir uns hiermit: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Fehler beim Verlassen der Gruppe</string>
   <string name="ConversationActivity_specify_recipient">Bitte einen Kontakt auswählen</string>
   <string name="ConversationActivity_unblock_this_contact_question">Diesen Kontakt freigeben?</string>
@@ -162,6 +180,8 @@
   <string name="ConversationActivity_no">Nein</string>
   <string name="ConversationActivity_search_position">%1$d von %2$d</string>
   <string name="ConversationActivity_no_results">Keine Ergebnisse</string>
+  <string name="ConversationActivity_sticker_pack_installed">Sticker-Set installiert</string>
+  <string name="ConversationActivity_new_say_it_with_stickers">Neu! Sag‘s mit Stickern</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d ungelesene Nachricht</item>
@@ -229,6 +249,8 @@
   <string name="ConversationListItem_key_exchange_message">Schlüsselaustauschnachricht</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Archivierte Unterhaltungen (%d)</string>
+  <!--ConversationTitleView-->
+  <string name="ConversationTitleView_verified">Verifiziert</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity_your_profile_info">Deine Profilinformationen</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Fehler beim Festlegen des Profilfotos</string>
@@ -238,6 +260,7 @@
   <string name="CreateProfileActivity_profile_name">Profilname</string>
   <string name="CreateProfileActivity_set_up_your_profile">Dein Profil einrichten</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal-Profile sind Ende-zu-Ende-verschlüsselt. Der Signal-Dienst hat daher niemals Zugriff auf diese Informationen.</string>
+  <string name="CreateProfileActivity_set_avatar_description">Avatar festlegen</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Benutzerdefiniert: %s</string>
   <string name="CustomDefaultPreference_using_default">Standard: %s</string>
@@ -395,6 +418,7 @@
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Fehler beim Herunterladen der MMS. Für erneuten Versuch antippen.</string>
   <!--MediaPickerActivity-->
   <string name="MediaPickerActivity_send_to">An %s senden</string>
+  <string name="MediaPickerActivity__menu_open_camera">Kamera öffnen</string>
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">Zum Auswählen antippen</string>
   <!--MediaSendActivity-->
@@ -402,10 +426,15 @@
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Ein Anhang wurde entfernt, da er zu groß war</string>
   <string name="MediaSendActivity_camera_unavailable">Kamera nicht verfügbar.</string>
   <string name="MediaSendActivity_message_to_s">Nachricht an %s</string>
+  <string name="MediaSendActivity_message">Nachricht</string>
+  <string name="MediaSendActivity_select_recipients">Empfänger auswählen</string>
+  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal benötigt Zugriff auf deine Kontakte, um sie anzeigen zu können.</string>
+  <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal benötigt die Berechtigung »Kontakte« für das Anzeigen deiner Kontakte, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Kontakte«.</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Du kannst nicht mehr als %d Element teilen.</item>
     <item quantity="other">Du kannst nicht mehr als %d Elemente teilen.</item>
   </plurals>
+  <string name="MediaSendActivity_select_recipients_description">Empfänger auswählen</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Alle Medieninhalte</string>
   <!--MessageRecord-->
@@ -461,6 +490,11 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Signal-Symbol</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Passphrase übermitteln</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Passphrase ungültig!</string>
+  <!--PlacePickerActivity-->
+  <string name="PlacePickerActivity_title">Karte</string>
+  <string name="PlacePickerActivity_not_a_valid_address">Keine gültige Adresse</string>
+  <string name="PlacePickerActivity_drop_pin">Markierung platzieren</string>
+  <string name="PlacePickerActivity_accept_address">Adresse übernehmen</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Die derzeit installierte Version der Google-Play-Dienste funktioniert nicht korrekt. Bitte installiere die Google-Play-Dienste neu und versuche es noch einmal.</string>
   <!--RatingManager-->
@@ -531,6 +565,10 @@
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Du wirst einen Verifikationscode erhalten. Dabei können Mobilfunkgebühren anfallen.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Gib den Code ein, den wir an %s gesendet haben</string>
   <string name="RegistrationActivity_call">Mich anrufen</string>
+  <!--RevealableMessageView-->
+  <string name="RevealableMessageView_view_photo">Foto ansehen</string>
+  <string name="RevealableMessageView_viewed">Angesehen</string>
+  <string name="RevealableMessageView_photo">Foto</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Speichern von Bildänderungen gescheitert</string>
   <!--Search-->
@@ -549,6 +587,7 @@
   <string name="SharedContactView_message">Signal-Nachricht</string>
   <!--Slide-->
   <string name="Slide_image">Bild</string>
+  <string name="Slide_sticker">Sticker</string>
   <string name="Slide_audio">Audio</string>
   <string name="Slide_video">Video</string>
   <!--SmsMessageRecord-->
@@ -559,6 +598,25 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="SmsMessageRecord_secure_session_reset">Du hast die Verschlüsselung neu gestartet</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s hat die Verschlüsselung neu gestartet</string>
   <string name="SmsMessageRecord_duplicate_message">Doppelte Nachricht</string>
+  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Diese Nachricht konnte nicht verarbeitet werden, da sie von einer neueren Signal-Version versendet wurde. Aktualisiere Signal und bitte danach deinen Kontakt, die Nachricht erneut zu senden.</string>
+  <string name="SmsMessageRecord_error_handling_incoming_message">Fehler bei eingehender Nachricht</string>
+  <!--StickerManagementActivity-->
+  <string name="StickerManagementActivity_stickers">Sticker</string>
+  <!--StickerManagementAdapter-->
+  <string name="StickerManagementAdapter_installed_stickers">Installierte Sticker</string>
+  <string name="StickerManagementAdapter_stickers_you_received">Empfangene Sticker</string>
+  <string name="StickerManagementAdapter_signal_artist_series">Signal-Artist-Serie</string>
+  <string name="StickerManagementAdapter_no_stickers_installed">Keine Sticker installiert</string>
+  <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Hier werden Sticker eingehender Nachrichten erscheinen</string>
+  <string name="StickerManagementAdapter_untitled">Unbenannt</string>
+  <string name="StickerManagementAdapter_unknown">Unbekannt</string>
+  <!--StickerPackPreviewActivity-->
+  <string name="StickerPackPreviewActivity_untitled">Unbenannt</string>
+  <string name="StickerPackPreviewActivity_unknown">Unbekannt</string>
+  <string name="StickerPackPreviewActivity_install">Installieren</string>
+  <string name="StickerPackPreviewActivity_remove">Entfernen</string>
+  <string name="StickerPackPreviewActivity_stickers">Sticker</string>
+  <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Sticker-Set konnte nicht geladen werden</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Gruppe aktualisiert</string>
   <string name="ThreadRecord_left_the_group">Gruppe verlassen</string>
@@ -568,6 +626,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ThreadRecord_called_you">Eingegangener Anruf</string>
   <string name="ThreadRecord_missed_call">Entgangener Anruf</string>
   <string name="ThreadRecord_media_message">Nachricht mit Medieninhalten</string>
+  <string name="ThreadRecord_sticker">Sticker</string>
+  <string name="ThreadRecord_disappearing_photo">Verschwindendes Foto</string>
   <string name="ThreadRecord_s_is_on_signal">%s ist bei Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Verschwindende Nachrichten deaktiviert</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Zeit für verschwindende Nachrichten auf %s festgelegt</string>
@@ -575,9 +635,10 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Deine Sicherheitsnummer mit %s hat sich geändert</string>
   <string name="ThreadRecord_you_marked_verified">Als verifiziert markiert</string>
   <string name="ThreadRecord_you_marked_unverified">Als nicht verifiziert markiert</string>
+  <string name="ThreadRecord_message_could_not_be_processed">Nachricht konnte nicht verarbeitet werden</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Signal-Aktualisierung</string>
-  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Eine neue Version von Signal ist verfügbar. Zum Aktualisieren antippen.</string>
+  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Eine neue Signal-Version ist verfügbar. Zum Aktualisieren antippen.</string>
   <!--UnknownSenderView-->
   <string name="UnknownSenderView_block_s">%s blockieren?</string>
   <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Blockierte Kontakte werden dir keine Nachrichten mehr senden oder dich anrufen können.</string>
@@ -592,8 +653,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="UnverifiedSendDialog_send_message">Nachricht senden?</string>
   <string name="UnverifiedSendDialog_send">Senden</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Dein Kontakt verwendet eine alte Version von Signal. Bitte ihn Signal zu aktualisieren, bevor ihr eure Sicherheitsnummer verifiziert.</string>
-  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Dein Kontakt verwendet eine neuere Version von Signal mit einem inkompatiblen QR-Code-Format. Zum Vergleichen bitte aktualisieren.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Dein Kontakt verwendet eine alte Signal-Version. Bitte ihn Signal zu aktualisieren, bevor ihr eure Sicherheitsnummer verifiziert.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Dein Kontakt verwendet eine neuere Signal-Version mit einem inkompatiblen QR-Code-Format. Zum Vergleichen bitte aktualisieren.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Der eingescannte QR-Code ist kein korrekt formatierter Verifikationscode einer Sicherheitsnummer. Bitte versuche es erneut.</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">Sicherheitsnummer teilen über …</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">Unsere Signal-Sicherheitsnummer:</string>
@@ -640,11 +701,13 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="MessageNotifier_mark_all_as_read">Alle gelesen</string>
   <string name="MessageNotifier_mark_read">Gelesen</string>
   <string name="MessageNotifier_media_message">Nachricht mit Medieninhalten</string>
+  <string name="MessageNotifier_sticker">Sticker</string>
+  <string name="MessageNotifier_disappearing_photo">Verschwindendes Foto</string>
   <string name="MessageNotifier_reply">Antworten</string>
   <string name="MessageNotifier_signal_message">Signal-Nachricht</string>
   <string name="MessageNotifier_unsecured_sms">Unsichere SMS</string>
-  <string name="MessageNotifier_pending_signal_messages">Ausstehende Signal-Nachrichten</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">Du hast ausstehende Signal-Nachrichten. Antippen zum Öffnen und Abrufen.</string>
+  <string name="MessageNotifier_you_may_have_new_messages">Du hast vielleicht neue Nachrichten</string>
+  <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Öffne Signal, um nach neuen Benachrichtigungen zu sehen.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Kontakt</string>
   <!--Notification Channels-->
@@ -692,6 +755,15 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="WebRtcCallScreen_end_call">Anruf beenden</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Zum Aktivieren deiner Videoübertragung antippen</string>
+  <!--WebRtcCallControls Content Descriptions-->
+  <string name="WebRtcCallControls_contact_photo_description">Kontaktbild</string>
+  <string name="WebRtcCallControls_speaker_button_description">Lautsprecher</string>
+  <string name="WebRtcCallControls_bluetooth_button_description">Bluetooth</string>
+  <string name="WebRtcCallControls_mute_button_description">Stummschalten</string>
+  <string name="WebRtcCallControls_your_camera_button_description">Deine Kamera</string>
+  <string name="WebRtcCallControls_switch_to_rear_camera_button_description">Zu hinterer Kamera wechseln</string>
+  <string name="WebRtcCallControls_answer_call_description">Anruf annehmen</string>
+  <string name="WebRtcCallControls_reject_call_description">Anruf ablehnen</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__audio">Audio</string>
   <string name="attachment_type_selector__audio_description">Audio</string>
@@ -714,6 +786,10 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="change_passphrase_activity__repeat_new_passphrase">Neue Passphrase wiederholen</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Name/Nummer eingeben</string>
+  <!--contact_filter_toolbar-->
+  <string name="contact_filter_toolbar__clear_entered_text_description">Texteingabe leeren</string>
+  <string name="contact_filter_toolbar__show_keyboard_description">Tastatur anzeigen</string>
+  <string name="contact_filter_toolbar__show_dial_pad_description">Wähltasten anzeigen</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Keine Kontakte.</string>
   <string name="contact_selection_group_activity__finding_contacts">Kontakte werden geladen …</string>
@@ -762,6 +838,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="QuoteView_audio">Audio</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Foto</string>
+  <string name="QuoteView_sticker">Sticker</string>
   <string name="QuoteView_document">Dokument</string>
   <string name="QuoteView_you">Du</string>
   <string name="QuoteView_original_missing">Originalnachricht nicht gefunden</string>
@@ -902,8 +979,6 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="recipient_preferences__ringtone">Klingelton</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal-Anruf</string>
-  <string name="redphone_call_controls__mute">Stummschalten</string>
-  <string name="redphone_call_controls__flip_camera_rear">Kamera wechseln</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">RUFNUMMER</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal macht Kommunikation einfach, indem es deine bereits bestehende Rufnummer und dein Adressbuch verwendet. Freunde und Kontakte, die bereits deine Rufnummer kennen, können so über Signal leicht mit dir Kontakt aufnehmen.\n\nBeim Registrieren werden einige Kontaktinformationen an den Server übermittelt. Diese werden nicht gespeichert.</string>
@@ -1121,6 +1196,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="conversation_list_batch_archive__menu_archive_selected">Ausgewählte archivieren</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Ausgewählte in Eingang verschieben</string>
   <!--conversation_list-->
+  <string name="conversation_list_settings_shortcut">Einstellungsverknüpfung</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Kontaktbild</string>
   <string name="conversation_list_item_view__archived">Archiviert</string>
@@ -1128,6 +1204,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Nix. Nada. Niente.\nAlles erledigt!</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Neue Unterhaltung</string>
+  <string name="conversation_list_fragment__open_camera_description">Kamera öffnen</string>
   <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Erwecke deinen Posteingang zum Leben. Leg los und schreib einem Freund.</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Verschlüsselung neu starten</string>
@@ -1223,7 +1300,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences_chats__create_backup">Sicherung erstellen</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Sicherungspassphrase eingeben</string>
   <string name="RegistrationActivity_restore">Wiederherstellen</string>
-  <string name="RegistrationActivity_backup_failure_downgrade">Datensicherungen neuerer Versionen von Signal können nicht importiert werden</string>
+  <string name="RegistrationActivity_backup_failure_downgrade">Datensicherungen neuerer Signal-Versionen können nicht importiert werden</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">Falsche Sicherungspassphrase</string>
   <string name="RegistrationActivity_checking">Wird überprüft …</string>
   <string name="RegistrationActivity_d_messages_so_far">%d Nachrichten bisher …</string>

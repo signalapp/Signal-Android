@@ -11,7 +11,7 @@
 
     <item android:title="@string/SearchToolbar_search"
           android:id="@+id/menu_search"
-          app:actionViewClass="android.support.v7.widget.SearchView"
+          app:actionViewClass="androidx.appcompat.widget.SearchView"
           app:showAsAction="collapseActionView"/>
 
     <item android:title="@string/conversation__menu_add_shortcut"

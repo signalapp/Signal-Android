@@ -10,7 +10,7 @@
     android:clipChildren="false"
     android:clipToPadding="false">
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/input_panel_sticker_suggestion"
         android:layout_width="match_parent"
         android:layout_height="90dp"
@@ -165,6 +165,7 @@
                                     android:layout_marginEnd="8dp"
                                     android:layout_gravity="bottom"
                                     android:background="?selectableItemBackgroundBorderless"
+                                    android:contentDescription="@string/ConversationActivity_add_attachment"
                                     android:scaleType="fitCenter"
                                     android:tint="?attr/conversation_input_inline_attach_icon_tint"
                                     app:srcCompat="@drawable/ic_plus_24" />

@@ -15,6 +15,14 @@ extern "C" {
 JNIEXPORT jint JNICALL Java_org_thoughtcrime_securesms_util_FileUtils_getFileDescriptorOwner
   (JNIEnv *, jclass, jobject);
 
+/*
+ * Class:     org_thoughtcrime_securesms_util_FileUtils
+ * Method:    createMemoryFileDescriptor
+ * Signature: (Ljava/lang/String;)I
+ */
+JNIEXPORT jint JNICALL Java_org_thoughtcrime_securesms_util_FileUtils_createMemoryFileDescriptor
+  (JNIEnv *, jclass, jstring);
+
 #ifdef __cplusplus
 }
 #endif

@@ -21,12 +21,13 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
-import android.support.annotation.NonNull;
-import android.support.v4.app.NotificationCompat;
+import androidx.annotation.NonNull;
+import androidx.core.app.NotificationCompat;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.gcm.FcmUtil;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -35,26 +36,20 @@ import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.PlayServicesProblemActivity;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-import javax.inject.Inject;
-
-public class FcmRefreshJob extends BaseJob implements InjectableType {
+public class FcmRefreshJob extends BaseJob {
 
   public static final String KEY = "FcmRefreshJob";
 
   private static final String TAG = FcmRefreshJob.class.getSimpleName();
-
-  @Inject SignalServiceAccountManager textSecureAccountManager;
 
   public FcmRefreshJob() {
     this(new Job.Parameters.Builder()
@@ -103,7 +98,7 @@ public class FcmRefreshJob extends BaseJob implements InjectableType {
           Log.i(TAG, "Token didn't change.");
         }
 
-        textSecureAccountManager.setGcmId(token);
+        ApplicationDependencies.getSignalServiceAccountManager().setGcmId(token);
         TextSecurePreferences.setFcmToken(context, token.get());
         TextSecurePreferences.setFcmTokenLastSetTime(context, System.currentTimeMillis());
         TextSecurePreferences.setWebsocketRegistered(context, true);

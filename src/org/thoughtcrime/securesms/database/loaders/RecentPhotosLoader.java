@@ -6,7 +6,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
-import android.support.v4.content.CursorLoader;
+import androidx.loader.content.CursorLoader;
 
 import org.thoughtcrime.securesms.permissions.Permissions;
 
@@ -15,7 +15,7 @@ public class RecentPhotosLoader extends CursorLoader {
   public static Uri BASE_URL = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
 
   private static final String[] PROJECTION = new String[] {
-      MediaStore.Images.ImageColumns._ID,
+      MediaStore.Images.ImageColumns.DATA,
       MediaStore.Images.ImageColumns.DATE_TAKEN,
       MediaStore.Images.ImageColumns.DATE_MODIFIED,
       MediaStore.Images.ImageColumns.ORIENTATION,
@@ -25,6 +25,8 @@ public class RecentPhotosLoader extends CursorLoader {
       MediaStore.Images.ImageColumns.WIDTH,
       MediaStore.Images.ImageColumns.HEIGHT
   };
+
+  private static final String SELECTION  = MediaStore.Images.Media.DATA + " NOT NULL";
 
   private final Context context;
 
@@ -37,7 +39,7 @@ public class RecentPhotosLoader extends CursorLoader {
   public Cursor loadInBackground() {
     if (Permissions.hasAll(context, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
       return context.getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                                                PROJECTION, null, null,
+                                                PROJECTION, SELECTION, null,
                                                 MediaStore.Images.ImageColumns.DATE_MODIFIED + " DESC");
     } else {
       return null;

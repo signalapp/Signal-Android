@@ -2,9 +2,9 @@ package org.thoughtcrime.securesms.color;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.support.annotation.ColorInt;
-import android.support.annotation.ColorRes;
-import android.support.annotation.NonNull;
+import androidx.annotation.ColorInt;
+import androidx.annotation.ColorRes;
+import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.R;
 

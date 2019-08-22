@@ -1,12 +1,12 @@
 package org.thoughtcrime.securesms.jobs;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.StickerDatabase.StickerPackRecordReader;
 import org.thoughtcrime.securesms.database.model.StickerPackRecord;
-import org.thoughtcrime.securesms.dependencies.InjectableType;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
@@ -22,18 +22,14 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import javax.inject.Inject;
-
 /**
  * Tells a linked desktop about all installed sticker packs.
  */
-public class MultiDeviceStickerPackSyncJob extends BaseJob implements InjectableType {
+public class MultiDeviceStickerPackSyncJob extends BaseJob {
 
   private static final String TAG = Log.tag(MultiDeviceStickerPackSyncJob.class);
 
   public static final String KEY = "MultiDeviceStickerPackSyncJob";
-
-  @Inject SignalServiceMessageSender messageSender;
 
   public MultiDeviceStickerPackSyncJob() {
     this(new Parameters.Builder()
@@ -76,6 +72,7 @@ public class MultiDeviceStickerPackSyncJob extends BaseJob implements Injectable
       }
     }
 
+    SignalServiceMessageSender messageSender = ApplicationDependencies.getSignalServiceMessageSender();
     messageSender.sendMessage(SignalServiceSyncMessage.forStickerPackOperations(operations),
                               UnidentifiedAccessUtil.getAccessForSync(context));
   }

@@ -1,8 +1,8 @@
 package org.thoughtcrime.securesms.jobs;
 
 import android.net.Uri;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.google.android.mms.pdu_alt.CharacterSets;
 import com.google.android.mms.pdu_alt.EncodedStringValue;
@@ -247,7 +247,7 @@ public class MmsDownloadJob extends BaseJob {
       group = Optional.of(Address.fromSerialized(DatabaseFactory.getGroupDatabase(context).getOrCreateGroupForMembers(new LinkedList<>(members), true)));
     }
 
-    IncomingMediaMessage   message      = new IncomingMediaMessage(from, group, body, retrieved.getDate() * 1000L, attachments, subscriptionId, 0, false, false);
+    IncomingMediaMessage   message      = new IncomingMediaMessage(from, group, body, retrieved.getDate() * 1000L, attachments, subscriptionId, 0, false, false, false);
     Optional<InsertResult> insertResult = database.insertMessageInbox(message, contentLocation, threadId);
 
     if (insertResult.isPresent()) {

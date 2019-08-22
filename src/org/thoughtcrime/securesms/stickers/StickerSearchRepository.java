@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.stickers;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.CursorList;

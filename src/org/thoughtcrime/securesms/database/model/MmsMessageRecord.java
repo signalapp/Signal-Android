@@ -1,9 +1,8 @@
 package org.thoughtcrime.securesms.database.model;
 
 
-import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
@@ -23,12 +22,15 @@ public abstract class MmsMessageRecord extends MessageRecord {
   private final @NonNull  List<Contact>     contacts     = new LinkedList<>();
   private final @NonNull  List<LinkPreview> linkPreviews = new LinkedList<>();
 
+  private final boolean viewOnce;
+
   MmsMessageRecord(long id, String body, Recipient conversationRecipient,
                    Recipient individualRecipient, int recipientDeviceId, long dateSent,
                    long dateReceived, long threadId, int deliveryStatus, int deliveryReceiptCount,
                    long type, List<IdentityKeyMismatch> mismatches,
                    List<NetworkFailure> networkFailures, int subscriptionId, long expiresIn,
-                   long expireStarted, @NonNull SlideDeck slideDeck, int readReceiptCount,
+                   long expireStarted, boolean viewOnce,
+                   @NonNull SlideDeck slideDeck, int readReceiptCount,
                    @Nullable Quote quote, @NonNull List<Contact> contacts,
                    @NonNull List<LinkPreview> linkPreviews, boolean unidentified)
   {
@@ -36,6 +38,7 @@ public abstract class MmsMessageRecord extends MessageRecord {
 
     this.slideDeck = slideDeck;
     this.quote     = quote;
+    this.viewOnce  = viewOnce;
 
     this.contacts.addAll(contacts);
     this.linkPreviews.addAll(linkPreviews);
@@ -76,5 +79,9 @@ public abstract class MmsMessageRecord extends MessageRecord {
 
   public @NonNull List<LinkPreview> getLinkPreviews() {
     return linkPreviews;
+  }
+
+  public boolean isViewOnce() {
+    return viewOnce;
   }
 }

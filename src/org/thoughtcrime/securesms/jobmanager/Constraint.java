@@ -1,8 +1,8 @@
 package org.thoughtcrime.securesms.jobmanager;
 
 import android.app.job.JobInfo;
-import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 
 public interface Constraint {
 
