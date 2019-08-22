@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.jobmanager.migration;
+package org.thoughtcrime.securesms.jobmanager.workmanager;
 
 import androidx.annotation.NonNull;
 
