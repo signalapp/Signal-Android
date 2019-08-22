@@ -86,6 +86,7 @@ public class MarkReadReceiver extends BroadcastReceiver {
                                                          .collect(Collectors.groupingBy(SyncMessageId::getAddress));
 
     for (Address address : addressMap.keySet()) {
+      // Loki - This also prevents read receipts from being sent in group chats as they don't maintain a friend request status
       LokiThreadDatabase lokiThreadDatabase = DatabaseFactory.getLokiThreadDatabase(context);
       long threadID = lokiThreadDatabase.getThreadID(address.serialize());
       LokiThreadFriendRequestStatus friendRequestStatus = lokiThreadDatabase.getFriendRequestStatus(threadID);

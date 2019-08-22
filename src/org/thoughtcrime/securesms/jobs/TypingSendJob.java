@@ -96,8 +96,11 @@ public class TypingSendJob extends BaseJob implements InjectableType {
     List<Optional<UnidentifiedAccessPair>> unidentifiedAccess = Stream.of(recipients).map(r -> UnidentifiedAccessUtil.getAccessFor(context, r)).toList();
     SignalServiceTypingMessage             typingMessage      = new SignalServiceTypingMessage(typing ? Action.STARTED : Action.STOPPED, System.currentTimeMillis(), groupId);
 
-    // TODO: Message ID
-    messageSender.sendTyping(0, addresses, unidentifiedAccess, typingMessage);
+    // Loki - Don't send typing indicators in group chats
+    if (!recipient.isGroupRecipient()) {
+      // TODO: Message ID
+      messageSender.sendTyping(0, addresses, unidentifiedAccess, typingMessage);
+    }
   }
 
   @Override

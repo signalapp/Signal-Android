@@ -314,6 +314,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
           handleProfileKey(content, message);
         }
 
+        // Loki - This doesn't get invoked for group chats
         if (content.isNeedsReceipt()) {
           handleNeedsDeliveryReceipt(content, message);
         }
