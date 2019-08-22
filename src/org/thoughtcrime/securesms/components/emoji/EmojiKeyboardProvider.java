@@ -2,9 +2,9 @@ package org.thoughtcrime.securesms.components.emoji;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.view.PagerAdapter;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.viewpager.widget.PagerAdapter;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;

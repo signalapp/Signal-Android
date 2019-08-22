@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<android.support.design.widget.CoordinatorLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="fill_parent"
@@ -55,17 +55,31 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:paddingBottom="150dp"
                 android:scrollbars="vertical"
                 android:nextFocusDown="@+id/fab"
                 android:nextFocusForward="@+id/fab"
+                android:clipToPadding="false"
                 tools:listitem="@layout/conversation_list_item_view" />
 
     </LinearLayout>
 
+    <org.thoughtcrime.securesms.components.registration.PulsingFloatingActionButton
+        android:id="@+id/camera_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="88dp"
+        android:contentDescription="@string/conversation_list_fragment__open_camera_description"
+        android:src="@drawable/ic_camera_filled_24"
+        android:tint="?conversation_list_camera_icon_tint"
+        android:focusable="true"
+        app:backgroundTint="?conversation_list_camera_button_background"/>
 
     <org.thoughtcrime.securesms.components.registration.PulsingFloatingActionButton
             android:id="@+id/fab"
@@ -78,4 +92,4 @@
             android:contentDescription="@string/conversation_list_fragment__fab_content_description"/>
 
 
-</android.support.design.widget.CoordinatorLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

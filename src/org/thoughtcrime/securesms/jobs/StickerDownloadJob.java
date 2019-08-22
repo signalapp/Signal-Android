@@ -1,11 +1,11 @@
 package org.thoughtcrime.securesms.jobs;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.StickerDatabase;
 import org.thoughtcrime.securesms.database.model.IncomingSticker;
-import org.thoughtcrime.securesms.dependencies.InjectableType;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
@@ -17,9 +17,7 @@ import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException
 import java.io.InputStream;
 import java.util.concurrent.TimeUnit;
 
-import javax.inject.Inject;
-
-public class StickerDownloadJob extends BaseJob implements InjectableType {
+public class StickerDownloadJob extends BaseJob {
 
   public static final String KEY = "StickerDownloadJob";
 
@@ -35,8 +33,6 @@ public class StickerDownloadJob extends BaseJob implements InjectableType {
   private static final String KEY_INSTALLED   = "installed";
 
   private final IncomingSticker sticker;
-
-  @Inject SignalServiceMessageReceiver receiver;
 
   public StickerDownloadJob(@NonNull IncomingSticker sticker) {
     this(new Job.Parameters.Builder()
@@ -65,9 +61,10 @@ public class StickerDownloadJob extends BaseJob implements InjectableType {
       return;
     }
 
-    byte[]      packIdBytes  = Hex.fromStringCondensed(sticker.getPackId());
-    byte[]      packKeyBytes = Hex.fromStringCondensed(sticker.getPackKey());
-    InputStream stream       = receiver.retrieveSticker(packIdBytes, packKeyBytes, sticker.getStickerId());
+    SignalServiceMessageReceiver receiver     = ApplicationDependencies.getSignalServiceMessageReceiver();
+    byte[]                       packIdBytes  = Hex.fromStringCondensed(sticker.getPackId ());
+    byte[]                       packKeyBytes = Hex.fromStringCondensed(sticker.getPackKey());
+    InputStream                  stream       = receiver.retrieveSticker(packIdBytes, packKeyBytes, sticker.getStickerId());
 
     db.insertSticker(sticker, stream);
   }

@@ -7,10 +7,10 @@ import android.net.Uri;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
-import android.support.annotation.ArrayRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.NotificationCompat;
+import androidx.annotation.ArrayRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
 
 import org.greenrobot.eventbus.EventBus;
 import org.thoughtcrime.securesms.R;
@@ -182,6 +182,10 @@ public class TextSecurePreferences {
   private static final String SEEN_STICKER_INTRO_TOOLTIP = "pref_seen_sticker_intro_tooltip";
 
   private static final String MEDIA_KEYBOARD_MODE = "pref_media_keyboard_mode";
+
+  private static final String VIEW_ONCE_DEFAULT = "pref_revealable_message_default";
+
+  private static final String SEEN_CAMERA_FIRST_TOOLTIP = "pref_seen_camera_first_tooltip";
 
   public static boolean isScreenLockEnabled(@NonNull Context context) {
     return getBooleanPreference(context, SCREEN_LOCK, false);
@@ -1096,6 +1100,22 @@ public class TextSecurePreferences {
   public static MediaKeyboardMode getMediaKeyboardMode(Context context) {
     String name = getStringPreference(context, MEDIA_KEYBOARD_MODE, MediaKeyboardMode.EMOJI.name());
     return MediaKeyboardMode.valueOf(name);
+  }
+
+  public static void setIsRevealableMessageEnabled(Context context, boolean value) {
+    setBooleanPreference(context, VIEW_ONCE_DEFAULT, value);
+  }
+
+  public static boolean isRevealableMessageEnabled(Context context) {
+    return getBooleanPreference(context, VIEW_ONCE_DEFAULT, false);
+  }
+
+  public static void setHasSeenCameraFirstTooltip(Context context, boolean value) {
+    setBooleanPreference(context, SEEN_CAMERA_FIRST_TOOLTIP, value);
+  }
+
+  public static boolean hasSeendCameraFirstTooltip(Context context) {
+    return getBooleanPreference(context, SEEN_CAMERA_FIRST_TOOLTIP, false);
   }
 
   public static void setBooleanPreference(Context context, String key, boolean value) {

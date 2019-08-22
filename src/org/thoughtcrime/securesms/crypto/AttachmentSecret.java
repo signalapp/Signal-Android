@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.crypto;
 
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.util.Base64;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;

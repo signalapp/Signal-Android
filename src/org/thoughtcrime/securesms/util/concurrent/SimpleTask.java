@@ -1,12 +1,10 @@
 package org.thoughtcrime.securesms.util.concurrent;
 
-import android.arch.lifecycle.Lifecycle;
+import androidx.lifecycle.Lifecycle;
 import android.os.AsyncTask;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.util.Util;
-
-import java.util.concurrent.Callable;
 
 public class SimpleTask {
 
@@ -22,7 +20,7 @@ public class SimpleTask {
       return;
     }
 
-    AsyncTask.THREAD_POOL_EXECUTOR.execute(() -> {
+    SignalExecutors.BOUNDED.execute(() -> {
       final E result = backgroundTask.run();
 
       if (isValid(lifecycle)) {
@@ -40,7 +38,7 @@ public class SimpleTask {
    * the main thread. Essentially {@link AsyncTask}, but lambda-compatible.
    */
   public static <E> void run(@NonNull BackgroundTask<E> backgroundTask, @NonNull ForegroundTask<E> foregroundTask) {
-    AsyncTask.THREAD_POOL_EXECUTOR.execute(() -> {
+    SignalExecutors.BOUNDED.execute(() -> {
       final E result = backgroundTask.run();
       Util.runOnMain(() -> foregroundTask.run(result));
     });

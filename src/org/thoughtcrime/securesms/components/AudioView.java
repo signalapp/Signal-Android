@@ -8,8 +8,8 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.AnimatedVectorDrawable;
 import android.os.Build;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -33,6 +33,7 @@ import org.thoughtcrime.securesms.mms.AudioSlide;
 import org.thoughtcrime.securesms.mms.SlideClickListener;
 
 import java.io.IOException;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 
@@ -193,7 +194,7 @@ public class AudioView extends FrameLayout implements AudioSlidePlayer.Listener 
     if (seekProgress > seekBar.getProgress() || backwardsCounter > 3) {
       backwardsCounter = 0;
       this.seekBar.setProgress(seekProgress);
-      this.timestamp.setText(String.format("%02d:%02d",
+      this.timestamp.setText(String.format(Locale.getDefault(), "%02d:%02d",
                                            TimeUnit.MILLISECONDS.toMinutes(millis),
                                            TimeUnit.MILLISECONDS.toSeconds(millis)));
     } else {

@@ -2,22 +2,22 @@ package org.thoughtcrime.securesms.jobs;
 
 
 import android.app.Application;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.text.TextUtils;
 
 import org.thoughtcrime.securesms.database.Address;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
-
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.RecipientDatabase;
-import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
+import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
 import java.io.File;
@@ -26,9 +26,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.concurrent.TimeUnit;
 
-import javax.inject.Inject;
-
-public class RetrieveProfileAvatarJob extends BaseJob implements InjectableType {
+public class RetrieveProfileAvatarJob extends BaseJob {
 
   public static final String KEY = "RetrieveProfileAvatarJob";
 
@@ -38,8 +36,6 @@ public class RetrieveProfileAvatarJob extends BaseJob implements InjectableType 
 
   private static final String KEY_PROFILE_AVATAR = "profile_avatar";
   private static final String KEY_ADDRESS        = "address";
-
-  @Inject SignalServiceMessageReceiver receiver;
 
   private String    profileAvatar;
   private Recipient recipient;
@@ -90,7 +86,7 @@ public class RetrieveProfileAvatarJob extends BaseJob implements InjectableType 
     }
 
     if (TextUtils.isEmpty(profileAvatar)) {
-      Log.w(TAG, "Removing profile avatar for: " + recipient.getAddress().serialize());
+      Log.w(TAG, "Removing profile avatar (no url) for: " + recipient.getAddress().serialize());
       AvatarHelper.delete(context, recipient.getAddress());
       database.setProfileAvatar(recipient, profileAvatar);
       return;
@@ -99,11 +95,24 @@ public class RetrieveProfileAvatarJob extends BaseJob implements InjectableType 
     File downloadDestination = File.createTempFile("avatar", "jpg", context.getCacheDir());
 
     try {
-      InputStream avatarStream       = receiver.retrieveProfileAvatar(profileAvatar, downloadDestination, profileKey, MAX_PROFILE_SIZE_BYTES);
-      File        decryptDestination = File.createTempFile("avatar", "jpg", context.getCacheDir());
+      SignalServiceMessageReceiver receiver           = ApplicationDependencies.getSignalServiceMessageReceiver();
+      InputStream                  avatarStream       = receiver.retrieveProfileAvatar(profileAvatar, downloadDestination, profileKey, MAX_PROFILE_SIZE_BYTES);
+      File                         decryptDestination = File.createTempFile("avatar", "jpg", context.getCacheDir());
 
-      Util.copy(avatarStream, new FileOutputStream(decryptDestination));
+      try {
+        Util.copy(avatarStream, new FileOutputStream(decryptDestination));
+      } catch (AssertionError e) {
+        throw new IOException("Failed to copy stream. Likely a Conscrypt issue.", e);
+      }
+
       decryptDestination.renameTo(AvatarHelper.getAvatarFile(context, recipient.getAddress()));
+    } catch (PushNetworkException e) {
+      if (e.getCause() instanceof NonSuccessfulResponseCodeException) {
+        Log.w(TAG, "Removing profile avatar (no image available) for: " + recipient.getAddress().serialize());
+        AvatarHelper.delete(context, recipient.getAddress());
+      } else {
+        throw e;
+      }
     } finally {
       if (downloadDestination != null) downloadDestination.delete();
     }

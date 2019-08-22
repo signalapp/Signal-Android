@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.mms;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.text.TextUtils;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
@@ -23,6 +23,7 @@ public class OutgoingMediaMessage {
   private   final int                       distributionType;
   private   final int                       subscriptionId;
   private   final long                      expiresIn;
+  private   final boolean                   viewOnce;
   private   final QuoteModel                outgoingQuote;
 
   private   final List<NetworkFailure>      networkFailures       = new LinkedList<>();
@@ -32,7 +33,7 @@ public class OutgoingMediaMessage {
 
   public OutgoingMediaMessage(Recipient recipient, String message,
                               List<Attachment> attachments, long sentTimeMillis,
-                              int subscriptionId, long expiresIn,
+                              int subscriptionId, long expiresIn, boolean viewOnce,
                               int distributionType,
                               @Nullable QuoteModel outgoingQuote,
                               @NonNull List<Contact> contacts,
@@ -47,6 +48,7 @@ public class OutgoingMediaMessage {
     this.attachments           = attachments;
     this.subscriptionId        = subscriptionId;
     this.expiresIn             = expiresIn;
+    this.viewOnce              = viewOnce;
     this.outgoingQuote         = outgoingQuote;
 
     this.contacts.addAll(contacts);
@@ -57,7 +59,8 @@ public class OutgoingMediaMessage {
 
   public OutgoingMediaMessage(Recipient recipient, SlideDeck slideDeck, String message,
                               long sentTimeMillis, int subscriptionId, long expiresIn,
-                              int distributionType, @Nullable QuoteModel outgoingQuote,
+                              boolean viewOnce, int distributionType,
+                              @Nullable QuoteModel outgoingQuote,
                               @NonNull List<Contact> contacts,
                               @NonNull List<LinkPreview> linkPreviews)
   {
@@ -65,7 +68,7 @@ public class OutgoingMediaMessage {
          buildMessage(slideDeck, message),
          slideDeck.asAttachments(),
          sentTimeMillis, subscriptionId,
-         expiresIn, distributionType, outgoingQuote,
+         expiresIn, viewOnce, distributionType, outgoingQuote,
          contacts, linkPreviews, new LinkedList<>(), new LinkedList<>());
   }
 
@@ -77,6 +80,7 @@ public class OutgoingMediaMessage {
     this.sentTimeMillis      = that.sentTimeMillis;
     this.subscriptionId      = that.subscriptionId;
     this.expiresIn           = that.expiresIn;
+    this.viewOnce            = that.viewOnce;
     this.outgoingQuote       = that.outgoingQuote;
 
     this.identityKeyMismatches.addAll(that.identityKeyMismatches);
@@ -123,6 +127,10 @@ public class OutgoingMediaMessage {
 
   public long getExpiresIn() {
     return expiresIn;
+  }
+
+  public boolean isViewOnce() {
+    return viewOnce;
   }
 
   public @Nullable QuoteModel getOutgoingQuote() {

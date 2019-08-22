@@ -2,9 +2,9 @@ package org.thoughtcrime.securesms.mediasend;
 
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,12 +45,9 @@ public class MediaSendVideoFragment extends Fragment implements MediaSendPageFra
 
     uri = getArguments().getParcelable(KEY_URI);
     VideoSlide slide = new VideoSlide(requireContext(), uri, 0);
-    try {
-      ((VideoPlayer) view).setWindow(requireActivity().getWindow());
-      ((VideoPlayer) view).setVideoSource(slide, false);
-    } catch (IOException e) {
-      Log.w(TAG, "Failed to play video.", e);
-    }
+
+    ((VideoPlayer) view).setWindow(requireActivity().getWindow());
+    ((VideoPlayer) view).setVideoSource(slide, false);
   }
 
   @Override

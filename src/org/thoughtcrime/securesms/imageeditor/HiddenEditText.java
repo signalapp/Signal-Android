@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Rect;
-import android.support.annotation.Nullable;
 import android.text.InputType;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -12,21 +11,31 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.FrameLayout;
 
-import org.thoughtcrime.securesms.imageeditor.renderers.TextRenderer;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import org.thoughtcrime.securesms.imageeditor.model.EditorElement;
+import org.thoughtcrime.securesms.imageeditor.renderers.MultiLineTextRenderer;
 
 /**
  * Invisible {@link android.widget.EditText} that is used during in-image text editing.
  */
-final class HiddenEditText extends android.support.v7.widget.AppCompatEditText {
+final class HiddenEditText extends androidx.appcompat.widget.AppCompatEditText {
 
   @SuppressLint("InlinedApi")
   private static final int INCOGNITO_KEYBOARD_IME = EditorInfo.IME_FLAG_NO_PERSONALIZED_LEARNING;
 
   @Nullable
-  private TextRenderer currentTextEntity;
+  private EditorElement currentTextEditorElement;
+
+  @Nullable
+  private MultiLineTextRenderer currentTextEntity;
 
   @Nullable
   private Runnable onEndEdit;
+
+  @Nullable
+  private OnEditOrSelectionChange onEditOrSelectionChange;
 
   public HiddenEditText(Context context) {
     super(context);
@@ -37,8 +46,7 @@ final class HiddenEditText extends android.support.v7.widget.AppCompatEditText {
     setFocusableInTouchMode(true);
     setBackgroundColor(Color.TRANSPARENT);
     setTextSize(TypedValue.COMPLEX_UNIT_SP, 1);
-    setInputType(InputType.TYPE_CLASS_TEXT);
-    setImeOptions(EditorInfo.IME_ACTION_DONE);
+    setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE);
     clearFocus();
   }
 
@@ -47,6 +55,7 @@ final class HiddenEditText extends android.support.v7.widget.AppCompatEditText {
     super.onTextChanged(text, start, lengthBefore, lengthAfter);
     if (currentTextEntity != null) {
       currentTextEntity.setText(text.toString());
+      postEditOrSelectionChange();
     }
   }
 
@@ -76,11 +85,33 @@ final class HiddenEditText extends android.support.v7.widget.AppCompatEditText {
     }
   }
 
-  @Nullable TextRenderer getCurrentTextEntity() {
+  private void postEditOrSelectionChange() {
+    if (currentTextEditorElement != null && currentTextEntity != null && onEditOrSelectionChange != null) {
+      onEditOrSelectionChange.onChange(currentTextEditorElement, currentTextEntity);
+    }
+  }
+
+  @Nullable MultiLineTextRenderer getCurrentTextEntity() {
     return currentTextEntity;
   }
 
-  void setCurrentTextEntity(@Nullable TextRenderer currentTextEntity) {
+  @Nullable EditorElement getCurrentTextEditorElement() {
+    return currentTextEditorElement;
+  }
+
+  public void setCurrentTextEditorElement(@Nullable EditorElement currentTextEditorElement) {
+    if (currentTextEditorElement != null && currentTextEditorElement.getRenderer() instanceof MultiLineTextRenderer) {
+      this.currentTextEditorElement = currentTextEditorElement;
+      setCurrentTextEntity((MultiLineTextRenderer) currentTextEditorElement.getRenderer());
+    } else {
+      this.currentTextEditorElement = null;
+      setCurrentTextEntity(null);
+    }
+
+    postEditOrSelectionChange();
+  }
+
+  private void setCurrentTextEntity(@Nullable MultiLineTextRenderer currentTextEntity) {
     if (this.currentTextEntity != currentTextEntity) {
       if (this.currentTextEntity != null) {
         this.currentTextEntity.setFocused(false);
@@ -101,6 +132,7 @@ final class HiddenEditText extends android.support.v7.widget.AppCompatEditText {
     super.onSelectionChanged(selStart, selEnd);
     if (currentTextEntity != null) {
       currentTextEntity.setSelection(selStart, selEnd);
+      postEditOrSelectionChange();
     }
   }
 
@@ -132,5 +164,13 @@ final class HiddenEditText extends android.support.v7.widget.AppCompatEditText {
 
   public void setOnEndEdit(@Nullable Runnable onEndEdit) {
     this.onEndEdit = onEndEdit;
+  }
+
+  public void setOnEditOrSelectionChange(@Nullable OnEditOrSelectionChange onEditOrSelectionChange) {
+    this.onEditOrSelectionChange = onEditOrSelectionChange;
+  }
+
+  public interface OnEditOrSelectionChange {
+    void onChange(@NonNull EditorElement editorElement, @NonNull MultiLineTextRenderer textRenderer);
   }
 }

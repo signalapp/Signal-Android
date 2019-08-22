@@ -1,9 +1,9 @@
 package org.thoughtcrime.securesms.jobs;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.WorkerThread;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.WorkerThread;
 
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
@@ -14,13 +14,12 @@ import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.GroupReceiptDatabase;
 import org.thoughtcrime.securesms.database.GroupReceiptDatabase.GroupReceiptInfo;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
-import org.thoughtcrime.securesms.dependencies.InjectableType;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
@@ -33,7 +32,6 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.util.GroupUtil;
-import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
@@ -55,15 +53,11 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-import javax.inject.Inject;
-
-public class PushGroupSendJob extends PushSendJob implements InjectableType {
+public class PushGroupSendJob extends PushSendJob {
 
   public static final String KEY = "PushGroupSendJob";
 
   private static final String TAG = PushGroupSendJob.class.getSimpleName();
-
-  @Inject SignalServiceMessageSender messageSender;
 
   private static final String KEY_MESSAGE_ID     = "message_id";
   private static final String KEY_FILTER_ADDRESS = "filter_address";
@@ -100,7 +94,7 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
       attachments.addAll(Stream.of(message.getLinkPreviews()).filter(p -> p.getThumbnail().isPresent()).map(p -> p.getThumbnail().get()).toList());
       attachments.addAll(Stream.of(message.getSharedContacts()).filter(c -> c.getAvatar() != null).map(c -> c.getAvatar().getAttachment()).withoutNulls().toList());
 
-      List<AttachmentUploadJob> attachmentJobs = Stream.of(attachments).map(a -> new AttachmentUploadJob(((DatabaseAttachment) a).getAttachmentId())).toList();
+      List<AttachmentUploadJob> attachmentJobs = Stream.of(attachments).map(a -> AttachmentUploadJob.fromAttachment((DatabaseAttachment) a)).toList();
 
       if (attachmentJobs.isEmpty()) {
         jobManager.add(new PushGroupSendJob(messageId, destination, filterAddress));
@@ -200,6 +194,10 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
                             .getExpiringMessageManager()
                             .scheduleDeletion(messageId, true, message.getExpiresIn());
         }
+
+        if (message.isViewOnce()) {
+          DatabaseFactory.getAttachmentDatabase(context).deleteAttachmentFilesForMessage(messageId);
+        }
       } else if (!networkFailures.isEmpty()) {
         throw new RetryLaterException();
       } else if (!identityMismatches.isEmpty()) {
@@ -229,6 +227,7 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
       throws IOException, UntrustedIdentityException, UndeliverableMessageException {
     rotateSenderCertificateIfNecessary();
 
+    SignalServiceMessageSender                 messageSender      = ApplicationDependencies.getSignalServiceMessageSender();
     String                                     groupId            = message.getRecipient().getAddress().toGroupString();
     Optional<byte[]>                           profileKey         = getProfileKey(message.getRecipient());
     Optional<Quote>                            quote              = getQuoteFor(message);
@@ -267,6 +266,7 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
                                                                       .withAttachments(attachmentPointers)
                                                                       .withBody(message.getBody())
                                                                       .withExpiration((int)(message.getExpiresIn() / 1000))
+                                                                      .withViewOnce(message.isViewOnce())
                                                                       .asExpirationUpdate(message.isExpirationUpdate())
                                                                       .withProfileKey(profileKey.orNull())
                                                                       .withQuote(quote.orNull())

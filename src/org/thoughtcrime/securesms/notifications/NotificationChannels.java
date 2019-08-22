@@ -12,9 +12,9 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.provider.Settings;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.WorkerThread;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.WorkerThread;
 import android.text.TextUtils;
 
 import com.annimon.stream.Collectors;
@@ -41,15 +41,16 @@ public class NotificationChannels {
 
   private static final String TAG = NotificationChannels.class.getSimpleName();
 
-  private static final int VERSION_MESSAGES_CATEGORY = 2;
+  private static final int VERSION_MESSAGES_CATEGORY   = 2;
+  private static final int VERSION_CALLS_PRIORITY_BUMP = 3;
 
-  private static final int VERSION = 2;
+  private static final int VERSION = 3;
 
   private static final String CATEGORY_MESSAGES = "messages";
   private static final String CONTACT_PREFIX    = "contact_";
   private static final String MESSAGES_PREFIX   = "messages_";
 
-  public static final String CALLS         = "calls_v2";
+  public static final String CALLS         = "calls_v3";
   public static final String FAILURES      = "failures";
   public static final String APP_UPDATES   = "app_updates";
   public static final String BACKUPS       = "backups_v2";
@@ -425,7 +426,7 @@ public class NotificationChannels {
     notificationManager.createNotificationChannelGroup(messagesGroup);
 
     NotificationChannel messages     = new NotificationChannel(getMessagesChannel(context), context.getString(R.string.NotificationChannel_messages), NotificationManager.IMPORTANCE_HIGH);
-    NotificationChannel calls        = new NotificationChannel(CALLS, context.getString(R.string.NotificationChannel_calls), NotificationManager.IMPORTANCE_LOW);
+    NotificationChannel calls        = new NotificationChannel(CALLS, context.getString(R.string.NotificationChannel_calls), NotificationManager.IMPORTANCE_HIGH);
     NotificationChannel failures     = new NotificationChannel(FAILURES, context.getString(R.string.NotificationChannel_failures), NotificationManager.IMPORTANCE_HIGH);
     NotificationChannel backups      = new NotificationChannel(BACKUPS, context.getString(R.string.NotificationChannel_backups), NotificationManager.IMPORTANCE_LOW);
     NotificationChannel lockedStatus = new NotificationChannel(LOCKED_STATUS, context.getString(R.string.NotificationChannel_locked_status), NotificationManager.IMPORTANCE_LOW);
@@ -461,6 +462,10 @@ public class NotificationChannels {
       notificationManager.deleteNotificationChannel("locked_status");
       notificationManager.deleteNotificationChannel("backups");
       notificationManager.deleteNotificationChannel("other");
+    }
+
+    if (oldVersion < VERSION_CALLS_PRIORITY_BUMP) {
+      notificationManager.deleteNotificationChannel("calls_v2");
     }
   }
 

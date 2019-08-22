@@ -2,8 +2,8 @@ package org.thoughtcrime.securesms;
 
 import android.Manifest;
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.util.CharacterCalculator;
@@ -106,6 +106,16 @@ public class TransportOptions {
     throw new AssertionError("No options of default type!");
   }
 
+  public static @NonNull TransportOption getPushTransportOption(@NonNull Context context) {
+    return new TransportOption(Type.TEXTSECURE,
+                               R.drawable.ic_send_push_white_24dp,
+                               context.getResources().getColor(R.color.textsecure_primary),
+                               context.getString(R.string.ConversationActivity_transport_signal),
+                               context.getString(R.string.conversation_activity__type_message_push),
+                               new PushCharacterCalculator());
+
+  }
+
   private @Nullable TransportOption findEnabledSmsTransportOption(Optional<Integer> subscriptionId) {
     if (subscriptionId.isPresent()) {
       final int subId = subscriptionId.get();
@@ -157,11 +167,7 @@ public class TransportOptions {
                                                     new SmsCharacterCalculator()));
     }
 
-    results.add(new TransportOption(Type.TEXTSECURE, R.drawable.ic_send_push_white_24dp,
-                                    context.getResources().getColor(R.color.textsecure_primary),
-                                    context.getString(R.string.ConversationActivity_transport_signal),
-                                    context.getString(R.string.conversation_activity__type_message_push),
-                                    new PushCharacterCalculator()));
+    results.add(getPushTransportOption(context));
 
     return results;
   }

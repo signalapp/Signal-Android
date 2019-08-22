@@ -1,16 +1,12 @@
 package org.thoughtcrime.securesms.components;
 
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
-import android.os.Build;
-import android.support.annotation.ColorInt;
-import android.support.annotation.NonNull;
-import android.view.View;
+
+import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
 
 public class Outliner {
 
@@ -29,12 +25,16 @@ public class Outliner {
   }
 
   public void draw(Canvas canvas) {
+    draw(canvas, 0, canvas.getWidth(), canvas.getHeight(), 0);
+  }
+
+  public void draw(Canvas canvas, int top, int right, int bottom, int left) {
     final float halfStrokeWidth = outlinePaint.getStrokeWidth() / 2;
 
-    bounds.left   = halfStrokeWidth;
-    bounds.top    = halfStrokeWidth;
-    bounds.right  = canvas.getWidth() - halfStrokeWidth;
-    bounds.bottom = canvas.getHeight() - halfStrokeWidth;
+    bounds.left   = left + halfStrokeWidth;
+    bounds.top    = top + halfStrokeWidth;
+    bounds.right  = right - halfStrokeWidth;
+    bounds.bottom = bottom - halfStrokeWidth;
 
     corners.reset();
     corners.addRoundRect(bounds, radii, Path.Direction.CW);

@@ -17,15 +17,16 @@
 package org.thoughtcrime.securesms;
 
 import android.animation.Animator;
+import android.annotation.SuppressLint;
 import android.app.KeyguardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.hardware.fingerprint.FingerprintManagerCompat;
-import android.support.v4.os.CancellationSignal;
-import android.support.v7.widget.Toolbar;
+import androidx.core.hardware.fingerprint.FingerprintManagerCompat;
+import androidx.core.os.CancellationSignal;
+import androidx.appcompat.widget.Toolbar;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.SpannableString;
@@ -149,6 +150,8 @@ public class PassphrasePromptActivity extends PassphraseActivity {
     return false;
   }
 
+  @Override
+  @SuppressLint("MissingSuperCall") // no fragments to dispatch to
   public void onActivityResult(int requestCode, int resultcode, Intent data) {
     if (requestCode != 1) return;
 

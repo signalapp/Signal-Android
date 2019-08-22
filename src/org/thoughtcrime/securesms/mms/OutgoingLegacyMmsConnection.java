@@ -20,8 +20,8 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import org.thoughtcrime.securesms.logging.Log;
 
 import com.google.android.mms.pdu_alt.PduParser;

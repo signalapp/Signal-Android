@@ -1,9 +1,9 @@
 package org.thoughtcrime.securesms.jobmanager;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.WorkerThread;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.WorkerThread;
 
 import org.thoughtcrime.securesms.logging.Log;
 
@@ -125,8 +125,76 @@ public abstract class Job {
     @NonNull T create(@NonNull Parameters parameters, @NonNull Data data);
   }
 
-  public enum Result {
-    SUCCESS, FAILURE, RETRY
+  public static final class Result {
+
+    private static final Result SUCCESS = new Result(ResultType.SUCCESS, null);
+    private static final Result RETRY   = new Result(ResultType.RETRY, null);
+    private static final Result FAILURE = new Result(ResultType.FAILURE, null);
+
+    private final ResultType       resultType;
+    private final RuntimeException runtimeException;
+
+    private Result(@NonNull ResultType resultType, @Nullable RuntimeException runtimeException) {
+      this.resultType       = resultType;
+      this.runtimeException = runtimeException;
+    }
+
+    /** Job completed successfully. */
+    public static Result success() {
+      return SUCCESS;
+    }
+
+    /** Job did not complete successfully, but it can be retried later. */
+    public static Result retry() {
+      return RETRY;
+    }
+
+    /** Job did not complete successfully and should not be tried again. Dependent jobs will also be failed.*/
+    public static Result failure() {
+      return FAILURE;
+    }
+
+    /** Same as {@link #failure()}, except the app should also crash with the provided exception. */
+    public static Result fatalFailure(@NonNull RuntimeException runtimeException) {
+      return new Result(ResultType.FAILURE, runtimeException);
+    }
+
+    boolean isSuccess() {
+      return resultType == ResultType.SUCCESS;
+    }
+
+    boolean isRetry() {
+      return resultType == ResultType.RETRY;
+    }
+
+    boolean isFailure() {
+      return resultType == ResultType.FAILURE;
+    }
+
+    @Nullable RuntimeException getException() {
+      return runtimeException;
+    }
+
+    @Override
+    public @NonNull String toString() {
+      switch (resultType) {
+        case SUCCESS:
+        case RETRY:
+          return resultType.toString();
+        case FAILURE:
+          if (runtimeException == null) {
+            return resultType.toString();
+          } else {
+            return "FATAL_FAILURE";
+          }
+      }
+
+      return "UNKNOWN?";
+    }
+
+    private enum ResultType {
+      SUCCESS, FAILURE, RETRY
+    }
   }
 
   public static final class Parameters {

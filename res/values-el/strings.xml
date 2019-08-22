@@ -6,7 +6,7 @@
   <string name="delete">Διαγραφή</string>
   <string name="please_wait">Παρακαλώ περιμένετε...</string>
   <string name="save">Αποθήκευση</string>
-  <string name="note_to_self">Να μην ξεχάσω </string>
+  <string name="note_to_self">Μήνυμα σε εμένα</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Νέο μήνυμα</string>
   <!--AlbumThumbnailView-->
@@ -54,12 +54,14 @@
   <string name="DraftDatabase_Draft_video_snippet">(βίντεο)</string>
   <string name="DraftDatabase_Draft_location_snippet">(τοποθεσία)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(απάντηση)</string>
-  <!--AttchmentManager-->
+  <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Δεν μπορεί να βρεθεί εφαρμογή για επιλογή πολυμέσων.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio"> Το Signal χρειάζεται τα δικαιώματα Αποθηκευτικού Χώρου για να μπορούμε να επισυνάψουμε φωτογραφίες, βίντεο ή κομμάτια ήχου, αλλά αυτά δεν έχουν δοθεί μόνιμα. Παρακαλώ πηγαίνετε στις ρυθμίσεις εφαρμογών, επιλέξτε τα \"Δικαιώματα\", και ενεργοποιήστε το \"Αποθηκευτικός Χώρος\". </string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Το Signal χρειάζεται τα δικαιώματα Επαφών για να μπορούμε να επισυνάπτουμε πληροφορίες επαφών, αλλά αυτά δεν έχουν δοθεί μόνιμα. Παρακαλώ πηγαίνετε στις ρυθμίσεις εφαρμογών, επιλέξτε τα \"Δικαιώματα\", και ενεργοποιήστε τις \"Επαφές\".</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Το Signal χρειάζεται τα δικαιώματα Τοποθεσίας για να μπορούμε να επισυνάπτουμε τοποθεσίες, αλλά αυτά δεν έχουν δοθεί μόνιμα. Παρακαλώ πηγαίνετε στις ρυθμίσεις εφαρμογών, επιλέξτε τα \"Δικαιώματα\", και ενεργοποιήστε την \"Τοποθεσία\".</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Το Signal χρειάζεται τα δικαιώματα Κάμερας για να μπορούμε να τραβάμε φωτογραφίες, αλλά αυτά δεν έχουν δοθεί μόνιμα. Παρακαλώ πηγαίνετε στις ρυθμίσεις εφαρμογών, επιλέξτε τα \"Δικαιώματα\", και ενεργοποιήστε τα \"Κάμερα\".</string>
+  <!--AttachmentUploadJob-->
+  <string name="AttachmentUploadJob_uploading_media">Ανέβασμα πολυμέσου…</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Πρόβλημα κατά την αναπαραγωγή ήχου!</string>
   <!--BlockedContactsActivity-->
@@ -73,11 +75,24 @@
   <string name="CallScreen_Incoming_call">Εισερχόμενη κλήση</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Αποτυχία αποθήκευσης της εικόνας.</string>
+  <!--CameraXFragment-->
+  <!--CameraContacts-->
+  <string name="CameraContacts_recent_contacts">Πρόσφατες επαφές</string>
+  <string name="CameraContacts_signal_contacts">Επαφές Signal</string>
+  <string name="CameraContacts_signal_groups">Ομάδες Signal</string>
+  <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">Μπορείτε να μοιραστείτε μέχρι με %d συνομιλίες.</string>
+  <string name="CameraContacts_select_signal_recipients">Επιλογή παραληπτών/τριών Signal</string>
+  <string name="CameraContacts_no_signal_contacts">Δεν υπάρχουν επαφές Signal</string>
+  <string name="CameraContacts_you_can_only_use_the_camera_button">Μπορείτε να χρησιμοποιήσετε το κουμπί κάμερα για να στείλετε φωτογραφίες μόνο σε επαφές Signal.</string>
+  <string name="CameraContacts_cant_find_who_youre_looking_for">Δεν μπορείτε να βρείτε αυτό που ψάχνετε;</string>
+  <string name="CameraContacts_invite_a_contact_to_join_signal">Προσκαλέστε μια επαφή σας να έρθει στο Signal</string>
+  <string name="CameraContacts__menu_search">Αναζήτηση</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Αφαίρεση</string>
   <string name="ClearProfileActivity_remove_profile_photo">Αφαίρεση φωτογραφίας προφίλ?</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Δεν βρέθηκε web browser.</string>
+  <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Μια τηλεφωνική κλήση είναι ήδη σε εξέλιξη.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Ο αριθμός ασφαλείας σας με τον/την %1$s άλλαξε. Είτε κάποιος προσπαθεί να υποκλέψει τη συνομιλία σας, είτε ο/η %2$s απλά επανεγκατέστησε το Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Προτείνουμε να επιβεβαιώσετε τον αριθμό ασφαλείας σας με αυτή την επαφή.</string>
@@ -137,7 +152,6 @@
   <string name="ConversationActivity_transport_insecure_mms">Μη ασφαλές μήνυμα πολυμέσων MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Ας χρησιμοποιήσουμε το Signal %1$s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">Ας χρησιμοποιήσουμε αυτό για να συνομιλήσουμε: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Πρόβλημα κατά την αποχώρηση από την ομάδα</string>
   <string name="ConversationActivity_specify_recipient">Παρακαλώ επιλέξτε μια επαφή</string>
   <string name="ConversationActivity_unblock_this_contact_question">Ξεμπλοκάρισμα αυτής της επαφής;</string>
@@ -162,6 +176,8 @@
   <string name="ConversationActivity_no">Όχι</string>
   <string name="ConversationActivity_search_position">%1$dαπό%2$d</string>
   <string name="ConversationActivity_no_results">Δεν υπάρχουν αποτελέσματα</string>
+  <string name="ConversationActivity_sticker_pack_installed">Το πακέτο αυτοκολλήτων εγκαταστάθηκε</string>
+  <string name="ConversationActivity_new_say_it_with_stickers">Νέο! Πες το με αυτοκόλλητα</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d μη αναγνωσμένο μήνυμα</item>
@@ -229,6 +245,8 @@
   <string name="ConversationListItem_key_exchange_message">Μήνυμα ανταλλαγής κλειδιού</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Αρχειοθετημένες συνομιλίες (%d)</string>
+  <!--ConversationTitleView-->
+  <string name="ConversationTitleView_verified">Επιβεβαιωμένο</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity_your_profile_info">Οι πληροφορίες του προφίλ σας</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Πρόβλημα κατά τον καθορισμό φωτογραφίας προφίλ</string>
@@ -402,10 +420,15 @@
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Ένα στοιχείο αφαιρέθηκε επειδή υπερέβη το μέγιστο μέγεθος</string>
   <string name="MediaSendActivity_camera_unavailable">Η κάμερα δεν είναι διαθέσιμη.</string>
   <string name="MediaSendActivity_message_to_s">Μήνυμα προς τον/την %s</string>
+  <string name="MediaSendActivity_message">Μήνυμα</string>
+  <string name="MediaSendActivity_select_recipients">Επιλογή παραληπτών/τριών</string>
+  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Το Signal χρειάζεται πρόσβαση στις επαφές σας για να μπορέσει να τις εμφανίσει. </string>
+  <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Το Signal χρειάζεται τα δικαιώματα Επαφών για να μπορούμε να εμφανίσουμε τις επαφές σας, αλλά αυτά δεν έχουν δοθεί μόνιμα. Παρακαλώ πηγαίνετε στις ρυθμίσεις εφαρμογών, επιλέξτε τα \"Δικαιώματα\", και ενεργοποιήστε τις \"Επαφές\".</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Δεν μπορείτε να μοιραστείτε πάνω από %d αντικείμενο.</item>
     <item quantity="other">Δεν μπορείτε να μοιραστείτε πάνω από %d αντικείμενα.</item>
   </plurals>
+  <string name="MediaSendActivity_select_recipients_description">Επιλογή παραληπτών/τριών</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Όλα τα πολυμέσα</string>
   <!--MessageRecord-->
@@ -462,6 +485,11 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Εικονίδιο Signal</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Καταχώρηση συνθηματικού</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Μη έγκυρο συνθηματικό!</string>
+  <!--PlacePickerActivity-->
+  <string name="PlacePickerActivity_title">Χάρτης</string>
+  <string name="PlacePickerActivity_not_a_valid_address">Δεν είναι έγκυρη Διεύθυνση</string>
+  <string name="PlacePickerActivity_drop_pin">Καρφίτσωμα τοποθεσίας</string>
+  <string name="PlacePickerActivity_accept_address">Αποδοχή διεύθυνσης</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Η έκδοση των Υπηρεσιών Google Play που έχετε εγκαταστήσει δε λειτουργεί σωστά. Παρακαλούμε επανεγκαταστήστε τις Υπηρεσίες Google Play και δοκιμάστε ξανά.</string>
   <!--RatingManager-->
@@ -535,6 +563,10 @@
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Θα λάβετε έναν κωδικό επαλήθευσης. Μπορεί να υπάρξουν χρεώσεις παρόχου.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Εισάγετε τον κωδικό που στείλαμε στο %s</string>
   <string name="RegistrationActivity_call">Κλήση</string>
+  <!--RevealableMessageView-->
+  <string name="RevealableMessageView_view_photo">Προβολή φωτογραφίας</string>
+  <string name="RevealableMessageView_viewed">Διαβάστηκε</string>
+  <string name="RevealableMessageView_photo">Φωτογραφία</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Αποτυχία αποθήκευσης των αλλαγών της εικόνας</string>
   <!--Search-->
@@ -553,6 +585,7 @@
   <string name="SharedContactView_message">Μήνυμα Signal</string>
   <!--Slide-->
   <string name="Slide_image">Εικόνα</string>
+  <string name="Slide_sticker">Αυτοκόλλητο</string>
   <string name="Slide_audio">Ήχος</string>
   <string name="Slide_video">Βίντεο</string>
   <!--SmsMessageRecord-->
@@ -565,6 +598,25 @@
   <string name="SmsMessageRecord_secure_session_reset">Επανεκκινήσατε την ασφαλή συνεδρία.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">Ο/Η %s επανεκκίνησε την ασφαλή συνεδρία.</string>
   <string name="SmsMessageRecord_duplicate_message">Διπλότυπο μήνυμα.</string>
+  <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Αυτό το μήνυμα δεν μπόρεσε να επεξεργαστεί γιατί στάλθηκε από νεότερη έκδοση του Signal. Μπορείτε να ζητήσετε από την επαφή να σας ξαναστείλει το μήνυμα, αφού την αναβαθμίσετε.</string>
+  <string name="SmsMessageRecord_error_handling_incoming_message">Σφάλμα κατά την διαχείριση εισερχόμενου μηνύματος.</string>
+  <!--StickerManagementActivity-->
+  <string name="StickerManagementActivity_stickers">Αυτοκόλλητα</string>
+  <!--StickerManagementAdapter-->
+  <string name="StickerManagementAdapter_installed_stickers">Εγκατεστημένα αυτοκόλλητα</string>
+  <string name="StickerManagementAdapter_stickers_you_received">Αυτοκόλλητα που έχετε λάβει</string>
+  <string name="StickerManagementAdapter_signal_artist_series">Σειρά καλλιτεχνών Signal</string>
+  <string name="StickerManagementAdapter_no_stickers_installed">Δεν έχουν εγκατασταθεί αυτοκόλλητα</string>
+  <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Αυτοκόλλητα από εισερχόμενα μηνύματα θα εμφανίζονται εδώ</string>
+  <string name="StickerManagementAdapter_untitled">Χωρίς τίτλο</string>
+  <string name="StickerManagementAdapter_unknown">Άγνωστο</string>
+  <!--StickerPackPreviewActivity-->
+  <string name="StickerPackPreviewActivity_untitled">Χωρίς τίτλο</string>
+  <string name="StickerPackPreviewActivity_unknown">Άγνωστο</string>
+  <string name="StickerPackPreviewActivity_install">Εγκατάσταση</string>
+  <string name="StickerPackPreviewActivity_remove">Αφαίρεση</string>
+  <string name="StickerPackPreviewActivity_stickers">Αυτοκόλλητα</string>
+  <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Αποτυχία φόρτωσης του πακέτου αυτοκολλήτων</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Η ομάδα ενημερώθηκε</string>
   <string name="ThreadRecord_left_the_group">Έφυγες από την ομάδα</string>
@@ -574,6 +626,8 @@
   <string name="ThreadRecord_called_you">Σας κάλεσε</string>
   <string name="ThreadRecord_missed_call">Αναπάντητη κλήση</string>
   <string name="ThreadRecord_media_message">Μήνυμα πολυμέσων</string>
+  <string name="ThreadRecord_sticker">Αυτοκόλλητο</string>
+  <string name="ThreadRecord_disappearing_photo">Φωτογραφία που εξαφανίζεται</string>
   <string name="ThreadRecord_s_is_on_signal">Ο/Η %s είναι στο Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Τα μηνύματα που εξαφανίζονται απενεργοποιήθηκαν</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Ο χρόνος εξαφάνισης των μηνυμάτων ρυθμίστηκε σε %s</string>
@@ -581,6 +635,7 @@
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Ο αριθμός ασφαλείας με τον/την %s έχει αλλάξει.</string>
   <string name="ThreadRecord_you_marked_verified">Σημειώσατε ως επιβεβαιωμένο</string>
   <string name="ThreadRecord_you_marked_unverified">Σημειώσατε ως μη επιβεβαιωμένο</string>
+  <string name="ThreadRecord_message_could_not_be_processed">Αποτυχία επεξεργασίας μηνύματος</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Αναβάθμιση Signal</string>
   <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Μια νέα έκδοση του Signal είναι διαθέσιμη, πατήστε για αναβάθμιση</string>
@@ -646,11 +701,13 @@
   <string name="MessageNotifier_mark_all_as_read">Σημείωση όλων ως αναγνωσμένα</string>
   <string name="MessageNotifier_mark_read">Σημείωση ως αναγνωσμένο</string>
   <string name="MessageNotifier_media_message">Μήνυμα πολυμέσων</string>
+  <string name="MessageNotifier_sticker">Αυτοκόλλητο</string>
+  <string name="MessageNotifier_disappearing_photo">Φωτογραφία που εξαφανίζεται</string>
   <string name="MessageNotifier_reply">Απάντηση</string>
   <string name="MessageNotifier_signal_message">Μήνυμα Signal</string>
   <string name="MessageNotifier_unsecured_sms">Μη ασφαλές SMS</string>
-  <string name="MessageNotifier_pending_signal_messages">Μηνύματα Signal σε αναμονή</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">Έχετε μηνύματα Signal σε αναμονή, πατήστε για να τα ανοίξετε και να τα λάβετε</string>
+  <string name="MessageNotifier_you_may_have_new_messages">Ίσως έχετε νέα μηνύματα</string>
+  <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Ανοίξτε το Signal για δείτε αν υπάρχουν πρόσφατες ειδοποιήσεις.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Επαφή</string>
   <!--Notification Channels-->
@@ -698,6 +755,11 @@
   <string name="WebRtcCallScreen_end_call">Τερματισμός κλήσης</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Πατήστε για να ενεργοποιήσετε το βίντεό σας</string>
+  <!--WebRtcCallControls Content Descriptions-->
+  <string name="WebRtcCallControls_contact_photo_description">Φωτογραφία επαφής</string>
+  <string name="WebRtcCallControls_speaker_button_description">Μεγάφωνο</string>
+  <string name="WebRtcCallControls_mute_button_description">Σίγαση</string>
+  <string name="WebRtcCallControls_answer_call_description">Απάντηση</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__audio">Ήχος</string>
   <string name="attachment_type_selector__audio_description">Ήχος</string>
@@ -720,6 +782,7 @@
   <string name="change_passphrase_activity__repeat_new_passphrase">Νέο συνθηματικό (ξανά)</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Εισαγωγή ονόματος ή αριθμού</string>
+  <!--contact_filter_toolbar-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Δεν υπάρχουν επαφές.</string>
   <string name="contact_selection_group_activity__finding_contacts">Φόρτωση των επαφών...</string>
@@ -768,6 +831,7 @@
   <string name="QuoteView_audio">Ήχος</string>
   <string name="QuoteView_video">Βίντεο</string>
   <string name="QuoteView_photo">Φωτογραφία</string>
+  <string name="QuoteView_sticker">Αυτοκόλλητο</string>
   <string name="QuoteView_document">Έγγραφο</string>
   <string name="QuoteView_you">Εσείς</string>
   <string name="QuoteView_original_missing">Το αρχικό μήνυμα δε βρέθηκε</string>
@@ -908,8 +972,6 @@
   <string name="recipient_preferences__ringtone">Ήχος κλήσης</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Κλήση Signal</string>
-  <string name="redphone_call_controls__mute">Σίγαση</string>
-  <string name="redphone_call_controls__flip_camera_rear">Εναλλαγή Καμερών</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">ΑΡΙΘΜΟΣ ΚΙΝΗΤΟΥ</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Το Signal κάνει την επικοινωνία εύκολη χρησιμοποιόντας τον τηλεφωνικό αριθμό και τη λίστα επαφών σας. Φίλοι/ες και επαφές που έχουν ήδη τον αριθμό σας θα μπορούν να σας μιλήσουν εύκολα μέσω του Signal.\n\nΗ εγγραφή μεταδίδει προσωρινά μερικά στοιχεία επικοινωνίας στον διακομιστή. Δε θα αποθηκευτούν.</string>

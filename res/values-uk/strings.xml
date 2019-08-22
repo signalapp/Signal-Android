@@ -60,12 +60,13 @@
   <string name="DraftDatabase_Draft_video_snippet">(відео)</string>
   <string name="DraftDatabase_Draft_location_snippet">(розташування)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(відповісти)</string>
-  <!--AttchmentManager-->
+  <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Неможливо знайти програму для обраного медіа.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal потребує дозволу \"Зберігання\" для прикріплення фото, відео та аудіо, але наразі доступу немає. Будь ласка, перейдіть до налаштувань додатку, оберіть \"Дозволи\", та увімкніть \"Зберігання\".</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal потребує дозволу \"Контакти\", щоб прикріпити контакт, але наразі доступу немає. Будь ласка, перейдіть до налаштувань додатку, оберіть \"Дозволи\", та увімкніть \"Контакти\".</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal потребує дозволу \"Геодані\", щоб прикріпити дані про розташування, але наразі доступу немає. Будь ласка, перейдіть до налаштувань додатку, оберіть \"Дозволи\", та увімкніть \"Геодані\".</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal потребує дозволу \"Камера\", щоб фотографувати або знімати відео, але наразі доступу немає. Будь ласка, перейдіть до налаштувань додатку, оберіть \"Дозволи\", та увімкніть \"Камера\".</string>
+  <!--AttachmentUploadJob-->
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Помилка відтворення аудіо!</string>
   <!--BlockedContactsActivity-->
@@ -79,6 +80,9 @@
   <string name="CallScreen_Incoming_call">Вхідний виклик</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Помилка збереження зображення</string>
+  <!--CameraXFragment-->
+  <!--CameraContacts-->
+  <string name="CameraContacts__menu_search">Пошук</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Вилучити</string>
   <string name="ClearProfileActivity_remove_profile_photo">Видалити фото профіля?</string>
@@ -142,7 +146,6 @@
   <string name="ConversationActivity_transport_insecure_mms">Незахищене MMS</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Давай перейдемо у Signal %1$s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">Давай використовувати це для чату: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Помилка при виході з групи</string>
   <string name="ConversationActivity_specify_recipient">Будь ласка, виберіть контакт</string>
   <string name="ConversationActivity_unblock_this_contact_question">Розблокувати цей контакт?</string>
@@ -256,6 +259,8 @@
   <string name="ConversationListItem_key_exchange_message">Повідомлення обміну ключам</string>
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Архівовані розмови (%d)</string>
+  <!--ConversationTitleView-->
+  <string name="ConversationTitleView_verified">Завірено</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity_your_profile_info">Інформація щодо вашого профілю</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Не вдалося встановити фото профілю</string>
@@ -428,6 +433,8 @@
   <string name="MediaSendActivity_add_a_caption">Добавити заголовок...</string>
   <string name="MediaSendActivity_camera_unavailable">Камера не доступна</string>
   <string name="MediaSendActivity_message_to_s">Відправити до %s</string>
+  <string name="MediaSendActivity_message">Повідомлення</string>
+  <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal потребує дозволів \"Контакти\", щоб показати контакти.</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Всі медіа-файли
 Всі зображення</string>
@@ -482,6 +489,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Значок Signal</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Ввести фразу-пароль</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Хибна фраза-пароль!</string>
+  <!--PlacePickerActivity-->
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Встановлена версія сервісів Google Play працює некоректно. Перевстановіть сервіси Google Play та спробуйте знову.</string>
   <!--RatingManager-->
@@ -552,6 +560,8 @@
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Введіть Ваш номер телефону щоб почати</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Ви отримаєте код підтвердження. Можливе списання з оператором</string>
   <string name="RegistrationActivity_call">Виклик</string>
+  <!--RevealableMessageView-->
+  <string name="RevealableMessageView_photo">Світлини</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Не вдалось змінити зображення</string>
   <!--Search-->
@@ -582,6 +592,18 @@
   <string name="SmsMessageRecord_secure_session_reset">Ви скинули безпечний сеанс.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s скидає безпечний сеанс.</string>
   <string name="SmsMessageRecord_duplicate_message">Дублікат повідомлення.</string>
+  <!--StickerManagementActivity-->
+  <string name="StickerManagementActivity_stickers">Наліпки</string>
+  <!--StickerManagementAdapter-->
+  <string name="StickerManagementAdapter_installed_stickers">Встановлені наліпки</string>
+  <string name="StickerManagementAdapter_no_stickers_installed">Встановлені наліпки відсутні</string>
+  <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Наліпки від вхідних дзвінків з\'являться тут</string>
+  <string name="StickerManagementAdapter_unknown">Невідомо</string>
+  <!--StickerPackPreviewActivity-->
+  <string name="StickerPackPreviewActivity_unknown">Невідомо</string>
+  <string name="StickerPackPreviewActivity_install">Встановити</string>
+  <string name="StickerPackPreviewActivity_remove">Вилучити</string>
+  <string name="StickerPackPreviewActivity_stickers">Наліпки</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Групу оновлено</string>
   <string name="ThreadRecord_left_the_group">Покинути групу</string>
@@ -666,8 +688,6 @@
   <string name="MessageNotifier_reply">Відповісти</string>
   <string name="MessageNotifier_signal_message">Повідомлення Signal</string>
   <string name="MessageNotifier_unsecured_sms">Незахищене SMS</string>
-  <string name="MessageNotifier_pending_signal_messages">Повідомлення в очікуванні</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">У вас є повідомлення в очікуванні, торкніться щоб отримати їх</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Контакт</string>
   <!--Notification Channels-->
@@ -709,6 +729,11 @@
   <string name="WebRtcCallScreen_end_call">Завершити виклик</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Торкніться, щоб почати трансляцію відео</string>
+  <!--WebRtcCallControls Content Descriptions-->
+  <string name="WebRtcCallControls_contact_photo_description">Фото контакту</string>
+  <string name="WebRtcCallControls_speaker_button_description">Динамік</string>
+  <string name="WebRtcCallControls_mute_button_description">Без сповіщень</string>
+  <string name="WebRtcCallControls_answer_call_description">Відповісти на виклик</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__audio">Аудіо</string>
   <string name="attachment_type_selector__audio_description">Аудіо</string>
@@ -731,6 +756,7 @@
   <string name="change_passphrase_activity__repeat_new_passphrase">Повторіть нову фразу-пароль</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Ввести ім\'я або номер</string>
+  <!--contact_filter_toolbar-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Контактів не знайдено.</string>
   <string name="contact_selection_group_activity__finding_contacts">Завантаження контактів...</string>
@@ -928,8 +954,6 @@
   <string name="recipient_preferences__ringtone">Мелодія дзвінка</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Виклик Signal </string>
-  <string name="redphone_call_controls__mute">Без звуку</string>
-  <string name="redphone_call_controls__flip_camera_rear">Перемикання камер</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">НОМЕР ТЕЛЕФОНУ</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">З Signal дуже легко спілкуватися маючи лише телефонну книги. Друзі та контакти з якими ви вже спілкуєтесь телефоном зможуть легко початки користуватись Signal.\n\nПід час реєстрації передається деяка інформація на сервер але вона не зберігається.</string>

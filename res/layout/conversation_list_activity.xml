@@ -7,7 +7,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-    <android.support.v7.widget.Toolbar
+    <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_alignParentTop="true"
             android:layout_width="match_parent"
@@ -24,6 +24,7 @@
                 android:layout_height="match_parent">
 
             <ImageView android:id="@+id/toolbar_icon"
+                       android:contentDescription="@string/conversation_list_settings_shortcut"
                        android:layout_width="36dp"
                        android:layout_height="36dp"
                        android:layout_marginStart="8dp"
@@ -50,7 +51,7 @@
 
         </RelativeLayout>
 
-    </android.support.v7.widget.Toolbar>
+    </androidx.appcompat.widget.Toolbar>
 
     <FrameLayout android:id="@+id/fragment_container"
                  android:layout_below="@id/toolbar"

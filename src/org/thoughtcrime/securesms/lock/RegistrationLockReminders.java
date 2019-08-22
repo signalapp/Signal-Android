@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.lock;
 
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 

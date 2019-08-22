@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.jobs;
 
 import android.app.Activity;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.telephony.SmsManager;
 
 import org.thoughtcrime.securesms.jobmanager.Data;
@@ -104,7 +104,7 @@ public class SmsSentJob extends BaseJob {
           Log.w(TAG, "Service connectivity problem, requeuing...");
           ApplicationContext.getInstance(context)
                             .getJobManager()
-                            .add(new SmsSendJob(context, messageId, record.getIndividualRecipient().getAddress().serialize(), runAttempt + 1));
+                            .add(new SmsSendJob(context, messageId, record.getIndividualRecipient().getAddress(), runAttempt + 1));
           break;
         default:
           database.markAsSentFailed(messageId);

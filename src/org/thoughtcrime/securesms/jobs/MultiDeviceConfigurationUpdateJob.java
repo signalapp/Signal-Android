@@ -1,10 +1,10 @@
 package org.thoughtcrime.securesms.jobs;
 
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
-import org.thoughtcrime.securesms.dependencies.InjectableType;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
@@ -19,9 +19,7 @@ import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException
 
 import java.io.IOException;
 
-import javax.inject.Inject;
-
-public class MultiDeviceConfigurationUpdateJob extends BaseJob implements InjectableType {
+public class MultiDeviceConfigurationUpdateJob extends BaseJob {
 
   public static final String KEY = "MultiDeviceConfigurationUpdateJob";
 
@@ -31,8 +29,6 @@ public class MultiDeviceConfigurationUpdateJob extends BaseJob implements Inject
   private static final String KEY_TYPING_INDICATORS_ENABLED                = "typing_indicators_enabled";
   private static final String KEY_UNIDENTIFIED_DELIVERY_INDICATORS_ENABLED = "unidentified_delivery_indicators_enabled";
   private static final String KEY_LINK_PREVIEWS_ENABLED                    = "link_previews_enabled";
-
-  @Inject SignalServiceMessageSender messageSender;
 
   private boolean readReceiptsEnabled;
   private boolean typingIndicatorsEnabled;
@@ -91,6 +87,7 @@ public class MultiDeviceConfigurationUpdateJob extends BaseJob implements Inject
       return;
     }
 
+    SignalServiceMessageSender messageSender = ApplicationDependencies.getSignalServiceMessageSender();
     messageSender.sendMessage(SignalServiceSyncMessage.forConfiguration(new ConfigurationMessage(Optional.of(readReceiptsEnabled),
                                                                                                  Optional.of(unidentifiedDeliveryIndicatorsEnabled),
                                                                                                  Optional.of(typingIndicatorsEnabled),

@@ -3,8 +3,8 @@ package org.thoughtcrime.securesms.sms;
 import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.telephony.SmsMessage;
 
 import org.thoughtcrime.securesms.database.Address;
@@ -269,6 +269,7 @@ public class IncomingTextMessage implements Parcelable {
     out.writeParcelable(groupId, flags);
     out.writeInt(push ? 1 : 0);
     out.writeInt(subscriptionId);
+    out.writeLong(expiresInMillis);
     out.writeInt(unidentified ? 1 : 0);
   }
 }

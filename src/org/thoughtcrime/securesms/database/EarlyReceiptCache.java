@@ -4,6 +4,7 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.LRUCache;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class EarlyReceiptCache {
@@ -14,7 +15,7 @@ public class EarlyReceiptCache {
 
   public synchronized void increment(long timestamp, Address origin) {
     Log.i(TAG, this+"");
-    Log.i(TAG, String.format("Early receipt: (%d, %s)", timestamp, origin.serialize()));
+    Log.i(TAG, String.format(Locale.US, "Early receipt: (%d, %s)", timestamp, origin.serialize()));
 
     Map<Address, Long> receipts = cache.get(timestamp);
 
@@ -37,7 +38,7 @@ public class EarlyReceiptCache {
     Map<Address, Long> receipts = cache.remove(timestamp);
 
     Log.i(TAG, this+"");
-    Log.i(TAG, String.format("Checking early receipts (%d): %d", timestamp, receipts == null ? 0 : receipts.size()));
+    Log.i(TAG, String.format(Locale.US, "Checking early receipts (%d): %d", timestamp, receipts == null ? 0 : receipts.size()));
 
     return receipts != null ? receipts : new HashMap<>();
   }

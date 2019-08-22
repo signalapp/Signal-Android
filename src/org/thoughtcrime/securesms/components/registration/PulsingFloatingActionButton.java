@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.components.registration;
 
 import android.animation.Animator;
 import android.content.Context;
-import android.support.design.widget.FloatingActionButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import android.util.AttributeSet;
 
 import org.thoughtcrime.securesms.animation.AnimationCompleteListener;

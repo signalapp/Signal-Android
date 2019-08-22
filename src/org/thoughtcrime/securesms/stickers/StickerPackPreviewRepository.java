@@ -2,18 +2,17 @@ package org.thoughtcrime.securesms.stickers;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.support.annotation.NonNull;
-import android.support.annotation.WorkerThread;
+import androidx.annotation.NonNull;
+import androidx.annotation.WorkerThread;
 
 import com.annimon.stream.Stream;
 import com.google.android.gms.common.util.Hex;
 
-import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.StickerDatabase;
 import org.thoughtcrime.securesms.database.model.StickerPackRecord;
 import org.thoughtcrime.securesms.database.model.StickerRecord;
-import org.thoughtcrime.securesms.dependencies.InjectableType;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.whispersystems.libsignal.InvalidMessageException;
@@ -25,18 +24,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.inject.Inject;
-
-public final class StickerPackPreviewRepository implements InjectableType {
+public final class StickerPackPreviewRepository {
 
   private static final String TAG = Log.tag(StickerPackPreviewRepository.class);
 
-  private final StickerDatabase stickerDatabase;
-
-  @Inject SignalServiceMessageReceiver receiver;
+  private final StickerDatabase              stickerDatabase;
+  private final SignalServiceMessageReceiver receiver;
 
   public StickerPackPreviewRepository(@NonNull Context context) {
-    ApplicationContext.getInstance(context).injectDependencies(this);
+    this.receiver        = ApplicationDependencies.getSignalServiceMessageReceiver();
     this.stickerDatabase = DatabaseFactory.getStickerDatabase(context);
   }
 

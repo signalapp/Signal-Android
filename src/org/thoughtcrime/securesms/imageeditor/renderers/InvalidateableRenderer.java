@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.imageeditor.renderers;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.imageeditor.Renderer;
 import org.thoughtcrime.securesms.imageeditor.RendererContext;

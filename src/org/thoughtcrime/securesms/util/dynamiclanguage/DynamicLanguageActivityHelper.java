@@ -1,9 +1,9 @@
 package org.thoughtcrime.securesms.util.dynamiclanguage;
 
 import android.app.Activity;
-import android.content.Intent;
-import android.support.annotation.MainThread;
-import android.support.v4.os.ConfigurationCompat;
+
+import androidx.annotation.MainThread;
+import androidx.core.os.ConfigurationCompat;
 
 import org.thoughtcrime.securesms.logging.Log;
 

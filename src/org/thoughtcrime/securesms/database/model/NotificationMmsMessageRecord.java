@@ -17,7 +17,7 @@
 package org.thoughtcrime.securesms.database.model;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.text.SpannableString;
 
 import org.thoughtcrime.securesms.R;
@@ -57,7 +57,7 @@ public class NotificationMmsMessageRecord extends MmsMessageRecord {
     super(id, "", conversationRecipient, individualRecipient, recipientDeviceId,
           dateSent, dateReceived, threadId, Status.STATUS_NONE, deliveryReceiptCount, mailbox,
           new LinkedList<IdentityKeyMismatch>(), new LinkedList<NetworkFailure>(), subscriptionId,
-          0, 0, slideDeck, readReceiptCount, null, Collections.emptyList(), Collections.emptyList(), false);
+          0, 0, false, slideDeck, readReceiptCount, null, Collections.emptyList(), Collections.emptyList(), false);
 
     this.contentLocation = contentLocation;
     this.messageSize     = messageSize;

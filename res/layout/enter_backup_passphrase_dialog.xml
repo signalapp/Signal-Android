@@ -4,11 +4,11 @@
              android:layout_height="wrap_content"
              android:padding="16dp">
 
-    <android.support.design.widget.TextInputLayout
+    <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-        <android.support.design.widget.TextInputEditText
+        <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/restore_passphrase_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -16,5 +16,5 @@
                 android:imeOptions="actionDone"
                 android:inputType="number" />
 
-    </android.support.design.widget.TextInputLayout>
+    </com.google.android.material.textfield.TextInputLayout>
 </FrameLayout>

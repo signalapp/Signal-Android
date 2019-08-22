@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.glide;
 
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.DataSource;
@@ -10,6 +10,7 @@ import com.bumptech.glide.load.data.DataFetcher;
 
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -30,6 +31,8 @@ class ContactPhotoFetcher implements DataFetcher<InputStream> {
     try {
       inputStream = contactPhoto.openInputStream(context);
       callback.onDataReady(inputStream);
+    } catch (FileNotFoundException e) {
+      callback.onDataReady(null);
     } catch (IOException e) {
       callback.onLoadFailed(e);
     }

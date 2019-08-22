@@ -22,13 +22,14 @@ import android.graphics.Typeface;
 import android.graphics.drawable.RippleDrawable;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.text.style.StyleSpan;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.components.AlertView;
 import org.thoughtcrime.securesms.components.AvatarImageView;
@@ -240,7 +241,11 @@ public class ConversationListItem extends RelativeLayout
 
   @Override
   public void unbind() {
-    if (this.recipient != null) this.recipient.removeListener(this);
+    if (this.recipient != null) {
+      this.recipient.removeListener(this);
+      this.recipient = null;
+      contactPhotoImage.setAvatar(glideRequests, null, true);
+    }
   }
 
   private void setBatchState(boolean batch) {
@@ -336,9 +341,11 @@ public class ConversationListItem extends RelativeLayout
   @Override
   public void onModified(final Recipient recipient) {
     Util.runOnMain(() -> {
-      fromView.setText(recipient, unreadCount == 0);
-      contactPhotoImage.setAvatar(glideRequests, recipient, true);
-      setRippleColor(recipient);
+      if (this.recipient == recipient) {
+        fromView.setText(recipient, unreadCount == 0);
+        contactPhotoImage.setAvatar(glideRequests, recipient, true);
+        setRippleColor(recipient);
+      }
     });
   }
 

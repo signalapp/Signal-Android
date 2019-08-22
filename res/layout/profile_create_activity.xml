@@ -17,7 +17,7 @@
             android:layout_height="0dp"
             android:layout_weight="1">
 
-            <android.support.constraint.ConstraintLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -67,6 +67,7 @@
 
                 <ImageView
                     android:id="@+id/avatar"
+                    android:contentDescription="@string/CreateProfileActivity_set_avatar_description"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     app:layout_constraintBottom_toBottomOf="@+id/avatar_background"
@@ -134,7 +135,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/name"
                     app:layout_constraintVertical_bias="1.0" />
 
-            </android.support.constraint.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </ScrollView>
 
