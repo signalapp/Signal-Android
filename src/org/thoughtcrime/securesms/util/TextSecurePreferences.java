@@ -187,6 +187,8 @@ public class TextSecurePreferences {
 
   private static final String SEEN_CAMERA_FIRST_TOOLTIP = "pref_seen_camera_first_tooltip";
 
+  private static final String JOB_MANAGER_VERSION = "pref_job_manager_version";
+
   public static boolean isScreenLockEnabled(@NonNull Context context) {
     return getBooleanPreference(context, SCREEN_LOCK, false);
   }
@@ -1116,6 +1118,14 @@ public class TextSecurePreferences {
 
   public static boolean hasSeendCameraFirstTooltip(Context context) {
     return getBooleanPreference(context, SEEN_CAMERA_FIRST_TOOLTIP, false);
+  }
+
+  public static void setJobManagerVersion(Context context, int version) {
+    setIntegerPrefrence(context, JOB_MANAGER_VERSION, version);
+  }
+
+  public static int getJobManagerVersion(Context contex) {
+    return getIntegerPreference(contex, JOB_MANAGER_VERSION, 1);
   }
 
   public static void setBooleanPreference(Context context, String key, boolean value) {

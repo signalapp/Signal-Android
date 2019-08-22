@@ -40,6 +40,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencyProvider;
 import org.thoughtcrime.securesms.gcm.FcmJobService;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
+import org.thoughtcrime.securesms.jobmanager.JobMigrator;
 import org.thoughtcrime.securesms.jobmanager.impl.JsonDataSerializer;
 import org.thoughtcrime.securesms.jobs.CreateSignedPreKeyJob;
 import org.thoughtcrime.securesms.jobs.FastJobStorage;
@@ -222,6 +223,7 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
                                                                        .setConstraintFactories(JobManagerFactories.getConstraintFactories(this))
                                                                        .setConstraintObservers(JobManagerFactories.getConstraintObservers(this))
                                                                        .setJobStorage(new FastJobStorage(DatabaseFactory.getJobDatabase(this)))
+                                                                       .setJobMigrator(new JobMigrator(TextSecurePreferences.getJobManagerVersion(this), 1, JobManagerFactories.getJobMigrations()))
                                                                        .build());
   }
 

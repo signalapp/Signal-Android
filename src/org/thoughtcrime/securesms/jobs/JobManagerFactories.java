@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import org.thoughtcrime.securesms.jobmanager.Constraint;
 import org.thoughtcrime.securesms.jobmanager.ConstraintObserver;
 import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.JobMigration;
 import org.thoughtcrime.securesms.jobmanager.impl.CellServiceConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.CellServiceConstraintObserver;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
@@ -18,6 +19,7 @@ import org.thoughtcrime.securesms.migrations.LegacyMigrationJob;
 import org.thoughtcrime.securesms.migrations.MigrationCompleteJob;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -101,5 +103,9 @@ public final class JobManagerFactories {
     return Arrays.asList(CellServiceConstraintObserver.getInstance(application),
                          new NetworkConstraintObserver(application),
                          new SqlCipherMigrationConstraintObserver());
+  }
+
+  public static List<JobMigration> getJobMigrations() {
+    return Collections.emptyList();
   }
 }

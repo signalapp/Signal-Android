@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Intent;
 import android.os.Build;
 import androidx.annotation.NonNull;
+import androidx.annotation.WorkerThread;
 
 import org.thoughtcrime.securesms.jobmanager.impl.DefaultExecutorFactory;
 import org.thoughtcrime.securesms.jobmanager.impl.JsonDataSerializer;
@@ -11,6 +12,7 @@ import org.thoughtcrime.securesms.jobmanager.workmanager.WorkManagerMigrator;
 import org.thoughtcrime.securesms.jobmanager.persistence.JobStorage;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.Debouncer;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -57,6 +59,12 @@ public class JobManager implements ConstraintObserver.Notifier {
         Log.i(TAG, "Detected an old WorkManager database. Migrating.");
         WorkManagerMigrator.migrate(application, configuration.getJobStorage(), configuration.getDataSerializer());
       }
+
+      JobStorage jobStorage = configuration.getJobStorage();
+      jobStorage.init();
+
+      int latestVersion = configuration.getJobMigrator().migrate(jobStorage, configuration.getDataSerializer());
+      TextSecurePreferences.setJobManagerVersion(application, latestVersion);
 
       jobController.init();
 
@@ -214,6 +222,7 @@ public class JobManager implements ConstraintObserver.Notifier {
     private final List<ConstraintObserver> constraintObservers;
     private final Data.Serializer          dataSerializer;
     private final JobStorage               jobStorage;
+    private final JobMigrator              jobMigrator;
 
     private Configuration(int jobThreadCount,
                           @NonNull ExecutorFactory executorFactory,
@@ -221,7 +230,8 @@ public class JobManager implements ConstraintObserver.Notifier {
                           @NonNull ConstraintInstantiator constraintInstantiator,
                           @NonNull List<ConstraintObserver> constraintObservers,
                           @NonNull Data.Serializer dataSerializer,
-                          @NonNull JobStorage jobStorage)
+                          @NonNull JobStorage jobStorage,
+                          @NonNull JobMigrator jobMigrator)
     {
       this.executorFactory        = executorFactory;
       this.jobThreadCount         = jobThreadCount;
@@ -230,6 +240,7 @@ public class JobManager implements ConstraintObserver.Notifier {
       this.constraintObservers    = constraintObservers;
       this.dataSerializer         = dataSerializer;
       this.jobStorage             = jobStorage;
+      this.jobMigrator            = jobMigrator;
     }
 
     int getJobThreadCount() {
@@ -261,6 +272,10 @@ public class JobManager implements ConstraintObserver.Notifier {
       return jobStorage;
     }
 
+    @NonNull JobMigrator getJobMigrator() {
+      return jobMigrator;
+    }
+
     public static class Builder {
 
       private ExecutorFactory                 executorFactory     = new DefaultExecutorFactory();
@@ -270,6 +285,7 @@ public class JobManager implements ConstraintObserver.Notifier {
       private List<ConstraintObserver>        constraintObservers = new ArrayList<>();
       private Data.Serializer                 dataSerializer      = new JsonDataSerializer();
       private JobStorage                      jobStorage          = null;
+      private JobMigrator                     jobMigrator         = null;
 
       public @NonNull Builder setJobThreadCount(int jobThreadCount) {
         this.jobThreadCount = jobThreadCount;
@@ -306,6 +322,11 @@ public class JobManager implements ConstraintObserver.Notifier {
         return this;
       }
 
+      public @NonNull Builder setJobMigrator(@NonNull JobMigrator jobMigrator) {
+        this.jobMigrator = jobMigrator;
+        return this;
+      }
+
       public @NonNull Configuration build() {
         return new Configuration(jobThreadCount,
                                  executorFactory,
@@ -313,7 +334,8 @@ public class JobManager implements ConstraintObserver.Notifier {
                                  new ConstraintInstantiator(constraintFactories),
                                  new ArrayList<>(constraintObservers),
                                  dataSerializer,
-                                 jobStorage);
+                                 jobStorage,
+                                 jobMigrator);
       }
     }
   }

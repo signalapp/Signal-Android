@@ -63,7 +63,6 @@ class JobController {
 
   @WorkerThread
   synchronized void init() {
-    jobStorage.init();
     jobStorage.updateAllJobsToBePending();
     notifyAll();
   }

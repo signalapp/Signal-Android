@@ -213,6 +213,23 @@ public class FastJobStorage implements JobStorage {
   }
 
   @Override
+  public void updateJobs(@NonNull List<JobSpec> jobSpecs) {
+    jobDatabase.updateJobs(jobSpecs);
+
+    Map<String, JobSpec>  updates = Stream.of(jobSpecs).collect(Collectors.toMap(JobSpec::getId));
+    ListIterator<JobSpec> iter    = jobs.listIterator();
+
+    while (iter.hasNext()) {
+      JobSpec existing = iter.next();
+      JobSpec update   = updates.get(existing.getId());
+
+      if (update != null) {
+        iter.set(update);
+      }
+    }
+  }
+
+  @Override
   public synchronized void deleteJob(@NonNull String jobId) {
     deleteJobs(Collections.singletonList(jobId));
   }

@@ -102,6 +102,43 @@ public class FastJobStorageTest {
   }
 
   @Test
+  public void updateJobs_writesToDatabase() {
+    JobDatabase    database = noopDatabase();
+    FastJobStorage subject  = new FastJobStorage(database);
+    List<JobSpec>  jobs     = Collections.emptyList();
+
+    subject.updateJobs(jobs);
+
+    verify(database).updateJobs(jobs);
+  }
+
+  @Test
+  public void updateJobs_updatesAllFields() {
+
+    FullSpec fullSpec1 = new FullSpec(new JobSpec("1", "f1", null, 1, 1, 1, 1, 1, 1, 1, EMPTY_DATA, false),
+                                      Collections.emptyList(),
+                                      Collections.emptyList());
+    FullSpec fullSpec2 = new FullSpec(new JobSpec("2", "f2", null, 1, 1, 1, 1, 1, 1, 1, EMPTY_DATA, false),
+                                      Collections.emptyList(),
+                                      Collections.emptyList());
+    FullSpec fullSpec3 = new FullSpec(new JobSpec("3", "f3", null, 1, 1, 1, 1, 1, 1, 1, EMPTY_DATA, false),
+                                      Collections.emptyList(),
+                                      Collections.emptyList());
+
+    FastJobStorage subject = new FastJobStorage(fixedDataDatabase(Arrays.asList(fullSpec1, fullSpec2, fullSpec3)));
+
+    JobSpec update1 = new JobSpec("1", "g1", "q1", 2, 2, 2, 2, 2, 2, 2, "abc", true);
+    JobSpec update2 = new JobSpec("2", "g2", "q2", 3, 3, 3, 3, 3, 3, 3, "def", true);
+
+    subject.init();
+    subject.updateJobs(Arrays.asList(update1, update2));
+
+    assertEquals(update1, subject.getJobSpec("1"));
+    assertEquals(update2, subject.getJobSpec("2"));
+    assertEquals(fullSpec3.getJobSpec(), subject.getJobSpec("3"));
+  }
+
+  @Test
   public void updateJobRunningState_writesToDatabase() {
     JobDatabase    database = noopDatabase();
     FastJobStorage subject  = new FastJobStorage(database);
