@@ -1206,7 +1206,36 @@ public class ConversationFragment extends Fragment
 
     @Override
     public int getSwipeDirs(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
-      return super.getSwipeDirs(recyclerView, viewHolder);
+      if (viewHolder == null || !(viewHolder.itemView instanceof  ConversationItem)) {
+        return 0;
+      }
+
+      MessageRecord messageRecord = ((ConversationItem) viewHolder.itemView).getMessageRecord();
+
+      if (messageRecord == null) {
+        return 0;
+      }
+
+      boolean actionMessage = false;
+
+      if (messageRecord.isGroupAction() || messageRecord.isCallLog() ||
+              messageRecord.isJoined() || messageRecord.isExpirationTimerUpdate() ||
+              messageRecord.isEndSession() || messageRecord.isIdentityUpdate() ||
+              messageRecord.isIdentityVerified() || messageRecord.isIdentityDefault())
+      {
+        actionMessage = true;
+      }
+
+      boolean swipeable = !actionMessage &&
+              !messageRecord.isPending() &&
+              !messageRecord.isFailed()  &&
+              messageRecord.isSecure();
+
+      if (swipeable) {
+        return super.getSwipeDirs(recyclerView, viewHolder);
+      } else {
+        return 0;
+      }
     }
 
     @Override
