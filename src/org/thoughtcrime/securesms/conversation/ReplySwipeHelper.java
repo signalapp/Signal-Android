@@ -5,10 +5,12 @@ import android.animation.ValueAnimator;
 import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Rect;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.view.ViewCompat;
-import android.support.v7.widget.RecyclerView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.view.ViewCompat;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
@@ -169,8 +171,8 @@ public class ReplySwipeHelper extends RecyclerView.ItemDecoration implements Rec
             this.mRecyclerView = recyclerView;
             if (recyclerView != null) {
                 Resources resources = recyclerView.getResources();
-                this.mSwipeEscapeVelocity = resources.getDimension(android.support.design.R.dimen.item_touch_helper_swipe_escape_velocity);
-                this.mMaxSwipeVelocity = resources.getDimension(android.support.design.R.dimen.item_touch_helper_swipe_escape_max_velocity);
+                this.mSwipeEscapeVelocity = resources.getDimension(com.google.android.material.R.dimen.item_touch_helper_swipe_escape_velocity);
+                this.mMaxSwipeVelocity = resources.getDimension(com.google.android.material.R.dimen.item_touch_helper_swipe_escape_max_velocity);
                 this.setupCallbacks();
             }
 
