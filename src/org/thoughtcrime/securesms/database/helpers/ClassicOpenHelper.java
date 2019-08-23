@@ -20,7 +20,6 @@ import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
 import com.google.i18n.phonenumbers.ShortNumberInfo;
 
-import org.thoughtcrime.securesms.DatabaseUpgradeActivity;
 import org.thoughtcrime.securesms.crypto.AttachmentSecret;
 import org.thoughtcrime.securesms.crypto.ClassicDecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
@@ -37,6 +36,7 @@ import org.thoughtcrime.securesms.database.PushDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.migrations.LegacyMigrationJob;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.util.Base64;
@@ -146,12 +146,12 @@ public class ClassicOpenHelper extends SQLiteOpenHelper {
   }
 
   public void onApplicationLevelUpgrade(Context context, MasterSecret masterSecret, int fromVersion,
-                                        DatabaseUpgradeActivity.DatabaseUpgradeListener listener)
+                                        LegacyMigrationJob.DatabaseUpgradeListener listener)
   {
     SQLiteDatabase db = getWritableDatabase();
     db.beginTransaction();
 
-    if (fromVersion < DatabaseUpgradeActivity.NO_MORE_KEY_EXCHANGE_PREFIX_VERSION) {
+    if (fromVersion < LegacyMigrationJob.NO_MORE_KEY_EXCHANGE_PREFIX_VERSION) {
       String KEY_EXCHANGE             = "?TextSecureKeyExchange";
       String PROCESSED_KEY_EXCHANGE   = "?TextSecureKeyExchangd";
       String STALE_KEY_EXCHANGE       = "?TextSecureKeyExchangs";
@@ -293,7 +293,7 @@ public class ClassicOpenHelper extends SQLiteOpenHelper {
         threadCursor.close();
     }
 
-    if (fromVersion < DatabaseUpgradeActivity.MMS_BODY_VERSION) {
+    if (fromVersion < LegacyMigrationJob.MMS_BODY_VERSION) {
       Log.i("DatabaseFactory", "Update MMS bodies...");
       MasterCipher masterCipher = new MasterCipher(masterSecret);
       Cursor mmsCursor          = db.query("mms", new String[] {"_id"},
@@ -357,7 +357,7 @@ public class ClassicOpenHelper extends SQLiteOpenHelper {
       }
     }
 
-    if (fromVersion < DatabaseUpgradeActivity.TOFU_IDENTITIES_VERSION) {
+    if (fromVersion < LegacyMigrationJob.TOFU_IDENTITIES_VERSION) {
       File sessionDirectory = new File(context.getFilesDir() + File.separator + "sessions");
 
       if (sessionDirectory.exists() && sessionDirectory.isDirectory()) {
@@ -393,7 +393,7 @@ public class ClassicOpenHelper extends SQLiteOpenHelper {
       }
     }
 
-    if (fromVersion < DatabaseUpgradeActivity.ASYMMETRIC_MASTER_SECRET_FIX_VERSION) {
+    if (fromVersion < LegacyMigrationJob.ASYMMETRIC_MASTER_SECRET_FIX_VERSION) {
       if (!MasterSecretUtil.hasAsymmericMasterSecret(context)) {
         MasterSecretUtil.generateAsymmetricMasterSecret(context, masterSecret);
 

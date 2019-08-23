@@ -74,7 +74,9 @@
   <string name="CallScreen_Incoming_call">Входящо обаждане</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Неуспешно запазване на изображението.</string>
+  <!--CameraXFragment-->
   <!--CameraContacts-->
+  <string name="CameraContacts__menu_search">Търсене</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Премахни</string>
   <string name="ClearProfileActivity_remove_profile_photo">Премахване на снимката от профила?</string>
@@ -731,6 +733,11 @@
   <string name="WebRtcCallScreen_end_call">Прекрати обаждането</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Натиснете, за да активирате видео</string>
+  <!--WebRtcCallControls Content Descriptions-->
+  <string name="WebRtcCallControls_contact_photo_description">Снимка на контакта</string>
+  <string name="WebRtcCallControls_speaker_button_description">Говорител</string>
+  <string name="WebRtcCallControls_mute_button_description">Заглуши</string>
+  <string name="WebRtcCallControls_answer_call_description">Приеми обаждането</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__audio">Аудио</string>
   <string name="attachment_type_selector__audio_description">Аудио</string>
@@ -753,6 +760,7 @@
   <string name="change_passphrase_activity__repeat_new_passphrase">Повторете новата парола</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Въведете име или номер</string>
+  <!--contact_filter_toolbar-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Няма контакти.</string>
   <string name="contact_selection_group_activity__finding_contacts">Зареждане на контакти...</string>
@@ -941,8 +949,6 @@
   <string name="recipient_preferences__ringtone">Мелодия</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Обаждане през Signal</string>
-  <string name="redphone_call_controls__mute">Заглуши</string>
-  <string name="redphone_call_controls__flip_camera_rear">Смяна на камерите</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">ТЕЛЕФОНЕН НОМЕР</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal улеснява комуникирането като използва вече съществущ телефонен номер и адресна книга. Прителите и контакти, които вече знаят как да се свържат по телефона ще могат да се свържат лесно и през Signal.\n\nРегистрацията изпраща информация за контактите до сървъра. Тази информация не се пази.</string>

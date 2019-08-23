@@ -71,7 +71,9 @@
   <string name="CallScreen_Incoming_call">수신통화</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">이미지 저장 실패</string>
+  <!--CameraXFragment-->
   <!--CameraContacts-->
+  <string name="CameraContacts__menu_search">검색</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">삭제</string>
   <string name="ClearProfileActivity_remove_profile_photo">프로필 사진을 삭제할까요?</string>
@@ -704,6 +706,11 @@
   <string name="WebRtcCallScreen_end_call">통화 종료</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">비디오를 사용하려면 탭하세요</string>
+  <!--WebRtcCallControls Content Descriptions-->
+  <string name="WebRtcCallControls_contact_photo_description">연락처 사진</string>
+  <string name="WebRtcCallControls_speaker_button_description">스피커</string>
+  <string name="WebRtcCallControls_mute_button_description">음소거</string>
+  <string name="WebRtcCallControls_answer_call_description">통화 수락</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__audio">오디오</string>
   <string name="attachment_type_selector__audio_description">오디오</string>
@@ -726,6 +733,7 @@
   <string name="change_passphrase_activity__repeat_new_passphrase">새 암호 다시 입력</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">이름 또는 전화번호 입력</string>
+  <!--contact_filter_toolbar-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">연락처 없음</string>
   <string name="contact_selection_group_activity__finding_contacts">주소록 로드 중…</string>
@@ -908,8 +916,6 @@
   <string name="recipient_preferences__ringtone">알림 벨소리</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal 통화</string>
-  <string name="redphone_call_controls__mute">음소거</string>
-  <string name="redphone_call_controls__flip_camera_rear">카메라 전환</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">전화번호</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal은 주소록 및 전화번호를 통해 대화를 쉽게 하도록 만들어졌습니다. 휴대전화를 통해 연락을 주고 받는 친구와 연락처는 Signal에서 자연스럽게 대화할 수 있습니다.\n\n일부 연락처 정보가 서버에 전송되나, 서버에 저장되지는 않습니다.</string>

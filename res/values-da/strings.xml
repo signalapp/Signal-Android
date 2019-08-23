@@ -75,6 +75,7 @@
   <string name="CallScreen_Incoming_call">Indgående opkald</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Fejl ved forsøg på at gemme billede</string>
+  <!--CameraXFragment-->
   <!--CameraContacts-->
   <string name="CameraContacts_recent_contacts">Seneste kontakter</string>
   <string name="CameraContacts_signal_contacts">Signal kontakter</string>
@@ -85,6 +86,7 @@
   <string name="CameraContacts_you_can_only_use_the_camera_button">Du kan kun bruge kameraknappen, til at sende billeder til Signal kontakter</string>
   <string name="CameraContacts_cant_find_who_youre_looking_for">Kan du ikke finde den du leder efter?</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">Inviter en kontakt til at bruge Signal</string>
+  <string name="CameraContacts__menu_search">Søg</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Fjern</string>
   <string name="ClearProfileActivity_remove_profile_photo">Fjern profilbillede?</string>
@@ -427,6 +429,7 @@
     <item quantity="one">Du kan ikke dele flere end %d fil.</item>
     <item quantity="other">Du kan ikke dele flere end %d filer</item>
   </plurals>
+  <string name="MediaSendActivity_select_recipients_description">Vælg modtagere</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Alle mediefiler</string>
   <!--MessageRecord-->
@@ -757,6 +760,11 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="WebRtcCallScreen_end_call">Læg på</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Tap for at aktivere video</string>
+  <!--WebRtcCallControls Content Descriptions-->
+  <string name="WebRtcCallControls_contact_photo_description">Kontaktbillede</string>
+  <string name="WebRtcCallControls_speaker_button_description">Højtaler</string>
+  <string name="WebRtcCallControls_mute_button_description">Udsæt</string>
+  <string name="WebRtcCallControls_answer_call_description">Svar opkald</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__audio">Lyd</string>
   <string name="attachment_type_selector__audio_description">Lyd</string>
@@ -779,6 +787,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="change_passphrase_activity__repeat_new_passphrase">Gentag nyt kodeord</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Søg navn eller nummer</string>
+  <!--contact_filter_toolbar-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Ingen kontakter</string>
   <string name="contact_selection_group_activity__finding_contacts">Indlæser kontakter...</string>
@@ -968,8 +977,6 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="recipient_preferences__ringtone">Ringetone</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal opkald</string>
-  <string name="redphone_call_controls__mute">Udsæt</string>
-  <string name="redphone_call_controls__flip_camera_rear">Skift kamera</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">TELEFONNUMMER</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal gør det nemt at kommunikere, ved at bruge dit eksisterende telefonnummer og kontaktbog. Venner og kontakter som allerede ved hvordan de kontakter dig via mobil, vil have nemt ved at komme i kontakt gennem Signal.\n\nRegistreringen overfører nogle kontaktinformationer til serveren. Disse bliver ikke gemt</string>

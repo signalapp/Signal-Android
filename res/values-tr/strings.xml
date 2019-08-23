@@ -62,6 +62,7 @@
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal, fotoğraf çekmek için Kamera iznine ihtiyaç duyar, fakat bu izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne girip \"İzinler\" kısmını seçin, ve \"Kamera\"yı etkinleştirin.</string>
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">İçerik yükleniyor...</string>
+  <string name="AttachmentUploadJob_compressing_video_start">Video sıkıştırılıyor...</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Ses oynatılırken hata!</string>
   <!--BlockedContactsActivity-->
@@ -75,6 +76,10 @@
   <string name="CallScreen_Incoming_call">Gelen arama</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Resim kaydedilemedi.</string>
+  <!--CameraXFragment-->
+  <string name="CameraXFragment_capture_description">Yakala</string>
+  <string name="CameraXFragment_change_camera_description">Kamerayı değiştir</string>
+  <string name="CameraXFragment_open_gallery_description">Galeriyi aç</string>
   <!--CameraContacts-->
   <string name="CameraContacts_recent_contacts">Son kişiler</string>
   <string name="CameraContacts_signal_contacts">Signal kişileri</string>
@@ -85,6 +90,7 @@
   <string name="CameraContacts_you_can_only_use_the_camera_button">Kamera tuşunu yalnızca Signal kişilerine fotoğraf göndermek için kullanabilirsiniz.</string>
   <string name="CameraContacts_cant_find_who_youre_looking_for">Aradığınız kişiyi bulamadınız mı?</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">Signal\'e katılması için bir kişiyi davet edin</string>
+  <string name="CameraContacts__menu_search">Ara</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Kaldır</string>
   <string name="ClearProfileActivity_remove_profile_photo">Profil fotoğrafı kaldırılsın mı?</string>
@@ -216,6 +222,7 @@
   <string name="ConversationFragment_deleting_messages">İletiler siliniyor...</string>
   <string name="ConversationFragment_quoted_message_not_found">İletinin aslı bulunamadı</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">İletinin aslı artık mevcut değil</string>
+  <string name="ConversationFragment_failed_to_open_message">İletiyi açma başarısız oldu.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Cihazınıza yüklü tarayıcı bulunmamaktadır.</string>
   <!--ConversationListFragment-->
@@ -254,6 +261,7 @@
   <string name="CreateProfileActivity_profile_name">Profil Adı</string>
   <string name="CreateProfileActivity_set_up_your_profile">Profilinizi ayarlayın</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal profilleri uçtan uca şifrelidir ve Signal hizmeti asla bu bilgiye erişime sahip olmaz.</string>
+  <string name="CreateProfileActivity_set_avatar_description">Avatar seçin</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Özelleştirilmiş \'%s\' kullanılıyor</string>
   <string name="CustomDefaultPreference_using_default">Varsayılan \'%s\' kullanılıyor</string>
@@ -411,6 +419,7 @@
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">MMS iletisi indirilirken hata, yeniden denemek için dokunun</string>
   <!--MediaPickerActivity-->
   <string name="MediaPickerActivity_send_to">%s alıcısına gönder</string>
+  <string name="MediaPickerActivity__menu_open_camera">Kamerayı aç</string>
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">Seçmek için dokunun</string>
   <!--MediaSendActivity-->
@@ -426,6 +435,7 @@
     <item quantity="one">%d öğeden daha fazlasını paylaşamazsınız.</item>
     <item quantity="other">%d öğeden daha fazlasını paylaşamazsınız.</item>
   </plurals>
+  <string name="MediaSendActivity_select_recipients_description">Alıcıları seçin</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Tüm içerik</string>
   <!--MessageRecord-->
@@ -756,6 +766,15 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="WebRtcCallScreen_end_call">Aramayı sonlandır</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Görüntünüzü etkinleştirmek için dokunun</string>
+  <!--WebRtcCallControls Content Descriptions-->
+  <string name="WebRtcCallControls_contact_photo_description">Kişi fotoğrafı</string>
+  <string name="WebRtcCallControls_speaker_button_description">Hoparlör</string>
+  <string name="WebRtcCallControls_bluetooth_button_description">Bluetooth</string>
+  <string name="WebRtcCallControls_mute_button_description">Sessiz</string>
+  <string name="WebRtcCallControls_your_camera_button_description">Kameranız</string>
+  <string name="WebRtcCallControls_switch_to_rear_camera_button_description">Arka kameraya geç</string>
+  <string name="WebRtcCallControls_answer_call_description">Aramayı yanıtla</string>
+  <string name="WebRtcCallControls_reject_call_description">Aramayı reddet</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__audio">Ses</string>
   <string name="attachment_type_selector__audio_description">Ses</string>
@@ -778,6 +797,10 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="change_passphrase_activity__repeat_new_passphrase">Yeni parolayı tekrarlayın</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">İsim veya numara girin</string>
+  <!--contact_filter_toolbar-->
+  <string name="contact_filter_toolbar__clear_entered_text_description">Yazılı metni temizle</string>
+  <string name="contact_filter_toolbar__show_keyboard_description">Klavyeyi göster</string>
+  <string name="contact_filter_toolbar__show_dial_pad_description">Arama tuşlarını göster</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Kişi yok.</string>
   <string name="contact_selection_group_activity__finding_contacts">Kişiler yükleniyor...</string>
@@ -967,8 +990,6 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="recipient_preferences__ringtone">Zil sesi</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal Araması</string>
-  <string name="redphone_call_controls__mute">Sessiz</string>
-  <string name="redphone_call_controls__flip_camera_rear">Kamerayı Değiştir</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">TELEFON NUMARASI</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal mevcut telefon numaranızı ve adres defterinizi kullanarak iletişim kurmayı kolaylaştırır. Zaten sizinle telefon aracılığı ile nasıl iletişim kuracağını bilen arkadaşlarınız ve kişileriniz,sizinle Signal kullanarak kolayca iletişime geçebilecek.\n\nKayıt işlemi, bazı iletişim bilgilerini sunucuya iletir. Bunlar saklanmaz.</string>
@@ -1186,6 +1207,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Seçilenleri arşivle</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Seçilenleri arşivden çıkar</string>
   <!--conversation_list-->
+  <string name="conversation_list_settings_shortcut">Ayarlar kısayolu</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Kişi Fotoğrafı</string>
   <string name="conversation_list_item_view__archived">Arşivlendi</string>
@@ -1193,6 +1215,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Yok. Bitti. Kalmadı.\nÇok boş hissediyorum be!</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Yeni sohbet</string>
+  <string name="conversation_list_fragment__open_camera_description">Kamerayı Aç</string>
   <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Gelen kutunuza bir şeyler gelmesini sağlayın. Bir arkadaşınıza ileti göndererek başlayın.</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Güvenli oturumu sıfırla</string>

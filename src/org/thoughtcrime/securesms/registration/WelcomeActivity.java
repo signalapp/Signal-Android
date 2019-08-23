@@ -48,7 +48,7 @@ public class WelcomeActivity extends BaseActionBarActivity {
           }
 
           startActivity(nextIntent);
-          overridePendingTransition(R.anim.slide_from_right, R.anim.fade_scale_out);
+          overridePendingTransition(R.anim.slide_from_end, R.anim.fade_scale_out);
           finish();
         })
         .execute();

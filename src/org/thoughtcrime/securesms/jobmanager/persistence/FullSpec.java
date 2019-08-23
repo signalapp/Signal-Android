@@ -15,7 +15,7 @@ public final class FullSpec {
                   @NonNull List<ConstraintSpec> constraintSpecs,
                   @NonNull List<DependencySpec> dependencySpecs)
   {
-    this.jobSpec = jobSpec;
+    this.jobSpec         = jobSpec;
     this.constraintSpecs = constraintSpecs;
     this.dependencySpecs = dependencySpecs;
   }

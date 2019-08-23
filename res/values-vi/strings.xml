@@ -59,6 +59,7 @@
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal cần quyền truy cập Máy ảnh để chụp ảnh, nhưng đã bị từ chối vĩnh viễn. Vui lòng mở cài đặt ứng dụng, chọn \"Quyền\" và bật \"Máy ảnh\".</string>
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">Đang tải tệp lên...</string>
+  <string name="AttachmentUploadJob_compressing_video_start">Nén video...</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Lỗi chạy tập tin âm thanh!</string>
   <!--BlockedContactsActivity-->
@@ -72,6 +73,10 @@
   <string name="CallScreen_Incoming_call">Cuộc gọi đến</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Không thể lưu ảnh.</string>
+  <!--CameraXFragment-->
+  <string name="CameraXFragment_capture_description">Chụp</string>
+  <string name="CameraXFragment_change_camera_description">Chuyển camera</string>
+  <string name="CameraXFragment_open_gallery_description">Mở bộ sưu tập</string>
   <!--CameraContacts-->
   <string name="CameraContacts_recent_contacts">Liên hệ gần đây</string>
   <string name="CameraContacts_signal_contacts">Liên hệ Signal</string>
@@ -82,6 +87,7 @@
   <string name="CameraContacts_you_can_only_use_the_camera_button">Bạn chỉ có thể dùng nút chụp ảnh để gửi ảnh cho các liên hệ Signal.</string>
   <string name="CameraContacts_cant_find_who_youre_looking_for">Không tìm thấy người bạn cần tìm?</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">Mời một liên hệ dùng Signal</string>
+  <string name="CameraContacts__menu_search">Tìm kiếm</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Loại bỏ</string>
   <string name="ClearProfileActivity_remove_profile_photo">Bỏ ảnh đại diện?</string>
@@ -184,7 +190,7 @@
   <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
     <item quantity="other">Thao tác này sẽ xóa vĩnh viễn %1$d tin nhắn đã chọn.</item>
   </plurals>
-  <string name="ConversationFragment_save_to_sd_card">Lưu vào thẻ nhớ?</string>
+  <string name="ConversationFragment_save_to_sd_card">Lưu vào bộ nhớ?</string>
   <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
     <item quantity="other">Lưu %1$d tệp đa phương tiện vào bộ nhớ sẽ cho phép bất kì ứng dụng khác truy cập chúng.\n\nTiếp tục?</item>
   </plurals>
@@ -206,6 +212,7 @@
   <string name="ConversationFragment_deleting_messages">Đang xóa tin nhắn...</string>
   <string name="ConversationFragment_quoted_message_not_found">Không tìm thấy tin nhắn ban đầu</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Tin nhắn ban đầu không khả dụng</string>
+  <string name="ConversationFragment_failed_to_open_message">Không thể mở tin nhắn</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Bạn chưa cài trình duyệt nào trên điện thoại.</string>
   <!--ConversationListFragment-->
@@ -240,6 +247,7 @@
   <string name="CreateProfileActivity_profile_name">Tên của bạn</string>
   <string name="CreateProfileActivity_set_up_your_profile">Thiết lập hồ sơ</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Hồ sơ Signal được mã hóa đầu cuối và dịch vụ Signal không thể truy cập thông tin này.</string>
+  <string name="CreateProfileActivity_set_avatar_description">Đặt ảnh đại diện</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Dùng tùy chỉnh: %s</string>
   <string name="CustomDefaultPreference_using_default">Dùng mặc định: %s</string>
@@ -393,6 +401,7 @@
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Lỗi tải tin nhắn MMS, nhấn để thử lại</string>
   <!--MediaPickerActivity-->
   <string name="MediaPickerActivity_send_to">Gửi tới %s</string>
+  <string name="MediaPickerActivity__menu_open_camera">Mở camera</string>
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">Nhấn để chọn</string>
   <!--MediaSendActivity-->
@@ -407,6 +416,7 @@
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="other">Bạn không thể chia sẻ quá %d mục.</item>
   </plurals>
+  <string name="MediaSendActivity_select_recipients_description">Chọn người nhận</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Đa phương tiện</string>
   <!--MessageRecord-->
@@ -730,6 +740,15 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <string name="WebRtcCallScreen_end_call">Kết thúc cuộc gọi</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Nhấn để cho phép quay video</string>
+  <!--WebRtcCallControls Content Descriptions-->
+  <string name="WebRtcCallControls_contact_photo_description">Ảnh liên hệ</string>
+  <string name="WebRtcCallControls_speaker_button_description">Loa</string>
+  <string name="WebRtcCallControls_bluetooth_button_description">Bluetooth</string>
+  <string name="WebRtcCallControls_mute_button_description">Im lặng</string>
+  <string name="WebRtcCallControls_your_camera_button_description">Camera của bạn</string>
+  <string name="WebRtcCallControls_switch_to_rear_camera_button_description">Chuyển sang camera sau</string>
+  <string name="WebRtcCallControls_answer_call_description">Trả lời cuộc gọi</string>
+  <string name="WebRtcCallControls_reject_call_description">Từ chối cuộc gọi</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__audio">Âm thanh</string>
   <string name="attachment_type_selector__audio_description">Âm thanh</string>
@@ -752,6 +771,10 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <string name="change_passphrase_activity__repeat_new_passphrase">Lặp lại mật khẩu mới</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Điền tên hoặc số</string>
+  <!--contact_filter_toolbar-->
+  <string name="contact_filter_toolbar__clear_entered_text_description">Xóa văn bản đã nhập </string>
+  <string name="contact_filter_toolbar__show_keyboard_description">Hiện bàn phím</string>
+  <string name="contact_filter_toolbar__show_dial_pad_description">HIện bàn phím quay số</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Không có liên hệ.</string>
   <string name="contact_selection_group_activity__finding_contacts">Đang tải danh bạ...</string>
@@ -934,8 +957,6 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <string name="recipient_preferences__ringtone">Nhạc chuông</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Cuộc gọi Signal</string>
-  <string name="redphone_call_controls__mute">Im lặng</string>
-  <string name="redphone_call_controls__flip_camera_rear">Chuyển máy ảnh</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">SỐ ĐIỆN THOẠI</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal giúp bạn giao tiếp dễ dàng hơn bằng cách sử dụng số điện thoại và danh bạ của bạn. Bạn bè và liên hệ đã liên lạc với bạn qua điện thoại sẽ dễ dàng sử dụng Signal.\n\nViệc đăng kí sẽ gửi một số dữ liệu đến máy chủ. Dữ liệu này không được lưu.</string>
@@ -1154,6 +1175,7 @@ Các tin nhắn và cuộc gọi riêng tư miễn phí đến người dùng Si
   <string name="conversation_list_batch_archive__menu_archive_selected">Lưu trữ mục đã chọn</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Bỏ lưu trữ mục đã chọn</string>
   <!--conversation_list-->
+  <string name="conversation_list_settings_shortcut">Cài đặt phím tắt</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Ảnh Chân Dung Liên Hệ</string>
   <string name="conversation_list_item_view__archived">Đã lưu trữ</string>
@@ -1161,6 +1183,7 @@ Các tin nhắn và cuộc gọi riêng tư miễn phí đến người dùng Si
   <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Sạch. Sành. Sanh.\nBạn không bỏ lỡ gì cả!</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Cuộc trò chuyện mới</string>
+  <string name="conversation_list_fragment__open_camera_description">Mở Camera</string>
   <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Hãy làm hộp thư đến không còn trống trải. Bắt đầu bằng cách gửi tin nhắn cho một người bạn.</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Tái thiết lập phiên bảo mật</string>

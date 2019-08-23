@@ -139,7 +139,8 @@ public final class MediaConverter {
     }
 
     @WorkerThread
-    public void convert() throws BadVideoException, IOException {
+    @RequiresApi(23)
+    public void convert() throws EncodingException, IOException {
         // Exception that may be thrown during release.
         Exception exception = null;
         Muxer muxer = null;
@@ -151,8 +152,7 @@ public final class MediaConverter {
             audioTrackConverter = AudioTrackConverter.create(mInput, mTimeFrom, mTimeTo, mAudioBitrate);
 
             if (videoTrackConverter == null && audioTrackConverter == null) {
-                Log.e(TAG, "no video and audio tracks");
-                throw new BadVideoException();
+                throw new EncodingException("No video and audio tracks");
             }
 
             muxer = mOutput.createMuxer();
@@ -162,7 +162,7 @@ public final class MediaConverter {
                     audioTrackConverter,
                     muxer);
 
-        } catch (BadVideoException | IOException e) {
+        } catch (EncodingException | IOException e) {
             Log.e(TAG, "error converting", e);
             exception = e;
             throw e;
@@ -207,7 +207,7 @@ public final class MediaConverter {
             }
         }
         if (exception != null) {
-            throw new RuntimeException(exception);
+            throw new EncodingException("Transcode failed", exception);
         }
     }
 
@@ -217,7 +217,7 @@ public final class MediaConverter {
     private void doExtractDecodeEditEncodeMux(
             final @Nullable VideoTrackConverter videoTrackConverter,
             final @Nullable AudioTrackConverter audioTrackConverter,
-            final @NonNull Muxer muxer) throws IOException {
+            final @NonNull Muxer muxer) throws IOException, TranscodingException {
 
         boolean muxing = false;
         int percentProcessed = 0;

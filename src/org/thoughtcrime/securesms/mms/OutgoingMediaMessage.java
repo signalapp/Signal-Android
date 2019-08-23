@@ -23,7 +23,7 @@ public class OutgoingMediaMessage {
   private   final int                       distributionType;
   private   final int                       subscriptionId;
   private   final long                      expiresIn;
-  private   final long                      revealDuration;
+  private   final boolean                   viewOnce;
   private   final QuoteModel                outgoingQuote;
 
   private   final List<NetworkFailure>      networkFailures       = new LinkedList<>();
@@ -33,7 +33,7 @@ public class OutgoingMediaMessage {
 
   public OutgoingMediaMessage(Recipient recipient, String message,
                               List<Attachment> attachments, long sentTimeMillis,
-                              int subscriptionId, long expiresIn, long revealDuration,
+                              int subscriptionId, long expiresIn, boolean viewOnce,
                               int distributionType,
                               @Nullable QuoteModel outgoingQuote,
                               @NonNull List<Contact> contacts,
@@ -48,7 +48,7 @@ public class OutgoingMediaMessage {
     this.attachments           = attachments;
     this.subscriptionId        = subscriptionId;
     this.expiresIn             = expiresIn;
-    this.revealDuration        = revealDuration;
+    this.viewOnce              = viewOnce;
     this.outgoingQuote         = outgoingQuote;
 
     this.contacts.addAll(contacts);
@@ -59,7 +59,7 @@ public class OutgoingMediaMessage {
 
   public OutgoingMediaMessage(Recipient recipient, SlideDeck slideDeck, String message,
                               long sentTimeMillis, int subscriptionId, long expiresIn,
-                              long revealDuration, int distributionType,
+                              boolean viewOnce, int distributionType,
                               @Nullable QuoteModel outgoingQuote,
                               @NonNull List<Contact> contacts,
                               @NonNull List<LinkPreview> linkPreviews)
@@ -68,7 +68,7 @@ public class OutgoingMediaMessage {
          buildMessage(slideDeck, message),
          slideDeck.asAttachments(),
          sentTimeMillis, subscriptionId,
-         expiresIn, revealDuration, distributionType, outgoingQuote,
+         expiresIn, viewOnce, distributionType, outgoingQuote,
          contacts, linkPreviews, new LinkedList<>(), new LinkedList<>());
   }
 
@@ -80,7 +80,7 @@ public class OutgoingMediaMessage {
     this.sentTimeMillis      = that.sentTimeMillis;
     this.subscriptionId      = that.subscriptionId;
     this.expiresIn           = that.expiresIn;
-    this.revealDuration      = that.revealDuration;
+    this.viewOnce            = that.viewOnce;
     this.outgoingQuote       = that.outgoingQuote;
 
     this.identityKeyMismatches.addAll(that.identityKeyMismatches);
@@ -129,8 +129,8 @@ public class OutgoingMediaMessage {
     return expiresIn;
   }
 
-  public long getRevealDuration() {
-    return revealDuration;
+  public boolean isViewOnce() {
+    return viewOnce;
   }
 
   public @Nullable QuoteModel getOutgoingQuote() {

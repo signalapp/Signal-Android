@@ -75,9 +75,11 @@
   <string name="CallScreen_Incoming_call">تماس های دریافتی</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">تصویر ذخیره نشد</string>
+  <!--CameraXFragment-->
   <!--CameraContacts-->
   <string name="CameraContacts_cant_find_who_youre_looking_for">نمی توانم پیدا کنم فردی را که دنبالش هستید؟</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">دعوت مخاطب برای پیوستن Signal</string>
+  <string name="CameraContacts__menu_search">جستجو</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">حذف</string>
   <string name="ClearProfileActivity_remove_profile_photo">عکس پروفایل حذف شود؟</string>
@@ -419,6 +421,7 @@
     <item quantity="one">شما نمی توانید بیش از %d آیتم را به اشتراک بگذارید.</item>
     <item quantity="other">شما نمی توانید بیش از %d آیتم را به اشتراک بگذارید.</item>
   </plurals>
+  <string name="MediaSendActivity_select_recipients_description">گیرندگان را انتخاب کنید</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">تمام رسانه ها</string>
   <!--MessageRecord-->
@@ -742,6 +745,11 @@
   <string name="WebRtcCallScreen_end_call">پایان تماس</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">برای فعال‌سازی ویدیو خود اینجا ضربه بزنید</string>
+  <!--WebRtcCallControls Content Descriptions-->
+  <string name="WebRtcCallControls_contact_photo_description">تصویر مخاطب</string>
+  <string name="WebRtcCallControls_speaker_button_description">بلندگو</string>
+  <string name="WebRtcCallControls_mute_button_description">ساکت‌ کردن</string>
+  <string name="WebRtcCallControls_answer_call_description">پاسخ به تماس</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__audio">صدا</string>
   <string name="attachment_type_selector__audio_description">صوت</string>
@@ -764,6 +772,7 @@
   <string name="change_passphrase_activity__repeat_new_passphrase">عبارت عبور قدیمی</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">نام یا شماره را وارد کنید</string>
+  <!--contact_filter_toolbar-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">مخاطبی یافت نشد.</string>
   <string name="contact_selection_group_activity__finding_contacts">بارگیری لیست مخاطب‌ها</string>
@@ -953,8 +962,6 @@
   <string name="recipient_preferences__ringtone">آهنگ های زنگ</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">تماس Signal</string>
-  <string name="redphone_call_controls__mute">لال</string>
-  <string name="redphone_call_controls__flip_camera_rear">سوئیچ دوربین ها</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">شماره تلفن</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal ارتباط با استفاده از شماره تلفن فعلی و دفترچه آدرس آسان میکند. دوستان و مخاطبان که می دانند چه شکلی با تلفن با شما تماس بگیرند قادر خواهند بود تا به آسانی از طریق Signal ارتباط برقرار کنند.\n\n ثبت نام برخی اطلاعات مخاطب را به سرور ارسال میکند. هیچ چیزی ذخیره نمی شود.</string>

@@ -71,7 +71,9 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">आने वाली कॉल</string>
   <!--CameraActivity-->
+  <!--CameraXFragment-->
   <!--CameraContacts-->
+  <string name="CameraContacts__menu_search">सर्च</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">हटा दें </string>
   <string name="ClearProfileActivity_remove_profile_photo">प्रोफ़ाइल फ़ोटो निकालें?</string>
@@ -656,6 +658,10 @@
   <string name="WebRtcCallScreen_end_call">कॉल बंद</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">अपने वीडियो को सक्षम करने के लिए टैप करें</string>
+  <!--WebRtcCallControls Content Descriptions-->
+  <string name="WebRtcCallControls_contact_photo_description">संपर्क फोटो</string>
+  <string name="WebRtcCallControls_mute_button_description">शाँत करो </string>
+  <string name="WebRtcCallControls_answer_call_description">कॉल का उत्तर दें</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__audio">ऑडियो</string>
   <string name="attachment_type_selector__audio_description">ऑडियो </string>
@@ -678,6 +684,7 @@
   <string name="change_passphrase_activity__repeat_new_passphrase">नया पासफ्रेज दोहराएं</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">नाम या संख्या दर्ज करें</string>
+  <!--contact_filter_toolbar-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">कोई संपर्क नहीं</string>
   <string name="contact_selection_group_activity__finding_contacts">संपर्क लोड हो रहे हैं</string>
@@ -863,8 +870,6 @@
   <string name="recipient_preferences__ringtone">रिंगटोन</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal कॉल </string>
-  <string name="redphone_call_controls__mute">शाँत करो </string>
-  <string name="redphone_call_controls__flip_camera_rear">कैमरा स्विच करें?</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">फ़ोन नंबर </string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal आपके मौजूदा फोन नंबर और एड्रेस बुक का उपयोग करके संवाद करना आसान बनाता है। दोस्तों और संपर्क जो पहले से ही फोन से संपर्क करने के बारे में जानते हैं, वे Signal द्वारा आसानी से संपर्क में रह सकेंगे । \n\nपंजीकरण सर्वर पर कुछ संपर्क जानकारी प्रसारित करता है। यह संग्रहीत नहीं है।</string>

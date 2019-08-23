@@ -75,7 +75,9 @@
   <string name="CallScreen_Incoming_call">Chamada recibida</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Erro ao gardar a imaxe.</string>
+  <!--CameraXFragment-->
   <!--CameraContacts-->
+  <string name="CameraContacts__menu_search">Buscar</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Eliminar</string>
   <string name="ClearProfileActivity_remove_profile_photo">Eliminar a foto do perfil?</string>
@@ -741,6 +743,11 @@
   <string name="WebRtcCallScreen_end_call">Finalizar chamada</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Toca para activar o teu vídeo</string>
+  <!--WebRtcCallControls Content Descriptions-->
+  <string name="WebRtcCallControls_contact_photo_description">Foto do contacto</string>
+  <string name="WebRtcCallControls_speaker_button_description">Altofalante</string>
+  <string name="WebRtcCallControls_mute_button_description">Silenciar</string>
+  <string name="WebRtcCallControls_answer_call_description">Responder chamada</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__audio">Audio</string>
   <string name="attachment_type_selector__audio_description">Audio</string>
@@ -763,6 +770,7 @@
   <string name="change_passphrase_activity__repeat_new_passphrase">Repetir nova frase de acceso</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Inserir nome ou número</string>
+  <!--contact_filter_toolbar-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Sen contactos.</string>
   <string name="contact_selection_group_activity__finding_contacts">Cargando contactos...</string>
@@ -952,8 +960,6 @@
   <string name="recipient_preferences__ringtone">Ton de chamada</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Chamada Signal</string>
-  <string name="redphone_call_controls__mute">Silenciar</string>
-  <string name="redphone_call_controls__flip_camera_rear">Alternar cámaras</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">NÚMERO DE TELÉFONO</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal facilita a comunicación utilizando o teu número de teléfono e axenda de contactos. As amizades e os contactos que xa saben como contactar contigo polo número de teléfono agora atoparante facilmente con Signal.\n\nO rexistro transmite algunha información ao servidor, que non se almacena.</string>

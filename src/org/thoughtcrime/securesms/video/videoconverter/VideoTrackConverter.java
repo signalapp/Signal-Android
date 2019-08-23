@@ -8,6 +8,7 @@ import android.view.Surface;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 
 import org.thoughtcrime.securesms.logging.Log;
 
@@ -26,6 +27,9 @@ final class VideoTrackConverter {
     private static final int OUTPUT_VIDEO_FRAME_RATE = 30; // needed only for MediaFormat.KEY_I_FRAME_INTERVAL to work; the actual frame rate matches the source
 
     private static final int TIMEOUT_USEC = 10000;
+
+    private static final String MEDIA_FORMAT_KEY_DISPLAY_WIDTH  = "display-width";
+    private static final String MEDIA_FORMAT_KEY_DISPLAY_HEIGHT = "display-height";
 
     private final long mTimeFrom;
     private final long mTimeTo;
@@ -60,14 +64,14 @@ final class VideoTrackConverter {
 
     private Muxer mMuxer;
 
-    static @Nullable
-    VideoTrackConverter create(
+    @RequiresApi(23)
+    static @Nullable VideoTrackConverter create(
             final @NonNull MediaConverter.Input input,
             final long timeFrom,
             final long timeTo,
             final int videoResolution,
             final int videoBitrate,
-            final @NonNull String videoCodec) throws IOException {
+            final @NonNull String videoCodec) throws IOException, TranscodingException {
 
         final MediaExtractor videoExtractor = input.createExtractor();
         final int videoInputTrack = getAndSelectVideoTrackIndex(videoExtractor);
@@ -78,6 +82,8 @@ final class VideoTrackConverter {
         return new VideoTrackConverter(videoExtractor, videoInputTrack, timeFrom, timeTo, videoResolution, videoBitrate, videoCodec);
     }
 
+
+    @RequiresApi(23)
     private VideoTrackConverter(
             final @NonNull MediaExtractor videoExtractor,
             final int videoInputTrack,
@@ -85,7 +91,7 @@ final class VideoTrackConverter {
             final long timeTo,
             final int videoResolution,
             final int videoBitrate,
-            final @NonNull String videoCodec) throws IOException {
+            final @NonNull String videoCodec) throws IOException, TranscodingException {
 
         mTimeFrom = timeFrom;
         mTimeTo = timeTo;
@@ -104,8 +110,12 @@ final class VideoTrackConverter {
         mInputDuration = inputVideoFormat.containsKey(MediaFormat.KEY_DURATION) ? inputVideoFormat.getLong(MediaFormat.KEY_DURATION) : 0;
 
         final int rotation = inputVideoFormat.containsKey(MediaFormat.KEY_ROTATION) ? inputVideoFormat.getInteger(MediaFormat.KEY_ROTATION) : 0;
-        final int width = inputVideoFormat.getInteger(MediaFormat.KEY_WIDTH);
-        final int height = inputVideoFormat.getInteger(MediaFormat.KEY_HEIGHT);
+        final int width = inputVideoFormat.containsKey(MEDIA_FORMAT_KEY_DISPLAY_WIDTH)
+                          ? inputVideoFormat.getInteger(MEDIA_FORMAT_KEY_DISPLAY_WIDTH)
+                          : inputVideoFormat.getInteger(MediaFormat.KEY_WIDTH);
+        final int height = inputVideoFormat.containsKey(MEDIA_FORMAT_KEY_DISPLAY_HEIGHT)
+                           ? inputVideoFormat.getInteger(MEDIA_FORMAT_KEY_DISPLAY_HEIGHT)
+                           : inputVideoFormat.getInteger(MediaFormat.KEY_HEIGHT);
         int outputWidth = width;
         int outputHeight = height;
         if (outputWidth < outputHeight) {
@@ -175,7 +185,7 @@ final class VideoTrackConverter {
         }
     }
 
-    void step() throws IOException {
+    void step() throws IOException, TranscodingException {
         // Extract video from file and feed to decoder.
         // Do not extract video if we have determined the output format but we are not yet
         // ready to mux the frames.

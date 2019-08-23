@@ -24,9 +24,9 @@ public class IncomingMediaMessage {
   private final int           subscriptionId;
   private final long          expiresIn;
   private final boolean       expirationUpdate;
-  private final long          revealDuration;
   private final QuoteModel    quote;
   private final boolean       unidentified;
+  private final boolean       viewOnce;
 
   private final List<Attachment>  attachments    = new LinkedList<>();
   private final List<Contact>     sharedContacts = new LinkedList<>();
@@ -40,7 +40,7 @@ public class IncomingMediaMessage {
                               int subscriptionId,
                               long expiresIn,
                               boolean expirationUpdate,
-                              long revealDuration,
+                              boolean viewOnce,
                               boolean unidentified)
   {
     this.from             = from;
@@ -51,7 +51,7 @@ public class IncomingMediaMessage {
     this.subscriptionId   = subscriptionId;
     this.expiresIn        = expiresIn;
     this.expirationUpdate = expirationUpdate;
-    this.revealDuration   = revealDuration;
+    this.viewOnce         = viewOnce;
     this.quote            = null;
     this.unidentified     = unidentified;
 
@@ -63,7 +63,7 @@ public class IncomingMediaMessage {
                               int subscriptionId,
                               long expiresIn,
                               boolean expirationUpdate,
-                              long revealDuration,
+                              boolean viewOnce,
                               boolean unidentified,
                               Optional<String> body,
                               Optional<SignalServiceGroup> group,
@@ -80,7 +80,7 @@ public class IncomingMediaMessage {
     this.subscriptionId   = subscriptionId;
     this.expiresIn        = expiresIn;
     this.expirationUpdate = expirationUpdate;
-    this.revealDuration   = revealDuration;
+    this.viewOnce         = viewOnce;
     this.quote            = quote.orNull();
     this.unidentified     = unidentified;
 
@@ -132,8 +132,8 @@ public class IncomingMediaMessage {
     return expiresIn;
   }
 
-  public long getRevealDuration() {
-    return revealDuration;
+  public boolean isViewOnce() {
+    return viewOnce;
   }
 
   public boolean isGroupMessage() {

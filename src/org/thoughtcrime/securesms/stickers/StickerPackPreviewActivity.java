@@ -226,9 +226,10 @@ public final class StickerPackPreviewActivity extends PassphraseRequiredActionBa
     finish();
   }
 
-  private void onScreenWidthChanged(int newWidth) {
+  private void onScreenWidthChanged(int screenWidth) {
     if (layoutManager != null) {
-      layoutManager.setSpanCount(newWidth / getResources().getDimensionPixelOffset(R.dimen.sticker_preview_sticker_size));
+      int availableWidth = screenWidth - (2 * getResources().getDimensionPixelOffset(R.dimen.sticker_preview_gutter_size));
+      layoutManager.setSpanCount(availableWidth / getResources().getDimensionPixelOffset(R.dimen.sticker_preview_sticker_size));
     }
   }
 

@@ -17,54 +17,95 @@
 
 package org.thoughtcrime.securesms.logsubmit.util;
 
+import androidx.annotation.NonNull;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Scrub data for possibly sensitive information
+ * Scrub data for possibly sensitive information.
  */
-public class Scrubber {
-  private static final String TAG = Scrubber.class.getSimpleName();
+public final class Scrubber {
 
-  private static final Pattern E164_PATTERN    = Pattern.compile("\\+\\d{10,15}");
-  private static final Pattern GROUPID_PATTERN = Pattern.compile("__textsecure_group__![^\\s]+");
-  private static final Pattern EMAIL_PATTERN   = Pattern.compile("[^\\s]+@[^\\s]+");
-
-  private static final Pattern[] DEFAULTS = new Pattern[] {
-      E164_PATTERN,
-      GROUPID_PATTERN,
-      EMAIL_PATTERN
-  };
-
-  private final Pattern[] patterns;
-  public Scrubber(Pattern... patterns) {
-    this.patterns = patterns;
+  private Scrubber() {
   }
 
-  public Scrubber() {
-    this(DEFAULTS);
+  /**
+   * The middle group will be censored.
+   * Handles URL encoded +, %2B
+   */
+  private static final Pattern E164_PATTERN = Pattern.compile("(\\+|%2B)(\\d{8,13})(\\d{2})");
+  private static final String  E164_CENSOR  = "*************";
+
+  /**
+   * The second group will be censored.
+   */
+  private static final Pattern CRUDE_EMAIL_PATTERN = Pattern.compile("\\b([^\\s/])([^\\s/]*@[^\\s]+)");
+  private static final String  EMAIL_CENSOR        = "...@...";
+
+  /**
+   * The middle group will be censored.
+   */
+  private static final Pattern GROUP_ID_PATTERN = Pattern.compile("(__)(textsecure_group__![^\\s]+)([^\\s]{2})");
+  private static final String  GROUP_ID_CENSOR  = "...group...";
+
+  public static CharSequence scrub(@NonNull CharSequence in) {
+
+    in = scrubE164(in);
+    in = scrubEmail(in);
+    in = scrubGroups(in);
+
+    return in;
   }
 
-  public String scrub(final String in) {
-    String out = in;
-    for (Pattern pattern : patterns) {
-      Matcher       matcher       = pattern.matcher(out);
-      StringBuilder builder       = new StringBuilder();
-      int           lastEndingPos = 0;
+  private static CharSequence scrubE164(@NonNull CharSequence in) {
+    return scrub(in,
+                 E164_PATTERN,
+                 (matcher, output) -> output.append(matcher.group(1))
+                                            .append(E164_CENSOR, 0, matcher.group(2).length())
+                                            .append(matcher.group(3)));
+  }
 
-      while (matcher.find()) {
-        builder.append(out.substring(lastEndingPos, matcher.start()));
+  private static CharSequence scrubEmail(@NonNull CharSequence in) {
+    return scrub(in,
+                 CRUDE_EMAIL_PATTERN,
+                 (matcher, output) -> output.append(matcher.group(1))
+                                            .append(EMAIL_CENSOR));
+  }
 
-        final String censored = matcher.group().substring(0,1)                                      +
-                                new String(new char[matcher.group().length()-3]).replace("\0", "*") +
-                                matcher.group().substring(matcher.group().length()-2);
-        builder.append(censored);
+  private static CharSequence scrubGroups(@NonNull CharSequence in) {
+    return scrub(in,
+                 GROUP_ID_PATTERN,
+                 (matcher, output) -> output.append(matcher.group(1))
+                                            .append(GROUP_ID_CENSOR)
+                                            .append(matcher.group(3)));
+  }
 
-        lastEndingPos = matcher.end();
-      }
-      builder.append(out.substring(lastEndingPos));
-      out = builder.toString();
+  private static CharSequence scrub(@NonNull CharSequence in, @NonNull Pattern pattern, @NonNull ProcessMatch processMatch) {
+    final StringBuilder output  = new StringBuilder(in.length());
+    final Matcher matcher = pattern.matcher(in);
+
+    int lastEndingPos = 0;
+
+    while (matcher.find()) {
+      output.append(in, lastEndingPos, matcher.start());
+
+      processMatch.scrubMatch(matcher, output);
+
+      lastEndingPos = matcher.end();
     }
-    return out;
+
+    if (lastEndingPos == 0) {
+      // there were no matches, save copying all the data
+      return in;
+    } else {
+      output.append(in, lastEndingPos, in.length());
+
+      return output;
+    }
+  }
+
+  private interface ProcessMatch {
+    void scrubMatch(@NonNull Matcher matcher, @NonNull StringBuilder output);
   }
 }

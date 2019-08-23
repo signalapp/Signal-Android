@@ -72,7 +72,9 @@
   <string name="CallScreen_Incoming_call">కొత్తగా వచ్చిన కాల్</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">చిత్రాన్ని సేవ్ చేయడంలో విఫలమైంది.</string>
+  <!--CameraXFragment-->
   <!--CameraContacts-->
+  <string name="CameraContacts__menu_search">వెతకండి</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">తొలగించు</string>
   <string name="ClearProfileActivity_remove_profile_photo">ప్రొఫైల్ ఫోటోని తీసివేయాలా?</string>
@@ -672,6 +674,11 @@
   <string name="WebRtcCallScreen_end_call">కాల్ ముగించండి</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">మీ వీడియో ప్రారంభించడానికి నొక్కండి</string>
+  <!--WebRtcCallControls Content Descriptions-->
+  <string name="WebRtcCallControls_contact_photo_description">పరిచయ ఫొటో</string>
+  <string name="WebRtcCallControls_speaker_button_description">స్పీకర్</string>
+  <string name="WebRtcCallControls_mute_button_description">నిశబ్ధం</string>
+  <string name="WebRtcCallControls_answer_call_description">కాల్ ఆన్సర్ చేయండి</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__audio">ఆడియో</string>
   <string name="attachment_type_selector__audio_description">ఆడియో</string>
@@ -694,6 +701,7 @@
   <string name="change_passphrase_activity__repeat_new_passphrase">కొత్త సంకేతపదమును తిరిగి చెప్పు</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">పేరు లేదా నంబరు ఎంటర్ చేయండి</string>
+  <!--contact_filter_toolbar-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">పరిచయాలు లేవు</string>
   <string name="contact_selection_group_activity__finding_contacts">పరిచయాలు లోడ్ అవుతున్నాయి ...</string>
@@ -879,8 +887,6 @@
   <string name="recipient_preferences__ringtone">రింగ్టోన్</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Signal కాల్ </string>
-  <string name="redphone_call_controls__mute">నిశబ్ధం</string>
-  <string name="redphone_call_controls__flip_camera_rear">కెమెరాలు మారండి</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">ఫోన్ నంబరు</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal మీ ప్రస్తుత ఫోన్ నంబర్ మరియు చిరునామా పుస్తకం ఉపయోగించి సమాచార మార్పిడి సులభం చేస్తుంది. ఫోన్ ద్వారా మిమ్మల్ని ఎలా సంప్రదించాలో ఇప్పటికే తెలిసిన స్నేహితులు మరియు పరిచయాలు సులభంగా Signal ద్వారా సన్నిహితంగా ఉంటాయి. \ N \ n రిజిస్ట్రేషన్ కొంత సంప్రదింపు సమాచారాన్ని సర్వర్కు బదిలీ చేస్తుంది. ఇది నిల్వ చేయబడలేదు.</string>

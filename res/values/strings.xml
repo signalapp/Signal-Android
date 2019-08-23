@@ -17,6 +17,9 @@
     <!-- AlbumThumbnailView -->
     <string name="AlbumThumbnailView_plus">\+%d</string>
 
+    <!-- ApplicationMigrationActivity -->
+    <string name="ApplicationMigrationActivity__signal_is_updating">Signal is updating...</string>
+
     <!-- ApplicationPreferencesActivity -->
     <string name="ApplicationPreferencesActivity_currently_s">Currently: %s</string>
     <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">You haven\'t set a passphrase yet!</string>
@@ -257,6 +260,7 @@
     <string name="ConversationFragment_deleting_messages">Deleting messages…</string>
     <string name="ConversationFragment_quoted_message_not_found">Original message not found</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">Original message no longer available</string>
+    <string name="ConversationFragment_failed_to_open_message">Failed to open message</string>
 
     <!-- ConversationListActivity -->
     <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">There is no browser installed on your device.</string>
@@ -1132,9 +1136,6 @@
     <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">This could take a moment. Please be patient, we\'ll notify you when the import is complete.</string>
     <string name="database_migration_activity__importing">IMPORTING</string>
 
-    <!-- database_upgrade_activity -->
-    <string name="database_upgrade_activity__updating_database">Updating database…</string>
-
     <string name="import_fragment__import_system_sms_database">Import Android SMS database</string>
     <string name="import_fragment__import_the_database_from_the_default_system">Import the database from the Android default messenger app</string>
     <string name="import_fragment__import_plaintext_backup">Import plaintext backup</string>
@@ -1447,6 +1448,7 @@
 
     <!-- conversation_list -->
     <string name="conversation_list_settings_shortcut">Settings shortcut</string>
+    <string name="conversation_list_search_description">Search</string>
 
     <!-- conversation_list_item_view -->
     <string name="conversation_list_item_view__contact_photo_image">Contact Photo Image</string>

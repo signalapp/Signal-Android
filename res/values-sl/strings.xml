@@ -62,12 +62,13 @@
   <string name="DraftDatabase_Draft_quote_snippet">(odgovor)</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Ne najdem aplikacije za izbor datotek.</string>
-  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Dostop do shrambe je bil trajno onemogočen. Aplikacija Signal za pripenjanje fotografij, videa in zvoka k sporočilom potrebuje dovoljenje za dostop do sistemskega pomnilnika. Prosimo, pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"Shramba\".</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Dostop do shrambe je bil trajno onemogočen. Aplikacija Signal potrebuje dovoljenje za dostop do sistemskega pomnilnika za pripenjanje fotografij, videa in zvoka k sporočilom. Prosimo, pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"Shramba\".</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Dostop do stikov je bil trajno onemogočen. Aplikacija Signal potrebuje dovoljenje za dostop do stikov, kadar želite sporočilom pripeti podatke oseb iz svojega imenika. Prosimo, pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"Stiki\".</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Dostop do lokacije je bil trajno onemogočen. Aplikacija Signal potrebuje dovoljenje za dostop do lokacije, kadar želite k sporočilom dodati podatek o svoji trenutni lokaciji. Prosimo, pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"Lokacija\".</string>
-  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Dostop do kamere je bil trajno onemogočen. Aplikacija Signal potrebuje dovoljenje za dostop do kamere za snemanje fotografij. Prosimo, pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"Kamera\".</string>
+  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Dostop do kamere je bil trajno onemogočen. Aplikacija Signal za zajemanje fotografij potrebuje dovoljenje za dostop do kamere. Prosimo, pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"Kamera\".</string>
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">Prenašanje vsebine ...</string>
+  <string name="AttachmentUploadJob_compressing_video_start">Kompresiranje videa ...</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Napaka pri predvajanju zvoka!</string>
   <!--BlockedContactsActivity-->
@@ -81,6 +82,10 @@
   <string name="CallScreen_Incoming_call">Dohodni klic</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Slike ni bilo možno shraniti.</string>
+  <!--CameraXFragment-->
+  <string name="CameraXFragment_capture_description">Zajemi</string>
+  <string name="CameraXFragment_change_camera_description">Zamenjaj kamero</string>
+  <string name="CameraXFragment_open_gallery_description">Odpri galerijo</string>
   <!--CameraContacts-->
   <string name="CameraContacts_recent_contacts">Nedavni stiki</string>
   <string name="CameraContacts_signal_contacts">Uporabniki Signal</string>
@@ -91,6 +96,7 @@
   <string name="CameraContacts_you_can_only_use_the_camera_button">Za pošiljanje fotografij uporabnikom storitve Signal morate uporabiti gumb za kamero.</string>
   <string name="CameraContacts_cant_find_who_youre_looking_for">Ne najdete uporabnika, ki ga iščete?</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">Povabite prijatelja k uporabi aplikacije Signal</string>
+  <string name="CameraContacts__menu_search">Iskanje</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Odstrani</string>
   <string name="ClearProfileActivity_remove_profile_photo">Želite odstraniti predstavitveno fotografijo?</string>
@@ -236,6 +242,7 @@
   <string name="ConversationFragment_deleting_messages">Brišem sporočila ...</string>
   <string name="ConversationFragment_quoted_message_not_found">Izvorno sporočilo ni bilo najdeno</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Izvorno sporočilo ni več na voljo</string>
+  <string name="ConversationFragment_failed_to_open_message">Odpiranje sporočila ni uspelo</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Na svoji napravi nimate nameščenega spletnega brskalnika.</string>
   <!--ConversationListFragment-->
@@ -282,6 +289,7 @@
   <string name="CreateProfileActivity_profile_name">Ime profila</string>
   <string name="CreateProfileActivity_set_up_your_profile">Nastavite svoj profil</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Profili v aplikaciji Signal so šifrirani od konca do konca, storitev Signal do njihove vsebine nima dostopa.</string>
+  <string name="CreateProfileActivity_set_avatar_description">Določi avatar</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Uporabljam izbirno: %s</string>
   <string name="CustomDefaultPreference_using_default">Prednastavljeno: %s</string>
@@ -447,6 +455,7 @@
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Napaka pri prenosu sporočila MMS. Tapni za ponovitev.</string>
   <!--MediaPickerActivity-->
   <string name="MediaPickerActivity_send_to">Pošlji %s</string>
+  <string name="MediaPickerActivity__menu_open_camera">Odpri kamero</string>
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">Tapnite za izbor</string>
   <!--MediaSendActivity-->
@@ -464,6 +473,7 @@
     <item quantity="few">Ne morete deliti več kot %d priponke.</item>
     <item quantity="other">Ne morete deliti več kot %d priponk.</item>
   </plurals>
+  <string name="MediaSendActivity_select_recipients_description">Izberite prejemnike</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Vsa večpredstavnostna sporočila</string>
   <!--MessageRecord-->
@@ -781,7 +791,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="VideoPlayer_error_playing_video">Napaka pri predvajanju videa</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Za prevzem klica uporabnika %somogočite aplikaciji Signal dostop do mikrofona naprave.</string>
-  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Dostop do mikrofona in kamere je bil trajno onemogočen. Aplikacija Signal za klicanje potrebuje dovoljenje za dostop do mikrofona in kamere. Prosimo, pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenji pod postavkama \"Mikrofon\" in \"Kamera\".</string>
+  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Dostop do mikrofona in kamere je bil trajno onemogočen. Aplikacija Signal potrebuje dovoljenje za dostop do mikrofona in kamere za klicanje. Prosimo, pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenji pod postavkama \"Mikrofon\" in \"Kamera\".</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Vaše varnostno število z uporabnikom %1$s je bilo spremenjeno. To lahko pomeni, da poskuša nekdo prestrezati vajino komunikacijo ali pa je %2$s zgolj ponovno namestil aplikacijo Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Morda bi želeli preveriti vajino skupno varnostno število.</string>
@@ -790,6 +800,15 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="WebRtcCallScreen_end_call">Zaključi klic</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Tapnite za vklop videa</string>
+  <!--WebRtcCallControls Content Descriptions-->
+  <string name="WebRtcCallControls_contact_photo_description">Fotografija stika</string>
+  <string name="WebRtcCallControls_speaker_button_description">Zvočnik</string>
+  <string name="WebRtcCallControls_bluetooth_button_description">Bluetooth</string>
+  <string name="WebRtcCallControls_mute_button_description">Utišaj</string>
+  <string name="WebRtcCallControls_your_camera_button_description">Vaša kamera</string>
+  <string name="WebRtcCallControls_switch_to_rear_camera_button_description">Preklop na zadnjo kamero</string>
+  <string name="WebRtcCallControls_answer_call_description">Sprejmi klic</string>
+  <string name="WebRtcCallControls_reject_call_description">Zavrni klic</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__audio">Zvok</string>
   <string name="attachment_type_selector__audio_description">Zvok</string>
@@ -812,6 +831,10 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="change_passphrase_activity__repeat_new_passphrase">Ponovno vnesite novo geslo</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Vnesite ime ali številko ...</string>
+  <!--contact_filter_toolbar-->
+  <string name="contact_filter_toolbar__clear_entered_text_description">Izbriši vneseni tekst</string>
+  <string name="contact_filter_toolbar__show_keyboard_description">Prikaži tipkovnico</string>
+  <string name="contact_filter_toolbar__show_dial_pad_description">Prikaži številčno tipkovnico</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Ni stikov.</string>
   <string name="contact_selection_group_activity__finding_contacts">Nalagam stike ...</string>
@@ -1015,8 +1038,6 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="recipient_preferences__ringtone">Zvonjenje</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Klic Signal</string>
-  <string name="redphone_call_controls__mute">Utišaj</string>
-  <string name="redphone_call_controls__flip_camera_rear">Zamenjava kamer</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">TELEFONSKA ŠTEVILKA</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Uporaba aplikacije Signal naredi komunikacijo z osebami shranjenimi v vašem imeniku izjemno preprosto. Prijatelji in druge osebe, ki že poznajo vašo telefonsko številko, bodo takoj vedeli, da lahko odslej komunicirajo z vami tudi preko aplikacije Signal.\n\nOb registraciji se nekateri podatki o vaših stikih začasno posredujejo na strežnik.</string>
@@ -1236,6 +1257,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="conversation_list_batch_archive__menu_archive_selected">Premakni izbrano v arhiv</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Premakni izbrano v nabiralnik</string>
   <!--conversation_list-->
+  <string name="conversation_list_settings_shortcut">Bližnjica k nastavitvam</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Slika stika</string>
   <string name="conversation_list_item_view__archived">Arhivirano</string>
@@ -1243,6 +1265,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Nič. Nula. Zero. Nada. \nBrez sporočil!</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Nov pogovor</string>
+  <string name="conversation_list_fragment__open_camera_description">Odpri kamero</string>
   <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Vaš poštni nabiralnik je lačen nove pošte. ;-) Začnite s sporočilom prijatelju!</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Ponastavi varno sejo</string>

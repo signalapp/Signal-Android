@@ -68,7 +68,9 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">สายเรียกเข้า</string>
   <!--CameraActivity-->
+  <!--CameraXFragment-->
   <!--CameraContacts-->
+  <string name="CameraContacts__menu_search">ค้นหา</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">เอาออก</string>
   <string name="ClearProfileActivity_remove_profile_photo">ลบรูปโปรไฟล์หรือไม่</string>
@@ -642,6 +644,11 @@
   <string name="WebRtcCallScreen_end_call">วางสาย</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">แตะเพื่อเปิดใช้งานวิดีโอของคุณ</string>
+  <!--WebRtcCallControls Content Descriptions-->
+  <string name="WebRtcCallControls_contact_photo_description">ภาพของผู้ติดต่อ</string>
+  <string name="WebRtcCallControls_speaker_button_description">ลำโพง</string>
+  <string name="WebRtcCallControls_mute_button_description">ปิดเสียง</string>
+  <string name="WebRtcCallControls_answer_call_description">รับสาย</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__audio">เสียง</string>
   <string name="attachment_type_selector__audio_description">เสียง</string>
@@ -664,6 +671,7 @@
   <string name="change_passphrase_activity__repeat_new_passphrase">ใส่วลีรหัสผ่านใหม่อีกครั้ง</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">ป้อนชื่อหรือหมายเลข</string>
+  <!--contact_filter_toolbar-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">ไม่มีผู้ติดต่อ</string>
   <string name="contact_selection_group_activity__finding_contacts">กำลังโหลดผู้ติดต่อ…</string>
@@ -837,8 +845,6 @@
   <string name="recipient_preferences__ringtone">เสียงเรียกสาย</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">สาย Signal</string>
-  <string name="redphone_call_controls__mute">ปิดเสียง</string>
-  <string name="redphone_call_controls__flip_camera_rear">สลับกล้อง</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">หมายเลขโทรศัพท์</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal ทำให้การสื่อสารง่ายขึ้นด้วยการใช้หมายเลขโทรศัพท์และผู้ติดต่อที่คุณมีอยู่แล้ว เพื่อนและผู้ติดต่อที่ติดต่อคุณผ่านทางโทรศัพท์ได้ ก็จะสามารถติดต่อคุณผ่าน Signal ได้เช่นกัน การลงทะเบียนจะส่งข้อมูลส่วนหนึ่งของผู้ติดต่อไปที่เซิร์ฟเวอร์แต่จะไม่มีการบันทึกข้อมูลเหล่านั้นไว้</string>

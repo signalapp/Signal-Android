@@ -75,6 +75,7 @@
   <string name="CallScreen_Incoming_call">Долазни позив</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Фотографија није сачувана</string>
+  <!--CameraXFragment-->
   <!--CameraContacts-->
   <string name="CameraContacts_recent_contacts">Недавна комуникација</string>
   <string name="CameraContacts_signal_contacts">Signal контакти</string>
@@ -85,6 +86,7 @@
   <string name="CameraContacts_you_can_only_use_the_camera_button">Можете користити дугме камере за слање фотографија само Signal контактима.</string>
   <string name="CameraContacts_cant_find_who_youre_looking_for">Не можете наћи оно што тражите?</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">Позовите контакт да се прикључи апликацији Signal</string>
+  <string name="CameraContacts__menu_search">Тражи</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Уклони</string>
   <string name="ClearProfileActivity_remove_profile_photo">Да уклоним профилну слику?</string>
@@ -654,6 +656,11 @@
   <string name="WebRtcCallScreen_end_call">Окончај позив</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Тапните да укључите ваш видео</string>
+  <!--WebRtcCallControls Content Descriptions-->
+  <string name="WebRtcCallControls_contact_photo_description">Фотографија контакта</string>
+  <string name="WebRtcCallControls_speaker_button_description">Звучник</string>
+  <string name="WebRtcCallControls_mute_button_description">Без звука</string>
+  <string name="WebRtcCallControls_answer_call_description">Одговори на позив</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__audio">Звук</string>
   <string name="attachment_type_selector__audio_description">Звук</string>
@@ -676,6 +683,7 @@
   <string name="change_passphrase_activity__repeat_new_passphrase">Поновите нову лозинку</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Унесите име или број</string>
+  <!--contact_filter_toolbar-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Нема контаката.</string>
   <string name="contact_selection_group_activity__finding_contacts">Учитавам контакте…</string>
@@ -845,8 +853,6 @@
   <string name="recipient_preferences__ringtone">Звоно</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Позив на Signalу</string>
-  <string name="redphone_call_controls__mute">Без звука</string>
-  <string name="redphone_call_controls__flip_camera_rear">Пребаци камеру</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">БРОЈ ТЕЛЕФОНА</string>
   <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal омогућује једноставну комуникацију користећи ваш број телефона и адресар. Пријатељи и контакти који већ знају како да вас контактирају телефоном ће бити у стању да вас лако контактирају преко Signal-a.\n\nПријава ће пренети неке податке о контакту на сервер. Подаци се не чувају.</string>

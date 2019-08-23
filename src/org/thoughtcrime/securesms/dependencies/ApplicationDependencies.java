@@ -1,17 +1,22 @@
 package org.thoughtcrime.securesms.dependencies;
 
 import android.app.Application;
+import android.content.Context;
 
 import androidx.annotation.NonNull;
 
+import org.thoughtcrime.securesms.IncomingMessageProcessor;
+import org.thoughtcrime.securesms.gcm.MessageRetriever;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
+import org.thoughtcrime.securesms.service.IncomingMessageObserver;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 
 /**
  * Location for storing and retrieving application-scoped singletons. Users must call
- * {@link #init(Provider)} before using any of the methods, preferably early on in
+ * {@link #init(Application, Provider)} before using any of the methods, preferably early on in
  * {@link Application#onCreate()}.
  *
  * All future application-scoped singletons should be written as normal objects, then placed here
@@ -19,49 +24,100 @@ import org.whispersystems.signalservice.api.SignalServiceMessageSender;
  */
 public class ApplicationDependencies {
 
-  private static ApplicationDependencies instance;
+  private static Application application;
+  private static Provider    provider;
 
-  private final Provider provider;
+  private static SignalServiceAccountManager  accountManager;
+  private static SignalServiceMessageSender   messageSender;
+  private static SignalServiceMessageReceiver messageReceiver;
+  private static IncomingMessageProcessor     incomingMessageProcessor;
+  private static MessageRetriever             messageRetriever;
 
-  private ApplicationDependencies(@NonNull Provider provider) {
-    this.provider = provider;
-  }
+  public static synchronized void init(@NonNull Application application, @NonNull Provider provider) {
+    if (ApplicationDependencies.application != null || ApplicationDependencies.provider != null) {
+      throw new IllegalStateException("Already initialized!");
+    }
 
-  public static synchronized void init(@NonNull Provider provider) {
-    instance = new ApplicationDependencies(provider);
+    ApplicationDependencies.application = application;
+    ApplicationDependencies.provider    = provider;
   }
 
   public static synchronized @NonNull SignalServiceAccountManager getSignalServiceAccountManager() {
     assertInitialization();
-    return instance.provider.getSignalServiceAccountManager();
+
+    if (accountManager == null) {
+      accountManager = provider.provideSignalServiceAccountManager();
+    }
+
+    return accountManager;
   }
 
   public static synchronized @NonNull SignalServiceMessageSender getSignalServiceMessageSender() {
     assertInitialization();
-    return instance.provider.getSignalServiceMessageSender();
+
+    if (messageSender == null) {
+      messageSender = provider.provideSignalServiceMessageSender();
+    } else {
+      messageSender.setMessagePipe(IncomingMessageObserver.getPipe(), IncomingMessageObserver.getUnidentifiedPipe());
+      messageSender.setIsMultiDevice(TextSecurePreferences.isMultiDevice(application));
+    }
+
+    return messageSender;
   }
 
   public static synchronized @NonNull SignalServiceMessageReceiver getSignalServiceMessageReceiver() {
     assertInitialization();
-    return instance.provider.getSignalServiceMessageReceiver();
+
+    if (messageReceiver == null) {
+      messageReceiver = provider.provideSignalServiceMessageReceiver();
+    }
+
+    return messageReceiver;
+  }
+
+  public static synchronized void resetSignalServiceMessageReceiver() {
+    assertInitialization();
+    messageReceiver = null;
   }
 
   public static synchronized @NonNull SignalServiceNetworkAccess getSignalServiceNetworkAccess() {
     assertInitialization();
-    return instance.provider.getSignalServiceNetworkAccess();
+    return provider.provideSignalServiceNetworkAccess();
+  }
+
+  public static synchronized @NonNull IncomingMessageProcessor getIncomingMessageProcessor() {
+    assertInitialization();
+
+    if (incomingMessageProcessor == null) {
+      incomingMessageProcessor = provider.provideIncomingMessageProcessor();
+    }
+
+    return incomingMessageProcessor;
+  }
+
+  public static synchronized @NonNull MessageRetriever getMessageRetriever() {
+    assertInitialization();
+
+    if (messageRetriever == null) {
+      messageRetriever = provider.provideMessageRetriever();
+    }
+
+    return messageRetriever;
   }
 
   private static void assertInitialization() {
-    if (instance == null) {
+    if (application == null || provider == null) {
       throw new UninitializedException();
     }
   }
 
   public interface Provider {
-    @NonNull SignalServiceAccountManager getSignalServiceAccountManager();
-    @NonNull SignalServiceMessageSender getSignalServiceMessageSender();
-    @NonNull SignalServiceMessageReceiver getSignalServiceMessageReceiver();
-    @NonNull SignalServiceNetworkAccess getSignalServiceNetworkAccess();
+    @NonNull SignalServiceAccountManager provideSignalServiceAccountManager();
+    @NonNull SignalServiceMessageSender provideSignalServiceMessageSender();
+    @NonNull SignalServiceMessageReceiver provideSignalServiceMessageReceiver();
+    @NonNull SignalServiceNetworkAccess provideSignalServiceNetworkAccess();
+    @NonNull IncomingMessageProcessor provideIncomingMessageProcessor();
+    @NonNull MessageRetriever provideMessageRetriever();
   }
 
   private static class UninitializedException extends IllegalStateException {

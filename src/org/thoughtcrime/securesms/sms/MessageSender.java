@@ -16,39 +16,39 @@
  */
 package org.thoughtcrime.securesms.sms;
 
-import android.app.Application;
 import android.content.Context;
+
 import androidx.annotation.NonNull;
 
 import com.annimon.stream.Stream;
 
-import org.thoughtcrime.securesms.attachments.AttachmentId;
-import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
-import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
-import org.thoughtcrime.securesms.database.MmsSmsDatabase;
-import org.thoughtcrime.securesms.database.NoSuchMessageException;
-import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
-import org.thoughtcrime.securesms.jobmanager.Job;
-import org.thoughtcrime.securesms.jobmanager.JobManager;
-import org.thoughtcrime.securesms.jobs.AttachmentCopyJob;
-import org.thoughtcrime.securesms.jobs.AttachmentUploadJob;
-import org.thoughtcrime.securesms.logging.Log;
-
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.attachments.Attachment;
+import org.thoughtcrime.securesms.attachments.AttachmentId;
+import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.MmsDatabase;
+import org.thoughtcrime.securesms.database.MmsSmsDatabase;
+import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
+import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.JobManager;
+import org.thoughtcrime.securesms.jobs.AttachmentCopyJob;
+import org.thoughtcrime.securesms.jobs.AttachmentCompressionJob;
+import org.thoughtcrime.securesms.jobs.AttachmentUploadJob;
 import org.thoughtcrime.securesms.jobs.MmsSendJob;
 import org.thoughtcrime.securesms.jobs.PushGroupSendJob;
 import org.thoughtcrime.securesms.jobs.PushMediaSendJob;
 import org.thoughtcrime.securesms.jobs.PushTextSendJob;
 import org.thoughtcrime.securesms.jobs.SmsSendJob;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage;
@@ -171,14 +171,17 @@ public class MessageSender {
         mmsDatabase.endTransaction();
       }
 
-      List<AttachmentUploadJob> uploadJobs  = new ArrayList<>(databaseAttachments.size());
-      List<AttachmentCopyJob>   copyJobs    = new ArrayList<>(databaseAttachments.size());
-      List<Job>                 messageJobs = new ArrayList<>(databaseAttachments.get(0).size());
+      List<Job> compressionJobs = new ArrayList<>(databaseAttachments.size());
+      List<Job> uploadJobs      = new ArrayList<>(databaseAttachments.size());
+      List<Job> copyJobs        = new ArrayList<>(databaseAttachments.size());
+      List<Job> messageJobs     = new ArrayList<>(databaseAttachments.get(0).size());
 
       for (List<DatabaseAttachment> attachmentList : databaseAttachments) {
         DatabaseAttachment source = attachmentList.get(0);
 
-        uploadJobs.add(AttachmentUploadJob.fromAttachment(source));
+        compressionJobs.add(AttachmentCompressionJob.fromAttachment(source, false, -1));
+
+        uploadJobs.add(new AttachmentUploadJob(source.getAttachmentId()));
 
         if (attachmentList.size() > 1) {
           AttachmentId       sourceId       = source.getAttachmentId();
@@ -209,7 +212,10 @@ public class MessageSender {
                                copyJobs.size(),
                                messageJobs.size()));
 
-      JobManager.Chain chain = ApplicationContext.getInstance(context).getJobManager().startChain(uploadJobs);
+      JobManager.Chain chain = ApplicationContext.getInstance(context)
+                                                 .getJobManager()
+                                                 .startChain(compressionJobs)
+                                                 .then(uploadJobs);
 
       if (copyJobs.size() > 0) {
         chain = chain.then(copyJobs);
@@ -289,7 +295,7 @@ public class MessageSender {
 
   private static void sendMms(Context context, long messageId) {
     JobManager jobManager = ApplicationContext.getInstance(context).getJobManager();
-    jobManager.add(new MmsSendJob(messageId));
+    MmsSendJob.enqueue(context, jobManager, messageId);
   }
 
   private static boolean isPushTextSend(Context context, Recipient recipient, boolean keyExchange) {
