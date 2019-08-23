@@ -1,21 +1,23 @@
 package org.thoughtcrime.securesms.loki
 
+import android.Manifest
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
-import kotlinx.android.synthetic.main.activity_new_conversation.*
-import network.loki.messenger.R;
+import network.loki.messenger.R
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.conversation.ConversationActivity
 import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.ThreadDatabase
+import org.thoughtcrime.securesms.permissions.Permissions
+import org.thoughtcrime.securesms.qr.ScanListener
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.DynamicTheme
 import org.whispersystems.signalservice.loki.utilities.PublicKeyValidation
 
-class NewConversationActivity : PassphraseRequiredActionBarActivity() {
+class NewConversationActivity : PassphraseRequiredActionBarActivity(), ScanListener {
     private val dynamicTheme = DynamicTheme()
 
     override fun onPreCreate() {
@@ -23,10 +25,10 @@ class NewConversationActivity : PassphraseRequiredActionBarActivity() {
     }
 
     override fun onCreate(bundle: Bundle?, isReady: Boolean) {
-        setContentView(R.layout.activity_new_conversation)
         supportActionBar!!.setTitle(R.string.activity_new_conversation_title)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        nextButton.setOnClickListener { startNewConversationIfPossible() }
+        val fragment = NewConversationFragment()
+        initFragment(android.R.id.content, fragment, null)
     }
 
     public override fun onResume() {
@@ -42,8 +44,25 @@ class NewConversationActivity : PassphraseRequiredActionBarActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun startNewConversationIfPossible() {
-        val hexEncodedPublicKey = publicKeyEditText.text.toString().trim()
+    fun scanQRCode() {
+        Permissions.with(this)
+            .request(Manifest.permission.CAMERA)
+            .ifNecessary()
+            .withPermanentDenialDialog(getString(R.string.fragment_qr_code_camera_permission_dialog_message))
+            .onAllGranted {
+                val fragment = ScanQRCodeFragment()
+                fragment.setScanListener(this)
+                supportFragmentManager.beginTransaction().replace(android.R.id.content, fragment).addToBackStack(null).commitAllowingStateLoss()
+            }
+            .onAnyDenied { Toast.makeText(this, R.string.fragment_qr_code_camera_permission_denied_message, Toast.LENGTH_SHORT).show() }
+            .execute()
+    }
+
+    override fun onQrDataFound(hexEncodedPublicKey: String) {
+        startNewConversationIfPossible(hexEncodedPublicKey)
+    }
+
+    fun startNewConversationIfPossible(hexEncodedPublicKey: String) {
         if (PublicKeyValidation.isValid(hexEncodedPublicKey)) {
             val contact = Recipient.from(this, Address.fromSerialized(hexEncodedPublicKey), true)
             val intent = Intent(this, ConversationActivity::class.java)
