@@ -15,12 +15,7 @@ class LokiUserDatabase(context: Context, helper: SQLCipherOpenHelper) : Database
         private val displayNameTable = "loki_user_display_name_database"
         private val hexEncodedPublicKey = "hex_encoded_public_key"
         private val displayName = "display_name"
-        @JvmStatic val createDisplayNameTableCommand = "CREATE TABLE $displayNameTable ($hexEncodedPublicKey TEXT PRIMARY KEY, $displayName TEXT);"
-
-        private val publicChatTokenTable = "loki_user_public_chat_token_database"
-        private val server = "server"
-        private val token = "token"
-        @JvmStatic val createPublicChatTokenTableCommand = "CREATE TABLE $publicChatTokenTable ($server TEXT PRIMARY KEY, $token TEXT);"
+        @JvmStatic val createTableCommand = "CREATE TABLE $displayNameTable ($hexEncodedPublicKey TEXT PRIMARY KEY, $displayName TEXT);"
     }
 
     override fun getDisplayName(hexEncodedPublicKey: String): String? {
@@ -41,20 +36,5 @@ class LokiUserDatabase(context: Context, helper: SQLCipherOpenHelper) : Database
         row.put(Companion.displayName, displayName)
         database.insertOrUpdate(displayNameTable, row, "${Companion.hexEncodedPublicKey} = ?", arrayOf( hexEncodedPublicKey ))
         Recipient.from(context, Address.fromSerialized(hexEncodedPublicKey), false).notifyListeners()
-    }
-
-    override fun getToken(server: String): String? {
-        val database = databaseHelper.readableDatabase
-        return database.get(publicChatTokenTable, "${Companion.server} = ?", arrayOf( server )) { cursor ->
-            cursor.getString(cursor.getColumnIndexOrThrow(token))
-        }
-    }
-
-    override fun setToken(token: String, server: String) {
-        val database = databaseHelper.writableDatabase
-        val row = ContentValues(2)
-        row.put(Companion.server, server)
-        row.put(Companion.token, token)
-        database.insertOrUpdate(publicChatTokenTable, row, "${Companion.server} = ?", arrayOf( server ))
     }
 }
