@@ -1608,7 +1608,6 @@
     <string name="fragment_qr_code_title">Your QR Code</string>
     <string name="fragment_qr_code_explanation">This is your personal QR code. Other people can scan it to start a secure conversation with you.</string>
     <string name="fragment_qr_code_camera_permission_dialog_message">Loki Messenger needs camera access to scan QR codes.</string>
-    <string name="fragment_qr_code_camera_permission_denied_message">Loki Messenger can\'t scan QR codes without camera access.</string>
     <!-- Scan QR code fragment -->
     <string name="fragment_scan_qr_code_title">Scan QR Code</string>
     <string name="fragment_scan_qr_code_explanation">Scan the QR code of the person you\'d like to securely message. They can find their QR code by going into Loki Messenger\'s in-app settings and clicking \"Show QR Code\".</string>

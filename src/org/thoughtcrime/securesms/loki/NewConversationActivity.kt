@@ -54,7 +54,7 @@ class NewConversationActivity : PassphraseRequiredActionBarActivity(), ScanListe
                 fragment.scanListener = this
                 supportFragmentManager.beginTransaction().replace(android.R.id.content, fragment).addToBackStack(null).commitAllowingStateLoss()
             }
-            .onAnyDenied { Toast.makeText(this, R.string.fragment_qr_code_camera_permission_denied_message, Toast.LENGTH_SHORT).show() }
+            .onAnyDenied { Toast.makeText(this, R.string.fragment_qr_code_camera_permission_dialog_message, Toast.LENGTH_SHORT).show() }
             .execute()
     }
 
