@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             app:labeledEditText_background="@color/loki_darkest_gray"
-            app:labeledEditText_label="@string/activity_new_conversation_public_key_edit_text_label"/>
+            app:labeledEditText_label="@string/fragment_new_conversation_public_key_edit_text_label"/>
 
         <TextView
             android:id="@+id/explanationTextView"
@@ -26,7 +26,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="@string/activity_new_conversation_public_key_explanation" />
+            android:text="@string/fragment_new_conversation_public_key_explanation" />
+
+        <Button
+            android:id="@+id/qrCodeButton"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/transparent"
+            android:textColor="@color/signal_primary"
+            android:text="@string/fragment_new_conversation_qr_code_button_title"
+            android:elevation="0dp"
+            android:stateListAnimator="@null" />
 
         <com.dd.CircularProgressButton
             android:id="@+id/nextButton"
@@ -41,7 +52,7 @@
             app:cpb_colorProgress="@color/textsecure_primary"
             app:cpb_cornerRadius="4dp"
             app:cpb_selectorIdle="@drawable/progress_button_state"
-            app:cpb_textIdle="@string/activity_new_conversation_button_title" />
+            app:cpb_textIdle="@string/fragment_new_conversation_next_button_title" />
 
     </LinearLayout>
 

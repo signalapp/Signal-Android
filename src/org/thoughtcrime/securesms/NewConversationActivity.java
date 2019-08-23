@@ -53,7 +53,7 @@ public class NewConversationActivity extends ContactSelectionActivity {
     boolean isValid = PublicKeyValidation.isValid(number);
 
     if (!isValid) {
-      Toast.makeText(this, R.string.activity_new_conversation_invalid_public_key_message, Toast.LENGTH_SHORT).show();
+      Toast.makeText(this, R.string.fragment_new_conversation_invalid_public_key_message, Toast.LENGTH_SHORT).show();
       return;
     }
 

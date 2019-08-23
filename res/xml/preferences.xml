@@ -37,6 +37,10 @@
                 android:title="@string/activity_settings_share_public_key_button_title"
                 android:icon="@drawable/icon_share"/>
 
+    <Preference android:key="preference_category_qr_code"
+                android:title="@string/activity_settings_show_qr_code_button_title"
+                android:icon="@drawable/icon_qr_code"/>
+
     <Preference android:key="preference_category_seed"
                 android:title="@string/activity_settings_show_seed_button_title"
                 android:icon="@drawable/icon_seedling"/>

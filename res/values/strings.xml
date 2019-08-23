@@ -1569,6 +1569,7 @@
     <!-- Settings activity -->
     <string name="activity_settings_public_key_copied_message">Copied to Clipboard</string>
     <string name="activity_settings_share_public_key_button_title">Share Public Key</string>
+    <string name="activity_settings_show_qr_code_button_title">Show QR Code</string>
     <string name="activity_settings_show_seed_button_title">Show Seed</string>
     <string name="activity_settings_seed_dialog_title">Your Seed</string>
     <string name="activity_settings_seed_dialog_copy_button_title">Copy</string>
@@ -1584,11 +1585,12 @@
     <!-- Contact selection activity -->
     <string name="activity_contact_selection_search_bar_placeholder">Search by name or public key</string>
     <!-- New conversation activity -->
-    <string name="activity_new_conversation_title">New Conversation</string>
-    <string name="activity_new_conversation_public_key_edit_text_label">Public Key</string>
-    <string name="activity_new_conversation_public_key_explanation">Enter the public key of the person you\'d like to securely message. They can share their public key with you by going into Loki Messenger\'s in-app settings and clicking \"Share Public Key\".</string>
-    <string name="activity_new_conversation_button_title">Next</string>
-    <string name="activity_new_conversation_invalid_public_key_message">Invalid Public Key</string>
+    <string name="fragment_new_conversation_title">New Conversation</string>
+    <string name="fragment_new_conversation_public_key_edit_text_label">Public Key</string>
+    <string name="fragment_new_conversation_public_key_explanation">Enter the public key of the person you\'d like to securely message. They can share their public key with you by going into Loki Messenger\'s in-app settings and clicking \"Share Public Key\".</string>
+    <string name="fragment_new_conversation_qr_code_button_title">Scan a QR Code Instead</string>
+    <string name="fragment_new_conversation_next_button_title">Next</string>
+    <string name="fragment_new_conversation_invalid_public_key_message">Invalid Public Key</string>
     <!-- Friend request view -->
     <string name="view_friend_request_accept_button_title">Accept</string>
     <string name="view_friend_request_reject_button_title">Reject</string>
@@ -1602,5 +1604,13 @@
     <!-- Conversation activity -->
     <string name="activity_conversation_pending_friend_request_hint">Pending Friend Request…</string>
     <string name="activity_conversation_default_hint">New Message</string>
+    <!-- QR code fragment -->
+    <string name="fragment_qr_code_title">Your QR Code</string>
+    <string name="fragment_qr_code_explanation">This is your personal QR code. Other people can scan it to start a secure conversation with you.</string>
+    <string name="fragment_qr_code_camera_permission_dialog_message">Loki Messenger needs camera access to scan QR codes.</string>
+    <string name="fragment_qr_code_camera_permission_denied_message">Loki Messenger can\'t scan QR codes without camera access.</string>
+    <!-- Scan QR code fragment -->
+    <string name="fragment_scan_qr_code_title">Scan QR Code</string>
+    <string name="fragment_scan_qr_code_explanation">Scan the QR code of the person you\'d like to securely message. They can find their QR code by going into Loki Messenger\'s in-app settings and clicking \"Show QR Code\".</string>
 
 </resources>

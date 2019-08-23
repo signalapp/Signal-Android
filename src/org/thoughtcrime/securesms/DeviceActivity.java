@@ -71,11 +71,11 @@ public class DeviceActivity extends PassphraseRequiredActionBarActivity
     this.deviceListFragment.setAddDeviceButtonListener(this);
     this.deviceAddFragment.setScanListener(this);
 
-    if (getIntent().getBooleanExtra("add", false)) {
+//    if (getIntent().getBooleanExtra("add", false)) {
       initFragment(android.R.id.content, deviceAddFragment, dynamicLanguage.getCurrentLocale());
-    } else {
-      initFragment(android.R.id.content, deviceListFragment, dynamicLanguage.getCurrentLocale());
-    }
+//    } else {
+//      initFragment(android.R.id.content, deviceListFragment, dynamicLanguage.getCurrentLocale());
+//    }
   }
 
   @Override
