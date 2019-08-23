@@ -25,7 +25,7 @@ class NewConversationActivity : PassphraseRequiredActionBarActivity(), ScanListe
     }
 
     override fun onCreate(bundle: Bundle?, isReady: Boolean) {
-        supportActionBar!!.setTitle(R.string.activity_new_conversation_title)
+        supportActionBar!!.setTitle(R.string.fragment_new_conversation_title)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         val fragment = NewConversationFragment()
         initFragment(android.R.id.content, fragment, null)
@@ -51,7 +51,7 @@ class NewConversationActivity : PassphraseRequiredActionBarActivity(), ScanListe
             .withPermanentDenialDialog(getString(R.string.fragment_qr_code_camera_permission_dialog_message))
             .onAllGranted {
                 val fragment = ScanQRCodeFragment()
-                fragment.setScanListener(this)
+                fragment.scanListener = this
                 supportFragmentManager.beginTransaction().replace(android.R.id.content, fragment).addToBackStack(null).commitAllowingStateLoss()
             }
             .onAnyDenied { Toast.makeText(this, R.string.fragment_qr_code_camera_permission_denied_message, Toast.LENGTH_SHORT).show() }
@@ -75,7 +75,7 @@ class NewConversationActivity : PassphraseRequiredActionBarActivity(), ScanListe
             startActivity(intent)
             finish()
         } else {
-            Toast.makeText(this, R.string.activity_new_conversation_invalid_public_key_message, Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, R.string.fragment_new_conversation_invalid_public_key_message, Toast.LENGTH_SHORT).show()
         }
     }
 }

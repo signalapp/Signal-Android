@@ -1585,12 +1585,12 @@
     <!-- Contact selection activity -->
     <string name="activity_contact_selection_search_bar_placeholder">Search by name or public key</string>
     <!-- New conversation activity -->
-    <string name="activity_new_conversation_title">New Conversation</string>
-    <string name="activity_new_conversation_public_key_edit_text_label">Public Key</string>
-    <string name="activity_new_conversation_public_key_explanation">Enter the public key of the person you\'d like to securely message. They can share their public key with you by going into Loki Messenger\'s in-app settings and clicking \"Share Public Key\".</string>
-    <string name="activity_new_conversation_qr_code_button_title">Scan a QR Code Instead</string>
-    <string name="activity_new_conversation_next_button_title">Next</string>
-    <string name="activity_new_conversation_invalid_public_key_message">Invalid Public Key</string>
+    <string name="fragment_new_conversation_title">New Conversation</string>
+    <string name="fragment_new_conversation_public_key_edit_text_label">Public Key</string>
+    <string name="fragment_new_conversation_public_key_explanation">Enter the public key of the person you\'d like to securely message. They can share their public key with you by going into Loki Messenger\'s in-app settings and clicking \"Share Public Key\".</string>
+    <string name="fragment_new_conversation_qr_code_button_title">Scan a QR Code Instead</string>
+    <string name="fragment_new_conversation_next_button_title">Next</string>
+    <string name="fragment_new_conversation_invalid_public_key_message">Invalid Public Key</string>
     <!-- Friend request view -->
     <string name="view_friend_request_accept_button_title">Accept</string>
     <string name="view_friend_request_reject_button_title">Reject</string>

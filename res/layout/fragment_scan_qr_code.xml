@@ -12,7 +12,7 @@
         app:camera="0" />
 
     <LinearLayout
-        android:id="@+id/overlay"
+        android:id="@+id/overlayView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
