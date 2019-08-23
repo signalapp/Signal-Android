@@ -12,10 +12,15 @@ import org.whispersystems.signalservice.loki.messaging.LokiUserDatabaseProtocol
 class LokiUserDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), LokiUserDatabaseProtocol {
 
     companion object {
-        private val tableName = "loki_user_display_name_database"
+        private val displayNameTable = "loki_user_display_name_database"
         private val hexEncodedPublicKey = "hex_encoded_public_key"
         private val displayName = "display_name"
-        @JvmStatic val createTableCommand = "CREATE TABLE $tableName ($hexEncodedPublicKey TEXT PRIMARY KEY, $displayName TEXT);"
+        @JvmStatic val createDisplayNameTableCommand = "CREATE TABLE $displayNameTable ($hexEncodedPublicKey TEXT PRIMARY KEY, $displayName TEXT);"
+
+        private val publicChatTokenTable = "loki_user_public_chat_token_database"
+        private val server = "server"
+        private val token = "token"
+        @JvmStatic val createPublicChatTokenTableCommand = "CREATE TABLE $publicChatTokenTable ($server TEXT PRIMARY KEY, $token TEXT);"
     }
 
     override fun getDisplayName(hexEncodedPublicKey: String): String? {
@@ -23,7 +28,7 @@ class LokiUserDatabase(context: Context, helper: SQLCipherOpenHelper) : Database
             return TextSecurePreferences.getProfileName(context)
         } else {
             val database = databaseHelper.readableDatabase
-            return database.get(tableName, "${Companion.hexEncodedPublicKey} = ?", arrayOf(hexEncodedPublicKey)) { cursor ->
+            return database.get(displayNameTable, "${Companion.hexEncodedPublicKey} = ?", arrayOf(hexEncodedPublicKey)) { cursor ->
                 cursor.getString(cursor.getColumnIndexOrThrow(displayName))
             }
         }
@@ -34,7 +39,22 @@ class LokiUserDatabase(context: Context, helper: SQLCipherOpenHelper) : Database
         val row = ContentValues(2)
         row.put(Companion.hexEncodedPublicKey, hexEncodedPublicKey)
         row.put(Companion.displayName, displayName)
-        database.insertOrUpdate(tableName, row, "${Companion.hexEncodedPublicKey} = ?", arrayOf( hexEncodedPublicKey ))
+        database.insertOrUpdate(displayNameTable, row, "${Companion.hexEncodedPublicKey} = ?", arrayOf( hexEncodedPublicKey ))
         Recipient.from(context, Address.fromSerialized(hexEncodedPublicKey), false).notifyListeners()
+    }
+
+    override fun getToken(server: String): String? {
+        val database = databaseHelper.readableDatabase
+        return database.get(publicChatTokenTable, "${Companion.server} = ?", arrayOf( server )) { cursor ->
+            cursor.getString(cursor.getColumnIndexOrThrow(token))
+        }
+    }
+
+    override fun setToken(token: String, server: String) {
+        val database = databaseHelper.writableDatabase
+        val row = ContentValues(2)
+        row.put(Companion.server, server)
+        row.put(Companion.token, token)
+        database.insertOrUpdate(publicChatTokenTable, row, "${Companion.server} = ?", arrayOf( server ))
     }
 }
