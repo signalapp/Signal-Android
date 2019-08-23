@@ -1569,6 +1569,7 @@
     <!-- Settings activity -->
     <string name="activity_settings_public_key_copied_message">Copied to Clipboard</string>
     <string name="activity_settings_share_public_key_button_title">Share Public Key</string>
+    <string name="activity_settings_show_qr_code_button_title">Show QR Code</string>
     <string name="activity_settings_show_seed_button_title">Show Seed</string>
     <string name="activity_settings_seed_dialog_title">Your Seed</string>
     <string name="activity_settings_seed_dialog_copy_button_title">Copy</string>
@@ -1602,5 +1603,8 @@
     <!-- Conversation activity -->
     <string name="activity_conversation_pending_friend_request_hint">Pending Friend Request…</string>
     <string name="activity_conversation_default_hint">New Message</string>
+    <!-- QR code fragment -->
+    <string name="fragment_qr_code_title">Your QR Code</string>
+    <string name="fragment_qr_code_explanation">This is your personal QR code. Other people can scan it to start a secure conversation with you.</string>
 
 </resources>
