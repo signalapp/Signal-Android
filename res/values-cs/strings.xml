@@ -63,11 +63,12 @@
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Nemohu nalézt aplikaci pro vybraný typ dat.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signál potřebuje oprávnění pro přístup k úložišti aby mohl připojovat fotky, videa nebo zvuky, ale toto oprávnění je nyní zakázáno. Prosím pokračujte do menu nastavení aplikací, vyberte \"Oprávnění\" a povolte \"Úložiště\",</string>
-  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signál potřebuje oprávnění pro přístup ke kontaktům aby mohl připojit informace o kontaktu, ale toto oprávnění je nyní zakázáno. Prosím pokračujte do menu nastavení aplikací, vyberte \"Oprávnění\" a povolte \"Kontakty\",</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signál potřebuje oprávnění pro přístup ke kontaktům, aby mohl připojit informace o kontaktu, ale toto oprávnění je nyní zakázáno. Prosím pokračujte do menu nastavení aplikací, vyberte \"Oprávnění\" a povolte \"Kontakty\".</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signál potřebuje oprávnění pro přístup k poloze aby mohl připojit informace o poloze, ale toto oprávnění je nyní zakázáno. Prosím pokračujte do menu nastavení aplikací, vyberte \"Oprávnění\" a povolte \"Poloha\".</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signál potřebuje oprávnění pro přístup k fotoaparátu aby mohl pořizovat fotografie, ale toto oprávnění je nyní zakázáno. Prosím pokračujte do menu nastavení aplikací, vyberte \"Oprávnění\" a povolte \"Fotoaparát\".</string>
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">Nahrávám médium…</string>
+  <string name="AttachmentUploadJob_compressing_video_start">Komprimování videa...</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Chyba při přehrávání audia!</string>
   <!--BlockedContactsActivity-->
@@ -82,13 +83,19 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Nepodařilo se uložit obrázek.</string>
   <!--CameraXFragment-->
+  <string name="CameraXFragment_capture_description">Pořídit</string>
+  <string name="CameraXFragment_change_camera_description">Změnit kameru</string>
+  <string name="CameraXFragment_open_gallery_description">Otevřít galerii</string>
   <!--CameraContacts-->
   <string name="CameraContacts_recent_contacts">Nedávné kontakty</string>
   <string name="CameraContacts_signal_contacts">Signal kontakty</string>
   <string name="CameraContacts_signal_groups">Signal skupiny</string>
+  <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">Lze sdílet maximálně s tímto počtem konverzací: %d.</string>
+  <string name="CameraContacts_select_signal_recipients">Vyberte příjemce Signal</string>
   <string name="CameraContacts_no_signal_contacts">Žádné Signal kontakty</string>
   <string name="CameraContacts_you_can_only_use_the_camera_button">Pro odeslání obrázků Signal kontaktům můžete použít pouze tlačítko fotoaparátu.</string>
   <string name="CameraContacts_cant_find_who_youre_looking_for">Nemůžete najít, co jste hledali?</string>
+  <string name="CameraContacts_invite_a_contact_to_join_signal">Pozvěte kontakt do Signalu</string>
   <string name="CameraContacts__menu_search">Hledat</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Odebrat</string>
@@ -235,6 +242,7 @@
   <string name="ConversationFragment_deleting_messages">Mažu zprávy...</string>
   <string name="ConversationFragment_quoted_message_not_found">Původní zpráva nebyla nalezena</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Původní zpráva již není dostupná</string>
+  <string name="ConversationFragment_failed_to_open_message">Zprávu se nepovedlo otevřít</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Nemáte na vašem zařízení nainstalován žádný prohlížeč.</string>
   <!--ConversationListFragment-->
@@ -281,6 +289,7 @@
   <string name="CreateProfileActivity_profile_name">Profilové jméno</string>
   <string name="CreateProfileActivity_set_up_your_profile">Nastavit váš profil</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Profily Signal jsou end-to-end šifrované a služba Signal nemá žádný přístup k těmto informacím.</string>
+  <string name="CreateProfileActivity_set_avatar_description">Nastavit avatar</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Používá se vlastní: %s</string>
   <string name="CustomDefaultPreference_using_default">Používá se výchozí: %s</string>
@@ -446,6 +455,7 @@
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Chyba při stahování MMS zprávy, ťukněte pro opakování</string>
   <!--MediaPickerActivity-->
   <string name="MediaPickerActivity_send_to">Poslat %s</string>
+  <string name="MediaPickerActivity__menu_open_camera">Zapnout kameru</string>
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">Klepněte pro výběr</string>
   <!--MediaSendActivity-->
@@ -456,6 +466,7 @@
   <string name="MediaSendActivity_message">Zpráva</string>
   <string name="MediaSendActivity_select_recipients">Zvolte příjemce</string>
   <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signál potřebuje přístup k vašim kontaktům aby je mohl zobrazit.</string>
+  <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal potřebuje oprávnění pro přístup ke kontaktům, aby mohl připojit informace o kontaktu, ale toto oprávnění je nyní zakázáno. Prosím pokračujte do menu nastavení aplikací, vyberte \"Oprávnění\" a povolte \"Kontakty\".</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Nemůžete sdílet více než  %d položku.</item>
     <item quantity="few">Nemůžete sdílet více než  %d položky.</item>
@@ -793,8 +804,12 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <!--WebRtcCallControls Content Descriptions-->
   <string name="WebRtcCallControls_contact_photo_description">Fotografie kontaktu</string>
   <string name="WebRtcCallControls_speaker_button_description">Nahlas</string>
+  <string name="WebRtcCallControls_bluetooth_button_description">Bluetooth</string>
   <string name="WebRtcCallControls_mute_button_description">Ztlumit</string>
+  <string name="WebRtcCallControls_your_camera_button_description">Váš fotoaparát</string>
+  <string name="WebRtcCallControls_switch_to_rear_camera_button_description">Přepnout na zadní kameru</string>
   <string name="WebRtcCallControls_answer_call_description">Přijmout hovor</string>
+  <string name="WebRtcCallControls_reject_call_description">Odmítnout hovor</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__audio">Audio</string>
   <string name="attachment_type_selector__audio_description">Audio</string>
@@ -818,6 +833,9 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Zadejte jméno nebo číslo</string>
   <!--contact_filter_toolbar-->
+  <string name="contact_filter_toolbar__clear_entered_text_description">Vyčistit zadaný text</string>
+  <string name="contact_filter_toolbar__show_keyboard_description">Zobrazit klávesnici</string>
+  <string name="contact_filter_toolbar__show_dial_pad_description">Zobrazit číselník</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Žádný kontakt</string>
   <string name="contact_selection_group_activity__finding_contacts">Načítám kontakty...</string>
@@ -1240,6 +1258,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Vybrán archiv</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Obnovit vybrané z archivu</string>
   <!--conversation_list-->
+  <string name="conversation_list_settings_shortcut">Zkratka nastavení</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Fotografie kontaktu</string>
   <string name="conversation_list_item_view__archived">Archivováno</string>
@@ -1247,6 +1266,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Zip. Zilch. Zero. Nada.\nYou\'re all caught up!</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Nová konverzace</string>
+  <string name="conversation_list_fragment__open_camera_description">Otevřít fotoaparát</string>
   <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Přidejte něco do schránky. Začněte psát přítelům.</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Resetovat zabezpečenou konverzaci</string>

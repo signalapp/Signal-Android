@@ -10,11 +10,19 @@
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Ujumbe mpya</string>
   <!--AlbumThumbnailView-->
-  <string name="AlbumThumbnailView_plus">/+ 1%d</string>
+  <string name="AlbumThumbnailView_plus">\+ %d</string>
   <!--ApplicationPreferencesActivity-->
-  <string name="ApplicationPreferencesActivity_currently_s">Hivi sasa: 1 %s</string>
+  <string name="ApplicationPreferencesActivity_currently_s">Hivi sasa:  %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Bado hujapanga tungo</string>
+  <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
+    <item quantity="one">1%d meseji kwa mazungumuzo</item>
+    <item quantity="other">%d meseji kwa mazungumuzo</item>
+  </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Futa sasa meseji zote za zamani </string>
+  <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
+    <item quantity="one">Hii, itafupisha mazungumzo zote, meseji ya mwisho zitaishi.</item>
+    <item quantity="other">Hii, itafupisha mazungumzo zote, meseji %d zitaishi.</item>
+  </plurals>
   <string name="ApplicationPreferencesActivity_delete">Futa</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Zuia nenosiri</string>
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Hii itazuia kabisa signal na taarifa ya meseji</string>
@@ -33,7 +41,13 @@
   <string name="ApplicationPreferencesActivity_off">zima</string>
   <string name="ApplicationPreferencesActivity_Off">Zima</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">Ujumbe mfupi wa simu %1$s, Ujumbe mfupi wa picha %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">Funguo wa unonyesha %1$s, Funguo wa kusajili %2$s</string>
+  <string name="ApplicationPreferencesActivity_appearance_summary">Mandhari %1$s, Lugha %2$s</string>
   <!--AppProtectionPreferenceFragment-->
+  <plurals name="AppProtectionPreferenceFragment_minutes">
+    <item quantity="one">dakika %d </item>
+    <item quantity="other">dakika %d</item>
+  </plurals>
   <!--DraftDatabase-->
   <string name="DraftDatabase_Draft_image_snippet">(picha)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(sauti)</string>
@@ -47,6 +61,8 @@
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal inahitaji ruhusa ya Eneo ili kuunganisha mahali, lakini imekataliwa kabisa. Tafadhali endelea kwenye orodha ya mipangilio ya programu, chagua \"Ruhusa\", na uwezesha \"Eneo\".</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal inahitaji ruhusa ya Kamera ili kuchukua picha, lakini imekataliwa kabisa. Tafadhali endelea kwenye orodha ya mipangilio ya programu, chagua \"Ruhusa\", na uwawezesha \"Kamera\".</string>
   <!--AttachmentUploadJob-->
+  <string name="AttachmentUploadJob_uploading_media">Midia inapakiwa...</string>
+  <string name="AttachmentUploadJob_compressing_video_start">Video inafinyazwa...</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Hitilafu ya kucheza sauti!</string>
   <!--BlockedContactsActivity-->
@@ -61,13 +77,25 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">imeshindikana kuhifadhi picha</string>
   <!--CameraXFragment-->
+  <string name="CameraXFragment_capture_description">Twaa</string>
+  <string name="CameraXFragment_change_camera_description">Geuza kamera</string>
+  <string name="CameraXFragment_open_gallery_description">Fungua kichanja</string>
   <!--CameraContacts-->
+  <string name="CameraContacts_recent_contacts">Mawasiliano ya hivi karibuni</string>
+  <string name="CameraContacts_signal_contacts">Mawasiliano ya signal</string>
+  <string name="CameraContacts_signal_groups">Makundi za Signal</string>
+  <string name="CameraContacts_select_signal_recipients">Chagua wapokeaji wa Signal</string>
+  <string name="CameraContacts_no_signal_contacts">Hakuna mawasiliano ya Signal</string>
+  <string name="CameraContacts_you_can_only_use_the_camera_button">Unaweza kutumia kibonye cha kamera kutumia picha kwa mawasiliano ya Signal tuu.</string>
+  <string name="CameraContacts_cant_find_who_youre_looking_for">Huwezi kuona vile unatafuta?</string>
+  <string name="CameraContacts_invite_a_contact_to_join_signal">Mwalika wasiliano wako kutumia Signal</string>
   <string name="CameraContacts__menu_search">Tafuta</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Ondoa</string>
   <string name="ClearProfileActivity_remove_profile_photo">Ondoa picha ya faili</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">hakuna kivinjari cha web kilichopatikana</string>
+  <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Simu ya mkononi inapigwa sasa hivi.</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Unaweza kufafanua nambari yako ya usalama na anwani hii.</string>
   <string name="ConfirmIdentityDialog_accept">Kubali</string>
@@ -76,7 +104,8 @@
   <string name="ContactsCursorLoader_contacts">Mawasiliano</string>
   <string name="ContactsCursorLoader_groups">Makundi</string>
   <!--ContactsDatabase-->
-  <string name="ContactsDatabase_signal_call_s">wito wa Signal 1%s</string>
+  <string name="ContactsDatabase_message_s">Ujumbe %s</string>
+  <string name="ContactsDatabase_signal_call_s">Wito wa Signal %s</string>
   <!--ContactNameEditActivity-->
   <string name="ContactNameEditActivity_given_name">Jina la familia</string>
   <string name="ContactNameEditActivity_family_name">Jina la ukoo</string>
@@ -96,11 +125,14 @@
   <string name="ConversationItem_click_to_approve_unencrypted">imefeli kutuma, gusa kwa isiyo salama ili kuanguka nyuma</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">kuanguka nyuma kwa kutoa nywila</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">kuanguka nyuma kwa kutoa nywila MMS</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">huu ujumbe uta 1 sio 1 kuwa na nywila kwasababu mpokeaji hatumii tena Signal./n/n tuma ujumbe usio salama</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Huu ujumbe uta <b>sio</b>  kuwa na nywila kwa sababu mpokeaji hatumii tena Signal.\n\n Tuma ujumbe usio salama?</string>
   <string name="ConversationItem_unable_to_open_media">Haiwezi kupata programu inayoweza kufungua media hii.</string>
   <string name="ConversationItem_copied_text">nakala 1%s</string>
   <string name="ConversationItem_from_s">kutoka %s</string>
   <string name="ConversationItem_to_s">kwenda %s</string>
+  <string name="ConversationItem_read_more">  Soma Zaidi</string>
+  <string name="ConversationItem_download_more">  Pakua Zaidi</string>
+  <string name="ConversationItem_pending">  Inangojewa</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">Rejesha kikao salama</string>
   <string name="ConversationActivity_reset">Rekebisha tena</string>
@@ -134,13 +166,16 @@
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">hakuna programu ya kuweza kushughulikia kiungo hiki kwenye kifaa chako</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Kutuma ujumbe wa sauti, kuruhusu ufikiaji wa Signal  kwenye kipaza sauti yako.</string>
   <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal inahitaji idhini ya Kipaza sauti ili kutuma ujumbe wa sauti, lakini imekataliwa kabisa. Tafadhali endelea kwenye mipangilio ya programu, chagua \"Ruhusa\", na uwawezesha \"Kipaza sauti\".</string>
-  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">kuita 1%s, Sinal inahitaji upatikanaji wa kipaza sauti na kamera.</string>
+  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Kuita 1%s, Signal inahitaji upatikanaji wa kipaza sauti na kamera.</string>
   <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal inahitaji ruhusa ya Kipaza sauti na Kamera ili kuwaita  1%s , lakini wamekanushwa kabisa. Tafadhali endelea kwenye mipangilio ya programu, chagua \"Ruhusa\", na uwawezesha \"Kipaza sauti\" na \"Kamera\".</string>
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Ili kukamata picha na video, kuruhusu upatikanaji wa Signal kwa kamera.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal inahitaji kibali cha Kamera kuchukua picha au video, lakini imekataliwa kabisa. Tafadhali endelea kwenye mipangilio ya programu, chagua \"Ruhusa\", na uwawezesha \"Kamera\".</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal inahitaji uruhusu kamera kuchukua picha na video</string>
+  <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
+  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal hawezi kutuma meseji ya SMS au MMS kwa sabab si programu ya chaguo-msingi ya SMS. Unataka kubadilika mipangilio ya Android?</string>
   <string name="ConversationActivity_yes">Ndio</string>
   <string name="ConversationActivity_no">Hapana</string>
+  <string name="ConversationActivity_search_position">%1$d kwa %2$d</string>
   <!--ConversationAdapter-->
   <!--ConversationFragment-->
   <plurals name="ConversationFragment_delete_selected_messages">
@@ -249,30 +284,46 @@
   <string name="GroupCreateActivity_actionbar_edit_title">Hariri kikundi</string>
   <string name="GroupCreateActivity_group_name_hint">Jina la akina</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Kikundi kipya cha MMS</string>
+  <string name="GroupCreateActivity_contacts_dont_support_push">Umechagua mwasiliana hatatumia kikundi za Signal, kikundi hii itatumia MMS.</string>
   <string name="GroupCreateActivity_youre_not_registered_for_signal">Huna usajili kwa ujumbe wa Signal na wito, hivyo vikundi vya Signal vimezimwa. Tafadhali jaribu kujiandikisha katika Mipangilio &amp; gt; Kikubwa.</string>
   <string name="GroupCreateActivity_contacts_no_members">unahitaji angalau mtu mmoja kwenye kundi lako</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Mmoja wa wanachama wa kikundi chako ana namba ambayo haiwezi kusoma kwa usahihi. Tafadhali tengeneza au uondoe kuwasiliana na jaribu tena.</string>
   <string name="GroupCreateActivity_avatar_content_description">kundi la avatar</string>
   <string name="GroupCreateActivity_menu_apply_button">omba</string>
   <string name="GroupCreateActivity_creating_group">unda 1%1$s</string>
+  <string name="GroupCreateActivity_updating_group">Inasasishwa %1$s...</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Hatuwezi kuongea %1$s kwa sababu, hatatumia Signal.</string>
   <string name="GroupCreateActivity_loading_group_details">Inafungua habari za kundi</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Tayari upo kwenye kikundi</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Shirikisha jina la wasifu wako katika kikundi hiki</string>
   <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Unataka kufanya jina lako la wasifu na picha inayoonekana kwa wanachama wote wa sasa na wa baadaye wa kikundi hiki?</string>
+  <string name="GroupShareProfileView_make_visible">Onyesha</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Mimi</string>
   <!--CropImageActivity-->
   <string name="CropImageActivity_group_avatar">kundi la avatar</string>
   <!--InputPanel-->
+  <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Gonga na finya kuhifadhi meseji ya kuongea, komboa kibonye kutuma</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">shirikisha</string>
+  <string name="InviteActivity_choose_contacts">Chagua wasiliano</string>
   <string name="InviteActivity_cancel">futa</string>
   <string name="InviteActivity_sending">Kutuma</string>
   <string name="InviteActivity_heart_content_description">Moyo</string>
   <string name="InviteActivity_invitations_sent">Mialiko imetumwa</string>
   <string name="InviteActivity_invite_to_signal">Mwalike kwenye Signal</string>
+  <plurals name="InviteActivity_send_sms_to_friends">
+    <item quantity="one">TUM SMS KWA MARAFIKI %d </item>
+    <item quantity="other">TUMA SMS KWA MARAFIKI %d </item>
+  </plurals>
+  <plurals name="InviteActivity_send_sms_invites">
+    <item quantity="one">Tuma miwito za SMS 1%d?</item>
+    <item quantity="other">Send %d SMS invites?</item>
+  </plurals>
+  <string name="InviteActivity_lets_switch_to_signal">Acha tubadili kwa Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Inaonekana huna programu yoyote ya kushiriki</string>
+  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Marafiki hawaongei na marafiki bila kusimba fiche.</string>
   <!--Job-->
   <string name="Job_working_in_the_background">inafanya kazi chini kwa chini</string>
   <!--MessageDetailsRecipient-->
@@ -280,6 +331,7 @@
   <string name="MessageDetailsRecipient_new_safety_number">namba mpya ya usalama</string>
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">imeshindikana kutafuta ujumbe</string>
+  <string name="LongMessageActivity_message_from_s">Ujumbe kutoka %1$s</string>
   <string name="LongMessageActivity_your_message">ujumbe wako</string>
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
@@ -287,7 +339,15 @@
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_reading_mms_settings">kosa wakati wa kusoma mtoa huduma ya mipangilio ya wireless MMS </string>
   <!--MediaOverviewActivity-->
-  <string name="MediaOverviewActivity_Media">Vyombo vya habari</string>
+  <string name="MediaOverviewActivity_Media">Midia</string>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+    <item quantity="one">Futa ujumbe umechagua?</item>
+    <item quantity="other">Futa ujumbe umechagua?</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+    <item quantity="one">This will permanently delete the selected message.</item>
+    <item quantity="other">Hii, itafutwa kabisa meseji %1$d zote zimehiari.</item>
+  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Inafutwa</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Kufuta meseji</string>
   <string name="MediaOverviewActivity_Documents">nyaraka</string>
@@ -306,13 +366,19 @@
   <string name="NotificationMmsMessageRecord_downloading_mms_message">kupakua ujumbe wa mms</string>
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Hitilafu kupakua ujumbe wa MMS, bomba ili ujaribu tena</string>
   <!--MediaPickerActivity-->
-  <string name="MediaPickerActivity_send_to">tuma kwa 1%s</string>
+  <string name="MediaPickerActivity_send_to">Tuma kwa %s</string>
+  <string name="MediaPickerActivity__menu_open_camera">Wezesha kamera</string>
   <!--MediaPickerItemFragment-->
-  <string name="MediaPickerItemFragment_tap_to_select">gusa kukusanya</string>
+  <string name="MediaPickerItemFragment_tap_to_select">Gusa kukusanya</string>
   <!--MediaSendActivity-->
-  <string name="MediaSendActivity_add_a_caption">ongeza maelezo</string>
-  <string name="MediaSendActivity_camera_unavailable">kamera haipatikani</string>
+  <string name="MediaSendActivity_add_a_caption">Ongeza maelezo ---</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Kipengee kimetolewa kwa sababu iko kubwa zaidi</string>
+  <string name="MediaSendActivity_camera_unavailable">Kamera haipatikani</string>
+  <string name="MediaSendActivity_message_to_s">Tuma ujumbe kwa %s</string>
+  <string name="MediaSendActivity_message">Ujumbe</string>
+  <string name="MediaSendActivity_select_recipients">Chagua wapokeaji</string>
   <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal inahitaji upatikanaji wa anwani zako ili kuzionyesha.</string>
+  <string name="MediaSendActivity_select_recipients_description">Chagua wapokeaji</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Vyombo vyote vya habari</string>
   <!--MessageRecord-->
@@ -331,6 +397,7 @@
   <string name="MessageRecord_your_safety_number_with_s_has_changed">namba yako ya usalama pamoja na 1%s imebadilika</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">unanakili nambari yako ya siri pamoja na 1%s imethibitishwa</string>
   <!--PassphraseChangeActivity-->
+  <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Nwyila haikulingana</string>
   <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">sio sahihi ya zamani  phassphrase</string>
   <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">ingiza passphrase mpya</string>
   <!--DeviceProvisioningActivity-->
@@ -338,7 +405,8 @@
   <string name="DeviceProvisioningActivity_cancel">futa</string>
   <string name="DeviceProvisioningActivity_continue">ENDELEA</string>
   <string name="DeviceProvisioningActivity_content_intro">itaweza</string>
-  <string name="DeviceProvisioningActivity_content_progress_content">kiungo kipya cha kifaa</string>
+  <string name="DeviceProvisioningActivity_content_progress_title">Kifaa kinakiungwa</string>
+  <string name="DeviceProvisioningActivity_content_progress_content">Kifaa kipya kinakiungwa</string>
   <string name="DeviceProvisioningActivity_content_progress_success">kifaa kimethibitishwa</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">hakuna kifaa kilichopatikana</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">makosa ya kimtandao</string>
@@ -358,6 +426,7 @@ Signal inahitaji ruhusa ya Kamera ili kupima msimbo wa QR, lakini imekataliwa ka
   <string name="PassphrasePromptActivity_ok_button_content_description">Tuma nenosiri</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">passhrase sio sahihi</string>
   <!--PlacePickerActivity-->
+  <string name="PlacePickerActivity_title">Ramani</string>
   <!--PlayServicesProblemFragment-->
   <!--RatingManager-->
   <string name="RatingManager_rate_now">Kiwango cha sasa</string>
@@ -366,7 +435,8 @@ Signal inahitaji ruhusa ya Kamera ili kupima msimbo wa QR, lakini imekataliwa ka
   <!--RecipientPreferencesActivity-->
   <string name="RecipientPreferenceActivity_block_this_contact_question">Zuia hii anwani?</string>
   <string name="RecipientPreferenceActivity_you_will_no_longer_receive_messages_and_calls_from_this_contact">Hautopokea tena ujumbe na simu kutoka kwa anwani hii</string>
-  <string name="RecipientPreferenceActivity_block_group">zuia kundi hili</string>
+  <string name="RecipientPreferenceActivity_block_and_leave_group">Zuia na ondoka kundi hili?</string>
+  <string name="RecipientPreferenceActivity_block_group">Zuia kundi hili?</string>
   <string name="RecipientPreferenceActivity_block">Zuia</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">Fungua mawasiliano hii?</string>
   <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Utapata tena ujumbe na wito kutoka kwa anwani hii.</string>
@@ -405,12 +475,15 @@ nambari yako ya simu</string>
   <string name="RegistrationActivity_no_browser">haiwezekani kufungua kiungo hiki.  Hakuna kivinjari cha web kilichopatikana</string>
   <string name="RegistrationActivity_more_information">taarifa zaidi</string>
   <string name="RegistrationActivity_less_information">taarifa chache</string>
+  <string name="RegistrationActivity_next">Nyingine</string>
   <string name="RegistrationActivity_continue">Endelea</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Ingiza nambari yako ya simu kuanza kutumia</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">utapokea msimbo uliothibitishwa. gharama za kazi zitatumika.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Ingiza msimbo tuetuma kwa 1%s</string>
   <string name="RegistrationActivity_call">wito</string>
   <!--RevealableMessageView-->
+  <string name="RevealableMessageView_view_photo">Onyesha Picha</string>
+  <string name="RevealableMessageView_viewed">Imeonyeshwa</string>
   <string name="RevealableMessageView_photo">picha</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">imefeli kuhifadhi picha zilizobadilika</string>
@@ -443,9 +516,12 @@ nambari yako ya simu</string>
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Stika</string>
   <!--StickerManagementAdapter-->
+  <string name="StickerManagementAdapter_untitled">Haina kichwa</string>
   <string name="StickerManagementAdapter_unknown">Isiyojulikana</string>
   <!--StickerPackPreviewActivity-->
+  <string name="StickerPackPreviewActivity_untitled">Haina kichwa</string>
   <string name="StickerPackPreviewActivity_unknown">Isiyojulikana</string>
+  <string name="StickerPackPreviewActivity_install">Sakinisha</string>
   <string name="StickerPackPreviewActivity_remove">Ondoa</string>
   <string name="StickerPackPreviewActivity_stickers">Stika</string>
   <!--ThreadRecord-->
@@ -453,11 +529,12 @@ nambari yako ya simu</string>
   <string name="ThreadRecord_left_the_group">kujitoa katika kundi</string>
   <string name="ThreadRecord_secure_session_reset">rekebisha salama kipindi</string>
   <string name="ThreadRecord_draft">rasimu</string>
-  <string name="ThreadRecord_called">wewe uliita</string>
+  <string name="ThreadRecord_called">Uliita</string>
   <string name="ThreadRecord_called_you">ulipigiwa simu</string>
   <string name="ThreadRecord_missed_call">Simu zilizopotea</string>
   <string name="ThreadRecord_media_message">Ujumbe wa vyombo vya habari</string>
-  <string name="ThreadRecord_s_is_on_signal">1%s yupo Signal</string>
+  <string name="ThreadRecord_disappearing_photo">Picha inatoweka</string>
+  <string name="ThreadRecord_s_is_on_signal">%s yupo Signal</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Uumbe zilizopotea  imezuiliwa</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Ujumbe unapotea kwa mpangilio wa muda  kwa 1%s</string>
   <string name="ThreadRecord_safety_number_changed">namba salama zimebadilika</string>
@@ -515,7 +592,7 @@ nambari yako ya simu</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">futa ujumbe?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">hii itafuta ujumbe kwa kudumu</string>
   <!--MessageNotifier-->
-  <string name="MessageNotifier_d_new_messages_in_d_conversations">1%1$d ujumbe mpya kwa  2%2$d mazungumzo</string>
+  <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d ujumbe mpya kwa  %2$d mazungumzo</string>
   <string name="MessageNotifier_most_recent_from_s">ya hivi karibuni kutoka: 1%1$s</string>
   <string name="MessageNotifier_locked_message">ujumbe umefungiwa</string>
   <string name="MessageNotifier_media_message_with_text">ujumbe wa vyombo vya habari: 1%s</string>
@@ -525,9 +602,13 @@ nambari yako ya simu</string>
   <string name="MessageNotifier_mark_all_as_read">nakili yote kama haijasomeka</string>
   <string name="MessageNotifier_mark_read">soma nakili</string>
   <string name="MessageNotifier_media_message">Ujumbe wa vyombo vya habari</string>
+  <string name="MessageNotifier_disappearing_photo">Picha inatoweka</string>
   <string name="MessageNotifier_reply">jibu</string>
   <string name="MessageNotifier_signal_message">ujumbe wa Signal</string>
   <string name="MessageNotifier_unsecured_sms">ujumbe sio salama</string>
+  <string name="MessageNotifier_you_may_have_new_messages">Inawezekana una majumbe mpya</string>
+  <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Fungua Signal kuangalia mataarifa mpya</string>
+  <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Mawasiliano</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Chaguo Msingi</string>
@@ -554,6 +635,10 @@ nambari yako ya simu</string>
   <string name="SingleRecipientNotificationBuilder_signal">Alama</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Ujumbe mpya</string>
   <!--TransferControlView-->
+  <plurals name="TransferControlView_n_items">
+    <item quantity="one">Kitu %d</item>
+    <item quantity="other">Vitu %d</item>
+  </plurals>
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">Kifaa hakikusajiliwa</string>
   <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Hii inawezekana kwa sababu umeandikisha namba yako ya simu na Signal kwenye kifaa tofauti. Gonga ili kujiandikisha tena.</string>
@@ -570,8 +655,12 @@ nambari yako ya simu</string>
   <string name="WebRtcCallControls_tap_to_enable_your_video">gusa kuwezesha video yako</string>
   <!--WebRtcCallControls Content Descriptions-->
   <string name="WebRtcCallControls_contact_photo_description">wasiliana na picha</string>
+  <string name="WebRtcCallControls_speaker_button_description">Msemaji</string>
   <string name="WebRtcCallControls_mute_button_description">zima kwa siri</string>
-  <string name="WebRtcCallControls_answer_call_description">kupokea simu</string>
+  <string name="WebRtcCallControls_your_camera_button_description">Kamera yako</string>
+  <string name="WebRtcCallControls_switch_to_rear_camera_button_description">Badili kamera ya nyuma</string>
+  <string name="WebRtcCallControls_answer_call_description">Pokea simu</string>
+  <string name="WebRtcCallControls_reject_call_description">Usipokea simu</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__audio">Sauti</string>
   <string name="attachment_type_selector__audio_description">Sauti</string>
@@ -595,6 +684,9 @@ nambari yako ya simu</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">ingiza jina au namba</string>
   <!--contact_filter_toolbar-->
+  <string name="contact_filter_toolbar__clear_entered_text_description">Futa vile imeandikwa</string>
+  <string name="contact_filter_toolbar__show_keyboard_description">Onyesha kibodi</string>
+  <string name="contact_filter_toolbar__show_dial_pad_description">Onyesha kiboda ya nambari</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">hakuna anwani</string>
   <string name="contact_selection_group_activity__finding_contacts">kupakia mawasiliano</string>
@@ -613,6 +705,7 @@ nambari yako ya simu</string>
   <string name="conversation_activity__type_message_sms_insecure">ujumbe sio salama</string>
   <string name="conversation_activity__type_message_mms_insecure">MMS sio salama</string>
   <string name="conversation_activity__from_sim_name">kutoka 1%1$s</string>
+  <string name="conversation_activity__sim_n">SIM %1$d</string>
   <string name="conversation_activity__send">Tuma</string>
   <string name="conversation_activity__compose_description">utungaji wa ujumbe</string>
   <string name="conversation_activity__emoji_toggle_description">Toggle katuni kibodi</string>
@@ -661,14 +754,39 @@ nambari yako ya simu</string>
   <string name="experience_upgrade_preference_fragment__enable_read_receipts">wezesha kusoma stakabadhi</string>
   <!--expiration-->
   <string name="expiration_off">Zima</string>
+  <plurals name="expiration_seconds">
+    <item quantity="one">nukta %d</item>
+    <item quantity="other">nukta %d</item>
+  </plurals>
   <string name="expiration_seconds_abbreviated">1%d s</string>
-  <string name="expiration_minutes_abbreviated">1%d m</string>
-  <string name="expiration_hours_abbreviated">1%d h</string>
+  <plurals name="expiration_minutes">
+    <item quantity="one">dakika 1%d</item>
+    <item quantity="other">dakika %d</item>
+  </plurals>
+  <string name="expiration_minutes_abbreviated">d %d</string>
+  <plurals name="expiration_hours">
+    <item quantity="one">masaa 1%d</item>
+    <item quantity="other">masaa %d</item>
+  </plurals>
+  <string name="expiration_hours_abbreviated">%d h</string>
+  <plurals name="expiration_days">
+    <item quantity="one">siku 1%d</item>
+    <item quantity="other">siku %d </item>
+  </plurals>
   <string name="expiration_days_abbreviated">1%d d</string>
-  <string name="expiration_weeks_abbreviated">1%d w</string>
+  <plurals name="expiration_weeks">
+    <item quantity="one">majuma 1%d</item>
+    <item quantity="other">majuma %d</item>
+  </plurals>
+  <string name="expiration_weeks_abbreviated">%d w</string>
   <!--unverified safety numbers-->
-  <string name="IdentityUtil_unverified_banner_one">Nambari yako ya usalama 1%sna imebadilika na haijahakikishiwa tena</string>
+  <string name="IdentityUtil_unverified_banner_one">Nambari yako ya usalama %sna imebadilika na haijahakikishiwa tena</string>
+  <string name="IdentityUtil_unverified_banner_two">Nambari yako ya usalama %1$s na %2$s sasa hajihakikishwa</string>
   <string name="IdentityUtil_untrusted_dialog_one">Nambari yako ya usalama pamoja na 1%s imebadilika tu</string>
+  <plurals name="identity_others">
+    <item quantity="one">%d wengine</item>
+    <item quantity="other">%d others</item>
+  </plurals>
   <!--giphy_activity-->
   <string name="giphy_activity_toolbar__search_gifs_and_stickers">tafuta GIF na stika</string>
   <!--giphy_fragment-->
@@ -746,7 +864,7 @@ nambari yako ya simu</string>
   <string name="registration_activity__verify_your_number">hakiki namba yako</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Tafadhali ingiza nambari yako ya simu ili upokee nambari ya kuthibitisha. Viwango vya Vimumunyishaji vinaweza kuomba.</string>
   <!--recipients_panel-->
-  <string name="recipients_panel__to">1 ingiza jina au namba</string>
+  <string name="recipients_panel__to"><small>Ingiza jina au namba</small></string>
   <string name="recipients_panel__add_members">ongeza wanachama</string>
   <!--unknown_sender_view-->
   <string name="unknown_sender_view__the_sender_is_not_in_your_contact_list">mtumaji hayupo kwenye orodha yako ya mawasiliano</string>
@@ -789,9 +907,9 @@ nambari yako ya simu</string>
   <string name="arrays__use_custom">tumia desturi</string>
   <string name="arrays__mute_for_one_hour">nyamaza kwa saa 1</string>
   <string name="arrays__mute_for_two_hours">nyamaza kwa masaa 2</string>
-  <string name="arrays__mute_for_one_day">toa sauti kwa siku moja</string>
-  <string name="arrays__mute_for_seven_days">toa sauti kwa siku 7</string>
-  <string name="arrays__mute_for_one_year">Simamisha kwa mwaka 1</string>
+  <string name="arrays__mute_for_one_day">Nyamaza kwa siku 1</string>
+  <string name="arrays__mute_for_seven_days">Nyamaza kwa siku 7</string>
+  <string name="arrays__mute_for_one_year">Nyamaza kwa mwaka 1</string>
   <string name="arrays__settings_default">Vipimo vya chaguo msingi</string>
   <string name="arrays__enabled">wezesha</string>
   <string name="arrays__disabled">kuzuia</string>
@@ -802,14 +920,18 @@ nambari yako ya simu</string>
   <string name="arrays__audio">Sauti</string>
   <string name="arrays__video">Video</string>
   <string name="arrays__documents">nyaraka</string>
-  <string name="arrays__small">ndogo</string>
+  <string name="arrays__small">Ndogo</string>
   <string name="arrays__normal">Kawaida</string>
-  <string name="arrays__large">kubwa</string>
-  <string name="arrays__extra_large">kubwa zaidi</string>
-  <string name="arrays__default">Chaguo Msingi</string>
+  <string name="arrays__large">Kubwa</string>
+  <string name="arrays__extra_large">Kubwa zaidi</string>
+  <string name="arrays__default">Chaguo msingi</string>
   <string name="arrays__high">juu</string>
   <string name="arrays__max">mwisho</string>
   <!--plurals.xml-->
+  <plurals name="hours_ago">
+    <item quantity="one">masaa 1%d</item>
+    <item quantity="other">masaa %d </item>
+  </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">SMS na MMS</string>
   <string name="preferences__pref_all_sms_title">Pokea SMS zote</string>
@@ -844,13 +966,13 @@ nambari yako ya simu</string>
   <string name="preferences__three_times">Mara tatu</string>
   <string name="preferences__five_times">Mara tano</string>
   <string name="preferences__ten_times">Mara kumi</string>
-  <string name="preferences__vibrate">vibrate</string>
+  <string name="preferences__vibrate">Tetemeka</string>
   <string name="preferences__green">Kijani</string>
   <string name="preferences__red">Nyekundu</string>
   <string name="preferences__blue">Buluu</string>
   <string name="preferences__orange">Njano</string>
-  <string name="preferences__cyan">cyan</string>
-  <string name="preferences__magenta">magenta</string>
+  <string name="preferences__cyan">Samawati</string>
+  <string name="preferences__magenta">Nyekundu nyeusi</string>
   <string name="preferences__white">Nyeupe</string>
   <string name="preferences__none">Hakuna</string>
   <string name="preferences__fast">Haraka</string>
@@ -882,7 +1004,7 @@ nambari yako ya simu</string>
   <string name="preferences__language">Lugha</string>
   <string name="preferences__signal_messages_and_calls">Ujumbe na simu za Signal</string>
   <string name="preferences__free_private_messages_and_calls">Ujumbe wa faragha wa bure na wito kwa watumiaji wa Signal</string>
-  <string name="preferences__submit_debug_log">tuma logi ya kufuta</string>
+  <string name="preferences__submit_debug_log">Tuma batli ya kufuta</string>
   <string name="preferences__support_wifi_calling">\'Mfumo wa utangamano wa WiFi\'</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Wezesha ikiwa kifaa chako kinatumia utoaji wa SMS / MMS juu ya WiFi (tuwezesha wakati \"WiFi Calling\" imewezeshwa kwenye kifaa chako)</string>
   <string name="preferences__incognito_keyboard">Kibodi cha kuingia</string>
@@ -897,7 +1019,7 @@ nambari yako ya simu</string>
   <string name="preferences_chats__when_roaming">wakati wa kutembea</string>
   <string name="preferences_chats__media_auto_download">Kushusha kwa vyombo vya habari</string>
   <string name="preferences_chats__message_trimming">ujumbe unapunguza</string>
-  <string name="preferences_advanced__use_system_emoji">kutumia emoji mfumo</string>
+  <string name="preferences_advanced__use_system_emoji">Tumia emoji ya mfumo</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">kuzuia Signal iliyojengwa kusaidia emoji</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Kuwawezesha kupunguza ubora wa simu</string>
   <string name="preferences_advanced__always_relay_calls">siku zote relay wito wa simu</string>
@@ -951,6 +1073,7 @@ nambari yako ya simu</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Pata kuchaguliwa</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">isiyochaguliwa kuchaguliwa</string>
   <!--conversation_list-->
+  <string name="conversation_list_settings_shortcut">Njia ya mkato wa mipangilio</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">wasiliana na simu ya picha</string>
   <string name="conversation_list_item_view__archived">Sanikisha</string>
@@ -958,6 +1081,7 @@ nambari yako ya simu</string>
   <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Zip. Zilch. Sufuri. Nada. \ \"Wewe wote umepata juu!</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Mazungumzo mapya</string>
+  <string name="conversation_list_fragment__open_camera_description">Wezesha Kamera</string>
   <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Fanya kikasha chako cha kuandika nyumbani. Anza kwa ujumbe kwa rafiki.</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Rekebisha kikao salama</string>

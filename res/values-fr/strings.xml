@@ -62,6 +62,7 @@
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal exige l’autorisation « Appareil photo » afin de prendre des photos, mais elle a été refusée définitivement. Veuillez accéder au menu des paramètres des applis, sélectionner « Autorisations » et activer « Appareil photo ».</string>
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">Téléversement du média…</string>
+  <string name="AttachmentUploadJob_compressing_video_start">Compression de la vidéo...</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Erreur de lecture du son !</string>
   <!--BlockedContactsActivity-->
@@ -76,12 +77,18 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Échec d’enregistrement de l’image.</string>
   <!--CameraXFragment-->
+  <string name="CameraXFragment_capture_description">Prendre</string>
+  <string name="CameraXFragment_change_camera_description">changer de caméra</string>
+  <string name="CameraXFragment_open_gallery_description">ouvrir la galerie</string>
   <!--CameraContacts-->
   <string name="CameraContacts_recent_contacts">Contacts récents</string>
   <string name="CameraContacts_signal_contacts">Contacts Signal</string>
   <string name="CameraContacts_signal_groups">Groupes Signal</string>
   <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">Vous pouvez partager un maximum de %d conversations.</string>
+  <string name="CameraContacts_select_signal_recipients">Sélectionner les destinataires Signal</string>
   <string name="CameraContacts_no_signal_contacts">Aucun contact Signal</string>
+  <string name="CameraContacts_you_can_only_use_the_camera_button">Vous ne pouvez utiliser que le bouton de l\'appareil photo pour envoyer des photos aux contacts Signal.</string>
+  <string name="CameraContacts_cant_find_who_youre_looking_for">Vous ne trouvez pas le destinataire?</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">Inviter un contact à rejoindre Signal</string>
   <string name="CameraContacts__menu_search">Chercher</string>
   <!--ClearProfileActivity-->
@@ -215,6 +222,7 @@
   <string name="ConversationFragment_deleting_messages">Suppression des messages…</string>
   <string name="ConversationFragment_quoted_message_not_found">Le message original est introuvable</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Le message original n’est plus disponible</string>
+  <string name="ConversationFragment_failed_to_open_message">Erreur lors de l\'ouverture du message</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Aucun navigateur n’est installé sur votre appareil.</string>
   <!--ConversationListFragment-->
@@ -253,6 +261,7 @@
   <string name="CreateProfileActivity_profile_name">Nom de profil</string>
   <string name="CreateProfileActivity_set_up_your_profile">Configurez votre profil</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Les profils Signal sont chiffrés de bout en bout et le service Signal n’a jamais accès à ces renseignements.</string>
+  <string name="CreateProfileActivity_set_avatar_description">Définir un avatar</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Personnalisé : %s</string>
   <string name="CustomDefaultPreference_using_default">Utilisation par défaut : %s</string>
@@ -410,6 +419,7 @@
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Erreur de téléchargement du message multimédia. Touchez pour ressayer</string>
   <!--MediaPickerActivity-->
   <string name="MediaPickerActivity_send_to">Envoyer à %s</string>
+  <string name="MediaPickerActivity__menu_open_camera">Ouvrir l\'appareil photo</string>
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">Touchez pour sélectionner</string>
   <!--MediaSendActivity-->
@@ -420,6 +430,7 @@
   <string name="MediaSendActivity_message">Message</string>
   <string name="MediaSendActivity_select_recipients">Sélectionner des destinataires</string>
   <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal a besoin d’accéder à vos contacts pour les afficher.</string>
+  <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal a besoin d\'une autorisation afin de vous montrer vos contacts, mais celle-ci a été refusée de manière permanente. Veuillez vous rendre dans les réglages de l\'application, sélectionnez \"Autorisations\", et activez \"Contacts\".</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">Vous ne pouvez pas partager plus d’%d élément.</item>
     <item quantity="other">Vous ne pouvez pas partager plus de %d éléments.</item>
@@ -483,7 +494,9 @@
   <string name="PassphrasePromptActivity_ok_button_content_description">Envoyer la phrase de passe</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">La phrase de passe est erronée !</string>
   <!--PlacePickerActivity-->
+  <string name="PlacePickerActivity_title">Carte</string>
   <string name="PlacePickerActivity_not_a_valid_address">L’adresse n’est pas valide</string>
+  <string name="PlacePickerActivity_drop_pin">Epingler</string>
   <string name="PlacePickerActivity_accept_address">Accepter l’adresse</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">La version des services Google Play que vous avez installée ne fonctionne pas correctement. Veuillez réinstaller les Services Google Play et ressayer.</string>
@@ -700,6 +713,8 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="MessageNotifier_reply">Répondre</string>
   <string name="MessageNotifier_signal_message">Message Signal</string>
   <string name="MessageNotifier_unsecured_sms">Texto non sécurisé</string>
+  <string name="MessageNotifier_you_may_have_new_messages">Vous pouvez avoir de nouveaux messages</string>
+  <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Ouvrir Signal pour vérifier vos notifications récentes.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Contact</string>
   <!--Notification Channels-->
@@ -750,8 +765,12 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <!--WebRtcCallControls Content Descriptions-->
   <string name="WebRtcCallControls_contact_photo_description">Photo du contact</string>
   <string name="WebRtcCallControls_speaker_button_description">Haut-parleur</string>
+  <string name="WebRtcCallControls_bluetooth_button_description">Bluetooth</string>
   <string name="WebRtcCallControls_mute_button_description">Couper le microphone</string>
+  <string name="WebRtcCallControls_your_camera_button_description">Votre appareil photo</string>
+  <string name="WebRtcCallControls_switch_to_rear_camera_button_description">Basculer vers la caméra arrière</string>
   <string name="WebRtcCallControls_answer_call_description">Répondre à l’appel</string>
+  <string name="WebRtcCallControls_reject_call_description">Rejeter l\'appel</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__audio">Son</string>
   <string name="attachment_type_selector__audio_description">Son</string>
@@ -775,6 +794,9 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Saisir un nom ou un numéro</string>
   <!--contact_filter_toolbar-->
+  <string name="contact_filter_toolbar__clear_entered_text_description">Supprimer le texte entré</string>
+  <string name="contact_filter_toolbar__show_keyboard_description">Montrer le clavier</string>
+  <string name="contact_filter_toolbar__show_dial_pad_description">Montrer le pavé numérique</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Aucun contact.</string>
   <string name="contact_selection_group_activity__finding_contacts">Chargement des contacts…</string>
@@ -1181,6 +1203,7 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="conversation_list_batch_archive__menu_archive_selected">Archiver la sélection</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Désarchiver la sélection</string>
   <!--conversation_list-->
+  <string name="conversation_list_settings_shortcut">Raccourci des paramètres</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Photo de contact</string>
   <string name="conversation_list_item_view__archived">Archivée</string>
@@ -1188,6 +1211,7 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Votre boîte de réception ne contient aucun message.</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Nouvelle conversation</string>
+  <string name="conversation_list_fragment__open_camera_description">Ouvrir la caméra</string>
   <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Donnez à votre boîte de réception quelque chose à raconter. Commencez en envoyant un message à un ami.</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Réinitialiser la session sécurisée</string>

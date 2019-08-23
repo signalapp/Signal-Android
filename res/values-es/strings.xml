@@ -56,10 +56,10 @@
   <string name="DraftDatabase_Draft_quote_snippet">(responder)</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">No se pudo encontrar una aplicación para el contenido seleccionado.</string>
-  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal necesita acceso al almacenamiento de tu teléfono para adjuntar fotos, vídeos o audio. Por favor, ve al menú de configuración de la aplicación, selecciona «Permisos» y activa «Almacenamiento».</string>
-  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal necesita acceso a los contactos en tu teléfono para adjuntar información de contactos en tus chats. Por favor, ve al menú de configuración de la aplicación, selecciona «Permisos» y activa «Contactos».</string>
-  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal necesita acceso a tu posición para adjuntar la información en tus chats. Por favor, ve al menú de configuración de la aplicación, selecciona «Permisos» y activa «Ubicación».</string>
-  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal necesita acceso a la cámara para tomar fotos y verificar las cifras de seguridad de tus chats. Por favor, ve al menú de configuración de la aplicación, selecciona «Permisos» y activa «Cámara».</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal necesita acceso al almacenamiento de tu teléfono para adjuntar fotos, vídeos o audio. Por favor, ve a la aplicación «Ajustes», selecciona Signal en el menú «Aplicaciones y notificaciones» y en «Permisos» activa «Almacenamiento».</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal necesita acceso a los contactos en tu teléfono para adjuntar información de contactos en tus chats. Por favor, ve a la aplicación «Ajustes», selecciona Signal en el menú «Aplicaciones y notificaciones» y en «Permisos» activa «Contactos».</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal necesita acceso a tu posición para adjuntar la información en tus chats. Por favor, ve a la aplicación «Ajustes», selecciona Signal en el menú «Aplicaciones y notificaciones» y en «Permisos» activa «Ubicación».</string>
+  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal necesita acceso a la cámara para tomar fotos y verificar las cifras de seguridad de tus chats. Por favor, ve a la aplicación «Ajustes», selecciona Signal en el menú «Aplicaciones y notificaciones» y en «Permisos» activa «Cámara».</string>
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">Subiendo archivo ...</string>
   <string name="AttachmentUploadJob_compressing_video_start">Comprimiendo vídeo ...</string>
@@ -168,11 +168,11 @@
   <string name="ConversationActivity_unable_to_record_audio">¡No se ha podido grabar la nota de voz!</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">No hay ninguna aplicación disponible para abrir este enlace.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Para enviar notas de voz y hacer llamadas, permite a Signal acceder al micrófono.</string>
-  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal necesita acceso al micrófono para enviar notas de voz. Por favor, ve al menú de configuración de la aplicación, selecciona «Permisos» y activa «Micrófono».</string>
+  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal necesita acceso al micrófono para enviar notas de voz. Por favor, ve a la aplicación «Ajustes», selecciona Signal en el menú «Aplicaciones y notificaciones» y en «Permisos» activa «Micrófono».</string>
   <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Para llamar a %s, Signal necesita acceder al micrófono y cámara.</string>
-  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal necesita acceso al micrófono y cámara para llamar a %s. Por favor, ve al menú de configuración de la aplicación, selecciona «Permisos» y habilita «Micrófono» y «Cámara».</string>
+  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal necesita acceso al micrófono y cámara para llamar a %s. Por favor, ve a la aplicación «Ajustes», selecciona Signal en el menú «Aplicaciones y notificaciones» y en «Permisos» activa «Micrófono» y «Cámara».</string>
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Para hacer fotos y vídeos, permite el acceso de Signal a la cámara.</string>
-  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal necesita acceso a la cámara para tomar fotos o vídeos. Por favor, ve al menú de configuración de la aplicación, selecciona «Permisos» y habilita «Cámara».</string>
+  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal necesita acceso a la cámara para tomar fotos o vídeos. Por favor, ve a la aplicación «Ajustes», selecciona Signal en el menú «Aplicaciones y notificaciones» y en «Permisos» activa «Cámara».</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal necesita acceder a la cámara para tomar fotos o vídeo.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal no puede enviar SMS/MMS ya que no es la aplicación configurada por defecto. ¿Deseas cambiar la configuración de Android para que Signal sea la aplicación por defecto para SMS?</string>
@@ -222,6 +222,7 @@
   <string name="ConversationFragment_deleting_messages">Eliminando mensajes ...</string>
   <string name="ConversationFragment_quoted_message_not_found">No se encuentra el mensaje original </string>
   <string name="ConversationFragment_quoted_message_no_longer_available">El mensaje original ya no está disponible</string>
+  <string name="ConversationFragment_failed_to_open_message">Fallo al abrir mensaje</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">No hay ningún navegador instalado</string>
   <!--ConversationListFragment-->
@@ -260,7 +261,7 @@
   <string name="CreateProfileActivity_profile_name">Nombre de perfil</string>
   <string name="CreateProfileActivity_set_up_your_profile">Completa tu perfil</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Los perfiles de Signal están cifrados de punto a punto por lo que el servidor de Signal no tiene acceso a ningún dato.</string>
-  <string name="CreateProfileActivity_set_avatar_description">Configurar avatar del perfil</string>
+  <string name="CreateProfileActivity_set_avatar_description">Configurar avatar de perfil</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Usar personalizado: %s</string>
   <string name="CustomDefaultPreference_using_default">Usar predeterminado: %s</string>
@@ -317,7 +318,7 @@
   <string name="ExperienceUpgradeActivity_no_thanks">No, gracias</string>
   <string name="ExperienceUpgradeActivity_introducing_link_previews">¡Por fin previsualizaciones de enlaces!</string>
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Ahora están disponibles las previsualizaciones de enlaces hacia los sitios más populares de Internet.</string>
-  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Puedes desactivar o activar esta opción en cualquier momento desde el menú de configuración de Signal (Privacidad &gt; Enviar previsualizaciones).</string>
+  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Puedes desactivar o activar esta opción en cualquier momento desde el menú de ajustes de Signal (Privacidad &gt; Enviar previsualizaciones).</string>
   <string name="ExperienceUpgradeActivity_got_it">Entendido</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Recuperando un mensaje...</string>
@@ -429,7 +430,7 @@
   <string name="MediaSendActivity_message">Mensaje</string>
   <string name="MediaSendActivity_select_recipients">Selecciona contactos</string>
   <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal necesita acceso a tus contactos para poder mostrarlos.</string>
-  <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal necesita acceso a tus contactos para poder mostrarlos. Por favor, ve al menú de configuración de la aplicación, selecciona «Permisos» y activa «Contactos».</string>
+  <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal necesita acceso a tus contactos para poder mostrarlos. Por favor, ve a la aplicación «Ajustes», selecciona Signal en el menú «Aplicaciones y notificaciones»  y en «Permisos» activa «Contactos».</string>
   <plurals name="MediaSendActivity_cant_share_more_than_n_items">
     <item quantity="one">No se puede compartir más de %d objeto.</item>
     <item quantity="other">No se pueden compartir más de %d objetos.</item>
@@ -481,7 +482,7 @@
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Lo sentimos, este código QR no es ​​válido.</string>
   <string name="DeviceProvisioningActivity_link_a_signal_device">¿Enlazar un dispositivo Signal?</string>
   <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Parece que estás intentando enlazar un dispositivo Signal usando una aplicación de escáner desconocida. Para tu protección, escanea el código otra vez desde Signal.</string>
-  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal necesita acceso a la cámara para escanear el código QR. Por favor, ve al menú de configuración de la aplicación, selecciona «Permisos» y activa «Cámara».</string>
+  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal necesita acceso a la cámara para escanear el código QR. Por favor, ve a la aplicación «Ajustes», selecciona Signal en el menú «Aplicaciones y notificaciones» y en «Permisos» activa «Cámara».</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">No se puede escanear un código QR sin acceso a la cámara.</string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">Desaparición de mensajes</string>
@@ -617,7 +618,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="StickerManagementAdapter_installed_stickers">Cromos instalados </string>
   <string name="StickerManagementAdapter_stickers_you_received">Cromos recibidos</string>
   <string name="StickerManagementAdapter_signal_artist_series">Paquetes de artistas de Signal</string>
-  <string name="StickerManagementAdapter_no_stickers_installed">No hay ningún cromo (sticker) instalado </string>
+  <string name="StickerManagementAdapter_no_stickers_installed">No hay ningún cromo instalado </string>
   <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Los cromos recibidos en mensajes aparecerán aquí</string>
   <string name="StickerManagementAdapter_untitled">Sin nombre</string>
   <string name="StickerManagementAdapter_unknown">Desconocido</string>
@@ -671,7 +672,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="VerifyIdentityActivity_our_signal_safety_number">Nuestras cifras de seguridad de Signal:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Parece que no tiene ninguna aplicación con la que compartir.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">No se encontraron cifras de seguridad en el portapapeles para comparar</string>
-  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal necesita acceso a la cámara para escanear el código QR. Por favor, ve al menú de configuración de la aplicación, selecciona «Permisos» y activa «Cámara».</string>
+  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal necesita acceso a la cámara para escanear el código QR. Por favor, ve a la aplicación «Ajustes», selecciona Signal en el menú «Aplicaciones y notificaciones» y en «Permisos» activa «Cámara».</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">No se puede escanear un código QR sin acceso a la cámara</string>
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Mensaje cifrado erróneo</string>
@@ -697,7 +698,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="MediaPreviewActivity_you">Tú</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Formato de contenido incompatible</string>
   <string name="MediaPreviewActivity_draft">Borrador</string>
-  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal necesita acceso al almacenamiento del teléfono para guardar adjuntos si éste es externo. Por favor, ve al menú de configuración de la aplicación, selecciona «Permisos» y activa «Almacenamiento».</string>
+  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal necesita acceso al almacenamiento del teléfono para guardar adjuntos si éste es externo.Por favor, ve a la aplicación «Ajustes», selecciona Signal en el menú «Aplicaciones y notificaciones» y en «Permisos» activa «Almacenamiento».</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">No se puede guardar en una unidad de almacenamiento externo si Signal no tiene acceso</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">¿Eliminar mensaje?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Este mensaje se eliminará permanentemente.</string>
@@ -757,7 +758,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="VideoPlayer_error_playing_video">Fallo al reproducir vídeo</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Para responder la llamada de %s, da a Signal acceso al micrófono.</string>
-  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal necesita acceso al micrófono y cámara para efectuar o recibir llamadas. Por favor, ve al menú de configuración de la aplicación, selecciona «Permisos» y activa «Micrófono» y «Cámara».</string>
+  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal necesita acceso al micrófono y cámara para efectuar o recibir llamadas. Por favor, ve a la aplicación «Ajustes», selecciona Signal en el menú «Aplicaciones y notificaciones» y en «Permisos» activa «Micrófono» y «Cámara».</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Las cifras de seguridad del chat con %1$s han cambiado. Esto podría significar que alguien está tratando de interceptar la comunicación, o bien que %2$s simplemente ha reinstalado Signal.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Puede que desees verificar tus cifras de seguridad con este contacto.</string>
@@ -771,7 +772,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="WebRtcCallControls_speaker_button_description">Altavoz del dispositivo</string>
   <string name="WebRtcCallControls_bluetooth_button_description">Bluetooth</string>
   <string name="WebRtcCallControls_mute_button_description">Silenciar</string>
-  <string name="WebRtcCallControls_your_camera_button_description">Cámara de este dispositivo</string>
+  <string name="WebRtcCallControls_your_camera_button_description">Cámara en este dispositivo</string>
   <string name="WebRtcCallControls_switch_to_rear_camera_button_description">Cambiar a cámara trasera</string>
   <string name="WebRtcCallControls_answer_call_description">Contestar llamada</string>
   <string name="WebRtcCallControls_reject_call_description">Rechazar llamada</string>
@@ -807,7 +808,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Foto del contacto</string>
   <!--ContactSelectionListFragment-->
-  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal necesita acceso a los contactos para mostrar los que usan Signal. Por favor, ve al menú de configuración de la aplicación, selecciona «Permisos» y activa «Contactos».</string>
+  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal necesita acceso a los contactos para mostrar los que usan Signal. Por favor, ve a la aplicación «Ajustes», selecciona Signal en el menú «Aplicaciones y notificaciones» y en «Permisos» activa «Contactos».</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Fallo al compilar contactos, comprueba la conexión a la red.</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">No hay contactos bloqueados</string>
@@ -1043,7 +1044,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="arrays__mute_for_one_day">Silenciar durante 1 día</string>
   <string name="arrays__mute_for_seven_days">Silenciar durante 7 días</string>
   <string name="arrays__mute_for_one_year">Silenciar durante 1 año</string>
-  <string name="arrays__settings_default">Configuración predeterminada</string>
+  <string name="arrays__settings_default">Ajustes predeterminados</string>
   <string name="arrays__enabled">Activado</string>
   <string name="arrays__disabled">Desactivado</string>
   <string name="arrays__name_and_message">Nombre y mensaje</string>
@@ -1242,7 +1243,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="conversation_group_options__broadcast">Transmisión</string>
   <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_group">Nuevo grupo</string>
-  <string name="text_secure_normal__menu_settings">Configuración</string>
+  <string name="text_secure_normal__menu_settings">Ajustes</string>
   <string name="text_secure_normal__menu_clear_passphrase">Bloquear</string>
   <string name="text_secure_normal__mark_all_as_read">Marcar todos como leídos</string>
   <string name="text_secure_normal__invite_friends">Invitar amigos</string>
@@ -1291,10 +1292,10 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ConversationListFragment_loading">Cargando ...</string>
   <string name="CallNotificationBuilder_connecting">Conectando ...</string>
   <string name="Permissions_permission_required">Permiso necesario</string>
-  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal necesita acceso a SMS para poder enviar SMS. Por favor, ve al menú de configuración de la aplicación, selecciona «Permisos» y activa «SMS».</string>
+  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal necesita acceso a SMS para poder enviar SMS. Por favor, ve a la aplicación «Ajustes», selecciona Signal en el menú «Aplicaciones y notificaciones» y en «Permisos» activa «SMS».</string>
   <string name="Permissions_continue">Continuar</string>
   <string name="Permissions_not_now">Ahora no</string>
-  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal necesita acceso a tus contactos para buscar los contactos que usan Signal. Por favor, ve al menú de configuración de la aplicación, selecciona «Permisos» y activa «Contactos».</string>
+  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal necesita acceso a tus contactos para buscar los contactos que usan Signal. Por favor, ve a la aplicación «Ajustes», selecciona Signal en el menú «Aplicaciones y notificaciones» y en «Permisos» activa «Contactos».</string>
   <string name="conversation_activity__enable_signal_messages">ACTIVAR MENSAJES DE SIGNAL</string>
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Migrar base de datos de Signal</string>
   <string name="PushDecryptJob_new_locked_message">Nuevo mensaje bloqueado</string>
@@ -1327,7 +1328,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="BackupDialog_disable_and_delete_all_local_backups">¿Desactivar y eliminar todas las copias de seguridad locales?</string>
   <string name="BackupDialog_delete_backups_statement">Eliminar copias de seguridad</string>
   <string name="BackupDialog_copied_to_clipboard">Copiado al portapapeles</string>
-  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal necesita acceso al almacenamiento en unidades externas para crear copias de seguridad. Por favor, ve al menú de configuración de la aplicación, selecciona «Permisos» y activa «Almacenamiento».</string>
+  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal necesita acceso al almacenamiento en unidades externas para crear copias de seguridad. Por favor, ve a la aplicación «Ajustes», selecciona Signal en el menú «Aplicaciones y notificaciones» y en «Permisos» activa «Almacenamiento».</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Última copia de seguridad: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">En curso</string>
   <string name="LocalBackupJob_creating_backup">Creando copia de seguridad ...</string>

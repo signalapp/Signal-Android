@@ -74,6 +74,7 @@
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">يحتاج Signal إلى إذن الكاميرا من أجل التقاط صور ولكن تم إيقاف الإذن على نحو دائم، رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"الكاميرا\".</string>
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">جاري رفع الميديا</string>
+  <string name="AttachmentUploadJob_compressing_video_start">جاري ضغط الفيديو...</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">خطأ في تشغيل الصوت!</string>
   <!--BlockedContactsActivity-->
@@ -88,7 +89,14 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">فشل في حفظ الصورة.</string>
   <!--CameraXFragment-->
+  <string name="CameraXFragment_capture_description">التقاط</string>
+  <string name="CameraXFragment_change_camera_description">تغيير الكاميرا</string>
+  <string name="CameraXFragment_open_gallery_description">فتح معرض الصور</string>
   <!--CameraContacts-->
+  <string name="CameraContacts_recent_contacts">جهات الاتصال الأخيرة</string>
+  <string name="CameraContacts_signal_contacts">جهات اتصال سغنال</string>
+  <string name="CameraContacts_signal_groups">مجموعات سغنال</string>
+  <string name="CameraContacts_no_signal_contacts">لا جهات اتصال في سغنال</string>
   <string name="CameraContacts__menu_search">بحث</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">إزالة</string>
@@ -465,6 +473,7 @@
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">خطأ في تنزيل رسالة الوسائط المتعددة، انقر لاعادة المحاولة</string>
   <!--MediaPickerActivity-->
   <string name="MediaPickerActivity_send_to">إرسال إلى %s</string>
+  <string name="MediaPickerActivity__menu_open_camera">فتح الكاميرا</string>
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">أنقر للتحديد</string>
   <!--MediaSendActivity-->
@@ -602,6 +611,8 @@
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">أدخل الرمز الذي أرسلناه إلى%s</string>
   <string name="RegistrationActivity_call">اتصل</string>
   <!--RevealableMessageView-->
+  <string name="RevealableMessageView_view_photo">مشاهدة الصورة</string>
+  <string name="RevealableMessageView_viewed">تمت المشاهدة</string>
   <string name="RevealableMessageView_photo">صورة</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">تعذر حفظ التغييرات بالصورة</string>
@@ -783,8 +794,12 @@
   <!--WebRtcCallControls Content Descriptions-->
   <string name="WebRtcCallControls_contact_photo_description">صورة جهة الاتصال</string>
   <string name="WebRtcCallControls_speaker_button_description">مكبر الصوت.</string>
+  <string name="WebRtcCallControls_bluetooth_button_description">بلوتوث</string>
   <string name="WebRtcCallControls_mute_button_description">حجب المكرفون.</string>
+  <string name="WebRtcCallControls_your_camera_button_description">كاميرتك</string>
+  <string name="WebRtcCallControls_switch_to_rear_camera_button_description">تبديل الى الكاميرا الخلفية</string>
   <string name="WebRtcCallControls_answer_call_description">الرد على المكالمة</string>
+  <string name="WebRtcCallControls_reject_call_description">رفض المكالمة</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__audio">صوت</string>
   <string name="attachment_type_selector__audio_description">صوت</string>
@@ -808,6 +823,8 @@
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">أدخل أسم أو رقم</string>
   <!--contact_filter_toolbar-->
+  <string name="contact_filter_toolbar__show_keyboard_description">إظهار لوحة المفاتيح</string>
+  <string name="contact_filter_toolbar__show_dial_pad_description">إظهار لوحة الاتصال</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">لا توجد جهات اتصال.</string>
   <string name="contact_selection_group_activity__finding_contacts">تحميل جهات الاتصال...</string>
@@ -1237,6 +1254,7 @@
   <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">لا توجد رسائل جديدة</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">محادثة جديدة</string>
+  <string name="conversation_list_fragment__open_camera_description">فتح الكاميرا</string>
   <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">ابدأ محادثة مع أصدقائك.</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">إعادة ضبط جلسة آمنة</string>

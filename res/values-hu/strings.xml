@@ -223,6 +223,7 @@
   <string name="ConversationFragment_deleting_messages">Üzenetek törlése...</string>
   <string name="ConversationFragment_quoted_message_not_found">Az eredeti üzenet nem található</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Az eredeti üzenet már nem érhető el</string>
+  <string name="ConversationFragment_failed_to_open_message">Nem sikerült megnyitni az üzenetet</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Nincs böngésző telepítve a készülékedre.</string>
   <!--ConversationListFragment-->
@@ -1210,6 +1211,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="conversation_list_batch_archive__menu_archive_selected">Kiválasztottak archiválása</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Kiválasztottak kivétele archívumból</string>
   <!--conversation_list-->
+  <string name="conversation_list_settings_shortcut">Beállítások parancsikon</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Kontakt fotó kép</string>
   <string name="conversation_list_item_view__archived">Archivált</string>

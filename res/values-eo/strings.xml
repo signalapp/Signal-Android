@@ -222,6 +222,7 @@
   <string name="ConversationFragment_deleting_messages">Forviŝado de mesaĝoj...</string>
   <string name="ConversationFragment_quoted_message_not_found">Origina mesaĝo ne troveblas</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Origina mesaĝo ne plu disponeblas</string>
+  <string name="ConversationFragment_failed_to_open_message">Malsukceso malfermi la mesaĝon</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Ne estas foliumilo instalata sur via aparato.</string>
   <!--ConversationListFragment-->
@@ -1296,7 +1297,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="conversation_activity__enable_signal_messages">ŜALTI SIGNAL-MESAĜOJN</string>
   <string name="SQLCipherMigrationHelper_migrating_signal_database">Transigo de la Signal-datumbazo</string>
   <string name="PushDecryptJob_new_locked_message">Nova ŝlosita mesaĝo</string>
-  <string name="PushDecryptJob_unlock_to_view_pending_messages">Malŝlosi por vidi pritraktotaj mesaĝoj</string>
+  <string name="PushDecryptJob_unlock_to_view_pending_messages">Malŝlosi por vidi pritraktotajn mesaĝojn</string>
   <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Malŝlosi por fini ĝisdatigon</string>
   <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Bv. malŝlosi Signal-on por fini ĝisdatigon</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Savkopii pasfrazon</string>
