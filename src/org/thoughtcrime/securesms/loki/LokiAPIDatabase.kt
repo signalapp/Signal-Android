@@ -28,6 +28,11 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         private val userID = "user_id"
         private val receivedMessageHashValues = "received_message_hash_values"
         @JvmStatic val createReceivedMessageHashValuesTableCommand = "CREATE TABLE $receivedMessageHashValuesCache ($userID TEXT PRIMARY KEY, $receivedMessageHashValues TEXT);"
+        // Group chat auth token cache
+        private val groupChatAuthTokenTable = "loki_api_group_chat_auth_token_database"
+        private val serverURL = "server_url"
+        private val token = "token"
+        @JvmStatic val createGroupChatAuthTokenTableCommand = "CREATE TABLE $groupChatAuthTokenTable ($serverURL TEXT PRIMARY KEY, $token TEXT);"
     }
 
     override fun getSwarmCache(hexEncodedPublicKey: String): Set<LokiAPITarget>? {
@@ -76,6 +81,23 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         val receivedMessageHashValuesAsString = newValue.joinToString(", ")
         val row = wrap(mapOf( userID to userPublicKey, receivedMessageHashValues to receivedMessageHashValuesAsString ))
         database.insertOrUpdate(receivedMessageHashValuesCache, row, "$userID = ?", wrap(userPublicKey))
+    }
+
+    override fun getGroupChatAuthToken(serverURL: String): String? {
+        val database = databaseHelper.readableDatabase
+        return database.get(groupChatAuthTokenTable, "${Companion.serverURL} = ?", wrap(serverURL)) { cursor ->
+            cursor.getString(cursor.getColumnIndexOrThrow(token))
+        }
+    }
+
+    override fun setGroupChatAuthToken(token: String?, serverURL: String) {
+        val database = databaseHelper.writableDatabase
+        if (token != null) {
+            val row = wrap(mapOf(Companion.serverURL to serverURL, Companion.token to token!!))
+            database.insertOrUpdate(groupChatAuthTokenTable, row, "${Companion.serverURL} = ?", wrap(serverURL))
+        } else {
+            database.delete(groupChatAuthTokenTable, "${Companion.serverURL} = ?", wrap(serverURL))
+        }
     }
 }
 
