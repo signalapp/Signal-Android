@@ -22,8 +22,32 @@ public final class MemoryFileDescriptor implements Closeable {
 
   private static final String TAG = Log.tag(MemoryFileDescriptor.class);
 
+  private static Boolean supported;
+
   private final ParcelFileDescriptor parcelFileDescriptor;
   private final AtomicLong           sizeEstimate;
+
+  /**
+   * Does this device support memory file descriptor.
+   */
+  public synchronized static boolean supported() {
+    if (supported == null) {
+      try {
+        int fileDescriptor = FileUtils.createMemoryFileDescriptor("CHECK");
+
+        if (fileDescriptor < 0) {
+          supported = false;
+          Log.w(TAG, "MemoryFileDescriptor is not available.");
+        } else {
+          supported = true;
+          ParcelFileDescriptor.adoptFd(fileDescriptor).close();
+        }
+      } catch (IOException e) {
+        Log.w(TAG, e);
+      }
+    }
+    return supported;
+  }
 
   /**
    * memfd files do not show on the available RAM, so we must track our allocations in addition.
