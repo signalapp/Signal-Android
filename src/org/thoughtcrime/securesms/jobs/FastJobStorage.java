@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.jobs;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.database.JobDatabase;
@@ -260,6 +261,26 @@ public class FastJobStorage implements JobStorage {
 
   @Override
   public synchronized @NonNull List<DependencySpec> getDependencySpecsThatDependOnJob(@NonNull String jobSpecId) {
+    List<DependencySpec> layer = getSingleLayerOfDependencySpecsThatDependOnJob(jobSpecId);
+    List<DependencySpec> all   = new ArrayList<>(layer);
+
+    Set<String> activeJobIds;
+
+    do {
+      activeJobIds = Stream.of(layer).map(DependencySpec::getJobId).collect(Collectors.toSet());
+      layer.clear();
+
+      for (String activeJobId : activeJobIds) {
+        layer.addAll(getSingleLayerOfDependencySpecsThatDependOnJob(activeJobId));
+      }
+
+      all.addAll(layer);
+    } while (!layer.isEmpty());
+
+    return all;
+  }
+
+  private @NonNull List<DependencySpec> getSingleLayerOfDependencySpecsThatDependOnJob(@NonNull String jobSpecId) {
     return Stream.of(dependenciesByJobId.entrySet())
                  .map(Map.Entry::getValue)
                  .flatMap(Stream::of)

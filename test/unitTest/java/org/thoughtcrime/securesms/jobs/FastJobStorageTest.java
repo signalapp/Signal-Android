@@ -365,11 +365,48 @@ public class FastJobStorageTest {
     List<ConstraintSpec> constraints  = subject.getAllConstraintSpecs();
     List<DependencySpec> dependencies = subject.getAllDependencySpecs();
 
-    assertEquals(1, jobs.size());
+    assertEquals(2, jobs.size());
     assertEquals(DataSet1.JOB_2, jobs.get(0));
+    assertEquals(DataSet1.JOB_3, jobs.get(1));
     assertEquals(1, constraints.size());
     assertEquals(DataSet1.CONSTRAINT_2, constraints.get(0));
-    assertEquals(0, dependencies.size());
+    assertEquals(1, dependencies.size());
+  }
+
+  @Test
+  public void getDependencySpecsThatDependOnJob_startOfChain() {
+    FastJobStorage subject = new FastJobStorage(fixedDataDatabase(DataSet1.FULL_SPECS));
+
+    subject.init();
+
+    List<DependencySpec> result = subject.getDependencySpecsThatDependOnJob("id1");
+
+    assertEquals(2, result.size());
+    assertEquals(DataSet1.DEPENDENCY_2, result.get(0));
+    assertEquals(DataSet1.DEPENDENCY_3, result.get(1));
+  }
+
+  @Test
+  public void getDependencySpecsThatDependOnJob_midChain() {
+    FastJobStorage subject = new FastJobStorage(fixedDataDatabase(DataSet1.FULL_SPECS));
+
+    subject.init();
+
+    List<DependencySpec> result = subject.getDependencySpecsThatDependOnJob("id2");
+
+    assertEquals(1, result.size());
+    assertEquals(DataSet1.DEPENDENCY_3, result.get(0));
+  }
+
+  @Test
+  public void getDependencySpecsThatDependOnJob_endOfChain() {
+    FastJobStorage subject = new FastJobStorage(fixedDataDatabase(DataSet1.FULL_SPECS));
+
+    subject.init();
+
+    List<DependencySpec> result = subject.getDependencySpecsThatDependOnJob("id3");
+
+    assertTrue(result.isEmpty());
   }
 
   private JobDatabase noopDatabase() {
@@ -395,17 +432,21 @@ public class FastJobStorageTest {
   private static final class DataSet1 {
     static final JobSpec        JOB_1        = new JobSpec("id1", "f1", "q1", 1, 2, 3, 4, 5, 6, 7, EMPTY_DATA, false);
     static final JobSpec        JOB_2        = new JobSpec("id2", "f2", "q2", 1, 2, 3, 4, 5, 6, 7, EMPTY_DATA, false);
+    static final JobSpec        JOB_3        = new JobSpec("id3", "f3", "q3", 1, 2, 3, 4, 5, 6, 7, EMPTY_DATA, false);
     static final ConstraintSpec CONSTRAINT_1 = new ConstraintSpec("id1", "f1");
     static final ConstraintSpec CONSTRAINT_2 = new ConstraintSpec("id2", "f2");
     static final DependencySpec DEPENDENCY_2 = new DependencySpec("id2", "id1");
+    static final DependencySpec DEPENDENCY_3 = new DependencySpec("id3", "id2");
     static final FullSpec       FULL_SPEC_1  = new FullSpec(JOB_1, Collections.singletonList(CONSTRAINT_1), Collections.emptyList());
     static final FullSpec       FULL_SPEC_2  = new FullSpec(JOB_2, Collections.singletonList(CONSTRAINT_2), Collections.singletonList(DEPENDENCY_2));
-    static final List<FullSpec> FULL_SPECS   = Arrays.asList(FULL_SPEC_1, FULL_SPEC_2);
+    static final FullSpec       FULL_SPEC_3  = new FullSpec(JOB_3, Collections.emptyList(), Collections.singletonList(DEPENDENCY_3));
+    static final List<FullSpec> FULL_SPECS   = Arrays.asList(FULL_SPEC_1, FULL_SPEC_2, FULL_SPEC_3);
 
     static void assertJobsMatch(@NonNull List<JobSpec> jobs) {
-      assertEquals(jobs.size(), 2);
+      assertEquals(jobs.size(), 3);
       assertTrue(jobs.contains(DataSet1.JOB_1));
       assertTrue(jobs.contains(DataSet1.JOB_1));
+      assertTrue(jobs.contains(DataSet1.JOB_3));
     }
 
     static void assertConstraintsMatch(@NonNull List<ConstraintSpec> constraints) {
@@ -415,8 +456,9 @@ public class FastJobStorageTest {
     }
 
     static void assertDependenciesMatch(@NonNull List<DependencySpec> dependencies) {
-      assertEquals(dependencies.size(), 1);
+      assertEquals(dependencies.size(), 2);
       assertTrue(dependencies.contains(DataSet1.DEPENDENCY_2));
+      assertTrue(dependencies.contains(DataSet1.DEPENDENCY_3));
     }
   }
 }
