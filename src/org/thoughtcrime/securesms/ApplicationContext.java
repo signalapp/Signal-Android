@@ -33,6 +33,7 @@ import com.google.android.gms.security.ProviderInstaller;
 
 import org.conscrypt.Conscrypt;
 import org.signal.aesgcmprovider.AesGcmProvider;
+import org.signal.ringrtc.CallConnectionFactory;
 import org.thoughtcrime.securesms.components.TypingStatusRepository;
 import org.thoughtcrime.securesms.components.TypingStatusSender;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -53,6 +54,7 @@ import org.thoughtcrime.securesms.logging.CustomSignalProtocolLogger;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.logging.PersistentLogger;
 import org.thoughtcrime.securesms.logging.UncaughtExceptionLogger;
+import org.thoughtcrime.securesms.migrations.ApplicationMigrations;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.providers.BlobProvider;
@@ -68,8 +70,6 @@ import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener;
 import org.thoughtcrime.securesms.service.UpdateApkRefreshListener;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.dynamiclanguage.DynamicLanguageContextWrapper;
-import org.webrtc.PeerConnectionFactory;
-import org.webrtc.PeerConnectionFactory.InitializationOptions;
 import org.webrtc.voiceengine.WebRtcAudioManager;
 import org.webrtc.voiceengine.WebRtcAudioUtils;
 import org.whispersystems.libsignal.logging.SignalProtocolLoggerProvider;
@@ -114,6 +114,7 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
     initializeCrashHandling();
     initializeAppDependencies();
     initializeJobManager();
+    initializeApplicationMigrations();
     initializeMessageRetrieval();
     initializeExpiringMessageManager();
     initializeRevealableMessageManager();
@@ -123,13 +124,14 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
     initializeSignedPreKeyCheck();
     initializePeriodicTasks();
     initializeCircumvention();
-    initializeWebRtc();
+    initializeRingRtc();
     initializePendingMessages();
     initializeUnidentifiedDeliveryAbilityRefresh();
     initializeBlobProvider();
     initializeCameraX();
     NotificationChannels.create(this);
     ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
+    jobManager.beginJobLoop();
   }
 
   @Override
@@ -138,7 +140,6 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
     Log.i(TAG, "App is now visible.");
     executePendingContactSync();
     KeyCachingService.onAppForegrounded(this);
-    MessageNotifier.cancelMessagesPending(this);
   }
 
   @Override
@@ -223,12 +224,16 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
                                                                        .build());
   }
 
+  private void initializeApplicationMigrations() {
+    ApplicationMigrations.onApplicationCreate(this, jobManager);
+  }
+
   public void initializeMessageRetrieval() {
     this.incomingMessageObserver = new IncomingMessageObserver(this);
   }
 
   private void initializeAppDependencies() {
-    ApplicationDependencies.init(new ApplicationDependencyProvider(this, new SignalServiceNetworkAccess(this)));
+    ApplicationDependencies.init(this, new ApplicationDependencyProvider(this, new SignalServiceNetworkAccess(this)));
   }
 
   private void initializeGcmCheck() {
@@ -274,7 +279,7 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
     }
   }
 
-  private void initializeWebRtc() {
+  private void initializeRingRtc() {
     try {
       Set<String> HARDWARE_AEC_BLACKLIST = new HashSet<String>() {{
         add("Pixel");
@@ -303,7 +308,7 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
         WebRtcAudioManager.setBlacklistDeviceForOpenSLESUsage(true);
       }
 
-      PeerConnectionFactory.initialize(InitializationOptions.builder(this).createInitializationOptions());
+      CallConnectionFactory.initialize(this);
     } catch (UnsatisfiedLinkError e) {
       Log.w(TAG, e);
     }

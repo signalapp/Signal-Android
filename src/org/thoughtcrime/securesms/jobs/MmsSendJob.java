@@ -1,16 +1,14 @@
 package org.thoughtcrime.securesms.jobs;
 
 import android.content.Context;
-import androidx.annotation.NonNull;
 import android.text.TextUtils;
-
-import org.thoughtcrime.securesms.jobmanager.Data;
-import org.thoughtcrime.securesms.jobmanager.Job;
-import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
-import org.thoughtcrime.securesms.logging.Log;
 import android.webkit.MimeTypeMap;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.WorkerThread;
+
 import com.android.mms.dom.smil.parser.SmilXmlSerializer;
+import com.annimon.stream.Stream;
 import com.google.android.mms.ContentType;
 import com.google.android.mms.InvalidHeaderValueException;
 import com.google.android.mms.pdu_alt.CharacterSets;
@@ -25,11 +23,17 @@ import com.google.android.mms.smil.SmilHelper;
 import com.klinker.android.send_message.Utils;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
+import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.jobmanager.Data;
+import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.JobManager;
+import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.CompatMmsConnection;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.mms.MmsException;
@@ -50,23 +54,46 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-public class MmsSendJob extends SendJob {
+public final class MmsSendJob extends SendJob {
 
-  public static final String KEY = "MmsSendJob";
+  public static final String KEY = "MmsSendJobV2";
 
   private static final String TAG = MmsSendJob.class.getSimpleName();
 
   private static final String KEY_MESSAGE_ID = "message_id";
 
-  private long messageId;
+  private final long messageId;
 
-  public MmsSendJob(long messageId) {
+  private MmsSendJob(long messageId) {
     this(new Job.Parameters.Builder()
                            .setQueue("mms-operation")
                            .addConstraint(NetworkConstraint.KEY)
                            .setMaxAttempts(15)
                            .build(),
          messageId);
+  }
+
+  /** Enqueues compression jobs for attachments and finally the MMS send job. */
+  @WorkerThread
+  public static void enqueue(@NonNull Context context, @NonNull JobManager jobManager, long messageId) {
+    MmsDatabase          database = DatabaseFactory.getMmsDatabase(context);
+    OutgoingMediaMessage message;
+
+    try {
+      message = database.getOutgoingMessage(messageId);
+    } catch (MmsException | NoSuchMessageException e) {
+      throw new AssertionError(e);
+    }
+
+    List<Job> compressionJobs = Stream.of(message.getAttachments())
+                                      .map(a -> (Job) AttachmentCompressionJob.fromAttachment((DatabaseAttachment) a, true, message.getSubscriptionId()))
+                                      .toList();
+
+    MmsSendJob sendJob = new MmsSendJob(messageId);
+
+    jobManager.startChain(compressionJobs)
+              .then(sendJob)
+              .enqueue();
   }
 
   private MmsSendJob(@NonNull Job.Parameters parameters, long messageId) {
@@ -196,7 +223,7 @@ public class MmsSendJob extends SendJob {
     String           lineNumber        = getMyNumber(context);
     Address          destination       = message.getRecipient().getAddress();
     MediaConstraints mediaConstraints  = MediaConstraints.getMmsMediaConstraints(message.getSubscriptionId());
-    List<Attachment> scaledAttachments = scaleAndStripExifFromAttachments(mediaConstraints, message.getAttachments());
+    List<Attachment> scaledAttachments = message.getAttachments();
 
     if (!TextUtils.isEmpty(lineNumber)) {
       req.setFrom(new EncodedStringValue(lineNumber));

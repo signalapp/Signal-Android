@@ -353,16 +353,14 @@ public class SubmitLogFragment extends Fragment {
       Context context = weakContext.get();
       if (context == null) return null;
 
-      Scrubber scrubber = new Scrubber();
-
-      String newLogs;
+      CharSequence newLogs;
       try {
         long t1 = System.currentTimeMillis();
         String logs = ApplicationContext.getInstance(context).getPersistentLogger().getLogs().get();
         Log.i(TAG, "Fetch our logs : " + (System.currentTimeMillis() - t1) + " ms");
 
         long t2 = System.currentTimeMillis();
-        newLogs = scrubber.scrub(logs);
+        newLogs = Scrubber.scrub(logs);
         Log.i(TAG, "Scrub our logs: " + (System.currentTimeMillis() - t2) + " ms");
       } catch (InterruptedException | ExecutionException e) {
         Log.w(TAG, "Failed to retrieve new logs.", e);
@@ -374,7 +372,7 @@ public class SubmitLogFragment extends Fragment {
       Log.i(TAG, "Fetch logcat: " + (System.currentTimeMillis() - t3) + " ms");
 
       long t4 = System.currentTimeMillis();
-      String scrubbedLogcat = scrubber.scrub(logcat);
+      CharSequence scrubbedLogcat = Scrubber.scrub(logcat);
       Log.i(TAG, "Scrub logcat: " + (System.currentTimeMillis() - t4) + " ms");
 
 
@@ -386,7 +384,7 @@ public class SubmitLogFragment extends Fragment {
                    .append("\n\n\n")
                    .append(HEADER_JOBS)
                    .append("\n\n")
-                   .append(scrubber.scrub(ApplicationContext.getInstance(context).getJobManager().getDebugInfo()))
+                   .append(Scrubber.scrub(ApplicationContext.getInstance(context).getJobManager().getDebugInfo()))
                    .append("\n\n\n");
 
       if (VERSION.SDK_INT >= 28) {

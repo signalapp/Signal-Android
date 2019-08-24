@@ -12,13 +12,13 @@ import android.util.Pair;
 
 import com.annimon.stream.function.BiFunction;
 
-import org.thoughtcrime.securesms.DatabaseUpgradeActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.AsymmetricMasterCipher;
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
+import org.thoughtcrime.securesms.migrations.LegacyMigrationJob;
 import org.thoughtcrime.securesms.service.GenericForegroundService;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -58,7 +58,7 @@ public class SQLCipherMigrationHelper {
                                        @NonNull MasterSecret masterSecret,
                                        @NonNull android.database.sqlite.SQLiteDatabase legacyDb,
                                        @NonNull net.sqlcipher.database.SQLiteDatabase modernDb,
-                                       @Nullable DatabaseUpgradeActivity.DatabaseUpgradeListener listener)
+                                       @Nullable LegacyMigrationJob.DatabaseUpgradeListener listener)
   {
     MasterCipher           legacyCipher           = new MasterCipher(masterSecret);
     AsymmetricMasterCipher legacyAsymmetricCipher = new AsymmetricMasterCipher(MasterSecretUtil.getAsymmetricMasterSecret(context, masterSecret));

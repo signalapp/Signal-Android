@@ -222,6 +222,7 @@
   <string name="ConversationFragment_deleting_messages">Kustutan sõnumeid...</string>
   <string name="ConversationFragment_quoted_message_not_found">Originaalsõnumit ei leitud</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Originaalsõnum pole enam saadaval</string>
+  <string name="ConversationFragment_failed_to_open_message">Sõnumi avamine ebaõnnestus</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Sinu seadmesse pole installitud brauserit.</string>
   <!--ConversationListFragment-->

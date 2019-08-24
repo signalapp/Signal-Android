@@ -242,6 +242,7 @@
   <string name="ConversationFragment_deleting_messages">Usuwanie wiadomości...</string>
   <string name="ConversationFragment_quoted_message_not_found">Nie znaleziono oryginalnej wiadomości</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Oryginalna wiadomość nie jest już dostępna</string>
+  <string name="ConversationFragment_failed_to_open_message">Nie udało się otworzyć wiadomości</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Twoje urządzenie nie ma zainstalowanej przeglądarki.</string>
   <!--ConversationListFragment-->

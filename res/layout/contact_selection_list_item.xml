@@ -4,28 +4,29 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="@dimen/contact_selection_item_height"
         android:orientation="horizontal"
         android:gravity="center_vertical"
         android:focusable="true"
         android:background="@drawable/conversation_item_background"
-        android:paddingStart="48dp"
+        android:paddingStart="@dimen/selection_item_header_width"
         android:paddingEnd="24dp">
 
     <org.thoughtcrime.securesms.components.AvatarImageView
             android:id="@+id/contact_photo_image"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:foreground="@drawable/contact_photo_background"
             android:cropToPadding="true"
+            android:contentDescription="@string/SingleContactSelectionActivity_contact_photo"
             tools:src="@color/blue_600"
-            android:contentDescription="@string/SingleContactSelectionActivity_contact_photo" />
+            tools:ignore="UnusedAttribute" />
 
     <LinearLayout android:layout_width="0dp"
                   android:layout_height="wrap_content"
                   android:layout_weight="1"
                   android:layout_marginStart="16dp"
-                  android:paddingEnd="16dp"
+                  android:layout_marginEnd="16dp"
                   android:orientation="vertical">
 
         <org.thoughtcrime.securesms.components.emoji.EmojiTextView
@@ -35,8 +36,8 @@
                 android:checkMark="?android:attr/listChoiceIndicatorMultiple"
                 android:singleLine="true"
                 android:ellipsize="marquee"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textSize="16sp"
+                style="@style/Signal.Text.Body"
+                android:fontFamily="sans-serif-medium"
                 tools:text="Frieeeeeeedrich Nieeeeeeeeeetzsche" />
 
         <LinearLayout android:id="@+id/number_container"
@@ -63,7 +64,8 @@
                       android:singleLine="true"
                       android:textAppearance="?android:attr/textAppearanceSmall"
                       android:fontFamily="sans-serif-light"
-                      tools:text="Mobile" />
+                      tools:text="Mobile"
+                      tools:ignore="RtlSymmetry" />
 
         </LinearLayout>
 

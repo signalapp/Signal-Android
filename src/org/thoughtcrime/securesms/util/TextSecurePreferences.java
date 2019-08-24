@@ -783,7 +783,7 @@ public class TextSecurePreferences {
   }
 
   public static int getLastVersionCode(Context context) {
-    return getIntegerPreference(context, LAST_VERSION_CODE_PREF, 0);
+    return getIntegerPreference(context, LAST_VERSION_CODE_PREF, Util.getCanonicalVersionCode());
   }
 
   public static void setLastVersionCode(Context context, int versionCode) throws IOException {

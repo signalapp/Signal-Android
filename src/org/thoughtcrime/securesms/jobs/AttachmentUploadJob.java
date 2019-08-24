@@ -17,12 +17,9 @@ import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.service.GenericForegroundService;
 import org.thoughtcrime.securesms.service.NotificationController;
-import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
-import org.thoughtcrime.securesms.util.MediaUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
@@ -32,11 +29,17 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.concurrent.TimeUnit;
 
-public class AttachmentUploadJob extends BaseJob {
+/**
+ * Uploads an attachment without alteration.
+ * <p>
+ * Queue {@link AttachmentCompressionJob} before to compress.
+ */
+public final class AttachmentUploadJob extends BaseJob {
 
-  public static final String KEY = "AttachmentUploadJob";
+  public static final String KEY = "AttachmentUploadJobV2";
 
-  private static final String TAG = AttachmentUploadJob.class.getSimpleName();
+  @SuppressWarnings("unused")
+  private static final String TAG = Log.tag(AttachmentUploadJob.class);
 
   private static final String KEY_ROW_ID    = "row_id";
   private static final String KEY_UNIQUE_ID = "unique_id";
@@ -46,26 +49,13 @@ public class AttachmentUploadJob extends BaseJob {
    */
   private static final int FOREGROUND_LIMIT = 10 * 1024 * 1024;
 
-  /**
-   * The {@link PartProgressEvent} on the {@link EventBus} is shared between transcoding and uploading.
-   * <p>
-   * This number is the ratio that represents the transcoding effort, after which it will hand
-   * over to the to complete the progress.
-   */
-  private static final double ENCODING_PROGRESS_RATIO = 0.75;
+  private final AttachmentId attachmentId;
 
-  private final AttachmentId               attachmentId;
-
-  public static AttachmentUploadJob fromAttachment(DatabaseAttachment databaseAttachment) {
-    return new AttachmentUploadJob(databaseAttachment.getAttachmentId(), MediaUtil.isVideo(databaseAttachment) && MediaConstraints.isVideoTranscodeAvailable());
-  }
-
-  private AttachmentUploadJob(AttachmentId attachmentId, boolean isVideoTranscode) {
+  public AttachmentUploadJob(AttachmentId attachmentId) {
     this(new Job.Parameters.Builder()
                            .addConstraint(NetworkConstraint.KEY)
                            .setLifespan(TimeUnit.DAYS.toMillis(1))
                            .setMaxAttempts(Parameters.UNLIMITED)
-                           .setQueue(isVideoTranscode ? "VIDEO_TRANSCODE" : null)
                            .build(),
          attachmentId);
   }
@@ -97,13 +87,8 @@ public class AttachmentUploadJob extends BaseJob {
       throw new InvalidAttachmentException("Cannot find the specified attachment.");
     }
 
-    MediaConstraints mediaConstraints       = MediaConstraints.getPushMediaConstraints();
-    Attachment       scaledAttachment       = scaleAndStripExif(database, mediaConstraints, databaseAttachment);
-    boolean          videoTranscodeOccurred = databaseAttachment != scaledAttachment && MediaUtil.isVideo(scaledAttachment);
-    double           progressStartPoint     = videoTranscodeOccurred ? ENCODING_PROGRESS_RATIO : 0;
-
-    try (NotificationController notification = getNotificationForAttachment(scaledAttachment)) {
-      SignalServiceAttachment        localAttachment  = getAttachmentFor(scaledAttachment, notification, progressStartPoint);
+    try (NotificationController notification = getNotificationForAttachment(databaseAttachment)) {
+      SignalServiceAttachment        localAttachment  = getAttachmentFor(databaseAttachment, notification);
       SignalServiceAttachmentPointer remoteAttachment = messageSender.uploadAttachment(localAttachment.asStream(), databaseAttachment.isSticker());
       Attachment                     attachment       = PointerAttachment.forPointer(Optional.of(remoteAttachment), null, databaseAttachment.getFastPreflightId()).get();
 
@@ -127,14 +112,7 @@ public class AttachmentUploadJob extends BaseJob {
     return exception instanceof IOException;
   }
 
-  /**
-   * @param progressStartPoint A value from 0..1 that represents any progress already shown.
-   *                           The {@link PartProgressEvent} of this task will fit in the remaining
-   *                           1 - progressStartPoint.
-   */
-  private @NonNull SignalServiceAttachment getAttachmentFor(Attachment attachment, @Nullable NotificationController notification, double progressStartPoint)
-      throws InvalidAttachmentException
-  {
+  private @NonNull SignalServiceAttachment getAttachmentFor(Attachment attachment, @Nullable NotificationController notification) throws InvalidAttachmentException {
     try {
       if (attachment.getDataUri() == null || attachment.getSize() == 0) throw new IOException("Assertion failed, outgoing attachment has no data!");
       InputStream is = PartAuthority.getAttachmentStream(context, attachment.getDataUri());
@@ -148,8 +126,7 @@ public class AttachmentUploadJob extends BaseJob {
                                     .withHeight(attachment.getHeight())
                                     .withCaption(attachment.getCaption())
                                     .withListener((total, progress) -> {
-                                      long cumulativeProgress = (long) ((1.0 - progressStartPoint) * progress + total * progressStartPoint);
-                                      EventBus.getDefault().postSticky(new PartProgressEvent(attachment, total, cumulativeProgress));
+                                      EventBus.getDefault().postSticky(new PartProgressEvent(attachment, PartProgressEvent.Type.NETWORK, total, progress));
                                       if (notification != null) {
                                         notification.setProgress(total, progress);
                                       }
@@ -158,25 +135,6 @@ public class AttachmentUploadJob extends BaseJob {
     } catch (IOException ioe) {
       throw new InvalidAttachmentException(ioe);
     }
-  }
-
-  private Attachment scaleAndStripExif(@NonNull AttachmentDatabase attachmentDatabase,
-                                       @NonNull MediaConstraints constraints,
-                                       @NonNull DatabaseAttachment attachment)
-      throws UndeliverableMessageException
-  {
-    MediaResizer mediaResizer = new MediaResizer(context, constraints);
-
-    MediaResizer.ProgressListener progressListener = (progress, total) -> {
-                                                       PartProgressEvent event = new PartProgressEvent(attachment,
-                                                                                                       total,
-                                                                                                       (long) (progress * ENCODING_PROGRESS_RATIO));
-                                                       EventBus.getDefault().postSticky(event);
-                                                     };
-
-    return mediaResizer.scaleAndStripExifToDatabase(attachmentDatabase,
-                                                    attachment,
-                                                    progressListener);
   }
 
   private class InvalidAttachmentException extends Exception {

@@ -1340,9 +1340,9 @@ public class ConversationItem extends LinearLayout
         database.markAsOutbox(messageRecord.getId());
         database.markAsForcedSms(messageRecord.getId());
 
-        ApplicationContext.getInstance(context)
-                          .getJobManager()
-                          .add(new MmsSendJob(messageRecord.getId()));
+        MmsSendJob.enqueue(context,
+                           ApplicationContext.getInstance(context).getJobManager(),
+                           messageRecord.getId());
       } else {
         SmsDatabase database = DatabaseFactory.getSmsDatabase(context);
         database.markAsInsecure(messageRecord.getId());

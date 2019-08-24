@@ -11,14 +11,11 @@ import androidx.annotation.RequiresApi;
 
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
-import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
-
-import java.io.IOException;
 
 /**
  * Pulls down messages. Used when we fail to pull down messages in {@link FcmService}.
@@ -50,13 +47,15 @@ public class FcmJobService extends JobService {
     }
 
     SignalExecutors.UNBOUNDED.execute(() -> {
-      try {
-        SignalServiceMessageReceiver messageReceiver = ApplicationDependencies.getSignalServiceMessageReceiver();
-        new PushNotificationReceiveJob(getApplicationContext()).pullAndProcessMessages(messageReceiver, TAG, System.currentTimeMillis());
+      Context          context   = getApplicationContext();
+      MessageRetriever retriever = ApplicationDependencies.getMessageRetriever();
+      boolean          success   = retriever.retrieveMessages(context, new RestStrategy(), new RestStrategy());
+
+      if (success) {
         Log.i(TAG, "Successfully retrieved messages.");
         jobFinished(params, false);
-      } catch (IOException e) {
-        Log.w(TAG, "Failed to pull. Scheduling a retry.", e);
+      } else {
+        Log.w(TAG, "Failed to retrieve messages. Scheduling a retry.");
         jobFinished(params, true);
       }
     });

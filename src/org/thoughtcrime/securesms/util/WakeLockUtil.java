@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.logging.Log;
 
@@ -50,10 +51,12 @@ public class WakeLockUtil {
   /**
    * @param tag will be prefixed with "signal:" if it does not already start with it.
    */
-  public static void release(@NonNull WakeLock wakeLock, @NonNull String tag) {
+  public static void release(@Nullable WakeLock wakeLock, @NonNull String tag) {
     tag = prefixTag(tag);
     try {
-      if (wakeLock.isHeld()) {
+      if (wakeLock == null) {
+        Log.d(TAG, "Wakelock was null. Skipping. Tag: " + tag);
+      } else if (wakeLock.isHeld()) {
         wakeLock.release();
         Log.d(TAG, "Released wakelock with tag: " + tag);
       } else {

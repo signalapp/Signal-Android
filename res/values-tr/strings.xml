@@ -222,6 +222,7 @@
   <string name="ConversationFragment_deleting_messages">İletiler siliniyor...</string>
   <string name="ConversationFragment_quoted_message_not_found">İletinin aslı bulunamadı</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">İletinin aslı artık mevcut değil</string>
+  <string name="ConversationFragment_failed_to_open_message">İletiyi açma başarısız oldu.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Cihazınıza yüklü tarayıcı bulunmamaktadır.</string>
   <!--ConversationListFragment-->

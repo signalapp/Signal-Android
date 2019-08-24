@@ -13,6 +13,8 @@ import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
+import org.thoughtcrime.securesms.migrations.ApplicationMigrationActivity;
+import org.thoughtcrime.securesms.migrations.ApplicationMigrations;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.registration.WelcomeActivity;
 import org.thoughtcrime.securesms.service.KeyCachingService;
@@ -38,7 +40,6 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
 
   @Override
   protected final void onCreate(Bundle savedInstanceState) {
-    Log.i(TAG, "onCreate(" + savedInstanceState + ")");
     this.networkAccess = new SignalServiceNetworkAccess(this);
     onPreCreate();
 
@@ -145,7 +146,7 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
       return STATE_CREATE_PASSPHRASE;
     } else if (locked) {
       return STATE_PROMPT_PASSPHRASE;
-    } else if (DatabaseUpgradeActivity.isUpdate(this)) {
+    } else if (ApplicationMigrations.isUpdate(this)) {
       return STATE_UPGRADE_DATABASE;
     } else if (!TextSecurePreferences.hasSeenWelcomeScreen(this)) {
       return STATE_WELCOME_SCREEN;
@@ -167,7 +168,7 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
   }
 
   private Intent getUpgradeDatabaseIntent() {
-    return getRoutedIntent(DatabaseUpgradeActivity.class,
+    return getRoutedIntent(ApplicationMigrationActivity.class,
                            TextSecurePreferences.hasPromptedPushRegistration(this)
                                ? getConversationListIntent()
                                : getPushRegistrationIntent());
