@@ -47,12 +47,12 @@ public final class MemoryFileDescriptor implements Closeable {
    *                     Use zero to avoid RAM check.
    * @return MemoryFileDescriptor
    * @throws MemoryLimitException If there is not enough available RAM to comfortably fit this file.
-   * @throws IOException          If fails to create a memory file descriptor.
+   * @throws MemoryFileCreationException If fails to create a memory file descriptor.
    */
   public static MemoryFileDescriptor newMemoryFileDescriptor(@NonNull Context context,
                                                              @NonNull String debugName,
                                                              long sizeEstimate)
-      throws MemoryLimitException, IOException
+      throws MemoryFileException
   {
     if (sizeEstimate < 0) throw new IllegalArgumentException();
 
@@ -89,7 +89,8 @@ public final class MemoryFileDescriptor implements Closeable {
     int fileDescriptor = FileUtils.createMemoryFileDescriptor(debugName);
 
     if (fileDescriptor < 0) {
-      throw new IOException("Failed to create a memory file descriptor " + fileDescriptor);
+      Log.w(TAG, "Failed to create file descriptor: " + fileDescriptor);
+      throw new MemoryFileCreationException();
     }
 
     return new MemoryFileDescriptor(ParcelFileDescriptor.adoptFd(fileDescriptor), sizeEstimate);
@@ -154,5 +155,14 @@ public final class MemoryFileDescriptor implements Closeable {
     try (FileInputStream fileInputStream = new FileInputStream(getFileDescriptor())) {
       return fileInputStream.getChannel().size();
     }
+  }
+
+  public static class MemoryFileException extends IOException {
+  }
+
+  private static final class MemoryLimitException extends MemoryFileException {
+  }
+
+  private static final class MemoryFileCreationException extends MemoryFileException {
   }
 }
