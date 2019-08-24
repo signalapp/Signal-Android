@@ -11,6 +11,7 @@
   <string name="AbstractNotificationBuilder_new_message">새 메시지</string>
   <!--AlbumThumbnailView-->
   <string name="AlbumThumbnailView_plus">\+%d</string>
+  <!--ApplicationMigrationActivity-->
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">현재: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">암호 설정되지 않음</string>
@@ -867,8 +868,6 @@
   <string name="database_migration_activity__import">가져오기</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">가져오기는 다소 시간이 걸릴 수 있습니다. 완료되면 알려드리겠습니다.</string>
   <string name="database_migration_activity__importing">가져오는 중</string>
-  <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">데이터베이스 업데이트 중…</string>
   <string name="import_fragment__import_system_sms_database">시스템 SMS 가져오기</string>
   <string name="import_fragment__import_the_database_from_the_default_system">기본 시스템 SMS 앱의 데이터베이스를 가져옵니다.</string>
   <string name="import_fragment__import_plaintext_backup">암호화되지 않은 백업 가져오기</string>
@@ -1132,6 +1131,7 @@
   <string name="conversation_list_batch_archive__menu_archive_selected">선택된 대화 보관</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">선택된 대화 보관 취소</string>
   <!--conversation_list-->
+  <string name="conversation_list_search_description">검색</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">연락처 사진</string>
   <string name="conversation_list_item_view__archived">보관됨</string>

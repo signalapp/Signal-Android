@@ -11,6 +11,7 @@
   <string name="AbstractNotificationBuilder_new_message">הודעה חדשה</string>
   <!--AlbumThumbnailView-->
   <string name="AlbumThumbnailView_plus">\+%d</string>
+  <!--ApplicationMigrationActivity-->
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">כרגע: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">עדין לא הגדרת משפט־סיסמה!</string>
@@ -989,8 +990,6 @@
   <string name="database_migration_activity__import">ייבא</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">זה יכול לקחת כמה רגעים. סבלנות בבקשה, אנחנו נודיע לך כשהייבוא הושלם.</string>
   <string name="database_migration_activity__importing">מייבא</string>
-  <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">מעדכן מסד נתונים...</string>
   <string name="import_fragment__import_system_sms_database">לייבא את מסד הנתונים של SMS מהמערכת</string>
   <string name="import_fragment__import_the_database_from_the_default_system">לייבא את מסד הנתונים מאפליקציית המסרים הרגילה של המערכת</string>
   <string name="import_fragment__import_plaintext_backup">ייבוא גיבוי בטקסט פשוט</string>
@@ -1261,6 +1260,7 @@
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">הוצא מארכיון נבחרים</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">קיצור דרך להגדרות</string>
+  <string name="conversation_list_search_description">חיפוש</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">תמונת איש קשר</string>
   <string name="conversation_list_item_view__archived">מאוחסן בארכיון</string>

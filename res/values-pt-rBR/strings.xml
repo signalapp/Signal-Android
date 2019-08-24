@@ -11,6 +11,7 @@
   <string name="AbstractNotificationBuilder_new_message">Nova mensagem</string>
   <!--AlbumThumbnailView-->
   <string name="AlbumThumbnailView_plus">\+%d</string>
+  <!--ApplicationMigrationActivity-->
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Atualmente: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Você ainda não definiu uma frase-chave!</string>
@@ -941,8 +942,6 @@
   <string name="database_migration_activity__import">Importar</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Isso pode demorar um pouco. Seja paciente, iremos notificá-lo quando a importação terminar.</string>
   <string name="database_migration_activity__importing">Importando</string>
-  <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">Atualizando base de dados...</string>
   <string name="import_fragment__import_system_sms_database">Importar base de dados SMS do sistema</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Importar a base de dados do aplicativo de mensagens padrão do sistema</string>
   <string name="import_fragment__import_plaintext_backup">Importar backup de texto claro</string>
@@ -1208,6 +1207,7 @@
   <string name="conversation_list_batch_archive__menu_archive_selected">Arquivar seleção</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Restaurar seleção</string>
   <!--conversation_list-->
+  <string name="conversation_list_search_description">Buscar</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Imagem do contato</string>
   <string name="conversation_list_item_view__archived">Arquivado</string>

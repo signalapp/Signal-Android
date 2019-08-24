@@ -11,6 +11,7 @@
   <string name="AbstractNotificationBuilder_new_message">Mesazh i ri</string>
   <!--AlbumThumbnailView-->
   <string name="AlbumThumbnailView_plus">\+%d</string>
+  <!--ApplicationMigrationActivity-->
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">I tanishmi: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">S\’keni caktuar ende frazëkalim!</string>
@@ -935,8 +936,6 @@
   <string name="database_migration_activity__import">Importoji</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Kjo do të marrë pak kohë. Ju lutemi, bëni durim, do t\’ju njoftojmë sapo të jetë plotësuar importimi.</string>
   <string name="database_migration_activity__importing">IMPORTIM</string>
-  <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">Po përditësohet baza e të dhënave…</string>
   <string name="import_fragment__import_system_sms_database">Importo bazë të dhënash SMS të sistemit</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Importoni bazën e të dhënave nga aplikacioni parazgjedhje  për shkëmbim mesazhesh i sistemit.</string>
   <string name="import_fragment__import_plaintext_backup">Importo kopjeruajtje tekst të thjeshtë</string>
@@ -1202,6 +1201,7 @@
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Çarkivo të përzgjedhurit</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Shkurtore rregullimesh</string>
+  <string name="conversation_list_search_description">Kërko</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Foto Kontakti</string>
   <string name="conversation_list_item_view__archived">Të arkivuar</string>

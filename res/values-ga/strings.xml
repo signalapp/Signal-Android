@@ -11,6 +11,7 @@
   <string name="AbstractNotificationBuilder_new_message">Teachtaireacht nua</string>
   <!--AlbumThumbnailView-->
   <string name="AlbumThumbnailView_plus">\+%d</string>
+  <!--ApplicationMigrationActivity-->
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Faoi láthair: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Níl nath faire socraithe agat fós!</string>
@@ -775,8 +776,6 @@ a shonrú</string>
   <string name="database_migration_activity__skip">Léim thar seo</string>
   <string name="database_migration_activity__import">Tabhair isteach </string>
   <string name="database_migration_activity__importing">AG TABHAIRT ISTEACH</string>
-  <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">Ag nuashonrú an bhunachair shonraí</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">Féach ar an gcomhrá ar fad</string>
   <string name="load_more_header__loading">Ag luchtú</string>
@@ -1005,6 +1004,7 @@ a shonrú</string>
   <string name="conversation_list_batch__menu_select_all">Roghnaigh uile</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Roghnaíodh cartlann</string>
   <!--conversation_list-->
+  <string name="conversation_list_search_description">Cuardaigh</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Íomha ghrianghraif den teagmhálaí</string>
   <string name="conversation_list_item_view__archived">Curtha sa chartlann</string>

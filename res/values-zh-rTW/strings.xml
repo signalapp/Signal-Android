@@ -11,6 +11,8 @@
   <string name="AbstractNotificationBuilder_new_message">新訊息</string>
   <!--AlbumThumbnailView-->
   <string name="AlbumThumbnailView_plus">\+%d</string>
+  <!--ApplicationMigrationActivity-->
+  <string name="ApplicationMigrationActivity__signal_is_updating">Signal 更新中...</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">目前: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">您還沒有建立密碼！</string>
@@ -911,8 +913,6 @@
   <string name="database_migration_activity__import">匯入</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">這可能花上一點時間處理。請耐心等候，當匯入完成我們將告知您。</string>
   <string name="database_migration_activity__importing">匯入中</string>
-  <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">更新資料庫...</string>
   <string name="import_fragment__import_system_sms_database">匯入裝置上的手機簡訊</string>
   <string name="import_fragment__import_the_database_from_the_default_system">從系統預設訊息程序匯入數據庫</string>
   <string name="import_fragment__import_plaintext_backup">匯入未加密的資料備份</string>
@@ -1177,6 +1177,7 @@
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">取消存檔已選擇的</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">設定捷徑</string>
+  <string name="conversation_list_search_description">搜尋</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">聯絡人相片</string>
   <string name="conversation_list_item_view__archived">存檔</string>

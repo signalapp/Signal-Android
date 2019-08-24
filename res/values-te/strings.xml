@@ -9,6 +9,7 @@
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">కొత్త సందేశం</string>
   <!--AlbumThumbnailView-->
+  <!--ApplicationMigrationActivity-->
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">ప్రస్తుతంగా: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">మీరింకా సంకేతపదమును సెట్ చేయలేదు!</string>
@@ -837,8 +838,6 @@
   <string name="database_migration_activity__import">దిగుమతి</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">ఇది కొంత సమయం తిసుకుంటుంది.దయచెసి సహనం పాటించండి,దిగుమతి ఐన వేంటనె మెము తెలియపరుస్తాము</string>
   <string name="database_migration_activity__importing">దిగుమతి</string>
-  <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">డేటాబేస్ని నవీకరిస్తోంది/ ప్రస్తుత పరిస్థితికి అనుగుణంగా సవరిస్తోంది</string>
   <string name="import_fragment__import_system_sms_database">వ్యవస్థ ఎస్సెమ్మెస్ డేటాబేస్ దిగుమతి</string>
   <string name="import_fragment__import_the_database_from_the_default_system">డిఫాల్ట్ వ్యవస్థ మెసెంజర్ అనువర్తనం నుండి డేటాబేస్ దిగుమతి</string>
   <string name="import_fragment__import_plaintext_backup">సాధారణ అక్షరాల బ్యాకప్ దిగుమతి </string>
@@ -1100,6 +1099,7 @@
   <string name="conversation_list_batch_archive__menu_archive_selected">ఎంపిక చేసినది భద్రపరుచు</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">ఎంపిక చేసినది బయటపెట్టు</string>
   <!--conversation_list-->
+  <string name="conversation_list_search_description">వెతకండి</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">పరిచయ ఫొటొ చిత్రం</string>
   <string name="conversation_list_item_view__archived">భద్రపరచబడినది</string>

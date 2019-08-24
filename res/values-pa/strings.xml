@@ -11,6 +11,7 @@
   <string name="AbstractNotificationBuilder_new_message">ਨਵਾਂ ਸੰਦੇਸ਼ </string>
   <!--AlbumThumbnailView-->
   <string name="AlbumThumbnailView_plus">\+%d</string>
+  <!--ApplicationMigrationActivity-->
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">ਇਸ ਵੇਲੇ %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">ਤੁਸੀਂ ਅਜੇ ਆਪਣਾ ਪਾਸਫਰੇਜ ਨਹੀਂ ਸੈੱਟ ਕੀਤਾ ਹੈ!</string>
@@ -895,8 +896,6 @@
   <string name="database_migration_activity__import">ਆਯਾਤ ਕਰੋ</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">ਇਹ ਕੁਝ ਸਮਾਂ ਲੈ ਸਕਦਾ ਹੈ ਕਿਰਪਾ ਕਰਕੇ ਧੀਰਜ ਰੱਖੋ, ਅਸੀਂ ਤੁਹਾਨੂੰ ਸੂਚਿਤ ਕਰਾਂਗੇ ਜਦੋਂ ਆਯਾਤ ਪੂਰਾ ਹੋ ਜਾਏਗਾ </string>
   <string name="database_migration_activity__importing">ਆਯਾਤ ਕਰ ਰਿਹਾ ਹੈ</string>
-  <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">ਡਾਟਾਬੇਸ ਅਪਡੇਟ ਕਰ ਰਿਹਾ ਹੈ ...</string>
   <string name="import_fragment__import_system_sms_database">ਇੰਪੋਰਟ ਸਿਸਟਮ ਐਸਐਮਐਸ ਡੇਟਾਬੇਸ</string>
   <string name="import_fragment__import_the_database_from_the_default_system">ਡਿਫੌਲਟ ਸਿਸਟਮ Messenger ਐਪ ਤੋਂ ਡਾਟਾਬੇਸ ਆਯਾਤ ਕਰੋ</string>
   <string name="import_fragment__import_plaintext_backup">ਸਧਾਰਨ-ਟੈਕਸਟ ਬੈਕਅੱਪ ਆਯਾਤ ਕਰੋ</string>
@@ -1162,6 +1161,7 @@
   <string name="conversation_list_batch_archive__menu_archive_selected">ਚੁਣੇ ਹੋਏ ਆਰਕਾਈਵ ਕਰੋ </string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">ਚੁਣੇ ਹੋਏ ਆਰਕਾਈਵ ਤੋਂ ਹਟਾਓ </string>
   <!--conversation_list-->
+  <string name="conversation_list_search_description">ਖੋਜ</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">ਸੰਪਰਕ ਫੋਟੋ ਚਿੱਤਰ</string>
   <string name="conversation_list_item_view__archived">ਆਰਕਾਈਵ</string>

@@ -11,6 +11,8 @@
   <string name="AbstractNotificationBuilder_new_message">Tin nhắn mới</string>
   <!--AlbumThumbnailView-->
   <string name="AlbumThumbnailView_plus">\+%d</string>
+  <!--ApplicationMigrationActivity-->
+  <string name="ApplicationMigrationActivity__signal_is_updating">Signal đang cập nhật...</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Hiện thời: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Bạn chưa thiết lập mật khẩu!</string>
@@ -197,12 +199,12 @@
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
     <item quantity="other">Lỗi khi đang lưu tệp đính kèm vào thẻ nhớ!</item>
   </plurals>
-  <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Không thể ghi vào thẻ nhớ!</string>
+  <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Không thể ghi vào bộ nhớ!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="other">Đang lưu %1$d tệp đính kèm</item>
   </plurals>
   <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-    <item quantity="other">Đang lưu %1$dtệp đính kèm vào thẻ nhớ...</item>
+    <item quantity="other">Đang lưu %1$dtệp đính kèm vào bộ nhớ...</item>
   </plurals>
   <string name="ConversationFragment_pending">Đang chờ...</string>
   <string name="ConversationFragment_push">Dữ liệu (Signal)</string>
@@ -908,8 +910,6 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <string name="database_migration_activity__import">Nhập</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Việc này có thể mất chút thời gian. Vui lòng kiên nhẫn, chúng tôi sẽ thông báo cho bạn khi quá trình nhập hoàn tất.</string>
   <string name="database_migration_activity__importing">ĐANG NHẬP</string>
-  <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">Đang cập nhật cơ sở dữ liệu...</string>
   <string name="import_fragment__import_system_sms_database">Nhập cơ sở dữ liệu SMS của hệ thống</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Nhập cơ sở dữ liệu từ ứng dụng tin nhắn mặc định của hệ thống</string>
   <string name="import_fragment__import_plaintext_backup">Nhập sao lưu văn bản thường</string>
@@ -1176,6 +1176,7 @@ Các tin nhắn và cuộc gọi riêng tư miễn phí đến người dùng Si
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Bỏ lưu trữ mục đã chọn</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Cài đặt phím tắt</string>
+  <string name="conversation_list_search_description">Tìm kiếm</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Ảnh Chân Dung Liên Hệ</string>
   <string name="conversation_list_item_view__archived">Đã lưu trữ</string>

@@ -11,6 +11,7 @@
   <string name="AbstractNotificationBuilder_new_message">Yeni mesaj</string>
   <!--AlbumThumbnailView-->
   <string name="AlbumThumbnailView_plus">\+%d</string>
+  <!--ApplicationMigrationActivity-->
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Hal-hazırda: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Açar sözü təyin etməmisən!</string>
@@ -895,8 +896,6 @@
   <string name="database_migration_activity__import">Daxil et</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Bu bir qədər zaman ala bilər. Lütfən səbrli ol, daxil etmə prosesi bitən kimi səni xəbərdar edəcəyik.</string>
   <string name="database_migration_activity__importing">DAXİL EDİLİR</string>
-  <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">Məlumat bazası yenilənir...</string>
   <string name="import_fragment__import_system_sms_database">Sistem SMS məlumat bazasını daxil et</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Mövcud sistem mesencer aplikasiyasından məlumat bazasını daxil et</string>
   <string name="import_fragment__import_plaintext_backup">Sadə mətn arxivini daxil et</string>
@@ -1161,6 +1160,7 @@
   <string name="conversation_list_batch_archive__menu_archive_selected">Seçilmişi arxivləşdir</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Seçilmişi arxivdən çıxar</string>
   <!--conversation_list-->
+  <string name="conversation_list_search_description">Axtar</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Əlaqənin Şəkli</string>
   <string name="conversation_list_item_view__archived">Arxivləşdirildi</string>

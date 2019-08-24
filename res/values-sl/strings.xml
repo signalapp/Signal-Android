@@ -11,6 +11,8 @@
   <string name="AbstractNotificationBuilder_new_message">Novo sporočilo</string>
   <!--AlbumThumbnailView-->
   <string name="AlbumThumbnailView_plus">\+%d</string>
+  <!--ApplicationMigrationActivity-->
+  <string name="ApplicationMigrationActivity__signal_is_updating">Aplikacija Signal se posodablja ...</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Trenutno: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Niste še nastavili gesla!</string>
@@ -986,8 +988,6 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="database_migration_activity__import">Uvoz</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">To utegne trajati trenutek ali dva. Bodite potrpežljivi; ko bo uvoz končan, boste o tem obveščeni.</string>
   <string name="database_migration_activity__importing">UVAŽANJE</string>
-  <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">Posodabljam zbirko ...</string>
   <string name="import_fragment__import_system_sms_database">Uvoz iz sistemske zbirke sporočil SMS</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Uvoz zbirke sporočil iz sistemsko privzete aplikacije SMS.</string>
   <string name="import_fragment__import_plaintext_backup">Uvoz iz nešifrirane varnostne kopije</string>
@@ -1258,6 +1258,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Premakni izbrano v nabiralnik</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Bližnjica k nastavitvam</string>
+  <string name="conversation_list_search_description">Iskanje</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Slika stika</string>
   <string name="conversation_list_item_view__archived">Arhivirano</string>

@@ -11,6 +11,7 @@
   <string name="AbstractNotificationBuilder_new_message">Neges newydd</string>
   <!--AlbumThumbnailView-->
   <string name="AlbumThumbnailView_plus">\+%d</string>
+  <!--ApplicationMigrationActivity-->
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Yn gyfredol: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Nid ydych wedi gosod cyfrinymadrodd eto!</string>
@@ -991,8 +992,6 @@ Send neges heb ei ddiogelu?</string>
   <string name="database_migration_activity__import">Mewnforio</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Gall hyn gymryd ychydyig eiliadau. Rhown wybod i chi pan fydd y mewnforio wedi\'i gwblhau.</string>
   <string name="database_migration_activity__importing">MEWNFORIO</string>
-  <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">Yn diweddaru cronfa ddata...</string>
   <string name="import_fragment__import_system_sms_database">Mewnforio cronfa ddata SMS y system</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Mewnforio\'r gronfa ddata o raglen negesydd ragosodedig y system</string>
   <string name="import_fragment__import_plaintext_backup">Mewnforio testun plaen wrth gefn</string>
@@ -1263,6 +1262,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Wedi dewis dadarchifio</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Llwybr byr gosodiadau</string>
+  <string name="conversation_list_search_description">Chwilio</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Cysylltu a\'r Llun Cyswllt</string>
   <string name="conversation_list_item_view__archived">Archifwyd</string>

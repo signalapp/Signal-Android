@@ -11,6 +11,8 @@
   <string name="AbstractNotificationBuilder_new_message">Nova mensagem</string>
   <!--AlbumThumbnailView-->
   <string name="AlbumThumbnailView_plus">\+%d</string>
+  <!--ApplicationMigrationActivity-->
+  <string name="ApplicationMigrationActivity__signal_is_updating">O Signal está a atualizar...</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Actualmente: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Ainda não definiu uma frase-passe!</string>
@@ -937,8 +939,6 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="database_migration_activity__import">Importar</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Isto poderá demorar um pouco. Por favor, seja paciente. Será notificado quanto a importação estiver completa.</string>
   <string name="database_migration_activity__importing">A IMPORTAR</string>
-  <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">A atualizar a base de dados...</string>
   <string name="import_fragment__import_system_sms_database">Importar a base de dados de SMS do sistema</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Importar a base de dados da aplicação padrão de mensagens do sistema.</string>
   <string name="import_fragment__import_plaintext_backup">Importar cópia de segurança em texto simples</string>
@@ -1205,6 +1205,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Desarquivar selecionado(s)</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Atalho para definições</string>
+  <string name="conversation_list_search_description">Procurar</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Foto de contacto</string>
   <string name="conversation_list_item_view__archived">Arquivado</string>

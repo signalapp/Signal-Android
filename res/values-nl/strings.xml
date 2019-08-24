@@ -11,6 +11,7 @@
   <string name="AbstractNotificationBuilder_new_message">Nieuw bericht</string>
   <!--AlbumThumbnailView-->
   <string name="AlbumThumbnailView_plus">\+%d</string>
+  <!--ApplicationMigrationActivity-->
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Momenteel: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Je hebt nog geen wachtwoord ingesteld!</string>
@@ -260,7 +261,7 @@
   <string name="CreateProfileActivity_too_long">Te lang</string>
   <string name="CreateProfileActivity_profile_name">Profielnaam</string>
   <string name="CreateProfileActivity_set_up_your_profile">Stel je profiel op</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal-profielen zijn eind-tot-eind-versleuteld, dus zelfs de Signal-dienst heeft nooit toegang tot profielinformatie. Je profiel word alleen getoond aan mensen wie ook in jouw contactenlijst staan en aan mensen aan wie je expliciet toestemming hebt gegeven door op de banier \"Je profielfoto en naam zichtbaar maken\" te tikken.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal-profielen zijn eind-tot-eind-versleuteld, dus zelfs de Signal-dienst heeft nooit toegang tot profielinformatie. Je profiel wordt alleen getoond aan mensen wie ook in jouw contactenlijst staan en aan mensen aan wie je expliciet toestemming hebt gegeven door op de banier “Je profielfoto en naam zichtbaar maken” te tikken.</string>
   <string name="CreateProfileActivity_set_avatar_description">Avatar instellen</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Aanpassing in gebruik: %s</string>
@@ -943,8 +944,6 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <string name="database_migration_activity__import">Importeren</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Dit kan even duren. Even geduld, we zullen je melden wanneer het importeren voltooid is.</string>
   <string name="database_migration_activity__importing">BEZIG MET IMPORTEREN</string>
-  <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">Databank bijwerken…</string>
   <string name="import_fragment__import_system_sms_database">Sms-berichten uit de systeemdatabank importeren?</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Importeer de databank van de standaardberichtenapp</string>
   <string name="import_fragment__import_plaintext_backup">Onversleutelde back-up importeren</string>
@@ -1211,6 +1210,7 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Selectie dearchiveren</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Snelkoppeling naar instellingen</string>
+  <string name="conversation_list_search_description">Zoek</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Afbeelding van contactpersoon</string>
   <string name="conversation_list_item_view__archived">Gearchiveerd</string>

@@ -11,6 +11,8 @@
   <string name="AbstractNotificationBuilder_new_message">Nowa wiadomość</string>
   <!--AlbumThumbnailView-->
   <string name="AlbumThumbnailView_plus">\+%d</string>
+  <!--ApplicationMigrationActivity-->
+  <string name="ApplicationMigrationActivity__signal_is_updating">Aktualizacja Signal...</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Obecnie: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Nie masz jeszcze ustawionego hasła!</string>
@@ -986,8 +988,6 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="database_migration_activity__import">Import</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">To może zająć chwilę. Prosimy o cierpliwość, powiadomimy Cię gdy importowanie zostanie ukończone.</string>
   <string name="database_migration_activity__importing">IMPORTOWANIE</string>
-  <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">Aktualizowanie bazy danych...</string>
   <string name="import_fragment__import_system_sms_database">Importuj systemową bazę danych SMS</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Importuj wiadomości z domyślnej aplikacji SMS</string>
   <string name="import_fragment__import_plaintext_backup">Importuj nieszyfrowaną kopię zapasową</string>
@@ -1258,6 +1258,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Przenieś do skrzynki odbiorczej</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Skrót do ustawień</string>
+  <string name="conversation_list_search_description">Szukaj</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Zdjęcie kontaktu</string>
   <string name="conversation_list_item_view__archived">Archiwum</string>

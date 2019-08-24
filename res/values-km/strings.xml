@@ -11,6 +11,7 @@
   <string name="AbstractNotificationBuilder_new_message">សារថ្មី</string>
   <!--AlbumThumbnailView-->
   <string name="AlbumThumbnailView_plus">\+%d</string>
+  <!--ApplicationMigrationActivity-->
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">ពេលនេះ %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">អ្នកមិនទាន់បានកំណត់ឃ្លាសម្ងាត់ទេ!</string>
@@ -908,8 +909,6 @@
   <string name="database_migration_activity__import">នាំចូល</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">នេះអាចចំណាយពេលខ្លះ។ សូមអត់ធ្មត់ យើងនឹងជូនដំណឹងដល់អ្នកនៅពេលដែលការនាំចូលបានបញ្ចប់។</string>
   <string name="database_migration_activity__importing">នាំចូល</string>
-  <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">កំពុងធ្វើបច្ចុប្បន្នភាពមូលដ្ខានទិន្នន័យ...</string>
   <string name="import_fragment__import_system_sms_database">នាំចូលប្រព័ន្ធមូលដ្ឋានទិន្នន័យ​ SMS</string>
   <string name="import_fragment__import_the_database_from_the_default_system">នាំចូលមូលដ្ឋានទិន្នន័យពីកម្មវិធីផ្ញើសារលំនាំដើម</string>
   <string name="import_fragment__import_plaintext_backup">នាំចូលការបម្រុងទុកជាអក្សរ</string>
@@ -1174,6 +1173,7 @@
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">ដកបណ្ណសារដែលបានជ្រើសរើស</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">ផ្លូវកាត់ ការកំណត់</string>
+  <string name="conversation_list_search_description">ស្វែងរក</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">រូបថតទំនាក់ទំនង</string>
   <string name="conversation_list_item_view__archived">បានដាក់ទុកបណ្ណសារ   </string>

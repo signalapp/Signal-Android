@@ -9,6 +9,7 @@
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Mushuk chaski</string>
   <!--AlbumThumbnailView-->
+  <!--ApplicationMigrationActivity-->
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Kunanpi: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">¡Manara paskachikta akllashkankichu!</string>
@@ -816,8 +817,6 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <string name="database_migration_activity__import">Apamuna</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Kayka asha pachata chishiyarinkami. Ama shina kashpa ashakuta shuyapay, ña apamuy paktarikpika wilachishunmi.</string>
   <string name="database_migration_activity__importing">APAMUKUN</string>
-  <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">Willaywakaychita kunanyachikun.</string>
   <string name="import_fragment__import_system_sms_database">Llikamanta SMS willaywakaychikta apamuna.</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Llikapa,  kallariy chaskiy aplicacion ukumanta  willaywakaychikta apamuna.</string>
   <string name="import_fragment__import_plaintext_backup">Rikcha wakaychishkata hawalla killkapi apamuna.</string>
@@ -1073,6 +1072,7 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <string name="conversation_list_batch_archive__menu_archive_selected">Akllashka</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Mana akllashka</string>
   <!--conversation_list-->
+  <string name="conversation_list_search_description">Maskana </string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Yupay mashipa shuyu</string>
   <string name="conversation_list_item_view__archived">Allichishka</string>

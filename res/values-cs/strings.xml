@@ -11,6 +11,7 @@
   <string name="AbstractNotificationBuilder_new_message">Nová zpráva</string>
   <!--AlbumThumbnailView-->
   <string name="AlbumThumbnailView_plus">\+ %d</string>
+  <!--ApplicationMigrationActivity-->
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Aktuálně: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Dosud nemáte nastavené heslo!</string>
@@ -987,8 +988,6 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="database_migration_activity__import">Import</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Může to chvíli trvat. Prosíme o trpělivost, upozorníme Vás až bude import dokončen.</string>
   <string name="database_migration_activity__importing">IMPORTUJI</string>
-  <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">Aktualizuji databázi...</string>
   <string name="import_fragment__import_system_sms_database">Import systémové databáze SMS</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Importovat databázi z hlavní systémové komunikační aplikace.</string>
   <string name="import_fragment__import_plaintext_backup">Obnovit nešifrovanou zálohu</string>
@@ -1259,6 +1258,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Obnovit vybrané z archivu</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Zkratka nastavení</string>
+  <string name="conversation_list_search_description">Hledat</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Fotografie kontaktu</string>
   <string name="conversation_list_item_view__archived">Archivováno</string>

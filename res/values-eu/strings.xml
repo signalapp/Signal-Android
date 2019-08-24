@@ -11,6 +11,7 @@
   <string name="AbstractNotificationBuilder_new_message">Mezu berria</string>
   <!--AlbumThumbnailView-->
   <string name="AlbumThumbnailView_plus">\+%d</string>
+  <!--ApplicationMigrationActivity-->
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Une honetan: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Oraindik ez duzu pasahitza ezarri!</string>
@@ -942,8 +943,6 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="database_migration_activity__import">Inportatu</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Honek denbora tarte bat har lezake. Mesedez, pazientzia izan, jakinaraziko dizugu inportatzea osatuta dagoenean.</string>
   <string name="database_migration_activity__importing">INPORTATZEN</string>
-  <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">Datubasea eguneratzen...</string>
   <string name="import_fragment__import_system_sms_database">Inportatu sistemaren SMS datubasea</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Inportatu sistemako mezulari aplikazio lehenetsiaren datu-basea.</string>
   <string name="import_fragment__import_plaintext_backup">Inportatu zifratu gabeko babeskopia</string>
@@ -1211,6 +1210,7 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den zifratu gabeko babeskopi
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Desartxibatze hautatua</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Ezarpenen lasterbidea</string>
+  <string name="conversation_list_search_description">Bilatu</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Kontaktuaren argazkia</string>
   <string name="conversation_list_item_view__archived">Artxibatuta</string>

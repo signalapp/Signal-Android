@@ -9,6 +9,7 @@
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">नया Signal सन्देश</string>
   <!--AlbumThumbnailView-->
+  <!--ApplicationMigrationActivity-->
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">अभी %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">आपने अभी तक पासफ़्रेज सेट नहीं किया है!</string>
@@ -820,8 +821,6 @@
   <string name="database_migration_activity__import">आयात</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">इसमें एक पल लग सकता है। कृपया धैर्य रखें, आयात पूरा होने पर हम आपको सूचित करेंगे।</string>
   <string name="database_migration_activity__importing">आयात किया जा रहा है</string>
-  <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">डेटाबेस अद्यतन</string>
   <string name="import_fragment__import_system_sms_database">सिस्टम एसएमएस डेटाबेस आयात करें</string>
   <string name="import_fragment__import_the_database_from_the_default_system">डिफ़ॉल्ट सिस्टम मैसेंजर ऐप से डेटाबेस आयात करें</string>
   <string name="import_fragment__import_plaintext_backup">प्लैनटेक्सट बैकअप आयात करें</string>
@@ -1077,6 +1076,7 @@
   <string name="conversation_list_batch_archive__menu_archive_selected">चयनित संग्रह करें</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">चयनित अनारक्षित करें</string>
   <!--conversation_list-->
+  <string name="conversation_list_search_description">खोजें</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">संपर्क फोटो छवि</string>
   <string name="conversation_list_item_view__archived">संग्रहीत</string>

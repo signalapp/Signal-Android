@@ -11,6 +11,8 @@
   <string name="AbstractNotificationBuilder_new_message">Új üzenet</string>
   <!--AlbumThumbnailView-->
   <string name="AlbumThumbnailView_plus">\+%d</string>
+  <!--ApplicationMigrationActivity-->
+  <string name="ApplicationMigrationActivity__signal_is_updating">A Signal frissít...</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Jelenleg: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Még nem állítottál be jelmondatot!</string>
@@ -944,8 +946,6 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="database_migration_activity__import">Importálás</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Ez eltarthat egy darabig. Kérlek légy türelemmel, értesíteni fogunk, amint az importálás befejeződött.</string>
   <string name="database_migration_activity__importing">IMPORTÁLÁS</string>
-  <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">Adatbázis frissítése...</string>
   <string name="import_fragment__import_system_sms_database">Rendszer SMS adatbázis importálása</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Adatbázis importálása a rendszer alapértelmezett üzenetküldő alkalmazásából</string>
   <string name="import_fragment__import_plaintext_backup">Titkosítatlan biztonsági mentés importálása</string>
@@ -1212,6 +1212,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Kiválasztottak kivétele archívumból</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Beállítások parancsikon</string>
+  <string name="conversation_list_search_description">Keresés</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Kontakt fotó kép</string>
   <string name="conversation_list_item_view__archived">Archivált</string>

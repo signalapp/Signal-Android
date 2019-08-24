@@ -11,6 +11,7 @@
   <string name="AbstractNotificationBuilder_new_message">Uusi viesti</string>
   <!--AlbumThumbnailView-->
   <string name="AlbumThumbnailView_plus">\+%d</string>
+  <!--ApplicationMigrationActivity-->
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Tällä hetkellä: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Et ole vielä määritellyt salalausetta!</string>
@@ -921,8 +922,6 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="database_migration_activity__import">Tuo</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Tämä voi viedä hetken. Ole kärsivällinen — ilmoitamme, kun tuonti on valmis.</string>
   <string name="database_migration_activity__importing">TUODAAN</string>
-  <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">Tietokantaa päivitetään...</string>
   <string name="import_fragment__import_system_sms_database">Tuo järjestelmän tekstiviestit</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Tuo tietokanta järjestelmän oletustekstiviestisovelluksesta Signaliin.</string>
   <string name="import_fragment__import_plaintext_backup">Tuo salaamaton varmuuskopio</string>
@@ -1188,6 +1187,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="conversation_list_batch_archive__menu_archive_selected">Arkistoi valitut</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Palauta valitut arkistosta</string>
   <!--conversation_list-->
+  <string name="conversation_list_search_description">Hae</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Yhteystiedon kuva</string>
   <string name="conversation_list_item_view__archived">Arkistoitu</string>

@@ -11,6 +11,7 @@
   <string name="AbstractNotificationBuilder_new_message">Mesaj nou</string>
   <!--AlbumThumbnailView-->
   <string name="AlbumThumbnailView_plus">\+%d</string>
+  <!--ApplicationMigrationActivity-->
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Acum: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Nu ați setat înca o parolă!</string>
@@ -963,8 +964,6 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="database_migration_activity__import">Importă</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">S-ar putea să dureze câteva momente. Vă rugăm să aveți răbdare, vă vom notifica când importul este complet.</string>
   <string name="database_migration_activity__importing">SE IMPORTĂ</string>
-  <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">Se actualizează baza de date...</string>
   <string name="import_fragment__import_system_sms_database">Import baza de date cu SMS-uri?</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Importă baza de date din aplicația implicită de mesagerie din sistem</string>
   <string name="import_fragment__import_plaintext_backup">Importă backup necriptat</string>
@@ -1234,6 +1233,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Dezarhivare selectată</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Scurtătură Setări</string>
+  <string name="conversation_list_search_description">Căutați</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Poză contact</string>
   <string name="conversation_list_item_view__archived">Arhivat</string>

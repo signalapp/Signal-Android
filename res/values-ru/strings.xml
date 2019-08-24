@@ -11,6 +11,8 @@
   <string name="AbstractNotificationBuilder_new_message">Новое сообщение</string>
   <!--AlbumThumbnailView-->
   <string name="AlbumThumbnailView_plus">\+%d</string>
+  <!--ApplicationMigrationActivity-->
+  <string name="ApplicationMigrationActivity__signal_is_updating">Signal обновляется…</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Сейчас: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Вы еще не задали парольную фразу!</string>
@@ -988,8 +990,6 @@
   <string name="database_migration_activity__import">Импортировать</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Это может занять некоторое время. Пожалуйста, наберитесь терпения, мы сообщим вам, когда импорт завершится.</string>
   <string name="database_migration_activity__importing">ИДЁТ ИМПОРТ</string>
-  <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">Обновляем базу данных...</string>
   <string name="import_fragment__import_system_sms_database">Импорт системной базы SMS</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Импортировать сообщения из системного SMS-приложения.</string>
   <string name="import_fragment__import_plaintext_backup">Импорт незашифрованной резервной копии</string>
@@ -1227,7 +1227,7 @@
   <string name="preferences_communication__sealed_sender_display_indicators">Показывать индикаторы</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">Показывать значок в «Подробностях сообщения» для сообщений, доставленных с использованием запечатанного отправителя.</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Разрешить от всех</string>
-  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Разрешить запечатанного отправителя для входящих сообщений от людей, которых нет в ваших контактах и с кем вы еще не делились профилем.</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Разрешить запечатанного отправителя для входящих сообщений от людей, которых нет в ваших контактах и кому вы ещё не открывали свой профиль.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Узнать больше</string>
   <!--****************************************-->
   <!--menus-->
@@ -1260,6 +1260,7 @@
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Разархивировать выбранное</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Ярлык настроек</string>
+  <string name="conversation_list_search_description">Поиск</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Фотография контакта</string>
   <string name="conversation_list_item_view__archived">В архиве</string>
@@ -1268,7 +1269,7 @@
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Новый разговор</string>
   <string name="conversation_list_fragment__open_camera_description">Открыть камеру</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Наполните этот экран интересными разговорами! Отправьте другу ваше первое сообщение.</string>
+  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Наполните этот экран интересными разговорами! Отправьте другу своё первое сообщение.</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Сбросить защищенный сеанс</string>
   <!--conversation_muted-->

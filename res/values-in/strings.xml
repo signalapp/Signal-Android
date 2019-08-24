@@ -11,6 +11,7 @@
   <string name="AbstractNotificationBuilder_new_message">Pesan baru</string>
   <!--AlbumThumbnailView-->
   <string name="AlbumThumbnailView_plus">\+%d</string>
+  <!--ApplicationMigrationActivity-->
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Sekarang: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Anda belum mengatur kata kunci!</string>
@@ -847,8 +848,6 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="database_migration_activity__import">Import</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Ini bisa sedikit memakan waktu. Harap bersabar, kami akan memberi tahu anda ketika proses import selesai</string>
   <string name="database_migration_activity__importing">MENGIMPORT</string>
-  <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">Memperbarui basis data...</string>
   <string name="import_fragment__import_system_sms_database">Impor sistem basis data SMS</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Impor basis data dari aplikasi bawaan perpesanan sistem</string>
   <string name="import_fragment__import_plaintext_backup">Impor cadangan plaintext </string>
@@ -1109,6 +1108,7 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="conversation_list_batch_archive__menu_archive_selected">Arsip terpilih</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Buka arsip terpilih</string>
   <!--conversation_list-->
+  <string name="conversation_list_search_description">Pencarian</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Gambar Foto Kontak</string>
   <string name="conversation_list_item_view__archived">Diarsipkan</string>

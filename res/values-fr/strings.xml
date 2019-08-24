@@ -11,6 +11,7 @@
   <string name="AbstractNotificationBuilder_new_message">Nouveau message</string>
   <!--AlbumThumbnailView-->
   <string name="AlbumThumbnailView_plus">\+%d</string>
+  <!--ApplicationMigrationActivity-->
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Actuellement : %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Vous n’avez pas encore défini de phrase de passe !</string>
@@ -936,8 +937,6 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="database_migration_activity__import">Importer</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Cela pourrait prendre un moment. Veuillez être patient, nous vous préviendrons lorsque l’importation sera terminée.</string>
   <string name="database_migration_activity__importing">IMPORTATION</string>
-  <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">Mise à jour de la base de données…</string>
   <string name="import_fragment__import_system_sms_database">Importer la base de données de textos du système</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Importer la base de données de l’appli de messagerie par défaut du système</string>
   <string name="import_fragment__import_plaintext_backup">Importer une sauvegarde en clair</string>
@@ -1204,6 +1203,7 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Désarchiver la sélection</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Raccourci des paramètres</string>
+  <string name="conversation_list_search_description">Chercher</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Photo de contact</string>
   <string name="conversation_list_item_view__archived">Archivée</string>

@@ -11,6 +11,7 @@
   <string name="AbstractNotificationBuilder_new_message">پیام جدید</string>
   <!--AlbumThumbnailView-->
   <string name="AlbumThumbnailView_plus">\+%d</string>
+  <!--ApplicationMigrationActivity-->
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">در حال حاضر: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">شما هنوز رمزی تعیین نکرده‌اید!</string>
@@ -912,8 +913,6 @@
   <string name="database_migration_activity__import">وارد کردن</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">ممکن است مدتی طول بکشد. لطفا صبر نماييد. پس از پایان ورود اطلاعات، به شما اطلاع می‌دهيم.</string>
   <string name="database_migration_activity__importing">وارد کردن</string>
-  <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">به روز رسانی پایگاه داده ...</string>
   <string name="import_fragment__import_system_sms_database">واردکردن پایگاه داده سیستم SMS</string>
   <string name="import_fragment__import_the_database_from_the_default_system">وارد کردن دیتابیس از برنامه پیام رسان پیشفرض سیستم.</string>
   <string name="import_fragment__import_plaintext_backup">وارد کردن پشتیبان ساده</string>
@@ -1179,6 +1178,7 @@
   <string name="conversation_list_batch_archive__menu_archive_selected">بایگانی انتخاب شده ها</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">غیربایگانی کردن انتخاب شده ها</string>
   <!--conversation_list-->
+  <string name="conversation_list_search_description">جستجو</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">تماس با عکس تصویر</string>
   <string name="conversation_list_item_view__archived">آرشیو</string>

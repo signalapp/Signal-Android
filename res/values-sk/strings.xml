@@ -11,6 +11,7 @@
   <string name="AbstractNotificationBuilder_new_message">Nová správa</string>
   <!--AlbumThumbnailView-->
   <string name="AlbumThumbnailView_plus">\+%d</string>
+  <!--ApplicationMigrationActivity-->
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Aktuálne: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Ešte ste si nenastavili heslo!</string>
@@ -994,8 +995,6 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="database_migration_activity__import">Import</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Môže to chvíľu trvať. Buďte trpezlivý, dokončenie importu Vám oznámime.</string>
   <string name="database_migration_activity__importing">PREBIEHA IMPORT</string>
-  <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">Aktualizácia databázy...</string>
   <string name="import_fragment__import_system_sms_database">Importovať systémovú databázu SMS</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Importovať databázu z predvolenej systémovej aplikácie SMS správ</string>
   <string name="import_fragment__import_plaintext_backup">Importovať nešifrovanú zálohu</string>
@@ -1266,6 +1265,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Obnoviť vybrané z archívu</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Skratka pre Nastavenia</string>
+  <string name="conversation_list_search_description">Hľadať</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Fotka kontaktu</string>
   <string name="conversation_list_item_view__archived">Archivované</string>

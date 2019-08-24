@@ -11,6 +11,8 @@
   <string name="AbstractNotificationBuilder_new_message">Missatge nou</string>
   <!--AlbumThumbnailView-->
   <string name="AlbumThumbnailView_plus">\+%d</string>
+  <!--ApplicationMigrationActivity-->
+  <string name="ApplicationMigrationActivity__signal_is_updating">S\'actualitza el Signal...</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Actualment: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Encara no heu establert cap contrasenya.</string>
@@ -935,8 +937,6 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="database_migration_activity__import">Importa</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Això pot trigar una mica. Tingueu paciència, us notificarem quan la importació hagi finalitzat.</string>
   <string name="database_migration_activity__importing">S\'ESTÀ IMPORTANT</string>
-  <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">S\'està actualitzant la base de dades...</string>
   <string name="import_fragment__import_system_sms_database">Importa base de dades d\'SMS del sistema</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Importa la base de dades del programa de missatgeria predeterminat del sistema</string>
   <string name="import_fragment__import_plaintext_backup">Importa la còpia de seguretat en text pla</string>
@@ -1203,6 +1203,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">No arxivis la selecció</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Drecera de configuració</string>
+  <string name="conversation_list_search_description">Cerca</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Foto del contacte</string>
   <string name="conversation_list_item_view__archived">Arxivat</string>
