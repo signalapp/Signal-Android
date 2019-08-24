@@ -6,12 +6,14 @@ import androidx.annotation.Nullable;
 import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.database.JobDatabase;
+import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.persistence.ConstraintSpec;
 import org.thoughtcrime.securesms.jobmanager.persistence.DependencySpec;
 import org.thoughtcrime.securesms.jobmanager.persistence.FullSpec;
 import org.thoughtcrime.securesms.jobmanager.persistence.JobSpec;
 import org.thoughtcrime.securesms.jobmanager.persistence.JobStorage;
 import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -88,13 +90,29 @@ public class FastJobStorage implements JobStorage {
 
   @Override
   public synchronized @NonNull List<JobSpec> getPendingJobsWithNoDependenciesInCreatedOrder(long currentTime) {
-    return Stream.of(jobs)
-                 .filterNot(JobSpec::isRunning)
-                 .filter(this::firstInQueue)
-                 .filter(j -> !dependenciesByJobId.containsKey(j.getId()) || dependenciesByJobId.get(j.getId()).isEmpty())
-                 .filter(j -> j.getNextRunAttemptTime() <= currentTime)
-                 .sorted((j1, j2) -> Long.compare(j1.getCreateTime(), j2.getCreateTime()))
-                 .toList();
+    Optional<JobSpec> migrationJob = getMigrationJob();
+
+    if (migrationJob.isPresent() && !migrationJob.get().isRunning()) {
+      return Collections.singletonList(migrationJob.get());
+    } else if (migrationJob.isPresent()) {
+      return Collections.emptyList();
+    } else {
+      return Stream.of(jobs)
+                   .filterNot(JobSpec::isRunning)
+                   .filter(this::firstInQueue)
+                   .filter(j -> !dependenciesByJobId.containsKey(j.getId()) || dependenciesByJobId.get(j.getId()).isEmpty())
+                   .filter(j -> j.getNextRunAttemptTime() <= currentTime)
+                   .sorted((j1, j2) -> Long.compare(j1.getCreateTime(), j2.getCreateTime()))
+                   .toList();
+    }
+  }
+
+  private Optional<JobSpec> getMigrationJob() {
+    return Optional.fromNullable(Stream.of(jobs)
+                                       .filter(j -> Job.Parameters.MIGRATION_QUEUE_KEY.equals(j.getQueueKey()))
+                                       .filter(this::firstInQueue)
+                                       .findFirst()
+                                       .orElse(null));
   }
 
   private boolean firstInQueue(@NonNull JobSpec job) {

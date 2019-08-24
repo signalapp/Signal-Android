@@ -212,6 +212,7 @@
   <string name="ConversationFragment_deleting_messages">メッセージを削除しています...</string>
   <string name="ConversationFragment_quoted_message_not_found">元のメッセージが見つかりません</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">元のメッセージはすでに削除されています</string>
+  <string name="ConversationFragment_failed_to_open_message">メッセージの開封に失敗しました</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">ブラウザがインストールされていません</string>
   <!--ConversationListFragment-->

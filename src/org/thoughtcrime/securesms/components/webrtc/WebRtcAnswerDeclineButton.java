@@ -7,6 +7,7 @@ import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
+import android.provider.Settings;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -26,7 +27,7 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
-public final class WebRtcAnswerDeclineButton extends LinearLayout {
+public final class WebRtcAnswerDeclineButton extends LinearLayout implements AccessibilityManager.TouchExplorationStateChangeListener {
 
   @SuppressWarnings("unused")
   private static final String TAG = Log.tag(WebRtcAnswerDeclineButton.class);
@@ -45,6 +46,8 @@ public final class WebRtcAnswerDeclineButton extends LinearLayout {
 
             private AnswerDeclineListener listener;
   @Nullable private DragToAnswer          dragToAnswerListener;
+            private AccessibilityManager  accessibilityManager;
+            private boolean               ringAnimation;
 
   public WebRtcAnswerDeclineButton(Context context) {
     super(context);
@@ -65,15 +68,29 @@ public final class WebRtcAnswerDeclineButton extends LinearLayout {
     setOrientation(LinearLayout.VERTICAL);
     setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
-    AccessibilityManager accessibilityManager    = ServiceUtil.getAccessibilityManager(getContext());
-    boolean              isExploreByTouchEnabled = accessibilityManager.isTouchExplorationEnabled();
+    accessibilityManager = ServiceUtil.getAccessibilityManager(getContext());
 
-    if (isExploreByTouchEnabled) {
+    createView(accessibilityManager.isTouchExplorationEnabled());
+  }
+
+  @Override
+  protected void onAttachedToWindow() {
+    super.onAttachedToWindow();
+    accessibilityManager.addTouchExplorationStateChangeListener(this);
+  }
+
+  @Override
+  protected void onDetachedFromWindow() {
+    accessibilityManager.removeTouchExplorationStateChangeListener(this);
+    super.onDetachedFromWindow();
+  }
+
+  private void createView(boolean isTouchExplorationEnabled) {
+    if (isTouchExplorationEnabled) {
       inflate(getContext(), R.layout.webrtc_answer_decline_button_accessible, this);
 
       findViewById(R.id.answer).setOnClickListener((view) -> listener.onAnswered());
       findViewById(R.id.reject).setOnClickListener((view) -> listener.onDeclined());
-
     } else {
       inflate(getContext(), R.layout.webrtc_answer_decline_button, this);
 
@@ -82,6 +99,10 @@ public final class WebRtcAnswerDeclineButton extends LinearLayout {
       dragToAnswerListener = new DragToAnswer(answer, this);
 
       answer.setOnTouchListener(dragToAnswerListener);
+
+      if (ringAnimation) {
+        startRingingAnimation();
+      }
     }
   }
 
@@ -90,15 +111,23 @@ public final class WebRtcAnswerDeclineButton extends LinearLayout {
   }
 
   public void startRingingAnimation() {
+    ringAnimation = true;
     if (dragToAnswerListener != null) {
       dragToAnswerListener.startRingingAnimation();
     }
   }
 
   public void stopRingingAnimation() {
+    ringAnimation = false;
     if (dragToAnswerListener != null) {
       dragToAnswerListener.stopRingingAnimation();
     }
+  }
+
+  @Override
+  public void onTouchExplorationStateChanged(boolean enabled) {
+    removeAllViews();
+    createView(enabled);
   }
 
   private class DragToAnswer implements View.OnTouchListener {
@@ -235,6 +264,8 @@ public final class WebRtcAnswerDeclineButton extends LinearLayout {
     }
 
     private void animateElements(int delay) {
+      if (areAnimationsDisabled()) return;
+
       ObjectAnimator fabUp    = getUpAnimation(answer);
       ObjectAnimator fabDown  = getDownAnimation(answer);
       ObjectAnimator fabShake = getShakeAnimation(answer);
@@ -267,6 +298,11 @@ public final class WebRtcAnswerDeclineButton extends LinearLayout {
 
       animatorSet.setStartDelay(delay);
       animatorSet.start();
+    }
+
+    private boolean areAnimationsDisabled() {
+      return Settings.Global.getFloat(getContext().getContentResolver(),
+                                      Settings.Global.ANIMATOR_DURATION_SCALE, 1) == 0f;
     }
 
     private void resetElements() {

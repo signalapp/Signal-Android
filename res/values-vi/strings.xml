@@ -75,7 +75,7 @@
   <string name="CameraActivity_image_save_failure">Không thể lưu ảnh.</string>
   <!--CameraXFragment-->
   <string name="CameraXFragment_capture_description">Chụp</string>
-  <string name="CameraXFragment_change_camera_description">Thay đổi camera</string>
+  <string name="CameraXFragment_change_camera_description">Chuyển camera</string>
   <string name="CameraXFragment_open_gallery_description">Mở bộ sưu tập</string>
   <!--CameraContacts-->
   <string name="CameraContacts_recent_contacts">Liên hệ gần đây</string>
@@ -190,7 +190,7 @@
   <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
     <item quantity="other">Thao tác này sẽ xóa vĩnh viễn %1$d tin nhắn đã chọn.</item>
   </plurals>
-  <string name="ConversationFragment_save_to_sd_card">Lưu vào thẻ nhớ?</string>
+  <string name="ConversationFragment_save_to_sd_card">Lưu vào bộ nhớ?</string>
   <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
     <item quantity="other">Lưu %1$d tệp đa phương tiện vào bộ nhớ sẽ cho phép bất kì ứng dụng khác truy cập chúng.\n\nTiếp tục?</item>
   </plurals>
@@ -212,6 +212,7 @@
   <string name="ConversationFragment_deleting_messages">Đang xóa tin nhắn...</string>
   <string name="ConversationFragment_quoted_message_not_found">Không tìm thấy tin nhắn ban đầu</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Tin nhắn ban đầu không khả dụng</string>
+  <string name="ConversationFragment_failed_to_open_message">Không thể mở tin nhắn</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Bạn chưa cài trình duyệt nào trên điện thoại.</string>
   <!--ConversationListFragment-->

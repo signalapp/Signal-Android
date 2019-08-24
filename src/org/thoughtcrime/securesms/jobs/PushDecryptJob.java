@@ -28,6 +28,7 @@ import org.signal.libsignal.metadata.ProtocolUntrustedIdentityException;
 import org.signal.libsignal.metadata.SelfSendException;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.ConversationListActivity;
+import org.thoughtcrime.securesms.IncomingMessageProcessor;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
@@ -88,6 +89,7 @@ import org.thoughtcrime.securesms.sms.OutgoingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.OutgoingEndSessionMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
+import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.Hex;
 import org.thoughtcrime.securesms.util.IdentityUtil;
@@ -141,10 +143,6 @@ public class PushDecryptJob extends BaseJob {
   private long messageId;
   private long smsMessageId;
 
-  public PushDecryptJob(Context context) {
-    this(context, -1);
-  }
-
   public PushDecryptJob(Context context, long pushMessageId) {
     this(context, pushMessageId, -1);
   }
@@ -152,7 +150,7 @@ public class PushDecryptJob extends BaseJob {
   public PushDecryptJob(Context context, long pushMessageId, long smsMessageId) {
     this(new Job.Parameters.Builder()
                            .setQueue("__PUSH_DECRYPT_JOB__")
-                           .setMaxAttempts(10)
+                           .setMaxAttempts(Parameters.UNLIMITED)
                            .build(),
          pushMessageId,
          smsMessageId);
@@ -179,44 +177,28 @@ public class PushDecryptJob extends BaseJob {
   }
 
   @Override
-  public void onRun() throws NoSuchMessageException {
-    synchronized (PushReceivedJob.RECEIVE_LOCK) {
-      if (needsMigration()) {
-        Log.w(TAG, "Skipping, waiting for migration...");
-        postMigrationNotification();
-        return;
-      }
-
-      PushDatabase          database             = DatabaseFactory.getPushDatabase(context);
-      SignalServiceEnvelope envelope             = database.get(messageId);
-      Optional<Long>        optionalSmsMessageId = smsMessageId > 0 ? Optional.of(smsMessageId) : Optional.absent();
-
-      handleMessage(envelope, optionalSmsMessageId);
-      database.delete(messageId);
+  public void onRun() throws NoSuchMessageException, RetryLaterException {
+    if (needsMigration()) {
+      Log.w(TAG, "Migration is still needed.");
+      postMigrationNotification();
+      throw new RetryLaterException();
     }
+
+    PushDatabase          database             = DatabaseFactory.getPushDatabase(context);
+    SignalServiceEnvelope envelope             = database.get(messageId);
+    Optional<Long>        optionalSmsMessageId = smsMessageId > 0 ? Optional.of(smsMessageId) : Optional.absent();
+
+    handleMessage(envelope, optionalSmsMessageId);
+    database.delete(messageId);
   }
 
   @Override
   public boolean onShouldRetry(@NonNull Exception exception) {
-    return false;
+    return exception instanceof RetryLaterException;
   }
 
   @Override
   public void onCanceled() {
-
-  }
-
-  public void processMessage(@NonNull SignalServiceEnvelope envelope) {
-    synchronized (PushReceivedJob.RECEIVE_LOCK) {
-      if (needsMigration()) {
-        Log.w(TAG, "Skipping and storing envelope, waiting for migration...");
-        DatabaseFactory.getPushDatabase(context).insert(envelope);
-        postMigrationNotification();
-        return;
-      }
-
-      handleMessage(envelope, Optional.absent());
-    }
   }
 
   private boolean needsMigration() {

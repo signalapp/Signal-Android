@@ -21,13 +21,7 @@ package org.thoughtcrime.securesms.components;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
-import android.annotation.TargetApi;
 import android.content.Context;
-import android.os.Build.VERSION;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -35,17 +29,22 @@ import android.view.ViewTreeObserver;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
-public class RecyclerViewFastScroller extends LinearLayout {
+public final class RecyclerViewFastScroller extends LinearLayout {
   private static final int BUBBLE_ANIMATION_DURATION = 100;
   private static final int TRACK_SNAP_RANGE          = 5;
 
-  private @NonNull  TextView     bubble;
-  private @NonNull  View         handle;
-  private @Nullable RecyclerView recyclerView;
+  @NonNull  private final TextView     bubble;
+  @NonNull  private final View         handle;
+  @Nullable private       RecyclerView recyclerView;
 
   private int            height;
   private ObjectAnimator currentAnimator;
@@ -63,7 +62,7 @@ public class RecyclerViewFastScroller extends LinearLayout {
   };
 
   public interface FastScrollAdapter {
-    CharSequence getBubbleText(int pos);
+    CharSequence getBubbleText(int position);
   }
 
   public RecyclerViewFastScroller(final Context context) {
@@ -87,7 +86,6 @@ public class RecyclerViewFastScroller extends LinearLayout {
   }
 
   @Override
-  @TargetApi(11)
   public boolean onTouchEvent(@NonNull MotionEvent event) {
     final int action = event.getAction();
     switch (action) {
@@ -119,24 +117,26 @@ public class RecyclerViewFastScroller extends LinearLayout {
     return super.onTouchEvent(event);
   }
 
-  public void setRecyclerView(final @NonNull RecyclerView recyclerView) {
+  public void setRecyclerView(final @Nullable RecyclerView recyclerView) {
     if (this.recyclerView != null) {
       this.recyclerView.removeOnScrollListener(onScrollListener);
     }
     this.recyclerView = recyclerView;
-    recyclerView.addOnScrollListener(onScrollListener);
-    recyclerView.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
-      @Override
-      public boolean onPreDraw() {
-        recyclerView.getViewTreeObserver().removeOnPreDrawListener(this);
-        if (handle.isSelected()) return true;
-        final int verticalScrollOffset = recyclerView.computeVerticalScrollOffset();
-        final int verticalScrollRange = recyclerView.computeVerticalScrollRange();
-        float proportion = (float)verticalScrollOffset / ((float)verticalScrollRange - height);
-        setBubbleAndHandlePosition(height * proportion);
-        return true;
-      }
-    });
+    if (recyclerView != null) {
+      recyclerView.addOnScrollListener(onScrollListener);
+      recyclerView.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+        @Override
+        public boolean onPreDraw() {
+          recyclerView.getViewTreeObserver().removeOnPreDrawListener(this);
+          if (handle.isSelected()) return true;
+          final int verticalScrollOffset = recyclerView.computeVerticalScrollOffset();
+          final int verticalScrollRange = recyclerView.computeVerticalScrollRange();
+          float proportion = (float)verticalScrollOffset / ((float)verticalScrollRange - height);
+          setBubbleAndHandlePosition(height * proportion);
+          return true;
+        }
+      });
+    }
   }
 
   @Override
@@ -175,39 +175,31 @@ public class RecyclerViewFastScroller extends LinearLayout {
                                      height - bubbleHeight));
   }
 
-  @TargetApi(11)
   private void showBubble() {
     bubble.setVisibility(VISIBLE);
-    if (VERSION.SDK_INT >= 11) {
-      if (currentAnimator != null) currentAnimator.cancel();
-      currentAnimator = ObjectAnimator.ofFloat(bubble, "alpha", 0f, 1f).setDuration(BUBBLE_ANIMATION_DURATION);
-      currentAnimator.start();
-    }
+    if (currentAnimator != null) currentAnimator.cancel();
+    currentAnimator = ObjectAnimator.ofFloat(bubble, "alpha", 0f, 1f).setDuration(BUBBLE_ANIMATION_DURATION);
+    currentAnimator.start();
   }
 
-  @TargetApi(11)
   private void hideBubble() {
-    if (VERSION.SDK_INT >= 11) {
-      if (currentAnimator != null) currentAnimator.cancel();
-      currentAnimator = ObjectAnimator.ofFloat(bubble, "alpha", 1f, 0f).setDuration(BUBBLE_ANIMATION_DURATION);
-      currentAnimator.addListener(new AnimatorListenerAdapter() {
-        @Override
-        public void onAnimationEnd(Animator animation) {
-          super.onAnimationEnd(animation);
-          bubble.setVisibility(INVISIBLE);
-          currentAnimator = null;
-        }
+    if (currentAnimator != null) currentAnimator.cancel();
+    currentAnimator = ObjectAnimator.ofFloat(bubble, "alpha", 1f, 0f).setDuration(BUBBLE_ANIMATION_DURATION);
+    currentAnimator.addListener(new AnimatorListenerAdapter() {
+      @Override
+      public void onAnimationEnd(Animator animation) {
+        super.onAnimationEnd(animation);
+        bubble.setVisibility(INVISIBLE);
+        currentAnimator = null;
+      }
 
-        @Override
-        public void onAnimationCancel(Animator animation) {
-          super.onAnimationCancel(animation);
-          bubble.setVisibility(INVISIBLE);
-          currentAnimator = null;
-        }
-      });
-      currentAnimator.start();
-    } else {
-      bubble.setVisibility(INVISIBLE);
-    }
+      @Override
+      public void onAnimationCancel(Animator animation) {
+        super.onAnimationCancel(animation);
+        bubble.setVisibility(INVISIBLE);
+        currentAnimator = null;
+      }
+    });
+    currentAnimator.start();
   }
 }

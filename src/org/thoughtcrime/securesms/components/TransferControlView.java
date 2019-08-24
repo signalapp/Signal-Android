@@ -2,13 +2,14 @@ package org.thoughtcrime.securesms.components;
 
 import android.animation.LayoutTransition;
 import android.content.Context;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
 import com.annimon.stream.Stream;
 import com.pnikosis.materialishprogress.ProgressWheel;
@@ -28,7 +29,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class TransferControlView extends FrameLayout {
+public final class TransferControlView extends FrameLayout {
+
+  private static final int UPLOAD_TASK_WEIGHT = 1;
+
+  /**
+   * A weighting compared to {@link #UPLOAD_TASK_WEIGHT}
+   */
+  private static final int COMPRESSION_TASK_WEIGHT = 3;
 
   @Nullable private List<Slide> slides;
   @Nullable private View        current;
@@ -37,7 +45,8 @@ public class TransferControlView extends FrameLayout {
   private final View          downloadDetails;
   private final TextView      downloadDetailsText;
 
-  private final Map<Attachment, Float> downloadProgress;
+  private final Map<Attachment, Float> networkProgress;
+  private final Map<Attachment, Float> compresssionProgress;
 
   public TransferControlView(Context context) {
     this(context, null);
@@ -56,7 +65,9 @@ public class TransferControlView extends FrameLayout {
     setVisibility(GONE);
     setLayoutTransition(new LayoutTransition());
 
-    this.downloadProgress    = new HashMap<>();
+    this.networkProgress      = new HashMap<>();
+    this.compresssionProgress = new HashMap<>();
+
     this.progressWheel       = ViewUtil.findById(this, R.id.progress_wheel);
     this.downloadDetails     = ViewUtil.findById(this, R.id.download_details);
     this.downloadDetailsText = ViewUtil.findById(this, R.id.download_details_text);
@@ -98,19 +109,20 @@ public class TransferControlView extends FrameLayout {
     this.slides = slides;
 
     if (!isUpdateToExistingSet(slides)) {
-      downloadProgress.clear();
-      Stream.of(slides).forEach(s -> downloadProgress.put(s.asAttachment(), 0f));
+      networkProgress.clear();
+      compresssionProgress.clear();
+      Stream.of(slides).forEach(s -> networkProgress.put(s.asAttachment(), 0f));
     }
     
     for (Slide slide : slides) {
       if (slide.asAttachment().getTransferState() == AttachmentDatabase.TRANSFER_PROGRESS_DONE) {
-        downloadProgress.put(slide.asAttachment(), 1f);
+        networkProgress.put(slide.asAttachment(), 1f);
       }
     }
 
     switch (getTransferState(slides)) {
       case AttachmentDatabase.TRANSFER_PROGRESS_STARTED:
-        showProgressSpinner(calculateProgress(downloadProgress));
+        showProgressSpinner(calculateProgress(networkProgress, compresssionProgress));
         break;
       case AttachmentDatabase.TRANSFER_PROGRESS_PENDING:
       case AttachmentDatabase.TRANSFER_PROGRESS_FAILED:
@@ -124,7 +136,7 @@ public class TransferControlView extends FrameLayout {
   }
 
   public void showProgressSpinner() {
-    showProgressSpinner(calculateProgress(downloadProgress));
+    showProgressSpinner(calculateProgress(networkProgress, compresssionProgress));
   }
 
   public void showProgressSpinner(float progress) {
@@ -158,12 +170,12 @@ public class TransferControlView extends FrameLayout {
   }
 
   private boolean isUpdateToExistingSet(@NonNull List<Slide> slides) {
-    if (slides.size() != downloadProgress.size()) {
+    if (slides.size() != networkProgress.size()) {
       return false;
     }
 
     for (Slide slide : slides) {
-      if (!downloadProgress.containsKey(slide.asAttachment())) {
+      if (!networkProgress.containsKey(slide.asAttachment())) {
         return false;
       }
     }
@@ -207,19 +219,36 @@ public class TransferControlView extends FrameLayout {
     current = view;
   }
 
-  private float calculateProgress(@NonNull Map<Attachment, Float> downloadProgress) {
-    float totalProgress = 0;
-    for (float progress : downloadProgress.values()) {
-      totalProgress +=  progress / downloadProgress.size();
+  private static float calculateProgress(@NonNull Map<Attachment, Float> uploadDownloadProgress, Map<Attachment, Float> compresssionProgress) {
+    float totalDownloadProgress    = 0;
+    float totalCompressionProgress = 0;
+
+    for (float progress : uploadDownloadProgress.values()) {
+      totalDownloadProgress += progress;
     }
-    return totalProgress;
+
+    for (float progress : compresssionProgress.values()) {
+      totalCompressionProgress += progress;
+    }
+
+    float weightedProgress = UPLOAD_TASK_WEIGHT * totalDownloadProgress         + COMPRESSION_TASK_WEIGHT * totalCompressionProgress;
+    float weightedTotal    = UPLOAD_TASK_WEIGHT * uploadDownloadProgress.size() + COMPRESSION_TASK_WEIGHT * compresssionProgress.size();
+
+    return weightedProgress / weightedTotal;
   }
 
   @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
   public void onEventAsync(final PartProgressEvent event) {
-    if (downloadProgress.containsKey(event.attachment)) {
-      downloadProgress.put(event.attachment, ((float) event.progress) / event.total);
-      progressWheel.setInstantProgress(calculateProgress(downloadProgress));
+    if (networkProgress.containsKey(event.attachment)) {
+      float proportionCompleted = ((float) event.progress) / event.total;
+
+      if (event.type == PartProgressEvent.Type.COMPRESSION) {
+        compresssionProgress.put(event.attachment, proportionCompleted);
+      } else {
+        networkProgress.put(event.attachment, proportionCompleted);
+      }
+
+      progressWheel.setInstantProgress(calculateProgress(networkProgress, compresssionProgress));
     }
   }
 }

@@ -10,7 +10,6 @@ import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.attachments.Attachment;
-import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -48,7 +47,6 @@ import org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupC
 
 import java.io.IOException;
 import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -86,23 +84,12 @@ public class PushGroupSendJob extends PushSendJob {
   @WorkerThread
   public static void enqueue(@NonNull Context context, @NonNull JobManager jobManager, long messageId, @NonNull Address destination, @Nullable Address filterAddress) {
     try {
-      MmsDatabase          database    = DatabaseFactory.getMmsDatabase(context);
-      OutgoingMediaMessage message     = database.getOutgoingMessage(messageId);
-      List<Attachment>     attachments = new LinkedList<>();
+      MmsDatabase          database                    = DatabaseFactory.getMmsDatabase(context);
+      OutgoingMediaMessage message                     = database.getOutgoingMessage(messageId);
+      JobManager.Chain     compressAndUploadAttachment = createCompressingAndUploadAttachmentsChain(jobManager, message);
 
-      attachments.addAll(message.getAttachments());
-      attachments.addAll(Stream.of(message.getLinkPreviews()).filter(p -> p.getThumbnail().isPresent()).map(p -> p.getThumbnail().get()).toList());
-      attachments.addAll(Stream.of(message.getSharedContacts()).filter(c -> c.getAvatar() != null).map(c -> c.getAvatar().getAttachment()).withoutNulls().toList());
-
-      List<AttachmentUploadJob> attachmentJobs = Stream.of(attachments).map(a -> AttachmentUploadJob.fromAttachment((DatabaseAttachment) a)).toList();
-
-      if (attachmentJobs.isEmpty()) {
-        jobManager.add(new PushGroupSendJob(messageId, destination, filterAddress));
-      } else {
-        jobManager.startChain(attachmentJobs)
-                  .then(new PushGroupSendJob(messageId, destination, filterAddress))
-                  .enqueue();
-      }
+      compressAndUploadAttachment.then(new PushGroupSendJob(messageId, destination, filterAddress))
+                                 .enqueue();
 
     } catch (NoSuchMessageException | MmsException e) {
       Log.w(TAG, "Failed to enqueue message.", e);

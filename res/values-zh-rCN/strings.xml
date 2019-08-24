@@ -59,6 +59,7 @@
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal 需要\"相机\"权限才能拍照并发送相片，但是该权限已被永久禁用。请转到系统的应用设置菜单，找到权限设置，选择 Signal 应用，并启用\"相机\"权限。</string>
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">上传媒体中...</string>
+  <string name="AttachmentUploadJob_compressing_video_start">正在压缩视频...</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">播放音频时出现错误！</string>
   <!--BlockedContactsActivity-->
@@ -73,6 +74,9 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">未能保存图像。</string>
   <!--CameraXFragment-->
+  <string name="CameraXFragment_capture_description">拍摄</string>
+  <string name="CameraXFragment_change_camera_description">切换摄像头</string>
+  <string name="CameraXFragment_open_gallery_description">打开相册</string>
   <!--CameraContacts-->
   <string name="CameraContacts_recent_contacts">最近联系人</string>
   <string name="CameraContacts_signal_contacts">Signal 联系人</string>
@@ -208,6 +212,7 @@
   <string name="ConversationFragment_deleting_messages">正在删除信息…</string>
   <string name="ConversationFragment_quoted_message_not_found">没有找到原信息</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">原信息已不存在</string>
+  <string name="ConversationFragment_failed_to_open_message">打开消息失败</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">您的设备上无浏览器</string>
   <!--ConversationListFragment-->
@@ -242,6 +247,7 @@
   <string name="CreateProfileActivity_profile_name">资料名称</string>
   <string name="CreateProfileActivity_set_up_your_profile">设置您的资料</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal上的个人资料都是端到端加密的。Signal服务永远不会有权访问此数据。</string>
+  <string name="CreateProfileActivity_set_avatar_description">设置头像</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">使用定制：%s</string>
   <string name="CustomDefaultPreference_using_default">使用默认：%s</string>
@@ -395,6 +401,7 @@
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">下载彩信时错误，点击重试</string>
   <!--MediaPickerActivity-->
   <string name="MediaPickerActivity_send_to">发送给%s</string>
+  <string name="MediaPickerActivity__menu_open_camera">打开摄像头</string>
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">点击以选择</string>
   <!--MediaSendActivity-->
@@ -736,8 +743,12 @@
   <!--WebRtcCallControls Content Descriptions-->
   <string name="WebRtcCallControls_contact_photo_description">联系人照片</string>
   <string name="WebRtcCallControls_speaker_button_description">扬声器</string>
+  <string name="WebRtcCallControls_bluetooth_button_description">蓝牙</string>
   <string name="WebRtcCallControls_mute_button_description">静音</string>
+  <string name="WebRtcCallControls_your_camera_button_description">您的摄像头</string>
+  <string name="WebRtcCallControls_switch_to_rear_camera_button_description">切换到后置摄像头</string>
   <string name="WebRtcCallControls_answer_call_description">接听</string>
+  <string name="WebRtcCallControls_reject_call_description">拒接来电</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__audio">音频</string>
   <string name="attachment_type_selector__audio_description">音频</string>
@@ -761,6 +772,9 @@
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">输入姓名或号码</string>
   <!--contact_filter_toolbar-->
+  <string name="contact_filter_toolbar__clear_entered_text_description">清除已输入文字</string>
+  <string name="contact_filter_toolbar__show_keyboard_description">显示键盘</string>
+  <string name="contact_filter_toolbar__show_dial_pad_description">显示拨号键盘</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">没有联系人。</string>
   <string name="contact_selection_group_activity__finding_contacts">读取联系人…</string>
@@ -1161,6 +1175,7 @@
   <string name="conversation_list_batch_archive__menu_archive_selected">存档已选择</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">已选择取消存档</string>
   <!--conversation_list-->
+  <string name="conversation_list_settings_shortcut">设置快捷方式</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">联系人照片</string>
   <string name="conversation_list_item_view__archived">存档</string>
@@ -1169,6 +1184,7 @@
 你已经看完了所有的消息！</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">新会话</string>
+  <string name="conversation_list_fragment__open_camera_description">打开摄像头</string>
   <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">收件箱闲得发慌。快开始找您的朋友聊天吧。</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">重置安全会话</string>

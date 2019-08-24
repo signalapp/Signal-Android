@@ -242,6 +242,7 @@
   <string name="ConversationFragment_deleting_messages">Ištrinamos žinutės...</string>
   <string name="ConversationFragment_quoted_message_not_found">Pradinė žinutė nerasta</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Pradinė žinutė daugiau nebeprieinama</string>
+  <string name="ConversationFragment_failed_to_open_message">Nepavyko atverti žinutės</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Jūsų įrenginyje nėra įdiegtos naršyklės.</string>
   <!--ConversationListFragment-->

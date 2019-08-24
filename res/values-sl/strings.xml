@@ -242,6 +242,7 @@
   <string name="ConversationFragment_deleting_messages">Brišem sporočila ...</string>
   <string name="ConversationFragment_quoted_message_not_found">Izvorno sporočilo ni bilo najdeno</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Izvorno sporočilo ni več na voljo</string>
+  <string name="ConversationFragment_failed_to_open_message">Odpiranje sporočila ni uspelo</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Na svoji napravi nimate nameščenega spletnega brskalnika.</string>
   <!--ConversationListFragment-->
