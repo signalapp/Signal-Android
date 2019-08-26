@@ -37,12 +37,12 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         private val lastMessageServerIDCache = "loki_api_last_message_server_id_cache"
         private val lastMessageServerIDCacheGroupID = "group_id"
         private val lastMessageServerID = "last_message_server_id"
-        @JvmStatic val createLastMessageServerIDTableCommand = "CREATE TABLE $lastMessageServerIDCache ($lastMessageServerIDCacheGroupID INTEGER PRIMARY KEY, $lastMessageServerID INTEGER);"
+        @JvmStatic val createLastMessageServerIDTableCommand = "CREATE TABLE $lastMessageServerIDCache ($lastMessageServerIDCacheGroupID INTEGER PRIMARY KEY, $lastMessageServerID INTEGER DEFAULT 0);"
         // First message server ID cache
         private val firstMessageServerIDCache = "loki_api_first_message_server_id_cache"
         private val firstMessageServerIDCacheGroupID = "group_id"
         private val firstMessageServerID = "first_message_server_id"
-        @JvmStatic val createFirstMessageServerIDTableCommand = "CREATE TABLE $firstMessageServerIDCache ($firstMessageServerIDCacheGroupID INTEGER PRIMARY KEY, $firstMessageServerID INTEGER);"
+        @JvmStatic val createFirstMessageServerIDTableCommand = "CREATE TABLE $firstMessageServerIDCache ($firstMessageServerIDCacheGroupID INTEGER PRIMARY KEY, $firstMessageServerID INTEGER DEFAULT 0);"
     }
 
     override fun getSwarmCache(hexEncodedPublicKey: String): Set<LokiAPITarget>? {
