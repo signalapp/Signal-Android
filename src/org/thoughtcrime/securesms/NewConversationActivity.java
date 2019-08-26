@@ -35,7 +35,9 @@ import org.thoughtcrime.securesms.recipients.Recipient;
  * @author Moxie Marlinspike
  *
  */
-public class NewConversationActivity extends ContactSelectionActivity {
+public class NewConversationActivity extends ContactSelectionActivity
+                                    implements ContactSelectionListFragment.InviteCallback
+{
 
   @SuppressWarnings("unused")
   private static final String TAG = NewConversationActivity.class.getSimpleName();
@@ -98,5 +100,10 @@ public class NewConversationActivity extends ContactSelectionActivity {
     inflater.inflate(R.menu.new_conversation_activity, menu);
     super.onPrepareOptionsMenu(menu);
     return true;
+  }
+
+  @Override
+  public void onInvite() {
+    handleInvite();
   }
 }

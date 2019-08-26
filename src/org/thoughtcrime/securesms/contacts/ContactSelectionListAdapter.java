@@ -37,6 +37,7 @@ import org.thoughtcrime.securesms.components.RecyclerViewFastScroller.FastScroll
 import org.thoughtcrime.securesms.contacts.ContactSelectionListAdapter.HeaderViewHolder;
 import org.thoughtcrime.securesms.contacts.ContactSelectionListAdapter.ViewHolder;
 import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration.StickyHeaderAdapter;
 import org.thoughtcrime.securesms.util.Util;
@@ -53,7 +54,8 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
                                          implements FastScrollAdapter,
                                                     StickyHeaderAdapter<HeaderViewHolder>
 {
-  private final static String TAG = ContactSelectionListAdapter.class.getSimpleName();
+  @SuppressWarnings("unused")
+  private final static String TAG = Log.tag(ContactSelectionListAdapter.class);
 
   private static final int VIEW_TYPE_CONTACT = 0;
   private static final int VIEW_TYPE_DIVIDER = 1;
@@ -198,7 +200,7 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
 
 
   @Override
-  public HeaderViewHolder onCreateHeaderViewHolder(ViewGroup parent) {
+  public HeaderViewHolder onCreateHeaderViewHolder(ViewGroup parent, int position) {
     return new HeaderViewHolder(LayoutInflater.from(getContext()).inflate(R.layout.contact_selection_recyclerview_header, parent, false));
   }
 

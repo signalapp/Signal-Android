@@ -93,7 +93,7 @@ public class MediaDocumentsAdapter extends CursorRecyclerViewAdapter<ViewHolder>
   }
 
   @Override
-  public HeaderViewHolder onCreateHeaderViewHolder(ViewGroup parent) {
+  public HeaderViewHolder onCreateHeaderViewHolder(ViewGroup parent, int position) {
     return new HeaderViewHolder(LayoutInflater.from(getContext()).inflate(R.layout.media_overview_document_item_header, parent, false));
   }
 

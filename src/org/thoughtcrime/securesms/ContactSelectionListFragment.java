@@ -19,16 +19,10 @@ package org.thoughtcrime.securesms;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.loader.app.LoaderManager;
-import androidx.loader.content.Loader;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +31,15 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.loader.app.LoaderManager;
+import androidx.loader.content.Loader;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import com.pnikosis.materialishprogress.ProgressWheel;
 
 import org.thoughtcrime.securesms.components.RecyclerViewFastScroller;
@@ -44,7 +47,6 @@ import org.thoughtcrime.securesms.contacts.ContactSelectionListAdapter;
 import org.thoughtcrime.securesms.contacts.ContactSelectionListItem;
 import org.thoughtcrime.securesms.contacts.ContactsCursorLoader;
 import org.thoughtcrime.securesms.contacts.ContactsCursorLoader.DisplayMode;
-import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.permissions.Permissions;
@@ -52,6 +54,8 @@ import org.thoughtcrime.securesms.util.DirectoryHelper;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ViewUtil;
+import org.thoughtcrime.securesms.util.adapter.FixedViewsAdapter;
+import org.thoughtcrime.securesms.util.adapter.RecyclerViewConcatenateAdapterStickyHeader;
 
 import java.io.IOException;
 import java.util.LinkedList;
@@ -64,28 +68,41 @@ import java.util.Set;
  * @author Moxie Marlinspike
  *
  */
-public class ContactSelectionListFragment extends    Fragment
-                                          implements LoaderManager.LoaderCallbacks<Cursor>
+public final class ContactSelectionListFragment extends    Fragment
+                                                implements LoaderManager.LoaderCallbacks<Cursor>
 {
   @SuppressWarnings("unused")
-  private static final String TAG = ContactSelectionListFragment.class.getSimpleName();
+  private static final String TAG = Log.tag(ContactSelectionListFragment.class);
 
   public static final String DISPLAY_MODE = "display_mode";
   public static final String MULTI_SELECT = "multi_select";
   public static final String REFRESHABLE  = "refreshable";
   public static final String RECENTS      = "recents";
 
-  private TextView                  emptyText;
-  private Set<String>               selectedContacts;
-  private OnContactSelectedListener onContactSelectedListener;
-  private SwipeRefreshLayout        swipeRefresh;
-  private View                      showContactsLayout;
-  private Button                    showContactsButton;
-  private TextView                  showContactsDescription;
-  private ProgressWheel             showContactsProgress;
-  private String                    cursorFilter;
-  private RecyclerView              recyclerView;
-  private RecyclerViewFastScroller  fastScroller;
+  private TextView                    emptyText;
+  private Set<String>                 selectedContacts;
+  private OnContactSelectedListener   onContactSelectedListener;
+  private SwipeRefreshLayout          swipeRefresh;
+  private View                        showContactsLayout;
+  private Button                      showContactsButton;
+  private TextView                    showContactsDescription;
+  private ProgressWheel               showContactsProgress;
+  private String                      cursorFilter;
+  private RecyclerView                recyclerView;
+  private RecyclerViewFastScroller    fastScroller;
+  private ContactSelectionListAdapter cursorRecyclerViewAdapter;
+
+  @Nullable private FixedViewsAdapter footerAdapter;
+  @Nullable private InviteCallback    inviteCallback;
+
+  @Override
+  public void onAttach(@NonNull Context context) {
+    super.onAttach(context);
+
+    if (context instanceof InviteCallback) {
+      inviteCallback = (InviteCallback) context;
+    }
+  }
 
   @Override
   public void onActivityCreated(Bundle icicle) {
@@ -158,14 +175,31 @@ public class ContactSelectionListFragment extends    Fragment
   }
 
   private void initializeCursor() {
-    ContactSelectionListAdapter adapter = new ContactSelectionListAdapter(getActivity(),
-                                                                          GlideApp.with(this),
-                                                                          null,
-                                                                          new ListClickListener(),
-                                                                          isMulti());
-    selectedContacts = adapter.getSelectedContacts();
-    recyclerView.setAdapter(adapter);
-    recyclerView.addItemDecoration(new StickyHeaderDecoration(adapter, true, true));
+    cursorRecyclerViewAdapter = new ContactSelectionListAdapter(requireContext(),
+                                                                GlideApp.with(this),
+                                                                null,
+                                                                new ListClickListener(),
+                                                                isMulti());
+    selectedContacts = cursorRecyclerViewAdapter.getSelectedContacts();
+
+    RecyclerViewConcatenateAdapterStickyHeader concatenateAdapter = new RecyclerViewConcatenateAdapterStickyHeader();
+
+    concatenateAdapter.addAdapter(cursorRecyclerViewAdapter);
+    if (inviteCallback != null) {
+      footerAdapter = new FixedViewsAdapter(createInviteActionView(inviteCallback));
+      footerAdapter.hide();
+      concatenateAdapter.addAdapter(footerAdapter);
+    }
+
+    recyclerView.setAdapter(concatenateAdapter);
+    recyclerView.addItemDecoration(new StickyHeaderDecoration(concatenateAdapter, true, true));
+  }
+
+  private View createInviteActionView(@NonNull InviteCallback inviteCallback) {
+    View view = LayoutInflater.from(requireContext())
+                              .inflate(R.layout.contact_selection_invite_action_item, (ViewGroup) requireView(), false);
+    view.setOnClickListener(v -> inviteCallback.onInvite());
+    return view;
   }
 
   private void initializeNoContactsPermission() {
@@ -192,7 +226,7 @@ public class ContactSelectionListFragment extends    Fragment
 
   public void setQueryFilter(String filter) {
     this.cursorFilter = filter;
-    this.getLoaderManager().restartLoader(0, null, this);
+    LoaderManager.getInstance(this).restartLoader(0, null, this);
   }
 
   public void resetQueryFilter() {
@@ -224,9 +258,14 @@ public class ContactSelectionListFragment extends    Fragment
     swipeRefresh.setVisibility(View.VISIBLE);
     showContactsLayout.setVisibility(View.GONE);
 
-    ((CursorRecyclerViewAdapter) recyclerView.getAdapter()).changeCursor(data);
+    cursorRecyclerViewAdapter.changeCursor(data);
+
+    if (footerAdapter != null) {
+      footerAdapter.show();
+    }
+
     emptyText.setText(R.string.contact_selection_group_activity__no_contacts);
-    boolean useFastScroller = (recyclerView.getAdapter().getItemCount() > 20);
+    boolean useFastScroller = data.getCount() > 20;
     recyclerView.setVerticalScrollBarEnabled(!useFastScroller);
     if (useFastScroller) {
       fastScroller.setVisibility(View.VISIBLE);
@@ -239,7 +278,7 @@ public class ContactSelectionListFragment extends    Fragment
 
   @Override
   public void onLoaderReset(@NonNull Loader<Cursor> loader) {
-    ((CursorRecyclerViewAdapter) recyclerView.getAdapter()).changeCursor(null);
+    cursorRecyclerViewAdapter.changeCursor(null);
     fastScroller.setVisibility(View.GONE);
   }
 
@@ -309,4 +348,7 @@ public class ContactSelectionListFragment extends    Fragment
     void onContactDeselected(String number);
   }
 
+  public interface InviteCallback {
+    void onInvite();
+  }
 }

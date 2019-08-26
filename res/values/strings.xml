@@ -933,6 +933,7 @@
 
     <!-- contact_selection_activity -->
     <string name="contact_selection_activity__enter_name_or_number">Enter name or number</string>
+    <string name="contact_selection_activity__invite_to_signal">Invite to Signal</string>
 
     <!-- contact_filter_toolbar -->
     <string name="contact_filter_toolbar__clear_entered_text_description">Clear entered text</string>
