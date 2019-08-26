@@ -18,35 +18,51 @@ class LokiGroupChatPoller(private val context: Context, private val groupID: Lon
     private val handler = Handler()
     private var hasStarted = false
 
-    private val task = object : Runnable {
+    private val api: LokiGroupChatAPI
+        get() = {
+            val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context)
+            val lokiAPIDatabase = DatabaseFactory.getLokiAPIDatabase(context)
+            val lokiUserDatabase = DatabaseFactory.getLokiUserDatabase(context)
+            val userPrivateKey = IdentityKeyUtil.getIdentityKeyPair(context).privateKey.serialize()
+            LokiGroupChatAPI(userHexEncodedPublicKey, userPrivateKey, lokiAPIDatabase, lokiUserDatabase)
+        }()
+
+    private val pollForNewMessagesTask = object : Runnable {
 
         override fun run() {
-            poll()
-            handler.postDelayed(this, pollInterval)
+            pollForNewMessages()
+            handler.postDelayed(this, pollForNewMessagesInterval)
+        }
+    }
+
+    private val pollForDeletedMessagesTask = object : Runnable {
+
+        override fun run() {
+            pollForDeletedMessages()
+            handler.postDelayed(this, pollForDeletedMessagesInterval)
         }
     }
 
     companion object {
-        private val pollInterval: Long = 4 * 1000
+        private val pollForNewMessagesInterval: Long = 4 * 1000
+        private val pollForDeletedMessagesInterval: Long = 120 * 1000
     }
 
     fun startIfNeeded() {
         if (hasStarted) return
-        task.run()
+        pollForNewMessagesTask.run()
+        pollForDeletedMessagesTask.run()
         hasStarted = true
     }
 
     fun stop() {
-        handler.removeCallbacks(task)
+        handler.removeCallbacks(pollForNewMessagesTask)
+        handler.removeCallbacks(pollForDeletedMessagesTask)
         hasStarted = false
     }
 
-    private fun poll() {
-        val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context)
-        val lokiAPIDatabase = DatabaseFactory.getLokiAPIDatabase(context)
-        val lokiUserDatabase = DatabaseFactory.getLokiUserDatabase(context)
-        val userPrivateKey = IdentityKeyUtil.getIdentityKeyPair(context).privateKey.serialize()
-        LokiGroupChatAPI(userHexEncodedPublicKey, userPrivateKey, lokiAPIDatabase, lokiUserDatabase).getMessages(groupID).success { messages ->
+    private fun pollForNewMessages() {
+        api.getMessages(groupID).success { messages ->
             messages.reversed().map { message ->
                 val id = "${LokiGroupChatAPI.serverURL}.$groupID".toByteArray()
                 val x1 = SignalServiceGroup(SignalServiceGroup.Type.UPDATE, id, null, null, null)
@@ -57,6 +73,21 @@ class LokiGroupChatPoller(private val context: Context, private val groupID: Lon
             }
         }.fail {
             Log.d("Loki", "Failed to get messages for group chat with ID: $groupID.")
+        }
+    }
+
+    private fun pollForDeletedMessages() {
+        api.getMessages(groupID, 0).success { messages ->
+            val lokiMessageDatabase = DatabaseFactory.getLokiMessageDatabase(context)
+            val deletedMessageIDs = messages.filter { it.isDeleted }.mapNotNull { it.serverID }.mapNotNull { lokiMessageDatabase.getMessageID(it) }
+            val smsMessageDatabase = DatabaseFactory.getSmsDatabase(context)
+            val mmsMessageDatabase = DatabaseFactory.getMmsDatabase(context)
+            deletedMessageIDs.forEach {
+                smsMessageDatabase.deleteMessage(it)
+                mmsMessageDatabase.delete(it)
+            }
+        }.fail {
+            Log.d("Loki", "Failed to get deleted messages for group chat with ID: $groupID.")
         }
     }
 }
