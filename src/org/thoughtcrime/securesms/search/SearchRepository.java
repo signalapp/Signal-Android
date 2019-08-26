@@ -12,6 +12,7 @@ import com.annimon.stream.Stream;
 
 
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
+import org.thoughtcrime.securesms.contacts.ContactRepository;
 import org.thoughtcrime.securesms.contacts.ContactsDatabase;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.CursorList;
@@ -56,26 +57,26 @@ public class SearchRepository {
     }
   }
 
-  private final Context          context;
-  private final SearchDatabase   searchDatabase;
-  private final ContactsDatabase contactsDatabase;
-  private final ThreadDatabase   threadDatabase;
-  private final ContactAccessor  contactAccessor;
-  private final Executor         executor;
+  private final Context           context;
+  private final SearchDatabase    searchDatabase;
+  private final ContactRepository contactRepository;
+  private final ThreadDatabase    threadDatabase;
+  private final ContactAccessor   contactAccessor;
+  private final Executor          executor;
 
   public SearchRepository(@NonNull Context context,
                           @NonNull SearchDatabase searchDatabase,
-                          @NonNull ContactsDatabase contactsDatabase,
                           @NonNull ThreadDatabase threadDatabase,
+                          @NonNull ContactRepository contactRepository,
                           @NonNull ContactAccessor contactAccessor,
                           @NonNull Executor executor)
   {
-    this.context          = context.getApplicationContext();
-    this.searchDatabase   = searchDatabase;
-    this.contactsDatabase = contactsDatabase;
-    this.threadDatabase   = threadDatabase;
-    this.contactAccessor  = contactAccessor;
-    this.executor         = executor;
+    this.context           = context.getApplicationContext();
+    this.searchDatabase    = searchDatabase;
+    this.threadDatabase    = threadDatabase;
+    this.contactRepository = contactRepository;
+    this.contactAccessor   = contactAccessor;
+    this.executor          = executor;
   }
 
   public void query(@NonNull String query, @NonNull Callback<SearchResult> callback) {
@@ -125,8 +126,8 @@ public class SearchRepository {
       return CursorList.emptyList();
     }
 
-    Cursor      textSecureContacts = contactsDatabase.queryTextSecureContacts(query);
-    Cursor      systemContacts     = contactsDatabase.querySystemContacts(query);
+    Cursor      textSecureContacts = contactRepository.querySignalContacts(query);
+    Cursor      systemContacts     = contactRepository.queryNonSignalContacts(query);
     MergeCursor contacts           = new MergeCursor(new Cursor[]{ textSecureContacts, systemContacts });
 
     return new CursorList<>(contacts, new RecipientModelBuilder(context));

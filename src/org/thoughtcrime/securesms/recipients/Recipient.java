@@ -207,6 +207,20 @@ public class Recipient {
     return this.name;
   }
 
+  public @NonNull String getDisplayName() {
+    String name = getName();
+    if (!TextUtils.isEmpty(name)) {
+      return name;
+    }
+
+    String profileName = getProfileName();
+    if (!TextUtils.isEmpty(profileName)) {
+      return profileName;
+    }
+
+    return requireAddress().serialize();
+  }
+
   public @NonNull MaterialColor getColor() {
     if      (isGroup()) return MaterialColor.GROUP;
     else if (color != null)      return color;

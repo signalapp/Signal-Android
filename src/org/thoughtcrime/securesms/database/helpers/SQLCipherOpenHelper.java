@@ -39,6 +39,7 @@ import org.thoughtcrime.securesms.jobs.RefreshPreKeysJob;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.DelimiterUtil;
 import org.thoughtcrime.securesms.util.GroupUtil;
@@ -76,6 +77,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int REVEALABLE_MESSAGES              = 22;
   private static final int VIEW_ONCE_ONLY                   = 23;
   private static final int RECIPIENT_IDS                    = 24;
+  private static final int RECIPIENT_SEARCH                 = 25;
 
   private static final int    DATABASE_VERSION = 25;
   private static final String DATABASE_NAME    = "signal.db";
@@ -488,6 +490,27 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
       if (oldVersion < RECIPIENT_IDS) {
         RecipientIdMigrationHelper.execute(db);
+      }
+
+      if (oldVersion < RECIPIENT_SEARCH) {
+        db.execSQL("ALTER TABLE recipient ADD COLUMN system_phone_type INTEGER DEFAULT -1");
+
+        String localNumber = TextSecurePreferences.getLocalNumber(context);
+        if (!TextUtils.isEmpty(localNumber)) {
+          try (Cursor cursor = db.query("recipient", null, "phone = ?", new String[] { localNumber }, null, null, null)) {
+            if (cursor == null || !cursor.moveToFirst()) {
+              ContentValues values = new ContentValues();
+              values.put("phone", localNumber);
+              values.put("registered", 1);
+              values.put("profile_sharing", 1);
+              values.put("signal_profile_name", TextSecurePreferences.getProfileName(context));
+              db.insert("recipient", null, values);
+            } else {
+              db.execSQL("UPDATE recipient SET registered = ?, profile_sharing = ?, signal_profile_name = ? WHERE phone = ?",
+                         new String[] { "1", "1", TextSecurePreferences.getProfileName(context), localNumber });
+            }
+          }
+        }
       }
 
       db.setTransactionSuccessful();

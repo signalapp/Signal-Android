@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.jobmanager.migrations.RecipientIdJobMigration;
 import org.thoughtcrime.securesms.migrations.DatabaseMigrationJob;
 import org.thoughtcrime.securesms.migrations.LegacyMigrationJob;
 import org.thoughtcrime.securesms.migrations.MigrationCompleteJob;
+import org.thoughtcrime.securesms.migrations.RecipientSearchMigrationJob;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -82,6 +83,7 @@ public final class JobManagerFactories {
       put(DatabaseMigrationJob.KEY,                  new DatabaseMigrationJob.Factory());
       put(LegacyMigrationJob.KEY,                    new LegacyMigrationJob.Factory());
       put(MigrationCompleteJob.KEY,                  new MigrationCompleteJob.Factory());
+      put(RecipientSearchMigrationJob.KEY,           new RecipientSearchMigrationJob.Factory());
 
       // Dead jobs
       put("PushContentReceiveJob",                   new FailingJob.Factory());

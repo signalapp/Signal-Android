@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import org.thoughtcrime.securesms.contacts.ContactRepository;
 import org.thoughtcrime.securesms.conversation.ConversationActivity;
 import org.thoughtcrime.securesms.ConversationListActivity;
 import org.thoughtcrime.securesms.R;
@@ -67,8 +68,8 @@ public class SearchFragment extends Fragment implements SearchListAdapter.EventL
 
     SearchRepository searchRepository = new SearchRepository(getContext(),
                                                              DatabaseFactory.getSearchDatabase(getContext()),
-                                                             DatabaseFactory.getContactsDatabase(getContext()),
                                                              DatabaseFactory.getThreadDatabase(getContext()),
+                                                             new ContactRepository(requireContext()),
                                                              ContactAccessor.getInstance(),
                                                              SignalExecutors.SERIAL);
     viewModel = ViewModelProviders.of(this, new SearchViewModel.Factory(searchRepository)).get(SearchViewModel.class);

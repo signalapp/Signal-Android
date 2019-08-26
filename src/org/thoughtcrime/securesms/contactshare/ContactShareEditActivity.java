@@ -75,7 +75,7 @@ public class ContactShareEditActivity extends PassphraseRequiredActionBarActivit
     ContactShareEditAdapter contactAdapter = new ContactShareEditAdapter(GlideApp.with(this), dynamicLanguage.getCurrentLocale(), this);
     contactList.setAdapter(contactAdapter);
 
-    ContactRepository contactRepository = new ContactRepository(this,
+    SharedContactRepository contactRepository = new SharedContactRepository(this,
                                                                 AsyncTask.THREAD_POOL_EXECUTOR,
                                                                 DatabaseFactory.getContactsDatabase(this));
 

@@ -4,6 +4,8 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
+import android.text.TextUtils;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -36,8 +38,8 @@ public class RecipientDatabase extends Database {
           static final String TABLE_NAME               = "recipient";
   public  static final String ID                       = "_id";
   private static final String UUID                     = "uuid";
-          static final String PHONE                    = "phone";
-          static final String EMAIL                    = "email";
+  public  static final String PHONE                    = "phone";
+  public  static final String EMAIL                    = "email";
           static final String GROUP_ID                 = "group_id";
   private static final String BLOCKED                  = "blocked";
   private static final String MESSAGE_RINGTONE         = "message_ringtone";
@@ -50,28 +52,33 @@ public class RecipientDatabase extends Database {
   private static final String SEEN_INVITE_REMINDER     = "seen_invite_reminder";
   private static final String DEFAULT_SUBSCRIPTION_ID  = "default_subscription_id";
   private static final String MESSAGE_EXPIRATION_TIME  = "message_expiration_time";
-          static final String REGISTERED               = "registered";
-  private static final String SYSTEM_DISPLAY_NAME      = "system_display_name";
+  public  static final String REGISTERED               = "registered";
+  public  static final String SYSTEM_DISPLAY_NAME      = "system_display_name";
   private static final String SYSTEM_PHOTO_URI         = "system_photo_uri";
-  private static final String SYSTEM_PHONE_LABEL       = "system_phone_label";
+  public  static final String SYSTEM_PHONE_TYPE        = "system_phone_type";
+  public  static final String SYSTEM_PHONE_LABEL       = "system_phone_label";
   private static final String SYSTEM_CONTACT_URI       = "system_contact_uri";
   private static final String PROFILE_KEY              = "profile_key";
-  private static final String SIGNAL_PROFILE_NAME      = "signal_profile_name";
+  public  static final String SIGNAL_PROFILE_NAME      = "signal_profile_name";
   private static final String SIGNAL_PROFILE_AVATAR    = "signal_profile_avatar";
   private static final String PROFILE_SHARING          = "profile_sharing";
   private static final String UNIDENTIFIED_ACCESS_MODE = "unidentified_access_mode";
   private static final String FORCE_SMS_SELECTION      = "force_sms_selection";
 
+  private static final String SORT_NAME                = "sort_name";
+
   private static final String[] RECIPIENT_PROJECTION = new String[] {
       UUID, PHONE, EMAIL, GROUP_ID,
       BLOCKED, MESSAGE_RINGTONE, CALL_RINGTONE, MESSAGE_VIBRATE, CALL_VIBRATE, MUTE_UNTIL, COLOR, SEEN_INVITE_REMINDER, DEFAULT_SUBSCRIPTION_ID, MESSAGE_EXPIRATION_TIME, REGISTERED,
-      PROFILE_KEY, SYSTEM_DISPLAY_NAME, SYSTEM_PHOTO_URI, SYSTEM_PHONE_LABEL, SYSTEM_CONTACT_URI,
+      PROFILE_KEY, SYSTEM_DISPLAY_NAME, SYSTEM_PHOTO_URI, SYSTEM_PHONE_LABEL, SYSTEM_PHONE_TYPE, SYSTEM_CONTACT_URI,
       SIGNAL_PROFILE_NAME, SIGNAL_PROFILE_AVATAR, PROFILE_SHARING, NOTIFICATION_CHANNEL,
       UNIDENTIFIED_ACCESS_MODE,
       FORCE_SMS_SELECTION,
   };
 
   private static final String[] ID_PROJECTION = new String[] { ID };
+
+  public  static final String[] SEARCH_PROJECTION = new String[] { ID, SYSTEM_DISPLAY_NAME, SIGNAL_PROFILE_NAME, PHONE, EMAIL, SYSTEM_PHONE_LABEL, SYSTEM_PHONE_TYPE, REGISTERED, "IFNULL(" + SYSTEM_DISPLAY_NAME + ", " + SIGNAL_PROFILE_NAME + ") AS " + SORT_NAME };
 
   private static Address addressFromCursor(Cursor cursor) {
     String  phone   = cursor.getString(cursor.getColumnIndexOrThrow(PHONE));
@@ -159,6 +166,7 @@ public class RecipientDatabase extends Database {
                                             SYSTEM_DISPLAY_NAME      + " TEXT DEFAULT NULL, " +
                                             SYSTEM_PHOTO_URI         + " TEXT DEFAULT NULL, " +
                                             SYSTEM_PHONE_LABEL       + " TEXT DEFAULT NULL, " +
+                                            SYSTEM_PHONE_TYPE        + " INTEGER DEFAULT -1, " +
                                             SYSTEM_CONTACT_URI       + " TEXT DEFAULT NULL, " +
                                             PROFILE_KEY              + " TEXT DEFAULT NULL, " +
                                             SIGNAL_PROFILE_NAME      + " TEXT DEFAULT NULL, " +
@@ -262,8 +270,7 @@ public class RecipientDatabase extends Database {
       if (cursor != null && cursor.moveToNext()) {
         return getRecipientSettings(cursor);
       } else {
-        // TODO: Maybe not make this an error?
-        throw new AssertionError("Couldn't find recipient!");
+        throw new AssertionError("Couldn't find recipient! id: " + id.serialize());
       }
     }
   }
@@ -551,6 +558,66 @@ public class RecipientDatabase extends Database {
       Stream.of(updates.entrySet()).forEach(entry -> Recipient.live(entry.getKey()).refresh());
     }
   }
+  public @Nullable Cursor getSignalContacts() {
+    String   selection = BLOCKED         + " = ? AND " +
+                         REGISTERED      + " = ? AND " +
+                         GROUP_ID        + " IS NULL AND " +
+                         "(" + SYSTEM_DISPLAY_NAME + " NOT NULL OR " + PROFILE_SHARING + " = ?) AND " +
+                         "(" + SYSTEM_DISPLAY_NAME + " NOT NULL OR " + SIGNAL_PROFILE_NAME + " NOT NULL)";
+    String[] args      = new String[] { "0", String.valueOf(RegisteredState.REGISTERED.getId()), "1" };
+    String   orderBy   = SORT_NAME + ", " + SYSTEM_DISPLAY_NAME + ", " + SIGNAL_PROFILE_NAME + ", " + PHONE;
+
+    return databaseHelper.getReadableDatabase().query(TABLE_NAME, SEARCH_PROJECTION, selection, args, null, null, orderBy);
+  }
+
+  public @Nullable Cursor querySignalContacts(@NonNull String query) {
+    query = TextUtils.isEmpty(query) ? "*" : query;
+    query = "%" + query + "%";
+
+    String   selection = BLOCKED         + " = ? AND " +
+                         REGISTERED      + " = ? AND " +
+                         GROUP_ID        + " IS NULL AND " +
+                         "(" + SYSTEM_DISPLAY_NAME + " NOT NULL OR " + PROFILE_SHARING + " = ?) AND " +
+                         "(" +
+                           PHONE               + " LIKE ? OR " +
+                           SYSTEM_DISPLAY_NAME + " LIKE ? OR " +
+                           SIGNAL_PROFILE_NAME + " LIKE ?" +
+                         ")";
+    String[] args      = new String[] { "0", String.valueOf(RegisteredState.REGISTERED.getId()), "1", query, query, query };
+    String   orderBy   = SORT_NAME + ", " + SYSTEM_DISPLAY_NAME + ", " + SIGNAL_PROFILE_NAME + ", " + PHONE;
+
+    return databaseHelper.getReadableDatabase().query(TABLE_NAME, SEARCH_PROJECTION, selection, args, null, null, orderBy);
+  }
+
+  public @Nullable Cursor getNonSignalContacts() {
+    String   selection = BLOCKED    + " = ? AND " +
+                         REGISTERED + " != ? AND " +
+                         GROUP_ID   + " IS NULL AND " +
+                         SYSTEM_DISPLAY_NAME + " NOT NULL AND " +
+                         "(" + PHONE + " NOT NULL OR " + EMAIL + " NOT NULL)";
+    String[] args      = new String[] { "0", String.valueOf(RegisteredState.REGISTERED.getId()) };
+    String   orderBy   = SYSTEM_DISPLAY_NAME + ", " + PHONE;
+
+    return databaseHelper.getReadableDatabase().query(TABLE_NAME, SEARCH_PROJECTION, selection, args, null, null, orderBy);
+  }
+
+  public @Nullable Cursor queryNonSignalContacts(@NonNull String query) {
+    query = TextUtils.isEmpty(query) ? "*" : query;
+    query = "%" + query + "%";
+
+    String   selection = BLOCKED    + " = ? AND " +
+                         REGISTERED + " != ? AND " +
+                         GROUP_ID   + " IS NULL AND " +
+                         "(" + PHONE + " NOT NULL OR " + EMAIL + " NOT NULL) AND " +
+                         "(" +
+                           PHONE               + " LIKE ? OR " +
+                           SYSTEM_DISPLAY_NAME + " LIKE ?" +
+                         ")";
+    String[] args      = new String[] { "0", String.valueOf(RegisteredState.REGISTERED.getId()), query, query };
+    String   orderBy   = SYSTEM_DISPLAY_NAME + ", " + PHONE;
+
+    return databaseHelper.getReadableDatabase().query(TABLE_NAME, SEARCH_PROJECTION, selection, args, null, null, orderBy);
+  }
 
   private void update(@NonNull RecipientId id, ContentValues contentValues) {
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
@@ -567,11 +634,18 @@ public class RecipientDatabase extends Database {
       this.database = database;
     }
 
-    public void setSystemContactInfo(@NonNull RecipientId id, @Nullable String displayName, @Nullable String photoUri, @Nullable String systemPhoneLabel, @Nullable String systemContactUri) {
+    public void setSystemContactInfo(@NonNull RecipientId id,
+                                     @Nullable String displayName,
+                                     @Nullable String photoUri,
+                                     @Nullable String systemPhoneLabel,
+                                     int systemPhoneType,
+                                     @Nullable String systemContactUri)
+    {
       ContentValues contentValues = new ContentValues(1);
       contentValues.put(SYSTEM_DISPLAY_NAME, displayName);
       contentValues.put(SYSTEM_PHOTO_URI, photoUri);
       contentValues.put(SYSTEM_PHONE_LABEL, systemPhoneLabel);
+      contentValues.put(SYSTEM_PHONE_TYPE, systemPhoneType);
       contentValues.put(SYSTEM_CONTACT_URI, systemContactUri);
 
       update(id, contentValues);

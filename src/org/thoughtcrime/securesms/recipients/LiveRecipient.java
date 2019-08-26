@@ -152,7 +152,7 @@ public final class LiveRecipient {
   private @NonNull RecipientDetails getIndividualRecipientDetails(RecipientSettings settings) {
     boolean systemContact = !TextUtils.isEmpty(settings.getSystemDisplayName());
     boolean isLocalNumber = settings.getAddress().serialize().equals(TextSecurePreferences.getLocalNumber(context));
-    return new RecipientDetails(null, Optional.absent(), systemContact, isLocalNumber, settings, null);
+    return new RecipientDetails(context, null, Optional.absent(), systemContact, isLocalNumber, settings, null);
   }
 
   @WorkerThread
@@ -172,10 +172,10 @@ public final class LiveRecipient {
         avatarId = Optional.of(groupRecord.get().getAvatarId());
       }
 
-      return new RecipientDetails(title, avatarId, false, false, settings, members);
+      return new RecipientDetails(context, title, avatarId, false, false, settings, members);
     }
 
-    return new RecipientDetails(unnamedGroupName, Optional.absent(), false, false, settings, null);
+    return new RecipientDetails(context, unnamedGroupName, Optional.absent(), false, false, settings, null);
   }
 
   @Override

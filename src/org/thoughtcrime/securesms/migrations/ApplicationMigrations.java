@@ -11,6 +11,7 @@ import com.annimon.stream.Stream;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.Util;
@@ -38,8 +39,9 @@ public class ApplicationMigrations {
   private static final MutableLiveData<Boolean> UI_BLOCKING_MIGRATION_RUNNING = new MutableLiveData<>();
 
   private static final class Version {
-    static final int LEGACY       = 455;
-    static final int RECIPIENT_ID = 525; // TODO [greyson] USE PROPER APPLICATION VERSION
+    static final int LEGACY           = 455;
+    static final int RECIPIENT_ID     = 525; // TODO [greyson] USE PROPER APPLICATION VERSION
+    static final int RECIPIENT_SEARCH = 525; // TODO [greyson] USE PROPER APPLICATION VERSION
   }
 
   /**
@@ -131,6 +133,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.RECIPIENT_ID) {
       jobs.add(new DatabaseMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.RECIPIENT_SEARCH) {
+      jobs.add(new RecipientSearchMigrationJob());
     }
 
     return jobs;

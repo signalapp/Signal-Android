@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.recipients;
 
+import android.content.Context;
 import android.net.Uri;
 
 import androidx.annotation.NonNull;
@@ -11,6 +12,7 @@ import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RegisteredState;
 import org.thoughtcrime.securesms.database.RecipientDatabase.UnidentifiedAccessMode;
 import org.thoughtcrime.securesms.database.RecipientDatabase.VibrateState;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 
@@ -33,7 +35,7 @@ public class RecipientDetails {
   final VibrateState           callVibrateState;
   final boolean                blocked;
   final int                    expireMessages;
-  final List<Recipient>     participants;
+  final List<Recipient>        participants;
   final String                 profileName;
   final boolean                seenInviteReminder;
   final Optional<Integer>      defaultSubscriptionId;
@@ -47,7 +49,8 @@ public class RecipientDetails {
   final UnidentifiedAccessMode unidentifiedAccessMode;
   final boolean                forceSmsSelection;
 
-  RecipientDetails(@Nullable String name,
+  RecipientDetails(@NonNull Context context,
+                   @Nullable String name,
                    @NonNull Optional<Long> groupAvatarId,
                    boolean systemContact,
                    boolean isLocalNumber,
@@ -68,7 +71,7 @@ public class RecipientDetails {
     this.blocked                         = settings.isBlocked();
     this.expireMessages                  = settings.getExpireMessages();
     this.participants                    = participants == null ? new LinkedList<>() : participants;
-    this.profileName                     = settings.getProfileName();
+    this.profileName                     = isLocalNumber ? TextSecurePreferences.getProfileName(context) : settings.getProfileName();
     this.seenInviteReminder              = settings.hasSeenInviteReminder();
     this.defaultSubscriptionId           = settings.getDefaultSubscriptionId();
     this.registered                      = settings.getRegistered();

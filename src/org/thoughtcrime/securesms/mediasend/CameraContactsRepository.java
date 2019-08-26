@@ -7,8 +7,7 @@ import android.text.TextUtils;
 import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 
-import org.thoughtcrime.securesms.contacts.ContactsDatabase;
-import org.thoughtcrime.securesms.database.Address;
+import org.thoughtcrime.securesms.contacts.ContactRepository;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
@@ -32,15 +31,15 @@ class CameraContactsRepository {
   private final Context           context;
   private final ThreadDatabase    threadDatabase;
   private final GroupDatabase     groupDatabase;
-  private final ContactsDatabase  contactsDatabase;
   private final RecipientDatabase recipientDatabase;
+  private final ContactRepository contactRepository;
 
   CameraContactsRepository(@NonNull Context context) {
     this.context           = context.getApplicationContext();
     this.threadDatabase    = DatabaseFactory.getThreadDatabase(context);
     this.groupDatabase     = DatabaseFactory.getGroupDatabase(context);
-    this.contactsDatabase  = DatabaseFactory.getContactsDatabase(context);
     this.recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
+    this.contactRepository = new ContactRepository(context);
   }
 
   void getCameraContacts(@NonNull Callback<CameraContacts> callback) {
@@ -80,9 +79,10 @@ class CameraContactsRepository {
   private @NonNull List<Recipient> getContacts(@NonNull String query) {
     List<Recipient> recipients = new ArrayList<>();
 
-    try (Cursor cursor = contactsDatabase.queryTextSecureContacts(query)) {
+    try (Cursor cursor = contactRepository.querySignalContacts(query)) {
       while (cursor.moveToNext()) {
-        Recipient recipient = Recipient.external(context, cursor.getString(1));
+        RecipientId id        = RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(ContactRepository.ID_COLUMN)));
+        Recipient   recipient = Recipient.resolved(id);
         recipients.add(recipient);
       }
     }

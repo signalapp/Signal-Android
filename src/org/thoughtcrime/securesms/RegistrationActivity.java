@@ -63,6 +63,7 @@ import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
+import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.gcm.FcmUtil;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.jobs.RotateCertificateJob;
@@ -734,19 +735,21 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
     TextSecurePreferences.setFcmToken(RegistrationActivity.this, registrationState.gcmToken.orNull());
     TextSecurePreferences.setFcmDisabled(RegistrationActivity.this, !registrationState.gcmToken.isPresent());
     TextSecurePreferences.setWebsocketRegistered(RegistrationActivity.this, true);
+    TextSecurePreferences.setLocalNumber(RegistrationActivity.this, registrationState.e164number);
 
     DatabaseFactory.getIdentityDatabase(RegistrationActivity.this)
-                   .saveIdentity(Recipient.external(RegistrationActivity.this, registrationState.e164number).getId(),
+                   .saveIdentity(Recipient.self().getId(),
                                  identityKey.getPublicKey(), IdentityDatabase.VerifiedStatus.VERIFIED,
                                  true, System.currentTimeMillis(), true);
 
     TextSecurePreferences.setVerifying(RegistrationActivity.this, false);
     TextSecurePreferences.setPushRegistered(RegistrationActivity.this, true);
-    TextSecurePreferences.setLocalNumber(RegistrationActivity.this, registrationState.e164number);
     TextSecurePreferences.setPushServerPassword(RegistrationActivity.this, registrationState.password);
     TextSecurePreferences.setSignedPreKeyRegistered(RegistrationActivity.this, true);
     TextSecurePreferences.setPromptedPushRegistration(RegistrationActivity.this, true);
     TextSecurePreferences.setUnauthorizedReceived(RegistrationActivity.this, false);
+    DatabaseFactory.getRecipientDatabase(this).setProfileSharing(Recipient.self().getId(), true);
+    DatabaseFactory.getRecipientDatabase(this).setRegistered(Recipient.self().getId(), RecipientDatabase.RegisteredState.REGISTERED);
   }
 
   private void handleSuccessfulRegistration() {

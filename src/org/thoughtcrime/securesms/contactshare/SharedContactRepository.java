@@ -15,7 +15,6 @@ import org.thoughtcrime.securesms.contactshare.Contact.Email;
 import org.thoughtcrime.securesms.contactshare.Contact.Name;
 import org.thoughtcrime.securesms.contactshare.Contact.Phone;
 import org.thoughtcrime.securesms.contactshare.Contact.PostalAddress;
-import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
@@ -36,17 +35,17 @@ import ezvcard.VCard;
 
 import static org.thoughtcrime.securesms.contactshare.Contact.*;
 
-public class ContactRepository {
+public class SharedContactRepository {
 
-  private static final String TAG = ContactRepository.class.getSimpleName();
+  private static final String TAG = SharedContactRepository.class.getSimpleName();
 
   private final Context          context;
   private final Executor         executor;
   private final ContactsDatabase contactsDatabase;
 
-  ContactRepository(@NonNull Context          context,
-                    @NonNull Executor         executor,
-                    @NonNull ContactsDatabase contactsDatabase)
+  SharedContactRepository(@NonNull Context          context,
+                          @NonNull Executor         executor,
+                          @NonNull ContactsDatabase contactsDatabase)
   {
     this.context          = context.getApplicationContext();
     this.executor         = executor;
