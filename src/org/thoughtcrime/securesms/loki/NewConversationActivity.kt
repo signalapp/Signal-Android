@@ -8,13 +8,17 @@ import android.widget.Toast
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.conversation.ConversationActivity
+import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.ThreadDatabase
+import org.thoughtcrime.securesms.logging.Log
 import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.qr.ScanListener
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.DynamicTheme
+import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.whispersystems.signalservice.loki.api.LokiGroupChatAPI
 import org.whispersystems.signalservice.loki.utilities.PublicKeyValidation
 
 class NewConversationActivity : PassphraseRequiredActionBarActivity(), ScanListener {

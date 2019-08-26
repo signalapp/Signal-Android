@@ -33,6 +33,16 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         private val serverURL = "server_url"
         private val token = "token"
         @JvmStatic val createGroupChatAuthTokenTableCommand = "CREATE TABLE $groupChatAuthTokenTable ($serverURL TEXT PRIMARY KEY, $token TEXT);"
+        // Last message server ID cache
+        private val lastMessageServerIDCache = "loki_api_last_message_server_id_cache"
+        private val lastMessageServerIDCacheGroupID = "group_id"
+        private val lastMessageServerID = "last_message_server_id"
+        @JvmStatic val createLastMessageServerIDTableCommand = "CREATE TABLE $lastMessageServerIDCache ($lastMessageServerIDCacheGroupID INTEGER PRIMARY KEY, $lastMessageServerID INTEGER);"
+        // First message server ID cache
+        private val firstMessageServerIDCache = "loki_api_first_message_server_id_cache"
+        private val firstMessageServerIDCacheGroupID = "group_id"
+        private val firstMessageServerID = "first_message_server_id"
+        @JvmStatic val createFirstMessageServerIDTableCommand = "CREATE TABLE $firstMessageServerIDCache ($firstMessageServerIDCacheGroupID INTEGER PRIMARY KEY, $firstMessageServerID INTEGER);"
     }
 
     override fun getSwarmCache(hexEncodedPublicKey: String): Set<LokiAPITarget>? {
@@ -90,14 +100,40 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         }
     }
 
-    override fun setGroupChatAuthToken(token: String?, serverURL: String) {
+    override fun setGroupChatAuthToken(serverURL: String, newValue: String?) {
         val database = databaseHelper.writableDatabase
-        if (token != null) {
-            val row = wrap(mapOf(Companion.serverURL to serverURL, Companion.token to token!!))
+        if (newValue != null) {
+            val row = wrap(mapOf(Companion.serverURL to serverURL, token to newValue!!))
             database.insertOrUpdate(groupChatAuthTokenTable, row, "${Companion.serverURL} = ?", wrap(serverURL))
         } else {
             database.delete(groupChatAuthTokenTable, "${Companion.serverURL} = ?", wrap(serverURL))
         }
+    }
+
+    override fun getLastMessageServerID(groupID: Long): Long? {
+        val database = databaseHelper.readableDatabase
+        return database.get(lastMessageServerIDCache, "$lastMessageServerIDCacheGroupID = ?", wrap(groupID.toString())) { cursor ->
+            cursor.getInt(lastMessageServerID)
+        }?.toLong()
+    }
+
+    override fun setLastMessageServerID(groupID: Long, newValue: Long) {
+        val database = databaseHelper.writableDatabase
+        val row = wrap(mapOf( lastMessageServerIDCacheGroupID to groupID.toString(), lastMessageServerID to newValue.toString() ))
+        database.insertOrUpdate(lastMessageServerIDCache, row, "$lastMessageServerIDCacheGroupID = ?", wrap(groupID.toString()))
+    }
+
+    override fun getFirstMessageServerID(groupID: Long): Long? {
+        val database = databaseHelper.readableDatabase
+        return database.get(firstMessageServerIDCache, "$firstMessageServerIDCacheGroupID = ?", wrap(groupID.toString())) { cursor ->
+            cursor.getInt(firstMessageServerID)
+        }?.toLong()
+    }
+
+    override fun setFirstMessageServerID(groupID: Long, newValue: Long) {
+        val database = databaseHelper.writableDatabase
+        val row = wrap(mapOf( firstMessageServerIDCacheGroupID to groupID.toString(), firstMessageServerID to newValue.toString() ))
+        database.insertOrUpdate(firstMessageServerIDCache, row, "$firstMessageServerIDCacheGroupID = ?", wrap(groupID.toString()))
     }
 }
 

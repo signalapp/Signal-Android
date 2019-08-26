@@ -77,7 +77,7 @@ class LokiGroupChatPoller(private val context: Context, private val groupID: Lon
     }
 
     private fun pollForDeletedMessages() {
-        api.getDeletedMessageIDs(groupID, 0).success { deletedMessageServerIDs ->
+        api.getDeletedMessageServerIDs(groupID).success { deletedMessageServerIDs ->
             val lokiMessageDatabase = DatabaseFactory.getLokiMessageDatabase(context)
             val deletedMessageIDs = deletedMessageServerIDs.mapNotNull { lokiMessageDatabase.getMessageID(it) }
             val smsMessageDatabase = DatabaseFactory.getSmsDatabase(context)
