@@ -543,7 +543,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       TransportOption transport      = data.getParcelableExtra(MediaSendActivity.EXTRA_TRANSPORT);
       String          message        = data.getStringExtra(MediaSendActivity.EXTRA_MESSAGE);
       boolean         viewOnce       = data.getBooleanExtra(MediaSendActivity.EXTRA_VIEW_ONCE, false);
-      QuoteModel      quote          = viewOnce ? inputPanel.getQuote().orNull() : null;
+      QuoteModel      quote          = viewOnce ? null : inputPanel.getQuote().orNull();
       SlideDeck       slideDeck      = new SlideDeck();
 
       if (transport == null) {
