@@ -45,7 +45,7 @@ class LokiGroupChatPoller(private val context: Context, private val groupID: Lon
 
     companion object {
         private val pollForNewMessagesInterval: Long = 4 * 1000
-        private val pollForDeletedMessagesInterval: Long = 120 * 1000
+        private val pollForDeletedMessagesInterval: Long = 32 * 60 * 1000
     }
 
     fun startIfNeeded() {
