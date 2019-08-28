@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.scribbles;
 
+import android.content.Context;
 import android.Manifest;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -12,6 +13,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethod;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.R;
@@ -350,8 +353,8 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
   }
 
   @Override
-  public void onRequestFullScreen(boolean fullScreen) {
-    controller.onRequestFullScreen(fullScreen);
+  public void onRequestFullScreen(boolean fullScreen, ImageEditorHud.Mode mode) {
+    controller.onRequestFullScreen(fullScreen, mode);
   }
 
   private void refreshUniqueColors() {
@@ -412,6 +415,6 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
   public interface Controller {
     void onTouchEventsNeeded(boolean needed);
 
-    void onRequestFullScreen(boolean fullScreen);
+    void onRequestFullScreen(boolean fullScreen, ImageEditorHud.Mode mode);
   }
 }

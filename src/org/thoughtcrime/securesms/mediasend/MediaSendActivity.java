@@ -62,6 +62,8 @@ import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.scribbles.ImageEditorFragment;
+import org.thoughtcrime.securesms.scribbles.ImageEditorHud;
+import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.CharacterCalculator.CharacterState;
 import org.thoughtcrime.securesms.util.MediaUtil;
@@ -925,6 +927,11 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
     return slideDeck;
   }
 
+  @Override
+  public void onRequestFullScreen(boolean fullScreen, ImageEditorHud.Mode mode) {
+    MediaSendFragment sendFragment = (MediaSendFragment) getSupportFragmentManager().findFragmentByTag(TAG_SEND);
+    if (sendFragment != null && sendFragment.isVisible()) {
+      sendFragment.onRequestFullScreen(fullScreen, mode);
   private class ComposeKeyPressedListener implements View.OnKeyListener, View.OnClickListener, TextWatcher, View.OnFocusChangeListener {
 
     int beforeLength;

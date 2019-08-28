@@ -20,6 +20,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -388,6 +389,16 @@ public final class MediaPreviewActivity extends PassphraseRequiredActionBarActiv
     }
 
     return false;
+  }
+
+  @Override
+  public void onConfigurationChanged(Configuration newConfig) {
+    super.onConfigurationChanged(newConfig);
+    if(newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+      getSupportActionBar().hide();
+    } else {
+      getSupportActionBar().show();
+    }
   }
 
   private boolean isMediaInDb() {
