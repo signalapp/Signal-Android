@@ -78,6 +78,7 @@ import org.webrtc.voiceengine.WebRtcAudioUtils;
 import org.whispersystems.libsignal.logging.SignalProtocolLoggerProvider;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
+import org.whispersystems.signalservice.loki.api.LokiGroupChat;
 import org.whispersystems.signalservice.loki.api.LokiGroupChatAPI;
 import org.whispersystems.signalservice.loki.api.LokiLongPoller;
 import org.whispersystems.signalservice.loki.api.LokiP2PAPI;
@@ -425,13 +426,17 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     if (lokiLongPoller != null) { lokiLongPoller.startIfNeeded(); }
   }
 
+  private LokiGroupChat lokiPublicChat() {
+    return new LokiGroupChat(LokiGroupChatAPI.getPublicChatServerID(), LokiGroupChatAPI.getPublicChatServer(), "Loki Public Chat", true);
+  }
+
   private void setUpPublicChatIfNeeded() {
     if (lokiPublicChatPoller != null) return;
-    lokiPublicChatPoller = new LokiGroupChatPoller(this, LokiGroupChatAPI.getPublicChatID());
+    LokiGroupChat lokiPublicChat = this.lokiPublicChat();
+    lokiPublicChatPoller = new LokiGroupChatPoller(this, lokiPublicChat);
     boolean isPublicChatSetUp = TextSecurePreferences.isPublicChatSetUp(this);
     if (isPublicChatSetUp) return;
-    String id = LokiGroupChatAPI.getServerURL() + "." + LokiGroupChatAPI.getPublicChatID();
-    GroupManager.createGroup(id, this, new HashSet<>(), null, "Loki Public Chat", false);
+    GroupManager.createGroup(lokiPublicChat.getId(), this, new HashSet<>(), null, "Loki Public Chat", false);
     TextSecurePreferences.markPublicChatSetUp(this);
   }
 

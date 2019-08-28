@@ -30,19 +30,19 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         @JvmStatic val createReceivedMessageHashValuesTableCommand = "CREATE TABLE $receivedMessageHashValuesCache ($userID TEXT PRIMARY KEY, $receivedMessageHashValues TEXT);"
         // Group chat auth token cache
         private val groupChatAuthTokenTable = "loki_api_group_chat_auth_token_database"
-        private val serverURL = "server_url"
+        private val server = "server"
         private val token = "token"
-        @JvmStatic val createGroupChatAuthTokenTableCommand = "CREATE TABLE $groupChatAuthTokenTable ($serverURL TEXT PRIMARY KEY, $token TEXT);"
+        @JvmStatic val createGroupChatAuthTokenTableCommand = "CREATE TABLE $groupChatAuthTokenTable ($server TEXT PRIMARY KEY, $token TEXT);"
         // Last message server ID cache
         private val lastMessageServerIDCache = "loki_api_last_message_server_id_cache"
-        private val lastMessageServerIDCacheGroupID = "group_id"
+        private val lastMessageServerIDCacheIndex = "loki_api_last_message_server_id_cache_index"
         private val lastMessageServerID = "last_message_server_id"
-        @JvmStatic val createLastMessageServerIDTableCommand = "CREATE TABLE $lastMessageServerIDCache ($lastMessageServerIDCacheGroupID INTEGER PRIMARY KEY, $lastMessageServerID INTEGER DEFAULT 0);"
+        @JvmStatic val createLastMessageServerIDTableCommand = "CREATE TABLE $lastMessageServerIDCache ($lastMessageServerIDCacheIndex STRING PRIMARY KEY, $lastMessageServerID INTEGER DEFAULT 0);"
         // First message server ID cache
         private val firstMessageServerIDCache = "loki_api_first_message_server_id_cache"
-        private val firstMessageServerIDCacheGroupID = "group_id"
+        private val firstMessageServerIDCacheIndex = "loki_api_first_message_server_id_cache_index"
         private val firstMessageServerID = "first_message_server_id"
-        @JvmStatic val createFirstMessageServerIDTableCommand = "CREATE TABLE $firstMessageServerIDCache ($firstMessageServerIDCacheGroupID INTEGER PRIMARY KEY, $firstMessageServerID INTEGER DEFAULT 0);"
+        @JvmStatic val createFirstMessageServerIDTableCommand = "CREATE TABLE $firstMessageServerIDCache ($firstMessageServerIDCacheIndex STRING PRIMARY KEY, $firstMessageServerID INTEGER DEFAULT 0);"
     }
 
     override fun getSwarmCache(hexEncodedPublicKey: String): Set<LokiAPITarget>? {
@@ -93,47 +93,51 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         database.insertOrUpdate(receivedMessageHashValuesCache, row, "$userID = ?", wrap(userPublicKey))
     }
 
-    override fun getGroupChatAuthToken(serverURL: String): String? {
+    override fun getGroupChatAuthToken(server: String): String? {
         val database = databaseHelper.readableDatabase
-        return database.get(groupChatAuthTokenTable, "${Companion.serverURL} = ?", wrap(serverURL)) { cursor ->
+        return database.get(groupChatAuthTokenTable, "${Companion.server} = ?", wrap(server)) { cursor ->
             cursor.getString(cursor.getColumnIndexOrThrow(token))
         }
     }
 
-    override fun setGroupChatAuthToken(serverURL: String, newValue: String?) {
+    override fun setGroupChatAuthToken(server: String, newValue: String?) {
         val database = databaseHelper.writableDatabase
         if (newValue != null) {
-            val row = wrap(mapOf(Companion.serverURL to serverURL, token to newValue!!))
-            database.insertOrUpdate(groupChatAuthTokenTable, row, "${Companion.serverURL} = ?", wrap(serverURL))
+            val row = wrap(mapOf(Companion.server to server, token to newValue))
+            database.insertOrUpdate(groupChatAuthTokenTable, row, "${Companion.server} = ?", wrap(server))
         } else {
-            database.delete(groupChatAuthTokenTable, "${Companion.serverURL} = ?", wrap(serverURL))
+            database.delete(groupChatAuthTokenTable, "${Companion.server} = ?", wrap(server))
         }
     }
 
-    override fun getLastMessageServerID(groupID: Long): Long? {
+    override fun getLastMessageServerID(group: Long, server: String): Long? {
         val database = databaseHelper.readableDatabase
-        return database.get(lastMessageServerIDCache, "$lastMessageServerIDCacheGroupID = ?", wrap(groupID.toString())) { cursor ->
+        val index = "$server.$group"
+        return database.get(lastMessageServerIDCache, "$lastMessageServerIDCacheIndex = ?", wrap(index)) { cursor ->
             cursor.getInt(lastMessageServerID)
         }?.toLong()
     }
 
-    override fun setLastMessageServerID(groupID: Long, newValue: Long) {
+    override fun setLastMessageServerID(group: Long, server: String, newValue: Long) {
         val database = databaseHelper.writableDatabase
-        val row = wrap(mapOf( lastMessageServerIDCacheGroupID to groupID.toString(), lastMessageServerID to newValue.toString() ))
-        database.insertOrUpdate(lastMessageServerIDCache, row, "$lastMessageServerIDCacheGroupID = ?", wrap(groupID.toString()))
+        val index = "$server.$group"
+        val row = wrap(mapOf( lastMessageServerIDCacheIndex to index, lastMessageServerID to newValue.toString() ))
+        database.insertOrUpdate(lastMessageServerIDCache, row, "$lastMessageServerIDCacheIndex = ?", wrap(index))
     }
 
-    override fun getFirstMessageServerID(groupID: Long): Long? {
+    override fun getFirstMessageServerID(group: Long, server: String): Long? {
         val database = databaseHelper.readableDatabase
-        return database.get(firstMessageServerIDCache, "$firstMessageServerIDCacheGroupID = ?", wrap(groupID.toString())) { cursor ->
+        val index = "$server.$group"
+        return database.get(firstMessageServerIDCache, "$firstMessageServerIDCacheIndex = ?", wrap(index)) { cursor ->
             cursor.getInt(firstMessageServerID)
         }?.toLong()
     }
 
-    override fun setFirstMessageServerID(groupID: Long, newValue: Long) {
+    override fun setFirstMessageServerID(group: Long, server: String, newValue: Long) {
         val database = databaseHelper.writableDatabase
-        val row = wrap(mapOf( firstMessageServerIDCacheGroupID to groupID.toString(), firstMessageServerID to newValue.toString() ))
-        database.insertOrUpdate(firstMessageServerIDCache, row, "$firstMessageServerIDCacheGroupID = ?", wrap(groupID.toString()))
+        val index = "$server.$group"
+        val row = wrap(mapOf( firstMessageServerIDCacheIndex to index, firstMessageServerID to newValue.toString() ))
+        database.insertOrUpdate(firstMessageServerIDCache, row, "$firstMessageServerIDCacheIndex = ?", wrap(index))
     }
 }
 
