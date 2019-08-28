@@ -282,7 +282,7 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
 
   private @NonNull List<Address> getGroupMessageRecipients(String groupId, long messageId) {
     ArrayList<Address> result = new ArrayList<>();
-    result.add(Address.fromSerialized(LokiGroupChatAPI.getServerURL()));
+    result.add(Address.fromSerialized(LokiGroupChatAPI.getPublicChatServer()));
     return result;
 
     /*

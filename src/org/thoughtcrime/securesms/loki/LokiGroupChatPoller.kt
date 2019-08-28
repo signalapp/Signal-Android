@@ -12,9 +12,10 @@ import org.whispersystems.signalservice.api.messages.SignalServiceContent
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage
 import org.whispersystems.signalservice.api.messages.SignalServiceGroup
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
+import org.whispersystems.signalservice.loki.api.LokiGroupChat
 import org.whispersystems.signalservice.loki.api.LokiGroupChatAPI
 
-class LokiGroupChatPoller(private val context: Context, private val groupID: Long) {
+class LokiGroupChatPoller(private val context: Context, private val group: LokiGroupChat) {
     private val handler = Handler()
     private var hasStarted = false
 
@@ -62,9 +63,9 @@ class LokiGroupChatPoller(private val context: Context, private val groupID: Lon
     }
 
     private fun pollForNewMessages() {
-        api.getMessages(groupID).success { messages ->
+        api.getMessages(group.serverID, group.server).success { messages ->
             messages.reversed().map { message ->
-                val id = "${LokiGroupChatAPI.serverURL}.$groupID".toByteArray()
+                val id = group.id.toByteArray()
                 val x1 = SignalServiceGroup(SignalServiceGroup.Type.UPDATE, id, null, null, null)
                 val x2 = SignalServiceDataMessage(message.timestamp, x1, null, message.body)
                 val senderDisplayName = "${message.displayName} (...${message.hexEncodedPublicKey.takeLast(8)})"
@@ -72,12 +73,12 @@ class LokiGroupChatPoller(private val context: Context, private val groupID: Lon
                 PushDecryptJob(context).handleTextMessage(x3, x2, Optional.absent())
             }
         }.fail {
-            Log.d("Loki", "Failed to get messages for group chat with ID: $groupID.")
+            Log.d("Loki", "Failed to get messages for group chat with ID: ${group.serverID} on server: ${group.server}.")
         }
     }
 
     private fun pollForDeletedMessages() {
-        api.getDeletedMessageServerIDs(groupID).success { deletedMessageServerIDs ->
+        api.getDeletedMessageServerIDs(group.serverID, group.server).success { deletedMessageServerIDs ->
             val lokiMessageDatabase = DatabaseFactory.getLokiMessageDatabase(context)
             val deletedMessageIDs = deletedMessageServerIDs.mapNotNull { lokiMessageDatabase.getMessageID(it) }
             val smsMessageDatabase = DatabaseFactory.getSmsDatabase(context)
@@ -87,7 +88,7 @@ class LokiGroupChatPoller(private val context: Context, private val groupID: Lon
                 mmsMessageDatabase.delete(it)
             }
         }.fail {
-            Log.d("Loki", "Failed to get deleted messages for group chat with ID: $groupID.")
+            Log.d("Loki", "Failed to get deleted messages for group chat with ID: ${group.serverID} on server: ${group.server}.")
         }
     }
 }
