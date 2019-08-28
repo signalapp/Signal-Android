@@ -57,6 +57,7 @@ import org.thoughtcrime.securesms.logging.UncaughtExceptionLogger;
 import org.thoughtcrime.securesms.loki.BackgroundPollWorker;
 import org.thoughtcrime.securesms.loki.LokiAPIDatabase;
 import org.thoughtcrime.securesms.loki.LokiGroupChatPoller;
+import org.thoughtcrime.securesms.loki.LokiRSSFeedPoller;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.providers.BlobProvider;
@@ -78,20 +79,21 @@ import org.webrtc.voiceengine.WebRtcAudioUtils;
 import org.whispersystems.libsignal.logging.SignalProtocolLoggerProvider;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
+import org.whispersystems.signalservice.loki.api.LokiGroupChat;
 import org.whispersystems.signalservice.loki.api.LokiGroupChatAPI;
 import org.whispersystems.signalservice.loki.api.LokiLongPoller;
 import org.whispersystems.signalservice.loki.api.LokiP2PAPI;
 import org.whispersystems.signalservice.loki.api.LokiP2PAPIDelegate;
+import org.whispersystems.signalservice.loki.api.LokiRSSFeed;
 
 import java.security.Security;
+import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import dagger.ObjectGraph;
 import kotlin.Unit;
-import kotlin.jvm.functions.Function1;
 import network.loki.messenger.BuildConfig;
 
 /**
@@ -117,6 +119,8 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   // Loki
   private LokiLongPoller lokiLongPoller = null;
   private LokiGroupChatPoller lokiPublicChatPoller = null;
+  private LokiRSSFeedPoller lokiNewsFeedPoller = null;
+  private LokiRSSFeedPoller lokiMessengerUpdatesFeedPoller = null;
   public SignalCommunicationModule communicationModule;
 
   private volatile boolean isAppVisible;
@@ -408,15 +412,11 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     if (userHexEncodedPublicKey == null) return;
     LokiAPIDatabase lokiAPIDatabase = DatabaseFactory.getLokiAPIDatabase(this);
     Context context = this;
-    lokiLongPoller = new LokiLongPoller(userHexEncodedPublicKey, lokiAPIDatabase, new Function1<List<SignalServiceProtos.Envelope>, Unit>() {
-
-      @Override
-      public Unit invoke(List<SignalServiceProtos.Envelope> protos) {
-        for (SignalServiceProtos.Envelope proto : protos) {
-          new PushContentReceiveJob(context).processEnvelope(new SignalServiceEnvelope(proto));
-        }
-        return Unit.INSTANCE;
+    lokiLongPoller = new LokiLongPoller(userHexEncodedPublicKey, lokiAPIDatabase, protos -> {
+      for (SignalServiceProtos.Envelope proto : protos) {
+        new PushContentReceiveJob(context).processEnvelope(new SignalServiceEnvelope(proto));
       }
+      return Unit.INSTANCE;
     });
   }
 
@@ -425,19 +425,58 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     if (lokiLongPoller != null) { lokiLongPoller.startIfNeeded(); }
   }
 
-  private void setUpPublicChatIfNeeded() {
-    if (lokiPublicChatPoller != null) return;
-    lokiPublicChatPoller = new LokiGroupChatPoller(this, LokiGroupChatAPI.getPublicChatID());
-    boolean isPublicChatSetUp = TextSecurePreferences.isPublicChatSetUp(this);
-    if (isPublicChatSetUp) return;
-    String id = LokiGroupChatAPI.getServerURL() + "." + LokiGroupChatAPI.getPublicChatID();
-    GroupManager.createGroup(id, this, new HashSet<>(), null, "Loki Public Chat", false);
-    TextSecurePreferences.markPublicChatSetUp(this);
+  private LokiGroupChat lokiPublicChat() {
+    return new LokiGroupChat(LokiGroupChatAPI.getPublicChatServerID(), LokiGroupChatAPI.getPublicChatServer(), "Loki Public Chat", true);
   }
 
-  public void startPublicChatPollingIfNeeded() {
-    setUpPublicChatIfNeeded();
+  private LokiRSSFeed lokiNewsFeed() {
+    return new LokiRSSFeed("loki.network.feed", "https://loki.network/feed/", "Loki News", true);
+  }
+
+  private LokiRSSFeed lokiMessengerUpdatesFeed() {
+    return new LokiRSSFeed("loki.network.messenger-updates.feed", "https://loki.network/category/messenger-updates/feed", "Loki Messenger Updates", false);
+  }
+
+  public void createGroupChatsIfNeeded() {
+    LokiGroupChat publicChat = lokiPublicChat();
+    boolean isChatSetUp = TextSecurePreferences.isChatSetUp(this, publicChat.getId());
+    if (!isChatSetUp || !publicChat.isDeletable()) {
+      GroupManager.createGroup(publicChat.getId(), this, new HashSet<>(), null, publicChat.getDisplayName(), false);
+      TextSecurePreferences.markChatSetUp(this, publicChat.getId());
+    }
+  }
+
+  public void createRSSFeedsIfNeeded() {
+    ArrayList<LokiRSSFeed> feeds = new ArrayList<>();
+    feeds.add(lokiNewsFeed());
+    feeds.add(lokiMessengerUpdatesFeed());
+    for (LokiRSSFeed feed : feeds) {
+      boolean isFeedSetUp = TextSecurePreferences.isChatSetUp(this, feed.getId());
+      if (!isFeedSetUp || !feed.isDeletable()) {
+        GroupManager.createGroup(feed.getId(), this, new HashSet<>(), null, feed.getDisplayName(), false);
+        TextSecurePreferences.markChatSetUp(this, feed.getId());
+      }
+    }
+  }
+
+  private void createGroupChatPollersIfNeeded() {
+    if (lokiPublicChatPoller == null) lokiPublicChatPoller = new LokiGroupChatPoller(this, lokiPublicChat());
+  }
+
+  private void createRSSFeedPollersIfNeeded() {
+    if (lokiNewsFeedPoller == null) lokiNewsFeedPoller = new LokiRSSFeedPoller(this, lokiNewsFeed());
+    if (lokiMessengerUpdatesFeedPoller == null) lokiMessengerUpdatesFeedPoller = new LokiRSSFeedPoller(this, lokiMessengerUpdatesFeed());
+  }
+
+  public void startGroupChatPollersIfNeeded() {
+    createGroupChatPollersIfNeeded();
     lokiPublicChatPoller.startIfNeeded();
+  }
+
+  public void startRSSFeedPollersIfNeeded() {
+    createRSSFeedPollersIfNeeded();
+    lokiNewsFeedPoller.startIfNeeded();
+    lokiMessengerUpdatesFeedPoller.startIfNeeded();
   }
   // endregion
 }
