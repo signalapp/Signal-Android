@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.loki
 
 import android.content.Context
 import android.os.Handler
+import android.text.Html
 import android.util.Log
 import com.prof.rssparser.Parser
 import kotlinx.coroutines.*
@@ -13,6 +14,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceGroup
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.loki.api.LokiRSSFeed
 import java.text.SimpleDateFormat
+import java.util.regex.Pattern
 
 class LokiRSSFeedPoller(private val context: Context, private val feed: LokiRSSFeed) {
     private val handler = Handler()
@@ -56,7 +58,11 @@ class LokiRSSFeedPoller(private val context: Context, private val feed: LokiRSSF
                     val formatter = SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss Z") // e.g. Tue, 27 Aug 2019 03:52:05 +0000
                     val date = formatter.parse(dateAsString)
                     val timestamp = date.time
-                    val body = "$title<br>$description"
+                    var bodyAsHTML = "$title<br>$description"
+                    val urlRegex = Pattern.compile("<a\\s+(?:[^>]*?\\s+)?href=\"([^\"]*)\".*?>(.*?)<.*?\\/a>")
+                    val matcher = urlRegex.matcher(bodyAsHTML)
+                    bodyAsHTML = matcher.replaceAll("$2 ($1)")
+                    val body = Html.fromHtml(bodyAsHTML).toString().trim()
                     val id = feed.id.toByteArray()
                     val x1 = SignalServiceGroup(SignalServiceGroup.Type.UPDATE, id, null, null, null)
                     val x2 = SignalServiceDataMessage(timestamp, x1, null, body)
