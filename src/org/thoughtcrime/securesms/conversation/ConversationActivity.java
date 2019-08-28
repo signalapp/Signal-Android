@@ -2124,21 +2124,30 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     updateLinkPreviewState();
   }
 
-    @Override
-    public void handleThreadFriendRequestStatusChanged(long threadID) {
-      if (threadID != this.threadId) { return; }
-      new Handler(getMainLooper()).post(this::updateInputPanel);
-    }
+  @Override
+  public void handleThreadFriendRequestStatusChanged(long threadID) {
+    if (threadID != this.threadId) { return; }
+    new Handler(getMainLooper()).post(this::updateInputPanel);
+  }
 
-    private void updateInputPanel() {
-    boolean hasPendingFriendRequest = DatabaseFactory.getLokiThreadDatabase(this).hasPendingFriendRequest(threadId);
-    inputPanel.setEnabled(!hasPendingFriendRequest);
-    int hintID = hasPendingFriendRequest ? R.string.activity_conversation_pending_friend_request_hint : R.string.activity_conversation_default_hint;
-    inputPanel.setHint(getResources().getString(hintID));
-    if (!hasPendingFriendRequest) {
-      inputPanel.composeText.requestFocus();
-      InputMethodManager inputMethodManager = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
-      inputMethodManager.showSoftInput(inputPanel.composeText, 0);
+  private void updateInputPanel() {
+    Recipient recipient = DatabaseFactory.getThreadDatabase(this).getRecipientForThreadId(threadId);
+    boolean isGroup = recipient.isGroupRecipient();
+    if (isGroup) {
+      boolean isRSSFeed = recipient.getName().equals("Loki News") || recipient.getName().equals("Loki Messenger Updates"); // TODO: This is just a temporary hack and should be removed ASAP
+      inputPanel.setEnabled(!isRSSFeed);
+      String hint = isRSSFeed ? "Input disabled" : "New Message";
+      inputPanel.setHint(hint);
+    } else {
+      boolean hasPendingFriendRequest = DatabaseFactory.getLokiThreadDatabase(this).hasPendingFriendRequest(threadId);
+      inputPanel.setEnabled(!hasPendingFriendRequest);
+      int hintID = hasPendingFriendRequest ? R.string.activity_conversation_pending_friend_request_hint : R.string.activity_conversation_default_hint;
+      inputPanel.setHint(getResources().getString(hintID));
+      if (!hasPendingFriendRequest) {
+        inputPanel.composeText.requestFocus();
+        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        inputMethodManager.showSoftInput(inputPanel.composeText, 0);
+      }
     }
   }
 
@@ -2189,8 +2198,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                      Toast.LENGTH_LONG).show();
       Log.w(TAG, ex);
     } catch (InvalidMessageException ex) {
-      Toast.makeText(ConversationActivity.this, R.string.ConversationActivity_message_is_empty_exclamation,
-                     Toast.LENGTH_SHORT).show();
+      // Toast.makeText(ConversationActivity.this, R.string.ConversationActivity_message_is_empty_exclamation,
+      //                Toast.LENGTH_SHORT).show();
       Log.w(TAG, ex);
     }
   }
