@@ -514,6 +514,7 @@
   <string name="SharedContactView_message">Signal संदेश</string>
   <!--Slide-->
   <string name="Slide_image">तस्वीर </string>
+  <string name="Slide_sticker">स्टिकर</string>
   <string name="Slide_audio">ऑडियो </string>
   <string name="Slide_video">वीडियो </string>
   <!--SmsMessageRecord-->
@@ -542,6 +543,7 @@
   <string name="ThreadRecord_called_you">आपको बुलाया </string>
   <string name="ThreadRecord_missed_call">मिस कॉल</string>
   <string name="ThreadRecord_media_message">मीडिया संदेश</string>
+  <string name="ThreadRecord_sticker">स्टिकर</string>
   <string name="ThreadRecord_s_is_on_signal">%sअब Signal पर हैं! </string>
   <string name="ThreadRecord_disappearing_messages_disabled">संदेश जो गायब हो जाते हैं अक्षम</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">गायब संदेश समय %s तक सेट हो गया</string>
@@ -614,6 +616,7 @@
   <string name="MessageNotifier_mark_all_as_read">सभी को पढ़ा हुआ मार्क करें</string>
   <string name="MessageNotifier_mark_read">पढ़ा हुआ चिह्नित करें</string>
   <string name="MessageNotifier_media_message">मीडिया संदेश</string>
+  <string name="MessageNotifier_sticker">स्टिकर</string>
   <string name="MessageNotifier_reply">उत्तर</string>
   <string name="MessageNotifier_signal_message">Signal संदेश</string>
   <string name="MessageNotifier_unsecured_sms">असुरक्षित एसएमएस</string>
@@ -712,6 +715,7 @@
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">रिकॉर्ड करें और ऑडियो अटैचमेंट भेजें</string>
   <string name="conversation_activity__enable_signal_for_sms">एसएमएस के लिए Signal सक्षम करें</string>
   <!--conversation_input_panel-->
+  <string name="conversation_input_panel__slide_to_cancel">रद्द करने के लिए स्लाइड करें</string>
   <string name="conversation_input_panel__cancel">रद्द करें</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">मीडिया संदेश</string>
@@ -731,6 +735,7 @@
   <string name="QuoteView_audio">ऑडियो</string>
   <string name="QuoteView_video">वीडियो </string>
   <string name="QuoteView_photo">फ़ोटो</string>
+  <string name="QuoteView_sticker">स्टिकर</string>
   <string name="QuoteView_document">दस्तावेज़</string>
   <string name="QuoteView_you">आप</string>
   <string name="QuoteView_original_missing">मूल संदेश नहीं मिला</string>
@@ -1021,6 +1026,7 @@
   <string name="preferences__incognito_keyboard">गुप्त कीबोर्ड</string>
   <string name="preferences__read_receipts">पढ़ने की रसीदें</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">यदि रीड रसीद अक्षम हैं, तो आप दूसरों से पढ़ने की रसीदें नहीं देख पाएंगे।</string>
+  <string name="preferences__typing_indicators">टंकण संकेतक</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">व्यक्तिगत सीखने को अक्षम करने के लिए कीबोर्ड को अनुरोध करें</string>
   <string name="preferences_app_protection__blocked_contacts">ब्लॉक किये हुए कॉन्टेक्ट्स</string>
   <string name="preferences_chats__when_using_mobile_data">मोबाइल डेटा का उपयोग करते समय</string>
@@ -1076,6 +1082,7 @@
   <string name="conversation_list_batch_archive__menu_archive_selected">चयनित संग्रह करें</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">चयनित अनारक्षित करें</string>
   <!--conversation_list-->
+  <string name="conversation_list_settings_shortcut">सेटिंग्स शॉर्टकट</string>
   <string name="conversation_list_search_description">खोजें</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">संपर्क फोटो छवि</string>
@@ -1198,6 +1205,7 @@
   <string name="LocalBackupJob_creating_backup">बैकअप बनाया जा रहा है</string>
   <string name="ProgressPreference_d_messages_so_far">अब तक %d संदेश</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">कृपया %s को भेजे गए सत्यापन कोड दर्ज करें।</string>
+  <string name="RegistrationActivity_wrong_number">गलत नंबर</string>
   <string name="BackupUtil_never">कभी नहीं</string>
   <string name="BackupUtil_unknown">अनजान</string>
   <string name="preferences_app_protection__screen_lock">स्क्रीन लॉक</string>

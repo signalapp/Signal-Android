@@ -12,6 +12,7 @@
   <!--AlbumThumbnailView-->
   <string name="AlbumThumbnailView_plus">/+%d</string>
   <!--ApplicationMigrationActivity-->
+  <string name="ApplicationMigrationActivity__signal_is_updating">يُحدّث سغنال...</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">حاليا: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">لم تقم بتحديد عبارة سرية بعد!</string>
@@ -97,6 +98,7 @@
   <string name="CameraContacts_recent_contacts">جهات الاتصال الأخيرة</string>
   <string name="CameraContacts_signal_contacts">جهات اتصال سغنال</string>
   <string name="CameraContacts_signal_groups">مجموعات سغنال</string>
+  <string name="CameraContacts_select_signal_recipients">اختر المتلقّيين والمتلقّيات بسغنال</string>
   <string name="CameraContacts_no_signal_contacts">لا جهات اتصال في سغنال</string>
   <string name="CameraContacts__menu_search">بحث</string>
   <!--ClearProfileActivity-->
@@ -483,7 +485,9 @@
   <string name="MediaSendActivity_camera_unavailable">الكاميرا غير متاحة.</string>
   <string name="MediaSendActivity_message_to_s">رسالة إلى %s</string>
   <string name="MediaSendActivity_message">رسالة</string>
+  <string name="MediaSendActivity_select_recipients">اختر المتلقّيين والمتلقّيات</string>
   <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal بحاجة إلى النفاذ إلى قائمة مراسليك و ذلك قصد عرضها.</string>
+  <string name="MediaSendActivity_select_recipients_description">اختر المتلقّيين والمتلقّيات</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">جميع الوسائط</string>
   <!--MessageRecord-->

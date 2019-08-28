@@ -12,6 +12,7 @@
   <!--AlbumThumbnailView-->
   <string name="AlbumThumbnailView_plus">\+ %d</string>
   <!--ApplicationMigrationActivity-->
+  <string name="ApplicationMigrationActivity__signal_is_updating">Signal inasasishwa...</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Hivi sasa:  %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Bado hujapanga tungo</string>
@@ -85,6 +86,7 @@
   <string name="CameraContacts_recent_contacts">Mawasiliano ya hivi karibuni</string>
   <string name="CameraContacts_signal_contacts">Mawasiliano ya signal</string>
   <string name="CameraContacts_signal_groups">Makundi za Signal</string>
+  <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">Huwezi kugawiza na mazungumzo kuliko %d. </string>
   <string name="CameraContacts_select_signal_recipients">Chagua wapokeaji wa Signal</string>
   <string name="CameraContacts_no_signal_contacts">Hakuna mawasiliano ya Signal</string>
   <string name="CameraContacts_you_can_only_use_the_camera_button">Unaweza kutumia kibonye cha kamera kutumia picha kwa mawasiliano ya Signal tuu.</string>
@@ -177,7 +179,12 @@
   <string name="ConversationActivity_yes">Ndio</string>
   <string name="ConversationActivity_no">Hapana</string>
   <string name="ConversationActivity_search_position">%1$d kwa %2$d</string>
+  <string name="ConversationActivity_no_results">Hakuna matokeo</string>
   <!--ConversationAdapter-->
+  <plurals name="ConversationAdapter_n_unread_messages">
+    <item quantity="one">%d   majumbe haijasomewa</item>
+    <item quantity="other">%d majumbe haijasomewa</item>
+  </plurals>
   <!--ConversationFragment-->
   <plurals name="ConversationFragment_delete_selected_messages">
     <item quantity="one">Futa ujumbe uliochaguliwa?</item>
@@ -197,16 +204,22 @@
   <string name="ConversationFragment_deleting_messages">Kufuta meseji</string>
   <string name="ConversationFragment_quoted_message_not_found">Meseji halisi haipatikani</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Meseji halisi haipo tena</string>
+  <string name="ConversationFragment_failed_to_open_message">Haiwezekana kufungua ujumbe</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Hakuna browser iliyowekwa kwenye kifaa chako.</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_no_results_found_for_s_">Hakuna matokeo yamepatikana kwa \'1%s\'</string>
+  <plurals name="ConversationListFragment_delete_selected_conversations">
+    <item quantity="one">Futa mazungumzo umechagua?</item>
+    <item quantity="other">Futa mazungumzo umechagua?</item>
+  </plurals>
   <string name="ConversationListFragment_deleting">Inafutwa</string>
   <string name="ConversationListFragment_deleting_selected_conversations">futa maongezi yaliyochaguliwa</string>
   <string name="ConversationListFragment_undo">FUTA</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Ujumbe wa kubadilishana muhimu</string>
   <!--ConversationListItemAction-->
+  <string name="ConversationListItemAction_archived_conversations_d">Mazungumzo zimewekwa kwa kisanduku pokezi (%d)</string>
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">iliyothibitishwa</string>
   <!--CreateProfileActivity-->
@@ -215,6 +228,7 @@
   <string name="CreateProfileActivity_problem_setting_profile">Tatizo la kuweka profile</string>
   <string name="CreateProfileActivity_profile_photo">picha ya wasifu</string>
   <string name="CreateProfileActivity_too_long">ndefu sana</string>
+  <string name="CreateProfileActivity_profile_name">Jina la Umbo</string>
   <string name="CreateProfileActivity_set_up_your_profile">Kuanzisha wasifu wako</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">tumia desturi: 1%s</string>
@@ -379,6 +393,10 @@
   <string name="MediaSendActivity_message">Ujumbe</string>
   <string name="MediaSendActivity_select_recipients">Chagua wapokeaji</string>
   <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal inahitaji upatikanaji wa anwani zako ili kuzionyesha.</string>
+  <plurals name="MediaSendActivity_cant_share_more_than_n_items">
+    <item quantity="one">Huwezi kugawiza kuliko vitu 1%d.</item>
+    <item quantity="other">Huwezi kugawiza kuliko vitu %d.</item>
+  </plurals>
   <string name="MediaSendActivity_select_recipients_description">Chagua wapokeaji</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Vyombo vyote vya habari</string>
@@ -395,6 +413,7 @@
   <string name="MessageRecord_missed_call_from">wito wa simu haukupokelewa kutoka 1%s</string>
   <string name="MessageRecord_s_joined_signal">1%s yupo Signal</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">umezuia ujumbe uliopotea</string>
+  <string name="MessageRecord_s_disabled_disappearing_messages">%1$s  amelemaza majumbe zinaangamia.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">namba yako ya usalama pamoja na 1%s imebadilika</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">unanakili nambari yako ya siri pamoja na 1%s imethibitishwa</string>
   <!--PassphraseChangeActivity-->
@@ -406,6 +425,10 @@
   <string name="DeviceProvisioningActivity_cancel">futa</string>
   <string name="DeviceProvisioningActivity_continue">ENDELEA</string>
   <string name="DeviceProvisioningActivity_content_intro">itaweza</string>
+  <string name="DeviceProvisioningActivity_content_bullets">
+        • Soma majumbe yote yako
+        \n• Tuma majumbe umeandishi
+    </string>
   <string name="DeviceProvisioningActivity_content_progress_title">Kifaa kinakiungwa</string>
   <string name="DeviceProvisioningActivity_content_progress_content">Kifaa kipya kinakiungwa</string>
   <string name="DeviceProvisioningActivity_content_progress_success">kifaa kimethibitishwa</string>
@@ -428,6 +451,8 @@ Signal inahitaji ruhusa ya Kamera ili kupima msimbo wa QR, lakini imekataliwa ka
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">passhrase sio sahihi</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Ramani</string>
+  <string name="PlacePickerActivity_not_a_valid_address">Anwani si halali</string>
+  <string name="PlacePickerActivity_accept_address">Kubali anwani</string>
   <!--PlayServicesProblemFragment-->
   <!--RatingManager-->
   <string name="RatingManager_rate_now">Kiwango cha sasa</string>
@@ -476,8 +501,10 @@ nambari yako ya simu</string>
   <string name="RegistrationActivity_no_browser">haiwezekani kufungua kiungo hiki.  Hakuna kivinjari cha web kilichopatikana</string>
   <string name="RegistrationActivity_more_information">taarifa zaidi</string>
   <string name="RegistrationActivity_less_information">taarifa chache</string>
+  <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Tunataka kuhakikisha wewe ni mtu.</string>
   <string name="RegistrationActivity_next">Nyingine</string>
   <string name="RegistrationActivity_continue">Endelea</string>
+  <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Enda na faragha.\n Andika kila ujumbe huria.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Ingiza nambari yako ya simu kuanza kutumia</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">utapokea msimbo uliothibitishwa. gharama za kazi zitatumika.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Ingiza msimbo tuetuma kwa 1%s</string>
@@ -827,6 +854,10 @@ nambari yako ya simu</string>
   <string name="message_recipients_list_item__resend">TUMA TENA</string>
   <string name="message_recipients_list_item__resending">kutuma tena</string>
   <!--GroupUtil-->
+  <plurals name="GroupUtil_joined_the_group">
+    <item quantity="one">%1$s  ameingia kikundi.</item>
+    <item quantity="other">%1$s ameingia kikundi.</item>
+  </plurals>
   <string name="GroupUtil_group_name_is_now">jina la kundi sasa ni \'1%1$s\'</string>
   <!--profile_group_share_view-->
   <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">weka jina la wasifu wako na picha vionekane kwa kundi hili</string>
