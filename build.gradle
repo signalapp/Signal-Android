@@ -469,7 +469,7 @@ def assembleWebsiteDescriptor = { variant, file ->
         String apkName = file.getName()
 
         String descriptor = "{" +
-                "\"versionCode\" : $canonicalVersionCode," +
+                "\"versionCode\" : ${canonicalVersionCode * postFixSize + abiPostFix['universal']}," +
                 "\"versionName\" : \"$canonicalVersionName\"," +
                 "\"sha256sum\" : \"$digest\"," +
                 "\"url\" : \"$url/$apkName\"" +
