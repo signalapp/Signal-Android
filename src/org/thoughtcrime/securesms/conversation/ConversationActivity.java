@@ -1933,7 +1933,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void setBlockedUserState(Recipient recipient, boolean isSecureText, boolean isDefaultSms) {
-    if (recipient.isBlocked()) {
+    if (recipient.isGroupRecipient() && (recipient.getName().equals("Loki News") || recipient.getName().equals("Loki Messenger Updates"))) {
+      unblockButton.setVisibility(View.GONE);
+      composePanel.setVisibility(View.GONE);
+      makeDefaultSmsButton.setVisibility(View.GONE);
+      registerButton.setVisibility(View.GONE);
+    } else if (recipient.isBlocked()) {
       unblockButton.setVisibility(View.VISIBLE);
       composePanel.setVisibility(View.GONE);
       makeDefaultSmsButton.setVisibility(View.GONE);
@@ -2131,23 +2136,14 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void updateInputPanel() {
-    Recipient recipient = DatabaseFactory.getThreadDatabase(this).getRecipientForThreadId(threadId);
-    boolean isGroup = recipient.isGroupRecipient();
-    if (isGroup) {
-      boolean isRSSFeed = recipient.getName().equals("Loki News") || recipient.getName().equals("Loki Messenger Updates"); // TODO: This is just a temporary hack and should be removed ASAP
-      inputPanel.setEnabled(!isRSSFeed);
-      String hint = isRSSFeed ? "Input disabled" : "New Message";
-      inputPanel.setHint(hint);
-    } else {
-      boolean hasPendingFriendRequest = DatabaseFactory.getLokiThreadDatabase(this).hasPendingFriendRequest(threadId);
-      inputPanel.setEnabled(!hasPendingFriendRequest);
-      int hintID = hasPendingFriendRequest ? R.string.activity_conversation_pending_friend_request_hint : R.string.activity_conversation_default_hint;
-      inputPanel.setHint(getResources().getString(hintID));
-      if (!hasPendingFriendRequest) {
-        inputPanel.composeText.requestFocus();
-        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-        inputMethodManager.showSoftInput(inputPanel.composeText, 0);
-      }
+    boolean hasPendingFriendRequest = DatabaseFactory.getLokiThreadDatabase(this).hasPendingFriendRequest(threadId);
+    inputPanel.setEnabled(!hasPendingFriendRequest);
+    int hintID = hasPendingFriendRequest ? R.string.activity_conversation_pending_friend_request_hint : R.string.activity_conversation_default_hint;
+    inputPanel.setHint(getResources().getString(hintID));
+    if (!hasPendingFriendRequest) {
+      inputPanel.composeText.requestFocus();
+      InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+      inputMethodManager.showSoftInput(inputPanel.composeText, 0);
     }
   }
 
