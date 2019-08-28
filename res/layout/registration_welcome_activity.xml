@@ -20,6 +20,23 @@
         android:textAlignment="center"
         android:text="@string/activity_landing_title" />
 
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/welcome_terms_button"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="128dp"
+            android:src="@drawable/ic_launcher_foreground" />
+
+    </LinearLayout>
+
     <TextView
         android:id="@+id/welcome_terms_button"
         android:layout_width="wrap_content"
