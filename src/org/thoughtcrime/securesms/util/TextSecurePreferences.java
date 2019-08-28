@@ -1162,12 +1162,12 @@ public class TextSecurePreferences {
     setLongPreference(context, "background_poll_time", backgroundPollTime);
   }
 
-  public static boolean isPublicChatSetUp(Context context) {
-    return getBooleanPreference(context, "is_public_chat_set_up", false);
+  public static boolean isChatSetUp(Context context, String id) {
+    return getBooleanPreference(context, "is_chat_set_up" + "?chat=" + id, false);
   }
 
-  public static void markPublicChatSetUp(Context context) {
-    setBooleanPreference(context, "is_public_chat_set_up", true);
+  public static void markChatSetUp(Context context, String id) {
+    setBooleanPreference(context, "is_chat_set_up" + "?chat=" + id, true);
   }
   // endregion
 }
