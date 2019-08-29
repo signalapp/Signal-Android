@@ -186,8 +186,8 @@ dependencies {
     implementation "com.prof.rssparser:rssparser:$rss_parser_version"
 }
 
-def canonicalVersionCode = 9
-def canonicalVersionName = "1.0.0"
+def canonicalVersionCode = 10
+def canonicalVersionName = "1.1.0"
 
 def postFixSize = 10
 def abiPostFix = ['armeabi-v7a' : 1,
