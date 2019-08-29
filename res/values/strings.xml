@@ -1561,20 +1561,20 @@
     <string name="activity_key_pair_mnemonic_edit_text_label">Your Seed</string>
     <string name="activity_key_pair_toggle_mode_button_title_1">Restore Using Seed</string>
     <string name="activity_key_pair_toggle_mode_button_title_2">Register a New Account</string>
-    <string name="activity_key_pair_mnemonic_copied_message">Copied to Clipboard</string>
+    <string name="activity_key_pair_mnemonic_copied_message">Copied to clipboard</string>
     <string name="activity_key_pair_register_or_restore_button_title_1">Register</string>
     <string name="activity_key_pair_register_or_restore_button_title_2">Restore</string>
     <!-- Conversation list activity -->
     <string name="activity_conversation_list_empty_state_message">Looks like you don\'t have any conversations yet. Get started by messaging a friend.</string>
     <!-- Settings activity -->
-    <string name="activity_settings_public_key_copied_message">Copied to Clipboard</string>
+    <string name="activity_settings_public_key_copied_message">Copied to clipboard</string>
     <string name="activity_settings_share_public_key_button_title">Share Public Key</string>
     <string name="activity_settings_show_qr_code_button_title">Show QR Code</string>
     <string name="activity_settings_show_seed_button_title">Show Seed</string>
     <string name="activity_settings_seed_dialog_title">Your Seed</string>
     <string name="activity_settings_seed_dialog_copy_button_title">Copy</string>
     <string name="activity_settings_seed_dialog_ok_button_title">OK</string>
-    <string name="activity_settings_seed_copied_message">Copied to Clipboard</string>
+    <string name="activity_settings_seed_copied_message">Copied to clipboard</string>
     <!-- Profile activity -->
     <string name="activity_profile_title">Set Your Display Name</string>
     <string name="activity_profile_display_name_edit_text_hint">Your Display Name</string>
@@ -1590,7 +1590,8 @@
     <string name="fragment_new_conversation_public_key_explanation">Enter the public key of the person you\'d like to securely message. They can share their public key with you by going into Loki Messenger\'s in-app settings and clicking \"Share Public Key\".</string>
     <string name="fragment_new_conversation_qr_code_button_title">Scan a QR Code Instead</string>
     <string name="fragment_new_conversation_next_button_title">Next</string>
-    <string name="fragment_new_conversation_invalid_public_key_message">Invalid Public Key</string>
+    <string name="fragment_new_conversation_invalid_public_key_message">Invalid public key</string>
+    <string name="fragment_new_conversation_note_to_self_not_supported_message">Please enter the public key of the person you\'d like to message</string>
     <!-- Friend request view -->
     <string name="view_friend_request_accept_button_title">Accept</string>
     <string name="view_friend_request_reject_button_title">Reject</string>

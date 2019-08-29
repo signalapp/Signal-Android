@@ -8,17 +8,14 @@ import android.widget.Toast
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.conversation.ConversationActivity
-import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.ThreadDatabase
-import org.thoughtcrime.securesms.logging.Log
 import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.qr.ScanListener
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.DynamicTheme
 import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.whispersystems.signalservice.loki.api.LokiGroupChatAPI
 import org.whispersystems.signalservice.loki.utilities.PublicKeyValidation
 
 class NewConversationActivity : PassphraseRequiredActionBarActivity(), ScanListener {
@@ -67,19 +64,18 @@ class NewConversationActivity : PassphraseRequiredActionBarActivity(), ScanListe
     }
 
     fun startNewConversationIfPossible(hexEncodedPublicKey: String) {
-        if (PublicKeyValidation.isValid(hexEncodedPublicKey)) {
-            val contact = Recipient.from(this, Address.fromSerialized(hexEncodedPublicKey), true)
-            val intent = Intent(this, ConversationActivity::class.java)
-            intent.putExtra(ConversationActivity.ADDRESS_EXTRA, contact.address)
-            intent.putExtra(ConversationActivity.TEXT_EXTRA, getIntent().getStringExtra(ConversationActivity.TEXT_EXTRA))
-            intent.setDataAndType(getIntent().data, getIntent().type)
-            val existingThread = DatabaseFactory.getThreadDatabase(this).getThreadIdIfExistsFor(contact)
-            intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, existingThread)
-            intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, ThreadDatabase.DistributionTypes.DEFAULT)
-            startActivity(intent)
-            finish()
-        } else {
-            Toast.makeText(this, R.string.fragment_new_conversation_invalid_public_key_message, Toast.LENGTH_SHORT).show()
-        }
+        if (!PublicKeyValidation.isValid(hexEncodedPublicKey)) { return Toast.makeText(this, R.string.fragment_new_conversation_invalid_public_key_message, Toast.LENGTH_SHORT).show() }
+        val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this)
+        if (hexEncodedPublicKey == userHexEncodedPublicKey) { return Toast.makeText(this, R.string.fragment_new_conversation_note_to_self_not_supported_message, Toast.LENGTH_SHORT).show() }
+        val contact = Recipient.from(this, Address.fromSerialized(hexEncodedPublicKey), true)
+        val intent = Intent(this, ConversationActivity::class.java)
+        intent.putExtra(ConversationActivity.ADDRESS_EXTRA, contact.address)
+        intent.putExtra(ConversationActivity.TEXT_EXTRA, getIntent().getStringExtra(ConversationActivity.TEXT_EXTRA))
+        intent.setDataAndType(getIntent().data, getIntent().type)
+        val existingThread = DatabaseFactory.getThreadDatabase(this).getThreadIdIfExistsFor(contact)
+        intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, existingThread)
+        intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, ThreadDatabase.DistributionTypes.DEFAULT)
+        startActivity(intent)
+        finish()
     }
 }
