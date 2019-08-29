@@ -1,15 +1,16 @@
 package org.thoughtcrime.securesms.components;
 
 import android.content.Context;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.ViewUtil;
@@ -41,13 +42,15 @@ public class AnimatingToggle extends FrameLayout {
   public void addView(@NonNull View child, int index, ViewGroup.LayoutParams params) {
     super.addView(child, index, params);
 
-    if (getChildCount() == 1) {
-      current = child;
-      child.setVisibility(View.VISIBLE);
-    } else {
-      child.setVisibility(View.GONE);
+    if (!isInEditMode()) {
+      if (getChildCount() == 1) {
+        current = child;
+        child.setVisibility(View.VISIBLE);
+      } else {
+        child.setVisibility(View.GONE);
+      }
+      child.setClickable(false);
     }
-    child.setClickable(false);
   }
 
   public void display(@Nullable View view) {

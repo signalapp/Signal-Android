@@ -1,15 +1,9 @@
 package org.thoughtcrime.securesms.components;
 
-import android.annotation.TargetApi;
 import android.content.Context;
-import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.graphics.drawable.AnimatedVectorDrawable;
-import android.os.Build;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -19,6 +13,14 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import com.airbnb.lottie.LottieAnimationView;
+import com.airbnb.lottie.LottieProperty;
+import com.airbnb.lottie.SimpleColorFilter;
+import com.airbnb.lottie.model.KeyPath;
+import com.airbnb.lottie.value.LottieValueCallback;
 import com.pnikosis.materialishprogress.ProgressWheel;
 
 import org.greenrobot.eventbus.EventBus;
@@ -36,23 +38,27 @@ import java.io.IOException;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
-
-public class AudioView extends FrameLayout implements AudioSlidePlayer.Listener {
+public final class AudioView extends FrameLayout implements AudioSlidePlayer.Listener {
 
   private static final String TAG = AudioView.class.getSimpleName();
 
-  private final @NonNull AnimatingToggle controlToggle;
-  private final @NonNull ViewGroup       container;
-  private final @NonNull ImageView       playButton;
-  private final @NonNull ImageView       pauseButton;
-  private final @NonNull ImageView       downloadButton;
-  private final @NonNull ProgressWheel   downloadProgress;
-  private final @NonNull SeekBar         seekBar;
-  private final @NonNull TextView        timestamp;
+  private static final int FORWARDS =  1;
+  private static final int REVERSE  = -1;
 
-  private @Nullable SlideClickListener downloadListener;
-  private @Nullable AudioSlidePlayer   audioSlidePlayer;
-  private int backwardsCounter;
+  @NonNull private final AnimatingToggle     controlToggle;
+  @NonNull private final ViewGroup           container;
+  @NonNull private final View                progressAndPlay;
+  @NonNull private final LottieAnimationView playPauseButton;
+  @NonNull private final ImageView           downloadButton;
+  @NonNull private final ProgressWheel       downloadProgress;
+  @NonNull private final SeekBar             seekBar;
+  @NonNull private final TextView            timestamp;
+
+  @Nullable private SlideClickListener downloadListener;
+  @Nullable private AudioSlidePlayer   audioSlidePlayer;
+            private int                backwardsCounter;
+            private int                lottieDirection;
+            private boolean            isPlaying;
 
   public AudioView(Context context) {
     this(context, null);
@@ -66,25 +72,18 @@ public class AudioView extends FrameLayout implements AudioSlidePlayer.Listener 
     super(context, attrs, defStyleAttr);
     inflate(context, R.layout.audio_view, this);
 
-    this.container        = (ViewGroup) findViewById(R.id.audio_widget_container);
-    this.controlToggle    = (AnimatingToggle) findViewById(R.id.control_toggle);
-    this.playButton       = (ImageView) findViewById(R.id.play);
-    this.pauseButton      = (ImageView) findViewById(R.id.pause);
-    this.downloadButton   = (ImageView) findViewById(R.id.download);
-    this.downloadProgress = (ProgressWheel) findViewById(R.id.download_progress);
-    this.seekBar          = (SeekBar) findViewById(R.id.seek);
-    this.timestamp        = (TextView) findViewById(R.id.timestamp);
+    this.container         = findViewById(R.id.audio_widget_container);
+    this.controlToggle     = findViewById(R.id.control_toggle);
+    this.playPauseButton   = findViewById(R.id.play);
+    this.progressAndPlay   = findViewById(R.id.progress_and_play);
+    this.downloadButton    = findViewById(R.id.download);
+    this.downloadProgress  = findViewById(R.id.download_progress);
+    this.seekBar           = findViewById(R.id.seek);
+    this.timestamp         = findViewById(R.id.timestamp);
 
-    this.playButton.setOnClickListener(new PlayClickedListener());
-    this.pauseButton.setOnClickListener(new PauseClickedListener());
+    lottieDirection = REVERSE;
+    this.playPauseButton.setOnClickListener(new PlayPauseClickedListener());
     this.seekBar.setOnSeekBarChangeListener(new SeekBarModifiedListener());
-
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-      this.playButton.setImageDrawable(context.getDrawable(R.drawable.play_icon));
-      this.pauseButton.setImageDrawable(context.getDrawable(R.drawable.pause_icon));
-      this.playButton.setBackground(context.getDrawable(R.drawable.ic_circle_fill_white_48dp));
-      this.pauseButton.setBackground(context.getDrawable(R.drawable.ic_circle_fill_white_48dp));
-    }
 
     if (attrs != null) {
       TypedArray typedArray = context.getTheme().obtainStyledAttributes(attrs, R.styleable.AudioView, 0, 0);
@@ -117,20 +116,23 @@ public class AudioView extends FrameLayout implements AudioSlidePlayer.Listener 
       downloadButton.setOnClickListener(new DownloadClickedListener(audio));
       if (downloadProgress.isSpinning()) downloadProgress.stopSpinning();
     } else if (showControls && audio.getTransferState() == AttachmentDatabase.TRANSFER_PROGRESS_STARTED) {
-      controlToggle.displayQuick(downloadProgress);
+      controlToggle.displayQuick(progressAndPlay);
       seekBar.setEnabled(false);
       downloadProgress.spin();
     } else {
-      controlToggle.displayQuick(playButton);
       seekBar.setEnabled(true);
       if (downloadProgress.isSpinning()) downloadProgress.stopSpinning();
+      showPlayButton();
+      lottieDirection = REVERSE;
+      playPauseButton.cancelAnimation();
+      playPauseButton.setFrame(0);
     }
 
     this.audioSlidePlayer = AudioSlidePlayer.createFor(getContext(), audio, this);
   }
 
   public void cleanup() {
-    if (this.audioSlidePlayer != null && pauseButton.getVisibility() == View.VISIBLE) {
+    if (this.audioSlidePlayer != null && isPlaying) {
       this.audioSlidePlayer.stop();
     }
   }
@@ -141,16 +143,14 @@ public class AudioView extends FrameLayout implements AudioSlidePlayer.Listener 
 
   @Override
   public void onStart() {
-    if (this.pauseButton.getVisibility() != View.VISIBLE) {
-      togglePlayToPause();
-    }
+    isPlaying = true;
+    togglePlayToPause();
   }
 
   @Override
   public void onStop() {
-    if (this.playButton.getVisibility() != View.VISIBLE) {
-      togglePauseToPlay();
-    }
+    isPlaying = false;
+    togglePauseToPlay();
 
     if (seekBar.getProgress() + 5 >= seekBar.getMax()) {
       backwardsCounter = 4;
@@ -161,8 +161,7 @@ public class AudioView extends FrameLayout implements AudioSlidePlayer.Listener 
   @Override
   public void setFocusable(boolean focusable) {
     super.setFocusable(focusable);
-    this.playButton.setFocusable(focusable);
-    this.pauseButton.setFocusable(focusable);
+    this.playPauseButton.setFocusable(focusable);
     this.seekBar.setFocusable(focusable);
     this.seekBar.setFocusableInTouchMode(focusable);
     this.downloadButton.setFocusable(focusable);
@@ -171,8 +170,7 @@ public class AudioView extends FrameLayout implements AudioSlidePlayer.Listener 
   @Override
   public void setClickable(boolean clickable) {
     super.setClickable(clickable);
-    this.playButton.setClickable(clickable);
-    this.pauseButton.setClickable(clickable);
+    this.playPauseButton.setClickable(clickable);
     this.seekBar.setClickable(clickable);
     this.seekBar.setOnTouchListener(clickable ? null : new TouchIgnoringListener());
     this.downloadButton.setClickable(clickable);
@@ -181,8 +179,7 @@ public class AudioView extends FrameLayout implements AudioSlidePlayer.Listener 
   @Override
   public void setEnabled(boolean enabled) {
     super.setEnabled(enabled);
-    this.playButton.setEnabled(enabled);
-    this.pauseButton.setEnabled(enabled);
+    this.playPauseButton.setEnabled(enabled);
     this.seekBar.setEnabled(enabled);
     this.downloadButton.setEnabled(enabled);
   }
@@ -203,15 +200,9 @@ public class AudioView extends FrameLayout implements AudioSlidePlayer.Listener 
   }
 
   public void setTint(int foregroundTint, int backgroundTint) {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-      this.playButton.setBackgroundTintList(ColorStateList.valueOf(foregroundTint));
-      this.playButton.setImageTintList(ColorStateList.valueOf(backgroundTint));
-      this.pauseButton.setBackgroundTintList(ColorStateList.valueOf(foregroundTint));
-      this.pauseButton.setImageTintList(ColorStateList.valueOf(backgroundTint));
-    } else {
-      this.playButton.setColorFilter(foregroundTint, PorterDuff.Mode.SRC_IN);
-      this.pauseButton.setColorFilter(foregroundTint, PorterDuff.Mode.SRC_IN);
-    }
+    this.playPauseButton.addValueCallback(new KeyPath("**"),
+                                          LottieProperty.COLOR_FILTER,
+                                          new LottieValueCallback<>(new SimpleColorFilter(foregroundTint)));
 
     this.downloadButton.setColorFilter(foregroundTint, PorterDuff.Mode.SRC_IN);
     this.downloadProgress.setBarColor(foregroundTint);
@@ -230,49 +221,53 @@ public class AudioView extends FrameLayout implements AudioSlidePlayer.Listener 
   }
 
   private void togglePlayToPause() {
-    controlToggle.displayQuick(pauseButton);
-
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-      AnimatedVectorDrawable playToPauseDrawable = (AnimatedVectorDrawable)getContext().getDrawable(R.drawable.play_to_pause_animation);
-      pauseButton.setImageDrawable(playToPauseDrawable);
-      playToPauseDrawable.start();
-    }
+    startLottieAnimation(FORWARDS);
   }
 
   private void togglePauseToPlay() {
-    controlToggle.displayQuick(playButton);
-
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-      AnimatedVectorDrawable pauseToPlayDrawable = (AnimatedVectorDrawable)getContext().getDrawable(R.drawable.pause_to_play_animation);
-      playButton.setImageDrawable(pauseToPlayDrawable);
-      pauseToPlayDrawable.start();
-    }
+    startLottieAnimation(REVERSE);
   }
 
-  private class PlayClickedListener implements View.OnClickListener {
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+  private void startLottieAnimation(int direction) {
+    showPlayButton();
+
+    if (lottieDirection == direction) {
+      return;
+    }
+    lottieDirection = direction;
+
+    playPauseButton.pauseAnimation();
+    playPauseButton.setSpeed(direction * 2);
+    playPauseButton.resumeAnimation();
+  }
+
+  private void showPlayButton() {
+    downloadProgress.setInstantProgress(1);
+    downloadProgress.setVisibility(VISIBLE);
+    playPauseButton.setVisibility(VISIBLE);
+    controlToggle.displayQuick(progressAndPlay);
+  }
+
+  private class PlayPauseClickedListener implements View.OnClickListener {
+
     @Override
     public void onClick(View v) {
-      try {
-        Log.d(TAG, "playbutton onClick");
-        if (audioSlidePlayer != null) {
-          togglePlayToPause();
-          audioSlidePlayer.play(getProgress());
+      if (lottieDirection == REVERSE) {
+        try {
+          Log.d(TAG, "playbutton onClick");
+          if (audioSlidePlayer != null) {
+            togglePlayToPause();
+            audioSlidePlayer.play(getProgress());
+          }
+        } catch (IOException e) {
+          Log.w(TAG, e);
         }
-      } catch (IOException e) {
-        Log.w(TAG, e);
-      }
-    }
-  }
-
-  private class PauseClickedListener implements View.OnClickListener {
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    @Override
-    public void onClick(View v) {
-      Log.d(TAG, "pausebutton onClick");
-      if (audioSlidePlayer != null) {
-        togglePauseToPlay();
-        audioSlidePlayer.stop();
+      } else {
+        Log.d(TAG, "pausebutton onClick");
+        if (audioSlidePlayer != null) {
+          togglePauseToPlay();
+          audioSlidePlayer.stop();
+        }
       }
     }
   }
@@ -291,12 +286,16 @@ public class AudioView extends FrameLayout implements AudioSlidePlayer.Listener 
   }
 
   private class SeekBarModifiedListener implements SeekBar.OnSeekBarChangeListener {
+
+    private boolean wasPlaying;
+
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {}
 
     @Override
     public synchronized void onStartTrackingTouch(SeekBar seekBar) {
-      if (audioSlidePlayer != null && pauseButton.getVisibility() == View.VISIBLE) {
+      wasPlaying = isPlaying;
+      if (audioSlidePlayer != null && isPlaying) {
         audioSlidePlayer.stop();
       }
     }
@@ -304,7 +303,7 @@ public class AudioView extends FrameLayout implements AudioSlidePlayer.Listener 
     @Override
     public synchronized void onStopTrackingTouch(SeekBar seekBar) {
       try {
-        if (audioSlidePlayer != null && pauseButton.getVisibility() == View.VISIBLE) {
+        if (audioSlidePlayer != null && wasPlaying) {
           audioSlidePlayer.play(getProgress());
         }
       } catch (IOException e) {
