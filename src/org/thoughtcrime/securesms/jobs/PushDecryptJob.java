@@ -304,7 +304,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         else if (message.isGroupUpdate())       handleGroupMessage(content, message, smsMessageId);
         else if (message.isExpirationUpdate())  handleExpirationUpdate(content, message, smsMessageId);
         else if (isMediaMessage)                handleMediaMessage(content, message, smsMessageId);
-        else if (message.getBody().isPresent()) handleTextMessage(content, message, smsMessageId);
+        else if (message.getBody().isPresent()) handleTextMessage(content, message, smsMessageId, Optional.absent());
 
         if (message.getGroupInfo().isPresent() && groupDatabase.isUnknownGroup(GroupUtil.getEncodedId(message.getGroupInfo().get().getGroupId(), false))) {
           handleUnknownGroupMessage(content, message.getGroupInfo().get());
@@ -895,8 +895,9 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   }
 
   public void handleTextMessage(@NonNull SignalServiceContent content,
-                                 @NonNull SignalServiceDataMessage message,
-                                 @NonNull Optional<Long> smsMessageId)
+                                @NonNull SignalServiceDataMessage message,
+                                @NonNull Optional<Long> smsMessageId,
+                                @Nullable Optional<Long> messageServerIDOrNull)
       throws StorageFailedException
   {
     SmsDatabase database  = DatabaseFactory.getSmsDatabase(context);
@@ -928,6 +929,12 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       else                          threadId = null;
 
       if (smsMessageId.isPresent()) database.deleteMessage(smsMessageId.get());
+
+      if (insertResult.isPresent() && messageServerIDOrNull.isPresent()) {
+        long messageID = insertResult.get().getMessageId();
+        long messageServerID = messageServerIDOrNull.get();
+        DatabaseFactory.getLokiMessageDatabase(context).setServerID(messageID, messageServerID);
+      }
     }
 
     if (threadId != null) {

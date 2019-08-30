@@ -46,7 +46,7 @@ class LokiGroupChatPoller(private val context: Context, private val group: LokiG
 
     companion object {
         private val pollForNewMessagesInterval: Long = 4 * 1000
-        private val pollForDeletedMessagesInterval: Long = 32 * 60 * 1000
+        private val pollForDeletedMessagesInterval: Long = 20 * 1000
     }
 
     fun startIfNeeded() {
@@ -70,7 +70,7 @@ class LokiGroupChatPoller(private val context: Context, private val group: LokiG
                 val x2 = SignalServiceDataMessage(message.timestamp, x1, null, message.body)
                 val senderDisplayName = "${message.displayName} (...${message.hexEncodedPublicKey.takeLast(8)})"
                 val x3 = SignalServiceContent(x2, senderDisplayName, SignalServiceAddress.DEFAULT_DEVICE_ID, message.timestamp, false)
-                PushDecryptJob(context).handleTextMessage(x3, x2, Optional.absent())
+                PushDecryptJob(context).handleTextMessage(x3, x2, Optional.absent(), Optional.of(message.serverID))
             }
         }.fail {
             Log.d("Loki", "Failed to get messages for group chat with ID: ${group.serverID} on server: ${group.server}.")

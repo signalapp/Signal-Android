@@ -38,11 +38,11 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         private val lastMessageServerIDCacheIndex = "loki_api_last_message_server_id_cache_index"
         private val lastMessageServerID = "last_message_server_id"
         @JvmStatic val createLastMessageServerIDTableCommand = "CREATE TABLE $lastMessageServerIDCache ($lastMessageServerIDCacheIndex STRING PRIMARY KEY, $lastMessageServerID INTEGER DEFAULT 0);"
-        // First message server ID cache
-        private val firstMessageServerIDCache = "loki_api_first_message_server_id_cache"
-        private val firstMessageServerIDCacheIndex = "loki_api_first_message_server_id_cache_index"
-        private val firstMessageServerID = "first_message_server_id"
-        @JvmStatic val createFirstMessageServerIDTableCommand = "CREATE TABLE $firstMessageServerIDCache ($firstMessageServerIDCacheIndex STRING PRIMARY KEY, $firstMessageServerID INTEGER DEFAULT 0);"
+        // Last deletion server ID cache
+        private val lastDeletionServerIDCache = "loki_api_last_deletion_server_id_cache"
+        private val lastDeletionServerIDCacheIndex = "loki_api_last_deletion_server_id_cache_index"
+        private val lastDeletionServerID = "last_deletion_server_id"
+        @JvmStatic val createLastDeletionServerIDTableCommand = "CREATE TABLE $lastDeletionServerIDCache ($lastDeletionServerIDCacheIndex STRING PRIMARY KEY, $lastDeletionServerID INTEGER DEFAULT 0);"
     }
 
     override fun getSwarmCache(hexEncodedPublicKey: String): Set<LokiAPITarget>? {
@@ -125,19 +125,19 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         database.insertOrUpdate(lastMessageServerIDCache, row, "$lastMessageServerIDCacheIndex = ?", wrap(index))
     }
 
-    override fun getFirstMessageServerID(group: Long, server: String): Long? {
+    override fun getLastDeletionServerID(group: Long, server: String): Long? {
         val database = databaseHelper.readableDatabase
         val index = "$server.$group"
-        return database.get(firstMessageServerIDCache, "$firstMessageServerIDCacheIndex = ?", wrap(index)) { cursor ->
-            cursor.getInt(firstMessageServerID)
+        return database.get(lastDeletionServerIDCache, "$lastDeletionServerIDCacheIndex = ?", wrap(index)) { cursor ->
+            cursor.getInt(lastDeletionServerID)
         }?.toLong()
     }
 
-    override fun setFirstMessageServerID(group: Long, server: String, newValue: Long) {
+    override fun setLastDeletionServerID(group: Long, server: String, newValue: Long) {
         val database = databaseHelper.writableDatabase
         val index = "$server.$group"
-        val row = wrap(mapOf( firstMessageServerIDCacheIndex to index, firstMessageServerID to newValue.toString() ))
-        database.insertOrUpdate(firstMessageServerIDCache, row, "$firstMessageServerIDCacheIndex = ?", wrap(index))
+        val row = wrap(mapOf( lastDeletionServerIDCacheIndex to index, lastDeletionServerID to newValue.toString() ))
+        database.insertOrUpdate(lastDeletionServerIDCache, row, "$lastDeletionServerIDCacheIndex = ?", wrap(index))
     }
 }
 

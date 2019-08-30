@@ -67,7 +67,7 @@ class LokiRSSFeedPoller(private val context: Context, private val feed: LokiRSSF
                     val x1 = SignalServiceGroup(SignalServiceGroup.Type.UPDATE, id, null, null, null)
                     val x2 = SignalServiceDataMessage(timestamp, x1, null, body)
                     val x3 = SignalServiceContent(x2, "Loki", SignalServiceAddress.DEFAULT_DEVICE_ID, timestamp, false)
-                    PushDecryptJob(context).handleTextMessage(x3, x2, Optional.absent())
+                    PushDecryptJob(context).handleTextMessage(x3, x2, Optional.absent(), Optional.absent())
                 }
             } catch (exception: Exception) {
                 Log.d("Loki", "Couldn't update RSS feed with ID: $feed.id.")
