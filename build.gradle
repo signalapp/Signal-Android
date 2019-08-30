@@ -186,7 +186,7 @@ dependencies {
     implementation "com.prof.rssparser:rssparser:$rss_parser_version"
 }
 
-def canonicalVersionCode = 10
+def canonicalVersionCode = 11
 def canonicalVersionName = "1.1.0"
 
 def postFixSize = 10
