@@ -23,17 +23,17 @@
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">Pichana</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Paskachikta manachu rikuchina kan</string>
-  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Kayka Signal unanchata, shinallata chaski willachitapash chaysiri rikuchinka.</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Kayka Loki Messenger unanchata, shinallata chaski willachitapash chaysiri rikuchinka.</string>
   <string name="ApplicationPreferencesActivity_disable">Mana rikuchina</string>
   <string name="ApplicationPreferencesActivity_unregistering">Llukshirikunki</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Signal ukumanta anchurikunki...</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Chaskikunata, kayachikunatapash Signal ukumanta anchuchinayanchu</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Kayka chaskikunata Signal ukumanta mana rikuchinkachu, servidor ukupi tiyashkakunata pichashpa. Kutinlla Signalta charinkapak munashpaka, kutinmi kikinpa williwilliwan killkarina kanki.</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Loki Messenger ukumanta anchurikunki...</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Chaskikunata, kayachikunatapash Loki Messenger ukumanta anchuchinayanchu</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Kayka chaskikunata Signal ukumanta mana rikuchinkachu, servidor ukupi tiyashkakunata pichashpa. Kutinlla Loki Messengerta charinkapak munashpaka, kutinmi kikinpa williwilliwan killkarina kanki.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">¡Mana servidor ukuman yaykuyta ushankichu!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS paskashkakunami kan</string>
-  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Kay Signal ukupi SMS chayamuchun munashpaka kaypi llapipay</string>
+  <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Kay Loki Messenger ukupi SMS chayamuchun munashpaka kaypi llapipay</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS mana rikurinakunchu</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Signal kikinpa SMS aplicación  tikrachun munashpaka kaypi llapipay</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Loki Messenger kikinpa SMS aplicación  tikrachun munashpaka kaypi llapipay</string>
   <string name="ApplicationPreferencesActivity_on">hapichishka</string>
   <string name="ApplicationPreferencesActivity_On">Hapichishka</string>
   <string name="ApplicationPreferencesActivity_off">wañuchishka</string>
@@ -54,10 +54,10 @@
   <string name="DraftDatabase_Draft_quote_snippet">(kutichina)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Kayta rikuchinkapakka mana aplicacionta taririnchu.</string>
-  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal ari nichun munanmi shuyuman, uyayman, shuyukuyurikmanpash yaykunkapak, shinapash mana arinirishkachu.  \"Menú de configuración\" ukuman yaykushpa \"Permisos\" nikukta llapipay, \"Almacenamiento\" paskarichun.</string>
-  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal ari nichun munanmi kikinpa yupaymashikunapaman yaykunkapak, shinapash mana arinirishkachu. \"Menú de configuración\" ukuman yaykushpa \"Permisos\" nikukta llapipay, \"Contactos\" paskarichun.</string>
-  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal ari nichun munanmi kikin maypikakta yachankapak,  shinapash mana arinirishkachu. \"Menú de configuración\" ukuman yaykushpa \"Permisos\" nikukta llapipay, \"Ubicación\" paskarichun.</string>
-  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal ari nichun munanmi kikinpa shuyullukchikman yaykunkapak, shinapash mana arinirishkachu. \"Menú de configuración\" ukuman yaykushpa \"Permisos\" nikukta llapipay, \"Cámara\" paskarichun.</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Loki Messenger ari nichun munanmi shuyuman, uyayman, shuyukuyurikmanpash yaykunkapak, shinapash mana arinirishkachu.  \"Menú de configuración\" ukuman yaykushpa \"Permisos\" nikukta llapipay, \"Almacenamiento\" paskarichun.</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Loki Messenger ari nichun munanmi kikinpa yupaymashikunapaman yaykunkapak, shinapash mana arinirishkachu. \"Menú de configuración\" ukuman yaykushpa \"Permisos\" nikukta llapipay, \"Contactos\" paskarichun.</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Loki Messenger ari nichun munanmi kikin maypikakta yachankapak,  shinapash mana arinirishkachu. \"Menú de configuración\" ukuman yaykushpa \"Permisos\" nikukta llapipay, \"Ubicación\" paskarichun.</string>
+  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Loki Messenger ari nichun munanmi kikinpa shuyullukchikman yaykunkapak, shinapash mana arinirishkachu. \"Menú de configuración\" ukuman yaykushpa \"Permisos\" nikukta llapipay, \"Cámara\" paskarichun.</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">¡Uyayta mana uyay usharinchu!</string>
   <!--BlockedContactsActivity-->
@@ -75,7 +75,7 @@
   <string name="ClearProfileActivity_remove_profile_photo">Ñawi shuyuta anchuchinayanchu</string>
   <!--CommunicationActions-->
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Kikinpa yupay wakaychik %1$s mushukyarishkami. Kayka willakunmi shukkuna yaykunkapak munakukta %2$s, mana kashpaka Signal aplicaciontami kutin churashkanki.</string>
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Kikinpa yupay wakaychik %1$s mushukyarishkami. Kayka willakunmi shukkuna yaykunkapak munakukta %2$s, mana kashpaka Loki Messenger aplicaciontami kutin churashkanki.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Kikinpa yupay wakaychikta kay yupaymashiwan kutin rikunayanchu.</string>
   <string name="ConfirmIdentityDialog_accept">Arinina</string>
   <!--ContactsCursorLoader-->
@@ -84,7 +84,7 @@
   <string name="ContactsCursorLoader_groups">Tantanakushka mashikuna</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Chaski  %s</string>
-  <string name="ContactsDatabase_signal_call_s">%s Signalwan kayachipay</string>
+  <string name="ContactsDatabase_signal_call_s">%s Loki Messengerwan kayachipay</string>
   <!--ContactNameEditActivity-->
   <string name="ContactNameEditActivity_given_name">Shuti</string>
   <string name="ContactNameEditActivity_family_name">Ayllushuti</string>
@@ -104,7 +104,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted">Mana rirkachu, ashtawan yachankapak munashpaka kaypi llapipay</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Mana pakashka SMS killkashkaman yaykunkapak munankichu</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Pakashka MMS killkashkaman yaykunkapak munankichu.</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Kay chaskika <b>mana </b> pakalla rinkachu, kikinpa yupaymashika ña mana Signal ukupi kanchu.\n\nMana pakashka chaskita kachankapak munankichu</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Kay chaskika <b>mana </b> pakalla rinkachu, kikinpa yupaymashika ña mana Loki Messenger ukupi kanchu.\n\nMana pakashka chaskita kachankapak munankichu</string>
   <string name="ConversationItem_unable_to_open_media">Kayta paskankapakka mana aplicacionta taririnchu.</string>
   <string name="ConversationItem_copied_text">Chayshinayarka %s</string>
   <string name="ConversationItem_from_s">paypakmanta %s</string>
@@ -129,7 +129,7 @@
   <string name="ConversationActivity_transport_insecure_sms">SMS mana allikakta yacharinchu</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS mana allikakta yacharinchu</string>
   <string name="ConversationActivity_transport_signal">Loki Messenger</string>
-  <string name="ConversationActivity_lets_switch_to_signal">Signal ukuman yallishunchik: %1$s</string>
+  <string name="ConversationActivity_lets_switch_to_signal">Loki Messenger ukuman yallishunchik: %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Kaywan rimarishun: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Tantanakuymanta mana llukshita usharirkachu</string>
   <string name="ConversationActivity_specify_recipient">Ama shina kashpa, shuk yupaymashita akllapay</string>
@@ -140,13 +140,13 @@
   <string name="ConversationActivity_quick_camera_unavailable">Shuyullukchik illanmi</string>
   <string name="ConversationActivity_unable_to_record_audio">¡Uyayka mana rurarirkachu!</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Nima aplicación mana tiyanchu, kikinpa antahillaypi tinki ushankapak.</string>
-  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Chaski uyayta kachankapak Signal ukuta rimachikman yaykuchun saki.</string>
-  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal ari nichun munanmi kikinpa Rimachikman yaykunkapak, shinapash mana arinirishkachu. \"Menú de configuración\" ukuman yaykushpa \"Permisos\" nikukta llapipay, \"Micrófono\" paskarichun.</string>
-  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">%s yupaymashita kayachinkapakka, Signal mutsunmi rimachikman shinallata shuyullukchikman yaykunkapak.</string>
-  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal ari nichun munanmi kikinpa Rimachikman Shuyullukchimanpash %s kayankapak, shinapash mana arinirishkachu. \"Menú de configuración\" ukuman yaykushpa \"Permisos\" nikukta llapipay, \"Micrófono\" y \"Cámara\" paskarichun.</string>
-  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Shuyuta, shinallata shuyukuyurikta hapinkapakka, shuyullukchikman Signalta yaykuchun sakipay.</string>
-  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal ari nichun munanmi kikinpa shuyullukchikman yaykunkapak, shuyukunata, shuyukuyurikkunatapash llukchinkapak, shinapash mana arinirishkachu. \"Menú de configuración\" ukuman yaykushpa \"Permisos\" nikukta llapipay, \"Cámara\" paskarichun.</string>
-  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal ari nichun munanmi shuyullukchikman yaykunkapak, shuyuta shinallata shuyukurikta llukchinkapak.</string>
+  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Chaski uyayta kachankapak Loki Messenger ukuta rimachikman yaykuchun saki.</string>
+  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Loki Messenger ari nichun munanmi kikinpa Rimachikman yaykunkapak, shinapash mana arinirishkachu. \"Menú de configuración\" ukuman yaykushpa \"Permisos\" nikukta llapipay, \"Micrófono\" paskarichun.</string>
+  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">%s yupaymashita kayachinkapakka, Loki Messenger mutsunmi rimachikman shinallata shuyullukchikman yaykunkapak.</string>
+  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Loki Messenger ari nichun munanmi kikinpa Rimachikman Shuyullukchimanpash %s kayankapak, shinapash mana arinirishkachu. \"Menú de configuración\" ukuman yaykushpa \"Permisos\" nikukta llapipay, \"Micrófono\" y \"Cámara\" paskarichun.</string>
+  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Shuyuta, shinallata shuyukuyurikta hapinkapakka, shuyullukchikman Loki Messengerta yaykuchun sakipay.</string>
+  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Loki Messenger ari nichun munanmi kikinpa shuyullukchikman yaykunkapak, shuyukunata, shuyukuyurikkunatapash llukchinkapak, shinapash mana arinirishkachu. \"Menú de configuración\" ukuman yaykushpa \"Permisos\" nikukta llapipay, \"Cámara\" paskarichun.</string>
+  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Loki Messenger ari nichun munanmi shuyullukchikman yaykunkapak, shuyuta shinallata shuyukurikta llukchinkapak.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s%2$s</string>
   <string name="ConversationActivity_yes">Ari</string>
   <string name="ConversationActivity_no">Mana</string>
@@ -183,7 +183,7 @@
     <item quantity="other">%1$d kimichichishkakunata  allichik ukupi allichirikun...</item>
   </plurals>
   <string name="ConversationFragment_pending">Paktarinara...</string>
-  <string name="ConversationFragment_push">Tukuywillay (Signal)</string>
+  <string name="ConversationFragment_push">Tukuywillay (Loki Messenger)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Pichanakunchik</string>
@@ -254,28 +254,28 @@
   <string name="DocumentView_unknown_file">Mana riksishka panka</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Google Play mana yanapay paktaymanta ashtawan allichipay</string>
-  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Kay antahillayka mana Google Play yanapayta chaski ushanchu. Kaypi llapishpa riti mirachita anchuchi, Signal chaskita ushachun kikin na internetpi kakpipash.</string>
+  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Kay antahillayka mana Google Play yanapayta chaski ushanchu. Kaypi llapishpa riti mirachita anchuchi, Loki Messenger chaskita ushachun kikin na internetpi kakpipash.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Payman kachay</string>
   <!--ExperienceUpgradeActivity-->
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Signalman allishamushka kapay.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSegure shinallata RedPhone kunanka shukllashina chaski aplicacionmi kan, imakupapash: Signal.</string>
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">¡Signalman allishamushka kapay!</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSegure kunanka Signalmi kan.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Loki Messengerman allishamushka kapay.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSegure shinallata RedPhone kunanka shukllashina chaski aplicacionmi kan, imakupapash: Loki Messenger.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">¡Loki Messengerman allishamushka kapay!</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSegure kunanka Loki Messengermi kan.</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSegure shinallata RedPhone kunanka shukllashina aplicacionmi kan, riksinkapakka kaypi llapipay.</string>
   <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Alli shuyukuyuri kayachikunata napapay.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Kunanka Signal ukupika shuyukuyurik kayachita alli rurayta ushankimi. Kallarilla shuk kayaywan, kay shuyukuyurikpi llapishhpa makiwan napapay.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Kunanka Signal ukupika shuyukuyurik kayachikta alli rurayta ushankimi.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Kunanka Signal ukupika shuyukayachika alli rurayta ushanki. Kaypi llapi kallarinkapak.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Kunanka Loki Messenger ukupika shuyukuyurik kayachita alli rurayta ushankimi. Kallarilla shuk kayaywan, kay shuyukuyurikpi llapishhpa makiwan napapay.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Kunanka Loki Messenger ukupika shuyukuyurik kayachikta alli rurayta ushankimi.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Kunanka Loki Messenger ukupika shuyukayachika alli rurayta ushanki. Kaypi llapi kallarinkapak.</string>
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Shuyurinkapak ñachu kanki</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Kunanka kikinpa shuyuta, kallarik shuti willaywan riksichita ushankimi Signal ukupi mashikunaman</string>
-  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signalpa kallariwillaykunaka kaypimi kan</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Kunanka kikinpa shuyuta, kallarik shuti willaywan riksichita ushankimi Loki Messenger ukupi mashikunaman</string>
+  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Loki Messengerpa kallariwillaykunaka kaypimi kan</string>
   <string name="ExperienceUpgradeActivity_no_thanks">Manara, yupaychani</string>
   <string name="ExperienceUpgradeActivity_got_it">Chaskishka</string>
   <!--GcmBroadcastReceiver-->
   <!--GcmRefreshJob-->
-  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">¡Manapacha Signal ukuman yaykuyta usharinchu!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal mana Google Play Services ukuwan killkarita usharkachu. Chaskita shinallata kayachitapash Signal ukupi anchuchishkami, kutinlla killkaripay Configuración &gt; Avanzado ukuman yaykushpa.</string>
+  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">¡Manapacha Loki Messenger ukuman yaykuyta usharinchu!</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal mana Google Play Services ukuwan killkarita usharkachu. Chaskita shinallata kayachitapash Loki Messenger ukupi anchuchishkami, kutinlla killkaripay Configuración &gt; Avanzado ukuman yaykushpa.</string>
   <!--GiphyActivity-->
   <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Mana tukuy GIF alli rikurita ushanchu</string>
   <!--GiphyFragmentPageAdapter-->
@@ -286,15 +286,15 @@
   <string name="GroupCreateActivity_actionbar_edit_title">Tantanakuyta mushukyachina</string>
   <string name="GroupCreateActivity_group_name_hint">Tantanakuypa shuti</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Mushuk MMS tantanakuy </string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">Akllashka yupaymashika Signal tantanakuy ukupi mana kayta ushanchu, chaymanta kaypika MMS tantanakuyllami kanka.</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">Chaskita, kayachitapash ushankapakka mana Signal ukupi killkarishkachu kanki. Chaymanta Signal tantanakuy illarishkami kan. Kutinlla killkarinata yuyapay Configuración &gt; Avanzado ukuman yaykushpa.</string>
+  <string name="GroupCreateActivity_contacts_dont_support_push">Akllashka yupaymashika Loki Messenger tantanakuy ukupi mana kayta ushanchu, chaymanta kaypika MMS tantanakuyllami kanka.</string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">Chaskita, kayachitapash ushankapakka mana Signal ukupi killkarishkachu kanki. Chaymanta Loki Messenger tantanakuy illarishkami kan. Kutinlla killkarinata yuyapay Configuración &gt; Avanzado ukuman yaykushpa.</string>
   <string name="GroupCreateActivity_contacts_no_members">¡Shuk mashillatapash tantanakuy ukupi mutsurinki!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Tantanakuy ukumanta shuk mashika killkakatinkapak mana alli yupayta charinchu. Ama shina kashpa, allichipay mana kashpaka pichapay chay yupaymashita, shinashpa kutinlla kallaripay.</string>
   <string name="GroupCreateActivity_avatar_content_description">Tantanakuypa shuyuta ruray</string>
   <string name="GroupCreateActivity_menu_apply_button">Arinina</string>
   <string name="GroupCreateActivity_creating_group">Wiñarikun %1$s...</string>
   <string name="GroupCreateActivity_updating_group">Mushukyachishpa %1$s...</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Mana yaykuchita usharirkachu %1$s mana Signal yupay mashichu kan.</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Mana yaykuchita usharirkachu %1$s mana Loki Messenger yupay mashichu kan.</string>
   <string name="GroupCreateActivity_loading_group_details">Tantanakuypa willaykunata sikachinakunchik...</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Ñami tantakuy ukupi kan.</string>
   <!--GroupShareProfileView-->
@@ -314,7 +314,7 @@
   <string name="InviteActivity_sending">Kachakun...</string>
   <string name="InviteActivity_heart_content_description">Shunku</string>
   <string name="InviteActivity_invitations_sent">¡Kumpitaykunata kachashka!</string>
-  <string name="InviteActivity_invite_to_signal">Signal ukuman kayachiy</string>
+  <string name="InviteActivity_invite_to_signal">Loki Messenger ukuman kayachiy</string>
   <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">MASHIMAN %d KILLKANA SMS</item>
     <item quantity="other">MASHIKUNAMAN %d  SMS KACHAY</item>
@@ -323,7 +323,7 @@
     <item quantity="one">Kayachita SMS %d kachanayanchu</item>
     <item quantity="other">%d SMS kayachikunata kachanayanchu</item>
   </plurals>
-  <string name="InviteActivity_lets_switch_to_signal">Signalman yallipashun: %1$s</string>
+  <string name="InviteActivity_lets_switch_to_signal">Loki Messengerman yallipashun: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Kaykunata yallichirinkapakka nima aplicación illanmi yarin.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Kikinpa alli mashikunaka, mana shinalla rimarichun sakinchu </string>
   <!--Job-->
@@ -351,9 +351,9 @@
   <string name="MediaOverviewActivity_Documents">Pankakuna</string>
   <string name="MediaOverviewActivity_Select_all">Tukuyta akllana</string>
   <!--- NotificationBarManager-->
-  <string name="NotificationBarManager_signal_call_in_progress">Kay pachapi Signal kayachikun</string>
-  <string name="NotificationBarManager__establishing_signal_call">Signalpi kayachita rurarikun</string>
-  <string name="NotificationBarManager__incoming_signal_call">Signal ukuman kayachimukun</string>
+  <string name="NotificationBarManager_signal_call_in_progress">Kay pachapi Loki Messenger kayachikun</string>
+  <string name="NotificationBarManager__establishing_signal_call">Loki Messengerpi kayachita rurarikun</string>
+  <string name="NotificationBarManager__incoming_signal_call">Loki Messenger ukuman kayachimukun</string>
   <string name="NotificationBarManager__deny_call">Kayachita mana chaskina</string>
   <string name="NotificationBarManager__answer_call">Kayachita kutichipay</string>
   <string name="NotificationBarManager__end_call">Kayachita illachipay</string>
@@ -368,7 +368,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Tukuylla uyayrikuchik</string>
   <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Shuk pakalla chaski chayamurka ñawpa Signalmanta, mana paskarita usharinchu. Maykan kachamushkaman Signalta mushukyachichun mañapay, chaski chayamuchun.</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Shuk pakalla chaski chayamurka ñawpa Signalmanta, mana paskarita usharinchu. Maykan kachamushkaman Loki Messengerta mushukyachichun mañapay, chaski chayamuchun.</string>
   <string name="MessageRecord_left_group"> Tantanakuymanta  llukshirka.</string>
   <string name="MessageRecord_you_updated_group">Tantakuyta mushukyachishkanki.</string>
   <string name="MessageRecord_you_called">Kayarka</string>
@@ -378,7 +378,7 @@
   <string name="MessageRecord_s_called_you">%s kayachimurkami</string>
   <string name="MessageRecord_called_s">%s kayachirkankimi  </string>
   <string name="MessageRecord_missed_call_from">Kayay mana kutichishka %s</string>
-  <string name="MessageRecord_s_joined_signal">¡%s Signalpimi kan!</string>
+  <string name="MessageRecord_s_joined_signal">¡%s Loki Messengerpimi kan!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Chaskikunata chinkachinata anchuchishkankimi.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s Chaskikunata chinkachinata anchuchishkami.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Chaskita anchuchinkapak pachata akllashkanki %1$s</string>
@@ -408,9 +408,9 @@
   <string name="DeviceProvisioningActivity_content_progress_key_error">QR unancha mana  allichu.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Kishpichiway, ñami tawka antahillaykunata charinki, wakinta anchuchipay.</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Kishpichiway, QR unanchaka mana allichu.</string>
-  <string name="DeviceProvisioningActivity_link_a_signal_device">Shuk Signal antahillayta kimichinayanchu</string>
-  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Signal ukuman shuk antahillayta kimichinkapak munakunki yarin \"3\". Kikin allita rurankapak Signal ukuman yaykushpa paskarina unanchata riksichipay.</string>
-  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal ari nichun munanmi kikinpa shuyullukchikman yaykushpa pakalla QR  unanchata hapinkapak,  shinapash mana arinirishkachu. Menú de configuración ukuman katishpa \"Permisos\" nikukta llapipay, \"Cámara\" paskarichun.</string>
+  <string name="DeviceProvisioningActivity_link_a_signal_device">Shuk Loki Messenger antahillayta kimichinayanchu</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Signal ukuman shuk antahillayta kimichinkapak munakunki yarin \"3\". Kikin allita rurankapak Loki Messenger ukuman yaykushpa paskarina unanchata riksichipay.</string>
+  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Loki Messenger ari nichun munanmi kikinpa shuyullukchikman yaykushpa pakalla QR  unanchata hapinkapak,  shinapash mana arinirishkachu. Menú de configuración ukuman katishpa \"Permisos\" nikukta llapipay, \"Cámara\" paskarichun.</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">QR unanchata mana shuyurikchayta ushanchikchu, manara shuyurikcha ari nikpika.</string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">Chaski anchurichun</string>
@@ -418,7 +418,7 @@
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Kay rimaripi chaski kachashka, chayamushkakunapash, %s kachashka hipaka chinkarinkami.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Pakalla paskachikta killkapay</string>
-  <string name="PassphrasePromptActivity_watermark_content_description">Signalpa uchilla unancha</string>
+  <string name="PassphrasePromptActivity_watermark_content_description">Loki Messengerpa uchilla unancha</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Pakalla killkayta kachapay</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">¡Pakalla killkayka mana chay kanchu!</string>
   <!--PlayServicesProblemFragment-->
@@ -468,7 +468,7 @@ riksichinami kanki
 (%s) mana alli kanchu
 </string>
   <string name="RegistrationActivity_missing_google_play_services">Servicios de Google Play illanmi</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Kay antahillayka mana tarinchu Google Play yanapayta. Shinapash Signal ukuka paskarinrami ashallata riksichinkapak, .\n\nMana allipacha mashi kashpaka, ROM Android mushukyachishkata  mana rikunata ushankichu, shina kakpika support@signal.org yanapayta maskapay llakita allichinkapak.</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Kay antahillayka mana tarinchu Google Play yanapayta. Shinapash Loki Messenger ukuka paskarinrami ashallata riksichinkapak, .\n\nMana allipacha mashi kashpaka, ROM Android mushukyachishkata  mana rikunata ushankichu, shina kakpika support@signal.org yanapayta maskapay llakita allichinkapak.</string>
   <string name="RegistrationActivity_i_understand">Hamutanimi</string>
   <string name="RegistrationActivity_play_services_error">\"Play Services\" wakllimi</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services mushukyakunmi mana kashpaka ashalla pachata wañushkami. Kutinlla kallaripay.</string>
@@ -476,9 +476,9 @@ riksichinami kanki
   <string name="RegistrationActivity_no_browser">Mana tinkirikta mana paskayta usharinchu. Mana internet panka tiyanchu.</string>
   <string name="RegistrationActivity_more_information">Ashtawan willaykuna</string>
   <string name="RegistrationActivity_less_information">Pishiyachik willaykunata</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal mutsunmi kikinpa mashi yupaykunaman yaykushpa mashikunawan rimarinkapak, killkarinkapak shinallata alli kayachikunata rurankapak.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Loki Messenger mutsunmi kikinpa mashi yupaykunaman yaykushpa mashikunawan rimarinkapak, killkarinkapak shinallata alli kayachikunata rurankapak.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Mana tinkiritay usharinchu. Rikupay internet tiyanchu, shinashpa kutinlla kallarinkapak.</string>
-  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Pankalla kikinpa yupayta riksinkapak Signal paymanta pakalla yupayta chaskita ushan, killkana SMS paskarya kakpi.</string>
+  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Pankalla kikinpa yupayta riksinkapak Loki Messenger paymanta pakalla yupayta chaskita ushan, killkana SMS paskarya kakpi.</string>
   <string name="RegistrationActivity_continue">Katina</string>
   <string name="RegistrationActivity_call">Kayachina</string>
   <!--ScribbleActivity-->
@@ -490,13 +490,13 @@ riksichinami kanki
   <string name="SearchFragment_header_messages">Chaskikuna</string>
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Yupaymashiman churay</string>
-  <string name="SharedContactDetailsActivity_invite_to_signal">Signal ukuman kayachiy</string>
-  <string name="SharedContactDetailsActivity_signal_message">Signal chaski</string>
-  <string name="SharedContactDetailsActivity_signal_call">Signalwan kayachipay</string>
+  <string name="SharedContactDetailsActivity_invite_to_signal">Loki Messenger ukuman kayachiy</string>
+  <string name="SharedContactDetailsActivity_signal_message">Loki Messenger chaski</string>
+  <string name="SharedContactDetailsActivity_signal_call">Loki Messengerwan kayachipay</string>
   <!--SharedContactView-->
   <string name="SharedContactView_add_to_contacts">Yupaymashiman churay</string>
-  <string name="SharedContactView_invite_to_signal">Signal ukuman kayachiy</string>
-  <string name="SharedContactView_message">Signal chaski</string>
+  <string name="SharedContactView_invite_to_signal">Loki Messenger ukuman kayachiy</string>
+  <string name="SharedContactView_message">Loki Messenger chaski</string>
   <!--Slide-->
   <string name="Slide_image">Shuyu</string>
   <string name="Slide_audio">Uyariy</string>
@@ -520,7 +520,7 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <string name="ThreadRecord_called_you">Kayachirka</string>
   <string name="ThreadRecord_missed_call">Kayayta mana kutichishka</string>
   <string name="ThreadRecord_media_message">Willachik hillay chaski</string>
-  <string name="ThreadRecord_s_is_on_signal">¡%s Signalpimi kan!</string>
+  <string name="ThreadRecord_s_is_on_signal">¡%s Loki Messengerpimi kan!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Chaski chinkachik wichashka</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Chaski anchurichun pachata kushkanchik%s</string>
   <string name="ThreadRecord_safety_number_changed">Alli yupay mushukyashkami</string>
@@ -528,8 +528,8 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <string name="ThreadRecord_you_marked_verified">Ari nishkanki </string>
   <string name="ThreadRecord_you_marked_unverified">Manara ari ninki</string>
   <!--UpdateApkReadyListener-->
-  <string name="UpdateApkReadyListener_Signal_update">Signal mushukyarina tiyan</string>
-  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Mushukyachina Signal tiyan, mushukyachinkapak kaypi llapi.</string>
+  <string name="UpdateApkReadyListener_Signal_update">Loki Messenger mushukyarina tiyan</string>
+  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Mushukyachina Loki Messenger tiyan, mushukyachinkapak kaypi llapi.</string>
   <!--UnknownSenderView-->
   <string name="UnknownSenderView_block_s">Anchuchinayanchu %s</string>
   <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Anchuchishka yupaymashikuna mana killkayta kayachita ushankachu.</string>
@@ -544,14 +544,14 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <string name="UnverifiedSendDialog_send_message">Chaskita kachanayanchu</string>
   <string name="UnverifiedSendDialog_send">Kachana</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Kikinpa yupaymashi manara mushukyachin Signalta, Utiyashpa mushukyachichun mañapay manara kikinta pakalla yupayta mañakpillata.</string>
-  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Kikinpa yupaymashi shuk mana alli Signal QR unanchawan kakun. Mañanchi mushukyachichun chimpapurankapak.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Kikinpa yupaymashi manara mushukyachin Loki Messengerta, Utiyashpa mushukyachichun mañapay manara kikinta pakalla yupayta mañakpillata.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Kikinpa yupaymashi shuk mana alli Loki Messenger QR unanchawan kakun. Mañanchi mushukyachichun chimpapurankapak.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">QR unancha riksichka mana riksina pakalla yupayta kunchu. Kutinlla riksichishpa rurapay.</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">Pakalla yupayta riksichipay kaywan...</string>
-  <string name="VerifyIdentityActivity_our_signal_safety_number">Ñukanchikpa Signal pakalla yupaykuna:</string>
+  <string name="VerifyIdentityActivity_our_signal_safety_number">Ñukanchikpa Loki Messenger pakalla yupaykuna:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Kaykunata kachankapakka nima aplicación illanmi yarin.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Mana pakalla yupayta tarirkanchikchu chimpapurankapak panka allichik ukuwan.</string>
-  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal ari nichun munanmi kikinpa shuyullukchikman yaykushpa pakalla unancha QR hapinkapak,  shinapash mana arinirishkachu. Katipay menú de configuración ukuman, \"Permisos\" nikukta llapipay, \"Cámara\" paskarichun.</string>
+  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Loki Messenger ari nichun munanmi kikinpa shuyullukchikman yaykushpa pakalla unancha QR hapinkapak,  shinapash mana arinirishkachu. Katipay menú de configuración ukuman, \"Permisos\" nikukta llapipay, \"Cámara\" paskarichun.</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">QR unanchata mana rikuyta ushankichu, shuyurikchata manara ari nishpaka.</string>
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Mana alli chaski pakashka</string>
@@ -571,13 +571,13 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Paskankapak llapi.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Paskankapak llapi, mana kashpaka wichanapi wichankapak  llapi.</string>
-  <string name="KeyCachingService_passphrase_cached">Signal yaykunallami kan.</string>
-  <string name="KeyCachingService_lock">Signalta pakana</string>
+  <string name="KeyCachingService_passphrase_cached">Loki Messenger yaykunallami kan.</string>
+  <string name="KeyCachingService_lock">Loki Messengerta pakana</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Kikin</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Tiyashkakunapa imashinakayka mana chaypurachu. </string>
   <string name="MediaPreviewActivity_draft">Pichak</string>
-  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal ari nichun munanmi kanllapi allichina ukuman (SDcard, USB) yaykushpa allichinkapak, shinapash mana arinirishkachu.  \"Menú de configuración\" ukuman yaykushpa \"Permisos\" nikukta llapipay, \"Almacenamiento\" paskarichun.</string>
+  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Loki Messenger ari nichun munanmi kanllapi allichina ukuman (SDcard, USB) yaykushpa allichinkapak, shinapash mana arinirishkachu.  \"Menú de configuración\" ukuman yaykushpa \"Permisos\" nikukta llapipay, \"Almacenamiento\" paskarichun.</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Kanllapi allichita mana ushanchikchu kikin mana arinikpika.</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Chaskita pichanayanchu</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Kayka kay chaskita pichankapachami.</string>
@@ -593,10 +593,10 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <string name="MessageNotifier_mark_read">Killkakatishkami nishpa unanchay</string>
   <string name="MessageNotifier_media_message">Multimedia chaski</string>
   <string name="MessageNotifier_reply">Kutichina</string>
-  <string name="MessageNotifier_signal_message">Signal chaski</string>
+  <string name="MessageNotifier_signal_message">Loki Messenger chaski</string>
   <string name="MessageNotifier_unsecured_sms">Kay killkaska SMS mana pakallachu</string>
-  <string name="MessageNotifier_pending_signal_messages">Signal chaskikuna shuyanakun</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">Signal chaskikuna shuyanakukta charinki, paskankapak uryakuchinkapakpash llapipay</string>
+  <string name="MessageNotifier_pending_signal_messages">Loki Messenger chaskikuna shuyanakun</string>
+  <string name="MessageNotifier_you_have_pending_signal_messages">Loki Messenger chaskikuna shuyanakukta charinki, paskankapak uryakuchinkapakpash llapipay</string>
   <string name="MessageNotifier_contact_message">%1$s%2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Yupay mashi</string>
   <!--Notification Channels-->
@@ -610,7 +610,7 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <string name="NotificationChannel_group_messages">Chaskikuna </string>
   <string name="NotificationChannel_missing_display_name">Mana riksishka</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal  pakashka kakpika ñapash kutichitaka mana usharinchu</string>
+  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Loki Messenger  pakashka kakpika ñapash kutichitaka mana usharinchu</string>
   <string name="QuickResponseService_problem_sending_message">Chaskita kachakushpa shuk llakimi rikurirka</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_saved_to">Kaypi allichishka %s</string>
@@ -625,14 +625,14 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <!--TransferControlView-->
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">Antahillayka ña mana allichishkachu kan</string>
-  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Kay llakika, kikinpa williwilli yupayta, shuk mushuk antahillaywan Signal ukupi allichishkamantami kanka. Kutin killkarinkapak llapipay.</string>
+  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Kay llakika, kikinpa williwilli yupayta, shuk mushuk antahillaywan Loki Messenger ukupi allichishkamantami kanka. Kutin killkarinkapak llapipay.</string>
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">Shuyukuyurita mana purichi usharkachu.</string>
   <!--WebRtcCallActivity-->
-  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">%skayachikukta kutichinkapakka, rimachikman Signal yaykuchun sakipay. </string>
-  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal ari nichun munanmi kikinpa rimachikman shuyullukchimanpash kayankapak, shinapash mana arinirishkachu. \"Menú de configuración\" ukuman yaykushpa \"Permisos\" nikukta llapipay, \"Micrófono\" y \"Cámara\" paskarichun. </string>
+  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">%skayachikukta kutichinkapakka, rimachikman Loki Messenger yaykuchun sakipay. </string>
+  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Loki Messenger ari nichun munanmi kikinpa rimachikman shuyullukchimanpash kayankapak, shinapash mana arinirishkachu. \"Menú de configuración\" ukuman yaykushpa \"Permisos\" nikukta llapipay, \"Micrófono\" y \"Cámara\" paskarichun. </string>
   <!--WebRtcCallScreen-->
-  <string name="WebRtcCallScreen_new_safety_numbers">Kikin paywan rimarinkapak yupay wakaychishkaka  %1$smushukyarishkami. Kayka willakunmi shukkuna yaykunkapak munakukta, mana kashpaka %2$sSignal aplicacionmi kutin churarishka.</string>
+  <string name="WebRtcCallScreen_new_safety_numbers">Kikin paywan rimarinkapak yupay wakaychishkaka  %1$smushukyarishkami. Kayka willakunmi shukkuna yaykunkapak munakukta, mana kashpaka %2$sLoki Messenger aplicacionmi kutin churarishka.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Kikinpa yupay wakaychikta kay yupay mashiwan kutin rikunkapak munankiman.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Mushuk wakaychik yupay</string>
   <string name="WebRtcCallScreen_accept">Arinina</string>
@@ -667,15 +667,15 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Yupay mashipa shuyu</string>
   <!--ContactSelectionListFragment-->
-  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal ari nichun munanmi mashi yupaykunata, kikinpa mashi yupaykunata rikuchinkapak, shinapash mana arinirishkachu. \"Menú de configuración\" ukuman yaykushpa \"Permisos\" nikukta llapipay, \"Contactos\" paskarichun.</string>
+  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Loki Messenger ari nichun munanmi mashi yupaykunata, kikinpa mashi yupaykunata rikuchinkapak, shinapash mana arinirishkachu. \"Menú de configuración\" ukuman yaykushpa \"Permisos\" nikukta llapipay, \"Contactos\" paskarichun.</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Mashi yupaykunata uryakuchita mana usharirkachu, internet tiyakta mana tiyakta rikupay </string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Pakashka mashi yupaykuna mana tiyanchu</string>
   <!--contact_selection_list_fragment-->
-  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal mutsunmi kikinpa mashi yupaykunaman yaykushpa rikuchinkapak.</string>
+  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Loki Messenger mutsunmi kikinpa mashi yupaykunaman yaykushpa rikuchinkapak.</string>
   <string name="contact_selection_list_fragment__show_contacts">Mashi yupaykunata rikuchina</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Signal chaski</string>
+  <string name="conversation_activity__type_message_push">Loki Messenger chaski</string>
   <string name="conversation_activity__type_message_sms_insecure">Kay killkaska SMS mana pakallachu</string>
   <string name="conversation_activity__type_message_mms_insecure">MMS mana pakallachu</string>
   <string name="conversation_activity__from_sim_name">Paymanta%1$s</string>
@@ -685,7 +685,7 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <string name="conversation_activity__attachment_thumbnail">Uchilla kimichishka</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Shuyullukchik kimichishkapak ñapash millkata rurana</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Uyay kimichishkata rurashpa kachapay</string>
-  <string name="conversation_activity__enable_signal_for_sms">SMS killkashkapak Signalta rikuchipay</string>
+  <string name="conversation_activity__enable_signal_for_sms">SMS killkashkapak Loki Messengerta rikuchipay</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__cancel">Shayachina</string>
   <!--conversation_item-->
@@ -757,9 +757,9 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <string name="IdentityUtil_unverified_banner_one">Paywan charishka kikinpalla yupayka  %s mushukyarishkami, shinaka ña mana shinapachachu</string>
   <string name="IdentityUtil_unverified_banner_two">Paywan charishka kikinpalla yupayka  %1$s shinallata %2$s ña mana shinapachachu</string>
   <string name="IdentityUtil_unverified_banner_many">Paywan charishka kikinpalla yupayka  %1$s, %2$s, shinallata %3$sña mana shinapachachu</string>
-  <string name="IdentityUtil_unverified_dialog_one">Kikinpa yupay wakaychik %1$s mushukyarishkami, shinaka ña mana shinapachachu. Kayka willakunmi kikinpa rimariman shukkuna yaykunkapak munakukta, mana kashpaka %1$s Signal aplicacionmi kutin churarishka.</string>
-  <string name="IdentityUtil_unverified_dialog_two">Kikinpa yupay wakaychik %1$s shinallata %2$s ña mana shinapachachu. Kayka willakunmi kikinpa rimariman shukkuna yaykunkapak munakukta, mana kashpaka Signal aplicaciontami kutin churashka.</string>
-  <string name="IdentityUtil_unverified_dialog_many">Kikinpa yupay wakaychik %1$s, %2$s, shinallata %3$sña mana shinapachachu. Kayka willakunmi kikinpa rimariman shukkuna yaykunkapak munakukta, mana kashpaka Signal aplicaciontami kutin churashka.</string>
+  <string name="IdentityUtil_unverified_dialog_one">Kikinpa yupay wakaychik %1$s mushukyarishkami, shinaka ña mana shinapachachu. Kayka willakunmi kikinpa rimariman shukkuna yaykunkapak munakukta, mana kashpaka %1$s Loki Messenger aplicacionmi kutin churarishka.</string>
+  <string name="IdentityUtil_unverified_dialog_two">Kikinpa yupay wakaychik %1$s shinallata %2$s ña mana shinapachachu. Kayka willakunmi kikinpa rimariman shukkuna yaykunkapak munakukta, mana kashpaka Loki Messenger aplicaciontami kutin churashka.</string>
+  <string name="IdentityUtil_unverified_dialog_many">Kikinpa yupay wakaychik %1$s, %2$s, shinallata %3$sña mana shinapachachu. Kayka willakunmi kikinpa rimariman shukkuna yaykunkapak munakukta, mana kashpaka Loki Messenger aplicaciontami kutin churashka.</string>
   <string name="IdentityUtil_untrusted_dialog_one">Paywan charishka kikinpalla yupayka  %s kunan kunan mushukyarishkami.</string>
   <string name="IdentityUtil_untrusted_dialog_two">%1$spaywan %2$s paywanpash charishka kikinpalla yupayka kunan kunan mushukyarishkami.</string>
   <string name="IdentityUtil_untrusted_dialog_many">%1$s paywan, %2$s paywan, %3$s paywanpash charishka kikinpalla yupayka kunan kunan mushukyarishkami.</string>
@@ -790,7 +790,7 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <string name="log_submit_activity__please_review_this_log_from_my_app">Ñukapa aplicacionpi log allichishkata rikupay: %1$s</string>
   <string name="log_submit_activity__network_failure">Internet mana hapinchu. Kutinlla yaykushpa rikupay</string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Kikinpa chaski killkakuna tiyashkata, Signal ukupi pakashka willaywakaychikman apankapak munankichu.</string>
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Kikinpa chaski killkakuna tiyashkata, Loki Messenger ukupi pakashka willaywakaychikman apankapak munankichu.</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Ña tiyashka llikapi willaykaychikka nimamanta mana mushukyarinkachu.</string>
   <string name="database_migration_activity__skip">Pawana</string>
   <string name="database_migration_activity__import">Apamuna</string>
@@ -822,7 +822,7 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Yaykunallata saki</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal ukuka MMS configuracion audiovisuales chaskikunata shinallata tantanakuypatapash internetpi kachachun munanmi. Kikinpa antahillayka mana kay willayta riksichinkachu,  kay shinakunaka wakinpillami pakashka antahillaypika rikurin.</string>
+  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Loki Messenger ukuka MMS configuracion audiovisuales chaskikunata shinallata tantanakuypatapash internetpi kachachun munanmi. Kikinpa antahillayka mana kay willayta riksichinkachu,  kay shinakunaka wakinpillami pakashka antahillaypika rikurin.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Audiovisualpa chaskikunata tantanakuypatapash kachankapakka \"Aceptar\" shimita llapipay, shinashpa configuración mañashkakunata paktachipay. Internetpa MMS configuraciontaka \'el APN de su proveedor\'  ukupi maskayta ushanmi. Kaytaka shukkutinllami ruranata mutsurin.</string>
   <!--profile_create_activity-->
   <string name="profile_create_activity__set_later">Hipalla rurasha</string>
@@ -845,12 +845,12 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <string name="recipient_preferences__call_settings">Kayachishkata alliyachina</string>
   <string name="recipient_preferences__ringtone">Williwillipa wakay</string>
   <!--- redphone_call_controls-->
-  <string name="redphone_call_card__signal_call">Signalwan kayachipay</string>
+  <string name="redphone_call_card__signal_call">Loki Messengerwan kayachipay</string>
   <string name="redphone_call_controls__mute">Upallayachina</string>
   <string name="redphone_call_controls__flip_camera_rear">Shuk shuyullukchikman yallichik</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">WILLIWILLIPA YUPAY</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal yanapanmi rimarinkapak kikinpa yupaywan shinallata kikinpa mashiyupaykunwanpash. Kikinpa mashikuna ña  yachashpaka Signalwan rimarita ushankichimi.\n\nKallari killkari willayta riksichin kikinpa yupaymashipata shinapash mana servidor ukupi allichinchu.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal yanapanmi rimarinkapak kikinpa yupaywan shinallata kikinpa mashiyupaykunwanpash. Kikinpa mashikuna ña  yachashpaka Loki Messengerwan rimarita ushankichimi.\n\nKallari killkari willayta riksichin kikinpa yupaymashipata shinapash mana servidor ukupi allichinchu.</string>
   <string name="registration_activity__verify_your_number">Kikinpa yupayta rikuy</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Kikinpa williwillipa yupayta churay, mushuk yupay chaayamuchun. Wakinpika kay chaskika mana yanakalla shamunkachu.</string>
   <!--recipients_panel-->
@@ -927,8 +927,8 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <string name="preferences__sms_mms">SMS shinallata MMS</string>
   <string name="preferences__pref_all_sms_title">Tukuylla SMS killkashkata chaskina.</string>
   <string name="preferences__pref_all_mms_title">Tukuylla MMS killkashkata chaskina.</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Tukuylla yaykumunakuk killka chaskikunapak Signalta mutsupay.</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Tukuylla yaykumunakuk multimedia chaskikunapak Signalta mutsupay.</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Tukuylla yaykumunakuk killka chaskikunapak Loki Messengerta mutsupay.</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Tukuylla yaykumunakuk multimedia chaskikunapak Loki Messengerta mutsupay.</string>
   <string name="preferences__pref_enter_sends_title">Yaykuna tecla hillaywan kachapay.</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Chaskikunaka Yaykuna teclahillayta llapikpimi rinka.</string>
   <string name="preferences__choose_identity">Kikinyarita akllana </string>
@@ -939,7 +939,7 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Rikurinata, rikushkatapash shuk contraseña yupaywan pakana.</string>
   <string name="preferences__screen_security">Rikuripa pakallayachina</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Antanikimanta shuyu llukchinakunata pakallayachina, chayralla aplicación hillaykunapi shinallata kay aplicación ukupipash.</string>
-  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Paymanta Signalta pakallayachina, wakin pachata mana takarishka hipa</string>
+  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Paymanta Loki Messengerta pakallayachina, wakin pachata mana takarishka hipa</string>
   <string name="preferences__inactivity_timeout_passphrase">Kutin yaykunkapakka paskachik-shimita churapay</string>
   <string name="preferences__inactivity_timeout_interval">Wakin pachakuna, mana paskakpi wicharichun</string>
   <string name="preferences__notifications">Willachikuna</string>
@@ -992,8 +992,8 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <string name="preferences__theme">Shinashina</string>
   <string name="preferences__default">Ña rurashka </string>
   <string name="preferences__language">Shimi</string>
-  <string name="preferences__signal_messages_and_calls">Signal chaskikuna shinallata kayachiykunapash</string>
-  <string name="preferences__free_private_messages_and_calls">Chaskikuna shinallata kayachiykunapash Signal ukupi kakkunapa yankallami kan.</string>
+  <string name="preferences__signal_messages_and_calls">Loki Messenger chaskikuna shinallata kayachiykunapash</string>
+  <string name="preferences__free_private_messages_and_calls">Chaskikuna shinallata kayachiykunapash Loki Messenger ukupi kakkunapa yankallami kan.</string>
   <string name="preferences__submit_debug_log">Mushukyachi killkarinata kachana</string>
   <string name="preferences__support_wifi_calling">Paypura \"WiFi rimarita ushan\"</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Kikinpa antatahillayta paskapay killkana SMS/MMS WiFiwan chayamuchun (kaytaka \"WiFi kayachi\" hapichishka kakpilla rurapay)</string>
@@ -1008,8 +1008,8 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <string name="preferences_chats__media_auto_download">Paymanta uriyakuchina uyayrikuchita</string>
   <string name="preferences_chats__message_trimming">Chaskimanta pitishka</string>
   <string name="preferences_advanced__use_system_emoji">Anta llikapa ñawikukunata rikuchipay</string>
-  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Signalpa ñawikukunapa yanapayta anchuchipay</string>
-  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Tukuy  kayachiykunata Signal servidorpi kutichichun ruray,  kikinpa yupaymashi kayachikta mana maymanta kakta yachachun. Kayta shinakpika kachachikuy uyarika pishiyarinkami.</string>
+  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Loki Messengerpa ñawikukunapa yanapayta anchuchipay</string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Tukuy  kayachiykunata Loki Messenger servidorpi kutichichun ruray,  kikinpa yupaymashi kayachikta mana maymanta kakta yachachun. Kayta shinakpika kachachikuy uyarika pishiyarinkami.</string>
   <string name="preferences_advanced__always_relay_calls">Tukuy kayachiykunata kutinchiytara yallichi</string>
   <string name="preferences_app_protection__app_access">Aplicacionman yaykupay</string>
   <string name="preferences_app_protection__communication">Rimariy</string>
@@ -1021,9 +1021,9 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <string name="preferences_notifications__calls">Kayachikuna</string>
   <string name="preferences_notifications__ringtone">Williwillipay wakay</string>
   <string name="preferences_chats__show_invitation_prompts">Kumpitay kayachikunata rikuchi</string>
-  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Signal ukuman yaykuchun,  mushuk yupay mashikunaman kumpitay kayachikunata rikuchi</string>
+  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Loki Messenger ukuman yaykuchun,  mushuk yupay mashikunaman kumpitay kayachikunata rikuchi</string>
   <string name="preferences_chats__message_text_size">Chaskipa uchillayachik hatunyachik killka</string>
-  <string name="preferences_events__contact_joined_signal">Yupay mashi Signal ukuman kimirshka</string>
+  <string name="preferences_events__contact_joined_signal">Yupay mashi Loki Messenger ukuman kimirshka</string>
   <string name="preferences_notifications__priority">Kallaripi</string>
   <!--****************************************-->
   <!--menus-->
@@ -1033,7 +1033,7 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Kayachina</string>
   <!--conversation_callable_secure-->
-  <string name="conversation_callable_secure__menu_call">Signalwan kayachipay</string>
+  <string name="conversation_callable_secure__menu_call">Loki Messengerwan kayachipay</string>
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">Chaskipa kilkashkakuna</string>
   <string name="conversation_context__menu_copy_text">Shinashina kilkashkata yallichina</string>
@@ -1097,25 +1097,25 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Panka allichikman chayshina allichishka</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Panka allichikwan chimpapuray </string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">Kikinpa Signal mawkayashka</string>
+  <string name="reminder_header_outdated_build">Kikinpa Loki Messenger mawkayashka</string>
   <plurals name="reminder_header_outdated_build_details">
-    <item quantity="one">Kikinpa Signal %dpunchapi mawkayankami. Mushukyachinkapak kaypi llapi.</item>
-    <item quantity="other">Kikinpa Signal  %d punchakunapi mawkayankami. Mushukyachinkapak kaypi llapipay.</item>
+    <item quantity="one">Kikinpa Loki Messenger %dpunchapi mawkayankami. Mushukyachinkapak kaypi llapi.</item>
+    <item quantity="other">Kikinpa Loki Messenger  %d punchakunapi mawkayankami. Mushukyachinkapak kaypi llapipay.</item>
   </plurals>
-  <string name="reminder_header_outdated_build_details_today">Kikinpa Signal kunanmi mawkayan. Mushukyachinkapakka kaypi llapipay.</string>
-  <string name="reminder_header_expired_build">¡Kikinpa Signal mawkayashkami!</string>
+  <string name="reminder_header_outdated_build_details_today">Kikinpa Loki Messenger kunanmi mawkayan. Mushukyachinkapakka kaypi llapipay.</string>
+  <string name="reminder_header_expired_build">¡Kikinpa Loki Messenger mawkayashkami!</string>
   <string name="reminder_header_expired_build_details">Chaskikunata mana alli kachayta usharinkachu. Mushukyachinkapakka kaypi llapipay.</string>
-  <string name="reminder_header_sms_default_title">Signal aplicacionta, killkashka SMS chaskichun churay</string>
-  <string name="reminder_header_sms_default_text">Signal aplicacionta, killkashka SMS chaskichun llapipay.</string>
+  <string name="reminder_header_sms_default_title">Loki Messenger aplicacionta, killkashka SMS chaskichun churay</string>
+  <string name="reminder_header_sms_default_text">Loki Messenger aplicacionta, killkashka SMS chaskichun llapipay.</string>
   <string name="reminder_header_sms_import_title">SMS killkashkata sistemamanta apamuna</string>
-  <string name="reminder_header_sms_import_text">Kikinpa williwillimanta SMS chaski killkashkakunata, chayshina hapinkapak, shinallata Signal ukuman yallichinkapak kaypi llapipay.</string>
-  <string name="reminder_header_push_title">Signal chaskikuna shinallata kayachiykunapash ari nipay</string>
+  <string name="reminder_header_sms_import_text">Kikinpa williwillimanta SMS chaski killkashkakunata, chayshina hapinkapak, shinallata Loki Messenger ukuman yallichinkapak kaypi llapipay.</string>
+  <string name="reminder_header_push_title">Loki Messenger chaskikuna shinallata kayachiykunapash ari nipay</string>
   <string name="reminder_header_push_text">Kikinpa yachay willarikunata mushukyachipay</string>
-  <string name="reminder_header_invite_title">Signal ukuman kayachiy</string>
+  <string name="reminder_header_invite_title">Loki Messenger ukuman kayachiy</string>
   <string name="reminder_header_invite_text">Kikinpa rimarita %1$s mashiwan  kati pataman apapay.</string>
   <string name="reminder_header_share_title">¡Mashikunata kayachiy!</string>
-  <string name="reminder_header_share_text">Ashtawan mashikuna Signal ukupi kashpaka, ashtawan sumakmi kanka,</string>
-  <string name="reminder_header_service_outage_text">Signal ukuka pakchiyachay llakikunatami charikun. Kaykunata allichinkapakka sinchipachami llamkanakunchik.</string>
+  <string name="reminder_header_share_text">Ashtawan mashikuna Loki Messenger ukupi kashpaka, ashtawan sumakmi kanka,</string>
+  <string name="reminder_header_service_outage_text">Loki Messenger ukuka pakchiyachay llakikunatami charikun. Kaykunata allichinkapakka sinchipachami llamkanakunchik.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Allichina</string>
   <string name="media_preview__forward_title">Ñawpaman katipay</string>
@@ -1136,16 +1136,16 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <string name="ConversationListFragment_loading">Paskakun...</string>
   <string name="CallNotificationBuilder_connecting">Tinkirikun...</string>
   <string name="Permissions_permission_required">Mañayta mutsurinmi</string>
-  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal ari nichun munanmi kikinpa SMS killkashkata kachankapak, shinapash mana arinirishkachu. \"Menú de configuración\" ukuman yaykushpa \"Permisos\" nikukta akllapay, \"SMS\" paskarichun.</string>
+  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Loki Messenger ari nichun munanmi kikinpa SMS killkashkata kachankapak, shinapash mana arinirishkachu. \"Menú de configuración\" ukuman yaykushpa \"Permisos\" nikukta akllapay, \"SMS\" paskarichun.</string>
   <string name="Permissions_continue">Katina</string>
   <string name="Permissions_not_now">Kunanka mana</string>
-  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal ari nichun munanmi mashi yupaykunata, kikinpa mashi yupaykunata rikuchinkapak, shinapash mana arinirishkachu. \"Menú de configuración\" ukuman yaykushpa \"Permisos\" nikukta llapipay, \"Contactos\" paskarichun.</string>
+  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Loki Messenger ari nichun munanmi mashi yupaykunata, kikinpa mashi yupaykunata rikuchinkapak, shinapash mana arinirishkachu. \"Menú de configuración\" ukuman yaykushpa \"Permisos\" nikukta llapipay, \"Contactos\" paskarichun.</string>
   <string name="conversation_activity__enable_signal_messages">SIGNAL CHASKIKUNATA PASKANA</string>
-  <string name="SQLCipherMigrationHelper_migrating_signal_database">Signalpi tukuy willaykuna wakaychishkata yallichi</string>
+  <string name="SQLCipherMigrationHelper_migrating_signal_database">Loki Messengerpi tukuy willaykuna wakaychishkata yallichi</string>
   <string name="PushDecryptJob_new_locked_message">Mushuk chaski pakallayashka</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Chaski shuyanakukta rikunkapak paskapay</string>
   <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Tukuyta mushukyachinkapak paskachipayra</string>
-  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Ama shina kashpa, Signalta pashkapay mushukyashpa paktarichun</string>
+  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Ama shina kashpa, Loki Messengerta pashkapay mushukyashpa paktarichun</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Wakaychishka chayshinapa paskachik-shimi</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Wakaychishka chayshinakunaka kanlla allichik ukupi  allichirinkami, urapi paskachik shimiwan. Kutinlla kay wakaychishkakunata tikrachimunkapakka paskachik shimita charinami kanki.</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Kay paskachik shimita killkashkanimi . Pay illakka mana chayshinalla wakaychishkakunata kallarichita usharinkachu.</string>
@@ -1171,7 +1171,7 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <string name="BackupDialog_disable_and_delete_all_local_backups">Tukuylla chayshinalla wakaychishkakunata wichashpa pichanayanchu</string>
   <string name="BackupDialog_delete_backups_statement">Chayshinalla wakaychishkakunata pichana</string>
   <string name="BackupDialog_copied_to_clipboard">Panka allichik ukupi chayshina allichishka kan</string>
-  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal ari nichun munanmi kanllapi allichinkapak chayshinalla wakaychishkakunata wiñachinkapak,   shinapash mana arinirishkachu. Ama shina kashpa, configuración  ukuman yaykushpa \"Permisos\" nikukta akllapay \"Almacenamiento\" paskarichun.</string>
+  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Loki Messenger ari nichun munanmi kanllapi allichinkapak chayshinalla wakaychishkakunata wiñachinkapak,   shinapash mana arinirishkachu. Ama shina kashpa, configuración  ukuman yaykushpa \"Permisos\" nikukta akllapay \"Almacenamiento\" paskarichun.</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Puchukay chayshinalla wakaychishka: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Rurarikun</string>
   <string name="LocalBackupJob_creating_backup">Chayshinalla wakaychishkakunata wiñachikun</string>
@@ -1180,7 +1180,7 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <string name="BackupUtil_never">Nimamanta</string>
   <string name="BackupUtil_unknown">Mana riksishka</string>
   <string name="preferences_app_protection__screen_lock">Pakallayachina</string>
-  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Signal ukuman ama yaykuchun wichapay Androidpa pakayachinawan, mana kashpaka maki ruka unanchawan.</string>
+  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Loki Messenger ukuman ama yaykuchun wichapay Androidpa pakayachinawan, mana kashpaka maki ruka unanchawan.</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Pakallayachinkapak pachata akllapay</string>
   <string name="AppProtectionPreferenceFragment_none">Nimaykan</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Pakallayachinkapak PIN yupay killkarishkaka mana chayra chayamushka SMS kanchu. Ama shina kashpa, ñawpa PIN yupayta kutinlla killkapay.</string>
@@ -1191,7 +1191,7 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <string name="registration_lock_dialog_view__confirm_pin">PINta ari nipay</string>
   <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Pakalla killkarishkapa kikinpa PINta yaykuchipay</string>
   <string name="registration_lock_reminder_view__enter_pin">PINta yaykuchipay</string>
-  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Shuk wicharina PIN yupayta paskapay, kutinlla kay  williwilli yupayta Signal ukupi charinkapak.</string>
+  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Shuk wicharina PIN yupayta paskapay, kutinlla kay  williwilli yupayta Loki Messenger ukupi charinkapak.</string>
   <string name="preferences_app_protection__registration_lock_pin">Mana killkarina PIN</string>
   <string name="preferences_app_protection__registration_lock">Mana killkarina</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">PIN killkarishka yupayta churanami kanki</string>
@@ -1200,13 +1200,13 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Yapalla mana alli PIN yupaykunata churashkanki. Shuk puncha yallishka hipa, kutinlla PIN yupayta churana kanki.</string>
   <string name="RegistrationActivity_error_connecting_to_service">Internet ukuman yaykuyta mana usharinchu</string>
   <string name="RegistrationActivity_oh_no">Pantarkani</string>
-  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">7 punchata ña Signal ukupi paskashkamanta yallishpaka, ña mana PIN yupay mutsurinkachu, kay williwilli yupayta yaykuchi ushankapakka. Sakirinrami %d punchakuna.</string>
+  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">7 punchata ña Loki Messenger ukupi paskashkamanta yallishpaka, ña mana PIN yupay mutsurinkachu, kay williwilli yupayta yaykuchi ushankapakka. Sakirinrami %d punchakuna.</string>
   <string name="RegistrationActivity_registration_lock_pin">Mana killkarina PIN</string>
   <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Kay williwilli yupayka pakashka yupayta pashkashkami kan. Ama shina kashpa, killkarishka PIN yupayta yaykuchipay.</string>
-  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Kikinpa williwillipa pakashka yupayka paskashkami kan. Kay pakashka PIN yupayta yuyaypi charichunka, Signal ukumantaka katillami arinichun mañanka.</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Kikinpa williwillipa pakashka yupayka paskashkami kan. Kay pakashka PIN yupayta yuyaypi charichunka, Loki Messenger ukumantaka katillami arinichun mañanka.</string>
   <string name="RegistrationLockDialog_i_forgot_my_pin">PINta kunkashkani</string>
   <string name="RegistrationLockDialog_forgotten_pin">PINta kunkashkankichu</string>
-  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Pakashka yupayka kikinpa williwilli yupayta wakaychitami yanapanka, mana arinishka killkarikunamanta. Kay wakaychitaka maykan pachapipash,  kikinpalla Signal configuración ukuman yaykushpa anchuchinallami.</string>
+  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Pakashka yupayka kikinpa williwilli yupayta wakaychitami yanapanka, mana arinishka killkarikunamanta. Kay wakaychitaka maykan pachapipash,  kikinpalla Loki Messenger configuración ukuman yaykushpa anchuchinallami.</string>
   <string name="RegistrationLockDialog_registration_lock">Mana killkarina</string>
   <string name="RegistrationLockDialog_enable">Paskana</string>
   <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">PIN killkarishka yupayka chusku \"4\" yupaytallapashmi charina.</string>
@@ -1215,7 +1215,7 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <string name="RegistrationLockDialog_disable_registration_lock_pin">PIN killkashkata anchuchinayanchu</string>
   <string name="RegistrationLockDialog_disable">Mana rikuchina.</string>
   <string name="preferences_chats__backups">Wakaychikpa chayshinakuna</string>
-  <string name="prompt_passphrase_activity__signal_is_locked">Signal anchuchishkami kan</string>
+  <string name="prompt_passphrase_activity__signal_is_locked">Loki Messenger anchuchishkami kan</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">LLAPI APAMUNKAPAK</string>
   <string name="RegistrationLockDialog_reminder">Yuyarinkapak:</string>
   <string name="recipient_preferences__about">Willay</string>

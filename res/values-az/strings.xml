@@ -25,17 +25,17 @@
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">Sil</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Açar sözü deaktivə edirsən?</string>
-  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Bu daimi olaraq Signal və mesaj xəbərdarlıqlarının kilidini açacaq.</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Bu daimi olaraq Loki Messenger və mesaj xəbərdarlıqlarının kilidini açacaq.</string>
   <string name="ApplicationPreferencesActivity_disable">Deaktivə et</string>
   <string name="ApplicationPreferencesActivity_unregistering">Qeydiyyatdan çıxarma</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Signal-a aid mesaj və zənglərin qeydiyyatından çıxmaq...</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Signal mesajlarını və zənglərini deaktivə edirsən?</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Server qeydiyyatından çıxmaqla Signal mesajları və zənglərini deaktivə et. Gələcəkdə istifadə etmək üçün telefon nömrəni bir daha qeydiyyatdan keçirməli olacaqsan.</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Loki Messenger-a aid mesaj və zənglərin qeydiyyatından çıxmaq...</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Loki Messenger mesajlarını və zənglərini deaktivə edirsən?</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Server qeydiyyatından çıxmaqla Loki Messenger mesajları və zənglərini deaktivə et. Gələcəkdə istifadə etmək üçün telefon nömrəni bir daha qeydiyyatdan keçirməli olacaqsan.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Serverə qoşulmada xəta var!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS Aktivləşdirildi</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Mövcud SMS aplikasiyanı dəyişmək üçün kliklə</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS Deaktivə edildi</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Signal-ı əsas SMS aplikasiyası etmək üçün kliklə</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Loki Messenger-ı əsas SMS aplikasiyası etmək üçün kliklə</string>
   <string name="ApplicationPreferencesActivity_on">aktiv</string>
   <string name="ApplicationPreferencesActivity_On">Aktiv</string>
   <string name="ApplicationPreferencesActivity_off">deaktiv</string>
@@ -56,10 +56,10 @@
   <string name="DraftDatabase_Draft_quote_snippet">(cavab)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Seçilmiş media üçün aplikasiyanı tapa bilmirəm.</string>
-  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal-ın normal işləməsi üçün şəkil, video və ya səsləri saxlamağa yaddaş lazımdır ki, bu da hal hazırda qadağa edilib. Davam edə bilmək üçün zəhmət olmasa aplikasiya parametrləri menyusuna, orada isə \"İcazələr\" bölməsinə keçərək \"Yaddaş\" hissəsini aktivləşdir.</string>
-  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Əlaqə məlumatlarını yükləyə bilməsi üçün Signal-ın Əlaqələr bölməsinə giriş icazəsi olmalıdır ki, o da hal hazırda qadağan edilmişdir. Davam edə bilmək üçün zəhmət olmasa aplikasiya parametrləri menyusuna, oradan isə \"İcazələr\" bölməsinə keçərək \"Əlaqələr\" hissəsini aktivləşdir.</string>
-  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Məkanı yükləyə bilməsi üçün Signal-ın məkan seçimlərinə giriş icazəsi olmalıdır ki, o da hal hazırda qadağan edilmişdir. Davam edə bilmək üçün zəhmət olmasa aplikasiya parametrləri menyusuna, oradan isə \"İcazələr\" bölməsinə keçərək \"Məkan\" hissəsini aktivləşdir.</string>
-  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Şəkil çəkə bilməsi üçün Signal-ın Kamera seçimlərinə giriş icazəsi olmalıdır ki, o da hal hazırda qadağa edilmişdir. Davam edə bilmək üçün zəhmət olmasa aplikasiya parametrləri menyusuna, oradan isə \"İcazələr bölməsinə keçərək \"Kamera\" hissəsini aktivləşdir.</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Loki Messenger-ın normal işləməsi üçün şəkil, video və ya səsləri saxlamağa yaddaş lazımdır ki, bu da hal hazırda qadağa edilib. Davam edə bilmək üçün zəhmət olmasa aplikasiya parametrləri menyusuna, orada isə \"İcazələr\" bölməsinə keçərək \"Yaddaş\" hissəsini aktivləşdir.</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Əlaqə məlumatlarını yükləyə bilməsi üçün Loki Messenger-ın Əlaqələr bölməsinə giriş icazəsi olmalıdır ki, o da hal hazırda qadağan edilmişdir. Davam edə bilmək üçün zəhmət olmasa aplikasiya parametrləri menyusuna, oradan isə \"İcazələr\" bölməsinə keçərək \"Əlaqələr\" hissəsini aktivləşdir.</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Məkanı yükləyə bilməsi üçün Loki Messenger-ın məkan seçimlərinə giriş icazəsi olmalıdır ki, o da hal hazırda qadağan edilmişdir. Davam edə bilmək üçün zəhmət olmasa aplikasiya parametrləri menyusuna, oradan isə \"İcazələr\" bölməsinə keçərək \"Məkan\" hissəsini aktivləşdir.</string>
+  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Şəkil çəkə bilməsi üçün Loki Messenger-ın Kamera seçimlərinə giriş icazəsi olmalıdır ki, o da hal hazırda qadağa edilmişdir. Davam edə bilmək üçün zəhmət olmasa aplikasiya parametrləri menyusuna, oradan isə \"İcazələr bölməsinə keçərək \"Kamera\" hissəsini aktivləşdir.</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Səsin dinlənməsində xəta!</string>
   <!--BlockedContactsActivity-->
@@ -79,7 +79,7 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Veb brauzer tapılmadı.</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Tərkibində %1$s olan təhlükəsizlik rəqəmin dəyişdi. Kimsə sənin ünsiyyətinə müdaxilə etmək istəyir, yaxud da %2$sSignal-ı yenidən quraşdırdı.</string>
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Tərkibində %1$s olan təhlükəsizlik rəqəmin dəyişdi. Kimsə sənin ünsiyyətinə müdaxilə etmək istəyir, yaxud da %2$sLoki Messenger-ı yenidən quraşdırdı.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Bu əlaqə ilə təhlükəsizlik rəqəmini təsdiqləmək arzun ola bilər.</string>
   <string name="ConfirmIdentityDialog_accept">Qəbul et</string>
   <!--ContactsCursorLoader-->
@@ -88,7 +88,7 @@
   <string name="ContactsCursorLoader_groups">Qruplar</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">%s Mesaj</string>
-  <string name="ContactsDatabase_signal_call_s">%s Signal Zəng</string>
+  <string name="ContactsDatabase_signal_call_s">%s Loki Messenger Zəng</string>
   <!--ContactNameEditActivity-->
   <string name="ContactNameEditActivity_given_name">Ad</string>
   <string name="ContactNameEditActivity_family_name">Soyad</string>
@@ -108,7 +108,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted">Göndərə bilmədik, zəmanətsiz alternativ variant üçün kliklə</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Şifrələnməmiş SMS üçün alternativ variant?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Şifrələnməmiş MMS üçün alternativ variant?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Bu mesaj şifrələnə <b>bilməyəcək</b>, çünki qəbul edən tərəf artıq Signal istifadəçisi deyil.\n\nZəmanətsiz mesaj göndərirsən?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Bu mesaj şifrələnə <b>bilməyəcək</b>, çünki qəbul edən tərəf artıq Loki Messenger istifadəçisi deyil.\n\nZəmanətsiz mesaj göndərirsən?</string>
   <string name="ConversationItem_unable_to_open_media">Bu medianı aça bilən aplikasiya tapa bilmirəm.</string>
   <string name="ConversationItem_copied_text">Köçürülən %s</string>
   <string name="ConversationItem_from_s">haradan %s</string>
@@ -136,7 +136,7 @@
   <string name="ConversationActivity_transport_insecure_sms">Zəmanətsiz SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Zəmanətsiz MMS</string>
   <string name="ConversationActivity_transport_signal">Loki Messenger</string>
-  <string name="ConversationActivity_lets_switch_to_signal">Gəl %1$s Signal-a keçək</string>
+  <string name="ConversationActivity_lets_switch_to_signal">Gəl %1$s Loki Messenger-a keçək</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Gəl bu söhbətləşməni istifadə edək: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Qrupdan çıxarkən xəta</string>
   <string name="ConversationActivity_specify_recipient">Zəgmət olmasa əlaqəni seç</string>
@@ -149,15 +149,15 @@
   <string name="ConversationActivity_quick_camera_unavailable">Kameranı aça bilmirik</string>
   <string name="ConversationActivity_unable_to_record_audio">Səs yaza bilmirik!</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Cihazında bu linkin öhdəsindən gələ biləcək aplikasiya yoxdur.</string>
-  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Səsli mesaj göndərə bilmək üçün Signal-a icazə ver mikrofonunu istifadə edə bilsin.</string>
-  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Səsli mesaj göndərə bilməsi üçün Signal-ın Mikrofon seçimlərinə giriş icazəsi olmalıdır ki, o da hal hazırda qadağa edilmişdir. Davam edə bilmək üçün zəhmət olmasa aplikasiya parametrləri menyusuna, oradan isə \"İcazələr bölməsinə keçərək \"Mikrofon\" hissəsini aktivləşdir.</string>
-  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">%s əlaqəsinə zəng edə bilmək üçün Signal-ın sənin mikrofon və kamerana giriş icazəsi olmalıdır.</string>
-  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">%s əlaqəsinə zəng edə bilməsi üçün Signal-ın Mikrofon və Kamera seçimlərinə giriş icazəsi olmalıdır ki, o da hal hazırda qadağa edilmişdir. Davam edə bilmək üçün zəhmət olmasa aplikasiya parametrləri menyusuna, oradan isə \"İcazələr bölməsinə keçərək \"Mikrofon\" və \"Kamera\" hissələrini aktivləşdir.</string>
-  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Şəkil və video çəkə bilməsi üçün Signal-a Kamera seçimlərinə giriş icazəsi ver.</string>
-  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Şəkil və ya Video çəkə bilməsi üçün Signal-ın Kamera seçimlərinə giriş icazəsi olmalıdır ki, o da hal hazırda qadağa edilmişdir. Davam edə bilmək üçün zəhmət olmasa aplikasiya parametrləri menyusuna, oradan isə \"İcazələr bölməsinə keçərək \"Kamera\" hissəsini aktivləşdir.</string>
-  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Şəkil və ya video çəkə bilməsi üçün Signal-ın Kamera seçimlərinə giriş icazəsi olmalıdır</string>
+  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Səsli mesaj göndərə bilmək üçün Loki Messenger-a icazə ver mikrofonunu istifadə edə bilsin.</string>
+  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Səsli mesaj göndərə bilməsi üçün Loki Messenger-ın Mikrofon seçimlərinə giriş icazəsi olmalıdır ki, o da hal hazırda qadağa edilmişdir. Davam edə bilmək üçün zəhmət olmasa aplikasiya parametrləri menyusuna, oradan isə \"İcazələr bölməsinə keçərək \"Mikrofon\" hissəsini aktivləşdir.</string>
+  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">%s əlaqəsinə zəng edə bilmək üçün Loki Messenger-ın sənin mikrofon və kamerana giriş icazəsi olmalıdır.</string>
+  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">%s əlaqəsinə zəng edə bilməsi üçün Loki Messenger-ın Mikrofon və Kamera seçimlərinə giriş icazəsi olmalıdır ki, o da hal hazırda qadağa edilmişdir. Davam edə bilmək üçün zəhmət olmasa aplikasiya parametrləri menyusuna, oradan isə \"İcazələr bölməsinə keçərək \"Mikrofon\" və \"Kamera\" hissələrini aktivləşdir.</string>
+  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Şəkil və video çəkə bilməsi üçün Loki Messenger-a Kamera seçimlərinə giriş icazəsi ver.</string>
+  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Şəkil və ya Video çəkə bilməsi üçün Loki Messenger-ın Kamera seçimlərinə giriş icazəsi olmalıdır ki, o da hal hazırda qadağa edilmişdir. Davam edə bilmək üçün zəhmət olmasa aplikasiya parametrləri menyusuna, oradan isə \"İcazələr bölməsinə keçərək \"Kamera\" hissəsini aktivləşdir.</string>
+  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Şəkil və ya video çəkə bilməsi üçün Loki Messenger-ın Kamera seçimlərinə giriş icazəsi olmalıdır</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
-  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal sənin əsas SMS aplikasiyan olmadığı üçün o SMS/MMS mesajları göndərə bilmir. Bu göstəricini Android parametrlərində dəyişmək istəyirsən?</string>
+  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Loki Messenger sənin əsas SMS aplikasiyan olmadığı üçün o SMS/MMS mesajları göndərə bilmir. Bu göstəricini Android parametrlərində dəyişmək istəyirsən?</string>
   <string name="ConversationActivity_yes">Bəli</string>
   <string name="ConversationActivity_no">Xeyr</string>
   <string name="ConversationActivity_search_position">%2$d-dən%1$d</string>
@@ -195,7 +195,7 @@
     <item quantity="other">%1$dfaylın yaddaşa yazılması...</item>
   </plurals>
   <string name="ConversationFragment_pending">Gözlənilir...</string>
-  <string name="ConversationFragment_push">Məlumat (Signal)</string>
+  <string name="ConversationFragment_push">Məlumat (Loki Messenger)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Silinir</string>
@@ -237,7 +237,7 @@
   <string name="CreateProfileActivity_too_long">Çox uzundur</string>
   <string name="CreateProfileActivity_profile_name">Profil Adı</string>
   <string name="CreateProfileActivity_set_up_your_profile">Profilini quraşdır</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal profilləri son məqama qədər şifrəlidir və Signal-ın bu məlumatlara girişi mümkün deyil.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal profilləri son məqama qədər şifrəlidir və Loki Messenger-ın bu məlumatlara girişi mümkün deyil.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Xüsusinin istifadəsi: %s</string>
   <string name="CustomDefaultPreference_using_default">Mövcud olanın istifadəsi: %s</string>
@@ -269,22 +269,22 @@
   <string name="DocumentView_unknown_file">Naməlum fayl</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Çatışmayan Play Servisləri üçün optimallaşdır</string>
-  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Bu cihaz Play Servisi dəstəkləmir. Qeyri aktiv vaxtlarda Signal-ın mesajları bərpa edə bilməsinin qarşısını almaq üçün sistem akkumulyator optimallaşdırılmasını deaktivə et.</string>
+  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Bu cihaz Play Servisi dəstəkləmir. Qeyri aktiv vaxtlarda Loki Messenger-ın mesajları bərpa edə bilməsinin qarşısını almaq üçün sistem akkumulyator optimallaşdırılmasını deaktivə et.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Bölüş</string>
   <!--ExperienceUpgradeActivity-->
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Signal-a Xoş Gəldin.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure və RedPhone indi artiq birləşərək daha yararlı bir messencer halına gəlib: Signal.</string>
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Signal-a Xoş Gəldin!</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure indi Signal-dır.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">Text secure və RedPhone indi bir aplikasiyadır: Signal. Kəşf etmək üçün kliklə.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Loki Messenger-a Xoş Gəldin.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure və RedPhone indi artiq birləşərək daha yararlı bir messencer halına gəlib: Loki Messenger.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Loki Messenger-a Xoş Gəldin!</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure indi Loki Messenger-dır.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">Text secure və RedPhone indi bir aplikasiyadır: Loki Messenger. Kəşf etmək üçün kliklə.</string>
   <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Təhlükəsiz video zəngləri salamlayın.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal indi təhlükəsiz video zəngləri dəstəkləyir. Signal zəng xidmətini həmişəki qaydada aç, video düyməsini kliklə və dostlarına gülümsə.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal indi təhlükəsiz video zəngləri dəstəkləyir.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal indi təhlükəsiz video zəngləri dəstəkləyir. Kəşf etmək üçün kliklə.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal indi təhlükəsiz video zəngləri dəstəkləyir. Loki Messenger zəng xidmətini həmişəki qaydada aç, video düyməsini kliklə və dostlarına gülümsə.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Loki Messenger indi təhlükəsiz video zəngləri dəstəkləyir.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Loki Messenger indi təhlükəsiz video zəngləri dəstəkləyir. Kəşf etmək üçün kliklə.</string>
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Ətraflı baxışa hazırsan?</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">İndi Signal dostlarınla profil şəklini və adını paylaşa bilərsən.</string>
-  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal profilləri buradadır</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">İndi Loki Messenger dostlarınla profil şəklini və adını paylaşa bilərsən.</string>
+  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Loki Messenger profilləri buradadır</string>
   <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Yazışma indikatorları ilə tanışlıq.</string>
   <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">İndi istəsən mesajlar yazılan zaman onu izləyə, yaxud bu məlumatı bölüşə bilərsən.</string>
   <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Bu funksionallığın elə indi aktivləşdirmək istəyirsən?</string>
@@ -294,13 +294,13 @@
   <string name="ExperienceUpgradeActivity_no_thanks">Yox, təşəkkür edirəm</string>
   <string name="ExperienceUpgradeActivity_introducing_link_previews">Linkin ilkin baxışı ilə tanışlıq.</string>
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Bir çox ən populyar veb saytların ilkin baxışı funksiyası indi dəstəklənir.</string>
-  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Signal parametrlərində bu seçimi istədiyin zaman aktiv və ya deaktiv edə bilərsən (Məxfilik &gt; Linkin ilkin baxışını göndər)</string>
+  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Loki Messenger parametrlərində bu seçimi istədiyin zaman aktiv və ya deaktiv edə bilərsən (Məxfilik &gt; Linkin ilkin baxışını göndər)</string>
   <string name="ExperienceUpgradeActivity_got_it">Anladım</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Mesajın bərpası...</string>
   <!--GcmRefreshJob-->
-  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Həmişəlik Signal ünsiyyət xətası!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal Google Play Servisləri ilə qeydiyyatdan keçə bilmədi. Signal zəngləri və mesajları deaktivə edildi, lütfən Parametrlər &gt; Daha Geniş seçimlərində yenidən qeydiyyatdan keçməyə cəhd et.</string>
+  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Həmişəlik Loki Messenger ünsiyyət xətası!</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal Google Play Servisləri ilə qeydiyyatdan keçə bilmədi. Loki Messenger zəngləri və mesajları deaktivə edildi, lütfən Parametrlər &gt; Daha Geniş seçimlərində yenidən qeydiyyatdan keçməyə cəhd et.</string>
   <!--GiphyActivity-->
   <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">GIF-in tam ölçüdə bərpası prosesində xəta</string>
   <!--GiphyFragmentPageAdapter-->
@@ -311,15 +311,15 @@
   <string name="GroupCreateActivity_actionbar_edit_title">Qrupa düzəliş et</string>
   <string name="GroupCreateActivity_group_name_hint">Qrupun adı</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Yeni MMS qrupu</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">Sən Signal qruplarını dəstəkləməyən əlaqəni seçdiyin üçün bu MMS qrupu olacaqdır.</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">Sən Signal mesajları və zəngləri üçün qeydiyyatdan keçmədiyin üçün Signal qruplari deaktiv edildi. Lütfən Parametrlər &gt; Daha Geniş seçimlərində qeydiyyatdan keçməyə cəhd et.</string>
+  <string name="GroupCreateActivity_contacts_dont_support_push">Sən Loki Messenger qruplarını dəstəkləməyən əlaqəni seçdiyin üçün bu MMS qrupu olacaqdır.</string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">Sən Signal mesajları və zəngləri üçün qeydiyyatdan keçmədiyin üçün Loki Messenger qruplari deaktiv edildi. Lütfən Parametrlər &gt; Daha Geniş seçimlərində qeydiyyatdan keçməyə cəhd et.</string>
   <string name="GroupCreateActivity_contacts_no_members">Qrupunda ən azı bir nəfər olmalıdır!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Qrupundakı üzvlərdən birinin nömrəsi tam oxuna bilmir. Lütfən, xətanı aradan qaldır, yaxud da onu qrupdan xaric et və yenidən sına.</string>
   <string name="GroupCreateActivity_avatar_content_description">Qrupun şəkli</string>
   <string name="GroupCreateActivity_menu_apply_button">Tətbiq et</string>
   <string name="GroupCreateActivity_creating_group">%1$s hazırlanır...</string>
   <string name="GroupCreateActivity_updating_group">%1$s yenilənir...</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">%1$s əlavə edilə bilmədi, çünki onlar Signal istifadəçisi deyil.</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">%1$s əlavə edilə bilmədi, çünki onlar Loki Messenger istifadəçisi deyil.</string>
   <string name="GroupCreateActivity_loading_group_details">Qrup detalları yüklənir...</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Sən artıq qrupdasan.</string>
   <!--GroupShareProfileView-->
@@ -340,7 +340,7 @@
   <string name="InviteActivity_sending">Göndərilir...</string>
   <string name="InviteActivity_heart_content_description">Ürək</string>
   <string name="InviteActivity_invitations_sent">Dəvətnamələr göndərildi!</string>
-  <string name="InviteActivity_invite_to_signal">Signal-a dəvət et</string>
+  <string name="InviteActivity_invite_to_signal">Loki Messenger-a dəvət et</string>
   <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">%d DOSTUNA SMS GÖNDƏR</item>
     <item quantity="other">%d DOSTUNA SMS GÖNDƏR</item>
@@ -349,7 +349,7 @@
     <item quantity="one">%d SMS dəvətnaməsi göndərirsən?</item>
     <item quantity="other">%d SMS dəvətnaməsi göndərirsən?</item>
   </plurals>
-  <string name="InviteActivity_lets_switch_to_signal">Gəl Signal-a keçid edək: %1$s</string>
+  <string name="InviteActivity_lets_switch_to_signal">Gəl Loki Messenger-a keçid edək: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Elə görünür ki, paylaşa biləcəyin aplikasiya yoxdur.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Dostlar dostlara şifrələnməmiş yazışmaya icazə vermir.</string>
   <!--Job-->
@@ -382,9 +382,9 @@
   <string name="MediaOverviewActivity_Select_all">Hamısını seç</string>
   <string name="MediaOverviewActivity_collecting_attachments">Faylların toplanması...</string>
   <!--- NotificationBarManager-->
-  <string name="NotificationBarManager_signal_call_in_progress">Signal zəngi baş verməkdədir</string>
-  <string name="NotificationBarManager__establishing_signal_call">Signal zəngi hazırlanır</string>
-  <string name="NotificationBarManager__incoming_signal_call">Qəbul edilən Signal zəngi</string>
+  <string name="NotificationBarManager_signal_call_in_progress">Loki Messenger zəngi baş verməkdədir</string>
+  <string name="NotificationBarManager__establishing_signal_call">Loki Messenger zəngi hazırlanır</string>
+  <string name="NotificationBarManager__incoming_signal_call">Qəbul edilən Loki Messenger zəngi</string>
   <string name="NotificationBarManager__deny_call">Zəngi rədd et</string>
   <string name="NotificationBarManager__answer_call">Zəngə cavab ver</string>
   <string name="NotificationBarManager__end_call">Zəngi bitir</string>
@@ -409,7 +409,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Bütün media</string>
   <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Artıq dəstəklənməyən Signal-ın əvvəlki versiyası ilə şifrələnmiş mesaj alındı. Zəhmət olmasa göndərən şəxsdən xahiş et ki, proqramı ən son versiyasına yeniləsin və yenidən göndərsin.</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Artıq dəstəklənməyən Loki Messenger-ın əvvəlki versiyası ilə şifrələnmiş mesaj alındı. Zəhmət olmasa göndərən şəxsdən xahiş et ki, proqramı ən son versiyasına yeniləsin və yenidən göndərsin.</string>
   <string name="MessageRecord_left_group">Sən qrupdan çıxdın.</string>
   <string name="MessageRecord_you_updated_group">Qrupu yenilədin.</string>
   <string name="MessageRecord_you_called">Sən zəng etmisən</string>
@@ -419,7 +419,7 @@
   <string name="MessageRecord_s_called_you">%s sənə zəng edib</string>
   <string name="MessageRecord_called_s">%s istifadəçisinə zəng etmisən</string>
   <string name="MessageRecord_missed_call_from">%s tərəfindən cavab verilməmiş zəng</string>
-  <string name="MessageRecord_s_joined_signal">%s artıq Signal-dadır!</string>
+  <string name="MessageRecord_s_joined_signal">%s artıq Loki Messenger-dadır!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Yox olan mesajları deaktivə etdin.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s yox olan mesajları deaktivə etdi.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Yox olan mesajların taymerini %1$s təyin etmisən.</string>
@@ -450,9 +450,9 @@
   <string name="DeviceProvisioningActivity_content_progress_key_error">Xətalı QR şifrə.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Üzr istəyirik, lakin sən bir neçə cihazla bağlantı qurmusan, bəzilərini silməyə çalış</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Üzr istəyirik, bu cihazla bağlantı qurmaq üçün uyğun QR şifrə deyil.</string>
-  <string name="DeviceProvisioningActivity_link_a_signal_device">Signal cihazı ilə bağlantı qurulsun?</string>
-  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Belə görünür ki, 3-cü tərəfin skanerini istifadə edərək Signal-a cihaz bağlamaq istəyirsən. Təhlükəsizliyin üçün şifrəni Signal daxilində skan et.</string>
-  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">QR şifrəni skan edə bilməsi üçün Signal-ın Kamera seçimlərinə giriş icazəsi olmalıdır ki, o da hal hazırda qadağa edilmişdir. Davam edə bilmək üçün zəhmət olmasa aplikasiya parametrləri menyusuna, oradan isə \"İcazələr bölməsinə keçərək \"Kamera\" hissəsini aktivləşdir.</string>
+  <string name="DeviceProvisioningActivity_link_a_signal_device">Loki Messenger cihazı ilə bağlantı qurulsun?</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Belə görünür ki, 3-cü tərəfin skanerini istifadə edərək Signal-a cihaz bağlamaq istəyirsən. Təhlükəsizliyin üçün şifrəni Loki Messenger daxilində skan et.</string>
+  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">QR şifrəni skan edə bilməsi üçün Loki Messenger-ın Kamera seçimlərinə giriş icazəsi olmalıdır ki, o da hal hazırda qadağa edilmişdir. Davam edə bilmək üçün zəhmət olmasa aplikasiya parametrləri menyusuna, oradan isə \"İcazələr bölməsinə keçərək \"Kamera\" hissəsini aktivləşdir.</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Kameraya giriş icazəsi olmadan QR şifrə skan olunmur</string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">Yox olan mesajlar</string>
@@ -460,7 +460,7 @@
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Bu söhbətləşmədəki göndərilən və qəbul edilən mesajlara baxıldıqdan %s sonra silinəcəkdir.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Şifrə ifadəsini daxil et</string>
-  <string name="PassphrasePromptActivity_watermark_content_description">Signal ikonası</string>
+  <string name="PassphrasePromptActivity_watermark_content_description">Loki Messenger ikonası</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Şifrə ifadəsini təqdim et</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Səhv şifrə ifadəsi!</string>
   <!--PlayServicesProblemFragment-->
@@ -515,7 +515,7 @@
         nömrə (%s) səhvdir.
     </string>
   <string name="RegistrationActivity_missing_google_play_services">Google Play Xidməti Çatışmır</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Bu cihazda Google Play Xidməti yoxdur. Sən yenə də Signal-ı istifadə edə bilərsən, amma o daha az etibarlı olacaq və aşağı performans nümayiş etdirəcək.\n\nƏgər sən qabaqcıl istifadəçi deyilsənsə, ikinci əl Android ROM istifadə etmirsənsə, yaxud da bu xətanı gördüyünü düşünürsənsə, lütfən bizi məlumatlandırmaq üçün support@signal.org ünvanına yaz. </string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Bu cihazda Google Play Xidməti yoxdur. Sən yenə də Loki Messenger-ı istifadə edə bilərsən, amma o daha az etibarlı olacaq və aşağı performans nümayiş etdirəcək.\n\nƏgər sən qabaqcıl istifadəçi deyilsənsə, ikinci əl Android ROM istifadə etmirsənsə, yaxud da bu xətanı gördüyünü düşünürsənsə, lütfən bizi məlumatlandırmaq üçün support@signal.org ünvanına yaz. </string>
   <string name="RegistrationActivity_i_understand">Anlayıram</string>
   <string name="RegistrationActivity_play_services_error">Play Xidmət Xətası</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Xidməti yenilənir və ya müvəqqəti işləmir: Zəhmət olmasa bir daha sına.</string>
@@ -523,9 +523,9 @@
   <string name="RegistrationActivity_no_browser">Bu linki aça bilmirik. Veb brauzer tapılmadı.</string>
   <string name="RegistrationActivity_more_information">Daha ətraflı məlumat</string>
   <string name="RegistrationActivity_less_information">Daha az məlumat</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Dostlarınla əlaqəyə girmək, mesajlaşmaq və təhlükəsiz zənglər edə bilməsi üçün Signal sənin əlaqələrinə və mediana giriş icazəsi əldə etməlidir.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Dostlarınla əlaqəyə girmək, mesajlaşmaq və təhlükəsiz zənglər edə bilməsi üçün Loki Messenger sənin əlaqələrinə və mediana giriş icazəsi əldə etməlidir.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Xidmətlə əlaqə yarada bilmədik. Zəhmət olmasa şəbəkə əlaqəni yoxla və bir daha sına.</string>
-  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Signal-ın sənin SMS mesajların giriş icazəsi olsa, o avtomatik olaraq sənin təsdiq şifrəni oxuyacaq və Signal sənin telefon nömrəni asanlıqla təsdiq edəcək.</string>
+  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Signal-ın sənin SMS mesajların giriş icazəsi olsa, o avtomatik olaraq sənin təsdiq şifrəni oxuyacaq və Loki Messenger sənin telefon nömrəni asanlıqla təsdiq edəcək.</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Xətanın aradan qaldırılması üçün sorğunu daxil etmək üçün %d cəmi addım qaldı.</item>
     <item quantity="other">Xətanın aradan qaldırılması üçün sorğunu daxil etmək üçün cəmi %d addım qaldı.</item>
@@ -548,13 +548,13 @@
   <string name="SearchFragment_header_messages">Mesajlar</string>
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Əlaqələrə əlavə et</string>
-  <string name="SharedContactDetailsActivity_invite_to_signal">Signala dəvət et</string>
-  <string name="SharedContactDetailsActivity_signal_message">Signal Mesajı</string>
-  <string name="SharedContactDetailsActivity_signal_call">Signal Zəngi</string>
+  <string name="SharedContactDetailsActivity_invite_to_signal">Loki Messengera dəvət et</string>
+  <string name="SharedContactDetailsActivity_signal_message">Loki Messenger Mesajı</string>
+  <string name="SharedContactDetailsActivity_signal_call">Loki Messenger Zəngi</string>
   <!--SharedContactView-->
   <string name="SharedContactView_add_to_contacts">Əlaqələrə əlavə et</string>
-  <string name="SharedContactView_invite_to_signal">Signala dəvət et</string>
-  <string name="SharedContactView_message">Signal Mesajı</string>
+  <string name="SharedContactView_invite_to_signal">Loki Messengera dəvət et</string>
+  <string name="SharedContactView_message">Loki Messenger Mesajı</string>
   <!--Slide-->
   <string name="Slide_image">Şəkil</string>
   <string name="Slide_audio">Səs</string>
@@ -579,7 +579,7 @@
   <string name="ThreadRecord_called_you">Zənə zəng edib</string>
   <string name="ThreadRecord_missed_call">Cavab verilməmiş zəng</string>
   <string name="ThreadRecord_media_message">Media mesajı</string>
-  <string name="ThreadRecord_s_is_on_signal">%s artıq Signal-dadır!</string>
+  <string name="ThreadRecord_s_is_on_signal">%s artıq Loki Messenger-dadır!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Yox olan mesajlar deaktiv edildi</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Yox olan mesajlar üçün zaman intervalı %s tıəyin edildi</string>
   <string name="ThreadRecord_safety_number_changed">Təhlükəsizlik rəqəmi dəyişdirildi</string>
@@ -587,8 +587,8 @@
   <string name="ThreadRecord_you_marked_verified">Sən təsdiqlənmiş kimi işarələnmisən</string>
   <string name="ThreadRecord_you_marked_unverified">Sən təsdiqlənməmiş kimi işarələnmisən.</string>
   <!--UpdateApkReadyListener-->
-  <string name="UpdateApkReadyListener_Signal_update">Signal yenilənməsi</string>
-  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal-ın yeni versiyası hazırdır, yeniləmək üçün kliklə</string>
+  <string name="UpdateApkReadyListener_Signal_update">Loki Messenger yenilənməsi</string>
+  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Loki Messenger-ın yeni versiyası hazırdır, yeniləmək üçün kliklə</string>
   <!--UnknownSenderView-->
   <string name="UnknownSenderView_block_s">%səlaqəsini kilidləyirsən?</string>
   <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you"> Kilidlənmiş əlaqələr daha sənə mesaj göndərə və ya zəng edə bilməyəcək.</string>
@@ -603,14 +603,14 @@
   <string name="UnverifiedSendDialog_send_message">Mesaj göndərirsən?</string>
   <string name="UnverifiedSendDialog_send">Göndər</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Sənin əlaqən Signal-ın köhnə versiyasını istifadə edir. Sənin təhlükəsizlik rəqəmini təsdiq etməmişdən əvvəl proqramı yeniləməsini xahiş et.</string>
-  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Sənin əlaqən uyğun olmayan QR şifrə ilə Signal-ın yeni versiyasını istifadə edir. Müqayisə etmək üçün zəhmət olmasa yenilə.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Sənin əlaqən Loki Messenger-ın köhnə versiyasını istifadə edir. Sənin təhlükəsizlik rəqəmini təsdiq etməmişdən əvvəl proqramı yeniləməsini xahiş et.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Sənin əlaqən uyğun olmayan QR şifrə ilə Loki Messenger-ın yeni versiyasını istifadə edir. Müqayisə etmək üçün zəhmət olmasa yenilə.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Skan edilmiş QR şifrə təhlükəsizlik rəqəminin təsdiq şifrəsini düzgün formatlamadı. Zəhmət olmasa yenidən skan et.</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">Təhlükəsizlik rəqəmini bu vasitə ilə paylaş...</string>
-  <string name="VerifyIdentityActivity_our_signal_safety_number">Bizim Signal təhlükəsizlik rəqəmimiz:</string>
+  <string name="VerifyIdentityActivity_our_signal_safety_number">Bizim Loki Messenger təhlükəsizlik rəqəmimiz:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Elə görünür ki, paylaşa biləcəyin aplikasiya yoxdur.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Mübadilə buferində müqayisə etmək üçün təhlükəsizlik rəqəmi tapılmadı</string>
-  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">QR şifrəni skan edə bilməsi üçün Signal-ın Kamera seçimlərinə giriş icazəsi olmalıdır ki, o da hal hazırda qadağa edilmişdir. Davam edə bilmək üçün zəhmət olmasa aplikasiya parametrləri menyusuna, oradan isə \"İcazələr bölməsinə keçərək \"Kamera\" hissəsini aktivləşdir.</string>
+  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">QR şifrəni skan edə bilməsi üçün Loki Messenger-ın Kamera seçimlərinə giriş icazəsi olmalıdır ki, o da hal hazırda qadağa edilmişdir. Davam edə bilmək üçün zəhmət olmasa aplikasiya parametrləri menyusuna, oradan isə \"İcazələr bölməsinə keçərək \"Kamera\" hissəsini aktivləşdir.</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Kameraya giriş icazəsi olmadan QR şifrəni skan etmək mümkün deyil</string>
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Pis şifrələnmiş mesaj</string>
@@ -630,13 +630,13 @@
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Açmaq üçün toxun.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Açmaq üçün toxun, yaxud bağlamaq üçün kilidə toxun.</string>
-  <string name="KeyCachingService_passphrase_cached">Signal-ın kilidi açıldı</string>
-  <string name="KeyCachingService_lock">Signal-ı kilidlə</string>
+  <string name="KeyCachingService_passphrase_cached">Loki Messenger-ın kilidi açıldı</string>
+  <string name="KeyCachingService_lock">Loki Messenger-ı kilidlə</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Sən</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Dəstəklənməyən media növü</string>
   <string name="MediaPreviewActivity_draft">Qaralama</string>
-  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Xarici yaddaşa məlumat yaza bilməsi üçün Signal-ın Yaddaş seçimlərinə giriş icazəsi olmalıdır ki, o da hal hazırda qadağa edilmişdir. Davam edə bilmək üçün zəhmət olmasa aplikasiya parametrləri menyusuna, oradan isə \"İcazələr bölməsinə keçərək \"Yaddaş\" hissəsini aktivləşdir.</string>
+  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Xarici yaddaşa məlumat yaza bilməsi üçün Loki Messenger-ın Yaddaş seçimlərinə giriş icazəsi olmalıdır ki, o da hal hazırda qadağa edilmişdir. Davam edə bilmək üçün zəhmət olmasa aplikasiya parametrləri menyusuna, oradan isə \"İcazələr bölməsinə keçərək \"Yaddaş\" hissəsini aktivləşdir.</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">İcazəsiz xarici yaddaşa məlumat yaza bilmərik</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Mesajı silirsən?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Bu addım mesajı həmişəlik siləcək.</string>
@@ -652,10 +652,10 @@
   <string name="MessageNotifier_mark_read">Oxunmuş kimi nişanla</string>
   <string name="MessageNotifier_media_message">Media mesajı</string>
   <string name="MessageNotifier_reply">Cavab ver</string>
-  <string name="MessageNotifier_signal_message">Signal Mesajı</string>
+  <string name="MessageNotifier_signal_message">Loki Messenger Mesajı</string>
   <string name="MessageNotifier_unsecured_sms">Mühafizə edilməyən SMS</string>
-  <string name="MessageNotifier_pending_signal_messages">Gözləmədə olan Signal mesajları</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">Gözləmədə olan Signal mesajların var, açmaq və bərpa etmək üçün kliklə</string>
+  <string name="MessageNotifier_pending_signal_messages">Gözləmədə olan Loki Messenger mesajları</string>
+  <string name="MessageNotifier_you_have_pending_signal_messages">Gözləmədə olan Loki Messenger mesajların var, açmaq və bərpa etmək üçün kliklə</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Əlaqə</string>
   <!--Notification Channels-->
@@ -669,7 +669,7 @@
   <string name="NotificationChannel_group_messages">Mesajlar</string>
   <string name="NotificationChannel_missing_display_name">Naməlum</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal kilidli olarkən sürətli cavamlar mümkün deyil!</string>
+  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Loki Messenger kilidli olarkən sürətli cavamlar mümkün deyil!</string>
   <string name="QuickResponseService_problem_sending_message">Mesajın göndərilməsində problem var!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_saved_to">%s qovluğunda yadda saxlandı</string>
@@ -689,14 +689,14 @@
   </plurals>
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">Cihaz daha qeydiyyatlı deyil</string>
-  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Sən başqa cihazda Signal üçün telefon nömrəni qeydiyyatdan keçirdiyin üçün belə ola bilər. Yenidən qeydiyyatdan keçirəm üçün kliklə.</string>
+  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Sən başqa cihazda Loki Messenger üçün telefon nömrəni qeydiyyatdan keçirdiyin üçün belə ola bilər. Yenidən qeydiyyatdan keçirəm üçün kliklə.</string>
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">Videonun oxunmasında xəta</string>
   <!--WebRtcCallActivity-->
-  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">%s tərəfindən gələn zəngi cavablandırmaq üçün Signal üçün mikrofona giriş icazəsi ver.</string>
-  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Zəng qəbul edə bilməsi üçün Signal-ın Mikrofon və Kamera seçimlərinə giriş icazəsi olmalıdır ki, o da hal hazırda qadağa edilmişdir. Davam edə bilmək üçün zəhmət olmasa aplikasiya parametrləri menyusuna, oradan isə \"İcazələr bölməsinə keçərək \"Mikrofon\" və \"Kamera\" hissələrini aktivləşdir.</string>
+  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">%s tərəfindən gələn zəngi cavablandırmaq üçün Loki Messenger üçün mikrofona giriş icazəsi ver.</string>
+  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Zəng qəbul edə bilməsi üçün Loki Messenger-ın Mikrofon və Kamera seçimlərinə giriş icazəsi olmalıdır ki, o da hal hazırda qadağa edilmişdir. Davam edə bilmək üçün zəhmət olmasa aplikasiya parametrləri menyusuna, oradan isə \"İcazələr bölməsinə keçərək \"Mikrofon\" və \"Kamera\" hissələrini aktivləşdir.</string>
   <!--WebRtcCallScreen-->
-  <string name="WebRtcCallScreen_new_safety_numbers">%1$s ilə söhbətin üçün təhlükəsizlik rəqəmin dəyişdi. Ola bilsin ki, kimsə sizin söhbətinizə müdaxilə etmək istəyir, ya da %2$s Signal-ı yenidən qeydiyyatdan keçirib.</string>
+  <string name="WebRtcCallScreen_new_safety_numbers">%1$s ilə söhbətin üçün təhlükəsizlik rəqəmin dəyişdi. Ola bilsin ki, kimsə sizin söhbətinizə müdaxilə etmək istəyir, ya da %2$s Loki Messenger-ı yenidən qeydiyyatdan keçirib.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Bu əlaqə ilə təhlükəsizlik rəqəmini təsdiqləmək arzun ola bilər.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Yeni təhlükəsizlik rəqəmi</string>
   <string name="WebRtcCallScreen_accept">Qəbul et</string>
@@ -731,15 +731,15 @@
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Əlaqə Şəkli</string>
   <!--ContactSelectionListFragment-->
-  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Ələqələrini göstərə bilməsi üçün Signal-ın Əlaqələr seçimlərinə giriş icazəsi olmalıdır ki, o da hal hazırda qadağa edilmişdir. Davam edə bilmək üçün zəhmət olmasa aplikasiya parametrləri menyusuna, oradan isə \"İcazələr bölməsinə keçərək \"Əlaqələr\" hissəsini aktivləşdir.</string>
+  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Ələqələrini göstərə bilməsi üçün Loki Messenger-ın Əlaqələr seçimlərinə giriş icazəsi olmalıdır ki, o da hal hazırda qadağa edilmişdir. Davam edə bilmək üçün zəhmət olmasa aplikasiya parametrləri menyusuna, oradan isə \"İcazələr bölməsinə keçərək \"Əlaqələr\" hissəsini aktivləşdir.</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Əlaqələrin bərpası alınmadı, şəbəkə əlaqəni yoxla</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Kilidlənmiş əlaqə yoxdur</string>
   <!--contact_selection_list_fragment-->
-  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Nümayiş edə bilməsi üçün Signal-ın sənin əlaqələrinə giriş icazəsi olmalıdır.</string>
+  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Nümayiş edə bilməsi üçün Loki Messenger-ın sənin əlaqələrinə giriş icazəsi olmalıdır.</string>
   <string name="contact_selection_list_fragment__show_contacts">Əlaqələri Göstər</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Signal mesajı</string>
+  <string name="conversation_activity__type_message_push">Loki Messenger mesajı</string>
   <string name="conversation_activity__type_message_sms_insecure">Mühafizə edilməyən SMS</string>
   <string name="conversation_activity__type_message_mms_insecure">Mühafizə edilməyən MMS</string>
   <string name="conversation_activity__from_sim_name">%1$s tərəfindən</string>
@@ -750,7 +750,7 @@
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Sürətli kamera əlavə faylının siyirməsini keçir</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Səs yaz və audio fayl kimi göndər</string>
   <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Səs yazma və göndərilməni kilidlə</string>
-  <string name="conversation_activity__enable_signal_for_sms">Signal-ı SMS üçün aktivləşdir</string>
+  <string name="conversation_activity__enable_signal_for_sms">Loki Messenger-ı SMS üçün aktivləşdir</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">Ləğv etmək üçün sürüşdür</string>
   <string name="conversation_input_panel__cancel">Ləğv Et</string>
@@ -823,9 +823,9 @@
   <string name="IdentityUtil_unverified_banner_one">Sənin %s ilə olan təhlükəsizlik rəqəmin dəyişildi və o təsdiq edilməyib</string>
   <string name="IdentityUtil_unverified_banner_two">Sənin %1$s və %2$s ilə olan təhlükəsizlik rəqəmlərin təsdiq edilməyib</string>
   <string name="IdentityUtil_unverified_banner_many">Sənin %1$s, %2$s və %3$s ilə olan təhlükəsizlik rəqəmlərin təsdiq edilməyib</string>
-  <string name="IdentityUtil_unverified_dialog_one">Sənin %1$s ilə olan təhlükəsizlik rəqəmin dəyişilmiş və təsdiqlənməmişdir. Kimsə sənin ünsiyyətinə müdaxilə etmək istəyir, yaxud da %1$s Signal-ı yenidən quraşdırdı.</string>
-  <string name="IdentityUtil_unverified_dialog_two">Tərkibində %1$s və %2$s olan təhlükəsizlik rəqəmlərin təsdiqlənmədi. Belə görünür ki, kimsə sənin ünsiyyətinə müdaxilə etmək istəyir, yaxud da o Signal-ı yenidən quraşdırdı.</string>
-  <string name="IdentityUtil_unverified_dialog_many">Tərkibində %1$s, %2$s və %3$s olan təhlükəsizlik rəqəmlərin təsdiqlənmədi. Belə görünür ki, kimsə sənin ünsiyyətinə müdaxilə etmək istəyir, yaxud da o Signal-ı yenidən quraşdırdı.</string>
+  <string name="IdentityUtil_unverified_dialog_one">Sənin %1$s ilə olan təhlükəsizlik rəqəmin dəyişilmiş və təsdiqlənməmişdir. Kimsə sənin ünsiyyətinə müdaxilə etmək istəyir, yaxud da %1$s Loki Messenger-ı yenidən quraşdırdı.</string>
+  <string name="IdentityUtil_unverified_dialog_two">Tərkibində %1$s və %2$s olan təhlükəsizlik rəqəmlərin təsdiqlənmədi. Belə görünür ki, kimsə sənin ünsiyyətinə müdaxilə etmək istəyir, yaxud da o Loki Messenger-ı yenidən quraşdırdı.</string>
+  <string name="IdentityUtil_unverified_dialog_many">Tərkibində %1$s, %2$s və %3$s olan təhlükəsizlik rəqəmlərin təsdiqlənmədi. Belə görünür ki, kimsə sənin ünsiyyətinə müdaxilə etmək istəyir, yaxud da o Loki Messenger-ı yenidən quraşdırdı.</string>
   <string name="IdentityUtil_untrusted_dialog_one">Tərkibində %s olan təhlükəsizlik rəqəmin elə indi dəyişildi.</string>
   <string name="IdentityUtil_untrusted_dialog_two">Tərkibində %1$s və %2$s olan təhlükəsizlik rəqəmin elə indi dəyişildi.</string>
   <string name="IdentityUtil_untrusted_dialog_many">Tərkibində %1$s, %2$s və %3$solan təhlükəsizlik rəqəmin elə indi dəyişildi.</string>
@@ -856,7 +856,7 @@
   <string name="log_submit_activity__please_review_this_log_from_my_app">Aplikasiyam tərəfindən bu girişi yoxla: %1$s</string>
   <string name="log_submit_activity__network_failure">Şəbəkə xətası. Zəhmət olmasa yenidən cəhd et.</string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Mövcud mesajlarını Signal-ın şifrələnmiş məlumat bazasına daxil etmək istəyirsən?</string>
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Mövcud mesajlarını Loki Messenger-ın şifrələnmiş məlumat bazasına daxil etmək istəyirsən?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Mövcud sistem məlumat bazasına heç bir halda dəyişiklik edilə bilməz.</string>
   <string name="database_migration_activity__skip">Ötür</string>
   <string name="database_migration_activity__import">Daxil et</string>
@@ -888,7 +888,7 @@
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Kilidi aç</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Sənin simsiz daşıyıcın vasitəsilə media və qrup mesajlarını çatdırmaq üçün Signal MMS parametrlərini tələb edir. Cihazın bu məlumatı əlçatan etmir, hansı ki kilidli cihazlar və qadağa edilmiş konfiqurasiyalarda baş verir.</string>
+  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Sənin simsiz daşıyıcın vasitəsilə media və qrup mesajlarını çatdırmaq üçün Loki Messenger MMS parametrlərini tələb edir. Cihazın bu məlumatı əlçatan etmir, hansı ki kilidli cihazlar və qadağa edilmiş konfiqurasiyalarda baş verir.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Media və qrup mesajı göndərmək üçün \'OK\'-i kliklə və tələb edilən parametrləri tamamla. MMS parametrlərin \'sənin daşıyıcı APN\'-ində axtarış etməklə əldə edilə bilər. Bunu cəmi bir dəfə etməli olacaqsan.</string>
   <!--profile_create_activity-->
   <string name="profile_create_activity__set_later">Daha sonra quraşdır</string>
@@ -911,12 +911,12 @@
   <string name="recipient_preferences__call_settings">Zəng parametrləri</string>
   <string name="recipient_preferences__ringtone">Zəng səsi</string>
   <!--- redphone_call_controls-->
-  <string name="redphone_call_card__signal_call">Signal Zəngi</string>
+  <string name="redphone_call_card__signal_call">Loki Messenger Zəngi</string>
   <string name="redphone_call_controls__mute">Səssiz</string>
   <string name="redphone_call_controls__flip_camera_rear">Kameraları Birindən Digərinə Keçir</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">TELEFON NÖMRƏ</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal sənin mövcud telefon nömrəni və əlaqələr kitabçanı istifadə edərək ünsiyyəti asanlaşdırır. Telefon ilə səninlə əlaqə qura bilən bütün dostların eyni zamanda Signal ilə də səninlə ünsiyyət yarada biləcək.\n\nQeydiyyat zamanı bəzi əlaqələr serverə köçürülür. Onlar yaddaşda saxlanmır.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal sənin mövcud telefon nömrəni və əlaqələr kitabçanı istifadə edərək ünsiyyəti asanlaşdırır. Telefon ilə səninlə əlaqə qura bilən bütün dostların eyni zamanda Loki Messenger ilə də səninlə ünsiyyət yarada biləcək.\n\nQeydiyyat zamanı bəzi əlaqələr serverə köçürülür. Onlar yaddaşda saxlanmır.</string>
   <string name="registration_activity__verify_your_number">Nömrəni Təsdiq Et</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Təsdiq şifrəsini əlaqə etmək üçün mobil nömrəni daxil et. Provayder tərəfindən ödəniş tətbiq oluna bilər.</string>
   <!--recipients_panel-->
@@ -993,8 +993,8 @@
   <string name="preferences__sms_mms">SMS və MMS</string>
   <string name="preferences__pref_all_sms_title">Bütün SMS-ləri al</string>
   <string name="preferences__pref_all_mms_title">Bütün MMS-ləri al</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Daxil olan bütün mətnli mesajlar üçün Signal-ı istifadə et</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Daxil olan bütün multimedia mesajları üçün Signal-ı istifadə et</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Daxil olan bütün mətnli mesajlar üçün Loki Messenger-ı istifadə et</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Daxil olan bütün multimedia mesajları üçün Loki Messenger-ı istifadə et</string>
   <string name="preferences__pref_enter_sends_title">Daxil et düyməsi göndərir</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Daxil et düymasını kliklədikdə mesaj göndəriləcək</string>
   <string name="preferences__send_link_previews">Link ilkin baxışlarını göndər</string>
@@ -1006,7 +1006,7 @@
   <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Ekran və xəbərdarlıqları şifrə ifadəsi ilə kilidlə</string>
   <string name="preferences__screen_security">Ekran təhlükəsizliyi</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Son daxil olanlar siyahısında və aplikasiyanın içində ekranın şəkil kimi yadda saxlanmasını blokla</string>
-  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Signal müəyyən müddət qeyri-aktiv olduqda onu avtomatik olaraq kilidlə</string>
+  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Loki Messenger müəyyən müddət qeyri-aktiv olduqda onu avtomatik olaraq kilidlə</string>
   <string name="preferences__inactivity_timeout_passphrase">Qeyri-aktivlik şifrə ifadəsi</string>
   <string name="preferences__inactivity_timeout_interval">Qeyri-aktivlik intervalı</string>
   <string name="preferences__notifications">Xəbərdarlıqlar</string>
@@ -1059,8 +1059,8 @@
   <string name="preferences__theme">Mövzu</string>
   <string name="preferences__default">Başlanğıc</string>
   <string name="preferences__language">Dil</string>
-  <string name="preferences__signal_messages_and_calls">Signal mesajları və zəngləri</string>
-  <string name="preferences__free_private_messages_and_calls">Signal istifadəçilərinə ödənişsiz mesaj və zənglər</string>
+  <string name="preferences__signal_messages_and_calls">Loki Messenger mesajları və zəngləri</string>
+  <string name="preferences__free_private_messages_and_calls">Loki Messenger istifadəçilərinə ödənişsiz mesaj və zənglər</string>
   <string name="preferences__submit_debug_log">Xəta sorğusu təqdim et</string>
   <string name="preferences__support_wifi_calling">\'WiFi Zəng\' uyğunluq rejimi</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Sənin cihazın WiFi üzərindən SMS/MMS çatdırılmasını həyata keçirə bilirsə, aktivləşdir (yalnız cihazında \'WiFi Zəng\' aktiv edildikdə istifadə et)</string>
@@ -1077,8 +1077,8 @@
   <string name="preferences_chats__media_auto_download">Medianın avtomatik yüklənməsi</string>
   <string name="preferences_chats__message_trimming">Mesajların təmizlənməsi</string>
   <string name="preferences_advanced__use_system_emoji">Sistem smaylikini istifadə et</string>
-  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Signal-ın daxili smaylik dəstəyini deaktiv et</string>
-  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Bütün zəngləri Signal serveri üzərindən yayımla ki, əlaqən IP ünvanının müəyyən edilməsinin qarşısı alınmış olsun. Aktiv etsən, zəngin keyfiyyəti aşağı düşəcək.</string>
+  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Loki Messenger-ın daxili smaylik dəstəyini deaktiv et</string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Bütün zəngləri Loki Messenger serveri üzərindən yayımla ki, əlaqən IP ünvanının müəyyən edilməsinin qarşısı alınmış olsun. Aktiv etsən, zəngin keyfiyyəti aşağı düşəcək.</string>
   <string name="preferences_advanced__always_relay_calls">Zəngləri hər zaman yayımla</string>
   <string name="preferences_app_protection__app_access">Aplikasiyaya giriş icazəsi</string>
   <string name="preferences_app_protection__communication">Ünsiyyət</string>
@@ -1090,9 +1090,9 @@
   <string name="preferences_notifications__calls">Zənglər</string>
   <string name="preferences_notifications__ringtone">Zəng səsi</string>
   <string name="preferences_chats__show_invitation_prompts">Dəvətnamələri göstər</string>
-  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Signal-ı olmayan əlaqələr üçün dəvətnamələri nümayiş etdir</string>
+  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Loki Messenger-ı olmayan əlaqələr üçün dəvətnamələri nümayiş etdir</string>
   <string name="preferences_chats__message_text_size">Mesajın yazı ölçüsü</string>
-  <string name="preferences_events__contact_joined_signal">Əlaqə Signal-a qoşuldu</string>
+  <string name="preferences_events__contact_joined_signal">Əlaqə Loki Messenger-a qoşuldu</string>
   <string name="preferences_notifications__priority">Prioritet</string>
   <string name="preferences_communication__category_sealed_sender">Möhürlənmiş Göndərən</string>
   <string name="preferences_communication__sealed_sender_display_indicators">İndikatorları nümayiş etdir</string>
@@ -1108,7 +1108,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Zəng</string>
   <!--conversation_callable_secure-->
-  <string name="conversation_callable_secure__menu_call">Signal zəngi</string>
+  <string name="conversation_callable_secure__menu_call">Loki Messenger zəngi</string>
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">Mesajın detalları</string>
   <string name="conversation_context__menu_copy_text">Mətni köçür</string>
@@ -1171,26 +1171,26 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Mübadilə buferinə köçür</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Mübadilə buferi ilə müqayisə et</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">Sənin Signal-ının vaxtı ötüb</string>
+  <string name="reminder_header_outdated_build">Sənin Loki Messenger-ının vaxtı ötüb</string>
   <plurals name="reminder_header_outdated_build_details">
-    <item quantity="one">Sənin Signal-ının %d gündən sonra vaxtı bitəcək. Ən son versiyaya yeniləmək üçün kliklə.</item>
-    <item quantity="other">Sənin Signal-ının %d gündən sonra vaxtı bitəcək. Ən son versiyaya yeniləmək üçün kliklə.</item>
+    <item quantity="one">Sənin Loki Messenger-ının %d gündən sonra vaxtı bitəcək. Ən son versiyaya yeniləmək üçün kliklə.</item>
+    <item quantity="other">Sənin Loki Messenger-ının %d gündən sonra vaxtı bitəcək. Ən son versiyaya yeniləmək üçün kliklə.</item>
   </plurals>
-  <string name="reminder_header_outdated_build_details_today">Sənin Signal-ının vaxtı bugün bitir. Ən son versiyaya yeniləmək üçün kliklə.</string>
-  <string name="reminder_header_expired_build">Signal-ın versiyasının vaxtı bitib!</string>
+  <string name="reminder_header_outdated_build_details_today">Sənin Loki Messenger-ının vaxtı bugün bitir. Ən son versiyaya yeniləmək üçün kliklə.</string>
+  <string name="reminder_header_expired_build">Loki Messenger-ın versiyasının vaxtı bitib!</string>
   <string name="reminder_header_expired_build_details">Mesajlar artıq göndərilə bilməyəcək. Ən sonr versiyaya yeniləmək üçün kliklə.</string>
   <string name="reminder_header_sms_default_title">Əsas SMS aplikasiyası kimi istifadə et</string>
-  <string name="reminder_header_sms_default_text">Signal-ı əsas SMS aplikasiyası etmək üçün kliklə.</string>
+  <string name="reminder_header_sms_default_text">Loki Messenger-ı əsas SMS aplikasiyası etmək üçün kliklə.</string>
   <string name="reminder_header_sms_import_title">Sistem SMS-ni daxil et</string>
-  <string name="reminder_header_sms_import_text">Telefonunun SMS mesajlarını Signal-ın şifrələnmiş məlumat bazasına daxil etmək üçün kliklə.</string>
-  <string name="reminder_header_push_title">Signal mesajlarına və zənglərinə icazə ver</string>
+  <string name="reminder_header_sms_import_text">Telefonunun SMS mesajlarını Loki Messenger-ın şifrələnmiş məlumat bazasına daxil etmək üçün kliklə.</string>
+  <string name="reminder_header_push_title">Loki Messenger mesajlarına və zənglərinə icazə ver</string>
   <string name="reminder_header_push_text">Ünsiyyət təcrübəni daha yaxşı et.</string>
-  <string name="reminder_header_invite_title">Signala dəvət et</string>
+  <string name="reminder_header_invite_title">Loki Messengera dəvət et</string>
   <string name="reminder_header_invite_text">%1$s ilə söhbətləşməni daha üst səviyyəyə qaldır.</string>
   <string name="reminder_header_share_title">Dostlarını dəvət et!</string>
-  <string name="reminder_header_share_text">Signal-ı nə qədər çox dostun istifadə etsə, o qədər də o sənə yararlı olacaq.</string>
-  <string name="reminder_header_service_outage_text">Signal hal hazırda müəyyən texniki çətinlikləri aradan qaldırır. Xidməti ən qısa zamanda bərpa etmək üçün fasiləsiz olaraq cəhdlər edirik.</string>
-  <string name="reminder_header_the_latest_signal_features_wont_work">Android-in bu versiyasında Signal-ın ən son xüsusiyyətləri işləməyəcək. Cihazını yenilə ki, Signal-ın gələcək yeniliklərindən faydalana biləsən.</string>
+  <string name="reminder_header_share_text">Loki Messenger-ı nə qədər çox dostun istifadə etsə, o qədər də o sənə yararlı olacaq.</string>
+  <string name="reminder_header_service_outage_text">Loki Messenger hal hazırda müəyyən texniki çətinlikləri aradan qaldırır. Xidməti ən qısa zamanda bərpa etmək üçün fasiləsiz olaraq cəhdlər edirik.</string>
+  <string name="reminder_header_the_latest_signal_features_wont_work">Android-in bu versiyasında Signal-ın ən son xüsusiyyətləri işləməyəcək. Cihazını yenilə ki, Loki Messenger-ın gələcək yeniliklərindən faydalana biləsən.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Yaddaşa yaz</string>
   <string name="media_preview__forward_title">Yönləndir</string>
@@ -1211,16 +1211,16 @@
   <string name="ConversationListFragment_loading">Yüklənir...</string>
   <string name="CallNotificationBuilder_connecting">Əlaqə yaradılır...</string>
   <string name="Permissions_permission_required">İcazə tələb edilir</string>
-  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">SMS göndərə bilməsi üçün Signal-ın SMS seçimlərinə giriş icazəsi olmalıdır ki, o da hal hazırda qadağa edilmişdir. Davam edə bilmək üçün zəhmət olmasa aplikasiya parametrləri menyusuna, oradan isə \"İcazələr bölməsinə keçərək \"SMS\" hissəsini aktivləşdir.</string>
+  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">SMS göndərə bilməsi üçün Loki Messenger-ın SMS seçimlərinə giriş icazəsi olmalıdır ki, o da hal hazırda qadağa edilmişdir. Davam edə bilmək üçün zəhmət olmasa aplikasiya parametrləri menyusuna, oradan isə \"İcazələr bölməsinə keçərək \"SMS\" hissəsini aktivləşdir.</string>
   <string name="Permissions_continue">Davam et</string>
   <string name="Permissions_not_now">İndi yox</string>
-  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Əlaqələrini axtara bilməsi üçün Signal-ın Əlaqələr seçimlərinə giriş icazəsi olmalıdır ki, o da hal hazırda qadağa edilmişdir. Davam edə bilmək üçün zəhmət olmasa aplikasiya parametrləri menyusuna, oradan isə \"İcazələr bölməsinə keçərək \"Əlaqələr\" hissəsini aktivləşdir.</string>
+  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Əlaqələrini axtara bilməsi üçün Loki Messenger-ın Əlaqələr seçimlərinə giriş icazəsi olmalıdır ki, o da hal hazırda qadağa edilmişdir. Davam edə bilmək üçün zəhmət olmasa aplikasiya parametrləri menyusuna, oradan isə \"İcazələr bölməsinə keçərək \"Əlaqələr\" hissəsini aktivləşdir.</string>
   <string name="conversation_activity__enable_signal_messages">SIGNAL MESAJLARINI AKTİVLƏŞDİR</string>
-  <string name="SQLCipherMigrationHelper_migrating_signal_database">Signal-ın məlumat bazasının miqrasiyası</string>
+  <string name="SQLCipherMigrationHelper_migrating_signal_database">Loki Messenger-ın məlumat bazasının miqrasiyası</string>
   <string name="PushDecryptJob_new_locked_message">Yeni kilidli mesaj</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Gözləmədə olan mesajları görmək üçün kilidi aç</string>
   <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Yeniləməni tamamlamaq üçün kilidi aç</string>
-  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Zəhmət olmasa yeniləməni tamamlamaq üçün Signal-ın kilidini aç</string>
+  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Zəhmət olmasa yeniləməni tamamlamaq üçün Loki Messenger-ın kilidini aç</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Arxivləşdirmə üçün şifrə ifadəsi</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Arxivləşmələr xarici yaddaşda saxlanacaq və aşağıdakı şifrə ifadəsi ilə şifrələnəcək. Arxivi bərpa etmək üçün bu şifrə ifadəsi unudulmamalıdır.</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Mən bu şifrə ifadəsini yazmışam. Onsuz arxivi bərpa edə bilməyəcəm.</string>
@@ -1232,7 +1232,7 @@
   <string name="preferences_chats__create_backup">Arxiv yarat</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Arxiv üçün şifrə ifadəsini daxil et</string>
   <string name="RegistrationActivity_restore">Bərpa et</string>
-  <string name="RegistrationActivity_backup_failure_downgrade">Signal-ın yeni versiyalarından arxivləri daxil edə bilmirik</string>
+  <string name="RegistrationActivity_backup_failure_downgrade">Loki Messenger-ın yeni versiyalarından arxivləri daxil edə bilmirik</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">Arxiv üçün səhv şifrə ifadəsi</string>
   <string name="RegistrationActivity_checking">Yoxlanılır...</string>
   <string name="RegistrationActivity_d_messages_so_far">İndiyə qədər %d mesaj...</string>
@@ -1247,7 +1247,7 @@
   <string name="BackupDialog_disable_and_delete_all_local_backups">Bütün yerli arxivləri deaktiv edib silirsən?</string>
   <string name="BackupDialog_delete_backups_statement">Arxivləri sil</string>
   <string name="BackupDialog_copied_to_clipboard">Mübadilə buferinə köçürüldü</string>
-  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Arxivə məlumat yerləşdirə bilməsi üçün Signal-ın xarici yaddaş seçimlərinə giriş icazəsi olmalıdır ki, o da hal hazırda qadağa edilmişdir. Davam edə bilmək üçün zəhmət olmasa aplikasiya parametrləri menyusuna, oradan isə \"İcazələr bölməsinə keçərək \"Yaddaş\" hissəsini aktivləşdir.</string>
+  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Arxivə məlumat yerləşdirə bilməsi üçün Loki Messenger-ın xarici yaddaş seçimlərinə giriş icazəsi olmalıdır ki, o da hal hazırda qadağa edilmişdir. Davam edə bilmək üçün zəhmət olmasa aplikasiya parametrləri menyusuna, oradan isə \"İcazələr bölməsinə keçərək \"Yaddaş\" hissəsini aktivləşdir.</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Son arxiv: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Proses davam edir</string>
   <string name="LocalBackupJob_creating_backup">Arxiv yaradılır...</string>
@@ -1258,7 +1258,7 @@
   <string name="BackupUtil_never">Heç vaxt</string>
   <string name="BackupUtil_unknown">Naməlum</string>
   <string name="preferences_app_protection__screen_lock">Ekranın kilidlənməsi</string>
-  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Android-in ekran kilidi və barmaq izi ilə Signal-a girişi kilidlə</string>
+  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Android-in ekran kilidi və barmaq izi ilə Loki Messenger-a girişi kilidlə</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Ekran kilidinin qeyri aktivliyinin zamanı bitdi</string>
   <string name="AppProtectionPreferenceFragment_none">Heç biri</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Qeydiyyat Kilid PIN-i elə indicə əldə etdiyin SMS təsdiq şifrəsi ilə eyni deyil. Zəhmət olmasa aplikasiyaya əvvəl daxil etdiyin PIN-i daxil et.</string>
@@ -1269,7 +1269,7 @@
   <string name="registration_lock_dialog_view__confirm_pin">PIN-i təsdiq et</string>
   <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Qeydiyyat Kilid PIN-ini daxil et</string>
   <string name="registration_lock_reminder_view__enter_pin">PIN-i daxil et</string>
-  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Bu telefon nömrəsini Signal-la yenidən qeydiyyatdan keçirmək üçün tələb ediləcək Qeydiyyat Kilid PIN-ini aktivləşdir.</string>
+  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Bu telefon nömrəsini Loki Messenger-la yenidən qeydiyyatdan keçirmək üçün tələb ediləcək Qeydiyyat Kilid PIN-ini aktivləşdir.</string>
   <string name="preferences_app_protection__registration_lock_pin">Qeydiyyat Kilid PIN-i</string>
   <string name="preferences_app_protection__registration_lock">Qeydiyyat Kilidi</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Qeydiyyat Kilid PIN-ini daxil etməlisən</string>
@@ -1278,13 +1278,13 @@
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Xətalı Qeydiyyat Kilid PIN-i ilə çox sayda giriş cəhdi etmisən. Lütfən bir gündən sonra yenidən sına.</string>
   <string name="RegistrationActivity_error_connecting_to_service">Xidmətlə əlaqədə xəta</string>
   <string name="RegistrationActivity_oh_no">Vay vay!</string>
-  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Bu nömrənin Signal ilə son aktivliyindən 7 gün keçdikdən sonra bu telefon nömrəsi Qeydiyyat Kilid PIN-i olmadan qeydiyyatdan keçə biləcək. Hələ ki, növbədə %d günün var.</string>
+  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Bu nömrənin Loki Messenger ilə son aktivliyindən 7 gün keçdikdən sonra bu telefon nömrəsi Qeydiyyat Kilid PIN-i olmadan qeydiyyatdan keçə biləcək. Hələ ki, növbədə %d günün var.</string>
   <string name="RegistrationActivity_registration_lock_pin">Qeydiyyat kilid PIN-i</string>
   <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Bu telefon nömrəsi Qeydiyyat Kilidini aktivləşdirdi. Lütfən, Qeydiyyat Kilid PIN-ini daxil et.</string>
   <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Qeydiyyat Kilidi sənin telefon nömrən üçün aktivləşdirildi. Qeydiyyat Kilid PIN-ini unutmayasan deyə Sİgnal mütəmadi olaraq onu təsdiq etməyini xahiş edəcək.</string>
   <string name="RegistrationLockDialog_i_forgot_my_pin">PIN-i unutmuşam.</string>
   <string name="RegistrationLockDialog_forgotten_pin">PIN-i unutmusan?</string>
-  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Qeydiyyat Kilidin telefon nömrəni icazəsiz qeydiyyat cəhdlərindən qoruyur. Bu xüsusiyyət istənilən vaxt Signal-ın məxfilik parametrlərində deaktivasiya edilə bilər</string>
+  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Qeydiyyat Kilidin telefon nömrəni icazəsiz qeydiyyat cəhdlərindən qoruyur. Bu xüsusiyyət istənilən vaxt Loki Messenger-ın məxfilik parametrlərində deaktivasiya edilə bilər</string>
   <string name="RegistrationLockDialog_registration_lock">Qeydiyyat Kilidi</string>
   <string name="RegistrationLockDialog_enable">Aktivləşdir</string>
   <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">Qeydiyyat Kilid PIN-i ən azı 4 rəqəmli olmalıdır.</string>
@@ -1293,7 +1293,7 @@
   <string name="RegistrationLockDialog_disable_registration_lock_pin">Qeydiyyat Kilid PIN-ini deaktiv edirsən?</string>
   <string name="RegistrationLockDialog_disable">Söndür</string>
   <string name="preferences_chats__backups">Ehtiyat nüsxələr</string>
-  <string name="prompt_passphrase_activity__signal_is_locked">Signal kilidlidir</string>
+  <string name="prompt_passphrase_activity__signal_is_locked">Loki Messenger kilidlidir</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">Açmaq üçün toxun</string>
   <string name="RegistrationLockDialog_reminder">Xatırlatma:</string>
   <string name="recipient_preferences__about">Haqqında</string>

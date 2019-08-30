@@ -21,7 +21,7 @@
   <string name="ApplicationPreferencesActivity_disable">Zuia</string>
   <string name="ApplicationPreferencesActivity_unregistering">Usajili unafutwa</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Haikusajiliwa kutoka signal meseji na simu</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Zuia ujumbe mfupi wa simu na simu za Signal?</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Zuia ujumbe mfupi wa simu na simu za Loki Messenger?</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Zuia meseji na simu za signal kwa kutosajili kutoka kwenye mtambo. Utatakiwa kusajili tena number yako ya simu ili utumie tena baadae.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Hitilafu ya kuunganisha kwa mtambo.</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">Ujumbe mfupi wa simu umewezeshwa</string>
@@ -42,10 +42,10 @@
   <string name="DraftDatabase_Draft_quote_snippet">(jibu)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Nashindwa kupata app ya kuchagua habari</string>
-  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal inahitaji idhini ya Hifadhi ili kuunganisha picha, video, au sauti, lakini imekataliwa kabisa. Tafadhali endelea kwenye orodha ya mipangilio ya programu, chagua \"Ruhusa\", na uwawezesha \"Hifadhi\".</string>
-  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal inahitaji idhini ya Mawasiliano ili kuunganisha maelezo ya mawasiliano, lakini imekataliwa kabisa. Tafadhali endelea kwenye orodha ya mipangilio ya programu, chagua \"Ruhusa\", na uwawezesha \"Mawasiliano\".</string>
-  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal inahitaji ruhusa ya Eneo ili kuunganisha mahali, lakini imekataliwa kabisa. Tafadhali endelea kwenye orodha ya mipangilio ya programu, chagua \"Ruhusa\", na uwezesha \"Eneo\".</string>
-  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal inahitaji ruhusa ya Kamera ili kuchukua picha, lakini imekataliwa kabisa. Tafadhali endelea kwenye orodha ya mipangilio ya programu, chagua \"Ruhusa\", na uwawezesha \"Kamera\".</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Loki Messenger inahitaji idhini ya Hifadhi ili kuunganisha picha, video, au sauti, lakini imekataliwa kabisa. Tafadhali endelea kwenye orodha ya mipangilio ya programu, chagua \"Ruhusa\", na uwawezesha \"Hifadhi\".</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Loki Messenger inahitaji idhini ya Mawasiliano ili kuunganisha maelezo ya mawasiliano, lakini imekataliwa kabisa. Tafadhali endelea kwenye orodha ya mipangilio ya programu, chagua \"Ruhusa\", na uwawezesha \"Mawasiliano\".</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Loki Messenger inahitaji ruhusa ya Eneo ili kuunganisha mahali, lakini imekataliwa kabisa. Tafadhali endelea kwenye orodha ya mipangilio ya programu, chagua \"Ruhusa\", na uwezesha \"Eneo\".</string>
+  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Loki Messenger inahitaji ruhusa ya Kamera ili kuchukua picha, lakini imekataliwa kabisa. Tafadhali endelea kwenye orodha ya mipangilio ya programu, chagua \"Ruhusa\", na uwawezesha \"Kamera\".</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Hitilafu ya kucheza sauti!</string>
   <!--BlockedContactsActivity-->
@@ -72,7 +72,7 @@
   <string name="ContactsCursorLoader_contacts">Mawasiliano</string>
   <string name="ContactsCursorLoader_groups">Makundi</string>
   <!--ContactsDatabase-->
-  <string name="ContactsDatabase_signal_call_s">wito wa Signal 1%s</string>
+  <string name="ContactsDatabase_signal_call_s">wito wa Loki Messenger 1%s</string>
   <!--ContactNameEditActivity-->
   <string name="ContactNameEditActivity_given_name">Jina la familia</string>
   <string name="ContactNameEditActivity_family_name">Jina la ukoo</string>
@@ -92,7 +92,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted">imefeli kutuma, gusa kwa isiyo salama ili kuanguka nyuma</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">kuanguka nyuma kwa kutoa nywila</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">kuanguka nyuma kwa kutoa nywila MMS</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">huu ujumbe uta 1 sio 1 kuwa na nywila kwasababu mpokeaji hatumii tena Signal./n/n tuma ujumbe usio salama</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">huu ujumbe uta 1 sio 1 kuwa na nywila kwasababu mpokeaji hatumii tena Loki Messenger./n/n tuma ujumbe usio salama</string>
   <string name="ConversationItem_unable_to_open_media">Haiwezi kupata programu inayoweza kufungua media hii.</string>
   <string name="ConversationItem_copied_text">nakala 1%s</string>
   <string name="ConversationItem_from_s">kutoka %s</string>
@@ -116,7 +116,7 @@
   <string name="ConversationActivity_transport_insecure_sms">ujumbe si salama</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS si salama</string>
   <string name="ConversationActivity_transport_signal">Please  Tafadhali</string>
-  <string name="ConversationActivity_lets_switch_to_signal">Acha tubadili kwa Signal 1%1$s</string>
+  <string name="ConversationActivity_lets_switch_to_signal">Acha tubadili kwa Loki Messenger 1%1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Acha tutumia hii kwa mazungumzo:  1%1$s</string>
   <string name="ConversationActivity_error_leaving_group">kosa la kuondoka kwenye kundi</string>
   <string name="ConversationActivity_specify_recipient">tafadhali chagua mawasiliano</string>
@@ -129,13 +129,13 @@
   <string name="ConversationActivity_quick_camera_unavailable">kamera haipatikani</string>
   <string name="ConversationActivity_unable_to_record_audio">Haiwezi kurekodi sauti!</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">hakuna programu ya kuweza kushughulikia kiungo hiki kwenye kifaa chako</string>
-  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Kutuma ujumbe wa sauti, kuruhusu ufikiaji wa Signal  kwenye kipaza sauti yako.</string>
-  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal inahitaji idhini ya Kipaza sauti ili kutuma ujumbe wa sauti, lakini imekataliwa kabisa. Tafadhali endelea kwenye mipangilio ya programu, chagua \"Ruhusa\", na uwawezesha \"Kipaza sauti\".</string>
+  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Kutuma ujumbe wa sauti, kuruhusu ufikiaji wa Loki Messenger  kwenye kipaza sauti yako.</string>
+  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Loki Messenger inahitaji idhini ya Kipaza sauti ili kutuma ujumbe wa sauti, lakini imekataliwa kabisa. Tafadhali endelea kwenye mipangilio ya programu, chagua \"Ruhusa\", na uwawezesha \"Kipaza sauti\".</string>
   <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">kuita 1%s, Sinal inahitaji upatikanaji wa kipaza sauti na kamera.</string>
-  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal inahitaji ruhusa ya Kipaza sauti na Kamera ili kuwaita  1%s , lakini wamekanushwa kabisa. Tafadhali endelea kwenye mipangilio ya programu, chagua \"Ruhusa\", na uwawezesha \"Kipaza sauti\" na \"Kamera\".</string>
-  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Ili kukamata picha na video, kuruhusu upatikanaji wa Signal kwa kamera.</string>
-  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal inahitaji kibali cha Kamera kuchukua picha au video, lakini imekataliwa kabisa. Tafadhali endelea kwenye mipangilio ya programu, chagua \"Ruhusa\", na uwawezesha \"Kamera\".</string>
-  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal inahitaji uruhusu kamera kuchukua picha na video</string>
+  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Loki Messenger inahitaji ruhusa ya Kipaza sauti na Kamera ili kuwaita  1%s , lakini wamekanushwa kabisa. Tafadhali endelea kwenye mipangilio ya programu, chagua \"Ruhusa\", na uwawezesha \"Kipaza sauti\" na \"Kamera\".</string>
+  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Ili kukamata picha na video, kuruhusu upatikanaji wa Loki Messenger kwa kamera.</string>
+  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Loki Messenger inahitaji kibali cha Kamera kuchukua picha au video, lakini imekataliwa kabisa. Tafadhali endelea kwenye mipangilio ya programu, chagua \"Ruhusa\", na uwawezesha \"Kamera\".</string>
+  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Loki Messenger inahitaji uruhusu kamera kuchukua picha na video</string>
   <string name="ConversationActivity_yes">Ndio</string>
   <string name="ConversationActivity_no">Hapana</string>
   <!--ConversationAdapter-->
@@ -204,22 +204,22 @@
   <string name="DocumentView_unknown_file">Faili lisilojulikana</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Tengeneza kwa Huduma za kucheza zilizopo</string>
-  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Kifaa hiki hachiunga mkono Huduma za kucheza. Gonga ili kuzuia uboreshaji wa betri ya mfumo ambayo inzuia Signal kutoka kurejesha ujumbe wakati haiwezekani.</string>
+  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Kifaa hiki hachiunga mkono Huduma za kucheza. Gonga ili kuzuia uboreshaji wa betri ya mfumo ambayo inzuia Loki Messenger kutoka kurejesha ujumbe wakati haiwezekani.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Kushiriki nao</string>
   <!--ExperienceUpgradeActivity-->
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Karibu Signal</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">kiungoTextSecure na RedPhone sasa ni mjumbe mmoja binafsi, kwa kila hali: Signal:</string>
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Karibu kwenye Signal</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">Nakala salama ni Signal</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure na RedPhone sasa ni programu moja: Signal. Gonga ili kuchunguza.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Karibu Loki Messenger</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">kiungoTextSecure na RedPhone sasa ni mjumbe mmoja binafsi, kwa kila hali: Loki Messenger:</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Karibu kwenye Loki Messenger</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">Nakala salama ni Loki Messenger</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure na RedPhone sasa ni programu moja: Loki Messenger. Gonga ili kuchunguza.</string>
   <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Sema habari kwenye wito salama wa video</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal sasa inasaidia wito wa video salama. Anza tu simu ya Signal kama ya kawaida, gonga kifungo cha video, na salimia habari.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal sasa inawezesha usalama wa muito wa video</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal sasa inasaidia wito wa video salama. Gusa kuchunguza  zaidi</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal sasa inasaidia wito wa video salama. Anza tu simu ya Loki Messenger kama ya kawaida, gonga kifungo cha video, na salimia habari.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Loki Messenger sasa inawezesha usalama wa muito wa video</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Loki Messenger sasa inasaidia wito wa video salama. Gusa kuchunguza  zaidi</string>
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">tayari kwa closeup yako?</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">sasa unaweza kushirikisha wasifu wa picha na jina pamoja na rafiki zako Signal</string>
-  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Wasifu wa Signal ni hapa</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">sasa unaweza kushirikisha wasifu wa picha na jina pamoja na rafiki zako Loki Messenger</string>
+  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Wasifu wa Loki Messenger ni hapa</string>
   <string name="ExperienceUpgradeActivity_introducing_typing_indicators">kutambulisha viashiria vya kuandika</string>
   <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Sasa unaweza kuchagua hiari na kushiriki wakati ujumbe unapochaguliwa.</string>
   <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">unapenda kuwezesha sasa?</string>
@@ -232,8 +232,8 @@
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Kurudisha ujumbe</string>
   <!--GcmRefreshJob-->
-  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Muda wote mawasiliano ya Signal hayapo</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal haikuweza kujiandikisha na Huduma za Google Play. Ujumbe wa Signal na wito zimezimwa, tafadhali jaribu kujiandikisha katika Mipangilio &amp;  Kikubwa.</string>
+  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Muda wote mawasiliano ya Loki Messenger hayapo</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal haikuweza kujiandikisha na Huduma za Google Play. Ujumbe wa Loki Messenger na wito zimezimwa, tafadhali jaribu kujiandikisha katika Mipangilio &amp;  Kikubwa.</string>
   <!--GiphyActivity-->
   <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Hitilafu wakati wa kurejesha GIF kamili ya azimio</string>
   <!--GiphyFragmentPageAdapter-->
@@ -244,7 +244,7 @@
   <string name="GroupCreateActivity_actionbar_edit_title">Hariri kikundi</string>
   <string name="GroupCreateActivity_group_name_hint">Jina la akina</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Kikundi kipya cha MMS</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">Huna usajili kwa ujumbe wa Signal na wito, hivyo vikundi vya Signal vimezimwa. Tafadhali jaribu kujiandikisha katika Mipangilio &amp; gt; Kikubwa.</string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">Huna usajili kwa ujumbe wa Signal na wito, hivyo vikundi vya Loki Messenger vimezimwa. Tafadhali jaribu kujiandikisha katika Mipangilio &amp; gt; Kikubwa.</string>
   <string name="GroupCreateActivity_contacts_no_members">unahitaji angalau mtu mmoja kwenye kundi lako</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Mmoja wa wanachama wa kikundi chako ana namba ambayo haiwezi kusoma kwa usahihi. Tafadhali tengeneza au uondoe kuwasiliana na jaribu tena.</string>
   <string name="GroupCreateActivity_avatar_content_description">kundi la avatar</string>
@@ -266,7 +266,7 @@
   <string name="InviteActivity_sending">Kutuma</string>
   <string name="InviteActivity_heart_content_description">Moyo</string>
   <string name="InviteActivity_invitations_sent">Mialiko imetumwa</string>
-  <string name="InviteActivity_invite_to_signal">Mwalike kwenye Signal</string>
+  <string name="InviteActivity_invite_to_signal">Mwalike kwenye Loki Messenger</string>
   <string name="InviteActivity_no_app_to_share_to">Inaonekana huna programu yoyote ya kushiriki</string>
   <!--Job-->
   <string name="Job_working_in_the_background">inafanya kazi chini kwa chini</string>
@@ -310,7 +310,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Vyombo vyote vya habari</string>
   <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Imepokea ujumbe uliofichwa kwa kutumia toleo la zamani la Signal ambayo haitumiki tena. Tafadhali kumwomba mtumaji kuwasasishe kwa toleo la hivi karibuni na kurejesha ujumbe.</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Imepokea ujumbe uliofichwa kwa kutumia toleo la zamani la Loki Messenger ambayo haitumiki tena. Tafadhali kumwomba mtumaji kuwasasishe kwa toleo la hivi karibuni na kurejesha ujumbe.</string>
   <string name="MessageRecord_left_group">umetoka kwenye kundi</string>
   <string name="MessageRecord_you_updated_group">Umesasisha kikundi</string>
   <string name="MessageRecord_you_called">wewe uliita</string>
@@ -320,7 +320,7 @@
   <string name="MessageRecord_s_called_you">1%s alikuita wewe</string>
   <string name="MessageRecord_called_s">imeita 1%s</string>
   <string name="MessageRecord_missed_call_from">wito wa simu haukupokelewa kutoka 1%s</string>
-  <string name="MessageRecord_s_joined_signal">1%s yupo Signal</string>
+  <string name="MessageRecord_s_joined_signal">1%s yupo Loki Messenger</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">umezuia ujumbe uliopotea</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">namba yako ya usalama pamoja na 1%s imebadilika</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">unanakili nambari yako ya siri pamoja na 1%s imethibitishwa</string>
@@ -339,8 +339,8 @@
   <string name="DeviceProvisioningActivity_content_progress_key_error">msimbo wa QR sio sahihi</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Samahani, una vifaa vingi vimeunganishwa tayari, jaribu kuondoa baadhi</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Samahani, hii siyo kifaa halali cha kiungo cha namba ya QR</string>
-  <string name="DeviceProvisioningActivity_link_a_signal_device">Unganisha kifaa cha Signal</string>
-  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Inaonekana kama unajaribu kuunganisha kifaa cha Signal kwa kutumia skana ya chama cha 3. Kwa ulinzi wako, tafadhali soma kificho tena kutoka ndani ya Ishara.</string>
+  <string name="DeviceProvisioningActivity_link_a_signal_device">Unganisha kifaa cha Loki Messenger</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Inaonekana kama unajaribu kuunganisha kifaa cha Loki Messenger kwa kutumia skana ya chama cha 3. Kwa ulinzi wako, tafadhali soma kificho tena kutoka ndani ya Ishara.</string>
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">
 Signal inahitaji ruhusa ya Kamera ili kupima msimbo wa QR, lakini imekataliwa kabisa. Tafadhali endelea kwenye mipangilio ya programu, chagua \"Ruhusa\", na uwawezesha \"Kamera\".</string>
   <!--ExpirationDialog-->
@@ -348,7 +348,7 @@ Signal inahitaji ruhusa ya Kamera ili kupima msimbo wa QR, lakini imekataliwa ka
   <string name="ExpirationDialog_your_messages_will_not_expire">Ujumbe wako hautopitwa na wakati</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Ingiza nenosiri</string>
-  <string name="PassphrasePromptActivity_watermark_content_description">Signal icon</string>
+  <string name="PassphrasePromptActivity_watermark_content_description">Loki Messenger icon</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Tuma nenosiri</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">passhrase sio sahihi</string>
   <!--PlayServicesProblemFragment-->
@@ -391,7 +391,7 @@ nambari yako ya simu</string>
   <string name="RegistrationActivity_invalid_number">namba si sahihi</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">namba  uliyotaja (1%s) sio sahihi</string>
   <string name="RegistrationActivity_missing_google_play_services">haipo huduma ya Google Play</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Kifaa hiki kimekosa huduma za Google Play. Bado unaweza kutumia Signal, lakini usanidi huu unaweza kusababisha uaminifu mdogo au utendaji. \ N \ Kama wewe si mtumiaji wa juu, sio kutekeleza ROM ya Android, au uamini kwamba unaona hili kwa kosa, tafadhali wasiliana na support@signal.org kwa usaidizi wa matatizo.</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Kifaa hiki kimekosa huduma za Google Play. Bado unaweza kutumia Loki Messenger, lakini usanidi huu unaweza kusababisha uaminifu mdogo au utendaji. \ N \ Kama wewe si mtumiaji wa juu, sio kutekeleza ROM ya Android, au uamini kwamba unaona hili kwa kosa, tafadhali wasiliana na support@signal.org kwa usaidizi wa matatizo.</string>
   <string name="RegistrationActivity_i_understand">nimeelewa</string>
   <string name="RegistrationActivity_play_services_error">kosa katika huduma za play</string>
   <string name="RegistrationActivity_terms_and_privacy">Vigezo &amp; masharti: sera ya faragha</string>
@@ -412,13 +412,13 @@ nambari yako ya simu</string>
   <string name="SearchFragment_header_messages">ujumbe</string>
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">ongeza mawasiliano</string>
-  <string name="SharedContactDetailsActivity_invite_to_signal">Mwalike kwenye Signal</string>
-  <string name="SharedContactDetailsActivity_signal_message">ujumbe wa Signal</string>
-  <string name="SharedContactDetailsActivity_signal_call">wito wa Signal</string>
+  <string name="SharedContactDetailsActivity_invite_to_signal">Mwalike kwenye Loki Messenger</string>
+  <string name="SharedContactDetailsActivity_signal_message">ujumbe wa Loki Messenger</string>
+  <string name="SharedContactDetailsActivity_signal_call">wito wa Loki Messenger</string>
   <!--SharedContactView-->
   <string name="SharedContactView_add_to_contacts">ongeza mawasiliano</string>
-  <string name="SharedContactView_invite_to_signal">Mwalike kwenye Signal</string>
-  <string name="SharedContactView_message">ujumbe wa Signal</string>
+  <string name="SharedContactView_invite_to_signal">Mwalike kwenye Loki Messenger</string>
+  <string name="SharedContactView_message">ujumbe wa Loki Messenger</string>
   <!--Slide-->
   <string name="Slide_image">picha</string>
   <string name="Slide_audio">Sauti</string>
@@ -440,7 +440,7 @@ nambari yako ya simu</string>
   <string name="ThreadRecord_called_you">ulipigiwa simu</string>
   <string name="ThreadRecord_missed_call">Simu zilizopotea</string>
   <string name="ThreadRecord_media_message">Ujumbe wa vyombo vya habari</string>
-  <string name="ThreadRecord_s_is_on_signal">1%s yupo Signal</string>
+  <string name="ThreadRecord_s_is_on_signal">1%s yupo Loki Messenger</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Uumbe zilizopotea  imezuiliwa</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Ujumbe unapotea kwa mpangilio wa muda  kwa 1%s</string>
   <string name="ThreadRecord_safety_number_changed">namba salama zimebadilika</string>
@@ -448,8 +448,8 @@ nambari yako ya simu</string>
   <string name="ThreadRecord_you_marked_verified">umeweka kuthibitishwa?</string>
   <string name="ThreadRecord_you_marked_unverified">umeweka haukuthibitishwa</string>
   <!--UpdateApkReadyListener-->
-  <string name="UpdateApkReadyListener_Signal_update">Signal iliyosasishwa</string>
-  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Toleo jipya la Signal inapatikana, bomba ili uhakikishe</string>
+  <string name="UpdateApkReadyListener_Signal_update">Loki Messenger iliyosasishwa</string>
+  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Toleo jipya la Loki Messenger inapatikana, bomba ili uhakikishe</string>
   <!--UnknownSenderView-->
   <string name="UnknownSenderView_block_s">zuia 1%s?</string>
   <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Namba zilizozuiliwa hazitoweza kukutumia ujumbe au kukupigia simu wewe.</string>
@@ -464,13 +464,13 @@ nambari yako ya simu</string>
   <string name="UnverifiedSendDialog_send_message">tuma ujumbe?</string>
   <string name="UnverifiedSendDialog_send">tuma</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Mawasiliano yako inaendesha toleo la zamani la Signal. Tafadhali waulize update kabla ya kuthibitisha nambari yako ya usalama.</string>
-  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Mawasiliano yako inaendesha toleo jipya la Signal na muundo wa msimbo wa QR usiofanana. Tafadhali sasisha ili ulinganishe</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Mawasiliano yako inaendesha toleo la zamani la Loki Messenger. Tafadhali waulize update kabla ya kuthibitisha nambari yako ya usalama.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Mawasiliano yako inaendesha toleo jipya la Loki Messenger na muundo wa msimbo wa QR usiofanana. Tafadhali sasisha ili ulinganishe</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Scani ya msimbo wa QR haikupangwa sahihi namba ya usalama msimbo wa kuthibitisha. Tafadhali jaribu kuscani tena.</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">kushiriki namba salama kupitia...</string>
-  <string name="VerifyIdentityActivity_our_signal_safety_number">Namba yetu ya usalama ya Signal</string>
+  <string name="VerifyIdentityActivity_our_signal_safety_number">Namba yetu ya usalama ya Loki Messenger</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Inaonekana huna programu yoyote ya kushiriki</string>
-  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal inahitaji ruhusa ya Kamera ili kupima msimbo wa QR, lakini imekataliwa kabisa. Tafadhali endelea kwenye mipangilio ya programu, chagua \"Ruhusa\", na uwawezesha \"Kamera\".</string>
+  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Loki Messenger inahitaji ruhusa ya Kamera ili kupima msimbo wa QR, lakini imekataliwa kabisa. Tafadhali endelea kwenye mipangilio ya programu, chagua \"Ruhusa\", na uwawezesha \"Kamera\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">imeshindikana kuscani namba ya QR bila ruhusa ya kamera</string>
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">ujumbe mbaya encrypted</string>
@@ -487,13 +487,13 @@ nambari yako ya simu</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">gusa kufungua</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">gusa kufungua, au gusa kifungio kufunga</string>
-  <string name="KeyCachingService_passphrase_cached">Signal imefunguliwa</string>
-  <string name="KeyCachingService_lock">zuia Signal</string>
+  <string name="KeyCachingService_passphrase_cached">Loki Messenger imefunguliwa</string>
+  <string name="KeyCachingService_lock">zuia Loki Messenger</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Wewe</string>
   <string name="MediaPreviewActivity_unssuported_media_type">aina ya vyombo vya habari ambazo hazijaungwa mkono</string>
   <string name="MediaPreviewActivity_draft">rasimu</string>
-  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal inahitaji ruhusa ya Hifadhi ili kuokoa kwenye hifadhi ya nje, lakini imekataliwa kabisa. Tafadhali endelea kwenye mipangilio ya programu, chagua \"Ruhusa\", na uwezesha \"Uhifadhi\".</string>
+  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Loki Messenger inahitaji ruhusa ya Hifadhi ili kuokoa kwenye hifadhi ya nje, lakini imekataliwa kabisa. Tafadhali endelea kwenye mipangilio ya programu, chagua \"Ruhusa\", na uwezesha \"Uhifadhi\".</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">haiwezekani kuhifadhi kwenye external storage  bila ruhusa</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">futa ujumbe?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">hii itafuta ujumbe kwa kudumu</string>
@@ -509,10 +509,10 @@ nambari yako ya simu</string>
   <string name="MessageNotifier_mark_read">soma nakili</string>
   <string name="MessageNotifier_media_message">Ujumbe wa vyombo vya habari</string>
   <string name="MessageNotifier_reply">jibu</string>
-  <string name="MessageNotifier_signal_message">ujumbe wa Signal</string>
+  <string name="MessageNotifier_signal_message">ujumbe wa Loki Messenger</string>
   <string name="MessageNotifier_unsecured_sms">ujumbe sio salama</string>
-  <string name="MessageNotifier_pending_signal_messages">Ujumbe wa Signal inasubiri</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">una ujumbe wa Signal unasubiri, gusa kufungua na kurudi</string>
+  <string name="MessageNotifier_pending_signal_messages">Ujumbe wa Loki Messenger inasubiri</string>
+  <string name="MessageNotifier_you_have_pending_signal_messages">una ujumbe wa Loki Messenger unasubiri, gusa kufungua na kurudi</string>
   <string name="MessageNotifier_unknown_contact_message">Mawasiliano</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Chaguo Msingi</string>
@@ -525,7 +525,7 @@ nambari yako ya simu</string>
   <string name="NotificationChannel_group_messages">ujumbe</string>
   <string name="NotificationChannel_missing_display_name">Isiyojulikana</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Jibu la haraka halipatikani wakati Signal imefungwa!</string>
+  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Jibu la haraka halipatikani wakati Loki Messenger imefungwa!</string>
   <string name="QuickResponseService_problem_sending_message">Tatizo kutuma ujumbe</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_saved_to">imehifadhiwa kwa 1%s</string>
@@ -541,11 +541,11 @@ nambari yako ya simu</string>
   <!--TransferControlView-->
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">Kifaa hakikusajiliwa</string>
-  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Hii inawezekana kwa sababu umeandikisha namba yako ya simu na Signal kwenye kifaa tofauti. Gonga ili kujiandikisha tena.</string>
+  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Hii inawezekana kwa sababu umeandikisha namba yako ya simu na Loki Messenger kwenye kifaa tofauti. Gonga ili kujiandikisha tena.</string>
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">Kasoro kwenye kuchezesha video</string>
   <!--WebRtcCallActivity-->
-  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal inahitaji ruhusa ya kipaza sauti na Kamera ili kufanya au kupokea simu, lakini zimekataliwa kabisa. Tafadhali endelea kwenye mipangilio ya programu, chagua \"Ruhusa\", na uwawezesha \"Kipaza sauti\" na \"Kamera\".</string>
+  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Loki Messenger inahitaji ruhusa ya kipaza sauti na Kamera ili kufanya au kupokea simu, lakini zimekataliwa kabisa. Tafadhali endelea kwenye mipangilio ya programu, chagua \"Ruhusa\", na uwawezesha \"Kipaza sauti\" na \"Kamera\".</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Unaweza kufafanua nambari yako ya usalama na anwani hii.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">namba mpya ya usalama</string>
@@ -581,15 +581,15 @@ nambari yako ya simu</string>
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">wasilianan na picha</string>
   <!--ContactSelectionListFragment-->
-  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal inahitaji idhini ya Mawasiliano ili kuonyesha anwani zako, lakini imekataliwa kabisa. Tafadhali endelea kwenye orodha ya mipangilio ya programu, chagua \"Ruhusa\", na uwawezesha \"Mawasiliano\".</string>
+  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Loki Messenger inahitaji idhini ya Mawasiliano ili kuonyesha anwani zako, lakini imekataliwa kabisa. Tafadhali endelea kwenye orodha ya mipangilio ya programu, chagua \"Ruhusa\", na uwawezesha \"Mawasiliano\".</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Hitilafu kupata anwani, angalia uunganisho wako wa mtandao</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">hakuna mawasiliano yaliyofungiwa</string>
   <!--contact_selection_list_fragment-->
-  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal inahitaji upatikanaji wa anwani zako ili kuzionyesha.</string>
+  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Loki Messenger inahitaji upatikanaji wa anwani zako ili kuzionyesha.</string>
   <string name="contact_selection_list_fragment__show_contacts">onyesha mawasiliano</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Ujumbe wa Signal</string>
+  <string name="conversation_activity__type_message_push">Ujumbe wa Loki Messenger</string>
   <string name="conversation_activity__type_message_sms_insecure">ujumbe sio salama</string>
   <string name="conversation_activity__type_message_mms_insecure">MMS sio salama</string>
   <string name="conversation_activity__from_sim_name">kutoka 1%1$s</string>
@@ -599,7 +599,7 @@ nambari yako ya simu</string>
   <string name="conversation_activity__attachment_thumbnail">kiambatanisho thumbnail</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Toggle haraka kamera kiambatisho drawer</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Rekodi na tuma kiambatisho cha sauti</string>
-  <string name="conversation_activity__enable_signal_for_sms">Wezesha Signal kwa meseji</string>
+  <string name="conversation_activity__enable_signal_for_sms">Wezesha Loki Messenger kwa meseji</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__cancel">futa</string>
   <!--conversation_item-->
@@ -669,7 +669,7 @@ nambari yako ya simu</string>
   <string name="log_submit_activity__choose_email_app">chagua program ya barua pepe</string>
   <string name="log_submit_activity__network_failure">mtandao umefeli. Tafadhali jaribu tena </string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Je! Ungependa kuagiza ujumbe wako wa maandishi ulio kwenye safu ya salama ya Signal?</string>
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Je! Ungependa kuagiza ujumbe wako wa maandishi ulio kwenye safu ya salama ya Loki Messenger?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Nambari ya msingi ya mfumo haitashirikiwa au kubadilishwa kwa njia yoyote.</string>
   <string name="database_migration_activity__skip">ruka</string>
   <string name="database_migration_activity__import">kuagiza</string>
@@ -696,7 +696,7 @@ nambari yako ya simu</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">fungua</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal inahitaji mipangilio ya MMS ili kutoa ujumbe wa vyombo vya habari na wa kikundi kwa njia ya mtoa huduma yako ya wireless. Kifaa chako haifai habari hii inapatikana, ambayo ni mara kwa mara ya kweli kwa vifaa vifungwa na masharti mengine ya kuzuia.</string>
+  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Loki Messenger inahitaji mipangilio ya MMS ili kutoa ujumbe wa vyombo vya habari na wa kikundi kwa njia ya mtoa huduma yako ya wireless. Kifaa chako haifai habari hii inapatikana, ambayo ni mara kwa mara ya kweli kwa vifaa vifungwa na masharti mengine ya kuzuia.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Kutuma ujumbe wa vyombo vya habari na vikundi, gonga \'Sawa\' na ukamilisha mipangilio iliyoombwa. Mipangilio ya MMS ya mtoa huduma yako inaweza kwa ujumla kwa kutafuta \'APN yako carrier\'. Utahitaji tu kufanya hili mara moja.</string>
   <!--profile_create_activity-->
   <string name="profile_create_activity__set_later">panga baadae</string>
@@ -719,12 +719,12 @@ nambari yako ya simu</string>
   <string name="recipient_preferences__call_settings">kuweka wito wa simu</string>
   <string name="recipient_preferences__ringtone">muito</string>
   <!--- redphone_call_controls-->
-  <string name="redphone_call_card__signal_call">wito wa Signal</string>
+  <string name="redphone_call_card__signal_call">wito wa Loki Messenger</string>
   <string name="redphone_call_controls__mute">zima kwa siri</string>
   <string name="redphone_call_controls__flip_camera_rear">kubadili kamera</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">namba ya simu</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal inafanya kuwa rahisi kuwasiliana kwa kutumia nambari yako ya simu iliyopo na kitabu cha anwani. Marafiki na washirika ambao tayari wanajua jinsi ya kuwasiliana na wewe kwa simu wataweza kuwasiliana kwa urahisi na Signal. \ N \ nUsaili inatuma maelezo ya mawasiliano kwenye seva. Haihifadhiwa.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal inafanya kuwa rahisi kuwasiliana kwa kutumia nambari yako ya simu iliyopo na kitabu cha anwani. Marafiki na washirika ambao tayari wanajua jinsi ya kuwasiliana na wewe kwa simu wataweza kuwasiliana kwa urahisi na Loki Messenger. \ N \ nUsaili inatuma maelezo ya mawasiliano kwenye seva. Haihifadhiwa.</string>
   <string name="registration_activity__verify_your_number">hakiki namba yako</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Tafadhali ingiza nambari yako ya simu ili upokee nambari ya kuthibitisha. Viwango vya Vimumunyishaji vinaweza kuomba.</string>
   <!--recipients_panel-->
@@ -796,8 +796,8 @@ nambari yako ya simu</string>
   <string name="preferences__sms_mms">SMS na MMS</string>
   <string name="preferences__pref_all_sms_title">Pokea SMS zote</string>
   <string name="preferences__pref_all_mms_title">Pokea MMS zote</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Tumia Signal kwa ujumbe wote unaoingia</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Tumia Signal kwa ujumbe wote unaoingia wa multimedia</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Tumia Loki Messenger kwa ujumbe wote unaoingia</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Tumia Loki Messenger kwa ujumbe wote unaoingia wa multimedia</string>
   <string name="preferences__pref_enter_sends_title">Ingiza kutuma muhimu</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">bonyeza kibodi ya kuingia ili kutuma ujumbe wa maandishi</string>
   <string name="preferences__send_link_previews">tuma kiungo kilichoonekana</string>
@@ -809,7 +809,7 @@ nambari yako ya simu</string>
   <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Funga skriini na arifa pamoja na phassphrase</string>
   <string name="preferences__screen_security">usalamaa wa skrini</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Zima viwambo vya skrini katika orodha ya rekodi na ndani ya programu</string>
-  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Ondoa kiotomatiki cha Signal baada ya muda maalum wa kutoacha</string>
+  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Ondoa kiotomatiki cha Loki Messenger baada ya muda maalum wa kutoacha</string>
   <string name="preferences__inactivity_timeout_passphrase">muda umeisha na kukosa passphrase</string>
   <string name="preferences__inactivity_timeout_interval">kukosa muda umeisha</string>
   <string name="preferences__notifications">Arifa</string>
@@ -862,8 +862,8 @@ nambari yako ya simu</string>
   <string name="preferences__theme">mandhari</string>
   <string name="preferences__default">Chaguo Msingi</string>
   <string name="preferences__language">Lugha</string>
-  <string name="preferences__signal_messages_and_calls">Ujumbe na simu za Signal</string>
-  <string name="preferences__free_private_messages_and_calls">Ujumbe wa faragha wa bure na wito kwa watumiaji wa Signal</string>
+  <string name="preferences__signal_messages_and_calls">Ujumbe na simu za Loki Messenger</string>
+  <string name="preferences__free_private_messages_and_calls">Ujumbe wa faragha wa bure na wito kwa watumiaji wa Loki Messenger</string>
   <string name="preferences__submit_debug_log">tuma logi ya kufuta</string>
   <string name="preferences__support_wifi_calling">\'Mfumo wa utangamano wa WiFi\'</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Wezesha ikiwa kifaa chako kinatumia utoaji wa SMS / MMS juu ya WiFi (tuwezesha wakati \"WiFi Calling\" imewezeshwa kwenye kifaa chako)</string>
@@ -880,7 +880,7 @@ nambari yako ya simu</string>
   <string name="preferences_chats__media_auto_download">Kushusha kwa vyombo vya habari</string>
   <string name="preferences_chats__message_trimming">ujumbe unapunguza</string>
   <string name="preferences_advanced__use_system_emoji">kutumia emoji mfumo</string>
-  <string name="preferences_advanced__disable_signal_built_in_emoji_support">kuzuia Signal iliyojengwa kusaidia emoji</string>
+  <string name="preferences_advanced__disable_signal_built_in_emoji_support">kuzuia Loki Messenger iliyojengwa kusaidia emoji</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Kuwawezesha kupunguza ubora wa simu</string>
   <string name="preferences_advanced__always_relay_calls">siku zote relay wito wa simu</string>
   <string name="preferences_app_protection__app_access">kutumia programu</string>
@@ -893,9 +893,9 @@ nambari yako ya simu</string>
   <string name="preferences_notifications__calls">wito</string>
   <string name="preferences_notifications__ringtone">muito</string>
   <string name="preferences_chats__show_invitation_prompts">haraka onyesha mwaliko</string>
-  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Onyesha mwaliko wa mwaliko wa mawasiliano bila Signal</string>
+  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Onyesha mwaliko wa mwaliko wa mawasiliano bila Loki Messenger</string>
   <string name="preferences_chats__message_text_size">ukubwa wa maandishi ya ujumbe</string>
-  <string name="preferences_events__contact_joined_signal">mawasiliano imejiunga Signal</string>
+  <string name="preferences_events__contact_joined_signal">mawasiliano imejiunga Loki Messenger</string>
   <string name="preferences_notifications__priority">Kipaumbele</string>
   <string name="preferences_communication__category_sealed_sender">mtumaji muhuri</string>
   <string name="preferences_communication__sealed_sender_display_indicators">kuonyesha viashiria</string>
@@ -911,7 +911,7 @@ nambari yako ya simu</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">wito</string>
   <!--conversation_callable_secure-->
-  <string name="conversation_callable_secure__menu_call">wito wa Signal</string>
+  <string name="conversation_callable_secure__menu_call">wito wa Loki Messenger</string>
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">Maelezo ya ujumbe</string>
   <string name="conversation_context__menu_copy_text">Nakala ya nakala</string>
@@ -974,21 +974,21 @@ nambari yako ya simu</string>
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Nakala kwenye ubao wa video</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Linganisha na ubao wa video</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">Toleo lako la Signal limepitwa na wakati</string>
-  <string name="reminder_header_outdated_build_details_today">Toleo lako la Signal litaisha leo. Gonga ili usasishe kwa toleo la hivi karibuni.</string>
-  <string name="reminder_header_expired_build">Toleo lako la Signal limepitwa na wakati.</string>
+  <string name="reminder_header_outdated_build">Toleo lako la Loki Messenger limepitwa na wakati</string>
+  <string name="reminder_header_outdated_build_details_today">Toleo lako la Loki Messenger litaisha leo. Gonga ili usasishe kwa toleo la hivi karibuni.</string>
+  <string name="reminder_header_expired_build">Toleo lako la Loki Messenger limepitwa na wakati.</string>
   <string name="reminder_header_expired_build_details">Ujumbe hautatuma tena kwa mafanikio. Gonga ili usasishe kwa toleo la hivi karibuni.</string>
   <string name="reminder_header_sms_default_title">Tumia chaguo msingi programu ya meseji</string>
-  <string name="reminder_header_sms_default_text">Gonga ili uweke Signal ya programu yako ya SMS ya default.</string>
+  <string name="reminder_header_sms_default_text">Gonga ili uweke Loki Messenger ya programu yako ya SMS ya default.</string>
   <string name="reminder_header_sms_import_title">Weka sms ya mfumo</string>
   <string name="reminder_header_sms_import_text">Gonga ili nakala ujumbe wa SMS ya simu yako kwenye darasani ya salama ya Siri.</string>
-  <string name="reminder_header_push_title">Wezesha meseji na simu zote za Signal</string>
+  <string name="reminder_header_push_title">Wezesha meseji na simu zote za Loki Messenger</string>
   <string name="reminder_header_push_text">Boresha uzoefu wako wa mawasiliano</string>
-  <string name="reminder_header_invite_title">Mwalike kwenye Signal</string>
+  <string name="reminder_header_invite_title">Mwalike kwenye Loki Messenger</string>
   <string name="reminder_header_invite_text">Peleka mazungumzo pamoja %1$s kwenye ngazi inayofuata</string>
   <string name="reminder_header_share_title">Alika rafiki zako</string>
-  <string name="reminder_header_share_text">Marafiki zaidi wakitubia Signal, Inaimarika zaidi</string>
-  <string name="reminder_header_service_outage_text">Signal inakabiliwa na matatizo ya kiufundi. Tunajitahidi kurejesha huduma haraka iwezekanavyo.</string>
+  <string name="reminder_header_share_text">Marafiki zaidi wakitubia Loki Messenger, Inaimarika zaidi</string>
+  <string name="reminder_header_service_outage_text">Loki Messenger inakabiliwa na matatizo ya kiufundi. Tunajitahidi kurejesha huduma haraka iwezekanavyo.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Hifadhi</string>
   <string name="media_preview__forward_title">Mbele</string>
@@ -1009,16 +1009,16 @@ nambari yako ya simu</string>
   <string name="ConversationListFragment_loading">Inafunguka</string>
   <string name="CallNotificationBuilder_connecting">Inaunganishwa</string>
   <string name="Permissions_permission_required">Ruhusa inahitajika</string>
-  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal inahitaji idhini ya SMS ili kutuma SMS, lakini imekataliwa kabisa. Tafadhali endelea kwenye mipangilio ya programu, chagua \"Ruhusa\" na uwezesha \"SMS\".</string>
+  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Loki Messenger inahitaji idhini ya SMS ili kutuma SMS, lakini imekataliwa kabisa. Tafadhali endelea kwenye mipangilio ya programu, chagua \"Ruhusa\" na uwezesha \"SMS\".</string>
   <string name="Permissions_continue">Endelea</string>
   <string name="Permissions_not_now">sio sasa</string>
-  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal Signal inahitaji mawasiliano ya ruhusa ili kutafuta anwani zako, lakini imekataliwa kabisa. Tafadhali endelea kwenye mipangilio ya programu, chagua \"Ruhusa\", na uwawezesha \"Mawasiliano\".</string>
-  <string name="conversation_activity__enable_signal_messages">Wezesha meseji za Signal</string>
-  <string name="SQLCipherMigrationHelper_migrating_signal_database">Inahamisha database ya Signal</string>
+  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal Loki Messenger inahitaji mawasiliano ya ruhusa ili kutafuta anwani zako, lakini imekataliwa kabisa. Tafadhali endelea kwenye mipangilio ya programu, chagua \"Ruhusa\", na uwawezesha \"Mawasiliano\".</string>
+  <string name="conversation_activity__enable_signal_messages">Wezesha meseji za Loki Messenger</string>
+  <string name="SQLCipherMigrationHelper_migrating_signal_database">Inahamisha database ya Loki Messenger</string>
   <string name="PushDecryptJob_new_locked_message">Ujumbe mpya uliofungwa</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Fungua ili uone ujumbe unasubiri</string>
   <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Fungua kufungua sasisho</string>
-  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Tafadhali kufungua ili kukamilisha Signal ya sasisho</string>
+  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Tafadhali kufungua ili kukamilisha Loki Messenger ya sasisho</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">neno siri ya ziada</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Backups itahifadhiwa kwenye hifadhi ya nje na imetambulishwa na nenosiri chini. Lazima uwe na chapisho hili ili urejeshe upya.</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Nimeandika neno hili la kupitisha. Bila hivyo, sitashindwa kurejesha salama.</string>
@@ -1030,7 +1030,7 @@ nambari yako ya simu</string>
   <string name="preferences_chats__create_backup">anzisha hifadhi</string>
   <string name="RegistrationActivity_enter_backup_passphrase">ingiza passphrase ya hifadhi</string>
   <string name="RegistrationActivity_restore">kurejesha</string>
-  <string name="RegistrationActivity_backup_failure_downgrade">Haiwezi kuingiza backups kutoka kwa matoleo mapya ya Signal</string>
+  <string name="RegistrationActivity_backup_failure_downgrade">Haiwezi kuingiza backups kutoka kwa matoleo mapya ya Loki Messenger</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">Sahihi ya kupitisha safu ya salama</string>
   <string name="RegistrationActivity_checking">kuangalia</string>
   <string name="RegistrationActivity_d_messages_so_far">1%d ujumbe hadi sasa</string>
@@ -1045,7 +1045,7 @@ nambari yako ya simu</string>
   <string name="BackupDialog_disable_and_delete_all_local_backups">Zima na kufuta salama zote za ndani?</string>
   <string name="BackupDialog_delete_backups_statement">Futa salama</string>
   <string name="BackupDialog_copied_to_clipboard">Ilikopishwa kwenye ubao wa video</string>
-  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal inahitaji idhini ya hifadhi ya nje ili kuunda salama, lakini imekataliwa kabisa. Tafadhali endelea kwenye mipangilio ya programu, chagua \"Ruhusa\" na uwezesha \"Uhifadhi\".</string>
+  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Loki Messenger inahitaji idhini ya hifadhi ya nje ili kuunda salama, lakini imekataliwa kabisa. Tafadhali endelea kwenye mipangilio ya programu, chagua \"Ruhusa\" na uwezesha \"Uhifadhi\".</string>
   <string name="ChatsPreferenceFragment_last_backup_s">backup ya mwisho: 1%s</string>
   <string name="ChatsPreferenceFragment_in_progress">Inaendelea</string>
   <string name="LocalBackupJob_creating_backup">Kujenga salama</string>
@@ -1067,7 +1067,7 @@ Funga ufikiaji wa Signal na lock ya Android au alama za vidole</string>
   <string name="registration_lock_dialog_view__confirm_pin">Thibitisha PIN</string>
   <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Ingiza PIN yako ya Usajili Lock</string>
   <string name="registration_lock_reminder_view__enter_pin">Ingiza pini</string>
-  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Wezesha  usajili wa PIN ambayo inahitajika kujiandikisha nambari hii ya simu na Signal tena.</string>
+  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Wezesha  usajili wa PIN ambayo inahitajika kujiandikisha nambari hii ya simu na Loki Messenger tena.</string>
   <string name="preferences_app_protection__registration_lock_pin">Usajili lock PIN</string>
   <string name="preferences_app_protection__registration_lock">Usajili wa kufunga</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Ni lazima uingize Lock PIN uliyosajili</string>
@@ -1079,10 +1079,10 @@ Funga ufikiaji wa Signal na lock ya Android au alama za vidole</string>
   <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Usajili wa namba hii ya simu itawezekana bila PIN yako ya Usajili Kuzuia baada ya siku 7 tangu nambari hii ya simu ilipomaliza kazi kwenye Ishara. Una siku%d iliyobaki.</string>
   <string name="RegistrationActivity_registration_lock_pin">Usajili wa namba ya siri</string>
   <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Nambari hii ya simu ina Lock ya Usajili imewezeshwa. Tafadhali ingiza PIN ya Usajili wa PIN.</string>
-  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Lock ya Usajili imewezeshwa kwa namba yako ya simu. Ili kukusaidia kukariri PIN yako ya Kujiandikisha PIN, Signal itakuuliza mara kwa mara ili uidhibitishe.</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Lock ya Usajili imewezeshwa kwa namba yako ya simu. Ili kukusaidia kukariri PIN yako ya Kujiandikisha PIN, Loki Messenger itakuuliza mara kwa mara ili uidhibitishe.</string>
   <string name="RegistrationLockDialog_i_forgot_my_pin">Nisisahau nywila</string>
   <string name="RegistrationLockDialog_forgotten_pin">Nywila iliyosahaulika</string>
-  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Usajili Lock husaidia kulinda namba yako ya simu kutoka majaribio ya usajili yasiyoidhinishwa. Kipengele hiki kinaweza kuzima wakati wowote kwenye mipangilio ya faragha yako ya Signal</string>
+  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Usajili Lock husaidia kulinda namba yako ya simu kutoka majaribio ya usajili yasiyoidhinishwa. Kipengele hiki kinaweza kuzima wakati wowote kwenye mipangilio ya faragha yako ya Loki Messenger</string>
   <string name="RegistrationLockDialog_registration_lock">Usajili wa kufunga</string>
   <string name="RegistrationLockDialog_enable">Wezesha</string>
   <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">Namba ya siri iliyosajiliwa lazima iwe angalau na namba nne.</string>
@@ -1091,7 +1091,7 @@ Funga ufikiaji wa Signal na lock ya Android au alama za vidole</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">Zuia namba ya siri iliyosajiliwa.</string>
   <string name="RegistrationLockDialog_disable">Zuia</string>
   <string name="preferences_chats__backups">Rudisha taarifa</string>
-  <string name="prompt_passphrase_activity__signal_is_locked">Signal Imejifunga</string>
+  <string name="prompt_passphrase_activity__signal_is_locked">Loki Messenger Imejifunga</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">Gusa kufungua</string>
   <string name="RegistrationLockDialog_reminder">Kumbusha</string>
   <string name="recipient_preferences__about">Kuhusu</string>

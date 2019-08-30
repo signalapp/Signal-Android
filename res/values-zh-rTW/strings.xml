@@ -23,17 +23,17 @@
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">刪除</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">停用密碼嗎？</string>
-  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">這將會永久性地解鎖 Signal 與訊息通知。</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">這將會永久性地解鎖 Loki Messenger 與訊息通知。</string>
   <string name="ApplicationPreferencesActivity_disable">停用</string>
   <string name="ApplicationPreferencesActivity_unregistering">取消註冊</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">取消註冊 Signal 訊息與通話...</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">停用 Signal 訊息與通話？</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">這將會從伺服器上登出您的 Signal 並停用。 未來如果還想使用該功能，則需要再次註冊。</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">取消註冊 Loki Messenger 訊息與通話...</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">停用 Loki Messenger 訊息與通話？</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">這將會從伺服器上登出您的 Loki Messenger 並停用。 未來如果還想使用該功能，則需要再次註冊。</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">與伺服器的連線發生錯誤！</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">簡訊功能已啟動</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">按此以變更您預設的簡訊應用程式</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">簡訊功能已停用</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">按這裡將 Signal 設定為預設的簡訊應用程式</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">按這裡將 Loki Messenger 設定為預設的簡訊應用程式</string>
   <string name="ApplicationPreferencesActivity_on">開</string>
   <string name="ApplicationPreferencesActivity_On">開</string>
   <string name="ApplicationPreferencesActivity_off">關</string>
@@ -53,10 +53,10 @@
   <string name="DraftDatabase_Draft_quote_snippet">（回覆）</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">找不到合適的應用程式來選擇媒體檔案。</string>
-  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal 需要儲存的權限，以存取照片、影片或聲音檔。但是現在被設定為永久拒絕存取。請到應用程式設定中，選擇「權限」及開啟「儲存」。 </string>
-  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal 需要聯絡人的權限以存取聯絡人資訊，但是現在被設定為永久拒絕存取。請到應用程式設定中，選取「權限」，並啟用「聯絡人」的權限。</string>
-  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal 需要位置的權限以存取位置資訊，但是現在被設定為永久拒絕存取。請到應用程式設定中，選取「權限」，並啟用「位置」的權限。</string>
-  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal 需要相機的權限用以拍照，但是現在被設定為永久拒絕使用。請到應用程式設定中，選取「權限」，並啟用「相機」的權限。</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Loki Messenger 需要儲存的權限，以存取照片、影片或聲音檔。但是現在被設定為永久拒絕存取。請到應用程式設定中，選擇「權限」及開啟「儲存」。 </string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Loki Messenger 需要聯絡人的權限以存取聯絡人資訊，但是現在被設定為永久拒絕存取。請到應用程式設定中，選取「權限」，並啟用「聯絡人」的權限。</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Loki Messenger 需要位置的權限以存取位置資訊，但是現在被設定為永久拒絕存取。請到應用程式設定中，選取「權限」，並啟用「位置」的權限。</string>
+  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Loki Messenger 需要相機的權限用以拍照，但是現在被設定為永久拒絕使用。請到應用程式設定中，選取「權限」，並啟用「相機」的權限。</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">播放音訊時出現錯誤！</string>
   <!--BlockedContactsActivity-->
@@ -76,7 +76,7 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">找不到網路瀏覽器。</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">%1$s 的安全碼產生變動。這有可能是有不明人士試圖攔截您的通訊／對話內容，或是因為 %2$s 重新安裝 Signal。</string>
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">%1$s 的安全碼產生變動。這有可能是有不明人士試圖攔截您的通訊／對話內容，或是因為 %2$s 重新安裝 Loki Messenger。</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">您可能希望驗證這名聯絡人的安全碼。</string>
   <string name="ConfirmIdentityDialog_accept">接受</string>
   <!--ContactsCursorLoader-->
@@ -85,7 +85,7 @@
   <string name="ContactsCursorLoader_groups">群組</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">%s 則訊息</string>
-  <string name="ContactsDatabase_signal_call_s">Signal 通話 %s</string>
+  <string name="ContactsDatabase_signal_call_s">Loki Messenger 通話 %s</string>
   <!--ContactNameEditActivity-->
   <string name="ContactNameEditActivity_given_name">名字</string>
   <string name="ContactNameEditActivity_family_name">姓</string>
@@ -105,7 +105,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted">傳送失敗，點擊不安全的訊息退回</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">回收未加密的手機簡訊？</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">回收未加密的多媒體訊息？</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">由於對方已經不再是 Signal 的使用者，當前訊息<b>不會</b>被加密。\n\n傳送不加密的訊息？</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">由於對方已經不再是 Loki Messenger 的使用者，當前訊息<b>不會</b>被加密。\n\n傳送不加密的訊息？</string>
   <string name="ConversationItem_unable_to_open_media">找不到合適的應用程式來開啟媒體檔案。</string>
   <string name="ConversationItem_copied_text">已複製 %s</string>
   <string name="ConversationItem_from_s">來自 %s</string>
@@ -133,7 +133,7 @@
   <string name="ConversationActivity_transport_insecure_sms">不安全的簡訊</string>
   <string name="ConversationActivity_transport_insecure_mms">不安全的多媒體訊息</string>
   <string name="ConversationActivity_transport_signal">Loki Messenger</string>
-  <string name="ConversationActivity_lets_switch_to_signal">我們要不要切換到 Signal %1$s</string>
+  <string name="ConversationActivity_lets_switch_to_signal">我們要不要切換到 Loki Messenger %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">我們要不要用這個軟體來聊天：%1$s</string>
   <string name="ConversationActivity_error_leaving_group">離開群組時發生錯誤</string>
   <string name="ConversationActivity_specify_recipient">請選擇聯絡人</string>
@@ -146,15 +146,15 @@
   <string name="ConversationActivity_quick_camera_unavailable">無法使用相機</string>
   <string name="ConversationActivity_unable_to_record_audio">無法錄製音訊！</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">您的裝置上沒有應用程式可以處理這個連結</string>
-  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">若要傳送語音訊息，請允許 Signal 使用您的麥克風</string>
-  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal 需要麥克風的權限來傳送語音訊息，但是現在系統設定為總是拒絕 Signal。請到 Signal 的應用程式設定中，點選「權限」，並啟用「麥克風」的權限。</string>
-  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Signal 需要使用您的麥克風和相機來撥打電話給 %s</string>
-  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal 需要麥克風和相機的權限來打電話給 %s，但是現在系統設定為總是拒絕 Signal。請到 Signal 的應用程式設定中，點選「權限」，並啟用麥克風和相機的權限。</string>
-  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">請授予 Signal 使用相機的權限，才能拍攝照片和影片</string>
-  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal 需要相機的權限來拍攝照片或是影片 ，但是現在系統設定為總是拒絕 Signal。請到 Signal 的應用程式設定中，點選「權限」，並啟用相機的權限。</string>
-  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal 需要使用相機的權限來拍攝照片和影片</string>
+  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">若要傳送語音訊息，請允許 Loki Messenger 使用您的麥克風</string>
+  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal 需要麥克風的權限來傳送語音訊息，但是現在系統設定為總是拒絕 Signal。請到 Loki Messenger 的應用程式設定中，點選「權限」，並啟用「麥克風」的權限。</string>
+  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Loki Messenger 需要使用您的麥克風和相機來撥打電話給 %s</string>
+  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal 需要麥克風和相機的權限來打電話給 %s，但是現在系統設定為總是拒絕 Signal。請到 Loki Messenger 的應用程式設定中，點選「權限」，並啟用麥克風和相機的權限。</string>
+  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">請授予 Loki Messenger 使用相機的權限，才能拍攝照片和影片</string>
+  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal 需要相機的權限來拍攝照片或是影片 ，但是現在系統設定為總是拒絕 Signal。請到 Loki Messenger 的應用程式設定中，點選「權限」，並啟用相機的權限。</string>
+  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Loki Messenger 需要使用相機的權限來拍攝照片和影片</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
-  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal 無法傳送 SMS/MMS 訊息，因為Signal 不是你預設 SMS 應用軟體。你要在 Android 設定中改變這個設定嗎？</string>
+  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal 無法傳送 SMS/MMS 訊息，因為Loki Messenger 不是你預設 SMS 應用軟體。你要在 Android 設定中改變這個設定嗎？</string>
   <string name="ConversationActivity_yes">是</string>
   <string name="ConversationActivity_no">否</string>
   <string name="ConversationActivity_search_position">%1$d 的 %2$d</string>
@@ -185,7 +185,7 @@
     <item quantity="other">正在保存 %1$d 個附件至儲存空間...</item>
   </plurals>
   <string name="ConversationFragment_pending">等待中…</string>
-  <string name="ConversationFragment_push">資料 (Signal)</string>
+  <string name="ConversationFragment_push">資料 (Loki Messenger)</string>
   <string name="ConversationFragment_mms">多媒體訊息</string>
   <string name="ConversationFragment_sms">簡訊</string>
   <string name="ConversationFragment_deleting">正在刪除</string>
@@ -223,7 +223,7 @@
   <string name="CreateProfileActivity_too_long">太長</string>
   <string name="CreateProfileActivity_profile_name">使用者名稱</string>
   <string name="CreateProfileActivity_set_up_your_profile">設定你的資訊</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal 資料是點對點加密，及Signal 服務絕不會讀取這些資訊。</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal 資料是點對點加密，及Loki Messenger 服務絕不會讀取這些資訊。</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">使用自訂：%s</string>
   <string name="CustomDefaultPreference_using_default">使用預設：%s</string>
@@ -255,22 +255,22 @@
   <string name="DocumentView_unknown_file">未知的檔案</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">為缺少的 Play 服務優化</string>
-  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">這個裝置不支援 Play 服務。輕觸關閉，因為系統電池效能最佳化會防止 Signal 在閒置時取得訊息。</string>
+  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">這個裝置不支援 Play 服務。輕觸關閉，因為系統電池效能最佳化會防止 Loki Messenger 在閒置時取得訊息。</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">分享給</string>
   <!--ExperienceUpgradeActivity-->
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">歡迎來到 Signal。</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">從現在起 TextSecure 與 RedPhone 將會是同一個私密的訊息平台，最佳的解決方案：Signal。</string>
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">歡迎來到 Signal！</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure 已命名為 Signal。</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">從現在起 TextSecure 與 RedPhone 將會是同一個應用程式：Signal。輕觸以開始探索。</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">歡迎來到 Loki Messenger。</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">從現在起 TextSecure 與 RedPhone 將會是同一個私密的訊息平台，最佳的解決方案：Loki Messenger。</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">歡迎來到 Loki Messenger！</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure 已命名為 Loki Messenger。</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">從現在起 TextSecure 與 RedPhone 將會是同一個應用程式：Loki Messenger。輕觸以開始探索。</string>
   <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">向安全的視訊通話打聲招呼，說聲嗨。</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">現在 Signal 支援了安全的視訊通話。就如同開始 Signal 通話一樣，輕觸視訊按鈕，接著揮手打聲招呼。</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">現在 Signal 支援安全的視訊通話。</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">現在 Signal 支援安全的視訊通話。輕觸探索。</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">現在 Signal 支援了安全的視訊通話。就如同開始 Loki Messenger 通話一樣，輕觸視訊按鈕，接著揮手打聲招呼。</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">現在 Loki Messenger 支援安全的視訊通話。</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">現在 Loki Messenger 支援安全的視訊通話。輕觸探索。</string>
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">準備好你的特寫了嗎？</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">現在，你可以分享你的頭像照片及名字給在 Signal 中的朋友</string>
-  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal 個人資訊就在這裡</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">現在，你可以分享你的頭像照片及名字給在 Loki Messenger 中的朋友</string>
+  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Loki Messenger 個人資訊就在這裡</string>
   <string name="ExperienceUpgradeActivity_introducing_typing_indicators">介紹打字狀態。</string>
   <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">現在你可以選擇性的查看並分享正在輸入的訊息。</string>
   <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">你是否要現在啟動它們？</string>
@@ -280,13 +280,13 @@
   <string name="ExperienceUpgradeActivity_no_thanks">不，謝謝。</string>
   <string name="ExperienceUpgradeActivity_introducing_link_previews">連結預覽功能介紹。</string>
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">連結預覽選項現在支援網路上一些最受歡迎的網站。</string>
-  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">任何時候你可以在 Signal 設定中關閉或開啟這個功能 (隱私 &gt; 傳送連結預覽)。</string>
+  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">任何時候你可以在 Loki Messenger 設定中關閉或開啟這個功能 (隱私 &gt; 傳送連結預覽)。</string>
   <string name="ExperienceUpgradeActivity_got_it">收到</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">回收一個訊息...</string>
   <!--GcmRefreshJob-->
-  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Signal 持續發生傳輸異常！</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal 無法順利與 Google Play Services 註冊，Signal 訊息與通話已經停用，請嘗試在設定 &gt; 進階中重新註冊。</string>
+  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Loki Messenger 持續發生傳輸異常！</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal 無法順利與 Google Play Services 註冊，Loki Messenger 訊息與通話已經停用，請嘗試在設定 &gt; 進階中重新註冊。</string>
   <!--GiphyActivity-->
   <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">在下載完整解析度的 GIF 時發生錯誤</string>
   <!--GiphyFragmentPageAdapter-->
@@ -297,15 +297,15 @@
   <string name="GroupCreateActivity_actionbar_edit_title">編輯群組</string>
   <string name="GroupCreateActivity_group_name_hint">群組名稱</string>
   <string name="GroupCreateActivity_actionbar_mms_title">新的 MMS 群組</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">您所選擇的聯絡人並不支援 Signal 群組，所以此組將以多媒體訊息形式存在。</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">您沒有註冊 Signal 訊息與通話，所以 Signal 群組已經被停用。請嘗試在設定 &gt; 進階中重新註冊。</string>
+  <string name="GroupCreateActivity_contacts_dont_support_push">您所選擇的聯絡人並不支援 Loki Messenger 群組，所以此組將以多媒體訊息形式存在。</string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">您沒有註冊 Signal 訊息與通話，所以 Loki Messenger 群組已經被停用。請嘗試在設定 &gt; 進階中重新註冊。</string>
   <string name="GroupCreateActivity_contacts_no_members">建立群組至少需要加入一個聯絡人！</string>
   <string name="GroupCreateActivity_contacts_invalid_number">群組中某個聯絡人的號碼有誤，請更正或移除此聯絡人，並再試一次。</string>
   <string name="GroupCreateActivity_avatar_content_description">群組的大頭照</string>
   <string name="GroupCreateActivity_menu_apply_button">應用</string>
   <string name="GroupCreateActivity_creating_group">%1$s 建立中…</string>
   <string name="GroupCreateActivity_updating_group">更新中 %1$s...</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">無法新增 %1$s，因為他們不是 Signal 使用者。</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">無法新增 %1$s，因為他們不是 Loki Messenger 使用者。</string>
   <string name="GroupCreateActivity_loading_group_details">正在載入群組細節…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">您已在此群組中</string>
   <!--GroupShareProfileView-->
@@ -326,14 +326,14 @@
   <string name="InviteActivity_sending">正在傳送...</string>
   <string name="InviteActivity_heart_content_description">心</string>
   <string name="InviteActivity_invitations_sent">邀請已傳送！</string>
-  <string name="InviteActivity_invite_to_signal">邀請至 Signal</string>
+  <string name="InviteActivity_invite_to_signal">邀請至 Loki Messenger</string>
   <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="other">傳送簡訊給 %d 位朋友</item>
   </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="other">傳送 %d 則簡訊邀請？</item>
   </plurals>
-  <string name="InviteActivity_lets_switch_to_signal">讓我們切換到 Signal：%1$s</string>
+  <string name="InviteActivity_lets_switch_to_signal">讓我們切換到 Loki Messenger：%1$s</string>
   <string name="InviteActivity_no_app_to_share_to">看起來您沒有任何可以分享的應用。</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">朋友不該讓朋友之間的聊天未經加密。</string>
   <!--Job-->
@@ -364,9 +364,9 @@
   <string name="MediaOverviewActivity_Select_all">全選</string>
   <string name="MediaOverviewActivity_collecting_attachments">正在收集附件...</string>
   <!--- NotificationBarManager-->
-  <string name="NotificationBarManager_signal_call_in_progress">Signal 通話進行中</string>
-  <string name="NotificationBarManager__establishing_signal_call">Signal 通話連線中</string>
-  <string name="NotificationBarManager__incoming_signal_call">Signal 來電</string>
+  <string name="NotificationBarManager_signal_call_in_progress">Loki Messenger 通話進行中</string>
+  <string name="NotificationBarManager__establishing_signal_call">Loki Messenger 通話連線中</string>
+  <string name="NotificationBarManager__incoming_signal_call">Loki Messenger 來電</string>
   <string name="NotificationBarManager__deny_call">拒絕接聽</string>
   <string name="NotificationBarManager__answer_call">接聽通話</string>
   <string name="NotificationBarManager__end_call">結束通話</string>
@@ -390,7 +390,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">所有的媒體</string>
   <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">收到一則使用舊版本並已經不再支援的 Signal 加密訊息。請尋求傳送人將 Signal 升級到最新的版本並再次傳送該訊息。</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">收到一則使用舊版本並已經不再支援的 Signal 加密訊息。請尋求傳送人將 Loki Messenger 升級到最新的版本並再次傳送該訊息。</string>
   <string name="MessageRecord_left_group">您已經離開了此群組。</string>
   <string name="MessageRecord_you_updated_group">你已更新群組。</string>
   <string name="MessageRecord_you_called">向外撥號</string>
@@ -400,7 +400,7 @@
   <string name="MessageRecord_s_called_you">%s來電</string>
   <string name="MessageRecord_called_s">撥打給%s</string>
   <string name="MessageRecord_missed_call_from">錯過來自%s的來電</string>
-  <string name="MessageRecord_s_joined_signal">%s 在 Signal 了！</string>
+  <string name="MessageRecord_s_joined_signal">%s 在 Loki Messenger 了！</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">你關閉了自動銷毀訊息的功能。</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s 關閉了自動銷毀訊息的功能。</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">你已將訊息銷毀時間設定為 %1$s。</string>
@@ -430,9 +430,9 @@
   <string name="DeviceProvisioningActivity_content_progress_key_error">QR 碼無效。</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">抱歉，您已經連結太多裝置，請移除部分裝置</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">抱歉，這不是有些的裝置連結 QR 碼。</string>
-  <string name="DeviceProvisioningActivity_link_a_signal_device">連結 Signal 裝置？</string>
-  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">看起來您正在嘗試使用第 3 方掃描器連結 Signal 裝置。為了安全著想，請使用 Signal 重新掃描代碼一次。</string>
-  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal 需要相機的權限以掃描 QR code，但是現在被設定為永久拒絕使用。請到應用程式設定中，選取「權限」，並啟用「相機」的權限。</string>
+  <string name="DeviceProvisioningActivity_link_a_signal_device">連結 Loki Messenger 裝置？</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">看起來您正在嘗試使用第 3 方掃描器連結 Signal 裝置。為了安全著想，請使用 Loki Messenger 重新掃描代碼一次。</string>
+  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Loki Messenger 需要相機的權限以掃描 QR code，但是現在被設定為永久拒絕使用。請到應用程式設定中，選取「權限」，並啟用「相機」的權限。</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">因為沒有相機的使用權限，所以無法掃描 QR code。</string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">自動銷毀訊息</string>
@@ -440,7 +440,7 @@
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">在此會話中所傳送與接收的訊息將會在閱讀 %s 後被銷毀。</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">輸入自訂密碼</string>
-  <string name="PassphrasePromptActivity_watermark_content_description">Signal 圖示</string>
+  <string name="PassphrasePromptActivity_watermark_content_description">Loki Messenger 圖示</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">送出密碼</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">無效的密碼！</string>
   <!--PlayServicesProblemFragment-->
@@ -493,7 +493,7 @@
         號碼 (%s) 是無效的
     </string>
   <string name="RegistrationActivity_missing_google_play_services">找不到 Google Play 服務</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">此裝置缺少 Google Play 服務。你仍然可以使用 Signal，但是此設定可能會降低可靠性或效能。\n\n如果你不是個進階使用者，不是正在執行原廠的 Android ROM，或是你認為你看到的可能是一個錯誤，請聯絡 support@signal.org 來協助你排除故障。</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">此裝置缺少 Google Play 服務。你仍然可以使用 Loki Messenger，但是此設定可能會降低可靠性或效能。\n\n如果你不是個進階使用者，不是正在執行原廠的 Android ROM，或是你認為你看到的可能是一個錯誤，請聯絡 support@signal.org 來協助你排除故障。</string>
   <string name="RegistrationActivity_i_understand">我了解</string>
   <string name="RegistrationActivity_play_services_error">Play 服務錯誤</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play 服務正在更新或暫時無法使用。請再重試。</string>
@@ -501,9 +501,9 @@
   <string name="RegistrationActivity_no_browser">無法開啟此連結。沒有找到網頁瀏覽器。</string>
   <string name="RegistrationActivity_more_information">更多資訊</string>
   <string name="RegistrationActivity_less_information">較少資訊</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal 需要存取的你的聯絡人及媒體，以聯絡你的朋友、交換訊息、及撥打私密電話。</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Loki Messenger 需要存取的你的聯絡人及媒體，以聯絡你的朋友、交換訊息、及撥打私密電話。</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">無法連接服務。請檢查網路連線並再試一次。</string>
-  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">如果你允許 Signal 讀取 SMS 訊息，你可以簡單的驗證電話號碼，Signal 會自動偵測你的驗證碼。</string>
+  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">如果你允許 Signal 讀取 SMS 訊息，你可以簡單的驗證電話號碼，Loki Messenger 會自動偵測你的驗證碼。</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="other">你現在距離提交偵錯日誌只有%d步之遙。</item>
   </plurals>
@@ -525,13 +525,13 @@
   <string name="SearchFragment_header_messages">訊息</string>
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">新增至連絡人</string>
-  <string name="SharedContactDetailsActivity_invite_to_signal">邀請至 Signal</string>
-  <string name="SharedContactDetailsActivity_signal_message">Signal 訊息</string>
-  <string name="SharedContactDetailsActivity_signal_call">Signal 通話</string>
+  <string name="SharedContactDetailsActivity_invite_to_signal">邀請至 Loki Messenger</string>
+  <string name="SharedContactDetailsActivity_signal_message">Loki Messenger 訊息</string>
+  <string name="SharedContactDetailsActivity_signal_call">Loki Messenger 通話</string>
   <!--SharedContactView-->
   <string name="SharedContactView_add_to_contacts">新增至連絡人</string>
-  <string name="SharedContactView_invite_to_signal">邀請至 Signal</string>
-  <string name="SharedContactView_message">Signal 訊息</string>
+  <string name="SharedContactView_invite_to_signal">邀請至 Loki Messenger</string>
+  <string name="SharedContactView_message">Loki Messenger 訊息</string>
   <!--Slide-->
   <string name="Slide_image">圖片</string>
   <string name="Slide_audio">音訊</string>
@@ -555,7 +555,7 @@
   <string name="ThreadRecord_called_you">來電</string>
   <string name="ThreadRecord_missed_call">未接來電</string>
   <string name="ThreadRecord_media_message">媒體訊息</string>
-  <string name="ThreadRecord_s_is_on_signal">%s 在 Signal 了！</string>
+  <string name="ThreadRecord_s_is_on_signal">%s 在 Loki Messenger 了！</string>
   <string name="ThreadRecord_disappearing_messages_disabled">自動銷毀訊息功能已被關閉。</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">訊息銷毀時間設定為 %s</string>
   <string name="ThreadRecord_safety_number_changed">安全碼已改變</string>
@@ -563,8 +563,8 @@
   <string name="ThreadRecord_you_marked_verified">您標記為已驗證</string>
   <string name="ThreadRecord_you_marked_unverified">您標記為未驗證</string>
   <!--UpdateApkReadyListener-->
-  <string name="UpdateApkReadyListener_Signal_update">Signal 更新</string>
-  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">有新版本的 Signal，輕觸更新</string>
+  <string name="UpdateApkReadyListener_Signal_update">Loki Messenger 更新</string>
+  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">有新版本的 Loki Messenger，輕觸更新</string>
   <!--UnknownSenderView-->
   <string name="UnknownSenderView_block_s">封鎖 %s？</string>
   <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">已封鎖的聯絡人將再也不能夠傳送訊息給你及與你通話。</string>
@@ -579,15 +579,15 @@
   <string name="UnverifiedSendDialog_send_message">傳送訊息？</string>
   <string name="UnverifiedSendDialog_send">傳送</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">您的聯絡人使用的是舊版本的 Signal。在驗證您的安全碼前請尋求對方先進行更新。</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">您的聯絡人使用的是舊版本的 Loki Messenger。在驗證您的安全碼前請尋求對方先進行更新。</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">您的聯絡人使用的是新版本的 Signal，程式無法識別這個聯絡人的二維碼。
 請升級您的 Signal。</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">掃描的 QR 碼格式不正確。請重新掃一次。</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">通過...分享安全碼</string>
-  <string name="VerifyIdentityActivity_our_signal_safety_number">我方 Signal 安全碼：</string>
+  <string name="VerifyIdentityActivity_our_signal_safety_number">我方 Loki Messenger 安全碼：</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">看起來您沒有任何可以分享的應用。</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">沒有在剪貼簿中發現安全碼，因此無法進行比較</string>
-  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal 需要相機的權限以掃描 QR code，但是現在被設定為永久拒絕使用。請到應用程式設定中，選取「權限」，並啟用「相機」的權限。</string>
+  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Loki Messenger 需要相機的權限以掃描 QR code，但是現在被設定為永久拒絕使用。請到應用程式設定中，選取「權限」，並啟用「相機」的權限。</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">因為沒有「相機」的權限，無法掃描 QR code</string>
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">損毀的加密訊息</string>
@@ -607,13 +607,13 @@
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">按一下開啟。</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">按一下開啟，或按一下鎖住並關閉。</string>
-  <string name="KeyCachingService_passphrase_cached">Signal 已經解鎖</string>
-  <string name="KeyCachingService_lock">鎖定 Signal</string>
+  <string name="KeyCachingService_passphrase_cached">Loki Messenger 已經解鎖</string>
+  <string name="KeyCachingService_lock">鎖定 Loki Messenger</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">您</string>
   <string name="MediaPreviewActivity_unssuported_media_type">不支援的媒體類型</string>
   <string name="MediaPreviewActivity_draft">草稿</string>
-  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal 需要儲存的權限以儲存外接儲存空間，但是現在被設定為永久拒絕存取。請到應用程式設定中，選取「權限」，並啟用「儲存空間」的權限。</string>
+  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Loki Messenger 需要儲存的權限以儲存外接儲存空間，但是現在被設定為永久拒絕存取。請到應用程式設定中，選取「權限」，並啟用「儲存空間」的權限。</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">因為沒有儲存的權限，無法儲存到外部儲存空間</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">刪除訊息？</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">這將永久刪除此訊息。</string>
@@ -629,10 +629,10 @@
   <string name="MessageNotifier_mark_read">標示已讀</string>
   <string name="MessageNotifier_media_message">媒體訊息</string>
   <string name="MessageNotifier_reply">回覆</string>
-  <string name="MessageNotifier_signal_message">Signal 訊息</string>
+  <string name="MessageNotifier_signal_message">Loki Messenger 訊息</string>
   <string name="MessageNotifier_unsecured_sms">不安全的簡訊</string>
-  <string name="MessageNotifier_pending_signal_messages">擱置的 Signal 訊息</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">你有擱置的 Signal 訊息，輕觸打開及取得訊息</string>
+  <string name="MessageNotifier_pending_signal_messages">擱置的 Loki Messenger 訊息</string>
+  <string name="MessageNotifier_you_have_pending_signal_messages">你有擱置的 Loki Messenger 訊息，輕觸打開及取得訊息</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">聯絡人</string>
   <!--Notification Channels-->
@@ -646,7 +646,7 @@
   <string name="NotificationChannel_group_messages">訊息</string>
   <string name="NotificationChannel_missing_display_name">未知</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">當 Signal 鎖定時無法使用快速回覆！</string>
+  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">當 Loki Messenger 鎖定時無法使用快速回覆！</string>
   <string name="QuickResponseService_problem_sending_message">傳送訊息出現問題！</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_saved_to">儲存到 %s</string>
@@ -665,14 +665,14 @@
   </plurals>
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">此裝置已被取消註冊</string>
-  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">這似乎是你將 Signal 的電話號碼註冊在其他的裝置上。觸碰這裡來重新註冊。</string>
+  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">這似乎是你將 Loki Messenger 的電話號碼註冊在其他的裝置上。觸碰這裡來重新註冊。</string>
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">播放影片時發生錯誤</string>
   <!--WebRtcCallActivity-->
-  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">要接聽來自%s的電話，請允許 Signal 使用你的麥克風。</string>
-  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal 需要\"麥克風\"及\"相機\"的權限以接聽來電，但是現在被設定為永久拒絕使用。請到應用程式設定中，選取\"權限\"，並啟用\"麥克風\"及\"相機\"的權限。</string>
+  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">要接聽來自%s的電話，請允許 Loki Messenger 使用你的麥克風。</string>
+  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Loki Messenger 需要\"麥克風\"及\"相機\"的權限以接聽來電，但是現在被設定為永久拒絕使用。請到應用程式設定中，選取\"權限\"，並啟用\"麥克風\"及\"相機\"的權限。</string>
   <!--WebRtcCallScreen-->
-  <string name="WebRtcCallScreen_new_safety_numbers">%1$s 的安全碼產生變動。這有可能是有不明人士試圖攔截您的通訊／對話內容，或是因為 %2$s 重新安裝 Signal。</string>
+  <string name="WebRtcCallScreen_new_safety_numbers">%1$s 的安全碼產生變動。這有可能是有不明人士試圖攔截您的通訊／對話內容，或是因為 %2$s 重新安裝 Loki Messenger。</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">您可能希望驗證這名聯絡人的安全碼。</string>
   <string name="WebRtcCallScreen_new_safety_number_title">新的安全碼</string>
   <string name="WebRtcCallScreen_accept">接受</string>
@@ -707,15 +707,15 @@
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">聯絡人相片</string>
   <!--ContactSelectionListFragment-->
-  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal 需要聯絡人的權限以顯示聯絡人資訊，但是現在被設定為永久拒絕存取。請到應用程式設定中，選取「權限」，並啟用「聯絡人」的權限。</string>
+  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Loki Messenger 需要聯絡人的權限以顯示聯絡人資訊，但是現在被設定為永久拒絕存取。請到應用程式設定中，選取「權限」，並啟用「聯絡人」的權限。</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">取回聯絡人名單錯誤，請檢查網路連線</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">無已封鎖的聯絡人</string>
   <!--contact_selection_list_fragment-->
-  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal 需要存取你的\"聯絡人\"以顯示聯絡人資訊。</string>
+  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Loki Messenger 需要存取你的\"聯絡人\"以顯示聯絡人資訊。</string>
   <string name="contact_selection_list_fragment__show_contacts">顯示聯絡人</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Signal 訊息</string>
+  <string name="conversation_activity__type_message_push">Loki Messenger 訊息</string>
   <string name="conversation_activity__type_message_sms_insecure">不安全的簡訊</string>
   <string name="conversation_activity__type_message_mms_insecure">不安全的多媒體訊息</string>
   <string name="conversation_activity__from_sim_name">來自 %1$s</string>
@@ -727,7 +727,7 @@
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">切換快速相機附件抽屜</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">錄製並傳送語音附件</string>
   <string name="conversation_activity__quick_attachment_drawer_lock_record_description">鎖定語音錄製附件檔案</string>
-  <string name="conversation_activity__enable_signal_for_sms">啟動 Signal 簡訊功能</string>
+  <string name="conversation_activity__enable_signal_for_sms">啟動 Loki Messenger 簡訊功能</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">滑動以取消</string>
   <string name="conversation_input_panel__cancel">取消</string>
@@ -795,9 +795,9 @@
   <string name="IdentityUtil_unverified_banner_one">您與 %s 的安全碼已經改變，需要重新驗證</string>
   <string name="IdentityUtil_unverified_banner_two">您與 %1$s 及 %2$s 的安全碼需要重新驗證</string>
   <string name="IdentityUtil_unverified_banner_many">您與 %1$s、%2$s 及 %3$s 的安全碼需要重新驗證</string>
-  <string name="IdentityUtil_unverified_dialog_one">你與 %1$s 的安全碼已改變，而且不再是已驗證。這有可能是有不明人士試圖攔截您的通訊，或是因為 %1$s 重新安裝 Signal。</string>
-  <string name="IdentityUtil_unverified_dialog_two">你與 %1$s 及 %2$s 的安全碼不再是已驗證。這有可能是有不明人士試圖攔截您的通訊，或是因為他們重新安裝 Signal。</string>
-  <string name="IdentityUtil_unverified_dialog_many">你與 %1$s、%2$s 及 %3$s 的安全碼不再是已驗證。這有可能是有不明人士試圖攔截您的通訊，或是因為他們重新安裝 Signal。</string>
+  <string name="IdentityUtil_unverified_dialog_one">你與 %1$s 的安全碼已改變，而且不再是已驗證。這有可能是有不明人士試圖攔截您的通訊，或是因為 %1$s 重新安裝 Loki Messenger。</string>
+  <string name="IdentityUtil_unverified_dialog_two">你與 %1$s 及 %2$s 的安全碼不再是已驗證。這有可能是有不明人士試圖攔截您的通訊，或是因為他們重新安裝 Loki Messenger。</string>
+  <string name="IdentityUtil_unverified_dialog_many">你與 %1$s、%2$s 及 %3$s 的安全碼不再是已驗證。這有可能是有不明人士試圖攔截您的通訊，或是因為他們重新安裝 Loki Messenger。</string>
   <string name="IdentityUtil_untrusted_dialog_one">你與 %s 的安全碼剛剛已改變。</string>
   <string name="IdentityUtil_untrusted_dialog_two">你與 %1$s 及 %2$s 的安全碼剛剛已改變。</string>
   <string name="IdentityUtil_untrusted_dialog_many">你與 %1$s、%2$s 及 %3$s 的安全碼剛剛已改變。</string>
@@ -827,7 +827,7 @@
   <string name="log_submit_activity__please_review_this_log_from_my_app">請從我的應用程式檢視這個日誌檔：%1$s</string>
   <string name="log_submit_activity__network_failure">網路連結錯誤。請再嘗試一次。</string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">您想要把已存在的訊息匯入 Signal 的加密資料庫嗎？</string>
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">您想要把已存在的訊息匯入 Loki Messenger 的加密資料庫嗎？</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">裝置上預設的資料庫將不會被做任何修改或變更。</string>
   <string name="database_migration_activity__skip">略過</string>
   <string name="database_migration_activity__import">匯入</string>
@@ -858,7 +858,7 @@
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">解鎖</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal 需要多媒體訊息設定以透過業者傳輸媒體與群組訊息。您的裝置沒有所需的資訊，有可能是由於裝置被鎖定或者其他限制設定。</string>
+  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Loki Messenger 需要多媒體訊息設定以透過業者傳輸媒體與群組訊息。您的裝置沒有所需的資訊，有可能是由於裝置被鎖定或者其他限制設定。</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">傳送媒體檔案或群組訊息，請按下 \"OK\" 並完成必要的設定。您所使用電信業者相關的MMS多媒體簡訊設定可能羅列在 \'無線與網路／行動網路\'的設定項目內。且您只需設定一次。</string>
   <!--profile_create_activity-->
   <string name="profile_create_activity__set_later">稍後設定</string>
@@ -881,12 +881,12 @@
   <string name="recipient_preferences__call_settings">通話設定</string>
   <string name="recipient_preferences__ringtone">鈴聲</string>
   <!--- redphone_call_controls-->
-  <string name="redphone_call_card__signal_call">Signal 通話</string>
+  <string name="redphone_call_card__signal_call">Loki Messenger 通話</string>
   <string name="redphone_call_controls__mute">靜音</string>
   <string name="redphone_call_controls__flip_camera_rear">切換相機</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">手機號碼</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal 使用你現在的手機號碼和通訊簿，讓通訊變得簡單。知道如何用手機聯繫你的朋友與聯絡人們，他們會更容易的透過 Signal 與你保持聯絡。\n\n註冊時，會傳輸一些聯絡資訊到伺服器，這些聯絡資訊並不會被儲存。</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal 使用你現在的手機號碼和通訊簿，讓通訊變得簡單。知道如何用手機聯繫你的朋友與聯絡人們，他們會更容易的透過 Loki Messenger 與你保持聯絡。\n\n註冊時，會傳輸一些聯絡資訊到伺服器，這些聯絡資訊並不會被儲存。</string>
   <string name="registration_activity__verify_your_number">驗證你的號碼</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">請輸入你的行動電話號碼來接收驗證碼。也許要支付簡訊費用。</string>
   <!--recipients_panel-->
@@ -962,8 +962,8 @@
   <string name="preferences__sms_mms">簡訊與多媒體簡訊</string>
   <string name="preferences__pref_all_sms_title">接收所有手機簡訊</string>
   <string name="preferences__pref_all_mms_title">接收所有多媒體訊息</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">使用 Signal 接收所有簡訊</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">使用 Signal 接收所有多媒體訊息</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">使用 Loki Messenger 接收所有簡訊</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">使用 Loki Messenger 接收所有多媒體訊息</string>
   <string name="preferences__pref_enter_sends_title">按下輸入鍵發送</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">按下輸入鍵將會發送訊息</string>
   <string name="preferences__send_link_previews">傳送連結預覽</string>
@@ -976,7 +976,7 @@
   <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">使用鎖定螢幕及通知密碼</string>
   <string name="preferences__screen_security">螢幕安全設定</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">在對話清單或應用程式內停用畫面擷取功能</string>
-  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">在特定時間內不活躍會自動鎖定 Signal</string>
+  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">在特定時間內不活躍會自動鎖定 Loki Messenger</string>
   <string name="preferences__inactivity_timeout_passphrase">不活躍鎖定密碼</string>
   <string name="preferences__inactivity_timeout_interval">不活躍時間間隔</string>
   <string name="preferences__notifications">通知</string>
@@ -1029,8 +1029,8 @@
   <string name="preferences__theme">主題</string>
   <string name="preferences__default">預設</string>
   <string name="preferences__language">語言選項</string>
-  <string name="preferences__signal_messages_and_calls">Signal 訊息與通話</string>
-  <string name="preferences__free_private_messages_and_calls">免費加密訊息與通話至 Signal 使用者</string>
+  <string name="preferences__signal_messages_and_calls">Loki Messenger 訊息與通話</string>
+  <string name="preferences__free_private_messages_and_calls">免費加密訊息與通話至 Loki Messenger 使用者</string>
   <string name="preferences__submit_debug_log">送出偵錯紀錄</string>
   <string name="preferences__support_wifi_calling">\"WiFi 呼叫\"相容模式</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">如果您的裝置使用 WiFi 傳送簡訊或多媒體訊息，請啟用此選項 (僅當\"WiFi 語音呼叫\"在您的裝置上啟用的時候才可用)</string>
@@ -1047,8 +1047,8 @@
   <string name="preferences_chats__media_auto_download">媒體自動下載</string>
   <string name="preferences_chats__message_trimming">訊息整理</string>
   <string name="preferences_advanced__use_system_emoji">使用系統表情符號</string>
-  <string name="preferences_advanced__disable_signal_built_in_emoji_support">停用 Signal 內建的表情支援</string>
-  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">透過 Signal 伺服器轉發通話，來避免透露你的 IP 位址給你的聯絡人。啟用時，會降低通話品質。</string>
+  <string name="preferences_advanced__disable_signal_built_in_emoji_support">停用 Loki Messenger 內建的表情支援</string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">透過 Loki Messenger 伺服器轉發通話，來避免透露你的 IP 位址給你的聯絡人。啟用時，會降低通話品質。</string>
   <string name="preferences_advanced__always_relay_calls">永遠轉發通話</string>
   <string name="preferences_app_protection__app_access">應用程式存取</string>
   <string name="preferences_app_protection__communication">溝通</string>
@@ -1060,9 +1060,9 @@
   <string name="preferences_notifications__calls">通話</string>
   <string name="preferences_notifications__ringtone">鈴聲</string>
   <string name="preferences_chats__show_invitation_prompts">顯示邀請提示</string>
-  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">不用 Signal 來顯示給聯絡人的邀請提示</string>
+  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">不用 Loki Messenger 來顯示給聯絡人的邀請提示</string>
   <string name="preferences_chats__message_text_size">訊息字體大小</string>
-  <string name="preferences_events__contact_joined_signal">聯絡人已加入 Signal</string>
+  <string name="preferences_events__contact_joined_signal">聯絡人已加入 Loki Messenger</string>
   <string name="preferences_notifications__priority">優先順序</string>
   <string name="preferences_communication__category_sealed_sender">密封發件人</string>
   <string name="preferences_communication__sealed_sender_display_indicators">顯示指標</string>
@@ -1078,7 +1078,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">撥出</string>
   <!--conversation_callable_secure-->
-  <string name="conversation_callable_secure__menu_call">Signal 通話</string>
+  <string name="conversation_callable_secure__menu_call">Loki Messenger 通話</string>
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">訊息細節</string>
   <string name="conversation_context__menu_copy_text">複製文字</string>
@@ -1141,25 +1141,25 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">複製到剪貼簿</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">與剪貼簿中的內容進行比較</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">您的 Signal 版本已過期</string>
+  <string name="reminder_header_outdated_build">您的 Loki Messenger 版本已過期</string>
   <plurals name="reminder_header_outdated_build_details">
-    <item quantity="other">您的 Signal 版本將於 %d 日內到期，請更新至最新版本。</item>
+    <item quantity="other">您的 Loki Messenger 版本將於 %d 日內到期，請更新至最新版本。</item>
   </plurals>
-  <string name="reminder_header_outdated_build_details_today">您的 Signal 版本今日到期，請更新至最新版本。</string>
-  <string name="reminder_header_expired_build">您的 Signal 版本已過期！</string>
+  <string name="reminder_header_outdated_build_details_today">您的 Loki Messenger 版本今日到期，請更新至最新版本。</string>
+  <string name="reminder_header_expired_build">您的 Loki Messenger 版本已過期！</string>
   <string name="reminder_header_expired_build_details">您的訊息將無法成功傳送，請更新至最新版本。</string>
   <string name="reminder_header_sms_default_title">設定為預設簡訊應用程式</string>
-  <string name="reminder_header_sms_default_text">輕觸將 Signal 設定為預設的簡訊應用程式。</string>
+  <string name="reminder_header_sms_default_text">輕觸將 Loki Messenger 設定為預設的簡訊應用程式。</string>
   <string name="reminder_header_sms_import_title">匯入系統簡訊</string>
-  <string name="reminder_header_sms_import_text">按此以複製您手機中的簡訊訊息至 Signal 的加密數據庫中。</string>
-  <string name="reminder_header_push_title">啟用 Signal 訊息與通話</string>
+  <string name="reminder_header_sms_import_text">按此以複製您手機中的簡訊訊息至 Loki Messenger 的加密數據庫中。</string>
+  <string name="reminder_header_push_title">啟用 Loki Messenger 訊息與通話</string>
   <string name="reminder_header_push_text">升級您的通訊體驗。</string>
-  <string name="reminder_header_invite_title">邀請至 Signal</string>
+  <string name="reminder_header_invite_title">邀請至 Loki Messenger</string>
   <string name="reminder_header_invite_text">與 %1$s 一同將你們的對話提升至更高的等級。</string>
   <string name="reminder_header_share_title">邀請您的好友！</string>
-  <string name="reminder_header_share_text">當更多的朋友使用 Signal，它將變得更好。</string>
-  <string name="reminder_header_service_outage_text">Signal 正遇到技術性的問題。我們正在處理，將盡速的修正並恢復服務。</string>
-  <string name="reminder_header_the_latest_signal_features_wont_work">Signal 的新功能無法在此版本的 Android 上使用。請升級此裝置以收到未來 Signal 的更新。</string>
+  <string name="reminder_header_share_text">當更多的朋友使用 Loki Messenger，它將變得更好。</string>
+  <string name="reminder_header_service_outage_text">Loki Messenger 正遇到技術性的問題。我們正在處理，將盡速的修正並恢復服務。</string>
+  <string name="reminder_header_the_latest_signal_features_wont_work">Signal 的新功能無法在此版本的 Android 上使用。請升級此裝置以收到未來 Loki Messenger 的更新。</string>
   <!--media_preview-->
   <string name="media_preview__save_title">儲存</string>
   <string name="media_preview__forward_title">轉寄</string>
@@ -1180,16 +1180,16 @@
   <string name="ConversationListFragment_loading">載入中...</string>
   <string name="CallNotificationBuilder_connecting">連線中...</string>
   <string name="Permissions_permission_required">需要權限</string>
-  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal 需要\"簡訊\"的權限以傳送訊息，但是現在被設定為永久拒絕存取。請到應用程式設定中，選取\"權限\"，並啟用\"簡訊\"的權限。</string>
+  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Loki Messenger 需要\"簡訊\"的權限以傳送訊息，但是現在被設定為永久拒絕存取。請到應用程式設定中，選取\"權限\"，並啟用\"簡訊\"的權限。</string>
   <string name="Permissions_continue">繼續</string>
   <string name="Permissions_not_now">稍後</string>
-  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal 需要聯絡人的權限來搜尋聯絡人，但是現在設定為永久拒絕存取。請繼續到\"應用程式\"ˇ的設定中，選擇\"權限\"，接著啟動\"聯絡人\"。</string>
-  <string name="conversation_activity__enable_signal_messages">啟用 Signal 訊息</string>
-  <string name="SQLCipherMigrationHelper_migrating_signal_database">遷移 Signal 資料庫</string>
+  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Loki Messenger 需要聯絡人的權限來搜尋聯絡人，但是現在設定為永久拒絕存取。請繼續到\"應用程式\"ˇ的設定中，選擇\"權限\"，接著啟動\"聯絡人\"。</string>
+  <string name="conversation_activity__enable_signal_messages">啟用 Loki Messenger 訊息</string>
+  <string name="SQLCipherMigrationHelper_migrating_signal_database">遷移 Loki Messenger 資料庫</string>
   <string name="PushDecryptJob_new_locked_message">新鎖定的訊息</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">解鎖以查看待處理的訊息</string>
   <string name="ExperienceUpgradeActivity_unlock_to_complete_update">解鎖以完成更新</string>
-  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">請解鎖 Signal 以完成更新</string>
+  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">請解鎖 Loki Messenger 以完成更新</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">備份密碼</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">備份將會儲存到外部儲存空間，並以下方的密碼加密。你必須擁有這個密碼來還原此備份。</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">我已經寫下密碼。沒有密碼，我將無法還原此備份。</string>
@@ -1201,7 +1201,7 @@
   <string name="preferences_chats__create_backup">建立備份</string>
   <string name="RegistrationActivity_enter_backup_passphrase">輸入備份密碼</string>
   <string name="RegistrationActivity_restore">還原</string>
-  <string name="RegistrationActivity_backup_failure_downgrade">無法從較新版本的 Signal 匯入備份檔</string>
+  <string name="RegistrationActivity_backup_failure_downgrade">無法從較新版本的 Loki Messenger 匯入備份檔</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">不正確的備份密碼</string>
   <string name="RegistrationActivity_checking">檢查中... </string>
   <string name="RegistrationActivity_d_messages_so_far">目前為止有 %d 則訊息.. </string>
@@ -1216,7 +1216,7 @@
   <string name="BackupDialog_disable_and_delete_all_local_backups">關閉及刪除所有本機備份？</string>
   <string name="BackupDialog_delete_backups_statement">刪除備份</string>
   <string name="BackupDialog_copied_to_clipboard">已複製到剪貼簿</string>
-  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">為了要建立備份，Signal 需要外部空間的權限，但是已被永久拒絕。請到應用程式設定，選擇「權限」及開啟「儲存」。</string>
+  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">為了要建立備份，Loki Messenger 需要外部空間的權限，但是已被永久拒絕。請到應用程式設定，選擇「權限」及開啟「儲存」。</string>
   <string name="ChatsPreferenceFragment_last_backup_s">上一次備份︰%s</string>
   <string name="ChatsPreferenceFragment_in_progress">處理中</string>
   <string name="LocalBackupJob_creating_backup">正在建立備份...</string>
@@ -1227,7 +1227,7 @@
   <string name="BackupUtil_never">永不</string>
   <string name="BackupUtil_unknown">未知</string>
   <string name="preferences_app_protection__screen_lock">螢幕鎖定</string>
-  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">以 Android 螢幕鎖定或指紋來鎖定 Signal 存取</string>
+  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">以 Android 螢幕鎖定或指紋來鎖定 Loki Messenger 存取</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">螢幕鎖定閒置逾時</string>
   <string name="AppProtectionPreferenceFragment_none">無</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">此註冊鎖定 PIN 碼，與你剛剛接受到的 SMS 驗證碼不相同。請輸入之前在應用程式設定的 PIN 碼。</string>
@@ -1247,13 +1247,13 @@
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">你已經嘗試太多不正確的註冊鎖定 PIN 碼。請一天後再重試。</string>
   <string name="RegistrationActivity_error_connecting_to_service">連線到服務錯誤</string>
   <string name="RegistrationActivity_oh_no">不好了！</string>
-  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">如果你沒有註冊鎖定 PIN 碼，在此電話號碼，最後活躍於 Signal 的 7 天過後，才可以註冊此電話號碼。你還剩下 %d 天。</string>
+  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">如果你沒有註冊鎖定 PIN 碼，在此電話號碼，最後活躍於 Loki Messenger 的 7 天過後，才可以註冊此電話號碼。你還剩下 %d 天。</string>
   <string name="RegistrationActivity_registration_lock_pin">註冊鎖定 PIN 碼</string>
   <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">此電話號碼已啟用註冊鎖定。請輸入註冊鎖定 PIN 碼。</string>
-  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">你的電話號碼已啟用於註冊鎖定功能。為了幫助你記得你的註冊鎖定 PIN 碼，Signal 將定期的要求你確認這個 PIN 碼。</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">你的電話號碼已啟用於註冊鎖定功能。為了幫助你記得你的註冊鎖定 PIN 碼，Loki Messenger 將定期的要求你確認這個 PIN 碼。</string>
   <string name="RegistrationLockDialog_i_forgot_my_pin">我忘記我的 PIN 碼。</string>
   <string name="RegistrationLockDialog_forgotten_pin">忘記 PIN 碼？</string>
-  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">註冊鎖定協助護你的電話號碼，免於未經授權註冊的企圖。此功能可以隨時在 Signal 的隱私設定內關閉。</string>
+  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">註冊鎖定協助護你的電話號碼，免於未經授權註冊的企圖。此功能可以隨時在 Loki Messenger 的隱私設定內關閉。</string>
   <string name="RegistrationLockDialog_registration_lock">註冊鎖定</string>
   <string name="RegistrationLockDialog_enable">啟用</string>
   <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">註冊登入鎖定 PIN 碼至少必須為 4 位數。</string>
@@ -1262,7 +1262,7 @@
   <string name="RegistrationLockDialog_disable_registration_lock_pin">關閉註冊鎖定 PIN 碼？</string>
   <string name="RegistrationLockDialog_disable">停用</string>
   <string name="preferences_chats__backups">備份</string>
-  <string name="prompt_passphrase_activity__signal_is_locked">Signal 已被鎖定</string>
+  <string name="prompt_passphrase_activity__signal_is_locked">Loki Messenger 已被鎖定</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">觸碰來解鎖</string>
   <string name="RegistrationLockDialog_reminder">提醒：</string>
   <string name="recipient_preferences__about">關於</string>

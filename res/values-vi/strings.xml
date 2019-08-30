@@ -18,18 +18,18 @@
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">Xóa</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Tắt cụm từ mật khẩu?</string>
-  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Thao tác này sẽ vĩnh viễn mở khóa Signal và thông báo tin nhắn.</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Thao tác này sẽ vĩnh viễn mở khóa Loki Messenger và thông báo tin nhắn.</string>
   <string name="ApplicationPreferencesActivity_disable">Tắt</string>
   <string name="ApplicationPreferencesActivity_unregistering">Tháo gỡ đăng ký</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Đang huỷ đăng ký với tin nhắn và cuộc gọi Signal...</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Tắt tin nhắn và cuộc gọi Signal?</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Đang huỷ đăng ký với tin nhắn và cuộc gọi Loki Messenger...</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Tắt tin nhắn và cuộc gọi Loki Messenger?</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Tắt tin nhắn và cuộc gọi Signal bằng cách huỷ đăng ký từ máy chủ.
 Bạn sẽ phải đăng ký lại số điện thoại để sử dụng Signal trong tương lai.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Có lỗi kết nối vào máy chủ!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">Đã mở SMS</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Chạm vào để đổi ứng dụng SMS mặc định</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">Đã tắt SMS</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Chạm để chọn Signal làm ứng dụng SMS mặc định</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Chạm để chọn Loki Messenger làm ứng dụng SMS mặc định</string>
   <string name="ApplicationPreferencesActivity_on">mở</string>
   <string name="ApplicationPreferencesActivity_On">Mở</string>
   <string name="ApplicationPreferencesActivity_off">tắt</string>
@@ -60,13 +60,13 @@ Bạn sẽ phải đăng ký lại số điện thoại để sử dụng Signal
   <string name="ClearProfileActivity_remove">Bỏ</string>
   <!--CommunicationActions-->
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Mã số an toàn với %1$s đã thay đổi. Điều này có thể là do ai đó đang tìm cách đánh chặn thông tin của bạn, hoặc %2$s đã chỉ vừa mới cài lại Signal.</string>
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Mã số an toàn với %1$s đã thay đổi. Điều này có thể là do ai đó đang tìm cách đánh chặn thông tin của bạn, hoặc %2$s đã chỉ vừa mới cài lại Loki Messenger.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Bạn có thể sẽ cần xác minh mã số an toàn với liên hệ này.</string>
   <string name="ConfirmIdentityDialog_accept">Chấp nhận</string>
   <!--ContactsCursorLoader-->
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Tin nhắn %s</string>
-  <string name="ContactsDatabase_signal_call_s">Cuộc gọi Signal %s</string>
+  <string name="ContactsDatabase_signal_call_s">Cuộc gọi Loki Messenger %s</string>
   <!--ContactNameEditActivity-->
   <!--ContactShareEditActivity-->
   <!--ConversationItem-->
@@ -74,7 +74,7 @@ Bạn sẽ phải đăng ký lại số điện thoại để sử dụng Signal
   <string name="ConversationItem_group_action_left">%1$s đã rời khỏi nhóm.</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Trở lại SMS không mã hóa?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Trở lại MMS không mã hóa?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Tin nhắn này sẽ <b>không</b> được mã khoá bởi vì người nhận không còn sử dụng Signal.\n\ngSẽ gửi tin nhắn không bảo mật chứ?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Tin nhắn này sẽ <b>không</b> được mã khoá bởi vì người nhận không còn sử dụng Loki Messenger.\n\ngSẽ gửi tin nhắn không bảo mật chứ?</string>
   <string name="ConversationItem_unable_to_open_media">Không tìm thấy ứng dụng để mở dữ liệu truyền thông này.</string>
   <string name="ConversationItem_from_s">từ %s</string>
   <string name="ConversationItem_to_s">tới %s</string>
@@ -97,7 +97,7 @@ Bạn sẽ phải đăng ký lại số điện thoại để sử dụng Signal
   <string name="ConversationActivity_transport_insecure_sms">SMS không bảo mật</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS không bảo mật</string>
   <string name="ConversationActivity_transport_signal">Loki Messenger</string>
-  <string name="ConversationActivity_lets_switch_to_signal">Hãy chuyển sang dùng Signal %1$s</string>
+  <string name="ConversationActivity_lets_switch_to_signal">Hãy chuyển sang dùng Loki Messenger %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Dùng cái này để chat: %1$s</string>
   <string name="ConversationActivity_specify_recipient">Xin chọn một liên lạc</string>
   <string name="ConversationActivity_unblock_this_contact_question">Không chặn liên lạc này?</string>
@@ -125,7 +125,7 @@ Bạn sẽ phải đăng ký lại số điện thoại để sử dụng Signal
     <item quantity="other">Đang lưu %1$d đính kèm</item>
   </plurals>
   <string name="ConversationFragment_pending">Chờ giải quyết...</string>
-  <string name="ConversationFragment_push">Dữ liệu (Signal)</string>
+  <string name="ConversationFragment_push">Dữ liệu (Loki Messenger)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Đang xóa</string>
@@ -180,31 +180,31 @@ Bạn sẽ phải đăng ký lại số điện thoại để sử dụng Signal
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Chia sẻ với</string>
   <!--ExperienceUpgradeActivity-->
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Chào mừng bạn đến với Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure và RedPhone giờ đây đã được nhập chung thành ứng dụng nhắn tin riêng tư: Signal.</string>
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Chào mừng bạn đến với Signal!</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure bây giờ là Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure và RedPhone hiện giờ đã nhập làm một: Signal. Chạm để khám phá.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Chào mừng bạn đến với Loki Messenger.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure và RedPhone giờ đây đã được nhập chung thành ứng dụng nhắn tin riêng tư: Loki Messenger.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Chào mừng bạn đến với Loki Messenger!</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure bây giờ là Loki Messenger.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure và RedPhone hiện giờ đã nhập làm một: Loki Messenger. Chạm để khám phá.</string>
   <string name="ExperienceUpgradeActivity_no_thanks">Xin miễn</string>
   <string name="ExperienceUpgradeActivity_got_it">Đã nhận được</string>
   <!--GcmBroadcastReceiver-->
   <!--GcmRefreshJob-->
-  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Lỗi thường trực khi giao tiếp qua Signal!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal không thể đăng ký với Google Play Services. Cuộc gọi và tin nhắn Signal đã ngừng hoạt động, hãy thử đăng ký lại từ mục Cài đặt &gt; Nâng cao.</string>
+  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Lỗi thường trực khi giao tiếp qua Loki Messenger!</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal không thể đăng ký với Google Play Services. Cuộc gọi và tin nhắn Loki Messenger đã ngừng hoạt động, hãy thử đăng ký lại từ mục Cài đặt &gt; Nâng cao.</string>
   <!--GiphyActivity-->
   <!--GiphyFragmentPageAdapter-->
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">Tạo nhóm mới</string>
   <string name="GroupCreateActivity_group_name_hint">Tên nhóm</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Tạo nhóm MMS mới</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">Bạn đã chọn một liên hệ không hỗ trợ nhóm Signal, vậy nên nhóm này sẽ dùng MMS.</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">Bạn chưa đăng ký dịch vụ gọi và nhắn tin Signal, vậy nên nhóm Signal không khả dụng. Hãy thử đăng ký từ mục Cài đặt &gt; Nâng cao.</string>
+  <string name="GroupCreateActivity_contacts_dont_support_push">Bạn đã chọn một liên hệ không hỗ trợ nhóm Loki Messenger, vậy nên nhóm này sẽ dùng MMS.</string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">Bạn chưa đăng ký dịch vụ gọi và nhắn tin Signal, vậy nên nhóm Loki Messenger không khả dụng. Hãy thử đăng ký từ mục Cài đặt &gt; Nâng cao.</string>
   <string name="GroupCreateActivity_contacts_no_members">Cần có ít nhất một người trong nhóm!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Một người trong nhóm có số điện thoại không đọc được. Xin điều chỉnh hoặc xóa đi và thử lại.</string>
   <string name="GroupCreateActivity_avatar_content_description">Biểu tượng nhóm</string>
   <string name="GroupCreateActivity_creating_group">Tạo %1$s...</string>
   <string name="GroupCreateActivity_updating_group">Cập nhật %1$s...</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Không thể thêm %1$s vì họ không phải người dùng Signal.</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Không thể thêm %1$s vì họ không phải người dùng Loki Messenger.</string>
   <string name="GroupCreateActivity_loading_group_details">Nạp chi tiết nhóm...</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Bạn đã gia nhập nhóm này rồi.</string>
   <!--GroupShareProfileView-->
@@ -218,8 +218,8 @@ Bạn sẽ phải đăng ký lại số điện thoại để sử dụng Signal
   <string name="InviteActivity_sending">Đang gửi..</string>
   <string name="InviteActivity_heart_content_description">Thích</string>
   <string name="InviteActivity_invitations_sent">Đã gửi lời mời!</string>
-  <string name="InviteActivity_invite_to_signal">Mời dùng Signal</string>
-  <string name="InviteActivity_lets_switch_to_signal">Hãy chuyển sang dùng Signal: %1$s</string>
+  <string name="InviteActivity_invite_to_signal">Mời dùng Loki Messenger</string>
+  <string name="InviteActivity_lets_switch_to_signal">Hãy chuyển sang dùng Loki Messenger: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Có vẻ như bạn không có bất kỳ ứng dụng chia sẻ nào.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Bạn bè không để bạn mình tán gẫu không có mã khoá.</string>
   <!--Job-->
@@ -236,9 +236,9 @@ Bạn sẽ phải đăng ký lại số điện thoại để sử dụng Signal
   <string name="MediaOverviewActivity_Select_all">Chọn tất cả</string>
   <string name="MediaOverviewActivity_collecting_attachments">Đang thu thập đính kèm...</string>
   <!--- NotificationBarManager-->
-  <string name="NotificationBarManager_signal_call_in_progress">Cuộc gọi Signal đang tiến hành</string>
-  <string name="NotificationBarManager__establishing_signal_call">Đang thiết lập cuộc gọi Signal</string>
-  <string name="NotificationBarManager__incoming_signal_call">Cuộc gọi đến từ Signal</string>
+  <string name="NotificationBarManager_signal_call_in_progress">Cuộc gọi Loki Messenger đang tiến hành</string>
+  <string name="NotificationBarManager__establishing_signal_call">Đang thiết lập cuộc gọi Loki Messenger</string>
+  <string name="NotificationBarManager__incoming_signal_call">Cuộc gọi đến từ Loki Messenger</string>
   <string name="NotificationBarManager__deny_call">Từ chối cuộc gọi</string>
   <string name="NotificationBarManager__answer_call">Trả lời cuộc gọi</string>
   <string name="NotificationBarManager__end_call">Ngưng cuộc gọi</string>
@@ -251,7 +251,7 @@ Bạn sẽ phải đăng ký lại số điện thoại để sử dụng Signal
   <!--MediaSendActivity-->
   <!--MediaRepository-->
   <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Đã nhận một tin nhắn được mã khoá bởi phiên bản Signal cũ và không còn được hỗ trợ. Hãy yêu cầu người gửi cập nhật phiên bản mới nhất và gửi lại tin nhắn.</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Đã nhận một tin nhắn được mã khoá bởi phiên bản Loki Messenger cũ và không còn được hỗ trợ. Hãy yêu cầu người gửi cập nhật phiên bản mới nhất và gửi lại tin nhắn.</string>
   <string name="MessageRecord_left_group">Bạn đã rời nhóm.</string>
   <string name="MessageRecord_you_called">Bạn đã gọi</string>
   <string name="MessageRecord_missed_call">Cuộc gọi nhỡ</string>
@@ -278,12 +278,12 @@ Bạn sẽ phải đăng ký lại số điện thoại để sử dụng Signal
   <string name="DeviceProvisioningActivity_content_progress_network_error">Lỗi mạng.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">Mã QR không đúng.</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Xin lỗi, đây không phải là mã QR liên kết thiết bị chính xác.</string>
-  <string name="DeviceProvisioningActivity_link_a_signal_device">Liên kết một thiết bị dùng Signal?</string>
-  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Có vẻ như bạn đang cố liên kết một thiết bị dùng Signal bằng phần mềm quét bên thứ 3. Để bảo vệ mình, hãy quét lại đoạn mã sử dụng Signal.</string>
+  <string name="DeviceProvisioningActivity_link_a_signal_device">Liên kết một thiết bị dùng Loki Messenger?</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Có vẻ như bạn đang cố liên kết một thiết bị dùng Signal bằng phần mềm quét bên thứ 3. Để bảo vệ mình, hãy quét lại đoạn mã sử dụng Loki Messenger.</string>
   <!--ExpirationDialog-->
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Điền vào cụm từ mật khẩu</string>
-  <string name="PassphrasePromptActivity_watermark_content_description">Biểu tượng Signal</string>
+  <string name="PassphrasePromptActivity_watermark_content_description">Biểu tượng Loki Messenger</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Nộp cụm từ mật khẩu</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Cụm từ mật khẩu không đúng!</string>
   <!--PlayServicesProblemFragment-->
@@ -331,10 +331,10 @@ mã số quốc gia bạn</string>
   <!--Search-->
   <!--SendJob-->
   <!--SharedContactDetailsActivity-->
-  <string name="SharedContactDetailsActivity_invite_to_signal">Mời dùng Signal</string>
-  <string name="SharedContactDetailsActivity_signal_call">Cuộc gọi Signal</string>
+  <string name="SharedContactDetailsActivity_invite_to_signal">Mời dùng Loki Messenger</string>
+  <string name="SharedContactDetailsActivity_signal_call">Cuộc gọi Loki Messenger</string>
   <!--SharedContactView-->
-  <string name="SharedContactView_invite_to_signal">Mời dùng Signal</string>
+  <string name="SharedContactView_invite_to_signal">Mời dùng Loki Messenger</string>
   <!--Slide-->
   <string name="Slide_image">Ảnh</string>
   <string name="Slide_audio">Đoạn nhạc</string>
@@ -372,7 +372,7 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Chạm vào để mở.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Chạm vào để mở, hoặc chạm vào ổ khóa để đóng lại.</string>
-  <string name="KeyCachingService_passphrase_cached">Signal đã mở khóa</string>
+  <string name="KeyCachingService_passphrase_cached">Loki Messenger đã mở khóa</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Bạn</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Không hỗ trợ dạng truyền thông này</string>
@@ -392,7 +392,7 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <string name="NotificationChannel_messages">Mặc định</string>
   <string name="NotificationChannel_missing_display_name">Không rõ</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Trả lời nhanh không khả thi khi Signal bị khoá!</string>
+  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Trả lời nhanh không khả thi khi Loki Messenger bị khoá!</string>
   <string name="QuickResponseService_problem_sending_message">Có vấn đề khi gửi tin nhắn!</string>
   <!--SaveAttachmentTask-->
   <!--SearchToolbar-->
@@ -477,7 +477,7 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <string name="log_submit_activity__success">Thành công!</string>
   <string name="log_submit_activity__copied_to_clipboard">Sao chép vào bảng ghi tạm</string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Bạn có muốn nhập các tin nhắn hiện hữu vào cơ sở dữ liệu đã mã khoá của Signal?</string>
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Bạn có muốn nhập các tin nhắn hiện hữu vào cơ sở dữ liệu đã mã khoá của Loki Messenger?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Cơ sở dữ liệu mặc định của hệ thống sẽ không bị sửa hay bị thay đổi gì cả.</string>
   <string name="database_migration_activity__skip">Bỏ qua</string>
   <string name="database_migration_activity__import">Nhập</string>
@@ -503,7 +503,7 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Mở khóa</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal cần cài đặt MMS để chuyển dữ liệu truyền thông và các tin nhắn nhóm thông qua nhà mạng không dây. Thiết bị của bạn không cung cấp đầy đủ các thông tin này, đôi khi là do thiết bị đã bị khoá và các quy định nghiêm ngặt khác.</string>
+  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Loki Messenger cần cài đặt MMS để chuyển dữ liệu truyền thông và các tin nhắn nhóm thông qua nhà mạng không dây. Thiết bị của bạn không cung cấp đầy đủ các thông tin này, đôi khi là do thiết bị đã bị khoá và các quy định nghiêm ngặt khác.</string>
   <!--profile_create_activity-->
   <!--recipient_preferences_activity-->
   <!--recipient_preferences-->
@@ -515,7 +515,7 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <string name="recipient_preferences__privacy">Riêng tư</string>
   <string name="recipient_preferences__ringtone">Nhạc chuông</string>
   <!--- redphone_call_controls-->
-  <string name="redphone_call_card__signal_call">Cuộc gọi Signal</string>
+  <string name="redphone_call_card__signal_call">Cuộc gọi Loki Messenger</string>
   <string name="redphone_call_controls__mute">Im lặng</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">SỐ ĐIỆN THOẠI</string>
@@ -570,8 +570,8 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <string name="preferences__sms_mms">SMS và MMS</string>
   <string name="preferences__pref_all_sms_title">Nhận tất cả SMS</string>
   <string name="preferences__pref_all_mms_title">Nhận tất cả MMS</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Dùng Signal cho tất cả tin nhắn đến</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Dùng Signal cho tất cả tin nhắn đa phương tiện</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Dùng Loki Messenger cho tất cả tin nhắn đến</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Dùng Loki Messenger cho tất cả tin nhắn đa phương tiện</string>
   <string name="preferences__pref_enter_sends_title">Phím Enter gửi đi</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Nhấn phím Enter sẽ gửi tin nhắn đi</string>
   <string name="preferences__choose_identity">Chọn danh tính</string>
@@ -580,7 +580,7 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <string name="preferences__change_your_passphrase">Đổi cụm từ mật khẩu</string>
   <string name="preferences__screen_security">An ninh màn hình</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Chặn không cho chụp màn hình trong danh sách mới nhất và bên trong ứng dụng</string>
-  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Tự động khoá Signal sau một khoảng thời gian không hoạt động định trước</string>
+  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Tự động khoá Loki Messenger sau một khoảng thời gian không hoạt động định trước</string>
   <string name="preferences__inactivity_timeout_passphrase">Cụm mật khẩu khoá máy khi không hoạt động</string>
   <string name="preferences__inactivity_timeout_interval">Khoảng thời gian khoá máy khi không hoạt động</string>
   <string name="preferences__notifications">Thông báo</string>
@@ -632,7 +632,7 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <string name="preferences__theme">Hình nền</string>
   <string name="preferences__default">Mặc định</string>
   <string name="preferences__language">Ngôn ngữ</string>
-  <string name="preferences__signal_messages_and_calls">Tin nhắn và cuộc gọi Signal</string>
+  <string name="preferences__signal_messages_and_calls">Tin nhắn và cuộc gọi Loki Messenger</string>
   <string name="preferences__free_private_messages_and_calls">
 Các tin nhắn và cuộc gọi riêng tư miễn phí đến người dùng Signal
 </string>
@@ -646,7 +646,7 @@ Các tin nhắn và cuộc gọi riêng tư miễn phí đến người dùng Si
   <string name="preferences_chats__media_auto_download">Tự động tải dữ liệu truyền thông</string>
   <string name="preferences_chats__message_trimming">Thu gọn tin nhắn</string>
   <string name="preferences_advanced__use_system_emoji">Sử dụng ký tự biểu cảm hệ thống</string>
-  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Tắt hỗ trợ ký tự biểu cảm mặc định của Signal</string>
+  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Tắt hỗ trợ ký tự biểu cảm mặc định của Loki Messenger</string>
   <string name="preferences_notifications__ringtone">Nhạc chuông</string>
   <!--****************************************-->
   <!--menus-->
@@ -656,7 +656,7 @@ Các tin nhắn và cuộc gọi riêng tư miễn phí đến người dùng Si
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Gọi</string>
   <!--conversation_callable_secure-->
-  <string name="conversation_callable_secure__menu_call">Gọi qua Signal</string>
+  <string name="conversation_callable_secure__menu_call">Gọi qua Loki Messenger</string>
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">Chi tiết tin nhắn</string>
   <string name="conversation_context__menu_copy_text">Sao chép văn bản</string>
@@ -708,19 +708,19 @@ Các tin nhắn và cuộc gọi riêng tư miễn phí đến người dùng Si
   <string name="text_secure_normal__help">Trợ giúp</string>
   <!--verify_display_fragment-->
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">Phiên bản Signal của bạn đã quá cũ</string>
-  <string name="reminder_header_outdated_build_details_today">Phiên bản Signal của bạn sẽ hết hạn vào hôm nay. Chạm để cập nhật lên phiên bản mới nhất.</string>
-  <string name="reminder_header_expired_build">Phiên bản Signal của bạn đã hết hạn!</string>
+  <string name="reminder_header_outdated_build">Phiên bản Loki Messenger của bạn đã quá cũ</string>
+  <string name="reminder_header_outdated_build_details_today">Phiên bản Loki Messenger của bạn sẽ hết hạn vào hôm nay. Chạm để cập nhật lên phiên bản mới nhất.</string>
+  <string name="reminder_header_expired_build">Phiên bản Loki Messenger của bạn đã hết hạn!</string>
   <string name="reminder_header_expired_build_details">Tin nhắn sẽ không còn được gửi đi được nữa. Chạm để cập nhật lên phiên bản mới nhất.</string>
   <string name="reminder_header_sms_default_title">Dùng làm ứng dụng SMS mặc định</string>
-  <string name="reminder_header_sms_default_text">Chạm để đặt Signal làm ứng dụng SMS mặc định.</string>
+  <string name="reminder_header_sms_default_text">Chạm để đặt Loki Messenger làm ứng dụng SMS mặc định.</string>
   <string name="reminder_header_sms_import_title">Nhập SMS hệ thống</string>
-  <string name="reminder_header_push_title">Bật tin nhắn và cuộc gọi Signal?</string>
+  <string name="reminder_header_push_title">Bật tin nhắn và cuộc gọi Loki Messenger?</string>
   <string name="reminder_header_push_text">Nâng tầm trải nghiệm giao tiếp.</string>
-  <string name="reminder_header_invite_title">Mời dùng Signal</string>
+  <string name="reminder_header_invite_title">Mời dùng Loki Messenger</string>
   <string name="reminder_header_invite_text"> Hãy nâng cuộc hội thoại của bạn với %1$s lên tầm cao mới.</string>
   <string name="reminder_header_share_title">Hãy mời bạn bè!</string>
-  <string name="reminder_header_share_text">Càng đông bạn dùng Signal càng vui.</string>
+  <string name="reminder_header_share_text">Càng đông bạn dùng Loki Messenger càng vui.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Lưu</string>
   <!--media_overview-->

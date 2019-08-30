@@ -21,17 +21,17 @@
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">ลบ</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">ปิดใช้งานวลีรหัสผ่านหรือ</string>
-  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">นี่จะปลดล็อก Signal และการแจ้งเตือนข้อความโดยถาวร</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">นี่จะปลดล็อก Loki Messenger และการแจ้งเตือนข้อความโดยถาวร</string>
   <string name="ApplicationPreferencesActivity_disable">ปิดใช้งาน</string>
   <string name="ApplicationPreferencesActivity_unregistering">ยกเลิกการลงทะเบียน</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">กำลังยกเลิกการลงทะเบียนการใช้งานข้อความและการโทร Signal</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">ปิดใช้งานข้อความและการโทร Signal หรือไม่</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">ปิดใช้งานข้อความและการโทร Signal ด้วยการยกเลิกการลงทะเบียนจากเซิร์ฟเวอร์ คุณจะต้องลงทะเบียนหมายเลขโทรศัพท์ใหม่หากต้องการกลับมาใช้งานอีกในอนาคต</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">กำลังยกเลิกการลงทะเบียนการใช้งานข้อความและการโทร Loki Messenger</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">ปิดใช้งานข้อความและการโทร Loki Messenger หรือไม่</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">ปิดใช้งานข้อความและการโทร Loki Messenger ด้วยการยกเลิกการลงทะเบียนจากเซิร์ฟเวอร์ คุณจะต้องลงทะเบียนหมายเลขโทรศัพท์ใหม่หากต้องการกลับมาใช้งานอีกในอนาคต</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">เกิดข้อผิดพลาดในการเชื่อมต่อกับเซิร์ฟเวอร์</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">เปิดใช้งาน SMS</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">แตะเพื่อเปลี่ยนแอป SMS หลักของคุณ</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">ปิดใช้งาน SMS</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">แตะเพื่อให้ Signal เป็นแอป SMS เริ่มต้นของคุณ</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">แตะเพื่อให้ Loki Messenger เป็นแอป SMS เริ่มต้นของคุณ</string>
   <string name="ApplicationPreferencesActivity_on">เปิด</string>
   <string name="ApplicationPreferencesActivity_On">เปิด</string>
   <string name="ApplicationPreferencesActivity_off">ปิด</string>
@@ -51,10 +51,10 @@
   <string name="DraftDatabase_Draft_quote_snippet">(ตอบกลับ)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">ไม่พบแอปสำหรับสื่อที่เลือก</string>
-  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">เพื่อที่จะแนบรูปภาพ วิดีโอ หรือเสียงได้ Signal ต้องได้รับอนุญาตให้เข้าถึงที่เก็บข้อมูล แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"ที่เก็บข้อมูล\"</string>
-  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">เพื่อที่จะแนบข้อมูลผู้ติดต่อได้ Signal ต้องได้รับอนุญาตให้เข้าถึงผู้ติดต่อ แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"ผู้ติดต่อ\"</string>
-  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">เพื่อที่จะแนบข้อมูลตำแหน่งที่ตั้งได้ Signal ต้องได้รับอนุญาตให้เข้าถึงตำแหน่งที่ตั้ง แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"ตำแหน่งที่ตั้ง\"</string>
-  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">เพื่อที่จะถ่ายรูปได้ Signal ต้องได้รับอนุญาตให้เข้าถึงกล้อง แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"กล้อง\"</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">เพื่อที่จะแนบรูปภาพ วิดีโอ หรือเสียงได้ Loki Messenger ต้องได้รับอนุญาตให้เข้าถึงที่เก็บข้อมูล แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"ที่เก็บข้อมูล\"</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">เพื่อที่จะแนบข้อมูลผู้ติดต่อได้ Loki Messenger ต้องได้รับอนุญาตให้เข้าถึงผู้ติดต่อ แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"ผู้ติดต่อ\"</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">เพื่อที่จะแนบข้อมูลตำแหน่งที่ตั้งได้ Loki Messenger ต้องได้รับอนุญาตให้เข้าถึงตำแหน่งที่ตั้ง แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"ตำแหน่งที่ตั้ง\"</string>
+  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">เพื่อที่จะถ่ายรูปได้ Loki Messenger ต้องได้รับอนุญาตให้เข้าถึงกล้อง แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"กล้อง\"</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">เกิดข้อผิดพลาดในการเล่นเสียง</string>
   <!--BlockedContactsActivity-->
@@ -72,7 +72,7 @@
   <string name="ClearProfileActivity_remove_profile_photo">ลบรูปโปรไฟล์หรือไม่</string>
   <!--CommunicationActions-->
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">มีการเปลี่ยนแปลงรหัสความปลอดภัยระหว่างคุณกับ %1$s นี่อาจหมายความว่า มีใครพยายามดักการสื่อสารของคุณ หรือไม่ก็แค่ %2$s ได้ติดตั้งแอป Signal ใหม่</string>
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">มีการเปลี่ยนแปลงรหัสความปลอดภัยระหว่างคุณกับ %1$s นี่อาจหมายความว่า มีใครพยายามดักการสื่อสารของคุณ หรือไม่ก็แค่ %2$s ได้ติดตั้งแอป Loki Messenger ใหม่</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">คุณอาจต้องการยืนยันรหัสความปลอดภัยระหว่างคุณกับผู้ติดต่อรายนี้</string>
   <string name="ConfirmIdentityDialog_accept">ยอมรับ</string>
   <!--ContactsCursorLoader-->
@@ -81,7 +81,7 @@
   <string name="ContactsCursorLoader_groups">กลุ่ม</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">ข้อความ %s</string>
-  <string name="ContactsDatabase_signal_call_s">สาย Signal %s</string>
+  <string name="ContactsDatabase_signal_call_s">สาย Loki Messenger %s</string>
   <!--ContactNameEditActivity-->
   <string name="ContactNameEditActivity_given_name">ชื่อ</string>
   <string name="ContactNameEditActivity_family_name">นามสกุล</string>
@@ -101,7 +101,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted">การส่งล้มเหลว แตะเพื่อกลับไปใช้วิธีที่ไม่ปลอดภัยแทน</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">กลับไปใช้ SMS ที่ไม่ได้เข้ารหัสหรือไม่</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">กลับไปใช้ MMS ที่ไม่ได้เข้ารหัสหรือไม่</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">ข้อความนี้จะ <b>ไม่</b> ถูกเข้ารหัสเพราะผู้รับไม่ได้ใช้ Signal แล้ว\n\nต้องการส่งข้อความที่ไม่ปลอดภัยหรือไม่</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">ข้อความนี้จะ <b>ไม่</b> ถูกเข้ารหัสเพราะผู้รับไม่ได้ใช้ Loki Messenger แล้ว\n\nต้องการส่งข้อความที่ไม่ปลอดภัยหรือไม่</string>
   <string name="ConversationItem_unable_to_open_media">ไม่พบแอปที่สามารถเปิดสื่อนี้</string>
   <string name="ConversationItem_copied_text">คัดลอกแล้ว %s</string>
   <string name="ConversationItem_from_s">จาก %s</string>
@@ -126,7 +126,7 @@
   <string name="ConversationActivity_transport_insecure_sms">SMS ที่ไม่ปลอดภัย</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS ที่ไม่ปลอดภัย</string>
   <string name="ConversationActivity_transport_signal">Loki Messenger</string>
-  <string name="ConversationActivity_lets_switch_to_signal">เปลี่ยนมาใช้ Signal กันเถอะ %1$s</string>
+  <string name="ConversationActivity_lets_switch_to_signal">เปลี่ยนมาใช้ Loki Messenger กันเถอะ %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">ใช้อันนี้คุยกัน: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">เกิดข้อผิดพลาดระหว่างออกจากกลุ่ม</string>
   <string name="ConversationActivity_specify_recipient">โปรดเลือกผู้ติดต่อ</string>
@@ -137,13 +137,13 @@
   <string name="ConversationActivity_quick_camera_unavailable">ไม่มีกล้อง</string>
   <string name="ConversationActivity_unable_to_record_audio">บันทึกเสียงไม่ได้</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">อุปกรณ์ของคุณไม่มีแอปที่สามารถจัดการกับลิงก์นี้ได้</string>
-  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">เพื่อจะส่งข้อความเสียง ต้องอนุญาตให้ Signal เข้าถึงไมโครโฟนของคุณ</string>
-  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">เพื่อจะส่งข้อความเสียงได้ Signal ต้องได้รับอนุญาตให้เข้าถึงไมโครโฟน แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"ไมโครโฟน\"</string>
-  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">เพื่อจะโทรหา %s Signal จำเป็นต้องเข้าถึงไมโครโฟนและกล้องของคุณ</string>
-  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">เพื่อที่จะโทรหา %s ได้ Signal ต้องได้รับอนุญาตให้เข้าถึงไมโครโฟนและกล้อง แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"ไมโครโฟน\" และ \"กล้อง\"</string>
-  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">อนุญาต Signal ให้ใช้กล้องเพื่อถ่ายรูปและวิดีโอ</string>
-  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">เพื่อที่จะถ่ายรูปหรือวิดีโอได้ Signal ต้องได้รับอนุญาตให้เข้าถึงกล้อง แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"กล้อง\"</string>
-  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal ต้องได้รับอนุญาตให้เข้าถึงกล้องเพื่อถ่ายรูปและวิดีโอ</string>
+  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">เพื่อจะส่งข้อความเสียง ต้องอนุญาตให้ Loki Messenger เข้าถึงไมโครโฟนของคุณ</string>
+  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">เพื่อจะส่งข้อความเสียงได้ Loki Messenger ต้องได้รับอนุญาตให้เข้าถึงไมโครโฟน แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"ไมโครโฟน\"</string>
+  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">เพื่อจะโทรหา %s Loki Messenger จำเป็นต้องเข้าถึงไมโครโฟนและกล้องของคุณ</string>
+  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">เพื่อที่จะโทรหา %s ได้ Loki Messenger ต้องได้รับอนุญาตให้เข้าถึงไมโครโฟนและกล้อง แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"ไมโครโฟน\" และ \"กล้อง\"</string>
+  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">อนุญาต Loki Messenger ให้ใช้กล้องเพื่อถ่ายรูปและวิดีโอ</string>
+  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">เพื่อที่จะถ่ายรูปหรือวิดีโอได้ Loki Messenger ต้องได้รับอนุญาตให้เข้าถึงกล้อง แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"กล้อง\"</string>
+  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Loki Messenger ต้องได้รับอนุญาตให้เข้าถึงกล้องเพื่อถ่ายรูปและวิดีโอ</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
   <string name="ConversationActivity_yes">ใช่</string>
   <string name="ConversationActivity_no">ไม่</string>
@@ -173,7 +173,7 @@
     <item quantity="other">บันทึกไฟล์แนบไปยังที่เก็บข้อมูลแล้ว %1$d...</item>
   </plurals>
   <string name="ConversationFragment_pending">รอดำเนินการ...</string>
-  <string name="ConversationFragment_push">ข้อมูล (Signal)</string>
+  <string name="ConversationFragment_push">ข้อมูล (Loki Messenger)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">กำลังลบ</string>
@@ -241,28 +241,28 @@
   <string name="DocumentView_unknown_file">ไฟล์ที่ไม่รู้จัก</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">ปรับปรุงการทำงานให้รับกับการไม่มี Play Services</string>
-  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">อุปกรณ์นี้ไม่รองรับ Play Services แตะเพื่อปิดใช้งานการปรับประสิทธิภาพแบตเตอรีซึ่งจะทำให้ Signal ไม่สามารถรับข้อความได้ในขณะที่ไม่ได้เปิดแอปบนหน้าจอ</string>
+  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">อุปกรณ์นี้ไม่รองรับ Play Services แตะเพื่อปิดใช้งานการปรับประสิทธิภาพแบตเตอรีซึ่งจะทำให้ Loki Messenger ไม่สามารถรับข้อความได้ในขณะที่ไม่ได้เปิดแอปบนหน้าจอ</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">แบ่งปันกับ</string>
   <!--ExperienceUpgradeActivity-->
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">ยินดีต้อนรับสู่ Signal</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure และ RedPhone รวมกันเป็นหนึ่งเดียวแล้วนั่นคือ Signal แอปส่งข้อความแบบส่วนตัวสำหรับทุกสถานการณ์</string>
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">ยินดีต้อนรับสู่ Signal</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">Signal คือชื่อใหม่ของ TextSecure</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure และ RedPhone รวมกันเป็นแอปเดียวแล้วนั่นคือ Signal แตะเพื่อเรียนรู้เพิ่ม</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">ยินดีต้อนรับสู่ Loki Messenger</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure และ RedPhone รวมกันเป็นหนึ่งเดียวแล้วนั่นคือ Loki Messenger แอปส่งข้อความแบบส่วนตัวสำหรับทุกสถานการณ์</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">ยินดีต้อนรับสู่ Loki Messenger</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">Loki Messenger คือชื่อใหม่ของ TextSecure</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure และ RedPhone รวมกันเป็นแอปเดียวแล้วนั่นคือ Loki Messenger แตะเพื่อเรียนรู้เพิ่ม</string>
   <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">สวัสดีกับการสนทนาทางวิดีโอที่ปลอดภัย</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal รองรับการสนทนาทางวิดีโออย่างปลอดภัยได้แล้ว เพียงใช้สาย Signal ตามปกติ แตะปุ่มวิดีโอ แล้วโบกมือทักทาย</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal รองรับการสนทนาทางวิดีโออย่างปลอดภัยได้แล้ว</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal รองรับการสนทนาทางวิดีโออย่างปลอดภัยได้แล้ว แตะเพื่อเรียนรู้เพิ่ม</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal รองรับการสนทนาทางวิดีโออย่างปลอดภัยได้แล้ว เพียงใช้สาย Loki Messenger ตามปกติ แตะปุ่มวิดีโอ แล้วโบกมือทักทาย</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Loki Messenger รองรับการสนทนาทางวิดีโออย่างปลอดภัยได้แล้ว</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Loki Messenger รองรับการสนทนาทางวิดีโออย่างปลอดภัยได้แล้ว แตะเพื่อเรียนรู้เพิ่ม</string>
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">พร้อมเข้ามาใกล้ๆ หรือยัง</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">ตอนนี้คุณสามารถแบ่งปันรูปโปรไฟล์และชื่อให้กับเพื่อนบน Signal</string>
-  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">โปรไฟล์ของ Signal อยู่ที่นี่</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">ตอนนี้คุณสามารถแบ่งปันรูปโปรไฟล์และชื่อให้กับเพื่อนบน Loki Messenger</string>
+  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">โปรไฟล์ของ Loki Messenger อยู่ที่นี่</string>
   <string name="ExperienceUpgradeActivity_no_thanks">ไม่ ขอบคุณ</string>
   <string name="ExperienceUpgradeActivity_got_it">เข้าใจแล้ว</string>
   <!--GcmBroadcastReceiver-->
   <!--GcmRefreshJob-->
-  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">การสื่อสารของ Signal ล้มเหลวอย่างถาวร</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal ไม่สามารถลงทะเบียนกับ Google Play Services การใช้งานข้อความและการโทร Signal ได้ถูกปิดใช้งาน กรุณาลองลงทะเบียนอีกครั้งใน การตั้งค่า &gt; ขั้นสูง</string>
+  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">การสื่อสารของ Loki Messenger ล้มเหลวอย่างถาวร</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal ไม่สามารถลงทะเบียนกับ Google Play Services การใช้งานข้อความและการโทร Loki Messenger ได้ถูกปิดใช้งาน กรุณาลองลงทะเบียนอีกครั้งใน การตั้งค่า &gt; ขั้นสูง</string>
   <!--GiphyActivity-->
   <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">เกิดข้อผิดพลาดระหว่างการดึงภาพ GIF ความละเอียดสูง</string>
   <!--GiphyFragmentPageAdapter-->
@@ -273,15 +273,15 @@
   <string name="GroupCreateActivity_actionbar_edit_title">แก้ไขกลุ่ม</string>
   <string name="GroupCreateActivity_group_name_hint">ชื่อกลุ่ม</string>
   <string name="GroupCreateActivity_actionbar_mms_title">กลุ่ม MMS ใหม่</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">คุณได้เลือกผู้ติดต่อที่ไม่รองรับการคุยแบบกลุ่มใน Signal ดังนั้นกลุ่มนี้จะเป็น MMS</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">คุณไม่ได้ลงทะเบียนเพื่อใช้งานข้อความและการโทร Signal ดังนั้นกลุ่ม Signal จึงไม่สามารถใช้งานได้ กรุณาลงทะเบียนอีกรอบที่ การตั้งค่า &gt; ขั้นสูง</string>
+  <string name="GroupCreateActivity_contacts_dont_support_push">คุณได้เลือกผู้ติดต่อที่ไม่รองรับการคุยแบบกลุ่มใน Loki Messenger ดังนั้นกลุ่มนี้จะเป็น MMS</string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">คุณไม่ได้ลงทะเบียนเพื่อใช้งานข้อความและการโทร Signal ดังนั้นกลุ่ม Loki Messenger จึงไม่สามารถใช้งานได้ กรุณาลงทะเบียนอีกรอบที่ การตั้งค่า &gt; ขั้นสูง</string>
   <string name="GroupCreateActivity_contacts_no_members">คุณต้องมีสมาชิกอย่างน้อยหนึ่งคนในกลุ่มของคุณ</string>
   <string name="GroupCreateActivity_contacts_invalid_number">สมาชิกในกลุ่มของคุณคนหนึ่งมีหมายเลขที่ไม่สามารถอ่านได้อย่างถูกต้อง กรุณาแก้ไขหรือลบผู้ติดต่อดังกล่าวและลองใหม่อีกครั้ง</string>
   <string name="GroupCreateActivity_avatar_content_description">อวตารกลุ่ม</string>
   <string name="GroupCreateActivity_menu_apply_button">นำไปใช้</string>
   <string name="GroupCreateActivity_creating_group">กำลังสร้าง %1$s…</string>
   <string name="GroupCreateActivity_updating_group">กำลังปรับปรุง %1$s...</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">ไม่สามารถเพิ่ม %1$s ได้ เนื่องจากไม่ใช่ผู้ใช้ Signal</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">ไม่สามารถเพิ่ม %1$s ได้ เนื่องจากไม่ใช่ผู้ใช้ Loki Messenger</string>
   <string name="GroupCreateActivity_loading_group_details">กำลังโหลดรายละเอียดของกลุ่ม...</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">คุณอยู่ในกลุ่มอยู่แล้ว</string>
   <!--GroupShareProfileView-->
@@ -302,14 +302,14 @@
   <string name="InviteActivity_sending">กำลังส่ง...</string>
   <string name="InviteActivity_heart_content_description">หัวใจ</string>
   <string name="InviteActivity_invitations_sent">ส่งคำเชิญแล้ว</string>
-  <string name="InviteActivity_invite_to_signal">เชิญมาใช้ Signal</string>
+  <string name="InviteActivity_invite_to_signal">เชิญมาใช้ Loki Messenger</string>
   <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="other">ส่ง SMS ให้เพื่อน %d คน</item>
   </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="other">ส่งคำเชิญทาง %dSMS หรือไม่</item>
   </plurals>
-  <string name="InviteActivity_lets_switch_to_signal">เปลี่ยนมาใช้ Signal กัน: %1$s</string>
+  <string name="InviteActivity_lets_switch_to_signal">เปลี่ยนมาใช้ Loki Messenger กัน: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">ดูเหมือนคุณไม่มีแอปอะไรที่จะแบ่งปันไปได้เลย</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">เพื่อนต้องไม่ยอมให้เพื่อนคุยกันโดยไม่มีการเข้ารหัส</string>
   <!--Job-->
@@ -336,9 +336,9 @@
   <string name="MediaOverviewActivity_Select_all">เลือกทั้งหมด</string>
   <string name="MediaOverviewActivity_collecting_attachments">รวบรวมสิ่งแนบ...</string>
   <!--- NotificationBarManager-->
-  <string name="NotificationBarManager_signal_call_in_progress">กำลังใช้สาย Signal อยู่</string>
-  <string name="NotificationBarManager__establishing_signal_call">กำลังเริ่มสาย Signal</string>
-  <string name="NotificationBarManager__incoming_signal_call">สาย Signal เรียกเข้า</string>
+  <string name="NotificationBarManager_signal_call_in_progress">กำลังใช้สาย Loki Messenger อยู่</string>
+  <string name="NotificationBarManager__establishing_signal_call">กำลังเริ่มสาย Loki Messenger</string>
+  <string name="NotificationBarManager__incoming_signal_call">สาย Loki Messenger เรียกเข้า</string>
   <string name="NotificationBarManager__deny_call">ไม่รับสาย</string>
   <string name="NotificationBarManager__answer_call">รับสาย</string>
   <string name="NotificationBarManager__end_call">วางสาย</string>
@@ -353,7 +353,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">สื่อทั้งหมด</string>
   <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">ได้รับข้อความที่เข้ารหัสด้วย Signal รุ่นเก่าที่ไม่รองรับอีกต่อไปแล้ว โปรดขอให้ผู้ส่งอัพเดตแอปเป็นเวอร์ชันล่าสุดและส่งข้อความอีกครั้ง</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">ได้รับข้อความที่เข้ารหัสด้วย Loki Messenger รุ่นเก่าที่ไม่รองรับอีกต่อไปแล้ว โปรดขอให้ผู้ส่งอัพเดตแอปเป็นเวอร์ชันล่าสุดและส่งข้อความอีกครั้ง</string>
   <string name="MessageRecord_left_group">คุณได้ออกจากกลุ่ม</string>
   <string name="MessageRecord_you_updated_group">คุณได้อัพเดตกลุ่ม</string>
   <string name="MessageRecord_you_called">คุณได้โทรหา</string>
@@ -363,7 +363,7 @@
   <string name="MessageRecord_s_called_you">%s ได้โทรหาคุณ</string>
   <string name="MessageRecord_called_s">ได้โทรหา %s</string>
   <string name="MessageRecord_missed_call_from">สายที่ไม่ได้รับจาก %s</string>
-  <string name="MessageRecord_s_joined_signal">%s ใช้งาน Signal</string>
+  <string name="MessageRecord_s_joined_signal">%s ใช้งาน Loki Messenger</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">คุณได้ปิดใช้งานข้อความที่ลบตัวเองแล้ว</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s ได้ปิดใช้งานข้อความที่ลบตัวเองแล้ว</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">คุณได้ตั้งเวลาข้อความที่ลบตัวเองไว้ที่ %1$s</string>
@@ -394,9 +394,9 @@
   <string name="DeviceProvisioningActivity_content_progress_key_error">รหัส QR ไม่ถูกต้อง</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">ขออภัย คุณมีอุปกรณ์ที่เชื่อมโยงมากเกินไป ลองถอนการเชื่อมโยงจากบางอุปกรณ์บ้าง</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">ขออภัย นี่ไม่ใช่รหัส QR สำหรับเชื่อมโยงอุปกรณ์ที่ถูกต้อง</string>
-  <string name="DeviceProvisioningActivity_link_a_signal_device">เชื่อมโยงกับอุปกรณ์ Signal หรือไม่</string>
-  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">ดูเหมือนคุณพยายามเชื่อมโยงอุปกรณ์ Signal โดยใช้แอปสแกนภายนอก กรุณาสแกนรหัสอีกครั้งจากภายในแอป Signal ทั้งนี้เพื่อการคุ้มครองตัวคุณ</string>
-  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">เพื่อที่จะสแกนรหัส QR ได้ Signal ต้องได้รับอนุญาตให้เข้าถึงกล้อง แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป และเลือก \"การอนุญาต\" และเปิดใช้งาน \"กล้อง\"</string>
+  <string name="DeviceProvisioningActivity_link_a_signal_device">เชื่อมโยงกับอุปกรณ์ Loki Messenger หรือไม่</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">ดูเหมือนคุณพยายามเชื่อมโยงอุปกรณ์ Signal โดยใช้แอปสแกนภายนอก กรุณาสแกนรหัสอีกครั้งจากภายในแอป Loki Messenger ทั้งนี้เพื่อการคุ้มครองตัวคุณ</string>
+  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">เพื่อที่จะสแกนรหัส QR ได้ Loki Messenger ต้องได้รับอนุญาตให้เข้าถึงกล้อง แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป และเลือก \"การอนุญาต\" และเปิดใช้งาน \"กล้อง\"</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">ไม่สามารถสแกนรหัส QR ได้หากไม่ได้รับอนุญาตให้เข้าถึงกล้อง</string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">ข้อความที่ลบตัวเอง</string>
@@ -404,7 +404,7 @@
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">ข้อความที่ถูกส่งและได้รับในการสนทนานี้จะลบตัวเองไป %s หลังจากที่คู่สนทนาเห็นข้อความแล้ว</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">ใส่วลีรหัสผ่าน</string>
-  <string name="PassphrasePromptActivity_watermark_content_description">ไอคอน Signal</string>
+  <string name="PassphrasePromptActivity_watermark_content_description">ไอคอน Loki Messenger</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">ส่งวลีรหัสผ่าน</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">วลีรหัสผ่านไม่ถูกต้อง</string>
   <!--PlayServicesProblemFragment-->
@@ -454,7 +454,7 @@
         ระบุ (%s) ไม่ถูกต้อง
     </string>
   <string name="RegistrationActivity_missing_google_play_services">ไม่พบ Google Play Services</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">อุปกรณ์นี้ไม่มี Google Play Services คุณยังสามารถใช้งาน Signal ได้แต่อาจจะได้รับเสถียรภาพหรือประสิทธิภาพที่ลดลง\n\nหากคุณไม่ได้เป็นผู้ใช้งานขั้นสูง หรือไม่ได้ใช้ Android ROM จากผู้ผลิตอื่น หรือมั่นใจว่าคุณได้เห็นข้อความนี้เนื่องจากความผิดพลาด โปรดติดต่อ support@signal.org สำหรับความช่วยเหลือในการแก้ปัญหา</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">อุปกรณ์นี้ไม่มี Google Play Services คุณยังสามารถใช้งาน Loki Messenger ได้แต่อาจจะได้รับเสถียรภาพหรือประสิทธิภาพที่ลดลง\n\nหากคุณไม่ได้เป็นผู้ใช้งานขั้นสูง หรือไม่ได้ใช้ Android ROM จากผู้ผลิตอื่น หรือมั่นใจว่าคุณได้เห็นข้อความนี้เนื่องจากความผิดพลาด โปรดติดต่อ support@signal.org สำหรับความช่วยเหลือในการแก้ปัญหา</string>
   <string name="RegistrationActivity_i_understand">ฉันเข้าใจ</string>
   <string name="RegistrationActivity_play_services_error">ข้อผิดพลาดเกี่ยวกับ Play Services</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services กำลังปรับปรุงหรือใช้ไม่ได้ชั่วคราว โปรดลองอีกครั้ง</string>
@@ -462,9 +462,9 @@
   <string name="RegistrationActivity_no_browser">ไม่พบเว็บเบราว์เซอร์จึงไม่สามารถเปิดลิงก์นี้ได้</string>
   <string name="RegistrationActivity_more_information">ข้อมูลเพิ่มเติม</string>
   <string name="RegistrationActivity_less_information">ข้อมูลน้อยลง</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal ต้องการเข้าถึงสื่อและผู้ติดต่อที่คุณติดต่อด้วย เพื่อที่จะเชื่อมต่อคุณกับเพื่อน แลกเปลี่ยนข้อความ และโทรหากันแบบปลอดภัย</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Loki Messenger ต้องการเข้าถึงสื่อและผู้ติดต่อที่คุณติดต่อด้วย เพื่อที่จะเชื่อมต่อคุณกับเพื่อน แลกเปลี่ยนข้อความ และโทรหากันแบบปลอดภัย</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">ไม่สามารถเชื่อมต่อบริการได้ โปรดตรวจสอบการเชื่อมต่อเครือข่ายและลองอีกครั้ง</string>
-  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">เพื่อให้สามารถยืนยันหมายเลขโทรศัพท์ของคุณได้โดยง่าย Signal สามารถตรวจหารหัสการยืนยันโดยอัตโนมัติ ถ้าคุณอนุญาตให้ Signal อ่านข้อความ SMS ของคุณได้</string>
+  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">เพื่อให้สามารถยืนยันหมายเลขโทรศัพท์ของคุณได้โดยง่าย Signal สามารถตรวจหารหัสการยืนยันโดยอัตโนมัติ ถ้าคุณอนุญาตให้ Loki Messenger อ่านข้อความ SMS ของคุณได้</string>
   <string name="RegistrationActivity_next">ต่อไป</string>
   <string name="RegistrationActivity_continue">ดำเนินการต่อ</string>
   <string name="RegistrationActivity_call">โทร</string>
@@ -477,13 +477,13 @@
   <string name="SearchFragment_header_messages">ข้อความ</string>
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">เพิ่มไปที่ผู้ติดต่อ</string>
-  <string name="SharedContactDetailsActivity_invite_to_signal">เชิญมาใช้ Signal</string>
-  <string name="SharedContactDetailsActivity_signal_message">ข้อความ Signal</string>
-  <string name="SharedContactDetailsActivity_signal_call">สาย Signal</string>
+  <string name="SharedContactDetailsActivity_invite_to_signal">เชิญมาใช้ Loki Messenger</string>
+  <string name="SharedContactDetailsActivity_signal_message">ข้อความ Loki Messenger</string>
+  <string name="SharedContactDetailsActivity_signal_call">สาย Loki Messenger</string>
   <!--SharedContactView-->
   <string name="SharedContactView_add_to_contacts">เพิ่มไปที่ผู้ติดต่อ</string>
-  <string name="SharedContactView_invite_to_signal">เชิญมาใช้ Signal</string>
-  <string name="SharedContactView_message">ข้อความ Signal</string>
+  <string name="SharedContactView_invite_to_signal">เชิญมาใช้ Loki Messenger</string>
+  <string name="SharedContactView_message">ข้อความ Loki Messenger</string>
   <!--Slide-->
   <string name="Slide_image">ภาพ</string>
   <string name="Slide_audio">เสียง</string>
@@ -508,7 +508,7 @@
   <string name="ThreadRecord_called_you">โทรหาคุณ</string>
   <string name="ThreadRecord_missed_call">สายที่ไม่ได้รับ</string>
   <string name="ThreadRecord_media_message">ข้อความสื่อ</string>
-  <string name="ThreadRecord_s_is_on_signal">%s ใช้งาน Signal</string>
+  <string name="ThreadRecord_s_is_on_signal">%s ใช้งาน Loki Messenger</string>
   <string name="ThreadRecord_disappearing_messages_disabled">ข้อความที่ลบตัวเองถูกปิดใช้งานแล้ว</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">ตั้งเวลาข้อความที่ลบตัวเองไว้ที่ %s</string>
   <string name="ThreadRecord_safety_number_changed">รหัสความปลอดภัยเปลี่ยนแล้ว</string>
@@ -516,8 +516,8 @@
   <string name="ThreadRecord_you_marked_verified">คุณถูกทำเครื่องหมายว่าถูกยืนยันแล้ว</string>
   <string name="ThreadRecord_you_marked_unverified">คุณถูกทำเครื่องหมายว่ายังไม่ได้ยืนยัน</string>
   <!--UpdateApkReadyListener-->
-  <string name="UpdateApkReadyListener_Signal_update">อัพเดต Signal</string>
-  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Signal เวอร์ชันใหม่มาแล้ว แตะเพื่ออัพเดต</string>
+  <string name="UpdateApkReadyListener_Signal_update">อัพเดต Loki Messenger</string>
+  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Loki Messenger เวอร์ชันใหม่มาแล้ว แตะเพื่ออัพเดต</string>
   <!--UnknownSenderView-->
   <string name="UnknownSenderView_block_s">ต้องการปิดกั้น %s หรือไม่</string>
   <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">ผู้ติดต่อที่ถูกปิดกั้นจะไม่สามารถส่งข้อความหรือโทรหาคุณได้อีก</string>
@@ -532,14 +532,14 @@
   <string name="UnverifiedSendDialog_send_message">ส่งข้อความหรือไม่</string>
   <string name="UnverifiedSendDialog_send">ส่ง</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">ผู้ติดต่อของคุณใช้ Signal เวอร์ชันเก่า กรุณาขอให้เขาทำการอัพเดตก่อนที่จะยืนยันรหัสความปลอดภัยของคุณ</string>
-  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">ผู้ติดต่อของคุณใช้ Signal เวอร์ชันใหม่กว่า และมีรูปแบบรหัส QR ที่เข้ากันไม่ได้กับของคุณ กรุณาอัพเดตเพื่อการเปรียบเทียบ</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">ผู้ติดต่อของคุณใช้ Loki Messenger เวอร์ชันเก่า กรุณาขอให้เขาทำการอัพเดตก่อนที่จะยืนยันรหัสความปลอดภัยของคุณ</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">ผู้ติดต่อของคุณใช้ Loki Messenger เวอร์ชันใหม่กว่า และมีรูปแบบรหัส QR ที่เข้ากันไม่ได้กับของคุณ กรุณาอัพเดตเพื่อการเปรียบเทียบ</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">รหัส QR ที่สแกนมาไม่ใช่รหัสยืนยันของรหัสความปลอดภัยที่มีรูปแบบที่ถูกต้อง กรุณาสแกนใหม่อีกรอบ</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">แบ่งปันรหัสความปลอดภัยผ่าน...</string>
-  <string name="VerifyIdentityActivity_our_signal_safety_number">รหัสความปลอดภัยของ Signal ของเรา:</string>
+  <string name="VerifyIdentityActivity_our_signal_safety_number">รหัสความปลอดภัยของ Loki Messenger ของเรา:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">ดูเหมือนคุณไม่มีแอปอะไรที่จะแบ่งปันไปได้เลย</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">ไม่พบรหัสความปลอดภัยที่จะเปรียบเทียบในคลิปบอร์ด</string>
-  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">เพื่อที่จะสแกนรหัส QR ได้ Signal ต้องได้รับอนุญาตให้เข้าถึงกล้อง แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป และเลือก \"การอนุญาต\" และเปิดใช้งาน \"กล้อง\"</string>
+  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">เพื่อที่จะสแกนรหัส QR ได้ Loki Messenger ต้องได้รับอนุญาตให้เข้าถึงกล้อง แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป และเลือก \"การอนุญาต\" และเปิดใช้งาน \"กล้อง\"</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">สแกนรหัส QR ไม่ได้ หากไม่ได้รับอนุญาตให้เข้าถึงกล้อง</string>
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">ข้อความที่เข้ารหัสมีความผิดปกติ</string>
@@ -559,13 +559,13 @@
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">แตะเพื่อเปิด</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">แตะเพื่อเปิด หรือแตะที่ตัวล็อกเพื่อปิด</string>
-  <string name="KeyCachingService_passphrase_cached">Signal ถูกปลดล็อก</string>
-  <string name="KeyCachingService_lock">ล็อก Signal</string>
+  <string name="KeyCachingService_passphrase_cached">Loki Messenger ถูกปลดล็อก</string>
+  <string name="KeyCachingService_lock">ล็อก Loki Messenger</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">คุณ</string>
   <string name="MediaPreviewActivity_unssuported_media_type">ชนิดสื่อที่ไม่รองรับ</string>
   <string name="MediaPreviewActivity_draft">ร่าง</string>
-  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">เพื่อที่จะบันทึกข้อมูลลงที่เก็บข้อมูลภายนอกได้ Signal ต้องได้รับอนุญาตให้เข้าถึงที่เก็บข้อมูล แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"ที่เก็บข้อมูล\"</string>
+  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">เพื่อที่จะบันทึกข้อมูลลงที่เก็บข้อมูลภายนอกได้ Loki Messenger ต้องได้รับอนุญาตให้เข้าถึงที่เก็บข้อมูล แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"ที่เก็บข้อมูล\"</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">ไม่สามารถบันทึกลงที่เก็บข้อมูลภายนอกได้ หากไม่ได้รับอนุญาต</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">ลบข้อความหรือไม่</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">นี่จะเป็นการลบข้อความนี้โดยถาวร</string>
@@ -581,10 +581,10 @@
   <string name="MessageNotifier_mark_read">ทำเครื่องหมายว่าอ่านแล้ว</string>
   <string name="MessageNotifier_media_message">ข้อความสื่อ</string>
   <string name="MessageNotifier_reply">ตอบกลับ</string>
-  <string name="MessageNotifier_signal_message">ข้อความ Signal</string>
+  <string name="MessageNotifier_signal_message">ข้อความ Loki Messenger</string>
   <string name="MessageNotifier_unsecured_sms">SMS ที่ไม่ปลอดภัย</string>
-  <string name="MessageNotifier_pending_signal_messages">ข้อความ Signal ที่รอดำเนินการ</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">คุณมีข้อความ Signal ที่รอดำเนินการอยู่ แตะเพื่อเปิดและดึงข้อความ</string>
+  <string name="MessageNotifier_pending_signal_messages">ข้อความ Loki Messenger ที่รอดำเนินการ</string>
+  <string name="MessageNotifier_you_have_pending_signal_messages">คุณมีข้อความ Loki Messenger ที่รอดำเนินการอยู่ แตะเพื่อเปิดและดึงข้อความ</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">ผู้ติดต่อ</string>
   <!--Notification Channels-->
@@ -598,7 +598,7 @@
   <string name="NotificationChannel_group_messages">ข้อความ</string>
   <string name="NotificationChannel_missing_display_name">ไม่ทราบ</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">การตอบด่วนใช้ไม่ได้ถ้า Signal ถูกล็อกอยู่</string>
+  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">การตอบด่วนใช้ไม่ได้ถ้า Loki Messenger ถูกล็อกอยู่</string>
   <string name="QuickResponseService_problem_sending_message">เกิดปัญหาในการส่งข้อความ</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_saved_to">บันทึกไปยัง %s</string>
@@ -613,14 +613,14 @@
   <!--TransferControlView-->
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">อุปกรณ์นี้ไม่ได้ลงทะเบียนอีกต่อไป</string>
-  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">นี่น่าจะเป็นเพราะคุณเคยลงทะเบียนหมายเลขโทรศัพท์นี้กับ Signal บนอุปกรณ์อื่นแล้ว แตะเพื่อลงทะเบียนใหม่</string>
+  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">นี่น่าจะเป็นเพราะคุณเคยลงทะเบียนหมายเลขโทรศัพท์นี้กับ Loki Messenger บนอุปกรณ์อื่นแล้ว แตะเพื่อลงทะเบียนใหม่</string>
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">เกิดข้อผิดพลาดระหว่างเล่นวิดีโอ</string>
   <!--WebRtcCallActivity-->
-  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">เพื่อที่จะรับสายโทรเข้าจาก %s อนุญาต Signal ให้เข้าถึงไมโครโฟนของคุณ</string>
-  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">เพื่อที่จะโทรออกและรับสายได้ Signal ต้องได้รับอนุญาตให้เข้าถึงไมโครโฟนและกล้อง แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"ไมโครโฟน\" และ \"กล้อง\"</string>
+  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">เพื่อที่จะรับสายโทรเข้าจาก %s อนุญาต Loki Messenger ให้เข้าถึงไมโครโฟนของคุณ</string>
+  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">เพื่อที่จะโทรออกและรับสายได้ Loki Messenger ต้องได้รับอนุญาตให้เข้าถึงไมโครโฟนและกล้อง แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"ไมโครโฟน\" และ \"กล้อง\"</string>
   <!--WebRtcCallScreen-->
-  <string name="WebRtcCallScreen_new_safety_numbers">มีการเปลี่ยนแปลงรหัสความปลอดภัยของการสนทนาระหว่างคุณกับ %1$s นี่อาจหมายความว่า มีใครพยายามดักการสื่อสารของคุณ หรือไม่ก็แค่ %2$s ได้ติดตั้งแอป Signal ใหม่</string>
+  <string name="WebRtcCallScreen_new_safety_numbers">มีการเปลี่ยนแปลงรหัสความปลอดภัยของการสนทนาระหว่างคุณกับ %1$s นี่อาจหมายความว่า มีใครพยายามดักการสื่อสารของคุณ หรือไม่ก็แค่ %2$s ได้ติดตั้งแอป Loki Messenger ใหม่</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">คุณอาจต้องการยืนยันรหัสความปลอดภัยระหว่างคุณกับผู้ติดต่อรายนี้</string>
   <string name="WebRtcCallScreen_new_safety_number_title">รหัสความปลอดภัยใหม่</string>
   <string name="WebRtcCallScreen_accept">ยอมรับ</string>
@@ -655,15 +655,15 @@
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">ภาพของผู้ติดต่อ</string>
   <!--ContactSelectionListFragment-->
-  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">เพื่อที่จะแสดงผู้ติดต่อของคุณได้ Signal ต้องได้รับอนุญาตให้เข้าถึงผู้ติดต่อ แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"ผู้ติดต่อ\"</string>
+  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">เพื่อที่จะแสดงผู้ติดต่อของคุณได้ Loki Messenger ต้องได้รับอนุญาตให้เข้าถึงผู้ติดต่อ แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"ผู้ติดต่อ\"</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">เกิดข้อผิดพลาดระหว่างดึงผู้ติดต่อ ตรวจสอบการเชื่อมต่อเครือข่ายของคุณ</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">ไม่มีผู้ติดต่อที่ถูกปิดกั้น</string>
   <!--contact_selection_list_fragment-->
-  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal ต้องการเข้าถึงผู้ติดต่อของคุณ เพื่อที่จะแสดงข้อมูลเหล่านั้นได้</string>
+  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Loki Messenger ต้องการเข้าถึงผู้ติดต่อของคุณ เพื่อที่จะแสดงข้อมูลเหล่านั้นได้</string>
   <string name="contact_selection_list_fragment__show_contacts">แสดงผู้ติดต่อ</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">ข้อความ Signal</string>
+  <string name="conversation_activity__type_message_push">ข้อความ Loki Messenger</string>
   <string name="conversation_activity__type_message_sms_insecure">SMS ที่ไม่ปลอดภัย</string>
   <string name="conversation_activity__type_message_mms_insecure"> MMS ที่ไม่ปลอดภัย</string>
   <string name="conversation_activity__from_sim_name">จาก %1$s</string>
@@ -673,7 +673,7 @@
   <string name="conversation_activity__attachment_thumbnail">รูปย่อของไฟล์แนบ</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">สลับแถบเมนูไฟล์แนบกล้องถ่ายภาพแบบเร็ว</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">บันทึกและส่งไฟล์แนบแบบเสียง</string>
-  <string name="conversation_activity__enable_signal_for_sms">เปิดใช้งาน Signal สำหรับ SMS</string>
+  <string name="conversation_activity__enable_signal_for_sms">เปิดใช้งาน Loki Messenger สำหรับ SMS</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__cancel">ยกเลิก</string>
   <!--conversation_item-->
@@ -740,9 +740,9 @@
   <string name="IdentityUtil_unverified_banner_one">มีการเปลี่ยนแปลงในรหัสความปลอดภัยของคุณกับ %s และถือว่ายังไม่ได้รับการยืนยัน</string>
   <string name="IdentityUtil_unverified_banner_two">รหัสความปลอดภัยระหว่างคุณกับ %1$s และ %2$s ไม่ถูกยืนยันอีกต่อไป</string>
   <string name="IdentityUtil_unverified_banner_many">รหัสความปลอดภัยระหว่างคุณกับ %1$s %2$s และ%3$s ไม่ถูกยืนยันอีกต่อไป</string>
-  <string name="IdentityUtil_unverified_dialog_one">รหัสความปลอดภัยระหว่างคุณกับ %1$s เปลี่ยนไป และไม่ถูกยืนยันอีกต่อไป นี่อาจหมายความว่า มีใครพยายามดักการสื่อสารของคุณ หรือไม่ก็แค่ %1$s ได้ติดตั้งแอป Signal ใหม่</string>
-  <string name="IdentityUtil_unverified_dialog_two">รหัสความปลอดภัยระหว่างคุณกับ %1$s และ %2$s ไม่ถูกยืนยันอีกต่อไป นี่อาจหมายความว่า มีใครพยายามดักการสื่อสารของคุณ หรือไม่ก็แค่เพื่อนคุณได้ติดตั้งแอป Signal ใหม่</string>
-  <string name="IdentityUtil_unverified_dialog_many">รหัสความปลอดภัยระหว่างคุณกับ %1$s %2$s และ%3$s ไม่ถูกยืนยันอีกต่อไป นี่อาจหมายความว่า มีใครพยายามดักการสื่อสารของคุณ หรือไม่ก็แค่เพื่อนคุณได้ติดตั้งแอป Signal ใหม่</string>
+  <string name="IdentityUtil_unverified_dialog_one">รหัสความปลอดภัยระหว่างคุณกับ %1$s เปลี่ยนไป และไม่ถูกยืนยันอีกต่อไป นี่อาจหมายความว่า มีใครพยายามดักการสื่อสารของคุณ หรือไม่ก็แค่ %1$s ได้ติดตั้งแอป Loki Messenger ใหม่</string>
+  <string name="IdentityUtil_unverified_dialog_two">รหัสความปลอดภัยระหว่างคุณกับ %1$s และ %2$s ไม่ถูกยืนยันอีกต่อไป นี่อาจหมายความว่า มีใครพยายามดักการสื่อสารของคุณ หรือไม่ก็แค่เพื่อนคุณได้ติดตั้งแอป Loki Messenger ใหม่</string>
+  <string name="IdentityUtil_unverified_dialog_many">รหัสความปลอดภัยระหว่างคุณกับ %1$s %2$s และ%3$s ไม่ถูกยืนยันอีกต่อไป นี่อาจหมายความว่า มีใครพยายามดักการสื่อสารของคุณ หรือไม่ก็แค่เพื่อนคุณได้ติดตั้งแอป Loki Messenger ใหม่</string>
   <string name="IdentityUtil_untrusted_dialog_one">รหัสความปลอดภัยระหว่างคุณกับ %s เพิ่งมีการเปลี่ยนแปลง</string>
   <string name="IdentityUtil_untrusted_dialog_two">รหัสความปลอดภัยระหว่างคุณกับ %1$s และ %2$s เพิ่งมีการเปลี่ยนแปลง</string>
   <string name="IdentityUtil_untrusted_dialog_many">รหัสความปลอดภัยระหว่างคุณกับ %1$s %2$s และ%3$s เพิ่งมีการเปลี่ยนแปลง</string>
@@ -767,7 +767,7 @@
   <string name="log_submit_activity__choose_email_app">เลือกแอปอีเมล</string>
   <string name="log_submit_activity__network_failure">เครือข่ายล้มเหลว  โปรดลองอีกครั้ง</string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">คุณต้องการนำเข้าข้อความตัวอักษรไปเก็บในฐานข้อมูลที่เข้ารหัสของ Signal หรือไม่</string>
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">คุณต้องการนำเข้าข้อความตัวอักษรไปเก็บในฐานข้อมูลที่เข้ารหัสของ Loki Messenger หรือไม่</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">ฐานข้อมูลมาตรฐานของระบบจะไม่ถูกแก้ไขหรือเปลี่ยนแปลงใดๆ</string>
   <string name="database_migration_activity__skip">ข้าม</string>
   <string name="database_migration_activity__import">นำเข้า</string>
@@ -798,7 +798,7 @@
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">ปลดล็อก</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal ต้องการการตั้งค่า MMS เพื่อจะส่งสื่อและข้อความกลุ่มผ่านผู้ให้บริการเครือข่ายไร้สายของคุณ อุปกรณ์ของคุณไม่ได้ให้ข้อมูลนี้ กรณีนี้เกิดขึ้นได้สำหรับอุปกรณ์ที่ถูกล็อกหรืออุปกรณ์ที่ถูกจำกัดการใช้งานในรูปแบบอื่น</string>
+  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Loki Messenger ต้องการการตั้งค่า MMS เพื่อจะส่งสื่อและข้อความกลุ่มผ่านผู้ให้บริการเครือข่ายไร้สายของคุณ อุปกรณ์ของคุณไม่ได้ให้ข้อมูลนี้ กรณีนี้เกิดขึ้นได้สำหรับอุปกรณ์ที่ถูกล็อกหรืออุปกรณ์ที่ถูกจำกัดการใช้งานในรูปแบบอื่น</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">เพื่อจะส่งสื่อและข้อความกลุ่ม ให้แตะ \'ตกลง\' และตั้งค่าตามที่ร้องขอ การตั้งค่า MMS สำหรับผู้ให้บริการของคุณ สามารถหาได้โดยการค้นคำว่า \'APN ผู้ให้บริการของคุณ\' การตั้งค่านี้คุณต้องทำเพียงแค่ครั้งเดียว</string>
   <!--profile_create_activity-->
   <string name="profile_create_activity__set_later">ตั้งค่าภายหลัง</string>
@@ -821,12 +821,12 @@
   <string name="recipient_preferences__call_settings">ตั้งค่าการโทร</string>
   <string name="recipient_preferences__ringtone">เสียงเรียกสาย</string>
   <!--- redphone_call_controls-->
-  <string name="redphone_call_card__signal_call">สาย Signal</string>
+  <string name="redphone_call_card__signal_call">สาย Loki Messenger</string>
   <string name="redphone_call_controls__mute">ปิดเสียง</string>
   <string name="redphone_call_controls__flip_camera_rear">สลับกล้อง</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">หมายเลขโทรศัพท์</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal ทำให้การสื่อสารง่ายขึ้นด้วยการใช้หมายเลขโทรศัพท์และผู้ติดต่อที่คุณมีอยู่แล้ว เพื่อนและผู้ติดต่อที่ติดต่อคุณผ่านทางโทรศัพท์ได้ ก็จะสามารถติดต่อคุณผ่าน Signal ได้เช่นกัน การลงทะเบียนจะส่งข้อมูลส่วนหนึ่งของผู้ติดต่อไปที่เซิร์ฟเวอร์แต่จะไม่มีการบันทึกข้อมูลเหล่านั้นไว้</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal ทำให้การสื่อสารง่ายขึ้นด้วยการใช้หมายเลขโทรศัพท์และผู้ติดต่อที่คุณมีอยู่แล้ว เพื่อนและผู้ติดต่อที่ติดต่อคุณผ่านทางโทรศัพท์ได้ ก็จะสามารถติดต่อคุณผ่าน Loki Messenger ได้เช่นกัน การลงทะเบียนจะส่งข้อมูลส่วนหนึ่งของผู้ติดต่อไปที่เซิร์ฟเวอร์แต่จะไม่มีการบันทึกข้อมูลเหล่านั้นไว้</string>
   <string name="registration_activity__verify_your_number">ยืนยันหมายเลขของคุณ</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">กรุณาป้อนหมายเลขโทรศัพท์ของคุณเพื่อรับรหัสการยืนยัน การส่งนี้อาจถูกคิดเงินตามอัตราของผู้ให้บริการโทรศัพท์</string>
   <!--recipients_panel-->
@@ -902,8 +902,8 @@
   <string name="preferences__sms_mms">SMS และ MMS</string>
   <string name="preferences__pref_all_sms_title">รับ SMS ทั้งหมด</string>
   <string name="preferences__pref_all_mms_title">รับ MMS ทั้งหมด</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">ใช้ Signal รับข้อความขาเข้าทั้งหมด</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">ใช้ Signal รับข้อความมัลติมีเดียขาเข้าทั้งหมด</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">ใช้ Loki Messenger รับข้อความขาเข้าทั้งหมด</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">ใช้ Loki Messenger รับข้อความมัลติมีเดียขาเข้าทั้งหมด</string>
   <string name="preferences__pref_enter_sends_title">ป้อนคีย์เพื่อส่ง</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">การกดปุ่ม Enter จะเป็นการส่งข้อความตัวอักษร</string>
   <string name="preferences__choose_identity">เลือกตัวตน</string>
@@ -914,7 +914,7 @@
   <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">ล็อกหน้าจอและการแจ้งเตือนด้วยวลีรหัสผ่าน</string>
   <string name="preferences__screen_security">ความปลอดภัยหน้าจอ</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">ปิดกั้นการจับภาพหน้าจอในรายการล่าสุดและภายในแอป</string>
-  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">ล็อก Signal โดยอัตโนมัติหากไม่มีการใช้งานเกินช่วงเวลาที่กำหนดไว้</string>
+  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">ล็อก Loki Messenger โดยอัตโนมัติหากไม่มีการใช้งานเกินช่วงเวลาที่กำหนดไว้</string>
   <string name="preferences__inactivity_timeout_passphrase">วลีรหัสผ่านเมื่อไม่มีการใช้งานเกินเวลาที่กำหนด</string>
   <string name="preferences__inactivity_timeout_interval">ช่วงระยะเวลาเมื่อไม่มีการใช้งานเกินเวลาที่กำหนด</string>
   <string name="preferences__notifications">การแจ้งเตือน</string>
@@ -967,8 +967,8 @@
   <string name="preferences__theme">ธีม</string>
   <string name="preferences__default">ค่าเริ่มต้น</string>
   <string name="preferences__language">ภาษา</string>
-  <string name="preferences__signal_messages_and_calls">ข้อความและการโทร Signal</string>
-  <string name="preferences__free_private_messages_and_calls">โทรและส่งข้อความส่วนตัวถึงผู้ใช้ Signal ฟรี</string>
+  <string name="preferences__signal_messages_and_calls">ข้อความและการโทร Loki Messenger</string>
+  <string name="preferences__free_private_messages_and_calls">โทรและส่งข้อความส่วนตัวถึงผู้ใช้ Loki Messenger ฟรี</string>
   <string name="preferences__submit_debug_log">ส่งบันทึกดีบัก</string>
   <string name="preferences__support_wifi_calling">โหมดที่เข้ากันได้กับ \'โทรผ่าน WiFi\'</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">เปิดใช้งานถ้าอุปกรณ์ของคุณใช้การส่ง SMS/MMS ผ่าน WiFi (จะเปิดใช้งานได้ก็ต่อเมื่อ \'โทรผ่าน WiFi\' ถูกเปิดใช้งานบนอุปกรณ์ของคุณ)</string>
@@ -983,8 +983,8 @@
   <string name="preferences_chats__media_auto_download">ดาวน์โหลดสื่ออัตโนมัติ</string>
   <string name="preferences_chats__message_trimming">ตัดข้อความให้สั้นลง</string>
   <string name="preferences_advanced__use_system_emoji">ใช้อีโมจิของระบบ</string>
-  <string name="preferences_advanced__disable_signal_built_in_emoji_support">ปิดใช้งานการรองรับอีโมจิของ Signal เอง</string>
-  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">ส่งต่อสายทั้งหมดผ่านเซิร์ฟเวอร์ Signal เพื่อหลีกเลี่ยงการเปิดเผยที่อยู่ IP ของคนที่คุณติดต่อด้วย การเปิดใช้งานจะลดคุณภาพของการโทร</string>
+  <string name="preferences_advanced__disable_signal_built_in_emoji_support">ปิดใช้งานการรองรับอีโมจิของ Loki Messenger เอง</string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">ส่งต่อสายทั้งหมดผ่านเซิร์ฟเวอร์ Loki Messenger เพื่อหลีกเลี่ยงการเปิดเผยที่อยู่ IP ของคนที่คุณติดต่อด้วย การเปิดใช้งานจะลดคุณภาพของการโทร</string>
   <string name="preferences_advanced__always_relay_calls">ส่งต่อการโทรเสมอ</string>
   <string name="preferences_app_protection__app_access">การเข้าถึงแอป</string>
   <string name="preferences_app_protection__communication">การสื่อสาร</string>
@@ -996,9 +996,9 @@
   <string name="preferences_notifications__calls">การโทร</string>
   <string name="preferences_notifications__ringtone">เสียงเรียกสาย</string>
   <string name="preferences_chats__show_invitation_prompts">แสดงข้อความคำเชิญ</string>
-  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">แสดงคำเชิญสำหรับผู้ติดต่อที่ไม่มี Signal</string>
+  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">แสดงคำเชิญสำหรับผู้ติดต่อที่ไม่มี Loki Messenger</string>
   <string name="preferences_chats__message_text_size">ขนาดอักษรของข้อความ</string>
-  <string name="preferences_events__contact_joined_signal">มีผู้ติดต่อเริ่มใช้ Signal</string>
+  <string name="preferences_events__contact_joined_signal">มีผู้ติดต่อเริ่มใช้ Loki Messenger</string>
   <string name="preferences_notifications__priority">ความสำคัญ</string>
   <!--****************************************-->
   <!--menus-->
@@ -1008,7 +1008,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">โทร</string>
   <!--conversation_callable_secure-->
-  <string name="conversation_callable_secure__menu_call">สาย Signal</string>
+  <string name="conversation_callable_secure__menu_call">สาย Loki Messenger</string>
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">รายละเอียดข้อความ</string>
   <string name="conversation_context__menu_copy_text">คัดลอกข้อความ</string>
@@ -1071,24 +1071,24 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">คัดลอกไปยังคลิปบอร์ด</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">เปรียบเทียบกับคลิปบอร์ด</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">Signal เวอร์ชันที่คุณมีล้าสมัยแล้ว</string>
+  <string name="reminder_header_outdated_build">Loki Messenger เวอร์ชันที่คุณมีล้าสมัยแล้ว</string>
   <plurals name="reminder_header_outdated_build_details">
-    <item quantity="other">Signal เวอร์ชันที่คุณมีจะหมดอายุในอีก %d วัน แตะเพื่ออัพเดตเป็นรุ่นล่าสุด</item>
+    <item quantity="other">Loki Messenger เวอร์ชันที่คุณมีจะหมดอายุในอีก %d วัน แตะเพื่ออัพเดตเป็นรุ่นล่าสุด</item>
   </plurals>
-  <string name="reminder_header_outdated_build_details_today">Signal เวอร์ชันที่คุณมีจะหมดอายุวันนี้ แตะเพื่ออัพเดตเป็นรุ่นล่าสุด</string>
-  <string name="reminder_header_expired_build">Signal เวอร์ชันที่คุณมีหมดอายุแล้ว</string>
+  <string name="reminder_header_outdated_build_details_today">Loki Messenger เวอร์ชันที่คุณมีจะหมดอายุวันนี้ แตะเพื่ออัพเดตเป็นรุ่นล่าสุด</string>
+  <string name="reminder_header_expired_build">Loki Messenger เวอร์ชันที่คุณมีหมดอายุแล้ว</string>
   <string name="reminder_header_expired_build_details">จะไม่สามารถส่งข้อความได้อีกต่อไป แตะเพื่ออัพเดตเป็นเวอร์ชันล่าสุด</string>
   <string name="reminder_header_sms_default_title">ใช้เป็นแอป SMS เริ่มต้น</string>
-  <string name="reminder_header_sms_default_text">แตะเพื่อกำหนดให้ Signal เป็นแอป SMS เริ่มต้นของคุณ</string>
+  <string name="reminder_header_sms_default_text">แตะเพื่อกำหนดให้ Loki Messenger เป็นแอป SMS เริ่มต้นของคุณ</string>
   <string name="reminder_header_sms_import_title">นำเข้า SMS ของระบบ</string>
-  <string name="reminder_header_sms_import_text">แตะเพื่อคัดลอกข้อความ SMS ในโทรศัพท์ของคุณมาเก็บไว้ในฐานข้อมูลที่เข้ารหัสของ Signal</string>
-  <string name="reminder_header_push_title">เปิดใช้งานข้อความและการโทร Signal</string>
+  <string name="reminder_header_sms_import_text">แตะเพื่อคัดลอกข้อความ SMS ในโทรศัพท์ของคุณมาเก็บไว้ในฐานข้อมูลที่เข้ารหัสของ Loki Messenger</string>
+  <string name="reminder_header_push_title">เปิดใช้งานข้อความและการโทร Loki Messenger</string>
   <string name="reminder_header_push_text">อัพเกรดประสบการณ์การสื่อสารของคุณ</string>
-  <string name="reminder_header_invite_title">เชิญมาใช้ Signal</string>
+  <string name="reminder_header_invite_title">เชิญมาใช้ Loki Messenger</string>
   <string name="reminder_header_invite_text">คุยกับ %1$s ในอีกระดับ</string>
   <string name="reminder_header_share_title">เชิญเพื่อนของคุณ</string>
-  <string name="reminder_header_share_text">ยิ่งมีเพื่อนใช้ Signal เยอะก็ยิ่งดี</string>
-  <string name="reminder_header_service_outage_text">Signal กำลังพบกับอุปสรรคทางเทคนิค เรากำลังทำงานอย่างหนักเพื่อให้สามารถกลับมาให้บริการได้โดยเร็วที่สุดเท่าที่จะเป็นไปได้</string>
+  <string name="reminder_header_share_text">ยิ่งมีเพื่อนใช้ Loki Messenger เยอะก็ยิ่งดี</string>
+  <string name="reminder_header_service_outage_text">Loki Messenger กำลังพบกับอุปสรรคทางเทคนิค เรากำลังทำงานอย่างหนักเพื่อให้สามารถกลับมาให้บริการได้โดยเร็วที่สุดเท่าที่จะเป็นไปได้</string>
   <!--media_preview-->
   <string name="media_preview__save_title">บันทึก</string>
   <string name="media_preview__forward_title">ส่งต่อ</string>
@@ -1109,16 +1109,16 @@
   <string name="ConversationListFragment_loading">กำลังโหลด...</string>
   <string name="CallNotificationBuilder_connecting">กำลังเชื่อมต่อ...</string>
   <string name="Permissions_permission_required">ต้องได้รับอนุญาตก่อน</string>
-  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">เพื่อที่จะส่ง SMS ได้ Signal ต้องได้รับอนุญาตให้เข้าถึง SMS แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"SMS\"</string>
+  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">เพื่อที่จะส่ง SMS ได้ Loki Messenger ต้องได้รับอนุญาตให้เข้าถึง SMS แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"SMS\"</string>
   <string name="Permissions_continue">ดำเนินการต่อ</string>
   <string name="Permissions_not_now">ไม่ใช่ตอนนี้</string>
-  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">เพื่อที่จะค้นหาผู้ติดต่อได้ Signal ต้องได้รับอนุญาตให้เข้าถึงผู้ติดต่อ แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปยังเมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"ผู้ติดต่อ\"</string>
+  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">เพื่อที่จะค้นหาผู้ติดต่อได้ Loki Messenger ต้องได้รับอนุญาตให้เข้าถึงผู้ติดต่อ แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปยังเมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"ผู้ติดต่อ\"</string>
   <string name="conversation_activity__enable_signal_messages">เปิดใช้งานข้อความ SIGNAL</string>
-  <string name="SQLCipherMigrationHelper_migrating_signal_database">ย้ายฐานข้อมูล Signal</string>
+  <string name="SQLCipherMigrationHelper_migrating_signal_database">ย้ายฐานข้อมูล Loki Messenger</string>
   <string name="PushDecryptJob_new_locked_message">ข้อความที่ถูกล็อกใหม่</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">ปลดล็อกเพื่อดูข้อความที่รออยู่</string>
   <string name="ExperienceUpgradeActivity_unlock_to_complete_update">ปลดล็อกเพื่อเสร็จสิ้นการอัพเดต</string>
-  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">โปรดทำการปลดล็อก Signal เพื่อเสร็จสิ้นการอัพเดต</string>
+  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">โปรดทำการปลดล็อก Loki Messenger เพื่อเสร็จสิ้นการอัพเดต</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">วลีรหัสผ่านของการสำรองข้อมูล</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">การสำรองข้อมูลจะถูกบันทึกไว้ที่ที่เก็บข้อมูลภายนอกและถูกเข้ารหัสด้วยวลีรหัสผ่านด้านล่างนี้ คุณจะต้องใช้วลีรหัสผ่านนี้เพื่อคืนค่าสำรองข้อมูล</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">ฉันได้จดบันทึกวลีรหัสผ่านนี้แล้ว หากจำไม่ได้ ฉันจะไม่สามารถคืนค่าสำรองข้อมูลได้</string>
@@ -1144,7 +1144,7 @@
   <string name="BackupDialog_disable_and_delete_all_local_backups">ปิดใช้งานและลบการสำรองข้อมูลในเครื่องทั้งหมดหรือไม่</string>
   <string name="BackupDialog_delete_backups_statement">ลบการสำรองข้อมูล</string>
   <string name="BackupDialog_copied_to_clipboard">คัดลอกไปยังคลิปบอร์ดแล้ว</string>
-  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">เพื่อที่จะสำรองข้อมูลได้ Signal ต้องได้รับอนุญาตให้เข้าถึงที่เก็บข้อมูลภายนอก แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"ที่เก็บข้อมูล\"</string>
+  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">เพื่อที่จะสำรองข้อมูลได้ Loki Messenger ต้องได้รับอนุญาตให้เข้าถึงที่เก็บข้อมูลภายนอก แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"ที่เก็บข้อมูล\"</string>
   <string name="ChatsPreferenceFragment_last_backup_s">การสำรองข้อมูลล่าสุด: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">กำลังดำเนินการ</string>
   <string name="LocalBackupJob_creating_backup">กำลังสร้างการสำรองข้อมูล...</string>
@@ -1153,7 +1153,7 @@
   <string name="BackupUtil_never">ไม่เลย</string>
   <string name="BackupUtil_unknown">ไม่ทราบ</string>
   <string name="preferences_app_protection__screen_lock">ล็อกหน้าจอ</string>
-  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">ล็อกการเข้าถึง Signal ด้วยการล็อกหน้าจอของ Android หรือลายนิ้วมือ</string>
+  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">ล็อกการเข้าถึง Loki Messenger ด้วยการล็อกหน้าจอของ Android หรือลายนิ้วมือ</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">ล็อกหน้าจอเมื่อไม่มีการใช้งานเกินเวลาที่กำหนด</string>
   <string name="AppProtectionPreferenceFragment_none">ไม่มี</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">รหัส PIN ล็อกการลงทะเบียนไม่เหมือนกับรหัสการยืนยันทาง SMS ที่คุณพึ่งได้รับ โปรดป้อนรหัส PIN ที่คุณได้กำหนดไว้ในโปรแกรมก่อนหน้านี้</string>
@@ -1164,7 +1164,7 @@
   <string name="registration_lock_dialog_view__confirm_pin">ยืนยันรหัส PIN</string>
   <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">ป้อนรหัส PIN ล็อกการลงทะเบียน</string>
   <string name="registration_lock_reminder_view__enter_pin">ป้อนรหัส PIN</string>
-  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">เปิดใช้งานรหัส PIN ล็อกการลงทะเบียน ซึ่งจะถูกใช้เมื่อมีการลงทะเบียนหมายเลขโทรศัพท์นี้กับ Signal อีกครั้ง</string>
+  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">เปิดใช้งานรหัส PIN ล็อกการลงทะเบียน ซึ่งจะถูกใช้เมื่อมีการลงทะเบียนหมายเลขโทรศัพท์นี้กับ Loki Messenger อีกครั้ง</string>
   <string name="preferences_app_protection__registration_lock_pin">รหัส PIN ล็อกการลงทะเบียน</string>
   <string name="preferences_app_protection__registration_lock">ล็อกการลงทะเบียน</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">คุณจะต้องป้อนรหัส PIN ล็อกการลงทะเบียน</string>
@@ -1173,13 +1173,13 @@
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">คุณได้ป้อนรหัส PIN ล็อกการลงทะเบียนที่ไม่ถูกต้องหลายครั้งเกินไป โปรดลองอีกครั้งในอีกหนึ่งวันถัดไป</string>
   <string name="RegistrationActivity_error_connecting_to_service">เกิดข้อผิดพลาดในการเชื่อมต่อกับบริการ</string>
   <string name="RegistrationActivity_oh_no">ไม่นะ</string>
-  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">การลงทะเบียนหมายเลขโทรศัพท์นี้โดยไม่มีรหัส PIN ล็อกการลงทะเบียนของคุณสามารถทำได้หลังพ้นระยะเวลา 7 วันนับจากการใช้งานหมายเลขโทรศัพท์นี้บน Signal ครั้งหลังสุด คุณเหลือเวลาอีก %d วัน</string>
+  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">การลงทะเบียนหมายเลขโทรศัพท์นี้โดยไม่มีรหัส PIN ล็อกการลงทะเบียนของคุณสามารถทำได้หลังพ้นระยะเวลา 7 วันนับจากการใช้งานหมายเลขโทรศัพท์นี้บน Loki Messenger ครั้งหลังสุด คุณเหลือเวลาอีก %d วัน</string>
   <string name="RegistrationActivity_registration_lock_pin">รหัส PIN ล็อกการลงทะเบียน</string>
   <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">เปิดใช้งานล็อกการลงทะเบียนสำหรับหมายเลขโทรศัพท์นี้แล้ว โปรดป้อนรหัส PIN ล็อกการลงทะเบียน</string>
-  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">หมายเลขโทรศัพท์ของคุณได้เปิดใช้งานล็อกการลงทะเบียนแล้ว เพื่อช่วยให้คุณจดจำรหัส PIN ล็อกการลงทะเบียนได้ Signal จะสอบถามคุณเพื่อยืนยันรหัสเป็นระยะๆ</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">หมายเลขโทรศัพท์ของคุณได้เปิดใช้งานล็อกการลงทะเบียนแล้ว เพื่อช่วยให้คุณจดจำรหัส PIN ล็อกการลงทะเบียนได้ Loki Messenger จะสอบถามคุณเพื่อยืนยันรหัสเป็นระยะๆ</string>
   <string name="RegistrationLockDialog_i_forgot_my_pin">ฉันลืมรหัส PIN</string>
   <string name="RegistrationLockDialog_forgotten_pin">ลืมรหัส PIN หรือ</string>
-  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">ล็อกการลงทะเบียนช่วยป้องกันหมายเลขโทรศัพท์ของคุณจากความพยายามลงทะเบียนที่ไม่ได้รับอนุญาต คุณสามารถปิดใช้งานคุณสมบัตินี้ได้ทุกเมื่อที่การตั้งค่าความเป็นส่วนตัวใน Signal ของคุณ</string>
+  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">ล็อกการลงทะเบียนช่วยป้องกันหมายเลขโทรศัพท์ของคุณจากความพยายามลงทะเบียนที่ไม่ได้รับอนุญาต คุณสามารถปิดใช้งานคุณสมบัตินี้ได้ทุกเมื่อที่การตั้งค่าความเป็นส่วนตัวใน Loki Messenger ของคุณ</string>
   <string name="RegistrationLockDialog_registration_lock">ล็อกการลงทะเบียน</string>
   <string name="RegistrationLockDialog_enable">เปิดใช้งาน</string>
   <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">รหัส PIN ล็อกการลงทะเบียนจะต้องเป็นตัวเลข 4 หลัก</string>
@@ -1188,7 +1188,7 @@
   <string name="RegistrationLockDialog_disable_registration_lock_pin">ปิดใช้งานรหัส PIN ล็อกการลงทะเบียนหรือไม่</string>
   <string name="RegistrationLockDialog_disable">ปิดใช้งาน</string>
   <string name="preferences_chats__backups">การสำรองข้อมูล</string>
-  <string name="prompt_passphrase_activity__signal_is_locked">Signal ได้ถูกล็อก</string>
+  <string name="prompt_passphrase_activity__signal_is_locked">Loki Messenger ได้ถูกล็อก</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">แตะเพื่อปลดล็อก</string>
   <string name="RegistrationLockDialog_reminder">เตือนความจำ:</string>
   <string name="recipient_preferences__about">เกี่ยวกับ</string>

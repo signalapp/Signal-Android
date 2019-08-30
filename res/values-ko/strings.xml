@@ -18,17 +18,17 @@
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">삭제</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">암호 사용 중지</string>
-  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Signal이 잠금 해제되어 메시지 알림이 표시됩니다.</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Loki Messenger이 잠금 해제되어 메시지 알림이 표시됩니다.</string>
   <string name="ApplicationPreferencesActivity_disable">사용 중지</string>
-  <string name="ApplicationPreferencesActivity_unregistering">Signal 메시지 서비스 탈퇴</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Signal 메시지와 통화 서비스를 탈퇴 중…</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Signal 메시지와 통화를 사용 중지하시겠습니까?</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">서버에 탈퇴하여 Signal 메시지와 통화를 사용 중지합니다. 다시 사용하려면 전화번호를 입력해 재가입해야 합니다.</string>
+  <string name="ApplicationPreferencesActivity_unregistering">Loki Messenger 메시지 서비스 탈퇴</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Loki Messenger 메시지와 통화 서비스를 탈퇴 중…</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Loki Messenger 메시지와 통화를 사용 중지하시겠습니까?</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">서버에 탈퇴하여 Loki Messenger 메시지와 통화를 사용 중지합니다. 다시 사용하려면 전화번호를 입력해 재가입해야 합니다.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">서버에 연결할 수 없음</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS 사용</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">기본 SMS 앱을 변경하려면 터치하세요</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS 사용 안함</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Signal을 기본 SMS 앱으로 설정하려면 터치하세요</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Loki Messenger을 기본 SMS 앱으로 설정하려면 터치하세요</string>
   <string name="ApplicationPreferencesActivity_on">사용</string>
   <string name="ApplicationPreferencesActivity_On">사용</string>
   <string name="ApplicationPreferencesActivity_off">사용 안함</string>
@@ -67,7 +67,7 @@
   <string name="ContactsCursorLoader_groups">그룹</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">%s에 메시지 보내기</string>
-  <string name="ContactsDatabase_signal_call_s">%s에 Signal 통화</string>
+  <string name="ContactsDatabase_signal_call_s">%s에 Loki Messenger 통화</string>
   <!--ContactNameEditActivity-->
   <string name="ContactNameEditActivity_given_name">이름</string>
   <string name="ContactNameEditActivity_family_name">성</string>
@@ -77,7 +77,7 @@
   <string name="ConversationItem_group_action_left">%1$s님이 퇴장했습니다.</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">암호화되지않은 SMS로 바꾸시겠습니까?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">암호화되지않은 MMS로 바꾸시겠습니까?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">수신자는 이젠 Signal 사용자가 아니어서 이 메시지는 <b>암호화되지 않습니다</b>.\n\n보안 해제된 메시지를 보내시겠습니까?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">수신자는 이젠 Loki Messenger 사용자가 아니어서 이 메시지는 <b>암호화되지 않습니다</b>.\n\n보안 해제된 메시지를 보내시겠습니까?</string>
   <string name="ConversationItem_unable_to_open_media">미디어를 열 수 있는 앱이 없음</string>
   <string name="ConversationItem_copied_text">복사됨 %s</string>
   <string name="ConversationItem_from_s">%s을(를) 사용하여 수신 문자</string>
@@ -101,7 +101,7 @@
   <string name="ConversationActivity_transport_insecure_sms">보안 해제된 SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">보안 해제된 MMS</string>
   <string name="ConversationActivity_transport_signal">Loki Messenger</string>
-  <string name="ConversationActivity_lets_switch_to_signal">Signal로 같이 바꿔요~ %1$s</string>
+  <string name="ConversationActivity_lets_switch_to_signal">Loki Messenger로 같이 바꿔요~ %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">이 앱으로 우리 같이 채팅해요~ %1$s</string>
   <string name="ConversationActivity_error_leaving_group">그룹에서 나가기 오류</string>
   <string name="ConversationActivity_specify_recipient">연락처를 선택하세요</string>
@@ -112,7 +112,7 @@
   <string name="ConversationActivity_quick_camera_unavailable">카메라 사용할 수 없음</string>
   <string name="ConversationActivity_unable_to_record_audio">오디오 녹음할 수 없음</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">작업을 처리할 수 있는 앱 없음</string>
-  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">음성 메시지를 보내기 위해서, Signal 이 마이크에 접근하 수 있게 허용하십시오.</string>
+  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">음성 메시지를 보내기 위해서, Loki Messenger 이 마이크에 접근하 수 있게 허용하십시오.</string>
   <string name="ConversationActivity_yes">예</string>
   <string name="ConversationActivity_no">아니요</string>
   <!--ConversationAdapter-->
@@ -141,7 +141,7 @@
     <item quantity="other">첨부파일 %1$d개를 저장소에 저장 중…</item>
   </plurals>
   <string name="ConversationFragment_pending">대기 중…</string>
-  <string name="ConversationFragment_push">인터넷 (Signal)</string>
+  <string name="ConversationFragment_push">인터넷 (Loki Messenger)</string>
   <string name="ConversationFragment_mms">MMS (멀티미디어)</string>
   <string name="ConversationFragment_sms">SMS (문자)</string>
   <string name="ConversationFragment_deleting">메시지 삭제</string>
@@ -208,18 +208,18 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">공유 대상</string>
   <!--ExperienceUpgradeActivity-->
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Signal에 오신 것을 환영합니다.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">이제부터 TextSecure와 RedPhone이 새 다목적 보안 메신저 앱 Signal로 통합되었습니다.</string>
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Signal에 오신 것을 환영합니다~!</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">이제부터 TextSecure가 Signal로 바뀌었습니다.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">이제부터 TextSecure와 RedPhone이 새 앱 Signal로 통합되었습니다. 탐색하려면 터치하세요.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Loki Messenger에 오신 것을 환영합니다.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">이제부터 TextSecure와 RedPhone이 새 다목적 보안 메신저 앱 Loki Messenger로 통합되었습니다.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Loki Messenger에 오신 것을 환영합니다~!</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">이제부터 TextSecure가 Loki Messenger로 바뀌었습니다.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">이제부터 TextSecure와 RedPhone이 새 앱 Loki Messenger로 통합되었습니다. 탐색하려면 터치하세요.</string>
   <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">영상통화의 보안 모드 전환을 위해서 hello 라고 말해보세요 </string>
   <string name="ExperienceUpgradeActivity_no_thanks">취소</string>
   <string name="ExperienceUpgradeActivity_got_it">확인</string>
   <!--GcmBroadcastReceiver-->
   <!--GcmRefreshJob-->
-  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">영구적인 Signal 통신 실패!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal은 Google Play 서비스에 등록할 수 없습니다. Signal 메시지와 통화는 사용 중지되었으므로 Signal 설정 메뉴에서 재가입해 주세요.</string>
+  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">영구적인 Loki Messenger 통신 실패!</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal은 Google Play 서비스에 등록할 수 없습니다. Signal 메시지와 통화는 사용 중지되었으므로 Loki Messenger 설정 메뉴에서 재가입해 주세요.</string>
   <!--GiphyActivity-->
   <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">최대 해상도 GIF 파일을 받는 동안 오류 발생</string>
   <!--GiphyFragmentPageAdapter-->
@@ -230,15 +230,15 @@
   <string name="GroupCreateActivity_actionbar_edit_title">그룹 편집</string>
   <string name="GroupCreateActivity_group_name_hint">그룹 이름</string>
   <string name="GroupCreateActivity_actionbar_mms_title">MMS 그룹 만들기</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">선택된 연락처는 Signal 그룹을 지원하지 않아서 이 그룹은 MMS를 사용하게 됩니다.</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">Signal 메시지와 통화에 가입되지 않아서 Signal 그룹이 사용 중지되었습니다.</string>
+  <string name="GroupCreateActivity_contacts_dont_support_push">선택된 연락처는 Loki Messenger 그룹을 지원하지 않아서 이 그룹은 MMS를 사용하게 됩니다.</string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">Signal 메시지와 통화에 가입되지 않아서 Loki Messenger 그룹이 사용 중지되었습니다.</string>
   <string name="GroupCreateActivity_contacts_no_members">그룹 멤버 한명 이상 선택 되어야 함</string>
   <string name="GroupCreateActivity_contacts_invalid_number">그룹 멤버 중 한명은 잘못된 전화번호가 있으므로 정확한 전화번호를 입력하거나 그 연락처를 삭제하고 다시 시도해 주세요.</string>
   <string name="GroupCreateActivity_avatar_content_description">그룹 프로필 사진</string>
   <string name="GroupCreateActivity_menu_apply_button">적용</string>
   <string name="GroupCreateActivity_creating_group">%1$s을(를) 만드는 중…</string>
   <string name="GroupCreateActivity_updating_group">%1$s을(를) 업데이트 중…</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">%1$s님은 Signal 사용자가 아니어서 추가할 수 없음</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">%1$s님은 Loki Messenger 사용자가 아니어서 추가할 수 없음</string>
   <string name="GroupCreateActivity_loading_group_details">그룹 세부정보를 로드 중…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">이미 그룹에 참여하는 중</string>
   <!--GroupShareProfileView-->
@@ -255,14 +255,14 @@
   <string name="InviteActivity_sending">보내는 중…</string>
   <string name="InviteActivity_heart_content_description">하트</string>
   <string name="InviteActivity_invitations_sent">초대 보냄</string>
-  <string name="InviteActivity_invite_to_signal">Signal로 초대</string>
+  <string name="InviteActivity_invite_to_signal">Loki Messenger로 초대</string>
   <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="other">%d 명의 친구들에게 문자보내기</item>
   </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="other">%d 개의  초청 문자 메시지를 보낼까요?</item>
   </plurals>
-  <string name="InviteActivity_lets_switch_to_signal">Signal로 같이 바꿔요~ %1$s</string>
+  <string name="InviteActivity_lets_switch_to_signal">Loki Messenger로 같이 바꿔요~ %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">친구 초대 위해 공유할 수 있는 앱 없음</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">좋은 친구라면 친구의 메시지도 암호화 해주세요~</string>
   <!--Job-->
@@ -289,9 +289,9 @@
   <string name="MediaOverviewActivity_Select_all">모두 선택</string>
   <string name="MediaOverviewActivity_collecting_attachments">첨부파일 저장 준비 중…</string>
   <!--- NotificationBarManager-->
-  <string name="NotificationBarManager_signal_call_in_progress">Signal 통화 중</string>
-  <string name="NotificationBarManager__establishing_signal_call">Signal 통화 연결 중</string>
-  <string name="NotificationBarManager__incoming_signal_call">수신 Signal 통화</string>
+  <string name="NotificationBarManager_signal_call_in_progress">Loki Messenger 통화 중</string>
+  <string name="NotificationBarManager__establishing_signal_call">Loki Messenger 통화 연결 중</string>
+  <string name="NotificationBarManager__incoming_signal_call">수신 Loki Messenger 통화</string>
   <string name="NotificationBarManager__deny_call">통화 거부</string>
   <string name="NotificationBarManager__answer_call">통화 수락</string>
   <string name="NotificationBarManager__end_call">통화 종료</string>
@@ -305,7 +305,7 @@
   <!--MediaSendActivity-->
   <!--MediaRepository-->
   <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">지원하지 않는 Signal 버전으로 부터 암호화된 메시지를 받았습니다. 상대방에게 최신 버전으로 업데이트 하고 다시 보내기를 요청해 주세요.</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">지원하지 않는 Loki Messenger 버전으로 부터 암호화된 메시지를 받았습니다. 상대방에게 최신 버전으로 업데이트 하고 다시 보내기를 요청해 주세요.</string>
   <string name="MessageRecord_left_group">그룹에서 퇴장했습니다.</string>
   <string name="MessageRecord_you_updated_group">그룹을 갱신하였습니다.</string>
   <string name="MessageRecord_you_called">발신통화</string>
@@ -314,7 +314,7 @@
   <string name="MessageRecord_s_called_you">%s님으로 부터의 수신통화</string>
   <string name="MessageRecord_called_s">%s님에게 발신통화</string>
   <string name="MessageRecord_missed_call_from">%s님의 부재중 통화</string>
-  <string name="MessageRecord_s_joined_signal">%s 이 Signal 에 연결되어 있습니다.</string>
+  <string name="MessageRecord_s_joined_signal">%s 이 Loki Messenger 에 연결되어 있습니다.</string>
   <string name="MessageRecord_your_safety_number_with_s_has_changed">당신의  %s 와의 안전번호가 변경되었습니다.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">%s 와의 안전번호를 검증됨 상태로 마크했습니다.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">%s 와의 안전번호를  다른 장치로 부턴 검증됨 상태로 마크했습니다.</string>
@@ -338,8 +338,8 @@
   <string name="DeviceProvisioningActivity_content_progress_key_error">QR코드가 잘못됨</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">죄송합니다만, 당신은 이미 너무 많은 장치들로부터 연결되어 있으므로, 먼저 일부를 제거하십시오</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">기기 연결 QR코드 잘못됨</string>
-  <string name="DeviceProvisioningActivity_link_a_signal_device">Signal 기기를 연결하시겠습니까?</string>
-  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Signal 기기를 서드파티 스캐너로 연결해 보는 것 같습니다. 안전한 사용을 위해 Signal에서 다시 스캔해 주세요.</string>
+  <string name="DeviceProvisioningActivity_link_a_signal_device">Loki Messenger 기기를 연결하시겠습니까?</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Signal 기기를 서드파티 스캐너로 연결해 보는 것 같습니다. 안전한 사용을 위해 Loki Messenger에서 다시 스캔해 주세요.</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">카메라 연결 권한이 없어, QR 코드를 스캔할 수 없습니다.</string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">사라지는 메시지들</string>
@@ -347,7 +347,7 @@
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">이 대화에서 보내고 받은 메시지들은 , 보여진 후 %s 후에  표시에서 사라질 것입니다.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">암호 입력</string>
-  <string name="PassphrasePromptActivity_watermark_content_description">Signal 아이콘</string>
+  <string name="PassphrasePromptActivity_watermark_content_description">Loki Messenger 아이콘</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">암호 확인</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">암호가 잘못됨</string>
   <!--PlayServicesProblemFragment-->
@@ -383,7 +383,7 @@
   <string name="RedPhone_connected">연결됨</string>
   <string name="RedPhone_recipient_unavailable">응답 없음</string>
   <string name="RedPhone_network_failed">네트워크에 연결되지 않음</string>
-  <string name="RedPhone_number_not_registered">전화번호 Signal에 등록되지 않음</string>
+  <string name="RedPhone_number_not_registered">전화번호 Loki Messenger에 등록되지 않음</string>
   <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">지금 거신 전화번호는 보안 통화를 지원하지 않습니다.</string>
   <string name="RedPhone_got_it">확인</string>
   <!--RegistrationActivity-->
@@ -408,10 +408,10 @@
   <string name="SearchFragment_header_contacts">연락처</string>
   <!--SendJob-->
   <!--SharedContactDetailsActivity-->
-  <string name="SharedContactDetailsActivity_invite_to_signal">Signal로 초대</string>
-  <string name="SharedContactDetailsActivity_signal_call">Signal 통화</string>
+  <string name="SharedContactDetailsActivity_invite_to_signal">Loki Messenger로 초대</string>
+  <string name="SharedContactDetailsActivity_signal_call">Loki Messenger 통화</string>
   <!--SharedContactView-->
-  <string name="SharedContactView_invite_to_signal">Signal로 초대</string>
+  <string name="SharedContactView_invite_to_signal">Loki Messenger로 초대</string>
   <!--Slide-->
   <string name="Slide_image">이미지</string>
   <string name="Slide_audio">오디오</string>
@@ -432,7 +432,7 @@
   <string name="ThreadRecord_called_you">수신통화</string>
   <string name="ThreadRecord_missed_call">부재중 통화</string>
   <string name="ThreadRecord_media_message">미디어 메시지</string>
-  <string name="ThreadRecord_s_is_on_signal">%s 이 Signal 에 연결되어 있습니다.</string>
+  <string name="ThreadRecord_s_is_on_signal">%s 이 Loki Messenger 에 연결되어 있습니다.</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">당신의  %s 와의 안전번호가 변경되었습니다.</string>
   <!--UpdateApkReadyListener-->
   <!--UnknownSenderView-->
@@ -459,7 +459,7 @@
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">열려면 터치하세요.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">열려면 터치하세요. 그러나 잠그려면 자물쇠를 터치하세요.</string>
-  <string name="KeyCachingService_passphrase_cached">Signal 잠금 해제 됨</string>
+  <string name="KeyCachingService_passphrase_cached">Loki Messenger 잠금 해제 됨</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">나</string>
   <string name="MediaPreviewActivity_unssuported_media_type">지원되지 않는 미디어 형식</string>
@@ -479,7 +479,7 @@
   <string name="NotificationChannel_messages">기본</string>
   <string name="NotificationChannel_missing_display_name">알 수 없음</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal 잠겨 있는 경우 빠른 응답 사용할 수 없음</string>
+  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Loki Messenger 잠겨 있는 경우 빠른 응답 사용할 수 없음</string>
   <string name="QuickResponseService_problem_sending_message">메시지 보내지 못함</string>
   <!--SaveAttachmentTask-->
   <!--SearchToolbar-->
@@ -585,7 +585,7 @@
   <string name="log_submit_activity__button_got_it">확인</string>
   <string name="log_submit_activity__success">성공</string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">시스템 SMS 메시지를 Signal의 암호화된 데이터베이스에 가져오시겠습니까?</string>
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">시스템 SMS 메시지를 Loki Messenger의 암호화된 데이터베이스에 가져오시겠습니까?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">기본 시스템 SMS 데이터베이스가 변경되지 않습니다.</string>
   <string name="database_migration_activity__skip">건너뛰기</string>
   <string name="database_migration_activity__import">가져오기</string>
@@ -624,7 +624,7 @@
   <string name="recipient_preferences__privacy">개인정보 보호</string>
   <string name="recipient_preferences__ringtone">알림 벨소리</string>
   <!--- redphone_call_controls-->
-  <string name="redphone_call_card__signal_call">Signal 통화</string>
+  <string name="redphone_call_card__signal_call">Loki Messenger 통화</string>
   <string name="redphone_call_controls__mute">음소거</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">전화번호</string>
@@ -681,8 +681,8 @@
   <string name="preferences__sms_mms">SMS 및 MMS</string>
   <string name="preferences__pref_all_sms_title">SMS 메시지 수신</string>
   <string name="preferences__pref_all_mms_title">MMS 메시지 수신</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">모든 수신 문자를 받을 수 있도록 Signal 사용</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">모든 수신 멀티미디어 메시지를 받을 수 있도록 Signal 사용</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">모든 수신 문자를 받을 수 있도록 Loki Messenger 사용</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">모든 수신 멀티미디어 메시지를 받을 수 있도록 Loki Messenger 사용</string>
   <string name="preferences__pref_enter_sends_title">Enter키로 메시지 보내기</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Enter키 사용하여 메시지 보냄</string>
   <string name="preferences__choose_identity">내 연락처 선택</string>
@@ -691,7 +691,7 @@
   <string name="preferences__change_your_passphrase">암호 변경</string>
   <string name="preferences__screen_security">화면 보안</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">최근 사용 목록/개요 및 앱 안에서 스크린샷 차단</string>
-  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">설정된 비활동 기간 지나면 Signal 잠금</string>
+  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">설정된 비활동 기간 지나면 Loki Messenger 잠금</string>
   <string name="preferences__inactivity_timeout_passphrase">비활동 시간 초과</string>
   <string name="preferences__inactivity_timeout_interval">비활동 시간 초과 간격</string>
   <string name="preferences__notifications">알림</string>
@@ -743,8 +743,8 @@
   <string name="preferences__theme">테마</string>
   <string name="preferences__default">기본</string>
   <string name="preferences__language">언어</string>
-  <string name="preferences__signal_messages_and_calls">Signal 메시지 및 통화</string>
-  <string name="preferences__free_private_messages_and_calls">Signal 사용자에게 무료 보안 메시지와 통화</string>
+  <string name="preferences__signal_messages_and_calls">Loki Messenger 메시지 및 통화</string>
+  <string name="preferences__free_private_messages_and_calls">Loki Messenger 사용자에게 무료 보안 메시지와 통화</string>
   <string name="preferences__submit_debug_log">디버그 로그 보내기</string>
   <string name="preferences__support_wifi_calling">\'Wi-Fi 통화\' 호환 모드</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">\'Wi-Fi 통화\' 사용과 SMS/MMS Wi-Fi로 전송 설정되면 사용</string>
@@ -755,7 +755,7 @@
   <string name="preferences_chats__media_auto_download">미디어 자동 다운로드</string>
   <string name="preferences_chats__message_trimming">대화 줄이기</string>
   <string name="preferences_advanced__use_system_emoji">시스템 이모티콘 사용</string>
-  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Signal 이모티콘 사용 중지</string>
+  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Loki Messenger 이모티콘 사용 중지</string>
   <string name="preferences_app_protection__communication">대화</string>
   <string name="preferences_notifications__events">이벤트</string>
   <string name="preferences_notifications__ringtone">알림 벨소리</string>
@@ -768,7 +768,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">전화걸기</string>
   <!--conversation_callable_secure-->
-  <string name="conversation_callable_secure__menu_call">Signal 통화</string>
+  <string name="conversation_callable_secure__menu_call">Loki Messenger 통화</string>
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">메시지 세부정보</string>
   <string name="conversation_context__menu_copy_text">텍스트 복사</string>
@@ -816,7 +816,7 @@
   <!--text_secure_normal-->
   <string name="text_secure_normal__menu_new_group">새 그룹</string>
   <string name="text_secure_normal__menu_settings">설정</string>
-  <string name="text_secure_normal__menu_clear_passphrase">Signal 잠금</string>
+  <string name="text_secure_normal__menu_clear_passphrase">Loki Messenger 잠금</string>
   <string name="text_secure_normal__mark_all_as_read">모두 읽음으로 표시</string>
   <string name="text_secure_normal__invite_friends">친구 초대</string>
   <string name="text_secure_normal__help">도움말</string>
@@ -824,20 +824,20 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">클립보드에 복사</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">클립보드와 비교</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">설치된 Signal 버전 곧 만료</string>
-  <string name="reminder_header_outdated_build_details_today">오늘 설치된 Signal 버전은 만료됩니다. 최신 버전으로 업데이트 하려면 터치하세요.</string>
-  <string name="reminder_header_expired_build">설치된 Signal 버전 만료</string>
+  <string name="reminder_header_outdated_build">설치된 Loki Messenger 버전 곧 만료</string>
+  <string name="reminder_header_outdated_build_details_today">오늘 설치된 Loki Messenger 버전은 만료됩니다. 최신 버전으로 업데이트 하려면 터치하세요.</string>
+  <string name="reminder_header_expired_build">설치된 Loki Messenger 버전 만료</string>
   <string name="reminder_header_expired_build_details">메시지가 전송되지 않습니다. 최신 버전으로 업데이트 하려면 터치하세요.</string>
   <string name="reminder_header_sms_default_title">기본 SMS 앱으로 사용</string>
-  <string name="reminder_header_sms_default_text">Signal을 기본 SMS 앱으로 설정하려면 터치하세요.</string>
+  <string name="reminder_header_sms_default_text">Loki Messenger을 기본 SMS 앱으로 설정하려면 터치하세요.</string>
   <string name="reminder_header_sms_import_title">시스템 SMS 가져오기</string>
-  <string name="reminder_header_sms_import_text">휴대전화의 SMS 메시지를 Signal의 암호화된 데이터베이스에 가져오려면 터치하세요.</string>
-  <string name="reminder_header_push_title">Signal 메시지와 통화 사용</string>
+  <string name="reminder_header_sms_import_text">휴대전화의 SMS 메시지를 Loki Messenger의 암호화된 데이터베이스에 가져오려면 터치하세요.</string>
+  <string name="reminder_header_push_title">Loki Messenger 메시지와 통화 사용</string>
   <string name="reminder_header_push_text">통신 방법을 업그레이드 하시겠습니까?</string>
-  <string name="reminder_header_invite_title">Signal로 초대</string>
+  <string name="reminder_header_invite_title">Loki Messenger로 초대</string>
   <string name="reminder_header_invite_text">더 재밌는 대화를 %1$s님과 경험해 보시겠습니까?</string>
   <string name="reminder_header_share_title">친구 초대</string>
-  <string name="reminder_header_share_text">Signal을 사용하는 친구가 많을수록 더 많은 것을 경험할 수 있습니다.</string>
+  <string name="reminder_header_share_text">Loki Messenger을 사용하는 친구가 많을수록 더 많은 것을 경험할 수 있습니다.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">저장</string>
   <!--media_overview-->

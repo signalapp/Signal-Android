@@ -15,17 +15,17 @@
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Obubaka obukadde bwonna busangule kati?</string>
   <string name="ApplicationPreferencesActivity_delete">Sangula</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Jako passiwadi nga yabigaambo ne namba?</string>
-  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Kino kijja kugulawo Signal n\'okutemezebwako kwobubaka nga bya nkalakalira</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Kino kijja kugulawo Loki Messenger n\'okutemezebwako kwobubaka nga bya nkalakalira</string>
   <string name="ApplicationPreferencesActivity_disable">gyako</string>
   <string name="ApplicationPreferencesActivity_unregistering">Okwewandukulula</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Okwewandukulula okuva mu bubaka bwa Signal n\'amasimu agakubwa</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Gyako obubaka bwa Signal n\'amasimu agakubwa</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Gyako obubaka bwa Signal n\'amasimu agakubwa nga oyita mu kwewandukulula ku saava. Oja kwetaga okudamu okuwandisa enamba y\'esimu yo gyebujja mu maaso.</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Okwewandukulula okuva mu bubaka bwa Loki Messenger n\'amasimu agakubwa</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Gyako obubaka bwa Loki Messenger n\'amasimu agakubwa</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Gyako obubaka bwa Loki Messenger n\'amasimu agakubwa nga oyita mu kwewandukulula ku saava. Oja kwetaga okudamu okuwandisa enamba y\'esimu yo gyebujja mu maaso.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Ensobi kukuyungibwa  ku Ssava</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">Obubaka bukilizibbwa</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Kwata okyuse default SMS app yyo</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">Obubaka bugyidwako</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Kwatako ofule Signal nga yeyokka erina okuwereza obubaka bwamasimu</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Kwatako ofule Loki Messenger nga yeyokka erina okuwereza obubaka bwamasimu</string>
   <string name="ApplicationPreferencesActivity_on">Kweeri</string>
   <string name="ApplicationPreferencesActivity_On">Kweeri</string>
   <string name="ApplicationPreferencesActivity_off">Teriiko</string>
@@ -87,7 +87,7 @@ a</string>
   <string name="ConversationActivity_transport_insecure_sms">Obubaka obutalina bukuumi</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS terina bukumi</string>
   <string name="ConversationActivity_transport_signal">Loki Messenger</string>
-  <string name="ConversationActivity_lets_switch_to_signal">Katudde ku Signal %1$s</string>
+  <string name="ConversationActivity_lets_switch_to_signal">Katudde ku Loki Messenger %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Katukozese emboozi eno: %1$s</string>
   <string name="ConversationActivity_specify_recipient">Bambi londa contact</string>
   <string name="ConversationActivity_unblock_this_contact_question">sumulula contact eno</string>
@@ -124,7 +124,7 @@ a</string>
     <item quantity="other">ebigattibwako %1$d biterekebwa mu terekero</item>
   </plurals>
   <string name="ConversationFragment_pending">kirindirirwa</string>
-  <string name="ConversationFragment_push">Data (Signal)</string>
+  <string name="ConversationFragment_push">Data (Loki Messenger)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">Obubaka</string>
   <string name="ConversationFragment_deleting">Kisangulwa</string>
@@ -178,14 +178,14 @@ a</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Gabana ne</string>
   <!--ExperienceUpgradeActivity-->
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Tukwaniriza ku Signal</string>
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Tukwaniriza ku Signal</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Tukwaniriza ku Loki Messenger</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Tukwaniriza ku Loki Messenger</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">Obubaka obukumidwa buli kati ku signal</string>
   <string name="ExperienceUpgradeActivity_no_thanks">Nedda naye webale</string>
   <string name="ExperienceUpgradeActivity_got_it">Nkyifunye</string>
   <!--GcmBroadcastReceiver-->
   <!--GcmRefreshJob-->
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal tasobodde kwewandisa ku mpereza ya Google Play store, Obubaka ku Signal n\'amasimu bigyiddwako, bambi gezaako oddemu wewandiise mu kweroboza &gt; Okwawaggulu</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal tasobodde kwewandisa ku mpereza ya Google Play store, Obubaka ku Loki Messenger n\'amasimu bigyiddwako, bambi gezaako oddemu wewandiise mu kweroboza &gt; Okwawaggulu</string>
   <!--GiphyActivity-->
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">Ekifananyi ekizanya</string>
@@ -194,13 +194,13 @@ a</string>
   <string name="GroupCreateActivity_actionbar_title">Ekibinja ekipya</string>
   <string name="GroupCreateActivity_group_name_hint">Erinya ly\'ekibinja</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Akaboondo ka mms akapya</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">Tewewandisa ku bubaka bwa Signal n\'amasimu, era ebibinja bya Signal bijiddwako. Bambi gezaako okwewandisa mu kwerobooza &gt; Okwawaggulu</string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">Tewewandisa ku bubaka bwa Signal n\'amasimu, era ebibinja bya Loki Messenger bijiddwako. Bambi gezaako okwewandisa mu kwerobooza &gt; Okwawaggulu</string>
   <string name="GroupCreateActivity_contacts_no_members">Wetagaayo ekitono enyo omuntu omu mu kibinja kyo!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Omu ku babaka mu kibinja kyo alina enamba etasobola kusomwa bulungi, bambi gyitereze or gyigyeemu oddemu ogezeeko.</string>
   <string name="GroupCreateActivity_avatar_content_description">Ekisikirize ky\'ekibinja</string>
   <string name="GroupCreateActivity_creating_group">ku tondawo %1$s…</string>
   <string name="GroupCreateActivity_updating_group">ku zabujja %1$s.</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Tekisobose kugattako %1$s kubanga tebakozesa Signal</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Tekisobose kugattako %1$s kubanga tebakozesa Loki Messenger</string>
   <string name="GroupCreateActivity_loading_group_details">Loading group details...</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Ekibinja kino wakyegattako dda.</string>
   <!--GroupShareProfileView-->
@@ -215,8 +215,8 @@ a</string>
   <string name="InviteActivity_sending">Eweereza</string>
   <string name="InviteActivity_heart_content_description">Omutima</string>
   <string name="InviteActivity_invitations_sent">Okuyiitibwa kusindikiddwa</string>
-  <string name="InviteActivity_invite_to_signal">Muyite ku Signal</string>
-  <string name="InviteActivity_lets_switch_to_signal">Katudde ku Signal: %1$s</string>
+  <string name="InviteActivity_invite_to_signal">Muyite ku Loki Messenger</string>
+  <string name="InviteActivity_lets_switch_to_signal">Katudde ku Loki Messenger: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Kirabika toyina app za ku gabanya ne.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Emikwaano tejibuzbuza mboozi yamikwaano</string>
   <!--Job-->
@@ -232,9 +232,9 @@ a</string>
   <string name="MediaOverviewActivity_Select_all">Londa byonna.</string>
   <string name="MediaOverviewActivity_collecting_attachments">ebigatibwako bikunganyizibwa</string>
   <!--- NotificationBarManager-->
-  <string name="NotificationBarManager_signal_call_in_progress">Essimu eya Signal egenda mumaaso</string>
-  <string name="NotificationBarManager__establishing_signal_call">tutekateeka kuba ssimu ya Signal</string>
-  <string name="NotificationBarManager__incoming_signal_call">essimu ya Signal eyingirawo</string>
+  <string name="NotificationBarManager_signal_call_in_progress">Essimu eya Loki Messenger egenda mumaaso</string>
+  <string name="NotificationBarManager__establishing_signal_call">tutekateeka kuba ssimu ya Loki Messenger</string>
+  <string name="NotificationBarManager__incoming_signal_call">essimu ya Loki Messenger eyingirawo</string>
   <string name="NotificationBarManager__deny_call">Gaana essimu</string>
   <string name="NotificationBarManager__answer_call">Ddamu essimu</string>
   <string name="NotificationBarManager__end_call">komya esimu</string>
@@ -272,14 +272,14 @@ a</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Omukutu guliko ekizibu.</string>
   <string name="DeviceProvisioningActivity_content_progress_key_error">QR code nkyamu.</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Bambi  QR koodi eno sintufu</string>
-  <string name="DeviceProvisioningActivity_link_a_signal_device">Yungako divayisi ya Signal?</string>
+  <string name="DeviceProvisioningActivity_link_a_signal_device">Yungako divayisi ya Loki Messenger?</string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">Obubaka bwo bubuzibwaawo</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">Obubaka bwo tebujja kugwako.</string>
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Obubaka bwowereza ne bwofunye mu mbozi eno %s bujakubula bwomaliriza obulaba</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Yingiza passiwaddi nga yabigaambo ne namba</string>
-  <string name="PassphrasePromptActivity_watermark_content_description">Akabonero ka Signal</string>
+  <string name="PassphrasePromptActivity_watermark_content_description">Akabonero ka Loki Messenger</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Waayo passiwaddi nga yabigaambo ne namba</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">passiwaddi y\'ebigambo ne namba sintuufu</string>
   <!--PlayServicesProblemFragment-->
@@ -327,10 +327,10 @@ gy\'olonze (%s) sintuufu.</string>
   <!--Search-->
   <!--SendJob-->
   <!--SharedContactDetailsActivity-->
-  <string name="SharedContactDetailsActivity_invite_to_signal">Muyite ku Signal</string>
-  <string name="SharedContactDetailsActivity_signal_call">Ssimu okuva ku Signal</string>
+  <string name="SharedContactDetailsActivity_invite_to_signal">Muyite ku Loki Messenger</string>
+  <string name="SharedContactDetailsActivity_signal_call">Ssimu okuva ku Loki Messenger</string>
   <!--SharedContactView-->
-  <string name="SharedContactView_invite_to_signal">Muyite ku Signal</string>
+  <string name="SharedContactView_invite_to_signal">Muyite ku Loki Messenger</string>
   <!--Slide-->
   <string name="Slide_image">ekifaananyi</string>
   <string name="Slide_audio">edoboozi</string>
@@ -355,7 +355,7 @@ gy\'olonze (%s) sintuufu.</string>
   <!--UntrustedSendDialog-->
   <!--UnverifiedSendDialog-->
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Contact wo akozesa Signal version empya esinga kuyiyo. Eyiyo kize bugya.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Contact wo akozesa Loki Messenger version empya esinga kuyiyo. Eyiyo kize bugya.</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Kilabika toyina app za ku gabana na.
 </string>
   <!--MessageDisplayHelper-->
@@ -371,7 +371,7 @@ gy\'olonze (%s) sintuufu.</string>
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Kwatako okugulawo</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Kwatako okugulaaawo, oba kwataku kufulu okugalawo.</string>
-  <string name="KeyCachingService_passphrase_cached">Signal eggudwa</string>
+  <string name="KeyCachingService_passphrase_cached">Loki Messenger eggudwa</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Gwe</string>
   <string name="MediaPreviewActivity_unssuported_media_type"> ekika kino ekya  Tekiwaniriddwa </string>
@@ -480,7 +480,7 @@ gy\'olonze (%s) sintuufu.</string>
   <string name="log_submit_activity__no_browser_installed">Teli kibanja kitekedwamu</string>
   <string name="log_submit_activity__button_got_it">Nkyifunye</string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Wandiyagade okuyingiza obubakabwo mu terekero ya bwino elibuzabuzidwamu mu Signal?</string>
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Wandiyagade okuyingiza obubakabwo mu terekero ya bwino elibuzabuzidwamu mu Loki Messenger?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">System database eyasangibwawoo tegya kukyusibwa.</string>
   <string name="database_migration_activity__skip">Buuka</string>
   <string name="database_migration_activity__import">Okuyingiza</string>
@@ -508,7 +508,7 @@ gy\'olonze (%s) sintuufu.</string>
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Gulawo</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal yeetaga Message settingi okutuusa ebifaanyi, enyimba ne obubaka mu group nga ekozessa empewo. Essimu yo tegaba biwandiiko ebyo. Kino kibaawo kumasimu agasibidwa oba agaganiddwa okukola ebintu ebimu.</string>
+  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Loki Messenger yeetaga Message settingi okutuusa ebifaanyi, enyimba ne obubaka mu group nga ekozessa empewo. Essimu yo tegaba biwandiiko ebyo. Kino kibaawo kumasimu agasibidwa oba agaganiddwa okukola ebintu ebimu.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Okusindika ebifaani, video ne nyimba, nyiga OK ojuze setingi ezwtaagisa. Messegi settingi za Kampuni yamasimu gyokozessa zifunibwa nga onoonyeza APN yo. Kini kikolebwa lumu.</string>
   <!--profile_create_activity-->
   <!--recipient_preferences_activity-->
@@ -520,7 +520,7 @@ gy\'olonze (%s) sintuufu.</string>
   <string name="recipient_preferences__color">Langi</string>
   <string name="recipient_preferences__privacy">Byakyaama</string>
   <!--- redphone_call_controls-->
-  <string name="redphone_call_card__signal_call">Ssimu okuva ku Signal</string>
+  <string name="redphone_call_card__signal_call">Ssimu okuva ku Loki Messenger</string>
   <string name="redphone_call_controls__mute">Jakko edoboozi</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">Enamba yesimu</string>
@@ -579,7 +579,7 @@ gy\'olonze (%s) sintuufu.</string>
   <string name="preferences__sms_mms">Obubaka mu buwandiike, ebifaananyi,entaambi,n\'amaloboozi</string>
   <string name="preferences__pref_all_sms_title">Funa obubaka bwonna mubuwandiike</string>
   <string name="preferences__pref_all_mms_title">Funa obubaka bwonna mu bifaananyi,entambi n\'amaloboozi </string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Kozesa Signal okufuna obubaka bwonna obuwandiike</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Kozesa Loki Messenger okufuna obubaka bwonna obuwandiike</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Kozesa Signal okufuna obubaka mu bifaananyi,entaambi n\'enyimba.
 
 
@@ -593,7 +593,7 @@ gy\'olonze (%s) sintuufu.</string>
   <string name="preferences__change_your_passphrase">Kyusa pasiwadi y\'ebigambo n\'enamba</string>
   <string name="preferences__screen_security">Okukuuma Screen yo</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Bulokinga okukuba screenshots mubyakaberawo ne minda mu app zo</string>
-  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Setting Signal yeggale yoka mukaseera koyagala</string>
+  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Setting Loki Messenger yeggale yoka mukaseera koyagala</string>
   <string name="preferences__inactivity_timeout_passphrase">Pasiwadi gyosamu bwoba oyagala kuzako essimu</string>
   <string name="preferences__inactivity_timeout_interval">Obudde bwevaako nga telina kyekola</string>
   <string name="preferences__notifications">Obude</string>
@@ -646,8 +646,8 @@ gy\'olonze (%s) sintuufu.</string>
   <string name="preferences__theme">omulamwa</string>
   <string name="preferences__default">wifi calling compatiblity mode</string>
   <string name="preferences__language">Lulimi</string>
-  <string name="preferences__signal_messages_and_calls">Obubaka na massinu ga Signal</string>
-  <string name="preferences__free_private_messages_and_calls">Obubaka obwekyama na massimu ku bakozesa ba Signal</string>
+  <string name="preferences__signal_messages_and_calls">Obubaka na massinu ga Loki Messenger</string>
+  <string name="preferences__free_private_messages_and_calls">Obubaka obwekyama na massimu ku bakozesa ba Loki Messenger</string>
   <string name="preferences__submit_debug_log">Waayo olukalala bili kibaddewo</string>
   <string name="preferences__support_wifi_calling">\'WiFi Calling\' compatibility mode</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Enable if your device uses SMS/MMS delivery over WiFi (only enable when \'WiFi Calling\' is enabled on your device)</string>
@@ -658,7 +658,7 @@ gy\'olonze (%s) sintuufu.</string>
   <string name="preferences_chats__media_auto_download">buterevu ebifananyi ne video bye gyayo</string>
   <string name="preferences_chats__message_trimming">Okuyimpaya obubaka</string>
   <string name="preferences_advanced__use_system_emoji">Kozesa system emoji</string>
-  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Gyako emoji support eyazimbibwa mu Signal</string>
+  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Gyako emoji support eyazimbibwa mu Loki Messenger</string>
   <!--****************************************-->
   <!--menus-->
   <!--****************************************-->
@@ -667,7 +667,7 @@ gy\'olonze (%s) sintuufu.</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Essimu</string>
   <!--conversation_callable_secure-->
-  <string name="conversation_callable_secure__menu_call">Essimu ya Signal</string>
+  <string name="conversation_callable_secure__menu_call">Essimu ya Loki Messenger</string>
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">Obulambulukufu bw\'obubaka</string>
   <string name="conversation_context__menu_copy_text">yozaamu obubaka.</string>
@@ -723,20 +723,20 @@ gy\'olonze (%s) sintuufu.</string>
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">copinga ku clipbodi</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">geraageranya ne kilipuboodi</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">Version yo eya Signal ya yitako dda</string>
+  <string name="reminder_header_outdated_build">Version yo eya Loki Messenger ya yitako dda</string>
   <string name="reminder_header_outdated_build_details_today">Version yo eya Sgnal ya kugwako leero.Nyiga ode ku version empya kweyo</string>
-  <string name="reminder_header_expired_build">Version ya Signal yo yagwaako!</string>
+  <string name="reminder_header_expired_build">Version ya Loki Messenger yo yagwaako!</string>
   <string name="reminder_header_expired_build_details">Obubaka tebujjakusobla kwewereza bukungi.konakookufuna  vazoni empya</string>
   <string name="reminder_header_sms_default_title">gikozese nga app yo gyofunirako obubaka</string>
-  <string name="reminder_header_sms_default_text">konako okuffula Signal app yo gyofunirako obubaka</string>
+  <string name="reminder_header_sms_default_text">konako okuffula Loki Messenger app yo gyofunirako obubaka</string>
   <string name="reminder_header_sms_import_title">Yingiza system SMS</string>
   <string name="reminder_header_sms_import_text">koonako okukopa obubaka bwa sms ku kifo kyasigino awaterekebwa bwino</string>
-  <string name="reminder_header_push_title">Sobozesa obubaka bwa Signal ne namasimu</string>
+  <string name="reminder_header_push_title">Sobozesa obubaka bwa Loki Messenger ne namasimu</string>
   <string name="reminder_header_push_text">Linyisa omuindo gwo\'bumanyirivu bwempuliziganya yo</string>
-  <string name="reminder_header_invite_title">Muyite ku Signal</string>
+  <string name="reminder_header_invite_title">Muyite ku Loki Messenger</string>
   <string name="reminder_header_invite_text">Twaala embooziyo ku daala edala ku %1$s</string>
   <string name="reminder_header_share_title">Yita mikwano gyo</string>
-  <string name="reminder_header_share_text">emikwano ghyejikoma okozesa Signal gyekoma  okuba enungi</string>
+  <string name="reminder_header_share_text">emikwano ghyejikoma okozesa Loki Messenger gyekoma  okuba enungi</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Tereka</string>
   <string name="media_preview__forward_title">sindikirako omulala</string>
