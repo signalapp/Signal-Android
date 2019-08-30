@@ -48,6 +48,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.dd.CircularProgressButton;
+
 import org.thoughtcrime.securesms.animation.AnimationCompleteListener;
 import org.thoughtcrime.securesms.components.AnimatingToggle;
 import org.thoughtcrime.securesms.crypto.InvalidPassphraseException;
@@ -72,9 +74,9 @@ public class PassphrasePromptActivity extends PassphraseActivity {
   private DynamicIntroTheme dynamicTheme    = new DynamicIntroTheme();
   private DynamicLanguage   dynamicLanguage = new DynamicLanguage();
 
-  private View            passphraseAuthContainer;
-  private ImageView       fingerprintPrompt;
-  private TextView        lockScreenButton;
+  private View                   passphraseAuthContainer;
+  private ImageView              fingerprintPrompt;
+  private CircularProgressButton lockScreenButton;
 
   private EditText        passphraseText;
   private ImageButton     showButton;
@@ -136,7 +138,7 @@ public class PassphrasePromptActivity extends PassphraseActivity {
     MenuInflater inflater = this.getMenuInflater();
     menu.clear();
 
-    inflater.inflate(R.menu.log_submit, menu);
+    // inflater.inflate(R.menu.log_submit, menu);
     super.onPrepareOptionsMenu(menu);
     return true;
   }
@@ -276,7 +278,7 @@ public class PassphrasePromptActivity extends PassphraseActivity {
       fingerprintManager.authenticate(null, 0, fingerprintCancellationSignal, fingerprintListener, null);
     } else if (Build.VERSION.SDK_INT >= 21){
       Log.i(TAG, "firing intent...");
-      Intent intent = keyguardManager.createConfirmDeviceCredentialIntent("Unlock Signal", "");
+      Intent intent = keyguardManager.createConfirmDeviceCredentialIntent("Unlock Loki Messenger", "");
       startActivityForResult(intent, 1);
     } else {
       Log.w(TAG, "Not compatible...");
