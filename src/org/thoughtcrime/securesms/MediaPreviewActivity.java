@@ -29,6 +29,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,6 +38,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.util.Pair;
+import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
@@ -109,20 +111,22 @@ public final class MediaPreviewActivity extends PassphraseRequiredActionBarActiv
 
   private int restartItem = -1;
 
-
   @SuppressWarnings("ConstantConditions")
   @Override
   protected void onCreate(Bundle bundle, boolean ready) {
-    this.setTheme(R.style.TextSecure_DarkTheme);
+    this.setTheme(R.style.TextSecure_MediaPreview);
+    setContentView(R.layout.media_preview_activity);
+
+    setSupportActionBar(findViewById(R.id.toolbar));
 
     viewModel = ViewModelProviders.of(this).get(MediaPreviewViewModel.class);
 
-    getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
     getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                          WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+    showSystemUI();
+
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    setContentView(R.layout.media_preview_activity);
 
     initializeViews();
     initializeResources();
@@ -208,6 +212,14 @@ public final class MediaPreviewActivity extends PassphraseRequiredActionBarActiv
     caption                   = findViewById(R.id.media_preview_caption);
     captionContainer          = findViewById(R.id.media_preview_caption_container);
     playbackControlsContainer = findViewById(R.id.media_preview_playback_controls_container);
+
+    View toolbarLayout = findViewById(R.id.toolbar_layout);
+
+    anchorMarginsToBottomInsets(detailsContainer);
+
+    anchorMarginsToTopInsets(toolbarLayout);
+
+    showAndHideWithSystemUI(getWindow(), detailsContainer, toolbarLayout);
   }
 
   private void initializeResources() {
@@ -439,9 +451,34 @@ public final class MediaPreviewActivity extends PassphraseRequiredActionBarActiv
 
   @Override
   public boolean singleTapOnMedia() {
-    detailsContainer.setVisibility(detailsContainer.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
-
+    toggleUiVisibility();
     return true;
+  }
+
+  private void toggleUiVisibility() {
+    int systemUiVisibility = getWindow().getDecorView().getSystemUiVisibility();
+    if ((systemUiVisibility & View.SYSTEM_UI_FLAG_FULLSCREEN) != 0) {
+      showSystemUI();
+    } else {
+      hideSystemUI();
+    }
+  }
+
+  private void hideSystemUI() {
+    getWindow().getDecorView().setSystemUiVisibility(
+        View.SYSTEM_UI_FLAG_IMMERSIVE              |
+        View.SYSTEM_UI_FLAG_LAYOUT_STABLE          |
+        View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION |
+        View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN      |
+        View.SYSTEM_UI_FLAG_HIDE_NAVIGATION        |
+        View.SYSTEM_UI_FLAG_FULLSCREEN              );
+  }
+
+  private void showSystemUI() {
+    getWindow().getDecorView().setSystemUiVisibility(
+        View.SYSTEM_UI_FLAG_LAYOUT_STABLE          |
+        View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION |
+        View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN       );
   }
 
   private class ViewPagerListener extends ExtendedOnPageChangedListener {
@@ -532,6 +569,48 @@ public final class MediaPreviewActivity extends PassphraseRequiredActionBarActiv
       }
       return null;
     }
+  }
+
+  private static void anchorMarginsToBottomInsets(@NonNull View viewToAnchor) {
+    ViewCompat.setOnApplyWindowInsetsListener(viewToAnchor, (view, insets) -> {
+      ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
+
+      layoutParams.setMargins(insets.getSystemWindowInsetLeft(),
+                              layoutParams.topMargin,
+                              insets.getSystemWindowInsetRight(),
+                              insets.getSystemWindowInsetBottom());
+
+      view.setLayoutParams(layoutParams);
+
+      return insets;
+    });
+  }
+
+  private static void anchorMarginsToTopInsets(@NonNull View viewToAnchor) {
+    ViewCompat.setOnApplyWindowInsetsListener(viewToAnchor, (view, insets) -> {
+      ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
+
+      layoutParams.setMargins(insets.getSystemWindowInsetLeft(),
+                              insets.getSystemWindowInsetTop(),
+                              insets.getSystemWindowInsetRight(),
+                              layoutParams.bottomMargin);
+
+      view.setLayoutParams(layoutParams);
+
+      return insets;
+    });
+  }
+
+  private static void showAndHideWithSystemUI(@NonNull Window window, @NonNull View... views) {
+    window.getDecorView().setOnSystemUiVisibilityChangeListener(visibility -> {
+      boolean hide = (visibility & View.SYSTEM_UI_FLAG_FULLSCREEN) != 0;
+
+      for (View view : views) {
+        view.animate()
+            .alpha(hide ? 0 : 1)
+            .start();
+      }
+    });
   }
 
   private static class CursorPagerAdapter extends FragmentStatePagerAdapter implements MediaItemAdapter {

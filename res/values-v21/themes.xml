@@ -10,4 +10,8 @@
         <item name="android:colorControlActivated">@color/signal_primary_dark</item>
     </style>
 
+    <style name="TextSecure.MediaPreview" parent="@style/TextSecure.BaseMediaPreview">
+        <item name="android:navigationBarColor">@color/media_preview_bar_background</item>
+    </style>
+
 </resources>

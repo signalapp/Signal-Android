@@ -70,4 +70,7 @@
 
     <color name="avatar_background">@color/transparent_black_90</color>
 
+    <color name="media_preview_bar_background">#90010101</color>
+    <color name="media_preview_bar_shade_center">#88000000</color>
+
 </resources>

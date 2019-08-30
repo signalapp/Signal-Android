@@ -19,11 +19,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:orientation="vertical"
-        android:background="@drawable/image_shade"
+        android:animateLayoutChanges="true"
+        android:background="@drawable/image_preview_shade"
         android:gravity="bottom"
+        android:orientation="vertical"
         android:visibility="gone"
-        android:animateLayoutChanges="true">
+        tools:visibility="visible">
 
         <org.thoughtcrime.securesms.components.MaxHeightScrollView
             android:id="@+id/media_preview_caption_container"
@@ -63,5 +64,20 @@
             android:animateLayoutChanges="true"/>
 
     </LinearLayout>
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/toolbar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/media_preview_bar_background"
+        app:elevation="0dp">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@android:color/transparent" />
+
+    </com.google.android.material.appbar.AppBarLayout>
 
 </FrameLayout>
