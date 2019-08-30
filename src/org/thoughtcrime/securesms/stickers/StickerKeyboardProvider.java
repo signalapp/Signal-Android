@@ -1,16 +1,17 @@
 package org.thoughtcrime.securesms.stickers;
 
-import androidx.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.widget.ImageView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
-import androidx.appcompat.app.AppCompatActivity;
-import android.widget.ImageView;
+import androidx.lifecycle.ViewModelProviders;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.MediaKeyboardProvider;
@@ -48,7 +49,7 @@ public final class StickerKeyboardProvider implements MediaKeyboardProvider,
   private boolean                  isSoloProvider;
   private StickerKeyboardViewModel viewModel;
 
-  public StickerKeyboardProvider(@NonNull AppCompatActivity activity,
+  public StickerKeyboardProvider(@NonNull FragmentActivity activity,
                                  @NonNull StickerEventListener eventListener)
   {
     this.context          = activity;
@@ -109,7 +110,7 @@ public final class StickerKeyboardProvider implements MediaKeyboardProvider,
     }
   }
 
-  private void initViewModel(@NonNull AppCompatActivity activity) {
+  private void initViewModel(@NonNull FragmentActivity activity) {
     StickerKeyboardRepository repository = new StickerKeyboardRepository(DatabaseFactory.getStickerDatabase(activity));
     viewModel = ViewModelProviders.of(activity, new StickerKeyboardViewModel.Factory(activity.getApplication(), repository)).get(StickerKeyboardViewModel.class);
 

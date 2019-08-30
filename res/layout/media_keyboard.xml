@@ -35,7 +35,7 @@
             android:orientation="horizontal"
             app:layout_constraintEnd_toStartOf="@id/media_keyboard_backspace"
             app:layout_constraintStart_toEndOf="@id/media_keyboard_search"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/media_keyboard_tabs_top" />
 
         <org.thoughtcrime.securesms.components.RepeatableImageKey
             android:id="@+id/media_keyboard_backspace"
@@ -67,13 +67,26 @@
             app:layout_constraintTop_toTopOf="@+id/media_keyboard_tabs" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/media_keyboard_tabs_top"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toStartOf="@id/media_keyboard_add"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_height="40dp"
+            tools:visibility="visible" />
+
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/media_keyboard_tabs"
             android:layout_width="0dp"
             android:layout_height="40dp"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/media_keyboard_add"
-            tools:layout_height="40dp"/>
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_height="40dp"
+            tools:visibility="visible" />
 
         <org.thoughtcrime.securesms.components.RepeatableImageKey
             android:id="@+id/media_keyboard_backspace_backup"

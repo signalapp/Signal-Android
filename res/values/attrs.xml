@@ -355,4 +355,11 @@
         <attr name="revealable_unopenedForegroundColor" format="color" />
         <attr name="revealable_openedForegroundColor" format="color" />
     </declare-styleable>
+
+    <declare-styleable name="MediaKeyboard">
+        <attr name="tabs_gravity" format="enum">
+            <enum name="bottom" value="0" />
+            <enum name="top" value="1" />
+        </attr>
+    </declare-styleable>
 </resources>
