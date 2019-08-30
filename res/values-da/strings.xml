@@ -25,17 +25,17 @@
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">Slet</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Deaktivér kodeord?</string>
-  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Dette vil permanent låse op for Signal og besked notifikationer</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Dette vil permanent låse op for Loki Messenger og besked notifikationer</string>
   <string name="ApplicationPreferencesActivity_disable">Deaktivér</string>
   <string name="ApplicationPreferencesActivity_unregistering">Afmeld</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Afmelder Signalbeskeder og -opkald...</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Deaktivér Signalbeskeder og -opkald?</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Deaktivér Signalbeskeder og -opkald fra serveren ved afmelding. Du er nødt til igen at registrere dit telefonnummer, for at bruge det igen i fremtiden</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Afmelder Loki Messengerbeskeder og -opkald...</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Deaktivér Loki Messengerbeskeder og -opkald?</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Deaktivér Loki Messengerbeskeder og -opkald fra serveren ved afmelding. Du er nødt til igen at registrere dit telefonnummer, for at bruge det igen i fremtiden</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Fejl ved oprettelse af forbindelse til serveren</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS aktiveret</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Tap for at ændre standard SMS applikation</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS Deaktiveret</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Tap for at gøre Signal til din standard SMS-app</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Tap for at gøre Loki Messenger til din standard SMS-app</string>
   <string name="ApplicationPreferencesActivity_on">tændt</string>
   <string name="ApplicationPreferencesActivity_On">Tændt</string>
   <string name="ApplicationPreferencesActivity_off">slukket</string>
@@ -56,10 +56,10 @@
   <string name="DraftDatabase_Draft_quote_snippet">(svar)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Ingen app tilgængelig til valg af data</string>
-  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal kræver tilladelse til at tilgå din hukommelse, for at kunne vedhæfte billeder, videoer eller lydfiler, hvilket det er blevet nægtet. Gå venligst via appens menu til Indstillinger, vælg \"Tilladelser\" og tilvælg \"Hukommelse\"</string>
-  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal kræver tilladelse til at tilgå dine kontakter, for at kunne vedhæfte kontakt informationer, hvilket det er blevet nægtet. Gå venligst via appens menu til Indstillinger, vælg \"Tilladelser\" og tilvælg \"Kontakter\"</string>
-  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal kræver tilladelse til at tilgå din lokation, for at kunne vedhæfte lokationer, hvilket det er blevet nægtet. Gå venligst via appens menu til Indstillinger, vælg \"Tilladelser\" og tilvælg \"Lokation\"</string>
-  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal kræver tilladelse til at tilgå dit kamera for at kunne tage billeder, hvilket det er blevet nægtet. Gå venligst via appens menu til Indstillinger, vælg \"Tilladelser\" og tilvælg \"Kamera\"</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Loki Messenger kræver tilladelse til at tilgå din hukommelse, for at kunne vedhæfte billeder, videoer eller lydfiler, hvilket det er blevet nægtet. Gå venligst via appens menu til Indstillinger, vælg \"Tilladelser\" og tilvælg \"Hukommelse\"</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Loki Messenger kræver tilladelse til at tilgå dine kontakter, for at kunne vedhæfte kontakt informationer, hvilket det er blevet nægtet. Gå venligst via appens menu til Indstillinger, vælg \"Tilladelser\" og tilvælg \"Kontakter\"</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Loki Messenger kræver tilladelse til at tilgå din lokation, for at kunne vedhæfte lokationer, hvilket det er blevet nægtet. Gå venligst via appens menu til Indstillinger, vælg \"Tilladelser\" og tilvælg \"Lokation\"</string>
+  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Loki Messenger kræver tilladelse til at tilgå dit kamera for at kunne tage billeder, hvilket det er blevet nægtet. Gå venligst via appens menu til Indstillinger, vælg \"Tilladelser\" og tilvælg \"Kamera\"</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Fejl ved afspilning af lyd!</string>
   <!--BlockedContactsActivity-->
@@ -89,7 +89,7 @@
   <string name="ContactsCursorLoader_groups">Grupper</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Besked %s</string>
-  <string name="ContactsDatabase_signal_call_s">Signal opkald %s</string>
+  <string name="ContactsDatabase_signal_call_s">Loki Messenger opkald %s</string>
   <!--ContactNameEditActivity-->
   <string name="ContactNameEditActivity_given_name">Fornavn</string>
   <string name="ContactNameEditActivity_family_name">Efternavn</string>
@@ -109,7 +109,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted">Fejl ved afsendelse, tap for at sende usikret</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Godkend ukrypteret SMS?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Godkend ukrypteret MMS?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Denne besked vil <b>ikke</b> blive krypteret, da modtageren ikke længere bruger Signal.\n\nSend usikret besked?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Denne besked vil <b>ikke</b> blive krypteret, da modtageren ikke længere bruger Loki Messenger.\n\nSend usikret besked?</string>
   <string name="ConversationItem_unable_to_open_media">Kan ikke finde en app, der kan åbne mediet</string>
   <string name="ConversationItem_copied_text">Kopieret %s</string>
   <string name="ConversationItem_from_s">fra %s</string>
@@ -137,8 +137,8 @@
   <string name="ConversationActivity_transport_insecure_sms">Usikret SMS</string>
   <string name="ConversationActivity_transport_insecure_mms">Usikret MMS</string>
   <string name="ConversationActivity_transport_signal">Loki Messenger</string>
-  <string name="ConversationActivity_lets_switch_to_signal">Lad os bruge Signal %1$s?</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">Lad os bruge Signal til beskeder: %1$s</string>
+  <string name="ConversationActivity_lets_switch_to_signal">Lad os bruge Loki Messenger %1$s?</string>
+  <string name="ConversationActivity_lets_use_this_to_chat">Lad os bruge Loki Messenger til beskeder: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Fejl ved forsøg på at forlade gruppen</string>
   <string name="ConversationActivity_specify_recipient">Vælg venligst en kontakt</string>
   <string name="ConversationActivity_unblock_this_contact_question">Fjern blokering af kontakten?</string>
@@ -150,15 +150,15 @@
   <string name="ConversationActivity_quick_camera_unavailable">Kamera utilgængeligt</string>
   <string name="ConversationActivity_unable_to_record_audio">Fejl ved lydoptagelse!</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Der er ingen app tilgængelig på enheden, der kan åbne linket</string>
-  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">For at sende talebeskeder skal du give Signal tilladelse til at tilgå mikrofonen</string>
-  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal kræver tilladelse til at tilgå mikrofonen for at kunne sende lydfiler, hvilket det er blevet nægtet. Gå venligst via appens menu til Indstillinger, vælg \"Tilladelser\" og tilvælg \"Mikrofon\"</string>
-  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">For at ringe til %s kræver Signal tilladelse til at tilgå din mikrofon og dit kamera</string>
-  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal kræver tilladelse til at tilgå mikrofon og kamera, for at kunne ringe til %s, men det er permanent blevet afvist. Gå venligst via appens menu til Indstillinger, vælg \"Tilladelser\" og tilvælg \"Mikrofon\" og \"Kamera\"</string>
-  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Signal kræver tilladelse til at tilgå dit kamera, for at kunne tage billeder og optage video</string>
-  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal kræver tilladelse til at tilgå dit kamera, for at kunne tage billeder eller optage video, hvilket det er blevet nægtet. Gå venligst via appens menu til Indstillinger, vælg \"Tilladelser\" og tilvælg \"Kamera\"</string>
-  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal kræver tilladelse til at tilgå kameraet, for at tage billeder og video</string>
+  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">For at sende talebeskeder skal du give Loki Messenger tilladelse til at tilgå mikrofonen</string>
+  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Loki Messenger kræver tilladelse til at tilgå mikrofonen for at kunne sende lydfiler, hvilket det er blevet nægtet. Gå venligst via appens menu til Indstillinger, vælg \"Tilladelser\" og tilvælg \"Mikrofon\"</string>
+  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">For at ringe til %s kræver Loki Messenger tilladelse til at tilgå din mikrofon og dit kamera</string>
+  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Loki Messenger kræver tilladelse til at tilgå mikrofon og kamera, for at kunne ringe til %s, men det er permanent blevet afvist. Gå venligst via appens menu til Indstillinger, vælg \"Tilladelser\" og tilvælg \"Mikrofon\" og \"Kamera\"</string>
+  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Loki Messenger kræver tilladelse til at tilgå dit kamera, for at kunne tage billeder og optage video</string>
+  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Loki Messenger kræver tilladelse til at tilgå dit kamera, for at kunne tage billeder eller optage video, hvilket det er blevet nægtet. Gå venligst via appens menu til Indstillinger, vælg \"Tilladelser\" og tilvælg \"Kamera\"</string>
+  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Loki Messenger kræver tilladelse til at tilgå kameraet, for at tage billeder og video</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s%2$s</string>
-  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal kan ikke sende SMS/MMS beskeder, fordi det ikke er din standard besked app. Vil du ændre dette under Android indstillinger?</string>
+  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Loki Messenger kan ikke sende SMS/MMS beskeder, fordi det ikke er din standard besked app. Vil du ændre dette under Android indstillinger?</string>
   <string name="ConversationActivity_yes">Ja</string>
   <string name="ConversationActivity_no">Nej</string>
   <string name="ConversationActivity_search_position">%1$d af %2$d</string>
@@ -196,7 +196,7 @@
     <item quantity="other">Gemmer %1$d vedhæftninger til hukommelsen...</item>
   </plurals>
   <string name="ConversationFragment_pending">Afventer...</string>
-  <string name="ConversationFragment_push">Data (Signal)</string>
+  <string name="ConversationFragment_push">Data (Loki Messenger)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Sletter</string>
@@ -238,7 +238,7 @@
   <string name="CreateProfileActivity_too_long">For langt</string>
   <string name="CreateProfileActivity_profile_name">Profil navn</string>
   <string name="CreateProfileActivity_set_up_your_profile">Konfigurer din profil</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal profiler er krypteret begge veje, og Signal´s services har ingen adgang til informationen</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal profiler er krypteret begge veje, og Loki Messenger´s services har ingen adgang til informationen</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Anvender tilpasset: %s</string>
   <string name="CustomDefaultPreference_using_default">Anvender standard: %s</string>
@@ -270,22 +270,22 @@
   <string name="DocumentView_unknown_file">Ukendt fil</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimér for manglende Play Services</string>
-  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Enheden understøtter ikke Play Services. Tap for at slå batterioptimering fra, som forhindrer Signal i at modtage beskeder i baggrunden</string>
+  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Enheden understøtter ikke Play Services. Tap for at slå batterioptimering fra, som forhindrer Loki Messenger i at modtage beskeder i baggrunden</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Del med</string>
   <!--ExperienceUpgradeActivity-->
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Velkommen til Signal</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure og RedPhone er nu én privat messenger, til enhver lejlighed: Signal</string>
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Velkommen til Signal!</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure er nu Signal</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure og RedPhone er nu én app: Signal. Tap for at udforske</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Velkommen til Loki Messenger</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure og RedPhone er nu én privat messenger, til enhver lejlighed: Loki Messenger</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Velkommen til Loki Messenger!</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure er nu Loki Messenger</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure og RedPhone er nu én app: Loki Messenger. Tap for at udforske</string>
   <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Sig ´Hej´ til sikre videoopkald</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal understøtter nu sikre videoopkald. Du skal bare starte et Signal opkald som normalt, tap på video knappen og vink goddag</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal understøtter nu sikre videoopkald</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal understøtter nu sikre videoopkald. Tap for at udforske</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal understøtter nu sikre videoopkald. Du skal bare starte et Loki Messenger opkald som normalt, tap på video knappen og vink goddag</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Loki Messenger understøtter nu sikre videoopkald</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Loki Messenger understøtter nu sikre videoopkald. Tap for at udforske</string>
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Er du klar til et nærbilled?</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Du kan nu dele dit profilbillede og navn med dine venner på Signal</string>
-  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal profiler er nu tilgængelige</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Du kan nu dele dit profilbillede og navn med dine venner på Loki Messenger</string>
+  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Loki Messenger profiler er nu tilgængelige</string>
   <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Introducerer skrive indikatorer</string>
   <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Nu har du mulighed for at se og vise, når beskeder skrives</string>
   <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Vil du aktivere det nu?</string>
@@ -295,13 +295,13 @@
   <string name="ExperienceUpgradeActivity_no_thanks">Nej tak</string>
   <string name="ExperienceUpgradeActivity_introducing_link_previews">Introducere eksempelvisning for links</string>
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Mulighed for eksempelvisning af links, er nu understøttet for de fleste populære sider på nettet</string>
-  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Du kan når som helst aktivere eller deaktivere funktionaliteten, under Signal, Indstillinger (Privatliv -&gt; Send link eksempelvisning)</string>
+  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Du kan når som helst aktivere eller deaktivere funktionaliteten, under Loki Messenger, Indstillinger (Privatliv -&gt; Send link eksempelvisning)</string>
   <string name="ExperienceUpgradeActivity_got_it">Modtaget</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Modtager en meddelelse...</string>
   <!--GcmRefreshJob-->
-  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Permanent fejl ved Signal kommunikationen!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal var ude af stand til at registrere med Google Play Services. Signalbeskeder og -opkald blev deaktiveret. Prøv venligst at registrere igen i Indstillinger -&gt; Advanceret</string>
+  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Permanent fejl ved Loki Messenger kommunikationen!</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal var ude af stand til at registrere med Google Play Services. Loki Messengerbeskeder og -opkald blev deaktiveret. Prøv venligst at registrere igen i Indstillinger -&gt; Advanceret</string>
   <!--GiphyActivity-->
   <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Fejl opstod ved hentning af GIF i fuld opløsning</string>
   <!--GiphyFragmentPageAdapter-->
@@ -312,15 +312,15 @@
   <string name="GroupCreateActivity_actionbar_edit_title">Rediger gruppe</string>
   <string name="GroupCreateActivity_group_name_hint">Gruppenavn</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Ny MMS-gruppe</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">Du har valgt en person der ikke understøtter Signal grupper. Gruppen oprettes derfor som en MMS gruppe</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">Du er ikke sat op til Signalbeskeder og -opkald, hvorfor Signal grupper er deaktiveret. Du bedes registrere dig under Indstillinger -&gt; Advanceret</string>
+  <string name="GroupCreateActivity_contacts_dont_support_push">Du har valgt en person der ikke understøtter Loki Messenger grupper. Gruppen oprettes derfor som en MMS gruppe</string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">Du er ikke sat op til Signalbeskeder og -opkald, hvorfor Loki Messenger grupper er deaktiveret. Du bedes registrere dig under Indstillinger -&gt; Advanceret</string>
   <string name="GroupCreateActivity_contacts_no_members">Der skal være valgt mindst én person til gruppen!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">En kontakt i gruppen har et nummer, der ikke kan læses. Ret nummeret eller fjern kontakten og prøv igen</string>
   <string name="GroupCreateActivity_avatar_content_description">Gruppe ikon</string>
   <string name="GroupCreateActivity_menu_apply_button">Anvend</string>
   <string name="GroupCreateActivity_creating_group">Opretter %1$s...</string>
   <string name="GroupCreateActivity_updating_group">Opdaterer %1$s...</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Kunne ikke tilføje, da %1$s ikke bruger Signal</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Kunne ikke tilføje, da %1$s ikke bruger Loki Messenger</string>
   <string name="GroupCreateActivity_loading_group_details">Indlæser gruppedetaljer...</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Du er allerede med i gruppen</string>
   <!--GroupShareProfileView-->
@@ -341,7 +341,7 @@
   <string name="InviteActivity_sending">Sender...</string>
   <string name="InviteActivity_heart_content_description">Hjerte</string>
   <string name="InviteActivity_invitations_sent">Invitationer sendt!</string>
-  <string name="InviteActivity_invite_to_signal">Invitér til Signal</string>
+  <string name="InviteActivity_invite_to_signal">Invitér til Loki Messenger</string>
   <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">SEND SMS TIL %d VENNER</item>
     <item quantity="other">SEND SMS TIL %d VENNER</item>
@@ -350,7 +350,7 @@
     <item quantity="one">Send %d SMS invitationer?</item>
     <item quantity="other">Send %d SMS invitationer?</item>
   </plurals>
-  <string name="InviteActivity_lets_switch_to_signal">Lad os bruge Signal: %1$s</string>
+  <string name="InviteActivity_lets_switch_to_signal">Lad os bruge Loki Messenger: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Det lader til at du ikke har nogle apps at dele til</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Venner lader ikke deres venner chatte ukrypteret</string>
   <!--Job-->
@@ -383,9 +383,9 @@
   <string name="MediaOverviewActivity_Select_all">Vælg alle</string>
   <string name="MediaOverviewActivity_collecting_attachments">Samler vedhæftninger...</string>
   <!--- NotificationBarManager-->
-  <string name="NotificationBarManager_signal_call_in_progress">Signal opkald i gang</string>
-  <string name="NotificationBarManager__establishing_signal_call">Foretager Signalopkald</string>
-  <string name="NotificationBarManager__incoming_signal_call">Indgående Signal opkald</string>
+  <string name="NotificationBarManager_signal_call_in_progress">Loki Messenger opkald i gang</string>
+  <string name="NotificationBarManager__establishing_signal_call">Foretager Loki Messengeropkald</string>
+  <string name="NotificationBarManager__incoming_signal_call">Indgående Loki Messenger opkald</string>
   <string name="NotificationBarManager__deny_call">Afvis opkald</string>
   <string name="NotificationBarManager__answer_call">Svar opkald</string>
   <string name="NotificationBarManager__end_call">Afslut opkald</string>
@@ -410,7 +410,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Alle mediefiler</string>
   <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Modtog en besked krypteret med en ældre version af Signal, der ikke længere understøttes. Bed venligst afsenderen om at opgradere til den nyeste version og sende beskeden igen</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Modtog en besked krypteret med en ældre version af Loki Messenger, der ikke længere understøttes. Bed venligst afsenderen om at opgradere til den nyeste version og sende beskeden igen</string>
   <string name="MessageRecord_left_group">Du har forladt gruppen</string>
   <string name="MessageRecord_you_updated_group">Du opdaterede gruppen</string>
   <string name="MessageRecord_you_called">Du ringede</string>
@@ -420,7 +420,7 @@
   <string name="MessageRecord_s_called_you">%s ringede til mig</string>
   <string name="MessageRecord_called_s">Ringet til %s</string>
   <string name="MessageRecord_missed_call_from">Mistet opkald fra %s</string>
-  <string name="MessageRecord_s_joined_signal">%s bruger Signal!</string>
+  <string name="MessageRecord_s_joined_signal">%s bruger Loki Messenger!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Du slog beskeder med tidsudløb fra</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s slog beskeder med tidsudløb fra</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Besked sat til at udløbe efter %1$s</string>
@@ -451,9 +451,9 @@
   <string name="DeviceProvisioningActivity_content_progress_key_error">Ugyldig QR-kode</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Ups. Du har allerede for mange enheder tilsluttet, prøv at fjerne én</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Beklager. Dette er ikke en gyldig QR-kode til at forbinde enheder</string>
-  <string name="DeviceProvisioningActivity_link_a_signal_device">Tilføj en Signal enhed?</string>
-  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Det ser ud som om du forsøger at tilføje en Signal enhed via en 3 parts skanner. Af sikkerhedshensyn bør du skanne koden igen som findes i Signal app\'en</string>
-  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal kræver tilladelse til at tilgå dit kamera, for at kunne skanne en QR-kode, hvilket det er blevet nægtet. Gå venligst via appens menu til Indstillinger, vælg \"Tilladelser\" og tilvælg \"Kamera\"</string>
+  <string name="DeviceProvisioningActivity_link_a_signal_device">Tilføj en Loki Messenger enhed?</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Det ser ud som om du forsøger at tilføje en Signal enhed via en 3 parts skanner. Af sikkerhedshensyn bør du skanne koden igen som findes i Loki Messenger app\'en</string>
+  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Loki Messenger kræver tilladelse til at tilgå dit kamera, for at kunne skanne en QR-kode, hvilket det er blevet nægtet. Gå venligst via appens menu til Indstillinger, vælg \"Tilladelser\" og tilvælg \"Kamera\"</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Kan ikke scanne en QR kode uden tilladelse til at tilgå kameraet</string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">Beskeder med tidsudløb</string>
@@ -461,7 +461,7 @@
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Beskeder sendt eller modtaget i denne samtale, vil udløbe %s efter at de er læst</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Indtast kodeord</string>
-  <string name="PassphrasePromptActivity_watermark_content_description">Signal ikon</string>
+  <string name="PassphrasePromptActivity_watermark_content_description">Loki Messenger ikon</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Tilføj kodeord</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Ugyldigt kodeord!</string>
   <!--PlayServicesProblemFragment-->
@@ -515,7 +515,7 @@ telefonnummer
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Det indtastede
 nummer (%s) er ugyldigt</string>
   <string name="RegistrationActivity_missing_google_play_services">Mangler Google Play Services</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Enheden mangler Google Play Service installeret. Du kan stadig bruge Signal men denne konfiguration kan resultere i begrænset stabilitet og ydeevne.\n\nHvis du ikke er en superbruger, ikke kører en alternativ Android ROM eller tror du ser denne besked ved en fejl, kan du kontakte support@signal.org på engelsk for hjælp</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Enheden mangler Google Play Service installeret. Du kan stadig bruge Loki Messenger men denne konfiguration kan resultere i begrænset stabilitet og ydeevne.\n\nHvis du ikke er en superbruger, ikke kører en alternativ Android ROM eller tror du ser denne besked ved en fejl, kan du kontakte support@signal.org på engelsk for hjælp</string>
   <string name="RegistrationActivity_i_understand">Forstået</string>
   <string name="RegistrationActivity_play_services_error">Play Services fejl</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services bliver opdateret eller er midlertidigt utilgængelig. Prøv venligst igen</string>
@@ -523,9 +523,9 @@ nummer (%s) er ugyldigt</string>
   <string name="RegistrationActivity_no_browser">Linket kan ikke åbnes. Ingen webbrowser installeret</string>
   <string name="RegistrationActivity_more_information">Mere information</string>
   <string name="RegistrationActivity_less_information">Mindre information</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal kræver tilladelse til at tilgå dine kontakter og medieindhold, for at oprette forbindelser til venner, udveksle beskeder og foretage sikre opkald</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Loki Messenger kræver tilladelse til at tilgå dine kontakter og medieindhold, for at oprette forbindelser til venner, udveksle beskeder og foretage sikre opkald</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Ikke muligt at få forbindelse til service. Tjek venligst din netværksforbindelse og prøv igen</string>
-  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">For nemt at godkende dit mobilnummer, kan Signal automatisk registrere din sikkerhedskode, hvis du tillader Signal adgang til at læse SMS beskeder</string>
+  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">For nemt at godkende dit mobilnummer, kan Signal automatisk registrere din sikkerhedskode, hvis du tillader Loki Messenger adgang til at læse SMS beskeder</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Du er nu kun %d trin fra at indsende en fejllog</item>
     <item quantity="other">Du er nu kun %d trin fra at indsende en fejllog</item>
@@ -548,13 +548,13 @@ nummer (%s) er ugyldigt</string>
   <string name="SearchFragment_header_messages">Beskeder</string>
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Føj til kontakter</string>
-  <string name="SharedContactDetailsActivity_invite_to_signal">Invitér til Signal</string>
-  <string name="SharedContactDetailsActivity_signal_message">Signalbesked</string>
-  <string name="SharedContactDetailsActivity_signal_call">Signalopkald</string>
+  <string name="SharedContactDetailsActivity_invite_to_signal">Invitér til Loki Messenger</string>
+  <string name="SharedContactDetailsActivity_signal_message">Loki Messengerbesked</string>
+  <string name="SharedContactDetailsActivity_signal_call">Loki Messengeropkald</string>
   <!--SharedContactView-->
   <string name="SharedContactView_add_to_contacts">Føj til kontakter</string>
-  <string name="SharedContactView_invite_to_signal">Invitér til Signal</string>
-  <string name="SharedContactView_message">Signalbesked</string>
+  <string name="SharedContactView_invite_to_signal">Invitér til Loki Messenger</string>
+  <string name="SharedContactView_message">Loki Messengerbesked</string>
   <!--Slide-->
   <string name="Slide_image">Billede</string>
   <string name="Slide_audio">Lyd</string>
@@ -579,7 +579,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="ThreadRecord_called_you">Ringede til mig</string>
   <string name="ThreadRecord_missed_call">Mistet opkald</string>
   <string name="ThreadRecord_media_message">Mediebesked</string>
-  <string name="ThreadRecord_s_is_on_signal">%s er på Signal!</string>
+  <string name="ThreadRecord_s_is_on_signal">%s er på Loki Messenger!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Beskeder med tidsudløb deaktiveret</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Beskeder udløber efter %s</string>
   <string name="ThreadRecord_safety_number_changed">Sikkerhedsnummer ændret</string>
@@ -587,8 +587,8 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="ThreadRecord_you_marked_verified">Markerét som verificeret</string>
   <string name="ThreadRecord_you_marked_unverified">Markerét som ubekræftet</string>
   <!--UpdateApkReadyListener-->
-  <string name="UpdateApkReadyListener_Signal_update">Signal opdatering</string>
-  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">En ny version af Signal er tilgængelig, tap for at opdatere</string>
+  <string name="UpdateApkReadyListener_Signal_update">Loki Messenger opdatering</string>
+  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">En ny version af Loki Messenger er tilgængelig, tap for at opdatere</string>
   <!--UnknownSenderView-->
   <string name="UnknownSenderView_block_s">Blokér %s?</string>
   <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Blokerede kontakter kan hverken sende dig beskeder eller ringe</string>
@@ -603,14 +603,14 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="UnverifiedSendDialog_send_message">Send besked?</string>
   <string name="UnverifiedSendDialog_send">Send</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Din kontakt har en gammel version af Signal installeret. Bed ham om at opdatere inden i udveksler sikkerhedsnummer</string>
-  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Din kontakt bruger en nyere version af Signal, med en inkompatibel QR kode. Opdatér venligst din app for at sammenligne</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Din kontakt har en gammel version af Loki Messenger installeret. Bed ham om at opdatere inden i udveksler sikkerhedsnummer</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Din kontakt bruger en nyere version af Loki Messenger, med en inkompatibel QR kode. Opdatér venligst din app for at sammenligne</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Den skannede QR-kode registreres ikke korrekt. Prøv at skanne igen</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">Del sikkerhedsnummer via...</string>
-  <string name="VerifyIdentityActivity_our_signal_safety_number">Signal´s sikkerhedsnummer:</string>
+  <string name="VerifyIdentityActivity_our_signal_safety_number">Loki Messenger´s sikkerhedsnummer:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Det lader til at du ikke har nogen apps at dele til</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Sikkerhedsnummer til sammenligning findes ikke i udklipsholderen</string>
-  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal kræver tilladelse til at tilgå dit kamera, for at kunne skanne en QR-kode, hvilket det er blevet nægtet. Gå venligst via appens menu til Indstillinger, vælg \"Tilladelser\" og tilvælg \"Kamera\"</string>
+  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Loki Messenger kræver tilladelse til at tilgå dit kamera, for at kunne skanne en QR-kode, hvilket det er blevet nægtet. Gå venligst via appens menu til Indstillinger, vælg \"Tilladelser\" og tilvælg \"Kamera\"</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Ikke muligt at skanne QR-koden. Tilladelse til at tilgå kameraet mangler</string>
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Ugyldig krypteret besked</string>
@@ -630,13 +630,13 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Tap for at åbne</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Tap for at åbne, eller tap på låsen for at lukke</string>
-  <string name="KeyCachingService_passphrase_cached">Signal er låst op</string>
-  <string name="KeyCachingService_lock">Lås Signal</string>
+  <string name="KeyCachingService_passphrase_cached">Loki Messenger er låst op</string>
+  <string name="KeyCachingService_lock">Lås Loki Messenger</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Dig</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Multimedie type ikke understøttet</string>
   <string name="MediaPreviewActivity_draft">Kladde</string>
-  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal kræver tilladelse til at tilgå din hukommelse, for at kunne gemme til ekstern placering, hvilket det er blevet nægtet. Gå venligst via appens menu til Indstillinger, vælg \"Tilladelser\" og tilvælg \"Hukommelse\"</string>
+  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Loki Messenger kræver tilladelse til at tilgå din hukommelse, for at kunne gemme til ekstern placering, hvilket det er blevet nægtet. Gå venligst via appens menu til Indstillinger, vælg \"Tilladelser\" og tilvælg \"Hukommelse\"</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Ikke muligt at gemme til ekstern placering, uden tilladelse</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Slet besked?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Dette sletter beskeden permanent</string>
@@ -652,10 +652,10 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="MessageNotifier_mark_read">Markér som læst</string>
   <string name="MessageNotifier_media_message">Mediebesked</string>
   <string name="MessageNotifier_reply">Svar</string>
-  <string name="MessageNotifier_signal_message">Signalbesked</string>
+  <string name="MessageNotifier_signal_message">Loki Messengerbesked</string>
   <string name="MessageNotifier_unsecured_sms">Usikret SMS</string>
-  <string name="MessageNotifier_pending_signal_messages">Afventende Signalbeskeder</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">Du har afventende Signalbeskeder, tap for at åbne og modtage</string>
+  <string name="MessageNotifier_pending_signal_messages">Afventende Loki Messengerbeskeder</string>
+  <string name="MessageNotifier_you_have_pending_signal_messages">Du har afventende Loki Messengerbeskeder, tap for at åbne og modtage</string>
   <string name="MessageNotifier_contact_message">%1$s%2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Kontakt</string>
   <!--Notification Channels-->
@@ -669,7 +669,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="NotificationChannel_group_messages">Beskeder</string>
   <string name="NotificationChannel_missing_display_name">Ukendt</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Hurtig svar utilgængelig når Signal er låst!</string>
+  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Hurtig svar utilgængelig når Loki Messenger er låst!</string>
   <string name="QuickResponseService_problem_sending_message">Problem med at sende besked!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_saved_to">Gemt til %s</string>
@@ -689,14 +689,14 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   </plurals>
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">Enhed ikke længere registreret</string>
-  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Dette er sikkert grundet du har registreret dit mobilnummer med Signal, på en anden enhed allerede. Tap for at registrere på ny</string>
+  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Dette er sikkert grundet du har registreret dit mobilnummer med Loki Messenger, på en anden enhed allerede. Tap for at registrere på ny</string>
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">Kunne ikke afspille video</string>
   <!--WebRtcCallActivity-->
-  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">For at svare opkald fra %s skal Signal gives adgang til din mikrofon</string>
-  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal kræver tilladelse til at tilgå mikrofon og kamera, for at kunne modtage og foretage opkald, hvilket det er blevet nægtet. Gå venligst via appens menu til Indstillinger, vælg \"Tilladelser\" og tilvælg \"Mikrofon\" og \"Kamera\"</string>
+  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">For at svare opkald fra %s skal Loki Messenger gives adgang til din mikrofon</string>
+  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Loki Messenger kræver tilladelse til at tilgå mikrofon og kamera, for at kunne modtage og foretage opkald, hvilket det er blevet nægtet. Gå venligst via appens menu til Indstillinger, vælg \"Tilladelser\" og tilvælg \"Mikrofon\" og \"Kamera\"</string>
   <!--WebRtcCallScreen-->
-  <string name="WebRtcCallScreen_new_safety_numbers">Sikkerhedsnummeret for samtalen med %1$s er ændret. Dette kan enten betyde at nogen prøver at opfange jeres kommunikation, eller  blot at %2$s har geninstalleret Signal</string>
+  <string name="WebRtcCallScreen_new_safety_numbers">Sikkerhedsnummeret for samtalen med %1$s er ændret. Dette kan enten betyde at nogen prøver at opfange jeres kommunikation, eller  blot at %2$s har geninstalleret Loki Messenger</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Du bør verificere din sikkerhedsnøgle med kontakten</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Nyt sikkerhedsnummer</string>
   <string name="WebRtcCallScreen_accept">Godkend</string>
@@ -731,15 +731,15 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Kontaktbillede</string>
   <!--ContactSelectionListFragment-->
-  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal kræver tilladelse til at tilgå dine kontakter for at kunne vise dem, hvilket det er blevet nægtet. Gå venligst via appens menu til Indstillinger, vælg \"Tilladelser\" og tilvælg \"Kontakter\"</string>
+  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Loki Messenger kræver tilladelse til at tilgå dine kontakter for at kunne vise dem, hvilket det er blevet nægtet. Gå venligst via appens menu til Indstillinger, vælg \"Tilladelser\" og tilvælg \"Kontakter\"</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Fejl ved modtagelse af kontakter, tjek din netværksforbindelse</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Ingen blokerede kontakter</string>
   <!--contact_selection_list_fragment-->
-  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal kræver tilladelse til at tilgå dine kontakter, for at kunne vise dem</string>
+  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Loki Messenger kræver tilladelse til at tilgå dine kontakter, for at kunne vise dem</string>
   <string name="contact_selection_list_fragment__show_contacts">Vis kontakter</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Signalbesked</string>
+  <string name="conversation_activity__type_message_push">Loki Messengerbesked</string>
   <string name="conversation_activity__type_message_sms_insecure">Usikret SMS</string>
   <string name="conversation_activity__type_message_mms_insecure">Usikret MMS</string>
   <string name="conversation_activity__from_sim_name">Fra %1$s</string>
@@ -751,7 +751,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Slå kamera til/fra</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Optag og send en lydbesked</string>
   <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Lås den vedhæftede lydoptagelse</string>
-  <string name="conversation_activity__enable_signal_for_sms">Brug Signal til SMS</string>
+  <string name="conversation_activity__enable_signal_for_sms">Brug Loki Messenger til SMS</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">Slide for at annullere</string>
   <string name="conversation_input_panel__cancel">Annuller</string>
@@ -824,9 +824,9 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="IdentityUtil_unverified_banner_one">Dit sikkerhedsnummer med %s er blevet ændret, og er ikke længere verificeret</string>
   <string name="IdentityUtil_unverified_banner_two">Dine sikkerhedsnumre med %1$s og %2$s er ikke længere verificeret</string>
   <string name="IdentityUtil_unverified_banner_many">Dine sikkerhedsnumre med %1$s, %2$s, og %3$s er ikke længere verificeret</string>
-  <string name="IdentityUtil_unverified_dialog_one">Dine sikkerhedsnumre med %1$s er blevet ændret og er ikke længere verificeret. Dette kan betyde at nogen forsøger at opfange din kommunikation, eller at %1$s bare har geninstalleret Signal</string>
-  <string name="IdentityUtil_unverified_dialog_two">Dine sikkerhedsnumre med %1$s og %2$s er ikke længere verificeret. Dette kan betyde at nogen forsøger at opfange din kommunikation, eller at de bare har geninstalleret Signal</string>
-  <string name="IdentityUtil_unverified_dialog_many">Dine sikkerhedsnumre med %1$s, %2$s, og %3$s er ikke længere verificeret. Dette kan betyde at nogen forsøger at opfange din kommunikation, eller de bare har geninstalleret Signal</string>
+  <string name="IdentityUtil_unverified_dialog_one">Dine sikkerhedsnumre med %1$s er blevet ændret og er ikke længere verificeret. Dette kan betyde at nogen forsøger at opfange din kommunikation, eller at %1$s bare har geninstalleret Loki Messenger</string>
+  <string name="IdentityUtil_unverified_dialog_two">Dine sikkerhedsnumre med %1$s og %2$s er ikke længere verificeret. Dette kan betyde at nogen forsøger at opfange din kommunikation, eller at de bare har geninstalleret Loki Messenger</string>
+  <string name="IdentityUtil_unverified_dialog_many">Dine sikkerhedsnumre med %1$s, %2$s, og %3$s er ikke længere verificeret. Dette kan betyde at nogen forsøger at opfange din kommunikation, eller de bare har geninstalleret Loki Messenger</string>
   <string name="IdentityUtil_untrusted_dialog_one">Dit sikkerhedsnummer med %s er lige blevet ændret</string>
   <string name="IdentityUtil_untrusted_dialog_two">Dine sikkerhedsnumre med %1$s og %2$s er lige blevet ændret</string>
   <string name="IdentityUtil_untrusted_dialog_many">Dine sikkerhedsnumre med %1$s, %2$s, og %3$s er lige blevet ændret</string>
@@ -857,7 +857,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="log_submit_activity__please_review_this_log_from_my_app">Gennemlæs venligst loggen her fra min app: %1$s</string>
   <string name="log_submit_activity__network_failure">Netværksfejl. Prøv venligst igen</string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Vil du importere dine eksisterende beskeder til Signals krypterede database?</string>
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Vil du importere dine eksisterende beskeder til Loki Messengers krypterede database?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Standard system databasen vil ikke blive ændret</string>
   <string name="database_migration_activity__skip">Spring over</string>
   <string name="database_migration_activity__import">Importér</string>
@@ -889,7 +889,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Lås op</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal kræver adgang til MMS-indstillinger for at levere medie og gruppebeskeder gennem din teleudbyder. Din enhed gør ikke denne information tilgængelig, hvilket nogle gange er tilfældet for låste enheder og andre begrænsende opsætninger</string>
+  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Loki Messenger kræver adgang til MMS-indstillinger for at levere medie og gruppebeskeder gennem din teleudbyder. Din enhed gør ikke denne information tilgængelig, hvilket nogle gange er tilfældet for låste enheder og andre begrænsende opsætninger</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">For at sende multimedie- og gruppebeskeder, tap \"OK\" og sæt de nødvendige indstillinger. MMS indstillingerne for din teleoperatør kan ofte findes ved at søge på \"din operatørs APN\". Dette skal kun gøres én gang</string>
   <!--profile_create_activity-->
   <string name="profile_create_activity__set_later">Senere</string>
@@ -912,12 +912,12 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="recipient_preferences__call_settings">Indstillinger for opkald</string>
   <string name="recipient_preferences__ringtone">Ringetone</string>
   <!--- redphone_call_controls-->
-  <string name="redphone_call_card__signal_call">Signal opkald</string>
+  <string name="redphone_call_card__signal_call">Loki Messenger opkald</string>
   <string name="redphone_call_controls__mute">Udsæt</string>
   <string name="redphone_call_controls__flip_camera_rear">Skift kamera</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">TELEFONNUMMER</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal gør det nemt at kommunikere, ved at bruge dit eksisterende telefonnummer og kontaktbog. Venner og kontakter som allerede ved hvordan de kontakter dig via mobil, vil have nemt ved at komme i kontakt gennem Signal.\n\nRegistreringen overfører nogle kontaktinformationer til serveren. Disse bliver ikke gemt</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal gør det nemt at kommunikere, ved at bruge dit eksisterende telefonnummer og kontaktbog. Venner og kontakter som allerede ved hvordan de kontakter dig via mobil, vil have nemt ved at komme i kontakt gennem Loki Messenger.\n\nRegistreringen overfører nogle kontaktinformationer til serveren. Disse bliver ikke gemt</string>
   <string name="registration_activity__verify_your_number">Verificer dit nummer</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Indtast venligst dit mobilnummer, for at modtage en verifikationskode. Takster fra din udbyder kan blive pålagt</string>
   <!--recipients_panel-->
@@ -994,8 +994,8 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="preferences__sms_mms">SMS og MMS</string>
   <string name="preferences__pref_all_sms_title">Modtag alle SMS</string>
   <string name="preferences__pref_all_mms_title">Modtag alle MMS</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Brug Signal til alle indgående SMS\'er</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Brug Signal til alle indgående MMS\'er</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Brug Loki Messenger til alle indgående SMS\'er</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Brug Loki Messenger til alle indgående MMS\'er</string>
   <string name="preferences__pref_enter_sends_title">[Enter] sender besked</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Tap på [Enter] sender beskeden</string>
   <string name="preferences__send_link_previews">Send link eksempelvisning</string>
@@ -1007,8 +1007,8 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="preferences__enable_passphrase">Aktiver skærmlås med kodeord</string>
   <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Lås skærm og notifikationer med kodeord</string>
   <string name="preferences__screen_security">Skærmsikkerhed</string>
-  <string name="preferences__disable_screen_security_to_allow_screen_shots">Blokér skærmbilleder i listen \"Seneste apps\" og i Signal</string>
-  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Lås automatisk Signal efter et valgt tidsinterval med inaktivitet</string>
+  <string name="preferences__disable_screen_security_to_allow_screen_shots">Blokér skærmbilleder i listen \"Seneste apps\" og i Loki Messenger</string>
+  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Lås automatisk Loki Messenger efter et valgt tidsinterval med inaktivitet</string>
   <string name="preferences__inactivity_timeout_passphrase">Kodeord for timeout ved inaktivitet</string>
   <string name="preferences__inactivity_timeout_interval">Tidsinterval for inaktivitet</string>
   <string name="preferences__notifications">Notifikationer</string>
@@ -1061,8 +1061,8 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="preferences__theme">Tema</string>
   <string name="preferences__default">Standard</string>
   <string name="preferences__language">Sprog</string>
-  <string name="preferences__signal_messages_and_calls">Signalbeskeder og -opkald</string>
-  <string name="preferences__free_private_messages_and_calls">Gratis private beskeder og opkald til Signal brugere</string>
+  <string name="preferences__signal_messages_and_calls">Loki Messengerbeskeder og -opkald</string>
+  <string name="preferences__free_private_messages_and_calls">Gratis private beskeder og opkald til Loki Messenger brugere</string>
   <string name="preferences__submit_debug_log">Indsend fejlfindingslog</string>
   <string name="preferences__support_wifi_calling">Kompatibilitetstilstand for WiFi opkald</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktivér hvis din enhed understøtter SMS/MMS via WiFi (kun hvis WiFi opkald er aktiveret på din enhed)</string>
@@ -1079,8 +1079,8 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="preferences_chats__media_auto_download">Hent automatisk multimedier</string>
   <string name="preferences_chats__message_trimming">Trimning af beskeder</string>
   <string name="preferences_advanced__use_system_emoji">Anvend system emoji´s</string>
-  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Deaktivér Signals indbyggede emoji understøttelse</string>
-  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Videresend alle opkald gennem Signal serveren, for at undgå at afsløre din IP-adresse for din kontakt. Dette vil reducere opkaldskvaliteten</string>
+  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Deaktivér Loki Messengers indbyggede emoji understøttelse</string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Videresend alle opkald gennem Loki Messenger serveren, for at undgå at afsløre din IP-adresse for din kontakt. Dette vil reducere opkaldskvaliteten</string>
   <string name="preferences_advanced__always_relay_calls">Videresend altid opkald</string>
   <string name="preferences_app_protection__app_access">App adgang</string>
   <string name="preferences_app_protection__communication">Kommunikation</string>
@@ -1092,9 +1092,9 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="preferences_notifications__calls">Opkald</string>
   <string name="preferences_notifications__ringtone">Ringetone</string>
   <string name="preferences_chats__show_invitation_prompts">Vis invitationsprompt</string>
-  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Vis invitationsprompt for kontakter uden Signal</string>
+  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Vis invitationsprompt for kontakter uden Loki Messenger</string>
   <string name="preferences_chats__message_text_size">Skriftstørrelse på beskeder</string>
-  <string name="preferences_events__contact_joined_signal">Kontakt er nu tilmeldt Signal</string>
+  <string name="preferences_events__contact_joined_signal">Kontakt er nu tilmeldt Loki Messenger</string>
   <string name="preferences_notifications__priority">Prioritet</string>
   <string name="preferences_communication__category_sealed_sender">Sikker afsender</string>
   <string name="preferences_communication__sealed_sender_display_indicators">Vis indikator</string>
@@ -1110,7 +1110,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Opkald</string>
   <!--conversation_callable_secure-->
-  <string name="conversation_callable_secure__menu_call">Signal opkald</string>
+  <string name="conversation_callable_secure__menu_call">Loki Messenger opkald</string>
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">Besked detaljer</string>
   <string name="conversation_context__menu_copy_text">Kopiér tekst</string>
@@ -1173,26 +1173,26 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopiér til udklipsholder</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Sammenlign med udklipsholder</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">Din version af Signal er forældet</string>
+  <string name="reminder_header_outdated_build">Din version af Loki Messenger er forældet</string>
   <plurals name="reminder_header_outdated_build_details">
-    <item quantity="one">Din version af Signal udløber om %d dage. Tap for at opdatere til den nyeste version</item>
-    <item quantity="other">Din version af Signal vil udløbe om %d dage. Tap for at opdatere til den nyeste version</item>
+    <item quantity="one">Din version af Loki Messenger udløber om %d dage. Tap for at opdatere til den nyeste version</item>
+    <item quantity="other">Din version af Loki Messenger vil udløbe om %d dage. Tap for at opdatere til den nyeste version</item>
   </plurals>
-  <string name="reminder_header_outdated_build_details_today">Din version af Signal udløber i dag. Tap for at opdatere til den nyeste version</string>
-  <string name="reminder_header_expired_build">Din version af Signal er udgået!</string>
+  <string name="reminder_header_outdated_build_details_today">Din version af Loki Messenger udløber i dag. Tap for at opdatere til den nyeste version</string>
+  <string name="reminder_header_expired_build">Din version af Loki Messenger er udgået!</string>
   <string name="reminder_header_expired_build_details">Beskeder kan ikke længere sendes korrekt. Tap for at opdatere til den seneste version</string>
   <string name="reminder_header_sms_default_title">Anvend som standard SMS-app</string>
-  <string name="reminder_header_sms_default_text">Tap for at gøre Signal til din standard SMS-app</string>
+  <string name="reminder_header_sms_default_text">Tap for at gøre Loki Messenger til din standard SMS-app</string>
   <string name="reminder_header_sms_import_title">Importér SMS´er</string>
-  <string name="reminder_header_sms_import_text">Tap for at kopiere din telefons SMS beskeder, til Signals krypterede database</string>
-  <string name="reminder_header_push_title">Aktivér Signalbeskeder og -opkald</string>
+  <string name="reminder_header_sms_import_text">Tap for at kopiere din telefons SMS beskeder, til Loki Messengers krypterede database</string>
+  <string name="reminder_header_push_title">Aktivér Loki Messengerbeskeder og -opkald</string>
   <string name="reminder_header_push_text">Opgrader din oplevelse inden for kommunikation</string>
-  <string name="reminder_header_invite_title">Invitér til Signal</string>
+  <string name="reminder_header_invite_title">Invitér til Loki Messenger</string>
   <string name="reminder_header_invite_text">Opgradér din samtale med %1$s</string>
   <string name="reminder_header_share_title">Invitér dine venner!</string>
-  <string name="reminder_header_share_text">Jo flere venner der bruger Signal, desto bedre bliver den</string>
-  <string name="reminder_header_service_outage_text">Signal oplever tekniske problemer. Vi arbejder hårdt på at genoprette servicen, så hurtigt som muligt</string>
-  <string name="reminder_header_the_latest_signal_features_wont_work">De nyeste Signal-funktioner virker ikke på denne version af Android. Opgrader venligst denne enhed for at modtage fremtidige Signal-opdateringer</string>
+  <string name="reminder_header_share_text">Jo flere venner der bruger Loki Messenger, desto bedre bliver den</string>
+  <string name="reminder_header_service_outage_text">Loki Messenger oplever tekniske problemer. Vi arbejder hårdt på at genoprette servicen, så hurtigt som muligt</string>
+  <string name="reminder_header_the_latest_signal_features_wont_work">De nyeste Signal-funktioner virker ikke på denne version af Android. Opgrader venligst denne enhed for at modtage fremtidige Loki Messenger-opdateringer</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Gem</string>
   <string name="media_preview__forward_title">Videresend</string>
@@ -1213,16 +1213,16 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="ConversationListFragment_loading">Indlæser...</string>
   <string name="CallNotificationBuilder_connecting">Forbinder...</string>
   <string name="Permissions_permission_required">Tilladelse krævet</string>
-  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal kræver tilladelse til at tilgå dine SMS´er for at kunne sende beskeder, hvilket det er blevet nægtet. Gå venligst via appens menu til Indstillinger, vælg \"Tilladelser\" og tilvælg \"SMS\"  </string>
+  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Loki Messenger kræver tilladelse til at tilgå dine SMS´er for at kunne sende beskeder, hvilket det er blevet nægtet. Gå venligst via appens menu til Indstillinger, vælg \"Tilladelser\" og tilvælg \"SMS\"  </string>
   <string name="Permissions_continue">Fortsæt</string>
   <string name="Permissions_not_now">Ikke nu</string>
-  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal kræver tilladelse til at tilgå dine kontakter, hvilket det er blevet nægtet. Gå venligst via appens menu til Indstillinger, vælg \"Tilladelser\" og tilvælg \"Kontakter\"</string>
+  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Loki Messenger kræver tilladelse til at tilgå dine kontakter, hvilket det er blevet nægtet. Gå venligst via appens menu til Indstillinger, vælg \"Tilladelser\" og tilvælg \"Kontakter\"</string>
   <string name="conversation_activity__enable_signal_messages">AKTIVÉR SIGNALBESKEDER</string>
-  <string name="SQLCipherMigrationHelper_migrating_signal_database">Migrerer Signal´s database</string>
+  <string name="SQLCipherMigrationHelper_migrating_signal_database">Migrerer Loki Messenger´s database</string>
   <string name="PushDecryptJob_new_locked_message">Ny låst besked</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Lås op for at læse indkommende beskeder</string>
   <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Lås op for at fuldføre opdatering</string>
-  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Lås venligst Signal op, for at fuldføre opdateringen</string>
+  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Lås venligst Loki Messenger op, for at fuldføre opdateringen</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Backup kodeord</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Backup´s vil blive gemt til ekstern placering og krypteret med koden herunder. Du skal kende denne kode for at kunne genskabe fra backup´en</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Jeg har nedskrevet koden. Uden den vil jeg ikke have mulighed for at genskabe fra backup</string>
@@ -1234,7 +1234,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="preferences_chats__create_backup">Opret backup</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Skriv kodeord for backup</string>
   <string name="RegistrationActivity_restore">Gendan</string>
-  <string name="RegistrationActivity_backup_failure_downgrade">Kan ikke importere backup´s fra nyere versioner af Signal</string>
+  <string name="RegistrationActivity_backup_failure_downgrade">Kan ikke importere backup´s fra nyere versioner af Loki Messenger</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">Forkert kodeord for backup</string>
   <string name="RegistrationActivity_checking">Tjekker...</string>
   <string name="RegistrationActivity_d_messages_so_far">%d beskeder indtil videre...</string>
@@ -1249,7 +1249,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="BackupDialog_disable_and_delete_all_local_backups">Deaktivér og slet alle lokale backup\'s?</string>
   <string name="BackupDialog_delete_backups_statement">Slet backup\'s</string>
   <string name="BackupDialog_copied_to_clipboard">Kopieret til udklipsholder</string>
-  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal kræver tilladelse til at tilgå ekstern placering for at oprette backup´s, hvilket det er blevet nægtet. Gå venligst via appens menu til Indstillinger, vælg \"Tilladelser\" og tilvælg \"Hukommelse\"</string>
+  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Loki Messenger kræver tilladelse til at tilgå ekstern placering for at oprette backup´s, hvilket det er blevet nægtet. Gå venligst via appens menu til Indstillinger, vælg \"Tilladelser\" og tilvælg \"Hukommelse\"</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Sidste backup: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Pågående</string>
   <string name="LocalBackupJob_creating_backup">Opretter backup...</string>
@@ -1260,7 +1260,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="BackupUtil_never">Aldrig</string>
   <string name="BackupUtil_unknown">Ukendt</string>
   <string name="preferences_app_protection__screen_lock">Skærmlås</string>
-  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Lås adgang til Signal med Android skærmlås eller fingeraftryk</string>
+  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Lås adgang til Loki Messenger med Android skærmlås eller fingeraftryk</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Timeout for inaktiv skærmlås</string>
   <string name="AppProtectionPreferenceFragment_none">Ingen</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Registreringskoden er ikke den samme, som den kode du netop har modtaget på SMS. Indtast venligst koden du tidligere har indtastet i applikationen</string>
@@ -1271,7 +1271,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="registration_lock_dialog_view__confirm_pin">Bekræft PIN-kode</string>
   <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Indtast din registreringskode</string>
   <string name="registration_lock_reminder_view__enter_pin">Indtast PIN-kode</string>
-  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Brug en registreringskode for at registrere dette mobilnummer med Signal igen</string>
+  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Brug en registreringskode for at registrere dette mobilnummer med Loki Messenger igen</string>
   <string name="preferences_app_protection__registration_lock_pin">Registreringskode</string>
   <string name="preferences_app_protection__registration_lock">Registreringslås</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Du skal indtaste din registreringskode</string>
@@ -1284,7 +1284,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
 Der er %d dage tilbage</string>
   <string name="RegistrationActivity_registration_lock_pin">Registreringskode</string>
   <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Dette telefonnummer har registreringslås slået til. Indtast venligst registreringskoden</string>
-  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Registreringslås er slået til for dit telefonnummer. For at hjælpe dig med at huske PIN-koden, beder Signal dig bekræfte den periodisk</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Registreringslås er slået til for dit telefonnummer. For at hjælpe dig med at huske PIN-koden, beder Loki Messenger dig bekræfte den periodisk</string>
   <string name="RegistrationLockDialog_i_forgot_my_pin">Jeg har glemt min PIN-kode</string>
   <string name="RegistrationLockDialog_forgotten_pin">Glemt PIN-kode?</string>
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Registreringslås hjælper dig med at beskytte dit telefonnummer fra uautoriserede registreringsforsøg. Denne funktion kan til enhver tid slås fra under privatlivsindstillinger</string>
@@ -1296,7 +1296,7 @@ Der er %d dage tilbage</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">Slå registreringskode fra?</string>
   <string name="RegistrationLockDialog_disable">Deaktivér</string>
   <string name="preferences_chats__backups">Backup´s</string>
-  <string name="prompt_passphrase_activity__signal_is_locked">Signal er låst</string>
+  <string name="prompt_passphrase_activity__signal_is_locked">Loki Messenger er låst</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">TAP FOR AT LÅSE OP</string>
   <string name="RegistrationLockDialog_reminder">Påmindelse:</string>
   <string name="recipient_preferences__about">Om</string>

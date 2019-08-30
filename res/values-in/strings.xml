@@ -23,17 +23,17 @@
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">Hapus</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Nonaktifkan kata sandi?</string>
-  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Ini akan secara permanen membuka kunci Signal dan notifikasi pesan.</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Ini akan secara permanen membuka kunci Loki Messenger dan notifikasi pesan.</string>
   <string name="ApplicationPreferencesActivity_disable">Nonaktifkan</string>
   <string name="ApplicationPreferencesActivity_unregistering">Berhenti langganan</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Berhenti langganan pesan dan panggilan Signal...</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Nonaktifkan pesan dan panggilan Signal?</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Menonaktifkan pesan dan panggilan Signal dengan berhenti langganan dari peladen. Anda perlu mendaftar ulang nomor telepon Anda untuk menggunakannya lagi di kemudian hari.</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Berhenti langganan pesan dan panggilan Loki Messenger...</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Nonaktifkan pesan dan panggilan Loki Messenger?</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Menonaktifkan pesan dan panggilan Loki Messenger dengan berhenti langganan dari peladen. Anda perlu mendaftar ulang nomor telepon Anda untuk menggunakannya lagi di kemudian hari.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Gagal menghubungi peladen!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS Aktif</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Sentuh untuk mengubah aplikasi SMS bawaan Anda</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS Nonaktif</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Sentuh agar Signal menjadi aplikasi SMS Anda</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Sentuh agar Loki Messenger menjadi aplikasi SMS Anda</string>
   <string name="ApplicationPreferencesActivity_on">nyala</string>
   <string name="ApplicationPreferencesActivity_On">Nyala</string>
   <string name="ApplicationPreferencesActivity_off">padam</string>
@@ -53,10 +53,10 @@
   <string name="DraftDatabase_Draft_quote_snippet">(balas)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Tidak bisa menemukan aplikasi untuk memilih media.</string>
-  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal memerlukan akses ke Penyimpanan untuk mengirimkan foto, video, atau suara, tetapi saat ini telah ditolak secara permanen. Harap lanjutkan ke menu pengaturan aplikasi, Pilih \"Izin\", dan aktifkan \"Penyimpanan\".</string>
-  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal memerlukan akses ke Kontak untuk mengirimkan informasi kontak, tetapi saat ini ditolak secara permanen. Harap melanjutkan ke menu pengaturan aplikasi, Pilih \"Izin\", dan aktifkan \"Kontak\".</string>
-  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal memerlukan akses ke Lokasi untuk mengirimkan lokasi, tetapi saat ini telah ditolak secara permanen. Harap melanjutkan ke menu pengaturan aplikasi, Pilih \"Izin\", dan aktifkan \"Lokasi\".</string>
-  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal memerlukan akses ke Kamera untuk mengambil foto, tetapi saat ini telah ditolak secara permanen. Harap melanjutkan ke menu pengaturan aplikasi, Pilih \"Izin\", dan aktifkan \"Kamera\".</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Loki Messenger memerlukan akses ke Penyimpanan untuk mengirimkan foto, video, atau suara, tetapi saat ini telah ditolak secara permanen. Harap lanjutkan ke menu pengaturan aplikasi, Pilih \"Izin\", dan aktifkan \"Penyimpanan\".</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Loki Messenger memerlukan akses ke Kontak untuk mengirimkan informasi kontak, tetapi saat ini ditolak secara permanen. Harap melanjutkan ke menu pengaturan aplikasi, Pilih \"Izin\", dan aktifkan \"Kontak\".</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Loki Messenger memerlukan akses ke Lokasi untuk mengirimkan lokasi, tetapi saat ini telah ditolak secara permanen. Harap melanjutkan ke menu pengaturan aplikasi, Pilih \"Izin\", dan aktifkan \"Lokasi\".</string>
+  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Loki Messenger memerlukan akses ke Kamera untuk mengambil foto, tetapi saat ini telah ditolak secara permanen. Harap melanjutkan ke menu pengaturan aplikasi, Pilih \"Izin\", dan aktifkan \"Kamera\".</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Gagal memutar audio!</string>
   <!--BlockedContactsActivity-->
@@ -76,7 +76,7 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Tidak ada peramban web ditemukan.</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Angka keamanan Anda dengan %1$s telah berubah. Ini bisa disebabkan seseorang mencoba mencegat komunikasi Anda, atau disebabkan %2$s telah memasang ulang Signal.</string>
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Angka keamanan Anda dengan %1$s telah berubah. Ini bisa disebabkan seseorang mencoba mencegat komunikasi Anda, atau disebabkan %2$s telah memasang ulang Loki Messenger.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Sebaiknya Anda memastikan angka keamanan dengan kontak ini.</string>
   <string name="ConfirmIdentityDialog_accept">Terima</string>
   <!--ContactsCursorLoader-->
@@ -85,7 +85,7 @@
   <string name="ContactsCursorLoader_groups">Grup</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Pesan %s</string>
-  <string name="ContactsDatabase_signal_call_s">Panggilan Signal %s</string>
+  <string name="ContactsDatabase_signal_call_s">Panggilan Loki Messenger %s</string>
   <!--ContactNameEditActivity-->
   <string name="ContactNameEditActivity_given_name">Nama Depan</string>
   <string name="ContactNameEditActivity_family_name">Nama Belakang</string>
@@ -105,7 +105,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted">Gagal mengirim, ketuk untuk mengirim kembali</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Alihkan ke SMS tanpa enkripsi?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Alihkan ke MMS tanpa enkripsi?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Pesan ini <b>tidak</b> akan dienkripsi karena penerima tidak lagi menjadi pengguna Signal.\n\nTetap kirim pesan tidak aman?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Pesan ini <b>tidak</b> akan dienkripsi karena penerima tidak lagi menjadi pengguna Loki Messenger.\n\nTetap kirim pesan tidak aman?</string>
   <string name="ConversationItem_unable_to_open_media">Tidak bisa menemukan aplikasi untuk membuka media ini.</string>
   <string name="ConversationItem_copied_text">Disalin %s</string>
   <string name="ConversationItem_from_s">dari %s</string>
@@ -133,7 +133,7 @@
   <string name="ConversationActivity_transport_insecure_sms">SMS tidak aman</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS tidak aman</string>
   <string name="ConversationActivity_transport_signal">Loki Messenger</string>
-  <string name="ConversationActivity_lets_switch_to_signal">Ayo pindah ke Signal %1$s</string>
+  <string name="ConversationActivity_lets_switch_to_signal">Ayo pindah ke Loki Messenger %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Ayo gunakan ini untuk mengobrol: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Gagal meninggalkan grup</string>
   <string name="ConversationActivity_specify_recipient">Silahkan pilih kontak</string>
@@ -146,13 +146,13 @@
   <string name="ConversationActivity_quick_camera_unavailable">Kamera tidak tersedia</string>
   <string name="ConversationActivity_unable_to_record_audio">Tidak bisa merekam audio!</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Tidak ada aplikasi tersedia untuk menangani tautan ini pada perangkat Anda</string>
-  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Untuk mengirim pesan suara, izinkan Signal mengakses mikrofon Anda.</string>
-  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal memerlukan akses ke Mikrofon untuk mengirim pesan audio, namun ditolak secara permanen. Mohon lanjutkan ke pengaturan aplikasi, pilih \"Izin\" dan aktifkan \"Mikrofon\".</string>
-  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Untuk melakukan panggilan %s, Signal memerlukan akses ke mikrofon dan kamera Anda.</string>
-  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal memerlukan izin Mikrofon dan Kamera untuk memanggil %s, tetapi telah ditolak secara permanen. Silakan lanjut ke pengaturan aplikasi, pilih \"Izin\" dan aktifkan \"Mikrofon\" dan \"Kamera\".</string>
-  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Untuk merekam foto dan video, izinkan Signal mengakses kamera.</string>
-  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal memerlukan izin Kamera untuk mengambil foto dan video, tetapi telah ditolak secara permanen. Silakan lanjut ke pengaturan aplikasi, pilih \"Perizinan\" dan aktifkan \"Kamera\".</string>
-  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal memerlukan izin Kamera untuk mengambil foto atau video.</string>
+  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Untuk mengirim pesan suara, izinkan Loki Messenger mengakses mikrofon Anda.</string>
+  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Loki Messenger memerlukan akses ke Mikrofon untuk mengirim pesan audio, namun ditolak secara permanen. Mohon lanjutkan ke pengaturan aplikasi, pilih \"Izin\" dan aktifkan \"Mikrofon\".</string>
+  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Untuk melakukan panggilan %s, Loki Messenger memerlukan akses ke mikrofon dan kamera Anda.</string>
+  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Loki Messenger memerlukan izin Mikrofon dan Kamera untuk memanggil %s, tetapi telah ditolak secara permanen. Silakan lanjut ke pengaturan aplikasi, pilih \"Izin\" dan aktifkan \"Mikrofon\" dan \"Kamera\".</string>
+  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Untuk merekam foto dan video, izinkan Loki Messenger mengakses kamera.</string>
+  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Loki Messenger memerlukan izin Kamera untuk mengambil foto dan video, tetapi telah ditolak secara permanen. Silakan lanjut ke pengaturan aplikasi, pilih \"Perizinan\" dan aktifkan \"Kamera\".</string>
+  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Loki Messenger memerlukan izin Kamera untuk mengambil foto atau video.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s%2$s</string>
   <string name="ConversationActivity_yes">Ya</string>
   <string name="ConversationActivity_no">Tidak</string>
@@ -183,7 +183,7 @@
     <item quantity="other">Menyimpan %1$d lampiran ke penyimpanan...</item>
   </plurals>
   <string name="ConversationFragment_pending">Tertunda...</string>
-  <string name="ConversationFragment_push">Data (Signal)</string>
+  <string name="ConversationFragment_push">Data (Loki Messenger)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Menghapus</string>
@@ -252,21 +252,21 @@
   <string name="DocumentView_unknown_file">Berkas tidak dikenal</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimalkan untuk melewatkan Play Services yang hilang</string>
-  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Perangkat ini tidak mendukung Play Services. Ketuk untuk menonaktifkan pengoptimalan baterai sistem yang mencegah Signal untuk mengambil pesan saat tidak aktif.</string>
+  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Perangkat ini tidak mendukung Play Services. Ketuk untuk menonaktifkan pengoptimalan baterai sistem yang mencegah Loki Messenger untuk mengambil pesan saat tidak aktif.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Berbagi dengan</string>
   <!--ExperienceUpgradeActivity-->
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Selamat datang di Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure dan RedPhone sekarang bergabung menjadi perpesanan privat tunggal, untuk semua situasi: Signal.</string>
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Selamat datang di Signal!</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure sekarang adalah Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure dan RedPhone sekarang bergabung menjadi satu aplikasi: Signal. Ketuk untuk menjelajah.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Selamat datang di Loki Messenger.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure dan RedPhone sekarang bergabung menjadi perpesanan privat tunggal, untuk semua situasi: Loki Messenger.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Selamat datang di Loki Messenger!</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure sekarang adalah Loki Messenger.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure dan RedPhone sekarang bergabung menjadi satu aplikasi: Loki Messenger. Ketuk untuk menjelajah.</string>
   <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Ucapkan halo untuk mengamankan panggilan video.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal sekarang mendukung panggilan video yang aman. Cukup mulai panggilan Signal seperti biasa, ketuk tombol video, dan ucapkan halo.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal sekarang mendukung panggilan video yang aman.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal sekarang mendukung panggilan video yang aman. Ketuk untuk menjelajahi.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal sekarang mendukung panggilan video yang aman. Cukup mulai panggilan Loki Messenger seperti biasa, ketuk tombol video, dan ucapkan halo.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Loki Messenger sekarang mendukung panggilan video yang aman.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Loki Messenger sekarang mendukung panggilan video yang aman. Ketuk untuk menjelajahi.</string>
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Siap foto wajah</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Sekarang anda dapat membagikan nama dan foto profil dengan kawan anda di Signal</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Sekarang anda dapat membagikan nama dan foto profil dengan kawan anda di Loki Messenger</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Profil signal ada di sini</string>
   <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Memperkenalkan indikator ketik.</string>
   <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Sekarang Anda dapat secara opsional melihat dan berbagi saat pesan sedang diketik.</string>
@@ -280,8 +280,8 @@
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Mengambil pesan...</string>
   <!--GcmRefreshJob-->
-  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Kegagalan permanen komunikasi Signal!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal tidak dapat melakukan registrasi dengan Layanan Google Play. Fitur Signal seperti pesan dan panggilan di nonaktifkan, mohon registrasi ulang melalui Pengaturan &gt; Lanjutan.</string>
+  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Kegagalan permanen komunikasi Loki Messenger!</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal tidak dapat melakukan registrasi dengan Layanan Google Play. Fitur Loki Messenger seperti pesan dan panggilan di nonaktifkan, mohon registrasi ulang melalui Pengaturan &gt; Lanjutan.</string>
   <!--GiphyActivity-->
   <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Kesalahan saat mengambil berkas GIF dengan resolusi penuh</string>
   <!--GiphyFragmentPageAdapter-->
@@ -292,15 +292,15 @@
   <string name="GroupCreateActivity_actionbar_edit_title">Ubah grup</string>
   <string name="GroupCreateActivity_group_name_hint">Nama grup</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Grup MMS baru</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">Anda telah memilih kontak yang tidak mendukung grup Signal, maka grup ini akan menjadi grup MMS.</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">Anda tidak terdaftar dalam pesan dan panggilan Signal, jadi grup Signal dinonaktifkan. Mohon coba registrasi ulang melalui Pengaturan.</string>
+  <string name="GroupCreateActivity_contacts_dont_support_push">Anda telah memilih kontak yang tidak mendukung grup Loki Messenger, maka grup ini akan menjadi grup MMS.</string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">Anda tidak terdaftar dalam pesan dan panggilan Signal, jadi grup Loki Messenger dinonaktifkan. Mohon coba registrasi ulang melalui Pengaturan.</string>
   <string name="GroupCreateActivity_contacts_no_members">Anda butuh minimal satu orang tergabung dalam grup Anda!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Salah satu anggota grup Anda memiliki nomor yang tidak dapat dibaca, silakan perbaiki atau keluarkan kontak tersebut dan coba lagi.</string>
   <string name="GroupCreateActivity_avatar_content_description">Avatar grup</string>
   <string name="GroupCreateActivity_menu_apply_button">Terapkan</string>
   <string name="GroupCreateActivity_creating_group">Membuat %1$s…</string>
   <string name="GroupCreateActivity_updating_group">Memperbarui %1$s...</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Tidak bisa menambahkan %1$s karena mereka bukan pengguna Signal.</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Tidak bisa menambahkan %1$s karena mereka bukan pengguna Loki Messenger.</string>
   <string name="GroupCreateActivity_loading_group_details">Memuat detail grup...</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Anda sudah berada di grup.</string>
   <!--GroupShareProfileView-->
@@ -321,14 +321,14 @@
   <string name="InviteActivity_sending">Mengirim...</string>
   <string name="InviteActivity_heart_content_description">Hati</string>
   <string name="InviteActivity_invitations_sent">Undangan dikirim!</string>
-  <string name="InviteActivity_invite_to_signal">Undang ke Signal!</string>
+  <string name="InviteActivity_invite_to_signal">Undang ke Loki Messenger!</string>
   <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="other">KIRIM SMS KE %d TEMAN</item>
   </plurals>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="other">Kirim %d undangan SMS?</item>
   </plurals>
-  <string name="InviteActivity_lets_switch_to_signal">Ayo pindah ke Signal: %1$s</string>
+  <string name="InviteActivity_lets_switch_to_signal">Ayo pindah ke Loki Messenger: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Sepertinya Anda tidak memiliki aplikasi untuk berbagi.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Teman tidak membiarkan temannya mengobrol tanpa enkripsi.</string>
   <!--Job-->
@@ -359,9 +359,9 @@
   <string name="MediaOverviewActivity_Select_all">Pilih semua</string>
   <string name="MediaOverviewActivity_collecting_attachments">Mengumpulkan lampiran...</string>
   <!--- NotificationBarManager-->
-  <string name="NotificationBarManager_signal_call_in_progress">Panggilan masuk Signal berlangsung</string>
-  <string name="NotificationBarManager__establishing_signal_call">Menyiapkan panggilan Signal</string>
-  <string name="NotificationBarManager__incoming_signal_call">Panggilan masuk Signal</string>
+  <string name="NotificationBarManager_signal_call_in_progress">Panggilan masuk Loki Messenger berlangsung</string>
+  <string name="NotificationBarManager__establishing_signal_call">Menyiapkan panggilan Loki Messenger</string>
+  <string name="NotificationBarManager__incoming_signal_call">Panggilan masuk Loki Messenger</string>
   <string name="NotificationBarManager__deny_call">Tolak panggilan</string>
   <string name="NotificationBarManager__answer_call">Terima panggilan</string>
   <string name="NotificationBarManager__end_call">Akhiri panggilan</string>
@@ -385,7 +385,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Semua media</string>
   <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Menerima pesan terenkripsi menggunakan Signal versi lama tidak lagi didukung, Harap beri tahu pengirim untuk memutakhirkan ke versi terbaru dan kirim ulang pesannya.</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Menerima pesan terenkripsi menggunakan Loki Messenger versi lama tidak lagi didukung, Harap beri tahu pengirim untuk memutakhirkan ke versi terbaru dan kirim ulang pesannya.</string>
   <string name="MessageRecord_left_group">Anda telah keluar dari grup.</string>
   <string name="MessageRecord_you_updated_group">Anda memperbarui grup.</string>
   <string name="MessageRecord_you_called">Anda memanggil</string>
@@ -395,7 +395,7 @@
   <string name="MessageRecord_s_called_you">%s menelpon Anda.</string>
   <string name="MessageRecord_called_s">Memanggil %s</string>
   <string name="MessageRecord_missed_call_from">Panggilan tak terjawab dari %s</string>
-  <string name="MessageRecord_s_joined_signal">%s ada di Signal!</string>
+  <string name="MessageRecord_s_joined_signal">%s ada di Loki Messenger!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Anda menonaktifkan pesan menghilang.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s menonaktifkan pesan menghilang.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Anda mengatur pesan menghilang dalam %1$s</string>
@@ -426,9 +426,9 @@
   <string name="DeviceProvisioningActivity_content_progress_key_error">Kode QR tidak valid.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Maaf, Anda memiliki terlalu banyak perangkat yang terhubung, coba buang beberapa</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Maaf, ini bukan tautan perangkat kode QR yang benar.</string>
-  <string name="DeviceProvisioningActivity_link_a_signal_device">Kaitkan perangkat Signal?</string>
-  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Sepertinya Anda mencoba untuk menghubungkan perangkat Signal menggunakan pemindai pihak ke-3. Untuk perlindungan Anda, mohon memindai kode lagi dari Signal.</string>
-  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal memerlukan izin akses ke Kamera untuk memindai kode QR, tetapi telah ditolak secara permanen. Silakan lanjut ke pengaturan aplikasi, pilih \"Izin\" dan aktifkan \"Kamera\".</string>
+  <string name="DeviceProvisioningActivity_link_a_signal_device">Kaitkan perangkat Loki Messenger?</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Sepertinya Anda mencoba untuk menghubungkan perangkat Signal menggunakan pemindai pihak ke-3. Untuk perlindungan Anda, mohon memindai kode lagi dari Loki Messenger.</string>
+  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Loki Messenger memerlukan izin akses ke Kamera untuk memindai kode QR, tetapi telah ditolak secara permanen. Silakan lanjut ke pengaturan aplikasi, pilih \"Izin\" dan aktifkan \"Kamera\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Tidak bisa memindai kode QR tanpa izin ke kamera</string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">Pesan hilang</string>
@@ -436,7 +436,7 @@
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Pesan terkirim dan diterima pada percakapan ini akan lenyap %s setelah dibaca.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Masukkan frasa sandi</string>
-  <string name="PassphrasePromptActivity_watermark_content_description">Ikon Signal</string>
+  <string name="PassphrasePromptActivity_watermark_content_description">Ikon Loki Messenger</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Kirim frasa sandi</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Frasa sandi tidak valid!</string>
   <!--PlayServicesProblemFragment-->
@@ -491,7 +491,7 @@
 isikan (%s) tidak tepat.
 </string>
   <string name="RegistrationActivity_missing_google_play_services">Tidak memiliki Google Play Services</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Perangkat ini kehilangan Google Play Services. Anda tetap dapat menggunakan Signal, namun pengaturan ini bisa mengakibatkan berkurangnya keandalan dan kinerja.\n\nJika Anda bukan pengguna tingkat lanjut dan tidak menjalankan Android ROM setelah pembelian, atau yakin yang Anda lihat ini adalah sebuah kekeliruan, mohon menghubungi  support@signal.org untuk membantu penyelesaian masalah.</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Perangkat ini kehilangan Google Play Services. Anda tetap dapat menggunakan Loki Messenger, namun pengaturan ini bisa mengakibatkan berkurangnya keandalan dan kinerja.\n\nJika Anda bukan pengguna tingkat lanjut dan tidak menjalankan Android ROM setelah pembelian, atau yakin yang Anda lihat ini adalah sebuah kekeliruan, mohon menghubungi  support@signal.org untuk membantu penyelesaian masalah.</string>
   <string name="RegistrationActivity_i_understand">Saya mengerti</string>
   <string name="RegistrationActivity_play_services_error">Play Services gagal</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services diperbarui atau untuk sementara tidak tersedia. Silahkan coba lagi.</string>
@@ -499,9 +499,9 @@ isikan (%s) tidak tepat.
   <string name="RegistrationActivity_no_browser">Tidak bisa membuka tautan ini. Tidak ditemukan situs peramban.</string>
   <string name="RegistrationActivity_more_information">Informasi lebih lanjut</string>
   <string name="RegistrationActivity_less_information">Kurang informasi</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal memerlukkan akses ke kontak dan media Anda untuk terkoneksi dengan teman, bertukar pesan, dan membuat panggilan aman</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Loki Messenger memerlukkan akses ke kontak dan media Anda untuk terkoneksi dengan teman, bertukar pesan, dan membuat panggilan aman</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Tidak bisa terhubung ke layanan. Mohon cek koneksi jaringan dan coba lagi.</string>
-  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Untuk memudahkan verifikasi nomor telepon Anda, Signal dapat secara otomatis mendeteksi kode verifikasi Anda jika Anda mengizinkan Signal untuk melihat pesan SMS.</string>
+  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Untuk memudahkan verifikasi nomor telepon Anda, Signal dapat secara otomatis mendeteksi kode verifikasi Anda jika Anda mengizinkan Loki Messenger untuk melihat pesan SMS.</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="other">Kamu memiliki %d langkah lagi untuk mengirim log debug.</item>
   </plurals>
@@ -521,13 +521,13 @@ isikan (%s) tidak tepat.
   <string name="SearchFragment_header_messages">Pesan</string>
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Tambahkan ke Kontak</string>
-  <string name="SharedContactDetailsActivity_invite_to_signal">Undang ke Signal</string>
-  <string name="SharedContactDetailsActivity_signal_message">Pesan Signal</string>
-  <string name="SharedContactDetailsActivity_signal_call">Panggilan Signal</string>
+  <string name="SharedContactDetailsActivity_invite_to_signal">Undang ke Loki Messenger</string>
+  <string name="SharedContactDetailsActivity_signal_message">Pesan Loki Messenger</string>
+  <string name="SharedContactDetailsActivity_signal_call">Panggilan Loki Messenger</string>
   <!--SharedContactView-->
   <string name="SharedContactView_add_to_contacts">Tambahkan ke Kontak</string>
-  <string name="SharedContactView_invite_to_signal">Undang ke Signal</string>
-  <string name="SharedContactView_message">Pesan Signal</string>
+  <string name="SharedContactView_invite_to_signal">Undang ke Loki Messenger</string>
+  <string name="SharedContactView_message">Pesan Loki Messenger</string>
   <!--Slide-->
   <string name="Slide_image">Gambar</string>
   <string name="Slide_audio">Audio</string>
@@ -551,7 +551,7 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="ThreadRecord_called_you">Memanggil Anda</string>
   <string name="ThreadRecord_missed_call">Panggilan tak terjawab</string>
   <string name="ThreadRecord_media_message">Pesan media</string>
-  <string name="ThreadRecord_s_is_on_signal">%s ada di Signal!</string>
+  <string name="ThreadRecord_s_is_on_signal">%s ada di Loki Messenger!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Pesan menghilang dinonaktifkan</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Waktu pesan hilang diatur ke %s</string>
   <string name="ThreadRecord_safety_number_changed">Nomor keamanan berubah</string>
@@ -559,8 +559,8 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="ThreadRecord_you_marked_verified">Anda ditandai terverifikasi</string>
   <string name="ThreadRecord_you_marked_unverified">Anda ditandai tidak terverifikasi</string>
   <!--UpdateApkReadyListener-->
-  <string name="UpdateApkReadyListener_Signal_update">Perbarui Signal</string>
-  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Versi baru Signal tersedia, ketuk untuk memperbarui</string>
+  <string name="UpdateApkReadyListener_Signal_update">Perbarui Loki Messenger</string>
+  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Versi baru Loki Messenger tersedia, ketuk untuk memperbarui</string>
   <!--UnknownSenderView-->
   <string name="UnknownSenderView_block_s">Blokir %s</string>
   <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Blokir kontak yang tidak lagi dapat mengirimkan pesan atau panggilan</string>
@@ -575,14 +575,14 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="UnverifiedSendDialog_send_message">Kirim pesan?</string>
   <string name="UnverifiedSendDialog_send">Kirim</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Kontak Anda menjalankan versi lama Signal. Mintalah mereka untuk memperbarui sebelum memverifikasi nomor keselamatan Anda.</string>
-  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Kontak Anda menjalankan versi Signal yang lebih baru dengan format kode QR yang tidak kompatibel. Silahkan perbarui untuk membandingkan.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Kontak Anda menjalankan versi lama Loki Messenger. Mintalah mereka untuk memperbarui sebelum memverifikasi nomor keselamatan Anda.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Kontak Anda menjalankan versi Loki Messenger yang lebih baru dengan format kode QR yang tidak kompatibel. Silahkan perbarui untuk membandingkan.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Kode QR yang dipindai bukan kode verifikasi nomor keamanan yang diformat dengan benar. Silakan coba pindai lagi.</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">Bagikan nomor keamanan via ...</string>
-  <string name="VerifyIdentityActivity_our_signal_safety_number">Nomor keamanan Signal kami:</string>
+  <string name="VerifyIdentityActivity_our_signal_safety_number">Nomor keamanan Loki Messenger kami:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Sepertinya Anda tidak memiliki aplikasi untuk berbagi.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Tidak ada nomor keamanan untuk dibandingkan yang ditemukan di papan klip</string>
-  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal memerlukan izin akses ke Kamera untuk memindai kode QR, tetapi telah ditolak secara permanen. Silakan lanjut ke pengaturan aplikasi, pilih \"Izin\" dan aktifkan \"Kamera\".</string>
+  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Loki Messenger memerlukan izin akses ke Kamera untuk memindai kode QR, tetapi telah ditolak secara permanen. Silakan lanjut ke pengaturan aplikasi, pilih \"Izin\" dan aktifkan \"Kamera\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Tidak bisa memindai kode QR tanpa izin ke Kamera</string>
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Pesan terenkripsi buruk</string>
@@ -602,13 +602,13 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Sentuh untuk membuka.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Sentuh untuk membuka, atau sentuh kunci untuk menutup.</string>
-  <string name="KeyCachingService_passphrase_cached">Signal tidak terkunci</string>
-  <string name="KeyCachingService_lock">Kunci Signal</string>
+  <string name="KeyCachingService_passphrase_cached">Loki Messenger tidak terkunci</string>
+  <string name="KeyCachingService_lock">Kunci Loki Messenger</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Anda</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Tipe media tidak didukung</string>
   <string name="MediaPreviewActivity_draft">Draf</string>
-  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal memerlukan izin akses Penyimpanan agar bisa menyimpan di penyimpanan luar, tetapi ditolak secara permanen. Silakan lanjut ke pengaturan aplikasi, pilih \"Izin\" dan aktifkan \"Penyimpanan\".</string>
+  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Loki Messenger memerlukan izin akses Penyimpanan agar bisa menyimpan di penyimpanan luar, tetapi ditolak secara permanen. Silakan lanjut ke pengaturan aplikasi, pilih \"Izin\" dan aktifkan \"Penyimpanan\".</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Tidak bisa menyimpan ke penyimpanan luar tanpa izin</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Hapus pesan?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Pesan ini akan dihapus secara permanen.</string>
@@ -624,10 +624,10 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="MessageNotifier_mark_read">Tandai sudah dibaca</string>
   <string name="MessageNotifier_media_message">Pesan media</string>
   <string name="MessageNotifier_reply">Balas</string>
-  <string name="MessageNotifier_signal_message">Pesan Signal</string>
+  <string name="MessageNotifier_signal_message">Pesan Loki Messenger</string>
   <string name="MessageNotifier_unsecured_sms">Kirim SMS tidak aman</string>
-  <string name="MessageNotifier_pending_signal_messages">Pesan Signal tertunda</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">Anda memiliki pesan Signal yang tertunda, ketuk untuk membuka dan menerima</string>
+  <string name="MessageNotifier_pending_signal_messages">Pesan Loki Messenger tertunda</string>
+  <string name="MessageNotifier_you_have_pending_signal_messages">Anda memiliki pesan Loki Messenger yang tertunda, ketuk untuk membuka dan menerima</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Kontak</string>
   <!--Notification Channels-->
@@ -641,7 +641,7 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="NotificationChannel_group_messages">Pesan</string>
   <string name="NotificationChannel_missing_display_name">Tidak dikenal</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Tanggapan cepat tidak tersedia ketika Signal sedang dikunci!</string>
+  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Tanggapan cepat tidak tersedia ketika Loki Messenger sedang dikunci!</string>
   <string name="QuickResponseService_problem_sending_message">Terjadi masalah saat mengirim pesan!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_saved_to">Disimpan ke %s</string>
@@ -660,14 +660,14 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   </plurals>
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">Perangkat tidak lagi terdaftar</string>
-  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Hal ini mungkin karena Anda mendaftarkan nomor telpon Anda dengan Signal pada perangkat berbeda. Ketuk untuk mendaftar ulang.</string>
+  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Hal ini mungkin karena Anda mendaftarkan nomor telpon Anda dengan Loki Messenger pada perangkat berbeda. Ketuk untuk mendaftar ulang.</string>
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">Gagal saat memutar video</string>
   <!--WebRtcCallActivity-->
-  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Untuk menjawab panggilan dari %s, berikan Signal akses ke mikrofon Anda.</string>
-  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal memerlukan izin akses ke Mikrofon dan Kamera agar Anda dapat menerima telepon tetapi ditolak secara permanen. Silakan tinjau pengatuaran aplikasi, pilih \"Izin\" lalu aktifkan \"Mikrofon\" dan \"Kamera\". </string>
+  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Untuk menjawab panggilan dari %s, berikan Loki Messenger akses ke mikrofon Anda.</string>
+  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Loki Messenger memerlukan izin akses ke Mikrofon dan Kamera agar Anda dapat menerima telepon tetapi ditolak secara permanen. Silakan tinjau pengatuaran aplikasi, pilih \"Izin\" lalu aktifkan \"Mikrofon\" dan \"Kamera\". </string>
   <!--WebRtcCallScreen-->
-  <string name="WebRtcCallScreen_new_safety_numbers">Nomor keamanan untuk percakapan Anda dengan %1$s telah berubah. Ini bisa berarti seseorang mencoba untuk mencegat komunikasi Anda, atau %2$s hanya perlu memasang kembali Signal.</string>
+  <string name="WebRtcCallScreen_new_safety_numbers">Nomor keamanan untuk percakapan Anda dengan %1$s telah berubah. Ini bisa berarti seseorang mencoba untuk mencegat komunikasi Anda, atau %2$s hanya perlu memasang kembali Loki Messenger.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Mungkin sebaiknya Anda memastikan angka keamanan dengan kontak ini.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Angka keamanan baru</string>
   <string name="WebRtcCallScreen_accept">Terima</string>
@@ -702,15 +702,15 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Foto Kontak</string>
   <!--ContactSelectionListFragment-->
-  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal memerlukan izin akses Kontak agar dapat menampilkan kontak yang telah bergabung dengan Signal, tetapi ditolak secara permanen. Silakan lanjut ke pengaturan aplikasi, pilih \"Izin\" dan aktifkan \"Kontak\". </string>
+  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal memerlukan izin akses Kontak agar dapat menampilkan kontak yang telah bergabung dengan Loki Messenger, tetapi ditolak secara permanen. Silakan lanjut ke pengaturan aplikasi, pilih \"Izin\" dan aktifkan \"Kontak\". </string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Kesalahan saat mengambil kontak, periksa koneksi jaringan Anda</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Tidak ada kontak yang diblokir</string>
   <!--contact_selection_list_fragment-->
-  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal memerlukan akses kontak Anda supaya dapat menampilkannya.</string>
+  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Loki Messenger memerlukan akses kontak Anda supaya dapat menampilkannya.</string>
   <string name="contact_selection_list_fragment__show_contacts">Tampilkan kontak</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Pesan Signal</string>
+  <string name="conversation_activity__type_message_push">Pesan Loki Messenger</string>
   <string name="conversation_activity__type_message_sms_insecure">Kirim SMS tidak aman</string>
   <string name="conversation_activity__type_message_mms_insecure">Kirim MMS tidak aman</string>
   <string name="conversation_activity__from_sim_name">Dari %1$s</string>
@@ -720,7 +720,7 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="conversation_activity__attachment_thumbnail">Gambar Mini Lampiran</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Jungkitkan laci lampiran kamera cepat</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Rekam dan kirim lampiran audio</string>
-  <string name="conversation_activity__enable_signal_for_sms">Aktifkan Signal untuk SMS</string>
+  <string name="conversation_activity__enable_signal_for_sms">Aktifkan Loki Messenger untuk SMS</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__cancel">Batal</string>
   <!--conversation_item-->
@@ -787,9 +787,9 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="IdentityUtil_unverified_banner_one">Nomor keamanan anda dengan%s telah berubah dan tidak lagi terverifikasi</string>
   <string name="IdentityUtil_unverified_banner_two">Nomor keamanan anda dengan %1$s dan %2$s tidak lagi terverifikasi</string>
   <string name="IdentityUtil_unverified_banner_many">Nomor keamanan anda dengan %1$s, %2$s, dan%3$s tidak lagi terverifikasi</string>
-  <string name="IdentityUtil_unverified_dialog_one">Nomor keamanan anda dengan %1$s telah berubah dan tidak lagi terverifikasi. Ini bisa berarti bahwa seseorang mencoba mencegat komunikasi anda, atau dikarenakan%1$s telah memasang ulang Signal.</string>
-  <string name="IdentityUtil_unverified_dialog_two">Nomor keamanan anda dengan %1$s dan %2$s tidak lagi terverifikasi. Ini bisa berarti bahwa seseorang mencoba mencegat komunikasi anda, atau dikarenakan mereka memasang ulang Signal.</string>
-  <string name="IdentityUtil_unverified_dialog_many">Nomor keamanan anda dengan %1$s, %2$s, dan %3$s tidak lagi terverifikasi. Ini bisa berarti bahwa seseorang mencoba mencegat komunikasi anda, atau dikarenakan mereka memasang ulang Signal.</string>
+  <string name="IdentityUtil_unverified_dialog_one">Nomor keamanan anda dengan %1$s telah berubah dan tidak lagi terverifikasi. Ini bisa berarti bahwa seseorang mencoba mencegat komunikasi anda, atau dikarenakan%1$s telah memasang ulang Loki Messenger.</string>
+  <string name="IdentityUtil_unverified_dialog_two">Nomor keamanan anda dengan %1$s dan %2$s tidak lagi terverifikasi. Ini bisa berarti bahwa seseorang mencoba mencegat komunikasi anda, atau dikarenakan mereka memasang ulang Loki Messenger.</string>
+  <string name="IdentityUtil_unverified_dialog_many">Nomor keamanan anda dengan %1$s, %2$s, dan %3$s tidak lagi terverifikasi. Ini bisa berarti bahwa seseorang mencoba mencegat komunikasi anda, atau dikarenakan mereka memasang ulang Loki Messenger.</string>
   <string name="IdentityUtil_untrusted_dialog_one">Nomor keamanan anda dengan %s baru saja berubah.</string>
   <string name="IdentityUtil_untrusted_dialog_two">Nomor keamanan anda dengan %1$s dan %2$s baru saja berubah.</string>
   <string name="IdentityUtil_untrusted_dialog_many">Nomor keamanan anda dengan %1$s, %2$s, dan %3$s baru saja berubah.</string>
@@ -818,7 +818,7 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="log_submit_activity__choose_email_app">Pilih aplikasi email</string>
   <string name="log_submit_activity__network_failure">Kesalahan jaringan. Silakan coba lagi.</string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Apakah Anda ingin mengimpor pesan teks yang ada ke basis data Signal yang terenkripsi?</string>
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Apakah Anda ingin mengimpor pesan teks yang ada ke basis data Loki Messenger yang terenkripsi?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Basis data sistem standar tidak akan diubah atau dimodifikasi</string>
   <string name="database_migration_activity__skip">Lewati</string>
   <string name="database_migration_activity__import">Import</string>
@@ -849,7 +849,7 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Buka Kunci</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal memerlukan akses ke pengaturan MMS untuk mengirimkan media dan pesan grup melalui penyedia layanan nirkabel Anda. Perangkat Anda tidak menyediakan informasi tersebut, dan terkadang benar untuk perangkat terkunci dan konfigurasi terbatas lainnya.</string>
+  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Loki Messenger memerlukan akses ke pengaturan MMS untuk mengirimkan media dan pesan grup melalui penyedia layanan nirkabel Anda. Perangkat Anda tidak menyediakan informasi tersebut, dan terkadang benar untuk perangkat terkunci dan konfigurasi terbatas lainnya.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Untuk mengirim pesan media dan pesan grup, ketuk \'OK\' dan selesaikan pengaturan yang diminta. Pengaturan MMS untuk operator Anda biasanya dapat ditemukan dengan mencari \'APN operator Anda\'. Anda hanya memerlukan ini sekali saja.</string>
   <!--profile_create_activity-->
   <string name="profile_create_activity__set_later">Atur nanti</string>
@@ -872,12 +872,12 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="recipient_preferences__call_settings">Pengaturan panggilan</string>
   <string name="recipient_preferences__ringtone">Nada dering</string>
   <!--- redphone_call_controls-->
-  <string name="redphone_call_card__signal_call">Panggilan Signal</string>
+  <string name="redphone_call_card__signal_call">Panggilan Loki Messenger</string>
   <string name="redphone_call_controls__mute">Bisukan</string>
   <string name="redphone_call_controls__flip_camera_rear">Alih Kamera</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">NOMOR TELEPON</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal memudahkan komunikasi dengan menggunakan nomor telepon dan buku alamat yang ada. Teman dan kontak yang sudah tahu cara menghubungi Anda melalui telepon akan dapat dengan mudah menghubungi Signal.\n\nPendaftaran mentransmisikan beberapa informasi kontak ke server. Itu tidak disimpan.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal memudahkan komunikasi dengan menggunakan nomor telepon dan buku alamat yang ada. Teman dan kontak yang sudah tahu cara menghubungi Anda melalui telepon akan dapat dengan mudah menghubungi Loki Messenger.\n\nPendaftaran mentransmisikan beberapa informasi kontak ke server. Itu tidak disimpan.</string>
   <string name="registration_activity__verify_your_number">Verifikasi Nomor Anda</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Silakan masukkan nomor telepon seluler Anda untuk menerima kode verifikasi. Tarif operator berlaku.</string>
   <!--recipients_panel-->
@@ -953,8 +953,8 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="preferences__sms_mms">SMS dan MMS</string>
   <string name="preferences__pref_all_sms_title">Terima semua SMS</string>
   <string name="preferences__pref_all_mms_title">Terima semua MMS</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Gunakan Signal untuk semua pesan teks yang masuk</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Gunakan Signal untuk semua pesan multimedia yang masuk</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Gunakan Loki Messenger untuk semua pesan teks yang masuk</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Gunakan Loki Messenger untuk semua pesan multimedia yang masuk</string>
   <string name="preferences__pref_enter_sends_title">Enter untuk mengirim</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Menekan tombol Enter akan mengirimkan pesan teks</string>
   <string name="preferences__send_link_previews">Kirim pratinjau tautan</string>
@@ -966,7 +966,7 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Kunci layar dan notifikasi dengan kalimat sandi</string>
   <string name="preferences__screen_security">Keamanan Layar</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Blokir tangkapan layar di daftar baru-baru saja dan di dalam aplikasi</string>
-  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Otomatis kunci Signal setelah tidak aktif selama waktu tertentu</string>
+  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Otomatis kunci Loki Messenger setelah tidak aktif selama waktu tertentu</string>
   <string name="preferences__inactivity_timeout_passphrase">Frasa sandi untuk habis waktu karena tiada aktivitas</string>
   <string name="preferences__inactivity_timeout_interval">Interval habis waktu karena tiada aktivitas</string>
   <string name="preferences__notifications">Pemberitahuan</string>
@@ -1019,8 +1019,8 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="preferences__theme">Tema</string>
   <string name="preferences__default">Bawaan</string>
   <string name="preferences__language">Bahasa</string>
-  <string name="preferences__signal_messages_and_calls">Pesan dan panggilan Signal</string>
-  <string name="preferences__free_private_messages_and_calls">Pesan dan panggilan privat gratis ke pengguna Signal</string>
+  <string name="preferences__signal_messages_and_calls">Pesan dan panggilan Loki Messenger</string>
+  <string name="preferences__free_private_messages_and_calls">Pesan dan panggilan privat gratis ke pengguna Loki Messenger</string>
   <string name="preferences__submit_debug_log">Kirim log awakutu</string>
   <string name="preferences__support_wifi_calling">Mode kompatibilitas \'Panggilan WiFi\'</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktifkan jika perangkat Anda menggunakan pengiriman SMS/MMS melalui WiFi (hanya berfungsi ketika \'Panggilan WiFi\' aktif di perangkat Anda)</string>
@@ -1037,8 +1037,8 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="preferences_chats__media_auto_download">Otomatis unduh media</string>
   <string name="preferences_chats__message_trimming">Penyingkatan pesan</string>
   <string name="preferences_advanced__use_system_emoji">Gunakan emoji sistem</string>
-  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Nonaktifkan dukungan emoji Signal bawaan</string>
-  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Relay semua panggilan melalui server Signal untuk menghindari mengungkapkan alamat IP Anda ke kontak Anda. Mengaktifkannya akan mengurangi kualitas panggilan.</string>
+  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Nonaktifkan dukungan emoji Loki Messenger bawaan</string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Relay semua panggilan melalui server Loki Messenger untuk menghindari mengungkapkan alamat IP Anda ke kontak Anda. Mengaktifkannya akan mengurangi kualitas panggilan.</string>
   <string name="preferences_advanced__always_relay_calls">Selalu relay panggilan</string>
   <string name="preferences_app_protection__app_access">Akses aplikasi</string>
   <string name="preferences_app_protection__communication">Komunikasi</string>
@@ -1050,9 +1050,9 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="preferences_notifications__calls">Panggilan</string>
   <string name="preferences_notifications__ringtone">Nada dering</string>
   <string name="preferences_chats__show_invitation_prompts">Tampilkan undangan</string>
-  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Tampilkan undangan untuk kontak tanpa Signal</string>
+  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Tampilkan undangan untuk kontak tanpa Loki Messenger</string>
   <string name="preferences_chats__message_text_size">Ukuran fonta pesan</string>
-  <string name="preferences_events__contact_joined_signal">Kontak bergabung dengan Signal</string>
+  <string name="preferences_events__contact_joined_signal">Kontak bergabung dengan Loki Messenger</string>
   <string name="preferences_notifications__priority">Prioritas</string>
   <string name="preferences_communication__sealed_sender_display_indicators">Indikator tampilan</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">Tampilkan ikon status saat Anda memilih \"Detail pesan\" pada pesan yang dikirimkan menggunakan sealed sender.</string>
@@ -1066,7 +1066,7 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Panggil</string>
   <!--conversation_callable_secure-->
-  <string name="conversation_callable_secure__menu_call">Panggilan Signal</string>
+  <string name="conversation_callable_secure__menu_call">Panggilan Loki Messenger</string>
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">Rincian pesan</string>
   <string name="conversation_context__menu_copy_text">Salin teks</string>
@@ -1129,24 +1129,24 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Salin ke papan klip</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Bandingkan dengan papan klip</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">Versi Signal Anda telah usang</string>
+  <string name="reminder_header_outdated_build">Versi Loki Messenger Anda telah usang</string>
   <plurals name="reminder_header_outdated_build_details">
-    <item quantity="other">Versi Signal Anda akan berakhir dalam %d hari. Ketuk untuk memperbarui versi terbaru.</item>
+    <item quantity="other">Versi Loki Messenger Anda akan berakhir dalam %d hari. Ketuk untuk memperbarui versi terbaru.</item>
   </plurals>
-  <string name="reminder_header_outdated_build_details_today">Versi Signal Anda akan berakhir hari ini. Ketuk untuk memperbarui versi terbaru.</string>
-  <string name="reminder_header_expired_build">Versi Signal Anda telah usang!</string>
+  <string name="reminder_header_outdated_build_details_today">Versi Loki Messenger Anda akan berakhir hari ini. Ketuk untuk memperbarui versi terbaru.</string>
+  <string name="reminder_header_expired_build">Versi Loki Messenger Anda telah usang!</string>
   <string name="reminder_header_expired_build_details">Pesan tidak akan berhasil dikirim. Ketuk untuk memperbarui versi terbaru.</string>
   <string name="reminder_header_sms_default_title">Gunakan sebagai aplikasi SMS baku</string>
-  <string name="reminder_header_sms_default_text">Ketuk untuk membuat Signal menjadi aplikasi SMS utama Anda.</string>
+  <string name="reminder_header_sms_default_text">Ketuk untuk membuat Loki Messenger menjadi aplikasi SMS utama Anda.</string>
   <string name="reminder_header_sms_import_title">Impor sistem SMS</string>
-  <string name="reminder_header_sms_import_text">Ketuk untuk menyalin pesan telepon Anda ke dalam basis data Signal yang terenkripsi.</string>
-  <string name="reminder_header_push_title">Aktifkan pesan dan panggilan Signal</string>
+  <string name="reminder_header_sms_import_text">Ketuk untuk menyalin pesan telepon Anda ke dalam basis data Loki Messenger yang terenkripsi.</string>
+  <string name="reminder_header_push_title">Aktifkan pesan dan panggilan Loki Messenger</string>
   <string name="reminder_header_push_text">Tingkatkan pengalaman komunikasi Anda.</string>
-  <string name="reminder_header_invite_title">Undang ke Signal</string>
+  <string name="reminder_header_invite_title">Undang ke Loki Messenger</string>
   <string name="reminder_header_invite_text">Bawa percakapan Anda dengan %1$s ke tingkat selanjutnya.</string>
   <string name="reminder_header_share_title">Undang teman Anda!</string>
-  <string name="reminder_header_share_text">Semakin banyak teman menggunakan Signal, semakin lebih baik.</string>
-  <string name="reminder_header_service_outage_text">Signal mengalami kendala teknis. Kami sedang bekerja keras untuk mengembalikan layanan secepat mungkin.</string>
+  <string name="reminder_header_share_text">Semakin banyak teman menggunakan Loki Messenger, semakin lebih baik.</string>
+  <string name="reminder_header_service_outage_text">Loki Messenger mengalami kendala teknis. Kami sedang bekerja keras untuk mengembalikan layanan secepat mungkin.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Simpan</string>
   <string name="media_preview__forward_title">Teruskan</string>
@@ -1167,16 +1167,16 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="ConversationListFragment_loading">Memuat...</string>
   <string name="CallNotificationBuilder_connecting">Menghubungkan...</string>
   <string name="Permissions_permission_required">Memerlukan izin akses</string>
-  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal memerlukan izin akses ke SMS untuk mengirim pesan SMS, namun telah ditolak secara permanen. Silakan lanjut ke pengaturan aplikasi, pilih \"Izin\" dan aktifkan \"SMS\".</string>
+  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Loki Messenger memerlukan izin akses ke SMS untuk mengirim pesan SMS, namun telah ditolak secara permanen. Silakan lanjut ke pengaturan aplikasi, pilih \"Izin\" dan aktifkan \"SMS\".</string>
   <string name="Permissions_continue">Lanjutkan</string>
   <string name="Permissions_not_now">Nanti saja</string>
-  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal memerlukan izin akses ke Kontak untuk mencari Kontak Anda, tetapi telah ditolak secara permanen. Silakan lanjut ke pengaturan aplikasi, pilih \"Izin\" dan aktifkan \"Kontak\".</string>
+  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Loki Messenger memerlukan izin akses ke Kontak untuk mencari Kontak Anda, tetapi telah ditolak secara permanen. Silakan lanjut ke pengaturan aplikasi, pilih \"Izin\" dan aktifkan \"Kontak\".</string>
   <string name="conversation_activity__enable_signal_messages">AKTIFKAN PESAN SIGNAL</string>
-  <string name="SQLCipherMigrationHelper_migrating_signal_database">Memindahkan database Signal</string>
+  <string name="SQLCipherMigrationHelper_migrating_signal_database">Memindahkan database Loki Messenger</string>
   <string name="PushDecryptJob_new_locked_message">Pesan terkunci baru</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Buka kunci untuk melihat pesan tertunda</string>
   <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Buka kunci untuk melengkapi pembaruan</string>
-  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Silakan buka kunci Signal untuk melengkapi pembaruan</string>
+  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Silakan buka kunci Loki Messenger untuk melengkapi pembaruan</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Frase kunci cadangan</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Cadangan akan disimpan ke penyimpanan luar dan mengenkripsi dengan frase di bawah. Anda mesti memiliki frase ini untuk mengembalikan cadangan.</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Saya telah mencatat frase ini. Tanpa ini, saya tidak dapat mengembalikan cadangan.</string>
@@ -1188,7 +1188,7 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="preferences_chats__create_backup">Buat cadangan</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Masukkan cadangan frase</string>
   <string name="RegistrationActivity_restore">Pulihkan</string>
-  <string name="RegistrationActivity_backup_failure_downgrade">Tidak bisa mengimpor cadangan dari versi Signal yang lebih baru</string>
+  <string name="RegistrationActivity_backup_failure_downgrade">Tidak bisa mengimpor cadangan dari versi Loki Messenger yang lebih baru</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">Cadangan frase tidak benar</string>
   <string name="RegistrationActivity_checking">Memeriksa...</string>
   <string name="RegistrationActivity_d_messages_so_far">%d pesan sejauh ini...</string>
@@ -1203,7 +1203,7 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="BackupDialog_disable_and_delete_all_local_backups">Nonaktifkan dan hapus semua cadangan lokal?</string>
   <string name="BackupDialog_delete_backups_statement">Hapus cadangan</string>
   <string name="BackupDialog_copied_to_clipboard">Disalin ke papan klip</string>
-  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal memerlukan akses ke penyimpanan luar untuk mencadangkan data, tetapi ditolak secara permanen. Mohon lanjutkan ke pengaturan aplikasi, pilih \"Izin\" dan aktifkan \"Penyimpanan\".</string>
+  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Loki Messenger memerlukan akses ke penyimpanan luar untuk mencadangkan data, tetapi ditolak secara permanen. Mohon lanjutkan ke pengaturan aplikasi, pilih \"Izin\" dan aktifkan \"Penyimpanan\".</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Terakhir melakukan cadangan: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Sedang berjalan</string>
   <string name="LocalBackupJob_creating_backup">Buat cadangan</string>
@@ -1213,7 +1213,7 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="BackupUtil_never">Tidak pernah</string>
   <string name="BackupUtil_unknown">Tidak dikenal</string>
   <string name="preferences_app_protection__screen_lock">Layar terkunci</string>
-  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Kunci akses Signal Anda dengan kunci layar Android atau sidik jari</string>
+  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Kunci akses Loki Messenger Anda dengan kunci layar Android atau sidik jari</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Layar terkunci karena tidak beraktivitas habis</string>
   <string name="AppProtectionPreferenceFragment_none">Kosong</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">PIN Kunci Pendaftaran berbeda dengan SMS kode verifikasi yang Anda terima. Silakan masukkan konfigurasi PIN yang sebelumnya telah Anda buat. </string>
@@ -1224,7 +1224,7 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="registration_lock_dialog_view__confirm_pin">Konfimasi PIN</string>
   <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Masukkan PIN Kunci Pendaftaran Anda</string>
   <string name="registration_lock_reminder_view__enter_pin">Masukkan PIN</string>
-  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Aktifkan PIN Kunci Pendaftaran yang akan dibutuhkan untuk mendaftarkan nomor ini ke Signal kembali.</string>
+  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Aktifkan PIN Kunci Pendaftaran yang akan dibutuhkan untuk mendaftarkan nomor ini ke Loki Messenger kembali.</string>
   <string name="preferences_app_protection__registration_lock_pin">Pendaftaran PIN Kunci</string>
   <string name="preferences_app_protection__registration_lock">Pendaftaran Kunci</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Anda harus memasukkan PIN Kunci Pendaftaran Anda</string>
@@ -1233,13 +1233,13 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Anda membuat terlalu banyak kesalahan saat memasukkan Kunci Pendaftaran. Silakan coba lagi setelah 24 jam.</string>
   <string name="RegistrationActivity_error_connecting_to_service">Gagal menghubungi layanan</string>
   <string name="RegistrationActivity_oh_no">Oh tidak!</string>
-  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Pendaftaran nomor telepon ini dapat dilakukan tanpa PIN Kunci Pendaftaran setelah tujuh hari nomor ini aktif menggunakan Signal. Anda masih memiliki sisa ... hari  %d </string>
+  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Pendaftaran nomor telepon ini dapat dilakukan tanpa PIN Kunci Pendaftaran setelah tujuh hari nomor ini aktif menggunakan Loki Messenger. Anda masih memiliki sisa ... hari  %d </string>
   <string name="RegistrationActivity_registration_lock_pin">Pendaftaran kunci PIN</string>
   <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Nomor telepon ini dilengkapi dengan Kunci Pendaftaran. Silakan masukkan PIN Kunci Pendaftaran.</string>
-  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Kunci Pendaftaran untuk nomor telepon Anda telah aktif. Untuk membantu mengingat, Signal akan secara berkala meminta Anda untuk mengonfirmasi hal ini.</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Kunci Pendaftaran untuk nomor telepon Anda telah aktif. Untuk membantu mengingat, Loki Messenger akan secara berkala meminta Anda untuk mengonfirmasi hal ini.</string>
   <string name="RegistrationLockDialog_i_forgot_my_pin">Saya lupa PIN.</string>
   <string name="RegistrationLockDialog_forgotten_pin">Lupa PIN?</string>
-  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Kunci Pendaftaran membantu melindungi nomor telepon Anda dari upaya pendaftaran tanpa izin. Fitur ini dapat ditinjau kembali setiap saat dalam sistem pengaturan kerahasiaan Signal</string>
+  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Kunci Pendaftaran membantu melindungi nomor telepon Anda dari upaya pendaftaran tanpa izin. Fitur ini dapat ditinjau kembali setiap saat dalam sistem pengaturan kerahasiaan Loki Messenger</string>
   <string name="RegistrationLockDialog_registration_lock">Kunci Pendaftaran</string>
   <string name="RegistrationLockDialog_enable">Aktifkan</string>
   <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">Kunci PIN Pendaftaran harus minimal 4 digit.</string>
@@ -1248,7 +1248,7 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="RegistrationLockDialog_disable_registration_lock_pin">Nonaktifkan Kunci PIN Pendaftaran?</string>
   <string name="RegistrationLockDialog_disable">Nonaktifkan</string>
   <string name="preferences_chats__backups">Cadangan</string>
-  <string name="prompt_passphrase_activity__signal_is_locked">Signal terkunci</string>
+  <string name="prompt_passphrase_activity__signal_is_locked">Loki Messenger terkunci</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">KETUK UNTUK MEMBUKA</string>
   <string name="RegistrationLockDialog_reminder">Peringatan:</string>
   <string name="recipient_preferences__about">Tentang</string>

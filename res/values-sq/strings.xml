@@ -25,17 +25,17 @@
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">Fshije</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Të çaktivizohet frazëkalimi?</string>
-  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Kjo do të shkyçë në mënyrë të përhershme njoftime Signal-i dhe mesazhesh.</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Kjo do të shkyçë në mënyrë të përhershme njoftime Loki Messenger-i dhe mesazhesh.</string>
   <string name="ApplicationPreferencesActivity_disable">Çaktivizoje</string>
   <string name="ApplicationPreferencesActivity_unregistering">Po çregjistrohet</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Po çregjistrohet nga mesazhe dhe thirrje Signal-i…</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Të çaktivizohen mesazhe dhe thirrje Signal?</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Çaktivizo mesazhe dhe thirrje përmes Signal-it duke u çregjistruar nga shërbyesi. Për t\’i ripërdorur në të ardhmen, do t\’ju duhet të riregjistroni numrin tuaj të telefonit.</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Po çregjistrohet nga mesazhe dhe thirrje Loki Messenger-i…</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Të çaktivizohen mesazhe dhe thirrje Loki Messenger?</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Çaktivizo mesazhe dhe thirrje përmes Loki Messenger-it duke u çregjistruar nga shërbyesi. Për t\’i ripërdorur në të ardhmen, do t\’ju duhet të riregjistroni numrin tuaj të telefonit.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Gabim gjatë lidhjes me shërbyesin!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">Me SMS të aktivizuara</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Prekeni që të ndryshoni aplikacionin tuaj parazgjedhje për SMS</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">Me SMS të çaktivizuara</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Prekeni për ta bërë Signal-in aplikacionin tuaj parazgjedhje për SMS-të</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Prekeni për ta bërë Loki Messenger-in aplikacionin tuaj parazgjedhje për SMS-të</string>
   <string name="ApplicationPreferencesActivity_on">on</string>
   <string name="ApplicationPreferencesActivity_On">On</string>
   <string name="ApplicationPreferencesActivity_off">off</string>
@@ -56,10 +56,10 @@
   <string name="DraftDatabase_Draft_quote_snippet">(përgjigju)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">S\’gjendet dot aplikacion për përzgjedhje mediash.</string>
-  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Që të mund të bashkëngjisë foto, video, ose audio, Signal-i lyp leje Depozitimi, por kjo i është mohuar. Ju lutemi, vazhdoni për te menuja e rregullimeve të aplikacionit, përzgjidhni \"Leje\", dhe aktivizoni \"Depozitim\".</string>
-  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Që të mund të bashkëngjisë të dhëna kontakti, Signal-i lyp leje përdorimi Kontaktesh, por kjo i është mohuar. Ju lutemi, vazhdoni për te menuja e rregullimeve të aplikacionit, përzgjidhni \"Leje\", dhe aktivizoni \"Kontakte\".</string>
-  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Që të mund të bashkëngjisë një vendndodhje, Signal-i lyp leje përdorimi Vendodhjesh, por kjo i është mohuar. Ju lutemi, vazhdoni për te menuja e rregullimeve të aplikacionit, përzgjidhni \"Leje\", dhe aktivizoni \"Vendndodhje\".</string>
-  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Që të mund të bëjë foto, Signal-i lyp leje përdorimi Kamere, por kjo i është mohuar. Ju lutemi, vazhdoni për te menuja e rregullimeve të aplikacionit, përzgjidhni \"Leje\", dhe aktivizoni \"Kamerë\".</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Që të mund të bashkëngjisë foto, video, ose audio, Loki Messenger-i lyp leje Depozitimi, por kjo i është mohuar. Ju lutemi, vazhdoni për te menuja e rregullimeve të aplikacionit, përzgjidhni \"Leje\", dhe aktivizoni \"Depozitim\".</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Që të mund të bashkëngjisë të dhëna kontakti, Loki Messenger-i lyp leje përdorimi Kontaktesh, por kjo i është mohuar. Ju lutemi, vazhdoni për te menuja e rregullimeve të aplikacionit, përzgjidhni \"Leje\", dhe aktivizoni \"Kontakte\".</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Që të mund të bashkëngjisë një vendndodhje, Loki Messenger-i lyp leje përdorimi Vendodhjesh, por kjo i është mohuar. Ju lutemi, vazhdoni për te menuja e rregullimeve të aplikacionit, përzgjidhni \"Leje\", dhe aktivizoni \"Vendndodhje\".</string>
+  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Që të mund të bëjë foto, Loki Messenger-i lyp leje përdorimi Kamere, por kjo i është mohuar. Ju lutemi, vazhdoni për te menuja e rregullimeve të aplikacionit, përzgjidhni \"Leje\", dhe aktivizoni \"Kamerë\".</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Gabim në luajtjen e audios!</string>
   <!--BlockedContactsActivity-->
@@ -79,7 +79,7 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">S\’u gjet shfletues.</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Numri juaj i sigurisë me %1$s është ndryshuar. Kjo mund të jetë shenjë se ose dikush po rreket të përgjojë komunikimin tuaj, ose se %2$s thjesht ka riinstaluar Signal-in.</string>
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Numri juaj i sigurisë me %1$s është ndryshuar. Kjo mund të jetë shenjë se ose dikush po rreket të përgjojë komunikimin tuaj, ose se %2$s thjesht ka riinstaluar Loki Messenger-in.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Mund të doni të verifikoni numrin tuaj të sigurisë me këtë kontakt.</string>
   <string name="ConfirmIdentityDialog_accept">Pranoje</string>
   <!--ContactsCursorLoader-->
@@ -88,7 +88,7 @@
   <string name="ContactsCursorLoader_groups">Grupe</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">%s mesazhi</string>
-  <string name="ContactsDatabase_signal_call_s">Thirrje Signal me %s</string>
+  <string name="ContactsDatabase_signal_call_s">Thirrje Loki Messenger me %s</string>
   <!--ContactNameEditActivity-->
   <string name="ContactNameEditActivity_given_name">Emër</string>
   <string name="ContactNameEditActivity_family_name">Mbiemër</string>
@@ -108,7 +108,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted">Dërgimi dështoi, prekeni për dërgim të pasigurt</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Të përdoren SMS të pafshehtëzuara?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Të përdoren MMS të pafshehtëzuara?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Kjo mesazh <b>nuk</b> s\’do të fshehtëzohet, ngaqë marrësi s\’është më përdorues i Signal-it.\n\nTë dërgohet mesazh i pasiguruar? </string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Kjo mesazh <b>nuk</b> s\’do të fshehtëzohet, ngaqë marrësi s\’është më përdorues i Loki Messenger-it.\n\nTë dërgohet mesazh i pasiguruar? </string>
   <string name="ConversationItem_unable_to_open_media">S\’gjendet dot një aplikacion i aftë për hapjen e kësaj medie.</string>
   <string name="ConversationItem_copied_text">U kopjua %s</string>
   <string name="ConversationItem_from_s">nga %s</string>
@@ -136,7 +136,7 @@
   <string name="ConversationActivity_transport_insecure_sms">SMS i pasigurt</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS i pasigurt</string>
   <string name="ConversationActivity_transport_signal">Loki Messenger</string>
-  <string name="ConversationActivity_lets_switch_to_signal">Le të kalojmë në Signal %1$s</string>
+  <string name="ConversationActivity_lets_switch_to_signal">Le të kalojmë në Loki Messenger %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Le ta përdorim këtë për të biseduar: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Gabim braktisje grupi</string>
   <string name="ConversationActivity_specify_recipient">Ju lutem, zgjidhni një kontakt</string>
@@ -149,15 +149,15 @@
   <string name="ConversationActivity_quick_camera_unavailable">Kamera jo gati</string>
   <string name="ConversationActivity_unable_to_record_audio">S\’arrihet të incizohet audio!</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">S\’ka aplikacion të gatshëm në celularin tuaj për trajtim të kësaj në pajisjen tuaj.</string>
-  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Për të dërguar mesazhe zanorë, lejojeni Signal-in të përdorë mikrofonin tuaj.</string>
-  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Që të mund të dërgojë mesazhe audio, Signal-i lyp leje përdorimi të Mikrofonit, por kjo i është mohuar. Ju lutemi, kaloni te rregullimet e aplikacionit, përzgjidhni \"Leje\", dhe aktivizoni \"Mikrofonin\".</string>
-  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Për të thirrur %s, Signal-i lyp hyrje në mikrofonin dhe kamerën tuaj.</string>
-  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Që të bëjë thirrje me %s, Signal-i lyp leje përdorimi të Mikrofonit dhe Kamerës, por kjo i është mohuar. Ju lutemi, kaloni te rregullimet e aplikacionit, përzgjidhni \"Leje\", dhe aktivizoni \"Mikrofonin\" dhe \"Kamerën\".</string>
-  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Për të bërë foto dhe dhe video, lejojini Signal-it të përdorë kamerën.</string>
-  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Që të bëjë foto ose video, Signal-i lyp leje përdorimi të Kamerës, por kjo i është mohuar. Ju lutemi, kaloni te rregullimet e aplikacionit, përzgjidhni \"Leje\", dhe aktivizoni \"Kamerën\".</string>
-  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Që të bëjë foto ose video, Signal-i lyp leje përdorimi të Kamerës</string>
+  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Për të dërguar mesazhe zanorë, lejojeni Loki Messenger-in të përdorë mikrofonin tuaj.</string>
+  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Që të mund të dërgojë mesazhe audio, Loki Messenger-i lyp leje përdorimi të Mikrofonit, por kjo i është mohuar. Ju lutemi, kaloni te rregullimet e aplikacionit, përzgjidhni \"Leje\", dhe aktivizoni \"Mikrofonin\".</string>
+  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Për të thirrur %s, Loki Messenger-i lyp hyrje në mikrofonin dhe kamerën tuaj.</string>
+  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Që të bëjë thirrje me %s, Loki Messenger-i lyp leje përdorimi të Mikrofonit dhe Kamerës, por kjo i është mohuar. Ju lutemi, kaloni te rregullimet e aplikacionit, përzgjidhni \"Leje\", dhe aktivizoni \"Mikrofonin\" dhe \"Kamerën\".</string>
+  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Për të bërë foto dhe dhe video, lejojini Loki Messenger-it të përdorë kamerën.</string>
+  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Që të bëjë foto ose video, Loki Messenger-i lyp leje përdorimi të Kamerës, por kjo i është mohuar. Ju lutemi, kaloni te rregullimet e aplikacionit, përzgjidhni \"Leje\", dhe aktivizoni \"Kamerën\".</string>
+  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Që të bëjë foto ose video, Loki Messenger-i lyp leje përdorimi të Kamerës</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
-  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal-i s\’mund të dërgojë mesazhe SMS/MMS, ngaqë s\’është aplikacioni juaj parazgjedhje për SMS. Doni ta ndryshoni këtë te rregullimet tuaja për Android-in?</string>
+  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Loki Messenger-i s\’mund të dërgojë mesazhe SMS/MMS, ngaqë s\’është aplikacioni juaj parazgjedhje për SMS. Doni ta ndryshoni këtë te rregullimet tuaja për Android-in?</string>
   <string name="ConversationActivity_yes">Po</string>
   <string name="ConversationActivity_no">Jo</string>
   <string name="ConversationActivity_search_position">%1$d nga %2$d</string>
@@ -195,7 +195,7 @@
     <item quantity="other">Po ruhet %1$d në depozitë…</item>
   </plurals>
   <string name="ConversationFragment_pending">Pezull…</string>
-  <string name="ConversationFragment_push">Të dhëna (Signal)</string>
+  <string name="ConversationFragment_push">Të dhëna (Loki Messenger)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Po fshihet</string>
@@ -237,7 +237,7 @@
   <string name="CreateProfileActivity_too_long">Shumë i gjatë</string>
   <string name="CreateProfileActivity_profile_name">Emër Profili</string>
   <string name="CreateProfileActivity_set_up_your_profile">Ujdisni profilin tuaj</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Profilet Signal fshehtëzohen skaj-më-skaj, dhe shërbimi Signal s\’mund të hyjë kurrë në këto të dhëna.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Profilet Signal fshehtëzohen skaj-më-skaj, dhe shërbimi Loki Messenger s\’mund të hyjë kurrë në këto të dhëna.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Me përdorim të një të përshtaturi: %s</string>
   <string name="CustomDefaultPreference_using_default">Me përdorim parazgjedhjeje: %s</string>
@@ -269,22 +269,22 @@
   <string name="DocumentView_unknown_file">Kartelë e panjohur</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimizoje për Shërbime Play që mungojnë</string>
-  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Kjo pajisje nuk mbulon Shërbime Play. Prekeni që të çaktivizohen optimizime baterie sistemi të cilat e pengojnë Signal-in të marrë mesazhe teksa është joaktiv.</string>
+  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Kjo pajisje nuk mbulon Shërbime Play. Prekeni që të çaktivizohen optimizime baterie sistemi të cilat e pengojnë Loki Messenger-in të marrë mesazhe teksa është joaktiv.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Ndaje me</string>
   <!--ExperienceUpgradeActivity-->
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Mirë se vini në Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">Tanimë TextSecure dhe RedPhone janë një shkëmbyes mesazhesh private i vetëm, për çdo situatë: Signal.</string>
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Mirë se vini në Signal!</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure është tash Signal.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Mirë se vini në Loki Messenger.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">Tanimë TextSecure dhe RedPhone janë një shkëmbyes mesazhesh private i vetëm, për çdo situatë: Loki Messenger.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Mirë se vini në Loki Messenger!</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure është tash Loki Messenger.</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">Tanimë TextSecure dhe RedPhone janë një aplikacion. Prekeni që ta eksploroni.</string>
   <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Urojini mirëseardhjen thirrjeve video të siguruara.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal-i tanimë mbulon thirrje video të siguruara. Thjesht filloni një thirrje Singal si zakonisht, prekni butonin e videos, dhe përshëndetni palën tjetër.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal-i tanimë mbulon thirrje video të siguruara.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal-i tanimë mbulon thirrje video të siguruara. Prekeni që ta eksploroni.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Loki Messenger-i tanimë mbulon thirrje video të siguruara. Thjesht filloni një thirrje Singal si zakonisht, prekni butonin e videos, dhe përshëndetni palën tjetër.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Loki Messenger-i tanimë mbulon thirrje video të siguruara.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Loki Messenger-i tanimë mbulon thirrje video të siguruara. Prekeni që ta eksploroni.</string>
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Gati për një pamje nga afër?</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Tani në Signal mund të ndani me shokët foto dhe emër profili</string>
-  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Profilet Signal gjenden këtu</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Tani në Loki Messenger mund të ndani me shokët foto dhe emër profili</string>
+  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Profilet Loki Messenger gjenden këtu</string>
   <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Ju paraqesim indikatorë shtypjeje</string>
   <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Tani mund të shihni, në daçi, kur shtypen mesazhe.</string>
   <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Doni të aktivizohen që tani</string>
@@ -294,13 +294,13 @@
   <string name="ExperienceUpgradeActivity_no_thanks">Jo, faleminderit</string>
   <string name="ExperienceUpgradeActivity_introducing_link_previews">Paraqitje e paraparjeve të lidhjeve.</string>
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Tanimë mbulohet paraparja opsionale e lidhjeve për disa nga sajtet më popullorë në Internet.</string>
-  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Këtë veçori mund ta aktivizoni ose çaktivizoni në çfarëdo kohe, te rregullimet tuaja të Signal-it (Privatësi &gt; Dërgo paraparje lidhjesh).</string>
+  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Këtë veçori mund ta aktivizoni ose çaktivizoni në çfarëdo kohe, te rregullimet tuaja të Loki Messenger-it (Privatësi &gt; Dërgo paraparje lidhjesh).</string>
   <string name="ExperienceUpgradeActivity_got_it">U mor</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Po merret një mesazh…</string>
   <!--GcmRefreshJob-->
-  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Dështim i përhershëm komunikimi nga Signal!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal-i s\’arriti të bëjë regjistrimin me Google Play Services. Mesashet dhe thirrjet Signal janë çaktivizuar, ju lutemi, provoni riregjistrimin që nga Rregullime &gt; Të mëtejshme.</string>
+  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Dështim i përhershëm komunikimi nga Loki Messenger!</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal-i s\’arriti të bëjë regjistrimin me Google Play Services. Mesashet dhe thirrjet Loki Messenger janë çaktivizuar, ju lutemi, provoni riregjistrimin që nga Rregullime &gt; Të mëtejshme.</string>
   <!--GiphyActivity-->
   <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Gabim gjatë marrjes së GIF-it me qartësi të plotë</string>
   <!--GiphyFragmentPageAdapter-->
@@ -311,15 +311,15 @@
   <string name="GroupCreateActivity_actionbar_edit_title">Përpunoni grupin</string>
   <string name="GroupCreateActivity_group_name_hint">Emër grupi</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Grup MMS i ri</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">Keni përzgjedhur një kontakt që nuk mbulon grupe Signal, prandaj ky grup do të jetë MMS.</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">S\’jeni i regjistruar për mesazhe dhe thirrje Signal, prandaj grupet Signal janë çaktivizuar. Ju lutemi, provoni të regjistroheni, që nga Rregullime &gt; Të mëtejshme.</string>
+  <string name="GroupCreateActivity_contacts_dont_support_push">Keni përzgjedhur një kontakt që nuk mbulon grupe Loki Messenger, prandaj ky grup do të jetë MMS.</string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">S\’jeni i regjistruar për mesazhe dhe thirrje Signal, prandaj grupet Loki Messenger janë çaktivizuar. Ju lutemi, provoni të regjistroheni, që nga Rregullime &gt; Të mëtejshme.</string>
   <string name="GroupCreateActivity_contacts_no_members">Ju duhet së paku një person në grupin tuaj!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Një nga anëtarët e grupit tuaj ka numër që s\’mund të lexohet saktë. Ju lutemi, ndreqeni, ose hiqeni atë kontakt dhe riprovoni.</string>
   <string name="GroupCreateActivity_avatar_content_description">Avatar grupi</string>
   <string name="GroupCreateActivity_menu_apply_button">Zbatoje</string>
   <string name="GroupCreateActivity_creating_group">Po krijohet %1$s…</string>
   <string name="GroupCreateActivity_updating_group">Po përditësohet %1$s…</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">S\’u shtua dot %1$s, ngaqë s\’është përdorues Signal-i.</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">S\’u shtua dot %1$s, ngaqë s\’është përdorues Loki Messenger-i.</string>
   <string name="GroupCreateActivity_loading_group_details">Po ngarkohen hollësi grupi…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Jeni tashmë te grupi.</string>
   <!--GroupShareProfileView-->
@@ -340,7 +340,7 @@
   <string name="InviteActivity_sending">Po dërgohet…</string>
   <string name="InviteActivity_heart_content_description">Zemër</string>
   <string name="InviteActivity_invitations_sent">Ftesat u dërguan!</string>
-  <string name="InviteActivity_invite_to_signal">Ftojeni në Signal</string>
+  <string name="InviteActivity_invite_to_signal">Ftojeni në Loki Messenger</string>
   <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">DËRGOJINI SMS %d SHOKU</item>
     <item quantity="other">DËRGOJINI SMS %d SHOKËVE</item>
@@ -349,7 +349,7 @@
     <item quantity="one">Të dërgohet %d ftesë SMS?</item>
     <item quantity="other">Të dërgohen %d ftesa SMS?</item>
   </plurals>
-  <string name="InviteActivity_lets_switch_to_signal">Le të kalojmë në Signal: %1$s</string>
+  <string name="InviteActivity_lets_switch_to_signal">Le të kalojmë në Loki Messenger: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Duket sikur s\’keni aplikacione me të cilat të ndani.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Kush të do, s\'të lë të bisedosh në mënyrë të pafshehtëzuar.</string>
   <!--Job-->
@@ -382,9 +382,9 @@
   <string name="MediaOverviewActivity_Select_all">Përzgjidhi krejt</string>
   <string name="MediaOverviewActivity_collecting_attachments">Po mblidhen bashkëngjitje…</string>
   <!--- NotificationBarManager-->
-  <string name="NotificationBarManager_signal_call_in_progress">Thirrje Signal në zhvillim e sipër</string>
-  <string name="NotificationBarManager__establishing_signal_call">Po bëhet thirrje Signal</string>
-  <string name="NotificationBarManager__incoming_signal_call">Thirrje ardhëse Signal</string>
+  <string name="NotificationBarManager_signal_call_in_progress">Thirrje Loki Messenger në zhvillim e sipër</string>
+  <string name="NotificationBarManager__establishing_signal_call">Po bëhet thirrje Loki Messenger</string>
+  <string name="NotificationBarManager__incoming_signal_call">Thirrje ardhëse Loki Messenger</string>
   <string name="NotificationBarManager__deny_call">Refuzoje thirrjen</string>
   <string name="NotificationBarManager__answer_call">Përgjigju thirrjes</string>
   <string name="NotificationBarManager__end_call">Përfundoje thirrjen</string>
@@ -409,7 +409,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Krejt mediat</string>
   <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Morët një mesazh të fshehtëzuar duke përdorur një version të vjetër të Signal-it, që nuk mirëmbahet më. Ju lutemi, kërkojini dërguesit ta përditësojë me versionin më të ri dhe ta ridërgojë mesazhin.</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Morët një mesazh të fshehtëzuar duke përdorur një version të vjetër të Loki Messenger-it, që nuk mirëmbahet më. Ju lutemi, kërkojini dërguesit ta përditësojë me versionin më të ri dhe ta ridërgojë mesazhin.</string>
   <string name="MessageRecord_left_group">E keni lënë grupin.</string>
   <string name="MessageRecord_you_updated_group">E përditësuat grupin.</string>
   <string name="MessageRecord_you_called">Ju thirrët</string>
@@ -419,7 +419,7 @@
   <string name="MessageRecord_s_called_you">ju thirri %s</string>
   <string name="MessageRecord_called_s">Thirrët %s</string>
   <string name="MessageRecord_missed_call_from">Thirrje e humbur nga %s</string>
-  <string name="MessageRecord_s_joined_signal">%s është në Signal! </string>
+  <string name="MessageRecord_s_joined_signal">%s është në Loki Messenger! </string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Çaktivizuat zhdukje mesazhesh.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s çaktivizoi zhdukje mesazhesh.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">E vutë kohëmatësin e zhdukjes së mesazheve për %1$s.</string>
@@ -449,9 +449,9 @@
   <string name="DeviceProvisioningActivity_content_progress_key_error">Kod QR i pavlefshëm.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Na ndjeni, keni tashmë shumë pajisje të lidhura, provoni të hiqni disa</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Na ndjeni, ky s\’është kod QR lidhjeje pajisjeje i vlefshëm.</string>
-  <string name="DeviceProvisioningActivity_link_a_signal_device">Të lidhet një pajisje Signal?</string>
-  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Duket sikur po provoni të lidhni një pajisje Signal duke përdorur skaner të një pale të tretë. Si masë mbrojtëse, ju lutemi, riskanojeni kodin që nga brenda Signal-it.</string>
-  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Që të mund të skanojë një kod QR, Signal lyp leje përdorimi të Kamerës, por kjo i është mohuar. Ju lutemi, kaloni te rregullimet e aplikacionit, përzgjidhni \"Leje\", dhe aktivizoni \"Kamerën\".</string>
+  <string name="DeviceProvisioningActivity_link_a_signal_device">Të lidhet një pajisje Loki Messenger?</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Duket sikur po provoni të lidhni një pajisje Signal duke përdorur skaner të një pale të tretë. Si masë mbrojtëse, ju lutemi, riskanojeni kodin që nga brenda Loki Messenger-it.</string>
+  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Që të mund të skanojë një kod QR, Loki Messenger lyp leje përdorimi të Kamerës, por kjo i është mohuar. Ju lutemi, kaloni te rregullimet e aplikacionit, përzgjidhni \"Leje\", dhe aktivizoni \"Kamerën\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">S\’arrihet të skanohet kod QR pa leje mbi Kamerën</string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">Zhdukje mesazhesh</string>
@@ -459,7 +459,7 @@
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Mesazhet e dërguara dhe të marra në këtë bisedë do të zhduken %s pasi të jenë parë.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Jepni frazëkalimin</string>
-  <string name="PassphrasePromptActivity_watermark_content_description">Ikona e Signal-it</string>
+  <string name="PassphrasePromptActivity_watermark_content_description">Ikona e Loki Messenger-it</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Parashtroje frazëkalimin</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Frazëkalim i pavlefshëm!</string>
   <!--PlayServicesProblemFragment-->
@@ -513,7 +513,7 @@
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Numri që specifikuat
          (%s) është i pavlefshëm.</string>
   <string name="RegistrationActivity_missing_google_play_services">Mungojnë Shërbimet Google Play</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Në këtë pajisje mungojnë Shërbimet Google Play. Mundeni prapëseprapë ta përdorni Signal-in, por ky formësim mund të sjellë qëndrueshmëri ose funksionim të reduktuar.\n\nNëse s\’jeni përdorues i përparuar, s\’po përdorni një ROM Android të modifikuar, ose besoni se po  e shihni gabimisht këtë, ju lutemi, lidhuni me support@signal.org për ndihmë në diagnostikikim.</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Në këtë pajisje mungojnë Shërbimet Google Play. Mundeni prapëseprapë ta përdorni Loki Messenger-in, por ky formësim mund të sjellë qëndrueshmëri ose funksionim të reduktuar.\n\nNëse s\’jeni përdorues i përparuar, s\’po përdorni një ROM Android të modifikuar, ose besoni se po  e shihni gabimisht këtë, ju lutemi, lidhuni me support@signal.org për ndihmë në diagnostikikim.</string>
   <string name="RegistrationActivity_i_understand">E kuptoj</string>
   <string name="RegistrationActivity_play_services_error">Gabim nga Shërbime Play</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Shërbimet Google Play po përditësohen ose janë përkohësisht jashtë funksionimi. Ju lutemi, riprovoni.</string>
@@ -521,9 +521,9 @@
   <string name="RegistrationActivity_no_browser">S\’arrihet të hapet kjo lidhje. S\’u gjet shfletues.</string>
   <string name="RegistrationActivity_more_information">Më tepër të dhëna</string>
   <string name="RegistrationActivity_less_information">Më pak të dhëna</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Që të mund të lidheni me shokët, të shkëmbeni mesazhe dhe të bëni thirje të siguruara, Signal-i lyp hyrje te kontaktet dhe mediat tuaja</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Që të mund të lidheni me shokët, të shkëmbeni mesazhe dhe të bëni thirje të siguruara, Loki Messenger-i lyp hyrje te kontaktet dhe mediat tuaja</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">S\’arrihet të bëhet lidhja te shërbimi. Ju lutemi, kontrolloni lidhjen me rrjetin dhe riprovoni.</string>
-  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Që të verifikohet lehtësisht numri juaj i telefonit, Signal-i mund të zbulojë vetvetiu kodin tuaj të verifikimit, nëse e lejoni Signal-in të shohë mesazhe SMS.</string>
+  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Që të verifikohet lehtësisht numri juaj i telefonit, Signal-i mund të zbulojë vetvetiu kodin tuaj të verifikimit, nëse e lejoni Loki Messenger-in të shohë mesazhe SMS.</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Ju ndan %d hap nga parashtrimi i një regjistri diagnostikimesh.</item>
     <item quantity="other">Ju ndajnë %d hapa nga parashtrimi i një regjistri diagnostikimesh.</item>
@@ -546,13 +546,13 @@
   <string name="SearchFragment_header_messages">Mesazhe</string>
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Shtoje te Kontaktet.</string>
-  <string name="SharedContactDetailsActivity_invite_to_signal">Ftoje në Signal</string>
-  <string name="SharedContactDetailsActivity_signal_message">Mesazhe Signal</string>
-  <string name="SharedContactDetailsActivity_signal_call">Thirrje përmes Signal-i</string>
+  <string name="SharedContactDetailsActivity_invite_to_signal">Ftoje në Loki Messenger</string>
+  <string name="SharedContactDetailsActivity_signal_message">Mesazhe Loki Messenger</string>
+  <string name="SharedContactDetailsActivity_signal_call">Thirrje përmes Loki Messenger-i</string>
   <!--SharedContactView-->
   <string name="SharedContactView_add_to_contacts">Shtoje te Kontakte</string>
-  <string name="SharedContactView_invite_to_signal">Ftoje në Signal</string>
-  <string name="SharedContactView_message">Mesazhe Signal</string>
+  <string name="SharedContactView_invite_to_signal">Ftoje në Loki Messenger</string>
+  <string name="SharedContactView_message">Mesazhe Loki Messenger</string>
   <!--Slide-->
   <string name="Slide_image">Figurë</string>
   <string name="Slide_audio">Audio</string>
@@ -575,7 +575,7 @@
   <string name="ThreadRecord_called_you">Ju thirri</string>
   <string name="ThreadRecord_missed_call">Thirrje e humbur</string>
   <string name="ThreadRecord_media_message">Mesazh media</string>
-  <string name="ThreadRecord_s_is_on_signal">%s është në Signal! </string>
+  <string name="ThreadRecord_s_is_on_signal">%s është në Loki Messenger! </string>
   <string name="ThreadRecord_disappearing_messages_disabled">Zhdukja e mesazheve është e çaktivizuar</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Koha për zhdukje mesazhesh është vënë %s</string>
   <string name="ThreadRecord_safety_number_changed">Numri i sigurisë ndryshoi</string>
@@ -583,8 +583,8 @@
   <string name="ThreadRecord_you_marked_verified">E shënuat si të verifikuar</string>
   <string name="ThreadRecord_you_marked_unverified">E shënuat si të paverifikuar</string>
   <!--UpdateApkReadyListener-->
-  <string name="UpdateApkReadyListener_Signal_update">Përditësim i Signal-it</string>
-  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Është gati një version i ri i Signal-it, prekeni që të përditësohet</string>
+  <string name="UpdateApkReadyListener_Signal_update">Përditësim i Loki Messenger-it</string>
+  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Është gati një version i ri i Loki Messenger-it, prekeni që të përditësohet</string>
   <!--UnknownSenderView-->
   <string name="UnknownSenderView_block_s">Të bllokohet %s?</string>
   <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Kontaktet e bllokuara s\’do të jenë më në gjendje t\’ju dërgojnë mesazhe apo t\’ju telefonojnë.</string>
@@ -599,14 +599,14 @@
   <string name="UnverifiedSendDialog_send_message">Të dërgohet mesazhi?</string>
   <string name="UnverifiedSendDialog_send">Dërgoje</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Kontakti juaj xhiron një version të vjetër të Signal-it. Ju lutemi, kërkojini ta përditësojë, para se të verifikohet numri juaj i sigurisë.</string>
-  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Kontakti juaj xhiron një version më të ri të Signal-it, me një format kodi QR të papërputhshëm. Ju lutemi, që të krahasohen, përditësojeni.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Kontakti juaj xhiron një version të vjetër të Loki Messenger-it. Ju lutemi, kërkojini ta përditësojë, para se të verifikohet numri juaj i sigurisë.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Kontakti juaj xhiron një version më të ri të Loki Messenger-it, me një format kodi QR të papërputhshëm. Ju lutemi, që të krahasohen, përditësojeni.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Kodi QR i skanuar s\’është kod verifikimi numri siguries i formatuar saktë. Ju lutemi, riprovoni skanimin.</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">Ndajeni numrin e sigurisë me të tjerët përmes…</string>
-  <string name="VerifyIdentityActivity_our_signal_safety_number">Numri ynë i sigurisë për Signal:</string>
+  <string name="VerifyIdentityActivity_our_signal_safety_number">Numri ynë i sigurisë për Loki Messenger:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Duket se s\’keni ndonjë aplikacion me të cilin të ndahet.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Në të papastër s\’u gjet numër sigurie për krahasim</string>
-  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Që të mund të skanojë një kod QR, Signal-i lyp leje përdorimi të Kamerës, por kjo i është mohuar. Ju lutemi, kaloni te rregullimet e aplikacionit, përzgjidhni \"Leje\", dhe aktivizoni \"Kamera\".</string>
+  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Që të mund të skanojë një kod QR, Loki Messenger-i lyp leje përdorimi të Kamerës, por kjo i është mohuar. Ju lutemi, kaloni te rregullimet e aplikacionit, përzgjidhni \"Leje\", dhe aktivizoni \"Kamera\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">S\’arrihet të skanohet kodi QR pa lejim të kamerës</string>
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Mesazh i fshehtëzuar keq</string>
@@ -626,13 +626,13 @@
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Prekeni për ta hapur.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Prekeni për ta hapur, ose prekni drynin për ta mbyllur.</string>
-  <string name="KeyCachingService_passphrase_cached">Signal-i u shkyç</string>
-  <string name="KeyCachingService_lock">Kyçe Signal-in</string>
+  <string name="KeyCachingService_passphrase_cached">Loki Messenger-i u shkyç</string>
+  <string name="KeyCachingService_lock">Kyçe Loki Messenger-in</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Ju</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Lloj media i pambuluar</string>
   <string name="MediaPreviewActivity_draft">Skicë:</string>
-  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Për të ruajtur gjëra në depozitë të jashtme, Signal-i lyp leje Depozitimi, por kjo i është mohuar. Ju lutemi, kaloni te rregullimet e aplikacionit, përzgjidhni \"Leje\", dhe aktivizoni \"Depozitim\".</string>
+  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Për të ruajtur gjëra në depozitë të jashtme, Loki Messenger-i lyp leje Depozitimi, por kjo i është mohuar. Ju lutemi, kaloni te rregullimet e aplikacionit, përzgjidhni \"Leje\", dhe aktivizoni \"Depozitim\".</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">S\’bëhet dot ruajtje në depozitë të jashtme pa leje</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Të fshihet mesazhi?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Kjo do ta fshijë përgjithmonë këtë mesazh.</string>
@@ -648,10 +648,10 @@
   <string name="MessageNotifier_mark_read">Vëri shenjë si të lexuar</string>
   <string name="MessageNotifier_media_message">Mesazh media</string>
   <string name="MessageNotifier_reply">Përgjigju</string>
-  <string name="MessageNotifier_signal_message">Mesazhe Signal</string>
+  <string name="MessageNotifier_signal_message">Mesazhe Loki Messenger</string>
   <string name="MessageNotifier_unsecured_sms">SMS e pasiguruar</string>
-  <string name="MessageNotifier_pending_signal_messages">Mesazhe Signal pezull</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">Keni mesazhe Signal pezull, prekeni për t\’ia hapur dhe rimarrë</string>
+  <string name="MessageNotifier_pending_signal_messages">Mesazhe Loki Messenger pezull</string>
+  <string name="MessageNotifier_you_have_pending_signal_messages">Keni mesazhe Loki Messenger pezull, prekeni për t\’ia hapur dhe rimarrë</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Kontakt</string>
   <!--Notification Channels-->
@@ -665,7 +665,7 @@
   <string name="NotificationChannel_group_messages">Mesazhe</string>
   <string name="NotificationChannel_missing_display_name">I panjohur</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">S\’bëhet dot përgjigje e shpejtë, kur Signal-i është i kyçur!</string>
+  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">S\’bëhet dot përgjigje e shpejtë, kur Loki Messenger-i është i kyçur!</string>
   <string name="QuickResponseService_problem_sending_message">Problem në dërgim mesazhi!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_saved_to">U ruajt te %s</string>
@@ -685,14 +685,14 @@
   </plurals>
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">Pajisje jo më e regjistruar</string>
-  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Ka gjasa që kjo të rrjedhë ngaqë numrin tuaj të telefonit e regjistruat me Signal-in në një pajisje tjetër. Prekeni që të riregjistrohet.</string>
+  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Ka gjasa që kjo të rrjedhë ngaqë numrin tuaj të telefonit e regjistruat me Loki Messenger-in në një pajisje tjetër. Prekeni që të riregjistrohet.</string>
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">Gabim në luajtjen e videos</string>
   <!--WebRtcCallActivity-->
-  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Për t\’iu përgjigjur thirrjes prej %s, lejojini Signal-it të përdorë mikrofonin tuaj.</string>
-  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Që të bëjë ose pranojë thirrje, Signal-i lyp leje mbi Mikrofonin dhe Kamerën, por këto i janë mohuar. Ju lutemi, kaloni te rregullimet e aplikacionit, përzgjidhni \"Leje\", dhe aktivizoni \"Mikrofonin\" dhe \"Kamerën\".</string>
+  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Për t\’iu përgjigjur thirrjes prej %s, lejojini Loki Messenger-it të përdorë mikrofonin tuaj.</string>
+  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Që të bëjë ose pranojë thirrje, Loki Messenger-i lyp leje mbi Mikrofonin dhe Kamerën, por këto i janë mohuar. Ju lutemi, kaloni te rregullimet e aplikacionit, përzgjidhni \"Leje\", dhe aktivizoni \"Mikrofonin\" dhe \"Kamerën\".</string>
   <!--WebRtcCallScreen-->
-  <string name="WebRtcCallScreen_new_safety_numbers">Numri i sigurisë për bisedën tuaj me %1$s ka ndryshuar. Kjo mund të jetë shenjë se ose sepse dikush po rreket të përgjojë komunikimin tuaj, ose se %2$s thjesht ka riinstaluar Signal-in.</string>
+  <string name="WebRtcCallScreen_new_safety_numbers">Numri i sigurisë për bisedën tuaj me %1$s ka ndryshuar. Kjo mund të jetë shenjë se ose sepse dikush po rreket të përgjojë komunikimin tuaj, ose se %2$s thjesht ka riinstaluar Loki Messenger-in.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Mund të donit të verifikonit numrin tuaj të sigurisë me këtë kontakt.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Numër sigurie i ri</string>
   <string name="WebRtcCallScreen_accept">Pranoje</string>
@@ -727,15 +727,15 @@
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Foto Kontakti</string>
   <!--ContactSelectionListFragment-->
-  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Që të mund të shfaqë kontaktet tuaja, Signal-i lyp leje mbi Kontaktet, por këto i janë mohuar. Ju lutemi, kaloni te menuja e rregullimeve të aplikacionit, përzgjidhni \"Leje\", dhe aktivizoni \"Kontakte\".</string>
+  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Që të mund të shfaqë kontaktet tuaja, Loki Messenger-i lyp leje mbi Kontaktet, por këto i janë mohuar. Ju lutemi, kaloni te menuja e rregullimeve të aplikacionit, përzgjidhni \"Leje\", dhe aktivizoni \"Kontakte\".</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Gabim në marrje kontaktesh, kontrolloni lidhjen tuaj në rrjet</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">S\’ka kontakte të bllokuara</string>
   <!--contact_selection_list_fragment-->
-  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Që të mund t\’i shfaqë, Signal-i lyp leje përdorimi të kontakteve.</string>
+  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Që të mund t\’i shfaqë, Loki Messenger-i lyp leje përdorimi të kontakteve.</string>
   <string name="contact_selection_list_fragment__show_contacts">Shfaq Kontaktet</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Mesazh Signal</string>
+  <string name="conversation_activity__type_message_push">Mesazh Loki Messenger</string>
   <string name="conversation_activity__type_message_sms_insecure">SMS e pasiguruar</string>
   <string name="conversation_activity__type_message_mms_insecure">MMS e pasiguruar</string>
   <string name="conversation_activity__from_sim_name">Nga %1$s</string>
@@ -747,7 +747,7 @@
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Hap/mbyll sirtar të shpejtë bashkëngjitjesh nga kamera</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Incizoni dhe dërgoni bashkëngjitje zanore</string>
   <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Blloko incizim bashkëngjitjeje audio</string>
-  <string name="conversation_activity__enable_signal_for_sms">Aktivizo Signal për SMS</string>
+  <string name="conversation_activity__enable_signal_for_sms">Aktivizo Loki Messenger për SMS</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">Rrëshqiteni që të anulohet</string>
   <string name="conversation_input_panel__cancel">Anuloje</string>
@@ -820,9 +820,9 @@
   <string name="IdentityUtil_unverified_banner_one">Numri juaj i sigurisë me %s ka ndryshuar dhe s\’është më i verifikuar.</string>
   <string name="IdentityUtil_unverified_banner_two">Numrat tuaj të sigurisë me %1$s dhe %2$s s\’janë më të verifikuar.</string>
   <string name="IdentityUtil_unverified_banner_many">Numrat tuaj të sigurisë me %1$s, %2$s dhe %3$s s\’janë më të verifikuar.</string>
-  <string name="IdentityUtil_unverified_dialog_one">Numri juaj i sigurisë me %1$s ka ndryshuar dhe s\’është më i verifikuar. Kjo do të thotë ose dikush po provon të përgjojë komunikimin tuaj, ose se %1$s thjesht ka riinstaluar Signal-in.</string>
-  <string name="IdentityUtil_unverified_dialog_two">Numrat tuaj të sigurisë me %1$s dhe %2$s s\’janë më të verifikuar. Kjo do të thotë ose dikush po provon të përgjojë komunikimin tuaj, ose se thjesht ka riinstaluar Signal-in.</string>
-  <string name="IdentityUtil_unverified_dialog_many">Numrat tuaj të sigurisë me %1$s,  %2$s dhe %3$s s\’janë më të verifikuar. Kjo do të thotë ose dikush po provon të përgjojë komunikimin tuaj, ose se thjesht ka riinstaluar Signal-in.</string>
+  <string name="IdentityUtil_unverified_dialog_one">Numri juaj i sigurisë me %1$s ka ndryshuar dhe s\’është më i verifikuar. Kjo do të thotë ose dikush po provon të përgjojë komunikimin tuaj, ose se %1$s thjesht ka riinstaluar Loki Messenger-in.</string>
+  <string name="IdentityUtil_unverified_dialog_two">Numrat tuaj të sigurisë me %1$s dhe %2$s s\’janë më të verifikuar. Kjo do të thotë ose dikush po provon të përgjojë komunikimin tuaj, ose se thjesht ka riinstaluar Loki Messenger-in.</string>
+  <string name="IdentityUtil_unverified_dialog_many">Numrat tuaj të sigurisë me %1$s,  %2$s dhe %3$s s\’janë më të verifikuar. Kjo do të thotë ose dikush po provon të përgjojë komunikimin tuaj, ose se thjesht ka riinstaluar Loki Messenger-in.</string>
   <string name="IdentityUtil_untrusted_dialog_one">Numri juaj i sigurisë me %s sapo ndryshoi.</string>
   <string name="IdentityUtil_untrusted_dialog_two">Numrat tuaj të sigurisë me %1$s dhe %2$s sapo ndryshuan.</string>
   <string name="IdentityUtil_untrusted_dialog_many">Numrat tuaj të sigurisë me %1$s, %2$s dhe %3$s sapo ndryshuan.</string>
@@ -853,7 +853,7 @@
   <string name="log_submit_activity__please_review_this_log_from_my_app">Ju lutemi, shqyrtojeni këtë regjistër të aplikacionit tim: %1$s</string>
   <string name="log_submit_activity__network_failure">Dështim rrjeti. Ju lutemi, riprovoni.</string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Doni të importohen mesazhet tuaj tekst te baza e fshehtëzuar e të dhënave të Signal-it?</string>
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Doni të importohen mesazhet tuaj tekst te baza e fshehtëzuar e të dhënave të Loki Messenger-it?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Baza parazgjedhje e sistemit për të dhënat nuk do modifikohet apo tjetërsohet në ndonjë mënyrë.</string>
   <string name="database_migration_activity__skip">Anashkaloje</string>
   <string name="database_migration_activity__import">Importoji</string>
@@ -885,7 +885,7 @@
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Zhbllokoje</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Që të shpërndajë media dhe mesazhe grupi përmes shërbimit tuaj celular, Signal-i lyp rregullime për MMS-në. Pajisja juaj celulare nuk ofron të dhëna të tilla, çka ndodh, me raste, për pajisje të kyçura ose formësimeve të tjera kufizuese.</string>
+  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Që të shpërndajë media dhe mesazhe grupi përmes shërbimit tuaj celular, Loki Messenger-i lyp rregullime për MMS-në. Pajisja juaj celulare nuk ofron të dhëna të tilla, çka ndodh, me raste, për pajisje të kyçura ose formësimeve të tjera kufizuese.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Për të dërgua media dhe mesazhe grupi, prekni \'OK\' dhe plotësoni rregullimet e domosdoshme. Rregullimet MMS për operatorin tuaj zakonisht mund të gjenden duke kërkuar për \'APN-në e operatorit tuaj\'. Këtë do t\’ju duhet ta bëni vetëm një herë.</string>
   <!--profile_create_activity-->
   <string name="profile_create_activity__set_later">Caktojini më vonë</string>
@@ -908,12 +908,12 @@
   <string name="recipient_preferences__call_settings">Rregullime thirrjeje</string>
   <string name="recipient_preferences__ringtone">Zile</string>
   <!--- redphone_call_controls-->
-  <string name="redphone_call_card__signal_call">Thirrje përmes Signal-i</string>
+  <string name="redphone_call_card__signal_call">Thirrje përmes Loki Messenger-i</string>
   <string name="redphone_call_controls__mute">Heshtoje</string>
   <string name="redphone_call_controls__flip_camera_rear">Ndërroni Kamera</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">NUMËR TELEFONI</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal e bën të lehtë të komunikoni duke përdorur numrin tuaj ekzistues të telefonit dhe librin e adresave. Shokë dhe kontakte, që dinë tashmë si të lidhen me ju përmes telefonit, do të jenë në gjendje të lidhen me ju lehtësisht përmes Signal-it.\n\nRegjistrimi transmeton te shërbyesi disa të dhëna kontakti. Të cilat nuk depozitohen.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal e bën të lehtë të komunikoni duke përdorur numrin tuaj ekzistues të telefonit dhe librin e adresave. Shokë dhe kontakte, që dinë tashmë si të lidhen me ju përmes telefonit, do të jenë në gjendje të lidhen me ju lehtësisht përmes Loki Messenger-it.\n\nRegjistrimi transmeton te shërbyesi disa të dhëna kontakti. Të cilat nuk depozitohen.</string>
   <string name="registration_activity__verify_your_number">Verifikoni Numrin Tuaj</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Ju lutemi, jepni numrin tuaj të celularit, që të merrni një kod verifikimi. Mund të aplikohen tarifa operatori.</string>
   <!--recipients_panel-->
@@ -990,8 +990,8 @@
   <string name="preferences__sms_mms">SMS dhe MMS</string>
   <string name="preferences__pref_all_sms_title">Merri krejt SMS-të</string>
   <string name="preferences__pref_all_mms_title">Merri krejt MMS-të</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Përdore Signal-in për krejt mesazhet tekst</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Përdore Signal për krejt mesazhet multimedia ardhëse</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Përdore Loki Messenger-in për krejt mesazhet tekst</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Përdore Loki Messenger për krejt mesazhet multimedia ardhëse</string>
   <string name="preferences__pref_enter_sends_title">Tasti Enter dërgon</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Shtypja e tastit Enter do të sjellë dërgim mesazhesh tekst</string>
   <string name="preferences__send_link_previews">Dërgo paraparje lidhjesh</string>
@@ -1004,7 +1004,7 @@
   <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Kyçje ekrani dhe njoftime me frazëkalim</string>
   <string name="preferences__screen_security">Siguri ekrani</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Blloko foto ekrani te lista e të rejave dhe brenda aplikacionit.</string>
-  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Kyçe vetvetiu Signal-in pas një itervali kohor të caktuar plogështie.</string>
+  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Kyçe vetvetiu Loki Messenger-in pas një itervali kohor të caktuar plogështie.</string>
   <string name="preferences__inactivity_timeout_passphrase">Frazëkalim mbarimi kohe plogështie</string>
   <string name="preferences__inactivity_timeout_interval">Interval mbarimi kohe plogështie</string>
   <string name="preferences__notifications">Njoftime</string>
@@ -1057,8 +1057,8 @@
   <string name="preferences__theme">Temë</string>
   <string name="preferences__default">Parazgjedhje</string>
   <string name="preferences__language">Gjuhë</string>
-  <string name="preferences__signal_messages_and_calls">Mesazhe dhe thirrje Signal</string>
-  <string name="preferences__free_private_messages_and_calls">Mesazhe dhe thirrje falas drejt përdoruesish të Signal-it</string>
+  <string name="preferences__signal_messages_and_calls">Mesazhe dhe thirrje Loki Messenger</string>
+  <string name="preferences__free_private_messages_and_calls">Mesazhe dhe thirrje falas drejt përdoruesish të Loki Messenger-it</string>
   <string name="preferences__submit_debug_log">Parashtro regjistër diagnostikimi</string>
   <string name="preferences__support_wifi_calling">Mënyrë përputhshmëri me \'Thirrje Wifi\'</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktivizojeni nëse pajisja juaj përdor dërgim SMS/MMS-sh përmes WiFi (aktivizojeni vetëm kur \'Thirrje Wifi\' janë të aktivizuara në pajisjen tuaj).</string>
@@ -1074,8 +1074,8 @@
   <string name="preferences_chats__media_auto_download">Vetëshkarkim mediash</string>
   <string name="preferences_chats__message_trimming">Shkurtim mesazhesh</string>
   <string name="preferences_advanced__use_system_emoji">Përdor emoji të sistemit</string>
-  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Çaktivizo mbulimin e brendshëm të Signal-it për emoji-t</string>
-  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Kaloji krejt thirrjet përmes shërbyesit Signal për të shmangur zbulimin e adresës tuaj IP nga kontakti juaj. Aktivizimi do të ulë cilësinë e thirrjes.</string>
+  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Çaktivizo mbulimin e brendshëm të Loki Messenger-it për emoji-t</string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Kaloji krejt thirrjet përmes shërbyesit Loki Messenger për të shmangur zbulimin e adresës tuaj IP nga kontakti juaj. Aktivizimi do të ulë cilësinë e thirrjes.</string>
   <string name="preferences_advanced__always_relay_calls">Kaloji përherë thirrjet përmes releje</string>
   <string name="preferences_app_protection__app_access">Hyrje aplikacioni</string>
   <string name="preferences_app_protection__communication">Komunikim</string>
@@ -1087,9 +1087,9 @@
   <string name="preferences_notifications__calls">Thirje</string>
   <string name="preferences_notifications__ringtone">Zile</string>
   <string name="preferences_chats__show_invitation_prompts">Shfaq mekanizëm ftesash</string>
-  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Shfaq mekanizëm ftesash për kontakte pa Signal</string>
+  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Shfaq mekanizëm ftesash për kontakte pa Loki Messenger</string>
   <string name="preferences_chats__message_text_size">Madhësi shkronjash mesazhi</string>
-  <string name="preferences_events__contact_joined_signal">Kontakti zuri të përdorë Signal-in</string>
+  <string name="preferences_events__contact_joined_signal">Kontakti zuri të përdorë Loki Messenger-in</string>
   <string name="preferences_notifications__priority">Përparësi</string>
   <string name="preferences_communication__category_sealed_sender">Dërgues i Vulosur</string>
   <string name="preferences_communication__sealed_sender_display_indicators">Shfaq tregues</string>
@@ -1105,7 +1105,7 @@
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Thirrje</string>
   <!--conversation_callable_secure-->
-  <string name="conversation_callable_secure__menu_call">Thirrje përmes Signal-i</string>
+  <string name="conversation_callable_secure__menu_call">Thirrje përmes Loki Messenger-i</string>
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">Hollësi mesazhi</string>
   <string name="conversation_context__menu_copy_text">Kopjo tekstin</string>
@@ -1167,26 +1167,26 @@
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopjoje në të papastër</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Krahasoje me lëndën në të papastër</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">Versioni juaj i Signal-it është i vjetruar</string>
+  <string name="reminder_header_outdated_build">Versioni juaj i Loki Messenger-it është i vjetruar</string>
   <plurals name="reminder_header_outdated_build_details">
-    <item quantity="one">Versioni juaj i Signal-it do të skadojë për %d ditë. Prekeni që të përditësohet me versionin më të ri.</item>
-    <item quantity="other">Versioni juaj i Signal-it do të skadojë për %d ditë. Prekeni që të përditësohet me versionin më të ri.</item>
+    <item quantity="one">Versioni juaj i Loki Messenger-it do të skadojë për %d ditë. Prekeni që të përditësohet me versionin më të ri.</item>
+    <item quantity="other">Versioni juaj i Loki Messenger-it do të skadojë për %d ditë. Prekeni që të përditësohet me versionin më të ri.</item>
   </plurals>
-  <string name="reminder_header_outdated_build_details_today">Versioni juaj i Signal-it do të skadojë sot. Prekeni që të përditësohet me versionin më të ri..</string>
-  <string name="reminder_header_expired_build">Versioni juaj i Signal-it ka skaduar!</string>
+  <string name="reminder_header_outdated_build_details_today">Versioni juaj i Loki Messenger-it do të skadojë sot. Prekeni që të përditësohet me versionin më të ri..</string>
+  <string name="reminder_header_expired_build">Versioni juaj i Loki Messenger-it ka skaduar!</string>
   <string name="reminder_header_expired_build_details">Mesazhet s\’do të dërgohen më me sukses. Prekeni që të përditësohet me versionin më të ri.</string>
   <string name="reminder_header_sms_default_title">Përdoresi aplikacionin parazgjedhje për SMS-të</string>
-  <string name="reminder_header_sms_default_text">Prekeni për ta bërë Signal-in aplikacionin tuaj parazgjedhje për SMS-të.</string>
+  <string name="reminder_header_sms_default_text">Prekeni për ta bërë Loki Messenger-in aplikacionin tuaj parazgjedhje për SMS-të.</string>
   <string name="reminder_header_sms_import_title">Importo SMS sistemi</string>
-  <string name="reminder_header_sms_import_text">Prekeni që të kopjohen mesazhet SMS të telefonit tuaj te baza e fshehtëzuar e të dhënave të Signal-it.</string>
-  <string name="reminder_header_push_title">Aktivizo mesazhe dhe thirrje Signal</string>
+  <string name="reminder_header_sms_import_text">Prekeni që të kopjohen mesazhet SMS të telefonit tuaj te baza e fshehtëzuar e të dhënave të Loki Messenger-it.</string>
+  <string name="reminder_header_push_title">Aktivizo mesazhe dhe thirrje Loki Messenger</string>
   <string name="reminder_header_push_text">Përmirësoni komunikimin tuaj.</string>
-  <string name="reminder_header_invite_title">Ftojeni në Signal</string>
+  <string name="reminder_header_invite_title">Ftojeni në Loki Messenger</string>
   <string name="reminder_header_invite_text">Kalojeni bisedën tuaj me %1$s një shkallë më sipër.</string>
   <string name="reminder_header_share_title">Ftoni shokët tuaj!</string>
-  <string name="reminder_header_share_text">Sa më shumë shokë që përdorin Signal-in, aq më i mirë bëhet.</string>
-  <string name="reminder_header_service_outage_text">Signal-i po kalon vështirësi teknike. Po punojmë fort të rikthejmë shërbimin sa më shpejt që të mundet.</string>
-  <string name="reminder_header_the_latest_signal_features_wont_work">Veçoritë më të reja të Signal-it, s’do të funksionojnë në këtë version të Android-it. Ju lutemi, përmirësojeni këtë pajisje që të marrë përditësime të ardhshme të Signal-it.</string>
+  <string name="reminder_header_share_text">Sa më shumë shokë që përdorin Loki Messenger-in, aq më i mirë bëhet.</string>
+  <string name="reminder_header_service_outage_text">Loki Messenger-i po kalon vështirësi teknike. Po punojmë fort të rikthejmë shërbimin sa më shpejt që të mundet.</string>
+  <string name="reminder_header_the_latest_signal_features_wont_work">Veçoritë më të reja të Signal-it, s’do të funksionojnë në këtë version të Android-it. Ju lutemi, përmirësojeni këtë pajisje që të marrë përditësime të ardhshme të Loki Messenger-it.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Ruaje</string>
   <string name="media_preview__forward_title">Përcilleni</string>
@@ -1207,16 +1207,16 @@
   <string name="ConversationListFragment_loading">Po ngarkohet…</string>
   <string name="CallNotificationBuilder_connecting">Po lidhet…</string>
   <string name="Permissions_permission_required">Lyp leje</string>
-  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Që të mund të dërgohet një SMS, Signal-i lyp leje SMS-sh, por kjo i është mohuar. Ju lutemi, kaloni te rregullime aplikacioni, përzgjidhni \"Leje\" dhe aktivizoni \"SMS\".</string>
+  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Që të mund të dërgohet një SMS, Loki Messenger-i lyp leje SMS-sh, por kjo i është mohuar. Ju lutemi, kaloni te rregullime aplikacioni, përzgjidhni \"Leje\" dhe aktivizoni \"SMS\".</string>
   <string name="Permissions_continue">Vazhdo</string>
   <string name="Permissions_not_now">Jo tani</string>
-  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Që të mund të kërkohet te kontaktet tuaja, Signal-i lyp leje mbi Kontaktet, por kjo i është mohuar. Ju lutemi, kaloni te rregullime aplikacioni, përzgjidhni \"Leje\" dhe aktivizoni \"Kontakte\".</string>
+  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Që të mund të kërkohet te kontaktet tuaja, Loki Messenger-i lyp leje mbi Kontaktet, por kjo i është mohuar. Ju lutemi, kaloni te rregullime aplikacioni, përzgjidhni \"Leje\" dhe aktivizoni \"Kontakte\".</string>
   <string name="conversation_activity__enable_signal_messages">AKTIVIZO MESAZHE SIGNAL</string>
-  <string name="SQLCipherMigrationHelper_migrating_signal_database">Po migrohet baza e të dhënave Signal</string>
+  <string name="SQLCipherMigrationHelper_migrating_signal_database">Po migrohet baza e të dhënave Loki Messenger</string>
   <string name="PushDecryptJob_new_locked_message">Mesazhe të rinj të kyçur</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Shkyçeni që të shihni mesazhet pezull</string>
   <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Shkyçeni që të plotësohet përditësimi</string>
-  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Ju lutemi, shkyçeni Signal-in që të plotësohet përditësimi</string>
+  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Ju lutemi, shkyçeni Loki Messenger-in që të plotësohet përditësimi</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Frazëkalim kopjeruajtjesh</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Kopjeruajtjet do të ruhen te depozitë e jashtme dhe fshehtëzohen me frazëkalimin më poshtë. Duhet të keni këtë frazëkalim, pa të mundeni të riktheni një kopjeruajtje</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">E kam shkruar diku këtë frazëkalim. Pa të, s\’do të jem në gjendje të rikthej një kopjeruajtje</string>
@@ -1228,7 +1228,7 @@
   <string name="preferences_chats__create_backup">Krijo kopjeruajtje</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Jepni frazëkalim kopjeruajtjeje</string>
   <string name="RegistrationActivity_restore">Riktheje</string>
-  <string name="RegistrationActivity_backup_failure_downgrade">S\’mund të importohen kopjeruajtje prej versionesh më të rinj të Signal-it</string>
+  <string name="RegistrationActivity_backup_failure_downgrade">S\’mund të importohen kopjeruajtje prej versionesh më të rinj të Loki Messenger-it</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">Jepni frazëkalim kopjeruajtjeje</string>
   <string name="RegistrationActivity_checking">Po kontrollohet…</string>
   <string name="RegistrationActivity_d_messages_so_far">%d mesazhe deri tani…</string>
@@ -1243,7 +1243,7 @@
   <string name="BackupDialog_disable_and_delete_all_local_backups">Të çaktivizohen dhe fshihen krejt kopjeruajtjet vendore?</string>
   <string name="BackupDialog_delete_backups_statement">Fshiji kopjeruajtjet</string>
   <string name="BackupDialog_copied_to_clipboard">U kopjua në të papastër</string>
-  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Që të mund të krijohen kopjeruajtje, Signal-i lyp leje mbi depozitë të jashtme, por kjo i është mohuar. Ju lutemi, kaloni te rregullime aplikacioni, përzgjidhni \"Leje\" dhe aktivizoni \"Depozitim\".</string>
+  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Që të mund të krijohen kopjeruajtje, Loki Messenger-i lyp leje mbi depozitë të jashtme, por kjo i është mohuar. Ju lutemi, kaloni te rregullime aplikacioni, përzgjidhni \"Leje\" dhe aktivizoni \"Depozitim\".</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Kopjeruajtja e fundit: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Në kryerje e sipër</string>
   <string name="LocalBackupJob_creating_backup">Po krijohet kopjeruajtje…</string>
@@ -1254,7 +1254,7 @@
   <string name="BackupUtil_never">Kurrë</string>
   <string name="BackupUtil_unknown">E panjohur</string>
   <string name="preferences_app_protection__screen_lock">Kyçje ekrani</string>
-  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">kyçni hyrjen në Signal përmes kyçje ekrani ose shenja gishtash Android</string>
+  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">kyçni hyrjen në Loki Messenger përmes kyçje ekrani ose shenja gishtash Android</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Kohë mbarimi plogështie për kyçje ekrani</string>
   <string name="AppProtectionPreferenceFragment_none">Asnjë</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">PIN-i i Kyçjes së Regjistrimit s\’është i njëjtë me kodin e verifikimit SMS që sapo morët. Ju lutemi, jepni PIN-in që formësuat më herët te aplikacioni.</string>
@@ -1265,7 +1265,7 @@
   <string name="registration_lock_dialog_view__confirm_pin">Ripohoni PIN-in</string>
   <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Jepni PIN-in tuaj të Kyçjes së Regjistrimit</string>
   <string name="registration_lock_reminder_view__enter_pin">Jepni PIN-in</string>
-  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Aktivizoni PIN Kyçjeje Regjistrimi që do të kërkohet për të riregjistruar këtë numër telefoni me Signal-in.</string>
+  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Aktivizoni PIN Kyçjeje Regjistrimi që do të kërkohet për të riregjistruar këtë numër telefoni me Loki Messenger-in.</string>
   <string name="preferences_app_protection__registration_lock_pin">PIN Kyçjeje Regjistrimi</string>
   <string name="preferences_app_protection__registration_lock">Kyçje Regjistrimi</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Duhet të jepni PIN-in tuaj të Kyçjes së Regjistrimit</string>
@@ -1274,13 +1274,13 @@
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Keni bërë shumë përpjekje të pasakta dhënieje PIN-i Kyçjeje Regjistrimi. Ju lutemi, riprovoni pas një dite.</string>
   <string name="RegistrationActivity_error_connecting_to_service">Gabim në lidhjen me shërbimin</string>
   <string name="RegistrationActivity_oh_no">Oh, mos!</string>
-  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Regjistrimi i këtij numri telefoni do të jetë i mundshëm pa PIN-in tuaj të Kyçjes së Regjistrimit pasi të kenë kaluar 7 ditë qëkur ky numër telefoni qe së fundi aktiv në Signal. Ju mbeten edhe %d ditë.</string>
+  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Regjistrimi i këtij numri telefoni do të jetë i mundshëm pa PIN-in tuaj të Kyçjes së Regjistrimit pasi të kenë kaluar 7 ditë qëkur ky numër telefoni qe së fundi aktiv në Loki Messenger. Ju mbeten edhe %d ditë.</string>
   <string name="RegistrationActivity_registration_lock_pin">PIN Kyçjeje Regjistrimi</string>
   <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Ky numër telefoni ka të aktivizuar Kyçje Regjistrimi. Ju lutemi, jepni PIN Kyçjeje Regjistrimi.</string>
-  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Kyçja e Regjistrimit është e aktivizuar për numrin tuaj të telefonit. Që t\’ju ndihmojë në mbajtjen mend të PIN-it tuaj të Kyçjes së Regjistrimi, Signal-i do t\’ju kërkojë në mënyrë të përsëritur ta ripohoni.</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Kyçja e Regjistrimit është e aktivizuar për numrin tuaj të telefonit. Që t\’ju ndihmojë në mbajtjen mend të PIN-it tuaj të Kyçjes së Regjistrimi, Loki Messenger-i do t\’ju kërkojë në mënyrë të përsëritur ta ripohoni.</string>
   <string name="RegistrationLockDialog_i_forgot_my_pin">Harrova PIN-in tim.</string>
   <string name="RegistrationLockDialog_forgotten_pin">Harruat PIN-in?</string>
-  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Kyçja e Regjistrimit ndihmon të mbrohet numri juaj i telefoni nga përpjekje regjistrimi të paautorizuara. Kjo veçori mund të çaktivizohet kur të doni, te rregullimet tuaja mbi privatësinë në Signal</string>
+  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Kyçja e Regjistrimit ndihmon të mbrohet numri juaj i telefoni nga përpjekje regjistrimi të paautorizuara. Kjo veçori mund të çaktivizohet kur të doni, te rregullimet tuaja mbi privatësinë në Loki Messenger</string>
   <string name="RegistrationLockDialog_registration_lock">Kyçj Regjistrimi</string>
   <string name="RegistrationLockDialog_enable">Aktivizoje</string>
   <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">PIN-i i Kyçjes së Regjistrimit duhet të jetë të paktën 4 shifra.</string>
@@ -1289,7 +1289,7 @@
   <string name="RegistrationLockDialog_disable_registration_lock_pin">Të çaktivizohet PIN-i i Kyçjes së Regjistrimit?</string>
   <string name="RegistrationLockDialog_disable">Çaktivizoje</string>
   <string name="preferences_chats__backups">Kopjeruajtje</string>
-  <string name="prompt_passphrase_activity__signal_is_locked">Signal-i është i kyçur</string>
+  <string name="prompt_passphrase_activity__signal_is_locked">Loki Messenger-i është i kyçur</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">PREKENI QË TË SHKYÇET</string>
   <string name="RegistrationLockDialog_reminder">Kujtues:</string>
   <string name="recipient_preferences__about">Mbi</string>

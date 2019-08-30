@@ -27,17 +27,17 @@
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">Ștergeți</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Dezactivez parola?</string>
-  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Această acțiune va debloca permanent Signal și notificările pentru mesaje.</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Această acțiune va debloca permanent Loki Messenger și notificările pentru mesaje.</string>
   <string name="ApplicationPreferencesActivity_disable">Dezactivați</string>
   <string name="ApplicationPreferencesActivity_unregistering">Se anulează înregistrarea</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Se dezabonează de la mesajele și apelurile Signal... </string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Dezactivați mesajele și apelurile Signal? </string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Dezactivați mesajele și apeluri Signal prin dezabonarea de la server. Va trebui să vă re-înregistrezi numărul dvs. de telefon pentru a putea să le folosiți din nou în viitor.</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Se dezabonează de la mesajele și apelurile Loki Messenger... </string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Dezactivați mesajele și apelurile Loki Messenger? </string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Dezactivați mesajele și apeluri Loki Messenger prin dezabonarea de la server. Va trebui să vă re-înregistrezi numărul dvs. de telefon pentru a putea să le folosiți din nou în viitor.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Eroare de conectare la server!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS Activat</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Atingeți pentru a schimba aplicaţia implicită de SMS </string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS Dezactivat</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Atinge pentru a seta Signal ca şi aplicaţie SMS implicită</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Atinge pentru a seta Loki Messenger ca şi aplicaţie SMS implicită</string>
   <string name="ApplicationPreferencesActivity_on">activată</string>
   <string name="ApplicationPreferencesActivity_On">Activate</string>
   <string name="ApplicationPreferencesActivity_off">dezactivată</string>
@@ -59,10 +59,10 @@
   <string name="DraftDatabase_Draft_quote_snippet">(răspuns)</string>
   <!--AttchmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Nu pot găsi o aplicație pentru selecție media.</string>
-  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal are nevoie de permisiunea pentru spațiul de stocare pentru a putea atașa poze, filme sau audio, dar i-a fost refuzat accesul permanent. Vă rog navigați în meniul de setări al aplicației, selectați \"Permisiuni\" și activați \"Spațiu de stocare\".</string>
-  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal are nevoie de permisiunea pentru Contacte pentru a putea atașa informații despre contacte dar i-a fost refuzat accesul permanent. Vă rog navigați în meniul de setări al aplicației, selectați \"Permisiuni\" și activați \"Contacte\".</string>
-  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal are nevoie de permisiunea pentru Locație pentru a putea atașa o locație dar i-a fost refuzat accesul permanent. Vă rog navigați în meniul de setări al aplicației, selectați \"Permisiuni\" și activați \"Locație\".</string>
-  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal are nevoie de permisiunea pentru Cameră pentru a putea face poze dar i-a fost refuzat accesul permanent. Vă rog navigați în meniul de setări al aplicației, selectați \"Permisiuni\" și activați \"Cameră\".</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Loki Messenger are nevoie de permisiunea pentru spațiul de stocare pentru a putea atașa poze, filme sau audio, dar i-a fost refuzat accesul permanent. Vă rog navigați în meniul de setări al aplicației, selectați \"Permisiuni\" și activați \"Spațiu de stocare\".</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Loki Messenger are nevoie de permisiunea pentru Contacte pentru a putea atașa informații despre contacte dar i-a fost refuzat accesul permanent. Vă rog navigați în meniul de setări al aplicației, selectați \"Permisiuni\" și activați \"Contacte\".</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Loki Messenger are nevoie de permisiunea pentru Locație pentru a putea atașa o locație dar i-a fost refuzat accesul permanent. Vă rog navigați în meniul de setări al aplicației, selectați \"Permisiuni\" și activați \"Locație\".</string>
+  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Loki Messenger are nevoie de permisiunea pentru Cameră pentru a putea face poze dar i-a fost refuzat accesul permanent. Vă rog navigați în meniul de setări al aplicației, selectați \"Permisiuni\" și activați \"Cameră\".</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Eroare la redarea audio!</string>
   <!--BlockedContactsActivity-->
@@ -82,7 +82,7 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Nu s-a găsit nici un web browser.</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Numărul de siguranță pentru %1$s s-a schimbat.  Asta poate însemna că cineva încearcă să intercepteze comunicația sau că %2$s a reinstalat Signal.</string>
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Numărul de siguranță pentru %1$s s-a schimbat.  Asta poate însemna că cineva încearcă să intercepteze comunicația sau că %2$s a reinstalat Loki Messenger.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Probabil că dorești să verifici numărul de siguranță pentru acest contact.</string>
   <string name="ConfirmIdentityDialog_accept">Acceptați</string>
   <!--ContactsCursorLoader-->
@@ -91,7 +91,7 @@
   <string name="ContactsCursorLoader_groups">Grupuri</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Mesaj %s</string>
-  <string name="ContactsDatabase_signal_call_s">Apel Signal %s</string>
+  <string name="ContactsDatabase_signal_call_s">Apel Loki Messenger %s</string>
   <!--ContactNameEditActivity-->
   <string name="ContactNameEditActivity_given_name">Prenume</string>
   <string name="ContactNameEditActivity_family_name">Nume</string>
@@ -111,7 +111,7 @@
   <string name="ConversationItem_click_to_approve_unencrypted">Trimitere eșuată, apăsați pentru varianta nesecurizată</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Revii la SMS necriptat ca soluţie de rezervă?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Revii la MMS necriptat ca soluţie de rezervă?</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Acest mesaj <b>nu</b> o să fie criptat deoarece destinatarul nu mai este un utilizator Signal.\n\nTrimit mesaj nesecurizat?</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">Acest mesaj <b>nu</b> o să fie criptat deoarece destinatarul nu mai este un utilizator Loki Messenger.\n\nTrimit mesaj nesecurizat?</string>
   <string name="ConversationItem_unable_to_open_media">Nu a fost găsită nici o aplicație pentru a deschide acest tip media.</string>
   <string name="ConversationItem_copied_text">Copiat %s</string>
   <string name="ConversationItem_from_s">de la %s</string>
@@ -139,7 +139,7 @@
   <string name="ConversationActivity_transport_insecure_sms">SMS nesecurizat</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS nesecurizat</string>
   <string name="ConversationActivity_transport_signal">Loki Messenger</string>
-  <string name="ConversationActivity_lets_switch_to_signal">Hai să folosim Signal %1$s</string>
+  <string name="ConversationActivity_lets_switch_to_signal">Hai să folosim Loki Messenger %1$s</string>
   <string name="ConversationActivity_lets_use_this_to_chat">Hai să utilizăm aplicația asta ca să vorbim: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">Eroare la parăsirea grupului</string>
   <string name="ConversationActivity_specify_recipient">Vă rog alegeți un contact</string>
@@ -152,15 +152,15 @@
   <string name="ConversationActivity_quick_camera_unavailable">Cameră indisponibilă</string>
   <string name="ConversationActivity_unable_to_record_audio">Nu se poate înregistra audio!</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Nu există nici o aplicație disponibilă pe dispozitivul tău care să poată deschide acest link.</string>
-  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Pentru a trimite mesaje audio, permite-i aplicației Signal accesul la microfonul tău.</string>
-  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal are nevoie de permisiunea pentru Microfon pentru a putea trimite mesaje audio dar i-a fost refuzat accesul permanent. Vă rugăm să navigați în meniul de setări al aplicației, selectați \"Permisiuni\" și activați \"Microfon\".</string>
-  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Pentru a apela pe %s, Signal are nevoie de acces la microfonul și camera ta.</string>
-  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal are nevoie de permisiunile pentru Microfon și Cameră pentru a putea apela pe %s dar i-a fost refuzat accesul permanent. Vă rog navigați în meniul de setări al aplicației, selectați \"Permisiuni\" și activați \"Microfon\" și \"Cameră\".</string>
-  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Pentru a captura poze sau filme, permite-i Signal accesul la cameră.</string>
-  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal are nevoie de permisiunea pentru Cameră pentru a captura poze sau filme dar i-a fost refuzat accesul permanent. Vă rog navigați în meniul de setări al aplicației, selectați \"Permisiuni\" și activați \"Cameră\".</string>
-  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal are nevoie de permisiunea pentru Cameră pentru a captura poze sau filme</string>
+  <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Pentru a trimite mesaje audio, permite-i aplicației Loki Messenger accesul la microfonul tău.</string>
+  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Loki Messenger are nevoie de permisiunea pentru Microfon pentru a putea trimite mesaje audio dar i-a fost refuzat accesul permanent. Vă rugăm să navigați în meniul de setări al aplicației, selectați \"Permisiuni\" și activați \"Microfon\".</string>
+  <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Pentru a apela pe %s, Loki Messenger are nevoie de acces la microfonul și camera ta.</string>
+  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Loki Messenger are nevoie de permisiunile pentru Microfon și Cameră pentru a putea apela pe %s dar i-a fost refuzat accesul permanent. Vă rog navigați în meniul de setări al aplicației, selectați \"Permisiuni\" și activați \"Microfon\" și \"Cameră\".</string>
+  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Pentru a captura poze sau filme, permite-i Loki Messenger accesul la cameră.</string>
+  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Loki Messenger are nevoie de permisiunea pentru Cameră pentru a captura poze sau filme dar i-a fost refuzat accesul permanent. Vă rog navigați în meniul de setări al aplicației, selectați \"Permisiuni\" și activați \"Cameră\".</string>
+  <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Loki Messenger are nevoie de permisiunea pentru Cameră pentru a captura poze sau filme</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
-  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal nu poate trimite mesaje SMS/MMS pentru că nu este aplicația implicită de SMS. Doriți să schimbați asta în setările dvs. Android?</string>
+  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Loki Messenger nu poate trimite mesaje SMS/MMS pentru că nu este aplicația implicită de SMS. Doriți să schimbați asta în setările dvs. Android?</string>
   <string name="ConversationActivity_yes">Da</string>
   <string name="ConversationActivity_no">Nu</string>
   <string name="ConversationActivity_search_position">%1$d din %2$d</string>
@@ -205,7 +205,7 @@
     <item quantity="other">Se salvează %1$d atașamente pe spațiul de stocare...</item>
   </plurals>
   <string name="ConversationFragment_pending">În așteptare...</string>
-  <string name="ConversationFragment_push">Date (Signal)</string>
+  <string name="ConversationFragment_push">Date (Loki Messenger)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Se șterge</string>
@@ -251,7 +251,7 @@
   <string name="CreateProfileActivity_too_long">Prea lung</string>
   <string name="CreateProfileActivity_profile_name">Nume profil</string>
   <string name="CreateProfileActivity_set_up_your_profile">Configurează-ți profilul</string>
-  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Profilurile Signal sunt criptate integral, iar serviciul Signal nu are niciodată acces la aceste informații.</string>
+  <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Profilurile Signal sunt criptate integral, iar serviciul Loki Messenger nu are niciodată acces la aceste informații.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Personalizat: %s</string>
   <string name="CustomDefaultPreference_using_default">Implicit: %s</string>
@@ -283,22 +283,22 @@
   <string name="DocumentView_unknown_file">Fișier necunoscut</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimizează pentru lipsa serviciilor Play</string>
-  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Acest dispozitiv nu suportă serviciile Play. Apasă pentru a dezactiva optimizarea de sistem a bateriei care împiedică Signal să preia mesajele cât timp este inactivă.</string>
+  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Acest dispozitiv nu suportă serviciile Play. Apasă pentru a dezactiva optimizarea de sistem a bateriei care împiedică Loki Messenger să preia mesajele cât timp este inactivă.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Distribuie cu</string>
   <!--ExperienceUpgradeActivity-->
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Bine ați venit pe Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure și RedPhone sunt acum un singur mesager privat pentru orice situație: Signal.</string>
-  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Bine ați venit pe Signal!</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure se numește acum Signal.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure și RedPhone sunt acum o singură aplicație: Signal. Apăsați pentru a explora.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Bine ați venit pe Loki Messenger.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure și RedPhone sunt acum un singur mesager privat pentru orice situație: Loki Messenger.</string>
+  <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Bine ați venit pe Loki Messenger!</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure se numește acum Loki Messenger.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure și RedPhone sunt acum o singură aplicație: Loki Messenger. Apăsați pentru a explora.</string>
   <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">Bun venit la apeluri video securizate.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal suportă acum apeluri video securizate. Pornește un apel Signal ca în mod normal, apăsați pe butonul video și faceți cu mâna.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal suportă acum apeluri video securizate.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal suportă acum apeluri video securizate. Apăsați pentru a explora.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">Signal suportă acum apeluri video securizate. Pornește un apel Loki Messenger ca în mod normal, apăsați pe butonul video și faceți cu mâna.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Loki Messenger suportă acum apeluri video securizate.</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Loki Messenger suportă acum apeluri video securizate. Apăsați pentru a explora.</string>
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Sunteți pregătit pentru poza de aproape?</string>
-  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Acum poți distribui numele și o poză de profil la prietenii de pe Signal</string>
-  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Profilurile Signal sunt aici</string>
+  <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Acum poți distribui numele și o poză de profil la prietenii de pe Loki Messenger</string>
+  <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Profilurile Loki Messenger sunt aici</string>
   <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Vă prezentăm indicatorii de tastare.</string>
   <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Acum poți vedea și partaja opțional atunci când mesajele sunt tastate.</string>
   <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">Doriți să-i activați acum?</string>
@@ -308,13 +308,13 @@
   <string name="ExperienceUpgradeActivity_no_thanks">Nu, mulţumesc</string>
   <string name="ExperienceUpgradeActivity_introducing_link_previews">Vă prezentăm previzualizarea link-urilor</string>
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Previzualizarea opțională de link-uri este acum suportată pentru unele dintre cele mai populare site-uri de pe Internet.</string>
-  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Puteți activa sau dezactiva această functionalitate oricând din setările Signal ( Confidențialitate &gt; Trimite previzualizarea link-urilor).</string>
+  <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Puteți activa sau dezactiva această functionalitate oricând din setările Loki Messenger ( Confidențialitate &gt; Trimite previzualizarea link-urilor).</string>
   <string name="ExperienceUpgradeActivity_got_it">Am înțeles</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Se obține un mesaj...</string>
   <!--GcmRefreshJob-->
-  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Eroare permanentă de comunicare cu Signal!</string>
-  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal nu s-a putut înregistra la Google Play Services. Mesajele și apelurile Signal au fost dezactivate, te rog încearcă să te înregistrezi din nou din meniul Setări &gt; Avansat.</string>
+  <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Eroare permanentă de comunicare cu Loki Messenger!</string>
+  <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal nu s-a putut înregistra la Google Play Services. Mesajele și apelurile Loki Messenger au fost dezactivate, te rog încearcă să te înregistrezi din nou din meniul Setări &gt; Avansat.</string>
   <!--GiphyActivity-->
   <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">A apărut o eroare la obținerea GIF-ului la rezoluție maximă</string>
   <!--GiphyFragmentPageAdapter-->
@@ -325,15 +325,15 @@
   <string name="GroupCreateActivity_actionbar_edit_title">Editați grupul</string>
   <string name="GroupCreateActivity_group_name_hint">Nume grup</string>
   <string name="GroupCreateActivity_actionbar_mms_title">Grup MMS nou</string>
-  <string name="GroupCreateActivity_contacts_dont_support_push">Ai selectat un contact care nu suportă grupuri Signal, astfel acest grup va fi de tip MMS.</string>
-  <string name="GroupCreateActivity_youre_not_registered_for_signal">Nu ești înregistrat pentru mesaje și apeluri Signal, astfel grupurile Signal sunt dezactivate. Încearcă înregistrarea de la Setări &gt; Avansat.</string>
+  <string name="GroupCreateActivity_contacts_dont_support_push">Ai selectat un contact care nu suportă grupuri Loki Messenger, astfel acest grup va fi de tip MMS.</string>
+  <string name="GroupCreateActivity_youre_not_registered_for_signal">Nu ești înregistrat pentru mesaje și apeluri Signal, astfel grupurile Loki Messenger sunt dezactivate. Încearcă înregistrarea de la Setări &gt; Avansat.</string>
   <string name="GroupCreateActivity_contacts_no_members">Aveți nevoie de cel puțin o persoană în grupul dvs.!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Unul dintre membrii grupului tău are un număr de telefon ce nu poate fi citit corect. Te rog să remediezi problema sau să elimini acel contact şi să încerci din nou.</string>
   <string name="GroupCreateActivity_avatar_content_description">Avatar de grup</string>
   <string name="GroupCreateActivity_menu_apply_button">Aplică</string>
   <string name="GroupCreateActivity_creating_group">Se creează %1$s…</string>
   <string name="GroupCreateActivity_updating_group">Se actualizează %1$s...</string>
-  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">%1$s nu a putut fi adăugat deoarece nu este un utlizator Signal.</string>
+  <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">%1$s nu a putut fi adăugat deoarece nu este un utlizator Loki Messenger.</string>
   <string name="GroupCreateActivity_loading_group_details">Se încarcă detaliile grupului...</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Sunteți deja în grup.</string>
   <!--GroupShareProfileView-->
@@ -354,7 +354,7 @@
   <string name="InviteActivity_sending">Se trimite...</string>
   <string name="InviteActivity_heart_content_description">Inimă</string>
   <string name="InviteActivity_invitations_sent">Invitațiile au fost trimise!</string>
-  <string name="InviteActivity_invite_to_signal">Invitați la Signal</string>
+  <string name="InviteActivity_invite_to_signal">Invitați la Loki Messenger</string>
   <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">TRIMITE SMS LA %d PRIETEN</item>
     <item quantity="few">TRIMITE SMS LA %d PRIETENI</item>
@@ -365,7 +365,7 @@
     <item quantity="few">Trimit %d invitații prin SMS?</item>
     <item quantity="other">Trimit %d invitații prin SMS?</item>
   </plurals>
-  <string name="InviteActivity_lets_switch_to_signal">Hai să folosim Signal: %1$s</string>
+  <string name="InviteActivity_lets_switch_to_signal">Hai să folosim Loki Messenger: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Se pare că nu ai aplicații cu care să poți distribui.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Prietenii nu-și lasă prietenii să converseze necriptat.</string>
   <!--Job-->
@@ -400,9 +400,9 @@
   <string name="MediaOverviewActivity_Select_all">Selectează tot</string>
   <string name="MediaOverviewActivity_collecting_attachments">Se colectează atașamentele...</string>
   <!--- NotificationBarManager-->
-  <string name="NotificationBarManager_signal_call_in_progress">Apel Signal în curs</string>
-  <string name="NotificationBarManager__establishing_signal_call">Se realizează un apel Signal</string>
-  <string name="NotificationBarManager__incoming_signal_call">Apel de intrare Signal</string>
+  <string name="NotificationBarManager_signal_call_in_progress">Apel Loki Messenger în curs</string>
+  <string name="NotificationBarManager__establishing_signal_call">Se realizează un apel Loki Messenger</string>
+  <string name="NotificationBarManager__incoming_signal_call">Apel de intrare Loki Messenger</string>
   <string name="NotificationBarManager__deny_call">Respingeți apelul</string>
   <string name="NotificationBarManager__answer_call">Răspundeți apelului</string>
   <string name="NotificationBarManager__end_call">Închideți apelul</string>
@@ -428,7 +428,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Toate fișierele media</string>
   <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Ai primit un mesaj care a fost criptat cu o versiune mai veche de Signal care nu mai este suportată. Roagă-l pe expeditor să-și actualizeze aplicația la ultima versiune și să retrimită mesajul.</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Ai primit un mesaj care a fost criptat cu o versiune mai veche de Loki Messenger care nu mai este suportată. Roagă-l pe expeditor să-și actualizeze aplicația la ultima versiune și să retrimită mesajul.</string>
   <string name="MessageRecord_left_group">Ați parăsit grupul.</string>
   <string name="MessageRecord_you_updated_group">Ați actualizat grupul.</string>
   <string name="MessageRecord_you_called">Ați apelat</string>
@@ -438,7 +438,7 @@
   <string name="MessageRecord_s_called_you">%s te-a sunat</string>
   <string name="MessageRecord_called_s">Apel %s</string>
   <string name="MessageRecord_missed_call_from">Apel nepreluat de la %s</string>
-  <string name="MessageRecord_s_joined_signal">%s folosește Signal!</string>
+  <string name="MessageRecord_s_joined_signal">%s folosește Loki Messenger!</string>
   <string name="MessageRecord_you_disabled_disappearing_messages">Ați dezactivat mesajele care dispar.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s a dezactivat mesajele care dispar.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">Ați setat timpul pentru dispariția mesajelor la %1$s.</string>
@@ -469,9 +469,9 @@
   <string name="DeviceProvisioningActivity_content_progress_key_error">Cod QR invalid.</string>
   <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">Ne pare rău, ai deja prea multe dispozitive asociate, încearcă să elimini câteva</string>
   <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">Ne pare rău, acest cod de asociere QR este invalid.</string>
-  <string name="DeviceProvisioningActivity_link_a_signal_device">Asociez un dispozitiv Signal?</string>
-  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Se pare că încercați să asociați un dispozitiv Signal folosind un scaner terț. Pentru protecția dvs, vă rugăm să scanați din nou codul din interiorul aplicației Signal.</string>
-  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal are nevoie de permisiunea pentru Cameră pentru a scana un cod QR dar i-a fost refuzat accesul permanent. Vă rog navigați în meniul de setări al aplicației, selectați \"Permisiuni\" și activați \"Cameră\".</string>
+  <string name="DeviceProvisioningActivity_link_a_signal_device">Asociez un dispozitiv Loki Messenger?</string>
+  <string name="DeviceProvisioningActivity_it_looks_like_youre_trying_to_link_a_signal_device_using_a_3rd_party_scanner">Se pare că încercați să asociați un dispozitiv Signal folosind un scaner terț. Pentru protecția dvs, vă rugăm să scanați din nou codul din interiorul aplicației Loki Messenger.</string>
+  <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Loki Messenger are nevoie de permisiunea pentru Cameră pentru a scana un cod QR dar i-a fost refuzat accesul permanent. Vă rog navigați în meniul de setări al aplicației, selectați \"Permisiuni\" și activați \"Cameră\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Codul QR nu poate fi scanat fără permisiunea pentru Cameră</string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">Mesaje care dispar</string>
@@ -479,7 +479,7 @@
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Mesajele trimise și primite în această conversație vor dispărea după %s după ce au fost vizualizate.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Introduceți parola</string>
-  <string name="PassphrasePromptActivity_watermark_content_description">Pictogramă Signal</string>
+  <string name="PassphrasePromptActivity_watermark_content_description">Pictogramă Loki Messenger</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Trimite parola</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Parolă incorectă!</string>
   <!--PlayServicesProblemFragment-->
@@ -531,7 +531,7 @@ numărul dvs. de telefon</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Numărul de telefon
 furnizat (%s) este invalid.</string>
   <string name="RegistrationActivity_missing_google_play_services">Serviciile Google Play lipsesc</string>
-  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Acestui dispozitiv îi lipsesc serviciile Google Play. Poți utiliza în continuare Signal, însă această configurație poate duce la fiabilitate și performanță redusă.\n\nDacă nu ești un utilizator avansat, nu rulezi un ROM Android aftermarket,  sau crezi că vezi asta în erori, te tog contactează support@signal.org pentru ajutor la depanare.</string>
+  <string name="RegistrationActivity_this_device_is_missing_google_play_services">Acestui dispozitiv îi lipsesc serviciile Google Play. Poți utiliza în continuare Loki Messenger, însă această configurație poate duce la fiabilitate și performanță redusă.\n\nDacă nu ești un utilizator avansat, nu rulezi un ROM Android aftermarket,  sau crezi că vezi asta în erori, te tog contactează support@signal.org pentru ajutor la depanare.</string>
   <string name="RegistrationActivity_i_understand">Am înțeles</string>
   <string name="RegistrationActivity_play_services_error">Eroare servicii Play</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Serviciile Google Play se actualizează sau sunt temporar indisponibile. Te rog încearcă din nou.</string>
@@ -539,9 +539,9 @@ furnizat (%s) este invalid.</string>
   <string name="RegistrationActivity_no_browser">Link-ul nu poate fi deschis. Nu s-a găsit nici un navigator web.</string>
   <string name="RegistrationActivity_more_information">Mai multe detalii</string>
   <string name="RegistrationActivity_less_information">Mai puține detalii</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal are nevoie de acces la contactele tale și media pentru a putea facilita comunicarea cu prietenii tăi, schimba mesaje și pentru a efectua apeluri securizate</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Loki Messenger are nevoie de acces la contactele tale și media pentru a putea facilita comunicarea cu prietenii tăi, schimba mesaje și pentru a efectua apeluri securizate</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Nu s-a putut realiza conexiunea la serviciu. Te rog verifică conexiunea la rețea și încearcă din nou.</string>
-  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Pentru a putea verifica cât mai ușor numărul tău de telefon, Signal poate detecta automat codul de verificare daca îi permiți aplicației Signal să citească mesajele SMS.</string>
+  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Pentru a putea verifica cât mai ușor numărul tău de telefon, Signal poate detecta automat codul de verificare daca îi permiți aplicației Loki Messenger să citească mesajele SMS.</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Ești acum la %d pas de a trimite un jurnal de depanare.</item>
     <item quantity="few">Ești acum la %d pași de a trimite un jurnal de depanare.</item>
@@ -565,13 +565,13 @@ furnizat (%s) este invalid.</string>
   <string name="SearchFragment_header_messages">Mesaje</string>
   <!--SharedContactDetailsActivity-->
   <string name="SharedContactDetailsActivity_add_to_contacts">Adăugați la contacte</string>
-  <string name="SharedContactDetailsActivity_invite_to_signal">Invitați la Signal</string>
-  <string name="SharedContactDetailsActivity_signal_message">Mesaj Signal</string>
-  <string name="SharedContactDetailsActivity_signal_call">Apel Signal</string>
+  <string name="SharedContactDetailsActivity_invite_to_signal">Invitați la Loki Messenger</string>
+  <string name="SharedContactDetailsActivity_signal_message">Mesaj Loki Messenger</string>
+  <string name="SharedContactDetailsActivity_signal_call">Apel Loki Messenger</string>
   <!--SharedContactView-->
   <string name="SharedContactView_add_to_contacts">Adăugați la contacte</string>
-  <string name="SharedContactView_invite_to_signal">Invitați la Signal</string>
-  <string name="SharedContactView_message">Mesaj Signal</string>
+  <string name="SharedContactView_invite_to_signal">Invitați la Loki Messenger</string>
+  <string name="SharedContactView_message">Mesaj Loki Messenger</string>
   <!--Slide-->
   <string name="Slide_image">Imagine</string>
   <string name="Slide_audio">Audio</string>
@@ -594,7 +594,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ThreadRecord_called_you">Te-a apelat</string>
   <string name="ThreadRecord_missed_call">Apel nepreluat</string>
   <string name="ThreadRecord_media_message">Mesaj media</string>
-  <string name="ThreadRecord_s_is_on_signal">%s folosește Signal!</string>
+  <string name="ThreadRecord_s_is_on_signal">%s folosește Loki Messenger!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Mesajele care dispar sunt dezactivate</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Timpul setat pentru mesajele care dispar este %s</string>
   <string name="ThreadRecord_safety_number_changed">Numărul de siguranță s-a schimbat</string>
@@ -602,8 +602,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ThreadRecord_you_marked_verified">Ați marcat ca și verificat</string>
   <string name="ThreadRecord_you_marked_unverified">Ați marcat ca și neverificat</string>
   <!--UpdateApkReadyListener-->
-  <string name="UpdateApkReadyListener_Signal_update">Actualizare Signal</string>
-  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">O nouă versiune de Signal este disponibilă, apasă pentru actualizare</string>
+  <string name="UpdateApkReadyListener_Signal_update">Actualizare Loki Messenger</string>
+  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">O nouă versiune de Loki Messenger este disponibilă, apasă pentru actualizare</string>
   <!--UnknownSenderView-->
   <string name="UnknownSenderView_block_s">Blochez %s?</string>
   <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Contactele blocate nu vor mai putea sa-ți trimită mesaje sau să te sune.</string>
@@ -618,14 +618,14 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="UnverifiedSendDialog_send_message">Trimit mesajul?</string>
   <string name="UnverifiedSendDialog_send">Trimiteți</string>
   <!--VerifyIdentityActivity-->
-  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Contactul tău folosește o versiune mai veche de Signal. Roagă-l să-și actualizeze versiunea înainte de a verifica numărul tău de siguranță.</string>
-  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Contactul tău folosește o versiune mai nouă de Signal cu un format de cod QR incompatibil. Te rog actualizează-ți aplicația pentru a putea compara.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Contactul tău folosește o versiune mai veche de Loki Messenger. Roagă-l să-și actualizeze versiunea înainte de a verifica numărul tău de siguranță.</string>
+  <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Contactul tău folosește o versiune mai nouă de Loki Messenger cu un format de cod QR incompatibil. Te rog actualizează-ți aplicația pentru a putea compara.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Codul QR scanat nu este un număr de siguranță formatat corect. Te rog scanează din nou.</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">Distribuie numărul de siguranță prin...</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">Numărul nostru de siguranță:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Se pare că nu ai aplicații cu care să poți distribui.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Nu s-a găsit nici un număr de siguranță în clipboard pentru a fi comparat.</string>
-  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal are nevoie de permisiunea pentru Cameră pentru a scana un cod QR dar i-a fost refuzat accesul permanent. Vă rog navigați în meniul de setări al aplicației, selectați \"Permisiuni\" și activați \"Cameră\".</string>
+  <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Loki Messenger are nevoie de permisiunea pentru Cameră pentru a scana un cod QR dar i-a fost refuzat accesul permanent. Vă rog navigați în meniul de setări al aplicației, selectați \"Permisiuni\" și activați \"Cameră\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Codul QR nu poate fi scanat fără permisiunea pentru Cameră</string>
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Mesaj criptat incorect</string>
@@ -645,13 +645,13 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--KeyCachingService-->
   <string name="KeyCachingService_signal_passphrase_cached">Atingeți pentru a-l deschide.</string>
   <string name="KeyCachingService_signal_passphrase_cached_with_lock">Atingeți pentru a deschide sau atingeți lacătul pentru a închide.</string>
-  <string name="KeyCachingService_passphrase_cached">Signal este deblocat</string>
-  <string name="KeyCachingService_lock">Blocați Signal</string>
+  <string name="KeyCachingService_passphrase_cached">Loki Messenger este deblocat</string>
+  <string name="KeyCachingService_lock">Blocați Loki Messenger</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">Tu</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Tip media nesuportat</string>
   <string name="MediaPreviewActivity_draft">Ciornă</string>
-  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal are nevoie de permisiunea pentru spațiul de stocare extern pentru a salva pe spațiul de stocare extern, dar i-a fost refuzat accesul permanent. Vă rog navigați în meniul de setări al aplicației, selectați \"Permisiuni\" și activați \"Spațiu de stocare\".</string>
+  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Loki Messenger are nevoie de permisiunea pentru spațiul de stocare extern pentru a salva pe spațiul de stocare extern, dar i-a fost refuzat accesul permanent. Vă rog navigați în meniul de setări al aplicației, selectați \"Permisiuni\" și activați \"Spațiu de stocare\".</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Nu se poate salva pe spațiu de stocare extern fără permisiune</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Șterg mesajul?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Această acțiune va șterge permanent mesajul.</string>
@@ -667,10 +667,10 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="MessageNotifier_mark_read">Marchează ca citit</string>
   <string name="MessageNotifier_media_message">Mesaj media</string>
   <string name="MessageNotifier_reply">Răspunde</string>
-  <string name="MessageNotifier_signal_message">Mesaj Signal</string>
+  <string name="MessageNotifier_signal_message">Mesaj Loki Messenger</string>
   <string name="MessageNotifier_unsecured_sms">SMS nesecurizat</string>
-  <string name="MessageNotifier_pending_signal_messages">Mesaje Signal în așteptare</string>
-  <string name="MessageNotifier_you_have_pending_signal_messages">Ai mesaje Signal în așteptare, apasă pentru deschidere și recuperare</string>
+  <string name="MessageNotifier_pending_signal_messages">Mesaje Loki Messenger în așteptare</string>
+  <string name="MessageNotifier_you_have_pending_signal_messages">Ai mesaje Loki Messenger în așteptare, apasă pentru deschidere și recuperare</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Contact</string>
   <!--Notification Channels-->
@@ -684,7 +684,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="NotificationChannel_group_messages">Mesaje</string>
   <string name="NotificationChannel_missing_display_name">Necunoscut</string>
   <!--QuickResponseService-->
-  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Răspunsul rapid nu este disponibil cât timp Signal este blocat!</string>
+  <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Răspunsul rapid nu este disponibil cât timp Loki Messenger este blocat!</string>
   <string name="QuickResponseService_problem_sending_message">Problemă la trimiterea mesajului!</string>
   <!--SaveAttachmentTask-->
   <string name="SaveAttachmentTask_saved_to">Salvat în %s</string>
@@ -705,14 +705,14 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   </plurals>
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">Dispozitivul nu mai este înregistrat</string>
-  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Acest fapt este posibil pentru că ai înregistrat numărul tău de telefon la Signal de pe un dispozitiv diferit. Apasă pentru a te înregistra din nou.</string>
+  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Acest fapt este posibil pentru că ai înregistrat numărul tău de telefon la Loki Messenger de pe un dispozitiv diferit. Apasă pentru a te înregistra din nou.</string>
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">Eroare la redarea video!</string>
   <!--WebRtcCallActivity-->
-  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Pentru a răspunde apelului de la %s, oferă-i Signal acces la microfonul tău.</string>
-  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal are nevoie de permisiunile pentru Microfon și Cameră pentru a putea primi apeluri dar i-a fost refuzat accesul permanent. Vă rog navigați în meniul de setări al aplicației, selectați \"Permisiuni\" și activați \"Microfon\" și \"Cameră\".</string>
+  <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Pentru a răspunde apelului de la %s, oferă-i Loki Messenger acces la microfonul tău.</string>
+  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Loki Messenger are nevoie de permisiunile pentru Microfon și Cameră pentru a putea primi apeluri dar i-a fost refuzat accesul permanent. Vă rog navigați în meniul de setări al aplicației, selectați \"Permisiuni\" și activați \"Microfon\" și \"Cameră\".</string>
   <!--WebRtcCallScreen-->
-  <string name="WebRtcCallScreen_new_safety_numbers">Numărul de siguranță pentru conversația ta cu %1$s s-a schimbat.  Asta poate însemna că cineva încearcă să intercepteze comunicația sau că %2$s a reinstalat Signal.</string>
+  <string name="WebRtcCallScreen_new_safety_numbers">Numărul de siguranță pentru conversația ta cu %1$s s-a schimbat.  Asta poate însemna că cineva încearcă să intercepteze comunicația sau că %2$s a reinstalat Loki Messenger.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Probabil că dorești să verifici numărul de siguranță pentru acest contact.</string>
   <string name="WebRtcCallScreen_new_safety_number_title">Număr nou de siguranță</string>
   <string name="WebRtcCallScreen_accept">Acceptă</string>
@@ -747,15 +747,15 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Poză contact</string>
   <!--ContactSelectionListFragment-->
-  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal are nevoie de permisiunea pentru Contacte pentru a putea afișa contactele tale dar i-a fost refuzat accesul permanent. Vă rog navigați în meniul de setări al aplicației, selectați \"Permisiuni\" și activați \"Contacte\".</string>
+  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Loki Messenger are nevoie de permisiunea pentru Contacte pentru a putea afișa contactele tale dar i-a fost refuzat accesul permanent. Vă rog navigați în meniul de setări al aplicației, selectați \"Permisiuni\" și activați \"Contacte\".</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Eroare la obținerea contactelor, verifică conexiune la rețea.</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Nu aveți contacte blocate</string>
   <!--contact_selection_list_fragment-->
-  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal are nevoie de acces la contactele tale pentru a le afișa.</string>
+  <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Loki Messenger are nevoie de acces la contactele tale pentru a le afișa.</string>
   <string name="contact_selection_list_fragment__show_contacts">Afișează contactele</string>
   <!--conversation_activity-->
-  <string name="conversation_activity__type_message_push">Mesaj Signal</string>
+  <string name="conversation_activity__type_message_push">Mesaj Loki Messenger</string>
   <string name="conversation_activity__type_message_sms_insecure">SMS nesecurizat</string>
   <string name="conversation_activity__type_message_mms_insecure">MMS nesecurizat</string>
   <string name="conversation_activity__from_sim_name">De la %1$s</string>
@@ -767,7 +767,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Comutare panou cu atașamente de la camera rapidă </string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Înregistrează și trimite un atașament audio</string>
   <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Blocați înregistrarea atașamentului audio</string>
-  <string name="conversation_activity__enable_signal_for_sms">Activează Signal pentru SMS</string>
+  <string name="conversation_activity__enable_signal_for_sms">Activează Loki Messenger pentru SMS</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">Glisați pentru a anula</string>
   <string name="conversation_input_panel__cancel">Anulați</string>
@@ -845,9 +845,9 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="IdentityUtil_unverified_banner_one">Numărul tău de siguranță pentru %s s-a schimbat și nu mai este verificat</string>
   <string name="IdentityUtil_unverified_banner_two">Numerele tale de siguranță pentru %1$s și %2$s s-au schimbat și nu mai sunt verificate</string>
   <string name="IdentityUtil_unverified_banner_many">Numerele tale de siguranță pentru %1$s, %2$s și %3$s s-au schimbat și nu mai sunt verificate</string>
-  <string name="IdentityUtil_unverified_dialog_one">Numărul de siguranță pentru %1$s s-a schimbat și nu mai este verificat.  Asta poate însemna că cineva încearcă să intercepteze comunicația sau că %1$s a reinstalat Signal.</string>
-  <string name="IdentityUtil_unverified_dialog_two">Numerele tale de siguranță pentru %1$s și %2$s s-au schimbat și nu mai sunt verificate.  Asta poate însemna că cineva încearcă să intercepteze comunicația sau că utilizatorii și-au reinstalat Signal.</string>
-  <string name="IdentityUtil_unverified_dialog_many">Numerele tale de siguranță pentru %1$s, %2$s și %3$s s-au schimbat și nu mai sunt verificate.  Asta poate însemna că cineva încearcă să intercepteze comunicația sau că utilizatorii și-au reinstalat Signal.</string>
+  <string name="IdentityUtil_unverified_dialog_one">Numărul de siguranță pentru %1$s s-a schimbat și nu mai este verificat.  Asta poate însemna că cineva încearcă să intercepteze comunicația sau că %1$s a reinstalat Loki Messenger.</string>
+  <string name="IdentityUtil_unverified_dialog_two">Numerele tale de siguranță pentru %1$s și %2$s s-au schimbat și nu mai sunt verificate.  Asta poate însemna că cineva încearcă să intercepteze comunicația sau că utilizatorii și-au reinstalat Loki Messenger.</string>
+  <string name="IdentityUtil_unverified_dialog_many">Numerele tale de siguranță pentru %1$s, %2$s și %3$s s-au schimbat și nu mai sunt verificate.  Asta poate însemna că cineva încearcă să intercepteze comunicația sau că utilizatorii și-au reinstalat Loki Messenger.</string>
   <string name="IdentityUtil_untrusted_dialog_one">Numărul tău de siguranță pentru %s tocmai s-a schimbat.</string>
   <string name="IdentityUtil_untrusted_dialog_two">Numerele tale de siguranță pentru %1$s și %2$s tocmai s-au schimbat.</string>
   <string name="IdentityUtil_untrusted_dialog_many">Numerele tale de siguranță pentru %1$s, %2$s și %3$s tocmai s-au schimbat.</string>
@@ -879,7 +879,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="log_submit_activity__please_review_this_log_from_my_app">Vă rog revizuiți acest jurnal din aplicația mea: %1$s</string>
   <string name="log_submit_activity__network_failure">Eroare de rețea. Vă rugăm încercați din nou.</string>
   <!--database_migration_activity-->
-  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Doriți să importaţi mesajale dvs. text existente în baza de date criptată Signal?</string>
+  <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Doriți să importaţi mesajale dvs. text existente în baza de date criptată Loki Messenger?</string>
   <string name="database_migration_activity__the_default_system_database_will_not_be_modified">Baza de date a sistemului nu va fi modificată în nici un fel.</string>
   <string name="database_migration_activity__skip">Omite</string>
   <string name="database_migration_activity__import">Importă</string>
@@ -912,7 +912,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">Deblochează</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal are nevoie de setările MMS pentru a trimite media și mesaje pentru grupuri prin operatorul wireless. Acest dispozitiv nu oferă această informație, lucru care se poate întâmpla uneori pentru dispozitive blocate sau alte configurații restrictive.</string>
+  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Loki Messenger are nevoie de setările MMS pentru a trimite media și mesaje pentru grupuri prin operatorul wireless. Acest dispozitiv nu oferă această informație, lucru care se poate întâmpla uneori pentru dispozitive blocate sau alte configurații restrictive.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Pentru a putea trimite mesaje multimedia cât și mesaje într-un grup, apăsați \'OK\' și completați setările solicitate. Setările MMS pentru operatorul tău pot fi găsite cautând după \'APN operatorul tău\'. Această operațiune este necesară o singură dată.</string>
   <!--profile_create_activity-->
   <string name="profile_create_activity__set_later">Setează mai târziu</string>
@@ -935,12 +935,12 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="recipient_preferences__call_settings">Setări apel</string>
   <string name="recipient_preferences__ringtone">Sunet de apel</string>
   <!--- redphone_call_controls-->
-  <string name="redphone_call_card__signal_call">Apel Signal</string>
+  <string name="redphone_call_card__signal_call">Apel Loki Messenger</string>
   <string name="redphone_call_controls__mute">Fără sunet</string>
   <string name="redphone_call_controls__flip_camera_rear">Schimbă camerele</string>
   <!--registration_activity-->
   <string name="registration_activity__phone_number">NUMĂRUL DE TELEFON</string>
-  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal facilitează comunicarea folosind numărul dvs. existent de telefon și agenda telefonului. Prietenii și contactele care știu deja cum să vă contacteze prin telefon vor putea să vă contacteze ușor prin Signal.\n\nÎnregistrarea trimite anumite informații ale contactelor la server. Acestea nu sunt stocate.</string>
+  <string name="registration_activity__registration_will_transmit_some_contact_information_to_the_server_temporariliy">Signal facilitează comunicarea folosind numărul dvs. existent de telefon și agenda telefonului. Prietenii și contactele care știu deja cum să vă contacteze prin telefon vor putea să vă contacteze ușor prin Loki Messenger.\n\nÎnregistrarea trimite anumite informații ale contactelor la server. Acestea nu sunt stocate.</string>
   <string name="registration_activity__verify_your_number">Verificați numărul dvs.</string>
   <string name="registration_activity__please_enter_your_mobile_number_to_receive_a_verification_code_carrier_rates_may_apply">Vă rog introduceți numărul dvs. de mobil pentru a primi un cod de verificare. Se pot percepe taxe de operator.</string>
   <!--recipients_panel-->
@@ -1018,8 +1018,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences__sms_mms">SMS și MMS</string>
   <string name="preferences__pref_all_sms_title">Recepționează toate SMS-urile</string>
   <string name="preferences__pref_all_mms_title">Recepționează toate MMS-urile</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Utilizează Signal pentru toate mesajele text</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Utilizează Signal pentru toate mesajele multimedia de intrare</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Utilizează Loki Messenger pentru toate mesajele text</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Utilizează Loki Messenger pentru toate mesajele multimedia de intrare</string>
   <string name="preferences__pref_enter_sends_title">Trimiteți cu Enter</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Apăsarea tastei Enter va trimite mesajele text</string>
   <string name="preferences__send_link_previews">Trimite previzualizarea link-urilor</string>
@@ -1032,7 +1032,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Blocați ecranul și notificările cu o parolă</string>
   <string name="preferences__screen_security">Securitate ecran</string>
   <string name="preferences__disable_screen_security_to_allow_screen_shots">Blocați screenshot-urile în lista cu aplicaţii recente şi în interiorul aplicaţiei</string>
-  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Blocați automat Signal după o perioadă specificată de timp de inactivitate</string>
+  <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Blocați automat Loki Messenger după o perioadă specificată de timp de inactivitate</string>
   <string name="preferences__inactivity_timeout_passphrase">Cere parolă pentru inactivitate</string>
   <string name="preferences__inactivity_timeout_interval">Interval de timp pentru inactivitate</string>
   <string name="preferences__notifications">Notificări</string>
@@ -1085,7 +1085,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences__theme">Tema</string>
   <string name="preferences__default">Implicit</string>
   <string name="preferences__language">Limba</string>
-  <string name="preferences__signal_messages_and_calls">Mesaje și apeluri Signal</string>
+  <string name="preferences__signal_messages_and_calls">Mesaje și apeluri Loki Messenger</string>
   <string name="preferences__free_private_messages_and_calls">Mesaje și apeluri, private şi gratuite cu utilizatorii Signal
     </string>
   <string name="preferences__submit_debug_log">Trimiteți jurnalul de depanare</string>
@@ -1104,8 +1104,8 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences_chats__media_auto_download">Descărcare automată Media</string>
   <string name="preferences_chats__message_trimming">Scurtarea mesajelor</string>
   <string name="preferences_advanced__use_system_emoji">Foloseşte emoji de sistem</string>
-  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Dezactivați icoanele emoji oferite de Signal </string>
-  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Redirecționați toate apelurile către serverul Signal pentru a evita aflarea adresei IP de către contact tău. Activarea va reduce calitatea apelului.</string>
+  <string name="preferences_advanced__disable_signal_built_in_emoji_support">Dezactivați icoanele emoji oferite de Loki Messenger </string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Redirecționați toate apelurile către serverul Loki Messenger pentru a evita aflarea adresei IP de către contact tău. Activarea va reduce calitatea apelului.</string>
   <string name="preferences_advanced__always_relay_calls">Redirecționează întotdeauna apelurile</string>
   <string name="preferences_app_protection__app_access">Acces aplicație</string>
   <string name="preferences_app_protection__communication">Comunicare</string>
@@ -1117,9 +1117,9 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences_notifications__calls">Apeluri</string>
   <string name="preferences_notifications__ringtone">Sunet de apel</string>
   <string name="preferences_chats__show_invitation_prompts">Afișează solicitări invitații</string>
-  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Arată solicitări invitații pentru contactele fără Signal</string>
+  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Arată solicitări invitații pentru contactele fără Loki Messenger</string>
   <string name="preferences_chats__message_text_size">Mărime font mesaje</string>
-  <string name="preferences_events__contact_joined_signal">Un contact s-a alăturat pe Signal</string>
+  <string name="preferences_events__contact_joined_signal">Un contact s-a alăturat pe Loki Messenger</string>
   <string name="preferences_notifications__priority">Prioritate</string>
   <string name="preferences_communication__category_sealed_sender">Expeditor ascuns</string>
   <string name="preferences_communication__sealed_sender_display_indicators">Afișează indicatoare</string>
@@ -1135,7 +1135,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Apelează</string>
   <!--conversation_callable_secure-->
-  <string name="conversation_callable_secure__menu_call">Apel Signal</string>
+  <string name="conversation_callable_secure__menu_call">Apel Loki Messenger</string>
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">Detalii mesaj</string>
   <string name="conversation_context__menu_copy_text">Copiază textul</string>
@@ -1198,27 +1198,27 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="verify_display_fragment_context_menu__copy_to_clipboard">Copiază în clipboard</string>
   <string name="verify_display_fragment_context_menu__compare_with_clipboard">Compară cu clipboard-ul</string>
   <!--reminder_header-->
-  <string name="reminder_header_outdated_build">Versiunea ta de Signal este veche</string>
+  <string name="reminder_header_outdated_build">Versiunea ta de Loki Messenger este veche</string>
   <plurals name="reminder_header_outdated_build_details">
-    <item quantity="one">Versiunea ta de Signal va expira în %d zile. Apasă pentru a actualiza aplicația la versiunea cea mai recentă.</item>
-    <item quantity="few">Versiunea ta de Signal va expira în %d zile. Apasă pentru a actualiza aplicația la versiunea cea mai recentă.</item>
-    <item quantity="other">Versiunea ta de Signal va expira în %d zile. Apasă pentru a actualiza aplicația la versiunea cea mai recentă.</item>
+    <item quantity="one">Versiunea ta de Loki Messenger va expira în %d zile. Apasă pentru a actualiza aplicația la versiunea cea mai recentă.</item>
+    <item quantity="few">Versiunea ta de Loki Messenger va expira în %d zile. Apasă pentru a actualiza aplicația la versiunea cea mai recentă.</item>
+    <item quantity="other">Versiunea ta de Loki Messenger va expira în %d zile. Apasă pentru a actualiza aplicația la versiunea cea mai recentă.</item>
   </plurals>
-  <string name="reminder_header_outdated_build_details_today">Versiunea ta de Signal va expira azi. Apasă pentru a actualiza aplicația la versiunea cea mai recentă.</string>
-  <string name="reminder_header_expired_build">Versiunea ta de Signal a expirat!</string>
+  <string name="reminder_header_outdated_build_details_today">Versiunea ta de Loki Messenger va expira azi. Apasă pentru a actualiza aplicația la versiunea cea mai recentă.</string>
+  <string name="reminder_header_expired_build">Versiunea ta de Loki Messenger a expirat!</string>
   <string name="reminder_header_expired_build_details">Mesajele nu se vor mai trimite cu succes. Apasă pentru a actualiza aplicația la versiunea cea mai recentă.</string>
   <string name="reminder_header_sms_default_title">Utilizează ca și aplicație SMS implicită</string>
-  <string name="reminder_header_sms_default_text">Atingeți pentru a seta Signal ca și aplicație SMS implicită.</string>
+  <string name="reminder_header_sms_default_text">Atingeți pentru a seta Loki Messenger ca și aplicație SMS implicită.</string>
   <string name="reminder_header_sms_import_title">Importă SMS de sistem</string>
-  <string name="reminder_header_sms_import_text">Apasă pentru a copia mesajele SMS din telefon în baza de date criptată Signal.</string>
-  <string name="reminder_header_push_title">Activează mesaje și apeluri Signal</string>
+  <string name="reminder_header_sms_import_text">Apasă pentru a copia mesajele SMS din telefon în baza de date criptată Loki Messenger.</string>
+  <string name="reminder_header_push_title">Activează mesaje și apeluri Loki Messenger</string>
   <string name="reminder_header_push_text">Actualizează-ți experiența ta de comunicare.</string>
-  <string name="reminder_header_invite_title">Invită la Signal</string>
+  <string name="reminder_header_invite_title">Invită la Loki Messenger</string>
   <string name="reminder_header_invite_text">Treci la următorul nivel al conversației cu %1$s.</string>
   <string name="reminder_header_share_title">Invită-ți prietenii!</string>
-  <string name="reminder_header_share_text">Cu cât mai mulți prieteni utilizează Signal, cu atât devine mai bun.</string>
-  <string name="reminder_header_service_outage_text">Signal întâmpină dificultăți tehnice. Muncim din greu pentru a restabili serviciul cât mai repede posibil.</string>
-  <string name="reminder_header_the_latest_signal_features_wont_work">Ultimele funcționalități Signal nu vor mai rula pe această versiune de Android. Vă rugăm să actualizați acest dispozitiv pentru a putea primi în viitor actualizări de Signal.</string>
+  <string name="reminder_header_share_text">Cu cât mai mulți prieteni utilizează Loki Messenger, cu atât devine mai bun.</string>
+  <string name="reminder_header_service_outage_text">Loki Messenger întâmpină dificultăți tehnice. Muncim din greu pentru a restabili serviciul cât mai repede posibil.</string>
+  <string name="reminder_header_the_latest_signal_features_wont_work">Ultimele funcționalități Signal nu vor mai rula pe această versiune de Android. Vă rugăm să actualizați acest dispozitiv pentru a putea primi în viitor actualizări de Loki Messenger.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Salvează</string>
   <string name="media_preview__forward_title">Redirecționează</string>
@@ -1239,16 +1239,16 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ConversationListFragment_loading">Se încarcă...</string>
   <string name="CallNotificationBuilder_connecting">Se conectează...</string>
   <string name="Permissions_permission_required">E nevoie de permisiune</string>
-  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal are nevoie de permisiunea SMS pentru a putea trimite SMS dar i-a fost refuzat accesul permanent. Vă rog navigați în meniul de setări al aplicației, selectați \"Permisiuni\" și activați \"SMS\".</string>
+  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Loki Messenger are nevoie de permisiunea SMS pentru a putea trimite SMS dar i-a fost refuzat accesul permanent. Vă rog navigați în meniul de setări al aplicației, selectați \"Permisiuni\" și activați \"SMS\".</string>
   <string name="Permissions_continue">Continuă</string>
   <string name="Permissions_not_now">Nu acum</string>
-  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal are nevoie de permisiunea pentru Contacte pentru a putea căuta în contactele tale dar i-a fost refuzat accesul permanent. Vă rog navigați în meniul de setări al aplicației, selectați \"Permisiuni\" și activați \"Contacte\".</string>
+  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Loki Messenger are nevoie de permisiunea pentru Contacte pentru a putea căuta în contactele tale dar i-a fost refuzat accesul permanent. Vă rog navigați în meniul de setări al aplicației, selectați \"Permisiuni\" și activați \"Contacte\".</string>
   <string name="conversation_activity__enable_signal_messages">ACTIVEAZĂ MESAJELE SIGNAL</string>
-  <string name="SQLCipherMigrationHelper_migrating_signal_database">Se migrează baza de date Signal </string>
+  <string name="SQLCipherMigrationHelper_migrating_signal_database">Se migrează baza de date Loki Messenger </string>
   <string name="PushDecryptJob_new_locked_message">Mesaj nou blocat</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Deblocați pentru a vedea mesajele în curs</string>
   <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Deblocați pentru a finaliza actualizarea</string>
-  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Vă rog deblocați Signal pentru a finaliza actualizarea</string>
+  <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Vă rog deblocați Loki Messenger pentru a finaliza actualizarea</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Parolă backup</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Backup-urile se vor salva pe stocarea externă și vor fi criptate cu parola de mai jos. Trebuie sa aveți această parola pentru a putea restaura un backup.</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Am scris parola. Fără ea nu voi putea restaura un backup.</string>
@@ -1260,7 +1260,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences_chats__create_backup">Creează backup</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Introduceți parola pentru backup</string>
   <string name="RegistrationActivity_restore">Restaurează</string>
-  <string name="RegistrationActivity_backup_failure_downgrade">Nu se pot importa backup-uri din versiuni mai noi de Signal</string>
+  <string name="RegistrationActivity_backup_failure_downgrade">Nu se pot importa backup-uri din versiuni mai noi de Loki Messenger</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">Parola pentru backup este incorectă</string>
   <string name="RegistrationActivity_checking">În curs de verificare</string>
   <string name="RegistrationActivity_d_messages_so_far">%d mesaje până acum...</string>
@@ -1275,7 +1275,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="BackupDialog_disable_and_delete_all_local_backups">Dezactivez și șterg toate backup-urile locale?</string>
   <string name="BackupDialog_delete_backups_statement">Șterge backup-urile</string>
   <string name="BackupDialog_copied_to_clipboard">S-a copiat în clipboard</string>
-  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal necesită permisiunea de acces la stocarea externă pentru a putea crea backup-uri, dar i-a fost refuzat permanent. Vă rog continuați la setări aplicație, selectați \"Permisiuni\" și activați \"Stocare\". </string>
+  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Loki Messenger necesită permisiunea de acces la stocarea externă pentru a putea crea backup-uri, dar i-a fost refuzat permanent. Vă rog continuați la setări aplicație, selectați \"Permisiuni\" și activați \"Stocare\". </string>
   <string name="ChatsPreferenceFragment_last_backup_s">Ultimul backup: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">În curs</string>
   <string name="LocalBackupJob_creating_backup">Se creează backup-ul...</string>
@@ -1286,7 +1286,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="BackupUtil_never">Niciodată</string>
   <string name="BackupUtil_unknown">Necunoscut</string>
   <string name="preferences_app_protection__screen_lock">Blocare ecran</string>
-  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Blocați accesul la Signal prin ecranul de blocare Android sau prin amprentă</string>
+  <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Blocați accesul la Loki Messenger prin ecranul de blocare Android sau prin amprentă</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Expirare timp blocare ecran pentru inactivitate</string>
   <string name="AppProtectionPreferenceFragment_none">Niciuna</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">Codul PIN de Blocare a Înregistrării nu este același cu codul de verificare pe care tocmai l-ați primit prin SMS. Vă rugăm să introduceți PIN-ul configurat anterior în aplicație.</string>
@@ -1297,7 +1297,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="registration_lock_dialog_view__confirm_pin">Confirmați PIN-ul</string>
   <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Introduceți PIN-ul dvs. de blocare a înregistrării</string>
   <string name="registration_lock_reminder_view__enter_pin">Introduceți PIN-ul</string>
-  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Activați un PIN de blocare a înregistrării care va fi necesar la înregistrarea din nou a acestui număr de telefon la Signal.</string>
+  <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Activați un PIN de blocare a înregistrării care va fi necesar la înregistrarea din nou a acestui număr de telefon la Loki Messenger.</string>
   <string name="preferences_app_protection__registration_lock_pin">PIN de blocare a înregistrării</string>
   <string name="preferences_app_protection__registration_lock">Blocarea înregistrării</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Trebuie să introduceți PIN-ul de blocare al înregistrării</string>
@@ -1306,13 +1306,13 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Ați introdus greșit de prea multe ori PIN-ul de blocare a înregistrării. Vă rugăm să încercați din nou peste o zi.</string>
   <string name="RegistrationActivity_error_connecting_to_service">Eroare de conectare la serviciu</string>
   <string name="RegistrationActivity_oh_no">Oh nu!</string>
-  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Înregistrarea acestui număr de telefon va fi posibilă fără un Cod PIN de Blocare a Înregistrării după 7 zile de când acest număr de telefon a fost activ ultima oară în Signal. Mai ai %d zile rămase.</string>
+  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Înregistrarea acestui număr de telefon va fi posibilă fără un Cod PIN de Blocare a Înregistrării după 7 zile de când acest număr de telefon a fost activ ultima oară în Loki Messenger. Mai ai %d zile rămase.</string>
   <string name="RegistrationActivity_registration_lock_pin">PIN de blocare a înregistrării</string>
   <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Acest număr de telefon are Blocarea Înregistrării activă. Vă rugăm să introduceți Codul PIN de Blocare a Înregistrării.</string>
-  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Blocarea înregistrării este activă pentru numărul dvs. de telefon. Pentru a vă putea ajuta să memorați Codul PIN de Blocare a înregistrării, Signal vă va cere să îl confirmați periodic.</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Blocarea înregistrării este activă pentru numărul dvs. de telefon. Pentru a vă putea ajuta să memorați Codul PIN de Blocare a înregistrării, Loki Messenger vă va cere să îl confirmați periodic.</string>
   <string name="RegistrationLockDialog_i_forgot_my_pin">Mi-am uitat PIN-ul.</string>
   <string name="RegistrationLockDialog_forgotten_pin">PIN uitat ?</string>
-  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Blocarea înregistrării ajută la protejarea numărului tău de telefon împotriva încercărilor neautorizate de înregistrare. Această facilitate poate fi dezactivată oricând în setările de confidențialitate ale Signal</string>
+  <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Blocarea înregistrării ajută la protejarea numărului tău de telefon împotriva încercărilor neautorizate de înregistrare. Această facilitate poate fi dezactivată oricând în setările de confidențialitate ale Loki Messenger</string>
   <string name="RegistrationLockDialog_registration_lock">Blocarea înregistrării</string>
   <string name="RegistrationLockDialog_enable">Activat</string>
   <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">PIN-ul de blocare a înregistrării trebuie să aibe cel puțin 4 cifre.</string>
@@ -1321,7 +1321,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="RegistrationLockDialog_disable_registration_lock_pin">Dezactivare PIN Blocare Înregistrare?</string>
   <string name="RegistrationLockDialog_disable">Dezactivați</string>
   <string name="preferences_chats__backups">Backup-uri</string>
-  <string name="prompt_passphrase_activity__signal_is_locked">Signal este blocat</string>
+  <string name="prompt_passphrase_activity__signal_is_locked">Loki Messenger este blocat</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">APĂSAȚI PENTRU DEBLOCARE</string>
   <string name="RegistrationLockDialog_reminder">Memento:</string>
   <string name="recipient_preferences__about">Despre</string>
