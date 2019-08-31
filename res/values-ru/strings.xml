@@ -473,7 +473,7 @@
     <item quantity="one">Вы не можете поделиться больше, чем %d элементом.</item>
     <item quantity="few">Вы не можете поделиться больше, чем %d элементами.</item>
     <item quantity="many">Вы не можете поделиться больше, чем %d элементами.</item>
-    <item quantity="other">Вы не можете поделиться больше, чем %d элементами.</item>
+    <item quantity="other">Вы не можете поделиться более чем %d элементами.</item>
   </plurals>
   <string name="MediaSendActivity_select_recipients_description">Выберите получателей</string>
   <!--MediaRepository-->
@@ -692,7 +692,7 @@
   <string name="UnknownSenderView_block">Заблокировать</string>
   <string name="UnknownSenderView_share_profile_with_s">Открыть ваш профиль для %s?</string>
   <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">Самый простой способ открыть свой профиль кому-то — добавить отправителя в контакты. Если вы не хотите этого делать, можете открыть профиль и так.</string>
-  <string name="UnknownSenderView_share_profile">Поделиться профилем</string>
+  <string name="UnknownSenderView_share_profile">Открыть профиль</string>
   <!--UntrustedSendDialog-->
   <string name="UntrustedSendDialog_send_message">Отправить сообщение?</string>
   <string name="UntrustedSendDialog_send">Отправить</string>
