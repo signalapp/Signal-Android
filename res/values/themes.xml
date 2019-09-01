@@ -74,6 +74,7 @@
         <item name="windowNoTitle">true</item>
         <item name="windowActionModeOverlay">true</item>
         <item name="colorAccent">@color/signal_primary</item>
+        <item name="colorPrimaryDark">@color/textsecure_primary_dark</item>
 
         <item name="android:textColorHint">#cc000000</item>
         <item name="centered_app_title_color">#55000000</item>

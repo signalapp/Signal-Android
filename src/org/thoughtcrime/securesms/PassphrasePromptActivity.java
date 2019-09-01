@@ -92,8 +92,6 @@ public class PassphrasePromptActivity extends PassphraseActivity {
     Log.i(TAG, "onCreate()");
     dynamicTheme.onCreate(this);
     dynamicLanguage.onCreate(this);
-    getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-    getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
     super.onCreate(savedInstanceState);
 
     setContentView(R.layout.prompt_passphrase_activity);
