@@ -43,6 +43,11 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         private val lastDeletionServerIDCacheIndex = "loki_api_last_deletion_server_id_cache_index"
         private val lastDeletionServerID = "last_deletion_server_id"
         @JvmStatic val createLastDeletionServerIDTableCommand = "CREATE TABLE $lastDeletionServerIDCache ($lastDeletionServerIDCacheIndex STRING PRIMARY KEY, $lastDeletionServerID INTEGER DEFAULT 0);"
+        // Moderation permission cache
+        private val moderationPermissionCache = "loki_api_moderation_permission_cache"
+        private val moderationPermissionCacheIndex = "loki_api_moderation_permission_cache_index"
+        private val isModerator = "is_moderator"
+        @JvmStatic val createModerationPermissionTableCommand = "CREATE TABLE $moderationPermissionCache ($moderationPermissionCacheIndex STRING PRIMARY KEY, $isModerator INTEGER DEFAULT 0);"
     }
 
     override fun getSwarmCache(hexEncodedPublicKey: String): Set<LokiAPITarget>? {
@@ -138,6 +143,21 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         val index = "$server.$group"
         val row = wrap(mapOf( lastDeletionServerIDCacheIndex to index, lastDeletionServerID to newValue.toString() ))
         database.insertOrUpdate(lastDeletionServerIDCache, row, "$lastDeletionServerIDCacheIndex = ?", wrap(index))
+    }
+
+    fun isModerator(group: Long, server: String): Boolean {
+        val database = databaseHelper.readableDatabase
+        val index = "$server.$group"
+        return database.get(moderationPermissionCache, "$moderationPermissionCacheIndex = ?", wrap(index)) { cursor ->
+            cursor.getInt(isModerator)
+        } == 1
+    }
+
+    fun setIsModerator(group: Long, server: String, newValue: Boolean) {
+        val database = databaseHelper.writableDatabase
+        val index = "$server.$group"
+        val row = wrap(mapOf( moderationPermissionCacheIndex to index, isModerator to (if (newValue) 1 else 0).toString() ))
+        database.insertOrUpdate(moderationPermissionCache, row, "$moderationPermissionCacheIndex = ?", wrap(index))
     }
 }
 

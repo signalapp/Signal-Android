@@ -44,21 +44,32 @@ class LokiGroupChatPoller(private val context: Context, private val group: LokiG
         }
     }
 
+    private val pollForModerationPermissionTask = object : Runnable {
+
+        override fun run() {
+            pollForModerationPermission()
+            handler.postDelayed(this, pollForModerationPermissionInterval)
+        }
+    }
+
     companion object {
         private val pollForNewMessagesInterval: Long = 4 * 1000
         private val pollForDeletedMessagesInterval: Long = 20 * 1000
+        private val pollForModerationPermissionInterval: Long = 10 * 60 * 1000
     }
 
     fun startIfNeeded() {
         if (hasStarted) return
         pollForNewMessagesTask.run()
         pollForDeletedMessagesTask.run()
+        pollForModerationPermissionTask.run()
         hasStarted = true
     }
 
     fun stop() {
         handler.removeCallbacks(pollForNewMessagesTask)
         handler.removeCallbacks(pollForDeletedMessagesTask)
+        handler.removeCallbacks(pollForModerationPermissionTask)
         hasStarted = false
     }
 
@@ -89,6 +100,13 @@ class LokiGroupChatPoller(private val context: Context, private val group: LokiG
             }
         }.fail {
             Log.d("Loki", "Failed to get deleted messages for group chat with ID: ${group.serverID} on server: ${group.server}.")
+        }
+    }
+
+    private fun pollForModerationPermission() {
+        api.userHasModerationPermission(group.serverID, group.server).success { isModerator ->
+            val lokiAPIDatabase = DatabaseFactory.getLokiAPIDatabase(context)
+            lokiAPIDatabase.setIsModerator(group.serverID, group.server, isModerator)
         }
     }
 }
