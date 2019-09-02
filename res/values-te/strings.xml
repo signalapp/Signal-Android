@@ -702,6 +702,7 @@
   <string name="change_passphrase_activity__repeat_new_passphrase">కొత్త సంకేతపదమును తిరిగి చెప్పు</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">పేరు లేదా నంబరు ఎంటర్ చేయండి</string>
+  <string name="contact_selection_activity__invite_to_signal">Signal కు ఆహ్వానించండి</string>
   <!--contact_filter_toolbar-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">పరిచయాలు లేవు</string>
@@ -741,8 +742,6 @@
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">పరిచయ ఫొటో</string>
   <!--audio_view-->
-  <string name="audio_view__play_accessibility_description">నడుపు</string>
-  <string name="audio_view__pause_accessibility_description">నిలుపు</string>
   <string name="audio_view__download_accessibility_description">దిగుమతి</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">ఆడియో</string>

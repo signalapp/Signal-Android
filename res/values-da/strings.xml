@@ -12,6 +12,7 @@
   <!--AlbumThumbnailView-->
   <string name="AlbumThumbnailView_plus">\+%d</string>
   <!--ApplicationMigrationActivity-->
+  <string name="ApplicationMigrationActivity__signal_is_updating">Signal opdaterer...</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Nuværende: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Du har ikke indtastet et kodeord</string>
@@ -63,6 +64,7 @@
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal kræver tilladelse til at tilgå dit kamera for at kunne tage billeder, hvilket det er blevet nægtet. Gå venligst via appens menu til Indstillinger, vælg \"Tilladelser\" og tilvælg \"Kamera\"</string>
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">Oploader medie...</string>
+  <string name="AttachmentUploadJob_compressing_video_start">Komprimerer video...</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Fejl ved afspilning af lyd!</string>
   <!--BlockedContactsActivity-->
@@ -77,6 +79,9 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Fejl ved forsøg på at gemme billede</string>
   <!--CameraXFragment-->
+  <string name="CameraXFragment_capture_description">Fange</string>
+  <string name="CameraXFragment_change_camera_description">Skift kamera</string>
+  <string name="CameraXFragment_open_gallery_description">Åbn billeder</string>
   <!--CameraContacts-->
   <string name="CameraContacts_recent_contacts">Seneste kontakter</string>
   <string name="CameraContacts_signal_contacts">Signal kontakter</string>
@@ -220,6 +225,7 @@
   <string name="ConversationFragment_deleting_messages">Sletter beskeder...</string>
   <string name="ConversationFragment_quoted_message_not_found">Original besked blev ikke fundet</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Original besked er ikke længere tilgængelig</string>
+  <string name="ConversationFragment_failed_to_open_message">Fejl ved åbning af besked</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Ingen browser installeret på enheden</string>
   <!--ConversationListFragment-->
@@ -258,6 +264,7 @@
   <string name="CreateProfileActivity_profile_name">Profil navn</string>
   <string name="CreateProfileActivity_set_up_your_profile">Konfigurer din profil</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal profiler er krypteret begge veje, og Signal´s services har ingen adgang til informationen</string>
+  <string name="CreateProfileActivity_set_avatar_description">Vælg avatar</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Anvender tilpasset: %s</string>
   <string name="CustomDefaultPreference_using_default">Anvender standard: %s</string>
@@ -415,6 +422,7 @@
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">MMS besked kunne ikke downloades, tap for at prøve igen</string>
   <!--MediaPickerActivity-->
   <string name="MediaPickerActivity_send_to">Send til %s</string>
+  <string name="MediaPickerActivity__menu_open_camera">Åbn kamera</string>
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">Tap for at vælge</string>
   <!--MediaSendActivity-->
@@ -764,8 +772,12 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <!--WebRtcCallControls Content Descriptions-->
   <string name="WebRtcCallControls_contact_photo_description">Kontaktbillede</string>
   <string name="WebRtcCallControls_speaker_button_description">Højtaler</string>
+  <string name="WebRtcCallControls_bluetooth_button_description">Bluetooth</string>
   <string name="WebRtcCallControls_mute_button_description">Udsæt</string>
+  <string name="WebRtcCallControls_your_camera_button_description">Dit kamera</string>
+  <string name="WebRtcCallControls_switch_to_rear_camera_button_description">Skift til bag-kamera</string>
   <string name="WebRtcCallControls_answer_call_description">Svar opkald</string>
+  <string name="WebRtcCallControls_reject_call_description">Afvis opkald</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__audio">Lyd</string>
   <string name="attachment_type_selector__audio_description">Lyd</string>
@@ -788,7 +800,10 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="change_passphrase_activity__repeat_new_passphrase">Gentag nyt kodeord</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Søg navn eller nummer</string>
+  <string name="contact_selection_activity__invite_to_signal">Invitér til Signal</string>
   <!--contact_filter_toolbar-->
+  <string name="contact_filter_toolbar__clear_entered_text_description">Fjern tekst</string>
+  <string name="contact_filter_toolbar__show_keyboard_description">Vis tastatur</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Ingen kontakter</string>
   <string name="contact_selection_group_activity__finding_contacts">Indlæser kontakter...</string>
@@ -830,8 +845,6 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Kontaktbillede</string>
   <!--audio_view-->
-  <string name="audio_view__play_accessibility_description">Spil</string>
-  <string name="audio_view__pause_accessibility_description">Pause</string>
   <string name="audio_view__download_accessibility_description">Download</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">Lyd</string>

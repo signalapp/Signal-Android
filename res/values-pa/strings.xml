@@ -756,6 +756,7 @@
   <string name="change_passphrase_activity__repeat_new_passphrase">ਨਵਾਂ ਪਾਸਫਰੇਜ ਦੁਹਰਾਓ</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">ਨਾਮ ਜਾਂ ਨੰਬਰ ਦਾਖਲ ਕਰੋ</string>
+  <string name="contact_selection_activity__invite_to_signal">Signal ਲਈ ਸੱਦੋ</string>
   <!--contact_filter_toolbar-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">ਕੋਈ ਸੰਪਰਕ ਨਹੀਂ</string>
@@ -798,8 +799,6 @@
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">ਸੰਪਰਕ ਫੋਟੋ</string>
   <!--audio_view-->
-  <string name="audio_view__play_accessibility_description">ਚਲਾਓ </string>
-  <string name="audio_view__pause_accessibility_description">ਰੋਕੋ</string>
   <string name="audio_view__download_accessibility_description">ਡਾਊਨਲੋਡ</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">ਆਡੀਓ)</string>

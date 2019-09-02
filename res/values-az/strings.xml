@@ -757,6 +757,7 @@
   <string name="change_passphrase_activity__repeat_new_passphrase">Yeni şifrə ifadəsini təkrarla</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Ad və ya nömrəni yaz</string>
+  <string name="contact_selection_activity__invite_to_signal">Signal-a dəvət et</string>
   <!--contact_filter_toolbar-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Əlaqə yoxdur.</string>
@@ -798,8 +799,6 @@
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Əlaqənin şəkli</string>
   <!--audio_view-->
-  <string name="audio_view__play_accessibility_description">Başla</string>
-  <string name="audio_view__pause_accessibility_description">Pauza</string>
   <string name="audio_view__download_accessibility_description">Yüklə</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">Səs</string>

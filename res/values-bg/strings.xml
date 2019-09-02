@@ -761,6 +761,7 @@
   <string name="change_passphrase_activity__repeat_new_passphrase">Повторете новата парола</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Въведете име или номер</string>
+  <string name="contact_selection_activity__invite_to_signal">Покани в Signal</string>
   <!--contact_filter_toolbar-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Няма контакти.</string>
@@ -802,8 +803,6 @@
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Снимка на контакта</string>
   <!--audio_view-->
-  <string name="audio_view__play_accessibility_description">Пускане</string>
-  <string name="audio_view__pause_accessibility_description">Пауза</string>
   <string name="audio_view__download_accessibility_description">Изтегляне</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">Аудио</string>

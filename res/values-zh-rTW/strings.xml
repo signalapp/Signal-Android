@@ -776,6 +776,7 @@
   <string name="change_passphrase_activity__repeat_new_passphrase">重複新密碼</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">輸入名字或號碼</string>
+  <string name="contact_selection_activity__invite_to_signal">邀請至 Signal</string>
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">清除已輸入的文字</string>
   <string name="contact_filter_toolbar__show_keyboard_description">顯示鍵盤</string>
@@ -821,8 +822,7 @@
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">聯絡人的相片</string>
   <!--audio_view-->
-  <string name="audio_view__play_accessibility_description">播放</string>
-  <string name="audio_view__pause_accessibility_description">暫停</string>
+  <string name="audio_view__play_pause_accessibility_description">播放 ... 暫停</string>
   <string name="audio_view__download_accessibility_description">下載</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">音訊</string>

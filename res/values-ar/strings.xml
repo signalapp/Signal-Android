@@ -827,6 +827,7 @@
   <string name="change_passphrase_activity__repeat_new_passphrase">إعادة العبارة السرية الجديدة</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">أدخل أسم أو رقم</string>
+  <string name="contact_selection_activity__invite_to_signal">ادعُ إلى Signal</string>
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__show_keyboard_description">إظهار لوحة المفاتيح</string>
   <string name="contact_filter_toolbar__show_dial_pad_description">إظهار لوحة الاتصال</string>
@@ -871,8 +872,6 @@
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">صورة جهة الاتصال</string>
   <!--audio_view-->
-  <string name="audio_view__play_accessibility_description">تشغيل</string>
-  <string name="audio_view__pause_accessibility_description">توقف</string>
   <string name="audio_view__download_accessibility_description">تنزيل</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">صوت</string>

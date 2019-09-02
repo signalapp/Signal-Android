@@ -646,6 +646,7 @@
   <string name="change_passphrase_activity__repeat_new_passphrase">စကားဝှက်အသစ်ကိုထပ်ထည့်ပါ</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">နာမည် သို့မဟုတ် နံပါတ်ထည့်ပါ</string>
+  <string name="contact_selection_activity__invite_to_signal">Signal သို့ ဖိတ်ခေါ်မည်</string>
   <!--contact_filter_toolbar-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">လိပ်စာများ မရှိ။</string>
@@ -686,8 +687,6 @@
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">လိပ်စာပါ ဓာတ်ပုံ</string>
   <!--audio_view-->
-  <string name="audio_view__play_accessibility_description">ဖွင့်သည်</string>
-  <string name="audio_view__pause_accessibility_description">ခဏရပ်သည်</string>
   <string name="audio_view__download_accessibility_description">ကူးဆွဲသည်</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">အသံ</string>

@@ -797,6 +797,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="change_passphrase_activity__repeat_new_passphrase">Ripeti la nuova password</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Inserisci nome o numero</string>
+  <string name="contact_selection_activity__invite_to_signal">Invita a Signal</string>
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Cancella testo inserito</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Mostra tastiera</string>
@@ -842,8 +843,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Foto del contatto</string>
   <!--audio_view-->
-  <string name="audio_view__play_accessibility_description">Play</string>
-  <string name="audio_view__pause_accessibility_description">Pausa</string>
+  <string name="audio_view__play_pause_accessibility_description">Riproduci ... Metti in pausa</string>
   <string name="audio_view__download_accessibility_description">Scarica</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">Audio</string>

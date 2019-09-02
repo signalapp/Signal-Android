@@ -12,6 +12,7 @@
   <!--AlbumThumbnailView-->
   <string name="AlbumThumbnailView_plus">\+ %d</string>
   <!--ApplicationMigrationActivity-->
+  <string name="ApplicationMigrationActivity__signal_is_updating">Signal se aktualizuje...</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Aktuálně: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Dosud nemáte nastavené heslo!</string>
@@ -833,6 +834,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="change_passphrase_activity__repeat_new_passphrase">Zopakujte nové heslo</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Zadejte jméno nebo číslo</string>
+  <string name="contact_selection_activity__invite_to_signal">Pozvat do Signalu</string>
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Vyčistit zadaný text</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Zobrazit klávesnici</string>
@@ -878,8 +880,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Fotografie kontaktu</string>
   <!--audio_view-->
-  <string name="audio_view__play_accessibility_description">Přehrát</string>
-  <string name="audio_view__pause_accessibility_description">Zastavit</string>
+  <string name="audio_view__play_pause_accessibility_description">Spustit ... Pozastavit</string>
   <string name="audio_view__download_accessibility_description">Stáhnout</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">Audio</string>

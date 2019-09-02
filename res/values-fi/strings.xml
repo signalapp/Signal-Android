@@ -782,6 +782,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="change_passphrase_activity__repeat_new_passphrase">Toista uusi salalause</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Syötä nimi tai numero</string>
+  <string name="contact_selection_activity__invite_to_signal">Kutsu Signaliin</string>
   <!--contact_filter_toolbar-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Ei yhteystietoja.</string>
@@ -824,8 +825,6 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Yhteystiedon kuva</string>
   <!--audio_view-->
-  <string name="audio_view__play_accessibility_description">Toista</string>
-  <string name="audio_view__pause_accessibility_description">Pysäytä</string>
   <string name="audio_view__download_accessibility_description">Lataa</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">Äänitallenne</string>

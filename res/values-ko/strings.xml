@@ -734,6 +734,7 @@
   <string name="change_passphrase_activity__repeat_new_passphrase">새 암호 다시 입력</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">이름 또는 전화번호 입력</string>
+  <string name="contact_selection_activity__invite_to_signal">Signal로 초대</string>
   <!--contact_filter_toolbar-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">연락처 없음</string>
@@ -776,8 +777,6 @@
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">연락처 사진</string>
   <!--audio_view-->
-  <string name="audio_view__play_accessibility_description">재생</string>
-  <string name="audio_view__pause_accessibility_description">일시 정지</string>
   <string name="audio_view__download_accessibility_description">다운로드</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">오디오</string>

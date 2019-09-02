@@ -773,6 +773,7 @@
   <string name="change_passphrase_activity__repeat_new_passphrase">校验新密码</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">输入姓名或号码</string>
+  <string name="contact_selection_activity__invite_to_signal">邀请至 Signal</string>
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">清除已输入文字</string>
   <string name="contact_filter_toolbar__show_keyboard_description">显示键盘</string>
@@ -818,8 +819,6 @@
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">联系人照片</string>
   <!--audio_view-->
-  <string name="audio_view__play_accessibility_description">播放</string>
-  <string name="audio_view__pause_accessibility_description">暂停</string>
   <string name="audio_view__download_accessibility_description">下载</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">音频</string>

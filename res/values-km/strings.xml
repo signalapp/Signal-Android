@@ -772,6 +772,7 @@
   <string name="change_passphrase_activity__repeat_new_passphrase">ឃ្លាសម្ងាត់ថ្មីម្តងទៀត</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">បញ្ចូលឈ្មោះ និងលេខទូរស័ព្ទ</string>
+  <string name="contact_selection_activity__invite_to_signal">អញ្ជើញចូលប្រើSignal</string>
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">លុបអក្សរដែលបានបញ្ចូល</string>
   <string name="contact_filter_toolbar__show_keyboard_description">បង្ហាញក្តារចុច</string>
@@ -817,8 +818,6 @@
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">រូបភាពទំនាក់ទំនង</string>
   <!--audio_view-->
-  <string name="audio_view__play_accessibility_description">បើក</string>
-  <string name="audio_view__pause_accessibility_description">ផ្អាក់</string>
   <string name="audio_view__download_accessibility_description">ទាញយក</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">សំឡេង</string>

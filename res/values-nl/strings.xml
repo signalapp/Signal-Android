@@ -802,6 +802,7 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <string name="change_passphrase_activity__repeat_new_passphrase">Herhaal nieuw wachtwoord</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Typ naam of nummer</string>
+  <string name="contact_selection_activity__invite_to_signal">Uitnodigen voor Signal</string>
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Ingevoerde tekst wissen</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Toetsenbord weergeven</string>
@@ -847,8 +848,7 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Foto van contactpersoon</string>
   <!--audio_view-->
-  <string name="audio_view__play_accessibility_description">Afspelen</string>
-  <string name="audio_view__pause_accessibility_description">Pauzeren</string>
+  <string name="audio_view__play_pause_accessibility_description">Afspelen … Pauzeren</string>
   <string name="audio_view__download_accessibility_description">Downloaden</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">Audio</string>

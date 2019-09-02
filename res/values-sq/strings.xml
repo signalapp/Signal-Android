@@ -12,6 +12,7 @@
   <!--AlbumThumbnailView-->
   <string name="AlbumThumbnailView_plus">\+%d</string>
   <!--ApplicationMigrationActivity-->
+  <string name="ApplicationMigrationActivity__signal_is_updating">Signal-i po përditësohet…</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">I tanishmi: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">S\’keni caktuar ende frazëkalim!</string>
@@ -793,6 +794,7 @@
   <string name="change_passphrase_activity__repeat_new_passphrase">Përsëritni frazëkalimin e ri</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Jepni emër ose numër</string>
+  <string name="contact_selection_activity__invite_to_signal">Ftojeni në Signal</string>
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Spastro tekstin e dhënë</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Shfaq tastierën</string>
@@ -838,8 +840,7 @@
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Foto kontakti</string>
   <!--audio_view-->
-  <string name="audio_view__play_accessibility_description">Luaje</string>
-  <string name="audio_view__pause_accessibility_description">Ndalesë</string>
+  <string name="audio_view__play_pause_accessibility_description">Luaje … Pauzë</string>
   <string name="audio_view__download_accessibility_description">Shkarkoje</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">Audio</string>

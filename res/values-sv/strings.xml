@@ -794,6 +794,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="change_passphrase_activity__repeat_new_passphrase">Upprepa ny lösenfras</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Ange namn eller nummer</string>
+  <string name="contact_selection_activity__invite_to_signal">Bjud in till Signal</string>
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Rensa inmatad text</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Visa tangentbordet</string>
@@ -839,8 +840,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Kontaktfoto</string>
   <!--audio_view-->
-  <string name="audio_view__play_accessibility_description">Spela</string>
-  <string name="audio_view__pause_accessibility_description">Pausa</string>
+  <string name="audio_view__play_pause_accessibility_description">Spela ... Pausa</string>
   <string name="audio_view__download_accessibility_description">Hämta</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">Ljud</string>

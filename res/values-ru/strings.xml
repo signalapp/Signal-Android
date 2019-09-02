@@ -44,8 +44,8 @@
   <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Нажмите, чтобы сделать Signal вашим приложением для SMS по умолчанию</string>
   <string name="ApplicationPreferencesActivity_on">включена</string>
   <string name="ApplicationPreferencesActivity_On">Включено</string>
-  <string name="ApplicationPreferencesActivity_off">выключена</string>
-  <string name="ApplicationPreferencesActivity_Off">Выключено</string>
+  <string name="ApplicationPreferencesActivity_off">отключена</string>
+  <string name="ApplicationPreferencesActivity_Off">Отключено</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">Блокировка экрана %1$s, блокировка регистрации %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">Тема %1$s, язык %2$s</string>
@@ -560,7 +560,7 @@
   <string name="RecipientPreferenceActivity_error_leaving_group">Ошибка при выходе из группы</string>
   <string name="RecipientPreferenceActivity_unblock">Разблокировать</string>
   <string name="RecipientPreferenceActivity_enabled">Включено</string>
-  <string name="RecipientPreferenceActivity_disabled">Выключено</string>
+  <string name="RecipientPreferenceActivity_disabled">Отключено</string>
   <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">Доступно после отправки или получения сообщения.</string>
   <!--RecipientProvider-->
   <string name="RecipientProvider_unnamed_group">Безымянная группа</string>
@@ -835,6 +835,7 @@
   <string name="change_passphrase_activity__repeat_new_passphrase"> Повторите новую парольную фразу</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Введите имя или номер</string>
+  <string name="contact_selection_activity__invite_to_signal">Пригласить в Signal</string>
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Стереть введённый текст</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Показать клавиатуру</string>
@@ -880,8 +881,7 @@
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Фотография контакта</string>
   <!--audio_view-->
-  <string name="audio_view__play_accessibility_description">Воспроизвести</string>
-  <string name="audio_view__pause_accessibility_description">Пауза</string>
+  <string name="audio_view__play_pause_accessibility_description">Играть … Приостановить</string>
   <string name="audio_view__download_accessibility_description">Скачать</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">Аудио</string>
@@ -909,7 +909,7 @@
   <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">При желании вы можете видеть и показывать другим, когда сообщения были прочитаны.</string>
   <string name="experience_upgrade_preference_fragment__enable_read_receipts">Включить уведомления о прочтении</string>
   <!--expiration-->
-  <string name="expiration_off">Выключено</string>
+  <string name="expiration_off">Отключено</string>
   <plurals name="expiration_seconds">
     <item quantity="one">%d секунда</item>
     <item quantity="few">%d секунды</item>

@@ -688,6 +688,7 @@
   <string name="change_passphrase_activity__repeat_new_passphrase">नया पासफ्रेज दोहराएं</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">नाम या संख्या दर्ज करें</string>
+  <string name="contact_selection_activity__invite_to_signal">Signal का उपयोग करने के लिए आमंत्रित करें</string>
   <!--contact_filter_toolbar-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">कोई संपर्क नहीं</string>
@@ -728,8 +729,6 @@
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">संपर्क फोटो</string>
   <!--audio_view-->
-  <string name="audio_view__play_accessibility_description">चलाओ</string>
-  <string name="audio_view__pause_accessibility_description">रोको</string>
   <string name="audio_view__download_accessibility_description">डाउनलोड</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">ऑडियो</string>

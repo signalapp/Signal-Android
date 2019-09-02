@@ -800,6 +800,7 @@
   <string name="change_passphrase_activity__repeat_new_passphrase">Repetir nova frase de acceso</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Inserir nome ou número</string>
+  <string name="contact_selection_activity__invite_to_signal">Convidar a Signal</string>
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Limpar o texto inserido</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Mostrar teclado</string>
@@ -845,8 +846,6 @@
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Foto do contacto</string>
   <!--audio_view-->
-  <string name="audio_view__play_accessibility_description">Reproducir</string>
-  <string name="audio_view__pause_accessibility_description">Pausar</string>
   <string name="audio_view__download_accessibility_description">Descargar</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">Audio</string>

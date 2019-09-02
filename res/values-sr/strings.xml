@@ -684,6 +684,7 @@
   <string name="change_passphrase_activity__repeat_new_passphrase">Поновите нову лозинку</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Унесите име или број</string>
+  <string name="contact_selection_activity__invite_to_signal">Позивница за Signal</string>
   <!--contact_filter_toolbar-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Нема контаката.</string>
@@ -720,8 +721,6 @@
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Фотографија контакта</string>
   <!--audio_view-->
-  <string name="audio_view__play_accessibility_description">Пусти</string>
-  <string name="audio_view__pause_accessibility_description">Паузирај</string>
   <string name="audio_view__download_accessibility_description">Преузми</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">Звук</string>

@@ -783,6 +783,7 @@
   <string name="change_passphrase_activity__repeat_new_passphrase">Νέο συνθηματικό (ξανά)</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Εισαγωγή ονόματος ή αριθμού</string>
+  <string name="contact_selection_activity__invite_to_signal">Πρόσκληση στο Signal</string>
   <!--contact_filter_toolbar-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Δεν υπάρχουν επαφές.</string>
@@ -825,8 +826,6 @@
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Φωτογραφία επαφής</string>
   <!--audio_view-->
-  <string name="audio_view__play_accessibility_description">Αναπαραγωγή</string>
-  <string name="audio_view__pause_accessibility_description">Παύση</string>
   <string name="audio_view__download_accessibility_description">Λήψη</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">Ήχος</string>

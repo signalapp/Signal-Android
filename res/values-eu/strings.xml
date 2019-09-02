@@ -800,6 +800,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="change_passphrase_activity__repeat_new_passphrase">Errepikatu pasahitz berria</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Idatzi izena edo zenbakia</string>
+  <string name="contact_selection_activity__invite_to_signal">Gonbidatu Signal erabiltzera</string>
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Garbitu idatzitako testua</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Erakutsi teklatua</string>
@@ -845,8 +846,6 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Kontaktuaren argazkia</string>
   <!--audio_view-->
-  <string name="audio_view__play_accessibility_description">Play</string>
-  <string name="audio_view__pause_accessibility_description">Pausatu</string>
   <string name="audio_view__download_accessibility_description">Deskargatu</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">Audioa</string>

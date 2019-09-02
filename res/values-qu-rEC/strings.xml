@@ -681,6 +681,7 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <string name="change_passphrase_activity__repeat_new_passphrase">Mushuk paskachikta kutin killkay</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Shutita manakashpaka yupayta churapay</string>
+  <string name="contact_selection_activity__invite_to_signal">Signal ukuman kayachiy</string>
   <!--contact_filter_toolbar-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Mana yupay mashikuna tiyanchu.</string>
@@ -720,8 +721,6 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Yupay mashipa shuyu</string>
   <!--audio_view-->
-  <string name="audio_view__play_accessibility_description">Purichina</string>
-  <string name="audio_view__pause_accessibility_description">Samachina</string>
   <string name="audio_view__download_accessibility_description">Uriyakuchina</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">Uyariy</string>

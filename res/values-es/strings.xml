@@ -12,7 +12,7 @@
   <!--AlbumThumbnailView-->
   <string name="AlbumThumbnailView_plus">\+%d</string>
   <!--ApplicationMigrationActivity-->
-  <string name="ApplicationMigrationActivity__signal_is_updating">Signal se está actualizando...</string>
+  <string name="ApplicationMigrationActivity__signal_is_updating">Signal está actualizándose ...</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Actualmente: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">¡Todavía no has fijado una clave de acceso!</string>
@@ -800,6 +800,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="change_passphrase_activity__repeat_new_passphrase">Repetir nueva clave de acceso</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Introduce un nombre o número</string>
+  <string name="contact_selection_activity__invite_to_signal">Invitar a Signal</string>
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Eliminar texto introducido</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Mostrar teclado</string>
@@ -845,8 +846,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Foto de contacto</string>
   <!--audio_view-->
-  <string name="audio_view__play_accessibility_description">Reproducir</string>
-  <string name="audio_view__pause_accessibility_description">Pausa</string>
+  <string name="audio_view__play_pause_accessibility_description">reproducir o pausar audio</string>
   <string name="audio_view__download_accessibility_description">Descargar</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">Audio</string>

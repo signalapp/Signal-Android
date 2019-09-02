@@ -757,6 +757,7 @@
   <string name="change_passphrase_activity__repeat_new_passphrase">Повторіть нову фразу-пароль</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Ввести ім\'я або номер</string>
+  <string name="contact_selection_activity__invite_to_signal">Запросити до Signal</string>
   <!--contact_filter_toolbar-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Контактів не знайдено.</string>
@@ -797,8 +798,6 @@
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Фото контакту</string>
   <!--audio_view-->
-  <string name="audio_view__play_accessibility_description">Відтворити</string>
-  <string name="audio_view__pause_accessibility_description">Пауза</string>
   <string name="audio_view__download_accessibility_description">Завантажити</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">Аудіо</string>

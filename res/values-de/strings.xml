@@ -789,6 +789,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="change_passphrase_activity__repeat_new_passphrase">Neue Passphrase wiederholen</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Name/Nummer eingeben</string>
+  <string name="contact_selection_activity__invite_to_signal">Zu Signal einladen</string>
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Texteingabe leeren</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Tastatur anzeigen</string>
@@ -834,8 +835,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Kontaktbild</string>
   <!--audio_view-->
-  <string name="audio_view__play_accessibility_description">Wiedergeben</string>
-  <string name="audio_view__pause_accessibility_description">Pause</string>
+  <string name="audio_view__play_pause_accessibility_description">Abspielen … Pause</string>
   <string name="audio_view__download_accessibility_description">Herunterladen</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">Audio</string>

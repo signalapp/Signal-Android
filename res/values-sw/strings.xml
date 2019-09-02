@@ -711,6 +711,7 @@ nambari yako ya simu</string>
   <string name="change_passphrase_activity__repeat_new_passphrase">rudia passphrase mpya</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">ingiza jina au namba</string>
+  <string name="contact_selection_activity__invite_to_signal">Mwalike kwenye Signal</string>
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Futa vile imeandikwa</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Onyesha kibodi</string>
@@ -754,8 +755,6 @@ nambari yako ya simu</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">wasiliana na picha</string>
   <!--audio_view-->
-  <string name="audio_view__play_accessibility_description">cheza</string>
-  <string name="audio_view__pause_accessibility_description">pumzika</string>
   <string name="audio_view__download_accessibility_description">pakua</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">Sauti</string>

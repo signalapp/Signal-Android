@@ -773,6 +773,7 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <string name="change_passphrase_activity__repeat_new_passphrase">Lặp lại mật khẩu mới</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Điền tên hoặc số</string>
+  <string name="contact_selection_activity__invite_to_signal">Mời dùng Signal</string>
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Xóa văn bản đã nhập </string>
   <string name="contact_filter_toolbar__show_keyboard_description">Hiện bàn phím</string>
@@ -818,8 +819,6 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Ảnh liên hệ</string>
   <!--audio_view-->
-  <string name="audio_view__play_accessibility_description">Chạy</string>
-  <string name="audio_view__pause_accessibility_description">Tạm ngưng</string>
   <string name="audio_view__download_accessibility_description">Tải xuống</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">Âm thanh</string>

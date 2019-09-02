@@ -672,6 +672,7 @@
   <string name="change_passphrase_activity__repeat_new_passphrase">ใส่วลีรหัสผ่านใหม่อีกครั้ง</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">ป้อนชื่อหรือหมายเลข</string>
+  <string name="contact_selection_activity__invite_to_signal">เชิญมาใช้ Signal</string>
   <!--contact_filter_toolbar-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">ไม่มีผู้ติดต่อ</string>
@@ -711,8 +712,6 @@
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">ภาพของผู้ติดต่อ</string>
   <!--audio_view-->
-  <string name="audio_view__play_accessibility_description">เล่น</string>
-  <string name="audio_view__pause_accessibility_description">หยุดชั่วคราว</string>
   <string name="audio_view__download_accessibility_description">ดาวน์โหลด</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">เสียง</string>

@@ -804,6 +804,7 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="change_passphrase_activity__repeat_new_passphrase">Ponovite novu lozinku</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Unesite ime ili broj</string>
+  <string name="contact_selection_activity__invite_to_signal">Pozovi u Signal</string>
   <!--contact_filter_toolbar-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Nema kontakata.</string>
@@ -846,8 +847,6 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Slika kontakta</string>
   <!--audio_view-->
-  <string name="audio_view__play_accessibility_description">Reprodukcija</string>
-  <string name="audio_view__pause_accessibility_description">Zaustavi</string>
   <string name="audio_view__download_accessibility_description">Preuzmi</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">Zvuk</string>
