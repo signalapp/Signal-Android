@@ -409,7 +409,10 @@ public class ConversationFragment extends Fragment
 
     if (isGroupChat) {
       menu.findItem(R.id.menu_context_reply).setVisible(false);
-      boolean isDeleteOptionVisible = recipient.getName().equals("Loki Public Chat") && messageRecords.size() == 1;
+      LokiAPIDatabase lokiAPIDatabase = DatabaseFactory.getLokiAPIDatabase(getContext());
+      boolean isDeleteOptionVisible = recipient.getName().equals("Loki Public Chat") && messageRecords.size() == 1
+        && (((MessageRecord)messageRecords.toArray()[0]).isOutgoing()
+        || lokiAPIDatabase.isModerator(LokiGroupChatAPI.getPublicChatServerID(), LokiGroupChatAPI.getPublicChatServer()));
       menu.findItem(R.id.menu_context_delete_message).setVisible(isDeleteOptionVisible);
     } else {
       menu.findItem(R.id.menu_context_delete_message).setVisible(true);
@@ -524,7 +527,7 @@ public class ConversationFragment extends Fragment
 
                 if (serverID != null) {
                   new LokiGroupChatAPI(userHexEncodedPublicKey, userPrivateKey, lokiAPIDatabase, lokiUserDatabase)
-                  .deleteMessage(serverID, LokiGroupChatAPI.getPublicChatServerID(), LokiGroupChatAPI.getPublicChatServer(), true)
+                  .deleteMessage(serverID, LokiGroupChatAPI.getPublicChatServerID(), LokiGroupChatAPI.getPublicChatServer(), messageRecord.isOutgoing())
                   .success(l -> {
                     @SuppressWarnings("unchecked") SettableFuture<Unit> f = (SettableFuture<Unit>) future[0];
                     f.set(Unit.INSTANCE);
