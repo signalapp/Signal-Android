@@ -18,7 +18,7 @@
     <string name="AlbumThumbnailView_plus">\+%d</string>
 
     <!-- ApplicationMigrationActivity -->
-    <string name="ApplicationMigrationActivity__signal_is_updating">Signal is updating...</string>
+    <string name="ApplicationMigrationActivity__signal_is_updating">Signal is updating…</string>
 
     <!-- ApplicationPreferencesActivity -->
     <string name="ApplicationPreferencesActivity_currently_s">Currently: %s</string>
@@ -107,7 +107,7 @@
     <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">You can share with a maximum of %d conversations.</string>
     <string name="CameraContacts_select_signal_recipients">Select Signal recipients</string>
     <string name="CameraContacts_no_signal_contacts">No Signal contacts</string>
-    <string name="CameraContacts_you_can_only_use_the_camera_button">You can only use the camera button to send photos to Signal contacts. </string>
+    <string name="CameraContacts_you_can_only_use_the_camera_button">You can only use the camera button to send photos to Signal contacts.</string>
     <string name="CameraContacts_cant_find_who_youre_looking_for">Can\'t find who you\'re looking for?</string>
     <string name="CameraContacts_invite_a_contact_to_join_signal">Invite a contact to join Signal</string>
     <string name="CameraContacts__menu_search">Search</string>
