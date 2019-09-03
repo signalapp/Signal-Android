@@ -405,13 +405,15 @@ public class ConversationFragment extends Fragment
     }
     menu.findItem(R.id.menu_context_copy).setVisible(!actionMessage && hasText);
 
-    boolean isLokiPublicChat = recipient.isGroupRecipient(); // TODO: Figure out a better way of determining this
+    boolean isGroupChat = recipient.isGroupRecipient(); // TODO: Figure out a better way of determining this
 
-    if (isLokiPublicChat) {
+    if (isGroupChat) {
       menu.findItem(R.id.menu_context_reply).setVisible(false);
+      boolean isDeleteOptionVisible = recipient.getName().equals("Loki Public Chat") && messageRecords.size() == 1;
+      menu.findItem(R.id.menu_context_delete_message).setVisible(isDeleteOptionVisible);
+    } else {
+      menu.findItem(R.id.menu_context_delete_message).setVisible(true);
     }
-
-    menu.findItem(R.id.menu_context_delete_message).setVisible(true);
   }
 
   private ConversationAdapter getListAdapter() {
