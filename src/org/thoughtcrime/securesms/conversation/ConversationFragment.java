@@ -68,6 +68,7 @@ import org.thoughtcrime.securesms.contactshare.ContactUtil;
 import org.thoughtcrime.securesms.contactshare.SharedContactDetailsActivity;
 import org.thoughtcrime.securesms.conversation.ConversationAdapter.HeaderViewHolder;
 import org.thoughtcrime.securesms.conversation.ConversationAdapter.ItemClickListener;
+import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
@@ -80,6 +81,8 @@ import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.FriendRequestViewDelegate;
+import org.thoughtcrime.securesms.loki.LokiAPIDatabase;
+import org.thoughtcrime.securesms.loki.LokiUserDatabase;
 import org.thoughtcrime.securesms.longmessage.LongMessageActivity;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mms.GlideApp;
@@ -101,6 +104,8 @@ import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.internal.util.concurrent.SettableFuture;
+import org.whispersystems.signalservice.loki.api.LokiGroupChatAPI;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -112,6 +117,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
+import kotlin.Unit;
 import network.loki.messenger.R;
 
 @SuppressLint("StaticFieldLeak")
@@ -403,8 +409,9 @@ public class ConversationFragment extends Fragment
 
     if (isLokiPublicChat) {
       menu.findItem(R.id.menu_context_reply).setVisible(false);
-      menu.findItem(R.id.menu_context_delete_message).setVisible(false);
     }
+
+    menu.findItem(R.id.menu_context_delete_message).setVisible(true);
   }
 
   private ConversationAdapter getListAdapter() {
@@ -488,6 +495,8 @@ public class ConversationFragment extends Fragment
     builder.setMessage(getActivity().getResources().getQuantityString(R.plurals.ConversationFragment_this_will_permanently_delete_all_n_selected_messages, messagesCount, messagesCount));
     builder.setCancelable(true);
 
+    boolean isLokiPublicChat = this.recipient.isGroupRecipient();
+
     builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
       @Override
       public void onClick(DialogInterface dialog, int which) {
@@ -498,15 +507,52 @@ public class ConversationFragment extends Fragment
           @Override
           protected Void doInBackground(MessageRecord... messageRecords) {
             for (MessageRecord messageRecord : messageRecords) {
-              boolean threadDeleted;
+              boolean isThreadDeleted;
 
-              if (messageRecord.isMms()) {
-                threadDeleted = DatabaseFactory.getMmsDatabase(getActivity()).delete(messageRecord.getId());
-              } else {
-                threadDeleted = DatabaseFactory.getSmsDatabase(getActivity()).deleteMessage(messageRecord.getId());
+              if (isLokiPublicChat) {
+
+                final SettableFuture<?>[] future = { new SettableFuture<Unit>() };
+
+                String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(getContext());
+                LokiAPIDatabase lokiAPIDatabase = DatabaseFactory.getLokiAPIDatabase(getContext());
+                LokiUserDatabase lokiUserDatabase = DatabaseFactory.getLokiUserDatabase(getContext());
+                byte[] userPrivateKey = IdentityKeyUtil.getIdentityKeyPair(getContext()).getPrivateKey().serialize();
+
+                Long serverID = DatabaseFactory.getLokiMessageDatabase(getContext()).getServerID(messageRecord.id);
+
+                if (serverID != null) {
+                  new LokiGroupChatAPI(userHexEncodedPublicKey, userPrivateKey, lokiAPIDatabase, lokiUserDatabase)
+                  .deleteMessage(serverID, LokiGroupChatAPI.getPublicChatServerID(), LokiGroupChatAPI.getPublicChatServer(), true)
+                  .success(l -> {
+                    @SuppressWarnings("unchecked") SettableFuture<Unit> f = (SettableFuture<Unit>) future[0];
+                    f.set(Unit.INSTANCE);
+                    return Unit.INSTANCE;
+                  }).fail(e -> {
+                    @SuppressWarnings("unchecked") SettableFuture<Unit> f = (SettableFuture<Unit>) future[0];
+                    f.setException(e);
+                    return Unit.INSTANCE;
+                  });
+                } else {
+                  @SuppressWarnings("unchecked") SettableFuture<Unit> f = (SettableFuture<Unit>) future[0];
+                  f.setException(new Exception("Missing message server ID."));
+                }
+
+                try {
+                  @SuppressWarnings("unchecked") SettableFuture<Unit> f = (SettableFuture<Unit>)future[0];
+                  f.get();
+                } catch (Exception exception) {
+                  Log.d("Loki", "Couldn't delete message due to error: " + exception.toString() + ".");
+                  return null;
+                }
               }
 
-              if (threadDeleted) {
+              if (messageRecord.isMms()) {
+                isThreadDeleted = DatabaseFactory.getMmsDatabase(getActivity()).delete(messageRecord.getId());
+              } else {
+                isThreadDeleted = DatabaseFactory.getSmsDatabase(getActivity()).deleteMessage(messageRecord.getId());
+              }
+
+              if (isThreadDeleted) {
                 threadId = -1;
                 listener.setThreadId(threadId);
               }

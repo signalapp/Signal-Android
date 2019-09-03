@@ -18,6 +18,13 @@ class LokiMessageDatabase(context: Context, helper: SQLCipherOpenHelper) : Datab
         @JvmStatic val createTableCommand = "CREATE TABLE $tableName ($messageID INTEGER PRIMARY KEY, $serverID INTEGER DEFAULT 0, $friendRequestStatus INTEGER DEFAULT 0);"
     }
 
+    fun getServerID(messageID: Long): Long? {
+        val database = databaseHelper.readableDatabase
+        return database.get(tableName, "${Companion.messageID} = ?", arrayOf( messageID.toString() )) { cursor ->
+            cursor.getInt(Companion.serverID)
+        }?.toLong()
+    }
+
     fun getMessageID(serverID: Long): Long? {
         val database = databaseHelper.readableDatabase
         return database.get(tableName, "${Companion.serverID} = ?", arrayOf( serverID.toString() )) { cursor ->
