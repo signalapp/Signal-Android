@@ -884,6 +884,7 @@ Send neges heb ei ddiogelu?</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Llun cyswllt</string>
   <!--audio_view-->
+  <string name="audio_view__play_pause_accessibility_description">Chwarae ... Oedi</string>
   <string name="audio_view__download_accessibility_description">Llwytho i lawr</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">Sain</string>

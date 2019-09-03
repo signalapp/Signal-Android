@@ -881,7 +881,7 @@
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Фотография контакта</string>
   <!--audio_view-->
-  <string name="audio_view__play_pause_accessibility_description">Играть … Приостановить</string>
+  <string name="audio_view__play_pause_accessibility_description">Воспроизведение … Пауза</string>
   <string name="audio_view__download_accessibility_description">Скачать</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">Аудио</string>
