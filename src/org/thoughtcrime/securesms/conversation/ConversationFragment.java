@@ -515,7 +515,6 @@ public class ConversationFragment extends Fragment
               boolean isThreadDeleted;
 
               if (isLokiPublicChat) {
-
                 final SettableFuture<?>[] future = { new SettableFuture<Unit>() };
 
                 String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(getContext());
