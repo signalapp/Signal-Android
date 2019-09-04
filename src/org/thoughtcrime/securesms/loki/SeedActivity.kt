@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.curve25519.Curve25519
 import org.whispersystems.libsignal.util.KeyHelper
 import org.whispersystems.signalservice.loki.crypto.MnemonicCodec
+import org.whispersystems.signalservice.loki.utilities.Analytics
 import org.whispersystems.signalservice.loki.utilities.hexEncodedPublicKey
 import java.io.File
 import java.io.FileOutputStream
@@ -162,6 +163,10 @@ class SeedActivity : BaseActionBarActivity() {
         val application = ApplicationContext.getInstance(this)
         application.setUpP2PAPI()
         application.startLongPollingIfNeeded()
+        when (mode) {
+            Mode.Register -> Analytics.shared.track("Seed Created")
+            Mode.Restore -> Analytics.shared.track("Seed Restored")
+        }
         startActivity(Intent(this, ConversationListActivity::class.java))
         finish()
     }
