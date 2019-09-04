@@ -405,14 +405,16 @@ public class ConversationFragment extends Fragment
     }
     menu.findItem(R.id.menu_context_copy).setVisible(!actionMessage && hasText);
 
-    boolean isGroupChat = recipient.isGroupRecipient(); // TODO: Figure out a better way of determining this
+    boolean isGroupChat = recipient.isGroupRecipient();
 
     if (isGroupChat) {
       menu.findItem(R.id.menu_context_reply).setVisible(false);
       LokiAPIDatabase lokiAPIDatabase = DatabaseFactory.getLokiAPIDatabase(getContext());
-      boolean isDeleteOptionVisible = recipient.getName().equals("Loki Public Chat") && messageRecords.size() == 1
-        && (((MessageRecord)messageRecords.toArray()[0]).isOutgoing()
-        || lokiAPIDatabase.isModerator(LokiGroupChatAPI.getPublicChatServerID(), LokiGroupChatAPI.getPublicChatServer()));
+      boolean isLokiPublicChat = recipient.getName().equals("Loki Public Chat");
+      int selectedMessageCount = messageRecords.size();
+      boolean isSentByUser = ((MessageRecord)messageRecords.toArray()[0]).isOutgoing();
+      boolean userCanModerate = lokiAPIDatabase.isModerator(LokiGroupChatAPI.getPublicChatServerID(), LokiGroupChatAPI.getPublicChatServer());
+      boolean isDeleteOptionVisible = isLokiPublicChat && selectedMessageCount == 1 && (isSentByUser || userCanModerate);
       menu.findItem(R.id.menu_context_delete_message).setVisible(isDeleteOptionVisible);
     } else {
       menu.findItem(R.id.menu_context_delete_message).setVisible(true);
@@ -500,6 +502,7 @@ public class ConversationFragment extends Fragment
     builder.setMessage(getActivity().getResources().getQuantityString(R.plurals.ConversationFragment_this_will_permanently_delete_all_n_selected_messages, messagesCount, messagesCount));
     builder.setCancelable(true);
 
+    // Loki - The delete option is only visible to the user in a group chat if it's the Loki public chat
     boolean isLokiPublicChat = this.recipient.isGroupRecipient();
 
     builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
@@ -521,12 +524,12 @@ public class ConversationFragment extends Fragment
                 LokiAPIDatabase lokiAPIDatabase = DatabaseFactory.getLokiAPIDatabase(getContext());
                 LokiUserDatabase lokiUserDatabase = DatabaseFactory.getLokiUserDatabase(getContext());
                 byte[] userPrivateKey = IdentityKeyUtil.getIdentityKeyPair(getContext()).getPrivateKey().serialize();
-
+                boolean isSentByUser = messageRecord.isOutgoing();
                 Long serverID = DatabaseFactory.getLokiMessageDatabase(getContext()).getServerID(messageRecord.id);
 
                 if (serverID != null) {
                   new LokiGroupChatAPI(userHexEncodedPublicKey, userPrivateKey, lokiAPIDatabase, lokiUserDatabase)
-                  .deleteMessage(serverID, LokiGroupChatAPI.getPublicChatServerID(), LokiGroupChatAPI.getPublicChatServer(), messageRecord.isOutgoing())
+                  .deleteMessage(serverID, LokiGroupChatAPI.getPublicChatServerID(), LokiGroupChatAPI.getPublicChatServer(), isSentByUser)
                   .success(l -> {
                     @SuppressWarnings("unchecked") SettableFuture<Unit> f = (SettableFuture<Unit>) future[0];
                     f.set(Unit.INSTANCE);
@@ -538,7 +541,7 @@ public class ConversationFragment extends Fragment
                   });
                 } else {
                   @SuppressWarnings("unchecked") SettableFuture<Unit> f = (SettableFuture<Unit>) future[0];
-                  f.setException(new Exception("Missing message server ID."));
+                  f.setException(new Exception("Message server ID is null."));
                 }
 
                 try {

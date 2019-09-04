@@ -8,6 +8,8 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.loki.api.LokiAPIDatabaseProtocol
 import org.whispersystems.signalservice.loki.api.LokiAPITarget
 
+// TODO: Clean this up a bit
+
 class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), LokiAPIDatabaseProtocol {
 
     private val userPublicKey get() = TextSecurePreferences.getLocalNumber(context)
