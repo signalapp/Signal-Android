@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.qr.ScanListener
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.DynamicTheme
 import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.whispersystems.signalservice.loki.utilities.Analytics
 import org.whispersystems.signalservice.loki.utilities.PublicKeyValidation
 
 class NewConversationActivity : PassphraseRequiredActionBarActivity(), ScanListener {
@@ -60,6 +61,7 @@ class NewConversationActivity : PassphraseRequiredActionBarActivity(), ScanListe
     }
 
     override fun onQrDataFound(hexEncodedPublicKey: String) {
+        Analytics.shared.track("QR Code Scanned")
         startNewConversationIfPossible(hexEncodedPublicKey)
     }
 
@@ -75,6 +77,7 @@ class NewConversationActivity : PassphraseRequiredActionBarActivity(), ScanListe
         val existingThread = DatabaseFactory.getThreadDatabase(this).getThreadIdIfExistsFor(contact)
         intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, existingThread)
         intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, ThreadDatabase.DistributionTypes.DEFAULT)
+        Analytics.shared.track("New Conversation Started")
         startActivity(intent)
         finish()
     }

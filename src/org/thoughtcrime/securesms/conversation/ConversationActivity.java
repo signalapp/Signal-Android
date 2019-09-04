@@ -226,6 +226,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.loki.messaging.LokiMessageFriendRequestStatus;
 import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus;
+import org.whispersystems.signalservice.loki.utilities.Analytics;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -392,6 +393,16 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         });
       }
     });
+
+    if (this.recipient.isGroupRecipient()) {
+      if (this.recipient.getName().equals("Loki Public Chat")) {
+        Analytics.Companion.getShared().track("Loki Public Chat Opened");
+      } else {
+        Analytics.Companion.getShared().track("RSS Feed Opened");
+      }
+    } else {
+      Analytics.Companion.getShared().track("Conversation Opened");
+    }
   }
 
   @Override
