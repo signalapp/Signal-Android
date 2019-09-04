@@ -6,6 +6,7 @@ buildscript {
     ext.kovenant_version = "3.3.0"
     ext.identicon_version = "v11"
     ext.rss_parser_version = "2.0.4"
+    ext.mixpanel_version = "5.+"
 
     repositories {
         google()
@@ -184,6 +185,7 @@ dependencies {
     implementation "nl.komponents.kovenant:kovenant:$kovenant_version"
     implementation "com.github.lelloman:android-identicons:$identicon_version"
     implementation "com.prof.rssparser:rssparser:$rss_parser_version"
+    implementation "com.mixpanel.android:mixpanel-android:$mixpanel_version"
 }
 
 def canonicalVersionCode = 12

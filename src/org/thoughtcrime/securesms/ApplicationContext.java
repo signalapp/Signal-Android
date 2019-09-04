@@ -27,6 +27,7 @@ import android.support.annotation.NonNull;
 import android.support.multidex.MultiDexApplication;
 
 import com.google.android.gms.security.ProviderInstaller;
+import com.mixpanel.android.mpmetrics.MixpanelAPI;
 
 import org.conscrypt.Conscrypt;
 import org.jetbrains.annotations.NotNull;
@@ -85,15 +86,18 @@ import org.whispersystems.signalservice.loki.api.LokiLongPoller;
 import org.whispersystems.signalservice.loki.api.LokiP2PAPI;
 import org.whispersystems.signalservice.loki.api.LokiP2PAPIDelegate;
 import org.whispersystems.signalservice.loki.api.LokiRSSFeed;
+import org.whispersystems.signalservice.loki.utilities.Analytics;
 
 import java.security.Security;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import dagger.ObjectGraph;
 import kotlin.Unit;
+import kotlin.jvm.functions.Function1;
 import network.loki.messenger.BuildConfig;
 
 /**
@@ -122,6 +126,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   private LokiRSSFeedPoller lokiNewsFeedPoller = null;
   private LokiRSSFeedPoller lokiMessengerUpdatesFeedPoller = null;
   public SignalCommunicationModule communicationModule;
+  public MixpanelAPI mixpanel;
 
   private volatile boolean isAppVisible;
 
@@ -154,6 +159,15 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
     // Loki - Set up P2P API if needed
     setUpP2PAPI();
+    // Loki - Set up beta analytics
+    mixpanel = MixpanelAPI.getInstance(this, "59040b6707e5a1725f3fb6730fefca92");
+    Analytics.Companion.getShared().trackImplementation = (Function1<String, Unit>) event -> {
+      HashMap<String, Object> properties = new HashMap();
+      String configuration = BuildConfig.DEBUG ? "debug" : "production";
+      properties.put("configuration", configuration);
+      mixpanel.trackMap(event, properties);
+      return Unit.INSTANCE;
+    };
   }
 
   @Override
