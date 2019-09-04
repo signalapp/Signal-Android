@@ -188,7 +188,7 @@ public class AttachmentDatabase extends Database {
     String   selection = STICKER_PACK_ID + " = ?";
     String[] args      = new String[] { stickerPackId };
 
-    try (Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, null, selection, args, null, null, "1")) {
+    try (Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, null, selection, args, null, null, null, "1")) {
       return cursor != null && cursor.moveToFirst();
     }
   }
@@ -563,9 +563,14 @@ public class AttachmentDatabase extends Database {
    * database.
    */
   public @Nullable Cursor getUnavailableStickerPacks() {
-    String query = "SELECT DISTINCT " + STICKER_PACK_ID + ", " + STICKER_PACK_KEY + " FROM " + TABLE_NAME + " WHERE " + STICKER_PACK_ID + " NOT IN (" +
-                     "SELECT DISTINCT " + StickerDatabase.PACK_ID + " FROM " + StickerDatabase.TABLE_NAME +
-                   ")";
+    String query = "SELECT DISTINCT " + STICKER_PACK_ID + ", " + STICKER_PACK_KEY +
+                   " FROM " + TABLE_NAME +
+                   " WHERE " +
+                     STICKER_PACK_ID  + " NOT NULL AND " +
+                     STICKER_PACK_KEY + " NOT NULL AND " +
+                     STICKER_PACK_ID  + " NOT IN (" +
+                       "SELECT DISTINCT " + StickerDatabase.PACK_ID + " FROM " + StickerDatabase.TABLE_NAME +
+                     ")";
 
     return databaseHelper.getReadableDatabase().rawQuery(query, null);
   }
