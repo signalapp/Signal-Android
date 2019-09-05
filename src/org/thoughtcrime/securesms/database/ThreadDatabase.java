@@ -375,7 +375,14 @@ public class ThreadDatabase extends Database {
 
   public Cursor getRecentPushConversationList(int limit) {
     SQLiteDatabase db    = databaseHelper.getReadableDatabase();
-    String         where = MESSAGE_COUNT + " != 0 AND (" + RecipientDatabase.REGISTERED + " = " + RecipientDatabase.RegisteredState.REGISTERED.getId() + " OR " + GroupDatabase.TABLE_NAME + "." + GroupDatabase.GROUP_ID + " NOT NULL)";
+    String         where = MESSAGE_COUNT + " != 0 AND " +
+                           "(" +
+                             RecipientDatabase.REGISTERED + " = " + RecipientDatabase.RegisteredState.REGISTERED.getId() + " OR " +
+                             "(" +
+                               GroupDatabase.TABLE_NAME + "." + GroupDatabase.GROUP_ID + " NOT NULL AND " +
+                               GroupDatabase.TABLE_NAME + "." + GroupDatabase.MMS + " = 0" +
+                             ")" +
+                           ")";
     String         query = createQuery(where, limit);
 
     return db.rawQuery(query, null);

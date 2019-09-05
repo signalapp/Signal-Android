@@ -50,7 +50,7 @@ public class GroupDatabase extends Database {
   private static final String AVATAR_DIGEST       = "avatar_digest";
   private static final String TIMESTAMP           = "timestamp";
   private static final String ACTIVE              = "active";
-  private static final String MMS                 = "mms";
+          static final String MMS                 = "mms";
 
   public static final String CREATE_TABLE =
       "CREATE TABLE " + TABLE_NAME +
