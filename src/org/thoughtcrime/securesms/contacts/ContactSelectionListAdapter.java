@@ -20,17 +20,17 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.database.Cursor;
 import android.provider.ContactsContract;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.RecyclerView;
 import android.text.SpannableString;
 import android.text.Spanned;
-import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.RecyclerViewFastScroller.FastScrollAdapter;
@@ -244,10 +244,13 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
     Cursor cursor = getCursorAtPositionOrThrow(position);
     String letter = cursor.getString(cursor.getColumnIndexOrThrow(ContactsDatabase.NAME_COLUMN));
 
-    if (!TextUtils.isEmpty(letter)) {
-      String firstChar = letter.trim().substring(0, 1).toUpperCase();
-      if (Character.isLetterOrDigit(firstChar.codePointAt(0))) {
-        return firstChar;
+    if (letter != null) {
+      letter = letter.trim();
+      if (letter.length() > 0) {
+        char firstChar = letter.charAt(0);
+        if (Character.isLetterOrDigit(firstChar)) {
+          return String.valueOf(Character.toUpperCase(firstChar));
+        }
       }
     }
 
