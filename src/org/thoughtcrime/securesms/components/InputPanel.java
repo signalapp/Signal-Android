@@ -196,6 +196,10 @@ public class InputPanel extends LinearLayout
     this.linkPreview.setCorners(cornerRadius, cornerRadius);
   }
 
+  public void clickOnComposeInput() {
+    composeText.performClick();
+  }
+
   public void setMediaKeyboard(@NonNull MediaKeyboard mediaKeyboard) {
     this.mediaKeyboard.attach(mediaKeyboard);
   }

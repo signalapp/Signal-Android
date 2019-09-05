@@ -22,7 +22,18 @@
         android:clipToPadding="false"
         android:clipChildren="false">
 
-        <LinearLayout
+        <ImageView
+            android:id="@+id/reply_icon"
+            android:layout_width="@dimen/conversation_item_reply_size"
+            android:layout_height="@dimen/conversation_item_reply_size"
+            android:alpha="0"
+            android:src="@drawable/ic_reply_white_24dp"
+            android:tint="?compose_icon_tint"
+            android:layout_alignTop="@id/body_bubble"
+            android:layout_alignBottom="@id/body_bubble"
+            android:layout_alignStart="@id/body_bubble" />
+
+        <org.thoughtcrime.securesms.conversation.ConversationItemBodyBubble
             android:id="@+id/body_bubble"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -164,7 +175,7 @@
                 app:footer_text_color="?conversation_sticker_footer_text_color"
                 app:footer_icon_color="?conversation_sticker_footer_icon_color"/>
 
-        </LinearLayout>
+        </org.thoughtcrime.securesms.conversation.ConversationItemBodyBubble>
 
         <org.thoughtcrime.securesms.components.AlertView
             android:id="@+id/indicators_parent"

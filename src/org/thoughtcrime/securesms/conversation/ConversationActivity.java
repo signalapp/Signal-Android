@@ -2697,6 +2697,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                           messageRecord.getBody(),
                           slideDeck);
     }
+
+    inputPanel.clickOnComposeInput();
   }
 
   @Override

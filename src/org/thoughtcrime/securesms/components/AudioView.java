@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -210,6 +211,10 @@ public final class AudioView extends FrameLayout implements AudioSlidePlayer.Lis
     this.timestamp.setTextColor(foregroundTint);
     this.seekBar.getProgressDrawable().setColorFilter(foregroundTint, PorterDuff.Mode.SRC_IN);
     this.seekBar.getThumb().setColorFilter(foregroundTint, PorterDuff.Mode.SRC_IN);
+  }
+
+  public void getSeekBarGlobalVisibleRect(@NonNull Rect rect) {
+    seekBar.getGlobalVisibleRect(rect);
   }
 
   private double getProgress() {

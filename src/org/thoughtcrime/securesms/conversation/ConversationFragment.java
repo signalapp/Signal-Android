@@ -183,6 +183,12 @@ public class ConversationFragment extends Fragment
 
     typingView = (ConversationTypingView) inflater.inflate(R.layout.conversation_typing_view, container, false);
 
+    new ConversationItemSwipeCallback(
+            messageRecord -> actionMode == null &&
+                             canReplyToMessage(isActionMessage(messageRecord), messageRecord),
+            this::handleReplyMessage
+    ).attachToRecyclerView(list);
+
     return view;
   }
 
@@ -359,10 +365,7 @@ public class ConversationFragment extends Fragment
     }
 
     for (MessageRecord messageRecord : messageRecords) {
-      if (messageRecord.isGroupAction() || messageRecord.isCallLog() ||
-          messageRecord.isJoined() || messageRecord.isExpirationTimerUpdate() ||
-          messageRecord.isEndSession() || messageRecord.isIdentityUpdate() ||
-          messageRecord.isIdentityVerified() || messageRecord.isIdentityDefault())
+      if (isActionMessage(messageRecord))
       {
         actionMessage = true;
       }
@@ -394,12 +397,27 @@ public class ConversationFragment extends Fragment
 
       menu.findItem(R.id.menu_context_forward).setVisible(!actionMessage && !sharedContact);
       menu.findItem(R.id.menu_context_details).setVisible(!actionMessage);
-      menu.findItem(R.id.menu_context_reply).setVisible(!actionMessage             &&
-                                                        !messageRecord.isPending() &&
-                                                        !messageRecord.isFailed()  &&
-                                                        messageRecord.isSecure());
+      menu.findItem(R.id.menu_context_reply).setVisible(canReplyToMessage(actionMessage, messageRecord));
     }
     menu.findItem(R.id.menu_context_copy).setVisible(!actionMessage && hasText);
+  }
+
+  private static boolean canReplyToMessage(boolean actionMessage, MessageRecord messageRecord) {
+    return !actionMessage             &&
+           !messageRecord.isPending() &&
+           !messageRecord.isFailed()  &&
+           messageRecord.isSecure();
+  }
+
+  private static boolean isActionMessage(MessageRecord messageRecord) {
+    return messageRecord.isGroupAction()           ||
+           messageRecord.isCallLog()               ||
+           messageRecord.isJoined()                ||
+           messageRecord.isExpirationTimerUpdate() ||
+           messageRecord.isEndSession()            ||
+           messageRecord.isIdentityUpdate()        ||
+           messageRecord.isIdentityVerified()      ||
+           messageRecord.isIdentityDefault();
   }
 
   private ConversationAdapter getListAdapter() {

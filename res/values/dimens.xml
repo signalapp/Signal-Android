@@ -64,6 +64,7 @@
     <dimen name="conversation_vertical_message_spacing_default">8dp</dimen>
     <dimen name="conversation_vertical_message_spacing_collapse">1dp</dimen>
 
+    <dimen name="conversation_item_reply_size">20dp</dimen>
     <dimen name="conversation_item_avatar_size">36dp</dimen>
 
     <dimen name="quote_corner_radius_large">10dp</dimen>
