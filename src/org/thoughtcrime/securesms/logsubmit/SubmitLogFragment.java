@@ -59,6 +59,7 @@ import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.logsubmit.util.Scrubber;
 import org.thoughtcrime.securesms.util.BucketInfo;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 
@@ -513,19 +514,19 @@ public class SubmitLogFragment extends Fragment {
     final PackageManager pm      = context.getPackageManager();
     final StringBuilder  builder = new StringBuilder();
 
-    builder.append("Time    : ").append(System.currentTimeMillis()).append('\n');
-    builder.append("Device  : ")
-           .append(Build.MANUFACTURER).append(" ")
-           .append(Build.MODEL).append(" (")
-           .append(Build.PRODUCT).append(")\n");
-    builder.append("Android : ").append(VERSION.RELEASE).append(" (")
-                               .append(VERSION.INCREMENTAL).append(", ")
-                               .append(Build.DISPLAY).append(")\n");
-    builder.append("ABIs    : ").append(TextUtils.join(", ", getSupportedAbis())).append("\n");
-    builder.append("Memory  : ").append(getMemoryUsage(context)).append("\n");
-    builder.append("Memclass: ").append(getMemoryClass(context)).append("\n");
-    builder.append("OS Host : ").append(Build.HOST).append("\n");
-    builder.append("App     : ");
+    builder.append("Time         : ").append(System.currentTimeMillis()).append('\n');
+    builder.append("Device       : ").append(Build.MANUFACTURER).append(" ")
+                                     .append(Build.MODEL).append(" (")
+                                     .append(Build.PRODUCT).append(")\n");
+    builder.append("Android      : ").append(VERSION.RELEASE).append(" (")
+                                     .append(VERSION.INCREMENTAL).append(", ")
+                                     .append(Build.DISPLAY).append(")\n");
+    builder.append("ABIs         : ").append(TextUtils.join(", ", getSupportedAbis())).append("\n");
+    builder.append("Memory       : ").append(getMemoryUsage(context)).append("\n");
+    builder.append("Memclass     : ").append(getMemoryClass(context)).append("\n");
+    builder.append("OS Host      : ").append(Build.HOST).append("\n");
+    builder.append("First Version: ").append(TextSecurePreferences.getFirstInstallVersion(context)).append("\n");
+    builder.append("App          : ");
     try {
       builder.append(pm.getApplicationLabel(pm.getApplicationInfo(context.getPackageName(), 0)))
              .append(" ")

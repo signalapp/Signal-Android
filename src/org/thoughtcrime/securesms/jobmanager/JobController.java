@@ -261,7 +261,7 @@ class JobController {
     JobSpec jobSpec = new JobSpec(job.getId(),
                                   job.getFactoryKey(),
                                   job.getParameters().getQueue(),
-                                  job.getParameters().getCreateTime(),
+                                  System.currentTimeMillis(),
                                   job.getNextRunAttemptTime(),
                                   job.getRunAttempt(),
                                   job.getParameters().getMaxAttempts(),

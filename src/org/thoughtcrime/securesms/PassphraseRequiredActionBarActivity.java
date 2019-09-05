@@ -30,7 +30,7 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
   private static final int STATE_NORMAL                   = 0;
   private static final int STATE_CREATE_PASSPHRASE        = 1;
   private static final int STATE_PROMPT_PASSPHRASE        = 2;
-  private static final int STATE_UPGRADE_DATABASE         = 3;
+  private static final int STATE_UI_BLOCKING_UPGRADE      = 3;
   private static final int STATE_PROMPT_PUSH_REGISTRATION = 4;
   private static final int STATE_EXPERIENCE_UPGRADE       = 5;
   private static final int STATE_WELCOME_SCREEN           = 6;
@@ -133,7 +133,7 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
     switch (state) {
     case STATE_CREATE_PASSPHRASE:        return getCreatePassphraseIntent();
     case STATE_PROMPT_PASSPHRASE:        return getPromptPassphraseIntent();
-    case STATE_UPGRADE_DATABASE:         return getUpgradeDatabaseIntent();
+    case STATE_UI_BLOCKING_UPGRADE:      return getUiBlockingUpgradeIntent();
     case STATE_WELCOME_SCREEN:           return getWelcomeIntent();
     case STATE_PROMPT_PUSH_REGISTRATION: return getPushRegistrationIntent();
     case STATE_EXPERIENCE_UPGRADE:       return getExperienceUpgradeIntent();
@@ -146,8 +146,8 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
       return STATE_CREATE_PASSPHRASE;
     } else if (locked) {
       return STATE_PROMPT_PASSPHRASE;
-    } else if (ApplicationMigrations.isUpdate(this)) {
-      return STATE_UPGRADE_DATABASE;
+    } else if (ApplicationMigrations.isUpdate(this) && ApplicationMigrations.isUiBlockingMigrationRunning()) {
+      return STATE_UI_BLOCKING_UPGRADE;
     } else if (!TextSecurePreferences.hasSeenWelcomeScreen(this)) {
       return STATE_WELCOME_SCREEN;
     } else if (!TextSecurePreferences.hasPromptedPushRegistration(this)) {
@@ -167,7 +167,7 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
     return getRoutedIntent(PassphrasePromptActivity.class, getIntent());
   }
 
-  private Intent getUpgradeDatabaseIntent() {
+  private Intent getUiBlockingUpgradeIntent() {
     return getRoutedIntent(ApplicationMigrationActivity.class,
                            TextSecurePreferences.hasPromptedPushRegistration(this)
                                ? getConversationListIntent()

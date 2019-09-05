@@ -36,6 +36,7 @@ import org.signal.aesgcmprovider.AesGcmProvider;
 import org.thoughtcrime.securesms.components.TypingStatusRepository;
 import org.thoughtcrime.securesms.components.TypingStatusSender;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencyProvider;
 import org.thoughtcrime.securesms.gcm.FcmJobService;
@@ -69,6 +70,7 @@ import org.thoughtcrime.securesms.service.RotateSenderCertificateListener;
 import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener;
 import org.thoughtcrime.securesms.service.UpdateApkRefreshListener;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.VersionTracker;
 import org.thoughtcrime.securesms.util.dynamiclanguage.DynamicLanguageContextWrapper;
 import org.webrtc.PeerConnectionFactory;
 import org.webrtc.PeerConnectionFactory.InitializationOptions;
@@ -94,7 +96,7 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
   private static final String TAG = ApplicationContext.class.getSimpleName();
 
   private ExpiringMessageManager   expiringMessageManager;
-  private ViewOnceMessageManager viewOnceMessageManager;
+  private ViewOnceMessageManager   viewOnceMessageManager;
   private TypingStatusRepository   typingStatusRepository;
   private TypingStatusSender       typingStatusSender;
   private JobManager               jobManager;
@@ -114,6 +116,7 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
     initializeSecurityProvider();
     initializeLogging();
     initializeCrashHandling();
+    initializeFirstEverAppLaunch();
     initializeAppDependencies();
     initializeJobManager();
     initializeApplicationMigrations();
@@ -223,7 +226,7 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
                                                                        .setConstraintFactories(JobManagerFactories.getConstraintFactories(this))
                                                                        .setConstraintObservers(JobManagerFactories.getConstraintObservers(this))
                                                                        .setJobStorage(new FastJobStorage(DatabaseFactory.getJobDatabase(this)))
-                                                                       .setJobMigrator(new JobMigrator(TextSecurePreferences.getJobManagerVersion(this), 2, JobManagerFactories.getJobMigrations(this)))
+                                                                       .setJobMigrator(new JobMigrator(TextSecurePreferences.getJobManagerVersion(this), JobManager.CURRENT_VERSION, JobManagerFactories.getJobMigrations(this)))
                                                                        .build());
   }
 
@@ -237,6 +240,20 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
 
   private void initializeAppDependencies() {
     ApplicationDependencies.init(this, new ApplicationDependencyProvider(this, new SignalServiceNetworkAccess(this)));
+  }
+
+  private void initializeFirstEverAppLaunch() {
+    if (TextSecurePreferences.getFirstInstallVersion(this) == -1) {
+      if (!SQLCipherOpenHelper.databaseFileExists(this)) {
+        Log.i(TAG, "First ever app launch!");
+
+        TextSecurePreferences.setAppMigrationVersion(this, ApplicationMigrations.CURRENT_VERSION);
+        TextSecurePreferences.setJobManagerVersion(this, JobManager.CURRENT_VERSION);
+      }
+
+      Log.i(TAG, "Setting first install version to " + BuildConfig.CANONICAL_VERSION_CODE);
+      TextSecurePreferences.setFirstInstallVersion(this, BuildConfig.CANONICAL_VERSION_CODE);
+    }
   }
 
   private void initializeGcmCheck() {

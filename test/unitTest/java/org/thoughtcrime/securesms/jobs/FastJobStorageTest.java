@@ -381,6 +381,23 @@ public class FastJobStorageTest {
   }
 
   @Test
+  public void getPendingJobsWithNoDependenciesInCreatedOrder_onlyMigrationJobWithAppropriateNextRunTime() {
+    FullSpec migrationSpec1 = new FullSpec(new JobSpec("1", "f1", Job.Parameters.MIGRATION_QUEUE_KEY, 0, 999, 0, 0, 0, -1, -1, EMPTY_DATA, false),
+        Collections.emptyList(),
+        Collections.emptyList());
+    FullSpec migrationSpec2 = new FullSpec(new JobSpec("2", "f2", Job.Parameters.MIGRATION_QUEUE_KEY, 5, 0, 0, 0, 0, -1, -1, EMPTY_DATA, false),
+        Collections.emptyList(),
+        Collections.emptyList());
+
+    FastJobStorage subject = new FastJobStorage(fixedDataDatabase(Arrays.asList(migrationSpec1, migrationSpec2)));
+    subject.init();
+
+    List<JobSpec> jobs = subject.getPendingJobsWithNoDependenciesInCreatedOrder(10);
+
+    assertTrue(jobs.isEmpty());
+  }
+
+  @Test
   public void deleteJobs_writesToDatabase() {
     JobDatabase    database = noopDatabase();
     FastJobStorage subject  = new FastJobStorage(database);

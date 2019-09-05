@@ -93,7 +93,7 @@ public class FastJobStorage implements JobStorage {
   public synchronized @NonNull List<JobSpec> getPendingJobsWithNoDependenciesInCreatedOrder(long currentTime) {
     Optional<JobSpec> migrationJob = getMigrationJob();
 
-    if (migrationJob.isPresent() && !migrationJob.get().isRunning()) {
+    if (migrationJob.isPresent() && !migrationJob.get().isRunning() && migrationJob.get().getNextRunAttemptTime() <= currentTime) {
       return Collections.singletonList(migrationJob.get());
     } else if (migrationJob.isPresent()) {
       return Collections.emptyList();

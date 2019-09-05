@@ -535,6 +535,10 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     db.setVersion(DATABASE_VERSION);
   }
 
+  public static boolean databaseFileExists(@NonNull Context context) {
+    return context.getDatabasePath(DATABASE_NAME).exists();
+  }
+
   private void executeStatements(SQLiteDatabase db, String[] statements) {
     for (String statement : statements)
       db.execSQL(statement);
