@@ -882,6 +882,7 @@
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">תצלום איש קשר</string>
   <!--audio_view-->
+  <string name="audio_view__play_pause_accessibility_description">נגן ... השהה</string>
   <string name="audio_view__download_accessibility_description">הורד</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">שמע</string>

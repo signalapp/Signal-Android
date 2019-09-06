@@ -1062,7 +1062,7 @@
   <string name="preferences__pref_led_blink_title">LED 閃爍模式</string>
   <string name="preferences__sound">提示音效</string>
   <string name="preferences__silent">靜音</string>
-  <string name="preferences__repeat_alerts">重複警報</string>
+  <string name="preferences__repeat_alerts">重複通知</string>
   <string name="preferences__never">永不</string>
   <string name="preferences__one_time">一次</string>
   <string name="preferences__two_times">兩次</string>
