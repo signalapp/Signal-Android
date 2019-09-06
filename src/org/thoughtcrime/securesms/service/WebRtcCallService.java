@@ -32,6 +32,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.WebRtcCallActivity;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
+import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase.VibrateState;
@@ -45,6 +46,7 @@ import org.thoughtcrime.securesms.ringrtc.CameraState;
 import org.thoughtcrime.securesms.ringrtc.MessageRecipient;
 import org.thoughtcrime.securesms.ringrtc.CallConnectionWrapper;
 import org.thoughtcrime.securesms.util.FutureTaskListener;
+import org.thoughtcrime.securesms.util.ListenableFutureTask;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TelephonyUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -71,6 +73,9 @@ import org.whispersystems.libsignal.InvalidKeyException;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
+import org.whispersystems.signalservice.api.messages.calls.BusyMessage;
+import org.whispersystems.signalservice.api.messages.calls.SignalServiceCallMessage;
+import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
 import org.whispersystems.signalservice.internal.util.concurrent.SettableFuture;
 
@@ -79,6 +84,7 @@ import java.io.IOException;
 import java.security.SecureRandom;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -168,6 +174,7 @@ public class WebRtcCallService extends Service implements CallConnection.Observe
   @Nullable private EglBase             eglBase;
 
   private ExecutorService          serviceExecutor = Executors.newSingleThreadExecutor();
+  private ExecutorService          networkExecutor = Executors.newSingleThreadExecutor();
 
   private final PhoneStateListener hangUpRtcOnDeviceCallAnswered = new HangUpRtcOnPstnCallAnsweredListener();
 
@@ -590,12 +597,7 @@ public class WebRtcCallService extends Service implements CallConnection.Observe
       stopForeground(true);
     }
 
-    try {
-      MessageRecipient messageRecipient = new MessageRecipient(messageSender, recipient);
-      this.callConnection.sendBusy(messageRecipient, callId);
-    } catch (CallException e) {
-      Log.w(TAG, e);
-    }
+    sendMessage(recipient, SignalServiceCallMessage.forBusy(new BusyMessage(callId)));
     insertMissedCall(getRemoteRecipient(intent), false);
   }
 
@@ -1008,6 +1010,25 @@ public class WebRtcCallService extends Service implements CallConnection.Observe
                                                          remoteVideoEnabled,
                                                          bluetoothAvailable,
                                                          microphoneEnabled));
+  }
+
+  private ListenableFutureTask<Boolean> sendMessage(@NonNull final Recipient recipient,
+                                                    @NonNull final SignalServiceCallMessage callMessage)
+  {
+    Callable<Boolean> callable = new Callable<Boolean>() {
+      @Override
+      public Boolean call() throws Exception {
+        messageSender.sendCallMessage(new SignalServiceAddress(recipient.getAddress().toPhoneString()),
+                                      UnidentifiedAccessUtil.getAccessFor(WebRtcCallService.this, recipient),
+                                      callMessage);
+        return true;
+      }
+    };
+
+    ListenableFutureTask<Boolean> listenableFutureTask = new ListenableFutureTask<>(callable, null, serviceExecutor);
+    networkExecutor.execute(listenableFutureTask);
+
+    return listenableFutureTask;
   }
 
   private void startCallCardActivityIfPossible() {
