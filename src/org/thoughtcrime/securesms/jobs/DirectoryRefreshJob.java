@@ -10,7 +10,7 @@ import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.util.DirectoryHelper;
+import org.thoughtcrime.securesms.contacts.sync.DirectoryHelper;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
 import java.io.IOException;

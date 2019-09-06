@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.util;
+package org.thoughtcrime.securesms.contacts.sync;
 
 import android.Manifest;
 import android.accounts.Account;
@@ -16,15 +16,14 @@ import androidx.annotation.Nullable;
 import android.text.TextUtils;
 
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.logging.Log;
 
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
-import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.crypto.SessionUtil;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -40,6 +39,8 @@ import org.thoughtcrime.securesms.push.IasTrustStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.sms.IncomingJoinedMessage;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
