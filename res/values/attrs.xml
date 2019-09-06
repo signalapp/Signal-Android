@@ -362,4 +362,10 @@
             <enum name="top" value="1" />
         </attr>
     </declare-styleable>
+
+    <declare-styleable name="CameraXFlashState">
+        <attr name="state_flash_auto" format="boolean" />
+        <attr name="state_flash_off" format="boolean" />
+        <attr name="state_flash_on" format="boolean" />
+    </declare-styleable>
 </resources>

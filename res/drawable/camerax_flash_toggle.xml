@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item app:state_flash_auto="true" android:drawable="@drawable/flash_auto_32" />
+    <item app:state_flash_off="true" android:drawable="@drawable/flash_off_32" />
+    <item app:state_flash_on="true" android:drawable="@drawable/flash_on_32" />
+</selector>

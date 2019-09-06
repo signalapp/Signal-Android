@@ -683,6 +683,10 @@ public final class CameraXView extends ViewGroup {
     mCameraModule.setFlash(flashMode);
   }
 
+  public boolean hasFlash() {
+    return mCameraModule.hasFlash();
+  }
+
   private int getRelativeCameraOrientation(boolean compensateForMirroring) {
     return mCameraModule.getRelativeCameraOrientation(compensateForMirroring);
   }

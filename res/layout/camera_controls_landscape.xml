@@ -17,6 +17,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
+    <org.thoughtcrime.securesms.mediasend.camerax.CameraXFlashToggleView
+        android:id="@+id/camera_flash_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="14dp"
+        android:src="@drawable/camerax_flash_toggle"
+        app:layout_constraintStart_toEndOf="@+id/camera_flip_button"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageButton
         android:id="@+id/camera_flip_button"
         android:layout_width="wrap_content"
@@ -59,6 +69,17 @@
         app:layout_constraintStart_toStartOf="@id/camera_capture_button"
         app:layout_constraintEnd_toEndOf="@id/camera_capture_button"
         tools:visibility="visible" />
+
+    <View
+        android:id="@+id/camera_selfie_flash"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:alpha="0"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@color/white" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

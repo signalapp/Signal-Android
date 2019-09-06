@@ -686,6 +686,16 @@ final class CameraXModule {
     mImageCapture.setFlashMode(flash);
   }
 
+  public boolean hasFlash() {
+    try {
+      Boolean flashInfoAvailable = mCameraManager.getCameraCharacteristics(getActiveCamera())
+                                                 .get(CameraCharacteristics.FLASH_INFO_AVAILABLE);
+      return flashInfoAvailable == Boolean.TRUE;
+    } catch (CameraInfoUnavailableException | CameraAccessException e) {
+      return false;
+    }
+  }
+
   public void enableTorch(boolean torch) {
     if (mPreview == null) {
       return;
