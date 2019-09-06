@@ -46,6 +46,7 @@ import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.lock.RegistrationLockDialog;
+import org.thoughtcrime.securesms.loki.identicon.JazzIdenticonDrawable;
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.permissions.Permissions;
@@ -204,7 +205,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
         int height = profilePictureImageView.getHeight();
         if (width == 0 || height == 0) return true;
         profilePictureImageView.getViewTreeObserver().removeOnPreDrawListener(this);
-        ClassicIdenticonDrawable identicon = new ClassicIdenticonDrawable(width, height, recipient.getAddress().serialize().hashCode());
+        JazzIdenticonDrawable identicon = new JazzIdenticonDrawable(width, height, recipient.getAddress().serialize());
         profilePictureImageView.setImageDrawable(identicon);
         return true;
       }

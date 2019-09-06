@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.lelloman.identicon.drawable.ClassicIdenticonDrawable;
 
 import org.thoughtcrime.securesms.database.Address;
+import org.thoughtcrime.securesms.loki.identicon.JazzIdenticonDrawable;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import network.loki.messenger.R;
@@ -101,7 +102,7 @@ public class ProfilePreference extends Preference {
         int height = avatarView.getHeight();
         if (width == 0 || height == 0) return true;
         avatarView.getViewTreeObserver().removeOnPreDrawListener(this);
-        ClassicIdenticonDrawable identicon = new ClassicIdenticonDrawable(width, height, userHexEncodedPublicKey.hashCode());
+        JazzIdenticonDrawable identicon = new JazzIdenticonDrawable(width, height, userHexEncodedPublicKey);
         avatarView.setImageDrawable(identicon);
         return true;
       }

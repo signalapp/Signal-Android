@@ -17,6 +17,7 @@ import android.view.ViewOutlineProvider;
 import com.lelloman.identicon.drawable.ClassicIdenticonDrawable;
 
 import network.loki.messenger.R;
+import org.thoughtcrime.securesms.loki.identicon.JazzIdenticonDrawable;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientExporter;
@@ -97,7 +98,7 @@ public class AvatarImageView extends AppCompatImageView {
   protected void onSizeChanged(int w, int h, int oldw, int oldh) {
     super.onSizeChanged(w, h, oldw, oldh);
     if (w == 0 || h == 0 || recipient == null) { return; }
-    ClassicIdenticonDrawable identicon = new ClassicIdenticonDrawable(w, h, recipient.getAddress().serialize().hashCode());
+    JazzIdenticonDrawable identicon = new JazzIdenticonDrawable(w, h, recipient.getAddress().serialize());
     setImageDrawable(identicon);
   }
 
