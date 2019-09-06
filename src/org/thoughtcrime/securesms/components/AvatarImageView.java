@@ -6,10 +6,12 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Outline;
 import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatImageView;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewOutlineProvider;
@@ -17,11 +19,16 @@ import android.view.ViewOutlineProvider;
 import com.lelloman.identicon.drawable.ClassicIdenticonDrawable;
 
 import network.loki.messenger.R;
+import org.thoughtcrime.securesms.color.MaterialColor;
+import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
+import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto;
 import org.thoughtcrime.securesms.loki.identicon.JazzIdenticonDrawable;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientExporter;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ThemeUtil;
+import org.whispersystems.libsignal.util.guava.Optional;
 
 public class AvatarImageView extends AppCompatImageView {
 
@@ -98,8 +105,23 @@ public class AvatarImageView extends AppCompatImageView {
   protected void onSizeChanged(int w, int h, int oldw, int oldh) {
     super.onSizeChanged(w, h, oldw, oldh);
     if (w == 0 || h == 0 || recipient == null) { return; }
-    JazzIdenticonDrawable identicon = new JazzIdenticonDrawable(w, h, recipient.getAddress().serialize());
-    setImageDrawable(identicon);
+
+    Drawable image;
+    if (recipient.isGroupRecipient()) {
+      Context context = this.getContext();
+
+      String name = Optional.fromNullable(recipient.getName()).or(Optional.fromNullable(TextSecurePreferences.getProfileName(context))).or("");
+      MaterialColor fallbackColor = recipient.getColor();
+
+      if (fallbackColor == ContactColors.UNKNOWN_COLOR && !TextUtils.isEmpty(name)) {
+        fallbackColor = ContactColors.generateFor(name);
+      }
+
+      image = new GeneratedContactPhoto(name, R.drawable.ic_profile_default).asDrawable(context, fallbackColor.toAvatarColor(context));
+    } else {
+      image = new JazzIdenticonDrawable(w, h, recipient.getAddress().serialize());
+    }
+    setImageDrawable(image);
   }
 
   public void setAvatar(@NonNull GlideRequests requestManager, @Nullable Recipient recipient, boolean quickContactEnabled) {
