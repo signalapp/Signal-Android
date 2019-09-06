@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.stickers.StickerManifest.Sticker;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.whispersystems.libsignal.util.Pair;
@@ -147,8 +148,9 @@ public final class StickerPackPreviewActivity extends PassphraseRequiredActionBa
       if (manifest.isPresent()) {
         presentManifest(manifest.get().getManifest());
         presentButton(manifest.get().isInstalled());
-        // TODO [Stickers]: Re-enable later
-//        presentShareButton(manifest.get().isInstalled(), manifest.get().getManifest().getPackId(), manifest.get().getManifest().getPackKey());
+        if (FeatureFlags.STICKERS_SHARING) {
+          presentShareButton(manifest.get().isInstalled(), manifest.get().getManifest().getPackId(), manifest.get().getManifest().getPackKey());
+        }
       } else {
         presentError();
       }
