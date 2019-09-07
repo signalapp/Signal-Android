@@ -406,6 +406,8 @@ public class WebRtcCallService extends Service implements CallConnection.Observe
   private void handleOutgoingCall(Intent intent) {
     if (callState != CallState.STATE_IDLE) throw new IllegalStateException("Dialing from non-idle?");
 
+    AudioManager audioManagerService = ServiceUtil.getAudioManager(this);
+
     this.callState        = CallState.STATE_DIALING;
     this.recipient        = getRemoteRecipient(intent);
     this.messageRecipient = new MessageRecipient(messageSender, recipient);
@@ -416,7 +418,17 @@ public class WebRtcCallService extends Service implements CallConnection.Observe
     initializeVideo();
 
     sendMessage(WebRtcViewModel.State.CALL_OUTGOING, recipient, localCameraState, remoteVideoEnabled, bluetoothAvailable, microphoneEnabled);
-    lockManager.updatePhoneState(LockManager.PhoneState.IN_CALL);
+
+    if (!localCameraState.isEnabled() &&
+            !audioManagerService.isSpeakerphoneOn() &&
+            !audioManagerService.isBluetoothScoOn() &&
+            !audioManagerService.isWiredHeadsetOn()) {
+      lockManager.updatePhoneState(LockManager.PhoneState.IN_CALL);
+    }
+    else
+    {
+      lockManager.updatePhoneState(LockManager.PhoneState.INTERACTIVE);
+    }
     audioManager.initializeAudioForCall();
     audioManager.startOutgoingRinger(OutgoingRinger.Type.RINGING);
     bluetoothStateManager.setWantsConnection(true);
@@ -535,6 +547,9 @@ public class WebRtcCallService extends Service implements CallConnection.Observe
 
   private void handleCallConnected(Intent intent) {
     Log.i(TAG, "handleCallConnected()");
+
+    AudioManager audioManagerService = ServiceUtil.getAudioManager(this);
+
     if (callState != CallState.STATE_REMOTE_RINGING && callState != CallState.STATE_LOCAL_RINGING) {
       Log.w(TAG, "Ignoring call connected for unknown state: " + callState);
       return;
@@ -554,8 +569,17 @@ public class WebRtcCallService extends Service implements CallConnection.Observe
 
     callState = CallState.STATE_CONNECTED;
 
-    if (localCameraState.isEnabled()) lockManager.updatePhoneState(LockManager.PhoneState.IN_VIDEO);
-    else                              lockManager.updatePhoneState(LockManager.PhoneState.IN_CALL);
+    if (localCameraState.isEnabled()) {
+      lockManager.updatePhoneState(LockManager.PhoneState.IN_VIDEO);
+    }
+    else if (!audioManagerService.isSpeakerphoneOn() &&
+            !audioManagerService.isBluetoothScoOn() &&
+            !audioManagerService.isWiredHeadsetOn()) {
+      lockManager.updatePhoneState(LockManager.PhoneState.IN_CALL);
+    }
+    else {
+      lockManager.updatePhoneState(LockManager.PhoneState.INTERACTIVE);
+    }
 
     sendMessage(WebRtcViewModel.State.CALL_CONNECTED, recipient, localCameraState, remoteVideoEnabled, bluetoothAvailable, microphoneEnabled);
 
@@ -777,8 +801,17 @@ public class WebRtcCallService extends Service implements CallConnection.Observe
     }
 
     if (callState == CallState.STATE_CONNECTED) {
-      if (localCameraState.isEnabled()) this.lockManager.updatePhoneState(LockManager.PhoneState.IN_VIDEO);
-      else                              this.lockManager.updatePhoneState(LockManager.PhoneState.IN_CALL);
+      if (localCameraState.isEnabled()) {
+        lockManager.updatePhoneState(LockManager.PhoneState.IN_VIDEO);
+      }
+      else if (!audioManager.isSpeakerphoneOn() &&
+              !audioManager.isBluetoothScoOn() &&
+              !audioManager.isWiredHeadsetOn()) {
+        lockManager.updatePhoneState(LockManager.PhoneState.IN_CALL);
+      }
+      else {
+        lockManager.updatePhoneState(LockManager.PhoneState.INTERACTIVE);
+      }
     }
 
     if (localCameraState.isEnabled() &&
@@ -825,8 +858,16 @@ public class WebRtcCallService extends Service implements CallConnection.Observe
       if (present && audioManager.isSpeakerphoneOn()) {
         audioManager.setSpeakerphoneOn(false);
         audioManager.setBluetoothScoOn(false);
-      } else if (!present && !audioManager.isSpeakerphoneOn() && !audioManager.isBluetoothScoOn() && localCameraState.isEnabled()) {
+      }
+      else if (!present && !audioManager.isSpeakerphoneOn() && !audioManager.isBluetoothScoOn() && localCameraState.isEnabled()) {
         audioManager.setSpeakerphoneOn(true);
+      }
+
+      if (present) {
+        this.lockManager.updatePhoneState(LockManager.PhoneState.INTERACTIVE);
+      }
+      else if (!audioManager.isSpeakerphoneOn() && !audioManager.isBluetoothScoOn() && !localCameraState.isEnabled()) {
+        this.lockManager.updatePhoneState(LockManager.PhoneState.IN_CALL);
       }
 
       if (recipient != null) {
