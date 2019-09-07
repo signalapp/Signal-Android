@@ -52,10 +52,12 @@ public class RotateCertificateJob extends BaseJob {
   @Override
   public void onRun() throws IOException {
     synchronized (RotateCertificateJob.class) {
-      SignalServiceAccountManager accountManager = ApplicationDependencies.getSignalServiceAccountManager();
-      byte[]                      certificate    = accountManager.getSenderCertificate();
+      SignalServiceAccountManager accountManager    = ApplicationDependencies.getSignalServiceAccountManager();
+      byte[]                      certificate       = accountManager.getSenderCertificate();
+      byte[]                      legacyCertificate = accountManager.getSenderCertificateLegacy();
 
       TextSecurePreferences.setUnidentifiedAccessCertificate(context, certificate);
+      TextSecurePreferences.setUnidentifiedAccessCertificateLegacy(context, legacyCertificate);
     }
   }
 

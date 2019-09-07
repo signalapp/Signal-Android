@@ -18,7 +18,6 @@ import org.thoughtcrime.securesms.blurhash.BlurHash;
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.contactshare.ContactModelMapper;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
-import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
@@ -33,6 +32,7 @@ import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.BitmapUtil;
@@ -106,9 +106,8 @@ public abstract class PushSendJob extends SendJob {
     return Optional.of(ProfileKeyUtil.getProfileKey(context));
   }
 
-  protected SignalServiceAddress getPushAddress(Address address) {
-    String relay = null;
-    return new SignalServiceAddress(address.toPhoneString(), Optional.fromNullable(relay));
+  protected SignalServiceAddress getPushAddress(@NonNull Recipient recipient) {
+    return RecipientUtil.toSignalServiceAddress(context, recipient);
   }
 
   protected List<SignalServiceAttachment> getAttachmentsFor(List<Attachment> parts) {
@@ -256,7 +255,9 @@ public abstract class PushSendJob extends SendJob {
       }
     }
 
-    return Optional.of(new SignalServiceDataMessage.Quote(quoteId, new SignalServiceAddress(Recipient.resolved(quoteAuthor).requireAddress().serialize()), quoteBody, quoteAttachments));
+    Recipient            quoteAuthorRecipient = Recipient.resolved(quoteAuthor);
+    SignalServiceAddress quoteAddress         = RecipientUtil.toSignalServiceAddress(context, quoteAuthorRecipient);
+    return Optional.of(new SignalServiceDataMessage.Quote(quoteId, quoteAddress, quoteBody, quoteAttachments));
   }
 
   protected Optional<SignalServiceDataMessage.Sticker> getStickerFor(OutgoingMediaMessage message) {
@@ -329,13 +330,13 @@ public abstract class PushSendJob extends SendJob {
   }
 
   protected SignalServiceSyncMessage buildSelfSendSyncMessage(@NonNull Context context, @NonNull SignalServiceDataMessage message, Optional<UnidentifiedAccessPair> syncAccess) {
-    String                localNumber = TextSecurePreferences.getLocalNumber(context);
-    SentTranscriptMessage transcript  = new SentTranscriptMessage(localNumber,
-                                                                  message.getTimestamp(),
-                                                                  message,
-                                                                  message.getExpiresInSeconds(),
-                                                                  Collections.singletonMap(localNumber, syncAccess.isPresent()),
-                                                                  false);
+    SignalServiceAddress  localAddress = new SignalServiceAddress(TextSecurePreferences.getLocalUuid(context), TextSecurePreferences.getLocalNumber(context));
+    SentTranscriptMessage transcript   = new SentTranscriptMessage(localAddress,
+                                                                   message.getTimestamp(),
+                                                                   message,
+                                                                   message.getExpiresInSeconds(),
+                                                                   Collections.singletonMap(localAddress, syncAccess.isPresent()),
+                                                                   false);
     return SignalServiceSyncMessage.forSentTranscript(transcript);
   }
 

@@ -704,9 +704,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
     } else if (recipient.isLocalNumber()) {
       composeText.setHint(getString(R.string.note_to_self), null);
     } else {
-      String displayName = Optional.fromNullable(recipient.getName())
-                                   .or(Optional.fromNullable(recipient.getProfileName())
-                                               .or(recipient.requireAddress().serialize()));
+      String displayName = Util.getFirstNonEmpty(recipient.getName(), recipient.getProfileName(), recipient.getE164().orNull(), recipient.getEmail().orNull());
       composeText.setHint(getString(R.string.MediaSendActivity_message_to_s, displayName), null);
     }
 

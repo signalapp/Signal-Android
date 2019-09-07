@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -23,6 +24,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentStre
 import org.whispersystems.signalservice.api.messages.multidevice.DeviceGroup;
 import org.whispersystems.signalservice.api.messages.multidevice.DeviceGroupsOutputStream;
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
+import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
 import java.io.ByteArrayInputStream;
@@ -82,10 +84,10 @@ public class MultiDeviceGroupUpdateJob extends BaseJob {
 
       while ((record = reader.getNext()) != null) {
         if (!record.isMms()) {
-          List<String> members = new LinkedList<>();
+          List<SignalServiceAddress> members = new LinkedList<>();
 
           for (RecipientId member : record.getMembers()) {
-            members.add(Recipient.resolved(member).requireAddress().serialize());
+            members.add(RecipientUtil.toSignalServiceAddress(context, Recipient.resolved(member)));
           }
 
           RecipientId       recipientId     = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(GroupUtil.getEncodedId(record.getId(), record.isMms()));

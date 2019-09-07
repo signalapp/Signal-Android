@@ -69,7 +69,7 @@ public class DirectoryRefreshJob extends BaseJob {
     if (recipient == null) {
       DirectoryHelper.refreshDirectory(context, notifyOfNewUsers);
     } else {
-      DirectoryHelper.refreshDirectoryFor(context, recipient);
+      DirectoryHelper.refreshDirectoryFor(context, recipient, notifyOfNewUsers);
     }
   }
 

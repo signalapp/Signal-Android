@@ -12,6 +12,8 @@ import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.util.Base64;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
+import org.whispersystems.signalservice.api.push.SignalServiceAddress;
+import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.util.Util;
 
 import java.io.IOException;
@@ -23,7 +25,8 @@ public class PushDatabase extends Database {
   private static final String TABLE_NAME       = "push";
   public  static final String ID               = "_id";
   public  static final String TYPE             = "type";
-  public  static final String SOURCE           = "source";
+  public  static final String SOURCE_E164      = "source";
+  public  static final String SOURCE_UUID      = "source_uuid";
   public  static final String DEVICE_ID        = "device_id";
   public  static final String LEGACY_MSG       = "body";
   public  static final String CONTENT          = "content";
@@ -32,7 +35,7 @@ public class PushDatabase extends Database {
   public  static final String SERVER_GUID      = "server_guid";
 
   public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ID + " INTEGER PRIMARY KEY, " +
-      TYPE + " INTEGER, " + SOURCE + " TEXT, " + DEVICE_ID + " INTEGER, " + LEGACY_MSG + " TEXT, " + CONTENT + " TEXT, " + TIMESTAMP + " INTEGER, " +
+      TYPE + " INTEGER, " + SOURCE_E164 + " TEXT, " + SOURCE_UUID + " TEXT, " + DEVICE_ID + " INTEGER, " + LEGACY_MSG + " TEXT, " + CONTENT + " TEXT, " + TIMESTAMP + " INTEGER, " +
       SERVER_TIMESTAMP + " INTEGER DEFAULT 0, " + SERVER_GUID + " TEXT DEFAULT NULL);";
 
   public PushDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
@@ -47,7 +50,8 @@ public class PushDatabase extends Database {
     } else {
       ContentValues values = new ContentValues();
       values.put(TYPE, envelope.getType());
-      values.put(SOURCE, envelope.getSource());
+      values.put(SOURCE_UUID, envelope.getSourceUuid().orNull());
+      values.put(SOURCE_E164, envelope.getSourceE164().orNull());
       values.put(DEVICE_ID, envelope.getSourceDevice());
       values.put(LEGACY_MSG, envelope.hasLegacyMessage() ? Base64.encodeBytes(envelope.getLegacyMessage()) : "");
       values.put(CONTENT, envelope.hasContent() ? Base64.encodeBytes(envelope.getContent()) : "");
@@ -68,11 +72,14 @@ public class PushDatabase extends Database {
                                                           null, null, null);
 
       if (cursor != null && cursor.moveToNext()) {
-        String legacyMessage = cursor.getString(cursor.getColumnIndexOrThrow(LEGACY_MSG));
-        String content       = cursor.getString(cursor.getColumnIndexOrThrow(CONTENT));
+        String               legacyMessage = cursor.getString(cursor.getColumnIndexOrThrow(LEGACY_MSG));
+        String               content       = cursor.getString(cursor.getColumnIndexOrThrow(CONTENT));
+        String               uuid          = cursor.getString(cursor.getColumnIndexOrThrow(SOURCE_UUID));
+        String               e164          = cursor.getString(cursor.getColumnIndexOrThrow(SOURCE_E164));
+        SignalServiceAddress address       = new SignalServiceAddress(UuidUtil.parseOrNull(uuid), e164);
 
         return new SignalServiceEnvelope(cursor.getInt(cursor.getColumnIndexOrThrow(TYPE)),
-                                         cursor.getString(cursor.getColumnIndexOrThrow(SOURCE)),
+                                         address,
                                          cursor.getInt(cursor.getColumnIndexOrThrow(DEVICE_ID)),
                                          cursor.getLong(cursor.getColumnIndexOrThrow(TIMESTAMP)),
                                          Util.isEmpty(legacyMessage) ? null : Base64.decode(legacyMessage),
@@ -105,27 +112,30 @@ public class PushDatabase extends Database {
 
   private Optional<Long> find(SignalServiceEnvelope envelope) {
     SQLiteDatabase database = databaseHelper.getReadableDatabase();
-    Cursor         cursor   = null;
+    String         query    = TYPE       + " = ? AND " +
+                              DEVICE_ID  + " = ? AND " +
+                              LEGACY_MSG + " = ? AND " +
+                              CONTENT    + " = ? AND " +
+                              TIMESTAMP  + " = ? AND " +
+                              "(" +
+                                "(" + SOURCE_E164 + " NOT NULL AND " + SOURCE_E164 + " = ?) OR " +
+                                "(" + SOURCE_UUID + " NOT NULL AND " + SOURCE_UUID + " = ?)" +
+                              ")";
+    String[]        args     = new String[] { String.valueOf(envelope.getType()),
+                                              String.valueOf(envelope.getSourceDevice()),
+                                              envelope.hasLegacyMessage() ? Base64.encodeBytes(envelope.getLegacyMessage()) : "",
+                                              envelope.hasContent() ? Base64.encodeBytes(envelope.getContent()) : "",
+                                              String.valueOf(envelope.getTimestamp()),
+                                              String.valueOf(envelope.getSourceUuid().orNull()),
+                                              String.valueOf(envelope.getSourceE164().orNull()) };
 
-    try {
-      cursor = database.query(TABLE_NAME, null, TYPE + " = ? AND " + SOURCE + " = ? AND " +
-                                                DEVICE_ID + " = ? AND " + LEGACY_MSG + " = ? AND " +
-                                                CONTENT + " = ? AND " + TIMESTAMP + " = ?" ,
-                              new String[] {String.valueOf(envelope.getType()),
-                                            envelope.getSource(),
-                                            String.valueOf(envelope.getSourceDevice()),
-                                            envelope.hasLegacyMessage() ? Base64.encodeBytes(envelope.getLegacyMessage()) : "",
-                                            envelope.hasContent() ? Base64.encodeBytes(envelope.getContent()) : "",
-                                            String.valueOf(envelope.getTimestamp())},
-                              null, null, null);
 
+    try (Cursor cursor = database.query(TABLE_NAME, null, query, args, null, null, null)) {
       if (cursor != null && cursor.moveToFirst()) {
         return Optional.of(cursor.getLong(cursor.getColumnIndexOrThrow(ID)));
       } else {
         return Optional.absent();
       }
-    } finally {
-      if (cursor != null) cursor.close();
     }
   }
 
@@ -142,7 +152,8 @@ public class PushDatabase extends Database {
           return null;
 
         int    type            = cursor.getInt(cursor.getColumnIndexOrThrow(TYPE));
-        String source          = cursor.getString(cursor.getColumnIndexOrThrow(SOURCE));
+        String sourceUuid      = cursor.getString(cursor.getColumnIndexOrThrow(SOURCE_UUID));
+        String sourceE164      = cursor.getString(cursor.getColumnIndexOrThrow(SOURCE_E164));
         int    deviceId        = cursor.getInt(cursor.getColumnIndexOrThrow(DEVICE_ID));
         String legacyMessage   = cursor.getString(cursor.getColumnIndexOrThrow(LEGACY_MSG));
         String content         = cursor.getString(cursor.getColumnIndexOrThrow(CONTENT));
@@ -150,10 +161,14 @@ public class PushDatabase extends Database {
         long   serverTimestamp = cursor.getLong(cursor.getColumnIndexOrThrow(SERVER_TIMESTAMP));
         String serverGuid      = cursor.getString(cursor.getColumnIndexOrThrow(SERVER_GUID));
 
-        return new SignalServiceEnvelope(type, source, deviceId, timestamp,
+        return new SignalServiceEnvelope(type,
+                                         new SignalServiceAddress(UuidUtil.parseOrNull(sourceUuid), sourceE164),
+                                         deviceId,
+                                         timestamp,
                                          legacyMessage != null ? Base64.decode(legacyMessage) : null,
                                          content != null ? Base64.decode(content) : null,
-                                         serverTimestamp, serverGuid);
+                                         serverTimestamp,
+                                         serverGuid);
       } catch (IOException e) {
         throw new AssertionError(e);
       }

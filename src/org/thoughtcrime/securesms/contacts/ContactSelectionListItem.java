@@ -14,14 +14,12 @@ import android.widget.TextView;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.components.FromTextView;
-import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.GroupUtil;
-import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 public class ContactSelectionListItem extends LinearLayout implements RecipientForeverObserver {

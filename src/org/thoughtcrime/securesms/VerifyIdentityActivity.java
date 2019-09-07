@@ -269,11 +269,15 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
       if (localIdentityParcelable == null)  throw new AssertionError("local identity required");
       if (remoteIdentityParcelable == null) throw new AssertionError("remote identity required");
 
-      this.localNumber    = getArguments().getString(LOCAL_NUMBER);
+      this.localNumber    = TextSecurePreferences.getLocalNumber(requireContext());
       this.localIdentity  = localIdentityParcelable.get();
       this.recipient      = Recipient.live(recipientId);
-      this.remoteNumber   = recipient.get().requireAddress().serialize();
+      this.remoteNumber   = recipient.resolve().getE164().or("");
       this.remoteIdentity = remoteIdentityParcelable.get();
+
+      if (TextUtils.isEmpty(remoteNumber)) {
+        Log.w(TAG, "Empty remote number! Did we get a UUID-only message somehow?");
+      }
 
       this.recipient.observe(this, this::setRecipientText);
 
@@ -573,7 +577,7 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
         protected Void doInBackground(Recipient... params) {
           synchronized (SESSION_LOCK) {
             if (isChecked) {
-              Log.i(TAG, "Saving identity: " + params[0].requireAddress());
+              Log.i(TAG, "Saving identity: " + params[0].getId());
               DatabaseFactory.getIdentityDatabase(getActivity())
                              .saveIdentity(params[0].getId(),
                                            remoteIdentity,

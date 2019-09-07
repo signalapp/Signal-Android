@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;

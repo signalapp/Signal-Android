@@ -11,6 +11,8 @@ import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
+import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
@@ -68,7 +70,7 @@ public class MultiDeviceProfileKeyUpdateJob extends BaseJob {
     ByteArrayOutputStream      baos       = new ByteArrayOutputStream();
     DeviceContactsOutputStream out        = new DeviceContactsOutputStream(baos);
 
-    out.write(new DeviceContact(TextSecurePreferences.getLocalNumber(context),
+    out.write(new DeviceContact(RecipientUtil.toSignalServiceAddress(context, Recipient.self()),
                                 Optional.absent(),
                                 Optional.absent(),
                                 Optional.absent(),

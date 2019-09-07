@@ -15,12 +15,14 @@ import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.util.JsonUtils;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.multidevice.ReadMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
+import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
 import java.io.IOException;
@@ -89,7 +91,7 @@ public class MultiDeviceReadUpdateJob extends BaseJob {
 
     for (SerializableSyncMessageId messageId : messageIds) {
       Recipient recipient = Recipient.resolved(RecipientId.from(messageId.recipientId));
-      readMessages.add(new ReadMessage(recipient.requireAddress().serialize(), messageId.timestamp));
+      readMessages.add(new ReadMessage(RecipientUtil.toSignalServiceAddress(context, recipient), messageId.timestamp));
     }
 
     SignalServiceMessageSender messageSender = ApplicationDependencies.getSignalServiceMessageSender();

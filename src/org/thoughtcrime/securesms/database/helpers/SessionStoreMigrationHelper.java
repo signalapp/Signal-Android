@@ -7,7 +7,6 @@ import org.thoughtcrime.securesms.logging.Log;
 
 import net.sqlcipher.database.SQLiteDatabase;
 
-import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.SessionDatabase;
 import org.thoughtcrime.securesms.util.Conversions;
 import org.whispersystems.libsignal.state.SessionRecord;
@@ -41,7 +40,7 @@ class SessionStoreMigrationHelper {
         for (File sessionFile : sessionFiles) {
           try {
             String[] parts   = sessionFile.getName().split("[.]");
-            Address  address = Address.fromSerialized(parts[0]);
+            String   address = parts[0];
 
             int deviceId;
 
@@ -79,7 +78,7 @@ class SessionStoreMigrationHelper {
 
 
             ContentValues contentValues = new ContentValues();
-            contentValues.put(SessionDatabase.RECIPIENT_ID, address.serialize());
+            contentValues.put(SessionDatabase.RECIPIENT_ID, address);
             contentValues.put(SessionDatabase.DEVICE, deviceId);
             contentValues.put(SessionDatabase.RECORD, sessionRecord.serialize());
 

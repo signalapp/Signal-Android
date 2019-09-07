@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
+import org.thoughtcrime.securesms.contacts.sync.DirectoryHelper;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
@@ -323,8 +324,7 @@ public class MessageSender {
   }
 
   private static boolean isGroupPushSend(Recipient recipient) {
-    return recipient.requireAddress().isGroup() &&
-           !recipient.requireAddress().isMmsGroup();
+    return recipient.isGroup() && !recipient.isMmsGroup();
   }
 
   private static boolean isPushDestination(Context context, Recipient destination) {
@@ -334,16 +334,8 @@ public class MessageSender {
       return false;
     } else {
       try {
-        SignalServiceAccountManager   accountManager = AccountManagerFactory.createManager(context);
-        Optional<ContactTokenDetails> registeredUser = accountManager.getContact(destination.requireAddress().serialize());
-
-        if (!registeredUser.isPresent()) {
-          DatabaseFactory.getRecipientDatabase(context).setRegistered(destination.getId(), RecipientDatabase.RegisteredState.NOT_REGISTERED);
-          return false;
-        } else {
-          DatabaseFactory.getRecipientDatabase(context).setRegistered(destination.getId(), RecipientDatabase.RegisteredState.REGISTERED);
-          return true;
-        }
+        RecipientDatabase.RegisteredState state = DirectoryHelper.refreshDirectoryFor(context, destination, false);
+        return state == RecipientDatabase.RegisteredState.REGISTERED;
       } catch (IOException e1) {
         Log.w(TAG, e1);
         return false;

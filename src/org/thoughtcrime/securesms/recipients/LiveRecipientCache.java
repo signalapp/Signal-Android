@@ -2,11 +2,10 @@ package org.thoughtcrime.securesms.recipients;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.database.Cursor;
+import android.text.TextUtils;
 
 import androidx.annotation.AnyThread;
 import androidx.annotation.NonNull;
-import androidx.annotation.WorkerThread;
 import androidx.lifecycle.MutableLiveData;
 
 import com.annimon.stream.Stream;
@@ -20,12 +19,13 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.LRUCache;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
+import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 public final class LiveRecipientCache {
 
@@ -80,7 +80,18 @@ public final class LiveRecipientCache {
   @NonNull Recipient getSelf() {
     synchronized (this) {
       if (localRecipientId == null) {
-        localRecipientId = recipientDatabase.getOrInsertFromE164(TextSecurePreferences.getLocalNumber(context));
+        UUID   localUuid = TextSecurePreferences.getLocalUuid(context);
+        String localE164 = TextSecurePreferences.getLocalNumber(context);
+
+        if (localUuid != null) {
+          localRecipientId = recipientDatabase.getByUuid(localUuid).or(recipientDatabase.getByE164(localE164)).orNull();
+        } else {
+          localRecipientId = recipientDatabase.getByE164(localE164).orNull();
+        }
+
+        if (localRecipientId == null) {
+          throw new MissingRecipientError(localRecipientId);
+        }
       }
     }
 

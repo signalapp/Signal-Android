@@ -1,6 +1,8 @@
 package org.thoughtcrime.securesms.util;
 
 import android.content.Context;
+import android.text.TextUtils;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
@@ -15,6 +17,8 @@ import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver;
 import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.api.push.SignalServiceAddress;
+import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -51,7 +55,7 @@ public class GroupUtil {
 
   @WorkerThread
   public static Optional<OutgoingGroupMediaMessage> createGroupLeaveMessage(@NonNull Context context, @NonNull Recipient groupRecipient) {
-    String        encodedGroupId = groupRecipient.requireAddress().toGroupString();
+    String        encodedGroupId = groupRecipient.requireGroupId();
     GroupDatabase groupDatabase  = DatabaseFactory.getGroupDatabase(context);
 
     if (!groupDatabase.isActive(encodedGroupId)) {
@@ -105,8 +109,8 @@ public class GroupUtil {
       } else {
         this.members = new LinkedList<>();
 
-        for (String member : groupContext.getMembersList()) {
-          this.members.add(Recipient.external(context, member));
+        for (GroupContext.Member member : groupContext.getMembersList()) {
+          this.members.add(Recipient.externalPush(context, new SignalServiceAddress(UuidUtil.parseOrNull(member.getUuid()), member.getE164())));
         }
       }
     }

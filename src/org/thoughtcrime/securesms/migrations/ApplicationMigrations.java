@@ -38,7 +38,7 @@ public class ApplicationMigrations {
 
   private static final int LEGACY_CANONICAL_VERSION = 455;
 
-  public static final int CURRENT_VERSION = 5;
+  public static final int CURRENT_VERSION = 6;
 
   private static final class Version {
     static final int LEGACY            = 1;
@@ -46,6 +46,7 @@ public class ApplicationMigrations {
     static final int RECIPIENT_SEARCH  = 3;
     static final int RECIPIENT_CLEANUP = 4;
     static final int AVATAR_MIGRATION  = 5;
+    static final int UUIDS             = 6;
   }
 
   /**
@@ -176,6 +177,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.AVATAR_MIGRATION) {
       jobs.put(Version.AVATAR_MIGRATION, new AvatarMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.UUIDS) {
+      jobs.put(Version.UUIDS, new UuidMigrationJob());
     }
 
     return jobs;

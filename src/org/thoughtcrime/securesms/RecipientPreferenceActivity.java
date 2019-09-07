@@ -57,7 +57,6 @@ import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.color.MaterialColors;
 import org.thoughtcrime.securesms.components.ThreadPhotoRailView;
 import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
-import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase.IdentityRecord;
@@ -421,10 +420,10 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
         if (aboutDivider       != null) aboutDivider.setVisible(false);
         if (divider            != null) divider.setVisible(false);
       } else {
-        colorPreference.setColors(MaterialColors.CONVERSATION_PALETTE.asConversationColorArray(getActivity()));
-        colorPreference.setColor(recipient.getColor().toActionBarColor(getActivity()));
+        colorPreference.setColors(MaterialColors.CONVERSATION_PALETTE.asConversationColorArray(requireActivity()));
+        colorPreference.setColor(recipient.getColor().toActionBarColor(requireActivity()));
 
-        aboutPreference.setTitle(formatAddress(recipient.requireAddress()));
+        aboutPreference.setTitle(formatRecipient(recipient));
         aboutPreference.setSummary(recipient.getCustomLabel());
         aboutPreference.setSecure(recipient.getRegistered() == RecipientDatabase.RegisteredState.REGISTERED);
 
@@ -453,10 +452,10 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       }
     }
 
-    private @NonNull String formatAddress(@NonNull Address address) {
-      if      (address.isPhone()) return PhoneNumberUtils.formatNumber(address.toPhoneString());
-      else if (address.isEmail()) return address.toEmailString();
-      else                        return "";
+    private @NonNull String formatRecipient(@NonNull Recipient recipient) {
+      if      (recipient.getE164().isPresent())  return PhoneNumberUtils.formatNumber(recipient.requireE164());
+      else if (recipient.getEmail().isPresent()) return recipient.requireEmail();
+      else                                       return "";
     }
 
     private @NonNull String getRingtoneSummary(@NonNull Context context, @Nullable Uri ringtone) {
@@ -697,7 +696,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
             if (recipient.get().isGroup()) {
               bodyRes = R.string.RecipientPreferenceActivity_block_and_leave_group_description;
 
-              if (recipient.get().isGroup() && DatabaseFactory.getGroupDatabase(context).isActive(recipient.get().requireAddress().toGroupString())) {
+              if (recipient.get().isGroup() && DatabaseFactory.getGroupDatabase(context).isActive(recipient.get().requireGroupId())) {
                 titleRes = R.string.RecipientPreferenceActivity_block_and_leave_group;
               } else {
                 titleRes = R.string.RecipientPreferenceActivity_block_group;
@@ -745,7 +744,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
             DatabaseFactory.getRecipientDatabase(context)
                            .setBlocked(recipient.getId(), blocked);
 
-            if (recipient.isGroup() && DatabaseFactory.getGroupDatabase(context).isActive(recipient.requireAddress().toGroupString())) {
+            if (recipient.isGroup() && DatabaseFactory.getGroupDatabase(context).isActive(recipient.requireGroupId())) {
               long                                threadId     = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
               Optional<OutgoingGroupMediaMessage> leaveMessage = GroupUtil.createGroupLeaveMessage(context, recipient);
 
@@ -753,7 +752,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
                 MessageSender.send(context, leaveMessage.get(), threadId, false, null);
 
                 GroupDatabase groupDatabase = DatabaseFactory.getGroupDatabase(context);
-                String        groupId       = recipient.requireAddress().toGroupString();
+                String        groupId       = recipient.requireGroupId();
                 groupDatabase.setActive(groupId, false);
                 groupDatabase.remove(groupId, Recipient.self().getId());
               } else {
@@ -790,7 +789,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       public void onInSecureCallClicked() {
         try {
           Intent dialIntent = new Intent(Intent.ACTION_DIAL,
-                                         Uri.parse("tel:" + recipient.get().requireAddress().serialize()));
+                                         Uri.parse("tel:" + recipient.get().requireE164()));
           startActivity(dialIntent);
         } catch (ActivityNotFoundException anfe) {
           Log.w(TAG, anfe);

@@ -11,7 +11,9 @@ import android.widget.BaseAdapter;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.Conversions;
+import org.thoughtcrime.securesms.util.adapter.StableIdGenerator;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -19,11 +21,12 @@ import java.util.List;
 
 class MessageDetailsRecipientAdapter extends BaseAdapter implements AbsListView.RecyclerListener {
 
-  private final Context                       context;
-  private final GlideRequests                 glideRequests;
-  private final MessageRecord                 record;
-  private final List<RecipientDeliveryStatus> members;
-  private final boolean                       isPushGroup;
+  private final Context                        context;
+  private final GlideRequests                  glideRequests;
+  private final MessageRecord                  record;
+  private final List<RecipientDeliveryStatus>  members;
+  private final boolean                        isPushGroup;
+  private final StableIdGenerator<RecipientId> idGenerator;
 
   MessageDetailsRecipientAdapter(@NonNull Context context, @NonNull GlideRequests glideRequests,
                                  @NonNull MessageRecord record, @NonNull List<RecipientDeliveryStatus> members,
@@ -34,6 +37,7 @@ class MessageDetailsRecipientAdapter extends BaseAdapter implements AbsListView.
     this.record        = record;
     this.isPushGroup   = isPushGroup;
     this.members       = members;
+    this.idGenerator   = new StableIdGenerator<>();
   }
 
   @Override
@@ -48,11 +52,7 @@ class MessageDetailsRecipientAdapter extends BaseAdapter implements AbsListView.
 
   @Override
   public long getItemId(int position) {
-    try {
-      return Conversions.byteArrayToLong(MessageDigest.getInstance("SHA1").digest(members.get(position).recipient.requireAddress().serialize().getBytes()));
-    } catch (NoSuchAlgorithmException e) {
-      throw new AssertionError(e);
-    }
+    return idGenerator.getId(members.get(position).recipient.getId());
   }
 
   @Override

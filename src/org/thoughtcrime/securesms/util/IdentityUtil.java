@@ -9,7 +9,6 @@ import androidx.annotation.StringRes;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureIdentityKeyStore;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
-import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
@@ -146,11 +145,11 @@ public class IdentityUtil {
     }
   }
 
-  public static void saveIdentity(Context context, String number, IdentityKey identityKey) {
+  public static void saveIdentity(Context context, String user, IdentityKey identityKey) {
     synchronized (SESSION_LOCK) {
       IdentityKeyStore      identityKeyStore = new TextSecureIdentityKeyStore(context);
       SessionStore          sessionStore     = new TextSecureSessionStore(context);
-      SignalProtocolAddress address          = new SignalProtocolAddress(number, 1);
+      SignalProtocolAddress address          = new SignalProtocolAddress(user, 1);
 
       if (identityKeyStore.saveIdentity(address, identityKey)) {
         if (sessionStore.containsSession(address)) {
@@ -166,7 +165,7 @@ public class IdentityUtil {
   public static void processVerifiedMessage(Context context, VerifiedMessage verifiedMessage) {
     synchronized (SESSION_LOCK) {
       IdentityDatabase         identityDatabase = DatabaseFactory.getIdentityDatabase(context);
-      Recipient                recipient        = Recipient.external(context, verifiedMessage.getDestination());
+      Recipient                recipient        = Recipient.externalPush(context, verifiedMessage.getDestination());
       Optional<IdentityRecord> identityRecord   = identityDatabase.getIdentity(recipient.getId());
 
       if (!identityRecord.isPresent() && verifiedMessage.getVerified() == VerifiedMessage.VerifiedState.DEFAULT) {
@@ -188,7 +187,7 @@ public class IdentityUtil {
               (identityRecord.isPresent() && !identityRecord.get().getIdentityKey().equals(verifiedMessage.getIdentityKey())) ||
               (identityRecord.isPresent() && identityRecord.get().getVerifiedStatus() != IdentityDatabase.VerifiedStatus.VERIFIED)))
       {
-        saveIdentity(context, verifiedMessage.getDestination(), verifiedMessage.getIdentityKey());
+        saveIdentity(context, verifiedMessage.getDestination().getIdentifier(), verifiedMessage.getIdentityKey());
         identityDatabase.setVerified(recipient.getId(), verifiedMessage.getIdentityKey(), IdentityDatabase.VerifiedStatus.VERIFIED);
         markIdentityVerified(context, recipient, true, true);
       }

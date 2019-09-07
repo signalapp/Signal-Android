@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.service;
 
 
-import android.Manifest;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -31,7 +30,6 @@ import org.signal.ringrtc.SignalMessageRecipient;
 import org.greenrobot.eventbus.EventBus;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.WebRtcCallActivity;
-import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase.VibrateState;
@@ -40,12 +38,12 @@ import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.notifications.DoNotDisturbUtil;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
-import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.ringrtc.CameraState;
 import org.thoughtcrime.securesms.ringrtc.MessageRecipient;
 import org.thoughtcrime.securesms.ringrtc.CallConnectionWrapper;
+import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.util.FutureTaskListener;
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
 import org.thoughtcrime.securesms.util.ServiceUtil;
@@ -76,7 +74,6 @@ import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.calls.BusyMessage;
 import org.whispersystems.signalservice.api.messages.calls.SignalServiceCallMessage;
-import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
 import org.whispersystems.signalservice.internal.util.concurrent.SettableFuture;
 
@@ -1019,7 +1016,7 @@ public class WebRtcCallService extends Service implements CallConnection.Observe
     Callable<Boolean> callable = new Callable<Boolean>() {
       @Override
       public Boolean call() throws Exception {
-        messageSender.sendCallMessage(new SignalServiceAddress(recipient.requireAddress().toPhoneString()),
+        messageSender.sendCallMessage(RecipientUtil.toSignalServiceAddress(WebRtcCallService.this, recipient),
                                       UnidentifiedAccessUtil.getAccessFor(WebRtcCallService.this, recipient),
                                       callMessage);
         return true;

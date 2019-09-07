@@ -51,6 +51,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.io.File;
 import java.util.List;
+import java.util.UUID;
 
 public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
@@ -90,12 +91,12 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int ATTACHMENT_TRANSFORM_PROPERTIES  = 32;
   private static final int ATTACHMENT_CLEAR_HASHES          = 33;
   private static final int ATTACHMENT_CLEAR_HASHES_2        = 34;
+  private static final int UUIDS                            = 35;
 
-  private static final int    DATABASE_VERSION = 34;
+  private static final int    DATABASE_VERSION = 35;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
-
   private final DatabaseSecret databaseSecret;
 
   public SQLCipherOpenHelper(@NonNull Context context, @NonNull DatabaseSecret databaseSecret) {
@@ -552,15 +553,15 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
         for (NotificationChannel oldChannel : channels) {
           notificationManager.deleteNotificationChannel(oldChannel.getId());
 
-          int       startIndex = "contact_".length();
-          int       endIndex   = oldChannel.getId().lastIndexOf("_");
-          String    address    = oldChannel.getId().substring(startIndex, endIndex);
+          int    startIndex = "contact_".length();
+          int    endIndex   = oldChannel.getId().lastIndexOf("_");
+          String address    = oldChannel.getId().substring(startIndex, endIndex);
 
           String recipientId;
 
           try (Cursor cursor = db.query("recipient", new String[] { "_id" }, "phone = ? OR email = ? OR group_id = ?", new String[] { address, address, address}, null, null, null)) {
             if (cursor != null && cursor.moveToFirst()) {
-              recipientId = cursor.getString(0);
+              recipientId = cursor.getString(cursor.getColumnIndexOrThrow("_id"));
             } else {
               Log.w(TAG, "Couldn't find recipient for address: " + address);
               continue;
@@ -612,6 +613,11 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
       if (oldVersion < ATTACHMENT_CLEAR_HASHES_2) {
         db.execSQL("UPDATE part SET data_hash = null");
         Glide.get(context).clearDiskCache();
+      }
+
+      if (oldVersion < UUIDS) {
+        db.execSQL("ALTER TABLE recipient ADD COLUMN uuid_supported INTEGER DEFAULT 0");
+        db.execSQL("ALTER TABLE push ADD COLUMN source_uuid TEXT DEFAULT NULL");
       }
 
       db.setTransactionSuccessful();

@@ -205,7 +205,7 @@ public class ConversationListItem extends RelativeLayout
 
     fromView.setText(contact);
     fromView.setText(SearchUtil.getHighlightedSpan(locale, () -> new StyleSpan(Typeface.BOLD), new SpannableString(fromView.getText()), highlightSubstring));
-    subjectView.setText(SearchUtil.getHighlightedSpan(locale, () -> new StyleSpan(Typeface.BOLD), contact.requireAddress().toString(), highlightSubstring));
+    subjectView.setText(SearchUtil.getHighlightedSpan(locale, () -> new StyleSpan(Typeface.BOLD), contact.getE164().or(""), highlightSubstring));
     dateView.setText("");
     archivedView.setVisibility(GONE);
     unreadIndicator.setVisibility(GONE);

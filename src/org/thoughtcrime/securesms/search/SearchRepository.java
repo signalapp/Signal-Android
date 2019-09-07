@@ -13,8 +13,6 @@ import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactRepository;
-import org.thoughtcrime.securesms.contacts.ContactsDatabase;
-import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.CursorList;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.SearchDatabase;

@@ -10,7 +10,6 @@ import com.annimon.stream.Stream;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
-import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.MmsDatabase;
@@ -29,6 +28,7 @@ import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
@@ -67,7 +67,7 @@ public class PushMediaSendJob extends PushSendJob {
   @WorkerThread
   public static void enqueue(@NonNull Context context, @NonNull JobManager jobManager, long messageId, @NonNull Recipient recipient) {
     try {
-      if (!recipient.requireAddress().isPhone()) {
+      if (!recipient.hasServiceIdentifier()) {
         throw new AssertionError();
       }
 
@@ -164,7 +164,7 @@ public class PushMediaSendJob extends PushSendJob {
       ApplicationDependencies.getJobManager().add(new DirectoryRefreshJob(false));
     } catch (UntrustedIdentityException uie) {
       warn(TAG, "Failure", uie);
-      database.addMismatchedIdentity(messageId, Recipient.external(context, uie.getE164Number()).getId(), uie.getIdentityKey());
+      database.addMismatchedIdentity(messageId, Recipient.external(context, uie.getIdentifier()).getId(), uie.getIdentityKey());
       database.markAsSentFailed(messageId);
     }
   }
@@ -189,19 +189,11 @@ public class PushMediaSendJob extends PushSendJob {
       throw new UndeliverableMessageException("No destination address.");
     }
 
-    final Address destination = message.getRecipient().requireAddress();
-
-    if (!destination.isPhone()) {
-      if (destination.isEmail()) throw new UndeliverableMessageException("Not e164, is email");
-      if (destination.isGroup()) throw new UndeliverableMessageException("Not e164, is group");
-      throw new UndeliverableMessageException("Not e164, unknown");
-    }
-
     try {
       rotateSenderCertificateIfNecessary();
 
       SignalServiceMessageSender                 messageSender      = ApplicationDependencies.getSignalServiceMessageSender();
-      SignalServiceAddress                       address            = getPushAddress(destination);
+      SignalServiceAddress                       address            = getPushAddress(message.getRecipient());
       List<Attachment>                           attachments        = Stream.of(message.getAttachments()).filterNot(Attachment::isSticker).toList();
       List<SignalServiceAttachment>              serviceAttachments = getAttachmentPointersFor(attachments);
       Optional<byte[]>                           profileKey         = getProfileKey(message.getRecipient());
@@ -223,7 +215,7 @@ public class PushMediaSendJob extends PushSendJob {
                                                                                             .asExpirationUpdate(message.isExpirationUpdate())
                                                                                             .build();
 
-      if (address.getNumber().equals(TextSecurePreferences.getLocalNumber(context))) {
+      if (Util.equals(TextSecurePreferences.getLocalUuid(context), address.getUuid().orNull())) {
         Optional<UnidentifiedAccessPair> syncAccess  = UnidentifiedAccessUtil.getAccessForSync(context);
         SignalServiceSyncMessage         syncMessage = buildSelfSendSyncMessage(context, mediaMessage, syncAccess);
 

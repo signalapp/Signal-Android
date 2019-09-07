@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 public class ConversationTitleView extends RelativeLayout {
@@ -116,7 +117,7 @@ public class ConversationTitleView extends RelativeLayout {
 
     this.title.setText(recipient.getName());
     this.subtitle.setText(Stream.of(recipient.getParticipants())
-                                .filter(r -> !r.requireAddress().serialize().equals(localNumber))
+                                .filterNot(Recipient::isLocalNumber)
                                 .map(Recipient::toShortString)
                                 .collect(Collectors.joining(", ")));
 
@@ -130,7 +131,7 @@ public class ConversationTitleView extends RelativeLayout {
 
   @SuppressLint("SetTextI18n")
   private void setNonContactRecipientTitle(Recipient recipient) {
-    this.title.setText(recipient.requireAddress().serialize());
+    this.title.setText(Util.getFirstNonEmpty(recipient.getE164().orNull(), recipient.getUuid().orNull()));
 
     if (TextUtils.isEmpty(recipient.getProfileName())) {
       this.subtitle.setText(null);

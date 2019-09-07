@@ -16,7 +16,6 @@ import android.widget.Toast;
 import org.thoughtcrime.securesms.conversation.ConversationActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.WebRtcCallActivity;
-import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -89,8 +88,8 @@ public class CommunicationActions {
     }.execute();
   }
 
-  public static void composeSmsThroughDefaultApp(@NonNull Context context, @NonNull Address address, @Nullable String text) {
-    Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:" + address.serialize()));
+  public static void composeSmsThroughDefaultApp(@NonNull Context context, @NonNull Recipient recipient, @Nullable String text) {
+    Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:" + recipient.requireSmsAddress()));
     if (text != null) {
       intent.putExtra("sms_body", text);
     }

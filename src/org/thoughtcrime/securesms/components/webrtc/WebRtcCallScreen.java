@@ -308,9 +308,10 @@ public class WebRtcCallScreen extends FrameLayout implements RecipientForeverObs
     this.name.setText(recipient.getName());
 
     if (recipient.getName() == null && !TextUtils.isEmpty(recipient.getProfileName())) {
-      this.phoneNumber.setText(recipient.requireAddress().serialize() + " (~" + recipient.getProfileName() + ")");
+      // TODO [greyson] This will need to change in UI PR?
+      this.phoneNumber.setText(recipient.requireE164() + " (~" + recipient.getProfileName() + ")");
     } else {
-      this.phoneNumber.setText(recipient.requireAddress().serialize());
+      this.phoneNumber.setText(recipient.requireE164());
     }
   }
 

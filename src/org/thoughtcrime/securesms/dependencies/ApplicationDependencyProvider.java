@@ -34,6 +34,8 @@ import org.whispersystems.signalservice.api.util.SleepTimer;
 import org.whispersystems.signalservice.api.util.UptimeSleepTimer;
 import org.whispersystems.signalservice.api.websocket.ConnectivityListener;
 
+import java.util.UUID;
+
 /**
  * Implementation of {@link ApplicationDependencies.Provider} that provides real app dependencies.
  */
@@ -120,7 +122,12 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
     }
 
     @Override
-    public String getUser() {
+    public UUID getUuid() {
+      return TextSecurePreferences.getLocalUuid(context);
+    }
+
+    @Override
+    public String getE164() {
       return TextSecurePreferences.getLocalNumber(context);
     }
 

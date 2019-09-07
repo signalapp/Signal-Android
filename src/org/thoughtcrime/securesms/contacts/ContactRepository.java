@@ -88,12 +88,12 @@ public class ContactRepository {
     if (noteToSelfTitle.toLowerCase().contains(query.toLowerCase())) {
       Recipient self        = Recipient.self();
       boolean   nameMatch   = self.getDisplayName().toLowerCase().contains(query.toLowerCase());
-      boolean   numberMatch = self.requireAddress().serialize() != null && self.requireAddress().serialize().contains(query);
+      boolean   numberMatch = self.getE164().isPresent() && self.requireE164().contains(query);
       boolean   shouldAdd   = !nameMatch && !numberMatch;
 
       if (shouldAdd) {
         MatrixCursor selfCursor = new MatrixCursor(RecipientDatabase.SEARCH_PROJECTION);
-        selfCursor.addRow(new Object[]{ self.getId().serialize(), noteToSelfTitle, null, self.requireAddress().serialize(), null, null, -1, RecipientDatabase.RegisteredState.REGISTERED.getId(), noteToSelfTitle });
+        selfCursor.addRow(new Object[]{ self.getId().serialize(), noteToSelfTitle, null, self.getE164().or(""), self.getEmail().orNull(), null, -1, RecipientDatabase.RegisteredState.REGISTERED.getId(), noteToSelfTitle });
 
         cursor = cursor == null ? selfCursor : new MergeCursor(new Cursor[]{ cursor, selfCursor });
       }

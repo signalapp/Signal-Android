@@ -187,7 +187,7 @@ public class RecipientsEditor extends AppCompatMultiAutoCompleteTextView {
 
     public static CharSequence contactToToken(Recipient c) {
       String name       = c.getName();
-      String number     = c.requireAddress().serialize();
+      String number     = c.getE164().or(c.getEmail()).or("");
       SpannableString s = new SpannableString(RecipientsFormatter.formatNameAndNumber(name, number));
       int len           = s.length();
 
@@ -195,7 +195,7 @@ public class RecipientsEditor extends AppCompatMultiAutoCompleteTextView {
         return s;
       }
 
-      s.setSpan(new Annotation("number", c.requireAddress().serialize()), 0, len,
+      s.setSpan(new Annotation("number", number), 0, len,
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
       return s;

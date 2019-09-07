@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -169,15 +170,17 @@ public final class LiveRecipient {
 
   private @NonNull Recipient fetchRecipientFromDisk(RecipientId id) {
     RecipientSettings settings = recipientDatabase.getRecipientSettings(id);
-    RecipientDetails  details  = settings.getAddress().isGroup() ? getGroupRecipientDetails(settings)
-                                                                 : getIndividualRecipientDetails(settings);
+    RecipientDetails  details  = settings.getGroupId() != null ? getGroupRecipientDetails(settings)
+                                                               : getIndividualRecipientDetails(settings);
 
     return new Recipient(id, details);
   }
 
   private @NonNull RecipientDetails getIndividualRecipientDetails(RecipientSettings settings) {
     boolean systemContact = !TextUtils.isEmpty(settings.getSystemDisplayName());
-    boolean isLocalNumber = settings.getAddress().serialize().equals(TextSecurePreferences.getLocalNumber(context));
+    boolean isLocalNumber = (settings.getE164() != null && settings.getE164().equals(TextSecurePreferences.getLocalNumber(context))) ||
+                            (settings.getUuid() != null && settings.getUuid().equals(TextSecurePreferences.getLocalUuid(context)));
+
     return new RecipientDetails(context, null, Optional.absent(), systemContact, isLocalNumber, settings, null);
   }
 
@@ -190,7 +193,7 @@ public final class LiveRecipient {
       List<Recipient> members  = Stream.of(groupRecord.get().getMembers()).filterNot(RecipientId::isUnknown).map(this::fetchRecipientFromDisk).toList();
       Optional<Long>  avatarId = Optional.absent();
 
-      if (!settings.getAddress().isMmsGroup() && title == null) {
+      if (settings.getGroupId() != null && GroupUtil.isMmsGroup(settings.getGroupId()) && title == null) {
         title = unnamedGroupName;
       }
 

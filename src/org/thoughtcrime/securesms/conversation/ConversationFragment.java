@@ -1083,7 +1083,7 @@ public class ConversationFragment extends Fragment
       if (getContext() == null) return;
 
       ContactUtil.selectRecipientThroughDialog(getContext(), choices, locale, recipient -> {
-        CommunicationActions.composeSmsThroughDefaultApp(getContext(), recipient.requireAddress(), getString(R.string.InviteActivity_lets_switch_to_signal, getString(R.string.install_url)));
+        CommunicationActions.composeSmsThroughDefaultApp(getContext(), recipient, getString(R.string.InviteActivity_lets_switch_to_signal, getString(R.string.install_url)));
       });
     }
   }

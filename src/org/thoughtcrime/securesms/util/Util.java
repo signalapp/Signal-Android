@@ -47,7 +47,6 @@ import com.google.i18n.phonenumbers.Phonenumber;
 
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.components.ComposeText;
-import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.OutgoingLegacyMmsConnection;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -230,13 +229,6 @@ public class Util {
     }
 
     return totalSize;
-  }
-
-  public static boolean isOwnNumber(Context context, Address address) {
-    if (address.isGroup()) return false;
-    if (address.isEmail()) return false;
-
-    return TextSecurePreferences.getLocalNumber(context).equals(address.toPhoneString());
   }
 
   public static void readFully(InputStream in, byte[] buffer) throws IOException {

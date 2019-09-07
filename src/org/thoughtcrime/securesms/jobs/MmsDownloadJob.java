@@ -4,7 +4,6 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.annimon.stream.Stream;
 import com.google.android.mms.pdu_alt.CharacterSets;
 import com.google.android.mms.pdu_alt.EncodedStringValue;
 import com.google.android.mms.pdu_alt.PduBody;
@@ -13,8 +12,6 @@ import com.google.android.mms.pdu_alt.RetrieveConf;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.UriAttachment;
-import org.thoughtcrime.securesms.blurhash.BlurHash;
-import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.InsertResult;
@@ -35,10 +32,6 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.libsignal.DuplicateMessageException;
-import org.whispersystems.libsignal.InvalidMessageException;
-import org.whispersystems.libsignal.LegacyMessageException;
-import org.whispersystems.libsignal.NoSessionException;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.IOException;

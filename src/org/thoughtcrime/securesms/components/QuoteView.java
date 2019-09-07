@@ -187,11 +187,10 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
   }
 
   private void setQuoteAuthor(@NonNull Recipient author) {
-    boolean outgoing    = messageType != MESSAGE_TYPE_INCOMING;
-    boolean isOwnNumber = Util.isOwnNumber(getContext(), author.requireAddress());
+    boolean outgoing = messageType != MESSAGE_TYPE_INCOMING;
 
-    authorView.setText(isOwnNumber ? getContext().getString(R.string.QuoteView_you)
-                                   : author.toShortString());
+    authorView.setText(author.isLocalNumber() ? getContext().getString(R.string.QuoteView_you)
+                                              : author.toShortString());
 
     // We use the raw color resource because Android 4.x was struggling with tints here
     quoteBarView.setImageResource(author.getColor().toQuoteBarColorResource(getContext(), outgoing));

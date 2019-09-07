@@ -7,7 +7,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
-import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 
 import java.io.File;

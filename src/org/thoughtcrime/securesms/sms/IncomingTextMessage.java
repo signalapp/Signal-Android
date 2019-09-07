@@ -1,13 +1,11 @@
 package org.thoughtcrime.securesms.sms;
 
-import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import android.telephony.SmsMessage;
 
-import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -39,7 +37,7 @@ public class IncomingTextMessage implements Parcelable {
   private final boolean     replyPathPresent;
   private final String      pseudoSubject;
   private final long        sentTimestampMillis;
-  private final Address     groupId;
+  private final String      groupId;
   private final boolean     push;
   private final int         subscriptionId;
   private final long        expiresInMillis;
@@ -79,7 +77,7 @@ public class IncomingTextMessage implements Parcelable {
     this.unidentified         = unidentified;
 
     if (group.isPresent()) {
-      this.groupId = Address.fromSerialized(GroupUtil.getEncodedId(group.get().getGroupId(), false));
+      this.groupId = GroupUtil.getEncodedId(group.get().getGroupId(), false);
     } else {
       this.groupId = null;
     }
@@ -94,7 +92,7 @@ public class IncomingTextMessage implements Parcelable {
     this.replyPathPresent     = (in.readInt() == 1);
     this.pseudoSubject        = in.readString();
     this.sentTimestampMillis  = in.readLong();
-    this.groupId              = in.readParcelable(IncomingTextMessage.class.getClassLoader());
+    this.groupId              = in.readString();
     this.push                 = (in.readInt() == 1);
     this.subscriptionId       = in.readInt();
     this.expiresInMillis      = in.readLong();
@@ -139,7 +137,7 @@ public class IncomingTextMessage implements Parcelable {
     this.unidentified         = fragments.get(0).isUnidentified();
   }
 
-  protected IncomingTextMessage(@NonNull RecipientId sender, @Nullable Address groupId)
+  protected IncomingTextMessage(@NonNull RecipientId sender, @Nullable String groupId)
   {
     this.message              = "";
     this.sender               = sender;
@@ -224,7 +222,7 @@ public class IncomingTextMessage implements Parcelable {
     return push;
   }
 
-  public @Nullable Address getGroupId() {
+  public @Nullable String getGroupId() {
     return groupId;
   }
 
@@ -267,7 +265,7 @@ public class IncomingTextMessage implements Parcelable {
     out.writeInt(replyPathPresent ? 1 : 0);
     out.writeString(pseudoSubject);
     out.writeLong(sentTimestampMillis);
-    out.writeParcelable(groupId, flags);
+    out.writeString(groupId);
     out.writeInt(push ? 1 : 0);
     out.writeInt(subscriptionId);
     out.writeLong(expiresInMillis);

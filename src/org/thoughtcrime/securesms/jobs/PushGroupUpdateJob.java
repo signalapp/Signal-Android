@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
@@ -25,6 +26,8 @@ import org.whispersystems.signalservice.api.messages.SignalServiceGroup;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroup.Type;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
+import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
+import org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupContext;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -92,10 +95,11 @@ public class PushGroupUpdateJob extends BaseJob {
                                             .build();
     }
 
-    List<String> members = new LinkedList<>();
+    List<SignalServiceAddress> members = new LinkedList<>();
 
     for (RecipientId member : record.get().getMembers()) {
-      members.add(Recipient.resolved(member).requireAddress().serialize());
+      Recipient recipient = Recipient.resolved(member);
+      members.add(RecipientUtil.toSignalServiceAddress(context, recipient));
     }
 
     SignalServiceGroup groupContext = SignalServiceGroup.newBuilder(Type.UPDATE)
@@ -117,7 +121,7 @@ public class PushGroupUpdateJob extends BaseJob {
     SignalServiceMessageSender messageSender = ApplicationDependencies.getSignalServiceMessageSender();
     Recipient                  recipient     = Recipient.resolved(source);
 
-    messageSender.sendMessage(new SignalServiceAddress(recipient.requireAddress().serialize()),
+    messageSender.sendMessage(RecipientUtil.toSignalServiceAddress(context, recipient),
                               UnidentifiedAccessUtil.getAccessFor(context, recipient),
                               message);
   }

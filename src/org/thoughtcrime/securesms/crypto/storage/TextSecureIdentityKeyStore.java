@@ -5,12 +5,10 @@ import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.SessionUtil;
-import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase.IdentityRecord;
 import org.thoughtcrime.securesms.database.IdentityDatabase.VerifiedStatus;
-import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.IdentityUtil;

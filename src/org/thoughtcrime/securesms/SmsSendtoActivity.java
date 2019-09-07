@@ -12,7 +12,6 @@ import org.thoughtcrime.securesms.conversation.ConversationActivity;
 import org.thoughtcrime.securesms.logging.Log;
 import android.widget.Toast;
 
-import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.Rfc5724Uri;

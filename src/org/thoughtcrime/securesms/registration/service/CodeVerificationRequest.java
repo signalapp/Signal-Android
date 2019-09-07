@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.lock.RegistrationLockReminders;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.push.AccountManagerFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.service.DirectoryRefreshListener;
 import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -36,6 +37,7 @@ import org.whispersystems.signalservice.internal.push.LockedException;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 public final class CodeVerificationRequest {
 
@@ -128,27 +130,34 @@ public final class CodeVerificationRequest {
     TextSecurePreferences.setLocalRegistrationId(context, registrationId);
     SessionUtil.archiveAllSessions(context);
 
-    SignalServiceAccountManager accountManager = AccountManagerFactory.createManager(context, credentials.getE164number(), credentials.getPassword());
+    SignalServiceAccountManager accountManager = AccountManagerFactory.createUnauthenticated(context, credentials.getE164number(), credentials.getPassword());
 
     boolean present = fcmToken != null;
 
-    accountManager.verifyAccountWithCode(code, null, registrationId, !present, pin,
-      unidentifiedAccessKey, universalUnidentifiedAccess);
+    UUID uuid = accountManager.verifyAccountWithCode(code, null, registrationId, !present, pin, unidentifiedAccessKey, universalUnidentifiedAccess);
 
     IdentityKeyPair    identityKey  = IdentityKeyUtil.getIdentityKeyPair(context);
     List<PreKeyRecord> records      = PreKeyUtil.generatePreKeys(context);
     SignedPreKeyRecord signedPreKey = PreKeyUtil.generateSignedPreKey(context, identityKey, true);
 
+    accountManager = AccountManagerFactory.createAuthenticated(context, uuid, credentials.getE164number(), credentials.getPassword());
     accountManager.setPreKeys(identityKey.getPublicKey(), signedPreKey, records);
 
     if (present) {
       accountManager.setGcmId(Optional.fromNullable(fcmToken));
     }
 
+    RecipientDatabase recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
+    RecipientId       selfId            = recipientDatabase.getOrInsertFromE164(credentials.getE164number());
+
+    recipientDatabase.setProfileSharing(selfId, true);
+    recipientDatabase.markRegistered(selfId, uuid);
+
+    TextSecurePreferences.setLocalNumber(context, credentials.getE164number());
+    TextSecurePreferences.setLocalUuid(context, uuid);
     TextSecurePreferences.setFcmToken(context, fcmToken);
     TextSecurePreferences.setFcmDisabled(context, !present);
     TextSecurePreferences.setWebsocketRegistered(context, true);
-    TextSecurePreferences.setLocalNumber(context, credentials.getE164number());
 
     DatabaseFactory.getIdentityDatabase(context)
                    .saveIdentity(Recipient.self().getId(),
@@ -161,8 +170,6 @@ public final class CodeVerificationRequest {
     TextSecurePreferences.setSignedPreKeyRegistered(context, true);
     TextSecurePreferences.setPromptedPushRegistration(context, true);
     TextSecurePreferences.setUnauthorizedReceived(context, false);
-    DatabaseFactory.getRecipientDatabase(context).setProfileSharing(Recipient.self().getId(), true);
-    DatabaseFactory.getRecipientDatabase(context).setRegistered(Recipient.self().getId(), RecipientDatabase.RegisteredState.REGISTERED);
   }
 
   public interface VerifyCallback {

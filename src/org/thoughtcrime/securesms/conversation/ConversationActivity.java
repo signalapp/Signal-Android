@@ -940,7 +940,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       composeText.appendInvite(inviteText);
     } else {
       Intent intent = new Intent(Intent.ACTION_SENDTO);
-      intent.setData(Uri.parse("smsto:" + recipient.get().requireAddress().serialize()));
+      intent.setData(Uri.parse("smsto:" + recipient.get().requireSmsAddress()));
       intent.putExtra("sms_body", inviteText);
       intent.putExtra(Intent.EXTRA_TEXT, inviteText);
       startActivity(intent);
@@ -984,7 +984,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void handleAddShortcut() {
-    Log.i(TAG, "Creating home screen shortcut for recipient " + recipient.get().requireAddress());
+    Log.i(TAG, "Creating home screen shortcut for recipient " + recipient.get().getId());
 
     new AsyncTask<Void, Void, IconCompat>() {
 
@@ -1018,7 +1018,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                                   .or(Optional.fromNullable(recipient.get().getProfileName()))
                                   .or(recipient.get().toShortString());
 
-        ShortcutInfoCompat shortcutInfo = new ShortcutInfoCompat.Builder(context, recipient.get().requireAddress().serialize() + '-' + System.currentTimeMillis())
+        ShortcutInfoCompat shortcutInfo = new ShortcutInfoCompat.Builder(context, recipient.get().getId().serialize() + '-' + System.currentTimeMillis())
                                                                 .setShortLabel(name)
                                                                 .setIcon(icon)
                                                                 .setIntent(ShortcutLauncherActivity.createIntent(context, recipient.getId()))
@@ -1056,7 +1056,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         MessageSender.send(this, leaveMessage.get(), threadId, false, null);
 
         GroupDatabase groupDatabase = DatabaseFactory.getGroupDatabase(this);
-        String        groupId       = groupRecipient.requireAddress().toGroupString();
+        String        groupId       = groupRecipient.requireGroupId();
         groupDatabase.setActive(groupId, false);
         groupDatabase.remove(groupId, Recipient.self().getId());
 
@@ -1072,7 +1072,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   private void handleEditPushGroup() {
     Intent intent = new Intent(ConversationActivity.this, GroupCreateActivity.class);
-    intent.putExtra(GroupCreateActivity.GROUP_ADDRESS_EXTRA, recipient.get().requireAddress());
+    intent.putExtra(GroupCreateActivity.GROUP_ID_EXTRA, recipient.get().requireGroupId());
     startActivityForResult(intent, GROUP_EDIT);
   }
 
@@ -1116,7 +1116,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     } else {
       try {
         Intent dialIntent = new Intent(Intent.ACTION_DIAL,
-                                       Uri.parse("tel:" + recipient.requireAddress().serialize()));
+                                       Uri.parse("tel:" + recipient.requireSmsAddress()));
         startActivity(dialIntent);
       } catch (ActivityNotFoundException anfe) {
         Log.w(TAG, anfe);
@@ -1132,7 +1132,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void handleAddToContacts() {
-    if (recipient.get().requireAddress().isGroup()) return;
+    if (recipient.get().isGroup()) return;
 
     try {
       startActivityForResult(RecipientExporter.export(recipient.get()).asAddContactIntent(), ADD_CONTACT);
@@ -1142,7 +1142,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private boolean handleDisplayQuickContact() {
-    if (recipient.get().requireAddress().isGroup()) return false;
+    if (recipient.get().isGroup()) return false;
 
     if (recipient.get().getContactUri() != null) {
       ContactsContract.QuickContact.showQuickContact(ConversationActivity.this, titleView, recipient.get().getContactUri(), ContactsContract.QuickContact.MODE_LARGE, null);
@@ -1397,8 +1397,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
         if (registeredState == RegisteredState.UNKNOWN) {
           try {
-            Log.i(TAG, "Refreshing directory for user: " + recipient.requireAddress().serialize());
-            registeredState = DirectoryHelper.refreshDirectoryFor(context, recipient);
+            Log.i(TAG, "Refreshing directory for user: " + recipient.getId().serialize());
+            registeredState = DirectoryHelper.refreshDirectoryFor(context, recipient, false);
           } catch (IOException e) {
             Log.w(TAG, e);
           }
@@ -1487,13 +1487,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
         if (params[0].isGroup()) {
           recipients.addAll(DatabaseFactory.getGroupDatabase(ConversationActivity.this)
-                                           .getGroupMembers(params[0].requireAddress().toGroupString(), false));
+                                           .getGroupMembers(params[0].requireGroupId(), false));
         } else {
           recipients.add(params[0]);
         }
 
         for (Recipient recipient : recipients) {
-          Log.i(TAG, "Loading identity for: " + recipient.requireAddress());
+          Log.i(TAG, "Loading identity for: " + recipient.getId());
           identityRecordList.add(identityDatabase.getIdentity(recipient.getId()));
         }
 
@@ -2023,9 +2023,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   @SuppressWarnings("SimplifiableIfStatement")
   private boolean isSelfConversation() {
     if (!TextSecurePreferences.isPushRegistered(this)) return false;
-    if (recipient.get().isGroup())                         return false;
+    if (recipient.get().isGroup())                     return false;
 
-    return Util.isOwnNumber(this, recipient.get().requireAddress());
+    return recipient.get().isLocalNumber();
   }
 
   private boolean isGroupConversation() {
@@ -2152,8 +2152,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       boolean         initiating     = threadId == -1;
       boolean         needsSplit     = !transport.isSms() && message.length() > transport.calculateCharacters(message).maxPrimaryMessageSize;
       boolean         isMediaMessage = attachmentManager.isAttachmentPresent() ||
-                                       recipient.isGroup()            ||
-                                       recipient.requireAddress().isEmail()        ||
+                                       recipient.isGroup()                     ||
+                                       recipient.getEmail().isPresent()        ||
                                        inputPanel.getQuote().isPresent()       ||
                                        linkPreviewViewModel.hasLinkPreview()   ||
                                        needsSplit;
@@ -2161,7 +2161,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       Log.i(TAG, "isManual Selection: " + sendButton.isManualSelection());
       Log.i(TAG, "forceSms: " + forceSms);
 
-      if ((recipient.isMmsGroup() || recipient.requireAddress().isEmail()) && !isMmsEnabled) {
+      if ((recipient.isMmsGroup() || recipient.getEmail().isPresent()) && !isMmsEnabled) {
         handleManualMmsRequired();
       } else if (!forceSms && identityRecords.isUnverified()) {
         handleUnverifiedRecipients();

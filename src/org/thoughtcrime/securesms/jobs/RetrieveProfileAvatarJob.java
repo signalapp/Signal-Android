@@ -85,7 +85,7 @@ public class RetrieveProfileAvatarJob extends BaseJob {
     }
 
     if (TextUtils.isEmpty(profileAvatar)) {
-      Log.w(TAG, "Removing profile avatar (no url) for: " + recipient.requireAddress().serialize());
+      Log.w(TAG, "Removing profile avatar (no url) for: " + recipient.getId().serialize());
       AvatarHelper.delete(context, recipient.getId());
       database.setProfileAvatar(recipient.getId(), profileAvatar);
       return;
@@ -107,7 +107,7 @@ public class RetrieveProfileAvatarJob extends BaseJob {
       decryptDestination.renameTo(AvatarHelper.getAvatarFile(context, recipient.getId()));
     } catch (PushNetworkException e) {
       if (e.getCause() instanceof NonSuccessfulResponseCodeException) {
-        Log.w(TAG, "Removing profile avatar (no image available) for: " + recipient.requireAddress().serialize());
+        Log.w(TAG, "Removing profile avatar (no image available) for: " + recipient.getId().serialize());
         AvatarHelper.delete(context, recipient.getId());
       } else {
         throw e;

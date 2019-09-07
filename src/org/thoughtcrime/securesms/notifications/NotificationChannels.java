@@ -41,8 +41,8 @@ public class NotificationChannels {
   private static final String TAG = NotificationChannels.class.getSimpleName();
 
   private static class Version {
-    static final int MESSAGES_CATEGORY      = 2;
-    static final int CALLS_PRIORITY_BUMP    = 3;
+    static final int MESSAGES_CATEGORY   = 2;
+    static final int CALLS_PRIORITY_BUMP = 3;
   }
 
   private static final int VERSION = 3;
@@ -147,7 +147,7 @@ public class NotificationChannels {
     VibrateState vibrateState     = recipient.getMessageVibrate();
     boolean      vibrationEnabled = vibrateState == VibrateState.DEFAULT ? TextSecurePreferences.isNotificationVibrateEnabled(context) : vibrateState == VibrateState.ENABLED;
     Uri          messageRingtone  = recipient.getMessageRingtone() != null ? recipient.getMessageRingtone() : getMessageRingtone(context);
-    String       displayName      = getChannelDisplayNameFor(context, recipient.getName(), recipient.getProfileName(), recipient.requireAddress().serialize());
+    String       displayName      = getChannelDisplayNameFor(context, recipient.getName(), recipient.getProfileName(), recipient.getSmsAddress().or(""));
 
     return createChannelFor(context, generateChannelIdFor(recipient), displayName, messageRingtone, vibrationEnabled);
   }
@@ -384,7 +384,7 @@ public class NotificationChannels {
     }
 
     NotificationChannel channel = new NotificationChannel(recipient.getNotificationChannel(),
-                                                          getChannelDisplayNameFor(context, recipient.getName(), recipient.getProfileName(), recipient.requireAddress().serialize()),
+                                                          getChannelDisplayNameFor(context, recipient.getName(), recipient.getProfileName(), recipient.getSmsAddress().or("")),
                                                           NotificationManager.IMPORTANCE_HIGH);
     channel.setGroup(CATEGORY_MESSAGES);
     notificationManager.createNotificationChannel(channel);

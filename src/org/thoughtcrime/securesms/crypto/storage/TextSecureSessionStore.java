@@ -3,8 +3,8 @@ package org.thoughtcrime.securesms.crypto.storage;
 import android.content.Context;
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.SessionDatabase;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -13,8 +13,10 @@ import org.whispersystems.libsignal.SignalProtocolAddress;
 import org.whispersystems.libsignal.protocol.CiphertextMessage;
 import org.whispersystems.libsignal.state.SessionRecord;
 import org.whispersystems.libsignal.state.SessionStore;
+import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 public class TextSecureSessionStore implements SessionStore {
 
@@ -54,12 +56,16 @@ public class TextSecureSessionStore implements SessionStore {
   @Override
   public boolean containsSession(SignalProtocolAddress address) {
     synchronized (FILE_LOCK) {
-      RecipientId   recipientId   = Recipient.external(context, address.getName()).getId();
-      SessionRecord sessionRecord = DatabaseFactory.getSessionDatabase(context).load(recipientId, address.getDeviceId());
+      if (DatabaseFactory.getRecipientDatabase(context).containsPhoneOrUuid(address.getName())) {
+        RecipientId   recipientId   = Recipient.external(context, address.getName()).getId();
+        SessionRecord sessionRecord = DatabaseFactory.getSessionDatabase(context).load(recipientId, address.getDeviceId());
 
-      return sessionRecord != null &&
-             sessionRecord.getSessionState().hasSenderChain() &&
-             sessionRecord.getSessionState().getSessionVersion() == CiphertextMessage.CURRENT_VERSION;
+        return sessionRecord != null &&
+               sessionRecord.getSessionState().hasSenderChain() &&
+               sessionRecord.getSessionState().getSessionVersion() == CiphertextMessage.CURRENT_VERSION;
+      } else {
+        return false;
+      }
     }
   }
 
@@ -95,7 +101,7 @@ public class TextSecureSessionStore implements SessionStore {
       for (SessionDatabase.SessionRow row : sessions) {
         if (row.getDeviceId() != address.getDeviceId()) {
           row.getRecord().archiveCurrentState();
-          storeSession(new SignalProtocolAddress(Recipient.resolved(row.getRecipientId()).requireAddress().serialize(), row.getDeviceId()), row.getRecord());
+          storeSession(new SignalProtocolAddress(Recipient.resolved(row.getRecipientId()).requireServiceId(), row.getDeviceId()), row.getRecord());
         }
       }
     }
@@ -107,7 +113,7 @@ public class TextSecureSessionStore implements SessionStore {
 
       for (SessionDatabase.SessionRow row : sessions) {
         row.getRecord().archiveCurrentState();
-        storeSession(new SignalProtocolAddress(Recipient.resolved(row.getRecipientId()).requireAddress().serialize(), row.getDeviceId()), row.getRecord());
+        storeSession(new SignalProtocolAddress(Recipient.resolved(row.getRecipientId()).requireServiceId(), row.getDeviceId()), row.getRecord());
       }
     }
   }

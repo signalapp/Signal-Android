@@ -10,9 +10,9 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
-import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.IdentityDatabase.VerifiedStatus;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -22,6 +22,7 @@ import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.VerifiedMessage;
+import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
 import java.io.IOException;
@@ -99,9 +100,9 @@ public class MultiDeviceVerifiedUpdateJob extends BaseJob {
 
       SignalServiceMessageSender    messageSender        = ApplicationDependencies.getSignalServiceMessageSender();
       Recipient                     recipient            = Recipient.resolved(destination);
-      Address                       canonicalDestination = recipient.requireAddress();
       VerifiedMessage.VerifiedState verifiedState        = getVerifiedState(verifiedStatus);
-      VerifiedMessage               verifiedMessage      = new VerifiedMessage(canonicalDestination.toPhoneString(), new IdentityKey(identityKey, 0), verifiedState, timestamp);
+      SignalServiceAddress          verifiedAddress      = RecipientUtil.toSignalServiceAddress(context, recipient);
+      VerifiedMessage               verifiedMessage      = new VerifiedMessage(verifiedAddress, new IdentityKey(identityKey, 0), verifiedState, timestamp);
 
       messageSender.sendMessage(SignalServiceSyncMessage.forVerified(verifiedMessage),
                                 UnidentifiedAccessUtil.getAccessFor(context, recipient));

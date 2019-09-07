@@ -156,7 +156,7 @@ public class IncomingMessageObserver implements ConstraintObserver.Notifier {
               Log.i(TAG, "Reading message...");
               localPipe.read(REQUEST_TIMEOUT_MINUTES, TimeUnit.MINUTES,
                              envelope -> {
-                               Log.i(TAG, "Retrieved envelope! " + String.valueOf(envelope.getSource()));
+                               Log.i(TAG, "Retrieved envelope! " + envelope.getSourceIdentifier());
                                try (Processor processor = ApplicationDependencies.getIncomingMessageProcessor().acquire()) {
                                  processor.processEnvelope(envelope);
                                }

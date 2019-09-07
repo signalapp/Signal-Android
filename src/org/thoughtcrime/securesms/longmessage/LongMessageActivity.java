@@ -131,7 +131,7 @@ public class LongMessageActivity extends PassphraseRequiredActionBarActivity {
         getSupportActionBar().setTitle(getString(R.string.LongMessageActivity_your_message));
       } else {
         Recipient recipient = message.get().getMessageRecord().getRecipient();
-        String    name      = Util.getFirstNonEmpty(recipient.getName(), recipient.getProfileName(), recipient.requireAddress().serialize()) ;
+        String    name      = Util.getFirstNonEmpty(recipient.getName(), recipient.getProfileName(), recipient.getE164().orNull(), recipient.getEmail().orNull()) ;
         getSupportActionBar().setTitle(getString(R.string.LongMessageActivity_message_from_s, name));
       }
 

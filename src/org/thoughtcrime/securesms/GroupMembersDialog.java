@@ -32,7 +32,7 @@ public class GroupMembersDialog extends AsyncTask<Void, Void, List<Recipient>> {
 
   @Override
   protected List<Recipient> doInBackground(Void... params) {
-    return DatabaseFactory.getGroupDatabase(context).getGroupMembers(recipient.requireAddress().toGroupString(), true);
+    return DatabaseFactory.getGroupDatabase(context).getGroupMembers(recipient.requireGroupId(), true);
   }
 
   @Override
@@ -90,7 +90,7 @@ public class GroupMembersDialog extends AsyncTask<Void, Void, List<Recipient>> {
 
     public GroupMembers(List<Recipient> recipients) {
       for (Recipient recipient : recipients) {
-        if (isLocalNumber(recipient)) {
+        if (recipient.isLocalNumber()) {
           members.push(recipient);
         } else {
           members.add(recipient);
@@ -102,7 +102,7 @@ public class GroupMembersDialog extends AsyncTask<Void, Void, List<Recipient>> {
       List<String> recipientStrings = new LinkedList<>();
 
       for (Recipient recipient : members) {
-        if (isLocalNumber(recipient)) {
+        if (recipient.isLocalNumber()) {
           recipientStrings.add(context.getString(R.string.GroupMembersDialog_me));
         } else {
           String name = recipient.toShortString();
@@ -120,10 +120,6 @@ public class GroupMembersDialog extends AsyncTask<Void, Void, List<Recipient>> {
 
     public Recipient get(int index) {
       return members.get(index);
-    }
-
-    private boolean isLocalNumber(Recipient recipient) {
-      return Util.isOwnNumber(context, recipient.requireAddress());
     }
   }
 }

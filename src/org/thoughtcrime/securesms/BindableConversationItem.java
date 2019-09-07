@@ -5,7 +5,6 @@ import androidx.annotation.Nullable;
 import android.view.View;
 
 import org.thoughtcrime.securesms.contactshare.Contact;
-import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;

@@ -2,6 +2,8 @@ package org.thoughtcrime.securesms.jobs;
 
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import android.text.TextUtils;
 
 import org.thoughtcrime.securesms.ApplicationContext;
@@ -16,6 +18,7 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.service.IncomingMessageObserver;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.IdentityUtil;
@@ -86,21 +89,21 @@ public class RetrieveProfileJob extends BaseJob {
   public void onCanceled() {}
 
   private void handleIndividualRecipient(Recipient recipient) throws IOException {
-     if (recipient.requireAddress().isPhone()) handlePhoneNumberRecipient(recipient);
-     else                                  Log.w(TAG, "Skipping fetching profile of non-phone recipient");
+     if (recipient.hasServiceIdentifier()) handlePhoneNumberRecipient(recipient);
+     else                                  Log.w(TAG, "Skipping fetching profile of non-Signal recipient");
   }
 
   private void handlePhoneNumberRecipient(Recipient recipient) throws IOException {
-    String                       number             = recipient.requireAddress().toPhoneString();
+    SignalServiceAddress         address            = RecipientUtil.toSignalServiceAddress(context, recipient);
     Optional<UnidentifiedAccess> unidentifiedAccess = getUnidentifiedAccess(recipient);
 
     SignalServiceProfile profile;
 
     try {
-      profile = retrieveProfile(number, unidentifiedAccess);
+      profile = retrieveProfile(address, unidentifiedAccess);
     } catch (NonSuccessfulResponseCodeException e) {
       if (unidentifiedAccess.isPresent()) {
-        profile = retrieveProfile(number, Optional.absent());
+        profile = retrieveProfile(address, Optional.absent());
       } else {
         throw e;
       }
@@ -109,18 +112,19 @@ public class RetrieveProfileJob extends BaseJob {
     setIdentityKey(recipient, profile.getIdentityKey());
     setProfileName(recipient, profile.getName());
     setProfileAvatar(recipient, profile.getAvatar());
+    setProfileCapabilities(recipient, profile.getCapabilities());
     setUnidentifiedAccessMode(recipient, profile.getUnidentifiedAccess(), profile.isUnrestrictedUnidentifiedAccess());
   }
 
   private void handleGroupRecipient(Recipient group) throws IOException {
-    List<Recipient> recipients = DatabaseFactory.getGroupDatabase(context).getGroupMembers(group.requireAddress().toGroupString(), false);
+    List<Recipient> recipients = DatabaseFactory.getGroupDatabase(context).getGroupMembers(group.requireGroupId(), false);
 
     for (Recipient recipient : recipients) {
       handleIndividualRecipient(recipient);
     }
   }
 
-  private SignalServiceProfile retrieveProfile(@NonNull String number, Optional<UnidentifiedAccess> unidentifiedAccess)
+  private SignalServiceProfile retrieveProfile(@NonNull SignalServiceAddress address, Optional<UnidentifiedAccess> unidentifiedAccess)
       throws IOException
   {
     SignalServiceMessagePipe authPipe         = IncomingMessageObserver.getPipe();
@@ -130,14 +134,14 @@ public class RetrieveProfileJob extends BaseJob {
 
     if (pipe != null) {
       try {
-        return pipe.getProfile(new SignalServiceAddress(number), unidentifiedAccess);
+        return pipe.getProfile(address, unidentifiedAccess);
       } catch (IOException e) {
         Log.w(TAG, e);
       }
     }
 
     SignalServiceMessageReceiver receiver = ApplicationDependencies.getSignalServiceMessageReceiver();
-    return receiver.retrieveProfile(new SignalServiceAddress(number), unidentifiedAccess);
+    return receiver.retrieveProfile(address, unidentifiedAccess);
   }
 
   private void setIdentityKey(Recipient recipient, String identityKeyValue) {
@@ -157,7 +161,7 @@ public class RetrieveProfileJob extends BaseJob {
         return;
       }
 
-      IdentityUtil.saveIdentity(context, recipient.requireAddress().toPhoneString(), identityKey);
+      IdentityUtil.saveIdentity(context, recipient.requireServiceId(), identityKey);
     } catch (InvalidKeyException | IOException e) {
       Log.w(TAG, e);
     }
@@ -223,6 +227,14 @@ public class RetrieveProfileJob extends BaseJob {
     if (!Util.equals(profileAvatar, recipient.getProfileAvatar())) {
       ApplicationDependencies.getJobManager().add(new RetrieveProfileAvatarJob(recipient, profileAvatar));
     }
+  }
+
+  private void setProfileCapabilities(@NonNull Recipient recipient, @Nullable SignalServiceProfile.Capabilities capabilities) {
+    if (capabilities == null) {
+      return;
+    }
+
+    DatabaseFactory.getRecipientDatabase(context).setUuidSupported(recipient.getId(), capabilities.isUuid());
   }
 
   private Optional<UnidentifiedAccess> getUnidentifiedAccess(@NonNull Recipient recipient) {

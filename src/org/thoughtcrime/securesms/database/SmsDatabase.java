@@ -570,7 +570,7 @@ public class SmsDatabase extends MessagingDatabase {
     if (message.getGroupId() == null) {
       groupRecipient = null;
     } else {
-      RecipientId id = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(message.getGroupId().serialize());
+      RecipientId id = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(message.getGroupId());
       groupRecipient = Recipient.resolved(id);
     }
 

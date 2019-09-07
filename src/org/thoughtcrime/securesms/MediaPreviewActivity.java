@@ -52,7 +52,6 @@ import androidx.viewpager.widget.ViewPager;
 import org.thoughtcrime.securesms.animation.DepthPageTransformer;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.components.viewpager.ExtendedOnPageChangedListener;
-import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.MediaDatabase;
 import org.thoughtcrime.securesms.database.MediaDatabase.MediaRecord;
 import org.thoughtcrime.securesms.database.loaders.PagingMediaLoader;
