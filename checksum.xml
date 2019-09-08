@@ -1,0 +1,529 @@
+<?xml version='1.0' encoding='utf-8'?>
+<dependency-verification version='1'>
+  <trust-requirement pgp='GROUP' checksum='NONE' />
+  <ignored-keys />
+  <trusted-keys>
+    <trusted-key id='9f459ef7be09392d' group='com.airbnb.android' />
+    <trusted-key id='5ed22f661bbf0acc' group='com.almworks.sqlite4java' />
+    <trusted-key id='0b2727a4910d40ed' group='com.annimon' />
+    <trusted-key id='17cee198c3b9aead' group='com.davemorrissey.labs' />
+    <trusted-key id='c9fbaa83a8753994' group='com.fasterxml.jackson.core' />
+    <trusted-key id='26e74b6874aee127' group='com.github.bumptech.glide' />
+    <trusted-key id='379ce192d401ab61' group='com.google.android' />
+    <trusted-key id='840b2bf6da8ed8c8' group='com.google.android.apps.common.testing.accessibility.framework' />
+    <trusted-key id='b0f3710fa64900e7' group='com.google.auto.value' />
+    <trusted-key id='59a252fb1199d873' group='com.google.code.findbugs' />
+    <trusted-key id='8e3f0de7ae354651' group='com.google.code.gson' />
+    <trusted-key id='8e3f0de7ae354651' group='com.google.dexmaker' />
+    <trusted-key id='9a259c7ee636c5ed' group='com.google.errorprone' />
+    <trusted-key id='bf935c771a8474f8' group='com.google.errorprone' />
+    <trusted-key id='abe9f3126bb741c1' group='com.google.guava' />
+    <trusted-key id='f6d4a1d411e9d1ae' group='com.google.guava' />
+    <trusted-key id='29579f18fa8fd93b' group='com.google.j2objc' />
+    <trusted-key id='abe9f3126bb741c1' group='com.google.jimfs' />
+    <trusted-key id='3808651185005c43' group='com.google.protobuf' />
+    <trusted-key id='a7764f502a938c99' group='com.google.protobuf' />
+    <trusted-key id='cc6346f2ce3872d9' group='com.google.protobuf' />
+    <trusted-key id='f6ce9695c9318406' group='com.google.zxing' />
+    <trusted-key id='c4fac33068aaee7c' group='com.googlecode.ez-vcard' />
+    <trusted-key id='40a3c4432bd7308c' group='com.googlecode.juniversalchardet' />
+    <trusted-key id='5d95290d111cf7ff' group='com.googlecode.libphonenumber' />
+    <trusted-key id='44ce7bf2825ea2cd' group='com.ibm.icu' />
+    <trusted-key id='463d4790a225b446' group='com.jpardogo.materialtabstrip' />
+    <trusted-key id='593ae58090750040' group='com.klinkerapps' />
+    <trusted-key id='8e92437c53fb8d71' group='com.makeramen' />
+    <trusted-key id='a663ea51081b9910' group='com.melnykov' />
+    <trusted-key id='80c08b1c29100955' group='com.nineoldandroids' />
+    <trusted-key id='39017fcf843cfa8a' group='com.pnikosis' />
+    <trusted-key id='80c08b1c29100955' group='com.squareup' />
+    <trusted-key id='8e3f0de7ae354651' group='com.squareup' />
+    <trusted-key id='80c08b1c29100955' group='com.squareup.assertj' />
+    <trusted-key id='8671a8df71296252' group='com.squareup.okhttp3' />
+    <trusted-key id='8671a8df71296252' group='com.squareup.okio' />
+    <trusted-key id='6425559c47cc79c4' group='com.sun.activation' />
+    <trusted-key id='021e3be573f727ed' group='com.sun.istack' />
+    <trusted-key id='021e3be573f727ed' group='com.sun.xml.fastinfoset' />
+    <trusted-key id='379ce192d401ab61' group='com.takisoft.fix' />
+    <trusted-key id='602ec18d20c4661c' group='com.thoughtworks.xstream' />
+    <trusted-key id='379ce192d401ab61' group='com.tomergoldst.android' />
+    <trusted-key id='86fdc7e2a11262cb' group='commons-codec' />
+    <trusted-key id='86fdc7e2a11262cb' group='commons-io' />
+    <trusted-key id='a41f13c999945293' group='commons-logging' />
+    <trusted-key id='5e2f2b3d474efe6b' group='it.unimi.dsi' />
+    <trusted-key id='6425559c47cc79c4' group='javax.annotation' />
+    <trusted-key id='6e02af115075d251' group='javax.xml.bind' />
+    <trusted-key id='efe8086f9e93774e' group='junit' />
+    <trusted-key id='6f1c5b0e0dcfbd1e' group='me.leolin' />
+    <trusted-key id='379ce192d401ab61' group='mobi.upod' />
+    <trusted-key id='0da8a5ec02d11ead' group='net.sf.jopt-simple' />
+    <trusted-key id='be096e29edb8d141' group='net.sf.proguard' />
+    <trusted-key id='6b1b008864323b92' group='org.antlr' />
+    <trusted-key id='8614d6ab265b4c63' group='org.apache.ant' />
+    <trusted-key id='a2115ae15f6b8b72' group='org.apache.commons' />
+    <trusted-key id='7c25280eae63ebe5' group='org.apache.httpcomponents' />
+    <trusted-key id='30e6f80434a72a7f' group='org.apache.maven' />
+    <trusted-key id='c7ca19b7b620d787' group='org.apache.maven' />
+    <trusted-key id='30e6f80434a72a7f' group='org.apache.maven.wagon' />
+    <trusted-key id='cee8b79520334b30' group='org.assertj' />
+    <trusted-key id='cf84722dfc242eb9' group='org.assertj' />
+    <trusted-key id='b341ddb020fcb6ab' group='org.bouncycastle' />
+    <trusted-key id='b16698a4adf4d638' group='org.checkerframework' />
+    <trusted-key id='41321490758aad6f' group='org.codehaus.groovy' />
+    <trusted-key id='6525fd70cc303655' group='org.codehaus.mojo' />
+    <trusted-key id='873a8e86b4372146' group='org.codehaus.mojo' />
+    <trusted-key id='f80221429c054a42' group='org.conscrypt' />
+    <trusted-key id='102e05d8da6c286d' group='org.glassfish.jaxb' />
+    <trusted-key id='0c907617691418ae' group='org.greenrobot' />
+    <trusted-key id='a6adfc93ef34893e' group='org.hamcrest' />
+    <trusted-key id='10066a9707090cf9' group='org.javassist' />
+    <trusted-key id='e93671c7272b7b3f' group='org.jdom' />
+    <trusted-key id='bcf4173966770193' group='org.jetbrains' />
+    <trusted-key id='98fe03a974ce0a0b' group='org.jetbrains.kotlin' />
+    <trusted-key id='f42e87f9665015c9' group='org.jsoup' />
+    <trusted-key id='021e3be573f727ed' group='org.jvnet.staxex' />
+    <trusted-key id='a1b4460d8ba7b9af' group='org.mockito' />
+    <trusted-key id='7c7d8456294423ba' group='org.objenesis' />
+    <trusted-key id='368557390486f2c5' group='org.powermock' />
+    <trusted-key id='a40e24b5b408dbd5' group='org.robolectric' />
+    <trusted-key id='0308fc86101bfc88' group='org.signal' />
+    <trusted-key id='0fe90b60cd3dd8c8' group='org.signal' />
+    <trusted-key id='1d0810cd61ae3691' group='org.signal' />
+    <trusted-key id='72385ff0af338d52' group='org.threeten' />
+    <trusted-key id='0308fc86101bfc88' group='org.whispersystems' />
+    <trusted-key id='1d0810cd61ae3691' group='org.whispersystems' />
+    <trusted-key id='f65d24a32b10829e' group='org.whispersystems' />
+    <trusted-key id='e5883febd26c0c65' group='pl.tajchert' />
+    <trusted-key id='abaa89fde71d23dd' group='se.emilsjolander' />
+  </trusted-keys>
+  <dependencies>
+    <dependency group='androidx.activity' module='activity' version='1.0.0-beta01' extension='aar'>
+      <sha512>660B0E8CCFC7E15E6BA1C6EF961A43E042A637713BF21C3707E700349AE5E406CFFB5E444381066077E4BC16E2B5E88D307630C5A45206FBA0E866F315961441</sha512>
+    </dependency>
+    <dependency group='androidx.annotation' module='annotation' version='1.1.0'>
+      <sha512>30BA34647D0838000E0DE4CAB517987BF976AB876CA0FCBCCAD74E37C19426C9F5D51D750F34DF17361051B40193B64320D8422233C8ED59BDB7493CC8539DA1</sha512>
+    </dependency>
+    <dependency group='androidx.annotation' module='annotation' version='1.1.0-rc01'>
+      <sha512>30BA34647D0838000E0DE4CAB517987BF976AB876CA0FCBCCAD74E37C19426C9F5D51D750F34DF17361051B40193B64320D8422233C8ED59BDB7493CC8539DA1</sha512>
+    </dependency>
+    <dependency group='androidx.appcompat' module='appcompat-resources' version='1.1.0-beta01' extension='aar'>
+      <sha512>85EE8F07195CE2840406017677E4073D4EB36E9EFC42D0B7E78C1067A2D131C14D61CAF47776F27321CFFA8600A62E8F5F3C2F6713C7AA59E99402ECE52E82F7</sha512>
+    </dependency>
+    <dependency group='androidx.appcompat' module='appcompat' version='1.1.0-beta01' extension='aar'>
+      <sha512>A00E00F5ED8E05E1B56D097013641D9B14EB5EEDEF0A26C56D2BD603042FF2786D9FB931D0718414638CAF12EC0EB6BCBEC0DBE4C90DB433205BFC42DC6A85EF</sha512>
+    </dependency>
+    <dependency group='androidx.arch.core' module='core-common' version='2.1.0-beta01'>
+      <sha512>E90A8019DAFEC7CF795D36C14470511983B8FB53343F95C0169A99D110F4D5BD9CC70498D8084ABCDF8D9D19699622B7B6EA4E3681CF46BE9ED86E97F22EE196</sha512>
+    </dependency>
+    <dependency group='androidx.arch.core' module='core-runtime' version='2.0.0' extension='aar'>
+      <sha512>33DBA8D293AB69B84EF87941BA8125CE3D8A1308D40D9331941DE92BA89A4759876F798F83B31A559CB8993CCAAF4D0D9D1C371E8471E0C85B41AA4757A41642</sha512>
+    </dependency>
+    <dependency group='androidx.asynclayoutinflater' module='asynclayoutinflater' version='1.0.0' extension='aar'>
+      <sha512>D99B63E37CD03BA554C8D8B53F044875089269FD910ABF642D8062D8586A2AA8DD3467579BADD656FA3265D8A2A826D796D156EBA5122D83BE36A7DEBDC5100E</sha512>
+    </dependency>
+    <dependency group='androidx.camera' module='camera-camera2' version='1.0.0-alpha02' extension='aar'>
+      <sha512>E343EA5947254502C5438EE4240F328F504D0E6AC5BB8871F5B11FF35D707C497A271FE1348DAD76993FEC6C5C513CF3580104B7FDB01C0E4113793DE3B8E2B3</sha512>
+    </dependency>
+    <dependency group='androidx.camera' module='camera-core' version='1.0.0-alpha02' extension='aar'>
+      <sha512>A400EE2E7018D58F582612E16609137F61C3633966CFD18E23465D0AB43CB1E741160F158BCEC87B55FEC3183CEC54369522725C0F64E7320E23E79DA2EFA73F</sha512>
+    </dependency>
+    <dependency group='androidx.cardview' module='cardview' version='1.0.0' extension='aar'>
+      <sha512>46F60B7BB2DCD5B379227705FE774FEF33F931D463685CD96D6D9D7DFC43456183787E5F9420532495A9298233CF0B9D38317A5C5675139C97466E1DAB69B71C</sha512>
+    </dependency>
+    <dependency group='androidx.collection' module='collection' version='1.1.0-rc01'>
+      <sha512>16BEA47B0147E000B7EB6781FAB38FD85F736B56CF5E28EF9A6547FB17F4CA9DA569CF15FECC2169DD521055476442E481D45DC0CB7A3253535770E48C2CD7F2</sha512>
+    </dependency>
+    <dependency group='androidx.concurrent' module='concurrent-listenablefuture-callback' version='1.0.0-beta01'>
+      <sha512>AF81F69165E3770287D7562ACB4CF4CF1270F2680C5E666B00ACC81F7ECD815D87E471D151D11211EB8A0FCFCC03B3CC2C8E4D1E568C38151517652CF32DDDDB</sha512>
+    </dependency>
+    <dependency group='androidx.concurrent' module='concurrent-listenablefuture' version='1.0.0-beta01'>
+      <sha512>FDA1FB3E1FA166BCF16459238EBD0A02BCA82217B5EFD5E26D26A85B62F986625A23E988F9BFF2FD8400473FF4D2126E73CCAC09DA9561D71899F855066B8C26</sha512>
+    </dependency>
+    <dependency group='androidx.constraintlayout' module='constraintlayout-solver' version='1.1.3'>
+      <sha512>C825734F9440B5DC0475C3651B2779F7F1775E4C36C2B529246F56574B26D5EAA2F2469FE5E116C42C5B3E860CBFBFB41FAF53CB299765B7A67D0D58FD864DDC</sha512>
+    </dependency>
+    <dependency group='androidx.constraintlayout' module='constraintlayout' version='1.1.3' extension='aar'>
+      <sha512>CBAC44CDF12C3E81E87C44DF4B00DC16ABF56F0B2EAACD441CB33F4DC997FEC0DDBAA67A862DE596F8F7ABC06EB41710AC3F13F73950AA7553647FEBD17F5A2C</sha512>
+    </dependency>
+    <dependency group='androidx.coordinatorlayout' module='coordinatorlayout' version='1.0.0' extension='aar'>
+      <sha512>AAA3894A468C872DB96071536023CE54DDC8B35639539087817114F6AEDD06A2BB5182E6851ECF4F33F5D72EEDC49DAF605F928AD1344AFA9015B266B5AC6AD7</sha512>
+    </dependency>
+    <dependency group='androidx.core' module='core' version='1.1.0-rc01' extension='aar'>
+      <sha512>15A5094A0FC6B9764DBB16E259C93E97D4B039A29C57C6D87E8D0B2A4349C11639880B9E53A938EAA057E733FBED97F0EBE1A24071EABC5FA0BF7956CD2BE1E7</sha512>
+    </dependency>
+    <dependency group='androidx.cursoradapter' module='cursoradapter' version='1.0.0' extension='aar'>
+      <sha512>176AC8E4604749EF5BB7F444C24ADD479F1D2CC5CAAB1046BBB35F937BF1CFC4329786CD1FDAC3D6EE92FEC78CB55AB89E5169AE5C6EE24DD4D20243AA867891</sha512>
+    </dependency>
+    <dependency group='androidx.customview' module='customview' version='1.0.0' extension='aar'>
+      <sha512>E30966E3E5BDFCA7B6189D96D23AF4B9224FF442634CE7957AE8B4975B3E9AE598F2CFC898B5844E6C7003533FD3D0715D6B59ED8CC86B1889D799C805321997</sha512>
+    </dependency>
+    <dependency group='androidx.databinding' module='databinding-common' version='3.3.2'>
+      <sha512>3EADE3B5650F50F17F1C9A264CC776A6B17A17007F45B682FCC3012ACAEC074381F4A4306546DC93E983843EDE38DB85CFE017BE46C1111893F0BBD9DDFF22EF</sha512>
+    </dependency>
+    <dependency group='androidx.databinding' module='databinding-compiler-common' version='3.3.2'>
+      <sha512>8CFCD41283517BEDFA30A0522E3F4233D99B2D189CEA7D0B2BB76C40DE28528018E5B1E7F37E522BBF7F3C93E5FFC5F3F4EE0B3338763650F033467ED695A492</sha512>
+    </dependency>
+    <dependency group='androidx.documentfile' module='documentfile' version='1.0.0' extension='aar'>
+      <sha512>41691B5F8E0397E03A73AC93B5B44A16E1E3B786433DA4C0F062826486DAB7D955A95F15F71967C6DC5B53093261574C91C84020A22FE559625EA4FFFAE6552F</sha512>
+    </dependency>
+    <dependency group='androidx.drawerlayout' module='drawerlayout' version='1.0.0' extension='aar'>
+      <sha512>C3A92947B15AF89D55A2268526579B7AD43CEFDE589F8824DE0A9BF0DD1E3058E1853C046BEB64BE2DF6A3A74DDF5BA494BAFAF534E81C963B6FA9270E05A8EF</sha512>
+    </dependency>
+    <dependency group='androidx.exifinterface' module='exifinterface' version='1.0.0' extension='aar'>
+      <sha512>7698B8F3A6D21622AE5CA18A3B3B2AF4B4DFD7360B4107155CD8AD09AA3E508E41D16A3F3720BDF4DC09615917C047F8DC242FB3208D922D397FA3C49136FE81</sha512>
+    </dependency>
+    <dependency group='androidx.fragment' module='fragment' version='1.1.0-beta01' extension='aar'>
+      <sha512>26BD685E1AB07B87074945CC77040CC9FA897C45B34FE01511CF38CE8BB5E8C326872DB0B66B283234CF8C74DE12C3CDB9FA7A5998DDC39ED8DC8F48D4656142</sha512>
+    </dependency>
+    <dependency group='androidx.gridlayout' module='gridlayout' version='1.0.0' extension='aar'>
+      <sha512>4A5C5AE305DA9ED49C8992FAEB4A942DA1BBE078C5EA6DFE3F160756E245326EC9DA1776AEE8D22A324042FC845C70DE93E5950EDFF4ACEB4DA27026DE8B33E1</sha512>
+    </dependency>
+    <dependency group='androidx.interpolator' module='interpolator' version='1.0.0' extension='aar'>
+      <sha512>DE3FEF5EACD68CA5E263BB32D795427630796B6CF219926F7633FF88F8C5BE34BD6A767666B3342518F69A0BD371D7C69265312193F41877A8DFB72840201A3F</sha512>
+    </dependency>
+    <dependency group='androidx.legacy' module='legacy-preference-v14' version='1.0.0' extension='aar'>
+      <sha512>20FD39CA2D673B065561FD40931037D906BEDFA26E7C2D320D67969C8129AB6DF853C731ECDFDF4340EB4F9B79BC70F022B3A885CEEB95CCEA716DDF9690A066</sha512>
+    </dependency>
+    <dependency group='androidx.legacy' module='legacy-support-core-ui' version='1.0.0' extension='aar'>
+      <sha512>BCC380909633D4E5B0B26170C6E6CE3F751BB6D2D9DAC9E50B68AD02A0FB461162C730EEF454E72737317F0021AB797716E1D4990EA059E38168087F4FAC9D89</sha512>
+    </dependency>
+    <dependency group='androidx.legacy' module='legacy-support-core-utils' version='1.0.0' extension='aar'>
+      <sha512>2106CB974FE0454B5FD57185BEBEE5296BD1385E8CCBB0D22DD78EEC68C1EA7883F821C194C074F3CAE88944D2823C8B8A74AEDA63AFEB6BA7BE0ACC9D0E301B</sha512>
+    </dependency>
+    <dependency group='androidx.legacy' module='legacy-support-v13' version='1.0.0' extension='aar'>
+      <sha512>10637BE8C54E7B553ECC6B65BD8E0989FF389437EDCA8659A8C478A8CE11993F147353BE4CD74BE3DDC8CBF719A79A9E0BF67FAABC7095F0C871E04802A09C9E</sha512>
+    </dependency>
+    <dependency group='androidx.legacy' module='legacy-support-v4' version='1.0.0' extension='aar'>
+      <sha512>D25824E1A0FB7AE5D39637A11B0D86A904A2C2F0BF142310DAE2603ECCAC30FCAFBB1DD01589A5DAFD7467484A2E44C5A7BFE55E3F18AC8B9ADC8A52E3C9F0DE</sha512>
+    </dependency>
+    <dependency group='androidx.lifecycle' module='lifecycle-common-java8' version='2.0.0'>
+      <sha512>E0154335E5375E031279031B3B94785106AF3C9F0CFA36C429B668108C75225671F94E84E505867CCBBB197944214EF8E4B1D95E2F3B329A534EB40AC08CBF7D</sha512>
+    </dependency>
+    <dependency group='androidx.lifecycle' module='lifecycle-common' version='2.1.0-beta01'>
+      <sha512>85C075BBAC011B107CF45F03469293B37B6ABF83C7F269C80194B6746B93B4CADC499AAB8970B69052F61863A33D0E77D141ECC1851938E7ECBD101D0C1B3255</sha512>
+    </dependency>
+    <dependency group='androidx.lifecycle' module='lifecycle-extensions' version='2.0.0' extension='aar'>
+      <sha512>D7542432F9385809A7B2D41864673CCCDFE627382BF2D96F7973C5409DBB3C9036353B5C52971C67A80FA5598AAF20B313CFE7F1C1449126DB1500AA910588AA</sha512>
+    </dependency>
+    <dependency group='androidx.lifecycle' module='lifecycle-livedata-core' version='2.0.0' extension='aar'>
+      <sha512>A7056B9C6632C1731E2D07B3C8A7D59D636F1F9D39FB50185CD96C6554AD6C0BC80C85CA45EBD702B0DC3A34ADCBFBBDE42E9F6BC407019E4AC94667D71D3638</sha512>
+    </dependency>
+    <dependency group='androidx.lifecycle' module='lifecycle-livedata' version='2.0.0' extension='aar'>
+      <sha512>233B93711639737B48D585EAE9D1F6C3AE02CF5C5AB0A41E7ABA259281376EF7E3D634301C8872516217797211E6407A5B85292FFCA23089A43800CF8429E093</sha512>
+    </dependency>
+    <dependency group='androidx.lifecycle' module='lifecycle-process' version='2.0.0' extension='aar'>
+      <sha512>D4DC052A2292D078BCFFF70EF58DC20348F4453EBBB7203EDFBF35AB8DB282C6317CC22CA790712AB8C4C78E223D1D3E92235BFA45A85BD575700C8146EE9647</sha512>
+    </dependency>
+    <dependency group='androidx.lifecycle' module='lifecycle-runtime' version='2.1.0-beta01' extension='aar'>
+      <sha512>6511B436F1B2D43E334179C21F3C0F7C6ED3247BDC461E239A5D5F18ACDF83045E35B3BC07F4B8404864023CDFB8145EB3703E502A3BD238AF478FC26F0FC3E2</sha512>
+    </dependency>
+    <dependency group='androidx.lifecycle' module='lifecycle-service' version='2.0.0' extension='aar'>
+      <sha512>3FBCDDC3D552CA4EBFE2F81C1F721F304D7524B1006253CBFC39A31E184BFA831DE1B22488E3BD2750AA9EFD5F6397D8F43AECBE2A3C30743894980A701EA7AD</sha512>
+    </dependency>
+    <dependency group='androidx.lifecycle' module='lifecycle-viewmodel' version='2.1.0-beta01' extension='aar'>
+      <sha512>F8D159CD815F8833CA82C92FC458CFBF92ECFA7303459C4FF7FC8B9798EC5DDA54DD0784D87935C433BBE30DADE6FB3F43E1895926AF058C9C94D32E685B4DAD</sha512>
+    </dependency>
+    <dependency group='androidx.loader' module='loader' version='1.0.0' extension='aar'>
+      <sha512>DDE64673772F75349905251E8914BE29836A267317B22E123017429D7BEA3DABA579950D9D646FCF214126455FB0072EF4EAD872E250115025B50D042A28EFF6</sha512>
+    </dependency>
+    <dependency group='androidx.localbroadcastmanager' module='localbroadcastmanager' version='1.0.0' extension='aar'>
+      <sha512>A3887D8711DD8A5953B38B1BE61F1F4CA4EA938E7B9633134F40556E438442B0E41E14C2E797F98F566D055CFE9D1FFA29EEA57B00B932C6CD0EFC0CBAD0A1D</sha512>
+    </dependency>
+    <dependency group='androidx.media' module='media' version='1.0.0' extension='aar'>
+      <sha512>2D638BBF651B6B2BB2D4A7BB239BAF6F25E5D73EA2EEEB21DE526AFAFDA3EE4825DD778B84219698AB47F9F827584AC0A49EF9CDE48110BFEB3E13613D16A9F8</sha512>
+    </dependency>
+    <dependency group='androidx.multidex' module='multidex-instrumentation' version='2.0.0' extension='aar'>
+      <sha512>6E31FFD52B62F57379D5BB6B59545DE16D45557096AA9C4E1B598FA4F008FCD2F36BE4877A9500B43D5B5197A8F4A6B5A9C72A471B08A2133E01CDF81997C99</sha512>
+    </dependency>
+    <dependency group='androidx.multidex' module='multidex' version='2.0.1' extension='aar'>
+      <sha512>275EFCD8084457AB73700A9F0DB4CA346E8157C7B3AD2CE7A06E9A161526E618C8A16C6FCF76137D8C7B390DE4CDFB761EBC22AE1FC3751593C3DE3727CF58DD</sha512>
+    </dependency>
+    <dependency group='androidx.preference' module='preference' version='1.0.0' extension='aar'>
+      <sha512>56F6F759E0307C726D2793850590E75E4B6149FE74672A958397D3A7C65628DE225F6DD0094A6C8502A8E751526B77BE975AB9EF3364D479141505311CD3830B</sha512>
+    </dependency>
+    <dependency group='androidx.print' module='print' version='1.0.0' extension='aar'>
+      <sha512>6BDDDCD5E06EDB84D5B09867BD4A968E9DC7CAEB61AB8E566C50C5813240A65B28F6094AFB5A6946B6985A961DC3D026E12D752B7C5D9DBD3B6E67EAB51054DC</sha512>
+    </dependency>
+    <dependency group='androidx.recyclerview' module='recyclerview' version='1.0.0' extension='aar'>
+      <sha512>6D7324F6FF6F8B1CAA41ED3DE04FE4027AC5EE65E88DF8A12F5C0B17883355615F2B76E61F99BB1BBE8D5C58CB14C5BD0A4D8C5AED00BB3A2E6D50079237002A</sha512>
+    </dependency>
+    <dependency group='androidx.savedstate' module='savedstate' version='1.0.0-beta01' extension='aar'>
+      <sha512>868CE068920DA2BDBDBE8BBBC3667E2A1868CE04EC723FDB1235DF0E40797402566BC0035CC1178123BE439E8F79132B4CDF774D317A14E34D7CCF6FB67C4E9</sha512>
+    </dependency>
+    <dependency group='androidx.slidingpanelayout' module='slidingpanelayout' version='1.0.0' extension='aar'>
+      <sha512>8DD2977A554DF2EDFC2DF44EE3341B8674970CA06A2D61F527EF64E1A010DBB734ACA0243CA8DE62510C450F759CC4476CA600A43A7DF271D46AAE7492B40419</sha512>
+    </dependency>
+    <dependency group='androidx.swiperefreshlayout' module='swiperefreshlayout' version='1.0.0' extension='aar'>
+      <sha512>92F1AF692E6AD3FEBF963983BEE3B607ED6A4458A978B228FB0999857DDCABFBF24939829AF63C6525A88EE7864590A37F83D43D404604D0E905F2B919FBF07C</sha512>
+    </dependency>
+    <dependency group='androidx.test' module='core' version='1.2.0' extension='aar'>
+      <sha512>7BDFBF07555CDE225EE1A03CE2F24CA209489A78C673A1FD504AB88AD2FB20B5731A6CFE4B3C3BE2014E2895A642F5BA66E5B661569E4D228E5634C464CC214B</sha512>
+    </dependency>
+    <dependency group='androidx.test' module='monitor' version='1.2.0' extension='aar'>
+      <sha512>19AF14490D2158775BCD8D3D2DBAAB28DA9B1F9FF51AF9A18E7BA2837533CD48E3DE6ADBEB683386445F7B02F256779E40B558EF55B274F70A269756DE31B0AD</sha512>
+    </dependency>
+    <dependency group='androidx.transition' module='transition' version='1.0.0' extension='aar'>
+      <sha512>2CCC7579165B224F5542E62E4755E3BC52A645A895E15AF47A67AD2748CC1D78632B47D2958D13E6592F7DCFE1EA58144BB9911BB1C8440DCCB8FFDD9BFF12B2</sha512>
+    </dependency>
+    <dependency group='androidx.vectordrawable' module='vectordrawable-animated' version='1.1.0-beta02' extension='aar'>
+      <sha512>61D70036B9A56055CB875AD20074AF4EC261D20F51C270B9D64DA9B711D4C3E3FA1A11B7AC648FCB0F9A5E2AD88165CC52417FBDDD5AB52B3AC4F39CDFB99EA8</sha512>
+    </dependency>
+    <dependency group='androidx.vectordrawable' module='vectordrawable' version='1.1.0-beta02' extension='aar'>
+      <sha512>1BE7EEF490B9F36F9783CCF3AE5213E5DCEC99DFDE25499A36CC18FAED056C6C204C47ABF0568B0521166EFBA91F2AA1C6808B56C10AA9EEA744562DEAE7EA7</sha512>
+    </dependency>
+    <dependency group='androidx.versionedparcelable' module='versionedparcelable' version='1.1.0-rc01' extension='aar'>
+      <sha512>E17D46390EA99DE2E89BD0C660CDCAB3A6F3A0F6A9BB738DB5BB50B0A7108EB9B0CC5C10137F8E85CD0245092CC5B9CB3A5AF2E4C666DEF2034D667672684B0D</sha512>
+    </dependency>
+    <dependency group='androidx.viewpager' module='viewpager' version='1.0.0' extension='aar'>
+      <sha512>7B78494130D0C6DD0F18E7506C8DC5DDA428C56D836D186643360B09992A7F2CCC6072D4316AF17BCD406482DFD426866747B9A48FAB6AA3FB0BB2DF648E62F4</sha512>
+    </dependency>
+    <dependency group='backport-util-concurrent' module='backport-util-concurrent' version='3.1'>
+      <sha512>5F881CB5FC18DF80F574AB3AF261EF4A45A628794B40C3FFD896AF98B9FBBF06AD65AC41E0688FEFC9769901BC84A0EFF866C77BF07AF467A26C811003845F62</sha512>
+    </dependency>
+    <dependency group='classworlds' module='classworlds' version='1.1-alpha-2'>
+      <sha512>EB7752C709EC703764DE895099661DF36536FF4BD2380BD68726D0CDB40BD27C8CF775EE98FD2CE7B3CFBD07B100C782513D964A2C9C82F33C56909212E5B8CD</sha512>
+    </dependency>
+    <dependency group='cn.carbswang.android' module='NumberPickerView' version='1.0.9' extension='aar'>
+      <sha512>46E4061D66B1AF8AB2FE4EE201D7E6BD759503E87BBADD3E980C9B9000E2E0805D44AFB80CE491A0F0D72B9008E28C041C6B298BEE7CA92EF99F04D4E6D805B6</sha512>
+    </dependency>
+    <dependency group='com.amulyakhare' module='com.amulyakhare.textdrawable' version='1.0.1' extension='aar'>
+      <sha512>D6FABF47D4A8CD1392D62279F1D07D598EC4558EE5B495FEA62449B284651784D6053FCBACFBAF4503AF261EC40D1AC8DDEF3F1FFCAF1D25708FB232C7626D33</sha512>
+    </dependency>
+    <dependency group='com.android.databinding' module='baseLibrary' version='3.3.2'>
+      <sha512>AF8EC0C12D45A458B3321812D8FF9F802CF6304054F059043CC5B8788BEA12EBE4EEEA9F9CDD379ECF338C6D2CD6ECCA7D5237C4C6433347CEE56BB3028839B6</sha512>
+    </dependency>
+    <dependency group='com.android.tools.analytics-library' module='crash' version='26.3.2'>
+      <sha512>986D7196EF1768F27465C88B598AA1B973BCBF88182FED74A3C60F2199348D25178547AE7BF820FFB4D60475374E5621C859F8D9A37AABA401950804AE74B842</sha512>
+    </dependency>
+    <dependency group='com.android.tools.analytics-library' module='protos' version='26.3.2'>
+      <sha512>64FEC503FF1843D1AED1D1018D1E253740943DFC252A6FD5FE94DA4B8B7EE552BDEE3B1553D027870E7B628FE6896DC1361FF8588B00E3EBF8304DC4FF72751B</sha512>
+    </dependency>
+    <dependency group='com.android.tools.analytics-library' module='shared' version='26.3.2'>
+      <sha512>E347C38796F95BE1FDBF94D57A02DF83711B7D02BDA338F489F490EA199DA80C24633CBB40C7108005FE50122AE067D46BFBF512C1C5BC571055111A2EBD0C04</sha512>
+    </dependency>
+    <dependency group='com.android.tools.analytics-library' module='tracker' version='26.3.2'>
+      <sha512>BB5C2E96F118F0748277AEE48808B3D3BE9C42095645D606442A98969CEBC75C4489D93761266F70005C2A9C963450591EBBD832242AF1B2E2819DF9E042EF2E</sha512>
+    </dependency>
+    <dependency group='com.android.tools.build.jetifier' module='jetifier-core' version='1.0.0-beta02'>
+      <sha512>639FF2A928074F7ED6EF54A050176D459DA430DFA84393B7EF5D1DD50E9A51437B79FEB558F269D0C46586AF3ADF00BEA450D994DFBFB643AD338CC857756296</sha512>
+    </dependency>
+    <dependency group='com.android.tools.build.jetifier' module='jetifier-processor' version='1.0.0-beta02'>
+      <sha512>F37B84F3770CB570E96388E670359ACCC6271DABA4DA8C06CFFF138FEEF1080B2CC63EC8C87E19CC4D70CDC5FA8B849AA0939BDE916919751983E915E4863CF3</sha512>
+    </dependency>
+    <dependency group='com.android.tools.build' module='aapt2-proto' version='0.3.1'>
+      <sha512>794BFA1B02C8629B42E38BBCC4A8ABB80DF20EA685301CDD2AB9ABA280737724FFF1846E4718E5E4B3DA9B35532667D5345310103129B34E6C057882D07CF3E</sha512>
+    </dependency>
+    <dependency group='com.android.tools.build' module='aapt2' version='3.3.2-5309881' classifier='osx'>
+      <sha512>D7652BE4413E43D32E1657423BF5A4E370088CA75DDDE236F6CD3B2ACE9D2F13E7DB4950210E0D064B4482CD6D6E7CFF0456CDD9AE26CBB289BBACB200860CE6</sha512>
+    </dependency>
+    <dependency group='com.android.tools.build' module='apksig' version='3.3.2'>
+      <sha512>4F33A3FB4BC8268A19D8D1912B7F02F31AE5ECB65BC4BB62F5FB84235EC072D5D4265D35934DDA3BD48239F65939076B279F71565A095E90729ED8BEC36F83E5</sha512>
+    </dependency>
+    <dependency group='com.android.tools.build' module='apkzlib' version='3.3.2'>
+      <sha512>B027AD4B161AACCE6704FBB9B3DF4BA3560F11BB49F9DECF7C634ECDAF35E51D5C6C78781C5D507DB7DFABE35DE5979274CA8D1543EB2F6A0C65DAE7EC69FB72</sha512>
+    </dependency>
+    <dependency group='com.android.tools.build' module='builder-model' version='3.3.2'>
+      <sha512>37F69A8911E0D8CCD385CACC79078B59CCF09E2D760C6B9EB6B8B97039B6D4ADF6C8DD2A82B304C6F7793165D7F2FF794CD28B2E485B4C7D598AF56A18CBFCA0</sha512>
+    </dependency>
+    <dependency group='com.android.tools.build' module='builder-test-api' version='3.3.2'>
+      <sha512>A06CB4A71D23B21754A13E87139C0431509DD9BA88CB260BA9B773B4AB5D363604835D105F6FBE02B0BA680B13A9D87251F09B5071BABFD5F263D86867C2715C</sha512>
+    </dependency>
+    <dependency group='com.android.tools.build' module='builder' version='3.3.2'>
+      <sha512>166C24133662687535019E5E6363DFD004AE49387E3BC4F209306A9FC42CFD74FF16656420896B2A9AB88220C4E3BAE8B8771DEC3448E608D95302F30B0C236A</sha512>
+    </dependency>
+    <dependency group='com.android.tools.build' module='bundletool' version='0.6.0'>
+      <sha512>1EBB9274CDE95279FB78DAC17A916A890E0767AF57D6B3B91C2AF0B7B8F5D92997D43FEC5E09634F9DF2418B65E5DBB867B78BDF75EA7D4308ADE49ECCE00F33</sha512>
+    </dependency>
+    <dependency group='com.android.tools.build' module='gradle-api' version='3.3.2'>
+      <sha512>49D1AC983C92FC526FFEDC6745B9EDDF2C822421522450F69877AD40A955733608BB0A0F314FD56D0B31EA08FEA0ED0DD703E735D54E0DFA226CF57A5CD735E1</sha512>
+    </dependency>
+    <dependency group='com.android.tools.build' module='gradle' version='3.3.2'>
+      <sha512>D4E2D6361032EDE36012FD4A5474651FE317A33FF320817D1BED20D3183AAE934BCE964B3E8F2944280FB92DA7E3F03FBFA8BAFC9962BB140022819D93F3E212</sha512>
+    </dependency>
+    <dependency group='com.android.tools.build' module='manifest-merger' version='26.3.2'>
+      <sha512>26213F52D0762FE7E619F6C6220D77E94D2638B9C4A5136598D49B5DDA289DDCF3BBA4C4AE268ABF577DDFE21910D979B47B8D17333F53209A034A6C2BFFA07A</sha512>
+    </dependency>
+    <dependency group='com.android.tools.build' module='transform-api' version='2.0.0-deprecated-use-gradle-api'>
+      <sha512>F7AF126566E550C43586DB59BB020A2F85387D4E60B533B2A04F988E75350584CC557E49EA3F1237327E487E2A50DE98196514EB218C6CE83661D2291D2CDE54</sha512>
+    </dependency>
+    <dependency group='com.android.tools.ddms' module='ddmlib' version='26.3.2'>
+      <sha512>BEE3903B8060750F73EFFE2F71ADC2DAAB6DEFCE56E492010A1E3B8B0D01C6E676145FCB95D0C909ECD12B3DBA27A39546A4AEECF9007E4E19E32FB29D3C04F</sha512>
+    </dependency>
+    <dependency group='com.android.tools.external.com-intellij' module='intellij-core' version='26.3.2'>
+      <sha512>DD0865E73D3D3DE966CA915B1554EC15BCE7ACC5546EF27542AF2A9DE7416960F786D7D5F6E4FA8AF9753A62387AF86ABDA4F0CD0FD3440D8DEB6A74E87F7ACD</sha512>
+    </dependency>
+    <dependency group='com.android.tools.external.com-intellij' module='kotlin-compiler' version='26.3.2'>
+      <sha512>5FCC719F93C1749FF5FECAFD3202A405E6F36A1156BCA5FBCCB09EAC530CF8DF8EAB1426FAA27722E18B57F3FF4739A3AB9F1EFBA257ADF6E749A81764E976EF</sha512>
+    </dependency>
+    <dependency group='com.android.tools.external.org-jetbrains' module='uast' version='26.3.2'>
+      <sha512>34B69A4147473FFD403FAF3A34BD42C016D4864387D389073F3929876CCC9F42D7596CE24BF7E1BB4B479C0B5E9853DE617131160E5F9D75942BEE85082B740C</sha512>
+    </dependency>
+    <dependency group='com.android.tools.layoutlib' module='layoutlib-api' version='26.3.2'>
+      <sha512>83EA4FCBEE93E8BA772759ACD5B0F6138B5055A398B2DFBB540FD8BBC7CBD86FCE85651EF9B6C032C889AAF3E1DA9677126A94D502930D941A0DA0DF53025E04</sha512>
+    </dependency>
+    <dependency group='com.android.tools.lint' module='lint-api' version='26.3.2'>
+      <sha512>499AFE9B57CC8A3FE27AB1522BDED8BC8D6E2D27710B7E09208AA2181A36EC23CAEDBF569F47422EB643AD6FAA7F6147ED11A812A9B7ACCA4D65406551A9ED77</sha512>
+    </dependency>
+    <dependency group='com.android.tools.lint' module='lint-checks' version='26.3.2'>
+      <sha512>8272AD0B04696F02DD875158D395F33D16B35E292FD673E6B7DEB6CADFD76C581DCA3BD0C9DE440687DE1D6FFAD9791E4F5F8A188E0B758AF0E45147FD8A13F9</sha512>
+    </dependency>
+    <dependency group='com.android.tools.lint' module='lint-gradle-api' version='26.3.2'>
+      <sha512>7DAD1CD9454ED45EA717190791656FACC3BF8B65400C097B03F3D63BB7EA7B03B69BC31701DFEECC03718226A8D46B4DA59380893B4927E07871FD53DE846DE3</sha512>
+    </dependency>
+    <dependency group='com.android.tools.lint' module='lint-gradle' version='26.3.2'>
+      <sha512>ECD1353415AC758B4EA05BBEAAC0ADC88406BE0230D833ACE07A15AB08F06BFEF3DDF1DCB0F5E0B4068CD0BFF11B1B851596A455186C66A19A1F38F9B94D9957</sha512>
+    </dependency>
+    <dependency group='com.android.tools.lint' module='lint' version='26.3.2'>
+      <sha512>1102F31D4143336649248514FBED8182A6ED4954B61080F65E96F09D4545D9C7DA23ADEDD92C309B2E58A41237AFD27528CBC3EEF9E213FAD79642F9F091C0DF</sha512>
+    </dependency>
+    <dependency group='com.android.tools' module='annotations' version='26.3.2'>
+      <sha512>11F5089F463DFDDF29231700002DE84C4BFB0DEDE53408EE4D5DD990E68975EC55F1CFEB2BFDA0E6731FE08737A1B0D86E7663C3BAE00C365271F2F56113C9DA</sha512>
+    </dependency>
+    <dependency group='com.android.tools' module='common' version='26.3.2'>
+      <sha512>8073D9D3836654125759839354C0BE81A923EBFC7485ADF444D6BEC18C76C4BC68E810F7027F7C99A7267113F7B8FCB96FC4ADB0F8A573FCDD0899EB9816C172</sha512>
+    </dependency>
+    <dependency group='com.android.tools' module='dvlib' version='26.3.2'>
+      <sha512>1044BBCE2E5E00DCD9DD7F4CCB7A18F47284DDC89D58123B18B0B6BD2613A7789194A0545C8FDCE221C047B76B6E5AA8D584B86B5765D94351A4C03FDA964F5D</sha512>
+    </dependency>
+    <dependency group='com.android.tools' module='repository' version='26.3.2'>
+      <sha512>E6CF9F87698BCF2A520D9F2101A7E90772E3211B626FE5134CACA0550BB7842D2CF33E94DDEF92A0DFEFFF0A5DC18C618805635A36450240CC6D5A124325994B</sha512>
+    </dependency>
+    <dependency group='com.android.tools' module='sdk-common' version='26.3.2'>
+      <sha512>7A57C408D27B32889CE519091615BE86DF63B596B07CC390C6EA7694CAFA4AFF93A994865F99E7A9A29847385457AA485DC8D05BD5146A4717AB5C3459399747</sha512>
+    </dependency>
+    <dependency group='com.android.tools' module='sdklib' version='26.3.2'>
+      <sha512>DCF8739A42908C71450E40D16CE7623D1E96C3D0678E97968A7797A035A9FD3ABC3C899015EA3E03FBA1E1CB7E56EEF3AF5E788A341F1B115147CAC4F965BC8D</sha512>
+    </dependency>
+    <dependency group='com.codewaves.stickyheadergrid' module='stickyheadergrid' version='0.9.4' extension='aar'>
+      <sha512>75D98BEB016649CFDFA481C51545BD80724D014D6CDB73F420BB2A35E6B3C530C6B7FBC02E132F8CB764DE7E9A7BF3765F768BAF511C5C809DD59FEE993CDA45</sha512>
+    </dependency>
+    <dependency group='com.github.chrisbanes' module='PhotoView' version='2.1.3' extension='aar'>
+      <sha512>312ED8A9D89275B13A0AFF305040078D10DB7B053572C334928A68DE53DC89C37A9726BB12AFDB3094E860B7EB1DDEE24B213F0841A558D2D19C6E9B29454BB3</sha512>
+    </dependency>
+    <dependency group='com.github.dmytrodanylyk.circular-progress-button' module='library' version='1.1.3-S2' extension='aar'>
+      <sha512>1A36A82F70214DE0F7F8A4A712C01D9C5D027B6FBA1ADEA57297F1B01F17436781F303DD159CCBF4A3EEFEE6E1CD679F61318CA116A487D9598CEBCB33C984B4</sha512>
+    </dependency>
+    <dependency group='com.google.android.exoplayer' module='exoplayer-core' version='2.9.1' extension='aar'>
+      <sha512>E93C4B2EF2F54C5051B00B499DE57FC2E5521E8D2522017D14CF6A933FB3625A3494E98387D606B3A40858F5CC98E5EC29B93464ADE5DDB3ABE6DB81BA805038</sha512>
+    </dependency>
+    <dependency group='com.google.android.exoplayer' module='exoplayer-ui' version='2.9.1' extension='aar'>
+      <sha512>1FDA408BED7066D3649005CBB31EB8FC8097B2D50E1173A8E0BEC508CA9D11E7CC9403CDC0CA677D7F70CACD6036F279388762C03095281446899BA2398248A2</sha512>
+    </dependency>
+    <dependency group='com.google.android.gms' module='play-services-auth-api-phone' version='16.0.0' extension='aar'>
+      <sha512>C3E95F59B11352D98B45526B369C351C74A5A34C1424DDA69416FFB69837693A354A06F5BA4566BBDDF58F04F2C5D267E2832CFEC685304C9EAA4C5EF94870B0</sha512>
+    </dependency>
+    <dependency group='com.google.android.gms' module='play-services-auth-base' version='16.0.0' extension='aar'>
+      <sha512>B87425B74869DFAFD6448CEABC56E0F85B57BC224C14FEE9E84E6365CF38518014711A258BFC7DEBFCFD9000917517812332691AF46913E45C3009D514789619</sha512>
+    </dependency>
+    <dependency group='com.google.android.gms' module='play-services-auth' version='16.0.1' extension='aar'>
+      <sha512>57C22295F6ECD0899F4B156C74B3B4BE3F0C79FA75353F1029EBE3961B7779F779FD643CCC17118B93A2A3D2F550A20AE8324A3A4FBE75D8D23B11911A4309C7</sha512>
+    </dependency>
+    <dependency group='com.google.android.gms' module='play-services-base' version='16.0.1' extension='aar'>
+      <sha512>17DAE9AA59A8EF4881185AC983768C5E259A6110E727846C45F2D558C4D6F6A8121B5D0687579F1B746618DA50C8ADFEFC58A730B625C8D5CC900AE2DF67B972</sha512>
+    </dependency>
+    <dependency group='com.google.android.gms' module='play-services-basement' version='16.0.1' extension='aar'>
+      <sha512>7596581B6865AC32F37EF02D0C7EEB5C8D902C0CB9B8806F37A22E8A4515B718DC50E007D9FCCCC96F76D9DCE508C123418D28DE5C939C2EA0B14BB09E7369D1</sha512>
+    </dependency>
+    <dependency group='com.google.android.gms' module='play-services-location' version='16.0.0' extension='aar'>
+      <sha512>F4097492E29EF71EC64FECDF57D664F6C58E2B254E6D28D7682DFE953CA7BCF944A5E2BB374C9509B98B3491EB9ECDDE922A80666EC597A9A2812DC72D57EB1A</sha512>
+    </dependency>
+    <dependency group='com.google.android.gms' module='play-services-maps' version='16.1.0' extension='aar'>
+      <sha512>C9A7D560C9C7DB24E2C0D1C22FD9604B57B738A349D1EC92E1142A9A89F97307465C5F69603794BD20B19A4F12D9D68B9F76E0B92F5FA0B6E643C73B071C9AE4</sha512>
+    </dependency>
+    <dependency group='com.google.android.gms' module='play-services-places-placereport' version='16.0.0' extension='aar'>
+      <sha512>1ED3C832F78D25C38C05777BDD4CDF66E5D72DDEF207EF62791B26A34029E831104DC26901FA619FC695119277A1C15FD44619B39813AA2978E5A04FDE89B6E</sha512>
+    </dependency>
+    <dependency group='com.google.android.gms' module='play-services-stats' version='16.0.1' extension='aar'>
+      <sha512>79FE7B0E59BCC48570C3B12388FD1EB688AF19590D696522CEF799452661E925FD1895FEB707D3787D541371128BA750E124397FF72D905F1496BB3676A5744C</sha512>
+    </dependency>
+    <dependency group='com.google.android.gms' module='play-services-tasks' version='16.0.1' extension='aar'>
+      <sha512>EA80E15EB29D92E88828016484E83ED98BD17E46F4475A3D1B81008D9FD66830C7A1CC3FBD7AAF1DC5C99EE15786BC7DCBC63DA847AFC6269E15446632FC528C</sha512>
+    </dependency>
+    <dependency group='com.google.android.material' module='material' version='1.0.0' extension='aar'>
+      <sha512>D51F296474C84E1846F0572A139FC60DAF10D177EE9C27428800AF4ADF4D754CD1BAEAC59A814470913655238C5C8687B5361AC8B584B61ECE05C1180E0AED8C</sha512>
+    </dependency>
+    <dependency group='com.google.firebase' module='firebase-common' version='16.0.3' extension='aar'>
+      <sha512>4A99A561ABD7B564C456A875352B7D18AF94989A6D5299EEC67A59B02D3F0F6F8AC4C55643D09FD3B2AE33EC468235D6ECD8CF342AE03D64311AAB92AAE71121</sha512>
+    </dependency>
+    <dependency group='com.google.firebase' module='firebase-iid-interop' version='16.0.1' extension='aar'>
+      <sha512>E352607164AA0A03B05C329A4945202F3AD497A2F749643FF1C009B3F371DC363E68FA38F2646FE00559E06D9F4FDBA56907BB68D3AA4A6BB3358220A338C463</sha512>
+    </dependency>
+    <dependency group='com.google.firebase' module='firebase-iid' version='17.0.4' extension='aar'>
+      <sha512>470B877B6240411BE32082B0F764DDAA18E55879746E67327D87668EF7AD98CC41563431987699D2518EDB10D11C443A48C7FCB63B6B2A94CDB0A3DBEEFD49B8</sha512>
+    </dependency>
+    <dependency group='com.google.firebase' module='firebase-messaging' version='17.3.4' extension='aar'>
+      <sha512>4AC3FCCB7AB72D688D36CB20833DB6C78BCFD575791AB658F94729ABA43FE8D03378BF15A4B805AA79196FDAEFF8237068E9F8C9F13E89732333BED856E8480E</sha512>
+    </dependency>
+    <dependency group='com.googlecode.json-simple' module='json-simple' version='1.1'>
+      <sha512>F9CAAFC041EEA982D5BA266482418DCA05D46FB992BEF3F076A83D564765083A0870E30F68E7C6FC8C80EBD3C88B087EECD2F8455C12DAAF7DB3B5A975B622E4</sha512>
+    </dependency>
+    <dependency group='com.theartofdev.edmodo' module='android-image-cropper' version='2.8.0' extension='aar'>
+      <sha512>39C3C486ED4F81D5558AF9B8C02775759ABD7438F3D8A27E073FE71147109372E45A1B658083CD3732D704884BAA7769B9007D9D5A5CE266014142892F33CD0C</sha512>
+    </dependency>
+    <dependency group='javax.inject' module='javax.inject' version='1'>
+      <sha512>E126B7CCF3E42FD1984A0BEEF1004A7269A337C202E59E04E8E2AF714280D2F2D8D2BA5E6F59481B8DCD34AAF35C966A688D0B48EC7E96F102C274DC0D3B381E</sha512>
+    </dependency>
+    <dependency group='nekohtml' module='nekohtml' version='1.9.6.2'>
+      <sha512>5C720418F6FCCC99CAD205ED6B6C6E0E7DD1957D6AD47EB30E01FED543896BBDCB94D99DE149C1E9B41D14DCE70C9D033BDACAD4B3D9BC7608585FA0D1C5CE9E</sha512>
+    </dependency>
+    <dependency group='nekohtml' module='xercesMinimal' version='1.9.6.2'>
+      <sha512>7AA4D51FF56969A3C8B160C70D10F29856D0181639D6969E4482D8290DD22D13975355CE2DBEEF2CEF9315B2B4B0BEF4CDBA73E3E0D2D0872075F41883549DB0</sha512>
+    </dependency>
+    <dependency group='net.sf.kxml' module='kxml2' version='2.3.0'>
+      <sha512>F97D418D4C2892FA184F5BE83166AC2CD771FD10D7625104D9B054EC0FF361927A2AC2539D38F326F61373B6D700A3B5075605763562AC0AE6714903773CD1CB</sha512>
+    </dependency>
+    <dependency group='org.codehaus.plexus' module='plexus-container-default' version='1.0-alpha-9-stable-1'>
+      <sha512>7CB690F7D8E07DA36F019B9853CC924C513C254037ABDB11B2B77D26DF886B94468332F59008DE6CAFBC18BAE102617DF7877A68159717FBCDB1FAE932B67F5B</sha512>
+    </dependency>
+    <dependency group='org.codehaus.plexus' module='plexus-interpolation' version='1.11'>
+      <sha512>5CC81293C43D43DD07AA91826B8258B026F26A4A594F60E6BF8FB01936361A9683EE2DE6F90B642366C4A7B6C226F25E4531689C20058FCA03295337314C4A0C</sha512>
+    </dependency>
+    <dependency group='org.codehaus.plexus' module='plexus-utils' version='1.5.15'>
+      <sha512>EC8164FD22F9C6095839BAD381B4D1186BAD3D69C4B019828BA4864455F150C264FE471C71F80A4FD8FA0E52EEDD366A4A096A9FE7A7770DE98868B5A709E535</sha512>
+    </dependency>
+    <dependency group='org.hamcrest' module='hamcrest-core' version='1.1'>
+      <sha512>EEF6453BB867D173F3611844A95E0B9D1792EE35C0C49D20A309D87C7140DFACEE0FC479DEF9A32351773D3F0D9DC51BEF8D9EC30F84189FCD7F44A2892B52B4</sha512>
+    </dependency>
+    <dependency group='org.jetbrains.trove4j' module='trove4j' version='20160824'>
+      <sha512>1CB8EFAC5A9D289447A587D54F610329D6A71BB86A021B305DB7952B2F423EFCAB70A90F54C3E9E43E25D866526F65CE91153486731E542F1A14B5745E1DC5D3</sha512>
+    </dependency>
+    <dependency group='org.ow2.asm' module='asm-analysis' version='6.0'>
+      <sha512>CE2D1464D8A1B3D3A13A04BD695F311126BF08B4242F88402F582AEC1083259D2CC4BED23B1A03CE3F11F11C7EAEC1293EDBDA365DF1830B8556400F60ECABED</sha512>
+    </dependency>
+    <dependency group='org.ow2.asm' module='asm-analysis' version='7.0'>
+      <sha512>1A6CA169E9E2D29256F9C45570D89E5B039EAF7D405CCB3F7F79926552F2A0818975CE2C6ADCE3F1F59E28172E4303A1C790C52AB06263C61C9C8181FF279CEE</sha512>
+    </dependency>
+    <dependency group='org.ow2.asm' module='asm-commons' version='6.0'>
+      <sha512>49C8D569EF2B27B52C22E1C6541C1D0D3FBCAE8BBD299663E8F932CBFE8FBA2871C6DFEE20F072FD08D14F34B71E9C192ED06D612484A7F737B3BB29F1AD3591</sha512>
+    </dependency>
+    <dependency group='org.ow2.asm' module='asm-commons' version='7.0'>
+      <sha512>CA97B49EECE30DA774055B58A63C6E4F65A6BC4C0F40A829DCAF7164FBFFDEC10C6B2D9A22DF0A0918FDC83A47EA9906294AA99D3F170B35FD9E0632578C80B2</sha512>
+    </dependency>
+    <dependency group='org.ow2.asm' module='asm-tree' version='6.0'>
+      <sha512>4FBD730BBC3C0A239169A01E71AAD988F6060D423FB7D0082E24702128E0EAF84827E86248F310D2FCECF5A66ED38B9766CD1D261AED1EBBA7FED6422A28E954</sha512>
+    </dependency>
+    <dependency group='org.ow2.asm' module='asm-tree' version='7.0'>
+      <sha512>81A223620DD16340D18ECBA20AB15CFE078F61AB0EC1AEF091AFCD282E3F6047B9800200412116289EC14917B5ECE9414C8009E92CC9A3333C677B5BFEC13BCF</sha512>
+    </dependency>
+    <dependency group='org.ow2.asm' module='asm-util' version='6.0'>
+      <sha512>4E76795F3F5E5A2C1DDE1D709D7FD5C2530861EFAD5160C667512B051BC96DBACCA58BC1C4D256204BA70292A8FF01BCE42D47F4032D4143F92554AB38165826</sha512>
+    </dependency>
+    <dependency group='org.ow2.asm' module='asm-util' version='7.0'>
+      <sha512>6B9630AD4C5F6ABC2724F9D85A7C0E81E524F8B0BF25273DD5578EDC20EFC7AB400095CD48E904D2536071181A8E9F39635FF3FEE0986BD078016D2DFF8241B1</sha512>
+    </dependency>
+    <dependency group='org.ow2.asm' module='asm' version='6.0'>
+      <sha512>F4718219830CFC949BDB9BDF09E3565ED9F019F3D8900D8142E356C45BAF3B418BE9E4E7CD6406699AD61174386E006E9816D5C75DCE0E68307479AA7C96E894</sha512>
+    </dependency>
+    <dependency group='org.ow2.asm' module='asm' version='7.0'>
+      <sha512>B31699F50485DDC4E84466064CF5789A3E61BAFBEC53C4B9CB19FFEF07B36722D3EFDCA8722884FD6D6DEDACA65DB4DD6F71CD886BBA599E8A77971955167A60</sha512>
+    </dependency>
+    <dependency group='org.signal' module='android-database-sqlcipher' version='3.5.9-S3' extension='aar'>
+      <sha512>125EFACB5E7D45C6A6168F209EC79CA7BDECF4D78BC5C422C41C44B87830E47CAB2303E7A76AB352DE645511614D5CB83C65D19315A7BD046176C245DC81AB55</sha512>
+    </dependency>
+    <dependency group='xmlpull' module='xmlpull' version='1.1.3.1'>
+      <sha512>54D1090623497E81270B2AF633268656E8855E1EDCE2217886431039516A391BA9F8D8DB3C21A0B5E51C7F7CB672D63EBE77BE75708B760B06F399486960F261</sha512>
+    </dependency>
+    <dependency group='xpp3' module='xpp3_min' version='1.1.4c'>
+      <sha512>34989289CE8ED861499F31742EE1E7B9DC3C59973CE915A7B561D33D98968E77DB5BB94C1692802CCDBD86D04CAA7DB67748EFAFB1402428B2D6AE3056497618</sha512>
+    </dependency>
+  </dependencies>
+</dependency-verification>

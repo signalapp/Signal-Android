@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<dependency-verification version='1'>
+  <trust-requirement pgp='GROUP' checksum='NONE' />
+  <ignored-keys />
+  <trusted-keys />
+  <dependencies>
+    <dependency group='com.android.tools.build' module='apksig' version='3.3.2'>
+      <sha512>4F33A3FB4BC8268A19D8D1912B7F02F31AE5ECB65BC4BB62F5FB84235EC072D5D4265D35934DDA3BD48239F65939076B279F71565A095E90729ED8BEC36F83E5</sha512>
+    </dependency>
+  </dependencies>
+</dependency-verification>
