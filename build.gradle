@@ -188,7 +188,7 @@ dependencies {
     implementation "com.mixpanel.android:mixpanel-android:$mixpanel_version"
 }
 
-def canonicalVersionCode = 12
+def canonicalVersionCode = 13
 def canonicalVersionName = "1.1.0"
 
 def postFixSize = 10
