@@ -15,7 +15,6 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
-import org.thoughtcrime.securesms.sms.MessageSender;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.IOException;
@@ -41,6 +40,11 @@ public class GroupUtil {
     }
 
     return Hex.fromStringCondensed(groupId.split("!", 2)[1]);
+  }
+
+  public static String getDecodedStringId(String groupId) throws IOException {
+    byte[] id = getDecodedId(groupId);
+    return new String(id);
   }
 
   public static boolean isEncodedGroup(@NonNull String groupId) {

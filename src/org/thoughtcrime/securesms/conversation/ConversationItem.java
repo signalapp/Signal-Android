@@ -99,15 +99,7 @@ import org.thoughtcrime.securesms.mms.TextSlide;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
 import org.thoughtcrime.securesms.stickers.StickerUrl;
-import org.thoughtcrime.securesms.util.DateUtils;
-import org.thoughtcrime.securesms.util.DynamicTheme;
-import org.thoughtcrime.securesms.util.LongClickCopySpan;
-import org.thoughtcrime.securesms.util.LongClickMovementMethod;
-import org.thoughtcrime.securesms.util.SearchUtil;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.ThemeUtil;
-import org.thoughtcrime.securesms.util.Util;
-import org.thoughtcrime.securesms.util.ViewUtil;
+import org.thoughtcrime.securesms.util.*;
 import org.thoughtcrime.securesms.util.views.Stub;
 import org.whispersystems.libsignal.util.guava.Optional;
 
@@ -883,7 +875,15 @@ public class ConversationItem extends LinearLayout
   @SuppressLint("SetTextI18n")
   private void setGroupMessageStatus(MessageRecord messageRecord, Recipient recipient) {
     if (groupThread && !messageRecord.isOutgoing()) {
-      this.groupSender.setText(recipient.toShortString());
+      // Show custom display names for group chats
+      String displayName = recipient.toShortString();
+      try {
+        String serverId = GroupUtil.getDecodedStringId(conversationRecipient.getAddress().serialize());
+        String senderDisplayName = DatabaseFactory.getLokiUserDatabase(context).getServerDisplayName(serverId, recipient.getAddress().serialize());
+        if (senderDisplayName != null) { displayName = senderDisplayName; }
+      } catch (Exception e) {}
+
+      this.groupSender.setText(displayName);
 
       if (recipient.getName() == null && !TextUtils.isEmpty(recipient.getProfileName())) {
         this.groupSenderProfileName.setText("~" + recipient.getProfileName());
