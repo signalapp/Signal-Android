@@ -744,17 +744,9 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     Optional<List<Contact>>     sharedContacts = getContacts(message.getSharedContacts());
     Optional<List<LinkPreview>> linkPreviews   = getLinkPreviews(message.getPreviews(), message.getBody().or(""));
     Optional<Attachment>        sticker        = getStickerAttachment(message.getSticker());
-    IncomingMediaMessage        mediaMessage   = new IncomingMediaMessage(Address.fromExternal(context, content.getSender()),
-                                                                          message.getTimestamp(), -1,
-                                                                          message.getExpiresInSeconds() * 1000L, false,
-                                                                          content.isNeedsReceipt(),
-                                                                          message.getBody(),
-                                                                          message.getGroupInfo(),
-                                                                          message.getAttachments(),
-                                                                          quote,
-                                                                          sharedContacts,
-                                                                          linkPreviews,
-                                                                          sticker);
+    IncomingMediaMessage        mediaMessage   = new IncomingMediaMessage(Address.fromExternal(context, content.getSender()), message.getTimestamp(), -1,
+       message.getExpiresInSeconds() * 1000L, false, content.isNeedsReceipt(), message.getBody(), message.getGroupInfo(), message.getAttachments(),
+        quote, sharedContacts, linkPreviews, sticker);
 
       if (linkPreviews.isPresent()) {
         int linkPreviewCount = linkPreviews.get().size();
@@ -774,7 +766,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
                 try {
                   handleMediaMessage(content, mediaMessage, smsMessageId);
                 } catch (Exception e) {
-                  // Do nothing
+                  // TODO: Handle
                 }
               }
             }));
@@ -958,17 +950,9 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       List<Link> urls = LinkPreviewUtil.findWhitelistedUrls(body);
       int urlCount = urls.size();
       if (urlCount != 0) {
-        IncomingMediaMessage mediaMessage = new IncomingMediaMessage(Address.fromExternal(context, content.getSender()),
-                                            message.getTimestamp(), -1,
-                                            message.getExpiresInSeconds() * 1000L, false,
-                                            content.isNeedsReceipt(),
-                                            message.getBody(),
-                                            message.getGroupInfo(),
-                                            message.getAttachments(),
-                                            Optional.absent(),
-                                            Optional.absent(),
-                                            Optional.of(new ArrayList<>()),
-                                            Optional.absent());
+        IncomingMediaMessage mediaMessage = new IncomingMediaMessage(Address.fromExternal(context, content.getSender()), message.getTimestamp(), -1,
+           message.getExpiresInSeconds() * 1000L, false, content.isNeedsReceipt(), message.getBody(), message.getGroupInfo(), message.getAttachments(),
+            Optional.absent(), Optional.absent(), Optional.of(new ArrayList<>()), Optional.absent());
         LinkPreviewRepository lpr = new LinkPreviewRepository(context);
         final int[] count = { 0 };
         for (Link url : urls) {
@@ -976,14 +960,12 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
             int c = count[0];
             c = c + 1;
             count[0] = c;
-            if (lp.isPresent()) {
-              mediaMessage.getLinkPreviews().add(lp.get());
-            }
+            if (lp.isPresent()) { mediaMessage.getLinkPreviews().add(lp.get()); }
             if (c == urlCount) {
               try {
                 handleMediaMessage(content, mediaMessage, smsMessageId);
               } catch (Exception e) {
-                // Do nothing
+                // TODO: Handle
               }
             }
           }));
