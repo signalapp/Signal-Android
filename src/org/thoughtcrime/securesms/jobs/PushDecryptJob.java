@@ -123,7 +123,6 @@ import org.whispersystems.signalservice.api.messages.multidevice.StickerPackOper
 import org.whispersystems.signalservice.api.messages.multidevice.VerifiedMessage;
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
-import org.whispersystems.signalservice.internal.util.concurrent.SettableFuture;
 import org.whispersystems.signalservice.loki.crypto.LokiServiceCipher;
 import org.whispersystems.signalservice.loki.messaging.LokiMessageFriendRequestStatus;
 import org.whispersystems.signalservice.loki.messaging.LokiServiceMessage;
@@ -139,7 +138,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import kotlin.Unit;
 import network.loki.messenger.R;
 
 public class PushDecryptJob extends BaseJob implements InjectableType {
@@ -742,58 +740,60 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   {
     notifyTypingStoppedFromIncomingMessage(getMessageDestination(content, message), content.getSender(), content.getSenderDevice());
 
-    Optional<InsertResult> insertResult;
+    Optional<QuoteModel>        quote          = getValidatedQuote(message.getQuote());
+    Optional<List<Contact>>     sharedContacts = getContacts(message.getSharedContacts());
+    Optional<List<LinkPreview>> linkPreviews   = getLinkPreviews(message.getPreviews(), message.getBody().or(""));
+    Optional<Attachment>        sticker        = getStickerAttachment(message.getSticker());
+    IncomingMediaMessage        mediaMessage   = new IncomingMediaMessage(Address.fromExternal(context, content.getSender()),
+                                                                          message.getTimestamp(), -1,
+                                                                          message.getExpiresInSeconds() * 1000L, false,
+                                                                          content.isNeedsReceipt(),
+                                                                          message.getBody(),
+                                                                          message.getGroupInfo(),
+                                                                          message.getAttachments(),
+                                                                          quote,
+                                                                          sharedContacts,
+                                                                          linkPreviews,
+                                                                          sticker);
 
+      if (linkPreviews.isPresent()) {
+        int linkPreviewCount = linkPreviews.get().size();
+        if (linkPreviewCount != 0) {
+          LinkPreviewRepository lpr = new LinkPreviewRepository(context);
+          final int[] count = { 0 };
+          for (LinkPreview linkPreview : linkPreviews.get()) {
+            lpr.getLinkPreview(context, linkPreview.getUrl(), lp -> Util.runOnMain(() -> {
+              int c = count[0];
+              c = c + 1;
+              count[0] = c;
+              if (lp.isPresent() && lp.get().getThumbnail().isPresent()) {
+                Attachment thumbnail = lp.get().getThumbnail().get();
+                linkPreview.thumbnail = Optional.of(thumbnail);
+              }
+              if (c == linkPreviewCount) {
+                try {
+                  handleMediaMessage(content, mediaMessage, smsMessageId);
+                } catch (Exception e) {
+                  // Do nothing
+                }
+              }
+            }));
+          }
+        } else {
+          handleMediaMessage(content, mediaMessage, smsMessageId);
+        }
+      } else {
+        handleMediaMessage(content, mediaMessage, smsMessageId);
+      }
+  }
+
+  private void handleMediaMessage(@NonNull SignalServiceContent content, @NonNull IncomingMediaMessage mediaMessage, @NonNull Optional<Long> smsMessageID) throws StorageFailedException {
     MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
     database.beginTransaction();
 
+    Optional<InsertResult> insertResult;
+
     try {
-      Optional<QuoteModel>        quote          = getValidatedQuote(message.getQuote());
-      Optional<List<Contact>>     sharedContacts = getContacts(message.getSharedContacts());
-      Optional<List<LinkPreview>> linkPreviews   = getLinkPreviews(message.getPreviews(), message.getBody().or(""));
-      Optional<Attachment>        sticker        = getStickerAttachment(message.getSticker());
-      IncomingMediaMessage        mediaMessage   = new IncomingMediaMessage(Address.fromExternal(context, content.getSender()),
-                                                                            message.getTimestamp(), -1,
-                                                                            message.getExpiresInSeconds() * 1000L, false,
-                                                                            content.isNeedsReceipt(),
-                                                                            message.getBody(),
-                                                                            message.getGroupInfo(),
-                                                                            message.getAttachments(),
-                                                                            quote,
-                                                                            sharedContacts,
-                                                                            linkPreviews,
-                                                                            sticker);
-
-    if (linkPreviews.isPresent()) {
-      int linkPreviewCount = linkPreviews.get().size();
-      if (linkPreviewCount != 0) {
-        final SettableFuture<?>[] future = { new SettableFuture<Unit>() };
-        LinkPreviewRepository lpr = new LinkPreviewRepository(context);
-        final int[] count = { 0 };
-        for (LinkPreview linkPreview : linkPreviews.get()) {
-          lpr.getLinkPreview(context, linkPreview.getUrl(), lp -> Util.runOnMain(() -> {
-            int c = count[0];
-            c = c + 1;
-            count[0] = c;
-            if (lp.isPresent() && lp.get().getThumbnail().isPresent()) {
-              Attachment thumbnail = lp.get().getThumbnail().get();
-              linkPreview.thumbnail = Optional.of(thumbnail);
-            }
-            if (c == linkPreviewCount) {
-              @SuppressWarnings("unchecked") SettableFuture<Unit> f = (SettableFuture<Unit>) future[0];
-              f.set(Unit.INSTANCE);
-            }
-          }));
-        }
-        @SuppressWarnings("unchecked") SettableFuture<Unit> f = (SettableFuture<Unit>) future[0];
-        try {
-          f.get();
-        } catch (Exception e) {
-          // Do nothing
-        }
-      }
-    }
-
       insertResult = database.insertSecureDecryptedMessageInbox(mediaMessage, -1);
 
       if (insertResult.isPresent()) {
@@ -804,13 +804,11 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         forceStickerDownloadIfNecessary(stickerAttachments);
 
         for (DatabaseAttachment attachment : attachments) {
-          ApplicationContext.getInstance(context)
-                            .getJobManager()
-                            .add(new AttachmentDownloadJob(insertResult.get().getMessageId(), attachment.getAttachmentId(), false));
+          ApplicationContext.getInstance(context).getJobManager().add(new AttachmentDownloadJob(insertResult.get().getMessageId(), attachment.getAttachmentId(), false));
         }
 
-        if (smsMessageId.isPresent()) {
-          DatabaseFactory.getSmsDatabase(context).deleteMessage(smsMessageId.get());
+        if (smsMessageID.isPresent()) {
+          DatabaseFactory.getSmsDatabase(context).deleteMessage(smsMessageID.get());
         }
 
         database.setTransactionSuccessful();
