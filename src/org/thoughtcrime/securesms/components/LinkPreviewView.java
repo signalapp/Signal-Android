@@ -12,13 +12,13 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import network.loki.messenger.R;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.SlidesClickedListener;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 
+import network.loki.messenger.R;
 import okhttp3.HttpUrl;
 
 public class LinkPreviewView extends FrameLayout {
@@ -76,7 +76,7 @@ public class LinkPreviewView extends FrameLayout {
       container.setBackgroundColor(Color.TRANSPARENT);
       container.setPadding(0, 0, 0, 0);
       divider.setVisibility(VISIBLE);
-      closeButton.setVisibility(VISIBLE);
+      // closeButton.setVisibility(VISIBLE);
 
       closeButton.setOnClickListener(v -> {
         if (closeClickedListener != null) {
