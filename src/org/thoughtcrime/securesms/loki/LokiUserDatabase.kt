@@ -57,6 +57,7 @@ class LokiUserDatabase(context: Context, helper: SQLCipherOpenHelper) : Database
         values.put(Companion.displayName, displayName)
         try {
             database.insertWithOnConflict(serverDisplayNameTable, null, values, SQLiteDatabase.CONFLICT_REPLACE)
+            Recipient.from(context, Address.fromSerialized(hexEncodedPublicKey), false).notifyListeners()
         } catch (e: Exception) {
             print(e)
         }
