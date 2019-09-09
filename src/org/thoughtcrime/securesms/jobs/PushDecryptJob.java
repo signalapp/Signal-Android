@@ -954,22 +954,58 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
                                                                 content.isNeedsReceipt());
 
       textMessage = new IncomingEncryptedMessage(textMessage, body);
-      Optional<InsertResult> insertResult = database.insertMessageInbox(textMessage);
 
-      if (insertResult.isPresent()) threadId = insertResult.get().getThreadId();
-      else                          threadId = null;
+      List<Link> urls = LinkPreviewUtil.findWhitelistedUrls(body);
+      int urlCount = urls.size();
+      if (urlCount != 0) {
+        IncomingMediaMessage mediaMessage = new IncomingMediaMessage(Address.fromExternal(context, content.getSender()),
+                                            message.getTimestamp(), -1,
+                                            message.getExpiresInSeconds() * 1000L, false,
+                                            content.isNeedsReceipt(),
+                                            message.getBody(),
+                                            message.getGroupInfo(),
+                                            message.getAttachments(),
+                                            Optional.absent(),
+                                            Optional.absent(),
+                                            Optional.of(new ArrayList<>()),
+                                            Optional.absent());
+        LinkPreviewRepository lpr = new LinkPreviewRepository(context);
+        final int[] count = { 0 };
+        for (Link url : urls) {
+          lpr.getLinkPreview(context, url.getUrl(), lp -> Util.runOnMain(() -> {
+            int c = count[0];
+            c = c + 1;
+            count[0] = c;
+            if (lp.isPresent()) {
+              mediaMessage.getLinkPreviews().add(lp.get());
+            }
+            if (c == urlCount) {
+              try {
+                handleMediaMessage(content, mediaMessage, smsMessageId);
+              } catch (Exception e) {
+                // Do nothing
+              }
+            }
+          }));
+        }
+      } else {
+        Optional<InsertResult> insertResult = database.insertMessageInbox(textMessage);
 
-      if (smsMessageId.isPresent()) database.deleteMessage(smsMessageId.get());
+        if (insertResult.isPresent()) threadId = insertResult.get().getThreadId();
+        else                          threadId = null;
 
-      if (insertResult.isPresent() && messageServerIDOrNull.isPresent()) {
-        long messageID = insertResult.get().getMessageId();
-        long messageServerID = messageServerIDOrNull.get();
-        DatabaseFactory.getLokiMessageDatabase(context).setServerID(messageID, messageServerID);
+        if (smsMessageId.isPresent()) database.deleteMessage(smsMessageId.get());
+
+        if (insertResult.isPresent() && messageServerIDOrNull.isPresent()) {
+          long messageID = insertResult.get().getMessageId();
+          long messageServerID = messageServerIDOrNull.get();
+          DatabaseFactory.getLokiMessageDatabase(context).setServerID(messageID, messageServerID);
+        }
+
+        if (threadId != null) {
+          MessageNotifier.updateNotification(context, threadId);
+        }
       }
-    }
-
-    if (threadId != null) {
-      MessageNotifier.updateNotification(context, threadId);
     }
   }
 
