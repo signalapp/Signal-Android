@@ -54,7 +54,7 @@ public class PartProvider extends ContentProvider {
 
   static {
     uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
-    uriMatcher.addURI("org.thoughtcrime.provider.securesms", "part/*/#", SINGLE_ROW);
+    uriMatcher.addURI("network.loki.provider.securesms", "part/*/#", SINGLE_ROW);
   }
 
   @Override

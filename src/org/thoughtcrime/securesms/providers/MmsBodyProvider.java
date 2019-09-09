@@ -43,7 +43,7 @@ public class MmsBodyProvider extends ContentProvider {
 
   static {
     uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
-    uriMatcher.addURI("org.thoughtcrime.provider.securesms.mms", "mms/#", SINGLE_ROW);
+    uriMatcher.addURI("network.loki.provider.securesms.mms", "mms/#", SINGLE_ROW);
   }
 
   @Override
