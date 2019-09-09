@@ -11,7 +11,6 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord
 import org.whispersystems.signalservice.loki.messaging.LokiMessageFriendRequestStatus
@@ -109,12 +108,8 @@ class FriendRequestView(context: Context, attrs: AttributeSet?, defStyleAttr: In
         val lokiMessageDatabase = DatabaseFactory.getLokiMessageDatabase(context)
         val contactID = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(message!!.threadId)!!.address.toString()
         val contactDisplayName = DatabaseFactory.getLokiUserDatabase(context).getDisplayName(contactID) ?: contactID
-        if (message is MediaMmsMessageRecord && message.quote != null) { visibility = View.GONE; return }
         val isTextMessage = message is SmsMessageRecord
-        if (!isTextMessage) {
-            visibility = View.GONE
-            return
-        }
+        if (!isTextMessage) { visibility = View.GONE; return }
         val friendRequestStatus = lokiMessageDatabase.getFriendRequestStatus(message.id)
         if (!message.isOutgoing) {
             visibility = if (friendRequestStatus == LokiMessageFriendRequestStatus.NONE) View.GONE else View.VISIBLE
