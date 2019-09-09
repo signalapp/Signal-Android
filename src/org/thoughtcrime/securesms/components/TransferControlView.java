@@ -16,7 +16,6 @@ import com.pnikosis.materialishprogress.ProgressWheel;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-import network.loki.messenger.R;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
@@ -27,6 +26,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import network.loki.messenger.R;
 
 public class TransferControlView extends FrameLayout {
 
@@ -199,7 +200,7 @@ public class TransferControlView extends FrameLayout {
 
     if (view != null) {
       view.setVisibility(VISIBLE);
-      setVisibility(VISIBLE);
+      // setVisibility(VISIBLE);
     } else {
       setVisibility(GONE);
     }

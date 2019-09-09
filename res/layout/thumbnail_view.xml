@@ -48,6 +48,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout="@layout/transfer_controls_stub" />
+        android:layout="@layout/transfer_controls_stub"
+        android:visibility="gone" />
 
 </merge>
