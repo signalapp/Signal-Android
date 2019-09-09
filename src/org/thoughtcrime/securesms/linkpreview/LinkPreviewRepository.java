@@ -71,7 +71,7 @@ public class LinkPreviewRepository implements InjectableType {
     ApplicationContext.getInstance(context).injectDependencies(this);
   }
 
-  RequestController getLinkPreview(@NonNull Context context, @NonNull String url, @NonNull Callback<Optional<LinkPreview>> callback) {
+  public RequestController getLinkPreview(@NonNull Context context, @NonNull String url, @NonNull Callback<Optional<LinkPreview>> callback) {
     CompositeRequestController compositeController = new CompositeRequestController();
 
     if (!LinkPreviewUtil.isWhitelistedLinkUrl(url)) {
@@ -293,7 +293,7 @@ public class LinkPreviewRepository implements InjectableType {
     }
   }
 
-  interface Callback<T> {
+  public interface Callback<T> {
     void onComplete(@NonNull T result);
   }
 }

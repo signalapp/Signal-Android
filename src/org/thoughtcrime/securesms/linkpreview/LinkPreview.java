@@ -26,7 +26,7 @@ public class LinkPreview {
   private final AttachmentId attachmentId;
 
   @JsonIgnore
-  private final Optional<Attachment> thumbnail;
+  public Optional<Attachment> thumbnail;
 
   public LinkPreview(@NonNull String url, @NonNull String title, @NonNull DatabaseAttachment thumbnail) {
     this.url          = url;

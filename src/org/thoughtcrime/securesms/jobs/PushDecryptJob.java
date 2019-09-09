@@ -58,14 +58,15 @@ import org.thoughtcrime.securesms.database.StickerDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
-import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.database.model.StickerRecord;
+import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.groups.GroupMessageProcessor;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.linkpreview.Link;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
+import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.LokiMessageDatabase;
@@ -96,6 +97,7 @@ import org.thoughtcrime.securesms.util.Hex;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.state.PreKeyBundle;
 import org.whispersystems.libsignal.state.SignalProtocolStore;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -121,6 +123,7 @@ import org.whispersystems.signalservice.api.messages.multidevice.StickerPackOper
 import org.whispersystems.signalservice.api.messages.multidevice.VerifiedMessage;
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
+import org.whispersystems.signalservice.internal.util.concurrent.SettableFuture;
 import org.whispersystems.signalservice.loki.crypto.LokiServiceCipher;
 import org.whispersystems.signalservice.loki.messaging.LokiMessageFriendRequestStatus;
 import org.whispersystems.signalservice.loki.messaging.LokiServiceMessage;
@@ -136,6 +139,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import kotlin.Unit;
 import network.loki.messenger.R;
 
 public class PushDecryptJob extends BaseJob implements InjectableType {
@@ -760,6 +764,35 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
                                                                             linkPreviews,
                                                                             sticker);
 
+    if (linkPreviews.isPresent()) {
+      int linkPreviewCount = linkPreviews.get().size();
+      if (linkPreviewCount != 0) {
+        final SettableFuture<?>[] future = { new SettableFuture<Unit>() };
+        LinkPreviewRepository lpr = new LinkPreviewRepository(context);
+        final int[] count = { 0 };
+        for (LinkPreview linkPreview : linkPreviews.get()) {
+          lpr.getLinkPreview(context, linkPreview.getUrl(), lp -> Util.runOnMain(() -> {
+            int c = count[0];
+            c = c + 1;
+            count[0] = c;
+            if (lp.isPresent() && lp.get().getThumbnail().isPresent()) {
+              Attachment thumbnail = lp.get().getThumbnail().get();
+              linkPreview.thumbnail = Optional.of(thumbnail);
+            }
+            if (c == linkPreviewCount) {
+              @SuppressWarnings("unchecked") SettableFuture<Unit> f = (SettableFuture<Unit>) future[0];
+              f.set(Unit.INSTANCE);
+            }
+          }));
+        }
+        @SuppressWarnings("unchecked") SettableFuture<Unit> f = (SettableFuture<Unit>) future[0];
+        try {
+          f.get();
+        } catch (Exception e) {
+          // Do nothing
+        }
+      }
+    }
 
       insertResult = database.insertSecureDecryptedMessageInbox(mediaMessage, -1);
 
