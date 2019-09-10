@@ -73,8 +73,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int JOBMANAGER_STRIKES_BACK          = 20;
   private static final int STICKERS                         = 21;
   private static final int lokiV1                           = 22;
+  private static final int lokiV2                           = 23;
 
-  private static final int    DATABASE_VERSION = lokiV1; // Loki - onUpgrade(...) must be updated to use Loki version numbers if Signal makes any database changes
+  private static final int    DATABASE_VERSION = lokiV2; // Loki - onUpgrade(...) must be updated to use Loki version numbers if Signal makes any database changes
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -134,7 +135,8 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     db.execSQL(LokiMessageDatabase.getCreateTableCommand());
     db.execSQL(LokiThreadDatabase.getCreateFriendRequestTableCommand());
     db.execSQL(LokiThreadDatabase.getCreateSessionResetTableCommand());
-    db.execSQL(LokiUserDatabase.getCreateTableCommand());
+    db.execSQL(LokiUserDatabase.getCreateDisplayNameTableCommand());
+    db.execSQL(LokiUserDatabase.getCreateServerDisplayNameTableCommand());
 
     executeStatements(db, SmsDatabase.CREATE_INDEXS);
     executeStatements(db, MmsDatabase.CREATE_INDEXS);
@@ -491,6 +493,10 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
         db.execSQL(LokiAPIDatabase.getCreateGroupChatAuthTokenTableCommand());
         db.execSQL(LokiAPIDatabase.getCreateLastMessageServerIDTableCommand());
         db.execSQL(LokiAPIDatabase.getCreateLastDeletionServerIDTableCommand());
+      }
+
+      if (oldVersion < lokiV2) {
+        db.execSQL(LokiUserDatabase.getCreateServerDisplayNameTableCommand());
       }
 
       db.setTransactionSuccessful();
