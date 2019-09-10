@@ -1,22 +1,13 @@
-package org.thoughtcrime.securesms.loki.identicon
+package org.thoughtcrime.securesms.loki
 
-import android.graphics.Bitmap
-import android.graphics.Canvas
-import android.graphics.ColorFilter
-import android.graphics.Paint
-import android.graphics.Rect
+import android.graphics.*
 import android.graphics.drawable.Drawable
 
 /**
  * Basically a [Bitmap] wrapper, the [Bitmap] size must be known when instantiating it
  * but when drawing it will draw the [Bitmap] to fit the canvas.
  */
-abstract class IdenticonDrawable(
-        width: Int,
-        height: Int,
-        hash: Long
-) : Drawable() {
-
+abstract class IdenticonDrawable(width: Int, height: Int, hash: Long) : Drawable() {
   private val bitmapRect: Rect = Rect(0, 0, width, height)
   private val destinationRect: Rect = Rect(0, 0, width, height)
   private val bitmap: Bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)

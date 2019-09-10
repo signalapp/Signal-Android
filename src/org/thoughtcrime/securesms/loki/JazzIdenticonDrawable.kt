@@ -1,6 +1,8 @@
-package org.thoughtcrime.securesms.loki.identicon
+package org.thoughtcrime.securesms.loki
 
-import android.graphics.*
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
 import kotlin.math.*
 
 class JazzIdenticonDrawable(width: Int, height: Int, hash: Long) : IdenticonDrawable(width, height, hash) {

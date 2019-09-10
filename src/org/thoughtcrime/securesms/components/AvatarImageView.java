@@ -16,19 +16,18 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewOutlineProvider;
 
-import com.lelloman.identicon.drawable.ClassicIdenticonDrawable;
-
-import network.loki.messenger.R;
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
 import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto;
-import org.thoughtcrime.securesms.loki.identicon.JazzIdenticonDrawable;
+import org.thoughtcrime.securesms.loki.JazzIdenticonDrawable;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientExporter;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
+
+import network.loki.messenger.R;
 
 public class AvatarImageView extends AppCompatImageView {
 

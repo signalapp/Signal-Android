@@ -94,10 +94,8 @@ class LokiGroupChatPoller(private val context: Context, private val group: LokiG
             val x1 = SignalServiceGroup(SignalServiceGroup.Type.UPDATE, id, null, null, null)
             val x2 = SignalServiceDataMessage(message.timestamp, x1, null, message.body)
             val x3 = SignalServiceContent(x2, message.hexEncodedPublicKey, SignalServiceAddress.DEFAULT_DEVICE_ID, message.timestamp, false)
-
             val senderDisplayName = "${message.displayName} (...${message.hexEncodedPublicKey.takeLast(8)})"
             DatabaseFactory.getLokiUserDatabase(context).setServerDisplayName(group.id, message.hexEncodedPublicKey, senderDisplayName)
-
             PushDecryptJob(context).handleTextMessage(x3, x2, Optional.absent(), Optional.of(message.serverID))
         }
         fun processOutgoingMessage(message: LokiGroupMessage) {

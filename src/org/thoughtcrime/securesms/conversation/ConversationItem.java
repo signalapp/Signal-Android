@@ -881,7 +881,9 @@ public class ConversationItem extends LinearLayout
         String serverId = GroupUtil.getDecodedStringId(conversationRecipient.getAddress().serialize());
         String senderDisplayName = DatabaseFactory.getLokiUserDatabase(context).getServerDisplayName(serverId, recipient.getAddress().serialize());
         if (senderDisplayName != null) { displayName = senderDisplayName; }
-      } catch (Exception e) {}
+      } catch (Exception e) {
+        // Do nothing
+      }
 
       this.groupSender.setText(displayName);
 

@@ -18,10 +18,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.lelloman.identicon.drawable.ClassicIdenticonDrawable;
-
 import org.thoughtcrime.securesms.database.Address;
-import org.thoughtcrime.securesms.loki.identicon.JazzIdenticonDrawable;
+import org.thoughtcrime.securesms.loki.JazzIdenticonDrawable;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import network.loki.messenger.R;

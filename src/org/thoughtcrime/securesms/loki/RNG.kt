@@ -1,7 +1,6 @@
-package org.thoughtcrime.securesms.loki.identicon
+package org.thoughtcrime.securesms.loki
 
 class RNG(hash: Long) {
-
   private var seed: Long
   private val initial: Long
 
@@ -13,17 +12,17 @@ class RNG(hash: Long) {
     initial = seed
   }
 
-  public fun next(): Long {
+  fun next(): Long {
     val newSeed = (seed * 16807) % 2147483647
     seed = newSeed
     return seed
   }
 
-  public fun nextFloat(): Float {
+  fun nextFloat(): Float {
     return (next() - 1).toFloat() / 2147483646
   }
 
-  public fun reset() {
+  fun reset() {
     seed = initial
   }
 }
