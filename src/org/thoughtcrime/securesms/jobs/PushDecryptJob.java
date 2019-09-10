@@ -780,6 +780,10 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   }
 
   private void handleMediaMessage(@NonNull SignalServiceContent content, @NonNull IncomingMediaMessage mediaMessage, @NonNull Optional<Long> smsMessageID) throws StorageFailedException {
+    handleMediaMessage(content, mediaMessage, smsMessageID, null);
+  }
+
+  private void handleMediaMessage(@NonNull SignalServiceContent content, @NonNull IncomingMediaMessage mediaMessage, @NonNull Optional<Long> smsMessageID, @Nullable Optional<Long> messageServerIDOrNull) throws StorageFailedException {
     MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
     database.beginTransaction();
 
@@ -810,6 +814,9 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     } finally {
       database.endTransaction();
     }
+
+    // Loki - Map message id to server id
+    updatePublicChatMessageWithServerID(messageServerIDOrNull, insertResult);
 
     if (insertResult.isPresent()) {
       MessageNotifier.updateNotification(context, insertResult.get().getThreadId());
@@ -963,7 +970,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
             if (lp.isPresent()) { mediaMessage.getLinkPreviews().add(lp.get()); }
             if (c == urlCount) {
               try {
-                handleMediaMessage(content, mediaMessage, smsMessageId);
+                handleMediaMessage(content, mediaMessage, smsMessageId, messageServerIDOrNull);
               } catch (Exception e) {
                 // TODO: Handle
               }
@@ -978,16 +985,22 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
         if (smsMessageId.isPresent()) database.deleteMessage(smsMessageId.get());
 
-        if (insertResult.isPresent() && messageServerIDOrNull.isPresent()) {
-          long messageID = insertResult.get().getMessageId();
-          long messageServerID = messageServerIDOrNull.get();
-          DatabaseFactory.getLokiMessageDatabase(context).setServerID(messageID, messageServerID);
-        }
+        // Loki - Map message id to server id
+        updatePublicChatMessageWithServerID(messageServerIDOrNull, insertResult);
 
         if (threadId != null) {
           MessageNotifier.updateNotification(context, threadId);
         }
       }
+    }
+  }
+
+  private void updatePublicChatMessageWithServerID(@Nullable  Optional<Long> messageServerIDOrNull, Optional<InsertResult> databaseInsert) {
+    if (messageServerIDOrNull == null) { return; }
+    if (databaseInsert.isPresent() && messageServerIDOrNull.isPresent()) {
+      long messageID = databaseInsert.get().getMessageId();
+      long messageServerID = messageServerIDOrNull.get();
+      DatabaseFactory.getLokiMessageDatabase(context).setServerID(messageID, messageServerID);
     }
   }
 
