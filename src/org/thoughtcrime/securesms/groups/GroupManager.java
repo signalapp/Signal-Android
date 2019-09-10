@@ -66,11 +66,22 @@ public class GroupManager {
     if (!mms) {
       groupDatabase.updateAvatar(groupId, avatarBytes);
       DatabaseFactory.getRecipientDatabase(context).setProfileSharing(groupRecipient, true);
+    }
+
+    long threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient, ThreadDatabase.DistributionTypes.CONVERSATION);
+    return new GroupActionResult(groupRecipient, threadId);
+
+    /* Loki: Original Code
+    ==================
+    if (!mms) {
+      groupDatabase.updateAvatar(groupId, avatarBytes);
+      DatabaseFactory.getRecipientDatabase(context).setProfileSharing(groupRecipient, true);
       return sendGroupUpdate(context, groupId, memberAddresses, name, avatarBytes);
     } else {
       long threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient, ThreadDatabase.DistributionTypes.CONVERSATION);
       return new GroupActionResult(groupRecipient, threadId);
     }
+    */
   }
 
   public static GroupActionResult updateGroup(@NonNull  Context        context,
