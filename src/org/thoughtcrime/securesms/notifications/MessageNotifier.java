@@ -388,6 +388,11 @@ public class MessageNotifier {
   }
 
   private static void sendInThreadNotification(Context context, Recipient recipient) {
+    // Keep group messages muted!
+    if (recipient.isGroupRecipient()) {
+      return;
+    }
+
     if (!TextSecurePreferences.isInThreadNotifications(context) ||
         ServiceUtil.getAudioManager(context).getRingerMode() != AudioManager.RINGER_MODE_NORMAL)
     {

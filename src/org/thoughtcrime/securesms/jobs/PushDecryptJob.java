@@ -988,7 +988,8 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         // Loki - Map message id to server id
         updatePublicChatMessageWithServerID(messageServerIDOrNull, insertResult);
 
-        if (threadId != null) {
+        boolean isGroupMessage = message.getGroupInfo().isPresent();
+        if (threadId != null && !isGroupMessage) {
           MessageNotifier.updateNotification(context, threadId);
         }
       }
