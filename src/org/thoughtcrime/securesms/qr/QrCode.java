@@ -16,8 +16,12 @@ public class QrCode {
   public static final String TAG = QrCode.class.getSimpleName();
 
   public static @NonNull Bitmap create(String data) {
+    return create(data, 1024);
+  }
+
+  public static @NonNull Bitmap create(String data, int size) {
     try {
-      BitMatrix result = new QRCodeWriter().encode(data, BarcodeFormat.QR_CODE, 1024, 1024);
+      BitMatrix result = new QRCodeWriter().encode(data, BarcodeFormat.QR_CODE, size, size);
       Bitmap    bitmap = Bitmap.createBitmap(result.getWidth(), result.getHeight(), Bitmap.Config.ARGB_8888);
 
       for (int y = 0; y < result.getHeight(); y++) {
