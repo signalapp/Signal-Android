@@ -2101,7 +2101,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         Context                 context    = ConversationActivity.this;
         List<MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(context).setRead(params[0], false);
 
-        MessageNotifier.updateNotification(context);
+        // Only notify on private chats
+        if (!getRecipient().isGroupRecipient()) {
+          MessageNotifier.updateNotification(context);
+        }
+
         MarkReadReceiver.process(context, messageIds);
 
         return null;
