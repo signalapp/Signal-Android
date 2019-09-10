@@ -3,14 +3,23 @@ package org.thoughtcrime.securesms.loki
 import android.content.Context
 import android.os.Handler
 import android.util.Log
+import org.thoughtcrime.securesms.attachments.Attachment
+import org.thoughtcrime.securesms.contactshare.Contact
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
+import org.thoughtcrime.securesms.database.ThreadDatabase
+import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch
+import org.thoughtcrime.securesms.database.documents.NetworkFailure
 import org.thoughtcrime.securesms.jobs.PushDecryptJob
+import org.thoughtcrime.securesms.linkpreview.LinkPreview
+import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository
+import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil
+import org.thoughtcrime.securesms.mms.OutgoingMediaMessage
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.sms.OutgoingTextMessage
 import org.thoughtcrime.securesms.util.GroupUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.libsignal.util.guava.Optional
 import org.whispersystems.signalservice.api.messages.SignalServiceContent
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage
@@ -19,6 +28,7 @@ import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.loki.api.LokiGroupChat
 import org.whispersystems.signalservice.loki.api.LokiGroupChatAPI
 import org.whispersystems.signalservice.loki.api.LokiGroupMessage
+import java.util.*
 
 class LokiGroupChatPoller(private val context: Context, private val group: LokiGroupChat) {
     private val handler = Handler()
@@ -103,14 +113,41 @@ class LokiGroupChatPoller(private val context: Context, private val group: LokiG
             val isDuplicate = lokiMessageDatabase.getMessageID(messageServerID) != null
             if (isDuplicate) { return }
             val id = group.id.toByteArray()
-            val smsDatabase = DatabaseFactory.getSmsDatabase(context)
+            val mmsDatabase = DatabaseFactory.getMmsDatabase(context)
             val recipient = Recipient.from(context, Address.fromSerialized(GroupUtil.getEncodedId(id, false)), false)
-            val signalMessage = OutgoingTextMessage(recipient, message.body, 0, 0)
+            val signalMessage = OutgoingMediaMessage(recipient, message.body, ArrayList<Attachment>(), message.timestamp, 0, 0, ThreadDatabase.DistributionTypes.DEFAULT,
+               null, ArrayList<Contact>(), ArrayList<LinkPreview>(), ArrayList<NetworkFailure>(), ArrayList<IdentityKeyMismatch>())
             val threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient)
-            val messageID = smsDatabase.insertMessageOutbox(threadID, signalMessage, false, System.currentTimeMillis(), null)
-            smsDatabase.markAsSent(messageID, true)
-            smsDatabase.markUnidentified(messageID, false)
-            lokiMessageDatabase.setServerID(messageID, messageServerID)
+            fun finalize() {
+                val messageID = mmsDatabase.insertMessageOutbox(signalMessage, threadID, false, null)
+                mmsDatabase.markAsSent(messageID, true)
+                mmsDatabase.markUnidentified(messageID, false)
+                lokiMessageDatabase.setServerID(messageID, messageServerID)
+            }
+            val urls = LinkPreviewUtil.findWhitelistedUrls(message.body)
+            val urlCount = urls.size
+            if (urlCount != 0) {
+                val lpr = LinkPreviewRepository(context)
+                var count = 0
+                urls.forEach { url ->
+                    lpr.getLinkPreview(context, url.url) { lp ->
+                        Util.runOnMain {
+                            count += 1
+                            if (lp.isPresent) { signalMessage.linkPreviews.add(lp.get()) }
+                            if (count == urlCount) {
+                                try {
+                                    finalize()
+                                } catch (e: Exception) {
+                                    // TODO: Handle
+                                }
+
+                            }
+                        }
+                    }
+                }
+            } else {
+                finalize()
+            }
         }
         api.getMessages(group.serverID, group.server).success { messages ->
             messages.reversed().forEach { message ->
