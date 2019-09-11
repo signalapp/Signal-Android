@@ -812,8 +812,8 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       database.endTransaction();
     }
 
-    // Loki - Map message id to server id
-    updatePublicChatMessageWithServerID(messageServerIDOrNull, insertResult);
+    // Loki - Store message server ID
+    updateGroupChatMessageServerID(messageServerIDOrNull, insertResult);
 
     if (insertResult.isPresent()) {
       MessageNotifier.updateNotification(context, insertResult.get().getThreadId());
@@ -982,8 +982,8 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
         if (smsMessageId.isPresent()) database.deleteMessage(smsMessageId.get());
 
-        // Loki - Map message id to server id
-        updatePublicChatMessageWithServerID(messageServerIDOrNull, insertResult);
+        // Loki - Store message server ID
+        updateGroupChatMessageServerID(messageServerIDOrNull, insertResult);
 
         boolean isGroupMessage = message.getGroupInfo().isPresent();
         if (threadId != null && !isGroupMessage) {
@@ -993,10 +993,9 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     }
   }
 
-  private void updatePublicChatMessageWithServerID(Optional<Long> messageServerIDOrNull, Optional<InsertResult> databaseInsert) {
-    if (messageServerIDOrNull == null) { return; }
-    if (databaseInsert.isPresent() && messageServerIDOrNull.isPresent()) {
-      long messageID = databaseInsert.get().getMessageId();
+  private void updateGroupChatMessageServerID(Optional<Long> messageServerIDOrNull, Optional<InsertResult> insertResult) {
+    if (insertResult.isPresent() && messageServerIDOrNull.isPresent()) {
+      long messageID = insertResult.get().getMessageId();
       long messageServerID = messageServerIDOrNull.get();
       DatabaseFactory.getLokiMessageDatabase(context).setServerID(messageID, messageServerID);
     }

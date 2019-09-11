@@ -473,14 +473,11 @@ public class ThreadDatabase extends Database {
   }
 
   public boolean hasThread(long threadId) {
-    SQLiteDatabase db      = databaseHelper.getReadableDatabase();
-    Cursor         cursor = db.query(TABLE_NAME, new String[]{ID}, ID_WHERE, new String[]{String.valueOf(threadId)}, null, null, null);
+    SQLiteDatabase db = databaseHelper.getReadableDatabase();
+    Cursor cursor = db.query(TABLE_NAME, new String[]{ ID }, ID_WHERE, new String[]{ String.valueOf(threadId) }, null, null, null);
 
     try {
-      if (cursor != null && cursor.moveToFirst()) {
-        return true;
-      }
-
+      if (cursor != null && cursor.moveToFirst()) { return true; }
       return false;
     } finally {
       if (cursor != null) cursor.close();

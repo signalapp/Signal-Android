@@ -478,16 +478,14 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     }
   }
 
-
   private void createGroupChatPollersIfNeeded() {
-    // Only add the public chat poller if we have the thread
+    // Only create the group chat pollers if their threads aren't deleted
     LokiGroupChat publicChat = lokiPublicChat();
-    long threadId = GroupManager.getThreadId(publicChat.getId(), this);
-    if (threadId >= 0 && lokiPublicChatPoller == null) {
+    long threadID = GroupManager.getThreadId(publicChat.getId(), this);
+    if (threadID >= 0 && lokiPublicChatPoller == null) {
       lokiPublicChatPoller = new LokiGroupChatPoller(this, publicChat);
-
-      // Attach a deletion listener to the thread if we have it
-      setupThreadDeletionListeners(threadId, () -> {
+      // Set up deletion listeners if needed
+      setUpThreadDeletionListeners(threadID, () -> {
         if (lokiPublicChatPoller != null) lokiPublicChatPoller.stop();
         lokiPublicChatPoller = null;
       });
@@ -495,43 +493,42 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   }
 
   private void createRSSFeedPollersIfNeeded() {
-    // Only add the feed poller if we have the thread
+    // Only create the RSS feed pollers if their threads aren't deleted
     LokiRSSFeed lokiNewsFeed = lokiNewsFeed();
-    long lokiNewsFeedThreadId = GroupManager.getThreadId(lokiNewsFeed.getId(), this);
-    if (lokiNewsFeedThreadId >= 0 && lokiNewsFeedPoller == null) {
+    long lokiNewsFeedThreadID = GroupManager.getThreadId(lokiNewsFeed.getId(), this);
+    if (lokiNewsFeedThreadID >= 0 && lokiNewsFeedPoller == null) {
       lokiNewsFeedPoller = new LokiRSSFeedPoller(this, lokiNewsFeed);
-
-      // Attach a deletion listener to the thread if we have it
-      setupThreadDeletionListeners(lokiNewsFeedThreadId, () -> {
+      // Set up deletion listeners if needed
+      setUpThreadDeletionListeners(lokiNewsFeedThreadID, () -> {
         if (lokiNewsFeedPoller != null) lokiNewsFeedPoller.stop();
         lokiNewsFeedPoller = null;
       });
     }
-
-    // This one is not stoppable
-    if (lokiMessengerUpdatesFeedPoller == null) { lokiMessengerUpdatesFeedPoller = new LokiRSSFeedPoller(this, lokiMessengerUpdatesFeed()); }
+    // The user can't delete the Loki Messenger Updates RSS feed
+    if (lokiMessengerUpdatesFeedPoller == null) {
+      lokiMessengerUpdatesFeedPoller = new LokiRSSFeedPoller(this, lokiMessengerUpdatesFeed());
+    }
   }
 
-  private void setupThreadDeletionListeners(long threadId, Runnable onDelete) {
-    if (threadId < 0) { return; }
-
+  private void setUpThreadDeletionListeners(long threadID, Runnable onDelete) {
+    if (threadID < 0) { return; }
     ContentObserver observer = new ContentObserver(null) {
+
       @Override
       public void onChange(boolean selfChange) {
         super.onChange(selfChange);
-
-        // Stop the poller if thread doesn't exist
+        // Stop the poller if thread is deleted
         try {
-          if (!DatabaseFactory.getThreadDatabase(getApplicationContext()).hasThread(threadId)) {
+          if (!DatabaseFactory.getThreadDatabase(getApplicationContext()).hasThread(threadID)) {
             onDelete.run();
             getContentResolver().unregisterContentObserver(this);
           }
         } catch (Exception e) {
-          // Failed to call delete
+          // TODO: Handle
         }
       }
     };
-    this.getContentResolver().registerContentObserver(DatabaseContentProviders.Conversation.getUriForThread(threadId), true, observer);
+    this.getContentResolver().registerContentObserver(DatabaseContentProviders.Conversation.getUriForThread(threadID), true, observer);
   }
 
   public void startGroupChatPollersIfNeeded() {

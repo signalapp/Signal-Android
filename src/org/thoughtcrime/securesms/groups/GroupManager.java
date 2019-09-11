@@ -37,12 +37,12 @@ import java.util.Set;
 public class GroupManager {
 
   public static long getThreadId(String id, @NonNull  Context context) {
-    final String        groupId         = GroupUtil.getEncodedId(id.getBytes(), false);
+    final String groupId = GroupUtil.getEncodedId(id.getBytes(), false);
     return getThreadIdFromGroupId(groupId, context);
   }
 
   public static long getThreadIdFromGroupId(String groupId, @NonNull  Context context) {
-    final Recipient     groupRecipient  = Recipient.from(context, Address.fromSerialized(groupId), false);
+    final Recipient groupRecipient  = Recipient.from(context, Address.fromSerialized(groupId), false);
     return DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(groupRecipient);
   }
 
