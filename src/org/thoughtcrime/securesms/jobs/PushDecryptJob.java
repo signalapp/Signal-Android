@@ -305,7 +305,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         if      (message.isEndSession())        handleEndSessionMessage(content, smsMessageId);
         else if (message.isGroupUpdate())       handleGroupMessage(content, message, smsMessageId);
         else if (message.isExpirationUpdate())  handleExpirationUpdate(content, message, smsMessageId);
-        else if (isMediaMessage)                handleMediaMessage(content, message, smsMessageId);
+        else if (isMediaMessage)                handleMediaMessage(content, message, smsMessageId, Optional.absent());
         else if (message.getBody().isPresent()) handleTextMessage(content, message, smsMessageId, Optional.absent());
 
         if (message.getGroupInfo().isPresent() && groupDatabase.isUnknownGroup(GroupUtil.getEncodedId(message.getGroupInfo().get().getGroupId(), false))) {
@@ -733,9 +733,10 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     MessageNotifier.updateNotification(context);
   }
 
-  private void handleMediaMessage(@NonNull SignalServiceContent content,
-                                  @NonNull SignalServiceDataMessage message,
-                                  @NonNull Optional<Long> smsMessageId)
+  public void handleMediaMessage(@NonNull SignalServiceContent content,
+                                 @NonNull SignalServiceDataMessage message,
+                                 @NonNull Optional<Long> smsMessageId,
+                                 @Nullable Optional<Long> messageServerIDOrNull)
       throws StorageFailedException
   {
     notifyTypingStoppedFromIncomingMessage(getMessageDestination(content, message), content.getSender(), content.getSenderDevice());
@@ -764,7 +765,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
               }
               if (c == linkPreviewCount) {
                 try {
-                  handleMediaMessage(content, mediaMessage, smsMessageId);
+                  handleMediaMessage(content, mediaMessage, smsMessageId, messageServerIDOrNull);
                 } catch (Exception e) {
                   // TODO: Handle
                 }
@@ -772,14 +773,14 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
             }));
           }
         } else {
-          handleMediaMessage(content, mediaMessage, smsMessageId);
+          handleMediaMessage(content, mediaMessage, smsMessageId, messageServerIDOrNull);
         }
       } else {
-        handleMediaMessage(content, mediaMessage, smsMessageId);
+        handleMediaMessage(content, mediaMessage, smsMessageId, messageServerIDOrNull);
       }
   }
 
-  private void handleMediaMessage(@NonNull SignalServiceContent content, @NonNull IncomingMediaMessage mediaMessage, @NonNull Optional<Long> smsMessageID) throws StorageFailedException {
+  private void handleMediaMessage(@NonNull SignalServiceContent content, @NonNull IncomingMediaMessage mediaMessage, @NonNull Optional<Long> smsMessageID, @Nullable Optional<Long> messageServerIDOrNull) throws StorageFailedException {
     MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
     database.beginTransaction();
 
@@ -809,6 +810,12 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       throw new StorageFailedException(e, content.getSender(), content.getSenderDevice());
     } finally {
       database.endTransaction();
+    }
+
+    if (insertResult.isPresent() && messageServerIDOrNull.isPresent()) {
+      long messageID = insertResult.get().getMessageId();
+      long messageServerID = messageServerIDOrNull.get();
+      DatabaseFactory.getLokiMessageDatabase(context).setServerID(messageID, messageServerID);
     }
 
     if (insertResult.isPresent()) {
@@ -963,7 +970,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
             if (lp.isPresent()) { mediaMessage.getLinkPreviews().add(lp.get()); }
             if (c == urlCount) {
               try {
-                handleMediaMessage(content, mediaMessage, smsMessageId);
+                handleMediaMessage(content, mediaMessage, smsMessageId, messageServerIDOrNull);
               } catch (Exception e) {
                 // TODO: Handle
               }
