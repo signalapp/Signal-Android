@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/loki_darkest_gray"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -26,7 +26,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/welcome_terms_button"
+        app:layout_constraintBottom_toTopOf="@id/beta_terms_label"
         android:orientation="vertical"
         android:gravity="center">
 
@@ -38,6 +38,21 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/beta_terms_label"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="24dp"
+        style="@style/Signal.Text.Body"
+        android:text="@string/activity_landing_beta_terms"
+        android:textColor="@color/white"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/welcome_terms_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
         android:id="@+id/welcome_terms_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -45,6 +60,7 @@
         style="@style/Signal.Text.Body"
         android:text="@string/activity_landing_privacy_policy_button_title"
         android:textColor="@color/signal_primary"
+        android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/welcome_continue_button"
         app:layout_constraintEnd_toEndOf="@+id/welcome_continue_button"
         app:layout_constraintStart_toStartOf="@+id/welcome_continue_button" />
