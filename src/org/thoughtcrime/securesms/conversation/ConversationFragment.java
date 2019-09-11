@@ -406,12 +406,12 @@ public class ConversationFragment extends Fragment
     menu.findItem(R.id.menu_context_copy).setVisible(!actionMessage && hasText);
 
     boolean isGroupChat = recipient.isGroupRecipient();
-    boolean isLokiPublicChat = recipient.getName() != null && recipient.getName().equals("Loki Public Chat");
 
     if (isGroupChat) {
-      menu.findItem(R.id.menu_context_reply).setVisible(isLokiPublicChat);
-      LokiAPIDatabase lokiAPIDatabase = DatabaseFactory.getLokiAPIDatabase(getContext());
+      boolean isLokiPublicChat = recipient.getName() != null && recipient.getName().equals("Loki Public Chat");
       int selectedMessageCount = messageRecords.size();
+      menu.findItem(R.id.menu_context_reply).setVisible(isLokiPublicChat && selectedMessageCount == 1);
+      LokiAPIDatabase lokiAPIDatabase = DatabaseFactory.getLokiAPIDatabase(getContext());
       boolean isSentByUser = ((MessageRecord)messageRecords.toArray()[0]).isOutgoing();
       boolean userCanModerate = lokiAPIDatabase.isModerator(LokiGroupChatAPI.getPublicChatServerID(), LokiGroupChatAPI.getPublicChatServer());
       boolean isDeleteOptionVisible = isLokiPublicChat && selectedMessageCount == 1 && (isSentByUser || userCanModerate);
