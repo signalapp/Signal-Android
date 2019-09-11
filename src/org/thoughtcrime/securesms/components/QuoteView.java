@@ -20,8 +20,8 @@ import android.widget.TextView;
 import com.annimon.stream.Stream;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
-import network.loki.messenger.R;
 import org.thoughtcrime.securesms.attachments.Attachment;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.Slide;
@@ -30,8 +30,11 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.signalservice.loki.api.LokiGroupChatAPI;
 
 import java.util.List;
+
+import network.loki.messenger.R;
 
 public class QuoteView extends FrameLayout implements RecipientModifiedListener {
 
@@ -186,8 +189,11 @@ public class QuoteView extends FrameLayout implements RecipientModifiedListener 
     boolean outgoing    = messageType != MESSAGE_TYPE_INCOMING;
     boolean isOwnNumber = Util.isOwnNumber(getContext(), author.getAddress());
 
-    authorView.setText(isOwnNumber ? getContext().getString(R.string.QuoteView_you)
-                                   : author.toShortString());
+    String quoteeDisplayName = author.toShortString();
+    if (quoteeDisplayName.equals(author.getAddress().toString())) {
+      quoteeDisplayName = DatabaseFactory.getLokiUserDatabase(getContext()).getServerDisplayName(LokiGroupChatAPI.getPublicChatServer() + "." + LokiGroupChatAPI.getPublicChatServerID(), author.getAddress().toString());
+    }
+    authorView.setText(isOwnNumber ? getContext().getString(R.string.QuoteView_you) : quoteeDisplayName);
 
     // We use the raw color resource because Android 4.x was struggling with tints here
     quoteBarView.setImageResource(author.getColor().toQuoteBarColorResource(getContext(), outgoing));

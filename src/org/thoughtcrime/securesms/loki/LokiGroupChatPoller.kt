@@ -3,19 +3,15 @@ package org.thoughtcrime.securesms.loki
 import android.content.Context
 import android.os.Handler
 import android.util.Log
-import org.thoughtcrime.securesms.attachments.Attachment
-import org.thoughtcrime.securesms.contactshare.Contact
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.ThreadDatabase
-import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch
-import org.thoughtcrime.securesms.database.documents.NetworkFailure
 import org.thoughtcrime.securesms.jobs.PushDecryptJob
-import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage
+import org.thoughtcrime.securesms.mms.QuoteModel
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.GroupUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
@@ -28,7 +24,6 @@ import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.loki.api.LokiGroupChat
 import org.whispersystems.signalservice.loki.api.LokiGroupChatAPI
 import org.whispersystems.signalservice.loki.api.LokiGroupMessage
-import java.util.*
 
 class LokiGroupChatPoller(private val context: Context, private val group: LokiGroupChat) {
     private val handler = Handler()
@@ -102,11 +97,21 @@ class LokiGroupChatPoller(private val context: Context, private val group: LokiG
         fun processIncomingMessage(message: LokiGroupMessage) {
             val id = group.id.toByteArray()
             val x1 = SignalServiceGroup(SignalServiceGroup.Type.UPDATE, id, null, null, null)
-            val x2 = SignalServiceDataMessage(message.timestamp, x1, null, message.body)
+            val quote: SignalServiceDataMessage.Quote?
+            if (message.quote != null) {
+                quote = SignalServiceDataMessage.Quote(message.quote!!.quotedMessageTimestamp, SignalServiceAddress(message.quote!!.quoteeHexEncodedPublicKey), message.quote!!.quotedMessageBody, listOf())
+            } else {
+                quote = null
+            }
+            val x2 = SignalServiceDataMessage(message.timestamp, x1, listOf(), message.body, false, 0, false, null, false, quote, null, null, null)
             val x3 = SignalServiceContent(x2, message.hexEncodedPublicKey, SignalServiceAddress.DEFAULT_DEVICE_ID, message.timestamp, false)
             val senderDisplayName = "${message.displayName} (...${message.hexEncodedPublicKey.takeLast(8)})"
             DatabaseFactory.getLokiUserDatabase(context).setServerDisplayName(group.id, message.hexEncodedPublicKey, senderDisplayName)
-            PushDecryptJob(context).handleTextMessage(x3, x2, Optional.absent(), Optional.of(message.serverID))
+            if (quote != null) {
+                PushDecryptJob(context).handleMediaMessage(x3, x2, Optional.absent(), Optional.of(message.serverID))
+            } else {
+                PushDecryptJob(context).handleTextMessage(x3, x2, Optional.absent(), Optional.of(message.serverID))
+            }
         }
         fun processOutgoingMessage(message: LokiGroupMessage) {
             val messageServerID = message.serverID ?: return
@@ -116,8 +121,14 @@ class LokiGroupChatPoller(private val context: Context, private val group: LokiG
             val id = group.id.toByteArray()
             val mmsDatabase = DatabaseFactory.getMmsDatabase(context)
             val recipient = Recipient.from(context, Address.fromSerialized(GroupUtil.getEncodedId(id, false)), false)
-            val signalMessage = OutgoingMediaMessage(recipient, message.body, ArrayList<Attachment>(), message.timestamp, 0, 0, ThreadDatabase.DistributionTypes.DEFAULT,
-               null, ArrayList<Contact>(), ArrayList<LinkPreview>(), ArrayList<NetworkFailure>(), ArrayList<IdentityKeyMismatch>())
+            val quote: QuoteModel?
+            if (message.quote != null) {
+                quote = QuoteModel(message.quote!!.quotedMessageTimestamp, Address.fromSerialized(message.quote!!.quoteeHexEncodedPublicKey), message.quote!!.quotedMessageBody, false, listOf())
+            } else {
+                quote = null
+            }
+            val signalMessage = OutgoingMediaMessage(recipient, message.body, listOf(), message.timestamp, 0, 0,
+               ThreadDatabase.DistributionTypes.DEFAULT, quote, listOf(), listOf(), listOf(), listOf())
             val threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient)
             fun finalize() {
                 val messageID = mmsDatabase.insertMessageOutbox(signalMessage, threadID, false, null)
