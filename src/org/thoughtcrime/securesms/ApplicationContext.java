@@ -21,6 +21,7 @@ import android.arch.lifecycle.DefaultLifecycleObserver;
 import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.ProcessLifecycleOwner;
 import android.content.Context;
+import android.database.ContentObserver;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.support.annotation.NonNull;
@@ -35,6 +36,7 @@ import org.jetbrains.annotations.NotNull;
 import org.signal.aesgcmprovider.AesGcmProvider;
 import org.thoughtcrime.securesms.components.TypingStatusRepository;
 import org.thoughtcrime.securesms.components.TypingStatusSender;
+import org.thoughtcrime.securesms.database.DatabaseContentProviders;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.dependencies.AxolotlStorageModule;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
@@ -458,7 +460,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     LokiGroupChat publicChat = lokiPublicChat();
     boolean isChatSetUp = TextSecurePreferences.isChatSetUp(this, publicChat.getId());
     if (!isChatSetUp || !publicChat.isDeletable()) {
-      GroupManager.createGroup(publicChat.getId(), this, new HashSet<>(), null, publicChat.getDisplayName(), false);
+      GroupManager.GroupActionResult result = GroupManager.createGroup(publicChat.getId(), this, new HashSet<>(), null, publicChat.getDisplayName(), false);
       TextSecurePreferences.markChatSetUp(this, publicChat.getId());
     }
   }
@@ -477,23 +479,67 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   }
 
   private void createGroupChatPollersIfNeeded() {
-    if (lokiPublicChatPoller == null) lokiPublicChatPoller = new LokiGroupChatPoller(this, lokiPublicChat());
+    // Only create the group chat pollers if their threads aren't deleted
+    LokiGroupChat publicChat = lokiPublicChat();
+    long threadID = GroupManager.getThreadId(publicChat.getId(), this);
+    if (threadID >= 0 && lokiPublicChatPoller == null) {
+      lokiPublicChatPoller = new LokiGroupChatPoller(this, publicChat);
+      // Set up deletion listeners if needed
+      setUpThreadDeletionListeners(threadID, () -> {
+        if (lokiPublicChatPoller != null) lokiPublicChatPoller.stop();
+        lokiPublicChatPoller = null;
+      });
+    }
   }
 
   private void createRSSFeedPollersIfNeeded() {
-    if (lokiNewsFeedPoller == null) lokiNewsFeedPoller = new LokiRSSFeedPoller(this, lokiNewsFeed());
-    if (lokiMessengerUpdatesFeedPoller == null) lokiMessengerUpdatesFeedPoller = new LokiRSSFeedPoller(this, lokiMessengerUpdatesFeed());
+    // Only create the RSS feed pollers if their threads aren't deleted
+    LokiRSSFeed lokiNewsFeed = lokiNewsFeed();
+    long lokiNewsFeedThreadID = GroupManager.getThreadId(lokiNewsFeed.getId(), this);
+    if (lokiNewsFeedThreadID >= 0 && lokiNewsFeedPoller == null) {
+      lokiNewsFeedPoller = new LokiRSSFeedPoller(this, lokiNewsFeed);
+      // Set up deletion listeners if needed
+      setUpThreadDeletionListeners(lokiNewsFeedThreadID, () -> {
+        if (lokiNewsFeedPoller != null) lokiNewsFeedPoller.stop();
+        lokiNewsFeedPoller = null;
+      });
+    }
+    // The user can't delete the Loki Messenger Updates RSS feed
+    if (lokiMessengerUpdatesFeedPoller == null) {
+      lokiMessengerUpdatesFeedPoller = new LokiRSSFeedPoller(this, lokiMessengerUpdatesFeed());
+    }
+  }
+
+  private void setUpThreadDeletionListeners(long threadID, Runnable onDelete) {
+    if (threadID < 0) { return; }
+    ContentObserver observer = new ContentObserver(null) {
+
+      @Override
+      public void onChange(boolean selfChange) {
+        super.onChange(selfChange);
+        // Stop the poller if thread is deleted
+        try {
+          if (!DatabaseFactory.getThreadDatabase(getApplicationContext()).hasThread(threadID)) {
+            onDelete.run();
+            getContentResolver().unregisterContentObserver(this);
+          }
+        } catch (Exception e) {
+          // TODO: Handle
+        }
+      }
+    };
+    this.getContentResolver().registerContentObserver(DatabaseContentProviders.Conversation.getUriForThread(threadID), true, observer);
   }
 
   public void startGroupChatPollersIfNeeded() {
     createGroupChatPollersIfNeeded();
-    lokiPublicChatPoller.startIfNeeded();
+    if (lokiPublicChatPoller != null) lokiPublicChatPoller.startIfNeeded();
   }
 
   public void startRSSFeedPollersIfNeeded() {
     createRSSFeedPollersIfNeeded();
-    lokiNewsFeedPoller.startIfNeeded();
-    lokiMessengerUpdatesFeedPoller.startIfNeeded();
+    if (lokiNewsFeedPoller != null) lokiNewsFeedPoller.startIfNeeded();
+    if (lokiMessengerUpdatesFeedPoller != null) lokiMessengerUpdatesFeedPoller.startIfNeeded();
   }
   // endregion
 }

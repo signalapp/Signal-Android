@@ -472,6 +472,18 @@ public class ThreadDatabase extends Database {
     deleteAllThreads();
   }
 
+  public boolean hasThread(long threadId) {
+    SQLiteDatabase db = databaseHelper.getReadableDatabase();
+    Cursor cursor = db.query(TABLE_NAME, new String[]{ ID }, ID_WHERE, new String[]{ String.valueOf(threadId) }, null, null, null);
+
+    try {
+      if (cursor != null && cursor.moveToFirst()) { return true; }
+      return false;
+    } finally {
+      if (cursor != null) cursor.close();
+    }
+  }
+
   public long getThreadIdIfExistsFor(Recipient recipient) {
     SQLiteDatabase db      = databaseHelper.getReadableDatabase();
     String where           = ADDRESS + " = ?";

@@ -736,7 +736,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   public void handleMediaMessage(@NonNull SignalServiceContent content,
                                  @NonNull SignalServiceDataMessage message,
                                  @NonNull Optional<Long> smsMessageId,
-                                 @Nullable Optional<Long> messageServerIDOrNull)
+                                 @NonNull Optional<Long> messageServerIDOrNull)
       throws StorageFailedException
   {
     notifyTypingStoppedFromIncomingMessage(getMessageDestination(content, message), content.getSender(), content.getSenderDevice());
@@ -812,11 +812,8 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       database.endTransaction();
     }
 
-    if (insertResult.isPresent() && messageServerIDOrNull.isPresent()) {
-      long messageID = insertResult.get().getMessageId();
-      long messageServerID = messageServerIDOrNull.get();
-      DatabaseFactory.getLokiMessageDatabase(context).setServerID(messageID, messageServerID);
-    }
+    // Loki - Store message server ID
+    updateGroupChatMessageServerID(messageServerIDOrNull, insertResult);
 
     if (insertResult.isPresent()) {
       MessageNotifier.updateNotification(context, insertResult.get().getThreadId());
@@ -927,7 +924,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   public void handleTextMessage(@NonNull SignalServiceContent content,
                                 @NonNull SignalServiceDataMessage message,
                                 @NonNull Optional<Long> smsMessageId,
-                                @Nullable Optional<Long> messageServerIDOrNull)
+                                @NonNull Optional<Long> messageServerIDOrNull)
       throws StorageFailedException
   {
     SmsDatabase database  = DatabaseFactory.getSmsDatabase(context);
@@ -985,16 +982,22 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
         if (smsMessageId.isPresent()) database.deleteMessage(smsMessageId.get());
 
-        if (insertResult.isPresent() && messageServerIDOrNull.isPresent()) {
-          long messageID = insertResult.get().getMessageId();
-          long messageServerID = messageServerIDOrNull.get();
-          DatabaseFactory.getLokiMessageDatabase(context).setServerID(messageID, messageServerID);
-        }
+        // Loki - Store message server ID
+        updateGroupChatMessageServerID(messageServerIDOrNull, insertResult);
 
-        if (threadId != null) {
+        boolean isGroupMessage = message.getGroupInfo().isPresent();
+        if (threadId != null && !isGroupMessage) {
           MessageNotifier.updateNotification(context, threadId);
         }
       }
+    }
+  }
+
+  private void updateGroupChatMessageServerID(Optional<Long> messageServerIDOrNull, Optional<InsertResult> insertResult) {
+    if (insertResult.isPresent() && messageServerIDOrNull.isPresent()) {
+      long messageID = insertResult.get().getMessageId();
+      long messageServerID = messageServerIDOrNull.get();
+      DatabaseFactory.getLokiMessageDatabase(context).setServerID(messageID, messageServerID);
     }
   }
 

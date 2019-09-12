@@ -36,6 +36,16 @@ import java.util.Set;
 
 public class GroupManager {
 
+  public static long getThreadId(String id, @NonNull  Context context) {
+    final String groupId = GroupUtil.getEncodedId(id.getBytes(), false);
+    return getThreadIdFromGroupId(groupId, context);
+  }
+
+  public static long getThreadIdFromGroupId(String groupId, @NonNull  Context context) {
+    final Recipient groupRecipient  = Recipient.from(context, Address.fromSerialized(groupId), false);
+    return DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(groupRecipient);
+  }
+
   public static @NonNull GroupActionResult createGroup(@NonNull  Context        context,
                                                        @NonNull  Set<Recipient> members,
                                                        @Nullable Bitmap         avatar,
@@ -66,11 +76,22 @@ public class GroupManager {
     if (!mms) {
       groupDatabase.updateAvatar(groupId, avatarBytes);
       DatabaseFactory.getRecipientDatabase(context).setProfileSharing(groupRecipient, true);
+    }
+
+    long threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient, ThreadDatabase.DistributionTypes.CONVERSATION);
+    return new GroupActionResult(groupRecipient, threadId);
+
+    /* Loki: Original Code
+    ==================
+    if (!mms) {
+      groupDatabase.updateAvatar(groupId, avatarBytes);
+      DatabaseFactory.getRecipientDatabase(context).setProfileSharing(groupRecipient, true);
       return sendGroupUpdate(context, groupId, memberAddresses, name, avatarBytes);
     } else {
       long threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient, ThreadDatabase.DistributionTypes.CONVERSATION);
       return new GroupActionResult(groupRecipient, threadId);
     }
+    */
   }
 
   public static GroupActionResult updateGroup(@NonNull  Context        context,
