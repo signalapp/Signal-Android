@@ -410,13 +410,15 @@ public class ConversationFragment extends Fragment
     if (isGroupChat) {
       boolean isLokiPublicChat = recipient.getName() != null && recipient.getName().equals("Loki Public Chat");
       int selectedMessageCount = messageRecords.size();
+      boolean isSentByUser = ((MessageRecord)messageRecords.toArray()[0]).isOutgoing();
+      menu.findItem(R.id.menu_context_copy_public_key).setVisible(isLokiPublicChat && selectedMessageCount == 1 && !isSentByUser);
       menu.findItem(R.id.menu_context_reply).setVisible(isLokiPublicChat && selectedMessageCount == 1);
       LokiAPIDatabase lokiAPIDatabase = DatabaseFactory.getLokiAPIDatabase(getContext());
-      boolean isSentByUser = ((MessageRecord)messageRecords.toArray()[0]).isOutgoing();
       boolean userCanModerate = lokiAPIDatabase.isModerator(LokiGroupChatAPI.getPublicChatServerID(), LokiGroupChatAPI.getPublicChatServer());
       boolean isDeleteOptionVisible = isLokiPublicChat && selectedMessageCount == 1 && (isSentByUser || userCanModerate);
       menu.findItem(R.id.menu_context_delete_message).setVisible(isDeleteOptionVisible);
     } else {
+      menu.findItem(R.id.menu_context_copy_public_key).setVisible(false);
       menu.findItem(R.id.menu_context_delete_message).setVisible(true);
     }
   }
@@ -491,6 +493,11 @@ public class ConversationFragment extends Fragment
 
     if (!TextUtils.isEmpty(result))
         clipboard.setText(result);
+  }
+
+  private void handleCopyPublicKey(MessageRecord messageRecord) {
+    ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+    clipboard.setText(messageRecord.getRecipient().getAddress().toString());
   }
 
   private void handleDeleteMessages(final Set<MessageRecord> messageRecords) {
@@ -1119,6 +1126,10 @@ public class ConversationFragment extends Fragment
       switch(item.getItemId()) {
         case R.id.menu_context_copy:
           handleCopyMessage(getListAdapter().getSelectedItems());
+          actionMode.finish();
+          return true;
+        case R.id.menu_context_copy_public_key:
+          handleCopyPublicKey((MessageRecord) getListAdapter().getSelectedItems().toArray()[0]);
           actionMode.finish();
           return true;
         case R.id.menu_context_delete_message:
