@@ -58,11 +58,11 @@ class LokiGroupChatPoller(private val context: Context, private val group: LokiG
         }
     }
 
-    private val pollForModerationPermissionTask = object : Runnable {
+    private val pollForModeratorsTask = object : Runnable {
 
         override fun run() {
-            pollForModerationPermission()
-            handler.postDelayed(this, pollForModerationPermissionInterval)
+            pollForModerators()
+            handler.postDelayed(this, pollForModeratorsInterval)
         }
     }
     // endregion
@@ -71,7 +71,7 @@ class LokiGroupChatPoller(private val context: Context, private val group: LokiG
     companion object {
         private val pollForNewMessagesInterval: Long = 4 * 1000
         private val pollForDeletedMessagesInterval: Long = 20 * 1000
-        private val pollForModerationPermissionInterval: Long = 10 * 60 * 1000
+        private val pollForModeratorsInterval: Long = 10 * 60 * 1000
     }
     // endregion
 
@@ -80,14 +80,14 @@ class LokiGroupChatPoller(private val context: Context, private val group: LokiG
         if (hasStarted) return
         pollForNewMessagesTask.run()
         pollForDeletedMessagesTask.run()
-        pollForModerationPermissionTask.run()
+        pollForModeratorsTask.run()
         hasStarted = true
     }
 
     fun stop() {
         handler.removeCallbacks(pollForNewMessagesTask)
         handler.removeCallbacks(pollForDeletedMessagesTask)
-        handler.removeCallbacks(pollForModerationPermissionTask)
+        handler.removeCallbacks(pollForModeratorsTask)
         hasStarted = false
     }
     // endregion
@@ -189,11 +189,8 @@ class LokiGroupChatPoller(private val context: Context, private val group: LokiG
         }
     }
 
-    private fun pollForModerationPermission() {
-        api.userHasModerationPermission(group.serverID, group.server).success { isModerator ->
-            val lokiAPIDatabase = DatabaseFactory.getLokiAPIDatabase(context)
-            lokiAPIDatabase.setIsModerator(group.serverID, group.server, isModerator)
-        }
+    private fun pollForModerators() {
+        api.getModerators(group.serverID, group.server)
     }
     // endregion
 }

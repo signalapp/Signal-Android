@@ -23,7 +23,7 @@
         android:clipToPadding="false"
         android:clipChildren="false">
 
-        <FrameLayout
+        <RelativeLayout
             android:id="@+id/contact_photo_container"
             android:layout_width="36dp"
             android:layout_height="wrap_content"
@@ -39,7 +39,15 @@
                 android:cropToPadding="true"
                 android:contentDescription="@string/conversation_item_received__contact_photo_description" />
 
-        </FrameLayout>
+            <ImageView
+                android:id="@+id/moderator_icon_image_view"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/icon_crown"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true" />
+
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

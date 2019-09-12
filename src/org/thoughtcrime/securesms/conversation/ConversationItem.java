@@ -45,6 +45,7 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -99,9 +100,19 @@ import org.thoughtcrime.securesms.mms.TextSlide;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
 import org.thoughtcrime.securesms.stickers.StickerUrl;
-import org.thoughtcrime.securesms.util.*;
+import org.thoughtcrime.securesms.util.DateUtils;
+import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.thoughtcrime.securesms.util.GroupUtil;
+import org.thoughtcrime.securesms.util.LongClickCopySpan;
+import org.thoughtcrime.securesms.util.LongClickMovementMethod;
+import org.thoughtcrime.securesms.util.SearchUtil;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.ThemeUtil;
+import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.views.Stub;
 import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.loki.api.LokiGroupChatAPI;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -142,6 +153,7 @@ public class ConversationItem extends LinearLayout
   private   TextView               groupSenderProfileName;
   private   View                   groupSenderHolder;
   private   AvatarImageView        contactPhoto;
+  private   ImageView              moderatorIconImageView;
   private   ViewGroup              contactPhotoHolder;
   private   AlertView              alertView;
   private   ViewGroup              container;
@@ -198,6 +210,7 @@ public class ConversationItem extends LinearLayout
     this.groupSenderProfileName  =            findViewById(R.id.group_message_sender_profile);
     this.alertView               =            findViewById(R.id.indicators_parent);
     this.contactPhoto            =            findViewById(R.id.contact_photo);
+    this.moderatorIconImageView      =            findViewById(R.id.moderator_icon_image_view);
     this.contactPhotoHolder      =            findViewById(R.id.contact_photo_container);
     this.bodyBubble              =            findViewById(R.id.body_bubble);
     this.mediaThumbnailStub      = new Stub<>(findViewById(R.id.image_view_stub));
@@ -921,14 +934,25 @@ public class ConversationItem extends LinearLayout
 
       if (!next.isPresent() || next.get().isUpdate() || !current.getRecipient().getAddress().equals(next.get().getRecipient().getAddress())) {
         contactPhoto.setVisibility(VISIBLE);
+        int visibility;
+        if (conversationRecipient.getName() != null && conversationRecipient.getName().equals("Loki Public Chat")) {
+          boolean isModerator = LokiGroupChatAPI.Companion.isUserModerator(TextSecurePreferences.getLocalNumber(getContext()), LokiGroupChatAPI.getPublicChatServerID(), LokiGroupChatAPI.getPublicChatServer());
+          visibility = isModerator ? View.VISIBLE : View.GONE;
+        } else {
+          visibility = View.GONE;
+        }
+        moderatorIconImageView.setVisibility(visibility);
       } else {
         contactPhoto.setVisibility(GONE);
+        moderatorIconImageView.setVisibility(GONE);
+
       }
     } else {
       groupSenderHolder.setVisibility(GONE);
 
       if (contactPhotoHolder != null) {
         contactPhotoHolder.setVisibility(GONE);
+        moderatorIconImageView.setVisibility(GONE);
       }
     }
   }

@@ -413,8 +413,8 @@ public class ConversationFragment extends Fragment
       boolean isSentByUser = ((MessageRecord)messageRecords.toArray()[0]).isOutgoing();
       menu.findItem(R.id.menu_context_copy_public_key).setVisible(isLokiPublicChat && selectedMessageCount == 1 && !isSentByUser);
       menu.findItem(R.id.menu_context_reply).setVisible(isLokiPublicChat && selectedMessageCount == 1);
-      LokiAPIDatabase lokiAPIDatabase = DatabaseFactory.getLokiAPIDatabase(getContext());
-      boolean userCanModerate = lokiAPIDatabase.isModerator(LokiGroupChatAPI.getPublicChatServerID(), LokiGroupChatAPI.getPublicChatServer());
+      String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(getContext());
+      boolean userCanModerate = LokiGroupChatAPI.Companion.isUserModerator(userHexEncodedPublicKey, LokiGroupChatAPI.getPublicChatServerID(), LokiGroupChatAPI.getPublicChatServer());
       boolean isDeleteOptionVisible = isLokiPublicChat && selectedMessageCount == 1 && (isSentByUser || userCanModerate);
       menu.findItem(R.id.menu_context_delete_message).setVisible(isDeleteOptionVisible);
     } else {
