@@ -296,7 +296,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       Optional<String> rawSenderDisplayName = content.senderDisplayName;
       if (rawSenderDisplayName.isPresent() && rawSenderDisplayName.get().length() > 0) {
         String senderHexEncodedPublicKey = envelope.getSource();
-        String senderDisplayName = rawSenderDisplayName + " (..." + senderHexEncodedPublicKey.substring(senderHexEncodedPublicKey.length() - 8) + ")";
+        String senderDisplayName = rawSenderDisplayName.get() + " (..." + senderHexEncodedPublicKey.substring(senderHexEncodedPublicKey.length() - 8) + ")";
         DatabaseFactory.getLokiUserDatabase(context).setDisplayName(senderHexEncodedPublicKey, senderDisplayName);
       }
 
