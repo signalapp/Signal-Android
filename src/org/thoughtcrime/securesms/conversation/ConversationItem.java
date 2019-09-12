@@ -936,7 +936,7 @@ public class ConversationItem extends LinearLayout
         contactPhoto.setVisibility(VISIBLE);
         int visibility;
         if (conversationRecipient.getName() != null && conversationRecipient.getName().equals("Loki Public Chat")) {
-          boolean isModerator = LokiGroupChatAPI.Companion.isUserModerator(TextSecurePreferences.getLocalNumber(getContext()), LokiGroupChatAPI.getPublicChatServerID(), LokiGroupChatAPI.getPublicChatServer());
+          boolean isModerator = LokiGroupChatAPI.Companion.isUserModerator(current.getRecipient().getAddress().toString(), LokiGroupChatAPI.getPublicChatServerID(), LokiGroupChatAPI.getPublicChatServer());
           visibility = isModerator ? View.VISIBLE : View.GONE;
         } else {
           visibility = View.GONE;

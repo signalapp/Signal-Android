@@ -41,8 +41,9 @@
 
             <ImageView
                 android:id="@+id/moderator_icon_image_view"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginEnd="1.5dp"
                 android:src="@drawable/icon_crown"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true" />
