@@ -68,7 +68,7 @@ public abstract class PushSendJob extends SendJob {
                          .setQueue(destination.serialize())
                          .addConstraint(NetworkConstraint.KEY)
                          .setLifespan(TimeUnit.DAYS.toMillis(1))
-                         .setMaxAttempts(Parameters.UNLIMITED)
+                         .setMaxAttempts(3)
                          .build();
   }
 
