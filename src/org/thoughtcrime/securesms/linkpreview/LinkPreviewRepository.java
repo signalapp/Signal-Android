@@ -11,6 +11,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.gif.GifDrawable;
 import com.bumptech.glide.request.FutureTarget;
 
+import com.bumptech.glide.util.ByteBufferUtil;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.UriAttachment;
@@ -158,8 +159,7 @@ public class LinkPreviewRepository implements InjectableType {
     SignalExecutors.UNBOUNDED.execute(() -> {
       try {
         GifDrawable gif = future.get();
-        byte[] bytes = new byte[gif.getBuffer().remaining()];
-        gif.getBuffer().get(bytes);
+        byte[] bytes = ByteBufferUtil.toBytes(gif.getBuffer());
         Uri uri = BlobProvider.getInstance().forData(bytes).createForSingleSessionInMemory();
         Optional<Attachment> thumbnail = Optional.of(new UriAttachment(uri, uri, MediaUtil.IMAGE_GIF, AttachmentDatabase.TRANSFER_PROGRESS_DONE,
           bytes.length, gif.getIntrinsicWidth(), gif.getIntrinsicHeight(), null, null, false, false, null, null));
