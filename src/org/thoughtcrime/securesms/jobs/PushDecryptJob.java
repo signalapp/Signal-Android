@@ -978,6 +978,23 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
             }
           }));
         }
+      } if (LinkPreviewUtil.isWhitelistedMediaUrl(body)) {
+        new LinkPreviewRepository(context).fetchGIF(context, body, attachmentOrNull -> Util.runOnMain(() -> {
+          if (attachmentOrNull.isPresent()) {
+            Attachment attachment = attachmentOrNull.get();
+            try {
+              IncomingMediaMessage mediaMessage = new IncomingMediaMessage(Address.fromExternal(context, content.getSender()), message.getTimestamp(), -1,
+                 message.getExpiresInSeconds() * 1000L, false, content.isNeedsReceipt(), message.getBody(), message.getGroupInfo(), Optional.of(new ArrayList<>()),
+                  Optional.absent(), Optional.absent(), Optional.absent(), Optional.absent());
+              mediaMessage.getAttachments().add(attachment);
+              handleMediaMessage(content, mediaMessage, smsMessageId, messageServerIDOrNull);
+            } catch (Exception e) {
+              // TODO: Handle
+            }
+          } else {
+            // TODO: Handle
+          }
+        }));
       } else {
         Optional<InsertResult> insertResult = database.insertMessageInbox(textMessage);
 

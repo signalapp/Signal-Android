@@ -8,6 +8,7 @@ import android.text.Html;
 import android.text.TextUtils;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.gif.GifDrawable;
 import com.bumptech.glide.request.FutureTarget;
 
 import org.thoughtcrime.securesms.ApplicationContext;
@@ -148,6 +149,29 @@ public class LinkPreviewRepository implements InjectableType {
     });
 
     return new CallRequestController(call);
+  }
+
+  public @NonNull RequestController fetchGIF(@NonNull Context context, @NonNull String url, @NonNull Callback<Optional<Attachment>> callback) {
+    FutureTarget<GifDrawable> future = GlideApp.with(context).asGif().load(new ChunkedImageUrl(url)).skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.NONE)
+      .centerInside().submit(1024, 1024);
+    RequestController controller = () -> future.cancel(false);
+    SignalExecutors.UNBOUNDED.execute(() -> {
+      try {
+        GifDrawable gif = future.get();
+        byte[] bytes = new byte[gif.getBuffer().remaining()];
+        gif.getBuffer().get(bytes);
+        Uri uri = BlobProvider.getInstance().forData(bytes).createForSingleSessionInMemory();
+        Optional<Attachment> thumbnail = Optional.of(new UriAttachment(uri, uri, MediaUtil.IMAGE_GIF, AttachmentDatabase.TRANSFER_PROGRESS_DONE,
+          bytes.length, gif.getIntrinsicWidth(), gif.getIntrinsicHeight(), null, null, false, false, null, null));
+        callback.onComplete(thumbnail);
+      } catch (CancellationException | ExecutionException | InterruptedException e) {
+        controller.cancel();
+        callback.onComplete(Optional.absent());
+      } finally {
+        future.cancel(false);
+      }
+    });
+    return () -> future.cancel(true);
   }
 
   private @NonNull RequestController fetchThumbnail(@NonNull Context context, @NonNull String imageUrl, @NonNull Callback<Optional<Attachment>> callback) {

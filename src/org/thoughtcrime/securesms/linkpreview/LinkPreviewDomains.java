@@ -33,6 +33,7 @@ public class LinkPreviewDomains {
       "redd.it",
       "imgur.com",
       "pinimg.com",
-      "giphy.com"
+      "giphy.com",
+      "tenor.com"
   ));
 }
