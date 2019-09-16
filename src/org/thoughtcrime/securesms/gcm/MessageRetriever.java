@@ -7,12 +7,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 
 import org.thoughtcrime.securesms.ApplicationContext;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.PowerManagerCompat;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.WakeLockUtil;
 
 import java.util.concurrent.Semaphore;
@@ -34,7 +34,7 @@ public class MessageRetriever {
    */
   @WorkerThread
   public boolean retrieveMessages(@NonNull Context context, Strategy... strategies) {
-    if (ApplicationContext.getInstance(context).isAppVisible()) {
+    if (shouldIgnoreFetch(context)) {
       Log.i(TAG, "Skipping retrieval -- app is in the foreground.");
       return true;
     }
@@ -64,7 +64,7 @@ public class MessageRetriever {
         boolean success = false;
 
         for (Strategy strategy : strategies) {
-          if (ApplicationContext.getInstance(context).isAppVisible()) {
+          if (shouldIgnoreFetch(context)) {
             Log.i(TAG, "Stopping further strategy attempts -- app is in the foreground." + logSuffix(startTime));
             success = true;
             break;
@@ -93,6 +93,15 @@ public class MessageRetriever {
         ACTIVE_LOCK.release();
       }
     }
+  }
+
+  /**
+   * @return True if there is no need to execute a message fetch, because the websocket will take
+   *         care of it.
+   */
+  public static boolean shouldIgnoreFetch(@NonNull Context context) {
+    return ApplicationContext.getInstance(context).isAppVisible() &&
+           !ApplicationDependencies.getSignalServiceNetworkAccess().isCensored(context);
   }
 
   private static String logSuffix(long startTime) {

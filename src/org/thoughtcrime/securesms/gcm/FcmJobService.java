@@ -41,7 +41,7 @@ public class FcmJobService extends JobService {
   public boolean onStartJob(JobParameters params) {
     Log.d(TAG, "onStartJob()");
 
-    if (ApplicationContext.getInstance(getApplicationContext()).isAppVisible()) {
+    if (MessageRetriever.shouldIgnoreFetch(this)) {
       Log.i(TAG, "App is foregrounded. No need to run.");
       return false;
     }
