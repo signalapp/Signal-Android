@@ -739,7 +739,12 @@ public class AttachmentDatabase extends Database {
 
     if (thumbnailUri != null) {
       try (InputStream attachmentStream = PartAuthority.getAttachmentStream(context, thumbnailUri)) {
-        Pair<Integer, Integer> dimens = BitmapUtil.getDimensions(attachmentStream);
+        Pair<Integer, Integer> dimens;
+        if (attachment.getContentType().equals(MediaUtil.IMAGE_GIF)) {
+          dimens = new Pair<>(attachment.getWidth(), attachment.getHeight());
+        } else {
+          dimens = BitmapUtil.getDimensions(attachmentStream);
+        }
         updateAttachmentThumbnail(attachmentId,
                                   PartAuthority.getAttachmentStream(context, thumbnailUri),
                                   (float) dimens.first / (float) dimens.second);

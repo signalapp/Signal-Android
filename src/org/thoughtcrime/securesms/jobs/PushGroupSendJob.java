@@ -95,7 +95,7 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
       OutgoingMediaMessage message     = database.getOutgoingMessage(messageId);
       List<Attachment>     attachments = new LinkedList<>();
 
-      attachments.addAll(message.getAttachments());
+      // attachments.addAll(message.getAttachments());
       // attachments.addAll(Stream.of(message.getLinkPreviews()).filter(p -> p.getThumbnail().isPresent()).map(p -> p.getThumbnail().get()).toList());
       attachments.addAll(Stream.of(message.getSharedContacts()).filter(c -> c.getAvatar() != null).map(c -> c.getAvatar().getAttachment()).withoutNulls().toList());
 

@@ -39,6 +39,8 @@ import org.thoughtcrime.securesms.jobs.PushGroupSendJob;
 import org.thoughtcrime.securesms.jobs.PushMediaSendJob;
 import org.thoughtcrime.securesms.jobs.PushTextSendJob;
 import org.thoughtcrime.securesms.jobs.SmsSendJob;
+import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository;
+import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
@@ -46,6 +48,7 @@ import org.thoughtcrime.securesms.push.AccountManagerFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.push.ContactTokenDetails;
@@ -93,28 +96,42 @@ public class MessageSender {
                           final boolean forceSms,
                           final SmsDatabase.InsertListener insertListener)
   {
-    try {
-      ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);
-      MmsDatabase    database       = DatabaseFactory.getMmsDatabase(context);
+    ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);
+    MmsDatabase    database       = DatabaseFactory.getMmsDatabase(context);
 
-      long allocatedThreadId;
+    long allocatedThreadId;
 
-      if (threadId == -1) {
-        allocatedThreadId = threadDatabase.getThreadIdFor(message.getRecipient(), message.getDistributionType());
-      } else {
-        allocatedThreadId = threadId;
-      }
-
-      Recipient recipient = message.getRecipient();
-      long      messageId = database.insertMessageOutbox(message, allocatedThreadId, forceSms, insertListener);
-
-      sendMediaMessage(context, recipient, forceSms, messageId, message.getExpiresIn());
-
-      return allocatedThreadId;
-    } catch (MmsException e) {
-      Log.w(TAG, e);
-      return threadId;
+    if (threadId == -1) {
+      allocatedThreadId = threadDatabase.getThreadIdFor(message.getRecipient(), message.getDistributionType());
+    } else {
+      allocatedThreadId = threadId;
     }
+
+    Recipient recipient = message.getRecipient();
+
+    if (message.getLinkPreviews().isEmpty() && message.getAttachments().isEmpty() && LinkPreviewUtil.isWhitelistedMediaUrl(message.getBody())) {
+      new LinkPreviewRepository(context).fetchGIF(context, message.getBody(), attachmentOrNull -> Util.runOnMain(() -> {
+        if (attachmentOrNull.isPresent()) {
+          Attachment attachment = attachmentOrNull.get();
+          try {
+            message.getAttachments().add(attachment);
+            long messageId = database.insertMessageOutbox(message, allocatedThreadId, forceSms, insertListener);
+            sendMediaMessage(context, recipient, forceSms, messageId, message.getExpiresIn());
+          } catch (Exception e) {
+            // TODO: Handle
+          }
+        } else {
+          try {
+            long messageId = database.insertMessageOutbox(message, allocatedThreadId, forceSms, insertListener);
+            sendMediaMessage(context, recipient, forceSms, messageId, message.getExpiresIn());
+          } catch (MmsException e) {
+            // TODO: Handle
+          }
+        }
+      }));
+    }
+
+    return allocatedThreadId;
   }
 
   public static void resendGroupMessage(Context context, MessageRecord messageRecord, Address filterAddress) {

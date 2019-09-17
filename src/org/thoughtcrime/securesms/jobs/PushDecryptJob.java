@@ -946,14 +946,14 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     } else {
       notifyTypingStoppedFromIncomingMessage(recipient, content.getSender(), content.getSenderDevice());
 
-      IncomingTextMessage textMessage = new IncomingTextMessage(Address.fromSerialized(content.getSender()),
+      IncomingTextMessage _textMessage = new IncomingTextMessage(Address.fromSerialized(content.getSender()),
                                                                 content.getSenderDevice(),
                                                                 message.getTimestamp(), body,
                                                                 message.getGroupInfo(),
                                                                 message.getExpiresInSeconds() * 1000L,
                                                                 content.isNeedsReceipt());
 
-      textMessage = new IncomingEncryptedMessage(textMessage, body);
+      IncomingEncryptedMessage textMessage = new IncomingEncryptedMessage(_textMessage, body);
 
       List<Link> urls = LinkPreviewUtil.findWhitelistedUrls(body);
       int urlCount = urls.size();
@@ -978,22 +978,45 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
             }
           }));
         }
+      } if (LinkPreviewUtil.isWhitelistedMediaUrl(body)) {
+        new LinkPreviewRepository(context).fetchGIF(context, body, attachmentOrNull -> Util.runOnMain(() -> {
+          if (attachmentOrNull.isPresent()) {
+            Attachment attachment = attachmentOrNull.get();
+            try {
+              IncomingMediaMessage mediaMessage = new IncomingMediaMessage(Address.fromExternal(context, content.getSender()), message.getTimestamp(), -1,
+                 message.getExpiresInSeconds() * 1000L, false, content.isNeedsReceipt(), message.getBody(), message.getGroupInfo(), Optional.of(new ArrayList<>()),
+                  Optional.absent(), Optional.absent(), Optional.absent(), Optional.absent());
+              mediaMessage.getAttachments().add(attachment);
+              handleMediaMessage(content, mediaMessage, smsMessageId, messageServerIDOrNull);
+            } catch (Exception e) {
+              // TODO: Handle
+            }
+          } else {
+            handleTextMessage(message, textMessage, smsMessageId, messageServerIDOrNull);
+          }
+        }));
       } else {
-        Optional<InsertResult> insertResult = database.insertMessageInbox(textMessage);
-
-        if (insertResult.isPresent()) threadId = insertResult.get().getThreadId();
-        else                          threadId = null;
-
-        if (smsMessageId.isPresent()) database.deleteMessage(smsMessageId.get());
-
-        // Loki - Store message server ID
-        updateGroupChatMessageServerID(messageServerIDOrNull, insertResult);
-
-        boolean isGroupMessage = message.getGroupInfo().isPresent();
-        if (threadId != null && !isGroupMessage) {
-          MessageNotifier.updateNotification(context, threadId);
-        }
+        handleTextMessage(message, textMessage, smsMessageId, messageServerIDOrNull);
       }
+    }
+  }
+
+  private void handleTextMessage(@NonNull SignalServiceDataMessage message, @NonNull IncomingTextMessage textMessage, @NonNull Optional<Long> smsMessageId, @NonNull Optional<Long> messageServerIDOrNull) {
+    SmsDatabase database  = DatabaseFactory.getSmsDatabase(context);
+    Optional<InsertResult> insertResult = database.insertMessageInbox(textMessage);
+
+    Long threadId;
+    if (insertResult.isPresent()) threadId = insertResult.get().getThreadId();
+    else                          threadId = null;
+
+    if (smsMessageId.isPresent()) database.deleteMessage(smsMessageId.get());
+
+    // Loki - Store message server ID
+    updateGroupChatMessageServerID(messageServerIDOrNull, insertResult);
+
+    boolean isGroupMessage = message.getGroupInfo().isPresent();
+    if (threadId != null && !isGroupMessage) {
+      MessageNotifier.updateNotification(context, threadId);
     }
   }
 
