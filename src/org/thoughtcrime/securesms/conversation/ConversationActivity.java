@@ -152,6 +152,7 @@ import org.thoughtcrime.securesms.jobs.RetrieveProfileJob;
 import org.thoughtcrime.securesms.jobs.ServiceOutageDetectionJob;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository;
+import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.FriendRequestViewDelegate;
@@ -2180,11 +2181,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       long            expiresIn      = recipient.getExpireMessages() * 1000L;
       boolean         initiating     = threadId == -1;
       boolean         needsSplit     = !transport.isSms() && message.length() > transport.calculateCharacters(message).maxPrimaryMessageSize;
-      boolean         isMediaMessage = attachmentManager.isAttachmentPresent() ||
-                                       recipient.isGroupRecipient()            ||
-                                       recipient.getAddress().isEmail()        ||
-                                       inputPanel.getQuote().isPresent()       ||
-                                       linkPreviewViewModel.hasLinkPreview()   ||
+      boolean         isMediaMessage = attachmentManager.isAttachmentPresent()        ||
+                                       recipient.isGroupRecipient()                   ||
+                                       recipient.getAddress().isEmail()               ||
+                                       inputPanel.getQuote().isPresent()              ||
+                                       linkPreviewViewModel.hasLinkPreview()          ||
+                                       LinkPreviewUtil.isWhitelistedMediaUrl(message) ||
                                        needsSplit;
 
       Log.i(TAG, "isManual Selection: " + sendButton.isManualSelection());
