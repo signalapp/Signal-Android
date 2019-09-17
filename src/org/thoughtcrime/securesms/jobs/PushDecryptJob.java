@@ -946,14 +946,14 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     } else {
       notifyTypingStoppedFromIncomingMessage(recipient, content.getSender(), content.getSenderDevice());
 
-      IncomingTextMessage textMessage = new IncomingTextMessage(Address.fromSerialized(content.getSender()),
+      IncomingTextMessage _textMessage = new IncomingTextMessage(Address.fromSerialized(content.getSender()),
                                                                 content.getSenderDevice(),
                                                                 message.getTimestamp(), body,
                                                                 message.getGroupInfo(),
                                                                 message.getExpiresInSeconds() * 1000L,
                                                                 content.isNeedsReceipt());
 
-      textMessage = new IncomingEncryptedMessage(textMessage, body);
+      IncomingEncryptedMessage textMessage = new IncomingEncryptedMessage(_textMessage, body);
 
       List<Link> urls = LinkPreviewUtil.findWhitelistedUrls(body);
       int urlCount = urls.size();
@@ -992,25 +992,31 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
               // TODO: Handle
             }
           } else {
-            // TODO: Handle
+            handleTextMessage(message, textMessage, smsMessageId, messageServerIDOrNull);
           }
         }));
       } else {
-        Optional<InsertResult> insertResult = database.insertMessageInbox(textMessage);
-
-        if (insertResult.isPresent()) threadId = insertResult.get().getThreadId();
-        else                          threadId = null;
-
-        if (smsMessageId.isPresent()) database.deleteMessage(smsMessageId.get());
-
-        // Loki - Store message server ID
-        updateGroupChatMessageServerID(messageServerIDOrNull, insertResult);
-
-        boolean isGroupMessage = message.getGroupInfo().isPresent();
-        if (threadId != null && !isGroupMessage) {
-          MessageNotifier.updateNotification(context, threadId);
-        }
+        handleTextMessage(message, textMessage, smsMessageId, messageServerIDOrNull);
       }
+    }
+  }
+
+  private void handleTextMessage(@NonNull SignalServiceDataMessage message, @NonNull IncomingTextMessage textMessage, @NonNull Optional<Long> smsMessageId, @NonNull Optional<Long> messageServerIDOrNull) {
+    SmsDatabase database  = DatabaseFactory.getSmsDatabase(context);
+    Optional<InsertResult> insertResult = database.insertMessageInbox(textMessage);
+
+    Long threadId;
+    if (insertResult.isPresent()) threadId = insertResult.get().getThreadId();
+    else                          threadId = null;
+
+    if (smsMessageId.isPresent()) database.deleteMessage(smsMessageId.get());
+
+    // Loki - Store message server ID
+    updateGroupChatMessageServerID(messageServerIDOrNull, insertResult);
+
+    boolean isGroupMessage = message.getGroupInfo().isPresent();
+    if (threadId != null && !isGroupMessage) {
+      MessageNotifier.updateNotification(context, threadId);
     }
   }
 
