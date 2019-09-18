@@ -29,6 +29,7 @@ import org.thoughtcrime.securesms.transport.InsecureFallbackApprovalException;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.libsignal.state.PreKeyBundle;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
@@ -40,6 +41,7 @@ import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSy
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
+import org.whispersystems.signalservice.loki.messaging.LokiMessageFriendRequestStatus;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -121,6 +123,8 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
     ExpiringMessageManager expirationManager = ApplicationContext.getInstance(context).getExpiringMessageManager();
     MmsDatabase            database          = DatabaseFactory.getMmsDatabase(context);
     OutgoingMediaMessage   message           = database.getOutgoingMessage(messageId);
+
+    message.isFriendRequest = (DatabaseFactory.getLokiMessageDatabase(context).getFriendRequestStatus(messageId) == LokiMessageFriendRequestStatus.REQUEST_SENDING);
 
     if (database.isSent(messageId)) {
       warn(TAG, "Message " + messageId + " was already sent. Ignoring.");
@@ -210,18 +214,29 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
       Optional<SignalServiceDataMessage.Sticker> sticker            = getStickerFor(message);
       List<SharedContact>                        sharedContacts     = getSharedContactsFor(message);
       List<Preview>                              previews           = getPreviewsFor(message);
-      SignalServiceDataMessage                   mediaMessage       = SignalServiceDataMessage.newBuilder()
-                                                                                            .withBody(message.getBody())
-                                                                                            .withAttachments(serviceAttachments)
-                                                                                            .withTimestamp(message.getSentTimeMillis())
-                                                                                            .withExpiration((int)(message.getExpiresIn() / 1000))
-                                                                                            .withProfileKey(profileKey.orNull())
-                                                                                            .withQuote(quote.orNull())
-                                                                                            .withSticker(sticker.orNull())
-                                                                                            .withSharedContacts(sharedContacts)
-                                                                                            .withPreviews(previews)
-                                                                                            .asExpirationUpdate(message.isExpirationUpdate())
-                                                                                            .build();
+
+      // Loki - Include a pre key bundle if the message is a friend request or an end session message
+      PreKeyBundle preKeyBundle;
+      if (message.isFriendRequest) {
+        preKeyBundle = DatabaseFactory.getLokiPreKeyBundleDatabase(context).generatePreKeyBundle(address.getNumber());
+      } else {
+        preKeyBundle = null;
+      }
+
+      SignalServiceDataMessage mediaMessage = SignalServiceDataMessage.newBuilder()
+                                                                      .withBody(message.getBody())
+                                                                      .withAttachments(serviceAttachments)
+                                                                      .withTimestamp(message.getSentTimeMillis())
+                                                                      .withExpiration((int)(message.getExpiresIn() / 1000))
+                                                                      .withProfileKey(profileKey.orNull())
+                                                                      .withQuote(quote.orNull())
+                                                                      .withSticker(sticker.orNull())
+                                                                      .withSharedContacts(sharedContacts)
+                                                                      .withPreviews(previews)
+                                                                      .asExpirationUpdate(message.isExpirationUpdate())
+                                                                      .withPreKeyBundle(preKeyBundle)
+                                                                      .asFriendRequest(message.isFriendRequest)
+                                                                      .build();
 
       if (address.getNumber().equals(TextSecurePreferences.getLocalNumber(context))) {
         Optional<UnidentifiedAccessPair> syncAccess  = UnidentifiedAccessUtil.getAccessForSync(context);

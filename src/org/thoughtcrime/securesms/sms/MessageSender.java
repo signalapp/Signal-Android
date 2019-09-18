@@ -117,6 +117,10 @@ public class MessageSender {
           try {
             message.getAttachments().add(attachment);
             long messageID = database.insertMessageOutbox(message, allocatedThreadId, forceSms, insertListener);
+            // Loki - Set the message's friend request status as soon as it has hit the database
+            if (message.isFriendRequest) {
+              DatabaseFactory.getLokiMessageDatabase(context).setFriendRequestStatus(messageID, LokiMessageFriendRequestStatus.REQUEST_SENDING);
+            }
             sendMediaMessage(context, recipient, forceSms, messageID, message.getExpiresIn());
           } catch (Exception e) {
             Log.w(TAG, e);
@@ -125,6 +129,10 @@ public class MessageSender {
         } else {
           try {
             long messageID = database.insertMessageOutbox(message, allocatedThreadId, forceSms, insertListener);
+            // Loki - Set the message's friend request status as soon as it has hit the database
+            if (message.isFriendRequest) {
+              DatabaseFactory.getLokiMessageDatabase(context).setFriendRequestStatus(messageID, LokiMessageFriendRequestStatus.REQUEST_SENDING);
+            }
             sendMediaMessage(context, recipient, forceSms, messageID, message.getExpiresIn());
           } catch (MmsException e) {
             Log.w(TAG, e);
@@ -135,6 +143,10 @@ public class MessageSender {
     } else {
       try {
         long messageID = database.insertMessageOutbox(message, allocatedThreadId, forceSms, insertListener);
+        // Loki - Set the message's friend request status as soon as it has hit the database
+        if (message.isFriendRequest) {
+          DatabaseFactory.getLokiMessageDatabase(context).setFriendRequestStatus(messageID, LokiMessageFriendRequestStatus.REQUEST_SENDING);
+        }
         sendMediaMessage(context, recipient, forceSms, messageID, message.getExpiresIn());
       } catch (MmsException e) {
         Log.w(TAG, e);

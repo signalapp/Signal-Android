@@ -204,6 +204,22 @@ public class MmsDatabase extends MessagingDatabase {
     return 0;
   }
 
+  public long getIDForMessageAtIndex(long threadID, int index) {
+    SQLiteDatabase database = databaseHelper.getReadableDatabase();
+    Cursor cursor = null;
+    try {
+      cursor = database.query(TABLE_NAME, null, THREAD_ID + " = ?", new String[] { threadID + "" }, null, null, null);
+      if (cursor != null && cursor.moveToPosition(index)) {
+        return cursor.getLong(0);
+      }
+    } finally {
+      if (cursor != null) {
+        cursor.close();
+      }
+    }
+    return -1;
+  }
+
   public void addFailures(long messageId, List<NetworkFailure> failure) {
     try {
       addToDocument(messageId, NETWORK_FAILURE, failure, NetworkFailureList.class);

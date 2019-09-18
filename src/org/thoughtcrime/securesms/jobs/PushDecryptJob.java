@@ -1052,9 +1052,10 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     LokiThreadDatabase lokiThreadDatabase = DatabaseFactory.getLokiThreadDatabase(context);
     long threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(contactID);
     LokiThreadFriendRequestStatus threadFriendRequestStatus = lokiThreadDatabase.getFriendRequestStatus(threadID);
-    SmsDatabase messageDatabase = DatabaseFactory.getSmsDatabase(context);
+    SmsDatabase smsMessageDatabase = DatabaseFactory.getSmsDatabase(context);
+    MmsDatabase mmsMessageDatabase = DatabaseFactory.getMmsDatabase(context);
     LokiMessageDatabase lokiMessageDatabase= DatabaseFactory.getLokiMessageDatabase(context);
-    int messageCount = messageDatabase.getMessageCountForThread(threadID);
+    int messageCount = smsMessageDatabase.getMessageCountForThread(threadID);
     if (threadFriendRequestStatus == LokiThreadFriendRequestStatus.REQUEST_SENT) {
       // This can happen if Alice sent Bob a friend request, Bob declined, but then Bob changed his
       // mind and sent a friend request to Alice. In this case we want Alice to auto-accept the request
@@ -1067,7 +1068,8 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       // we can end up in a deadlock where both users' threads' friend request statuses are
       // `REQUEST_SENT`.
       lokiThreadDatabase.setFriendRequestStatus(threadID, LokiThreadFriendRequestStatus.FRIENDS);
-      long messageID = messageDatabase.getIDForMessageAtIndex(threadID, messageCount - 2); // The message before the one that was just received
+      long messageID = smsMessageDatabase.getIDForMessageAtIndex(threadID, messageCount - 2); // The message before the one that was just received
+      // TODO: MMS
       lokiMessageDatabase.setFriendRequestStatus(messageID, LokiMessageFriendRequestStatus.REQUEST_ACCEPTED);
       // Accept the friend request
       sendBackgroundMessage(content.getSender());
@@ -1078,8 +1080,13 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       // request. Alice's thread's friend request status is reset to
       // `REQUEST_RECEIVED`.
       lokiThreadDatabase.setFriendRequestStatus(threadID, LokiThreadFriendRequestStatus.REQUEST_RECEIVED);
-      long messageID = messageDatabase.getIDForMessageAtIndex(threadID, messageCount - 1); // The message that was just received
-      lokiMessageDatabase.setFriendRequestStatus(messageID, LokiMessageFriendRequestStatus.REQUEST_PENDING);
+      long messageID = smsMessageDatabase.getIDForMessageAtIndex(threadID, messageCount - 1); // The message that was just received
+      if (messageID != -1) {
+        lokiMessageDatabase.setFriendRequestStatus(messageID, LokiMessageFriendRequestStatus.REQUEST_PENDING);
+      } else {
+        // TODO: The code below is ugly due to Java limitations
+        lokiMessageDatabase.setFriendRequestStatus(mmsMessageDatabase.getIDForMessageAtIndex(threadID, 0), LokiMessageFriendRequestStatus.REQUEST_PENDING);
+      }
     }
   }
 

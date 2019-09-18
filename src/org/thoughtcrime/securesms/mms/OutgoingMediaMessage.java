@@ -23,6 +23,7 @@ public class OutgoingMediaMessage {
   private   final int                       distributionType;
   private   final int                       subscriptionId;
   private   final long                      expiresIn;
+  public          boolean                   isFriendRequest = false;
   private   final QuoteModel                outgoingQuote;
 
   private   final List<NetworkFailure>      networkFailures       = new LinkedList<>();
