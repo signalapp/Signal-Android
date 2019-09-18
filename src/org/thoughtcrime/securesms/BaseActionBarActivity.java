@@ -1,8 +1,11 @@
 package org.thoughtcrime.securesms;
 
 import android.annotation.TargetApi;
+import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
@@ -22,6 +25,8 @@ import org.thoughtcrime.securesms.util.dynamiclanguage.DynamicLanguageContextWra
 
 import java.lang.reflect.Field;
 
+import network.loki.messenger.R;
+
 
 public abstract class BaseActionBarActivity extends AppCompatActivity {
   private static final String TAG = BaseActionBarActivity.class.getSimpleName();
@@ -39,6 +44,10 @@ public abstract class BaseActionBarActivity extends AppCompatActivity {
     super.onResume();
     initializeScreenshotSecurity();
     DynamicLanguageActivityHelper.recreateIfNotInCorrectLanguage(this, TextSecurePreferences.getLanguage(this));
+    String name = getResources().getString(R.string.app_name);
+    Bitmap icon = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher_foreground);
+    int color = getResources().getColor(R.color.loki_darkest_gray);
+    setTaskDescription(new ActivityManager.TaskDescription(name, icon, color));
   }
 
   @Override

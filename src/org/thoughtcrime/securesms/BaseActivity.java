@@ -42,12 +42,10 @@ public abstract class BaseActivity extends FragmentActivity {
   protected void onResume() {
     super.onResume();
     DynamicLanguageActivityHelper.recreateIfNotInCorrectLanguage(this, TextSecurePreferences.getLanguage(this));
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-      String name = getResources().getString(R.string.app_name);
-      Bitmap icon = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher_foreground);
-      int color = getResources().getColor(R.color.loki_darkest_gray);
-      setTaskDescription(new ActivityManager.TaskDescription(name, icon, color));
-    }
+    String name = getResources().getString(R.string.app_name);
+    Bitmap icon = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher_foreground);
+    int color = getResources().getColor(R.color.loki_darkest_gray);
+    setTaskDescription(new ActivityManager.TaskDescription(name, icon, color));
   }
 
   @Override
