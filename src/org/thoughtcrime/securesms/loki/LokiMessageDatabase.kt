@@ -40,7 +40,7 @@ class LokiMessageDatabase(context: Context, helper: SQLCipherOpenHelper) : Datab
         database.insertOrUpdate(tableName, contentValues, "${Companion.messageID} = ?", arrayOf( messageID.toString() ))
     }
 
-    override fun getFriendRequestStatus(messageID: Long): LokiMessageFriendRequestStatus {
+    fun getFriendRequestStatus(messageID: Long): LokiMessageFriendRequestStatus {
         val database = databaseHelper.readableDatabase
         val result = database.get(tableName, "${Companion.messageID} = ?", arrayOf( messageID.toString() )) { cursor ->
             cursor.getInt(friendRequestStatus)
