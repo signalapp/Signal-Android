@@ -165,7 +165,9 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     // Loki - Set up P2P API if needed
     setUpP2PAPI();
     // Loki - Set up beta analytics
-    Fabric.with(this, new Crashlytics());
+    if (!BuildConfig.DEBUG) {
+      Fabric.with(this, new Crashlytics());
+    }
     mixpanel = MixpanelAPI.getInstance(this, "59040b6707e5a1725f3fb6730fefca92");
     Analytics.Companion.getShared().trackImplementation = (Function1<String, Unit>) event -> {
       HashMap<String, Object> properties = new HashMap();
