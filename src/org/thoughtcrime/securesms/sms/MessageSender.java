@@ -119,6 +119,7 @@ public class MessageSender {
             long messageID = database.insertMessageOutbox(message, allocatedThreadId, forceSms, insertListener);
             sendMediaMessage(context, recipient, forceSms, messageID, message.getExpiresIn());
           } catch (Exception e) {
+            Log.w(TAG, e);
             // TODO: Handle
           }
         } else {
@@ -126,10 +127,19 @@ public class MessageSender {
             long messageID = database.insertMessageOutbox(message, allocatedThreadId, forceSms, insertListener);
             sendMediaMessage(context, recipient, forceSms, messageID, message.getExpiresIn());
           } catch (MmsException e) {
+            Log.w(TAG, e);
             // TODO: Handle
           }
         }
       }));
+    } else {
+      try {
+        long messageID = database.insertMessageOutbox(message, allocatedThreadId, forceSms, insertListener);
+        sendMediaMessage(context, recipient, forceSms, messageID, message.getExpiresIn());
+      } catch (MmsException e) {
+        Log.w(TAG, e);
+        return threadId;
+      }
     }
 
     return allocatedThreadId;
