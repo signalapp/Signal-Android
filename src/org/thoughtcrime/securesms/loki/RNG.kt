@@ -4,22 +4,24 @@ class RNG(hash: Long) {
   private var seed: Long
   private val initial: Long
 
+  private val maxInt32 = Int.MAX_VALUE.toLong()
+
   init {
-    seed = hash % 2147483647
+    seed = hash % maxInt32
     if (seed <= 0) {
-      seed = 2147483646
+      seed = maxInt32 - 1
     }
     initial = seed
   }
 
   fun next(): Long {
-    val newSeed = (seed * 16807) % 2147483647
+    val newSeed = (seed * 16807) % maxInt32
     seed = newSeed
     return seed
   }
 
   fun nextFloat(): Float {
-    return (next() - 1).toFloat() / 2147483646
+    return (next() - 1).toFloat() / (maxInt32 - 1)
   }
 
   fun reset() {

@@ -18,8 +18,6 @@ class LokiMessageDatabase(context: Context, helper: SQLCipherOpenHelper) : Datab
         @JvmStatic val createTableCommand = "CREATE TABLE $tableName ($messageID INTEGER PRIMARY KEY, $serverID INTEGER DEFAULT 0, $friendRequestStatus INTEGER DEFAULT 0);"
     }
 
-    // TODO: Move the server ID stuff to LokiAPIDatabase?
-
     fun getServerID(messageID: Long): Long? {
         val database = databaseHelper.readableDatabase
         return database.get(tableName, "${Companion.messageID} = ?", arrayOf( messageID.toString() )) { cursor ->

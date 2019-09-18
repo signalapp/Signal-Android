@@ -31,7 +31,7 @@ class LokiUserDatabase(context: Context, helper: SQLCipherOpenHelper) : Database
             return TextSecurePreferences.getProfileName(context)
         } else {
             val database = databaseHelper.readableDatabase
-            return database.get(displayNameTable, "${Companion.hexEncodedPublicKey} = ?", arrayOf(hexEncodedPublicKey)) { cursor ->
+            return database.get(displayNameTable, "${Companion.hexEncodedPublicKey} = ?", arrayOf( hexEncodedPublicKey )) { cursor ->
                 cursor.getString(cursor.getColumnIndexOrThrow(displayName))
             }
         }
@@ -48,7 +48,7 @@ class LokiUserDatabase(context: Context, helper: SQLCipherOpenHelper) : Database
 
     fun getServerDisplayName(serverID: String, hexEncodedPublicKey: String): String? {
         val database = databaseHelper.readableDatabase
-        return database.get(serverDisplayNameTable, "${Companion.hexEncodedPublicKey} = ? AND ${Companion.serverID} = ?", arrayOf(hexEncodedPublicKey, serverID)) { cursor ->
+        return database.get(serverDisplayNameTable, "${Companion.hexEncodedPublicKey} = ? AND ${Companion.serverID} = ?", arrayOf( hexEncodedPublicKey, serverID )) { cursor ->
             cursor.getString(cursor.getColumnIndexOrThrow(displayName))
         }
     }

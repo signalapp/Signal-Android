@@ -109,21 +109,22 @@ public class MessageSender {
 
     Recipient recipient = message.getRecipient();
 
+    // Loki - Turn into a GIF message if possible
     if (message.getLinkPreviews().isEmpty() && message.getAttachments().isEmpty() && LinkPreviewUtil.isWhitelistedMediaUrl(message.getBody())) {
       new LinkPreviewRepository(context).fetchGIF(context, message.getBody(), attachmentOrNull -> Util.runOnMain(() -> {
         if (attachmentOrNull.isPresent()) {
           Attachment attachment = attachmentOrNull.get();
           try {
             message.getAttachments().add(attachment);
-            long messageId = database.insertMessageOutbox(message, allocatedThreadId, forceSms, insertListener);
-            sendMediaMessage(context, recipient, forceSms, messageId, message.getExpiresIn());
+            long messageID = database.insertMessageOutbox(message, allocatedThreadId, forceSms, insertListener);
+            sendMediaMessage(context, recipient, forceSms, messageID, message.getExpiresIn());
           } catch (Exception e) {
             // TODO: Handle
           }
         } else {
           try {
-            long messageId = database.insertMessageOutbox(message, allocatedThreadId, forceSms, insertListener);
-            sendMediaMessage(context, recipient, forceSms, messageId, message.getExpiresIn());
+            long messageID = database.insertMessageOutbox(message, allocatedThreadId, forceSms, insertListener);
+            sendMediaMessage(context, recipient, forceSms, messageID, message.getExpiresIn());
           } catch (MmsException e) {
             // TODO: Handle
           }
