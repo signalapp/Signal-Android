@@ -4,8 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
 import kotlinx.android.synthetic.main.activity_account_details.*
-import network.loki.messenger.R;
+import network.loki.messenger.R
+import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.BaseActionBarActivity
+import org.thoughtcrime.securesms.ConversationListActivity
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.crypto.ProfileCipher
 
@@ -29,7 +31,12 @@ class AccountDetailsActivity : BaseActionBarActivity() {
         }
         val inputMethodManager = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(nameEditText.windowToken, 0)
-        startActivity(Intent(this, SeedActivity::class.java))
+        TextSecurePreferences.setHasSeenWelcomeScreen(this, true)
+        TextSecurePreferences.setPromptedPushRegistration(this, true)
+        val application = ApplicationContext.getInstance(this)
+        application.setUpP2PAPI()
+        application.startLongPollingIfNeeded()
+        startActivity(Intent(this, ConversationListActivity::class.java))
         finish()
     }
 }

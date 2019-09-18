@@ -8,7 +8,6 @@ import android.support.annotation.NonNull;
 import org.thoughtcrime.securesms.BaseActionBarActivity;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.util.CommunicationActions;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import network.loki.messenger.R;
 
@@ -37,7 +36,7 @@ public class WelcomeActivity extends BaseActionBarActivity {
         .ifNecessary()
         .withRationaleDialog(getString(R.string.activity_landing_permission_dialog_message), R.drawable.ic_folder_white_48dp)
         .onAnyResult(() -> {
-          TextSecurePreferences.setHasSeenWelcomeScreen(WelcomeActivity.this, true);
+          // TextSecurePreferences.setHasSeenWelcomeScreen(WelcomeActivity.this, true);
 
           Intent nextIntent = getIntent().getParcelableExtra("next_intent");
 

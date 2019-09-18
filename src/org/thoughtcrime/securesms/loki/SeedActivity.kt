@@ -10,9 +10,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_seed.*
 import network.loki.messenger.R
-import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.BaseActionBarActivity
-import org.thoughtcrime.securesms.ConversationListActivity
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
@@ -159,15 +157,11 @@ class SeedActivity : BaseActionBarActivity() {
         DatabaseFactory.getIdentityDatabase(this).saveIdentity(Address.fromSerialized(hexEncodedPublicKey), publicKey,
             IdentityDatabase.VerifiedStatus.VERIFIED, true, System.currentTimeMillis(), true)
         TextSecurePreferences.setLocalNumber(this, hexEncodedPublicKey)
-        TextSecurePreferences.setPromptedPushRegistration(this, true)
-        val application = ApplicationContext.getInstance(this)
-        application.setUpP2PAPI()
-        application.startLongPollingIfNeeded()
         when (mode) {
             Mode.Register -> Analytics.shared.track("Seed Created")
             Mode.Restore -> Analytics.shared.track("Seed Restored")
         }
-        startActivity(Intent(this, ConversationListActivity::class.java))
+        startActivity(Intent(this, AccountDetailsActivity::class.java))
         finish()
     }
     // endregion
