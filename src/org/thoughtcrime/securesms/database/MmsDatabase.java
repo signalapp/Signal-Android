@@ -802,7 +802,7 @@ public class MmsDatabase extends MessagingDatabase {
     contentValues.put(THREAD_ID, threadId);
     contentValues.put(CONTENT_LOCATION, contentLocation);
     contentValues.put(STATUS, Status.DOWNLOAD_INITIALIZED);
-    contentValues.put(DATE_RECEIVED, generatePduCompatTimestamp());
+    contentValues.put(DATE_RECEIVED, retrieved.getSentTimeMillis()); // Loki - This is important due to how we handle GIFs
     contentValues.put(PART_COUNT, retrieved.getAttachments().size());
     contentValues.put(SUBSCRIPTION_ID, retrieved.getSubscriptionId());
     contentValues.put(EXPIRES_IN, retrieved.getExpiresIn());

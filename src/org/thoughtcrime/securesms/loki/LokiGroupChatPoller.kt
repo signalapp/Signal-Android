@@ -162,7 +162,7 @@ class LokiGroupChatPoller(private val context: Context, private val group: LokiG
             }
         }
         api.getMessages(group.serverID, group.server).success { messages ->
-            messages.reversed().forEach { message ->
+            messages.forEach { message ->
                 if (message.hexEncodedPublicKey != userHexEncodedPublicKey) {
                     processIncomingMessage(message)
                 } else {

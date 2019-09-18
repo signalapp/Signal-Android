@@ -509,7 +509,7 @@ public class ConversationFragment extends Fragment
     builder.setMessage(getActivity().getResources().getQuantityString(R.plurals.ConversationFragment_this_will_permanently_delete_all_n_selected_messages, messagesCount, messagesCount));
     builder.setCancelable(true);
 
-    // Loki - The delete option is only visible to the user in a group chat if it's the Loki public chat
+    // Loki - The delete option is only visible to the user in a group chat if it's the Loki Public Chat
     boolean isLokiPublicChat = this.recipient.isGroupRecipient();
 
     builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {

@@ -577,7 +577,7 @@ public class SmsDatabase extends MessagingDatabase {
     ContentValues values = new ContentValues(6);
     values.put(ADDRESS, message.getSender().serialize());
     values.put(ADDRESS_DEVICE_ID,  message.getSenderDeviceId());
-    values.put(DATE_RECEIVED, System.currentTimeMillis());
+    values.put(DATE_RECEIVED, message.getSentTimestampMillis()); // Loki - This is important due to how we handle GIFs
     values.put(DATE_SENT, message.getSentTimestampMillis());
     values.put(PROTOCOL, message.getProtocol());
     values.put(READ, unread ? 0 : 1);
