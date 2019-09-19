@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.providers.DeprecatedPersistentBlobProvider;
 import org.thoughtcrime.securesms.providers.PartProvider;
+import org.thoughtcrime.securesms.util.MediaUtil;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -42,6 +43,19 @@ public class PartAuthority {
     uriMatcher.addURI(DeprecatedPersistentBlobProvider.AUTHORITY, DeprecatedPersistentBlobProvider.EXPECTED_PATH_OLD, PERSISTENT_ROW);
     uriMatcher.addURI(DeprecatedPersistentBlobProvider.AUTHORITY, DeprecatedPersistentBlobProvider.EXPECTED_PATH_NEW, PERSISTENT_ROW);
     uriMatcher.addURI(BlobProvider.AUTHORITY, BlobProvider.PATH, BLOB_ROW);
+  }
+
+  public static InputStream getAttachmentThumbnailStream(@NonNull Context context, @NonNull Uri uri)
+      throws IOException
+  {
+    String contentType = getAttachmentContentType(context, uri);
+    int    match       = uriMatcher.match(uri);
+
+    if (match == PART_ROW && MediaUtil.isVideoType(contentType)) {
+      return DatabaseFactory.getAttachmentDatabase(context).getThumbnailStream(new PartUriParser(uri).getPartId());
+    }
+
+    return getAttachmentStream(context, uri);
   }
 
   public static InputStream getAttachmentStream(@NonNull Context context, @NonNull Uri uri)

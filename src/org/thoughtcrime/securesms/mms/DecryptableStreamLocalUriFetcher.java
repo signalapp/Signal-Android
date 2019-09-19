@@ -40,7 +40,7 @@ class DecryptableStreamLocalUriFetcher extends StreamLocalUriFetcher {
     }
 
     try {
-      return PartAuthority.getAttachmentStream(context, uri);
+      return PartAuthority.getAttachmentThumbnailStream(context, uri);
     } catch (IOException ioe) {
       Log.w(TAG, ioe);
       throw new FileNotFoundException("PartAuthority couldn't load Uri resource.");
