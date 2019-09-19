@@ -2151,7 +2151,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void updateInputPanel() {
-    boolean hasPendingFriendRequest = DatabaseFactory.getLokiThreadDatabase(this).hasPendingFriendRequest(threadId);
+    boolean hasPendingFriendRequest = !recipient.isGroupRecipient() && DatabaseFactory.getLokiThreadDatabase(this).hasPendingFriendRequest(threadId);
     inputPanel.setEnabled(!hasPendingFriendRequest);
     int hintID = hasPendingFriendRequest ? R.string.activity_conversation_pending_friend_request_hint : R.string.activity_conversation_default_hint;
     inputPanel.setHint(getResources().getString(hintID));
