@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.util;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.provider.MediaStore;
 import androidx.annotation.NonNull;
@@ -33,6 +34,7 @@ import org.thoughtcrime.securesms.mms.VideoSlide;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URLConnection;
 import java.util.concurrent.ExecutionException;
 
 public class MediaUtil {
@@ -242,7 +244,7 @@ public class MediaUtil {
   }
 
   public static boolean hasVideoThumbnail(Uri uri) {
-    if (uri == null || !ContentResolver.SCHEME_CONTENT.equals(uri.getScheme())) {
+    if (uri == null || !isSupportedVideoUriScheme(uri.getScheme())) {
       return false;
     }
 
@@ -250,9 +252,12 @@ public class MediaUtil {
       return uri.getLastPathSegment().contains("video");
     } else if (uri.toString().startsWith(MediaStore.Video.Media.EXTERNAL_CONTENT_URI.toString())) {
       return true;
+    } else if (uri.toString().startsWith("file://") &&
+               MediaUtil.isVideo(URLConnection.guessContentTypeFromName(uri.toString()))) {
+      return true;
+    } else {
+      return false;
     }
-
-    return false;
   }
 
   public static @Nullable Bitmap getVideoThumbnail(Context context, Uri uri) {
@@ -270,6 +275,10 @@ public class MediaUtil {
                                                       videoId,
                                                       MediaStore.Images.Thumbnails.MINI_KIND,
                                                       null);
+    } else if (uri.toString().startsWith("file://") &&
+               MediaUtil.isVideo(URLConnection.guessContentTypeFromName(uri.toString()))) {
+      return ThumbnailUtils.createVideoThumbnail(uri.toString().replace("file://", ""),
+                                                 MediaStore.Video.Thumbnails.MINI_KIND);
     }
 
     return null;
@@ -306,5 +315,10 @@ public class MediaUtil {
     public void close() {
      bitmap.recycle();
     }
+  }
+
+  private static boolean isSupportedVideoUriScheme(@Nullable String scheme) {
+    return ContentResolver.SCHEME_CONTENT.equals(scheme) ||
+           ContentResolver.SCHEME_FILE.equals(scheme);
   }
 }
