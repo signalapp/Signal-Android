@@ -256,8 +256,9 @@ public class ThumbnailView extends FrameLayout {
       return new SettableFuture<>(false);
     }
 
-    if (this.slide != null && this.slide.getFastPreflightId() != null &&
-        this.slide.getFastPreflightId().equals(slide.getFastPreflightId()))
+    if (this.slide != null && this.slide.getFastPreflightId() != null      &&
+        Util.equals(this.slide.getThumbnailUri(), slide.getThumbnailUri()) &&
+        Util.equals(this.slide.getFastPreflightId(), slide.getFastPreflightId()))
     {
       Log.i(TAG, "Not re-loading slide for fast preflight: " + slide.getFastPreflightId());
       this.slide = slide;
