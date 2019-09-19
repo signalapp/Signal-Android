@@ -104,6 +104,9 @@ import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
 import network.loki.messenger.BuildConfig;
 
+import static nl.komponents.kovenant.android.KovenantAndroid.startKovenant;
+import static nl.komponents.kovenant.android.KovenantAndroid.stopKovenant;
+
 /**
  * Will be called once when the TextSecure process is created.
  *
@@ -142,6 +145,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   public void onCreate() {
     super.onCreate();
     LokiGroupChatAPI.Companion.setDebugMode(BuildConfig.DEBUG); // Loki - Set debug mode if needed
+    startKovenant();
     Log.i(TAG, "onCreate()");
     initializeSecurityProvider();
     initializeLogging();
@@ -196,6 +200,12 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     MessageNotifier.setVisibleThread(-1);
     // Loki - Stop long polling if needed
     if (lokiLongPoller != null) { lokiLongPoller.stopIfNeeded(); }
+  }
+
+  @Override
+  public void onTerminate() {
+    stopKovenant();
+    super.onTerminate();
   }
 
   @Override
