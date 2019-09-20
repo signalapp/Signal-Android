@@ -148,9 +148,7 @@ public final class StickerPackPreviewActivity extends PassphraseRequiredActionBa
       if (manifest.isPresent()) {
         presentManifest(manifest.get().getManifest());
         presentButton(manifest.get().isInstalled());
-        if (FeatureFlags.STICKERS_SHARING) {
-          presentShareButton(manifest.get().isInstalled(), manifest.get().getManifest().getPackId(), manifest.get().getManifest().getPackKey());
-        }
+        presentShareButton(manifest.get().isInstalled(), manifest.get().getManifest().getPackId(), manifest.get().getManifest().getPackKey());
       } else {
         presentError();
       }
