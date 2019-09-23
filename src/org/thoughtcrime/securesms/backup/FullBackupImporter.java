@@ -27,6 +27,8 @@ import org.thoughtcrime.securesms.database.StickerDatabase;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
+import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.Conversions;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.kdf.HKDFv3;
@@ -163,7 +165,10 @@ public class FullBackupImporter extends FullBackupBase {
   }
 
   private static void processAvatar(@NonNull Context context, @NonNull BackupProtos.Avatar avatar, @NonNull BackupRecordInputStream inputStream) throws IOException {
-    inputStream.readAttachmentTo(new FileOutputStream(AvatarHelper.getAvatarFile(context, Address.fromSerialized(PhoneNumberFormatter.get(context).format(avatar.getName())))), avatar.getLength());
+    Recipient recipient = avatar.hasRecipientId() ? Recipient.resolved(RecipientId.from(avatar.getRecipientId()))
+                                                  : Recipient.external(context, avatar.getName());
+
+    inputStream.readAttachmentTo(new FileOutputStream(AvatarHelper.getAvatarFile(context, recipient.getId())), avatar.getLength());
   }
 
   @SuppressLint("ApplySharedPref")

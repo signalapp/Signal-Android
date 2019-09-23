@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.mms.GlideApp;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 public class ProfilePreference extends Preference {
@@ -64,11 +65,11 @@ public class ProfilePreference extends Preference {
   public void refresh() {
     if (profileNumberView == null) return;
 
-    final Address localAddress = Address.fromSerialized(TextSecurePreferences.getLocalNumber(getContext()));
-    final String  profileName  = TextSecurePreferences.getProfileName(getContext());
+    final Recipient self        = Recipient.self();
+    final String    profileName = TextSecurePreferences.getProfileName(getContext());
 
     GlideApp.with(getContext().getApplicationContext())
-            .load(new ProfileContactPhoto(localAddress, String.valueOf(TextSecurePreferences.getProfileAvatarId(getContext()))))
+            .load(new ProfileContactPhoto(self.getId(), String.valueOf(TextSecurePreferences.getProfileAvatarId(getContext()))))
             .error(new ResourceContactPhoto(R.drawable.ic_camera_alt_white_24dp).asDrawable(getContext(), getContext().getResources().getColor(R.color.grey_400)))
             .circleCrop()
             .diskCacheStrategy(DiskCacheStrategy.ALL)
@@ -78,6 +79,6 @@ public class ProfilePreference extends Preference {
       profileNameView.setText(profileName);
     }
 
-    profileNumberView.setText(localAddress.toPhoneString());
+    profileNumberView.setText(self.requireAddress().toPhoneString());
   }
 }

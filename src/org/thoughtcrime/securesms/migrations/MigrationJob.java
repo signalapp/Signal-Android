@@ -36,6 +36,7 @@ abstract class MigrationJob extends Job {
   @Override
   public @NonNull Result run() {
     try {
+      Log.i(TAG, "About to run " + getClass().getSimpleName());
       performMigration();
       return Result.success();
     } catch (RuntimeException e) {
@@ -54,7 +55,7 @@ abstract class MigrationJob extends Job {
 
   @Override
   public void onCanceled() {
-    throw new AssertionError("This job should never fail.");
+    throw new AssertionError("This job should never fail. " + getClass().getSimpleName());
   }
 
   /**

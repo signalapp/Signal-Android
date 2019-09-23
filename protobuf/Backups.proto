@@ -40,8 +40,9 @@ message Sticker {
 }
 
 message Avatar {
-    optional string name   = 1;
-    optional uint32 length = 2;
+    optional string name        = 1;
+    optional string recipientId = 3;
+    optional uint32 length      = 2;
 }
 
 message DatabaseVersion {

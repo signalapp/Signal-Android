@@ -86,7 +86,7 @@ public class RetrieveProfileAvatarJob extends BaseJob {
 
     if (TextUtils.isEmpty(profileAvatar)) {
       Log.w(TAG, "Removing profile avatar (no url) for: " + recipient.requireAddress().serialize());
-      AvatarHelper.delete(context, recipient.requireAddress());
+      AvatarHelper.delete(context, recipient.getId());
       database.setProfileAvatar(recipient.getId(), profileAvatar);
       return;
     }
@@ -104,11 +104,11 @@ public class RetrieveProfileAvatarJob extends BaseJob {
         throw new IOException("Failed to copy stream. Likely a Conscrypt issue.", e);
       }
 
-      decryptDestination.renameTo(AvatarHelper.getAvatarFile(context, recipient.requireAddress()));
+      decryptDestination.renameTo(AvatarHelper.getAvatarFile(context, recipient.getId()));
     } catch (PushNetworkException e) {
       if (e.getCause() instanceof NonSuccessfulResponseCodeException) {
         Log.w(TAG, "Removing profile avatar (no image available) for: " + recipient.requireAddress().serialize());
-        AvatarHelper.delete(context, recipient.requireAddress());
+        AvatarHelper.delete(context, recipient.getId());
       } else {
         throw e;
       }

@@ -73,7 +73,7 @@ public class RotateProfileKeyJob extends BaseJob {
 
   private @Nullable StreamDetails getProfileAvatar() {
     try {
-      File avatarFile = AvatarHelper.getAvatarFile(context, Recipient.self().requireAddress());
+      File avatarFile = AvatarHelper.getAvatarFile(context, Recipient.self().getId());
 
       if (avatarFile.exists()) {
         return new StreamDetails(new FileInputStream(avatarFile), "image/jpeg", avatarFile.length());

@@ -206,7 +206,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
   }
 
   private void setHeader(@NonNull Recipient recipient) {
-    ContactPhoto         contactPhoto  = recipient.isLocalNumber() ? new ProfileContactPhoto(recipient.requireAddress(), String.valueOf(TextSecurePreferences.getProfileAvatarId(this)))
+    ContactPhoto         contactPhoto  = recipient.isLocalNumber() ? new ProfileContactPhoto(recipient.getId(), String.valueOf(TextSecurePreferences.getProfileAvatarId(this)))
                                                                    : recipient.getContactPhoto();
     FallbackContactPhoto fallbackPhoto = recipient.isLocalNumber() ? new ResourceContactPhoto(R.drawable.ic_profile_default, R.drawable.ic_person_large)
                                                                    : recipient.getFallbackContactPhoto();

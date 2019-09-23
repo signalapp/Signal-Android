@@ -302,7 +302,7 @@ public class Recipient {
     if      (localNumber)                                    return null;
     else if (isGroupInternal() && groupAvatarId.isPresent()) return new GroupRecordContactPhoto(address, groupAvatarId.get());
     else if (systemContactPhoto != null)                     return new SystemContactPhoto(address, systemContactPhoto, 0);
-    else if (profileAvatar != null)                          return new ProfileContactPhoto(address, profileAvatar);
+    else if (profileAvatar != null)                          return new ProfileContactPhoto(id, profileAvatar);
     else                                                     return null;
   }
 

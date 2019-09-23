@@ -48,6 +48,7 @@ import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.profiles.ProfileMediaConstraints;
 import org.thoughtcrime.securesms.profiles.SystemProfileUtil;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
@@ -263,14 +264,14 @@ public class CreateProfileActivity extends BaseActionBarActivity {
   }
 
   private void initializeProfileAvatar(boolean excludeSystem) {
-    Address ourAddress = Address.fromSerialized(TextSecurePreferences.getLocalNumber(this));
+    RecipientId selfId = Recipient.self().getId();
 
-    if (AvatarHelper.getAvatarFile(this, ourAddress).exists() && AvatarHelper.getAvatarFile(this, ourAddress).length() > 0) {
+    if (AvatarHelper.getAvatarFile(this, selfId).exists() && AvatarHelper.getAvatarFile(this, selfId).length() > 0) {
       new AsyncTask<Void, Void, byte[]>() {
         @Override
         protected byte[] doInBackground(Void... params) {
           try {
-            return Util.readFully(AvatarHelper.getInputStreamFor(CreateProfileActivity.this, ourAddress));
+            return Util.readFully(AvatarHelper.getInputStreamFor(CreateProfileActivity.this, selfId));
           } catch (IOException e) {
             Log.w(TAG, e);
             return null;
@@ -373,7 +374,7 @@ public class CreateProfileActivity extends BaseActionBarActivity {
 
         try {
           accountManager.setProfileAvatar(profileKey, avatar);
-          AvatarHelper.setAvatar(CreateProfileActivity.this, Address.fromSerialized(TextSecurePreferences.getLocalNumber(context)), avatarBytes);
+          AvatarHelper.setAvatar(CreateProfileActivity.this, Recipient.self().getId(), avatarBytes);
           TextSecurePreferences.setProfileAvatarId(CreateProfileActivity.this, new SecureRandom().nextInt());
         } catch (IOException e) {
           Log.w(TAG, e);

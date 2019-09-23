@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraintOb
 import org.thoughtcrime.securesms.jobmanager.migrations.RecipientIdFollowUpJobMigration;
 import org.thoughtcrime.securesms.jobmanager.migrations.RecipientIdFollowUpJobMigration2;
 import org.thoughtcrime.securesms.jobmanager.migrations.RecipientIdJobMigration;
+import org.thoughtcrime.securesms.migrations.AvatarMigrationJob;
 import org.thoughtcrime.securesms.migrations.DatabaseMigrationJob;
 import org.thoughtcrime.securesms.migrations.LegacyMigrationJob;
 import org.thoughtcrime.securesms.migrations.MigrationCompleteJob;
@@ -82,6 +83,7 @@ public final class JobManagerFactories {
       put(UpdateApkJob.KEY,                          new UpdateApkJob.Factory());
 
       // Migrations
+      put(AvatarMigrationJob.KEY,                    new AvatarMigrationJob.Factory());
       put(DatabaseMigrationJob.KEY,                  new DatabaseMigrationJob.Factory());
       put(LegacyMigrationJob.KEY,                    new LegacyMigrationJob.Factory());
       put(MigrationCompleteJob.KEY,                  new MigrationCompleteJob.Factory());

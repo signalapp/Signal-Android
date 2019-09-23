@@ -188,7 +188,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     Drawable fallback = new GeneratedContactPhoto(name, R.drawable.ic_profile_default).asDrawable(this, fallbackColor.toAvatarColor(this));
 
     GlideApp.with(this)
-            .load(new ProfileContactPhoto(recipient.requireAddress(), String.valueOf(TextSecurePreferences.getProfileAvatarId(this))))
+            .load(new ProfileContactPhoto(recipient.getId(), String.valueOf(TextSecurePreferences.getProfileAvatarId(this))))
             .error(fallback)
             .circleCrop()
             .diskCacheStrategy(DiskCacheStrategy.ALL)
