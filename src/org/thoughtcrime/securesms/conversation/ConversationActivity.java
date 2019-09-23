@@ -423,14 +423,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     dynamicLanguage.onResume(this);
 
     EventBus.getDefault().register(this);
-    initializeEnabledCheck();
     initializeMmsEnabledCheck();
     initializeIdentityRecords();
     composeText.setTransport(sendButton.getSelectedTransport());
 
     titleView.setTitle(glideRequests, recipient);
     setActionBarColor(recipient.getColor());
-    setBlockedUserState(recipient, isSecureText, isDefaultSms);
+    updateConversationState(recipient, isSecureText, isDefaultSms);
     setGroupShareProfileReminder(recipient);
     calculateCharactersRemaining();
 
@@ -512,7 +511,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       recipient.addListener(this);
       titleView.setTitle(glideRequests, recipient);
       NotificationChannels.updateContactChannelName(this, recipient);
-      setBlockedUserState(recipient, isSecureText, isDefaultSms);
+      updateConversationState(recipient, isSecureText, isDefaultSms);
       supportInvalidateOptionsMenu();
       break;
     case TAKE_PHOTO:
@@ -616,7 +615,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     MenuInflater inflater = this.getMenuInflater();
     menu.clear();
 
-    if (isSecureText) {
+    final boolean active = !(isPushGroupConversation() && !isActiveGroup()) && !recipient.isBlocked();
+
+    if (isSecureText && active) {
       if (recipient.getExpireMessages() > 0) {
         inflater.inflate(R.menu.conversation_expiring_on, menu);
 
@@ -631,12 +632,16 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       }
     }
 
-    if (isSingleConversation()) {
+    if (isSingleConversation() && active) {
       if (isSecureText) inflater.inflate(R.menu.conversation_callable_secure, menu);
       else              inflater.inflate(R.menu.conversation_callable_insecure, menu);
     } else if (isGroupConversation()) {
       inflater.inflate(R.menu.conversation_group_options, menu);
+    }
 
+    inflater.inflate(R.menu.conversation, menu);
+
+    if (isGroupConversation()) {
       if (!isPushGroupConversation()) {
         inflater.inflate(R.menu.conversation_mms_group_options, menu);
         if (distributionType == ThreadDatabase.DistributionTypes.BROADCAST) {
@@ -647,13 +652,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       } else if (isActiveGroup()) {
         inflater.inflate(R.menu.conversation_push_group_options, menu);
       }
-    }
-
-    inflater.inflate(R.menu.conversation, menu);
-
-    if (isSingleConversation() && isSecureText) {
+    } else if (isSingleConversation() && isSecureText && active) {
       inflater.inflate(R.menu.conversation_secure, menu);
-    } else if (isSingleConversation()) {
+    } else if (isSingleConversation() && active) {
       inflater.inflate(R.menu.conversation_insecure, menu);
     }
 
@@ -1024,7 +1025,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         groupDatabase.setActive(groupId, false);
         groupDatabase.remove(groupId, Address.fromSerialized(TextSecurePreferences.getLocalNumber(this)));
 
-        initializeEnabledCheck();
+        updateConversationState(getRecipient(), isSecureText, isDefaultSms);
+        supportInvalidateOptionsMenu();
       } else {
         Toast.makeText(this, R.string.ConversationActivity_error_leaving_group, Toast.LENGTH_LONG).show();
       }
@@ -1209,7 +1211,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     calculateCharactersRemaining();
     supportInvalidateOptionsMenu();
-    setBlockedUserState(recipient, isSecureText, isDefaultSms);
+    updateConversationState(recipient, isSecureText, isDefaultSms);
   }
 
   ///// Initializers
@@ -1252,13 +1254,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
 
     return result;
-  }
-
-  private void initializeEnabledCheck() {
-    boolean enabled = !(isPushGroupConversation() && !isActiveGroup());
-    inputPanel.setEnabled(enabled);
-    sendButton.setEnabled(enabled);
-    attachButton.setEnabled(enabled);
   }
 
   private ListenableFuture<Boolean> initializeDraftFromDatabase() {
@@ -1709,7 +1704,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       Log.i(TAG, "onModifiedRun(): " + recipient.getRegistered());
       titleView.setTitle(glideRequests, recipient);
       titleView.setVerified(identityRecords.isVerified());
-      setBlockedUserState(recipient, isSecureText, isDefaultSms);
+      updateConversationState(recipient, isSecureText, isDefaultSms);
       setActionBarColor(recipient.getColor());
       setGroupShareProfileReminder(recipient);
       updateReminders(recipient.hasSeenInviteReminder());
@@ -1908,7 +1903,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     setStatusBarColor(color.toStatusBarColor(this));
   }
 
-  private void setBlockedUserState(Recipient recipient, boolean isSecureText, boolean isDefaultSms) {
+  private void updateConversationState(Recipient recipient, boolean isSecureText, boolean isDefaultSms) {
+    final boolean enabled = !(isPushGroupConversation() && !isActiveGroup());
+
     if (recipient.isBlocked()) {
       unblockButton.setVisibility(View.VISIBLE);
       composePanel.setVisibility(View.GONE);
@@ -1925,7 +1922,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       makeDefaultSmsButton.setVisibility(View.VISIBLE);
       registerButton.setVisibility(View.GONE);
     } else {
-      composePanel.setVisibility(View.VISIBLE);
+      composePanel.setVisibility(enabled ? View.VISIBLE : View.GONE);
       unblockButton.setVisibility(View.GONE);
       makeDefaultSmsButton.setVisibility(View.GONE);
       registerButton.setVisibility(View.GONE);
