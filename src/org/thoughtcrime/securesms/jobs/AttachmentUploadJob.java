@@ -89,7 +89,7 @@ public final class AttachmentUploadJob extends BaseJob {
 
     try (NotificationController notification = getNotificationForAttachment(databaseAttachment)) {
       SignalServiceAttachment        localAttachment  = getAttachmentFor(databaseAttachment, notification);
-      SignalServiceAttachmentPointer remoteAttachment = messageSender.uploadAttachment(localAttachment.asStream(), databaseAttachment.isSticker());
+      SignalServiceAttachmentPointer remoteAttachment = messageSender.uploadAttachment(localAttachment.asStream());
       Attachment                     attachment       = PointerAttachment.forPointer(Optional.of(remoteAttachment), null, databaseAttachment.getFastPreflightId()).get();
 
       database.updateAttachmentAfterUpload(databaseAttachment.getAttachmentId(), attachment);
