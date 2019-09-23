@@ -7,9 +7,10 @@ import org.thoughtcrime.securesms.database.Database
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.util.Base64
 import org.whispersystems.signalservice.loki.api.LokiPairingAuthorisation
+import org.whispersystems.signalservice.loki.api.LokiStorageAPIDatabaseProtocol
 import java.util.*
 
-class LokiMultiDeviceDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper) {
+class LokiMultiDeviceDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), LokiStorageAPIDatabaseProtocol {
 
   companion object {
     // Authorisation
@@ -27,7 +28,7 @@ class LokiMultiDeviceDatabase(context: Context, helper: SQLCipherOpenHelper) : D
             ");"
   }
 
-  fun insertOrUpdatePairingAuthorisation(authorisation: LokiPairingAuthorisation) {
+  override fun insertOrUpdatePairingAuthorisation(authorisation: LokiPairingAuthorisation) {
     val database = databaseHelper.writableDatabase
     val values = ContentValues()
     values.put(primaryDevice, authorisation.primaryDevicePubKey)
@@ -35,6 +36,11 @@ class LokiMultiDeviceDatabase(context: Context, helper: SQLCipherOpenHelper) : D
     if (authorisation.requestSignature != null) { values.put(requestSignature, Base64.encodeBytes(authorisation.requestSignature)) }
     if (authorisation.grantSignature != null) { values.put(grantSignature, Base64.encodeBytes(authorisation.grantSignature)) }
     database.insertOrUpdate(authorisation_table, values, "$primaryDevice = ? AND $secondaryDevice = ?", arrayOf(authorisation.primaryDevicePubKey, authorisation.secondaryDevicePubKey))
+  }
+
+  override fun removePairingAuthorisations(pubKey: String) {
+    val database = databaseHelper.readableDatabase
+    database.delete(authorisation_table, "$primaryDevice = ? OR $secondaryDevice = ?", arrayOf(pubKey, pubKey))
   }
 
   fun getAuthorisationForSecondaryDevice(pubKey: String): LokiPairingAuthorisation? {
@@ -48,7 +54,7 @@ class LokiMultiDeviceDatabase(context: Context, helper: SQLCipherOpenHelper) : D
     }
   }
 
-  fun getSecondaryDevices(primaryDevicePubKey: String): List<String> {
+  override fun getSecondaryDevices(primaryDevicePubKey: String): List<String> {
     val database = databaseHelper.readableDatabase
 
     var cursor: Cursor? = null
@@ -68,7 +74,7 @@ class LokiMultiDeviceDatabase(context: Context, helper: SQLCipherOpenHelper) : D
     return results
   }
 
-  fun getPrimaryDevice(secondaryDevicePubKey: String): String? {
+  override fun getPrimaryDevice(secondaryDevicePubKey: String): String? {
     val database = databaseHelper.readableDatabase
     return database.get(authorisation_table, "$secondaryDevice = ?", arrayOf(secondaryDevicePubKey)) { cursor ->
       cursor.getString(primaryDevice)

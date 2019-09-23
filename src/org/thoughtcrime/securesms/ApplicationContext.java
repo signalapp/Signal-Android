@@ -83,12 +83,7 @@ import org.webrtc.voiceengine.WebRtcAudioUtils;
 import org.whispersystems.libsignal.logging.SignalProtocolLoggerProvider;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
-import org.whispersystems.signalservice.loki.api.LokiGroupChat;
-import org.whispersystems.signalservice.loki.api.LokiGroupChatAPI;
-import org.whispersystems.signalservice.loki.api.LokiLongPoller;
-import org.whispersystems.signalservice.loki.api.LokiP2PAPI;
-import org.whispersystems.signalservice.loki.api.LokiP2PAPIDelegate;
-import org.whispersystems.signalservice.loki.api.LokiRSSFeed;
+import org.whispersystems.signalservice.loki.api.*;
 import org.whispersystems.signalservice.loki.utilities.Analytics;
 
 import java.security.Security;
@@ -164,6 +159,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
     // Loki - Set up P2P API if needed
     setUpP2PAPI();
+    setUpStorageAPI();
     // Loki - Set up beta analytics
     if (!BuildConfig.DEBUG) {
       Fabric.with(this, new Crashlytics());
@@ -414,6 +410,10 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   }
 
   // region Loki
+  public void setUpStorageAPI() {
+    LokiStorageAPI.Companion.configure(DatabaseFactory.getLokiMultiDeviceDatabase(this));
+  }
+
   public void setUpP2PAPI() {
     String hexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this);
     if (hexEncodedPublicKey == null) { return; }
