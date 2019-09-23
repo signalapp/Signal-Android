@@ -41,21 +41,9 @@ import org.thoughtcrime.securesms.crypto.SecurityEvent;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.crypto.storage.SignalProtocolStoreImpl;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
-import org.thoughtcrime.securesms.database.Address;
-import org.thoughtcrime.securesms.database.AttachmentDatabase;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.GroupDatabase;
-import org.thoughtcrime.securesms.database.GroupReceiptDatabase;
-import org.thoughtcrime.securesms.database.MessagingDatabase;
+import org.thoughtcrime.securesms.database.*;
 import org.thoughtcrime.securesms.database.MessagingDatabase.InsertResult;
 import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
-import org.thoughtcrime.securesms.database.MmsDatabase;
-import org.thoughtcrime.securesms.database.NoSuchMessageException;
-import org.thoughtcrime.securesms.database.PushDatabase;
-import org.thoughtcrime.securesms.database.RecipientDatabase;
-import org.thoughtcrime.securesms.database.SmsDatabase;
-import org.thoughtcrime.securesms.database.StickerDatabase;
-import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.StickerRecord;
@@ -123,6 +111,8 @@ import org.whispersystems.signalservice.api.messages.multidevice.StickerPackOper
 import org.whispersystems.signalservice.api.messages.multidevice.VerifiedMessage;
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
+import org.whispersystems.signalservice.loki.api.LokiDeviceLinkingSession;
+import org.whispersystems.signalservice.loki.api.LokiPairingAuthorisation;
 import org.whispersystems.signalservice.loki.crypto.LokiServiceCipher;
 import org.whispersystems.signalservice.loki.messaging.LokiMessageFriendRequestStatus;
 import org.whispersystems.signalservice.loki.messaging.LokiServiceMessage;
@@ -295,14 +285,13 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       // Loki - Store the sender display name if needed
       Optional<String> rawSenderDisplayName = content.senderDisplayName;
       if (rawSenderDisplayName.isPresent() && rawSenderDisplayName.get().length() > 0) {
-        String senderHexEncodedPublicKey = envelope.getSource();
-        String senderDisplayName = rawSenderDisplayName.get() + " (..." + senderHexEncodedPublicKey.substring(senderHexEncodedPublicKey.length() - 8) + ")";
-        DatabaseFactory.getLokiUserDatabase(context).setDisplayName(senderHexEncodedPublicKey, senderDisplayName);
+        setDisplayName(envelope.getSource(), rawSenderDisplayName.get());
       }
 
       // TODO: Deleting the display name
-
-      if (content.getDataMessage().isPresent()) {
+      if (content.getPairingAuthorisation().isPresent()) {
+        handlePairingAuthorisation(content.getPairingAuthorisation().get(), envelope, content);
+      } else if (content.getDataMessage().isPresent()) {
         SignalServiceDataMessage message        = content.getDataMessage().get();
         boolean                  isMediaMessage = message.getAttachments().isPresent() || message.getQuote().isPresent() || message.getSharedContacts().isPresent() || message.getPreviews().isPresent() || message.getSticker().isPresent();
 
@@ -1018,6 +1007,100 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     if (threadId != null && !isGroupMessage) {
       MessageNotifier.updateNotification(context, threadId);
     }
+  }
+
+  private boolean isAuthorisationValid(@NonNull LokiPairingAuthorisation authorisation) {
+    boolean isSecondaryDevice = TextSecurePreferences.isSecondaryDevice(context);
+    String ourPubKey = TextSecurePreferences.getLocalNumber(context);
+    boolean isRequest = authorisation.getType() == LokiPairingAuthorisation.Type.REQUEST;
+
+    if (authorisation.getRequestSignature() == null) {
+      Log.w("Loki", "Received a pairing request with missing request signature. Ignored.");
+      return false;
+    } else if (isRequest && isSecondaryDevice) {
+      Log.w("Loki", "Received a pairing request while being a secondary device. Ignored.");
+      return false;
+    } else if (isRequest && !authorisation.getPrimaryDevicePubKey().equals(ourPubKey)) {
+      Log.w("Loki", "Received a pairing request addressed to another pubkey. Ignored.");
+      return false;
+    } else if (isRequest && authorisation.getSecondaryDevicePubKey().equals(ourPubKey)) {
+      Log.w("Loki", "Received a pairing request from ourselves. Ignored.");
+      return false;
+    }
+
+    return authorisation.verify();
+  }
+
+  private void handlePairingAuthorisation(@NonNull LokiPairingAuthorisation authorisation, @NonNull SignalServiceEnvelope envelope, @NonNull SignalServiceContent content) {
+    if (authorisation.getType() == LokiPairingAuthorisation.Type.REQUEST) {
+      handlePairingRequest(authorisation, envelope);
+    } else if (authorisation.getSecondaryDevicePubKey().equals(TextSecurePreferences.getLocalNumber(context))) {
+      handlePairingAuthorisationForSelf(authorisation, envelope, content);
+    } else {
+      handlePairingAuthorisationForContact(authorisation);
+    }
+  }
+
+  private void handlePairingRequest(@NonNull LokiPairingAuthorisation authorisation, @NonNull SignalServiceEnvelope envelope) {
+    boolean valid = isAuthorisationValid(authorisation);
+    LokiDeviceLinkingSession linkingSession = LokiDeviceLinkingSession.Companion.getShared();
+    if (valid && linkingSession.isListeningForLinkingRequest()) {
+      // Save to the database and trigger the event
+      DatabaseFactory.getLokiMultiDeviceDatabase(context).insertOrUpdatePairingAuthorisation(authorisation);
+      linkingSession.receivedLinkingRequest(authorisation);
+    } else {
+      // Remove pre key bundle from the user
+      DatabaseFactory.getLokiPreKeyBundleDatabase(context).removePreKeyBundle(envelope.getSource());
+    }
+  }
+
+  private void handlePairingAuthorisationForSelf(@NonNull LokiPairingAuthorisation authorisation, @NonNull SignalServiceEnvelope envelope, @NonNull SignalServiceContent content) {
+    if (TextSecurePreferences.isSecondaryDevice(context)) {
+      Log.w("Loki", "Received an unexpected pairing authorisation (device is already paired as secondary device). Ignoring.");
+      return;
+    }
+
+    if (!isAuthorisationValid(authorisation)) {
+      Log.w("Loki", "Received invalid pairing authorisation for self. Could not verify signature. Ignoring.");
+      return;
+    }
+
+    // Unimplemented
+    if (authorisation.getType() != LokiPairingAuthorisation.Type.GRANT) { return; }
+
+    // Set the current device as secondary
+    Log.d("Loki", "Receiving pairing authorisation from: " + authorisation.getPrimaryDevicePubKey());
+    DatabaseFactory.getLokiMultiDeviceDatabase(context).insertOrUpdatePairingAuthorisation(authorisation);
+    TextSecurePreferences.setIsSecondaryDevice(context, true);
+    // TODO: Trigger an event here?
+
+    // Update display names
+    if (content.senderDisplayName.isPresent()  && content.senderDisplayName.get().length() > 0) {
+        setDisplayName(envelope.getSource(), content.senderDisplayName.get());
+    }
+  }
+
+  private void handlePairingAuthorisationForContact(@NonNull LokiPairingAuthorisation authorisation) {
+    if (!isAuthorisationValid(authorisation)) {
+      Log.w("Loki", "Received invalid pairing authorisation for self. Could not verify signature. Ignoring.");
+      return;
+    }
+
+    // Ensure primary device is a friend
+    String primaryDevice = authorisation.getPrimaryDevicePubKey();
+    LokiThreadDatabase lokiThreadDatabase = DatabaseFactory.getLokiThreadDatabase(context);
+    long threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(Recipient.from(context, Address.fromSerialized(primaryDevice), false));
+    LokiThreadFriendRequestStatus threadFriendRequestStatus = lokiThreadDatabase.getFriendRequestStatus(threadID);
+    if (threadFriendRequestStatus == LokiThreadFriendRequestStatus.FRIENDS) {
+      // If we're friends then save and send a background message if needed for friend request accept
+      DatabaseFactory.getLokiMultiDeviceDatabase(context).insertOrUpdatePairingAuthorisation(authorisation);
+      sendBackgroundMessage(authorisation.getSecondaryDevicePubKey());
+    }
+  }
+
+  private void setDisplayName(String pubKey, String profileName) {
+    String senderDisplayName = profileName + " (..." + pubKey.substring(pubKey.length() - 8) + ")";
+    DatabaseFactory.getLokiUserDatabase(context).setDisplayName(pubKey, senderDisplayName);
   }
 
   private void updateGroupChatMessageServerID(Optional<Long> messageServerIDOrNull, Optional<InsertResult> insertResult) {

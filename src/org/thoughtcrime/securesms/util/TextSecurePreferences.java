@@ -1169,5 +1169,13 @@ public class TextSecurePreferences {
   public static void markChatSetUp(Context context, String id) {
     setBooleanPreference(context, "is_chat_set_up" + "?chat=" + id, true);
   }
+
+  public static boolean isSecondaryDevice(Context context) {
+    return getBooleanPreference(context, "is_secondary_device", false);
+  }
+
+  public static void setIsSecondaryDevice(Context context, boolean isSecondaryDevice) {
+    setBooleanPreference(context, "is_secondary_device", isSecondaryDevice);
+  }
   // endregion
 }
