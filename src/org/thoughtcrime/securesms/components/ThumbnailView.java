@@ -113,10 +113,15 @@ public class ThumbnailView extends FrameLayout {
 
   @SuppressWarnings("SuspiciousNameCombination")
   private void fillTargetDimensions(int[] targetDimens, int[] dimens, int[] bounds) {
-    int dimensFilledCount = getNonZeroCount(dimens);
-    int boundsFilledCount = getNonZeroCount(bounds);
+    int     dimensFilledCount = getNonZeroCount(dimens);
+    int     boundsFilledCount = getNonZeroCount(bounds);
+    boolean dimensAreInvalid  = dimensFilledCount > 0 && dimensFilledCount < dimens.length;
 
-    if (dimensFilledCount == 0 || boundsFilledCount == 0) {
+    if (dimensAreInvalid) {
+      Log.w(TAG, String.format(Locale.ENGLISH, "Width or height has been specified, but not both. Dimens: %d x %d", dimens[WIDTH], dimens[HEIGHT]));
+    }
+
+    if (dimensAreInvalid || dimensFilledCount == 0 || boundsFilledCount == 0) {
       targetDimens[WIDTH] = 0;
       targetDimens[HEIGHT] = 0;
       return;
@@ -130,10 +135,6 @@ public class ThumbnailView extends FrameLayout {
     int minHeight = bounds[MIN_HEIGHT];
     int maxHeight = bounds[MAX_HEIGHT];
 
-    if (dimensFilledCount > 0 && dimensFilledCount < dimens.length) {
-      throw new IllegalStateException(String.format(Locale.ENGLISH, "Width or height has been specified, but not both. Dimens: %f x %f",
-                                                    naturalWidth, naturalHeight));
-    }
     if (boundsFilledCount > 0 && boundsFilledCount < bounds.length) {
       throw new IllegalStateException(String.format(Locale.ENGLISH, "One or more min/max dimensions have been specified, but not all. Bounds: [%d, %d, %d, %d]",
                                                     minWidth, maxWidth, minHeight, maxHeight));
