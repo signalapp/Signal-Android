@@ -52,9 +52,11 @@ public final class LiveRecipientCache {
     return live;
   }
 
-  synchronized @NonNull Recipient getSelf() {
-    if (localRecipientId == null) {
-      localRecipientId = recipientDatabase.getOrInsertFromE164(TextSecurePreferences.getLocalNumber(context));
+  @NonNull Recipient getSelf() {
+    synchronized (this) {
+      if (localRecipientId == null) {
+        localRecipientId = recipientDatabase.getOrInsertFromE164(TextSecurePreferences.getLocalNumber(context));
+      }
     }
 
     return getLive(localRecipientId).resolve();

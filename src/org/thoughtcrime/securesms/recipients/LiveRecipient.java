@@ -118,7 +118,7 @@ public final class LiveRecipient {
    * @return A fully-resolved version of the recipient. May require reading from disk.
    */
   @WorkerThread
-  public synchronized @NonNull Recipient resolve() {
+  public @NonNull Recipient resolve() {
     Recipient recipient = get();
 
     if (recipient.isResolving()) {
@@ -134,7 +134,7 @@ public final class LiveRecipient {
    * Forces a reload of the underlying recipient.
    */
   @WorkerThread
-  public synchronized void refresh() {
+  public void refresh() {
     Recipient recipient = fetchRecipientFromDisk(defaultRecipient.getId());
     liveData.postValue(recipient);
     Stream.of(recipient.getParticipants()).map(Recipient::live).forEach(LiveRecipient::refresh);
