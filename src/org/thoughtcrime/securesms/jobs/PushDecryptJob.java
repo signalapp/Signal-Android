@@ -113,6 +113,7 @@ import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.loki.api.LokiDeviceLinkingSession;
 import org.whispersystems.signalservice.loki.api.LokiPairingAuthorisation;
+import org.whispersystems.signalservice.loki.api.LokiStorageAPI;
 import org.whispersystems.signalservice.loki.crypto.LokiServiceCipher;
 import org.whispersystems.signalservice.loki.messaging.LokiMessageFriendRequestStatus;
 import org.whispersystems.signalservice.loki.messaging.LokiServiceMessage;
@@ -128,6 +129,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import kotlin.Unit;
 import network.loki.messenger.R;
 
 public class PushDecryptJob extends BaseJob implements InjectableType {
@@ -1112,21 +1114,54 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   }
 
   private void acceptFriendRequestIfNeeded(@NonNull SignalServiceEnvelope envelope, @NonNull SignalServiceContent content) {
-    // If we get anything other than a friend request, we can assume that we have a session with the other user
-    if (envelope.isFriendRequest()) { return; }
-    Recipient contactID = Recipient.from(context, Address.fromSerialized(content.getSender()), false);
     LokiThreadDatabase lokiThreadDatabase = DatabaseFactory.getLokiThreadDatabase(context);
-    long threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(contactID);
+    if (envelope.isFriendRequest()) {
+      // If we get a friend request then we need to check if the sender is a secondary device.
+      // If it is then we need to check if we have its primary device as our friend
+      // If so then we add them automatically as a friend
+      LokiStorageAPI.Companion.getShared().getPrimaryDevice(content.getSender()).success(primaryDevicePubKey -> {
+        // Make sure we have a primary device
+        if (primaryDevicePubKey == null) { return Unit.INSTANCE; }
+
+        // If we have a thread then the id will be >= 0
+        Recipient primaryDevice = Recipient.from(context, Address.fromSerialized(primaryDevicePubKey), false);
+        long threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(primaryDevice);
+        if (threadID < 0) { return Unit.INSTANCE; }
+
+        // Check that we're friends with the primary device, if we are then auto accept
+        if (lokiThreadDatabase.getFriendRequestStatus(threadID) == LokiThreadFriendRequestStatus.FRIENDS) {
+          becomeFriendsWithContact(content.getSender(), false);
+        }
+
+        return Unit.INSTANCE;
+      });
+    } else {
+      // If we get anything other than a friend request, we can assume that we have a session with the other user
+      becomeFriendsWithContact(content.getSender(), true);
+    }
+  }
+
+  private void becomeFriendsWithContact(String pubKey, boolean updateLastMessage) {
+    LokiThreadDatabase lokiThreadDatabase = DatabaseFactory.getLokiThreadDatabase(context);
+    Recipient contactID = Recipient.from(context, Address.fromSerialized(pubKey), false);
+    long threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(contactID);
     LokiThreadFriendRequestStatus threadFriendRequestStatus = lokiThreadDatabase.getFriendRequestStatus(threadID);
     if (threadFriendRequestStatus == LokiThreadFriendRequestStatus.FRIENDS) { return; }
-    SmsDatabase messageDatabase = DatabaseFactory.getSmsDatabase(context);
-    LokiMessageDatabase lokiMessageDatabase = DatabaseFactory.getLokiMessageDatabase(context);
-    int messageCount = messageDatabase.getMessageCountForThread(threadID);
+
     // If the thread's friend request status is not `FRIENDS`, but we're receiving a message,
     // it must be a friend request accepted message. Declining a friend request doesn't send a message.
     lokiThreadDatabase.setFriendRequestStatus(threadID, LokiThreadFriendRequestStatus.FRIENDS);
-    long messageID = messageDatabase.getIDForMessageAtIndex(threadID, messageCount - 1);
-    lokiMessageDatabase.setFriendRequestStatus(messageID, LokiMessageFriendRequestStatus.REQUEST_ACCEPTED);
+
+    // Update the last message if needed
+    if (updateLastMessage) {
+      SmsDatabase messageDatabase = DatabaseFactory.getSmsDatabase(context);
+      LokiMessageDatabase lokiMessageDatabase = DatabaseFactory.getLokiMessageDatabase(context);
+      int messageCount = messageDatabase.getMessageCountForThread(threadID);
+
+      long messageID = messageDatabase.getIDForMessageAtIndex(threadID, messageCount - 1);
+      lokiMessageDatabase.setFriendRequestStatus(messageID, LokiMessageFriendRequestStatus.REQUEST_ACCEPTED);
+    }
+
   }
 
   private void updateFriendRequestStatusIfNeeded(@NonNull SignalServiceEnvelope envelope, @NonNull SignalServiceContent content, @NonNull SignalServiceDataMessage message) {
