@@ -36,6 +36,7 @@ import org.jetbrains.annotations.NotNull;
 import org.signal.aesgcmprovider.AesGcmProvider;
 import org.thoughtcrime.securesms.components.TypingStatusRepository;
 import org.thoughtcrime.securesms.components.TypingStatusSender;
+import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.database.DatabaseContentProviders;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.dependencies.AxolotlStorageModule;
@@ -411,7 +412,10 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
 
   // region Loki
   public void setUpStorageAPI() {
-    LokiStorageAPI.Companion.configure(DatabaseFactory.getLokiMultiDeviceDatabase(this));
+    String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this);
+    byte[] userPrivateKey = IdentityKeyUtil.getIdentityKeyPair(this).getPrivateKey().serialize();
+    LokiAPIDatabaseProtocol database = DatabaseFactory.getLokiAPIDatabase(this);
+    LokiStorageAPI.Companion.configure(userHexEncodedPublicKey, userPrivateKey, database);
   }
 
   public void setUpP2PAPI() {

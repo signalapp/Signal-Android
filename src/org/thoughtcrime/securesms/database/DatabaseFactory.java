@@ -63,7 +63,6 @@ public class DatabaseFactory {
 
   // Loki
   private final LokiAPIDatabase lokiAPIDatabase;
-  private final LokiMultiDeviceDatabase lokiMultiDeviceDatabase;
   private final LokiPreKeyRecordDatabase lokiContactPreKeyDatabase;
   private final LokiPreKeyBundleDatabase lokiPreKeyBundleDatabase;
   private final LokiMessageDatabase lokiMessageDatabase;
@@ -164,10 +163,6 @@ public class DatabaseFactory {
     return getInstance(context).lokiAPIDatabase;
   }
 
-  public static LokiMultiDeviceDatabase getLokiMultiDeviceDatabase(Context context) {
-    return getInstance(context).lokiMultiDeviceDatabase;
-  }
-
   public static LokiPreKeyRecordDatabase getLokiPreKeyRecordDatabase(Context context) {
     return getInstance(context).lokiContactPreKeyDatabase;
   }
@@ -221,7 +216,6 @@ public class DatabaseFactory {
     this.jobDatabase          = new JobDatabase(context, databaseHelper);
     this.stickerDatabase      = new StickerDatabase(context, databaseHelper, attachmentSecret);
     this.lokiAPIDatabase = new LokiAPIDatabase(context, databaseHelper);
-    this.lokiMultiDeviceDatabase = new LokiMultiDeviceDatabase(context, databaseHelper);
     this.lokiContactPreKeyDatabase = new LokiPreKeyRecordDatabase(context, databaseHelper);
     this.lokiPreKeyBundleDatabase = new LokiPreKeyBundleDatabase(context, databaseHelper);
     this.lokiMessageDatabase = new LokiMessageDatabase(context, databaseHelper);

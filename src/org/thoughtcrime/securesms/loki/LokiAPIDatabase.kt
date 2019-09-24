@@ -4,9 +4,11 @@ import android.content.ContentValues
 import android.content.Context
 import org.thoughtcrime.securesms.database.Database
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
+import org.thoughtcrime.securesms.util.Base64
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.loki.api.LokiAPIDatabaseProtocol
 import org.whispersystems.signalservice.loki.api.LokiAPITarget
+import org.whispersystems.signalservice.loki.api.LokiPairingAuthorisation
 
 // TODO: Clean this up a bit
 
@@ -45,6 +47,14 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         private val lastDeletionServerIDCacheIndex = "loki_api_last_deletion_server_id_cache_index"
         private val lastDeletionServerID = "last_deletion_server_id"
         @JvmStatic val createLastDeletionServerIDTableCommand = "CREATE TABLE $lastDeletionServerIDCache ($lastDeletionServerIDCacheIndex STRING PRIMARY KEY, $lastDeletionServerID INTEGER DEFAULT 0);"
+
+        // Authorisation
+        private val multiDeviceAuthTable = "loki_multi_device_authorisation"
+        private val primaryDevice = "primary_device"
+        private val secondaryDevice = "secondary_device"
+        private val requestSignature = "request_signature"
+        private val grantSignature = "grant_signature"
+        @JvmStatic val createMultiDeviceAuthTableCommand = "CREATE TABLE $multiDeviceAuthTable(_id INTEGER PRIMARY KEY AUTOINCREMENT, $primaryDevice TEXT, $secondaryDevice TEXT, $requestSignature TEXT NULLABLE DEFAULT NULL, $grantSignature TEXT NULLABLE DEFAULT NULL);"
     }
 
     override fun getSwarmCache(hexEncodedPublicKey: String): Set<LokiAPITarget>? {
@@ -140,6 +150,32 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         val index = "$server.$group"
         val row = wrap(mapOf( lastDeletionServerIDCacheIndex to index, lastDeletionServerID to newValue.toString() ))
         database.insertOrUpdate(lastDeletionServerIDCache, row, "$lastDeletionServerIDCacheIndex = ?", wrap(index))
+    }
+
+    override fun getPairingAuthorisations(pubKey: String): List<LokiPairingAuthorisation> {
+        val database = databaseHelper.readableDatabase
+        return database.getAll(multiDeviceAuthTable, "$primaryDevice = ? OR $secondaryDevice = ?", arrayOf(pubKey)) { cursor ->
+            val primaryDevicePubKey = cursor.getString(primaryDevice)
+            val secondaryDevicePubKey = cursor.getString(secondaryDevice)
+            val requestSignature: ByteArray? = if (cursor.isNull(cursor.getColumnIndexOrThrow(requestSignature))) null else cursor.getBase64EncodedData(requestSignature)
+            val grantSignature: ByteArray? = if (cursor.isNull(cursor.getColumnIndexOrThrow(grantSignature))) null else cursor.getBase64EncodedData(grantSignature)
+            LokiPairingAuthorisation(primaryDevicePubKey, secondaryDevicePubKey, requestSignature, grantSignature)
+        }
+    }
+
+    override fun insertOrUpdatePairingAuthorisation(authorisation: LokiPairingAuthorisation) {
+        val database = databaseHelper.writableDatabase
+        val values = ContentValues()
+        values.put(primaryDevice, authorisation.primaryDevicePubKey)
+        values.put(secondaryDevice, authorisation.secondaryDevicePubKey)
+        if (authorisation.requestSignature != null) { values.put(requestSignature, Base64.encodeBytes(authorisation.requestSignature)) }
+        if (authorisation.grantSignature != null) { values.put(grantSignature, Base64.encodeBytes(authorisation.grantSignature)) }
+        database.insertOrUpdate(multiDeviceAuthTable, values, "$primaryDevice = ? AND $secondaryDevice = ?", arrayOf(authorisation.primaryDevicePubKey, authorisation.secondaryDevicePubKey))
+    }
+
+    override fun removePairingAuthorisations(pubKey: String) {
+        val database = databaseHelper.readableDatabase
+        database.delete(multiDeviceAuthTable, "$primaryDevice = ? OR $secondaryDevice = ?", arrayOf(pubKey))
     }
 }
 

@@ -1046,7 +1046,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     LokiDeviceLinkingSession linkingSession = LokiDeviceLinkingSession.Companion.getShared();
     if (valid && linkingSession.isListeningForLinkingRequest()) {
       // Save to the database and trigger the event
-      DatabaseFactory.getLokiMultiDeviceDatabase(context).insertOrUpdatePairingAuthorisation(authorisation);
+      DatabaseFactory.getLokiAPIDatabase(context).insertOrUpdatePairingAuthorisation(authorisation);
       linkingSession.receivedLinkingRequest(authorisation);
     } else {
       // Remove pre key bundle from the user
@@ -1070,7 +1070,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
     // Set the current device as secondary
     Log.d("Loki", "Receiving pairing authorisation from: " + authorisation.getPrimaryDevicePubKey());
-    DatabaseFactory.getLokiMultiDeviceDatabase(context).insertOrUpdatePairingAuthorisation(authorisation);
+    DatabaseFactory.getLokiAPIDatabase(context).insertOrUpdatePairingAuthorisation(authorisation);
     TextSecurePreferences.setIsSecondaryDevice(context, true);
     // TODO: Trigger an event here?
 
@@ -1093,7 +1093,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     LokiThreadFriendRequestStatus threadFriendRequestStatus = lokiThreadDatabase.getFriendRequestStatus(threadID);
     if (threadFriendRequestStatus == LokiThreadFriendRequestStatus.FRIENDS) {
       // If we're friends then save and send a background message if needed for friend request accept
-      DatabaseFactory.getLokiMultiDeviceDatabase(context).insertOrUpdatePairingAuthorisation(authorisation);
+      DatabaseFactory.getLokiAPIDatabase(context).insertOrUpdatePairingAuthorisation(authorisation);
       sendBackgroundMessage(authorisation.getSecondaryDevicePubKey());
     }
   }
