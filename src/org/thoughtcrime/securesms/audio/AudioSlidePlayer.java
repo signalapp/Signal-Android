@@ -235,6 +235,21 @@ public class AudioSlidePlayer implements SensorEventListener {
     return slide;
   }
 
+  public long getAudioDuration() {
+    if(mediaPlayer != null) {
+      return mediaPlayer.getDuration();
+    } else {
+      return -1;
+    }
+  }
+
+  public long getAudioCurrentPosition() {
+    if(mediaPlayer != null) {
+      return mediaPlayer.getCurrentPosition();
+    } else {
+      return -1;
+    }
+  }
 
   private Pair<Double, Integer> getProgress() {
     if (mediaPlayer == null || mediaPlayer.getCurrentPosition() <= 0 || mediaPlayer.getDuration() <= 0) {

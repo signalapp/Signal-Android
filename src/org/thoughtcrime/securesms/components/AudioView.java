@@ -192,9 +192,7 @@ public final class AudioView extends FrameLayout implements AudioSlidePlayer.Lis
     if (seekProgress > seekBar.getProgress() || backwardsCounter > 3) {
       backwardsCounter = 0;
       this.seekBar.setProgress(seekProgress);
-      this.timestamp.setText(String.format(Locale.getDefault(), "%02d:%02d",
-                                           TimeUnit.MILLISECONDS.toMinutes(millis),
-                                           TimeUnit.MILLISECONDS.toSeconds(millis)));
+      updateTimestamp();
     } else {
       backwardsCounter++;
     }
@@ -251,6 +249,21 @@ public final class AudioView extends FrameLayout implements AudioSlidePlayer.Lis
     downloadProgress.setVisibility(VISIBLE);
     playPauseButton.setVisibility(VISIBLE);
     controlToggle.displayQuick(progressAndPlay);
+  }
+
+  private void updateTimestamp() {
+    if(audioSlidePlayer != null && audioSlidePlayer.getAudioDuration() > -1 && audioSlidePlayer.getAudioCurrentPosition() > -1) {
+      long durationSec = audioSlidePlayer.getAudioDuration() / 1000;
+      long currentPosSec = audioSlidePlayer.getAudioCurrentPosition() / 1000;
+
+      String timestampText = String.format(Locale.getDefault(), "%02d:%02d/%02d:%02d",
+              currentPosSec / 60, currentPosSec % 60,
+              durationSec / 60, durationSec % 60);
+      this.timestamp.setText(timestampText);
+      this.timestamp.setVisibility(VISIBLE);
+    } else {
+      this.timestamp.setVisibility(INVISIBLE);
+    }
   }
 
   private class PlayPauseClickedListener implements View.OnClickListener {
