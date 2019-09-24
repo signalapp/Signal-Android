@@ -1034,12 +1034,12 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   }
 
   private void handlePairingAuthorisation(@NonNull LokiPairingAuthorisation authorisation, @NonNull SignalServiceEnvelope envelope, @NonNull SignalServiceContent content) {
+    String ourNumber = TextSecurePreferences.getLocalNumber(context);
     if (authorisation.getType() == LokiPairingAuthorisation.Type.REQUEST) {
       handlePairingRequest(authorisation, envelope);
-    } else if (authorisation.getSecondaryDevicePubKey().equals(TextSecurePreferences.getLocalNumber(context))) {
+    } else if (authorisation.getSecondaryDevicePubKey().equals(ourNumber)) {
+      // If we were listed as a secondary device, it means we got a confirmation back from the primary device
       handlePairingAuthorisationForSelf(authorisation, envelope, content);
-    } else {
-      handlePairingAuthorisationForContact(authorisation);
     }
   }
 
@@ -1069,34 +1069,22 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
     // Unimplemented
     if (authorisation.getType() != LokiPairingAuthorisation.Type.GRANT) { return; }
-
-    // Set the current device as secondary
     Log.d("Loki", "Receiving pairing authorisation from: " + authorisation.getPrimaryDevicePubKey());
+
+    // Set the current device as secondary and update our authorisations
+    String ourNumber = TextSecurePreferences.getLocalNumber(context);
+    DatabaseFactory.getLokiAPIDatabase(context).removePairingAuthorisations(ourNumber);
     DatabaseFactory.getLokiAPIDatabase(context).insertOrUpdatePairingAuthorisation(authorisation);
     TextSecurePreferences.setIsSecondaryDevice(context, true);
+
+    // Propagate the updates to the file server
+    LokiStorageAPI.shared.updateOurDeviceMappings();
+
     // TODO: Trigger an event here?
 
     // Update display names
     if (content.senderDisplayName.isPresent()  && content.senderDisplayName.get().length() > 0) {
         setDisplayName(envelope.getSource(), content.senderDisplayName.get());
-    }
-  }
-
-  private void handlePairingAuthorisationForContact(@NonNull LokiPairingAuthorisation authorisation) {
-    if (!isAuthorisationValid(authorisation)) {
-      Log.w("Loki", "Received invalid pairing authorisation for self. Could not verify signature. Ignoring.");
-      return;
-    }
-
-    // Ensure primary device is a friend
-    String primaryDevice = authorisation.getPrimaryDevicePubKey();
-    LokiThreadDatabase lokiThreadDatabase = DatabaseFactory.getLokiThreadDatabase(context);
-    long threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(Recipient.from(context, Address.fromSerialized(primaryDevice), false));
-    LokiThreadFriendRequestStatus threadFriendRequestStatus = lokiThreadDatabase.getFriendRequestStatus(threadID);
-    if (threadFriendRequestStatus == LokiThreadFriendRequestStatus.FRIENDS) {
-      // If we're friends then save and send a background message if needed for friend request accept
-      DatabaseFactory.getLokiAPIDatabase(context).insertOrUpdatePairingAuthorisation(authorisation);
-      sendBackgroundMessage(authorisation.getSecondaryDevicePubKey());
     }
   }
 
@@ -1119,7 +1107,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       // If we get a friend request then we need to check if the sender is a secondary device.
       // If it is then we need to check if we have its primary device as our friend
       // If so then we add them automatically as a friend
-      LokiStorageAPI.Companion.getShared().getPrimaryDevice(content.getSender()).success(primaryDevicePubKey -> {
+      LokiStorageAPI.shared.getPrimaryDevice(content.getSender()).success(primaryDevicePubKey -> {
         // Make sure we have a primary device
         if (primaryDevicePubKey == null) { return Unit.INSTANCE; }
 
