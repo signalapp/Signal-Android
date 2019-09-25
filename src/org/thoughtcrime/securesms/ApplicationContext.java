@@ -81,6 +81,7 @@ import org.webrtc.PeerConnectionFactory;
 import org.webrtc.PeerConnectionFactory.InitializationOptions;
 import org.webrtc.voiceengine.WebRtcAudioManager;
 import org.webrtc.voiceengine.WebRtcAudioUtils;
+import org.whispersystems.libsignal.IdentityKeyPair;
 import org.whispersystems.libsignal.logging.SignalProtocolLoggerProvider;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
@@ -160,7 +161,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
     // Loki - Set up P2P API if needed
     setUpP2PAPI();
-    setUpStorageAPI();
     // Loki - Set up beta analytics
     if (!BuildConfig.DEBUG) {
       Fabric.with(this, new Crashlytics());
@@ -183,6 +183,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     KeyCachingService.onAppForegrounded(this);
     // Loki - Start long polling if needed
     startLongPollingIfNeeded();
+    setUpStorageAPIIfNeeded();
   }
 
   @Override
@@ -411,11 +412,13 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   }
 
   // region Loki
-  public void setUpStorageAPI() {
+  public void setUpStorageAPIIfNeeded() {
     String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this);
-    byte[] userPrivateKey = IdentityKeyUtil.getIdentityKeyPair(this).getPrivateKey().serialize();
-    LokiAPIDatabaseProtocol database = DatabaseFactory.getLokiAPIDatabase(this);
-    LokiStorageAPI.Companion.configure(userHexEncodedPublicKey, userPrivateKey, database);
+    if (userHexEncodedPublicKey != null && IdentityKeyUtil.hasIdentityKey(this)) {
+      byte[] userPrivateKey = IdentityKeyUtil.getIdentityKeyPair(this).getPrivateKey().serialize();
+      LokiAPIDatabaseProtocol database = DatabaseFactory.getLokiAPIDatabase(this);
+      LokiStorageAPI.Companion.configure(userHexEncodedPublicKey, userPrivateKey, database);
+    }
   }
 
   public void setUpP2PAPI() {

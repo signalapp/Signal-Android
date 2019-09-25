@@ -1078,7 +1078,8 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     TextSecurePreferences.setIsSecondaryDevice(context, true);
 
     // Propagate the updates to the file server
-    LokiStorageAPI.shared.updateOurDeviceMappings();
+    LokiStorageAPI storageAPI = LokiStorageAPI.Companion.getShared();
+    if (storageAPI != null) { storageAPI.updateOurDeviceMappings(); }
 
     // TODO: Trigger an event here?
 
@@ -1104,10 +1105,12 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   private void acceptFriendRequestIfNeeded(@NonNull SignalServiceEnvelope envelope, @NonNull SignalServiceContent content) {
     LokiThreadDatabase lokiThreadDatabase = DatabaseFactory.getLokiThreadDatabase(context);
     if (envelope.isFriendRequest()) {
+      LokiStorageAPI storageAPI = LokiStorageAPI.Companion.getShared();
+      if (storageAPI == null) { return; }
       // If we get a friend request then we need to check if the sender is a secondary device.
       // If it is then we need to check if we have its primary device as our friend
       // If so then we add them automatically as a friend
-      LokiStorageAPI.shared.getPrimaryDevice(content.getSender()).success(primaryDevicePubKey -> {
+      storageAPI.getPrimaryDevice(content.getSender()).success(primaryDevicePubKey -> {
         // Make sure we have a primary device
         if (primaryDevicePubKey == null) { return Unit.INSTANCE; }
 

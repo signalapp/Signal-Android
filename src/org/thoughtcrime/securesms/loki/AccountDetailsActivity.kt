@@ -36,6 +36,7 @@ class AccountDetailsActivity : BaseActionBarActivity() {
         val application = ApplicationContext.getInstance(this)
         application.setUpP2PAPI()
         application.startLongPollingIfNeeded()
+        application.setUpStorageAPIIfNeeded()
         startActivity(Intent(this, ConversationListActivity::class.java))
         finish()
     }
