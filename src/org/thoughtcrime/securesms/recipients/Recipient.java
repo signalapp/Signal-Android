@@ -34,6 +34,7 @@ import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.libsignal.util.guava.Preconditions;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -100,6 +101,8 @@ public class Recipient {
    */
   @WorkerThread
   public static @NonNull Recipient external(@NonNull Context context, @NonNull String address) {
+    Preconditions.checkNotNull(address, "Address cannot be null.");
+
     RecipientDatabase db = DatabaseFactory.getRecipientDatabase(context);
     RecipientId       id = null;
 

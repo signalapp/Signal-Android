@@ -48,7 +48,7 @@ public class RecipientIdJobMigration extends JobMigration {
 
   private @NonNull JobData migrateMultiDeviceContactUpdateJob(@NonNull JobData jobData) {
     String  address     = jobData.getData().getString("address");
-    Data    updatedData = new Data.Builder().putString("recipient", Recipient.external(application, address).getId().serialize())
+    Data    updatedData = new Data.Builder().putString("recipient", address != null ? Recipient.external(application, address).getId().serialize() : null)
                                             .putBoolean("force_sync", jobData.getData().getBoolean("force_sync"))
                                             .build();
 
