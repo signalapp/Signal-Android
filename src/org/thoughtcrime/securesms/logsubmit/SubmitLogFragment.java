@@ -26,6 +26,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -62,14 +63,19 @@ import org.thoughtcrime.securesms.util.BucketInfo;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
+import org.whispersystems.libsignal.util.Pair;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
@@ -98,12 +104,13 @@ public class SubmitLogFragment extends Fragment {
 
   private static final String API_ENDPOINT = "https://debuglogs.org";
 
-  private static final String HEADER_SYSINFO = "========= SYSINFO =========";
-  private static final String HEADER_JOBS    = "=========== JOBS ==========";
-  private static final String HEADER_POWER   = "========== POWER ==========";
-  private static final String HEADER_THREADS = "===== BLOCKED THREADS =====";
-  private static final String HEADER_LOGCAT  = "========== LOGCAT =========";
-  private static final String HEADER_LOGGER  = "========== LOGGER =========";
+  private static final String HEADER_SYSINFO     = "========= SYSINFO =========";
+  private static final String HEADER_JOBS        = "=========== JOBS ==========";
+  private static final String HEADER_POWER       = "========== POWER ==========";
+  private static final String HEADER_THREADS     = "===== BLOCKED THREADS =====";
+  private static final String HEADER_PERMISSIONS = "======= PERMISSIONS =======";
+  private static final String HEADER_LOGCAT      = "========== LOGCAT =========";
+  private static final String HEADER_LOGGER      = "========== LOGGER =========";
 
   private Button   okButton;
   private Button   cancelButton;
@@ -402,6 +409,11 @@ public class SubmitLogFragment extends Fragment {
                    .append(buildBlockedThreads())
                    .append("\n\n\n");
 
+      stringBuilder.append(HEADER_PERMISSIONS)
+                   .append("\n\n")
+                   .append(buildPermissions(requireContext()))
+                   .append("\n\n\n");
+
       stringBuilder.append(HEADER_LOGCAT)
                    .append("\n\n")
                    .append(scrubbedLogcat)
@@ -583,6 +595,33 @@ public class SubmitLogFragment extends Fragment {
     }
 
     return out.length() == 0 ? "None" : out;
+  }
+
+  private static CharSequence buildPermissions(@NonNull Context context) {
+    StringBuilder out = new StringBuilder();
+
+    List<Pair<String, Boolean>> status = new ArrayList<>();
+
+    try {
+      PackageInfo info = context.getPackageManager().getPackageInfo("org.thoughtcrime.securesms", PackageManager.GET_PERMISSIONS);
+
+      for (int i = 0; i < info.requestedPermissions.length; i++) {
+        status.add(new Pair<>(info.requestedPermissions[i],
+                             (info.requestedPermissionsFlags[i] & PackageInfo.REQUESTED_PERMISSION_GRANTED) != 0));
+      }
+    } catch (PackageManager.NameNotFoundException e) {
+      return "Unable to retrieve.";
+    }
+
+    Collections.sort(status, (o1, o2) -> o1.first().compareTo(o2.first()));
+
+    for (Pair<String, Boolean> pair : status) {
+      out.append(pair.first()).append(": ");
+      out.append(pair.second() ? "YES" : "NO");
+      out.append("\n");
+    }
+
+    return out;
   }
 
   private static Iterable<String> getSupportedAbis() {
