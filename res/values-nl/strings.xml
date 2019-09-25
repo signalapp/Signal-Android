@@ -1211,7 +1211,7 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Selectie dearchiveren</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Snelkoppeling naar instellingen</string>
-  <string name="conversation_list_search_description">Zoek</string>
+  <string name="conversation_list_search_description">Zoeken</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Afbeelding van contactpersoon</string>
   <string name="conversation_list_item_view__archived">Gearchiveerd</string>

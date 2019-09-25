@@ -8,7 +8,7 @@
   <string name="save">Ruaje</string>
   <string name="note_to_self">Shënim për Veten</string>
   <!--AbstractNotificationBuilder-->
-  <string name="AbstractNotificationBuilder_new_message">Mesazh i ri</string>
+  <string name="AbstractNotificationBuilder_new_message">Lajm i ri</string>
   <!--AlbumThumbnailView-->
   <string name="AlbumThumbnailView_plus">\+%d</string>
   <!--ApplicationMigrationActivity-->

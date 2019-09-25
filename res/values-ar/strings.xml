@@ -100,6 +100,8 @@
   <string name="CameraContacts_signal_groups">مجموعات سغنال</string>
   <string name="CameraContacts_select_signal_recipients">اختر المتلقّيين والمتلقّيات بسغنال</string>
   <string name="CameraContacts_no_signal_contacts">لا جهات اتصال في سغنال</string>
+  <string name="CameraContacts_you_can_only_use_the_camera_button">يمكنك استخدام زر الكاميرا لإرسال الصور إلى من تراسل في سغنال.</string>
+  <string name="CameraContacts_cant_find_who_youre_looking_for">ألم تتمكن من العثور على من تبحث عنه؟</string>
   <string name="CameraContacts__menu_search">بحث</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">إزالة</string>
@@ -1249,6 +1251,7 @@
   <string name="conversation_list_batch_archive__menu_archive_selected">تم اختيار الأرشيف</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">اختيار غير المؤرشف</string>
   <!--conversation_list-->
+  <string name="conversation_list_settings_shortcut">اختصار الإعدادات</string>
   <string name="conversation_list_search_description">بحث</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">صورة جهة الاتصال</string>

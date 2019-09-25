@@ -840,6 +840,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Foto del contacte</string>
   <!--audio_view-->
+  <string name="audio_view__play_pause_accessibility_description">Reprodueix... Pausa</string>
   <string name="audio_view__download_accessibility_description">Baixa</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">Àudio</string>

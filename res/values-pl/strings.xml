@@ -1322,7 +1322,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="reminder_header_share_title">Zaproś swoich znajomych!</string>
   <string name="reminder_header_share_text">Im więcej twoich znajomych używa Signal, tym bardziej staje się on użyteczny.</string>
   <string name="reminder_header_service_outage_text">Signal ma problemy techniczne. Dokładamy wszelkich starań, aby przywrócić usługę tak szybko, jak to możliwe.</string>
-  <string name="reminder_header_the_latest_signal_features_wont_work">Najnowsze funkcje Signal nie będą działać na tej wersji Androida. Zaktualizuj urządzenie, aby otrzymywać przyszłe aktualizacje Signal.</string>
+  <string name="reminder_header_the_latest_signal_features_wont_work">Najnowsze funkcje Signal nie będą działać na tej wersji Androida. Zaktualizuj urządzenie, aby uzyskać nowe funkcje Signal.</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Zapisz</string>
   <string name="media_preview__forward_title">Przekaż dalej</string>

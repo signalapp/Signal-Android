@@ -12,6 +12,7 @@
   <!--AlbumThumbnailView-->
   <string name="AlbumThumbnailView_plus">\+%d</string>
   <!--ApplicationMigrationActivity-->
+  <string name="ApplicationMigrationActivity__signal_is_updating">Mise à jour Signal... </string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Actuellement : %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Vous n’avez pas encore défini de phrase de passe !</string>
@@ -79,8 +80,8 @@
   <string name="CameraActivity_image_save_failure">Échec d’enregistrement de l’image.</string>
   <!--CameraXFragment-->
   <string name="CameraXFragment_capture_description">Prendre</string>
-  <string name="CameraXFragment_change_camera_description">changer de caméra</string>
-  <string name="CameraXFragment_open_gallery_description">ouvrir la galerie</string>
+  <string name="CameraXFragment_change_camera_description">Changer de caméra</string>
+  <string name="CameraXFragment_open_gallery_description">Ouvrir la galerie</string>
   <!--CameraContacts-->
   <string name="CameraContacts_recent_contacts">Contacts récents</string>
   <string name="CameraContacts_signal_contacts">Contacts Signal</string>
@@ -840,6 +841,7 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Photo du contact</string>
   <!--audio_view-->
+  <string name="audio_view__play_pause_accessibility_description">Lecture ... Pause</string>
   <string name="audio_view__download_accessibility_description">Télécharger</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">Son</string>

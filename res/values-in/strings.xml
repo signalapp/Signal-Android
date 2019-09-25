@@ -12,6 +12,7 @@
   <!--AlbumThumbnailView-->
   <string name="AlbumThumbnailView_plus">\+%d</string>
   <!--ApplicationMigrationActivity-->
+  <string name="ApplicationMigrationActivity__signal_is_updating">Signal sedang memperbarui...</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Sekarang: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Anda belum mengatur kata kunci!</string>
@@ -59,6 +60,8 @@
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal memerlukan akses ke Lokasi untuk mengirimkan lokasi, tetapi saat ini telah ditolak secara permanen. Harap melanjutkan ke menu pengaturan aplikasi, Pilih \"Izin\", dan aktifkan \"Lokasi\".</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal memerlukan akses ke Kamera untuk mengambil foto, tetapi saat ini telah ditolak secara permanen. Harap melanjutkan ke menu pengaturan aplikasi, Pilih \"Izin\", dan aktifkan \"Kamera\".</string>
   <!--AttachmentUploadJob-->
+  <string name="AttachmentUploadJob_uploading_media">Mengunggah media...</string>
+  <string name="AttachmentUploadJob_compressing_video_start">Mengompresi video...</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Gagal memutar audio!</string>
   <!--BlockedContactsActivity-->
@@ -73,6 +76,8 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Gagal menyimpan gambar.</string>
   <!--CameraXFragment-->
+  <string name="CameraXFragment_change_camera_description">Ganti kamera</string>
+  <string name="CameraXFragment_open_gallery_description">Buka galeri</string>
   <!--CameraContacts-->
   <string name="CameraContacts__menu_search">Pencarian</string>
   <!--ClearProfileActivity-->

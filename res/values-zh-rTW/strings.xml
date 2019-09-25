@@ -1138,7 +1138,7 @@
   <string name="preferences_chats__show_invitation_prompts">顯示邀請提示</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">不用 Signal 來顯示給聯絡人的邀請提示</string>
   <string name="preferences_chats__message_text_size">訊息字體大小</string>
-  <string name="preferences_events__contact_joined_signal">聯絡人已加入 Signal</string>
+  <string name="preferences_events__contact_joined_signal">聯絡人已加入 Signal 通知</string>
   <string name="preferences_notifications__priority">優先順序</string>
   <string name="preferences_communication__category_sealed_sender">密封發件人</string>
   <string name="preferences_communication__sealed_sender_display_indicators">顯示指標</string>

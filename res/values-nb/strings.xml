@@ -12,6 +12,7 @@
   <!--AlbumThumbnailView-->
   <string name="AlbumThumbnailView_plus">\+%d</string>
   <!--ApplicationMigrationActivity-->
+  <string name="ApplicationMigrationActivity__signal_is_updating">Signal oppdateres...</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Gjeldende: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Du har ikke angitt en passordfrase ennå!</string>
@@ -29,7 +30,7 @@
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Dette vil låse opp Signal og meldingsvarsler permanent.</string>
   <string name="ApplicationPreferencesActivity_disable">Deaktiver</string>
   <string name="ApplicationPreferencesActivity_unregistering">Avregistrerer</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Avregistrerer fra Signal-meldinger og samtaler …</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Avregistrerer fra Signal-meldinger og samtaler…</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Deaktiver Signal-meldinger og samtaler?</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Deaktiver Signal-meldinger og samtaler ved å registrere deg fra serveren. Du må registrere ditt telefonnummer på nytt for å bruke dem igjen i fremtiden.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Feil ved tilkobling til server!</string>
@@ -78,6 +79,7 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Kunne ikke lagre bildet.</string>
   <!--CameraXFragment-->
+  <string name="CameraXFragment_capture_description">Ta bilde</string>
   <string name="CameraXFragment_change_camera_description">Bytt kamera</string>
   <string name="CameraXFragment_open_gallery_description">Åpne galleri</string>
   <!--CameraContacts-->
@@ -439,7 +441,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Alle medier</string>
   <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Mottatt en melding som er kryptert med en gammel versjon av Signal som ikke lenger støttes. Be avsenderen om å oppdatere til nyeste versjon og sende meldinga på nytt.</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Mottatt en melding som er kryptert med en gammel versjon av Signal som ikke lenger støttes. Be avsenderen oppdatere til den nyeste versjonen og sende meldingen på nytt.</string>
   <string name="MessageRecord_left_group">Du har forlatt gruppa.</string>
   <string name="MessageRecord_you_updated_group">Du har oppdatert gruppa.</string>
   <string name="MessageRecord_you_called">Du ringte</string>
@@ -797,6 +799,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Fjern inntastet tekst</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Vis tastatur</string>
+  <string name="contact_filter_toolbar__show_dial_pad_description">Vis tastatur</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">ingen kontakter.</string>
   <string name="contact_selection_group_activity__finding_contacts">Laster inn kontakter …</string>
@@ -838,6 +841,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Kontaktfoto</string>
   <!--audio_view-->
+  <string name="audio_view__play_pause_accessibility_description">Spill av ... Pause</string>
   <string name="audio_view__download_accessibility_description">Last ned</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">Lyd</string>
@@ -1214,6 +1218,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Tilbakestill sikker økt</string>
   <!--conversation_muted-->
+  <string name="conversation_muted__unmute">Slå lyd på</string>
   <!--conversation_unmuted-->
   <string name="conversation_unmuted__mute_notifications">Skru av varsler</string>
   <!--conversation-->

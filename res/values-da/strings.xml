@@ -79,7 +79,7 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Fejl ved forsøg på at gemme billede</string>
   <!--CameraXFragment-->
-  <string name="CameraXFragment_capture_description">Fange</string>
+  <string name="CameraXFragment_capture_description">Tag billed</string>
   <string name="CameraXFragment_change_camera_description">Skift kamera</string>
   <string name="CameraXFragment_open_gallery_description">Åbn billeder</string>
   <!--CameraContacts-->
@@ -804,6 +804,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Fjern tekst</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Vis tastatur</string>
+  <string name="contact_filter_toolbar__show_dial_pad_description">Vis opkaldstastatur</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Ingen kontakter</string>
   <string name="contact_selection_group_activity__finding_contacts">Indlæser kontakter...</string>
@@ -845,6 +846,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Kontaktbillede</string>
   <!--audio_view-->
+  <string name="audio_view__play_pause_accessibility_description">Afspil ... Pause</string>
   <string name="audio_view__download_accessibility_description">Download</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">Lyd</string>
@@ -1206,6 +1208,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="conversation_list_batch_archive__menu_archive_selected">Arkivér valgte</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Flyt fra arkiv til oversigt</string>
   <!--conversation_list-->
+  <string name="conversation_list_settings_shortcut">Genvej til Indstillinger</string>
   <string name="conversation_list_search_description">Søg</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Kontaktbillede</string>
@@ -1214,6 +1217,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Intet at se her.\nDu er opdateret!</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Ny samtale</string>
+  <string name="conversation_list_fragment__open_camera_description">Åbn kamera</string>
   <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Giv din indbakke noget at skrive hjem om. Kom i gang - skriv til en ven</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Gendan sikker forbindelse</string>

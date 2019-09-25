@@ -1140,7 +1140,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="preferences__free_private_messages_and_calls">Signal kullanıcılarına ücretsiz özel iletiler ve aramalar</string>
   <string name="preferences__submit_debug_log">Hata ayıklama kaydı gönder</string>
   <string name="preferences__support_wifi_calling">\'WiFi Calling\' uyumluluk modu</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Cihazınız WiFi üzerinden SMS/MMS iletebiliyorsa etkinleştirin (sadece cihazınızda \'WiFi Üzerinden Arama\' seçeneği etkin ise ekinleştirin)</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Cihazınız WiFi üzerinden SMS/MMS iletebiliyorsa etkinleştirin (sadece cihazınızda \'WiFi Üzerinden Arama\' seçeneği etkin ise etkinleştirin)</string>
   <string name="preferences__incognito_keyboard">Gizli klavye</string>
   <string name="preferences__read_receipts">Okundu bilgisi</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Okundu bilgisi etkin değilse, başkalarının okundu bilgilerini göremeyeceksiniz.</string>

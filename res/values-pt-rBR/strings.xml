@@ -12,6 +12,7 @@
   <!--AlbumThumbnailView-->
   <string name="AlbumThumbnailView_plus">\+%d</string>
   <!--ApplicationMigrationActivity-->
+  <string name="ApplicationMigrationActivity__signal_is_updating">O Signal está atualizando…</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Atualmente: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Você ainda não definiu uma frase-chave!</string>
@@ -182,7 +183,7 @@
   <string name="ConversationActivity_search_position">%1$d de %2$d</string>
   <string name="ConversationActivity_no_results">Nenhum resultado</string>
   <string name="ConversationActivity_sticker_pack_installed">Pacote de figurinhas instalado</string>
-  <string name="ConversationActivity_new_say_it_with_stickers">Use os novos stickers!</string>
+  <string name="ConversationActivity_new_say_it_with_stickers">Novidade! Diga com figurinhas</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d mensagem não lida</item>
@@ -629,7 +630,7 @@
   <string name="StickerPackPreviewActivity_install">Instalar</string>
   <string name="StickerPackPreviewActivity_remove">Remover</string>
   <string name="StickerPackPreviewActivity_stickers">Figurinhas</string>
-  <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Falha ao carregar o pacote de stickers</string>
+  <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Falha ao carregar o pacote de figurinhas</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Grupo atualizado</string>
   <string name="ThreadRecord_left_the_group">Você saiu do grupo</string>
@@ -845,6 +846,7 @@
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Foto do contato</string>
   <!--audio_view-->
+  <string name="audio_view__play_pause_accessibility_description">Tocar … Pausar</string>
   <string name="audio_view__download_accessibility_description">Baixar</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">Áudio</string>
@@ -913,7 +915,7 @@
     <item quantity="other">%d outros</item>
   </plurals>
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs_and_stickers">Procurar GIFs e stickers</string>
+  <string name="giphy_activity_toolbar__search_gifs_and_stickers">Procurar GIFs e figurinhas</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">Nada encontrado</string>
   <!--log_submit_activity-->
@@ -1206,6 +1208,7 @@
   <string name="conversation_list_batch_archive__menu_archive_selected">Arquivar seleção</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Restaurar seleção</string>
   <!--conversation_list-->
+  <string name="conversation_list_settings_shortcut">Atalho de configurações</string>
   <string name="conversation_list_search_description">Buscar</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Imagem do contato</string>

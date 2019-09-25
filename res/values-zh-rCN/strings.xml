@@ -819,6 +819,7 @@
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">联系人照片</string>
   <!--audio_view-->
+  <string name="audio_view__play_pause_accessibility_description">播放 ... 暂停</string>
   <string name="audio_view__download_accessibility_description">下载</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">音频</string>

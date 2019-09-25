@@ -12,6 +12,7 @@
   <!--AlbumThumbnailView-->
   <string name="AlbumThumbnailView_plus">\+%d</string>
   <!--ApplicationMigrationActivity-->
+  <string name="ApplicationMigrationActivity__signal_is_updating">Signal eguneratzen ari da...</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Une honetan: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Oraindik ez duzu pasahitza ezarri!</string>
@@ -846,6 +847,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Kontaktuaren argazkia</string>
   <!--audio_view-->
+  <string name="audio_view__play_pause_accessibility_description">Erreproduzitu ... Pausatu</string>
   <string name="audio_view__download_accessibility_description">Deskargatu</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">Audioa</string>

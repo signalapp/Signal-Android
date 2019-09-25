@@ -12,6 +12,7 @@
   <!--AlbumThumbnailView-->
   <string name="AlbumThumbnailView_plus">\+%d</string>
   <!--ApplicationMigrationActivity-->
+  <string name="ApplicationMigrationActivity__signal_is_updating">Signal កំពុងធ្វើបច្ចុប្បន្នភាព...</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">ពេលនេះ %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">អ្នកមិនទាន់បានកំណត់ឃ្លាសម្ងាត់ទេ!</string>
@@ -818,6 +819,7 @@
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">រូបភាពទំនាក់ទំនង</string>
   <!--audio_view-->
+  <string name="audio_view__play_pause_accessibility_description">លេង ... ផ្អាក</string>
   <string name="audio_view__download_accessibility_description">ទាញយក</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">សំឡេង</string>
