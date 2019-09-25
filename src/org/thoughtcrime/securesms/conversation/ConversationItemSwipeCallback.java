@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.util.AccessibilityUtil;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 
 class ConversationItemSwipeCallback extends ItemTouchHelper.SimpleCallback {
@@ -123,6 +124,7 @@ class ConversationItemSwipeCallback extends ItemTouchHelper.SimpleCallback {
         case MotionEvent.ACTION_CANCEL:
           swipeBack = true;
           shouldTriggerSwipeFeedback = false;
+          resetProgressIfAnimationsDisabled(viewHolder);
           break;
       }
       return false;
@@ -139,6 +141,14 @@ class ConversationItemSwipeCallback extends ItemTouchHelper.SimpleCallback {
         vibrate(viewHolder.itemView.getContext());
       }
       recyclerView.setOnTouchListener(null);
+    }
+  }
+
+  private static void resetProgressIfAnimationsDisabled(RecyclerView.ViewHolder viewHolder) {
+    if (AccessibilityUtil.areAnimationsDisabled(viewHolder.itemView.getContext())) {
+      ConversationSwipeAnimationHelper.update((ConversationItem) viewHolder.itemView,
+                                              0f,
+                                              getSignFromDirection(viewHolder.itemView));
     }
   }
 

@@ -7,7 +7,6 @@ import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
-import android.provider.Settings;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -24,6 +23,7 @@ import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.util.AccessibilityUtil;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
@@ -264,7 +264,7 @@ public final class WebRtcAnswerDeclineButton extends LinearLayout implements Acc
     }
 
     private void animateElements(int delay) {
-      if (areAnimationsDisabled()) return;
+      if (AccessibilityUtil.areAnimationsDisabled(getContext())) return;
 
       ObjectAnimator fabUp    = getUpAnimation(answer);
       ObjectAnimator fabDown  = getDownAnimation(answer);
@@ -298,11 +298,6 @@ public final class WebRtcAnswerDeclineButton extends LinearLayout implements Acc
 
       animatorSet.setStartDelay(delay);
       animatorSet.start();
-    }
-
-    private boolean areAnimationsDisabled() {
-      return Settings.Global.getFloat(getContext().getContentResolver(),
-                                      Settings.Global.ANIMATOR_DURATION_SCALE, 1) == 0f;
     }
 
     private void resetElements() {
