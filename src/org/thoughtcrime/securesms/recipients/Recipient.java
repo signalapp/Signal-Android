@@ -83,6 +83,7 @@ public class Recipient {
    */
   @AnyThread
   public static @NonNull LiveRecipient live(@NonNull RecipientId id) {
+    Preconditions.checkNotNull(id, "ID cannot be null.");
     return ApplicationDependencies.getRecipientCache().getLive(id);
   }
 
@@ -92,6 +93,7 @@ public class Recipient {
    */
   @WorkerThread
   public static @NonNull Recipient resolved(@NonNull RecipientId id) {
+    Preconditions.checkNotNull(id, "ID cannot be null.");
     return live(id).resolve();
   }
 
