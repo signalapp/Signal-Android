@@ -71,6 +71,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Locale;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
@@ -97,11 +98,12 @@ public class SubmitLogFragment extends Fragment {
 
   private static final String API_ENDPOINT = "https://debuglogs.org";
 
-  private static final String HEADER_SYSINFO = "========== SYSINFO ========";
-  private static final String HEADER_JOBS    = "=========== JOBS =========";
-  private static final String HEADER_POWER   = "========== POWER =========";
-  private static final String HEADER_LOGCAT  = "========== LOGCAT ========";
-  private static final String HEADER_LOGGER  = "========== LOGGER ========";
+  private static final String HEADER_SYSINFO = "========= SYSINFO =========";
+  private static final String HEADER_JOBS    = "=========== JOBS ==========";
+  private static final String HEADER_POWER   = "========== POWER ==========";
+  private static final String HEADER_THREADS = "===== BLOCKED THREADS =====";
+  private static final String HEADER_LOGCAT  = "========== LOGCAT =========";
+  private static final String HEADER_LOGGER  = "========== LOGGER =========";
 
   private Button   okButton;
   private Button   cancelButton;
@@ -395,6 +397,11 @@ public class SubmitLogFragment extends Fragment {
                      .append("\n\n\n");
       }
 
+      stringBuilder.append(HEADER_THREADS)
+                   .append("\n\n")
+                   .append(buildBlockedThreads())
+                   .append("\n\n\n");
+
       stringBuilder.append(HEADER_LOGCAT)
                    .append("\n\n")
                    .append(scrubbedLogcat)
@@ -555,6 +562,27 @@ public class SubmitLogFragment extends Fragment {
                               .append("Highest bucket: ").append(BucketInfo.bucketToString(info.getBestBucket())).append('\n')
                               .append("Lowest bucket : ").append(BucketInfo.bucketToString(info.getWorstBucket())).append("\n\n")
                               .append(info.getHistory());
+  }
+
+  private static CharSequence buildBlockedThreads() {
+    Map<Thread, StackTraceElement[]> traces = Thread.getAllStackTraces();
+    StringBuilder                    out    = new StringBuilder();
+
+    for (Map.Entry<Thread, StackTraceElement[]> entry : traces.entrySet()) {
+      if (entry.getKey().getState() == Thread.State.BLOCKED) {
+        Thread thread = entry.getKey();
+        out.append("-- [").append(thread.getId()).append("] ")
+           .append(thread.getName()).append(" (").append(thread.getState().toString()).append(")\n");
+
+        for (StackTraceElement element : entry.getValue()) {
+          out.append(element.toString()).append("\n");
+        }
+        
+        out.append("\n");
+      }
+    }
+
+    return out.length() == 0 ? "None" : out;
   }
 
   private static Iterable<String> getSupportedAbis() {
