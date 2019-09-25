@@ -848,7 +848,7 @@ public class RecipientDatabase extends Database {
 
     public @NonNull Recipient getCurrent() {
       RecipientId id = RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(ID)));
-      return Recipient.live(id).get();
+      return Recipient.resolved(id);
     }
 
     public @Nullable Recipient getNext() {

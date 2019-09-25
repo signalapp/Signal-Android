@@ -119,15 +119,28 @@ public final class LiveRecipient {
    */
   @WorkerThread
   public @NonNull Recipient resolve() {
-    Recipient recipient = get();
+    Recipient current = get();
 
-    if (recipient.isResolving()) {
-      recipient = fetchRecipientFromDisk(defaultRecipient.getId());
-      liveData.postValue(recipient);
-      Stream.of(recipient.getParticipants()).forEach(Recipient::resolve);
+    if (!current.isResolving()) {
+      return current;
     }
 
-    return recipient;
+    Recipient       updated      = fetchRecipientFromDisk(defaultRecipient.getId());
+    List<Recipient> participants = Stream.of(updated.getParticipants())
+                                         .filter(Recipient::isResolving)
+                                         .map(Recipient::getId)
+                                         .map(this::fetchRecipientFromDisk)
+                                         .toList();
+
+    Util.runOnMainSync(() -> {
+      for (Recipient participant : participants) {
+        participant.live().liveData.setValue(participant);
+      }
+
+      liveData.setValue(updated);
+    });
+
+    return updated;
   }
 
   /**
@@ -135,11 +148,20 @@ public final class LiveRecipient {
    */
   @WorkerThread
   public void refresh() {
-    Recipient recipient = fetchRecipientFromDisk(defaultRecipient.getId());
-    liveData.postValue(recipient);
-    Stream.of(recipient.getParticipants()).map(Recipient::live).forEach(LiveRecipient::refresh);
-  }
+    Recipient       recipient    = fetchRecipientFromDisk(defaultRecipient.getId());
+    List<Recipient> participants = Stream.of(recipient.getParticipants())
+                                         .map(Recipient::getId)
+                                         .map(this::fetchRecipientFromDisk)
+                                         .toList();
 
+    Util.runOnMainSync(() -> {
+      for (Recipient participant : participants) {
+        participant.live().liveData.setValue(participant);
+      }
+
+      liveData.setValue(recipient);
+    });
+  }
 
   private @NonNull Recipient fetchRecipientFromDisk(RecipientId id) {
     RecipientSettings settings = recipientDatabase.getRecipientSettings(id);
