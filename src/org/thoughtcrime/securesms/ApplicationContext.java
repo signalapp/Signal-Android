@@ -386,11 +386,13 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
   @SuppressLint("RestrictedApi")
   private void initializeCameraX() {
     if (Build.VERSION.SDK_INT >= 21) {
-      try {
-        CameraX.init(this, Camera2AppConfig.create(this));
-      } catch (Throwable t) {
-        Log.w(TAG, "Failed to initialize CameraX.");
-      }
+      new Thread(() -> {
+        try {
+          CameraX.init(this, Camera2AppConfig.create(this));
+        } catch (Throwable t) {
+          Log.w(TAG, "Failed to initialize CameraX.");
+        }
+      }, "signal-camerax-initialization").start();
     }
   }
 
