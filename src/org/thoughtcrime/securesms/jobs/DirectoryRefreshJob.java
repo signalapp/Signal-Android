@@ -86,7 +86,7 @@ public class DirectoryRefreshJob extends BaseJob {
 
     @Override
     public @NonNull DirectoryRefreshJob create(@NonNull Parameters parameters, @NonNull Data data) {
-      String    serialized       = data.getString(KEY_RECIPIENT);
+      String    serialized       = data.hasString(KEY_RECIPIENT) ? data.getString(KEY_RECIPIENT) : null;
       Recipient recipient        = serialized != null ? Recipient.resolved(RecipientId.from(serialized)) : null;
       boolean   notifyOfNewUsers = data.getBoolean(KEY_NOTIFY_OF_NEW_USERS);
 
