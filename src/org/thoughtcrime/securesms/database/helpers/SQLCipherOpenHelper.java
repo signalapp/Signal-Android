@@ -1,15 +1,19 @@
 package org.thoughtcrime.securesms.database.helpers;
 
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.SystemClock;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import android.text.TextUtils;
+
+import com.annimon.stream.Stream;
 
 import net.sqlcipher.database.SQLiteDatabase;
 import net.sqlcipher.database.SQLiteDatabaseHook;
@@ -18,7 +22,6 @@ import net.sqlcipher.database.SQLiteOpenHelper;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.crypto.DatabaseSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DraftDatabase;
 import org.thoughtcrime.securesms.database.GroupDatabase;
@@ -41,9 +44,11 @@ import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.GroupUtil;
+import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.io.File;
+import java.util.List;
 
 public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
@@ -77,8 +82,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int RECIPIENT_CLEANUP                = 26;
   private static final int MMS_RECIPIENT_CLEANUP            = 27;
   private static final int ATTACHMENT_HASHING               = 28;
+  private static final int NOTIFICATION_RECIPIENT_IDS       = 29;
 
-  private static final int    DATABASE_VERSION = 28;
+  private static final int    DATABASE_VERSION = 29;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -303,7 +309,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
             String  messageSound    = cursor.getString(cursor.getColumnIndexOrThrow("notification"));
             Uri     messageSoundUri = messageSound != null ? Uri.parse(messageSound) : null;
             int     vibrateState    = cursor.getInt(cursor.getColumnIndexOrThrow("vibrate"));
-            String  displayName     = NotificationChannels.getChannelDisplayNameFor(context, systemName, profileName, Address.fromSerialized(address));
+            String  displayName     = NotificationChannels.getChannelDisplayNameFor(context, systemName, profileName, address);
             boolean vibrateEnabled  = vibrateState == 0 ? TextSecurePreferences.isNotificationVibrateEnabled(context) : vibrateState == 1;
 
             if (GroupUtil.isEncodedGroup(address)) {
@@ -318,7 +324,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
               }
             }
 
-            String channelId = NotificationChannels.createChannelFor(context, Address.fromSerialized(address), displayName, messageSoundUri, vibrateEnabled);
+            String channelId = NotificationChannels.createChannelFor(context, "contact_" + address + "_" + System.currentTimeMillis(), displayName, messageSoundUri, vibrateEnabled);
 
             ContentValues values = new ContentValues(1);
             values.put("notification_channel", channelId);
@@ -526,6 +532,55 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
       if (oldVersion < ATTACHMENT_HASHING) {
         db.execSQL("ALTER TABLE part ADD COLUMN data_hash TEXT DEFAULT NULL");
         db.execSQL("CREATE INDEX IF NOT EXISTS part_data_hash_index ON part (data_hash)");
+      }
+
+      if (oldVersion < NOTIFICATION_RECIPIENT_IDS && Build.VERSION.SDK_INT >= 26) {
+        NotificationManager       notificationManager = ServiceUtil.getNotificationManager(context);
+        List<NotificationChannel> channels            = Stream.of(notificationManager.getNotificationChannels())
+                                                              .filter(c -> c.getId().startsWith("contact_"))
+                                                              .toList();
+
+        Log.i(TAG, "Migrating " + channels.size() + " channels to use RecipientId's.");
+
+        for (NotificationChannel oldChannel : channels) {
+          notificationManager.deleteNotificationChannel(oldChannel.getId());
+
+          int       startIndex = "contact_".length();
+          int       endIndex   = oldChannel.getId().lastIndexOf("_");
+          String    address    = oldChannel.getId().substring(startIndex, endIndex);
+
+          String recipientId;
+
+          try (Cursor cursor = db.query("recipient", new String[] { "_id" }, "phone = ? OR email = ? OR group_id = ?", new String[] { address, address, address}, null, null, null)) {
+            if (cursor != null && cursor.moveToFirst()) {
+              recipientId = cursor.getString(0);
+            } else {
+              Log.w(TAG, "Couldn't find recipient for address: " + address);
+              continue;
+            }
+          }
+
+          String              newId      = "contact_" + recipientId + "_" + System.currentTimeMillis();
+          NotificationChannel newChannel = new NotificationChannel(newId, oldChannel.getName(), oldChannel.getImportance());
+
+          Log.i(TAG, "Updating channel ID from '" + oldChannel.getId() + "' to '" + newChannel.getId() + "'.");
+
+          newChannel.setGroup(oldChannel.getGroup());
+          newChannel.setSound(oldChannel.getSound(), oldChannel.getAudioAttributes());
+          newChannel.setBypassDnd(oldChannel.canBypassDnd());
+          newChannel.enableVibration(oldChannel.shouldVibrate());
+          newChannel.setVibrationPattern(oldChannel.getVibrationPattern());
+          newChannel.setLockscreenVisibility(oldChannel.getLockscreenVisibility());
+          newChannel.setShowBadge(oldChannel.canShowBadge());
+          newChannel.setLightColor(oldChannel.getLightColor());
+          newChannel.enableLights(oldChannel.shouldShowLights());
+
+          notificationManager.createNotificationChannel(newChannel);
+
+          ContentValues contentValues = new ContentValues(1);
+          contentValues.put("notification_channel", newChannel.getId());
+          db.update("recipient", contentValues, "_id = ?", new String[] { recipientId });
+        }
       }
 
       db.setTransactionSuccessful();
