@@ -1260,7 +1260,7 @@
     <string name="arrays__mute_for_one_day">Mute for 1 day</string>
     <string name="arrays__mute_for_seven_days">Mute for 7 days</string>
     <string name="arrays__mute_for_one_month">Mute for 1 month</string>
-    <string name="arrays__mute_for_one_month">Mute for 3 months</string>
+    <string name="arrays__mute_for_three_months">Mute for 3 months</string>
     <string name="arrays__mute_for_one_year">Mute for 1 year</string>
 
     <string name="arrays__settings_default">Android default</string>
