@@ -76,8 +76,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int RECIPIENT_SEARCH                 = 25;
   private static final int RECIPIENT_CLEANUP                = 26;
   private static final int MMS_RECIPIENT_CLEANUP            = 27;
+  private static final int ATTACHMENT_HASHING               = 28;
 
-  private static final int    DATABASE_VERSION = 27;
+  private static final int    DATABASE_VERSION = 28;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -520,6 +521,11 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
         values.put("address", "-1");
         int count = db.update("mms", values, "address = ?", new String[] { "0" });
         Log.i(TAG, "MMS recipient cleanup updated " + count + " rows.");
+      }
+
+      if (oldVersion < ATTACHMENT_HASHING) {
+        db.execSQL("ALTER TABLE part ADD COLUMN data_hash TEXT DEFAULT NULL");
+        db.execSQL("CREATE INDEX IF NOT EXISTS part_data_hash_index ON part (data_hash)");
       }
 
       db.setTransactionSuccessful();
