@@ -1067,7 +1067,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       return;
     }
 
-    // Unimplemented
+    // Unimplemented for REQUEST
     if (authorisation.getType() != LokiPairingAuthorisation.Type.GRANT) { return; }
     Log.d("Loki", "Receiving pairing authorisation from: " + authorisation.getPrimaryDevicePubKey());
 
@@ -1077,11 +1077,12 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     DatabaseFactory.getLokiAPIDatabase(context).insertOrUpdatePairingAuthorisation(authorisation);
     TextSecurePreferences.setIsSecondaryDevice(context, true);
 
+    // Send out accept event
+    LokiDeviceLinkingSession.Companion.getShared().acceptedLinkingRequest(authorisation);
+
     // Propagate the updates to the file server
     LokiStorageAPI storageAPI = LokiStorageAPI.Companion.getShared();
     if (storageAPI != null) { storageAPI.updateOurDeviceMappings(); }
-
-    // TODO: Trigger an event here?
 
     // Update display names
     if (content.senderDisplayName.isPresent()  && content.senderDisplayName.get().length() > 0) {
