@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraintObserver;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkOrCellServiceConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraintObserver;
+import org.thoughtcrime.securesms.jobmanager.migrations.RecipientIdFollowUpJobMigration;
 import org.thoughtcrime.securesms.jobmanager.migrations.RecipientIdJobMigration;
 import org.thoughtcrime.securesms.migrations.DatabaseMigrationJob;
 import org.thoughtcrime.securesms.migrations.LegacyMigrationJob;
@@ -108,6 +109,7 @@ public final class JobManagerFactories {
   }
 
   public static List<JobMigration> getJobMigrations(@NonNull Application application) {
-    return Arrays.asList(new RecipientIdJobMigration(application));
+    return Arrays.asList(new RecipientIdJobMigration(application),
+                         new RecipientIdFollowUpJobMigration());
   }
 }

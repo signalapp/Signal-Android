@@ -39,6 +39,10 @@ public abstract class JobMigration {
       this.data       = data;
     }
 
+    public @NonNull JobData withFactoryKey(@NonNull String newFactoryKey) {
+      return new JobData(newFactoryKey, queueKey, data);
+    }
+
     public @NonNull JobData withQueueKey(@Nullable String newQueueKey) {
       return new JobData(factoryKey, newQueueKey, data);
     }

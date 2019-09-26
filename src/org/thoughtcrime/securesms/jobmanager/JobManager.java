@@ -33,7 +33,7 @@ public class JobManager implements ConstraintObserver.Notifier {
 
   private static final String TAG = JobManager.class.getSimpleName();
 
-  public static final int CURRENT_VERSION = 2;
+  public static final int CURRENT_VERSION = 3;
 
   private final Application     application;
   private final Configuration   configuration;

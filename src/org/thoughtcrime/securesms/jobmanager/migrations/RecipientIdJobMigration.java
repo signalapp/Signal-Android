@@ -73,7 +73,9 @@ public class RecipientIdJobMigration extends JobMigration {
   private @NonNull JobData migrateRequestGroupInfoJob(@NonNull JobData jobData) {
     String    address     = jobData.getData().getString("source");
     Recipient recipient   = Recipient.external(application, address);
-    Data      updatedData = new Data.Builder().putString("source", recipient.getId().serialize()).build();
+    Data      updatedData = new Data.Builder().putString("source", recipient.getId().serialize())
+                                              .putString("group_id", jobData.getData().getString("group_id"))
+                                              .build();
 
     return jobData.withData(updatedData);
   }
@@ -81,7 +83,10 @@ public class RecipientIdJobMigration extends JobMigration {
   private @NonNull JobData migrateSendDeliveryReceiptJob(@NonNull JobData jobData) {
     String    address     = jobData.getData().getString("address");
     Recipient recipient   = Recipient.external(application, address);
-    Data      updatedData = new Data.Builder().putString("recipient", recipient.getId().serialize()).build();
+    Data      updatedData = new Data.Builder().putString("recipient", recipient.getId().serialize())
+                                              .putLong("message_id", jobData.getData().getLong("message_id"))
+                                              .putLong("timestamp", jobData.getData().getLong("timestamp"))
+                                              .build();
 
     return jobData.withData(updatedData);
   }
