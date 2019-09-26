@@ -10,6 +10,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_seed.*
 import network.loki.messenger.R
+import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.BaseActionBarActivity
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.database.Address
@@ -21,6 +22,7 @@ import org.whispersystems.curve25519.Curve25519
 import org.whispersystems.libsignal.util.KeyHelper
 import org.whispersystems.signalservice.loki.crypto.MnemonicCodec
 import org.whispersystems.signalservice.loki.utilities.Analytics
+import org.whispersystems.signalservice.loki.utilities.PublicKeyValidation
 import org.whispersystems.signalservice.loki.utilities.hexEncodedPublicKey
 import java.io.File
 import java.io.FileOutputStream
@@ -34,8 +36,10 @@ class SeedActivity : BaseActionBarActivity() {
     private var mnemonic: String? = null
         set(newValue) { field = newValue; updateMnemonicTextView() }
 
+    private var dialog: ProgressDialog? = null
+
     // region Types
-    enum class Mode { Register, Restore }
+    enum class Mode { Register, Restore, Link }
     // endregion
 
     // region Lifecycle
@@ -44,9 +48,16 @@ class SeedActivity : BaseActionBarActivity() {
         setContentView(R.layout.activity_seed)
         setUpLanguageFileDirectory()
         updateSeed()
+        updateUI()
         copyButton.setOnClickListener { copy() }
-        toggleModeButton.setOnClickListener { toggleMode() }
+        toggleRestoreModeButton.setOnClickListener { mode = Mode.Restore }
+        toggleRegisterModeButton.setOnClickListener { mode = Mode.Register }
+        toggleLinkModeButton.setOnClickListener { mode = Mode.Link }
         registerOrRestoreButton.setOnClickListener { registerOrRestore() }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
     }
     // endregion
 
@@ -85,14 +96,28 @@ class SeedActivity : BaseActionBarActivity() {
     }
 
     private fun updateUI() {
-        seedExplanationTextView1.visibility = if (mode == Mode.Register) View.VISIBLE else View.GONE
-        mnemonicTextView.visibility = if (mode == Mode.Register) View.VISIBLE else View.GONE
-        copyButton.visibility = if (mode == Mode.Register) View.VISIBLE else View.GONE
-        seedExplanationTextView2.visibility = if (mode == Mode.Restore) View.VISIBLE else View.GONE
-        mnemonicEditText.visibility = if (mode == Mode.Restore) View.VISIBLE else View.GONE
-        val toggleModeButtonTitleID = if (mode == Mode.Register) R.string.activity_key_pair_toggle_mode_button_title_1 else R.string.activity_key_pair_toggle_mode_button_title_2
-        toggleModeButton.setText(toggleModeButtonTitleID)
-        val registerOrRestoreButtonTitleID = if (mode == Mode.Register) R.string.activity_key_pair_register_or_restore_button_title_1 else R.string.activity_key_pair_register_or_restore_button_title_2
+        val showOnRegister = if (mode == Mode.Register) View.VISIBLE else View.GONE
+        val showOnRestore = if (mode == Mode.Restore) View.VISIBLE else View.GONE
+        val showOnLink = if (mode == Mode.Link) View.VISIBLE else View.GONE
+
+        seedExplanationTextView1.visibility = showOnRegister
+        mnemonicTextView.visibility = showOnRegister
+        copyButton.visibility = showOnRegister
+        seedExplanationTextView2.visibility = showOnRestore
+        mnemonicEditText.visibility = showOnRestore
+        publicKeyEditText.visibility = showOnLink
+        linkExplanationTextView.visibility = showOnLink
+
+        toggleRegisterModeButton.visibility = if (mode != Mode.Register) View.VISIBLE else View.GONE
+        toggleRestoreModeButton.visibility = if (mode != Mode.Restore) View.VISIBLE else View.GONE
+        toggleLinkModeButton.visibility = if (mode != Mode.Link) View.VISIBLE else View.GONE
+
+        val registerOrRestoreButtonTitleID = when (mode) {
+            Mode.Register -> R.string.activity_key_pair_register_or_restore_button_title_1
+            Mode.Restore -> R.string.activity_key_pair_register_or_restore_button_title_2
+            Mode.Link -> R.string.activity_key_pair_register_or_restore_button_title_3
+        }
+
         registerOrRestoreButton.setText(registerOrRestoreButtonTitleID)
         if (mode == Mode.Restore) {
             mnemonicEditText.requestFocus()
@@ -100,6 +125,14 @@ class SeedActivity : BaseActionBarActivity() {
             mnemonicEditText.clearFocus()
             val inputMethodManager = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
             inputMethodManager.hideSoftInputFromWindow(mnemonicEditText.windowToken, 0)
+        }
+
+        if (mode == Mode.Link) {
+            publicKeyEditText.requestFocus()
+        } else {
+            publicKeyEditText.clearFocus()
+            val inputMethodManager = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+            inputMethodManager.hideSoftInputFromWindow(publicKeyEditText.windowToken, 0)
         }
     }
 
@@ -121,13 +154,6 @@ class SeedActivity : BaseActionBarActivity() {
         Toast.makeText(this, R.string.activity_key_pair_mnemonic_copied_message, Toast.LENGTH_SHORT).show()
     }
 
-    private fun toggleMode() {
-        mode = when (mode) {
-            Mode.Register -> Mode.Restore
-            Mode.Restore -> Mode.Register
-        }
-    }
-
     private fun registerOrRestore() {
         var seed: ByteArray
         when (mode) {
@@ -142,6 +168,12 @@ class SeedActivity : BaseActionBarActivity() {
                     return Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
                 }
             }
+            Mode.Link -> {
+                if (!PublicKeyValidation.isValid(publicKeyEditText.text.trim().toString())) {
+                    return Toast.makeText(this, "Invalid public key", Toast.LENGTH_SHORT).show()
+                }
+                seed = this.seed!!
+            }
         }
         val hexEncodedSeed = Hex.toStringCondensed(seed)
         IdentityKeyUtil.save(this, IdentityKeyUtil.lokiSeedKey, hexEncodedSeed)
@@ -155,14 +187,28 @@ class SeedActivity : BaseActionBarActivity() {
         val registrationID = KeyHelper.generateRegistrationId(false)
         TextSecurePreferences.setLocalRegistrationId(this, registrationID)
         DatabaseFactory.getIdentityDatabase(this).saveIdentity(Address.fromSerialized(hexEncodedPublicKey), publicKey,
-            IdentityDatabase.VerifiedStatus.VERIFIED, true, System.currentTimeMillis(), true)
+                IdentityDatabase.VerifiedStatus.VERIFIED, true, System.currentTimeMillis(), true)
         TextSecurePreferences.setLocalNumber(this, hexEncodedPublicKey)
         when (mode) {
             Mode.Register -> Analytics.shared.track("Seed Created")
             Mode.Restore -> Analytics.shared.track("Seed Restored")
+            Mode.Link -> Analytics.shared.track("Device Linked")
         }
-        startActivity(Intent(this, AccountDetailsActivity::class.java))
-        finish()
+        if (mode == Mode.Link) {
+            TextSecurePreferences.setHasSeenWelcomeScreen(this, true)
+            TextSecurePreferences.setPromptedPushRegistration(this, true)
+            val application = ApplicationContext.getInstance(this)
+            application.startLongPollingIfNeeded()
+            application.setUpStorageAPIIfNeeded()
+
+            // TODO: Show activity view here?
+
+            // TODO: Also need to reset on registration
+
+        } else {
+            startActivity(Intent(this, AccountDetailsActivity::class.java))
+            finish()
+        }
     }
     // endregion
 }

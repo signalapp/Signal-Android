@@ -1067,6 +1067,11 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       return;
     }
 
+    if (LokiDeviceLinkingSession.Companion.getShared().isListeningForLinkingRequest()) {
+      Log.w("Loki", "Received authorisation but device is not is listening.");
+      return;
+    }
+
     // Unimplemented for REQUEST
     if (authorisation.getType() != LokiPairingAuthorisation.Type.GRANT) { return; }
     Log.d("Loki", "Receiving pairing authorisation from: " + authorisation.getPrimaryDevicePubKey());
