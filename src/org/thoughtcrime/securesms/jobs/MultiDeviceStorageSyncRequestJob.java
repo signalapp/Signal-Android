@@ -13,22 +13,22 @@ import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
-public class MultiDeviceProfileContentUpdateJob extends BaseJob {
+public class MultiDeviceStorageSyncRequestJob extends BaseJob {
 
-  public static final String KEY = "MultiDeviceProfileContentUpdateJob";
+  public static final String KEY = "MultiDeviceStorageSyncRequestJob";
 
-  private static final String TAG = Log.tag(MultiDeviceProfileContentUpdateJob.class);
+  private static final String TAG = Log.tag(MultiDeviceStorageSyncRequestJob.class);
 
-  public MultiDeviceProfileContentUpdateJob() {
+  public MultiDeviceStorageSyncRequestJob() {
     this(new Parameters.Builder()
-                       .setQueue("MultiDeviceProfileUpdateJob")
+                       .setQueue("MultiDeviceStorageSyncRequestJob")
                        .setMaxInstances(2)
                        .addConstraint(NetworkConstraint.KEY)
                        .setMaxAttempts(10)
                        .build());
   }
 
-  private MultiDeviceProfileContentUpdateJob(@NonNull Parameters parameters) {
+  private MultiDeviceStorageSyncRequestJob(@NonNull Parameters parameters) {
     super(parameters);
   }
 
@@ -51,7 +51,7 @@ public class MultiDeviceProfileContentUpdateJob extends BaseJob {
 
     SignalServiceMessageSender messageSender = ApplicationDependencies.getSignalServiceMessageSender();
 
-    messageSender.sendMessage(SignalServiceSyncMessage.forFetchLatest(SignalServiceSyncMessage.FetchType.LOCAL_PROFILE),
+    messageSender.sendMessage(SignalServiceSyncMessage.forFetchLatest(SignalServiceSyncMessage.FetchType.STORAGE_MANIFEST),
                               UnidentifiedAccessUtil.getAccessForSync(context));
   }
 
@@ -65,10 +65,10 @@ public class MultiDeviceProfileContentUpdateJob extends BaseJob {
     Log.w(TAG, "Did not succeed!");
   }
 
-  public static final class Factory implements Job.Factory<MultiDeviceProfileContentUpdateJob> {
+  public static final class Factory implements Job.Factory<MultiDeviceStorageSyncRequestJob> {
     @Override
-    public @NonNull MultiDeviceProfileContentUpdateJob create(@NonNull Parameters parameters, @NonNull Data data) {
-      return new MultiDeviceProfileContentUpdateJob(parameters);
+    public @NonNull MultiDeviceStorageSyncRequestJob create(@NonNull Parameters parameters, @NonNull Data data) {
+      return new MultiDeviceStorageSyncRequestJob(parameters);
     }
   }
 }

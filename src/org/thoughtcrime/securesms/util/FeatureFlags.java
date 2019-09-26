@@ -23,6 +23,9 @@ public class FeatureFlags {
   /** Set or migrate PIN to KBS */
   public static final boolean KBS = false;
 
+  /** Storage service. Requires {@link #KBS}. */
+  public static final boolean STORAGE_SERVICE = false;
+
   /** Send support for reactions. */
   public static final boolean REACTION_SENDING = false;
 }

@@ -22,6 +22,8 @@ import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.SystemContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.TransparentContactPhoto;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.IdentityDatabase;
+import org.thoughtcrime.securesms.database.IdentityDatabase.VerifiedStatus;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RegisteredState;
 import org.thoughtcrime.securesms.database.RecipientDatabase.UnidentifiedAccessMode;
@@ -89,6 +91,9 @@ public class Recipient {
   private final boolean                forceSmsSelection;
   private final boolean                uuidSupported;
   private final InsightsBannerTier     insightsBannerTier;
+  private final byte[]                 storageKey;
+  private final byte[]                 identityKey;
+  private final VerifiedStatus         identityStatus;
 
 
   /**
@@ -293,6 +298,9 @@ public class Recipient {
     this.unidentifiedAccessMode = UnidentifiedAccessMode.DISABLED;
     this.forceSmsSelection      = false;
     this.uuidSupported          = false;
+    this.storageKey             = null;
+    this.identityKey            = null;
+    this.identityStatus         = VerifiedStatus.DEFAULT;
   }
 
   Recipient(@NonNull RecipientId id, @NonNull RecipientDetails details) {
@@ -329,6 +337,9 @@ public class Recipient {
     this.unidentifiedAccessMode = details.unidentifiedAccessMode;
     this.forceSmsSelection      = details.forceSmsSelection;
     this.uuidSupported          = details.uuidSuported;
+    this.storageKey             = details.storageKey;
+    this.identityKey            = details.identityKey;
+    this.identityStatus         = details.identityStatus;
   }
 
   public @NonNull RecipientId getId() {
@@ -643,6 +654,18 @@ public class Recipient {
 
   public @Nullable byte[] getProfileKey() {
     return profileKey;
+  }
+
+  public @Nullable byte[] getStorageServiceKey() {
+    return storageKey;
+  }
+
+  public @NonNull VerifiedStatus getIdentityVerifiedStatus() {
+    return identityStatus;
+  }
+
+  public @Nullable byte[] getIdentityKey() {
+    return identityKey;
   }
 
   public @NonNull UnidentifiedAccessMode getUnidentifiedAccessMode() {

@@ -679,6 +679,10 @@ public class PushDecryptJob extends BaseJob {
                                                                                         TextSecurePreferences.isLinkPreviewsEnabled(context)));
       ApplicationDependencies.getJobManager().add(new MultiDeviceStickerPackSyncJob());
     }
+
+    if (message.isKeysRequest()) {
+//      ApplicationDependencies.getJobManager().add(new );
+    }
   }
 
   private void handleSynchronizeReadMessage(@NonNull List<ReadMessage> readMessages, long envelopeTimestamp)

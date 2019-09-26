@@ -213,6 +213,8 @@ public class TextSecurePreferences {
 
   private static final String HAS_SEEN_VIDEO_RECORDING_TOOLTIP = "camerax.fragment.has.dismissed.video.recording.tooltip";
 
+  private static final String STORAGE_MANIFEST_VERSION = "pref_storage_manifest_version";
+
   public static boolean isScreenLockEnabled(@NonNull Context context) {
     return getBooleanPreference(context, SCREEN_LOCK, false);
   }
@@ -1326,6 +1328,14 @@ public class TextSecurePreferences {
 
   public static void setHasSeenVideoRecordingTooltip(Context context, boolean value) {
     setBooleanPreference(context, HAS_SEEN_VIDEO_RECORDING_TOOLTIP, value);
+  }
+
+  public static long getStorageManifestVersion(Context context) {
+    return getLongPreference(context, STORAGE_MANIFEST_VERSION, 0);
+  }
+
+  public static void setStorageManifestVersion(Context context, long version) {
+    setLongPreference(context, STORAGE_MANIFEST_VERSION, version);
   }
 
   public static void setBooleanPreference(Context context, String key, boolean value) {

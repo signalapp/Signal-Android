@@ -82,7 +82,7 @@ public class Util {
     return result;
   }
 
-  public static String readFully(InputStream in) throws IOException {
+  public static byte[] readFullyAsBytes(InputStream in) throws IOException {
     ByteArrayOutputStream bout = new ByteArrayOutputStream();
     byte[] buffer              = new byte[4096];
     int read;
@@ -93,7 +93,11 @@ public class Util {
 
     in.close();
 
-    return new String(bout.toByteArray());
+    return bout.toByteArray();
+  }
+
+  public static String readFully(InputStream in) throws IOException {
+    return new String(readFullyAsBytes(in));
   }
 
   public static void readFully(InputStream in, byte[] buffer) throws IOException {

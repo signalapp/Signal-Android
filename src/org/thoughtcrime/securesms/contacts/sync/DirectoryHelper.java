@@ -6,6 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 
 import org.thoughtcrime.securesms.database.RecipientDatabase.RegisteredState;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.jobs.StorageSyncJob;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 
@@ -21,15 +23,28 @@ public class DirectoryHelper {
     } else {
       DirectoryHelperV1.refreshDirectory(context, notifyOfNewUsers);
     }
+
+    if (FeatureFlags.STORAGE_SERVICE) {
+      ApplicationDependencies.getJobManager().add(new StorageSyncJob());
+    }
   }
 
   @WorkerThread
   public static RegisteredState refreshDirectoryFor(@NonNull Context context, @NonNull Recipient recipient, boolean notifyOfNewUsers) throws IOException {
+    RegisteredState originalRegisteredState = recipient.resolve().getRegistered();
+    RegisteredState newRegisteredState      = null;
+
     if (FeatureFlags.UUIDS) {
       // TODO [greyson] Create a DirectoryHelperV2 when appropriate.
-      return DirectoryHelperV1.refreshDirectoryFor(context, recipient, notifyOfNewUsers);
+      newRegisteredState = DirectoryHelperV1.refreshDirectoryFor(context, recipient, notifyOfNewUsers);
     } else {
-      return DirectoryHelperV1.refreshDirectoryFor(context, recipient, notifyOfNewUsers);
+      newRegisteredState = DirectoryHelperV1.refreshDirectoryFor(context, recipient, notifyOfNewUsers);
     }
+
+    if (FeatureFlags.STORAGE_SERVICE && newRegisteredState != originalRegisteredState) {
+      ApplicationDependencies.getJobManager().add(new StorageSyncJob());
+    }
+
+    return newRegisteredState;
   }
 }
