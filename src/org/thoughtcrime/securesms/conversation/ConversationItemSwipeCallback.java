@@ -16,7 +16,7 @@ import org.thoughtcrime.securesms.util.ServiceUtil;
 
 class ConversationItemSwipeCallback extends ItemTouchHelper.SimpleCallback {
 
-  private static float SWIPE_SUCCESS_PROGRESS     = ConversationSwipeAnimationHelper.PROGRESS_TRIGGER_POINT;
+  private static float SWIPE_SUCCESS_DX           = ConversationSwipeAnimationHelper.TRIGGER_DX;
   private static long  SWIPE_SUCCESS_VIBE_TIME_MS = 10;
 
   private boolean swipeBack;
@@ -76,25 +76,26 @@ class ConversationItemSwipeCallback extends ItemTouchHelper.SimpleCallback {
           @NonNull Canvas c,
           @NonNull RecyclerView recyclerView,
           @NonNull RecyclerView.ViewHolder viewHolder,
-          float dX, float dY, int actionState, boolean isCurrentlyActive)
+          float dx, float dy, int actionState, boolean isCurrentlyActive)
   {
     if (cannotSwipeViewHolder(viewHolder)) return;
 
     float   sign              = getSignFromDirection(viewHolder.itemView);
-    boolean isCorrectSwipeDir = sameSign(dX, sign);
+    boolean isCorrectSwipeDir = sameSign(dx, sign);
 
-    float progress = Math.abs(dX) / (float) viewHolder.itemView.getWidth();
     if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE && isCorrectSwipeDir) {
-      ConversationSwipeAnimationHelper.update((ConversationItem) viewHolder.itemView, progress, sign);
-      handleSwipeFeedback((ConversationItem) viewHolder.itemView, progress);
-      setTouchListener(recyclerView, viewHolder, progress);
+      ConversationSwipeAnimationHelper.update((ConversationItem) viewHolder.itemView, Math.abs(dx), sign);
+      handleSwipeFeedback((ConversationItem) viewHolder.itemView, Math.abs(dx));
+      setTouchListener(recyclerView, viewHolder, Math.abs(dx));
+    } else if (actionState == ItemTouchHelper.ACTION_STATE_IDLE || dx == 0) {
+      ConversationSwipeAnimationHelper.update((ConversationItem) viewHolder.itemView, 0, 1);
     }
 
-    if (progress == 0) shouldTriggerSwipeFeedback = true;
+    if (dx == 0) shouldTriggerSwipeFeedback = true;
   }
 
-  private void handleSwipeFeedback(@NonNull ConversationItem item, float progress) {
-    if (progress > SWIPE_SUCCESS_PROGRESS && shouldTriggerSwipeFeedback) {
+  private void handleSwipeFeedback(@NonNull ConversationItem item, float dx) {
+    if (dx > SWIPE_SUCCESS_DX && shouldTriggerSwipeFeedback) {
       vibrate(item.getContext());
       ConversationSwipeAnimationHelper.trigger(item);
       shouldTriggerSwipeFeedback = false;
@@ -112,7 +113,7 @@ class ConversationItemSwipeCallback extends ItemTouchHelper.SimpleCallback {
 
   private void setTouchListener(@NonNull RecyclerView recyclerView,
                                 @NonNull RecyclerView.ViewHolder viewHolder,
-                                float progress)
+                                float dx)
   {
     recyclerView.setOnTouchListener((v, event) -> {
       switch (event.getAction()) {
@@ -120,7 +121,7 @@ class ConversationItemSwipeCallback extends ItemTouchHelper.SimpleCallback {
           shouldTriggerSwipeFeedback = true;
           break;
         case MotionEvent.ACTION_UP:
-          handleTouchActionUp(recyclerView, viewHolder, progress);
+          handleTouchActionUp(recyclerView, viewHolder, dx);
         case MotionEvent.ACTION_CANCEL:
           swipeBack = true;
           shouldTriggerSwipeFeedback = false;
@@ -133,9 +134,9 @@ class ConversationItemSwipeCallback extends ItemTouchHelper.SimpleCallback {
 
   private void handleTouchActionUp(@NonNull RecyclerView recyclerView,
                                    @NonNull RecyclerView.ViewHolder viewHolder,
-                                   float progress)
+                                   float dx)
   {
-    if (progress > SWIPE_SUCCESS_PROGRESS) {
+    if (dx > SWIPE_SUCCESS_DX) {
       onSwiped(viewHolder);
       if (shouldTriggerSwipeFeedback) {
         vibrate(viewHolder.itemView.getContext());

@@ -12,17 +12,16 @@ import org.thoughtcrime.securesms.util.Util;
 
 final class ConversationSwipeAnimationHelper {
 
-  public static final float PROGRESS_TRIGGER_POINT = 0.375f;
+  static final float TRIGGER_DX = dpToPx(64);
+  static final float MAX_DX     = dpToPx(96);
 
-  private static final float PROGRESS_SCALE_FACTOR          = 2.0f;
-  private static final float SCALED_PROGRESS_TRIGGER_POINT  = PROGRESS_TRIGGER_POINT * PROGRESS_SCALE_FACTOR;
   private static final float REPLY_SCALE_OVERSHOOT          = 1.8f;
   private static final float REPLY_SCALE_MAX                = 1.2f;
   private static final float REPLY_SCALE_MIN                = 1f;
   private static final long  REPLY_SCALE_OVERSHOOT_DURATION = 200;
 
-  private static final Interpolator BUBBLE_INTERPOLATOR           = new ClampingLinearInterpolator(0f, dpToPx(48));
-  private static final Interpolator REPLY_ALPHA_INTERPOLATOR      = new ClampingLinearInterpolator(0f, 1f, 1f / SCALED_PROGRESS_TRIGGER_POINT);
+  private static final Interpolator BUBBLE_INTERPOLATOR           = new BubblePositionInterpolator(0f, TRIGGER_DX, MAX_DX);
+  private static final Interpolator REPLY_ALPHA_INTERPOLATOR      = new ClampingLinearInterpolator(0f, 1f, 1f);
   private static final Interpolator REPLY_TRANSITION_INTERPOLATOR = new ClampingLinearInterpolator(0f, dpToPx(10));
   private static final Interpolator AVATAR_INTERPOLATOR           = new ClampingLinearInterpolator(0f, dpToPx(8));
   private static final Interpolator REPLY_SCALE_INTERPOLATOR      = new ClampingLinearInterpolator(REPLY_SCALE_MIN, REPLY_SCALE_MAX);
@@ -30,29 +29,30 @@ final class ConversationSwipeAnimationHelper {
   private ConversationSwipeAnimationHelper() {
   }
 
-  public static void update(@NonNull ConversationItem conversationItem, float progress, float sign) {
-    float scaledProgress = Math.min(1f, progress * PROGRESS_SCALE_FACTOR);
-    updateBodyBubbleTransition(conversationItem.bodyBubble, scaledProgress, sign);
-    updateReplyIconTransition(conversationItem.reply, scaledProgress, sign);
-    updateContactPhotoHolderTransition(conversationItem.contactPhotoHolder, scaledProgress, sign);
+  public static void update(@NonNull ConversationItem conversationItem, float dx, float sign) {
+    float progress = dx / TRIGGER_DX;
+
+    updateBodyBubbleTransition(conversationItem.bodyBubble, dx, sign);
+    updateReplyIconTransition(conversationItem.reply, dx, progress, sign);
+    updateContactPhotoHolderTransition(conversationItem.contactPhotoHolder, progress, sign);
   }
 
   public static void trigger(@NonNull ConversationItem conversationItem) {
     triggerReplyIcon(conversationItem.reply);
   }
 
-  private static void updateBodyBubbleTransition(@NonNull View bodyBubble, float progress, float sign) {
-    bodyBubble.setTranslationX(BUBBLE_INTERPOLATOR.getInterpolation(progress) * sign);
+  private static void updateBodyBubbleTransition(@NonNull View bodyBubble, float dx, float sign) {
+    bodyBubble.setTranslationX(BUBBLE_INTERPOLATOR.getInterpolation(dx) * sign);
   }
 
-  private static void updateReplyIconTransition(@NonNull View replyIcon, float progress, float sign) {
+  private static void updateReplyIconTransition(@NonNull View replyIcon, float dx, float progress, float sign) {
     if (progress > 0.05f) {
       replyIcon.setAlpha(REPLY_ALPHA_INTERPOLATOR.getInterpolation(progress));
     } else replyIcon.setAlpha(0f);
 
     replyIcon.setTranslationX(REPLY_TRANSITION_INTERPOLATOR.getInterpolation(progress) * sign);
 
-    if (progress < SCALED_PROGRESS_TRIGGER_POINT) {
+    if (dx < TRIGGER_DX) {
       float scale = REPLY_SCALE_INTERPOLATOR.getInterpolation(progress);
       replyIcon.setScaleX(scale);
       replyIcon.setScaleY(scale);
@@ -79,6 +79,36 @@ final class ConversationSwipeAnimationHelper {
 
   private static int dpToPx(int dp) {
     return (int) (dp * Resources.getSystem().getDisplayMetrics().density);
+  }
+
+  private static final class BubblePositionInterpolator implements Interpolator {
+
+    private final float start;
+    private final float middle;
+    private final float end;
+
+    private BubblePositionInterpolator(float start, float middle, float end) {
+      this.start  = start;
+      this.middle = middle;
+      this.end    = end;
+    }
+
+    @Override
+    public float getInterpolation(float input) {
+      if (input < start) {
+        return start;
+      } else if (input < middle) {
+        return input;
+      } else {
+        float segmentLength     = end   - middle;
+        float segmentTraveled   = input - middle;
+        float segmentCompletion = segmentTraveled / segmentLength;
+        float scaleDownFactor   = middle / (input * 2);
+        float output            = middle + (segmentLength * segmentCompletion * scaleDownFactor);
+
+        return Math.min(output, end);
+      }
+    }
   }
 
   private static final class ClampingLinearInterpolator implements Interpolator {
