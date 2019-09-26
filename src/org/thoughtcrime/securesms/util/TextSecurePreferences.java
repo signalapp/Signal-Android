@@ -193,6 +193,8 @@ public class TextSecurePreferences {
 
   private static final String FIRST_INSTALL_VERSION = "pref_first_install_version";
 
+  private static final String HAS_SEEN_SWIPE_TO_REPLY = "pref_has_seen_swipe_to_reply";
+
   public static boolean isScreenLockEnabled(@NonNull Context context) {
     return getBooleanPreference(context, SCREEN_LOCK, false);
   }
@@ -1148,6 +1150,13 @@ public class TextSecurePreferences {
     return getIntegerPreference(context, FIRST_INSTALL_VERSION, -1);
   }
 
+  public static boolean hasSeenSwipeToReplyTooltip(Context context) {
+    return getBooleanPreference(context, HAS_SEEN_SWIPE_TO_REPLY, false);
+  }
+
+  public static void setHasSeenSwipeToReplyTooltip(Context context, boolean value) {
+    setBooleanPreference(context, HAS_SEEN_SWIPE_TO_REPLY, value);
+  }
 
   public static void setBooleanPreference(Context context, String key, boolean value) {
     PreferenceManager.getDefaultSharedPreferences(context).edit().putBoolean(key, value).apply();

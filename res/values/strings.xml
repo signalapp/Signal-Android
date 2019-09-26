@@ -258,6 +258,8 @@
     <string name="ConversationFragment_quoted_message_not_found">Original message not found</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">Original message no longer available</string>
     <string name="ConversationFragment_failed_to_open_message">Failed to open message</string>
+    <string name="ConversationFragment_you_can_swipe_to_the_right_reply">You can swipe to the right on any message to quickly reply</string>
+    <string name="ConversationFragment_you_can_swipe_to_the_left_reply">You can swipe to the left on any message to quickly reply</string>
 
     <!-- ConversationListActivity -->
     <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">There is no browser installed on your device.</string>

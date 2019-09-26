@@ -63,6 +63,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.ShareActivity;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.components.ConversationTypingView;
+import org.thoughtcrime.securesms.components.TooltipPopup;
 import org.thoughtcrime.securesms.components.recyclerview.SmoothScrollingLinearLayoutManager;
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.contactshare.ContactUtil;
@@ -836,6 +837,20 @@ public class ConversationFragment extends Fragment
     }
   }
 
+  private void maybeShowSwipeToReplyTooltip() {
+    if (!TextSecurePreferences.hasSeenSwipeToReplyTooltip(requireContext())) {
+      int text = getResources().getConfiguration().getLayoutDirection() == View.LAYOUT_DIRECTION_LTR ? R.string.ConversationFragment_you_can_swipe_to_the_right_reply
+                                                                                                     : R.string.ConversationFragment_you_can_swipe_to_the_left_reply;
+      TooltipPopup.forTarget(requireActivity().findViewById(R.id.menu_context_reply))
+                  .setText(text)
+                  .setTextColor(getResources().getColor(R.color.core_white))
+                  .setBackgroundTint(getResources().getColor(R.color.core_blue))
+                  .show(TooltipPopup.POSITION_BELOW);
+
+      TextSecurePreferences.setHasSeenSwipeToReplyTooltip(requireContext(), true);
+    }
+  }
+
   public interface ConversationFragmentListener {
     void setThreadId(long threadId);
     void handleReplyMessage(MessageRecord messageRecord);
@@ -1150,6 +1165,7 @@ public class ConversationFragment extends Fragment
           actionMode.finish();
           return true;
         case R.id.menu_context_reply:
+          maybeShowSwipeToReplyTooltip();
           handleReplyMessage(getSelectedMessageRecord());
           actionMode.finish();
           return true;
