@@ -65,7 +65,7 @@ public class JobMigrator {
         JobData originalJobData = new JobData(jobSpec.getFactoryKey(), jobSpec.getQueueKey(), data);
         JobData updatedJobData  = migration.migrate(originalJobData);
         JobSpec updatedJobSpec  = new JobSpec(jobSpec.getId(),
-                                              jobSpec.getFactoryKey(),
+                                              updatedJobData.getFactoryKey(),
                                               updatedJobData.getQueueKey(),
                                               jobSpec.getCreateTime(),
                                               jobSpec.getNextRunAttemptTime(),

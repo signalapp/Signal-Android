@@ -13,7 +13,11 @@ import org.thoughtcrime.securesms.jobmanager.JobMigration;
 public class RecipientIdFollowUpJobMigration extends JobMigration {
 
   public RecipientIdFollowUpJobMigration() {
-    super(3);
+    this(3);
+  }
+
+  RecipientIdFollowUpJobMigration(int endVersion) {
+    super(endVersion);
   }
 
   @Override
