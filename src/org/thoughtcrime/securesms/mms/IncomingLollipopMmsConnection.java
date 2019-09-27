@@ -23,8 +23,6 @@ import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
-import android.os.Bundle;
 import android.telephony.SmsManager;
 import org.thoughtcrime.securesms.logging.Log;
 
@@ -41,7 +39,6 @@ import org.thoughtcrime.securesms.util.Util;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.util.Locale;
 import java.util.concurrent.TimeoutException;
 
 public class IncomingLollipopMmsConnection extends LollipopMmsConnection implements IncomingMmsConnection {
@@ -73,12 +70,7 @@ public class IncomingLollipopMmsConnection extends LollipopMmsConnection impleme
     try {
       MmsBodyProvider.Pointer pointer = MmsBodyProvider.makeTemporaryPointer(getContext());
 
-      final String transactionIdString = Util.toIsoString(transactionId);
-      Log.i(TAG, String.format(Locale.ENGLISH, "Downloading subscriptionId=%s multimedia from '%s' [transactionId='%s'] to '%s'",
-                                               subscriptionId,
-                                               contentLocation,
-                                               transactionIdString,
-                                               pointer.getUri()));
+      Log.i(TAG, "downloading multimedia from " + contentLocation + " to " + pointer.getUri());
 
       SmsManager smsManager;
 
@@ -88,17 +80,10 @@ public class IncomingLollipopMmsConnection extends LollipopMmsConnection impleme
         smsManager = SmsManager.getDefault();
       }
 
-      final Bundle configOverrides = smsManager.getCarrierConfigValues();
-
-      if (configOverrides.getBoolean(SmsManager.MMS_CONFIG_APPEND_TRANSACTION_ID)) {
-        contentLocation += transactionIdString;
-        Log.i(TAG, "Appending transactionId to contentLocation at the direction of CarrierConfigValues. New location: " + contentLocation);
-      }
-
       smsManager.downloadMultimediaMessage(getContext(),
                                            contentLocation,
                                            pointer.getUri(),
-                                           configOverrides,
+                                           null,
                                            getPendingIntent());
 
       waitForResult();
