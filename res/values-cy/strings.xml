@@ -247,6 +247,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="ConversationFragment_quoted_message_not_found">Heb ganfod y neges wreiddiol</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Nid yw\'r neges wreiddiol bellach ar gael</string>
   <string name="ConversationFragment_failed_to_open_message">Methu agor neges</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Gallwch lusgo i\'r dde ar unrhyw neges i ateb yn sydyn</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Gallwch lusgo i\'r chwith ar unrhyw neges i ateb yn sydyn</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Nid oes porwr wedi\'i osod ar eich dyfais.</string>
   <!--ConversationListFragment-->

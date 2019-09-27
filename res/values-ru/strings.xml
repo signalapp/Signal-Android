@@ -245,6 +245,8 @@
   <string name="ConversationFragment_quoted_message_not_found">Исходное сообщение не найдено</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Исходное сообщение больше не доступно</string>
   <string name="ConversationFragment_failed_to_open_message">Не удалось открыть сообщение</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Вы можете провести вправо на любом сообщении, чтобы быстро ответить</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Вы можете провести влево на любом сообщении, чтобы быстро ответить</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">На вашем устройстве не установлен браузер.</string>
   <!--ConversationListFragment-->

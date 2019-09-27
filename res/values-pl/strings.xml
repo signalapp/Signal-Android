@@ -87,7 +87,7 @@
   <!--CameraXFragment-->
   <string name="CameraXFragment_capture_description">Przechwyć</string>
   <string name="CameraXFragment_change_camera_description">Zmień aparat</string>
-  <string name="CameraXFragment_open_gallery_description">Otwórz galerie</string>
+  <string name="CameraXFragment_open_gallery_description">Otwórz galerię</string>
   <!--CameraContacts-->
   <string name="CameraContacts_recent_contacts">Ostatnie kontakty</string>
   <string name="CameraContacts_signal_contacts">Kontakty Signal</string>
@@ -245,6 +245,8 @@
   <string name="ConversationFragment_quoted_message_not_found">Nie znaleziono oryginalnej wiadomości</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Oryginalna wiadomość nie jest już dostępna</string>
   <string name="ConversationFragment_failed_to_open_message">Nie udało się otworzyć wiadomości</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Możesz przesunąć wiadomość w prawo, by szybko odpowiedzieć.</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Możesz przesunąć wiadomość w lewo, by szybko odpowiedzieć.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Twoje urządzenie nie ma zainstalowanej przeglądarki.</string>
   <!--ConversationListFragment-->
@@ -879,7 +881,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Zdjęcie kontaktu</string>
   <!--audio_view-->
-  <string name="audio_view__play_pause_accessibility_description">Play ... Pauza</string>
+  <string name="audio_view__play_pause_accessibility_description">Odtwarzanie ... Pauza</string>
   <string name="audio_view__download_accessibility_description">Pobierz</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">Dźwięk</string>

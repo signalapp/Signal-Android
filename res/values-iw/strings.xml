@@ -245,6 +245,8 @@
   <string name="ConversationFragment_quoted_message_not_found">הודעה מקורית לא נמצאה</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">הודעה מקורית כבר אינה זמינה</string>
   <string name="ConversationFragment_failed_to_open_message">נכשל בפתיחת הודעה</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_right_reply">אתה יכול להחליק ימינה על הודעה כלשהי כדי להשיב בזריזות</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_left_reply">אתה יכול להחליק שמאלה על הודעה כלשהי כדי להשיב בזריזות</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">אין דפדפן מותקן במכשיר שלך.</string>
   <!--ConversationListFragment-->

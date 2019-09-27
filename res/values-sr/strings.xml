@@ -12,6 +12,7 @@
   <!--AlbumThumbnailView-->
   <string name="AlbumThumbnailView_plus">\+%d</string>
   <!--ApplicationMigrationActivity-->
+  <string name="ApplicationMigrationActivity__signal_is_updating">Signal се ажурира...</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Тренутно: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Још нисте поставили лозинку!</string>
@@ -61,6 +62,7 @@
   <string name="DraftDatabase_Draft_quote_snippet">(одговор)</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Нема апликације за избор медијума.</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal захтева дозовле за меморију како би могао слати фотографије, видео снимке или аудио снимке, али су трајно забрањене. Молимо Вас идите у мени за подешавања и дозволите приступ меморији.</string>
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">Отпремање медија</string>
   <!--AudioSlidePlayer-->

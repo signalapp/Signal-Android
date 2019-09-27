@@ -29,7 +29,7 @@
   <string name="ApplicationPreferencesActivity_disable_passphrase">Desabilitar frase-chave?</string>
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Isto irá destravar permanentemente as notificações do Signal e das mensagens.</string>
   <string name="ApplicationPreferencesActivity_disable">Desabilitar</string>
-  <string name="ApplicationPreferencesActivity_unregistering">Descadastrar</string>
+  <string name="ApplicationPreferencesActivity_unregistering">Desfazer cadastro</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Descadastrando de mensagens e chamadas Signal...</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Desabilitar mensagens e chamadas Signal?</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Desabilitar mensagens e chamadas Signal descadastrando-o do servidor. Você precisará recadastrar seu número de telefone para usar o Signal novamente no futuro.</string>

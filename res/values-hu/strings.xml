@@ -226,6 +226,8 @@
   <string name="ConversationFragment_quoted_message_not_found">Az eredeti üzenet nem található</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Az eredeti üzenet már nem érhető el</string>
   <string name="ConversationFragment_failed_to_open_message">Nem sikerült megnyitni az üzenetet</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Az üzenetet jobbra húzva gyorsan válaszolhatsz rá</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Az üzenetet balra húzva gyorsan válaszolhatsz rá</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Nincs böngésző telepítve a készülékedre.</string>
   <!--ConversationListFragment-->
