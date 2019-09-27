@@ -245,4 +245,8 @@ public abstract class MessageRecord extends DisplayRecord {
   public boolean isUnidentified() {
     return unidentified;
   }
+
+  public boolean isViewOnce() {
+    return false;
+  }
 }

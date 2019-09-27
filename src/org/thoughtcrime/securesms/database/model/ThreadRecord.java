@@ -122,8 +122,8 @@ public class ThreadRecord extends DisplayRecord {
       if (TextUtils.isEmpty(getBody())) {
         if (extra != null && extra.isSticker()) {
           return new SpannableString(emphasisAdded(context.getString(R.string.ThreadRecord_sticker)));
-        } else if (extra != null && extra.isRevealable() && MediaUtil.isImageType(contentType)) {
-          return new SpannableString(emphasisAdded(context.getString(R.string.ThreadRecord_disappearing_photo)));
+        } else if (extra != null && extra.isRevealable()) {
+          return new SpannableString(emphasisAdded(getViewOnceDescription(context, contentType)));
         } else {
           return new SpannableString(emphasisAdded(context.getString(R.string.ThreadRecord_media_message)));
         }
@@ -142,6 +142,14 @@ public class ThreadRecord extends DisplayRecord {
     spannable.setSpan(new StyleSpan(android.graphics.Typeface.ITALIC),
                       start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
     return spannable;
+  }
+
+  private String getViewOnceDescription(@NonNull Context context, @Nullable String contentType) {
+    if (MediaUtil.isVideoType(contentType)) {
+      return context.getString(R.string.ThreadRecord_disappearing_video);
+    } else {
+      return context.getString(R.string.ThreadRecord_disappearing_photo);
+    }
   }
 
   public long getCount() {

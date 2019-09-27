@@ -150,8 +150,14 @@ public class InputPanel extends LinearLayout
     composeText.setMediaListener(listener);
   }
 
-  public void setQuote(@NonNull GlideRequests glideRequests, long id, @NonNull Recipient author, @NonNull String body, @NonNull SlideDeck attachments) {
-    this.quoteView.setQuote(glideRequests, id, author, body, false, attachments);
+  public void setQuote(@NonNull GlideRequests glideRequests,
+                       long id,
+                       @NonNull Recipient author,
+                       @NonNull String body,
+                       @NonNull SlideDeck attachments,
+                       boolean isViewOnce)
+  {
+    this.quoteView.setQuote(glideRequests, id, author, body, false, attachments, isViewOnce);
     this.quoteView.setVisibility(View.VISIBLE);
 
     if (this.linkPreview.getVisibility() == View.VISIBLE) {

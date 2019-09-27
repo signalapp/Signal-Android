@@ -30,6 +30,7 @@ import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.StickerSlide;
 import org.thoughtcrime.securesms.mms.TextSlide;
 import org.thoughtcrime.securesms.mms.VideoSlide;
+import org.thoughtcrime.securesms.providers.BlobProvider;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -237,6 +238,10 @@ public class MediaUtil {
 
   public static boolean isVideoType(String contentType) {
     return (null != contentType) && contentType.startsWith("video/");
+  }
+
+  public static boolean isImageOrVideoType(String contentType) {
+    return isImageType(contentType) || isVideoType(contentType);
   }
 
   public static boolean isLongTextType(String contentType) {

@@ -58,6 +58,7 @@ public class VideoPlayer extends FrameLayout {
   private       SimpleExoPlayer     exoPlayer;
   private       PlayerControlView   exoControls;
   private       Window              window;
+  private       PlayerStateCallback playerStateCallback;
 
   public VideoPlayer(Context context) {
     this(context, null);
@@ -84,7 +85,7 @@ public class VideoPlayer extends FrameLayout {
     LoadControl            loadControl                = new DefaultLoadControl();
 
     exoPlayer = ExoPlayerFactory.newSimpleInstance(getContext(), trackSelector, loadControl);
-    exoPlayer.addListener(new ExoPlayerListener(window));
+    exoPlayer.addListener(new ExoPlayerListener(window, playerStateCallback));
     exoView.setPlayer(exoPlayer);
     exoControls.setPlayer(exoPlayer);
 
@@ -121,15 +122,34 @@ public class VideoPlayer extends FrameLayout {
     }
   }
 
+  public void loopForever() {
+    if (this.exoPlayer != null) {
+      exoPlayer.setRepeatMode(Player.REPEAT_MODE_ONE);
+    }
+  }
+
+  public long getDuration() {
+    if (this.exoPlayer != null) {
+      return this.exoPlayer.getDuration();
+    }
+    return 0L;
+  }
+
   public void setWindow(@Nullable Window window) {
     this.window = window;
   }
 
-  private static class ExoPlayerListener extends Player.DefaultEventListener {
-    private final Window window;
+  public void setPlayerStateCallbacks(@Nullable PlayerStateCallback playerStateCallback) {
+    this.playerStateCallback = playerStateCallback;
+  }
 
-    ExoPlayerListener(Window window) {
+  private static class ExoPlayerListener extends Player.DefaultEventListener {
+    private final Window               window;
+    private final PlayerStateCallback playerStateCallback;
+
+    ExoPlayerListener(Window window, PlayerStateCallback playerStateCallback) {
       this.window = window;
+      this.playerStateCallback = playerStateCallback;
     }
 
     @Override
@@ -146,10 +166,19 @@ public class VideoPlayer extends FrameLayout {
           } else {
             window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
           }
+          notifyPlayerReady();
           break;
         default:
           break;
       }
     }
+
+    private void notifyPlayerReady() {
+      if (playerStateCallback != null) playerStateCallback.onPlayerReady();
+    }
+  }
+
+  public interface PlayerStateCallback {
+    void onPlayerReady();
   }
 }

@@ -41,7 +41,6 @@ import org.thoughtcrime.securesms.crypto.SecurityEvent;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.crypto.storage.SignalProtocolStoreImpl;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
-import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
@@ -99,6 +98,7 @@ import org.whispersystems.libsignal.state.SessionStore;
 import org.whispersystems.libsignal.state.SignalProtocolStore;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.crypto.SignalServiceCipher;
+import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceContent;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage.Preview;
@@ -1177,13 +1177,17 @@ public class PushDecryptJob extends BaseJob {
 
   private boolean isInvalidMessage(@NonNull SignalServiceDataMessage message) {
     if (message.isViewOnce()) {
-      return !message.getAttachments().isPresent()       ||
-             message.getAttachments().get().size() != 1  ||
-             !MediaUtil.isImageType(message.getAttachments().get().get(0).getContentType().toLowerCase());
+      List<SignalServiceAttachment> attachments = message.getAttachments().or(Collections.emptyList());
 
+      return attachments.size() != 1  ||
+             !isViewOnceSupportedContentType(attachments.get(0).getContentType().toLowerCase());
     }
 
     return false;
+  }
+
+  private boolean isViewOnceSupportedContentType(@NonNull String contentType) {
+    return MediaUtil.isImageType(contentType) || MediaUtil.isVideoType(contentType);
   }
 
   private Optional<QuoteModel> getValidatedQuote(Optional<SignalServiceDataMessage.Quote> quote) {

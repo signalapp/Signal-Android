@@ -494,7 +494,8 @@ class MediaSendViewModel extends ViewModel {
   }
 
   private boolean mediaSupportsRevealableMessage(@NonNull List<Media> media) {
-    return media.size() == 1 && MediaUtil.isImageType(media.get(0).getMimeType());
+    if (media.size() != 1) return false;
+    return MediaUtil.isImageOrVideoType(media.get(0).getMimeType());
   }
 
   @Override

@@ -81,6 +81,14 @@ public class BlobProvider {
    * @throws IOException If the stream fails to open or the spec of the URI doesn't match.
    */
   public synchronized @NonNull InputStream getStream(@NonNull Context context, @NonNull Uri uri) throws IOException {
+    return getStream(context, uri, 0L);
+  }
+
+  /**
+   * Retrieve a stream for the content with the specified URI starting from the specified position.
+   * @throws IOException If the stream fails to open or the spec of the URI doesn't match.
+   */
+  public synchronized @NonNull InputStream getStream(@NonNull Context context, @NonNull Uri uri, long position) throws IOException {
     if (isAuthority(uri)) {
       StorageType storageType = StorageType.decode(uri.getPathSegments().get(STORAGE_TYPE_PATH_SEGMENT));
 
@@ -100,7 +108,7 @@ public class BlobProvider {
         String directory = getDirectory(storageType);
         File   file      = new File(getOrCreateCacheDirectory(context, directory), buildFileName(id));
 
-        return ModernDecryptingPartInputStream.createFor(AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret(), file, 0);
+        return ModernDecryptingPartInputStream.createFor(AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret(), file, position);
       }
     } else {
       throw new IOException("Provided URI does not match this spec. Uri: " + uri);

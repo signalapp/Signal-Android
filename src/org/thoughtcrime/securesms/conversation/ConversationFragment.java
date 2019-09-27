@@ -1014,8 +1014,11 @@ public class ConversationFragment extends Fragment
         Log.i(TAG, "Copying the view-once photo to temp storage and deleting underlying media.");
 
         try {
-          InputStream inputStream = PartAuthority.getAttachmentStream(requireContext(), messageRecord.getSlideDeck().getThumbnailSlide().getUri());
-          Uri         tempUri     = BlobProvider.getInstance().forData(inputStream, 0).createForSingleSessionOnDisk(requireContext());
+          Slide       thumbnailSlide = messageRecord.getSlideDeck().getThumbnailSlide();
+          InputStream inputStream    = PartAuthority.getAttachmentStream(requireContext(), thumbnailSlide.getUri());
+          Uri         tempUri        = BlobProvider.getInstance().forData(inputStream, thumbnailSlide.getFileSize())
+                                                                 .withMimeType(thumbnailSlide.getContentType())
+                                                                 .createForSingleSessionOnDisk(requireContext());
 
           DatabaseFactory.getAttachmentDatabase(requireContext()).deleteAttachmentFilesForMessage(messageRecord.getId());
 

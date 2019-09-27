@@ -5,6 +5,6 @@ package org.thoughtcrime.securesms.util;
  * After a feature has been launched, the flag should be removed.
  */
 public class FeatureFlags {
-  /** Send support for view-once photos. */
+  /** Send support for view-once media. */
   public static final boolean VIEW_ONCE_SENDING = false;
 }
