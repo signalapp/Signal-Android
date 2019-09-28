@@ -599,21 +599,7 @@ public class WebRtcCallService extends Service implements PeerConnection.Observe
     }
   }
 
-  private void handleCallConnected(Intent intent) {
-    if (callState != CallState.STATE_REMOTE_RINGING && callState != CallState.STATE_LOCAL_RINGING) {
-      Log.w(TAG, "Ignoring call connected for unknown state: " + callState);
-      return;
-    }
-
-    if (!Util.isEquals(this.callId, getCallId(intent))) {
-      Log.w(TAG, "Ignoring connected for unknown call id: " + getCallId(intent));
-      return;
-    }
-
-    if (recipient == null || peerConnection == null || dataChannel == null) {
-      throw new AssertionError("assert");
-    }
-
+  private void activateCallMedia() {
     audioManager.startCommunication(callState == CallState.STATE_REMOTE_RINGING);
     bluetoothStateManager.setWantsConnection(true);
 
@@ -637,6 +623,24 @@ public class WebRtcCallService extends Service implements PeerConnection.Observe
                                                                                                                                    .setId(this.callId)
                                                                                                                                    .setEnabled(localCameraState.isEnabled()))
                                                                      .build().toByteArray()), false));
+  }
+
+  private void handleCallConnected(Intent intent) {
+    if (callState != CallState.STATE_REMOTE_RINGING) {
+      Log.w(TAG, "Ignoring call connected for unknown state: " + callState);
+      return;
+    }
+
+    if (!Util.isEquals(this.callId, getCallId(intent))) {
+      Log.w(TAG, "Ignoring connected for unknown call id: " + getCallId(intent));
+      return;
+    }
+
+    if (recipient == null || peerConnection == null || dataChannel == null) {
+      throw new AssertionError("assert");
+    }
+
+    activateCallMedia();
   }
 
   private void handleBusyCall(Intent intent) {
@@ -735,9 +739,7 @@ public class WebRtcCallService extends Service implements PeerConnection.Observe
     this.peerConnection.setVideoEnabled(false);
     this.dataChannel.send(new DataChannel.Buffer(ByteBuffer.wrap(Data.newBuilder().setConnected(Connected.newBuilder().setId(this.callId)).build().toByteArray()), false));
 
-    intent.putExtra(EXTRA_CALL_ID, callId);
-    intent.putExtra(EXTRA_REMOTE_RECIPIENT, recipient.getId());
-    handleCallConnected(intent);
+    activateCallMedia();
   }
 
   private void handleDenyCall(Intent intent) {
