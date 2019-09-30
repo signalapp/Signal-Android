@@ -19,8 +19,8 @@ class LokiMessageDatabase(context: Context, helper: SQLCipherOpenHelper) : Datab
         @JvmStatic val createTableCommand = "CREATE TABLE $tableName ($messageID INTEGER PRIMARY KEY, $serverID INTEGER DEFAULT 0, $friendRequestStatus INTEGER DEFAULT 0);"
     }
 
-    override fun getServerIDFromQuote(quoteID: Long, author: String): Long? {
-        val message = DatabaseFactory.getMmsSmsDatabase(context).getMessageFor(quoteID, Address.fromSerialized(author))
+    override fun getQuoteServerID(quoteID: Long, quoteeHexEncodedPublicKey: String): Long? {
+        val message = DatabaseFactory.getMmsSmsDatabase(context).getMessageFor(quoteID, Address.fromSerialized(quoteeHexEncodedPublicKey))
         return if (message != null) getServerID(message.getId()) else null
     }
 
