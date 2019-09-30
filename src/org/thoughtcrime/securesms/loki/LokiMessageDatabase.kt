@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.loki
 
 import android.content.ContentValues
 import android.content.Context
+import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.Database
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
@@ -16,6 +17,11 @@ class LokiMessageDatabase(context: Context, helper: SQLCipherOpenHelper) : Datab
         private val serverID = "server_id"
         private val friendRequestStatus = "friend_request_status"
         @JvmStatic val createTableCommand = "CREATE TABLE $tableName ($messageID INTEGER PRIMARY KEY, $serverID INTEGER DEFAULT 0, $friendRequestStatus INTEGER DEFAULT 0);"
+    }
+
+    override fun getServerIDFromQuote(quoteID: Long, author: String): Long? {
+        val message = DatabaseFactory.getMmsSmsDatabase(context).getMessageFor(quoteID, Address.fromSerialized(author))
+        return if (message != null) getServerID(message.getId()) else null
     }
 
     fun getServerID(messageID: Long): Long? {
