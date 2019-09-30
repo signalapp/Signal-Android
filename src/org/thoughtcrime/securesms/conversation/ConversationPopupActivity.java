@@ -85,6 +85,7 @@ public class ConversationPopupActivity extends ConversationActivity {
             ActivityOptionsCompat transition = ActivityOptionsCompat.makeScaleUpAnimation(getWindow().getDecorView(), 0, 0, getWindow().getAttributes().width, getWindow().getAttributes().height);
             Intent intent = new Intent(ConversationPopupActivity.this, ConversationActivity.class);
             intent.putExtra(ConversationActivity.RECIPIENT_EXTRA, getRecipient().getId());
+            intent.putExtra(ConversationActivity.BREADCRUMB_EXTRA, ConversationActivity.Breadcrumb.POPUP);
             intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, result);
 
             startActivity(intent, transition.toBundle());

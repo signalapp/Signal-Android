@@ -71,6 +71,7 @@ public class NotificationItem {
     Recipient  notifyRecipients = threadRecipient != null ? threadRecipient : conversationRecipient;
 
     intent.putExtra(ConversationActivity.RECIPIENT_EXTRA, notifyRecipients.getId());
+    intent.putExtra(ConversationActivity.BREADCRUMB_EXTRA, ConversationActivity.Breadcrumb.NOTIFICATION);
     intent.putExtra("thread_id", threadId);
     intent.setData((Uri.parse("custom://"+System.currentTimeMillis())));
 

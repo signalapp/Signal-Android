@@ -262,6 +262,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
     intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, threadId);
     intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, ThreadDatabase.DistributionTypes.DEFAULT);
     intent.putExtra(ConversationActivity.RECIPIENT_EXTRA, recipient.getId());
+    intent.putExtra(ConversationActivity.BREADCRUMB_EXTRA, ConversationActivity.Breadcrumb.GROUP_CREATE);
     startActivity(intent);
     finish();
   }

@@ -23,6 +23,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.conversation.ConversationActivity;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.mms.GlideApp;
@@ -214,7 +215,7 @@ public class SharedContactDetailsActivity extends PassphraseRequiredActionBarAct
 
       messageButtonView.setOnClickListener(v -> {
         ContactUtil.selectRecipientThroughDialog(this, pushUsers, dynamicLanguage.getCurrentLocale(), recipient -> {
-          CommunicationActions.startConversation(this, recipient, null);
+          CommunicationActions.startConversation(this, recipient, null, ConversationActivity.Breadcrumb.SHARED_CONTACT_DETAILS);
         });
       });
 

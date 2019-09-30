@@ -33,6 +33,7 @@ import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
+import org.thoughtcrime.securesms.conversation.ConversationActivity;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.jobs.RotateProfileKeyJob;
 import org.thoughtcrime.securesms.logging.Log;
@@ -767,7 +768,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
 
       @Override
       public void onMessageClicked() {
-        CommunicationActions.startConversation(getContext(), recipient.get(), null);
+        CommunicationActions.startConversation(getContext(), recipient.get(), null, ConversationActivity.Breadcrumb.RECIPIENT_PREFERENCE);
       }
 
       @Override

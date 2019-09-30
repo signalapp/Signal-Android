@@ -169,6 +169,7 @@ public class NotificationState {
 
     Intent     intent           = new Intent(context, ConversationPopupActivity.class);
     intent.putExtra(ConversationActivity.RECIPIENT_EXTRA, recipient.getId());
+    intent.putExtra(ConversationActivity.BREADCRUMB_EXTRA, ConversationActivity.Breadcrumb.NOTIFICATION_STATE);
     intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, (long)threads.toArray()[0]);
     intent.setData((Uri.parse("custom://"+System.currentTimeMillis())));
 
