@@ -235,6 +235,8 @@
   <string name="ConversationFragment_quoted_message_not_found">Mesajul original nu a fost găsit</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Mesajul original nu mai este disponibil</string>
   <string name="ConversationFragment_failed_to_open_message">Mesajul nu a putut fi deschis</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Puteți săriți la dreapta pe orice mesaj pentru a răspunde rapid</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Puteți glisa la stânga pe orice mesaj pentru a răspunde rapid</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Nu aveți nici un browser instalat pe dispozitivul dvs.</string>
   <!--ConversationListFragment-->
@@ -862,6 +864,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Poză contact</string>
   <!--audio_view-->
+  <string name="audio_view__play_pause_accessibility_description">Redare ... Pauză</string>
   <string name="audio_view__download_accessibility_description">Descarcă</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">Audio</string>

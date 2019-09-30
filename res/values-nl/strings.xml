@@ -492,7 +492,7 @@ weergaven.</string>
   <!--ExpirationDialog-->
   <string name="ExpirationDialog_disappearing_messages">Zelf-wissende berichten</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">Berichten zullen zichzelf niet wissen.</string>
-  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Nieuwe berichten die in dit gesprek verzonden en ontvangen worden zullen %s nadat ze gelezen zijn zichzelf wissen.</string>
+  <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Nieuwe berichten die in dit gesprek verzonden en ontvangen worden, zullen zichzelf wissen %s nadat ze gelezen zijn.</string>
   <!--PassphrasePromptActivity-->
   <string name="PassphrasePromptActivity_enter_passphrase">Voer wachtwoord in</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal-pictogram</string>
@@ -648,7 +648,7 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <string name="ThreadRecord_disappearing_photo">Zelf-wissende foto</string>
   <string name="ThreadRecord_s_is_on_signal">%s maakt gebruik van Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Zelf-wissende berichten uitgeschakeld</string>
-  <string name="ThreadRecord_disappearing_message_time_updated_to_s">Berichten zullen zichzelf wissen na %s</string>
+  <string name="ThreadRecord_disappearing_message_time_updated_to_s">Berichten zullen zichzelf wissen %s nadat ze gelezen zijn</string>
   <string name="ThreadRecord_safety_number_changed">Veiligheidsnummer veranderd</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Je veiligheidsnummer met %s is veranderd.</string>
   <string name="ThreadRecord_you_marked_verified">Door jou als geverifieerd gemarkeerd</string>

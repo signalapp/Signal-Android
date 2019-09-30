@@ -215,6 +215,8 @@
   <string name="ConversationFragment_quoted_message_not_found">没有找到原信息</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">原信息已不存在</string>
   <string name="ConversationFragment_failed_to_open_message">打开消息失败</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_right_reply">您可以在任何消息上右滑以快速回复</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_left_reply">您可以在任何消息上左滑以快速回复</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">您的设备上无浏览器</string>
   <!--ConversationListFragment-->

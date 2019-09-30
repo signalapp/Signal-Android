@@ -215,6 +215,8 @@
   <string name="ConversationFragment_quoted_message_not_found">無法找到原始訊息</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">原始訊息已不存在</string>
   <string name="ConversationFragment_failed_to_open_message">開啟訊息失敗</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_right_reply">你可以在任何訊息上向右滑動以快速回覆</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_left_reply">你可以在任何訊息上向左滑動以快速回覆</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">您的裝置上未安裝瀏覽器。</string>
   <!--ConversationListFragment-->

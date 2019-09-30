@@ -224,7 +224,9 @@
   <string name="ConversationFragment_deleting_messages">İletiler siliniyor...</string>
   <string name="ConversationFragment_quoted_message_not_found">İletinin aslı bulunamadı</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">İletinin aslı artık mevcut değil</string>
-  <string name="ConversationFragment_failed_to_open_message">İletiyi açma başarısız oldu.</string>
+  <string name="ConversationFragment_failed_to_open_message">İleti açılamadı</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Herhangi bir iletiyi hızlıca yanıtlamak için sağa kaydırabilirsiniz</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Herhangi bir iletiyi hızlıca yanıtlamak için sola kaydırabilirsiniz</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Cihazınıza yüklü tarayıcı bulunmamaktadır.</string>
   <!--ConversationListFragment-->
@@ -1208,7 +1210,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Seçilenleri arşivden çıkar</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Ayarlar kısayolu</string>
-  <string name="conversation_list_search_description">Ara</string>
+  <string name="conversation_list_search_description">Sohbette Ara</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Kişi Fotoğrafı</string>
   <string name="conversation_list_item_view__archived">Arşivlendi</string>
