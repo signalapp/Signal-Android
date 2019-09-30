@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
+import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.loki.api.LokiGroupChatAPI;
@@ -58,6 +59,7 @@ public class QuoteView extends FrameLayout implements RecipientModifiedListener 
   private long       id;
   private Recipient  author;
   private String     body;
+  private Recipient  conversationRecipient;
   private TextView   mediaDescriptionText;
   private TextView   missingLinkText;
   private SlideDeck  attachments;
@@ -145,7 +147,8 @@ public class QuoteView extends FrameLayout implements RecipientModifiedListener 
                        @NonNull Recipient author,
                        @Nullable String body,
                        boolean originalMissing,
-                       @NonNull SlideDeck attachments)
+                       @NonNull SlideDeck attachments,
+                       @NonNull Recipient conversationRecipient)
   {
     if (this.author != null) this.author.removeListener(this);
 
@@ -153,6 +156,7 @@ public class QuoteView extends FrameLayout implements RecipientModifiedListener 
     this.author      = author;
     this.body        = body;
     this.attachments = attachments;
+    this.conversationRecipient = conversationRecipient;
 
     author.addListener(this);
     setQuoteAuthor(author);
@@ -193,6 +197,18 @@ public class QuoteView extends FrameLayout implements RecipientModifiedListener 
     if (quoteeDisplayName.equals(author.getAddress().toString())) {
       quoteeDisplayName = DatabaseFactory.getLokiUserDatabase(getContext()).getServerDisplayName(LokiGroupChatAPI.getPublicChatServer() + "." + LokiGroupChatAPI.getPublicChatServerID(), author.getAddress().toString());
     }
+
+    // If we're in a group then try and use the display name in the group
+    if (conversationRecipient.isGroupRecipient()) {
+      try {
+        String serverId = GroupUtil.getDecodedStringId(conversationRecipient.getAddress().serialize());
+        String senderDisplayName = DatabaseFactory.getLokiUserDatabase(getContext()).getServerDisplayName(serverId, author.getAddress().serialize());
+        if (senderDisplayName != null) { quoteeDisplayName = senderDisplayName; }
+      } catch (Exception e) {
+        // Do nothing
+      }
+    }
+
     authorView.setText(isOwnNumber ? getContext().getString(R.string.QuoteView_you) : quoteeDisplayName);
 
     // We use the raw color resource because Android 4.x was struggling with tints here
