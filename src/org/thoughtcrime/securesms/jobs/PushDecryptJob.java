@@ -969,7 +969,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
             }
           }));
         }
-      } if (LinkPreviewUtil.isWhitelistedMediaUrl(body)) {
+      } else if (LinkPreviewUtil.isWhitelistedMediaUrl(body)) {
         new LinkPreviewRepository(context).fetchGIF(context, body, attachmentOrNull -> Util.runOnMain(() -> {
           if (attachmentOrNull.isPresent()) {
             Attachment attachment = attachmentOrNull.get();

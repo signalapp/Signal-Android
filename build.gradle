@@ -186,6 +186,7 @@ dependencies {
     implementation "com.squareup.okhttp3:okhttp:3.12.1"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "nl.komponents.kovenant:kovenant:$kovenant_version"
+    implementation "nl.komponents.kovenant:kovenant-android:$kovenant_version"
     implementation "com.github.lelloman:android-identicons:$identicon_version"
     implementation "com.prof.rssparser:rssparser:$rss_parser_version"
     implementation "com.mixpanel.android:mixpanel-android:$mixpanel_version"
@@ -194,7 +195,7 @@ dependencies {
     }
 }
 
-def canonicalVersionCode = 14
+def canonicalVersionCode = 15
 def canonicalVersionName = "1.2.0"
 
 def postFixSize = 10

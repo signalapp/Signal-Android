@@ -2151,7 +2151,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void updateInputPanel() {
-    boolean hasPendingFriendRequest = DatabaseFactory.getLokiThreadDatabase(this).hasPendingFriendRequest(threadId);
+    boolean hasPendingFriendRequest = !recipient.isGroupRecipient() && DatabaseFactory.getLokiThreadDatabase(this).hasPendingFriendRequest(threadId);
     inputPanel.setEnabled(!hasPendingFriendRequest);
     int hintID = hasPendingFriendRequest ? R.string.activity_conversation_pending_friend_request_hint : R.string.activity_conversation_default_hint;
     inputPanel.setHint(getResources().getString(hintID));
@@ -2750,7 +2750,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                           messageRecord.getDateSent(),
                           author,
                           body,
-                          slideDeck);
+                          slideDeck,
+                          recipient);
 
     } else if (messageRecord.isMms() && !((MmsMessageRecord) messageRecord).getLinkPreviews().isEmpty()) {
       LinkPreview linkPreview = ((MmsMessageRecord) messageRecord).getLinkPreviews().get(0);
@@ -2764,13 +2765,15 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                           messageRecord.getDateSent(),
                           author,
                           messageRecord.getBody(),
-                          slideDeck);
+                          slideDeck,
+                          recipient);
     } else {
       inputPanel.setQuote(GlideApp.with(this),
                           messageRecord.getDateSent(),
                           author,
                           messageRecord.getBody(),
-                          messageRecord.isMms() ? ((MmsMessageRecord) messageRecord).getSlideDeck() : new SlideDeck());
+                          messageRecord.isMms() ? ((MmsMessageRecord) messageRecord).getSlideDeck() : new SlideDeck(),
+                          recipient);
     }
   }
 
