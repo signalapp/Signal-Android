@@ -27,7 +27,7 @@ class QRCodeView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : Li
     constructor(context: Context) : this(context, null)
 
     init {
-        inflate(getContext(), R.layout.view_qr_code, this)
+        inflate(context, R.layout.view_qr_code, this)
         val hexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context)
         val displayMetrics = DisplayMetrics()
         ServiceUtil.getWindowManager(context).defaultDisplay.getMetrics(displayMetrics)

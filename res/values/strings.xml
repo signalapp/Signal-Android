@@ -1571,6 +1571,7 @@
     <string name="activity_settings_public_key_copied_message">Copied to clipboard</string>
     <string name="activity_settings_share_public_key_button_title">Share Public Key</string>
     <string name="activity_settings_show_qr_code_button_title">Show QR Code</string>
+    <string name="activity_settings_link_device_button_title">Link Device</string>
     <string name="activity_settings_show_seed_button_title">Show Seed</string>
     <string name="activity_settings_seed_dialog_title">Your Seed</string>
     <string name="activity_settings_seed_dialog_copy_button_title">Copy</string>
@@ -1610,6 +1611,10 @@
     <string name="view_qr_code_title">Your QR Code</string>
     <string name="view_qr_code_explanation">This is your personal QR code. Other people can scan it to start a secure conversation with you.</string>
     <string name="view_qr_code_cancel_button_title">Cancel</string>
+    <!-- Device linking view -->
+    <string name="view_device_linking_title">Waiting for Device</string>
+    <string name="view_device_linking_explanation">Create a new account on your other device and click \"Link Device\" when you\'re at the \"Create Your Loki Messenger Account\" step to start the linking process</string>
+    <string name="view_device_linking_cancel_button_title">Cancel</string>
     <!-- Scan QR code fragment -->
     <string name="fragment_scan_qr_code_title">Scan QR Code</string>
     <string name="fragment_scan_qr_code_explanation">Scan the QR code of the person you\'d like to securely message. They can find their QR code by going into Loki Messenger\'s in-app settings and clicking \"Show QR Code\".</string>

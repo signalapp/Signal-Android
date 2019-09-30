@@ -40,6 +40,7 @@ import android.support.v7.preference.Preference;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
+import org.thoughtcrime.securesms.loki.DeviceLinkingDialog;
 import org.thoughtcrime.securesms.loki.QRCodeDialog;
 import org.thoughtcrime.securesms.preferences.AppProtectionPreferenceFragment;
 import org.thoughtcrime.securesms.preferences.ChatsPreferenceFragment;
@@ -80,6 +81,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
   // private static final String PREFERENCE_CATEGORY_ADVANCED       = "preference_category_advanced";
   private static final String PREFERENCE_CATEGORY_PUBLIC_KEY     = "preference_category_public_key";
   private static final String PREFERENCE_CATEGORY_QR_CODE        = "preference_category_qr_code";
+  private static final String PREFERENCE_CATEGORY_LINK_DEVICE    = "preference_category_link_device";
   private static final String PREFERENCE_CATEGORY_SEED           = "preference_category_seed";
 
   private final DynamicTheme    dynamicTheme    = new DynamicTheme();
@@ -176,7 +178,9 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
       this.findPreference(PREFERENCE_CATEGORY_PUBLIC_KEY)
         .setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_PUBLIC_KEY));
       this.findPreference(PREFERENCE_CATEGORY_QR_CODE)
-              .setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_QR_CODE));
+        .setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_QR_CODE));
+      this.findPreference(PREFERENCE_CATEGORY_LINK_DEVICE)
+        .setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_LINK_DEVICE));
       this.findPreference(PREFERENCE_CATEGORY_SEED)
         .setOnPreferenceClickListener(new CategoryClickListener((PREFERENCE_CATEGORY_SEED)));
 
@@ -238,6 +242,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
       Drawable advanced      = DrawableCompat.wrap(ContextCompat.getDrawable(context, R.drawable.ic_advanced_white_24dp));
       Drawable publicKey     = DrawableCompat.wrap(ContextCompat.getDrawable(context, R.drawable.ic_textsms_24dp));
       Drawable qrCode        = DrawableCompat.wrap(ContextCompat.getDrawable(context, R.drawable.icon_qr_code));
+      Drawable linkDevice    = DrawableCompat.wrap(ContextCompat.getDrawable(context, R.drawable.icon_link));
       Drawable seed          = DrawableCompat.wrap(ContextCompat.getDrawable(context, R.drawable.icon_seedling));
 
       int[]      tintAttr   = new int[]{R.attr.pref_icon_tint};
@@ -254,6 +259,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
       DrawableCompat.setTint(advanced, color);
       DrawableCompat.setTint(publicKey, color);
       DrawableCompat.setTint(qrCode, color);
+      DrawableCompat.setTint(linkDevice, color);
       DrawableCompat.setTint(seed, color);
 
       // this.findPreference(PREFERENCE_CATEGORY_SMS_MMS).setIcon(sms);
@@ -265,6 +271,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
       // this.findPreference(PREFERENCE_CATEGORY_ADVANCED).setIcon(advanced);
       this.findPreference(PREFERENCE_CATEGORY_PUBLIC_KEY).setIcon(publicKey);
       this.findPreference(PREFERENCE_CATEGORY_QR_CODE).setIcon(qrCode);
+      this.findPreference(PREFERENCE_CATEGORY_LINK_DEVICE).setIcon(linkDevice);
       this.findPreference(PREFERENCE_CATEGORY_SEED).setIcon(seed);
     }
 
@@ -318,6 +325,9 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
           break;
         case PREFERENCE_CATEGORY_QR_CODE:
           QRCodeDialog.INSTANCE.show(getContext());
+          break;
+        case PREFERENCE_CATEGORY_LINK_DEVICE:
+          DeviceLinkingDialog.INSTANCE.show(getContext());
           break;
         case PREFERENCE_CATEGORY_SEED:
           File languageFileDirectory = new File(getContext().getApplicationInfo().dataDir);

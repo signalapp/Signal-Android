@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="16dp"
+    android:orientation="vertical"
+    android:gravity="center_horizontal">
+
+    <ProgressBar
+        android:id="@+id/spinner"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="16dp"
+        android:indeterminate="true"
+        android:progressTint="@color/white" />
+
+    <TextView
+        android:id="@+id/titleTextView"
+        style="@style/Signal.Text.Headline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:textSize="20sp"
+        android:fontFamily="sans-serif-medium"
+        android:textAlignment="center"
+        android:text="@string/view_device_linking_title" />
+
+    <TextView
+        android:id="@+id/explanationTextView"
+        style="@style/Signal.Text.Body"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textAlignment="center"
+        android:text="@string/view_device_linking_explanation" />
+
+    <Button
+        android:id="@+id/cancelButton"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/transparent"
+        android:textColor="@color/signal_primary"
+        android:text="@string/view_device_linking_cancel_button_title"
+        android:elevation="0dp"
+        android:stateListAnimator="@null" />
+
+</LinearLayout>
