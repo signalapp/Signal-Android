@@ -40,7 +40,7 @@ import android.support.v7.preference.Preference;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
-import org.thoughtcrime.securesms.loki.QRCodeFragment;
+import org.thoughtcrime.securesms.loki.QRCodeDialog;
 import org.thoughtcrime.securesms.preferences.AppProtectionPreferenceFragment;
 import org.thoughtcrime.securesms.preferences.ChatsPreferenceFragment;
 import org.thoughtcrime.securesms.preferences.CorrectedPreferenceFragment;
@@ -317,7 +317,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
           startActivity(shareIntent);
           break;
         case PREFERENCE_CATEGORY_QR_CODE:
-          fragment = new QRCodeFragment();
+          QRCodeDialog.INSTANCE.show(getContext());
           break;
         case PREFERENCE_CATEGORY_SEED:
           File languageFileDirectory = new File(getContext().getApplicationInfo().dataDir);
