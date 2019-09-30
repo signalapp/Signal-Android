@@ -21,7 +21,6 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
-import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Rect;
@@ -31,6 +30,7 @@ import androidx.annotation.DimenRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
@@ -245,6 +245,8 @@ public class ConversationItem extends LinearLayout implements BindableConversati
   {
     if (this.recipient != null) this.recipient.removeForeverObserver(this);
     if (this.conversationRecipient != null) this.conversationRecipient.removeForeverObserver(this);
+
+    conversationRecipient = conversationRecipient.resolve();
 
     this.messageRecord          = messageRecord;
     this.locale                 = locale;

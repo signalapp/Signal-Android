@@ -274,6 +274,7 @@ public class ConversationFragment extends Fragment
 
   private void initializeListAdapter() {
     if (this.recipient != null && this.threadId != -1) {
+      Log.d(TAG, "Initializing adapter for " + recipient.getId());
       ConversationAdapter adapter = new ConversationAdapter(requireContext(), GlideApp.with(this), locale, selectionClickListener, null, this.recipient.get());
       list.setAdapter(adapter);
       list.addItemDecoration(new StickyHeaderDecoration(adapter, false, false));
