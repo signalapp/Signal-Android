@@ -187,6 +187,7 @@ import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientExporter;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.search.model.MessageResult;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.sms.MessageSender;
@@ -337,6 +338,16 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   protected void onCreate(Bundle state, boolean ready) {
     Log.i(TAG, "onCreate()");
 
+    RecipientId recipientId = getIntent().getParcelableExtra(RECIPIENT_EXTRA);
+
+    if (recipientId == null) {
+      Log.w(TAG, "[onCreate] Missing recipientId!");
+      startActivity(new Intent(this, ConversationListActivity.class));
+      finish();
+      return;
+    }
+
+
     setContentView(R.layout.conversation_activity);
 
     TypedArray typedArray = obtainStyledAttributes(new int[] {R.attr.conversation_background});
@@ -396,6 +407,15 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       saveDraft();
       attachmentManager.clear(glideRequests, false);
       silentlySetComposeText("");
+    }
+
+    RecipientId recipientId = intent.getParcelableExtra(RECIPIENT_EXTRA);
+
+    if (recipientId == null) {
+      Log.w(TAG, "[onNewIntent] Missing recipientId!");
+      startActivity(new Intent(this, ConversationListActivity.class));
+      finish();
+      return;
     }
 
     setIntent(intent);
