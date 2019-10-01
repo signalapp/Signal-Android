@@ -1713,7 +1713,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void onRecipientChanged(@NonNull Recipient recipient) {
-    Log.i(TAG, "onModified(" + recipient.requireAddress().serialize() + ") " + recipient.getRegistered());
+    Log.i(TAG, "onModified(" + recipient.getId() + ") " + recipient.getRegistered());
     titleView.setTitle(glideRequests, recipient);
     titleView.setVerified(identityRecords.isVerified());
     setBlockedUserState(recipient, isSecureText, isDefaultSms);

@@ -972,7 +972,7 @@ public class ConversationItem extends LinearLayout implements BindableConversati
     if (isGroupThread && !current.isOutgoing()) {
       contactPhotoHolder.setVisibility(VISIBLE);
 
-      if (!previous.isPresent() || previous.get().isUpdate() || !current.getRecipient().requireAddress().equals(previous.get().getRecipient().requireAddress()) ||
+      if (!previous.isPresent() || previous.get().isUpdate() || !current.getRecipient().equals(previous.get().getRecipient()) ||
           !DateUtils.isSameDay(previous.get().getTimestamp(), current.getTimestamp()))
       {
         groupSenderHolder.setVisibility(VISIBLE);
@@ -980,7 +980,7 @@ public class ConversationItem extends LinearLayout implements BindableConversati
         groupSenderHolder.setVisibility(GONE);
       }
 
-      if (!next.isPresent() || next.get().isUpdate() || !current.getRecipient().requireAddress().equals(next.get().getRecipient().requireAddress())) {
+      if (!next.isPresent() || next.get().isUpdate() || !current.getRecipient().equals(next.get().getRecipient())) {
         contactPhoto.setVisibility(VISIBLE);
       } else {
         contactPhoto.setVisibility(GONE);
@@ -1040,7 +1040,7 @@ public class ConversationItem extends LinearLayout implements BindableConversati
   private boolean isStartOfMessageCluster(@NonNull MessageRecord current, @NonNull Optional<MessageRecord> previous, boolean isGroupThread) {
     if (isGroupThread) {
       return !previous.isPresent() || previous.get().isUpdate() || !DateUtils.isSameDay(current.getTimestamp(), previous.get().getTimestamp()) ||
-             !current.getRecipient().requireAddress().equals(previous.get().getRecipient().requireAddress());
+             !current.getRecipient().equals(previous.get().getRecipient());
     } else {
       return !previous.isPresent() || previous.get().isUpdate() || !DateUtils.isSameDay(current.getTimestamp(), previous.get().getTimestamp()) ||
              current.isOutgoing() != previous.get().isOutgoing();
@@ -1050,7 +1050,7 @@ public class ConversationItem extends LinearLayout implements BindableConversati
   private boolean isEndOfMessageCluster(@NonNull MessageRecord current, @NonNull Optional<MessageRecord> next, boolean isGroupThread) {
     if (isGroupThread) {
       return !next.isPresent() || next.get().isUpdate() || !DateUtils.isSameDay(current.getTimestamp(), next.get().getTimestamp()) ||
-             !current.getRecipient().requireAddress().equals(next.get().getRecipient().requireAddress());
+             !current.getRecipient().equals(next.get().getRecipient());
     } else {
       return !next.isPresent() || next.get().isUpdate() || !DateUtils.isSameDay(current.getTimestamp(), next.get().getTimestamp()) ||
              current.isOutgoing() != next.get().isOutgoing();
