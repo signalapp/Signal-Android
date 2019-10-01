@@ -123,10 +123,12 @@ public final class AudioView extends FrameLayout implements AudioSlidePlayer.Lis
     } else {
       seekBar.setEnabled(true);
       if (downloadProgress.isSpinning()) downloadProgress.stopSpinning();
-      showPlayButton();
-      lottieDirection = REVERSE;
-      playPauseButton.cancelAnimation();
-      playPauseButton.setFrame(0);
+      if (!isPlaying) {
+        showPlayButton();
+        lottieDirection = REVERSE;
+        playPauseButton.cancelAnimation();
+        playPauseButton.setFrame(0);
+      }
     }
 
     this.audioSlidePlayer = AudioSlidePlayer.createFor(getContext(), audio, this);
