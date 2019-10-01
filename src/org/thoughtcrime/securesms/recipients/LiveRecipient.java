@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -25,14 +26,17 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
+import java.util.concurrent.atomic.AtomicReference;
 
 public final class LiveRecipient {
+
+  private static final String TAG = Log.tag(LiveRecipient.class);
 
   private final Context                       context;
   private final MutableLiveData<Recipient>    liveData;
   private final Set<RecipientForeverObserver> observers;
   private final Observer<Recipient>           foreverObserver;
-  private final Recipient                     defaultRecipient;
+  private final AtomicReference<Recipient>    recipient;
   private final RecipientDatabase             recipientDatabase;
   private final GroupDatabase                 groupDatabase;
   private final String                        unnamedGroupName;
@@ -40,7 +44,7 @@ public final class LiveRecipient {
   LiveRecipient(@NonNull Context context, @NonNull MutableLiveData<Recipient> liveData, @NonNull Recipient defaultRecipient) {
     this.context           = context.getApplicationContext();
     this.liveData          = liveData;
-    this.defaultRecipient  = defaultRecipient;
+    this.recipient         = new AtomicReference<>(defaultRecipient);
     this.recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
     this.groupDatabase     = DatabaseFactory.getGroupDatabase(context);
     this.unnamedGroupName  = context.getString(R.string.RecipientProvider_unnamed_group);
@@ -53,20 +57,14 @@ public final class LiveRecipient {
   }
 
   public @NonNull RecipientId getId() {
-    return defaultRecipient.getId();
+    return recipient.get().getId();
   }
 
   /**
    * @return A recipient that may or may not be fully-resolved.
    */
   public @NonNull Recipient get() {
-    Recipient live = liveData.getValue();
-
-    if (live == null) {
-      return defaultRecipient;
-    } else {
-      return live;
-    }
+    return recipient.get();
   }
 
   /**
@@ -118,27 +116,31 @@ public final class LiveRecipient {
    * @return A fully-resolved version of the recipient. May require reading from disk.
    */
   @WorkerThread
-  public @NonNull Recipient resolve() {
-    Recipient current = get();
+  public synchronized @NonNull Recipient resolve() {
+    Recipient current = recipient.get();
 
     if (!current.isResolving()) {
       return current;
     }
 
-    Recipient       updated      = fetchRecipientFromDisk(defaultRecipient.getId());
+    if (Util.isMainThread()) {
+      Log.w(TAG, "[Resolve][MAIN] " + getId(), new Throwable());
+    } else {
+      Log.d(TAG, "[Resolve][" + Thread.currentThread().getName() + "] " + getId());
+    }
+
+    Recipient       updated      = fetchRecipientFromDisk(getId());
     List<Recipient> participants = Stream.of(updated.getParticipants())
                                          .filter(Recipient::isResolving)
                                          .map(Recipient::getId)
                                          .map(this::fetchRecipientFromDisk)
                                          .toList();
 
-    Util.runOnMainSync(() -> {
-      for (Recipient participant : participants) {
-        participant.live().liveData.setValue(participant);
-      }
+    for (Recipient participant : participants) {
+      participant.live().set(participant);
+    }
 
-      liveData.setValue(updated);
-    });
+    set(updated);
 
     return updated;
   }
@@ -148,19 +150,23 @@ public final class LiveRecipient {
    */
   @WorkerThread
   public void refresh() {
-    Recipient       recipient    = fetchRecipientFromDisk(defaultRecipient.getId());
+    if (Util.isMainThread()) {
+      Log.w(TAG, "[Refresh][MAIN] " + getId(), new Throwable());
+    } else {
+      Log.d(TAG, "[Refresh][" + Thread.currentThread().getName() + "] " + getId());
+    }
+
+    Recipient       recipient    = fetchRecipientFromDisk(getId());
     List<Recipient> participants = Stream.of(recipient.getParticipants())
                                          .map(Recipient::getId)
                                          .map(this::fetchRecipientFromDisk)
                                          .toList();
 
-    Util.runOnMainSync(() -> {
-      for (Recipient participant : participants) {
-        participant.live().liveData.setValue(participant);
-      }
+    for (Recipient participant : participants) {
+      participant.live().set(participant);
+    }
 
-      liveData.setValue(recipient);
-    });
+    set(recipient);
   }
 
   private @NonNull Recipient fetchRecipientFromDisk(RecipientId id) {
@@ -183,7 +189,7 @@ public final class LiveRecipient {
 
     if (groupRecord.isPresent()) {
       String          title    = groupRecord.get().getTitle();
-      List<Recipient> members  = Stream.of(groupRecord.get().getMembers()).map(Recipient::resolved).toList();
+      List<Recipient> members  = Stream.of(groupRecord.get().getMembers()).map(this::fetchRecipientFromDisk).toList();
       Optional<Long>  avatarId = Optional.absent();
 
       if (!settings.getAddress().isMmsGroup() && title == null) {
@@ -200,16 +206,21 @@ public final class LiveRecipient {
     return new RecipientDetails(context, unnamedGroupName, Optional.absent(), false, false, settings, null);
   }
 
+  private synchronized void set(@NonNull Recipient recipient) {
+    this.recipient.set(recipient);
+    this.liveData.postValue(recipient);
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     LiveRecipient that = (LiveRecipient) o;
-    return defaultRecipient.equals(that.defaultRecipient);
+    return recipient.equals(that.recipient);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(defaultRecipient);
+    return Objects.hash(recipient);
   }
 }
