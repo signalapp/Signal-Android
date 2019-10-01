@@ -225,6 +225,8 @@
   <string name="ConversationFragment_quoted_message_not_found">Não foi encontrada a mensagem original</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">A mensagem original já não está disponível</string>
   <string name="ConversationFragment_failed_to_open_message">Falha ao abrir a mensagem</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Pode deslizar qualquer mensagem para a direita para responder rapidamente</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Pode deslizar qualquer mensagem para a esquerda para responder rapidamente</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Não existe nenhum navegador instalado no seu dispositivo.</string>
   <!--ConversationListFragment-->
