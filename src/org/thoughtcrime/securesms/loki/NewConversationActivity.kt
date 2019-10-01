@@ -50,13 +50,13 @@ class NewConversationActivity : PassphraseRequiredActionBarActivity(), ScanListe
         Permissions.with(this)
             .request(Manifest.permission.CAMERA)
             .ifNecessary()
-            .withPermanentDenialDialog(getString(R.string.fragment_qr_code_camera_permission_dialog_message))
+            .withPermanentDenialDialog(getString(R.string.fragment_scan_qr_code_camera_permission_dialog_message))
             .onAllGranted {
                 val fragment = ScanQRCodeFragment()
                 fragment.scanListener = this
                 supportFragmentManager.beginTransaction().replace(android.R.id.content, fragment).addToBackStack(null).commitAllowingStateLoss()
             }
-            .onAnyDenied { Toast.makeText(this, R.string.fragment_qr_code_camera_permission_dialog_message, Toast.LENGTH_SHORT).show() }
+            .onAnyDenied { Toast.makeText(this, R.string.fragment_scan_qr_code_camera_permission_dialog_message, Toast.LENGTH_SHORT).show() }
             .execute()
     }
 

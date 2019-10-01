@@ -1575,6 +1575,7 @@
     <string name="activity_settings_public_key_copied_message">Copied to clipboard</string>
     <string name="activity_settings_share_public_key_button_title">Share Public Key</string>
     <string name="activity_settings_show_qr_code_button_title">Show QR Code</string>
+    <string name="activity_settings_link_device_button_title">Link Device</string>
     <string name="activity_settings_show_seed_button_title">Show Seed</string>
     <string name="activity_settings_seed_dialog_title">Your Seed</string>
     <string name="activity_settings_seed_dialog_copy_button_title">Copy</string>
@@ -1610,13 +1611,24 @@
     <!-- Conversation activity -->
     <string name="activity_conversation_pending_friend_request_hint">Pending Friend Request…</string>
     <string name="activity_conversation_default_hint">New Message</string>
-    <!-- QR code fragment -->
-    <string name="fragment_qr_code_title">Your QR Code</string>
-    <string name="fragment_qr_code_explanation">This is your personal QR code. Other people can scan it to start a secure conversation with you.</string>
-    <string name="fragment_qr_code_camera_permission_dialog_message">Loki Messenger needs camera access to scan QR codes.</string>
+    <!-- QR code view -->
+    <string name="view_qr_code_title">Your QR Code</string>
+    <string name="view_qr_code_explanation">This is your personal QR code. Other people can scan it to start a secure conversation with you.</string>
+    <string name="view_qr_code_cancel_button_title">Cancel</string>
+    <!-- Device linking view -->
+    <string name="view_device_linking_title_1">Waiting for Device</string>
+    <string name="view_device_linking_title_2">Waiting for Authorization</string>
+    <string name="view_device_linking_title_3">Linking Request Received</string>
+    <string name="view_device_linking_title_4">Device Link Authorized</string>
+    <string name="view_device_linking_explanation_1">Create a new account on your other device and click \"Link Device\" when you\'re at the \"Create Your Loki Messenger Account\" step to start the linking process</string>
+    <string name="view_device_linking_explanation_2">Please check that the words below match the ones shown on your other device</string>
+    <string name="view_device_linking_explanation_3">Your device has been linked successfully</string>
+    <string name="view_device_linking_authorize_button_title">Authorize</string>
+    <string name="view_device_linking_cancel_button_title">Cancel</string>
     <!-- Scan QR code fragment -->
     <string name="fragment_scan_qr_code_title">Scan QR Code</string>
     <string name="fragment_scan_qr_code_explanation">Scan the QR code of the person you\'d like to securely message. They can find their QR code by going into Loki Messenger\'s in-app settings and clicking \"Show QR Code\".</string>
+    <string name="fragment_scan_qr_code_camera_permission_dialog_message">Loki Messenger needs camera access to scan QR codes.</string>
     <!-- Conversation activity -->
     <string name="activity_conversation_copy_public_key_button_title">Copy public key</string>
 
