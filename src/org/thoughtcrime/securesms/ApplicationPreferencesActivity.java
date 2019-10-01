@@ -328,7 +328,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
           QRCodeDialog.INSTANCE.show(getContext());
           break;
         case PREFERENCE_CATEGORY_LINK_DEVICE:
-          DeviceLinkingDialog.INSTANCE.show(getContext(), DeviceLinkingView.Mode.Master);
+          DeviceLinkingDialog.Companion.show(getContext(), DeviceLinkingView.Mode.Master);
           break;
         case PREFERENCE_CATEGORY_SEED:
           File languageFileDirectory = new File(getContext().getApplicationInfo().dataDir);

@@ -16,10 +16,12 @@ import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.IdentityDatabase
+import org.thoughtcrime.securesms.logging.Log
 import org.thoughtcrime.securesms.util.Hex
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.curve25519.Curve25519
 import org.whispersystems.libsignal.util.KeyHelper
+import org.whispersystems.signalservice.loki.api.LokiPairingAuthorisation
 import org.whispersystems.signalservice.loki.crypto.MnemonicCodec
 import org.whispersystems.signalservice.loki.utilities.Analytics
 import org.whispersystems.signalservice.loki.utilities.PublicKeyValidation
@@ -35,8 +37,6 @@ class SeedActivity : BaseActionBarActivity() {
         set(newValue) { field = newValue; updateMnemonic() }
     private var mnemonic: String? = null
         set(newValue) { field = newValue; updateMnemonicTextView() }
-
-    private var dialog: ProgressDialog? = null
 
     // region Types
     enum class Mode { Register, Restore, Link }
@@ -177,7 +177,7 @@ class SeedActivity : BaseActionBarActivity() {
         }
         val hexEncodedSeed = Hex.toStringCondensed(seed)
         IdentityKeyUtil.save(this, IdentityKeyUtil.lokiSeedKey, hexEncodedSeed)
-        if (seed.count() == 16) seed = seed + seed
+        if (seed.count() == 16) seed += seed
         if (mode == Mode.Restore) {
             IdentityKeyUtil.generateIdentityKeyPair(this, seed)
         }
@@ -197,18 +197,46 @@ class SeedActivity : BaseActionBarActivity() {
         if (mode == Mode.Link) {
             TextSecurePreferences.setHasSeenWelcomeScreen(this, true)
             TextSecurePreferences.setPromptedPushRegistration(this, true)
+
+            // Build the pairing request
+            val primaryDevicePublicKey = publicKeyEditText.text.trim().toString()
+            val authorisation = LokiPairingAuthorisation(primaryDevicePublicKey, hexEncodedPublicKey).sign(LokiPairingAuthorisation.Type.REQUEST, keyPair.privateKey.serialize())
+            if (authorisation == null) {
+                Log.w("Loki", "Failed to sign outgoing pairing request :(")
+                resetRegistration()
+                return Toast.makeText(application, "Failed to initialise device pairing", Toast.LENGTH_SHORT).show()
+            }
+
             val application = ApplicationContext.getInstance(this)
             application.startLongPollingIfNeeded()
             application.setUpStorageAPIIfNeeded()
 
-            // TODO: Show activity view here?
+            // Show the dialog
+            DeviceLinkingDialog.show(this, DeviceLinkingView.Mode.Slave, object: DeviceLinkingDialogDelegate {
+                override fun handleDeviceLinkAuthorized() {
+                    showAccountDetailsView()
+                }
 
-            // TODO: Also need to reset on registration
+                override fun handleDeviceLinkingDialogDismissed() {
+                    resetRegistration()
+                    Toast.makeText(application, "Cancelled Device Linking", Toast.LENGTH_SHORT).show()
+                }
+            })
 
+            // Send the request to the other user
+            sendAuthorisationMessage(this, authorisation.primaryDevicePubKey, authorisation)
         } else {
-            startActivity(Intent(this, AccountDetailsActivity::class.java))
-            finish()
+            showAccountDetailsView()
         }
+    }
+
+    private fun showAccountDetailsView() {
+        startActivity(Intent(this, AccountDetailsActivity::class.java))
+        finish()
+    }
+
+    private fun resetRegistration() {
+
     }
     // endregion
 }
