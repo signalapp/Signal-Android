@@ -1047,8 +1047,6 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     boolean valid = isAuthorisationValid(authorisation);
     LokiDeviceLinkingSession linkingSession = LokiDeviceLinkingSession.Companion.getShared();
     if (valid && linkingSession.isListeningForLinkingRequest()) {
-      // Save to the database and trigger the event
-      DatabaseFactory.getLokiAPIDatabase(context).insertOrUpdatePairingAuthorisation(authorisation);
       linkingSession.receivedLinkingRequest(authorisation);
     } else {
       // Remove pre key bundle from the user

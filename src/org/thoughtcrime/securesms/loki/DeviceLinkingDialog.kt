@@ -11,7 +11,13 @@ import android.view.View
 import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.view_device_linking.view.*
 import network.loki.messenger.R
+import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
+import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.w3c.dom.Text
+import org.whispersystems.signalservice.loki.api.LokiDeviceLinkingSession
+import org.whispersystems.signalservice.loki.api.LokiPairingAuthorisation
+import org.whispersystems.signalservice.loki.api.LokiStorageAPI
 import org.whispersystems.signalservice.loki.crypto.MnemonicCodec
 import org.whispersystems.signalservice.loki.utilities.removing05PrefixIfNeeded
 import java.io.File
@@ -30,6 +36,7 @@ class DeviceLinkingView private constructor(context: Context, attrs: AttributeSe
     private var delegate: DeviceLinkingDialogDelegate? = null
     private lateinit var languageFileDirectory: File
     var dismiss: (() -> Unit)? = null
+    private var pairingAuthorisation: LokiPairingAuthorisation? = null
 
     // region Types
     enum class Mode { Master, Slave }
@@ -46,10 +53,7 @@ class DeviceLinkingView private constructor(context: Context, attrs: AttributeSe
         }
         setUpLanguageFileDirectory()
         setUpViewHierarchy()
-        when (mode) {
-            Mode.Master -> Log.d("Loki", "TODO: DeviceLinkingSession.startListeningForLinkingRequests(this)")
-            Mode.Slave -> Log.d("Loki", "TODO: DeviceLinkingSession.startListeningForAuthorization(this)")
-        }
+        LokiDeviceLinkingSession.shared.startListeningForLinkingRequests()
     }
 
     private fun setUpLanguageFileDirectory() {
@@ -92,14 +96,29 @@ class DeviceLinkingView private constructor(context: Context, attrs: AttributeSe
             mnemonicTextView.text = MnemonicCodec(languageFileDirectory).encode(hexEncodedPublicKey).split(" ").slice(0 until 3).joinToString(" ")
         }
         authorizeButton.visibility = View.GONE
+        authorizeButton.setOnClickListener { authorizeDeviceLink() }
         cancelButton.setOnClickListener { cancel() }
     }
     // endregion
 
     // region Device Linking
-    private fun requestUserAuthorization() { // TODO: deviceLink parameter
+    private fun requestUserAuthorization(authorisation: LokiPairingAuthorisation) {
         // To be called by DeviceLinkingSession when a linking request has been received
-        // TODO: this.deviceLink = deviceLink
+        if (this.pairingAuthorisation != null) {
+            Log.e("Loki", "Received request for another pairing authorisation when one was active")
+            return
+        }
+
+        if (!authorisation.verify()) {
+            Log.w("Loki", "Received authorisation but it was not valid.")
+            return
+        }
+
+        this.pairingAuthorisation = authorisation
+
+        // Stop listening to any more requests
+        LokiDeviceLinkingSession.shared.stopListeningForLinkingRequests()
+
         spinner.visibility = View.GONE
         val titleTextViewLayoutParams = titleTextView.layoutParams as LayoutParams
         titleTextViewLayoutParams.topMargin = toPx(16, resources)
@@ -107,30 +126,38 @@ class DeviceLinkingView private constructor(context: Context, attrs: AttributeSe
         titleTextView.text = resources.getString(R.string.view_device_linking_title_3)
         explanationTextView.text = resources.getString(R.string.view_device_linking_explanation_2)
         mnemonicTextView.visibility = View.VISIBLE
-        val hexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context).removing05PrefixIfNeeded() // TODO: deviceLink.slave.hexEncodedPublicKey.removing05PrefixIfNeeded()
+        val hexEncodedPublicKey = authorisation.secondaryDevicePubKey.removing05PrefixIfNeeded()
         mnemonicTextView.text = MnemonicCodec(languageFileDirectory).encode(hexEncodedPublicKey).split(" ").slice(0 until 3).joinToString(" ")
         authorizeButton.visibility = View.VISIBLE
     }
 
     private fun authorizeDeviceLink() {
-        // TODO: val deviceLink = this.deviceLink!!
-        // TODO: val linkingAuthorizationMessage = DeviceLinkingUtilities.getLinkingAuthorizationMessage(deviceLink)
-        // TODO: Send the linking authorization message
-        // TODO: val session = DeviceLinkingSession.current!!
-        // TODO: session.stopListeningForLinkingRequests()
-        // TODO: session.markLinkingRequestAsProcessed()
-        dismiss?.invoke()
-        // TODO: val master = DeviceLink.Device(deviceLink.master.hexEncodedPublicKey, linkingAuthorizationMessage.masterSignature)
-        // TODO: val signedDeviceLink = DeviceLink(master, deviceLink.slave)
-        // TODO: LokiStorageAPI.addDeviceLink(signedDeviceLink).fail { error ->
-        // TODO:     Log.d("Loki", "Failed to add device link due to error: $error.")
-        // TODO: }
+        if (pairingAuthorisation == null) { return; }
+
+        val authorisation = pairingAuthorisation!!
+        val userPrivateKey = IdentityKeyUtil.getIdentityKeyPair(context).privateKey.serialize()
+        val signedAuthorisation = authorisation.sign(LokiPairingAuthorisation.Type.GRANT, userPrivateKey)
+        if (signedAuthorisation == null) {
+            Log.e("Loki", "Failed to sign grant authorisation")
+            return
+        }
+
+        // TODO: Send authorisation message
+
+        // Add the auth to the database
+        DatabaseFactory.getLokiAPIDatabase(context).insertOrUpdatePairingAuthorisation(signedAuthorisation)
+
+        // Update the api
+        LokiStorageAPI.shared?.updateOurDeviceMappings()
+
+        dismiss()
     }
 
     private fun handleDeviceLinkAuthorized() { // TODO: deviceLink parameter
         // To be called by DeviceLinkingSession when a device link has been authorized
-        // TODO: val session = DeviceLinkingSession.current!!
-        // TODO: session.stopListeningForLinkingAuthorization()
+        // Pairings get automatically added to the database when we receive them
+        LokiDeviceLinkingSession.shared.stopListeningForLinkingRequests()
+
         spinner.visibility = View.GONE
         val titleTextViewLayoutParams = titleTextView.layoutParams as LayoutParams
         titleTextViewLayoutParams.topMargin = toPx(8, resources)
@@ -143,23 +170,29 @@ class DeviceLinkingView private constructor(context: Context, attrs: AttributeSe
         titleTextView.text = resources.getString(R.string.view_device_linking_title_4)
         mnemonicTextView.visibility = View.GONE
         buttonContainer.visibility = View.GONE
-        // TODO: LokiStorageAPI.addDeviceLink(signedDeviceLink).fail { error ->
-        // TODO:     Log.d("Loki", "Failed to add device link due to error: $error.")
-        // TODO: }
+
         Handler().postDelayed({
             delegate?.handleDeviceLinkAuthorized()
-            dismiss?.invoke()
+            dismiss()
         }, 4000)
     }
     // endregion
 
     // region Interaction
-    private fun cancel() {
-        // TODO: val session = DeviceLinkingSession.current!!
-        // TODO: session.stopListeningForLinkingRequests()
-        // TODO: session.markLinkingRequestAsProcessed() // Only relevant in master mode
-        delegate?.handleDeviceLinkingDialogDismissed() // Only relevant in slave mode
+    private fun dismiss() {
+        LokiDeviceLinkingSession.shared.stopListeningForLinkingRequests()
         dismiss?.invoke()
+    }
+
+    private fun cancel() {
+        if (mode == Mode.Master && pairingAuthorisation != null) {
+            val authorisation = pairingAuthorisation!!
+            // Remove pre key bundle from the requesting device
+            DatabaseFactory.getLokiPreKeyBundleDatabase(context).removePreKeyBundle(authorisation.secondaryDevicePubKey)
+        }
+
+        delegate?.handleDeviceLinkingDialogDismissed() // Only relevant in slave mode
+        dismiss()
     }
     // endregion
 }
