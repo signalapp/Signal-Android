@@ -1612,8 +1612,14 @@
     <string name="view_qr_code_explanation">This is your personal QR code. Other people can scan it to start a secure conversation with you.</string>
     <string name="view_qr_code_cancel_button_title">Cancel</string>
     <!-- Device linking view -->
-    <string name="view_device_linking_title">Waiting for Device</string>
-    <string name="view_device_linking_explanation">Create a new account on your other device and click \"Link Device\" when you\'re at the \"Create Your Loki Messenger Account\" step to start the linking process</string>
+    <string name="view_device_linking_title_1">Waiting for Device</string>
+    <string name="view_device_linking_title_2">Waiting for Authorization</string>
+    <string name="view_device_linking_title_3">Linking Request Received</string>
+    <string name="view_device_linking_title_4">Device Link Authorized</string>
+    <string name="view_device_linking_explanation_1">Create a new account on your other device and click \"Link Device\" when you\'re at the \"Create Your Loki Messenger Account\" step to start the linking process</string>
+    <string name="view_device_linking_explanation_2">Please check that the words below match the ones shown on your other device</string>
+    <string name="view_device_linking_explanation_3">Your device has been linked successfully</string>
+    <string name="view_device_linking_authorize_button_title">Authorize</string>
     <string name="view_device_linking_cancel_button_title">Cancel</string>
     <!-- Scan QR code fragment -->
     <string name="fragment_scan_qr_code_title">Scan QR Code</string>

@@ -41,6 +41,7 @@ import android.widget.Toast;
 
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.loki.DeviceLinkingDialog;
+import org.thoughtcrime.securesms.loki.DeviceLinkingView;
 import org.thoughtcrime.securesms.loki.QRCodeDialog;
 import org.thoughtcrime.securesms.preferences.AppProtectionPreferenceFragment;
 import org.thoughtcrime.securesms.preferences.ChatsPreferenceFragment;
@@ -327,7 +328,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
           QRCodeDialog.INSTANCE.show(getContext());
           break;
         case PREFERENCE_CATEGORY_LINK_DEVICE:
-          DeviceLinkingDialog.INSTANCE.show(getContext());
+          DeviceLinkingDialog.INSTANCE.show(getContext(), DeviceLinkingView.Mode.Master);
           break;
         case PREFERENCE_CATEGORY_SEED:
           File languageFileDirectory = new File(getContext().getApplicationInfo().dataDir);
