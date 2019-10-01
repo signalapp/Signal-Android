@@ -53,14 +53,13 @@ public class CommunicationActions {
         .execute();
   }
 
-  public static void startConversation(@NonNull Context context, @NonNull Recipient recipient, @Nullable String text, @NonNull String breadcrumb) {
-    startConversation(context, recipient, text, breadcrumb, null);
+  public static void startConversation(@NonNull Context context, @NonNull Recipient recipient, @Nullable String text) {
+    startConversation(context, recipient, text, null);
   }
 
   public static void startConversation(@NonNull  Context          context,
                                        @NonNull  Recipient        recipient,
                                        @Nullable String           text,
-                                       @NonNull  String           breadcrumb,
                                        @Nullable TaskStackBuilder backStack)
   {
     new AsyncTask<Void, Void, Long>() {
@@ -73,7 +72,6 @@ public class CommunicationActions {
       protected void onPostExecute(Long threadId) {
         Intent intent = new Intent(context, ConversationActivity.class);
         intent.putExtra(ConversationActivity.RECIPIENT_EXTRA, recipient.getId());
-        intent.putExtra(ConversationActivity.BREADCRUMB_EXTRA, breadcrumb);
         intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, threadId);
         intent.putExtra(ConversationActivity.TIMING_EXTRA, System.currentTimeMillis());
 

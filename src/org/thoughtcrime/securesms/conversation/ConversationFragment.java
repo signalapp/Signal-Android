@@ -1072,7 +1072,7 @@ public class ConversationFragment extends Fragment
       if (getContext() == null) return;
 
       ContactUtil.selectRecipientThroughDialog(getContext(), choices, locale, recipient -> {
-        CommunicationActions.startConversation(getContext(), recipient, null, ConversationActivity.Breadcrumb.SHARED_CONTACT);
+        CommunicationActions.startConversation(getContext(), recipient, null);
       });
     }
 

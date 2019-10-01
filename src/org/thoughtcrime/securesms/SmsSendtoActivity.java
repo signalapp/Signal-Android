@@ -54,7 +54,7 @@ public class SmsSendtoActivity extends Activity {
       nextIntent = new Intent(this, ConversationActivity.class);
       nextIntent.putExtra(ConversationActivity.TEXT_EXTRA, destination.getBody());
       nextIntent.putExtra(ConversationActivity.THREAD_ID_EXTRA, threadId);
-      nextIntent.putExtra(ConversationActivity.RECIPIENT_EXTRA, ConversationActivity.Breadcrumb.SMS_SEND_TO);
+      nextIntent.putExtra(ConversationActivity.RECIPIENT_EXTRA, recipient.getId());
     }
     return nextIntent;
   }
