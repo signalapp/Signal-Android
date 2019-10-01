@@ -71,8 +71,10 @@ public class RetrieveProfileJob extends BaseJob {
 
   @Override
   public void onRun() throws IOException {
-    if (recipient.isGroup()) handleGroupRecipient(recipient);
-    else                     handleIndividualRecipient(recipient);
+    Recipient resolved = recipient.resolve();
+
+    if (resolved.isGroup()) handleGroupRecipient(resolved);
+    else                    handleIndividualRecipient(resolved);
   }
 
   @Override
@@ -166,11 +168,15 @@ public class RetrieveProfileJob extends BaseJob {
     byte[]            profileKey        = recipient.getProfileKey();
 
     if (unrestrictedUnidentifiedAccess && unidentifiedAccessVerifier != null) {
-      Log.i(TAG, "Marking recipient UD status as unrestricted.");
-      recipientDatabase.setUnidentifiedAccessMode(recipient.getId(), UnidentifiedAccessMode.UNRESTRICTED);
+      if (recipient.getUnidentifiedAccessMode() != UnidentifiedAccessMode.UNRESTRICTED) {
+        Log.i(TAG, "Marking recipient UD status as unrestricted.");
+        recipientDatabase.setUnidentifiedAccessMode(recipient.getId(), UnidentifiedAccessMode.UNRESTRICTED);
+      }
     } else if (profileKey == null || unidentifiedAccessVerifier == null) {
-      Log.i(TAG, "Marking recipient UD status as disabled.");
-      recipientDatabase.setUnidentifiedAccessMode(recipient.getId(), UnidentifiedAccessMode.DISABLED);
+      if (recipient.getUnidentifiedAccessMode() != UnidentifiedAccessMode.DISABLED) {
+        Log.i(TAG, "Marking recipient UD status as disabled.");
+        recipientDatabase.setUnidentifiedAccessMode(recipient.getId(), UnidentifiedAccessMode.DISABLED);
+      }
     } else {
       ProfileCipher profileCipher = new ProfileCipher(profileKey);
       boolean verifiedUnidentifiedAccess;
@@ -183,8 +189,11 @@ public class RetrieveProfileJob extends BaseJob {
       }
 
       UnidentifiedAccessMode mode = verifiedUnidentifiedAccess ? UnidentifiedAccessMode.ENABLED : UnidentifiedAccessMode.DISABLED;
-      Log.i(TAG, "Marking recipient UD status as " + mode.name() + " after verification.");
-      recipientDatabase.setUnidentifiedAccessMode(recipient.getId(), mode);
+
+      if (recipient.getUnidentifiedAccessMode() != mode) {
+        Log.i(TAG, "Marking recipient UD status as " + mode.name() + " after verification.");
+        recipientDatabase.setUnidentifiedAccessMode(recipient.getId(), mode);
+      }
     }
   }
 

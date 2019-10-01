@@ -116,7 +116,7 @@ public final class LiveRecipient {
    * @return A fully-resolved version of the recipient. May require reading from disk.
    */
   @WorkerThread
-  public synchronized @NonNull Recipient resolve() {
+  public @NonNull Recipient resolve() {
     Recipient current = recipient.get();
 
     if (!current.isResolving()) {
