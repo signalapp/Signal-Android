@@ -1204,18 +1204,14 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   }
 
   private void sendBackgroundMessage(String contactHexEncodedPublicKey) {
-    new Handler(Looper.getMainLooper()).post(new Runnable() {
-
-      @Override
-      public void run() {
-        SignalServiceMessageSender messageSender = ApplicationContext.getInstance(context).communicationModule.provideSignalMessageSender();
-        SignalServiceAddress address = new SignalServiceAddress(contactHexEncodedPublicKey);
-        SignalServiceDataMessage message = new SignalServiceDataMessage(System.currentTimeMillis(), "");
-        try {
-          messageSender.sendMessage(0, address, Optional.absent(), message); // The message ID doesn't matter
-        } catch (Exception e) {
-          Log.d("Loki", "Failed to send background message to: " + contactHexEncodedPublicKey + ".");
-        }
+    Util.runOnMain(() -> {
+      SignalServiceMessageSender messageSender = ApplicationContext.getInstance(context).communicationModule.provideSignalMessageSender();
+      SignalServiceAddress address = new SignalServiceAddress(contactHexEncodedPublicKey);
+      SignalServiceDataMessage message = new SignalServiceDataMessage(System.currentTimeMillis(), "");
+      try {
+        messageSender.sendMessage(0, address, Optional.absent(), message); // The message ID doesn't matter
+      } catch (Exception e) {
+        Log.d("Loki", "Failed to send background message to: " + contactHexEncodedPublicKey + ".");
       }
     });
   }

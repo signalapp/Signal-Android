@@ -108,8 +108,6 @@ class DeviceLinkingView private constructor(context: Context, attrs: AttributeSe
             return
         }
 
-        this.pairingAuthorisation = authorisation
-
         spinner.visibility = View.GONE
         val titleTextViewLayoutParams = titleTextView.layoutParams as LayoutParams
         titleTextViewLayoutParams.topMargin = toPx(16, resources)
@@ -120,6 +118,8 @@ class DeviceLinkingView private constructor(context: Context, attrs: AttributeSe
         val hexEncodedPublicKey = authorisation.secondaryDevicePubKey.removing05PrefixIfNeeded()
         mnemonicTextView.text = MnemonicCodec(languageFileDirectory).encode(hexEncodedPublicKey).split(" ").slice(0 until 3).joinToString(" ")
         authorizeButton.visibility = View.VISIBLE
+
+        this.pairingAuthorisation = authorisation
     }
 
     private fun authorize() {

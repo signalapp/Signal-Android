@@ -10,6 +10,8 @@ import org.whispersystems.signalservice.loki.api.LokiDeviceLinkingSessionListene
 import org.whispersystems.signalservice.loki.api.LokiPairingAuthorisation
 import org.whispersystems.signalservice.loki.api.LokiStorageAPI
 import org.whispersystems.signalservice.loki.utilities.retryIfNeeded
+import org.thoughtcrime.securesms.util.Util
+
 
 class DeviceLinkingDialog private constructor(private val context: Context, private val mode: DeviceLinkingView.Mode, private val delegate: DeviceLinkingDialogDelegate? = null): DeviceLinkingViewDelegate, LokiDeviceLinkingSessionListener {
     private lateinit var view: DeviceLinkingView
@@ -93,14 +95,18 @@ class DeviceLinkingDialog private constructor(private val context: Context, priv
 
     // region Loki Device Session Listener
     override fun onDeviceLinkingRequestReceived(authorisation: LokiPairingAuthorisation) {
-        view.requestUserAuthorization(authorisation)
+        Util.runOnMain {
+            view.requestUserAuthorization(authorisation)
+        }
 
         // Stop listening to any more requests
         LokiDeviceLinkingSession.shared.stopListeningForLinkingRequests()
     }
 
     override fun onDeviceLinkRequestAccepted(authorisation: LokiPairingAuthorisation) {
-        view.onDeviceLinkAuthorized(authorisation)
+        Util.runOnMain {
+            view.onDeviceLinkAuthorized(authorisation)
+        }
 
         // Stop listening to any more requests
         LokiDeviceLinkingSession.shared.stopListeningForLinkingRequests()
