@@ -54,7 +54,7 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         private val secondaryDevice = "secondary_device"
         private val requestSignature = "request_signature"
         private val grantSignature = "grant_signature"
-        @JvmStatic val createMultiDeviceAuthTableCommand = "CREATE TABLE $multiDeviceAuthTable(_id INTEGER PRIMARY KEY AUTOINCREMENT, $primaryDevice TEXT, $secondaryDevice TEXT, $requestSignature TEXT NULLABLE DEFAULT NULL, $grantSignature TEXT NULLABLE DEFAULT NULL);"
+        @JvmStatic val createMultiDeviceAuthTableCommand = "CREATE TABLE $multiDeviceAuthTable($primaryDevice TEXT, $secondaryDevice TEXT, $requestSignature TEXT NULLABLE DEFAULT NULL, $grantSignature TEXT NULLABLE DEFAULT NULL, PRIMARY KEY  ($primaryDevice, $secondaryDevice));"
     }
 
     override fun getSwarmCache(hexEncodedPublicKey: String): Set<LokiAPITarget>? {
