@@ -39,13 +39,9 @@ import org.thoughtcrime.securesms.jobs.RefreshPreKeysJob;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.service.KeyCachingService;
-import org.thoughtcrime.securesms.util.DelimiterUtil;
 import org.thoughtcrime.securesms.util.GroupUtil;
-import org.thoughtcrime.securesms.phonenumbers.NumberUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
 
 import java.io.File;
 
@@ -78,8 +74,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int VIEW_ONCE_ONLY                   = 23;
   private static final int RECIPIENT_IDS                    = 24;
   private static final int RECIPIENT_SEARCH                 = 25;
+  private static final int RECIPIENT_CLEANUP                = 26;
 
-  private static final int    DATABASE_VERSION = 25;
+  private static final int    DATABASE_VERSION = 26;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -511,6 +508,10 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
             }
           }
         }
+      }
+
+      if (oldVersion < RECIPIENT_CLEANUP) {
+        RecipientIdCleanupHelper.execute(db);
       }
 
       db.setTransactionSuccessful();
