@@ -22,6 +22,7 @@ import android.graphics.Typeface;
 import android.graphics.drawable.RippleDrawable;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
+import android.text.SpannableString;
 import android.text.style.StyleSpan;
 import android.util.AttributeSet;
 import android.view.View;
@@ -202,9 +203,8 @@ public class ConversationListItem extends RelativeLayout
 
     this.recipient.observeForever(this);
 
-    String name = recipient.get().isLocalNumber() ? getContext().getString(R.string.note_to_self) : recipient.get().getName();
-
-    fromView.setText(SearchUtil.getHighlightedSpan(locale, () -> new StyleSpan(Typeface.BOLD), name, highlightSubstring));
+    fromView.setText(contact);
+    fromView.setText(SearchUtil.getHighlightedSpan(locale, () -> new StyleSpan(Typeface.BOLD), new SpannableString(fromView.getText()), highlightSubstring));
     subjectView.setText(SearchUtil.getHighlightedSpan(locale, () -> new StyleSpan(Typeface.BOLD), contact.requireAddress().toString(), highlightSubstring));
     dateView.setText("");
     archivedView.setVisibility(GONE);
