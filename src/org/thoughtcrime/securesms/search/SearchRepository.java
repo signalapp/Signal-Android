@@ -130,7 +130,7 @@ public class SearchRepository {
     Cursor      systemContacts     = contactRepository.queryNonSignalContacts(query);
     MergeCursor contacts           = new MergeCursor(new Cursor[]{ textSecureContacts, systemContacts });
 
-    return new CursorList<>(contacts, new RecipientModelBuilder(context));
+    return new CursorList<>(contacts, new RecipientModelBuilder());
   }
 
   private CursorList<ThreadRecord> queryConversations(@NonNull String query) {
@@ -178,15 +178,10 @@ public class SearchRepository {
 
   private static class RecipientModelBuilder implements CursorList.ModelBuilder<Recipient> {
 
-    private final Context context;
-
-    RecipientModelBuilder(@NonNull Context context) {
-      this.context = context;
-    }
-
     @Override
     public Recipient build(@NonNull Cursor cursor) {
-      return Recipient.external(context, cursor.getString(1));
+      long recipientId = cursor.getLong(cursor.getColumnIndexOrThrow(ContactRepository.ID_COLUMN));
+      return Recipient.resolved(RecipientId.from(recipientId));
     }
   }
 
