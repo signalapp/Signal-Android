@@ -284,10 +284,10 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
 
     switch (reqCode) {
       case PICK_CONTACT:
-        List<String> selected = data.getStringArrayListExtra("contacts");
+        List<RecipientId> selected = data.getParcelableArrayListExtra("contacts");
 
-        for (String contact : selected) {
-          Recipient recipient = Recipient.external(this, contact);
+        for (RecipientId id : selected) {
+          Recipient recipient = Recipient.resolved(id);
           addSelectedContacts(recipient);
         }
         break;

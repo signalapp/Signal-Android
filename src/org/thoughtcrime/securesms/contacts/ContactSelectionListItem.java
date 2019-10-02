@@ -129,8 +129,8 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientF
     }
   }
 
-  public String getNumber() {
-    return number;
+  public @Nullable RecipientId getRecipientId() {
+    return recipient != null ? recipient.getId() : null;
   }
 
   @Override

@@ -272,9 +272,9 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
   }
 
   @Override
-  public void onContactSelected(String number) {
+  public void onContactSelected(RecipientId recipientId) {
     SimpleTask.run(this.getLifecycle(), () -> {
-      Recipient recipient = Recipient.external(this, number);
+      Recipient recipient = Recipient.resolved(recipientId);
       long existingThread = DatabaseFactory.getThreadDatabase(this).getThreadIdIfExistsFor(recipient);
       return new Pair<>(existingThread, recipient);
     }, result -> {
@@ -284,8 +284,7 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
   }
 
   @Override
-  public void onContactDeselected(String number) {
-
+  public void onContactDeselected(RecipientId recipientId) {
   }
 
   @Override
