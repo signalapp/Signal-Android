@@ -19,8 +19,6 @@ package org.thoughtcrime.securesms;
 import android.content.Intent;
 import android.os.Bundle;
 
-import org.thoughtcrime.securesms.recipients.RecipientId;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,9 +41,11 @@ public class PushContactSelectionActivity extends ContactSelectionActivity {
     getToolbar().setNavigationIcon(R.drawable.ic_check_white_24dp);
     getToolbar().setNavigationOnClickListener(v -> {
       Intent resultIntent = getIntent();
-      List<RecipientId> selectedContacts = contactsFragment.getSelectedContacts();
+      List<String> selectedContacts = contactsFragment.getSelectedContacts();
 
-      resultIntent.putParcelableArrayListExtra("contacts", new ArrayList<>(selectedContacts));
+      if (selectedContacts != null) {
+        resultIntent.putStringArrayListExtra("contacts", new ArrayList<>(selectedContacts));
+      }
 
       setResult(RESULT_OK, resultIntent);
       finish();

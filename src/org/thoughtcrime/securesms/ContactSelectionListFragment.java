@@ -50,7 +50,6 @@ import org.thoughtcrime.securesms.contacts.ContactsCursorLoader.DisplayMode;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.permissions.Permissions;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.DirectoryHelper;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -81,7 +80,7 @@ public final class ContactSelectionListFragment extends    Fragment
   public static final String RECENTS      = "recents";
 
   private TextView                    emptyText;
-  private Set<RecipientId>            selectedContacts;
+  private Set<String>                 selectedContacts;
   private OnContactSelectedListener   onContactSelectedListener;
   private SwipeRefreshLayout          swipeRefresh;
   private View                        showContactsLayout;
@@ -162,8 +161,8 @@ public final class ContactSelectionListFragment extends    Fragment
     Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
   }
 
-  public @NonNull List<RecipientId> getSelectedContacts() {
-    List<RecipientId> selected = new LinkedList<>();
+  public @NonNull List<String> getSelectedContacts() {
+    List<String> selected = new LinkedList<>();
     if (selectedContacts != null) {
       selected.addAll(selectedContacts);
     }
@@ -324,14 +323,14 @@ public final class ContactSelectionListFragment extends    Fragment
   private class ListClickListener implements ContactSelectionListAdapter.ItemClickListener {
     @Override
     public void onItemClick(ContactSelectionListItem contact) {
-      if (!isMulti() || !selectedContacts.contains(contact.getRecipientId())) {
-        selectedContacts.add(contact.getRecipientId());
+      if (!isMulti() || !selectedContacts.contains(contact.getNumber())) {
+        selectedContacts.add(contact.getNumber());
         contact.setChecked(true);
-        if (onContactSelectedListener != null) onContactSelectedListener.onContactSelected(contact.getRecipientId());
+        if (onContactSelectedListener != null) onContactSelectedListener.onContactSelected(contact.getNumber());
       } else {
-        selectedContacts.remove(contact.getRecipientId());
+        selectedContacts.remove(contact.getNumber());
         contact.setChecked(false);
-        if (onContactSelectedListener != null) onContactSelectedListener.onContactDeselected(contact.getRecipientId());
+        if (onContactSelectedListener != null) onContactSelectedListener.onContactDeselected(contact.getNumber());
       }
     }
   }
@@ -345,8 +344,8 @@ public final class ContactSelectionListFragment extends    Fragment
   }
 
   public interface OnContactSelectedListener {
-    void onContactSelected(RecipientId recipientId);
-    void onContactDeselected(RecipientId recipientId);
+    void onContactSelected(String number);
+    void onContactDeselected(String number);
   }
 
   public interface InviteCallback {

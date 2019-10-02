@@ -29,7 +29,6 @@ import org.thoughtcrime.securesms.components.ContactFilterToolbar.OnFilterChange
 import org.thoughtcrime.securesms.contacts.ContactsCursorLoader.DisplayMode;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.ViewUtil;
@@ -98,12 +97,12 @@ public class InviteActivity extends PassphraseRequiredActionBarActivity implemen
   }
 
   @Override
-  public void onContactSelected(RecipientId recipientId) {
+  public void onContactSelected(String number) {
     updateSmsButtonText();
   }
 
   @Override
-  public void onContactDeselected(RecipientId recipientId) {
+  public void onContactDeselected(String number) {
     updateSmsButtonText();
   }
 
