@@ -9,7 +9,11 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_seed.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import network.loki.messenger.R
+import nl.komponents.kovenant.ui.failUi
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.BaseActionBarActivity
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
@@ -26,6 +30,7 @@ import org.whispersystems.signalservice.loki.crypto.MnemonicCodec
 import org.whispersystems.signalservice.loki.utilities.Analytics
 import org.whispersystems.signalservice.loki.utilities.PublicKeyValidation
 import org.whispersystems.signalservice.loki.utilities.hexEncodedPublicKey
+import org.whispersystems.signalservice.loki.utilities.retryIfNeeded
 import java.io.File
 import java.io.FileOutputStream
 
@@ -209,22 +214,31 @@ class SeedActivity : BaseActionBarActivity() {
 
             val application = ApplicationContext.getInstance(this)
             application.startLongPollingIfNeeded()
+            application.setUpP2PAPI()
             application.setUpStorageAPIIfNeeded()
 
             // Show the dialog
-            DeviceLinkingDialog.show(this, DeviceLinkingView.Mode.Slave, object: DeviceLinkingDialogDelegate {
-                override fun handleDeviceLinkAuthorized() {
-                    showAccountDetailsView()
-                }
+            val dialog = DeviceLinkingDialog.show(this, DeviceLinkingView.Mode.Slave, object: DeviceLinkingDialogDelegate {
+              override fun handleDeviceLinkAuthorized() {
+                showAccountDetailsView()
+              }
 
-                override fun handleDeviceLinkingDialogDismissed() {
-                    resetRegistration()
-                    Toast.makeText(application, "Cancelled Device Linking", Toast.LENGTH_SHORT).show()
-                }
+              override fun handleDeviceLinkingDialogDismissed() {
+                resetRegistration()
+                Toast.makeText(this@SeedActivity, "Cancelled Device Linking", Toast.LENGTH_SHORT).show()
+              }
             })
 
             // Send the request to the other user
-            sendAuthorisationMessage(this, authorisation.primaryDevicePubKey, authorisation)
+            CoroutineScope(Dispatchers.Main).launch {
+                retryIfNeeded(3) {
+                    sendAuthorisationMessage(this@SeedActivity, authorisation.primaryDevicePubKey, authorisation)
+                }.failUi {
+                    dialog.dismiss()
+                    resetRegistration()
+                    Toast.makeText(application, "Failed to send device pairing request. Please try again.", Toast.LENGTH_SHORT).show()
+                }
+            }
         } else {
             showAccountDetailsView()
         }
@@ -236,7 +250,11 @@ class SeedActivity : BaseActionBarActivity() {
     }
 
     private fun resetRegistration() {
-
+        IdentityKeyUtil.delete(this, IdentityKeyUtil.lokiSeedKey)
+        TextSecurePreferences.removeLocalRegistrationId(this)
+        TextSecurePreferences.removeLocalNumber(this)
+        TextSecurePreferences.setHasSeenWelcomeScreen(this, false)
+        TextSecurePreferences.setPromptedPushRegistration(this, false)
     }
     // endregion
 }

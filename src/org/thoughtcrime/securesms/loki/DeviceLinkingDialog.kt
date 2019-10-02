@@ -9,27 +9,32 @@ import org.whispersystems.signalservice.loki.api.LokiDeviceLinkingSession
 import org.whispersystems.signalservice.loki.api.LokiDeviceLinkingSessionListener
 import org.whispersystems.signalservice.loki.api.LokiPairingAuthorisation
 import org.whispersystems.signalservice.loki.api.LokiStorageAPI
+import org.whispersystems.signalservice.loki.utilities.retryIfNeeded
 
 class DeviceLinkingDialog private constructor(private val context: Context, private val mode: DeviceLinkingView.Mode, private val delegate: DeviceLinkingDialogDelegate? = null): DeviceLinkingViewDelegate, LokiDeviceLinkingSessionListener {
     private lateinit var view: DeviceLinkingView
+    private lateinit var dialog: AlertDialog
 
     private val userPrivateKey = IdentityKeyUtil.getIdentityKeyPair(context).privateKey.serialize()
 
     companion object {
-        fun show(context: Context, mode: DeviceLinkingView.Mode) { show(context, mode, null) }
-        fun show(context: Context, mode: DeviceLinkingView.Mode, delegate: DeviceLinkingDialogDelegate?) {
+        fun show(context: Context, mode: DeviceLinkingView.Mode): DeviceLinkingDialog { return show(context, mode, null) }
+        fun show(context: Context, mode: DeviceLinkingView.Mode, delegate: DeviceLinkingDialogDelegate?): DeviceLinkingDialog {
             val dialog = DeviceLinkingDialog(context, mode, delegate)
             dialog.show()
+            return dialog
         }
+    }
+
+    public fun dismiss() {
+        this.stopListening()
+        dialog.dismiss()
     }
 
     private fun show() {
         view = DeviceLinkingView(context, mode, this)
-        val dialog = AlertDialog.Builder(context).setView(view).show()
-        view.dismiss = {
-            this.stopListening()
-            dialog.dismiss()
-        }
+        dialog = AlertDialog.Builder(context).setView(view).show()
+        view.dismiss = { dismiss() }
 
         this.startListening()
     }
@@ -55,7 +60,11 @@ class DeviceLinkingDialog private constructor(private val context: Context, priv
         }
 
         // Send authorisation message
-        sendAuthorisationMessage(context, pairing.secondaryDevicePubKey, signedAuthorisation)
+        retryIfNeeded(3) {
+            sendAuthorisationMessage(context, pairing.secondaryDevicePubKey, signedAuthorisation)
+        }.fail {
+            Log.e("Loki", "Failed to send GRANT authorisation to ${pairing.secondaryDevicePubKey}")
+        }
 
         // Add the auth to the database
         DatabaseFactory.getLokiAPIDatabase(context).insertOrUpdatePairingAuthorisation(signedAuthorisation)
