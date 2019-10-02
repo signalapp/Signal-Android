@@ -10,6 +10,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.database.RecipientDatabase.MissingRecipientError;
 import org.thoughtcrime.securesms.util.LRUCache;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
@@ -44,7 +45,16 @@ public final class LiveRecipientCache {
       final LiveRecipient newLive = new LiveRecipient(context, new MutableLiveData<>(), new Recipient(id));
 
       recipients.put(id, newLive);
-      SignalExecutors.BOUNDED.execute(newLive::resolve);
+
+      MissingRecipientError prettyStackTraceError = new MissingRecipientError(newLive.getId());
+
+      SignalExecutors.BOUNDED.execute(() -> {
+        try {
+          newLive.resolve();
+        } catch (MissingRecipientError e) {
+          throw prettyStackTraceError;
+        }
+      });
 
       live = newLive;
     }

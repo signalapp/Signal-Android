@@ -270,7 +270,7 @@ public class RecipientDatabase extends Database {
       if (cursor != null && cursor.moveToNext()) {
         return getRecipientSettings(cursor);
       } else {
-        throw new AssertionError("Couldn't find recipient! id: " + id.serialize());
+        throw new MissingRecipientError(id);
       }
     }
   }
@@ -879,4 +879,9 @@ public class RecipientDatabase extends Database {
     }
   }
 
+  public static class MissingRecipientError extends AssertionError {
+    public MissingRecipientError(@Nullable RecipientId id) {
+      super("Failed to find recipient with ID: " + id);
+    }
+  }
 }
