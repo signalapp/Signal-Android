@@ -333,7 +333,7 @@ public class RecipientIdJobMigrationTest {
   }
 
   @Test
-  public void migrate_smsSendJob() throws Exception {
+  public void migrate_smsSendJob_nonNull() throws Exception {
     JobData testData = new JobData("SmsSendJob", "+16101234567", new Data.Builder().putLong("message_id", 1).putInt("run_attempt", 0).build());
     mockRecipientResolve("+16101234567", 1);
 
@@ -342,6 +342,22 @@ public class RecipientIdJobMigrationTest {
 
     assertEquals("SmsSendJob", converted.getFactoryKey());
     assertEquals(RecipientId.from(1).toQueueKey(), converted.getQueueKey());
+    assertEquals(1, converted.getData().getLong("message_id"));
+    assertEquals(0, converted.getData().getInt("run_attempt"));
+
+    new SmsSendJob.Factory().create(mock(Job.Parameters.class), converted.getData());
+  }
+
+  @Test
+  public void migrate_smsSendJob_null() throws Exception {
+    JobData testData = new JobData("SmsSendJob", null, new Data.Builder().putLong("message_id", 1).putInt("run_attempt", 0).build());
+    mockRecipientResolve("+16101234567", 1);
+
+    RecipientIdJobMigration subject   = new RecipientIdJobMigration(mock(Application.class));
+    JobData                 converted = subject.migrate(testData);
+
+    assertEquals("SmsSendJob", converted.getFactoryKey());
+    assertNull(converted.getQueueKey());
     assertEquals(1, converted.getData().getLong("message_id"));
     assertEquals(0, converted.getData().getInt("run_attempt"));
 
