@@ -97,7 +97,7 @@
   <string name="CameraContacts_no_signal_contacts">Brak kontaktów Signal</string>
   <string name="CameraContacts_you_can_only_use_the_camera_button">Aby wysłać zdjęcia kontaktom Signal, możesz użyć tylko przycisku aparatu.</string>
   <string name="CameraContacts_cant_find_who_youre_looking_for">Nie możesz znaleźć kontaktu?</string>
-  <string name="CameraContacts_invite_a_contact_to_join_signal">Zaproś kontakt do korzystania z Signal</string>
+  <string name="CameraContacts_invite_a_contact_to_join_signal">Zaproś do korzystania z Signal</string>
   <string name="CameraContacts__menu_search">Szukaj</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Usuń</string>
