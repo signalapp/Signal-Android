@@ -22,19 +22,27 @@
 
     </FrameLayout>
 
-    <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+    <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:layout_marginTop="20dp">
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true">
 
-        <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/icon_transparent"
-                android:layout_gravity="center"/>
+        <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:fitsSystemWindows="true"
+                android:layout_height="?attr/actionBarSize">
 
-    </androidx.appcompat.widget.Toolbar>
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/icon_transparent"
+                    android:layout_marginTop="8dp"
+                    android:layout_gravity="center"/>
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </FrameLayout>
 
 
     <LinearLayout
