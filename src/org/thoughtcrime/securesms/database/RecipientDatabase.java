@@ -190,11 +190,12 @@ public class RecipientDatabase extends Database {
 
     try (Cursor cursor = db.query(TABLE_NAME, ID_PROJECTION, query, args, null, null, null)) {
       if (cursor != null && cursor.moveToFirst()) {
-        return RecipientId.from(cursor.getLong(0));
+        return RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(ID)));
       } else {
         ContentValues values = new ContentValues();
         values.put(PHONE, e164);
         long id = db.insert(TABLE_NAME, null, values);
+        if (id < 0) throw new AssertionError("Failed to insert recipient!");
         return RecipientId.from(id);
       }
     }
@@ -211,11 +212,12 @@ public class RecipientDatabase extends Database {
 
     try (Cursor cursor = db.query(TABLE_NAME, ID_PROJECTION, query, args, null, null, null)) {
       if (cursor != null && cursor.moveToFirst()) {
-        return RecipientId.from(cursor.getLong(0));
+        return RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(ID)));
       } else {
         ContentValues values = new ContentValues();
         values.put(EMAIL, email);
         long id = db.insert(TABLE_NAME, null, values);
+        if (id < 0) throw new AssertionError("Failed to insert recipient!");
         return RecipientId.from(id);
       }
     }
@@ -232,11 +234,12 @@ public class RecipientDatabase extends Database {
 
     try (Cursor cursor = db.query(TABLE_NAME, ID_PROJECTION, query, args, null, null, null)) {
       if (cursor != null && cursor.moveToFirst()) {
-        return RecipientId.from(cursor.getLong(0));
+        return RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(ID)));
       } else {
         ContentValues values = new ContentValues();
         values.put(GROUP_ID, groupId);
         long id = db.insert(TABLE_NAME, null, values);
+        if (id < 0) throw new AssertionError("Failed to insert recipient!");
         return RecipientId.from(id);
       }
     }
@@ -495,16 +498,18 @@ public class RecipientDatabase extends Database {
       ContentValues contentValues = new ContentValues(1);
       contentValues.put(REGISTERED, RegisteredState.REGISTERED.getId());
 
-      update(activeId, contentValues);
-      Recipient.live(activeId).refresh();
+      if (update(activeId, contentValues) > 0) {
+        Recipient.live(activeId).refresh();
+      }
     }
 
     for (RecipientId inactiveId : inactiveIds) {
       ContentValues contentValues = new ContentValues(1);
       contentValues.put(REGISTERED, RegisteredState.NOT_REGISTERED.getId());
 
-      update(inactiveId, contentValues);
-      Recipient.live(inactiveId).refresh();
+      if (update(inactiveId, contentValues) > 0) {
+        Recipient.live(inactiveId).refresh();
+      }
     }
   }
 
@@ -619,9 +624,9 @@ public class RecipientDatabase extends Database {
     return databaseHelper.getReadableDatabase().query(TABLE_NAME, SEARCH_PROJECTION, selection, args, null, null, orderBy);
   }
 
-  private void update(@NonNull RecipientId id, ContentValues contentValues) {
+  private int update(@NonNull RecipientId id, ContentValues contentValues) {
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
-    database.update(TABLE_NAME, contentValues, ID + " = ?", new String[] { id.serialize() });
+    return database.update(TABLE_NAME, contentValues, ID + " = ?", new String[] { id.serialize() });
   }
 
   public class BulkOperationsHandle {
