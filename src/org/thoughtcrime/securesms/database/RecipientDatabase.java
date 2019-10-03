@@ -188,15 +188,17 @@ public class RecipientDatabase extends Database {
     String         query = PHONE + " = ?";
     String[]       args  = new String[] { e164 };
 
-    try (Cursor cursor = db.query(TABLE_NAME, ID_PROJECTION, query, args, null, null, null)) {
-      if (cursor != null && cursor.moveToFirst()) {
-        return RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(ID)));
-      } else {
-        ContentValues values = new ContentValues();
-        values.put(PHONE, e164);
-        long id = db.insert(TABLE_NAME, null, values);
-        if (id < 0) throw new AssertionError("Failed to insert recipient!");
-        return RecipientId.from(id);
+    synchronized (this) {
+      try (Cursor cursor = db.query(TABLE_NAME, ID_PROJECTION, query, args, null, null, null)) {
+        if (cursor != null && cursor.moveToFirst()) {
+          return RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(ID)));
+        } else {
+          ContentValues values = new ContentValues();
+          values.put(PHONE, e164);
+          long id = db.insertOrThrow(TABLE_NAME, null, values);
+          if (id < 0) throw new AssertionError("Failed to insert recipient!");
+          return RecipientId.from(id);
+        }
       }
     }
   }
@@ -210,15 +212,17 @@ public class RecipientDatabase extends Database {
     String         query = EMAIL + " = ?";
     String[]       args  = new String[] { email };
 
-    try (Cursor cursor = db.query(TABLE_NAME, ID_PROJECTION, query, args, null, null, null)) {
-      if (cursor != null && cursor.moveToFirst()) {
-        return RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(ID)));
-      } else {
-        ContentValues values = new ContentValues();
-        values.put(EMAIL, email);
-        long id = db.insert(TABLE_NAME, null, values);
-        if (id < 0) throw new AssertionError("Failed to insert recipient!");
-        return RecipientId.from(id);
+    synchronized (this) {
+      try (Cursor cursor = db.query(TABLE_NAME, ID_PROJECTION, query, args, null, null, null)) {
+        if (cursor != null && cursor.moveToFirst()) {
+          return RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(ID)));
+        } else {
+          ContentValues values = new ContentValues();
+          values.put(EMAIL, email);
+          long id = db.insertOrThrow(TABLE_NAME, null, values);
+          if (id < 0) throw new AssertionError("Failed to insert recipient!");
+          return RecipientId.from(id);
+        }
       }
     }
   }
@@ -232,15 +236,17 @@ public class RecipientDatabase extends Database {
     String         query = GROUP_ID + " = ?";
     String[]       args  = new String[] { groupId };
 
-    try (Cursor cursor = db.query(TABLE_NAME, ID_PROJECTION, query, args, null, null, null)) {
-      if (cursor != null && cursor.moveToFirst()) {
-        return RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(ID)));
-      } else {
-        ContentValues values = new ContentValues();
-        values.put(GROUP_ID, groupId);
-        long id = db.insert(TABLE_NAME, null, values);
-        if (id < 0) throw new AssertionError("Failed to insert recipient!");
-        return RecipientId.from(id);
+    synchronized (this) {
+      try (Cursor cursor = db.query(TABLE_NAME, ID_PROJECTION, query, args, null, null, null)) {
+        if (cursor != null && cursor.moveToFirst()) {
+          return RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(ID)));
+        } else {
+          ContentValues values = new ContentValues();
+          values.put(GROUP_ID, groupId);
+          long id = db.insertOrThrow(TABLE_NAME, null, values);
+          if (id < 0) throw new AssertionError("Failed to insert recipient!");
+          return RecipientId.from(id);
+        }
       }
     }
   }
