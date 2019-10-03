@@ -292,8 +292,8 @@ dependencyVerification {
     ]
 }
 
-def canonicalVersionCode = 540
-def canonicalVersionName = "4.48.11"
+def canonicalVersionCode = 541
+def canonicalVersionName = "4.48.12"
 
 def postFixSize = 10
 def abiPostFix = ['universal'   : 0,
