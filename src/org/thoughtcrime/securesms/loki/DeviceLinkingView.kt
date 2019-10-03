@@ -134,7 +134,8 @@ class DeviceLinkingView private constructor(context: Context, attrs: AttributeSe
 
     fun onDeviceLinkAuthorized(authorisation: LokiPairingAuthorisation) {
         // To be called when a device link was accepted by the primary device
-        if (mode == Mode.Master || authorisation != pairingAuthorisation) { return }
+        if (mode == Mode.Master || pairingAuthorisation != null) { return }
+        pairingAuthorisation = authorisation
 
         spinner.visibility = View.GONE
         val titleTextViewLayoutParams = titleTextView.layoutParams as LayoutParams
@@ -148,6 +149,7 @@ class DeviceLinkingView private constructor(context: Context, attrs: AttributeSe
         titleTextView.text = resources.getString(R.string.view_device_linking_title_4)
         mnemonicTextView.visibility = View.GONE
         buttonContainer.visibility = View.GONE
+        cancelButton.visibility = View.GONE
 
         Handler().postDelayed({
             delegate.handleDeviceLinkAuthorized()

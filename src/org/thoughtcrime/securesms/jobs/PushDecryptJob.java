@@ -994,6 +994,11 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
   private void handleTextMessage(@NonNull SignalServiceDataMessage message, @NonNull IncomingTextMessage textMessage, @NonNull Optional<Long> smsMessageId, @NonNull Optional<Long> messageServerIDOrNull) {
     SmsDatabase database  = DatabaseFactory.getSmsDatabase(context);
+
+    // Ignore the message if the body is empty
+    if (textMessage.getMessageBody().length() == 0) { return; }
+
+    // Insert the message into the database
     Optional<InsertResult> insertResult = database.insertMessageInbox(textMessage);
 
     Long threadId;
@@ -1065,7 +1070,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       return;
     }
 
-    if (LokiDeviceLinkingSession.Companion.getShared().isListeningForLinkingRequest()) {
+    if (!LokiDeviceLinkingSession.Companion.getShared().isListeningForLinkingRequest()) {
       Log.w("Loki", "Received authorisation but device is not is listening.");
       return;
     }
@@ -1074,14 +1079,14 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     if (authorisation.getType() != LokiPairingAuthorisation.Type.GRANT) { return; }
     Log.d("Loki", "Receiving pairing authorisation from: " + authorisation.getPrimaryDevicePubKey());
 
+    // Send out accept event
+    LokiDeviceLinkingSession.Companion.getShared().acceptedLinkingRequest(authorisation);
+
     // Set the current device as secondary and update our authorisations
     String ourNumber = TextSecurePreferences.getLocalNumber(context);
     DatabaseFactory.getLokiAPIDatabase(context).removePairingAuthorisations(ourNumber);
     DatabaseFactory.getLokiAPIDatabase(context).insertOrUpdatePairingAuthorisation(authorisation);
     TextSecurePreferences.setIsSecondaryDevice(context, true);
-
-    // Send out accept event
-    LokiDeviceLinkingSession.Companion.getShared().acceptedLinkingRequest(authorisation);
 
     // Send a background message to the primary device
     sendBackgroundMessage(authorisation.getPrimaryDevicePubKey());

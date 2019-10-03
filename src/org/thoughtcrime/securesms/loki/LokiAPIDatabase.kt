@@ -154,7 +154,7 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
 
     override fun getPairingAuthorisations(pubKey: String): List<LokiPairingAuthorisation> {
         val database = databaseHelper.readableDatabase
-        return database.getAll(multiDeviceAuthTable, "$primaryDevice = ? OR $secondaryDevice = ?", arrayOf(pubKey)) { cursor ->
+        return database.getAll(multiDeviceAuthTable, "$primaryDevice = ? OR $secondaryDevice = ?", arrayOf(pubKey, pubKey)) { cursor ->
             val primaryDevicePubKey = cursor.getString(primaryDevice)
             val secondaryDevicePubKey = cursor.getString(secondaryDevice)
             val requestSignature: ByteArray? = if (cursor.isNull(cursor.getColumnIndexOrThrow(requestSignature))) null else cursor.getBase64EncodedData(requestSignature)
@@ -175,7 +175,7 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
 
     override fun removePairingAuthorisations(pubKey: String) {
         val database = databaseHelper.readableDatabase
-        database.delete(multiDeviceAuthTable, "$primaryDevice = ? OR $secondaryDevice = ?", arrayOf(pubKey))
+        database.delete(multiDeviceAuthTable, "$primaryDevice = ? OR $secondaryDevice = ?", arrayOf(pubKey, pubKey))
     }
 }
 

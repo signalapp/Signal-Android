@@ -12,7 +12,6 @@ import org.whispersystems.signalservice.loki.api.LokiStorageAPI
 import org.whispersystems.signalservice.loki.utilities.retryIfNeeded
 import org.thoughtcrime.securesms.util.Util
 
-
 class DeviceLinkingDialog private constructor(private val context: Context, private val mode: DeviceLinkingView.Mode, private val delegate: DeviceLinkingDialogDelegate? = null): DeviceLinkingViewDelegate, LokiDeviceLinkingSessionListener {
     private lateinit var view: DeviceLinkingView
     private lateinit var dialog: AlertDialog
@@ -56,7 +55,7 @@ class DeviceLinkingDialog private constructor(private val context: Context, priv
     // region Dialog View Delegate
     override fun authorise(pairing: LokiPairingAuthorisation): Boolean {
         val signedAuthorisation = pairing.sign(LokiPairingAuthorisation.Type.GRANT, userPrivateKey)
-        if (signedAuthorisation == null) {
+        if (signedAuthorisation == null || signedAuthorisation.type != LokiPairingAuthorisation.Type.GRANT) {
             Log.e("Loki", "Failed to sign grant authorisation")
             return false
         }
