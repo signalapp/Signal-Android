@@ -62,6 +62,7 @@ import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.crypto.ProfileCipher;
 import org.whispersystems.signalservice.api.util.StreamDetails;
 import org.whispersystems.signalservice.loki.api.LokiGroupChatAPI;
+import org.whispersystems.signalservice.loki.utilities.Analytics;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -115,6 +116,8 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
     initializeProfileAvatar(getIntent().getBooleanExtra(EXCLUDE_SYSTEM, false));
 
     ApplicationContext.getInstance(this).injectDependencies(this);
+
+    Analytics.Companion.getShared().track("Display Name Screen Viewed");
   }
 
   @Override
@@ -370,6 +373,8 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
       protected Boolean doInBackground(Void... params) {
         Context context    = CreateProfileActivity.this;
         byte[]  profileKey = ProfileKeyUtil.getProfileKey(CreateProfileActivity.this);
+
+        Analytics.Companion.getShared().track("Display Name Updated");
 
         TextSecurePreferences.setProfileName(context, name);
 

@@ -47,6 +47,7 @@ class SeedActivity : BaseActionBarActivity() {
         copyButton.setOnClickListener { copy() }
         toggleModeButton.setOnClickListener { toggleMode() }
         registerOrRestoreButton.setOnClickListener { registerOrRestore() }
+        Analytics.shared.track("Seed Screen Viewed")
     }
     // endregion
 
@@ -160,9 +161,13 @@ class SeedActivity : BaseActionBarActivity() {
         when (mode) {
             Mode.Register -> Analytics.shared.track("Seed Created")
             Mode.Restore -> Analytics.shared.track("Seed Restored")
+            // TODO: Mode.Link -> Analytics.shared.track("Device Linking Attempted")
         }
         startActivity(Intent(this, DisplayNameActivity::class.java))
         finish()
     }
+
+    // TODO: Analytics.shared.track("Device Linked Successfully")
+
     // endregion
 }

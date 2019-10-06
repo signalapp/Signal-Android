@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import org.thoughtcrime.securesms.BaseActionBarActivity;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.util.CommunicationActions;
+import org.whispersystems.signalservice.loki.utilities.Analytics;
 
 import network.loki.messenger.R;
 
@@ -19,6 +20,7 @@ public class WelcomeActivity extends BaseActionBarActivity {
     setContentView(R.layout.registration_welcome_activity);
     findViewById(R.id.welcome_terms_button).setOnClickListener(v -> onTermsClicked());
     findViewById(R.id.welcome_continue_button).setOnClickListener(v -> onContinueClicked());
+    Analytics.Companion.getShared().track("Landing Screen Viewed");
   }
 
   @Override

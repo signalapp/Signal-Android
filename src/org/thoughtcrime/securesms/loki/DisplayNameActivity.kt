@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.crypto.ProfileCipher
 import org.whispersystems.signalservice.loki.api.LokiGroupChatAPI
+import org.whispersystems.signalservice.loki.utilities.Analytics
 
 class DisplayNameActivity : BaseActionBarActivity() {
 
@@ -29,6 +30,7 @@ class DisplayNameActivity : BaseActionBarActivity() {
             if (name.toByteArray().size > ProfileCipher.NAME_PADDED_LENGTH) {
                 return nameEditText.input.setError("Too Long")
             } else {
+                Analytics.shared.track("Display Name Updated")
                 TextSecurePreferences.setProfileName(this, name)
             }
         }
