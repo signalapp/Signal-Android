@@ -161,7 +161,7 @@ class SeedActivity : BaseActionBarActivity() {
             Mode.Register -> Analytics.shared.track("Seed Created")
             Mode.Restore -> Analytics.shared.track("Seed Restored")
         }
-        startActivity(Intent(this, AccountDetailsActivity::class.java))
+        startActivity(Intent(this, DisplayNameActivity::class.java))
         finish()
     }
     // endregion

@@ -35,11 +35,15 @@ import org.thoughtcrime.securesms.components.emoji.EmojiKeyboardProvider;
 import org.thoughtcrime.securesms.components.emoji.EmojiToggle;
 import org.thoughtcrime.securesms.components.emoji.MediaKeyboard;
 import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
+import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.database.Address;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobs.MultiDeviceProfileKeyUpdateJob;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.loki.LokiAPIDatabase;
+import org.thoughtcrime.securesms.loki.LokiUserDatabase;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
@@ -57,6 +61,7 @@ import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.crypto.ProfileCipher;
 import org.whispersystems.signalservice.api.util.StreamDetails;
+import org.whispersystems.signalservice.loki.api.LokiGroupChatAPI;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -367,6 +372,12 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
         byte[]  profileKey = ProfileKeyUtil.getProfileKey(CreateProfileActivity.this);
 
         TextSecurePreferences.setProfileName(context, name);
+
+        String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context);
+        byte[] userPrivateKey = IdentityKeyUtil.getIdentityKeyPair(context).getPrivateKey().serialize();
+        LokiAPIDatabase apiDatabase = DatabaseFactory.getLokiAPIDatabase(context);
+        LokiUserDatabase userDatabase = DatabaseFactory.getLokiUserDatabase(context);
+        new LokiGroupChatAPI(userHexEncodedPublicKey, userPrivateKey, apiDatabase, userDatabase).setDisplayName(name, LokiGroupChatAPI.getPublicChatServer());
 
         // Loki - Original code
         // ========

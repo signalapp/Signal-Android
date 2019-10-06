@@ -8,10 +8,13 @@ import network.loki.messenger.R
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.BaseActionBarActivity
 import org.thoughtcrime.securesms.ConversationListActivity
+import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
+import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.crypto.ProfileCipher
+import org.whispersystems.signalservice.loki.api.LokiGroupChatAPI
 
-class AccountDetailsActivity : BaseActionBarActivity() {
+class DisplayNameActivity : BaseActionBarActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,5 +41,12 @@ class AccountDetailsActivity : BaseActionBarActivity() {
         application.startLongPollingIfNeeded()
         startActivity(Intent(this, ConversationListActivity::class.java))
         finish()
+        val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this)
+        val userPrivateKey = IdentityKeyUtil.getIdentityKeyPair(this).privateKey.serialize()
+        val apiDatabase = DatabaseFactory.getLokiAPIDatabase(this)
+        val userDatabase = DatabaseFactory.getLokiUserDatabase(this)
+        if (name != null) {
+            LokiGroupChatAPI(userHexEncodedPublicKey, userPrivateKey, apiDatabase, userDatabase).setDisplayName(name, LokiGroupChatAPI.publicChatServer)
+        }
     }
 }

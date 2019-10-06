@@ -34,9 +34,9 @@ class LokiGroupChatPoller(private val context: Context, private val group: LokiG
 
     private val api: LokiGroupChatAPI
         get() = {
+            val userPrivateKey = IdentityKeyUtil.getIdentityKeyPair(context).privateKey.serialize()
             val lokiAPIDatabase = DatabaseFactory.getLokiAPIDatabase(context)
             val lokiUserDatabase = DatabaseFactory.getLokiUserDatabase(context)
-            val userPrivateKey = IdentityKeyUtil.getIdentityKeyPair(context).privateKey.serialize()
             LokiGroupChatAPI(userHexEncodedPublicKey, userPrivateKey, lokiAPIDatabase, lokiUserDatabase)
         }()
     // endregion
