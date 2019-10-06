@@ -53,9 +53,9 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
 
   // Loki - Multi-device
 
-  private Address destination = null; // Destination to check whether this is another device we're sending to
-  private boolean isFriendRequest = false; // Whether this is a friend request message
-  private String customFriendRequestMessage = null; // If this isn't set then we use the message body
+  private Address destination; // Destination to check whether this is another device we're sending to
+  private boolean isFriendRequest; // Whether this is a friend request message
+  private String customFriendRequestMessage; // If this isn't set then we use the message body
 
   public PushTextSendJob(long messageId, Address destination) { this(messageId, messageId, destination); }
   public PushTextSendJob(long templateMessageId, long messageId, Address destination) { this(templateMessageId, messageId, destination, false, null); }
@@ -117,7 +117,7 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
       byte[]                 profileKey = recipient.getProfileKey();
       UnidentifiedAccessMode accessMode = recipient.getUnidentifiedAccessMode();
 
-      boolean unidentified = deliver(messageId, recipient, record);
+      boolean unidentified = deliver(record);
 
       if (messageId >= 0) {
         database.markAsSent(messageId, true);
@@ -185,11 +185,12 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
     }
   }
 
-  private boolean deliver(long messageId, Recipient recipient, SmsMessageRecord message)
+  private boolean deliver(SmsMessageRecord message)
       throws UntrustedIdentityException, InsecureFallbackApprovalException, RetryLaterException
   {
     try {
       // rotateSenderCertificateIfNecessary();
+      Recipient              recipient = Recipient.from(context, destination, false);
       SignalServiceAddress             address            = getPushAddress(recipient.getAddress());
       Optional<byte[]>                 profileKey         = getProfileKey(recipient);
       Optional<UnidentifiedAccessPair> unidentifiedAccess = UnidentifiedAccessUtil.getAccessFor(context, recipient);

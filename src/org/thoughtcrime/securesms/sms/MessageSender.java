@@ -239,8 +239,34 @@ public class MessageSender {
   }
 
   private static void sendMediaPush(Context context, Recipient recipient, long messageId) {
+    LokiStorageAPI storageAPI = LokiStorageAPI.Companion.getShared();
     JobManager jobManager = ApplicationContext.getInstance(context).getJobManager();
-    PushMediaSendJob.enqueue(context, jobManager, messageId, recipient.getAddress());
+
+    // Just send the message normally if the storage api is not set or if it's a group message
+    String recipientPubKey = recipient.getAddress().serialize();
+    if (storageAPI == null || UtilKt.isGroupChat(recipientPubKey)) {
+      if (storageAPI == null) { Log.w("Loki", "LokiStorageAPI is not initialized!"); }
+      PushMediaSendJob.enqueue(context, jobManager, messageId, recipient.getAddress());
+    }
+
+    MultiDeviceUtilKt.getAllDevices(context, recipientPubKey, storageAPI, (devicePubKey, isFriend, friendCount) -> {
+      Address deviceAddress = Address.fromSerialized(devicePubKey);
+      long messageIdToUse = recipientPubKey.equals(devicePubKey) ? messageId : -1L;
+
+      // Send a normal message to our friends
+      if (isFriend) {
+        PushMediaSendJob.enqueue(context, jobManager, messageId, messageIdToUse, deviceAddress);
+      } else {
+        // Send friend requests to non friends
+        // If we're friends with one of the devices then send out a default friend request message
+        boolean isFriendsWithAny = friendCount > 0;
+        String defaultFriendRequestMessage = isFriendsWithAny ? "This is a friend request for devices linked to " + recipientPubKey : null;
+        PushMediaSendJob.enqueue(context, jobManager, messageId, messageIdToUse, deviceAddress, true, defaultFriendRequestMessage);
+      }
+
+      return Unit.INSTANCE;
+    });
+
   }
 
   private static void sendGroupPush(Context context, Recipient recipient, long messageId, Address filterAddress) {
