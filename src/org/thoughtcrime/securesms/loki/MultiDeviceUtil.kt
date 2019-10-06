@@ -5,9 +5,12 @@ import android.os.Handler
 import android.os.Looper
 import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.deferred
+import nl.komponents.kovenant.functional.map
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
+import org.thoughtcrime.securesms.jobs.BaseJob
+import org.thoughtcrime.securesms.jobs.PushTextSendJob
 import org.thoughtcrime.securesms.logging.Log
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.TextSecurePreferences
@@ -22,21 +25,22 @@ import org.whispersystems.signalservice.loki.api.LokiPairingAuthorisation
 import org.whispersystems.signalservice.loki.api.LokiStorageAPI
 import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus
 
-fun isGroupChat(pubKey: String): Boolean {
-  return (LokiGroupChatAPI.publicChatServer == pubKey)
-}
+fun getAllDevices(context: Context, pubKey: String, storageAPI: LokiStorageAPI, block: (devicePubKey: String, isFriend: Boolean, friendCount: Int) -> Unit) {
+  val ourPubKey = TextSecurePreferences.getLocalNumber(context)
 
-fun getFriends(context: Context, devices: Set<String>): Set<String> {
-  val lokiThreadDatabase = DatabaseFactory.getLokiThreadDatabase(context)
+  // Get all the devices and run our logic on them
+  storageAPI.getAllDevices(pubKey).success { items ->
+    val devices = items.toMutableSet()
+    // Remove our self if we intended this message to go to another recipient
+    if (pubKey != ourPubKey) {
+      devices.remove(ourPubKey)
+    }
 
-  return devices.mapNotNull { device ->
-    val address = Address.fromSerialized(device)
-    val recipient = Recipient.from(context, address, false)
-    val threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(recipient)
-    if (threadID < 0) { return@mapNotNull null }
-
-    if (lokiThreadDatabase.getFriendRequestStatus(threadID) == LokiThreadFriendRequestStatus.FRIENDS) device else null
-  }.toSet()
+    val friends = getFriends(context, devices)
+    for (device in devices) {
+      block(device, friends.contains(device), friends.count())
+    }
+  }
 }
 
 fun shouldAutomaticallyBecomeFriendsWithDevice(pubKey: String, context: Context): Promise<Boolean, Unit> {

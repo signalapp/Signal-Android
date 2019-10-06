@@ -42,7 +42,8 @@ import org.thoughtcrime.securesms.jobs.SmsSendJob;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.loki.UtilitiesKt;
+import org.thoughtcrime.securesms.loki.MultiDeviceUtilKt;
+import org.thoughtcrime.securesms.loki.UtilKt;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.push.AccountManagerFactory;
@@ -57,9 +58,6 @@ import org.whispersystems.signalservice.loki.api.LokiStorageAPI;
 import org.whispersystems.signalservice.loki.messaging.LokiMessageFriendRequestStatus;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 
 import kotlin.Unit;
 
@@ -213,40 +211,27 @@ public class MessageSender {
     LokiStorageAPI storageAPI = LokiStorageAPI.Companion.getShared();
     JobManager jobManager = ApplicationContext.getInstance(context).getJobManager();
 
-    // Just send the message normally if the job manager failed or if it's a group message
+    // Just send the message normally if the storage api is not set or if it's a group message
     String recipientPubKey = recipient.getAddress().serialize();
-    if (storageAPI == null || UtilitiesKt.isGroupChat(recipientPubKey)) {
+    if (storageAPI == null || UtilKt.isGroupChat(recipientPubKey)) {
+      if (storageAPI == null) { Log.w("Loki", "LokiStorageAPI is not initialized!"); }
       jobManager.add(new PushTextSendJob(messageId, recipient.getAddress()));
       return;
     }
 
-    String ourPubKey = TextSecurePreferences.getLocalNumber(context);
-
-    // Get all the devices and run our logic on them
-    storageAPI.getAllDevices(recipientPubKey).success(devices -> {
-      // Remove our self if we intended this message to go to another recipient
-      if (!recipientPubKey.equals(ourPubKey)) { devices.remove(ourPubKey); }
-
-      Set<String> friends = UtilitiesKt.getFriends(context, devices);
-      Set<String> nonFriends = new HashSet<>(devices);
-      nonFriends.removeAll(friends);
+    MultiDeviceUtilKt.getAllDevices(context, recipientPubKey, storageAPI, (devicePubKey, isFriend, friendCount) -> {
+      Address deviceAddress = Address.fromSerialized(devicePubKey);
+      long messageIdToUse = recipientPubKey.equals(devicePubKey) ? messageId : -1L;
 
       // Send a normal message to our friends
-      for (String friend : friends) {
-        // If this message had the same recipient then point it to the correct message id otherwise point it to a non-existing message
-        long messageIdToUse = recipientPubKey.equals(friend) ? messageId : -1L;
-        jobManager.add(new PushTextSendJob(messageId, messageIdToUse, Address.fromSerialized(friend)));
-      }
-
-      // Send friend requests to non friends
-      for (String stranger : nonFriends) {
-        // If this message had the same recipient then point it to the correct message id otherwise point it to a non-existing message
-        long messageIdToUse = recipientPubKey.equals(stranger) ? messageId : -1L;
-
+      if (isFriend) {
+        jobManager.add(new PushTextSendJob(messageId, messageIdToUse, deviceAddress));
+      } else {
+        // Send friend requests to non friends
         // If we're friends with one of the devices then send out a default friend request message
-        boolean isFriendsWithAny = friends.size() > 0;
+        boolean isFriendsWithAny = friendCount > 0;
         String defaultFriendRequestMessage = isFriendsWithAny ? "This is a friend request for devices linked to " + recipientPubKey : null;
-        jobManager.add(new PushTextSendJob(messageId, messageIdToUse, Address.fromSerialized(stranger), true, defaultFriendRequestMessage));
+        jobManager.add(new PushTextSendJob(messageId, messageIdToUse, deviceAddress, true, defaultFriendRequestMessage));
       }
 
       return Unit.INSTANCE;

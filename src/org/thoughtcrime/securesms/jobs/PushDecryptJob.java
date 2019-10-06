@@ -59,7 +59,7 @@ import org.thoughtcrime.securesms.loki.LokiMessageDatabase;
 import org.thoughtcrime.securesms.loki.LokiPreKeyBundleDatabase;
 import org.thoughtcrime.securesms.loki.LokiPreKeyRecordDatabase;
 import org.thoughtcrime.securesms.loki.LokiThreadDatabase;
-import org.thoughtcrime.securesms.loki.UtilitiesKt;
+import org.thoughtcrime.securesms.loki.MultiDeviceUtilKt;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingExpirationUpdateMessage;
@@ -130,7 +130,6 @@ import javax.inject.Inject;
 
 import kotlin.Unit;
 import network.loki.messenger.R;
-import nl.komponents.kovenant.Promise;
 
 public class PushDecryptJob extends BaseJob implements InjectableType {
 
@@ -1147,7 +1146,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     if (!envelope.isFriendRequest()) { return; }
 
     // This handles the case where another user sends us a regular message without the authorisation
-    UtilitiesKt.shouldAutomaticallyBecomeFriendsWithDevice(content.getSender(), context).success(becomeFriends -> {
+    MultiDeviceUtilKt.shouldAutomaticallyBecomeFriendsWithDevice(content.getSender(), context).success(becomeFriends -> {
       if (becomeFriends) {
         // Become friends AND update the message they sent
         becomeFriendsWithContact(content.getSender());
