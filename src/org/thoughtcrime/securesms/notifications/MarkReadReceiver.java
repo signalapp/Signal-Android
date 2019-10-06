@@ -21,12 +21,16 @@ import org.thoughtcrime.securesms.jobs.MultiDeviceReadUpdateJob;
 import org.thoughtcrime.securesms.jobs.SendReadReceiptJob;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.LokiThreadDatabase;
+import org.thoughtcrime.securesms.loki.MultiDeviceUtilKt;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
+import org.whispersystems.signalservice.loki.api.LokiStorageAPI;
 import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+
+import kotlin.Unit;
 
 public class MarkReadReceiver extends BroadcastReceiver {
 
@@ -86,17 +90,24 @@ public class MarkReadReceiver extends BroadcastReceiver {
                                                          .collect(Collectors.groupingBy(SyncMessageId::getAddress));
 
     for (Address address : addressMap.keySet()) {
-      // Loki - This also prevents read receipts from being sent in group chats as they don't maintain a friend request status
-      LokiThreadDatabase lokiThreadDatabase = DatabaseFactory.getLokiThreadDatabase(context);
-      long threadID = lokiThreadDatabase.getThreadID(address.serialize());
-      LokiThreadFriendRequestStatus friendRequestStatus = lokiThreadDatabase.getFriendRequestStatus(threadID);
-      if (friendRequestStatus != LokiThreadFriendRequestStatus.FRIENDS) { return; }
+      LokiStorageAPI storageAPI = LokiStorageAPI.Companion.getShared();
+      if (storageAPI == null) {
+        Log.w("Loki", "LokiStorageAPI is not initialized!");
+        return;
+      }
 
       List<Long> timestamps = Stream.of(addressMap.get(address)).map(SyncMessageId::getTimetamp).toList();
 
-      ApplicationContext.getInstance(context)
-                        .getJobManager()
-                        .add(new SendReadReceiptJob(address, timestamps));
+      MultiDeviceUtilKt.getAllDevices(context, address.serialize(), storageAPI, (devicePubKey, isFriend, friendCount) -> {
+        // Loki - This also prevents read receipts from being sent in group chats as they don't maintain a friend request status
+        if (isFriend) {
+          Address deviceAddress = Address.fromSerialized(devicePubKey);
+          ApplicationContext.getInstance(context)
+                  .getJobManager()
+                  .add(new SendReadReceiptJob(deviceAddress, timestamps));
+        }
+        return Unit.INSTANCE;
+      });
     }
   }
 
