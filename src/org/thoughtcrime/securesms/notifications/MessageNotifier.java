@@ -444,8 +444,8 @@ public class MessageNotifier {
     while ((record = reader.getNext()) != null) {
       long         id                    = record.getId();
       boolean      mms                   = record.isMms() || record.isMmsNotification();
-      Recipient    recipient             = record.getIndividualRecipient();
-      Recipient    conversationRecipient = record.getRecipient();
+      Recipient    recipient             = record.getIndividualRecipient().resolve();
+      Recipient    conversationRecipient = record.getRecipient().resolve();
       long         threadId              = record.getThreadId();
       CharSequence body                  = record.getDisplayBody(context);
       Recipient    threadRecipients      = null;

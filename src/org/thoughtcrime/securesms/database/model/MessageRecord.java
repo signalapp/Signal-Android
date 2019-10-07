@@ -188,7 +188,7 @@ public abstract class MessageRecord extends DisplayRecord {
   }
 
   public Recipient getIndividualRecipient() {
-    return individualRecipient;
+    return individualRecipient.live().get();
   }
 
   public int getRecipientDeviceId() {

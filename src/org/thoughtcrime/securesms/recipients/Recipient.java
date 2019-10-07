@@ -227,10 +227,10 @@ public class Recipient {
   }
 
   public @NonNull MaterialColor getColor() {
-    if      (isGroup()) return MaterialColor.GROUP;
-    else if (color != null)      return color;
-    else if (name != null)       return ContactColors.generateFor(name);
-    else                         return ContactColors.UNKNOWN_COLOR;
+    if      (isGroup())     return MaterialColor.GROUP;
+    else if (color != null) return color;
+    else if (name != null)  return ContactColors.generateFor(name);
+    else                    return ContactColors.UNKNOWN_COLOR;
   }
 
   public @NonNull Address requireAddress() {
@@ -262,15 +262,16 @@ public class Recipient {
   }
 
   public boolean isGroup() {
-    return address != null && address.isGroup();
+    return requireAddress().isGroup();
   }
 
   public boolean isMmsGroup() {
-    return address != null && address.isMmsGroup();
+    return requireAddress().isMmsGroup();
   }
 
   public boolean isPushGroup() {
-    return address != null && address.isGroup() && !address.isMmsGroup();
+    Address address = requireAddress();
+    return address.isGroup() && !address.isMmsGroup();
   }
 
   public @NonNull List<Recipient> getParticipants() {
@@ -278,9 +279,7 @@ public class Recipient {
   }
 
   public @NonNull String toShortString() {
-    return getName() == null ? address == null ? ""
-                                               : address.serialize()
-                             : getName();
+    return Optional.fromNullable(getName()).or(Optional.of(requireAddress().serialize())).get();
   }
 
   public @NonNull Drawable getFallbackContactPhotoDrawable(Context context, boolean inverted) {
