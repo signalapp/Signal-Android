@@ -282,14 +282,17 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       if (content.lokiServiceMessage.isPresent()) {
         LokiServiceMessage lokiMessage = content.lokiServiceMessage.get();
         if (lokiMessage.getPreKeyBundleMessage() != null) {
-          Log.d("Loki", "Received a pre key bundle from: " + envelope.getSource() + ".");
           int registrationID = TextSecurePreferences.getLocalRegistrationId(context);
-          if (registrationID > 0) {
-            LokiPreKeyBundleDatabase lokiPreKeyBundleDatabase = DatabaseFactory.getLokiPreKeyBundleDatabase(context);
+          LokiPreKeyBundleDatabase lokiPreKeyBundleDatabase = DatabaseFactory.getLokiPreKeyBundleDatabase(context);
+
+          // Only store the pre key bundle if we don't have one in our database
+          if (registrationID > 0 && !lokiPreKeyBundleDatabase.hasPreKeyBundle(envelope.getSource())) {
+            Log.d("Loki", "Received a pre key bundle from: " + envelope.getSource() + ".");
             PreKeyBundle preKeyBundle = lokiMessage.getPreKeyBundleMessage().getPreKeyBundle(registrationID);
             lokiPreKeyBundleDatabase.setPreKeyBundle(envelope.getSource(), preKeyBundle);
           }
         }
+
         if (lokiMessage.getAddressMessage() != null) {
           // TODO: Loki - Handle address message
         }
@@ -1064,9 +1067,6 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     DeviceLinkingSession linkingSession = DeviceLinkingSession.Companion.getShared();
     if (isValid && linkingSession.isListeningForLinkingRequests()) {
       linkingSession.processLinkingRequest(authorisation);
-    } else {
-      // Remove pre key bundle from the user
-      DatabaseFactory.getLokiPreKeyBundleDatabase(context).removePreKeyBundle(envelope.getSource());
     }
   }
 
