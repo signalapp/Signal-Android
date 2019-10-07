@@ -464,7 +464,7 @@
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <!-- Loki -->
-    <activity android:name="org.thoughtcrime.securesms.loki.AccountDetailsActivity"
+    <activity android:name="org.thoughtcrime.securesms.loki.DisplayNameActivity"
               android:launchMode="singleTask"
               android:theme="@style/TextSecure.DarkRegistrationTheme"
               android:windowSoftInputMode="stateUnchanged"

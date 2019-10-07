@@ -59,6 +59,7 @@ class SeedActivity : BaseActionBarActivity() {
         toggleRegisterModeButton.setOnClickListener { mode = Mode.Register }
         toggleLinkModeButton.setOnClickListener { mode = Mode.Link }
         registerOrRestoreButton.setOnClickListener { registerOrRestore() }
+        Analytics.shared.track("Seed Screen Viewed")
     }
 
     override fun onDestroy() {
@@ -245,7 +246,7 @@ class SeedActivity : BaseActionBarActivity() {
     }
 
     private fun showAccountDetailsView() {
-        startActivity(Intent(this, AccountDetailsActivity::class.java))
+        startActivity(Intent(this, DisplayNameActivity::class.java))
         finish()
     }
 

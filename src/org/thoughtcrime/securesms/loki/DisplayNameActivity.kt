@@ -8,15 +8,20 @@ import network.loki.messenger.R
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.BaseActionBarActivity
 import org.thoughtcrime.securesms.ConversationListActivity
+import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
+import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.crypto.ProfileCipher
+import org.whispersystems.signalservice.loki.api.LokiGroupChatAPI
+import org.whispersystems.signalservice.loki.utilities.Analytics
 
-class AccountDetailsActivity : BaseActionBarActivity() {
+class DisplayNameActivity : BaseActionBarActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_account_details)
         nextButton.setOnClickListener { continueIfPossible() }
+        Analytics.shared.track("Display Name Screen Viewed")
     }
 
     private fun continueIfPossible() {
@@ -26,6 +31,7 @@ class AccountDetailsActivity : BaseActionBarActivity() {
             if (name.toByteArray().size > ProfileCipher.NAME_PADDED_LENGTH) {
                 return nameEditText.input.setError("Too Long")
             } else {
+                Analytics.shared.track("Display Name Updated")
                 TextSecurePreferences.setProfileName(this, name)
             }
         }
@@ -39,5 +45,12 @@ class AccountDetailsActivity : BaseActionBarActivity() {
         application.setUpStorageAPIIfNeeded()
         startActivity(Intent(this, ConversationListActivity::class.java))
         finish()
+        val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this)
+        val userPrivateKey = IdentityKeyUtil.getIdentityKeyPair(this).privateKey.serialize()
+        val apiDatabase = DatabaseFactory.getLokiAPIDatabase(this)
+        val userDatabase = DatabaseFactory.getLokiUserDatabase(this)
+        if (name != null) {
+            LokiGroupChatAPI(userHexEncodedPublicKey, userPrivateKey, apiDatabase, userDatabase).setDisplayName(name, LokiGroupChatAPI.publicChatServer)
+        }
     }
 }

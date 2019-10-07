@@ -15,7 +15,6 @@ import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.BlockedContactsActivity;
 import org.thoughtcrime.securesms.PassphraseChangeActivity;
-import network.loki.messenger.R;
 import org.thoughtcrime.securesms.components.SwitchPreferenceCompat;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
@@ -26,12 +25,14 @@ import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
+import org.whispersystems.signalservice.loki.utilities.Analytics;
 
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
 import mobi.upod.timedurationpicker.TimeDurationPickerDialog;
+import network.loki.messenger.R;
 
 public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment implements InjectableType {
 
@@ -71,6 +72,8 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
     disablePassphrase.setOnPreferenceChangeListener(new DisablePassphraseClickListener());
 
     initializeVisibility();
+
+    Analytics.Companion.getShared().track("Privacy Settings Opened");
   }
 
   @Override
@@ -128,6 +131,13 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
       boolean enabled = (Boolean)newValue;
+
+      if (enabled) {
+        Analytics.Companion.getShared().track("Screen Lock Enabled");
+      } else {
+        Analytics.Companion.getShared().track("Screen Lock Disabled");
+      }
+
       TextSecurePreferences.setScreenLockEnabled(getContext(), enabled);
 
       Intent intent = new Intent(getContext(), KeyCachingService.class);
@@ -197,6 +207,13 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
       boolean enabled = (boolean)newValue;
+
+      if (enabled) {
+        Analytics.Companion.getShared().track("Typing Indicators Enabled");
+      } else {
+        Analytics.Companion.getShared().track("Typing Indicators Disabled");
+      }
+
       ApplicationContext.getInstance(getContext())
                         .getJobManager()
                         .add(new MultiDeviceConfigurationUpdateJob(TextSecurePreferences.isReadReceiptsEnabled(requireContext()),
@@ -216,6 +233,13 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
       boolean enabled = (boolean)newValue;
+
+      if (enabled) {
+        Analytics.Companion.getShared().track("Link Previews Enabled");
+      } else {
+        Analytics.Companion.getShared().track("Link Previews Disabled");
+      }
+
       ApplicationContext.getInstance(requireContext())
                         .getJobManager()
                         .add(new MultiDeviceConfigurationUpdateJob(TextSecurePreferences.isReadReceiptsEnabled(requireContext()),
