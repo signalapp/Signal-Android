@@ -1,35 +1,27 @@
 package org.thoughtcrime.securesms.loki
 
 import android.content.Context
-import android.os.Handler
-import android.os.Looper
 import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.deferred
-import nl.komponents.kovenant.functional.map
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.thoughtcrime.securesms.jobs.BaseJob
-import org.thoughtcrime.securesms.jobs.PushTextSendJob
 import org.thoughtcrime.securesms.logging.Log
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.libsignal.util.guava.Optional
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair
-import org.whispersystems.signalservice.api.messages.SignalServiceContent
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage
-import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
-import org.whispersystems.signalservice.loki.api.LokiGroupChatAPI
-import org.whispersystems.signalservice.loki.api.LokiPairingAuthorisation
 import org.whispersystems.signalservice.loki.api.LokiStorageAPI
+import org.whispersystems.signalservice.loki.api.PairingAuthorisation
 import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus
 
 fun getAllDevices(context: Context, pubKey: String, storageAPI: LokiStorageAPI, block: (devicePubKey: String, isFriend: Boolean, friendCount: Int) -> Unit) {
   val ourPubKey = TextSecurePreferences.getLocalNumber(context)
 
   // Get all the devices and run our logic on them
-  storageAPI.getAllDevices(pubKey).success { items ->
+  storageAPI.getAllDevicePublicKeys(pubKey).success { items ->
     val devices = items.toMutableSet()
     // Remove our self if we intended this message to go to another recipient
     if (pubKey != ourPubKey) {
@@ -51,7 +43,7 @@ fun shouldAutomaticallyBecomeFriendsWithDevice(pubKey: String, context: Context)
   // If so then we add them automatically as a friend
 
   val deferred = deferred<Boolean, Unit>()
-  storageAPI.getPrimaryDevice(pubKey).success { primaryDevicePubKey ->
+  storageAPI.getPrimaryDevicePublicKey(pubKey).success { primaryDevicePubKey ->
     // Make sure we have a primary device
     if (primaryDevicePubKey == null) {
       deferred.resolve(false)
@@ -63,7 +55,7 @@ fun shouldAutomaticallyBecomeFriendsWithDevice(pubKey: String, context: Context)
     if (primaryDevicePubKey == ourPubKey) {
       // If the friend request is from our secondary device then we need to confirm and check that we have it registered.
       // If we do then add it
-      storageAPI.getSecondaryDevices(ourPubKey).success { secondaryDevices ->
+      storageAPI.getSecondaryDevicePublicKeys(ourPubKey).success { secondaryDevices ->
         // We should become friends if the pubKey is in our secondary device list
         deferred.resolve(secondaryDevices.contains(pubKey))
       }.fail {
@@ -88,13 +80,13 @@ fun shouldAutomaticallyBecomeFriendsWithDevice(pubKey: String, context: Context)
   return deferred.promise
 }
 
-fun sendAuthorisationMessage(context: Context, contactHexEncodedPublicKey: String, authorisation: LokiPairingAuthorisation): Promise<Unit, Exception> {
+fun sendAuthorisationMessage(context: Context, contactHexEncodedPublicKey: String, authorisation: PairingAuthorisation): Promise<Unit, Exception> {
   val messageSender = ApplicationContext.getInstance(context).communicationModule.provideSignalMessageSender()
   val address = SignalServiceAddress(contactHexEncodedPublicKey)
   val message = SignalServiceDataMessage.newBuilder().withBody("").withPairingAuthorisation(authorisation)
 
   // A REQUEST should always act as a friend request. A GRANT should always be replying back as a normal message.
-  if (authorisation.type == LokiPairingAuthorisation.Type.REQUEST) {
+  if (authorisation.type == PairingAuthorisation.Type.REQUEST) {
     val preKeyBundle = DatabaseFactory.getLokiPreKeyBundleDatabase(context).generatePreKeyBundle(address.number)
     message.asFriendRequest(true).withPreKeyBundle(preKeyBundle)
   }

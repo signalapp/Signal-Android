@@ -4,22 +4,14 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.PorterDuff
 import android.os.Handler
-import android.os.Looper
 import android.util.AttributeSet
 import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.view_device_linking.view.*
 import network.loki.messenger.R
-import org.thoughtcrime.securesms.ApplicationContext
-import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.whispersystems.libsignal.util.guava.Optional
-import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair
-import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage
-import org.whispersystems.signalservice.api.push.SignalServiceAddress
-import org.whispersystems.signalservice.loki.api.LokiDeviceLinkingSession
-import org.whispersystems.signalservice.loki.api.LokiPairingAuthorisation
+import org.whispersystems.signalservice.loki.api.PairingAuthorisation
 import org.whispersystems.signalservice.loki.crypto.MnemonicCodec
 import org.whispersystems.signalservice.loki.utilities.removing05PrefixIfNeeded
 import java.io.File
@@ -28,7 +20,7 @@ import java.io.FileOutputStream
 class DeviceLinkingView private constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int, private val mode: Mode, private var delegate: DeviceLinkingViewDelegate) : LinearLayout(context, attrs, defStyleAttr) {
     private lateinit var languageFileDirectory: File
     var dismiss: (() -> Unit)? = null
-    var pairingAuthorisation: LokiPairingAuthorisation? = null
+    var pairingAuthorisation: PairingAuthorisation? = null
         private set
 
     // region Types
@@ -91,14 +83,14 @@ class DeviceLinkingView private constructor(context: Context, attrs: AttributeSe
     // endregion
 
     // region Device Linking
-    fun requestUserAuthorization(authorisation: LokiPairingAuthorisation) {
+    fun requestUserAuthorization(authorisation: PairingAuthorisation) {
         // To be called when a linking request has been received
         if (mode != Mode.Master) {
             Log.w("Loki", "Received request for pairing authorisation on a slave device")
             return
         }
 
-        if (authorisation.type != LokiPairingAuthorisation.Type.REQUEST) {
+        if (authorisation.type != PairingAuthorisation.Type.REQUEST) {
             Log.w("Loki", "Received request for GRANT pairing authorisation! It shouldn't be possible!!")
             return
         }
@@ -132,7 +124,7 @@ class DeviceLinkingView private constructor(context: Context, attrs: AttributeSe
         }
     }
 
-    fun onDeviceLinkAuthorized(authorisation: LokiPairingAuthorisation) {
+    fun onDeviceLinkAuthorized(authorisation: PairingAuthorisation) {
         // To be called when a device link was accepted by the primary device
         if (mode == Mode.Master || pairingAuthorisation != null) { return }
         pairingAuthorisation = authorisation

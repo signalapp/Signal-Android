@@ -39,9 +39,21 @@ import org.thoughtcrime.securesms.crypto.SecurityEvent;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.crypto.storage.SignalProtocolStoreImpl;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
-import org.thoughtcrime.securesms.database.*;
+import org.thoughtcrime.securesms.database.Address;
+import org.thoughtcrime.securesms.database.AttachmentDatabase;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.database.GroupReceiptDatabase;
+import org.thoughtcrime.securesms.database.MessagingDatabase;
 import org.thoughtcrime.securesms.database.MessagingDatabase.InsertResult;
 import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
+import org.thoughtcrime.securesms.database.MmsDatabase;
+import org.thoughtcrime.securesms.database.NoSuchMessageException;
+import org.thoughtcrime.securesms.database.PushDatabase;
+import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.database.SmsDatabase;
+import org.thoughtcrime.securesms.database.StickerDatabase;
+import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.StickerRecord;
@@ -110,9 +122,9 @@ import org.whispersystems.signalservice.api.messages.multidevice.StickerPackOper
 import org.whispersystems.signalservice.api.messages.multidevice.VerifiedMessage;
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
-import org.whispersystems.signalservice.loki.api.LokiDeviceLinkingSession;
-import org.whispersystems.signalservice.loki.api.LokiPairingAuthorisation;
+import org.whispersystems.signalservice.loki.api.DeviceLinkingSession;
 import org.whispersystems.signalservice.loki.api.LokiStorageAPI;
+import org.whispersystems.signalservice.loki.api.PairingAuthorisation;
 import org.whispersystems.signalservice.loki.crypto.LokiServiceCipher;
 import org.whispersystems.signalservice.loki.messaging.LokiMessageFriendRequestStatus;
 import org.whispersystems.signalservice.loki.messaging.LokiServiceMessage;
@@ -267,8 +279,8 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       acceptFriendRequestIfNeeded(envelope, content);
 
       // Loki - Store pre key bundle if needed
-      if (content.lokiMessage.isPresent()) {
-        LokiServiceMessage lokiMessage = content.lokiMessage.get();
+      if (content.lokiServiceMessage.isPresent()) {
+        LokiServiceMessage lokiMessage = content.lokiServiceMessage.get();
         if (lokiMessage.getPreKeyBundleMessage() != null) {
           Log.d("Loki", "Received a pre key bundle from: " + envelope.getSource() + ".");
           int registrationID = TextSecurePreferences.getLocalRegistrationId(context);
@@ -1015,10 +1027,10 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     }
   }
 
-  private boolean isAuthorisationValid(@NonNull LokiPairingAuthorisation authorisation) {
+  private boolean isAuthorisationValid(@NonNull PairingAuthorisation authorisation) {
     boolean isSecondaryDevice = TextSecurePreferences.isSecondaryDevice(context);
     String ourPubKey = TextSecurePreferences.getLocalNumber(context);
-    boolean isRequest = authorisation.getType() == LokiPairingAuthorisation.Type.REQUEST;
+    boolean isRequest = authorisation.getType() == PairingAuthorisation.Type.REQUEST;
 
     if (authorisation.getRequestSignature() == null) {
       Log.w("Loki", "Received a pairing request with missing request signature. Ignored.");
@@ -1037,9 +1049,9 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     return authorisation.verify();
   }
 
-  private void handlePairingAuthorisation(@NonNull LokiPairingAuthorisation authorisation, @NonNull SignalServiceEnvelope envelope, @NonNull SignalServiceContent content) {
+  private void handlePairingAuthorisation(@NonNull PairingAuthorisation authorisation, @NonNull SignalServiceEnvelope envelope, @NonNull SignalServiceContent content) {
     String ourNumber = TextSecurePreferences.getLocalNumber(context);
-    if (authorisation.getType() == LokiPairingAuthorisation.Type.REQUEST) {
+    if (authorisation.getType() == PairingAuthorisation.Type.REQUEST) {
       handlePairingRequest(authorisation, envelope);
     } else if (authorisation.getSecondaryDevicePublicKey().equals(ourNumber)) {
       // If we were listed as a secondary device, it means we got a confirmation back from the primary device
@@ -1047,18 +1059,18 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     }
   }
 
-  private void handlePairingRequest(@NonNull LokiPairingAuthorisation authorisation, @NonNull SignalServiceEnvelope envelope) {
+  private void handlePairingRequest(@NonNull PairingAuthorisation authorisation, @NonNull SignalServiceEnvelope envelope) {
     boolean valid = isAuthorisationValid(authorisation);
-    LokiDeviceLinkingSession linkingSession = LokiDeviceLinkingSession.Companion.getShared();
-    if (valid && linkingSession.isListeningForLinkingRequest()) {
-      linkingSession.receivedLinkingRequest(authorisation);
+    DeviceLinkingSession linkingSession = DeviceLinkingSession.Companion.getShared();
+    if (valid && linkingSession.isListeningForLinkingRequests()) {
+      linkingSession.processLinkingRequest(authorisation);
     } else {
       // Remove pre key bundle from the user
       DatabaseFactory.getLokiPreKeyBundleDatabase(context).removePreKeyBundle(envelope.getSource());
     }
   }
 
-  private void handlePairingAuthorisationForSelf(@NonNull LokiPairingAuthorisation authorisation, @NonNull SignalServiceEnvelope envelope, @NonNull SignalServiceContent content) {
+  private void handlePairingAuthorisationForSelf(@NonNull PairingAuthorisation authorisation, @NonNull SignalServiceEnvelope envelope, @NonNull SignalServiceContent content) {
     if (TextSecurePreferences.isSecondaryDevice(context)) {
       Log.w("Loki", "Received an unexpected pairing authorisation (device is already paired as secondary device). Ignoring.");
       return;
@@ -1069,17 +1081,17 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       return;
     }
 
-    if (!LokiDeviceLinkingSession.Companion.getShared().isListeningForLinkingRequest()) {
+    if (!DeviceLinkingSession.Companion.getShared().isListeningForLinkingRequests()) {
       Log.w("Loki", "Received authorisation but device is not is listening.");
       return;
     }
 
     // Unimplemented for REQUEST
-    if (authorisation.getType() != LokiPairingAuthorisation.Type.GRANT) { return; }
+    if (authorisation.getType() != PairingAuthorisation.Type.GRANT) { return; }
     Log.d("Loki", "Receiving pairing authorisation from: " + authorisation.getPrimaryDevicePublicKey());
 
     // Send out accept event
-    LokiDeviceLinkingSession.Companion.getShared().acceptedLinkingRequest(authorisation);
+    DeviceLinkingSession.Companion.getShared().processLinkingAuthorization(authorisation);
 
     // Set the current device as secondary and update our authorisations
     String ourNumber = TextSecurePreferences.getLocalNumber(context);
@@ -1092,7 +1104,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
     // Propagate the updates to the file server
     LokiStorageAPI storageAPI = LokiStorageAPI.Companion.getShared();
-    if (storageAPI != null) { storageAPI.updateOurDeviceMappings(); }
+    if (storageAPI != null) { storageAPI.updateUserDeviceMappings(); }
 
     // Update display names
     if (content.senderDisplayName.isPresent()  && content.senderDisplayName.get().length() > 0) {

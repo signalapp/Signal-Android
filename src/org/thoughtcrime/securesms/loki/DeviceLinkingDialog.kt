@@ -5,14 +5,14 @@ import android.support.v7.app.AlertDialog
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.logging.Log
-import org.whispersystems.signalservice.loki.api.LokiDeviceLinkingSession
-import org.whispersystems.signalservice.loki.api.LokiDeviceLinkingSessionListener
-import org.whispersystems.signalservice.loki.api.LokiPairingAuthorisation
-import org.whispersystems.signalservice.loki.api.LokiStorageAPI
-import org.whispersystems.signalservice.loki.utilities.retryIfNeeded
 import org.thoughtcrime.securesms.util.Util
+import org.whispersystems.signalservice.loki.api.DeviceLinkingSession
+import org.whispersystems.signalservice.loki.api.DeviceLinkingSessionListener
+import org.whispersystems.signalservice.loki.api.LokiStorageAPI
+import org.whispersystems.signalservice.loki.api.PairingAuthorisation
+import org.whispersystems.signalservice.loki.utilities.retryIfNeeded
 
-class DeviceLinkingDialog private constructor(private val context: Context, private val mode: DeviceLinkingView.Mode, private val delegate: DeviceLinkingDialogDelegate? = null): DeviceLinkingViewDelegate, LokiDeviceLinkingSessionListener {
+class DeviceLinkingDialog private constructor(private val context: Context, private val mode: DeviceLinkingView.Mode, private val delegate: DeviceLinkingDialogDelegate? = null): DeviceLinkingViewDelegate, DeviceLinkingSessionListener {
     private lateinit var view: DeviceLinkingView
     private lateinit var dialog: AlertDialog
 
@@ -42,20 +42,20 @@ class DeviceLinkingDialog private constructor(private val context: Context, priv
 
     // region Private functions
     private fun startListening() {
-        LokiDeviceLinkingSession.shared.startListeningForLinkingRequests()
-        LokiDeviceLinkingSession.shared.addListener(this)
+        DeviceLinkingSession.shared.startListeningForLinkingRequests()
+        DeviceLinkingSession.shared.addListener(this)
     }
 
     private fun stopListening() {
-        LokiDeviceLinkingSession.shared.stopListeningForLinkingRequests()
-        LokiDeviceLinkingSession.shared.removeListener(this)
+        DeviceLinkingSession.shared.stopListeningForLinkingRequests()
+        DeviceLinkingSession.shared.removeListener(this)
     }
     // endregion
 
     // region Dialog View Delegate
-    override fun authorise(pairing: LokiPairingAuthorisation): Boolean {
-        val signedAuthorisation = pairing.sign(LokiPairingAuthorisation.Type.GRANT, userPrivateKey)
-        if (signedAuthorisation == null || signedAuthorisation.type != LokiPairingAuthorisation.Type.GRANT) {
+    override fun authorise(pairing: PairingAuthorisation): Boolean {
+        val signedAuthorisation = pairing.sign(PairingAuthorisation.Type.GRANT, userPrivateKey)
+        if (signedAuthorisation == null || signedAuthorisation.type != PairingAuthorisation.Type.GRANT) {
             Log.e("Loki", "Failed to sign grant authorisation")
             return false
         }
@@ -71,7 +71,7 @@ class DeviceLinkingDialog private constructor(private val context: Context, priv
         DatabaseFactory.getLokiAPIDatabase(context).insertOrUpdatePairingAuthorisation(signedAuthorisation)
 
         // Update the api
-        LokiStorageAPI.shared?.updateOurDeviceMappings()
+        LokiStorageAPI.shared?.updateUserDeviceMappings()
 
         return true
     }
@@ -93,22 +93,22 @@ class DeviceLinkingDialog private constructor(private val context: Context, priv
     // endregion
 
     // region Loki Device Session Listener
-    override fun onDeviceLinkingRequestReceived(authorisation: LokiPairingAuthorisation) {
+    override fun requestUserAuthorization(authorisation: PairingAuthorisation) {
         Util.runOnMain {
             view.requestUserAuthorization(authorisation)
         }
 
         // Stop listening to any more requests
-        LokiDeviceLinkingSession.shared.stopListeningForLinkingRequests()
+        DeviceLinkingSession.shared.stopListeningForLinkingRequests()
     }
 
-    override fun onDeviceLinkRequestAccepted(authorisation: LokiPairingAuthorisation) {
+    override fun onDeviceLinkRequestAuthorized(authorisation: PairingAuthorisation) {
         Util.runOnMain {
             view.onDeviceLinkAuthorized(authorisation)
         }
 
         // Stop listening to any more requests
-        LokiDeviceLinkingSession.shared.stopListeningForLinkingRequests()
+        DeviceLinkingSession.shared.stopListeningForLinkingRequests()
     }
     // endregion
 }

@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.loki
 
-import org.whispersystems.signalservice.loki.api.LokiPairingAuthorisation
+import org.whispersystems.signalservice.loki.api.PairingAuthorisation
 
 interface DeviceLinkingDialogDelegate {
     fun handleDeviceLinkAuthorized() {}
@@ -8,5 +8,5 @@ interface DeviceLinkingDialogDelegate {
 }
 
 interface DeviceLinkingViewDelegate: DeviceLinkingDialogDelegate {
-    fun authorise(pairing: LokiPairingAuthorisation): Boolean { return false }
+    fun authorise(pairing: PairingAuthorisation): Boolean { return false }
 }

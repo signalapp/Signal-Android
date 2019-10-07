@@ -81,11 +81,17 @@ import org.webrtc.PeerConnectionFactory;
 import org.webrtc.PeerConnectionFactory.InitializationOptions;
 import org.webrtc.voiceengine.WebRtcAudioManager;
 import org.webrtc.voiceengine.WebRtcAudioUtils;
-import org.whispersystems.libsignal.IdentityKeyPair;
 import org.whispersystems.libsignal.logging.SignalProtocolLoggerProvider;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
-import org.whispersystems.signalservice.loki.api.*;
+import org.whispersystems.signalservice.loki.api.LokiAPIDatabaseProtocol;
+import org.whispersystems.signalservice.loki.api.LokiGroupChat;
+import org.whispersystems.signalservice.loki.api.LokiGroupChatAPI;
+import org.whispersystems.signalservice.loki.api.LokiLongPoller;
+import org.whispersystems.signalservice.loki.api.LokiP2PAPI;
+import org.whispersystems.signalservice.loki.api.LokiP2PAPIDelegate;
+import org.whispersystems.signalservice.loki.api.LokiRSSFeed;
+import org.whispersystems.signalservice.loki.api.LokiStorageAPI;
 import org.whispersystems.signalservice.loki.utilities.Analytics;
 
 import java.security.Security;
@@ -428,7 +434,8 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     if (userHexEncodedPublicKey != null && IdentityKeyUtil.hasIdentityKey(this)) {
       byte[] userPrivateKey = IdentityKeyUtil.getIdentityKeyPair(this).getPrivateKey().serialize();
       LokiAPIDatabaseProtocol database = DatabaseFactory.getLokiAPIDatabase(this);
-      LokiStorageAPI.Companion.configure(userHexEncodedPublicKey, userPrivateKey, database);
+      boolean isDebugMode = BuildConfig.DEBUG;
+      LokiStorageAPI.Companion.configure(isDebugMode, userHexEncodedPublicKey, userPrivateKey, database);
     }
   }
 

@@ -25,7 +25,7 @@ import org.thoughtcrime.securesms.util.Hex
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.curve25519.Curve25519
 import org.whispersystems.libsignal.util.KeyHelper
-import org.whispersystems.signalservice.loki.api.LokiPairingAuthorisation
+import org.whispersystems.signalservice.loki.api.PairingAuthorisation
 import org.whispersystems.signalservice.loki.crypto.MnemonicCodec
 import org.whispersystems.signalservice.loki.utilities.Analytics
 import org.whispersystems.signalservice.loki.utilities.PublicKeyValidation
@@ -206,7 +206,7 @@ class SeedActivity : BaseActionBarActivity() {
 
             // Build the pairing request
             val primaryDevicePublicKey = publicKeyEditText.text.trim().toString()
-            val authorisation = LokiPairingAuthorisation(primaryDevicePublicKey, hexEncodedPublicKey).sign(LokiPairingAuthorisation.Type.REQUEST, keyPair.privateKey.serialize())
+            val authorisation = PairingAuthorisation(primaryDevicePublicKey, hexEncodedPublicKey).sign(PairingAuthorisation.Type.REQUEST, keyPair.privateKey.serialize())
             if (authorisation == null) {
                 Log.w("Loki", "Failed to sign outgoing pairing request :(")
                 resetRegistration()
