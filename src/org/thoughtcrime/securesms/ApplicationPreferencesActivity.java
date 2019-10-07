@@ -182,12 +182,10 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
         .setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_PUBLIC_KEY));
       this.findPreference(PREFERENCE_CATEGORY_QR_CODE)
         .setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_QR_CODE));
-
       Preference linkDevicePreference = this.findPreference(PREFERENCE_CATEGORY_LINK_DEVICE);
-      // Hide if we're already a secondary device
+      // Hide if this is a slave device
       linkDevicePreference.setVisible(!TextSecurePreferences.isSecondaryDevice(getContext()));
       linkDevicePreference.setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_LINK_DEVICE));
-
       this.findPreference(PREFERENCE_CATEGORY_SEED)
         .setOnPreferenceClickListener(new CategoryClickListener((PREFERENCE_CATEGORY_SEED)));
 

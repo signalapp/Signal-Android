@@ -221,6 +221,7 @@ class SeedActivity : BaseActionBarActivity() {
             // Show the dialog
             val dialog = DeviceLinkingDialog.show(this, DeviceLinkingView.Mode.Slave, object: DeviceLinkingDialogDelegate {
               override fun handleDeviceLinkAuthorized() {
+                Analytics.shared.track("Device Linked Successfully")
                 showAccountDetailsView()
               }
 

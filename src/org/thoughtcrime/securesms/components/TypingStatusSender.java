@@ -86,21 +86,19 @@ public class TypingStatusSender {
     ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);
     Recipient originalRecipient = threadDatabase.getRecipientForThreadId(threadId);
 
-    // Send normal message if storage api wasn't found
-    if (storageAPI == null || originalRecipient == null) {
+    if (originalRecipient == null) {
       ApplicationContext.getInstance(context).getJobManager().add(new TypingSendJob(threadId, typingStarted));
       return;
     }
 
-    MultiDeviceUtilKt.getAllDevices(context, originalRecipient.getAddress().serialize(), storageAPI, (devicePubKey, isFriend, friendCount) -> {
-      Recipient device = Recipient.from(context, Address.fromSerialized(devicePubKey), false);
-      long deviceThreadId = threadDatabase.getThreadIdIfExistsFor(device);
-      if (deviceThreadId > -1) {
-        ApplicationContext.getInstance(context).getJobManager().add(new TypingSendJob(deviceThreadId, typingStarted));
+    MultiDeviceUtilKt.getAllDevices(context, originalRecipient.getAddress().serialize(), storageAPI, (devicePublicKey, isFriend, friendCount) -> {
+      Recipient device = Recipient.from(context, Address.fromSerialized(devicePublicKey), false);
+      long deviceThreadID = threadDatabase.getThreadIdIfExistsFor(device);
+      if (deviceThreadID > -1) {
+        ApplicationContext.getInstance(context).getJobManager().add(new TypingSendJob(deviceThreadID, typingStarted));
       }
       return Unit.INSTANCE;
     });
-
   }
 
   private class StartRunnable implements Runnable {

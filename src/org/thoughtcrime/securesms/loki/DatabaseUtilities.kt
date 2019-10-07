@@ -19,14 +19,14 @@ fun <T> SQLiteDatabase.get(table: String, query: String, arguments: Array<String
 }
 
 fun <T> SQLiteDatabase.getAll(table: String, query: String, arguments: Array<String>, get: (Cursor) -> T): List<T> {
-    var list = mutableListOf<T>()
+    val result = mutableListOf<T>()
     var cursor: Cursor? = null
     try {
         cursor = query(table, null, query, arguments, null, null, null)
         while (cursor != null && cursor.moveToNext()) {
-            list.add(get(cursor))
+            result.add(get(cursor))
         }
-        return list
+        return result
     } catch (e: Exception) {
         // Do nothing
     } finally {

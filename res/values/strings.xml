@@ -1568,7 +1568,7 @@
     <string name="activity_key_pair_register_or_restore_button_title_1">Register</string>
     <string name="activity_key_pair_register_or_restore_button_title_2">Restore</string>
     <string name="activity_key_pair_register_or_restore_button_title_3">Link</string>
-    <string name="activity_key_pair_public_key_edit_text_label">Other Device Pub Key</string>
+    <string name="activity_key_pair_public_key_edit_text_label">Your Public Key</string>
     <!-- Conversation list activity -->
     <string name="activity_conversation_list_empty_state_message">Looks like you don\'t have any conversations yet. Get started by messaging a friend.</string>
     <!-- Settings activity -->

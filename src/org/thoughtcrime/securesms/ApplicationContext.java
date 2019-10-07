@@ -147,7 +147,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   @Override
   public void onCreate() {
     super.onCreate();
-//    LokiStorageAPI.Companion.setDebugMode(BuildConfig.DEBUG);
     LokiGroupChatAPI.Companion.setDebugMode(BuildConfig.DEBUG); // Loki - Set debug mode if needed
     startKovenant();
     Log.i(TAG, "onCreate()");
