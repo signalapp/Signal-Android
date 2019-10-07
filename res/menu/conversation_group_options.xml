@@ -3,7 +3,7 @@
 
     <item android:title="@string/convesation_group_options__recipients_list"
           android:id="@+id/menu_group_recipients"
-          android:icon="?menu_group_icon"
+          android:icon="@drawable/ic_group_solid_highlight_24"
           app:showAsAction="ifRoom" />
 
 </menu>

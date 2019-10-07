@@ -11,7 +11,7 @@
 
     <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/app_bar_layout"
-            android:layout_width="match_parent"
+        android:layout_width="match_parent"
             android:layout_height="300dp"
             android:background="@color/transparent">
 
@@ -46,9 +46,10 @@
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
-                    android:theme="@style/TextSecure.LightActionBar"
                     android:background="@color/transparent"
                     android:layout_marginTop="24dp"
+                    android:theme="@style/TextSecure.DarkActionBar.Conversation"
+                    app:navigationIcon="@drawable/ic_arrow_left_24"
                     app:layout_collapseMode="pin" >
 
             </androidx.appcompat.widget.Toolbar>

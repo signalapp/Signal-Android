@@ -1,13 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.appcompat.widget.Toolbar
+        style="@style/TextSecure.HighlightActionBar"
+        android:theme="@style/TextSecure.HighlightActionBar"
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:titleTextAppearance="@style/TextSecure.TitleTextStyle.Conversation"
+        app:subtitleTextAppearance="@style/TextSecure.SubtitleTextStyle.Conversation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
                 android:fillViewport="true"
-                android:clickable="false">
+                android:clickable="false"
+                app:layout_constraintTop_toBottomOf="@id/toolbar"
+                app:layout_constraintBottom_toBottomOf="parent">
 
         <LinearLayout android:layout_gravity="center"
                       android:layout_height="wrap_content"
@@ -63,7 +79,7 @@
                         tools:ignore="ButtonStyle" />
 
                 <Button android:id="@+id/sms_button"
-                        android:drawableStart="@drawable/ic_message_black_18dp"
+                        android:drawableStart="@drawable/ic_message_solid_24"
                         android:drawablePadding="10dp"
                         android:text="@string/InviteActivity_choose_contacts"
                         android:layout_width="wrap_content"
@@ -76,10 +92,12 @@
 
     <LinearLayout android:id="@+id/sms_send_frame"
                   android:layout_width="match_parent"
-                  android:layout_height="match_parent"
+                  android:layout_height="0dp"
                   android:background="@color/white"
                   android:orientation="vertical"
-                  android:visibility="gone">
+                  android:visibility="gone"
+                  app:layout_constraintBottom_toBottomOf="parent"
+                  app:layout_constraintTop_toBottomOf="@id/toolbar">
 
         <org.thoughtcrime.securesms.components.ContactFilterToolbar
             android:id="@+id/contact_filter"
@@ -88,7 +106,8 @@
             android:minHeight="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             android:elevation="4dp"
-            android:theme="@style/TextSecure.LightActionBar" />
+            app:searchTextStyle="@style/TextSecure.TitleTextStyle.Light"
+            android:theme="@style/TextSecure.HighlightActionBar" />
 
         <fragment android:id="@+id/contact_selection_list_fragment"
                   android:layout_width="match_parent"
@@ -119,4 +138,4 @@
 
         </LinearLayout>
     </LinearLayout>
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

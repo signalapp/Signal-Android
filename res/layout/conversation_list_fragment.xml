@@ -76,7 +76,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="88dp"
         android:contentDescription="@string/conversation_list_fragment__open_camera_description"
-        android:src="@drawable/ic_camera_filled_24"
+        app:srcCompat="@drawable/ic_camera_solid_24"
         android:tint="?conversation_list_camera_icon_tint"
         android:focusable="true"
         app:backgroundTint="?conversation_list_camera_button_background"/>
@@ -87,7 +87,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_margin="16dp"
-            android:src="@drawable/ic_create_white_24dp"
+            android:tint="?conversation_list_compose_icon_tint"
+            app:srcCompat="@drawable/ic_compose_solid_24"
             android:focusable="true"
             android:contentDescription="@string/conversation_list_fragment__fab_content_description"/>
 

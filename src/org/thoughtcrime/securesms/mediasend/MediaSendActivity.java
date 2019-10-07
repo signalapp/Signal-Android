@@ -535,7 +535,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
       } else if (state.getViewOnceState() == ViewOnceState.ENABLED) {
         captionBackground = 0;
       } else {
-        captionBackground = R.color.transparent_black_70;
+        captionBackground = R.color.transparent_black_40;
       }
 
       captionAndRail.setBackgroundResource(captionBackground);
@@ -680,7 +680,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
     Permissions.with(this)
                .request(Manifest.permission.CAMERA)
                .ifNecessary()
-               .withRationaleDialog(getString(R.string.ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera), R.drawable.ic_photo_camera_white_48dp)
+               .withRationaleDialog(getString(R.string.ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera), R.drawable.ic_camera_solid_24)
                .withPermanentDenialDialog(getString(R.string.ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video))
                .onAllGranted(() -> {
                  Fragment fragment = getOrCreateCameraFragment();

@@ -24,9 +24,12 @@ import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.media.AudioManager;
+import android.os.Build;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.app.ActivityCompat;
+
 import org.thoughtcrime.securesms.logging.Log;
 import android.view.View;
 import android.view.Window;
@@ -170,7 +173,7 @@ public class WebRtcCallActivity extends Activity {
                  .request(Manifest.permission.RECORD_AUDIO, Manifest.permission.CAMERA)
                  .ifNecessary()
                  .withRationaleDialog(getString(R.string.WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone, event.getRecipient().toShortString()),
-                                      R.drawable.ic_mic_white_48dp, R.drawable.ic_videocam_white_48dp)
+                                      R.drawable.ic_mic_solid_24, R.drawable.ic_videocam_white_48dp)
                  .withPermanentDenialDialog(getString(R.string.WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls))
                  .onAllGranted(() -> {
                    callScreen.setActiveCall(event.getRecipient(), getString(R.string.RedPhone_answering));

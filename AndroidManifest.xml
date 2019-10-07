@@ -113,6 +113,7 @@
     <meta-data android:name="firebase_messaging_auto_init_enabled" android:value="false" />
 
     <activity android:name="org.thoughtcrime.securesms.WebRtcCallActivity"
+              android:theme="@style/TextSecure.LightTheme.WebRTCCall"
               android:excludeFromRecents="true"
               android:screenOrientation="portrait"
               android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|screenSize|fontScale"

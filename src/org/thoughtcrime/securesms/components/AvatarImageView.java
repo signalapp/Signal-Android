@@ -28,6 +28,9 @@ import java.util.Objects;
 
 public final class AvatarImageView extends AppCompatImageView {
 
+  private static final int SIZE_LARGE = 1;
+  private static final int SIZE_SMALL = 2;
+
   @SuppressWarnings("unused")
   private static final String TAG = AvatarImageView.class.getSimpleName();
 
@@ -46,6 +49,7 @@ public final class AvatarImageView extends AppCompatImageView {
     DARK_THEME_OUTLINE_PAINT.setAntiAlias(true);
   }
 
+  private int             size;
   private boolean         inverted;
   private Paint           outlinePaint;
   private OnClickListener listener;
@@ -68,23 +72,27 @@ public final class AvatarImageView extends AppCompatImageView {
 
     if (attrs != null) {
       TypedArray typedArray = context.getTheme().obtainStyledAttributes(attrs, R.styleable.AvatarImageView, 0, 0);
-      inverted = typedArray.getBoolean(0, false);
+      inverted              = typedArray.getBoolean(R.styleable.AvatarImageView_inverted, false);
+      size                  = typedArray.getInt(R.styleable.AvatarImageView_fallbackImageSize, SIZE_LARGE);
       typedArray.recycle();
     }
 
     outlinePaint = ThemeUtil.isDarkTheme(getContext()) ? DARK_THEME_OUTLINE_PAINT : LIGHT_THEME_OUTLINE_PAINT;
 
-    unknownRecipientDrawable = new ResourceContactPhoto(R.drawable.ic_profile_default).asDrawable(getContext(), ContactColors.UNKNOWN_COLOR.toConversationColor(getContext()), inverted);
+    unknownRecipientDrawable = new ResourceContactPhoto(R.drawable.ic_profile_outline_40, R.drawable.ic_profile_outline_20).asDrawable(getContext(), ContactColors.UNKNOWN_COLOR.toConversationColor(getContext()), inverted);
   }
 
   @Override
   protected void onDraw(Canvas canvas) {
     super.onDraw(canvas);
 
-    float cx     = getWidth()  / 2f;
-    float cy     = getHeight() / 2f;
-    float radius = cx - (outlinePaint.getStrokeWidth() / 2f);
+    float width  = getWidth()  - getPaddingRight()  - getPaddingLeft();
+    float height = getHeight() - getPaddingBottom() - getPaddingTop();
+    float cx     = width  / 2f;
+    float cy     = height / 2f;
+    float radius = Math.min(cx, cy) - (outlinePaint.getStrokeWidth() / 2f);
 
+    canvas.translate(getPaddingLeft(), getPaddingTop());
     canvas.drawCircle(cx, cy, radius, outlinePaint);
   }
 
@@ -102,7 +110,9 @@ public final class AvatarImageView extends AppCompatImageView {
         requestManager.clear(this);
         recipientContactPhoto = photo;
 
-        Drawable fallbackContactPhotoDrawable = photo.recipient.getFallbackContactPhotoDrawable(getContext(), inverted);
+        Drawable fallbackContactPhotoDrawable = size == SIZE_SMALL
+            ? photo.recipient.getSmallFallbackContactPhotoDrawable(getContext(), inverted)
+            : photo.recipient.getFallbackContactPhotoDrawable(getContext(), inverted);
 
         if (photo.contactPhoto != null) {
           requestManager.load(photo.contactPhoto)

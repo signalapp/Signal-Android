@@ -10,7 +10,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_devices_white"
             android:transitionName="devices"
-            android:tint="@color/gray27"
+            android:tint="@color/core_grey_25"
             android:layout_marginBottom="25dp"
             android:contentDescription="@string/device_link_fragment__link_device"/>
 

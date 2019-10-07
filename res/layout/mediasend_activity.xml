@@ -25,7 +25,7 @@
             android:layout_gravity="bottom"
             android:orientation="vertical"
             android:clickable="true"
-            android:background="@color/transparent_black_70">
+            android:background="@color/transparent_black_40">
 
             <org.thoughtcrime.securesms.components.emoji.EmojiEditText
                 android:id="@+id/mediasend_caption"
@@ -129,7 +129,8 @@
                         android:paddingStart="11dp"
                         android:scaleType="fitCenter"
                         android:contentDescription="@string/conversation_activity__send"
-                        android:src="?conversation_transport_sms_indicator"
+                        android:tint="@color/white"
+                        app:srcCompat="?conversation_transport_sms_indicator"
                         android:background="@drawable/circle_touch_highlight_background" />
 
                 </FrameLayout>

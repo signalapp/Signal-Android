@@ -29,6 +29,7 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.util.DynamicDarkActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -45,7 +46,7 @@ public class LongMessageActivity extends PassphraseRequiredActionBarActivity {
   private static final int MAX_DISPLAY_LENGTH = 64 * 1024;
 
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
-  private final DynamicTheme    dynamicTheme    = new DynamicTheme();
+  private final DynamicTheme    dynamicTheme    = new DynamicDarkActionBarTheme();
 
   private Stub<ViewGroup> sentBubble;
   private Stub<ViewGroup> receivedBubble;

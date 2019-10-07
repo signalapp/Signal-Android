@@ -14,12 +14,13 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/conversation_list_toolbar_background"
-            android:theme="?attr/actionBarStyle"
+            android:theme="@style/TextSecure.DarkActionBar.Conversation"
             app:contentInsetStartWithNavigation="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:navigationIcon="?homeAsUpIndicator"
+            app:navigationIcon="@drawable/ic_arrow_left_24"
+            app:contentInsetStart="46dp"
             tools:background="#ff007f00">
 
             <include layout="@layout/conversation_title_view" />

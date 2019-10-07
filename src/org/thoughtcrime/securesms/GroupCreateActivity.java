@@ -20,11 +20,13 @@ package org.thoughtcrime.securesms;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import android.text.TextUtils;
 
 import org.thoughtcrime.securesms.avatar.AvatarSelection;
@@ -118,7 +120,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
   protected void onCreate(Bundle state, boolean ready) {
     setContentView(R.layout.group_create_activity);
     //noinspection ConstantConditions
-    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    initializeAppBar();
     initializeResources();
     initializeExistingGroup();
   }
@@ -177,6 +179,12 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
     addSelectedContacts(recipients.toArray(new Recipient[recipients.size()]));
   }
 
+  private void initializeAppBar() {
+    Drawable upIcon = ContextCompat.getDrawable(this, R.drawable.ic_arrow_left_24);
+    getSupportActionBar().setHomeAsUpIndicator(upIcon);
+    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+  }
+
   private void initializeResources() {
     RecipientsEditor    recipientsEditor = ViewUtil.findById(this, R.id.recipients_text);
     PushRecipientsPanel recipientsPanel  = ViewUtil.findById(this, R.id.recipients);
@@ -190,7 +198,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
     recipientsEditor.setHint(R.string.recipients_panel__add_members);
     recipientsPanel.setPanelChangeListener(this);
     findViewById(R.id.contacts_button).setOnClickListener(new AddRecipientButtonListener());
-    avatar.setImageDrawable(new ResourceContactPhoto(R.drawable.ic_group_white_24dp).asDrawable(this, ContactColors.UNKNOWN_COLOR.toConversationColor(this)));
+    avatar.setImageDrawable(new ResourceContactPhoto(R.drawable.ic_group_outline_40, R.drawable.ic_group_outline_20).asDrawable(this, ContactColors.UNKNOWN_COLOR.toConversationColor(this)));
     avatar.setOnClickListener(view -> AvatarSelection.startAvatarSelection(this, false, false));
   }
 

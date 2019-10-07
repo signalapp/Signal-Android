@@ -61,6 +61,11 @@ public class GeneratedContactPhoto implements FallbackContactPhoto {
     return new ResourceContactPhoto(fallbackResId).asDrawable(context, color, inverted);
   }
 
+  @Override
+  public Drawable asSmallDrawable(Context context, int color, boolean inverted) {
+    return asDrawable(context, color, inverted);
+  }
+
   private @Nullable String getAbbreviation(String name) {
     String[]      parts   = name.split(" ");
     StringBuilder builder = new StringBuilder();

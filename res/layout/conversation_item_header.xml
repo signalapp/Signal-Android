@@ -17,7 +17,6 @@
         android:gravity="center"
         style="@style/Signal.Text.Caption"
         android:textColor="?conversation_item_update_text_color"
-        android:textAllCaps="true"
         tools:text="March 1, 2015" />
 
 </LinearLayout>

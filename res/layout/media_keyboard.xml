@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
             android:padding="6dp"
-            android:src="@drawable/ic_search_white_24dp"
+            app:srcCompat="@drawable/ic_search_24"
             android:tint="?media_keyboard_button_color"
             android:background="?selectableItemBackgroundBorderless"
             android:visibility="invisible"

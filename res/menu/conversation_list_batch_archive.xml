@@ -4,7 +4,7 @@
 
     <item android:title="@string/conversation_list_batch_archive__menu_archive_selected"
           android:id="@+id/menu_archive_selected"
-          android:icon="@drawable/ic_archive_white_24dp"
+          android:icon="@drawable/ic_archive_solid_24"
           app:showAsAction="always"/>
 
 </menu>

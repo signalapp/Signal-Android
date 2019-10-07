@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms;
 
 import android.annotation.SuppressLint;
 
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.camera.camera2.Camera2AppConfig;
 import androidx.camera.core.CameraX;
 import androidx.lifecycle.DefaultLifecycleObserver;
@@ -136,6 +137,11 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
     initializeCameraX();
     NotificationChannels.create(this);
     ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
+
+    if (Build.VERSION.SDK_INT < 21) {
+      AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+    }
+
     jobManager.beginJobLoop();
   }
 

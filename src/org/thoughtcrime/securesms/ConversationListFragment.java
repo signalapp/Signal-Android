@@ -170,7 +170,7 @@ public class ConversationListFragment extends Fragment
       Permissions.with(requireActivity())
                  .request(Manifest.permission.CAMERA)
                  .ifNecessary()
-                 .withRationaleDialog(getString(R.string.ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera), R.drawable.ic_photo_camera_white_48dp)
+                 .withRationaleDialog(getString(R.string.ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera), R.drawable.ic_camera_solid_24)
                  .withPermanentDenialDialog(getString(R.string.ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video))
                  .onAllGranted(() -> startActivity(MediaSendActivity.buildCameraFirstIntent(requireActivity())))
                  .onAnyDenied(() -> Toast.makeText(requireContext(), R.string.ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video, Toast.LENGTH_LONG).show())
@@ -463,6 +463,10 @@ public class ConversationListFragment extends Fragment
       getActivity().getWindow().setStatusBarColor(getResources().getColor(R.color.action_mode_status_bar));
     }
 
+    if (Build.VERSION.SDK_INT >= 23) {
+      getActivity().getWindow().getDecorView().setSystemUiVisibility(0);
+    }
+
     return true;
   }
 
@@ -490,6 +494,10 @@ public class ConversationListFragment extends Fragment
       TypedArray color = getActivity().getTheme().obtainStyledAttributes(new int[] {android.R.attr.statusBarColor});
       getActivity().getWindow().setStatusBarColor(color.getColor(0, Color.BLACK));
       color.recycle();
+    }
+
+    if (Build.VERSION.SDK_INT >= 23) {
+      getActivity().getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
     }
 
     actionMode = null;

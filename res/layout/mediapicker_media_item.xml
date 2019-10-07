@@ -47,7 +47,7 @@
         android:id="@+id/mediapicker_select_overlay"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/transparent_black_90" />
+        android:background="@color/transparent_black_60" />
 
     <FrameLayout
         android:id="@+id/mediapicker_select_on"

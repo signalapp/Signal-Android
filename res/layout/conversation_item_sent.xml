@@ -151,12 +151,13 @@
 
             <org.thoughtcrime.securesms.components.ConversationItemFooter
                 android:id="@+id/conversation_item_footer"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="-4dp"
                 android:layout_marginStart="@dimen/message_bubble_horizontal_padding"
                 android:layout_marginEnd="@dimen/message_bubble_horizontal_padding"
                 android:layout_marginBottom="@dimen/message_bubble_bottom_padding"
+                android:gravity="end"
                 android:clipChildren="false"
                 android:clipToPadding="false"
                 app:footer_text_color="?attr/conversation_item_sent_text_secondary_color"
@@ -169,6 +170,7 @@
                 android:layout_marginTop="6dp"
                 android:layout_marginStart="@dimen/message_bubble_horizontal_padding"
                 android:layout_marginEnd="@dimen/message_bubble_horizontal_padding"
+                android:gravity="end"
                 android:clipChildren="false"
                 android:clipToPadding="false"
                 android:visibility="gone"

@@ -19,7 +19,7 @@
         app:fabSize="normal"
         app:layout_anchor="@id/root_bottom_sheet"
         app:layout_anchorGravity="top|end"
-        app:srcCompat="@drawable/ic_check" />
+        app:srcCompat="@drawable/ic_check_24" />
 
     <LinearLayout
         android:id="@+id/root_bottom_sheet"

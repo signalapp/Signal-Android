@@ -19,19 +19,19 @@ public class ExpirationTimerView extends androidx.appcompat.widget.AppCompatImag
   private boolean visible = false;
   private boolean stopped = true;
 
-  private final int[] frames = new int[]{ R.drawable.timer00,
-                                          R.drawable.timer05,
-                                          R.drawable.timer10,
-                                          R.drawable.timer15,
-                                          R.drawable.timer20,
-                                          R.drawable.timer25,
-                                          R.drawable.timer30,
-                                          R.drawable.timer35,
-                                          R.drawable.timer40,
-                                          R.drawable.timer45,
-                                          R.drawable.timer50,
-                                          R.drawable.timer55,
-                                          R.drawable.timer60 };
+  private final int[] frames = new int[]{ R.drawable.ic_timer_00_16,
+                                          R.drawable.ic_timer_05_16,
+                                          R.drawable.ic_timer_10_16,
+                                          R.drawable.ic_timer_15_16,
+                                          R.drawable.ic_timer_20_16,
+                                          R.drawable.ic_timer_25_16,
+                                          R.drawable.ic_timer_30_16,
+                                          R.drawable.ic_timer_35_16,
+                                          R.drawable.ic_timer_40_16,
+                                          R.drawable.ic_timer_45_16,
+                                          R.drawable.ic_timer_50_16,
+                                          R.drawable.ic_timer_55_16,
+                                          R.drawable.ic_timer_60_16 };
 
   public ExpirationTimerView(Context context) {
     super(context);

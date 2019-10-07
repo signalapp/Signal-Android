@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <attr name="theme_type" format="string"/>
+    <attr name="icon_tint" format="color" />
+    <attr name="icon_tint_dark" format="color" />
+
+    <attr name="search_view_style" format="reference" />
+    <attr name="search_view_style_dark" format="reference" />
+
+    <attr name="title_text_color_primary" format="color"/>
+    <attr name="title_text_color_secondary" format="color"/>
 
     <attr name="attachment_type_selector_background" format="color"/>
     <attr name="attachment_document_icon_small" format="reference" />
@@ -17,6 +25,7 @@
     <attr name="conversation_list_toolbar_background" format="reference"/>
     <attr name="conversation_list_typing_tint" format="color"/>
     <attr name="conversation_list_camera_icon_tint" format="color"/>
+    <attr name="conversation_list_compose_icon_tint" format="color" />
     <attr name="conversation_list_camera_button_background" format="color"/>
 
     <attr name="conversation_sent_card_background" format="reference|color"/>
@@ -53,6 +62,9 @@
     <attr name="conversation_sticker_footer_text_color" format="reference|color"/>
     <attr name="conversation_sticker_footer_icon_color" format="reference|color"/>
     <attr name="conversation_sticker_author_color" format="reference|color"/>
+    <attr name="conversation_popup_theme" format="reference"/>
+    <attr name="conversation_title_color" format="reference" />
+    <attr name="conversation_subtitle_color" format="reference" />
 
     <attr name="emoji_tab_strip_background" format="color" />
     <attr name="emoji_tab_indicator" format="color" />
@@ -110,6 +122,8 @@
     <attr name="contact_selection_label_text" format="reference|color" />
     <attr name="contact_selection_header_text" format="reference|color" />
 
+    <attr name="contact_filter_toolbar_icon_tint" format="color" />
+
     <attr name="device_link_item_card_background" format="reference|color" />
 
     <attr name="mediapicker_image_outline" format="reference" />
@@ -147,6 +161,15 @@
     <attr name="menu_forward_icon" format="reference" />
     <attr name="menu_save_icon" format="reference" />
     <attr name="menu_reply_icon" format="reference" />
+
+    <attr name="message_icon" format="reference" />
+    <attr name="notifications_icon" format="reference" />
+    <attr name="privacy_icon" format="reference" />
+    <attr name="appearance_icon" format="reference" />
+    <attr name="chats_and_media_icon" format="reference" />
+    <attr name="linked_devices_icon" format="reference" />
+    <attr name="advanced_icon" format="reference" />
+    <attr name="safety_number_icon" format="reference" />
 
     <attr name="pref_icon_tint" format="color"/>
 
@@ -204,6 +227,10 @@
 
     <declare-styleable name="AvatarImageView">
         <attr name="inverted" format="boolean" />
+        <attr name="fallbackImageSize" format="enum">
+            <enum name="large" value="1" />
+            <enum name="small" value="2" />
+        </attr>
     </declare-styleable>
 
     <declare-styleable name="ThumbnailView">
@@ -367,5 +394,9 @@
         <attr name="state_flash_auto" format="boolean" />
         <attr name="state_flash_off" format="boolean" />
         <attr name="state_flash_on" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="ContactFilterToolbar">
+        <attr name="searchTextStyle" format="reference" />
     </declare-styleable>
 </resources>

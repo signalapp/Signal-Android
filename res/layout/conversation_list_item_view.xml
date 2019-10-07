@@ -14,17 +14,17 @@
 
     <FrameLayout
         android:id="@+id/avatar_container"
-        android:layout_width="54dp"
+        android:layout_width="58dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
-        android:layout_marginEnd="6dp">
+        android:layout_marginEnd="2dp">
 
         <org.thoughtcrime.securesms.components.AvatarImageView
             android:id="@+id/contact_photo_image"
             android:foreground="@drawable/contact_photo_background"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
             tools:src="@drawable/ic_contact_picture"
             android:contentDescription="@string/conversation_list_item_view__contact_photo_image" />
 
@@ -132,7 +132,6 @@
                   android:layout_alignBaseline="@+id/from"
                   style="@style/Signal.Text.Caption"
                   android:textColor="?attr/conversation_list_item_date_color"
-                  android:textAllCaps="true"
                   tools:text="30 mins"
                   android:singleLine="true"/>
 
@@ -149,7 +148,6 @@
                   style="@style/Signal.Text.Caption"
                   android:text="@string/conversation_list_item_view__archived"
                   android:textColor="@color/core_white"
-                  android:textAllCaps="true"
                   android:background="@drawable/archived_indicator_background" />
 
 

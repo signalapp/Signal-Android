@@ -17,19 +17,12 @@
  */
 package org.thoughtcrime.securesms;
 
-import android.annotation.TargetApi;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.TypedArray;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
-import android.os.Build.VERSION;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
-import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -155,10 +148,6 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
         .setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_DEVICES));
       this.findPreference(PREFERENCE_CATEGORY_ADVANCED)
         .setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_ADVANCED));
-
-      if (VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-        tintIcons(getActivity());
-      }
     }
 
     @Override
@@ -195,38 +184,6 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
       if (devicePreference != null && !TextSecurePreferences.isPushRegistered(getActivity())) {
         getPreferenceScreen().removePreference(devicePreference);
       }
-    }
-
-    @TargetApi(11)
-    private void tintIcons(Context context) {
-      Drawable sms           = DrawableCompat.wrap(ContextCompat.getDrawable(context, R.drawable.ic_textsms_white_24dp));
-      Drawable notifications = DrawableCompat.wrap(ContextCompat.getDrawable(context, R.drawable.ic_notifications_white_24dp));
-      Drawable privacy       = DrawableCompat.wrap(ContextCompat.getDrawable(context, R.drawable.ic_security_white_24dp));
-      Drawable appearance    = DrawableCompat.wrap(ContextCompat.getDrawable(context, R.drawable.ic_brightness_6_white_24dp));
-      Drawable chats         = DrawableCompat.wrap(ContextCompat.getDrawable(context, R.drawable.ic_forum_white_24dp));
-      Drawable devices       = DrawableCompat.wrap(ContextCompat.getDrawable(context, R.drawable.ic_laptop_white_24dp));
-      Drawable advanced      = DrawableCompat.wrap(ContextCompat.getDrawable(context, R.drawable.ic_advanced_white_24dp));
-
-      int[]      tintAttr   = new int[]{R.attr.pref_icon_tint};
-      TypedArray typedArray = context.obtainStyledAttributes(tintAttr);
-      int        color      = typedArray.getColor(0, 0x0);
-      typedArray.recycle();
-
-      DrawableCompat.setTint(sms, color);
-      DrawableCompat.setTint(notifications, color);
-      DrawableCompat.setTint(privacy, color);
-      DrawableCompat.setTint(appearance, color);
-      DrawableCompat.setTint(chats, color);
-      DrawableCompat.setTint(devices, color);
-      DrawableCompat.setTint(advanced, color);
-
-      this.findPreference(PREFERENCE_CATEGORY_SMS_MMS).setIcon(sms);
-      this.findPreference(PREFERENCE_CATEGORY_NOTIFICATIONS).setIcon(notifications);
-      this.findPreference(PREFERENCE_CATEGORY_APP_PROTECTION).setIcon(privacy);
-      this.findPreference(PREFERENCE_CATEGORY_APPEARANCE).setIcon(appearance);
-      this.findPreference(PREFERENCE_CATEGORY_CHATS).setIcon(chats);
-      this.findPreference(PREFERENCE_CATEGORY_DEVICES).setIcon(devices);
-      this.findPreference(PREFERENCE_CATEGORY_ADVANCED).setIcon(advanced);
     }
 
     private class CategoryClickListener implements Preference.OnPreferenceClickListener {
