@@ -432,9 +432,9 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   public void setUpStorageAPIIfNeeded() {
     String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this);
     if (userHexEncodedPublicKey != null && IdentityKeyUtil.hasIdentityKey(this)) {
+      boolean isDebugMode = BuildConfig.DEBUG;
       byte[] userPrivateKey = IdentityKeyUtil.getIdentityKeyPair(this).getPrivateKey().serialize();
       LokiAPIDatabaseProtocol database = DatabaseFactory.getLokiAPIDatabase(this);
-      boolean isDebugMode = BuildConfig.DEBUG;
       LokiStorageAPI.Companion.configure(isDebugMode, userHexEncodedPublicKey, userPrivateKey, database);
     }
   }

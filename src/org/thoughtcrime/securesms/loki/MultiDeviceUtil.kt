@@ -28,7 +28,7 @@ fun getAllDevices(context: Context, pubKey: String, storageAPI: LokiStorageAPI, 
       devices.remove(ourPubKey)
     }
 
-    val friends = getFriends(context, devices)
+    val friends = getFriendPublicKeys(context, devices)
     for (device in devices) {
       block(device, friends.contains(device), friends.count())
     }
@@ -80,7 +80,7 @@ fun shouldAutomaticallyBecomeFriendsWithDevice(pubKey: String, context: Context)
   return deferred.promise
 }
 
-fun sendAuthorisationMessage(context: Context, contactHexEncodedPublicKey: String, authorisation: PairingAuthorisation): Promise<Unit, Exception> {
+fun sendPairingAuthorisationMessage(context: Context, contactHexEncodedPublicKey: String, authorisation: PairingAuthorisation): Promise<Unit, Exception> {
   val messageSender = ApplicationContext.getInstance(context).communicationModule.provideSignalMessageSender()
   val address = SignalServiceAddress(contactHexEncodedPublicKey)
   val message = SignalServiceDataMessage.newBuilder().withBody("").withPairingAuthorisation(authorisation)

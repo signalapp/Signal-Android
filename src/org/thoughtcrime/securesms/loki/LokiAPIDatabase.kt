@@ -47,14 +47,14 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         private val lastDeletionServerIDCacheIndex = "loki_api_last_deletion_server_id_cache_index"
         private val lastDeletionServerID = "last_deletion_server_id"
         @JvmStatic val createLastDeletionServerIDTableCommand = "CREATE TABLE $lastDeletionServerIDCache ($lastDeletionServerIDCacheIndex STRING PRIMARY KEY, $lastDeletionServerID INTEGER DEFAULT 0);"
-
-        // Authorisation
-        private val multiDeviceAuthTable = "loki_multi_device_authorisation"
-        private val primaryDevice = "primary_device"
-        private val secondaryDevice = "secondary_device"
+        // Pairing authorisation cache
+        private val pairingAuthorisationCache = "loki_pairing_authorisation_cache"
+        private val primaryDevicePublicKey = "primary_device"
+        private val secondaryDevicePublicKey = "secondary_device"
         private val requestSignature = "request_signature"
         private val grantSignature = "grant_signature"
-        @JvmStatic val createMultiDeviceAuthTableCommand = "CREATE TABLE $multiDeviceAuthTable($primaryDevice TEXT, $secondaryDevice TEXT, $requestSignature TEXT NULLABLE DEFAULT NULL, $grantSignature TEXT NULLABLE DEFAULT NULL, PRIMARY KEY  ($primaryDevice, $secondaryDevice));"
+        @JvmStatic val createPairingAuthorisationTableCommand = "CREATE TABLE $pairingAuthorisationCache ($primaryDevicePublicKey TEXT, $secondaryDevicePublicKey TEXT, " +
+            "$requestSignature TEXT NULLABLE DEFAULT NULL, $grantSignature TEXT NULLABLE DEFAULT NULL, PRIMARY KEY ($primaryDevicePublicKey, $secondaryDevicePublicKey));"
     }
 
     override fun getSwarmCache(hexEncodedPublicKey: String): Set<LokiAPITarget>? {
@@ -154,9 +154,9 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
 
     override fun getPairingAuthorisations(hexEncodedPublicKey: String): List<PairingAuthorisation> {
         val database = databaseHelper.readableDatabase
-        return database.getAll(multiDeviceAuthTable, "$primaryDevice = ? OR $secondaryDevice = ?", arrayOf(hexEncodedPublicKey, hexEncodedPublicKey)) { cursor ->
-            val primaryDevicePubKey = cursor.getString(primaryDevice)
-            val secondaryDevicePubKey = cursor.getString(secondaryDevice)
+        return database.getAll(pairingAuthorisationCache, "$primaryDevicePublicKey = ? OR $secondaryDevicePublicKey = ?", arrayOf( hexEncodedPublicKey, hexEncodedPublicKey )) { cursor ->
+            val primaryDevicePubKey = cursor.getString(primaryDevicePublicKey)
+            val secondaryDevicePubKey = cursor.getString(secondaryDevicePublicKey)
             val requestSignature: ByteArray? = if (cursor.isNull(cursor.getColumnIndexOrThrow(requestSignature))) null else cursor.getBase64EncodedData(requestSignature)
             val grantSignature: ByteArray? = if (cursor.isNull(cursor.getColumnIndexOrThrow(grantSignature))) null else cursor.getBase64EncodedData(grantSignature)
             PairingAuthorisation(primaryDevicePubKey, secondaryDevicePubKey, requestSignature, grantSignature)
@@ -166,16 +166,16 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
     override fun insertOrUpdatePairingAuthorisation(authorisation: PairingAuthorisation) {
         val database = databaseHelper.writableDatabase
         val values = ContentValues()
-        values.put(primaryDevice, authorisation.primaryDevicePublicKey)
-        values.put(secondaryDevice, authorisation.secondaryDevicePublicKey)
+        values.put(primaryDevicePublicKey, authorisation.primaryDevicePublicKey)
+        values.put(secondaryDevicePublicKey, authorisation.secondaryDevicePublicKey)
         if (authorisation.requestSignature != null) { values.put(requestSignature, Base64.encodeBytes(authorisation.requestSignature)) }
         if (authorisation.grantSignature != null) { values.put(grantSignature, Base64.encodeBytes(authorisation.grantSignature)) }
-        database.insertOrUpdate(multiDeviceAuthTable, values, "$primaryDevice = ? AND $secondaryDevice = ?", arrayOf(authorisation.primaryDevicePublicKey, authorisation.secondaryDevicePublicKey))
+        database.insertOrUpdate(pairingAuthorisationCache, values, "$primaryDevicePublicKey = ? AND $secondaryDevicePublicKey = ?", arrayOf( authorisation.primaryDevicePublicKey, authorisation.secondaryDevicePublicKey ))
     }
 
     override fun removePairingAuthorisations(hexEncodedPublicKey: String) {
         val database = databaseHelper.readableDatabase
-        database.delete(multiDeviceAuthTable, "$primaryDevice = ? OR $secondaryDevice = ?", arrayOf(hexEncodedPublicKey, hexEncodedPublicKey))
+        database.delete(pairingAuthorisationCache, "$primaryDevicePublicKey = ? OR $secondaryDevicePublicKey = ?", arrayOf( hexEncodedPublicKey, hexEncodedPublicKey ))
     }
 }
 

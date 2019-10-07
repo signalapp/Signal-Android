@@ -335,7 +335,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
           QRCodeDialog.INSTANCE.show(getContext());
           break;
         case PREFERENCE_CATEGORY_LINK_DEVICE:
-          DeviceLinkingDialog.Companion.show(getContext(), DeviceLinkingView.Mode.Master);
+          DeviceLinkingDialog.Companion.show(getContext(), DeviceLinkingView.Mode.Master, null);
           break;
         case PREFERENCE_CATEGORY_SEED:
           Analytics.Companion.getShared().track("Seed Modal Shown");

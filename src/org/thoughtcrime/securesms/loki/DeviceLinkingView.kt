@@ -5,7 +5,6 @@ import android.graphics.Color
 import android.graphics.PorterDuff
 import android.os.Handler
 import android.util.AttributeSet
-import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.view_device_linking.view.*
@@ -29,7 +28,7 @@ class DeviceLinkingView private constructor(context: Context, attrs: AttributeSe
 
     // region Lifecycle
     constructor(context: Context, mode: Mode, delegate: DeviceLinkingViewDelegate) : this(context, null, 0, mode, delegate)
-    private constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0, Mode.Master, object : DeviceLinkingViewDelegate {}) // Just pass in a dummy mode
+    private constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0, Mode.Master, object : DeviceLinkingViewDelegate { }) // Just pass in a dummy mode
     private constructor(context: Context) : this(context, null)
 
     init {
@@ -77,29 +76,17 @@ class DeviceLinkingView private constructor(context: Context, attrs: AttributeSe
             mnemonicTextView.text = MnemonicCodec(languageFileDirectory).encode(hexEncodedPublicKey).split(" ").slice(0 until 3).joinToString(" ")
         }
         authorizeButton.visibility = View.GONE
-        authorizeButton.setOnClickListener { authorize() }
+        authorizeButton.setOnClickListener { authorizePairing() }
         cancelButton.setOnClickListener { cancel() }
     }
     // endregion
 
     // region Device Linking
     fun requestUserAuthorization(authorisation: PairingAuthorisation) {
-        // To be called when a linking request has been received
-        if (mode != Mode.Master) {
-            Log.w("Loki", "Received request for pairing authorisation on a slave device")
-            return
-        }
-
-        if (authorisation.type != PairingAuthorisation.Type.REQUEST) {
-            Log.w("Loki", "Received request for GRANT pairing authorisation! It shouldn't be possible!!")
-            return
-        }
-
-        if (this.pairingAuthorisation != null) {
-            Log.e("Loki", "Received request for another pairing authorisation when one was active")
-            return
-        }
-
+        if (mode != Mode.Master) { throw IllegalStateException() }
+        if (authorisation.type != PairingAuthorisation.Type.REQUEST) { throw IllegalStateException() }
+        if (pairingAuthorisation != null) { return }
+        pairingAuthorisation = authorisation
         spinner.visibility = View.GONE
         val titleTextViewLayoutParams = titleTextView.layoutParams as LayoutParams
         titleTextViewLayoutParams.topMargin = toPx(16, resources)
@@ -110,25 +97,11 @@ class DeviceLinkingView private constructor(context: Context, attrs: AttributeSe
         val hexEncodedPublicKey = authorisation.secondaryDevicePublicKey.removing05PrefixIfNeeded()
         mnemonicTextView.text = MnemonicCodec(languageFileDirectory).encode(hexEncodedPublicKey).split(" ").slice(0 until 3).joinToString(" ")
         authorizeButton.visibility = View.VISIBLE
-
-        this.pairingAuthorisation = authorisation
-    }
-
-    private fun authorize() {
-        if (pairingAuthorisation == null || mode != Mode.Master ) { return; }
-
-        // Pass authorisation to delegate and only dismiss if it succeeded
-        if (delegate.authorise(pairingAuthorisation!!)) {
-            delegate.handleDeviceLinkAuthorized()
-            dismiss?.invoke()
-        }
     }
 
     fun onDeviceLinkAuthorized(authorisation: PairingAuthorisation) {
-        // To be called when a device link was accepted by the primary device
-        if (mode == Mode.Master || pairingAuthorisation != null) { return }
+        if (mode != Mode.Slave || pairingAuthorisation != null) { return }
         pairingAuthorisation = authorisation
-
         spinner.visibility = View.GONE
         val titleTextViewLayoutParams = titleTextView.layoutParams as LayoutParams
         titleTextViewLayoutParams.topMargin = toPx(8, resources)
@@ -142,7 +115,6 @@ class DeviceLinkingView private constructor(context: Context, attrs: AttributeSe
         mnemonicTextView.visibility = View.GONE
         buttonContainer.visibility = View.GONE
         cancelButton.visibility = View.GONE
-
         Handler().postDelayed({
             delegate.handleDeviceLinkAuthorized()
             dismiss?.invoke()
@@ -151,6 +123,14 @@ class DeviceLinkingView private constructor(context: Context, attrs: AttributeSe
     // endregion
 
     // region Interaction
+    private fun authorizePairing() {
+        if (pairingAuthorisation == null || mode != Mode.Master ) { return; }
+        if (delegate.sendPairingAuthorizedMessage(pairingAuthorisation!!)) {
+            delegate.handleDeviceLinkAuthorized()
+            dismiss?.invoke()
+        }
+    }
+
     private fun cancel() {
         delegate.handleDeviceLinkingDialogDismissed()
         dismiss?.invoke()

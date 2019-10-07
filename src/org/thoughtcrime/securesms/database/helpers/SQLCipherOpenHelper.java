@@ -125,7 +125,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     db.execSQL(LokiAPIDatabase.getCreateGroupChatAuthTokenTableCommand());
     db.execSQL(LokiAPIDatabase.getCreateLastMessageServerIDTableCommand());
     db.execSQL(LokiAPIDatabase.getCreateLastDeletionServerIDTableCommand());
-    db.execSQL(LokiAPIDatabase.getCreateMultiDeviceAuthTableCommand());
+    db.execSQL(LokiAPIDatabase.getCreatePairingAuthorisationTableCommand());
     db.execSQL(LokiPreKeyBundleDatabase.getCreateTableCommand());
     db.execSQL(LokiPreKeyRecordDatabase.getCreateTableCommand());
     db.execSQL(LokiMessageDatabase.getCreateTableCommand());
@@ -496,7 +496,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
       }
 
       if (oldVersion < lokiV3) {
-        db.execSQL(LokiAPIDatabase.getCreateMultiDeviceAuthTableCommand());
+        db.execSQL(LokiAPIDatabase.getCreatePairingAuthorisationTableCommand());
       }
 
       db.setTransactionSuccessful();
