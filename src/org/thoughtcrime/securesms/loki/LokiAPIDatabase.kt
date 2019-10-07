@@ -166,11 +166,11 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
     override fun insertOrUpdatePairingAuthorisation(authorisation: LokiPairingAuthorisation) {
         val database = databaseHelper.writableDatabase
         val values = ContentValues()
-        values.put(primaryDevice, authorisation.primaryDevicePubKey)
-        values.put(secondaryDevice, authorisation.secondaryDevicePubKey)
+        values.put(primaryDevice, authorisation.primaryDevicePublicKey)
+        values.put(secondaryDevice, authorisation.secondaryDevicePublicKey)
         if (authorisation.requestSignature != null) { values.put(requestSignature, Base64.encodeBytes(authorisation.requestSignature)) }
         if (authorisation.grantSignature != null) { values.put(grantSignature, Base64.encodeBytes(authorisation.grantSignature)) }
-        database.insertOrUpdate(multiDeviceAuthTable, values, "$primaryDevice = ? AND $secondaryDevice = ?", arrayOf(authorisation.primaryDevicePubKey, authorisation.secondaryDevicePubKey))
+        database.insertOrUpdate(multiDeviceAuthTable, values, "$primaryDevice = ? AND $secondaryDevice = ?", arrayOf(authorisation.primaryDevicePublicKey, authorisation.secondaryDevicePublicKey))
     }
 
     override fun removePairingAuthorisations(pubKey: String) {

@@ -62,9 +62,9 @@ class DeviceLinkingDialog private constructor(private val context: Context, priv
 
         // Send authorisation message
         retryIfNeeded(3) {
-            sendAuthorisationMessage(context, pairing.secondaryDevicePubKey, signedAuthorisation)
+            sendAuthorisationMessage(context, pairing.secondaryDevicePublicKey, signedAuthorisation)
         }.fail {
-            Log.e("Loki", "Failed to send GRANT authorisation to ${pairing.secondaryDevicePubKey}")
+            Log.e("Loki", "Failed to send GRANT authorisation to ${pairing.secondaryDevicePublicKey}")
         }
 
         // Add the auth to the database
@@ -85,7 +85,7 @@ class DeviceLinkingDialog private constructor(private val context: Context, priv
         if (mode == DeviceLinkingView.Mode.Master && view.pairingAuthorisation != null) {
             val authorisation = view.pairingAuthorisation!!
             // Remove pre key bundle from the requesting device
-            DatabaseFactory.getLokiPreKeyBundleDatabase(context).removePreKeyBundle(authorisation.secondaryDevicePubKey)
+            DatabaseFactory.getLokiPreKeyBundleDatabase(context).removePreKeyBundle(authorisation.secondaryDevicePublicKey)
         }
 
         delegate?.handleDeviceLinkingDialogDismissed()

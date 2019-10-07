@@ -1026,10 +1026,10 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     } else if (isRequest && isSecondaryDevice) {
       Log.w("Loki", "Received a pairing request while being a secondary device. Ignored.");
       return false;
-    } else if (isRequest && !authorisation.getPrimaryDevicePubKey().equals(ourPubKey)) {
+    } else if (isRequest && !authorisation.getPrimaryDevicePublicKey().equals(ourPubKey)) {
       Log.w("Loki", "Received a pairing request addressed to another pubkey. Ignored.");
       return false;
-    } else if (isRequest && authorisation.getSecondaryDevicePubKey().equals(ourPubKey)) {
+    } else if (isRequest && authorisation.getSecondaryDevicePublicKey().equals(ourPubKey)) {
       Log.w("Loki", "Received a pairing request from ourselves. Ignored.");
       return false;
     }
@@ -1041,7 +1041,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     String ourNumber = TextSecurePreferences.getLocalNumber(context);
     if (authorisation.getType() == LokiPairingAuthorisation.Type.REQUEST) {
       handlePairingRequest(authorisation, envelope);
-    } else if (authorisation.getSecondaryDevicePubKey().equals(ourNumber)) {
+    } else if (authorisation.getSecondaryDevicePublicKey().equals(ourNumber)) {
       // If we were listed as a secondary device, it means we got a confirmation back from the primary device
       handlePairingAuthorisationForSelf(authorisation, envelope, content);
     }
@@ -1076,7 +1076,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
     // Unimplemented for REQUEST
     if (authorisation.getType() != LokiPairingAuthorisation.Type.GRANT) { return; }
-    Log.d("Loki", "Receiving pairing authorisation from: " + authorisation.getPrimaryDevicePubKey());
+    Log.d("Loki", "Receiving pairing authorisation from: " + authorisation.getPrimaryDevicePublicKey());
 
     // Send out accept event
     LokiDeviceLinkingSession.Companion.getShared().acceptedLinkingRequest(authorisation);
@@ -1088,7 +1088,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     TextSecurePreferences.setIsSecondaryDevice(context, true);
 
     // Send a background message to the primary device
-    sendBackgroundMessage(authorisation.getPrimaryDevicePubKey());
+    sendBackgroundMessage(authorisation.getPrimaryDevicePublicKey());
 
     // Propagate the updates to the file server
     LokiStorageAPI storageAPI = LokiStorageAPI.Companion.getShared();

@@ -233,7 +233,7 @@ class SeedActivity : BaseActionBarActivity() {
             // Send the request to the other user
             CoroutineScope(Dispatchers.Main).launch {
                 retryIfNeeded(3) {
-                    sendAuthorisationMessage(this@SeedActivity, authorisation.primaryDevicePubKey, authorisation).get()
+                    sendAuthorisationMessage(this@SeedActivity, authorisation.primaryDevicePublicKey, authorisation).get()
                 }.failUi {
                     dialog.dismiss()
                     resetRegistration()

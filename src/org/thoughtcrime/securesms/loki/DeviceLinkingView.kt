@@ -115,7 +115,7 @@ class DeviceLinkingView private constructor(context: Context, attrs: AttributeSe
         titleTextView.text = resources.getString(R.string.view_device_linking_title_3)
         explanationTextView.text = resources.getString(R.string.view_device_linking_explanation_2)
         mnemonicTextView.visibility = View.VISIBLE
-        val hexEncodedPublicKey = authorisation.secondaryDevicePubKey.removing05PrefixIfNeeded()
+        val hexEncodedPublicKey = authorisation.secondaryDevicePublicKey.removing05PrefixIfNeeded()
         mnemonicTextView.text = MnemonicCodec(languageFileDirectory).encode(hexEncodedPublicKey).split(" ").slice(0 until 3).joinToString(" ")
         authorizeButton.visibility = View.VISIBLE
 
