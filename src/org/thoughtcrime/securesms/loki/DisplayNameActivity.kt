@@ -21,6 +21,7 @@ class DisplayNameActivity : BaseActionBarActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_account_details)
         nextButton.setOnClickListener { continueIfPossible() }
+        Analytics.shared.track("Display Name Screen Viewed")
     }
 
     private fun continueIfPossible() {
