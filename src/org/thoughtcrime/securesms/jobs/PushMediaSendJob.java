@@ -42,7 +42,6 @@ import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSy
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
-import org.whispersystems.signalservice.loki.messaging.LokiMessageFriendRequestStatus;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -65,11 +64,10 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
 
   @Inject SignalServiceMessageSender messageSender;
 
-  private long messageId; // The message id
-  private long templateMessageId; // The message id of the message to template this send job from
+  private long messageId; // The message ID
+  private long templateMessageId; // The message ID of the message to template this send job from
 
-  // Loki - Multi-device
-
+  // Loki - Multi device
   private Address destination; // Destination to check whether this is another device we're sending to
   private boolean isFriendRequest; // Whether this is a friend request message
   private String customFriendRequestMessage; // If this isn't set then we use the message body
