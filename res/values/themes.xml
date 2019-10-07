@@ -278,7 +278,7 @@
         <item name="conversation_icon_attach_audio">@drawable/ic_audio_light</item>
         <item name="conversation_icon_attach_video">@drawable/ic_video_light</item>
 
-        <item name="registration_lock_reminder_view_pin_text_color">@color/core_black</item>
+        <item name="registration_lock_reminder_view_pin_text_color">@color/blue</item>
 
         <item name="reminder_header_background">#ff1d85d7</item>
 
