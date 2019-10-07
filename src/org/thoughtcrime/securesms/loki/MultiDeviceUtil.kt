@@ -17,17 +17,13 @@ import org.whispersystems.signalservice.loki.api.LokiStorageAPI
 import org.whispersystems.signalservice.loki.api.PairingAuthorisation
 import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus
 
-fun getAllDevices(context: Context, pubKey: String, storageAPI: LokiStorageAPI, block: (devicePubKey: String, isFriend: Boolean, friendCount: Int) -> Unit) {
-  val ourPubKey = TextSecurePreferences.getLocalNumber(context)
-
-  // Get all the devices and run our logic on them
-  storageAPI.getAllDevicePublicKeys(pubKey).success { items ->
+fun getAllDevicePublicKeys(context: Context, hexEncodedPublicKey: String, storageAPI: LokiStorageAPI, block: (devicePublicKey: String, isFriend: Boolean, friendCount: Int) -> Unit) {
+  val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context)
+  storageAPI.getAllDevicePublicKeys(hexEncodedPublicKey).success { items ->
     val devices = items.toMutableSet()
-    // Remove our self if we intended this message to go to another recipient
-    if (pubKey != ourPubKey) {
-      devices.remove(ourPubKey)
+    if (hexEncodedPublicKey != userHexEncodedPublicKey) {
+      devices.remove(userHexEncodedPublicKey)
     }
-
     val friends = getFriendPublicKeys(context, devices)
     for (device in devices) {
       block(device, friends.contains(device), friends.count())
@@ -35,45 +31,30 @@ fun getAllDevices(context: Context, pubKey: String, storageAPI: LokiStorageAPI, 
   }
 }
 
-fun shouldAutomaticallyBecomeFriendsWithDevice(pubKey: String, context: Context): Promise<Boolean, Unit> {
+fun shouldAutomaticallyBecomeFriendsWithDevice(publicKey: String, context: Context): Promise<Boolean, Unit> {
   val lokiThreadDatabase = DatabaseFactory.getLokiThreadDatabase(context)
-  val storageAPI = LokiStorageAPI.shared ?: return Promise.ofSuccess(false)
-  // we need to check if the sender is a secondary device.
-  // If it is then we need to check if we have its primary device as our friend
-  // If so then we add them automatically as a friend
-
+  val storageAPI = LokiStorageAPI.shared
   val deferred = deferred<Boolean, Unit>()
-  storageAPI.getPrimaryDevicePublicKey(pubKey).success { primaryDevicePubKey ->
-    // Make sure we have a primary device
-    if (primaryDevicePubKey == null) {
+  storageAPI.getPrimaryDevicePublicKey(publicKey).success { primaryDevicePublicKey ->
+    if (primaryDevicePublicKey == null) {
       deferred.resolve(false)
       return@success
     }
-
-    val ourPubKey = TextSecurePreferences.getLocalNumber(context)
-
-    if (primaryDevicePubKey == ourPubKey) {
-      // If the friend request is from our secondary device then we need to confirm and check that we have it registered.
-      // If we do then add it
-      storageAPI.getSecondaryDevicePublicKeys(ourPubKey).success { secondaryDevices ->
-        // We should become friends if the pubKey is in our secondary device list
-        deferred.resolve(secondaryDevices.contains(pubKey))
+    val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context)
+    if (primaryDevicePublicKey == userHexEncodedPublicKey) {
+      storageAPI.getSecondaryDevicePublicKeys(userHexEncodedPublicKey).success { secondaryDevices ->
+        deferred.resolve(secondaryDevices.contains(publicKey))
       }.fail {
         deferred.resolve(false)
       }
-
       return@success
     }
-
-    // If we have a thread then the id will be >= 0
-    val primaryDevice = Recipient.from(context, Address.fromSerialized(primaryDevicePubKey), false)
+    val primaryDevice = Recipient.from(context, Address.fromSerialized(primaryDevicePublicKey), false)
     val threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(primaryDevice)
     if (threadID < 0) {
       deferred.resolve(false)
       return@success
     }
-
-    // We should become friends if the primary device is our friend
     deferred.resolve(lokiThreadDatabase.getFriendRequestStatus(threadID) == LokiThreadFriendRequestStatus.FRIENDS)
   }
 
@@ -84,22 +65,19 @@ fun sendPairingAuthorisationMessage(context: Context, contactHexEncodedPublicKey
   val messageSender = ApplicationContext.getInstance(context).communicationModule.provideSignalMessageSender()
   val address = SignalServiceAddress(contactHexEncodedPublicKey)
   val message = SignalServiceDataMessage.newBuilder().withBody("").withPairingAuthorisation(authorisation)
-
   // A REQUEST should always act as a friend request. A GRANT should always be replying back as a normal message.
   if (authorisation.type == PairingAuthorisation.Type.REQUEST) {
     val preKeyBundle = DatabaseFactory.getLokiPreKeyBundleDatabase(context).generatePreKeyBundle(address.number)
     message.asFriendRequest(true).withPreKeyBundle(preKeyBundle)
   }
-
   return try {
-    Log.d("Loki", "Sending authorisation message to $contactHexEncodedPublicKey")
+    Log.d("Loki", "Sending authorisation message to: $contactHexEncodedPublicKey.")
     val result = messageSender.sendMessage(0, address, Optional.absent<UnidentifiedAccessPair>(), message.build())
     if (result.success == null) {
       val exception = when {
-        result.isNetworkFailure -> "Failed to send authorisation message because of a Network Error"
-        else -> "Failed to send authorisation message"
+        result.isNetworkFailure -> "Failed to send authorisation message due to a network error."
+        else -> "Failed to send authorisation message."
       }
-
       throw Exception(exception)
     }
     Promise.ofSuccess(Unit)

@@ -218,7 +218,7 @@ public class MessageSender {
       return;
     }
 
-    MultiDeviceUtilKt.getAllDevices(context, recipientPublicKey, storageAPI, (devicePublicKey, isFriend, friendCount) -> {
+    MultiDeviceUtilKt.getAllDevicePublicKeys(context, recipientPublicKey, storageAPI, (devicePublicKey, isFriend, friendCount) -> {
       Address address = Address.fromSerialized(devicePublicKey);
       long messageIDToUse = recipientPublicKey.equals(devicePublicKey) ? messageId : -1L;
 
@@ -248,7 +248,7 @@ public class MessageSender {
       return;
     }
 
-    MultiDeviceUtilKt.getAllDevices(context, recipientPublicKey, storageAPI, (devicePublicKey, isFriend, friendCount) -> {
+    MultiDeviceUtilKt.getAllDevicePublicKeys(context, recipientPublicKey, storageAPI, (devicePublicKey, isFriend, friendCount) -> {
       Address address = Address.fromSerialized(devicePublicKey);
       long messageIDToUse = recipientPublicKey.equals(devicePublicKey) ? messageId : -1L;
 

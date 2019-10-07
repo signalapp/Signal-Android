@@ -92,7 +92,7 @@ public class MarkReadReceiver extends BroadcastReceiver {
 
       List<Long> timestamps = Stream.of(addressMap.get(address)).map(SyncMessageId::getTimetamp).toList();
 
-      MultiDeviceUtilKt.getAllDevices(context, address.serialize(), storageAPI, (devicePublicKey, isFriend, friendCount) -> {
+      MultiDeviceUtilKt.getAllDevicePublicKeys(context, address.serialize(), storageAPI, (devicePublicKey, isFriend, friendCount) -> {
         // Loki - This also prevents read receipts from being sent in group chats as they don't maintain a friend request status
         if (isFriend) {
           ApplicationContext.getInstance(context).getJobManager().add(new SendReadReceiptJob(Address.fromSerialized(devicePublicKey), timestamps));

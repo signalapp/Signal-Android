@@ -92,7 +92,7 @@ class LokiPreKeyBundleDatabase(context: Context, helper: SQLCipherOpenHelper) : 
 
     fun hasPreKeyBundle(hexEncodedPublicKey: String): Boolean {
         val database = databaseHelper.readableDatabase
-        val cursor = database.query(tableName, null, "${Companion.hexEncodedPublicKey} = ?", arrayOf(hexEncodedPublicKey), null, null, null)
+        val cursor = database.query(tableName, null, "${Companion.hexEncodedPublicKey} = ?", arrayOf( hexEncodedPublicKey ), null, null, null)
         return cursor != null && cursor.count > 0
     }
 }

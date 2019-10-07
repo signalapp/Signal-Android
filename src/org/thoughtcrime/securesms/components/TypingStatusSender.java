@@ -91,7 +91,7 @@ public class TypingStatusSender {
       return;
     }
 
-    MultiDeviceUtilKt.getAllDevices(context, originalRecipient.getAddress().serialize(), storageAPI, (devicePublicKey, isFriend, friendCount) -> {
+    MultiDeviceUtilKt.getAllDevicePublicKeys(context, originalRecipient.getAddress().serialize(), storageAPI, (devicePublicKey, isFriend, friendCount) -> {
       Recipient device = Recipient.from(context, Address.fromSerialized(devicePublicKey), false);
       long deviceThreadID = threadDatabase.getThreadIdIfExistsFor(device);
       if (deviceThreadID > -1) {
