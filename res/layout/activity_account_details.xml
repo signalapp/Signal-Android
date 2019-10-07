@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:text="@string/activity_account_details_title"
+            android:text="@string/activity_display_name_title"
             android:textAlignment="center" />
 
         <TextView
@@ -29,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@string/activity_account_details_subtitle"
+            android:text="@string/activity_display_name_subtitle"
             android:textAlignment="center" />
 
         <org.thoughtcrime.securesms.components.LabeledEditText
@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             app:labeledEditText_background="@color/loki_darkest_gray"
-            app:labeledEditText_label="@string/activity_account_details_name_edit_text_label"/>
+            app:labeledEditText_label="@string/activity_display_name_name_edit_text_label"/>
 
         <com.dd.CircularProgressButton
             android:id="@+id/nextButton"
@@ -53,7 +53,7 @@
             app:cpb_colorProgress="@color/textsecure_primary"
             app:cpb_cornerRadius="4dp"
             app:cpb_selectorIdle="@drawable/progress_button_state"
-            app:cpb_textIdle="@string/activity_account_details_button_title" />
+            app:cpb_textIdle="@string/activity_display_name_button_title" />
 
     </LinearLayout>
 

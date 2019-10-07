@@ -1549,11 +1549,11 @@
     <string name="activity_landing_permission_dialog_message">Some features of Loki Messenger (such as automatic message backup) require storage access to work.</string>
     <string name="activity_landing_beta_terms">"Loki Messenger is currently in beta. For development purposes the beta version collects basic usage statistics and crash logs. In addition, the beta version doesn't provide full privacy and shouldn\'t be used to transmit sensitive information."</string>
     <string name="activity_landing_privacy_policy_button_title">Privacy Policy</string>
-    <!-- Account details activity -->
-    <string name="activity_account_details_title">Create Your Loki Messenger Account</string>
-    <string name="activity_account_details_subtitle">Enter a name to be shown to your contacts</string>
-    <string name="activity_account_details_name_edit_text_label">Display Name (Optional)</string>
-    <string name="activity_account_details_button_title">Next</string>
+    <!-- Display name activity -->
+    <string name="activity_display_name_title">Create Your Loki Messenger Account</string>
+    <string name="activity_display_name_subtitle">Enter a name to be shown to your contacts</string>
+    <string name="activity_display_name_name_edit_text_label">Display Name (Optional)</string>
+    <string name="activity_display_name_button_title">Next</string>
     <!-- Key pair activity -->
     <string name="activity_key_pair_title">Create Your Loki Messenger Account</string>
     <string name="activity_key_pair_seed_explanation_1">Please save the seed below in a safe location. It can be used to restore your account if you lose access, or to migrate to a new device.</string>
@@ -1565,9 +1565,9 @@
     <string name="activity_key_pair_toggle_mode_button_title_2">Register a New Account</string>
     <string name="activity_key_pair_toggle_mode_button_title_3">Link Device</string>
     <string name="activity_key_pair_mnemonic_copied_message">Copied to clipboard</string>
-    <string name="activity_key_pair_register_or_restore_button_title_1">Register</string>
-    <string name="activity_key_pair_register_or_restore_button_title_2">Restore</string>
-    <string name="activity_key_pair_register_or_restore_button_title_3">Link</string>
+    <string name="activity_key_pair_main_button_title_1">Register</string>
+    <string name="activity_key_pair_main_button_title_2">Restore</string>
+    <string name="activity_key_pair_main_button_title_3">Link</string>
     <string name="activity_key_pair_public_key_edit_text_label">Your Public Key</string>
     <!-- Conversation list activity -->
     <string name="activity_conversation_list_empty_state_message">Looks like you don\'t have any conversations yet. Get started by messaging a friend.</string>

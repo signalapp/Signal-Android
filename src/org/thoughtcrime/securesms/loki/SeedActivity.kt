@@ -13,9 +13,9 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import network.loki.messenger.R
-import nl.komponents.kovenant.ui.failUi
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.BaseActionBarActivity
+import org.thoughtcrime.securesms.ConversationListActivity
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
@@ -34,7 +34,7 @@ import org.whispersystems.signalservice.loki.utilities.retryIfNeeded
 import java.io.File
 import java.io.FileOutputStream
 
-class SeedActivity : BaseActionBarActivity() {
+class SeedActivity : BaseActionBarActivity(), DeviceLinkingDialogDelegate {
     private lateinit var languageFileDirectory: File
     private var mode = Mode.Register
         set(newValue) { field = newValue; updateUI() }
@@ -53,17 +53,12 @@ class SeedActivity : BaseActionBarActivity() {
         setContentView(R.layout.activity_seed)
         setUpLanguageFileDirectory()
         updateSeed()
-        updateUI()
         copyButton.setOnClickListener { copy() }
-        toggleRestoreModeButton.setOnClickListener { mode = Mode.Restore }
         toggleRegisterModeButton.setOnClickListener { mode = Mode.Register }
+        toggleRestoreModeButton.setOnClickListener { mode = Mode.Restore }
         toggleLinkModeButton.setOnClickListener { mode = Mode.Link }
-        registerOrRestoreButton.setOnClickListener { registerOrRestore() }
+        mainButton.setOnClickListener { handleMainButtonTapped() }
         Analytics.shared.track("Seed Screen Viewed")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
     }
     // endregion
 
@@ -102,29 +97,25 @@ class SeedActivity : BaseActionBarActivity() {
     }
 
     private fun updateUI() {
-        val showOnRegister = if (mode == Mode.Register) View.VISIBLE else View.GONE
-        val showOnRestore = if (mode == Mode.Restore) View.VISIBLE else View.GONE
-        val showOnLink = if (mode == Mode.Link) View.VISIBLE else View.GONE
-
-        seedExplanationTextView1.visibility = showOnRegister
-        mnemonicTextView.visibility = showOnRegister
-        copyButton.visibility = showOnRegister
-        seedExplanationTextView2.visibility = showOnRestore
-        mnemonicEditText.visibility = showOnRestore
-        publicKeyEditText.visibility = showOnLink
-        linkExplanationTextView.visibility = showOnLink
-
+        val registerModeVisibility = if (mode == Mode.Register) View.VISIBLE else View.GONE
+        val restoreModeVisibility = if (mode == Mode.Restore) View.VISIBLE else View.GONE
+        val linkModeVisibility = if (mode == Mode.Link) View.VISIBLE else View.GONE
+        seedExplanationTextView1.visibility = registerModeVisibility
+        mnemonicTextView.visibility = registerModeVisibility
+        copyButton.visibility = registerModeVisibility
+        seedExplanationTextView2.visibility = restoreModeVisibility
+        mnemonicEditText.visibility = restoreModeVisibility
+        linkExplanationTextView.visibility = linkModeVisibility
+        publicKeyEditText.visibility = linkModeVisibility
         toggleRegisterModeButton.visibility = if (mode != Mode.Register) View.VISIBLE else View.GONE
         toggleRestoreModeButton.visibility = if (mode != Mode.Restore) View.VISIBLE else View.GONE
         toggleLinkModeButton.visibility = if (mode != Mode.Link) View.VISIBLE else View.GONE
-
-        val registerOrRestoreButtonTitleID = when (mode) {
-            Mode.Register -> R.string.activity_key_pair_register_or_restore_button_title_1
-            Mode.Restore -> R.string.activity_key_pair_register_or_restore_button_title_2
-            Mode.Link -> R.string.activity_key_pair_register_or_restore_button_title_3
+        val mainButtonTitleID = when (mode) {
+            Mode.Register -> R.string.activity_key_pair_main_button_title_1
+            Mode.Restore -> R.string.activity_key_pair_main_button_title_2
+            Mode.Link -> R.string.activity_key_pair_main_button_title_3
         }
-
-        registerOrRestoreButton.setText(registerOrRestoreButtonTitleID)
+        mainButton.setText(mainButtonTitleID)
         if (mode == Mode.Restore) {
             mnemonicEditText.requestFocus()
         } else {
@@ -132,7 +123,6 @@ class SeedActivity : BaseActionBarActivity() {
             val inputMethodManager = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
             inputMethodManager.hideSoftInputFromWindow(mnemonicEditText.windowToken, 0)
         }
-
         if (mode == Mode.Link) {
             publicKeyEditText.requestFocus()
         } else {
@@ -160,7 +150,7 @@ class SeedActivity : BaseActionBarActivity() {
         Toast.makeText(this, R.string.activity_key_pair_mnemonic_copied_message, Toast.LENGTH_SHORT).show()
     }
 
-    private fun registerOrRestore() {
+    private fun handleMainButtonTapped() {
         var seed: ByteArray
         when (mode) {
             Mode.Register -> seed = this.seed!!
@@ -175,7 +165,8 @@ class SeedActivity : BaseActionBarActivity() {
                 }
             }
             Mode.Link -> {
-                if (!PublicKeyValidation.isValid(publicKeyEditText.text.trim().toString())) {
+                val hexEncodedPublicKey = publicKeyEditText.text.trim().toString()
+                if (!PublicKeyValidation.isValid(hexEncodedPublicKey)) {
                     return Toast.makeText(this, "Invalid public key", Toast.LENGTH_SHORT).show()
                 }
                 seed = this.seed!!
@@ -193,7 +184,7 @@ class SeedActivity : BaseActionBarActivity() {
         val registrationID = KeyHelper.generateRegistrationId(false)
         TextSecurePreferences.setLocalRegistrationId(this, registrationID)
         DatabaseFactory.getIdentityDatabase(this).saveIdentity(Address.fromSerialized(hexEncodedPublicKey), publicKey,
-                IdentityDatabase.VerifiedStatus.VERIFIED, true, System.currentTimeMillis(), true)
+            IdentityDatabase.VerifiedStatus.VERIFIED, true, System.currentTimeMillis(), true)
         TextSecurePreferences.setLocalNumber(this, hexEncodedPublicKey)
         when (mode) {
             Mode.Register -> Analytics.shared.track("Seed Created")
@@ -203,55 +194,40 @@ class SeedActivity : BaseActionBarActivity() {
         if (mode == Mode.Link) {
             TextSecurePreferences.setHasSeenWelcomeScreen(this, true)
             TextSecurePreferences.setPromptedPushRegistration(this, true)
-
-            // Build the pairing request
             val primaryDevicePublicKey = publicKeyEditText.text.trim().toString()
             val authorisation = PairingAuthorisation(primaryDevicePublicKey, hexEncodedPublicKey).sign(PairingAuthorisation.Type.REQUEST, keyPair.privateKey.serialize())
             if (authorisation == null) {
-                Log.w("Loki", "Failed to sign outgoing pairing request :(")
-                resetRegistration()
-                return Toast.makeText(application, "Failed to initialise device pairing", Toast.LENGTH_SHORT).show()
+                Log.d("Loki", "Failed to sign outgoing pairing request.")
+                resetForRegistration()
+                return Toast.makeText(application, "Failed to link device.", Toast.LENGTH_SHORT).show()
             }
-
             val application = ApplicationContext.getInstance(this)
             application.startLongPollingIfNeeded()
             application.setUpP2PAPI()
             application.setUpStorageAPIIfNeeded()
-
-            // Show the dialog
-            val dialog = DeviceLinkingDialog.show(this, DeviceLinkingView.Mode.Slave, object: DeviceLinkingDialogDelegate {
-              override fun handleDeviceLinkAuthorized() {
-                Analytics.shared.track("Device Linked Successfully")
-                showAccountDetailsView()
-              }
-
-              override fun handleDeviceLinkingDialogDismissed() {
-                resetRegistration()
-                Toast.makeText(this@SeedActivity, "Cancelled Device Linking", Toast.LENGTH_SHORT).show()
-              }
-            })
-
-            // Send the request to the other user
+            DeviceLinkingDialog.show(this, DeviceLinkingView.Mode.Slave, this)
             CoroutineScope(Dispatchers.Main).launch {
-                retryIfNeeded(3) {
+                retryIfNeeded(8) {
                     sendPairingAuthorisationMessage(this@SeedActivity, authorisation.primaryDevicePublicKey, authorisation).get()
-                }.failUi {
-                    dialog.dismiss()
-                    resetRegistration()
-                    Toast.makeText(application, "Failed to send device pairing request. Please try again.", Toast.LENGTH_SHORT).show()
                 }
             }
         } else {
-            showAccountDetailsView()
+            startActivity(Intent(this, DisplayNameActivity::class.java))
+            finish()
         }
     }
 
-    private fun showAccountDetailsView() {
-        startActivity(Intent(this, DisplayNameActivity::class.java))
+    override fun handleDeviceLinkAuthorized() {
+        Analytics.shared.track("Device Linked Successfully")
+        startActivity(Intent(this, ConversationListActivity::class.java))
         finish()
     }
 
-    private fun resetRegistration() {
+    override fun handleDeviceLinkingDialogDismissed() {
+        resetForRegistration()
+    }
+
+    private fun resetForRegistration() {
         IdentityKeyUtil.delete(this, IdentityKeyUtil.lokiSeedKey)
         TextSecurePreferences.removeLocalRegistrationId(this)
         TextSecurePreferences.removeLocalNumber(this)
