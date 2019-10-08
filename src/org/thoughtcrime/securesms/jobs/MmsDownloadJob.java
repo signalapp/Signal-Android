@@ -189,14 +189,12 @@ public class MmsDownloadJob extends BaseJob {
     String           body        = null;
     List<Attachment> attachments = new LinkedList<>();
 
-    RecipientId      from;
+    RecipientId from = null;
 
     if (retrieved.getFrom() != null) {
       from = Recipient.external(context, Util.toIsoString(retrieved.getFrom().getTextString())).getId();
     } else if (notificationFrom != null) {
       from = notificationFrom;
-    } else {
-      from = RecipientId.UNKNOWN;
     }
 
     if (retrieved.getTo() != null) {
@@ -211,7 +209,10 @@ public class MmsDownloadJob extends BaseJob {
       }
     }
 
-    members.add(from);
+    if (from != null) {
+      members.add(from);
+    }
+
     members.add(Recipient.self().getId());
 
     if (retrieved.getBody() != null) {

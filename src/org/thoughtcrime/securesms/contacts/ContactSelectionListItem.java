@@ -73,7 +73,7 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientF
 
     if (type == ContactRepository.NEW_TYPE) {
       this.recipient = null;
-      this.contactPhotoImage.setAvatar(glideRequests, Recipient.UNKNOWN, false);
+      this.contactPhotoImage.setAvatar(glideRequests, null, false);
     } else if (recipientId != null) {
       this.recipient = Recipient.live(recipientId);
       this.recipient.observeForever(this);

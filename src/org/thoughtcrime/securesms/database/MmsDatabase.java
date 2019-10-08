@@ -1542,7 +1542,7 @@ public class MmsDatabase extends MessagingDatabase {
       List<? extends Attachment> quoteAttachments = Stream.of(attachments).filter(Attachment::isQuote).toList();
       SlideDeck                  quoteDeck        = new SlideDeck(context, quoteAttachments);
 
-      if (quoteId > 0 && !quoteAuthor.isUnknown()) {
+      if (quoteId > 0) {
         return new Quote(quoteId, quoteAuthor, quoteText, quoteMissing, quoteDeck);
       } else {
         return null;

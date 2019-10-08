@@ -23,7 +23,6 @@ public final class LiveRecipientCache {
   private final Context                         context;
   private final RecipientDatabase               recipientDatabase;
   private final Map<RecipientId, LiveRecipient> recipients;
-  private final LiveRecipient                   unknown;
 
   private RecipientId localRecipientId;
 
@@ -32,13 +31,10 @@ public final class LiveRecipientCache {
     this.context           = context.getApplicationContext();
     this.recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
     this.recipients        = new LRUCache<>(1000);
-    this.unknown           = new LiveRecipient(context, new MutableLiveData<>(), Recipient.UNKNOWN);
   }
 
   @AnyThread
   synchronized @NonNull LiveRecipient getLive(@NonNull RecipientId id) {
-    if (id.isUnknown()) return unknown;
-
     LiveRecipient live = recipients.get(id);
 
     if (live == null) {
