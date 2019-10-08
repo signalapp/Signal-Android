@@ -9,7 +9,7 @@ import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.jobs.TypingSendJob;
-import org.thoughtcrime.securesms.loki.MultiDeviceUtilKt;
+import org.thoughtcrime.securesms.loki.MultiDeviceUtilitiesKt;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.loki.api.LokiStorageAPI;
@@ -91,7 +91,7 @@ public class TypingStatusSender {
       return;
     }
 
-    MultiDeviceUtilKt.getAllDevicePublicKeys(context, originalRecipient.getAddress().serialize(), storageAPI, (devicePublicKey, isFriend, friendCount) -> {
+    MultiDeviceUtilitiesKt.getAllDevicePublicKeys(context, originalRecipient.getAddress().serialize(), storageAPI, (devicePublicKey, isFriend, friendCount) -> {
       Recipient device = Recipient.from(context, Address.fromSerialized(devicePublicKey), false);
       long deviceThreadID = threadDatabase.getThreadIdIfExistsFor(device);
       if (deviceThreadID > -1) {

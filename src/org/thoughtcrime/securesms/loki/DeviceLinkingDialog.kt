@@ -65,8 +65,8 @@ class DeviceLinkingDialog private constructor(private val context: Context, priv
         return true
     }
 
-    override fun handleDeviceLinkAuthorized() {
-        delegate?.handleDeviceLinkAuthorized()
+    override fun handleDeviceLinkAuthorized(pairing: PairingAuthorisation) {
+        delegate?.handleDeviceLinkAuthorized(pairing)
     }
 
     override fun handleDeviceLinkingDialogDismissed() {

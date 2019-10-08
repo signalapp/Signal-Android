@@ -217,8 +217,11 @@ class SeedActivity : BaseActionBarActivity(), DeviceLinkingDialogDelegate {
         }
     }
 
-    override fun handleDeviceLinkAuthorized() {
+    override fun handleDeviceLinkAuthorized(pairing: PairingAuthorisation) {
         Analytics.shared.track("Device Linked Successfully")
+        if (pairing.secondaryDevicePublicKey == TextSecurePreferences.getLocalNumber(this)) {
+            TextSecurePreferences.setMasterHexEncodedPublicKey(this, pairing.primaryDevicePublicKey)
+        }
         startActivity(Intent(this, ConversationListActivity::class.java))
         finish()
     }

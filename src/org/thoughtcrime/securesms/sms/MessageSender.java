@@ -43,7 +43,7 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.GeneralUtilitiesKt;
-import org.thoughtcrime.securesms.loki.MultiDeviceUtilKt;
+import org.thoughtcrime.securesms.loki.MultiDeviceUtilitiesKt;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.push.AccountManagerFactory;
@@ -218,7 +218,7 @@ public class MessageSender {
       return;
     }
 
-    MultiDeviceUtilKt.getAllDevicePublicKeys(context, recipientPublicKey, storageAPI, (devicePublicKey, isFriend, friendCount) -> {
+    MultiDeviceUtilitiesKt.getAllDevicePublicKeys(context, recipientPublicKey, storageAPI, (devicePublicKey, isFriend, friendCount) -> {
       Address address = Address.fromSerialized(devicePublicKey);
       long messageIDToUse = recipientPublicKey.equals(devicePublicKey) ? messageId : -1L;
 
@@ -248,7 +248,7 @@ public class MessageSender {
       return;
     }
 
-    MultiDeviceUtilKt.getAllDevicePublicKeys(context, recipientPublicKey, storageAPI, (devicePublicKey, isFriend, friendCount) -> {
+    MultiDeviceUtilitiesKt.getAllDevicePublicKeys(context, recipientPublicKey, storageAPI, (devicePublicKey, isFriend, friendCount) -> {
       Address address = Address.fromSerialized(devicePublicKey);
       long messageIDToUse = recipientPublicKey.equals(devicePublicKey) ? messageId : -1L;
 

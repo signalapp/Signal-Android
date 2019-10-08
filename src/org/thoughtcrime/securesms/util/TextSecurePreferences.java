@@ -1178,12 +1178,12 @@ public class TextSecurePreferences {
     setBooleanPreference(context, "is_chat_set_up" + "?chat=" + id, true);
   }
 
-  public static boolean isSecondaryDevice(Context context) {
-    return getBooleanPreference(context, "is_secondary_device", false);
+  public static String getMasterHexEncodedPublicKey(Context context) {
+    return getStringPreference(context, "master_hex_encoded_public_key", null);
   }
 
-  public static void setIsSecondaryDevice(Context context, boolean isSecondaryDevice) {
-    setBooleanPreference(context, "is_secondary_device", isSecondaryDevice);
+  public static void setMasterHexEncodedPublicKey(Context context, String masterHexEncodedPublicKey) {
+    setStringPreference(context, "master_hex_encoded_publicKey", masterHexEncodedPublicKey);
   }
   // endregion
 }

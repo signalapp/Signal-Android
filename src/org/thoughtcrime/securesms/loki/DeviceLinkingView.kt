@@ -116,7 +116,7 @@ class DeviceLinkingView private constructor(context: Context, attrs: AttributeSe
         buttonContainer.visibility = View.GONE
         cancelButton.visibility = View.GONE
         Handler().postDelayed({
-            delegate.handleDeviceLinkAuthorized()
+            delegate.handleDeviceLinkAuthorized(authorisation)
             dismiss?.invoke()
         }, 4000)
     }
@@ -126,7 +126,7 @@ class DeviceLinkingView private constructor(context: Context, attrs: AttributeSe
     private fun authorizePairing() {
         if (pairingAuthorisation == null || mode != Mode.Master ) { return; }
         if (delegate.sendPairingAuthorizedMessage(pairingAuthorisation!!)) {
-            delegate.handleDeviceLinkAuthorized()
+            delegate.handleDeviceLinkAuthorized(pairingAuthorisation!!)
             dismiss?.invoke()
         }
     }
