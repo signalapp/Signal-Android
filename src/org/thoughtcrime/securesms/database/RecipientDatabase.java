@@ -571,6 +571,7 @@ public class RecipientDatabase extends Database {
     String   selection = BLOCKED    + " = ? AND " +
                          REGISTERED + " != ? AND " +
                          GROUP_ID   + " IS NULL AND " +
+                         SYSTEM_DISPLAY_NAME + " NOT NULL AND " +
                          "(" + PHONE + " NOT NULL OR " + EMAIL + " NOT NULL) AND " +
                          "(" +
                            PHONE               + " LIKE ? OR " +
