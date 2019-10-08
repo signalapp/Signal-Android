@@ -5,12 +5,20 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import org.thoughtcrime.securesms.ApplicationContext;
+import org.thoughtcrime.securesms.database.Address;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.jobs.TypingSendJob;
+import org.thoughtcrime.securesms.loki.MultiDeviceUtilitiesKt;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.signalservice.loki.api.LokiStorageAPI;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
+
+import kotlin.Unit;
 
 @SuppressLint("UseSparseArrays")
 public class TypingStatusSender {
@@ -74,7 +82,23 @@ public class TypingStatusSender {
   }
 
   private void sendTyping(long threadId, boolean typingStarted) {
-    ApplicationContext.getInstance(context).getJobManager().add(new TypingSendJob(threadId, typingStarted));
+    LokiStorageAPI storageAPI = LokiStorageAPI.Companion.getShared();
+    ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);
+    Recipient recipient = threadDatabase.getRecipientForThreadId(threadId);
+
+    if (recipient == null) {
+      ApplicationContext.getInstance(context).getJobManager().add(new TypingSendJob(threadId, typingStarted));
+      return;
+    }
+
+    MultiDeviceUtilitiesKt.getAllDevicePublicKeys(context, recipient.getAddress().serialize(), storageAPI, (devicePublicKey, isFriend, friendCount) -> {
+      Recipient device = Recipient.from(context, Address.fromSerialized(devicePublicKey), false);
+      long deviceThreadID = threadDatabase.getThreadIdIfExistsFor(device);
+      if (deviceThreadID > -1) {
+        ApplicationContext.getInstance(context).getJobManager().add(new TypingSendJob(deviceThreadID, typingStarted));
+      }
+      return Unit.INSTANCE;
+    });
   }
 
   private class StartRunnable implements Runnable {

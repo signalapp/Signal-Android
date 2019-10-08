@@ -4,9 +4,11 @@ import android.content.ContentValues
 import android.content.Context
 import org.thoughtcrime.securesms.database.Database
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
+import org.thoughtcrime.securesms.util.Base64
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.loki.api.LokiAPIDatabaseProtocol
 import org.whispersystems.signalservice.loki.api.LokiAPITarget
+import org.whispersystems.signalservice.loki.api.PairingAuthorisation
 
 // TODO: Clean this up a bit
 
@@ -45,6 +47,14 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         private val lastDeletionServerIDCacheIndex = "loki_api_last_deletion_server_id_cache_index"
         private val lastDeletionServerID = "last_deletion_server_id"
         @JvmStatic val createLastDeletionServerIDTableCommand = "CREATE TABLE $lastDeletionServerIDCache ($lastDeletionServerIDCacheIndex STRING PRIMARY KEY, $lastDeletionServerID INTEGER DEFAULT 0);"
+        // Pairing authorisation cache
+        private val pairingAuthorisationCache = "loki_pairing_authorisation_cache"
+        private val primaryDevicePublicKey = "primary_device"
+        private val secondaryDevicePublicKey = "secondary_device"
+        private val requestSignature = "request_signature"
+        private val grantSignature = "grant_signature"
+        @JvmStatic val createPairingAuthorisationTableCommand = "CREATE TABLE $pairingAuthorisationCache ($primaryDevicePublicKey TEXT, $secondaryDevicePublicKey TEXT, " +
+            "$requestSignature TEXT NULLABLE DEFAULT NULL, $grantSignature TEXT NULLABLE DEFAULT NULL, PRIMARY KEY ($primaryDevicePublicKey, $secondaryDevicePublicKey));"
     }
 
     override fun getSwarmCache(hexEncodedPublicKey: String): Set<LokiAPITarget>? {
@@ -95,14 +105,14 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         database.insertOrUpdate(receivedMessageHashValuesCache, row, "$userID = ?", wrap(userPublicKey))
     }
 
-    override fun getGroupChatAuthToken(server: String): String? {
+    override fun getAuthToken(server: String): String? {
         val database = databaseHelper.readableDatabase
         return database.get(groupChatAuthTokenTable, "${Companion.server} = ?", wrap(server)) { cursor ->
             cursor.getString(cursor.getColumnIndexOrThrow(token))
         }
     }
 
-    override fun setGroupChatAuthToken(server: String, newValue: String?) {
+    override fun setAuthToken(server: String, newValue: String?) {
         val database = databaseHelper.writableDatabase
         if (newValue != null) {
             val row = wrap(mapOf(Companion.server to server, token to newValue))
@@ -140,6 +150,32 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         val index = "$server.$group"
         val row = wrap(mapOf( lastDeletionServerIDCacheIndex to index, lastDeletionServerID to newValue.toString() ))
         database.insertOrUpdate(lastDeletionServerIDCache, row, "$lastDeletionServerIDCacheIndex = ?", wrap(index))
+    }
+
+    override fun getPairingAuthorisations(hexEncodedPublicKey: String): List<PairingAuthorisation> {
+        val database = databaseHelper.readableDatabase
+        return database.getAll(pairingAuthorisationCache, "$primaryDevicePublicKey = ? OR $secondaryDevicePublicKey = ?", arrayOf( hexEncodedPublicKey, hexEncodedPublicKey )) { cursor ->
+            val primaryDevicePubKey = cursor.getString(primaryDevicePublicKey)
+            val secondaryDevicePubKey = cursor.getString(secondaryDevicePublicKey)
+            val requestSignature: ByteArray? = if (cursor.isNull(cursor.getColumnIndexOrThrow(requestSignature))) null else cursor.getBase64EncodedData(requestSignature)
+            val grantSignature: ByteArray? = if (cursor.isNull(cursor.getColumnIndexOrThrow(grantSignature))) null else cursor.getBase64EncodedData(grantSignature)
+            PairingAuthorisation(primaryDevicePubKey, secondaryDevicePubKey, requestSignature, grantSignature)
+        }
+    }
+
+    override fun insertOrUpdatePairingAuthorisation(authorisation: PairingAuthorisation) {
+        val database = databaseHelper.writableDatabase
+        val values = ContentValues()
+        values.put(primaryDevicePublicKey, authorisation.primaryDevicePublicKey)
+        values.put(secondaryDevicePublicKey, authorisation.secondaryDevicePublicKey)
+        if (authorisation.requestSignature != null) { values.put(requestSignature, Base64.encodeBytes(authorisation.requestSignature)) }
+        if (authorisation.grantSignature != null) { values.put(grantSignature, Base64.encodeBytes(authorisation.grantSignature)) }
+        database.insertOrUpdate(pairingAuthorisationCache, values, "$primaryDevicePublicKey = ? AND $secondaryDevicePublicKey = ?", arrayOf( authorisation.primaryDevicePublicKey, authorisation.secondaryDevicePublicKey ))
+    }
+
+    override fun removePairingAuthorisations(hexEncodedPublicKey: String) {
+        val database = databaseHelper.readableDatabase
+        database.delete(pairingAuthorisationCache, "$primaryDevicePublicKey = ? OR $secondaryDevicePublicKey = ?", arrayOf( hexEncodedPublicKey, hexEncodedPublicKey ))
     }
 }
 

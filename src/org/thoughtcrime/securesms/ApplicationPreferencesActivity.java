@@ -156,8 +156,13 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
     public void onCreate(Bundle icicle) {
       super.onCreate(icicle);
 
-      this.findPreference(PREFERENCE_CATEGORY_PROFILE)
-          .setOnPreferenceClickListener(new ProfileClickListener());
+      String masterHexEncodedPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(getContext());
+      boolean isMasterDevice = (masterHexEncodedPublicKey != null);
+
+      Preference profilePreference = this.findPreference(PREFERENCE_CATEGORY_PROFILE);
+      // Hide if this is a slave device
+      profilePreference.setVisible(isMasterDevice);
+      profilePreference.setOnPreferenceClickListener(new ProfileClickListener());
       /*
       this.findPreference(PREFERENCE_CATEGORY_SMS_MMS)
         .setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_SMS_MMS));
@@ -182,10 +187,14 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
         .setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_PUBLIC_KEY));
       this.findPreference(PREFERENCE_CATEGORY_QR_CODE)
         .setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_QR_CODE));
-      this.findPreference(PREFERENCE_CATEGORY_LINK_DEVICE)
-        .setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_LINK_DEVICE));
-      this.findPreference(PREFERENCE_CATEGORY_SEED)
-        .setOnPreferenceClickListener(new CategoryClickListener((PREFERENCE_CATEGORY_SEED)));
+      Preference linkDevicePreference = this.findPreference(PREFERENCE_CATEGORY_LINK_DEVICE);
+      // Hide if this is a slave device
+      linkDevicePreference.setVisible(isMasterDevice);
+      linkDevicePreference.setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_LINK_DEVICE));
+      Preference seedPreference = this.findPreference(PREFERENCE_CATEGORY_SEED);
+      // Hide if this is a slave device
+      seedPreference.setVisible(isMasterDevice);
+      seedPreference.setOnPreferenceClickListener(new CategoryClickListener((PREFERENCE_CATEGORY_SEED)));
 
       if (VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
         tintIcons(getActivity());
@@ -320,7 +329,10 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
          */
         case PREFERENCE_CATEGORY_PUBLIC_KEY:
           Analytics.Companion.getShared().track("Public Key Shared");
-          String hexEncodedPublicKey = TextSecurePreferences.getLocalNumber(getContext());
+          String hexEncodedPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(getContext());
+          if (hexEncodedPublicKey == null) {
+            hexEncodedPublicKey = TextSecurePreferences.getLocalNumber(getContext());
+          }
           Intent shareIntent = new Intent();
           shareIntent.setAction(Intent.ACTION_SEND);
           shareIntent.putExtra(Intent.EXTRA_TEXT, hexEncodedPublicKey);
@@ -331,7 +343,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
           QRCodeDialog.INSTANCE.show(getContext());
           break;
         case PREFERENCE_CATEGORY_LINK_DEVICE:
-          DeviceLinkingDialog.INSTANCE.show(getContext(), DeviceLinkingView.Mode.Master);
+          DeviceLinkingDialog.Companion.show(getContext(), DeviceLinkingView.Mode.Master, null);
           break;
         case PREFERENCE_CATEGORY_SEED:
           Analytics.Companion.getShared().track("Seed Modal Shown");

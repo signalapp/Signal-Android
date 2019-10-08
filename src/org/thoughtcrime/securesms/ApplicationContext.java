@@ -36,6 +36,7 @@ import org.jetbrains.annotations.NotNull;
 import org.signal.aesgcmprovider.AesGcmProvider;
 import org.thoughtcrime.securesms.components.TypingStatusRepository;
 import org.thoughtcrime.securesms.components.TypingStatusSender;
+import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.database.DatabaseContentProviders;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.dependencies.AxolotlStorageModule;
@@ -83,12 +84,14 @@ import org.webrtc.voiceengine.WebRtcAudioUtils;
 import org.whispersystems.libsignal.logging.SignalProtocolLoggerProvider;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
+import org.whispersystems.signalservice.loki.api.LokiAPIDatabaseProtocol;
 import org.whispersystems.signalservice.loki.api.LokiGroupChat;
 import org.whispersystems.signalservice.loki.api.LokiGroupChatAPI;
 import org.whispersystems.signalservice.loki.api.LokiLongPoller;
 import org.whispersystems.signalservice.loki.api.LokiP2PAPI;
 import org.whispersystems.signalservice.loki.api.LokiP2PAPIDelegate;
 import org.whispersystems.signalservice.loki.api.LokiRSSFeed;
+import org.whispersystems.signalservice.loki.api.LokiStorageAPI;
 import org.whispersystems.signalservice.loki.utilities.Analytics;
 
 import java.security.Security;
@@ -190,6 +193,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     KeyCachingService.onAppForegrounded(this);
     // Loki - Start long polling if needed
     startLongPollingIfNeeded();
+    setUpStorageAPIIfNeeded();
   }
 
   @Override
@@ -424,6 +428,16 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   }
 
   // region Loki
+  public void setUpStorageAPIIfNeeded() {
+    String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this);
+    if (userHexEncodedPublicKey != null && IdentityKeyUtil.hasIdentityKey(this)) {
+      boolean isDebugMode = BuildConfig.DEBUG;
+      byte[] userPrivateKey = IdentityKeyUtil.getIdentityKeyPair(this).getPrivateKey().serialize();
+      LokiAPIDatabaseProtocol database = DatabaseFactory.getLokiAPIDatabase(this);
+      LokiStorageAPI.Companion.configure(isDebugMode, userHexEncodedPublicKey, userPrivateKey, database);
+    }
+  }
+
   public void setUpP2PAPI() {
     String hexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this);
     if (hexEncodedPublicKey == null) { return; }

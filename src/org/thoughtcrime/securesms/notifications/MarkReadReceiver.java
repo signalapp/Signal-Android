@@ -20,13 +20,15 @@ import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.jobs.MultiDeviceReadUpdateJob;
 import org.thoughtcrime.securesms.jobs.SendReadReceiptJob;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.loki.LokiThreadDatabase;
+import org.thoughtcrime.securesms.loki.MultiDeviceUtilitiesKt;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
-import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus;
+import org.whispersystems.signalservice.loki.api.LokiStorageAPI;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+
+import kotlin.Unit;
 
 public class MarkReadReceiver extends BroadcastReceiver {
 
@@ -86,17 +88,17 @@ public class MarkReadReceiver extends BroadcastReceiver {
                                                          .collect(Collectors.groupingBy(SyncMessageId::getAddress));
 
     for (Address address : addressMap.keySet()) {
-      // Loki - This also prevents read receipts from being sent in group chats as they don't maintain a friend request status
-      LokiThreadDatabase lokiThreadDatabase = DatabaseFactory.getLokiThreadDatabase(context);
-      long threadID = lokiThreadDatabase.getThreadID(address.serialize());
-      LokiThreadFriendRequestStatus friendRequestStatus = lokiThreadDatabase.getFriendRequestStatus(threadID);
-      if (friendRequestStatus != LokiThreadFriendRequestStatus.FRIENDS) { return; }
+      LokiStorageAPI storageAPI = LokiStorageAPI.Companion.getShared();
 
       List<Long> timestamps = Stream.of(addressMap.get(address)).map(SyncMessageId::getTimetamp).toList();
 
-      ApplicationContext.getInstance(context)
-                        .getJobManager()
-                        .add(new SendReadReceiptJob(address, timestamps));
+      MultiDeviceUtilitiesKt.getAllDevicePublicKeys(context, address.serialize(), storageAPI, (devicePublicKey, isFriend, friendCount) -> {
+        // Loki - This also prevents read receipts from being sent in group chats as they don't maintain a friend request status
+        if (isFriend) {
+          ApplicationContext.getInstance(context).getJobManager().add(new SendReadReceiptJob(Address.fromSerialized(devicePublicKey), timestamps));
+        }
+        return Unit.INSTANCE;
+      });
     }
   }
 

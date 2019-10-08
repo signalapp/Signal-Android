@@ -76,8 +76,28 @@
             app:labeledEditText_background="@color/loki_darkest_gray"
             app:labeledEditText_label="@string/activity_key_pair_mnemonic_edit_text_label"/>
 
+        <TextView
+            android:id="@+id/linkExplanationTextView"
+            style="@style/Signal.Text.Body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:visibility="gone"
+            android:text="@string/activity_key_pair_seed_explanation_3"
+            android:textAlignment="center" />
+
+        <org.thoughtcrime.securesms.components.LabeledEditText
+            android:id="@+id/publicKeyEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="20dp"
+            android:visibility="gone"
+            app:labeledEditText_background="@color/loki_darkest_gray"
+            app:labeledEditText_label="@string/activity_key_pair_public_key_edit_text_label"/>
+
         <Button
-            android:id="@+id/toggleModeButton"
+            android:id="@+id/toggleRestoreModeButton"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@color/transparent"
@@ -86,8 +106,29 @@
             android:elevation="0dp"
             android:stateListAnimator="@null" />
 
+        <Button
+            android:id="@+id/toggleRegisterModeButton"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/transparent"
+            android:textColor="@color/signal_primary"
+            android:text="@string/activity_key_pair_toggle_mode_button_title_2"
+            android:visibility="gone"
+            android:elevation="0dp"
+            android:stateListAnimator="@null" />
+
+        <Button
+            android:id="@+id/toggleLinkModeButton"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/transparent"
+            android:textColor="@color/signal_primary"
+            android:text="@string/activity_key_pair_toggle_mode_button_title_3"
+            android:elevation="0dp"
+            android:stateListAnimator="@null" />
+
         <com.dd.CircularProgressButton
-            android:id="@+id/registerOrRestoreButton"
+            android:id="@+id/mainButton"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="20dp"
@@ -99,7 +140,7 @@
             app:cpb_colorProgress="@color/textsecure_primary"
             app:cpb_cornerRadius="4dp"
             app:cpb_selectorIdle="@drawable/progress_button_state"
-            app:cpb_textIdle="@string/activity_key_pair_register_or_restore_button_title_1" />
+            app:cpb_textIdle="@string/activity_key_pair_main_button_title_1" />
 
     </LinearLayout>
 

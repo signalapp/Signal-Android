@@ -28,7 +28,7 @@ class QRCodeView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : Li
 
     init {
         inflate(context, R.layout.view_qr_code, this)
-        val hexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context)
+        val hexEncodedPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(getContext()) ?: TextSecurePreferences.getLocalNumber(context)
         val displayMetrics = DisplayMetrics()
         ServiceUtil.getWindowManager(context).defaultDisplay.getMetrics(displayMetrics)
         val size = displayMetrics.widthPixels - 2 * toPx(96, resources)

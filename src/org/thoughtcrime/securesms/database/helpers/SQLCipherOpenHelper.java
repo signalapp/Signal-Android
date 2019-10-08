@@ -35,12 +35,7 @@ import org.thoughtcrime.securesms.database.StickerDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.jobs.RefreshPreKeysJob;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.loki.LokiAPIDatabase;
-import org.thoughtcrime.securesms.loki.LokiPreKeyRecordDatabase;
-import org.thoughtcrime.securesms.loki.LokiMessageDatabase;
-import org.thoughtcrime.securesms.loki.LokiPreKeyBundleDatabase;
-import org.thoughtcrime.securesms.loki.LokiThreadDatabase;
-import org.thoughtcrime.securesms.loki.LokiUserDatabase;
+import org.thoughtcrime.securesms.loki.*;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -74,6 +69,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int STICKERS                         = 21;
   private static final int lokiV1                           = 22;
   private static final int lokiV2                           = 23;
+  private static final int lokiV3                           = 24;
 
   private static final int    DATABASE_VERSION = lokiV2; // Loki - onUpgrade(...) must be updated to use Loki version numbers if Signal makes any database changes
   private static final String DATABASE_NAME    = "signal.db";
@@ -129,6 +125,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     db.execSQL(LokiAPIDatabase.getCreateGroupChatAuthTokenTableCommand());
     db.execSQL(LokiAPIDatabase.getCreateLastMessageServerIDTableCommand());
     db.execSQL(LokiAPIDatabase.getCreateLastDeletionServerIDTableCommand());
+    db.execSQL(LokiAPIDatabase.getCreatePairingAuthorisationTableCommand());
     db.execSQL(LokiPreKeyBundleDatabase.getCreateTableCommand());
     db.execSQL(LokiPreKeyRecordDatabase.getCreateTableCommand());
     db.execSQL(LokiMessageDatabase.getCreateTableCommand());
@@ -496,6 +493,10 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
       if (oldVersion < lokiV2) {
         db.execSQL(LokiUserDatabase.getCreateServerDisplayNameTableCommand());
+      }
+
+      if (oldVersion < lokiV3) {
+        db.execSQL(LokiAPIDatabase.getCreatePairingAuthorisationTableCommand());
       }
 
       db.setTransactionSuccessful();

@@ -172,8 +172,7 @@ public class IdentityKeyUtil {
     if (!preferencesEditor.commit()) throw new AssertionError("failed to save identity key/value to shared preferences");
   }
 
-  private static void delete(Context context, String key) {
+  public static void delete(Context context, String key) {
     context.getSharedPreferences(MasterSecretUtil.PREFERENCES_NAME, 0).edit().remove(key).commit();
   }
-
 }

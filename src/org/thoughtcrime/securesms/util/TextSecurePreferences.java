@@ -546,6 +546,10 @@ public class TextSecurePreferences {
     setIntegerPrefrence(context, LOCAL_REGISTRATION_ID_PREF, registrationId);
   }
 
+  public static void removeLocalRegistrationId(Context context) {
+    removePreference(context, LOCAL_REGISTRATION_ID_PREF);
+  }
+
   public static boolean isInThreadNotifications(Context context) {
     return getBooleanPreference(context, IN_THREAD_NOTIFICATION_PREF, true);
   }
@@ -637,6 +641,10 @@ public class TextSecurePreferences {
 
   public static void setLocalNumber(Context context, String localNumber) {
     setStringPreference(context, LOCAL_NUMBER_PREF, localNumber);
+  }
+
+  public static void removeLocalNumber(Context context) {
+    removePreference(context, LOCAL_NUMBER_PREF);
   }
 
   public static String getPushServerPassword(Context context) {
@@ -1168,6 +1176,14 @@ public class TextSecurePreferences {
 
   public static void markChatSetUp(Context context, String id) {
     setBooleanPreference(context, "is_chat_set_up" + "?chat=" + id, true);
+  }
+
+  public static String getMasterHexEncodedPublicKey(Context context) {
+    return getStringPreference(context, "master_hex_encoded_public_key", null);
+  }
+
+  public static void setMasterHexEncodedPublicKey(Context context, String masterHexEncodedPublicKey) {
+    setStringPreference(context, "master_hex_encoded_publicKey", masterHexEncodedPublicKey);
   }
   // endregion
 }

@@ -18,6 +18,23 @@ fun <T> SQLiteDatabase.get(table: String, query: String, arguments: Array<String
     return null
 }
 
+fun <T> SQLiteDatabase.getAll(table: String, query: String, arguments: Array<String>, get: (Cursor) -> T): List<T> {
+    val result = mutableListOf<T>()
+    var cursor: Cursor? = null
+    try {
+        cursor = query(table, null, query, arguments, null, null, null)
+        while (cursor != null && cursor.moveToNext()) {
+            result.add(get(cursor))
+        }
+        return result
+    } catch (e: Exception) {
+        // Do nothing
+    } finally {
+        cursor?.close()
+    }
+    return listOf()
+}
+
 fun SQLiteDatabase.insertOrUpdate(table: String, values: ContentValues, query: String, arguments: Array<String>) {
     val id = insertWithOnConflict(table, null, values, SQLiteDatabase.CONFLICT_IGNORE).toInt()
     if (id == -1) {

@@ -42,6 +42,8 @@ import org.thoughtcrime.securesms.jobs.SmsSendJob;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.loki.GeneralUtilitiesKt;
+import org.thoughtcrime.securesms.loki.MultiDeviceUtilitiesKt;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.push.AccountManagerFactory;
@@ -52,9 +54,12 @@ import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.push.ContactTokenDetails;
+import org.whispersystems.signalservice.loki.api.LokiStorageAPI;
 import org.whispersystems.signalservice.loki.messaging.LokiMessageFriendRequestStatus;
 
 import java.io.IOException;
+
+import kotlin.Unit;
 
 public class MessageSender {
 
@@ -203,13 +208,64 @@ public class MessageSender {
   }
 
   private static void sendTextPush(Context context, Recipient recipient, long messageId) {
+    LokiStorageAPI storageAPI = LokiStorageAPI.Companion.getShared();
     JobManager jobManager = ApplicationContext.getInstance(context).getJobManager();
-    jobManager.add(new PushTextSendJob(messageId, recipient.getAddress()));
+
+    // Just send the message normally if it's a group message
+    String recipientPublicKey = recipient.getAddress().serialize();
+    if (GeneralUtilitiesKt.isGroupRecipient(recipientPublicKey)) {
+      jobManager.add(new PushTextSendJob(messageId, recipient.getAddress()));
+      return;
+    }
+
+    MultiDeviceUtilitiesKt.getAllDevicePublicKeys(context, recipientPublicKey, storageAPI, (devicePublicKey, isFriend, friendCount) -> {
+      Address address = Address.fromSerialized(devicePublicKey);
+      long messageIDToUse = recipientPublicKey.equals(devicePublicKey) ? messageId : -1L;
+
+      if (isFriend) {
+        // Send a normal message if the user is friends with the recipient
+        jobManager.add(new PushTextSendJob(messageId, messageIDToUse, address));
+      } else {
+        // Send friend requests to non friends. If the user is friends with any
+        // of the devices then send out a default friend request message.
+        boolean isFriendsWithAny = (friendCount > 0);
+        String defaultFriendRequestMessage = isFriendsWithAny ? "Accept this friend request to enable messages to be synced across devices" : null;
+        jobManager.add(new PushTextSendJob(messageId, messageIDToUse, address, true, defaultFriendRequestMessage));
+      }
+
+      return Unit.INSTANCE;
+    });
   }
 
   private static void sendMediaPush(Context context, Recipient recipient, long messageId) {
+    LokiStorageAPI storageAPI = LokiStorageAPI.Companion.getShared();
     JobManager jobManager = ApplicationContext.getInstance(context).getJobManager();
-    PushMediaSendJob.enqueue(context, jobManager, messageId, recipient.getAddress());
+
+    // Just send the message normally if it's a group message
+    String recipientPublicKey = recipient.getAddress().serialize();
+    if (GeneralUtilitiesKt.isGroupRecipient(recipientPublicKey)) {
+      PushMediaSendJob.enqueue(context, jobManager, messageId, recipient.getAddress());
+      return;
+    }
+
+    MultiDeviceUtilitiesKt.getAllDevicePublicKeys(context, recipientPublicKey, storageAPI, (devicePublicKey, isFriend, friendCount) -> {
+      Address address = Address.fromSerialized(devicePublicKey);
+      long messageIDToUse = recipientPublicKey.equals(devicePublicKey) ? messageId : -1L;
+
+      if (isFriend) {
+        // Send a normal message if the user is friends with the recipient
+        PushMediaSendJob.enqueue(context, jobManager, messageId, messageIDToUse, address);
+      } else {
+        // Send friend requests to non friends. If the user is friends with any
+        // of the devices then send out a default friend request message.
+        boolean isFriendsWithAny = friendCount > 0;
+        String defaultFriendRequestMessage = isFriendsWithAny ? "Accept this friend request to enable messages to be synced across devices" : null;
+        PushMediaSendJob.enqueue(context, jobManager, messageId, messageIDToUse, address, true, defaultFriendRequestMessage);
+      }
+
+      return Unit.INSTANCE;
+    });
+
   }
 
   private static void sendGroupPush(Context context, Recipient recipient, long messageId, Address filterAddress) {
