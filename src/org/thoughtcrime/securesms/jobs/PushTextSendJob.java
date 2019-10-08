@@ -74,10 +74,10 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
   @Override
   public @NonNull Data serialize() {
     Data.Builder builder = new Data.Builder()
-            .putLong(KEY_TEMPLATE_MESSAGE_ID, templateMessageId)
-            .putLong(KEY_MESSAGE_ID, messageId)
-            .putString(KEY_DESTINATION, destination.serialize())
-            .putBoolean(KEY_IS_FRIEND_REQUEST, isFriendRequest);
+      .putLong(KEY_TEMPLATE_MESSAGE_ID, templateMessageId)
+      .putLong(KEY_MESSAGE_ID, messageId)
+      .putString(KEY_DESTINATION, destination.serialize())
+      .putBoolean(KEY_IS_FRIEND_REQUEST, isFriendRequest);
 
     if (customFriendRequestMessage != null) { builder.putString(KEY_CUSTOM_FR_MESSAGE, customFriendRequestMessage); }
     return builder.build();
@@ -198,7 +198,7 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
 
       // Loki - Include a pre key bundle if the message is a friend request or an end session message
       PreKeyBundle preKeyBundle;
-      if (isFriendRequest|| message.isEndSession()) {
+      if (isFriendRequest || message.isEndSession()) {
         preKeyBundle = DatabaseFactory.getLokiPreKeyBundleDatabase(context).generatePreKeyBundle(address.getNumber());
       } else {
         preKeyBundle = null;

@@ -189,7 +189,7 @@ class SeedActivity : BaseActionBarActivity(), DeviceLinkingDialogDelegate {
         when (mode) {
             Mode.Register -> Analytics.shared.track("Seed Created")
             Mode.Restore -> Analytics.shared.track("Seed Restored")
-            Mode.Link -> Analytics.shared.track("Device Linked")
+            Mode.Link -> Analytics.shared.track("Device Linking Attempted")
         }
         if (mode == Mode.Link) {
             TextSecurePreferences.setHasSeenWelcomeScreen(this, true)

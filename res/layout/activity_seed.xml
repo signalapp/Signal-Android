@@ -87,14 +87,14 @@
             android:textAlignment="center" />
 
         <org.thoughtcrime.securesms.components.LabeledEditText
-                android:id="@+id/publicKeyEditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="20dp"
-                android:visibility="gone"
-                app:labeledEditText_background="@color/loki_darkest_gray"
-                app:labeledEditText_label="@string/activity_key_pair_public_key_edit_text_label"/>
+            android:id="@+id/publicKeyEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="20dp"
+            android:visibility="gone"
+            app:labeledEditText_background="@color/loki_darkest_gray"
+            app:labeledEditText_label="@string/activity_key_pair_public_key_edit_text_label"/>
 
         <Button
             android:id="@+id/toggleRestoreModeButton"

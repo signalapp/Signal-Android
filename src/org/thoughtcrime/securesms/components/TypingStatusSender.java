@@ -84,14 +84,14 @@ public class TypingStatusSender {
   private void sendTyping(long threadId, boolean typingStarted) {
     LokiStorageAPI storageAPI = LokiStorageAPI.Companion.getShared();
     ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);
-    Recipient originalRecipient = threadDatabase.getRecipientForThreadId(threadId);
+    Recipient recipient = threadDatabase.getRecipientForThreadId(threadId);
 
-    if (originalRecipient == null) {
+    if (recipient == null) {
       ApplicationContext.getInstance(context).getJobManager().add(new TypingSendJob(threadId, typingStarted));
       return;
     }
 
-    MultiDeviceUtilitiesKt.getAllDevicePublicKeys(context, originalRecipient.getAddress().serialize(), storageAPI, (devicePublicKey, isFriend, friendCount) -> {
+    MultiDeviceUtilitiesKt.getAllDevicePublicKeys(context, recipient.getAddress().serialize(), storageAPI, (devicePublicKey, isFriend, friendCount) -> {
       Recipient device = Recipient.from(context, Address.fromSerialized(devicePublicKey), false);
       long deviceThreadID = threadDatabase.getThreadIdIfExistsFor(device);
       if (deviceThreadID > -1) {
