@@ -97,6 +97,7 @@ import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
 import org.whispersystems.libsignal.state.PreKeyBundle;
 import org.whispersystems.libsignal.state.SignalProtocolStore;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -749,13 +750,16 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
                                  @NonNull Optional<Long> messageServerIDOrNull)
       throws StorageFailedException
   {
-    notifyTypingStoppedFromIncomingMessage(getMessageDestination(content, message), content.getSender(), content.getSenderDevice());
+    Recipient originalRecipient = getMessageDestination(content, message);
+    Recipient primaryDeviceRecipient = getMessagePrimaryDestination(content, message);
+
+    notifyTypingStoppedFromIncomingMessage(primaryDeviceRecipient, content.getSender(), content.getSenderDevice());
 
     Optional<QuoteModel>        quote          = getValidatedQuote(message.getQuote());
     Optional<List<Contact>>     sharedContacts = getContacts(message.getSharedContacts());
     Optional<List<LinkPreview>> linkPreviews   = getLinkPreviews(message.getPreviews(), message.getBody().or(""));
     Optional<Attachment>        sticker        = getStickerAttachment(message.getSticker());
-    IncomingMediaMessage        mediaMessage   = new IncomingMediaMessage(Address.fromExternal(context, content.getSender()), message.getTimestamp(), -1,
+    IncomingMediaMessage        mediaMessage   = new IncomingMediaMessage(primaryDeviceRecipient.getAddress(), message.getTimestamp(), -1,
        message.getExpiresInSeconds() * 1000L, false, content.isNeedsReceipt(), message.getBody(), message.getGroupInfo(), message.getAttachments(),
         quote, sharedContacts, linkPreviews, sticker);
 
@@ -798,8 +802,14 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     // Loki - Store message server ID
     updateGroupChatMessageServerID(messageServerIDOrNull, insertResult);
 
+    // Loki - Update mapping of message to original thread id
     if (insertResult.isPresent()) {
       MessageNotifier.updateNotification(context, insertResult.get().getThreadId());
+
+      ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);
+      LokiMessageDatabase lokiMessageDatabase = DatabaseFactory.getLokiMessageDatabase(context);
+      long originalThreadId = threadDatabase.getThreadIdFor(originalRecipient);
+      lokiMessageDatabase.setOriginalThreadID(insertResult.get().getMessageId(), originalThreadId);
     }
   }
 
@@ -912,20 +922,21 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   {
     SmsDatabase database  = DatabaseFactory.getSmsDatabase(context);
     String      body      = message.getBody().isPresent() ? message.getBody().get() : "";
-    Recipient   recipient = getMessageDestination(content, message);
+    Recipient   originalRecipient = getMessageDestination(content, message);
+    Recipient   primaryDeviceRecipient = message.isGroupUpdate() ? originalRecipient : getMessagePrimaryDestination(content, message);
 
-    if (message.getExpiresInSeconds() != recipient.getExpireMessages()) {
+    if (message.getExpiresInSeconds() != originalRecipient.getExpireMessages()) {
       handleExpirationUpdate(content, message, Optional.absent());
     }
 
-    Long threadId;
+    Long threadId = null;
 
     if (smsMessageId.isPresent() && !message.getGroupInfo().isPresent()) {
       threadId = database.updateBundleMessageBody(smsMessageId.get(), body).second;
     } else {
-      notifyTypingStoppedFromIncomingMessage(recipient, content.getSender(), content.getSenderDevice());
+      notifyTypingStoppedFromIncomingMessage(primaryDeviceRecipient, content.getSender(), content.getSenderDevice());
 
-      IncomingTextMessage _textMessage = new IncomingTextMessage(Address.fromSerialized(content.getSender()),
+      IncomingTextMessage _textMessage = new IncomingTextMessage(primaryDeviceRecipient.getAddress(),
                                                                 content.getSenderDevice(),
                                                                 message.getTimestamp(), body,
                                                                 message.getGroupInfo(),
@@ -940,8 +951,11 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       // Insert the message into the database
       Optional<InsertResult> insertResult = database.insertMessageInbox(textMessage);
 
-      if (insertResult.isPresent()) threadId = insertResult.get().getThreadId();
-      else                          threadId = null;
+      Long messageId = null;
+      if (insertResult.isPresent()) {
+        threadId = insertResult.get().getThreadId();
+        messageId = insertResult.get().getMessageId();
+      }
 
       if (smsMessageId.isPresent()) database.deleteMessage(smsMessageId.get());
 
@@ -953,6 +967,14 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
       // Loki - Store message server ID
       updateGroupChatMessageServerID(messageServerIDOrNull, insertResult);
+
+      // Loki - Update mapping of message to original thread id
+      if (messageId != null) {
+        ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);
+        LokiMessageDatabase lokiMessageDatabase = DatabaseFactory.getLokiMessageDatabase(context);
+        long originalThreadId = threadDatabase.getThreadIdFor(originalRecipient);
+        lokiMessageDatabase.setOriginalThreadID(messageId, originalThreadId);
+      }
 
       boolean isGroupMessage = message.getGroupInfo().isPresent();
       if (threadId != null && !isGroupMessage) {
@@ -1493,6 +1515,33 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       return Recipient.from(context, Address.fromSerialized(GroupUtil.getEncodedId(message.getMessage().getGroupInfo().get().getGroupId(), false)), false);
     } else {
       return Recipient.from(context, Address.fromSerialized(message.getDestination().get()), false);
+    }
+  }
+
+  private Recipient getMessagePrimaryDestination(SignalServiceContent content, SignalServiceDataMessage message) {
+    if (message.getGroupInfo().isPresent()) {
+      return Recipient.from(context, Address.fromSerialized(GroupUtil.getEncodedId(message.getGroupInfo().get().getGroupId(), false)), false);
+    } else {
+      SettableFuture<String> device = new SettableFuture<>();
+      String contentSender = content.getSender();
+
+      // Get the primary device
+      LokiStorageAPI.shared.getPrimaryDevicePublicKey(contentSender).success(primaryDevice -> {
+        String publicKey = primaryDevice == null ? contentSender : primaryDevice;
+        device.set(publicKey);
+        return Unit.INSTANCE;
+      }).fail(exception -> {
+        device.set(contentSender);
+        return Unit.INSTANCE;
+      });
+
+      try {
+        String primarySender = device.get();
+        return Recipient.from(context, Address.fromSerialized(primarySender), false);
+      } catch (Exception e) {
+        Log.d("Loki", "Failed to get primary device public key for message. " + e.getMessage());
+        return Recipient.from(context, Address.fromSerialized(content.getSender()), false);
+      }
     }
   }
 

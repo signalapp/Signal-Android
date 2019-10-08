@@ -128,6 +128,7 @@ import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher;
 import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
 import org.thoughtcrime.securesms.crypto.SecurityEvent;
 import org.thoughtcrime.securesms.database.Address;
+import org.thoughtcrime.securesms.database.Database;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.DraftDatabase;
 import org.thoughtcrime.securesms.database.DraftDatabase.Draft;
@@ -158,6 +159,7 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.FriendRequestViewDelegate;
 import org.thoughtcrime.securesms.loki.LokiAPIUtilities;
 import org.thoughtcrime.securesms.loki.LokiThreadDatabase;
+import org.thoughtcrime.securesms.loki.LokiMessageDatabase;
 import org.thoughtcrime.securesms.loki.LokiThreadDatabaseDelegate;
 import org.thoughtcrime.securesms.loki.LokiUserDatabase;
 import org.thoughtcrime.securesms.loki.MentionCandidateSelectionView;
@@ -2988,7 +2990,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   // region Loki
   @Override
   public void acceptFriendRequest(@NotNull MessageRecord friendRequest) {
-    String contactID = DatabaseFactory.getThreadDatabase(this).getRecipientForThreadId(this.threadId).getAddress().toString();
+    // Send the accept to the original friend request thread id
+    LokiMessageDatabase lokiMessageDatabase = DatabaseFactory.getLokiMessageDatabase(this);
+    long originalThreadID = lokiMessageDatabase.getOriginalThreadID(friendRequest.id);
+    long threadId = originalThreadID < 0 ? this.threadId : originalThreadID;
+
+    String contactID = DatabaseFactory.getThreadDatabase(this).getRecipientForThreadId(threadId).getAddress().toString();
     SignalServiceMessageSender messageSender = ApplicationContext.getInstance(this).communicationModule.provideSignalMessageSender();
     SignalServiceAddress address = new SignalServiceAddress(contactID);
     SignalServiceDataMessage message = new SignalServiceDataMessage(System.currentTimeMillis(), "");
@@ -2996,8 +3003,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     AsyncTask.execute(() -> {
       try {
         messageSender.sendMessage(0, address, Optional.absent(), message); // The message ID doesn't matter
-        DatabaseFactory.getLokiThreadDatabase(context).setFriendRequestStatus(this.threadId, LokiThreadFriendRequestStatus.FRIENDS);
-        DatabaseFactory.getLokiMessageDatabase(context).setFriendRequestStatus(friendRequest.id, LokiMessageFriendRequestStatus.REQUEST_ACCEPTED);
+        DatabaseFactory.getLokiThreadDatabase(context).setFriendRequestStatus(threadId, LokiThreadFriendRequestStatus.FRIENDS);
+        lokiMessageDatabase.setFriendRequestStatus(friendRequest.id, LokiMessageFriendRequestStatus.REQUEST_ACCEPTED);
       } catch (Exception e) {
         Log.d("Loki", "Failed to send background message to: " + contactID + ".");
       }
@@ -3006,8 +3013,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   @Override
   public void rejectFriendRequest(@NotNull MessageRecord friendRequest) {
-    DatabaseFactory.getLokiThreadDatabase(this).setFriendRequestStatus(this.threadId, LokiThreadFriendRequestStatus.NONE);
-    String contactID = DatabaseFactory.getThreadDatabase(this).getRecipientForThreadId(this.threadId).getAddress().toString();
+    LokiMessageDatabase lokiMessageDatabase = DatabaseFactory.getLokiMessageDatabase(this);
+    long originalThreadID = lokiMessageDatabase.getOriginalThreadID(friendRequest.id);
+    long threadId = originalThreadID < 0 ? this.threadId : originalThreadID;
+
+    DatabaseFactory.getLokiThreadDatabase(this).setFriendRequestStatus(threadId, LokiThreadFriendRequestStatus.NONE);
+    String contactID = DatabaseFactory.getThreadDatabase(this).getRecipientForThreadId(threadId).getAddress().toString();
     DatabaseFactory.getLokiPreKeyBundleDatabase(this).removePreKeyBundle(contactID);
   }
   // endregion

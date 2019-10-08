@@ -70,6 +70,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int lokiV1                           = 22;
   private static final int lokiV2                           = 23;
   private static final int lokiV3                           = 24;
+  private static final int lokiV4                           = 25;
 
   private static final int    DATABASE_VERSION = lokiV3; // Loki - onUpgrade(...) must be updated to use Loki version numbers if Signal makes any database changes
   private static final String DATABASE_NAME    = "signal.db";
@@ -128,7 +129,8 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     db.execSQL(LokiAPIDatabase.getCreatePairingAuthorisationTableCommand());
     db.execSQL(LokiPreKeyBundleDatabase.getCreateTableCommand());
     db.execSQL(LokiPreKeyRecordDatabase.getCreateTableCommand());
-    db.execSQL(LokiMessageDatabase.getCreateTableCommand());
+    db.execSQL(LokiMessageDatabase.getCreateMessageFriendRequestTableCommand());
+    db.execSQL(LokiMessageDatabase.getCreateMessageToThreadMappingTableCommand());
     db.execSQL(LokiThreadDatabase.getCreateFriendRequestTableCommand());
     db.execSQL(LokiThreadDatabase.getCreateSessionResetTableCommand());
     db.execSQL(LokiThreadDatabase.getCreatePublicChatTableCommand());
@@ -502,6 +504,10 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
         db.execSQL("ALTER TABLE groups ADD COLUMN avatar_url TEXT");
         db.execSQL("ALTER TABLE part ADD COLUMN url TEXT");
+      }
+
+      if (oldVersion < lokiV4) {
+        db.execSQL(LokiMessageDatabase.getCreateMessageToThreadMappingTableCommand());
       }
 
       db.setTransactionSuccessful();
