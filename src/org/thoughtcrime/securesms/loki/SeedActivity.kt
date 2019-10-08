@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.util.Hex
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.curve25519.Curve25519
 import org.whispersystems.libsignal.util.KeyHelper
+import org.whispersystems.signalservice.loki.api.LokiStorageAPI
 import org.whispersystems.signalservice.loki.api.PairingAuthorisation
 import org.whispersystems.signalservice.loki.crypto.MnemonicCodec
 import org.whispersystems.signalservice.loki.utilities.Analytics
@@ -217,10 +218,10 @@ class SeedActivity : BaseActionBarActivity(), DeviceLinkingDialogDelegate {
         }
     }
 
-    override fun handleDeviceLinkAuthorized(pairing: PairingAuthorisation) {
+    override fun handleDeviceLinkAuthorized(pairingAuthorisation: PairingAuthorisation) {
         Analytics.shared.track("Device Linked Successfully")
-        if (pairing.secondaryDevicePublicKey == TextSecurePreferences.getLocalNumber(this)) {
-            TextSecurePreferences.setMasterHexEncodedPublicKey(this, pairing.primaryDevicePublicKey)
+        if (pairingAuthorisation.secondaryDevicePublicKey == TextSecurePreferences.getLocalNumber(this)) {
+            TextSecurePreferences.setMasterHexEncodedPublicKey(this, pairingAuthorisation.primaryDevicePublicKey)
         }
         startActivity(Intent(this, ConversationListActivity::class.java))
         finish()
@@ -228,6 +229,22 @@ class SeedActivity : BaseActionBarActivity(), DeviceLinkingDialogDelegate {
 
     override fun handleDeviceLinkingDialogDismissed() {
         resetForRegistration()
+    }
+
+    override fun sendPairingAuthorizedMessage(pairingAuthorisation: PairingAuthorisation) {
+        val userPrivateKey = IdentityKeyUtil.getIdentityKeyPair(this).privateKey.serialize()
+        val signedPairingAuthorisation = pairingAuthorisation.sign(PairingAuthorisation.Type.GRANT, userPrivateKey)
+        if (signedPairingAuthorisation == null || signedPairingAuthorisation.type != PairingAuthorisation.Type.GRANT) {
+            Log.d("Loki", "Failed to sign pairing authorization.")
+            return
+        }
+        retryIfNeeded(8) {
+            sendPairingAuthorisationMessage(this, pairingAuthorisation.secondaryDevicePublicKey, signedPairingAuthorisation).get()
+        }.fail {
+            Log.d("Loki", "Failed to send pairing authorization message to ${pairingAuthorisation.secondaryDevicePublicKey}.")
+        }
+        DatabaseFactory.getLokiAPIDatabase(this).insertOrUpdatePairingAuthorisation(signedPairingAuthorisation)
+        LokiStorageAPI.shared.updateUserDeviceMappings()
     }
 
     private fun resetForRegistration() {

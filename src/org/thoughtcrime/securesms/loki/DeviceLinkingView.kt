@@ -82,11 +82,9 @@ class DeviceLinkingView private constructor(context: Context, attrs: AttributeSe
     // endregion
 
     // region Device Linking
-    fun requestUserAuthorization(authorisation: PairingAuthorisation) {
-        if (mode != Mode.Master) { throw IllegalStateException() }
-        if (authorisation.type != PairingAuthorisation.Type.REQUEST) { throw IllegalStateException() }
-        if (pairingAuthorisation != null) { return }
-        pairingAuthorisation = authorisation
+    fun requestUserAuthorization(pairingAuthorisation: PairingAuthorisation) {
+        if (mode != Mode.Master || pairingAuthorisation.type != PairingAuthorisation.Type.REQUEST || this.pairingAuthorisation != null) { return }
+        this.pairingAuthorisation = pairingAuthorisation
         spinner.visibility = View.GONE
         val titleTextViewLayoutParams = titleTextView.layoutParams as LayoutParams
         titleTextViewLayoutParams.topMargin = toPx(16, resources)
@@ -94,14 +92,14 @@ class DeviceLinkingView private constructor(context: Context, attrs: AttributeSe
         titleTextView.text = resources.getString(R.string.view_device_linking_title_3)
         explanationTextView.text = resources.getString(R.string.view_device_linking_explanation_2)
         mnemonicTextView.visibility = View.VISIBLE
-        val hexEncodedPublicKey = authorisation.secondaryDevicePublicKey.removing05PrefixIfNeeded()
+        val hexEncodedPublicKey = pairingAuthorisation.secondaryDevicePublicKey.removing05PrefixIfNeeded()
         mnemonicTextView.text = MnemonicCodec(languageFileDirectory).encode(hexEncodedPublicKey).split(" ").slice(0 until 3).joinToString(" ")
         authorizeButton.visibility = View.VISIBLE
     }
 
-    fun onDeviceLinkAuthorized(authorisation: PairingAuthorisation) {
-        if (mode != Mode.Slave || pairingAuthorisation != null) { return }
-        pairingAuthorisation = authorisation
+    fun onDeviceLinkAuthorized(pairingAuthorisation: PairingAuthorisation) {
+        if (mode != Mode.Slave || pairingAuthorisation.type != PairingAuthorisation.Type.GRANT || this.pairingAuthorisation != null) { return }
+        this.pairingAuthorisation = pairingAuthorisation
         spinner.visibility = View.GONE
         val titleTextViewLayoutParams = titleTextView.layoutParams as LayoutParams
         titleTextViewLayoutParams.topMargin = toPx(8, resources)
@@ -116,7 +114,7 @@ class DeviceLinkingView private constructor(context: Context, attrs: AttributeSe
         buttonContainer.visibility = View.GONE
         cancelButton.visibility = View.GONE
         Handler().postDelayed({
-            delegate.handleDeviceLinkAuthorized(authorisation)
+            delegate.handleDeviceLinkAuthorized(pairingAuthorisation)
             dismiss?.invoke()
         }, 4000)
     }
@@ -124,11 +122,11 @@ class DeviceLinkingView private constructor(context: Context, attrs: AttributeSe
 
     // region Interaction
     private fun authorizePairing() {
-        if (pairingAuthorisation == null || mode != Mode.Master ) { return; }
-        if (delegate.sendPairingAuthorizedMessage(pairingAuthorisation!!)) {
-            delegate.handleDeviceLinkAuthorized(pairingAuthorisation!!)
-            dismiss?.invoke()
-        }
+        val pairingAuthorisation = this.pairingAuthorisation
+        if (mode != Mode.Master || pairingAuthorisation == null) { return; }
+        delegate.sendPairingAuthorizedMessage(pairingAuthorisation)
+        delegate.handleDeviceLinkAuthorized(pairingAuthorisation)
+        dismiss?.invoke()
     }
 
     private fun cancel() {

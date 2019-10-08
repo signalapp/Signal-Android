@@ -4,6 +4,7 @@ import org.whispersystems.signalservice.loki.api.PairingAuthorisation
 
 interface DeviceLinkingDialogDelegate {
 
-    fun handleDeviceLinkAuthorized(pairing: PairingAuthorisation) { }
+    fun handleDeviceLinkAuthorized(pairingAuthorisation: PairingAuthorisation) { }
     fun handleDeviceLinkingDialogDismissed() { }
+    fun sendPairingAuthorizedMessage(pairingAuthorisation: PairingAuthorisation) { }
 }

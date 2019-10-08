@@ -57,7 +57,6 @@ fun shouldAutomaticallyBecomeFriendsWithDevice(publicKey: String, context: Conte
     }
     deferred.resolve(lokiThreadDatabase.getFriendRequestStatus(threadID) == LokiThreadFriendRequestStatus.FRIENDS)
   }
-
   return deferred.promise
 }
 
