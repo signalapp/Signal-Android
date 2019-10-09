@@ -221,7 +221,7 @@ public class SmsMigrator {
       while (cursor != null && cursor.moveToNext()) {
         long                theirThreadId   = cursor.getLong(cursor.getColumnIndexOrThrow("_id"));
         String              theirRecipients = cursor.getString(cursor.getColumnIndexOrThrow("recipient_ids"));
-        Set<Recipient>     ourRecipients   = getOurRecipients(context, theirRecipients);
+        Set<Recipient>      ourRecipients   = getOurRecipients(context, theirRecipients);
         ProgressDescription progress        = new ProgressDescription(cursor.getCount(), cursor.getPosition(), 100, 0);
 
         if (ourRecipients != null) {

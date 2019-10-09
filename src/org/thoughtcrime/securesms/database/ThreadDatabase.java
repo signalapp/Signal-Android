@@ -117,6 +117,10 @@ public class ThreadDatabase extends Database {
   }
 
   private long createThreadForRecipient(@NonNull RecipientId recipientId, boolean group, int distributionType) {
+    if (recipientId.isUnknown()) {
+      throw new AssertionError("Cannot create a thread for an unknown recipient!");
+    }
+
     ContentValues contentValues = new ContentValues(4);
     long date                   = System.currentTimeMillis();
 

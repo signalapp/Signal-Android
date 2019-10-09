@@ -625,9 +625,9 @@ public class RecipientDatabase extends Database {
         } else {
           throw new AssertionError("Failed to insert recipient!");
         }
+      } else {
+        return RecipientId.from(id);
       }
-
-      return RecipientId.from(id);
     }
   }
 

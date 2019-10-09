@@ -15,7 +15,10 @@ import java.util.List;
 
 public class RecipientId implements Parcelable, Comparable<RecipientId> {
 
-  private static final char DELIMITER = ',';
+  private static final long UNKNOWN_ID = -1;
+  private static final char DELIMITER  = ',';
+
+  public static final RecipientId UNKNOWN = RecipientId.from(UNKNOWN_ID);
 
   private final long id;
 
@@ -49,6 +52,10 @@ public class RecipientId implements Parcelable, Comparable<RecipientId> {
     }
 
     return out;
+  }
+
+  public boolean isUnknown() {
+    return id == UNKNOWN_ID;
   }
 
   public @NonNull String serialize() {

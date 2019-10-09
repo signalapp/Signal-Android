@@ -87,4 +87,34 @@ public class RecipientDetails {
     if (name == null) this.name = settings.getSystemDisplayName();
     else              this.name = name;
   }
+
+  public RecipientDetails() {
+    this.groupAvatarId          = null;
+    this.systemContactPhoto     = null;
+    this.customLabel            = null;
+    this.contactUri             = null;
+    this.address                = Address.UNKNOWN;
+    this.color                  = null;
+    this.messageRingtone        = null;
+    this.callRingtone           = null;
+    this.mutedUntil             = 0;
+    this.messageVibrateState    = VibrateState.DEFAULT;
+    this.callVibrateState       = VibrateState.DEFAULT;
+    this.blocked                = false;
+    this.expireMessages         = 0;
+    this.participants           = new LinkedList<>();
+    this.profileName            = null;
+    this.seenInviteReminder     = true;
+    this.defaultSubscriptionId  = Optional.absent();
+    this.registered             = RegisteredState.UNKNOWN;
+    this.profileKey             = null;
+    this.profileAvatar          = null;
+    this.profileSharing         = false;
+    this.systemContact          = true;
+    this.isLocalNumber          = false;
+    this.notificationChannel    = null;
+    this.unidentifiedAccessMode = UnidentifiedAccessMode.UNKNOWN;
+    this.forceSmsSelection      = false;
+    this.name                   = null;
+  }
 }

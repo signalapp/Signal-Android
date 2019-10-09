@@ -119,7 +119,7 @@ public final class LiveRecipient {
   public @NonNull Recipient resolve() {
     Recipient current = recipient.get();
 
-    if (!current.isResolving()) {
+    if (!current.isResolving() || current.getId().isUnknown()) {
       return current;
     }
 
@@ -150,6 +150,8 @@ public final class LiveRecipient {
    */
   @WorkerThread
   public void refresh() {
+    if (getId().isUnknown()) return;
+
     if (Util.isMainThread()) {
       Log.w(TAG, "[Refresh][MAIN] " + getId(), new Throwable());
     } else {
@@ -189,7 +191,7 @@ public final class LiveRecipient {
 
     if (groupRecord.isPresent()) {
       String          title    = groupRecord.get().getTitle();
-      List<Recipient> members  = Stream.of(groupRecord.get().getMembers()).map(this::fetchRecipientFromDisk).toList();
+      List<Recipient> members  = Stream.of(groupRecord.get().getMembers()).filterNot(RecipientId::isUnknown).map(this::fetchRecipientFromDisk).toList();
       Optional<Long>  avatarId = Optional.absent();
 
       if (!settings.getAddress().isMmsGroup() && title == null) {

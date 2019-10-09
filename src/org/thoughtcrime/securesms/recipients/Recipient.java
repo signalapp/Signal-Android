@@ -44,6 +44,8 @@ import java.util.Objects;
 
 public class Recipient {
 
+  public static final Recipient UNKNOWN = new Recipient(RecipientId.UNKNOWN, new RecipientDetails());
+
   private final RecipientId            id;
   private final boolean                resolving;
   private final Address                address;

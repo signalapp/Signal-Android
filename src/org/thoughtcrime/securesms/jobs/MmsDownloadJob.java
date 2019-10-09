@@ -212,7 +212,6 @@ public class MmsDownloadJob extends BaseJob {
     if (from != null) {
       members.add(from);
     }
-
     members.add(Recipient.self().getId());
 
     if (retrieved.getBody() != null) {
