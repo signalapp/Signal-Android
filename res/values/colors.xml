@@ -2,6 +2,7 @@
 <resources>
     <!-- Loki -->
     <color name="loki_green">#78be20</color>
+    <color name="loki_dark_green">#419B41</color>
     <color name="loki_darkest_gray">#0a0a0a</color>
     <!-- Loki -->
 
