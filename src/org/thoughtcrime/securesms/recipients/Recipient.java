@@ -32,6 +32,7 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.phonenumbers.NumberUtil;
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -294,12 +295,12 @@ public class Recipient {
     return contactUri;
   }
 
-  public @Nullable String getName() {
+  public @Nullable String getName(@NonNull Context context) {
     if (this.name == null && groupId != null && GroupUtil.isMmsGroup(groupId)) {
       List<String> names = new LinkedList<>();
 
       for (Recipient recipient : participants) {
-        names.add(recipient.toShortString());
+        names.add(recipient.getDisplayName(context));
       }
 
       return Util.join(names, ", ");
@@ -308,18 +309,21 @@ public class Recipient {
     return this.name;
   }
 
-  public @NonNull String getDisplayName() {
-    String name = getName();
-    if (!TextUtils.isEmpty(name)) {
-      return name;
-    }
+  public @NonNull String getDisplayName(@NonNull Context context) {
+    return Util.getFirstNonEmpty(getName(context),
+                                 getProfileName(),
+                                 getUsername(),
+                                 e164,
+                                 email,
+                                 context.getString(R.string.Recipient_unknown));
+  }
 
-    String profileName = getProfileName();
-    if (!TextUtils.isEmpty(profileName)) {
-      return profileName;
+  private @NonNull String getUsername() {
+    if (FeatureFlags.USERNAMES) {
+      // TODO [greyson] Replace with actual username
+      return "@caycepollard";
     }
-
-    return getSmsAddress().or("");
+    return "";
   }
 
   public @NonNull MaterialColor getColor() {
@@ -478,10 +482,6 @@ public class Recipient {
 
   public @NonNull List<Recipient> getParticipants() {
     return new ArrayList<>(participants);
-  }
-
-  public @NonNull String toShortString() {
-    return Optional.fromNullable(getName()).or(getE164()).or(getEmail()).or("");
   }
 
   public @NonNull Drawable getFallbackContactPhotoDrawable(Context context, boolean inverted) {

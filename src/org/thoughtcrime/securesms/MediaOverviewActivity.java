@@ -139,9 +139,9 @@ public class MediaOverviewActivity extends PassphraseRequiredActionBarActivity {
 
   private void initializeToolbar() {
     setSupportActionBar(this.toolbar);
-    getSupportActionBar().setTitle(recipient.get().toShortString());
+    getSupportActionBar().setTitle(recipient.get().getDisplayName(this));
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    this.recipient.observe(this, recipient -> getSupportActionBar().setTitle(recipient.toShortString()));
+    this.recipient.observe(this, recipient -> getSupportActionBar().setTitle(recipient.getDisplayName(this)));
   }
 
   public void onEnterMultiSelect() {

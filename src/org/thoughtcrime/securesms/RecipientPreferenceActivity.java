@@ -17,7 +17,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 
-import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.fragment.app.Fragment;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.Loader;
@@ -29,8 +28,6 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceCategory;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.telephony.PhoneNumberUtils;
 
 import org.thoughtcrime.securesms.components.SwitchPreferenceCompat;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
@@ -228,7 +225,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
     else                      this.avatar.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
     this.avatar.setBackgroundColor(recipient.getColor().toActionBarColor(this));
-    this.toolbarLayout.setTitle(recipient.toShortString());
+    this.toolbarLayout.setTitle(recipient.getDisplayName(this));
     this.toolbarLayout.setContentScrimColor(recipient.getColor().toActionBarColor(this));
   }
 
@@ -423,8 +420,9 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
         colorPreference.setColors(MaterialColors.CONVERSATION_PALETTE.asConversationColorArray(requireActivity()));
         colorPreference.setColor(recipient.getColor().toActionBarColor(requireActivity()));
 
-        aboutPreference.setTitle(formatRecipient(recipient));
-        aboutPreference.setSummary(recipient.getCustomLabel());
+        aboutPreference.setTitle(recipient.getDisplayName(requireContext()));
+
+        aboutPreference.setSummary(recipient.resolve().getE164().or(""));
         aboutPreference.setSecure(recipient.getRegistered() == RecipientDatabase.RegisteredState.REGISTERED);
 
         if (recipient.isBlocked()) blockPreference.setTitle(R.string.RecipientPreferenceActivity_unblock);
@@ -450,12 +448,6 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
           }
         });
       }
-    }
-
-    private @NonNull String formatRecipient(@NonNull Recipient recipient) {
-      if      (recipient.getE164().isPresent())  return PhoneNumberUtils.formatNumber(recipient.requireE164());
-      else if (recipient.getEmail().isPresent()) return recipient.requireEmail();
-      else                                       return "";
     }
 
     private @NonNull String getRingtoneSummary(@NonNull Context context, @Nullable Uri ringtone) {

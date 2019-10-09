@@ -317,7 +317,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
             String  messageSound    = cursor.getString(cursor.getColumnIndexOrThrow("notification"));
             Uri     messageSoundUri = messageSound != null ? Uri.parse(messageSound) : null;
             int     vibrateState    = cursor.getInt(cursor.getColumnIndexOrThrow("vibrate"));
-            String  displayName     = NotificationChannels.getChannelDisplayNameFor(context, systemName, profileName, address);
+            String  displayName     = NotificationChannels.getChannelDisplayNameFor(context, systemName, profileName, null, address);
             boolean vibrateEnabled  = vibrateState == 0 ? TextSecurePreferences.isNotificationVibrateEnabled(context) : vibrateState == 1;
 
             if (GroupUtil.isEncodedGroup(address)) {

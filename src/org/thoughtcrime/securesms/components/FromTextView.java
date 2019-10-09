@@ -43,7 +43,7 @@ public class FromTextView extends EmojiTextView {
   }
 
   public void setText(Recipient recipient, boolean read, @Nullable String suffix) {
-    String fromString = recipient.toShortString();
+    String fromString = recipient.getDisplayName(getContext());
 
     int typeface;
 
@@ -62,19 +62,6 @@ public class FromTextView extends EmojiTextView {
 
     if (recipient.isLocalNumber()) {
       builder.append(getContext().getString(R.string.note_to_self));
-    } else if (recipient.getName() == null && !TextUtils.isEmpty(recipient.getProfileName())) {
-      SpannableString profileName = new SpannableString(" (~" + recipient.getProfileName() + ") ");
-      profileName.setSpan(new CenterAlignedRelativeSizeSpan(0.75f), 0, profileName.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-      profileName.setSpan(new TypefaceSpan("sans-serif-light"), 0, profileName.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-      profileName.setSpan(new ForegroundColorSpan(ResUtil.getColor(getContext(), R.attr.conversation_list_item_subject_color)), 0, profileName.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-
-      if (ViewCompat.getLayoutDirection(this) == ViewCompat.LAYOUT_DIRECTION_RTL){
-        builder.append(profileName);
-        builder.append(fromSpan);
-      } else {
-        builder.append(fromSpan);
-        builder.append(profileName);
-      }
     } else {
       builder.append(fromSpan);
     }

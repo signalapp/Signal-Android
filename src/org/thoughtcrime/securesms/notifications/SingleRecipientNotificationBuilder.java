@@ -66,7 +66,7 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
     setChannelId(channelId != null ? channelId : NotificationChannels.getMessagesChannel(context));
 
     if (privacy.isDisplayContact()) {
-      setContentTitle(recipient.toShortString());
+      setContentTitle(recipient.getDisplayName(context));
 
       if (recipient.getContactUri() != null) {
         addPerson(recipient.getContactUri().toString());
@@ -111,7 +111,7 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
     SpannableStringBuilder stringBuilder = new SpannableStringBuilder();
 
     if (privacy.isDisplayContact() && threadRecipients.isGroup()) {
-      stringBuilder.append(Util.getBoldedString(individualRecipient.toShortString() + ": "));
+      stringBuilder.append(Util.getBoldedString(individualRecipient.getDisplayName(context) + ": "));
     }
 
     if (privacy.isDisplayMessage()) {
@@ -203,7 +203,7 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
     SpannableStringBuilder stringBuilder = new SpannableStringBuilder();
 
     if (privacy.isDisplayContact() && threadRecipient.isGroup()) {
-      stringBuilder.append(Util.getBoldedString(individualRecipient.toShortString() + ": "));
+      stringBuilder.append(Util.getBoldedString(individualRecipient.getDisplayName(context) + ": "));
     }
 
     if (privacy.isDisplayMessage()) {

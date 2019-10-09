@@ -125,11 +125,18 @@ public class NotificationChannels {
   /**
    * @return A name suitable to be displayed as the notification channel title.
    */
-  public static @NonNull String getChannelDisplayNameFor(@NonNull Context context, @Nullable String systemName, @Nullable String profileName, @NonNull String address) {
+  public static @NonNull String getChannelDisplayNameFor(@NonNull Context context,
+                                                         @Nullable String systemName,
+                                                         @Nullable String profileName,
+                                                         @Nullable String username,
+                                                         @NonNull String address)
+  {
     if (!TextUtils.isEmpty(systemName)) {
       return systemName;
     } else if (!TextUtils.isEmpty(profileName)) {
       return profileName;
+    } else if (!TextUtils.isEmpty(username)) {
+      return username;
     } else if (!TextUtils.isEmpty(address)) {
       return address;
     } else {
@@ -147,7 +154,7 @@ public class NotificationChannels {
     VibrateState vibrateState     = recipient.getMessageVibrate();
     boolean      vibrationEnabled = vibrateState == VibrateState.DEFAULT ? TextSecurePreferences.isNotificationVibrateEnabled(context) : vibrateState == VibrateState.ENABLED;
     Uri          messageRingtone  = recipient.getMessageRingtone() != null ? recipient.getMessageRingtone() : getMessageRingtone(context);
-    String       displayName      = getChannelDisplayNameFor(context, recipient.getName(), recipient.getProfileName(), recipient.getSmsAddress().or(""));
+    String       displayName      = recipient.getDisplayName(context);
 
     return createChannelFor(context, generateChannelIdFor(recipient), displayName, messageRingtone, vibrationEnabled);
   }
@@ -384,7 +391,7 @@ public class NotificationChannels {
     }
 
     NotificationChannel channel = new NotificationChannel(recipient.getNotificationChannel(),
-                                                          getChannelDisplayNameFor(context, recipient.getName(), recipient.getProfileName(), recipient.getSmsAddress().or("")),
+                                                          recipient.getDisplayName(context),
                                                           NotificationManager.IMPORTANCE_HIGH);
     channel.setGroup(CATEGORY_MESSAGES);
     notificationManager.createNotificationChannel(channel);

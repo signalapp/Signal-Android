@@ -75,10 +75,7 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientF
     } else if (recipientId != null) {
       this.recipient = Recipient.live(recipientId);
       this.recipient.observeForever(this);
-
-      if (this.recipient.get().getName() != null) {
-        name = this.recipient.get().getName();
-      }
+      name = this.recipient.get().getDisplayName(getContext());
     }
 
     Recipient recipientSnapshot = recipient != null ? recipient.get() : null;

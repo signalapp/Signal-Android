@@ -193,8 +193,7 @@
     <style name="ViewOnceVideo.Duration" parent="@android:style/TextAppearance">
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/white</item>
-        <!-- TODO: change to transparent_black_60 after color swap -->
-        <item name="android:shadowColor">#99000000</item>
+        <item name="android:shadowColor">@color/transparent_black_60</item>
         <item name="android:shadowDx">0</item>
         <item name="android:shadowDy">0</item>
         <item name="android:shadowRadius">2</item>

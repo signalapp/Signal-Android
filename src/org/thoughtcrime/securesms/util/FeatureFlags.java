@@ -10,4 +10,7 @@ public class FeatureFlags {
 
   /** UUID-related stuff that shouldn't be activated until the user-facing launch. */
   public static final boolean UUIDS = false;
+
+  /** Usernames. */
+  public static final boolean USERNAMES = false;
 }

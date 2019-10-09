@@ -19,7 +19,7 @@ public class InviteReminder extends Reminder {
                         final @NonNull Recipient recipient)
   {
     super(context.getString(R.string.reminder_header_invite_title),
-          context.getString(R.string.reminder_header_invite_text, recipient.toShortString()));
+          context.getString(R.string.reminder_header_invite_text, recipient.getDisplayName(context)));
 
     setDismissListener(v -> SignalExecutors.BOUNDED.execute(() -> {
       DatabaseFactory.getRecipientDatabase(context).setSeenInviteReminder(recipient.getId(), true);

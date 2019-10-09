@@ -18,6 +18,8 @@
 package org.thoughtcrime.securesms.contacts;
 
 import android.content.Context;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatMultiAutoCompleteTextView;
 import android.telephony.PhoneNumberUtils;
 import android.text.Annotation;
@@ -185,8 +187,8 @@ public class RecipientsEditor extends AppCompatMultiAutoCompleteTextView {
         return false;
     }*/
 
-    public static CharSequence contactToToken(Recipient c) {
-      String name       = c.getName();
+    public static CharSequence contactToToken(@NonNull Context context, @NonNull Recipient c) {
+      String name       = c.getDisplayName(context);
       String number     = c.getE164().or(c.getEmail()).or("");
       SpannableString s = new SpannableString(RecipientsFormatter.formatNameAndNumber(name, number));
       int len           = s.length();
@@ -209,7 +211,7 @@ public class RecipientsEditor extends AppCompatMultiAutoCompleteTextView {
                 sb.append(", ");
             }
 
-            sb.append(contactToToken(c));
+            sb.append(contactToToken(mContext, c));
         }
 
         setText(sb);

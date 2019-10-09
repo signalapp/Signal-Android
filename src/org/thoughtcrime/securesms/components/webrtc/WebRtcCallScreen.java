@@ -124,7 +124,7 @@ public class WebRtcCallScreen extends FrameLayout implements RecipientForeverObs
   }
 
   public void setUntrustedIdentity(Recipient personInfo, IdentityKey untrustedIdentity) {
-    String          name            = recipient.get().toShortString();
+    String          name            = recipient.get().getDisplayName(getContext());
     String          introduction    = String.format(getContext().getString(R.string.WebRtcCallScreen_new_safety_numbers), name, name);
     SpannableString spannableString = new SpannableString(introduction + " " + getContext().getString(R.string.WebRtcCallScreen_you_may_wish_to_verify_this_contact));
 
@@ -305,13 +305,13 @@ public class WebRtcCallScreen extends FrameLayout implements RecipientForeverObs
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .into(this.photo);
 
-    this.name.setText(recipient.getName());
+    this.name.setText(recipient.getDisplayName(getContext()));
 
-    if (recipient.getName() == null && !TextUtils.isEmpty(recipient.getProfileName())) {
-      // TODO [greyson] This will need to change in UI PR?
-      this.phoneNumber.setText(recipient.requireE164() + " (~" + recipient.getProfileName() + ")");
-    } else {
+    if (recipient.getE164().isPresent()) {
       this.phoneNumber.setText(recipient.requireE164());
+      this.phoneNumber.setVisibility(View.VISIBLE);
+    } else {
+      this.phoneNumber.setVisibility(View.GONE);
     }
   }
 

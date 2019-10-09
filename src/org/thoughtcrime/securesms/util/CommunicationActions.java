@@ -35,10 +35,10 @@ public class CommunicationActions {
     Permissions.with(activity)
         .request(Manifest.permission.RECORD_AUDIO, Manifest.permission.CAMERA)
         .ifNecessary()
-        .withRationaleDialog(activity.getString(R.string.ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera, recipient.toShortString()),
+        .withRationaleDialog(activity.getString(R.string.ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera, recipient.getDisplayName(activity)),
                              R.drawable.ic_mic_solid_24,
                              R.drawable.ic_videocam_white_48dp)
-        .withPermanentDenialDialog(activity.getString(R.string.ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s, recipient.toShortString()))
+        .withPermanentDenialDialog(activity.getString(R.string.ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s, recipient.getDisplayName(activity)))
         .onAllGranted(() -> {
           Intent intent = new Intent(activity, WebRtcCallService.class);
           intent.setAction(WebRtcCallService.ACTION_OUTGOING_CALL);

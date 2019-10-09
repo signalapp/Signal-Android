@@ -1014,9 +1014,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       @Override
       protected void onPostExecute(IconCompat icon) {
         Context context  = getApplicationContext();
-        String  name     = Optional.fromNullable(recipient.get().getName())
-                                  .or(Optional.fromNullable(recipient.get().getProfileName()))
-                                  .or(recipient.get().toShortString());
+        String  name     = recipient.get().getDisplayName(ConversationActivity.this);
 
         ShortcutInfoCompat shortcutInfo = new ShortcutInfoCompat.Builder(context, recipient.get().getId().serialize() + '-' + System.currentTimeMillis())
                                                                 .setShortLabel(name)
@@ -2808,7 +2806,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         String[] unverifiedNames = new String[unverifiedIdentities.size()];
 
         for (int i=0;i<unverifiedIdentities.size();i++) {
-          unverifiedNames[i] = Recipient.resolved(unverifiedIdentities.get(i).getRecipientId()).toShortString();
+          unverifiedNames[i] = Recipient.resolved(unverifiedIdentities.get(i).getRecipientId()).getDisplayName(ConversationActivity.this);
         }
 
         AlertDialog.Builder builder = new AlertDialog.Builder(ConversationActivity.this);

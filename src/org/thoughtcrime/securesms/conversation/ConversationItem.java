@@ -153,7 +153,6 @@ public class ConversationItem extends LinearLayout implements BindableConversati
   private   ConversationItemFooter     footer;
   private   ConversationItemFooter     stickerFooter;
   private   TextView                   groupSender;
-  private   TextView                   groupSenderProfileName;
   private   View                       groupSenderHolder;
   private   AvatarImageView            contactPhoto;
   private   AlertView                  alertView;
@@ -208,7 +207,6 @@ public class ConversationItem extends LinearLayout implements BindableConversati
     this.footer                  =            findViewById(R.id.conversation_item_footer);
     this.stickerFooter           =            findViewById(R.id.conversation_item_sticker_footer);
     this.groupSender             =            findViewById(R.id.group_message_sender);
-    this.groupSenderProfileName  =            findViewById(R.id.group_message_sender_profile);
     this.alertView               =            findViewById(R.id.indicators_parent);
     this.contactPhoto            =            findViewById(R.id.contact_photo);
     this.contactPhotoHolder      =            findViewById(R.id.contact_photo_container);
@@ -944,28 +942,17 @@ public class ConversationItem extends LinearLayout implements BindableConversati
   @SuppressLint("SetTextI18n")
   private void setGroupMessageStatus(MessageRecord messageRecord, Recipient recipient) {
     if (groupThread && !messageRecord.isOutgoing()) {
-      this.groupSender.setText(recipient.toShortString());
-
-      if (recipient.getName() == null && !TextUtils.isEmpty(recipient.getProfileName())) {
-        this.groupSenderProfileName.setText("~" + recipient.getProfileName());
-        this.groupSenderProfileName.setVisibility(View.VISIBLE);
-      } else {
-        this.groupSenderProfileName.setText(null);
-        this.groupSenderProfileName.setVisibility(View.GONE);
-      }
+      this.groupSender.setText(recipient.getDisplayName(getContext()));
     }
   }
 
   private void setGroupAuthorColor(@NonNull MessageRecord messageRecord) {
     if (shouldDrawBodyBubbleOutline(messageRecord)) {
       groupSender.setTextColor(ThemeUtil.getThemedColor(context, R.attr.conversation_sticker_author_color));
-      groupSenderProfileName.setTextColor(ThemeUtil.getThemedColor(context, R.attr.conversation_sticker_author_color));
     } else if (hasSticker(messageRecord)) {
       groupSender.setTextColor(ThemeUtil.getThemedColor(context, R.attr.conversation_sticker_author_color));
-      groupSenderProfileName.setTextColor(ThemeUtil.getThemedColor(context, R.attr.conversation_sticker_author_color));
     } else {
       groupSender.setTextColor(ThemeUtil.getThemedColor(context, R.attr.conversation_item_received_text_primary_color));
-      groupSenderProfileName.setTextColor(ThemeUtil.getThemedColor(context, R.attr.conversation_item_received_text_primary_color));
     }
   }
 

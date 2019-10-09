@@ -105,7 +105,7 @@ public class SelectedRecipientsAdapter extends BaseAdapter {
     TextView    phone  = (TextView)    v.findViewById(R.id.phone);
     ImageButton delete = (ImageButton) v.findViewById(R.id.delete);
 
-    name.setText(p.getName());
+    name.setText(p.getDisplayName(v.getContext()));
     phone.setText(p.getE164().or(""));
     delete.setVisibility(modifiable ? View.VISIBLE : View.GONE);
     delete.setOnClickListener(new View.OnClickListener() {

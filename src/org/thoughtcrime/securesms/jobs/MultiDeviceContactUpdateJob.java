@@ -130,7 +130,7 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
       Optional<VerifiedMessage>                 verifiedMessage = getVerifiedMessage(recipient, identityRecord);
 
       out.write(new DeviceContact(RecipientUtil.toSignalServiceAddress(context, recipient),
-                                  Optional.fromNullable(recipient.getName()),
+                                  Optional.of(recipient.getDisplayName(context)),
                                   getAvatar(recipient.getContactUri()),
                                   Optional.fromNullable(recipient.getColor().serialize()),
                                   verifiedMessage,

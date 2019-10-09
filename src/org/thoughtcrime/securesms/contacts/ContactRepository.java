@@ -32,6 +32,7 @@ public class ContactRepository {
 
   private final RecipientDatabase recipientDatabase;
   private final String            noteToSelfTitle;
+  private final Context           context;
 
   public static final String ID_COLUMN           = "id";
          static final String NAME_COLUMN         = "name";
@@ -77,6 +78,7 @@ public class ContactRepository {
   public ContactRepository(@NonNull Context context) {
     this.recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
     this.noteToSelfTitle   = context.getString(R.string.note_to_self);
+    this.context           = context.getApplicationContext();
   }
 
   @WorkerThread
@@ -87,7 +89,7 @@ public class ContactRepository {
 
     if (noteToSelfTitle.toLowerCase().contains(query.toLowerCase())) {
       Recipient self        = Recipient.self();
-      boolean   nameMatch   = self.getDisplayName().toLowerCase().contains(query.toLowerCase());
+      boolean   nameMatch   = self.getDisplayName(context).toLowerCase().contains(query.toLowerCase());
       boolean   numberMatch = self.getE164().isPresent() && self.requireE164().contains(query);
       boolean   shouldAdd   = !nameMatch && !numberMatch;
 

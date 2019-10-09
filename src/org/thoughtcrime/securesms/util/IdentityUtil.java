@@ -231,11 +231,11 @@ public class IdentityUtil {
     if (recipients.isEmpty()) return null;
 
     if (recipients.size() == 1) {
-      String name = recipients.get(0).toShortString();
+      String name = recipients.get(0).getDisplayName(context);
       return context.getString(resourceOne, name);
     } else {
-      String firstName  = recipients.get(0).toShortString();
-      String secondName = recipients.get(1).toShortString();
+      String firstName  = recipients.get(0).getDisplayName(context);
+      String secondName = recipients.get(1).getDisplayName(context);
 
       if (recipients.size() == 2) {
         return context.getString(resourceTwo, firstName, secondName);

@@ -91,20 +91,6 @@
                     tools:text="+14152222222"
                     tools:visibility="visible" />
 
-                <TextView
-                    android:id="@+id/group_message_sender_profile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingStart="4sp"
-                    android:paddingEnd="4sp"
-                    style="@style/Signal.Text.Preview"
-                    android:fontFamily="sans-serif-regular"
-                    android:textColor="?conversation_item_received_text_primary_color"
-                    android:textStyle="italic"
-                    android:maxLines="1"
-                    android:ellipsize="end"
-                    tools:text="~Clement Duval"/>
-
             </LinearLayout>
 
             <org.thoughtcrime.securesms.components.QuoteView
