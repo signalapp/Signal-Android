@@ -156,6 +156,7 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.FriendRequestViewDelegate;
+import org.thoughtcrime.securesms.loki.LokiAPIUtilities;
 import org.thoughtcrime.securesms.loki.LokiThreadDatabaseDelegate;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mediasend.MediaSendActivity;
@@ -393,6 +394,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         });
       }
     });
+
+    LokiAPIUtilities.INSTANCE.populateUserIDCacheIfNeeded(threadId, this);
 
     if (this.recipient.isGroupRecipient()) {
       if (this.recipient.getName().equals("Loki Public Chat")) {

@@ -46,7 +46,7 @@ class LokiUserDatabase(context: Context, helper: SQLCipherOpenHelper) : Database
         Recipient.from(context, Address.fromSerialized(hexEncodedPublicKey), false).notifyListeners()
     }
 
-    fun getServerDisplayName(serverID: String, hexEncodedPublicKey: String): String? {
+    override fun getServerDisplayName(serverID: String, hexEncodedPublicKey: String): String? {
         val database = databaseHelper.readableDatabase
         return database.get(serverDisplayNameTable, "${Companion.hexEncodedPublicKey} = ? AND ${Companion.serverID} = ?", arrayOf( hexEncodedPublicKey, serverID )) { cursor ->
             cursor.getString(cursor.getColumnIndexOrThrow(displayName))
