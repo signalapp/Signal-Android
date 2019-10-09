@@ -85,6 +85,8 @@
     <attr name="emoji_category_emoticons" format="reference"/>
     <attr name="emoji_variation_selector_background" format="reference|color" />
 
+    <attr name="camera_button_style" />
+
     <attr name="quick_camera_icon" format="reference"/>
     <attr name="quick_mic_icon" format="reference"/>
 

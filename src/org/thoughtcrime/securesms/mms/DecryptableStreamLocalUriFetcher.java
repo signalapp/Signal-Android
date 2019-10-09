@@ -24,7 +24,7 @@ class DecryptableStreamLocalUriFetcher extends StreamLocalUriFetcher {
 
   DecryptableStreamLocalUriFetcher(Context context, Uri uri) {
     super(context.getContentResolver(), uri);
-    this.context      = context;
+    this.context = context;
   }
 
   @Override
@@ -35,7 +35,9 @@ class DecryptableStreamLocalUriFetcher extends StreamLocalUriFetcher {
       if (thumbnail != null) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         thumbnail.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-        return new ByteArrayInputStream(baos.toByteArray());
+        ByteArrayInputStream thumbnailStream = new ByteArrayInputStream(baos.toByteArray());
+        thumbnail.recycle();
+        return thumbnailStream;
       }
     }
 

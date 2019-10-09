@@ -25,6 +25,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.view.ContextThemeWrapper;
+import androidx.core.util.Supplier;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProviders;
@@ -64,6 +65,8 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.scribbles.ImageEditorFragment;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.CharacterCalculator.CharacterState;
+import org.thoughtcrime.securesms.util.Function3;
+import org.thoughtcrime.securesms.util.IOFunction;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.Stopwatch;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -71,9 +74,12 @@ import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.views.Stub;
+import org.thoughtcrime.securesms.video.VideoUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.ByteArrayOutputStream;
+import java.io.FileDescriptor;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -380,21 +386,53 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
   @Override
   public void onImageCaptured(@NonNull byte[] data, int width, int height) {
     Log.i(TAG, "Camera image captured.");
+    onMediaCaptured(() -> data,
+                    ignored -> (long) data.length,
+                    (blobProvider, bytes, ignored) -> blobProvider.forData(bytes),
+                    MediaUtil.IMAGE_JPEG,
+                    width,
+                    height);
+  }
 
+  @Override
+  public void onVideoCaptured(@NonNull FileDescriptor fd) {
+    Log.i(TAG, "Camera video captured.");
+    onMediaCaptured(() -> new FileInputStream(fd),
+                    fin -> fin.getChannel().size(),
+                    BlobProvider::forData,
+                    VideoUtil.RECORDED_VIDEO_CONTENT_TYPE,
+                    0,
+                    0);
+  }
+
+
+  private <T> void onMediaCaptured(Supplier<T> dataSupplier,
+                                   IOFunction<T, Long> getLength,
+                                   Function3<BlobProvider, T, Long, BlobProvider.BlobBuilder> createBlobBuilder,
+                                   String mimeType,
+                                   int width,
+                                   int height)
+  {
     SimpleTask.run(getLifecycle(), () -> {
       try {
-        Uri uri = BlobProvider.getInstance()
-                              .forData(data)
-                              .withMimeType(MediaUtil.IMAGE_JPEG)
-                              .createForSingleSessionOnDisk(this);
-        return new Media(uri,
-                         MediaUtil.IMAGE_JPEG,
-                         System.currentTimeMillis(),
-                         width,
-                         height,
-                         data.length,
-                         Optional.of(Media.ALL_MEDIA_BUCKET_ID),
-                         Optional.absent());
+
+        T    data   = dataSupplier.get();
+        long length = getLength.apply(data);
+
+        Uri uri = createBlobBuilder.apply(BlobProvider.getInstance(), data, length)
+            .withMimeType(mimeType)
+            .createForSingleSessionOnDisk(this);
+
+        return new Media(
+            uri,
+            mimeType,
+            System.currentTimeMillis(),
+            width,
+            height,
+            length,
+            Optional.of(Media.ALL_MEDIA_BUCKET_ID),
+            Optional.absent()
+        );
       } catch (IOException e) {
         return null;
       }
@@ -406,7 +444,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
 
       Log.i(TAG, "Camera capture stored: " + media.getUri().toString());
 
-      viewModel.onImageCaptured(media);
+      viewModel.onMediaCaptured(media);
       navigateToMediaSend(Locale.getDefault());
     });
   }

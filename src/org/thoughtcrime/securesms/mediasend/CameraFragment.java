@@ -7,6 +7,8 @@ import androidx.annotation.NonNull;
 import androidx.camera.core.CameraX;
 import androidx.fragment.app.Fragment;
 
+import java.io.FileDescriptor;
+
 public interface CameraFragment {
 
   @SuppressLint("RestrictedApi")
@@ -21,6 +23,7 @@ public interface CameraFragment {
   interface Controller {
     void onCameraError();
     void onImageCaptured(@NonNull byte[] data, int width, int height);
+    void onVideoCaptured(@NonNull FileDescriptor fd);
     void onGalleryClicked();
     int getDisplayRotation();
     void onCameraCountButtonClicked();

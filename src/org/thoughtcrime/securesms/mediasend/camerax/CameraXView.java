@@ -54,12 +54,12 @@ import androidx.camera.core.FlashMode;
 import androidx.camera.core.ImageCapture.OnImageCapturedListener;
 import androidx.camera.core.ImageCapture.OnImageSavedListener;
 import androidx.camera.core.ImageProxy;
-import androidx.camera.core.VideoCapture.OnVideoSavedListener;
 import androidx.lifecycle.LifecycleOwner;
 
 import org.thoughtcrime.securesms.logging.Log;
 
 import java.io.File;
+import java.io.FileDescriptor;
 
 /**
  * A {@link View} that displays a preview of the camera with methods {@link
@@ -594,16 +594,22 @@ public final class CameraXView extends ViewGroup {
     mCameraModule.takePicture(file, listener);
   }
 
+  // Begin Signal Custom Code Block
   /**
    * Takes a video and calls the OnVideoSavedListener when done.
    *
-   * @param file The destination.
+   * @param fileDescriptor The destination.
    */
-  public void startRecording(File file, OnVideoSavedListener listener) {
-    mCameraModule.startRecording(file, listener);
+  @RequiresApi(26)
+  public void startRecording(FileDescriptor fileDescriptor, VideoCapture.OnVideoSavedListener listener) {
+    mCameraModule.startRecording(fileDescriptor, listener);
   }
+  // End Signal Custom Code Block
 
   /** Stops an in progress video. */
+  // Begin Signal Custom Code Block
+  @RequiresApi(26)
+  // End Signal Custom Code Block
   public void stopRecording() {
     mCameraModule.stopRecording();
   }

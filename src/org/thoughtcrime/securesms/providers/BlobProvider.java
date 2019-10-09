@@ -3,10 +3,12 @@ package org.thoughtcrime.securesms.providers;
 import android.app.Application;
 import android.content.Context;
 import android.content.UriMatcher;
+import android.media.MediaDataSource;
 import android.net.Uri;
 import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.annotation.WorkerThread;
 
 import org.thoughtcrime.securesms.crypto.AttachmentSecret;
@@ -14,8 +16,11 @@ import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
 import org.thoughtcrime.securesms.crypto.ModernDecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.ModernEncryptingPartOutputStream;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.util.IOFunction;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
+import org.thoughtcrime.securesms.video.ByteArrayMediaDataSource;
+import org.thoughtcrime.securesms.video.EncryptedMediaDataSource;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -89,6 +94,34 @@ public class BlobProvider {
    * @throws IOException If the stream fails to open or the spec of the URI doesn't match.
    */
   public synchronized @NonNull InputStream getStream(@NonNull Context context, @NonNull Uri uri, long position) throws IOException {
+    return getBlobRepresentation(context,
+                                 uri,
+                                 bytes -> {
+                                   ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(bytes);
+                                   if (byteArrayInputStream.skip(position) != position) {
+                                     throw new IOException("Failed to skip to position " + position + " for: " + uri);
+                                   }
+                                   return byteArrayInputStream;
+                                 },
+                                 file -> ModernDecryptingPartInputStream.createFor(getAttachmentSecret(context),
+                                                                                   file,
+                                                                                   position));
+  }
+
+  @RequiresApi(23)
+  public synchronized @NonNull MediaDataSource getMediaDataSource(@NonNull Context context, @NonNull Uri uri) throws IOException {
+    return getBlobRepresentation(context,
+                                 uri,
+                                 ByteArrayMediaDataSource::new,
+                                 file -> EncryptedMediaDataSource.createForDiskBlob(getAttachmentSecret(context), file));
+  }
+
+  private synchronized @NonNull <T> T getBlobRepresentation(@NonNull Context context,
+                                                            @NonNull Uri uri,
+                                                            @NonNull IOFunction<byte[], T> getByteRepresentation,
+                                                            @NonNull IOFunction<File, T> getFileRepresentation)
+      throws IOException
+  {
     if (isAuthority(uri)) {
       StorageType storageType = StorageType.decode(uri.getPathSegments().get(STORAGE_TYPE_PATH_SEGMENT));
 
@@ -99,7 +132,7 @@ public class BlobProvider {
           if (storageType == StorageType.SINGLE_USE_MEMORY) {
             memoryBlobs.remove(uri);
           }
-          return new ByteArrayInputStream(data);
+          return getByteRepresentation.apply(data);
         } else {
           throw new IOException("Failed to find in-memory blob for: " + uri);
         }
@@ -108,11 +141,15 @@ public class BlobProvider {
         String directory = getDirectory(storageType);
         File   file      = new File(getOrCreateCacheDirectory(context, directory), buildFileName(id));
 
-        return ModernDecryptingPartInputStream.createFor(AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret(), file, position);
+        return getFileRepresentation.apply(file);
       }
     } else {
       throw new IOException("Provided URI does not match this spec. Uri: " + uri);
     }
+  }
+
+  private synchronized AttachmentSecret getAttachmentSecret(@NonNull Context context) {
+    return AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret();
   }
 
   /**
@@ -475,4 +512,5 @@ public class BlobProvider {
       throw new IOException("Failed to decode lifespan.");
     }
   }
+
 }

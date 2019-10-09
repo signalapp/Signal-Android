@@ -26,7 +26,6 @@ import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCharacteristics;
 import android.hardware.camera2.CameraManager;
 import android.os.Looper;
-import android.util.Log;
 import android.util.Rational;
 import android.util.Size;
 
@@ -46,17 +45,20 @@ import androidx.camera.core.ImageCapture.OnImageSavedListener;
 import androidx.camera.core.ImageCaptureConfig;
 import androidx.camera.core.Preview;
 import androidx.camera.core.PreviewConfig;
-import androidx.camera.core.VideoCapture;
-import androidx.camera.core.VideoCapture.OnVideoSavedListener;
 import androidx.camera.core.VideoCaptureConfig;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.OnLifecycleEvent;
 
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mediasend.camerax.CameraXView.CaptureMode;
+import org.thoughtcrime.securesms.mms.MediaConstraints;
+import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.video.VideoUtil;
 
 import java.io.File;
+import java.io.FileDescriptor;
 import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -122,8 +124,14 @@ final class CameraXModule {
     mImageCaptureConfigBuilder =
         new ImageCaptureConfig.Builder().setTargetName("ImageCapture");
 
+    // Begin Signal Custom Code Block
     mVideoCaptureConfigBuilder =
-        new VideoCaptureConfig.Builder().setTargetName("VideoCapture");
+        new VideoCaptureConfig.Builder()
+            .setAudioBitRate(VideoUtil.AUDIO_BIT_RATE)
+            .setVideoFrameRate(VideoUtil.VIDEO_FRAME_RATE)
+            .setBitRate(VideoUtil.VIDEO_BIT_RATE)
+            .setTargetName("VideoCapture");
+    // End Signal Custom Code Block
   }
 
   /**
@@ -246,9 +254,21 @@ final class CameraXModule {
     mImageCaptureConfigBuilder.setTargetResolution(new Size(1920, 1920));
     mImageCapture = new ImageCapture(mImageCaptureConfigBuilder.build());
 
+    // Begin Signal Custom Code Block
+    Size size = VideoUtil.getVideoRecordingSize();
+    mVideoCaptureConfigBuilder.setTargetResolution(size);
+    mVideoCaptureConfigBuilder.setMaxResolution(size);
+    // End Signal Custom Code Block
+
     mVideoCaptureConfigBuilder.setTargetRotation(getDisplaySurfaceRotation());
     mVideoCaptureConfigBuilder.setLensFacing(mCameraLensFacing);
-    mVideoCapture = new VideoCapture(mVideoCaptureConfigBuilder.build());
+
+    // Begin Signal Custom Code Block
+    if (MediaConstraints.isVideoTranscodeAvailable()) {
+      mVideoCapture = new VideoCapture(mVideoCaptureConfigBuilder.build());
+    }
+    // End Signal Custom Code Block
+
     mPreviewConfigBuilder.setLensFacing(mCameraLensFacing);
 
     int relativeCameraOrientation = getRelativeCameraOrientation(false);
@@ -344,7 +364,10 @@ final class CameraXModule {
     mImageCapture.takePicture(saveLocation, listener, metadata);
   }
 
-  public void startRecording(File file, final OnVideoSavedListener listener) {
+  // Begin Signal Custom Code Block
+  @RequiresApi(26)
+  // End Signal Custom Code Block
+  public void startRecording(FileDescriptor file, final VideoCapture.OnVideoSavedListener listener) {
     if (mVideoCapture == null) {
       return;
     }
@@ -362,14 +385,18 @@ final class CameraXModule {
         file,
         new VideoCapture.OnVideoSavedListener() {
           @Override
-          public void onVideoSaved(File savedFile) {
+          // Begin Signal Custom Code Block
+          public void onVideoSaved(FileDescriptor savedFileDescriptor) {
+          // End Signal Custom Code Block
             mVideoIsRecording.set(false);
-            listener.onVideoSaved(savedFile);
+            // Begin Signal Custom Code Block
+            listener.onVideoSaved(savedFileDescriptor);
+            // End Signal Custom Code Block
           }
 
           @Override
           public void onError(
-              VideoCapture.UseCaseError useCaseError,
+              VideoCapture.VideoCaptureError useCaseError,
               String message,
               @Nullable Throwable cause) {
             mVideoIsRecording.set(false);
@@ -379,6 +406,9 @@ final class CameraXModule {
         });
   }
 
+  // Begin Signal Custom Code Block
+  @RequiresApi(26)
+  // End Signal Custom Code Block
   public void stopRecording() {
     if (mVideoCapture == null) {
       return;
@@ -598,7 +628,12 @@ final class CameraXModule {
   void clearCurrentLifecycle() {
     if (mCurrentLifecycle != null) {
       // Remove previous use cases
-      CameraX.unbind(mImageCapture, mVideoCapture, mPreview);
+      // Begin Signal Custom Code Block
+      CameraX.unbind(mImageCapture, mPreview);
+      if (mVideoCapture != null) {
+        CameraX.unbind(mVideoCapture);
+      }
+      // End Signal Custom Code Block
     }
 
     mCurrentLifecycle = null;
@@ -647,7 +682,9 @@ final class CameraXModule {
       mImageCapture.setTargetRotation(getDisplaySurfaceRotation());
     }
 
-    if (mVideoCapture != null) {
+    // Begin Signal Custom Code Block
+    if (mImageCapture != null && MediaConstraints.isVideoTranscodeAvailable()) {
+    // End Signal Custom Code Block
       mVideoCapture.setTargetRotation(getDisplaySurfaceRotation());
     }
   }

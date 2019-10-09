@@ -96,6 +96,7 @@
     <string name="CameraActivity_image_save_failure">Failed to save image.</string>
 
     <!-- CameraXFragment -->
+    <string name="CameraXFragment_video_recording_available">Tap to take a picture, or keep your finger on the capture button to record a video.</string>
     <string name="CameraXFragment_capture_description">Capture</string>
     <string name="CameraXFragment_change_camera_description">Change camera</string>
     <string name="CameraXFragment_open_gallery_description">Open gallery</string>
@@ -1344,6 +1345,7 @@
     <string name="preferences__linked_devices">Linked devices</string>
     <string name="preferences__light_theme">Light</string>
     <string name="preferences__dark_theme">Dark</string>
+    <string name="preferences__system_theme">System</string>
     <string name="preferences__appearance">Appearance</string>
     <string name="preferences__theme">Theme</string>
     <string name="preferences__default">Default</string>

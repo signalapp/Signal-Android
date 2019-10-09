@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.video;
 import android.media.MediaDataSource;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
 import org.thoughtcrime.securesms.crypto.AttachmentSecret;
@@ -28,7 +29,7 @@ final class ModernEncryptedMediaDataSource extends MediaDataSource {
   private final byte[]           random;
   private final long             length;
 
-  ModernEncryptedMediaDataSource(@NonNull AttachmentSecret attachmentSecret, @NonNull File mediaFile, @NonNull byte[] random, long length) {
+  ModernEncryptedMediaDataSource(@NonNull AttachmentSecret attachmentSecret, @NonNull File mediaFile, @Nullable byte[] random, long length) {
     this.attachmentSecret = attachmentSecret;
     this.mediaFile        = mediaFile;
     this.random           = random;
@@ -37,7 +38,7 @@ final class ModernEncryptedMediaDataSource extends MediaDataSource {
 
   @Override
   public int readAt(long position, byte[] bytes, int offset, int length) throws IOException {
-    try (InputStream inputStream = ModernDecryptingPartInputStream.createFor(attachmentSecret, random, mediaFile, position)) {
+    try (InputStream inputStream = createInputStream(position)) {
       int totalRead = 0;
 
       while (length > 0) {
@@ -67,5 +68,13 @@ final class ModernEncryptedMediaDataSource extends MediaDataSource {
 
   @Override
   public void close() {
+  }
+
+  private InputStream createInputStream(long position) throws IOException {
+    if (random == null) {
+      return ModernDecryptingPartInputStream.createFor(attachmentSecret, mediaFile, position);
+    } else {
+      return ModernDecryptingPartInputStream.createFor(attachmentSecret, random, mediaFile, position);
+    }
   }
 }

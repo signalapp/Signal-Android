@@ -26,7 +26,8 @@ public class AttachmentDataSource implements DataSource {
 
   public AttachmentDataSource(DefaultDataSource defaultDataSource,
                               PartDataSource partDataSource,
-                              BlobDataSource blobDataSource) {
+                              BlobDataSource blobDataSource)
+  {
     this.defaultDataSource = defaultDataSource;
     this.partDataSource    = partDataSource;
     this.blobDataSource    = blobDataSource;
@@ -38,7 +39,7 @@ public class AttachmentDataSource implements DataSource {
 
   @Override
   public long open(DataSpec dataSpec) throws IOException {
-    if (BlobProvider.isAuthority(dataSpec.uri))      dataSource = blobDataSource;
+    if      (BlobProvider.isAuthority(dataSpec.uri)) dataSource = blobDataSource;
     else if (PartAuthority.isLocalUri(dataSpec.uri)) dataSource = partDataSource;
     else                                             dataSource = defaultDataSource;
 

@@ -47,7 +47,7 @@ public class MediaSendVideoFragment extends Fragment implements MediaSendPageFra
     VideoSlide slide = new VideoSlide(requireContext(), uri, 0);
 
     ((VideoPlayer) view).setWindow(requireActivity().getWindow());
-    ((VideoPlayer) view).setVideoSource(slide, false);
+    ((VideoPlayer) view).setVideoSource(slide, true);
   }
 
   @Override

@@ -3,8 +3,11 @@ package org.thoughtcrime.securesms.util;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.media.MediaDataSource;
+import android.media.MediaMetadataRetriever;
 import android.media.ThumbnailUtils;
 import android.net.Uri;
+import android.os.Build;
 import android.provider.MediaStore;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -48,6 +51,7 @@ public class MediaUtil {
   public static final String IMAGE_GIF         = "image/gif";
   public static final String AUDIO_AAC         = "audio/aac";
   public static final String AUDIO_UNSPECIFIED = "audio/*";
+  public static final String VIDEO_MP4         = "video/mp4";
   public static final String VIDEO_UNSPECIFIED = "video/*";
   public static final String VCARD             = "text/x-vcard";
   public static final String LONG_TEXT         = "text/x-signal-plain";
@@ -249,6 +253,10 @@ public class MediaUtil {
   }
 
   public static boolean hasVideoThumbnail(Uri uri) {
+    if (BlobProvider.isAuthority(uri) && MediaUtil.isVideo(BlobProvider.getMimeType(uri)) && Build.VERSION.SDK_INT >= 23) {
+      return true;
+    }
+
     if (uri == null || !isSupportedVideoUriScheme(uri.getScheme())) {
       return false;
     }
@@ -265,6 +273,7 @@ public class MediaUtil {
     }
   }
 
+  @WorkerThread
   public static @Nullable Bitmap getVideoThumbnail(Context context, Uri uri) {
     if ("com.android.providers.media.documents".equals(uri.getAuthority())) {
       long videoId = Long.parseLong(uri.getLastPathSegment().split(":")[1]);
@@ -284,6 +293,19 @@ public class MediaUtil {
                MediaUtil.isVideo(URLConnection.guessContentTypeFromName(uri.toString()))) {
       return ThumbnailUtils.createVideoThumbnail(uri.toString().replace("file://", ""),
                                                  MediaStore.Video.Thumbnails.MINI_KIND);
+    } else if (BlobProvider.isAuthority(uri) &&
+               MediaUtil.isVideo(BlobProvider.getMimeType(uri)) &&
+               Build.VERSION.SDK_INT >= 23) {
+      try {
+        MediaDataSource        mediaDataSource        = BlobProvider.getInstance().getMediaDataSource(context, uri);
+        MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
+
+        mediaMetadataRetriever.setDataSource(mediaDataSource);
+        return mediaMetadataRetriever.getFrameAtTime(1000);
+      } catch (IOException e) {
+        Log.w(TAG, "failed to get thumbnail for video blob uri: " + uri, e);
+        return null;
+      }
     }
 
     return null;

@@ -366,7 +366,7 @@ class MediaSendViewModel extends ViewModel {
     hudState.setValue(buildHudState());
   }
 
-  void onImageCaptured(@NonNull Media media) {
+  void onMediaCaptured(@NonNull Media media) {
     lastCameraCapture = Optional.of(media);
 
     List<Media> selected = selectedMedia.getValue();

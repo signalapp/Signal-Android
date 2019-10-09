@@ -67,8 +67,8 @@ dependencies {
     implementation 'androidx.multidex:multidex:2.0.1'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
     implementation 'androidx.lifecycle:lifecycle-common-java8:2.0.0'
-    implementation "androidx.camera:camera-core:1.0.0-alpha02"
-    implementation "androidx.camera:camera-camera2:1.0.0-alpha02"
+    implementation "androidx.camera:camera-core:1.0.0-alpha04"
+    implementation "androidx.camera:camera-camera2:1.0.0-alpha04"
 
     implementation('com.google.firebase:firebase-messaging:17.3.4') {
         exclude group: 'com.google.firebase', module: 'firebase-core'
@@ -182,8 +182,8 @@ dependencyVerification {
         'androidx.legacy:legacy-support-v13:65f5fcb57644d381d471a00fdf50f90b808be6b48a8ae57fb4ea39b7da8cca86',
         'androidx.cardview:cardview:1193c04c22a3d6b5946dae9f4e8c59d6adde6a71b6bd5d87fb99d82dda1afec7',
         'androidx.gridlayout:gridlayout:a7e5dc6f39dbc3dc6ac6d57b02a9c6fd792e80f0e45ddb3bb08e8f03d23c8755',
-        'androidx.camera:camera-camera2:9dc33e45da983ebd29a888401ac700323ff573821eee3fa4d993dfa3d316ee2e',
-        'androidx.camera:camera-core:bf32bfcb5d103d865c6af1221a1d82e994c917b53c0bc080f1e9750bdc21cbb9',
+        'androidx.camera:camera-camera2:b7897230aec96365d675712c92f5edcb8b464badfd61788c8f956ec2d6e49bfe',
+        'androidx.camera:camera-core:e1c70de55600a0caf826eb4f8a75c96c5ff8f0b626bf08413d31e80ffa55f8ba',
         'androidx.exifinterface:exifinterface:ee48be10aab8f54efff4c14b77d11e10b9eeee4379d5ef6bf297a2923c55cc11',
         'androidx.constraintlayout:constraintlayout:5ff864def9d41cd04e08348d69591143bae3ceff4284cf8608bceb98c36ac830',
         'androidx.multidex:multidex:42dd32ff9f97f85771b82a20003a8d70f68ab7b4ba328964312ce0732693db09',
@@ -249,8 +249,7 @@ dependencyVerification {
         'androidx.lifecycle:lifecycle-livedata:c82609ced8c498f0a701a30fb6771bb7480860daee84d82e0a81ee86edf7ba39',
         'androidx.lifecycle:lifecycle-livedata-core:fde334ec7e22744c0f5bfe7caf1a84c9d717327044400577bdf9bd921ec4f7bc',
         'androidx.arch.core:core-runtime:87e65fc767c712b437649c7cee2431ebb4bed6daef82e501d4125b3ed3f65f8e',
-        'androidx.concurrent:concurrent-listenablefuture-callback:14dce0acbffd705cfe9fb378960f851a9d8fc3f293d1157c310c9624a561d0a8',
-        'androidx.concurrent:concurrent-listenablefuture:f9ef396ca4a43b9685d28bec117b278aa9171de0e446e5138e931074e3462feb',
+        'androidx.concurrent:concurrent-futures:50812a53912255e3e0f2147d13bbbb81937c3726fda2e984e77a27c7207d96a1',
         'com.github.bumptech.glide:gifdecoder:7ee9402ae1c48fac9232b67e81f881c217b907b3252e49ce57bdb97937ebb270',
         'androidx.versionedparcelable:versionedparcelable:948c751f6352d4c0f93f15fa1bf506c59083bc7754264dd9a325a6da0e2eec05',
         'androidx.collection:collection:632a0e5407461de774409352940e292a291037724207a787820c77daf7d33b72',
@@ -268,6 +267,7 @@ dependencyVerification {
         'androidx.annotation:annotation:d38d63edb30f1467818d50aaf05f8a692dea8b31392a049bfa991b159ad5b692',
         'androidx.constraintlayout:constraintlayout-solver:965c177e64fbd81bd1d27b402b66ef9d7bc7b5cb5f718044bf7a453abc542045',
         'com.google.auto.value:auto-value-annotations:0e951fee8c31f60270bc46553a8586001b7b93dbb12aec06373aa99a150392c0',
+        'com.google.guava:listenablefuture:e4ad7607e5c0477c6f890ef26a49cb8d1bb4dffb650bab4502afee64644e3069',
         'org.signal:signal-metadata-android:02323bc29317fa9d3b62fab0b507c94ba2e9bcc4a78d588888ffd313853757b3',
         'org.whispersystems:signal-service-java:045026003e2ddef0325fe1e930de9ce503010aec8e8a8ac6ddbdd9a79f94e878',
         'com.github.bumptech.glide:disklrucache:4696a81340eb6beee21ab93f703ed6e7ae49fb4ce3bc2fbc546e5bacd21b96b9',
