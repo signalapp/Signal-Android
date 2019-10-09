@@ -131,6 +131,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     db.execSQL(LokiMessageDatabase.getCreateTableCommand());
     db.execSQL(LokiThreadDatabase.getCreateFriendRequestTableCommand());
     db.execSQL(LokiThreadDatabase.getCreateSessionResetTableCommand());
+    db.execSQL(LokiThreadDatabase.getCreateGroupChatMappingTableCommand());
     db.execSQL(LokiUserDatabase.getCreateDisplayNameTableCommand());
     db.execSQL(LokiUserDatabase.getCreateServerDisplayNameTableCommand());
 
@@ -497,6 +498,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
       if (oldVersion < lokiV3) {
         db.execSQL(LokiAPIDatabase.getCreatePairingAuthorisationTableCommand());
+        db.execSQL(LokiThreadDatabase.getCreateGroupChatMappingTableCommand());
+
+        // TODO: Map old public chat threads to new manager format
       }
 
       db.setTransactionSuccessful();

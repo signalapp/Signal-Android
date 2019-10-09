@@ -161,7 +161,7 @@ class LokiGroupChatPoller(private val context: Context, private val group: LokiG
                 finalize()
             }
         }
-        api.getMessages(group.serverID, group.server).success { messages ->
+        api.getMessages(group.channel, group.server).success { messages ->
             messages.forEach { message ->
                 if (message.hexEncodedPublicKey != userHexEncodedPublicKey) {
                     processIncomingMessage(message)
@@ -170,12 +170,12 @@ class LokiGroupChatPoller(private val context: Context, private val group: LokiG
                 }
             }
         }.fail {
-            Log.d("Loki", "Failed to get messages for group chat with ID: ${group.serverID} on server: ${group.server}.")
+            Log.d("Loki", "Failed to get messages for group chat with ID: ${group.channel} on server: ${group.server}.")
         }
     }
 
     private fun pollForDeletedMessages() {
-        api.getDeletedMessageServerIDs(group.serverID, group.server).success { deletedMessageServerIDs ->
+        api.getDeletedMessageServerIDs(group.channel, group.server).success { deletedMessageServerIDs ->
             val lokiMessageDatabase = DatabaseFactory.getLokiMessageDatabase(context)
             val deletedMessageIDs = deletedMessageServerIDs.mapNotNull { lokiMessageDatabase.getMessageID(it) }
             val smsMessageDatabase = DatabaseFactory.getSmsDatabase(context)
@@ -185,12 +185,12 @@ class LokiGroupChatPoller(private val context: Context, private val group: LokiG
                 mmsMessageDatabase.delete(it)
             }
         }.fail {
-            Log.d("Loki", "Failed to get deleted messages for group chat with ID: ${group.serverID} on server: ${group.server}.")
+            Log.d("Loki", "Failed to get deleted messages for group chat with ID: ${group.channel} on server: ${group.server}.")
         }
     }
 
     private fun pollForModerators() {
-        api.getModerators(group.serverID, group.server)
+        api.getModerators(group.channel, group.server)
     }
     // endregion
 }
