@@ -6,7 +6,8 @@
     android:orientation="horizontal"
     android:paddingStart="16dp"
     android:paddingEnd="16dp"
-    android:gravity="center_vertical">
+    android:gravity="center_vertical"
+    android:background="?attr/conversation_list_item_background">
 
     <RelativeLayout
         android:layout_width="36dp"
