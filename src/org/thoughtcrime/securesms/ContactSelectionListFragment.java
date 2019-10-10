@@ -265,7 +265,7 @@ public final class ContactSelectionListFragment extends    Fragment
     }
 
     emptyText.setText(R.string.contact_selection_group_activity__no_contacts);
-    boolean useFastScroller = data.getCount() > 20;
+    boolean useFastScroller = data != null && data.getCount() > 20;
     recyclerView.setVerticalScrollBarEnabled(!useFastScroller);
     if (useFastScroller) {
       fastScroller.setVisibility(View.VISIBLE);
