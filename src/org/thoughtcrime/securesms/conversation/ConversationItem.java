@@ -777,7 +777,7 @@ public class ConversationItem extends LinearLayout
   }
 
   private SpannableString highlightMentions(CharSequence text, boolean isGroupThread) {
-    Pattern pattern = Pattern.compile("@\\w*");
+    Pattern pattern = Pattern.compile("@[0-9a-fA-F]*");
     Matcher matcher = pattern.matcher(text);
     ArrayList<Range<Integer>> mentions = new ArrayList<>();
     if (matcher.find() && isGroupThread) {
