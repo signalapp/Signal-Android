@@ -214,7 +214,7 @@ public class ConversationItem extends LinearLayout
     this.groupSenderProfileName  =            findViewById(R.id.group_message_sender_profile);
     this.alertView               =            findViewById(R.id.indicators_parent);
     this.contactPhoto            =            findViewById(R.id.contact_photo);
-    this.moderatorIconImageView      =            findViewById(R.id.moderator_icon_image_view);
+    this.moderatorIconImageView  =            findViewById(R.id.moderator_icon_image_view);
     this.contactPhotoHolder      =            findViewById(R.id.contact_photo_container);
     this.bodyBubble              =            findViewById(R.id.body_bubble);
     this.mediaThumbnailStub      = new Stub<>(findViewById(R.id.image_view_stub));

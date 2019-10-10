@@ -71,17 +71,26 @@
                 android:inflatedId="@+id/attachment_editor"
                 android:layout="@layout/conversation_activity_attachment_editor_stub" />
 
-            <FrameLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:clipChildren="false"
-                android:clipToPadding="false">
+                android:orientation="vertical">
 
-                <include layout="@layout/conversation_input_panel" />
+                <include layout="@layout/view_user_selection" />
 
-                <include layout="@layout/conversation_search_nav" />
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clipChildren="false"
+                    android:clipToPadding="false">
 
-            </FrameLayout>
+                    <include layout="@layout/conversation_input_panel" />
+
+                    <include layout="@layout/conversation_search_nav" />
+
+                </FrameLayout>
+
+            </LinearLayout>
 
             <Button
                 android:id="@+id/register_button"

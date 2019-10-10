@@ -158,6 +158,8 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.FriendRequestViewDelegate;
 import org.thoughtcrime.securesms.loki.LokiAPIUtilities;
 import org.thoughtcrime.securesms.loki.LokiThreadDatabaseDelegate;
+import org.thoughtcrime.securesms.loki.LokiUserDatabase;
+import org.thoughtcrime.securesms.loki.UserSelectionView;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mediasend.MediaSendActivity;
 import org.thoughtcrime.securesms.mms.AttachmentManager;
@@ -225,6 +227,7 @@ import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
+import org.whispersystems.signalservice.loki.api.LokiAPI;
 import org.whispersystems.signalservice.loki.messaging.LokiMessageFriendRequestStatus;
 import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus;
 import org.whispersystems.signalservice.loki.utilities.Analytics;
@@ -396,6 +399,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     });
 
     LokiAPIUtilities.INSTANCE.populateUserIDCacheIfNeeded(threadId, this);
+    UserSelectionView userSelectionView = findViewById(R.id.userSelectionView);
+    LokiUserDatabase userDatabase = DatabaseFactory.getLokiUserDatabase(this);
+    userSelectionView.setHasGroupContext(true);
+    userSelectionView.setUsers(LokiAPI.Companion.getUserIDs("", threadId, userDatabase));
 
     if (this.recipient.isGroupRecipient()) {
       if (this.recipient.getName().equals("Loki Public Chat")) {
