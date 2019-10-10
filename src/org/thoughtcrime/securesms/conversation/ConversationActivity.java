@@ -2748,7 +2748,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         List<Tuple2<String, String>> users = LokiAPI.Companion.getUsers("", threadId, userDatabase);
         mentionStartIndex = currentEndIndex + 1;
         userSelectionView.show(users, threadId);
-      } else if (!Character.isAlphabetic(lastCharacter) || !Character.isUpperCase(lastCharacter) || !Character.isLowerCase(lastCharacter)) {
+      } else if (Character.getType(lastCharacter) != Character.UPPERCASE_LETTER && Character.getType(lastCharacter) != Character.LOWERCASE_LETTER) {
         mentionStartIndex = -1;
         userSelectionView.hide();
       } else {
