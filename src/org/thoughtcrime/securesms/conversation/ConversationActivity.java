@@ -243,6 +243,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import kotlin.Unit;
 import network.loki.messenger.R;
 import nl.komponents.kovenant.combine.Tuple2;
 
@@ -398,6 +399,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
             }
             composeText.setSelection(composeText.length(), composeText.length());
             composeText.addTextChangedListener(mentionTextWatcher);
+            userSelectionView.setOnUserSelected(tuple -> {
+              String oldText = composeText.getText().toString();
+              String newText = oldText.substring(0, mentionStartIndex) + tuple.getFirst();
+              composeText.setText(newText);
+              composeText.setSelection(newText.length());
+              return Unit.INSTANCE;
+            });
           }
         });
       }
@@ -2740,8 +2748,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     @Override
     public void onTextChanged(String text) {
-      if (!enabled) { return; }
-      int currentEndIndex = (text.length() != 0) ? text.length() - 1 : 0;
+      if (!enabled | text.length() == 0) { return; }
+      int currentEndIndex = text.length() - 1;
       char lastCharacter = text.charAt(currentEndIndex);
       LokiUserDatabase userDatabase = DatabaseFactory.getLokiUserDatabase(ConversationActivity.this);
       if (lastCharacter == '@') {

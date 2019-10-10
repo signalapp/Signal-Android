@@ -14,6 +14,7 @@ class UserSelectionView(context: Context, attrs: AttributeSet?, defStyleAttr: In
     private var users = listOf<Tuple2<String, String>>()
         set(newValue) { field = newValue; userSelectionViewAdapter.users = newValue }
     private var hasGroupContext = false
+    var onUserSelected: ((Tuple2<String, String>) -> Unit)? = null
 
     private val userSelectionViewAdapter by lazy { Adapter(context) }
 
@@ -49,6 +50,9 @@ class UserSelectionView(context: Context, attrs: AttributeSet?, defStyleAttr: In
     init {
         adapter = userSelectionViewAdapter
         userSelectionViewAdapter.users = users
+        setOnItemClickListener { _, _, position, _ ->
+            onUserSelected?.invoke(users[position])
+        }
     }
 
     fun show(users: List<Tuple2<String, String>>, threadID: Long) {
