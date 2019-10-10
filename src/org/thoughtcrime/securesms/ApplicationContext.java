@@ -25,6 +25,7 @@ import android.database.ContentObserver;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.multidex.MultiDexApplication;
 
 import com.crashlytics.android.Crashlytics;
@@ -61,8 +62,9 @@ import org.thoughtcrime.securesms.logging.PersistentLogger;
 import org.thoughtcrime.securesms.logging.UncaughtExceptionLogger;
 import org.thoughtcrime.securesms.loki.BackgroundPollWorker;
 import org.thoughtcrime.securesms.loki.LokiAPIDatabase;
-import org.thoughtcrime.securesms.loki.LokiGroupChatPoller;
+import org.thoughtcrime.securesms.loki.LokiPublicChatManager;
 import org.thoughtcrime.securesms.loki.LokiRSSFeedPoller;
+import org.thoughtcrime.securesms.loki.LokiUserDatabase;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.providers.BlobProvider;
@@ -98,6 +100,7 @@ import java.security.Security;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -132,9 +135,10 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
 
   // Loki
   private LokiLongPoller lokiLongPoller = null;
-  private LokiGroupChatPoller lokiPublicChatPoller = null;
   private LokiRSSFeedPoller lokiNewsFeedPoller = null;
   private LokiRSSFeedPoller lokiMessengerUpdatesFeedPoller = null;
+  private LokiPublicChatManager lokiPublicChatManager = null;
+  private LokiGroupChatAPI lokiGroupChatAPI = null;
   public SignalCommunicationModule communicationModule;
   public MixpanelAPI mixpanel;
 
@@ -147,7 +151,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   @Override
   public void onCreate() {
     super.onCreate();
-    LokiGroupChatAPI.Companion.setDebugMode(BuildConfig.DEBUG); // Loki - Set debug mode if needed
     startKovenant();
     Log.i(TAG, "onCreate()");
     initializeSecurityProvider();
@@ -183,6 +186,8 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
       mixpanel.trackMap(event, properties);
       return Unit.INSTANCE;
     };
+
+    lokiPublicChatManager = new LokiPublicChatManager(this);
   }
 
   @Override
@@ -204,6 +209,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     MessageNotifier.setVisibleThread(-1);
     // Loki - Stop long polling if needed
     if (lokiLongPoller != null) { lokiLongPoller.stopIfNeeded(); }
+    if (lokiPublicChatManager != null) { lokiPublicChatManager.stopPollers(); }
   }
 
   @Override
@@ -241,6 +247,22 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
 
   public PersistentLogger getPersistentLogger() {
     return persistentLogger;
+  }
+
+  public LokiPublicChatManager getLokiPublicChatManager() {
+    return lokiPublicChatManager;
+  }
+
+  public @Nullable LokiGroupChatAPI getLokiGroupChatAPI() {
+    if (lokiGroupChatAPI == null && TextSecurePreferences.isPushRegistered(this)) {
+      String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this);
+      byte[] userPrivateKey = IdentityKeyUtil.getIdentityKeyPair(this).getPrivateKey().serialize();
+      LokiAPIDatabase apiDatabase = DatabaseFactory.getLokiAPIDatabase(this);
+      LokiUserDatabase userDatabase = DatabaseFactory.getLokiUserDatabase(this);
+      lokiGroupChatAPI = new LokiGroupChatAPI(userHexEncodedPublicKey, userPrivateKey, apiDatabase, userDatabase);
+    }
+
+    return lokiGroupChatAPI;
   }
 
   private void initializeSecurityProvider() {
@@ -471,10 +493,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     if (lokiLongPoller != null) { lokiLongPoller.startIfNeeded(); }
   }
 
-  private LokiGroupChat lokiPublicChat() {
-    return new LokiGroupChat(LokiGroupChatAPI.getPublicChatServerID(), LokiGroupChatAPI.getPublicChatServer(), "Loki Public Chat", true);
-  }
-
   private LokiRSSFeed lokiNewsFeed() {
     return new LokiRSSFeed("loki.network.feed", "https://loki.network/feed/", "Loki News", true);
   }
@@ -484,11 +502,21 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   }
 
   public void createGroupChatsIfNeeded() {
-    LokiGroupChat publicChat = lokiPublicChat();
-    boolean isChatSetUp = TextSecurePreferences.isChatSetUp(this, publicChat.getId());
-    if (!isChatSetUp || !publicChat.isDeletable()) {
-      GroupManager.GroupActionResult result = GroupManager.createGroup(publicChat.getId(), this, new HashSet<>(), null, publicChat.getDisplayName(), false);
-      TextSecurePreferences.markChatSetUp(this, publicChat.getId());
+    List<LokiGroupChat> defaultChats = LokiGroupChat.Companion.defaultChats(BuildConfig.DEBUG);
+    for (LokiGroupChat chat : defaultChats) {
+      long threadID = GroupManager.getThreadId(chat.getId(), this);
+      String migrationKey = chat.getId() + "_migrated";
+      boolean isChatMigrated = TextSecurePreferences.getBooleanPreference(this, migrationKey, false);
+      boolean isChatSetUp = TextSecurePreferences.isChatSetUp(this, chat.getId());
+      if (!isChatSetUp || !chat.isDeletable()) {
+        lokiPublicChatManager.addChat(chat.getServer(), chat.getChannel(), chat.getDisplayName());
+        TextSecurePreferences.markChatSetUp(this, chat.getId());
+        TextSecurePreferences.setBooleanPreference(this, migrationKey, true);
+      } else if (threadID > -1 && !isChatMigrated) {
+        // Migrate the old public chats.
+        DatabaseFactory.getLokiThreadDatabase(this).setGroupChat(chat, threadID);
+        TextSecurePreferences.setBooleanPreference(this, migrationKey, true);
+      }
     }
   }
 
@@ -502,20 +530,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         GroupManager.createGroup(feed.getId(), this, new HashSet<>(), null, feed.getDisplayName(), false);
         TextSecurePreferences.markChatSetUp(this, feed.getId());
       }
-    }
-  }
-
-  private void createGroupChatPollersIfNeeded() {
-    // Only create the group chat pollers if their threads aren't deleted
-    LokiGroupChat publicChat = lokiPublicChat();
-    long threadID = GroupManager.getThreadId(publicChat.getId(), this);
-    if (threadID >= 0 && lokiPublicChatPoller == null) {
-      lokiPublicChatPoller = new LokiGroupChatPoller(this, publicChat);
-      // Set up deletion listeners if needed
-      setUpThreadDeletionListeners(threadID, () -> {
-        if (lokiPublicChatPoller != null) lokiPublicChatPoller.stop();
-        lokiPublicChatPoller = null;
-      });
     }
   }
 
@@ -559,8 +573,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   }
 
   public void startGroupChatPollersIfNeeded() {
-    createGroupChatPollersIfNeeded();
-    if (lokiPublicChatPoller != null) lokiPublicChatPoller.startIfNeeded();
+    lokiPublicChatManager.startPollersIfNeeded();
   }
 
   public void startRSSFeedPollersIfNeeded() {

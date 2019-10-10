@@ -71,7 +71,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int lokiV2                           = 23;
   private static final int lokiV3                           = 24;
 
-  private static final int    DATABASE_VERSION = lokiV2; // Loki - onUpgrade(...) must be updated to use Loki version numbers if Signal makes any database changes
+  private static final int    DATABASE_VERSION = lokiV3; // Loki - onUpgrade(...) must be updated to use Loki version numbers if Signal makes any database changes
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -499,8 +499,6 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
       if (oldVersion < lokiV3) {
         db.execSQL(LokiAPIDatabase.getCreatePairingAuthorisationTableCommand());
         db.execSQL(LokiThreadDatabase.getCreateGroupChatMappingTableCommand());
-
-        // TODO: Map old public chat threads to new manager format
       }
 
       db.setTransactionSuccessful();

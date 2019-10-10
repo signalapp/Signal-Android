@@ -45,12 +45,11 @@ class DisplayNameActivity : BaseActionBarActivity() {
         application.setUpStorageAPIIfNeeded()
         startActivity(Intent(this, ConversationListActivity::class.java))
         finish()
-        val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this)
-        val userPrivateKey = IdentityKeyUtil.getIdentityKeyPair(this).privateKey.serialize()
-        val apiDatabase = DatabaseFactory.getLokiAPIDatabase(this)
-        val userDatabase = DatabaseFactory.getLokiUserDatabase(this)
-        if (name != null) {
-            LokiGroupChatAPI(userHexEncodedPublicKey, userPrivateKey, apiDatabase, userDatabase).setDisplayName(name, LokiGroupChatAPI.publicChatServer)
+
+        val chatAPI = ApplicationContext.getInstance(this).lokiGroupChatAPI
+        if (chatAPI != null && name != null) {
+            val servers = DatabaseFactory.getLokiThreadDatabase(this).getAllGroupChatServers()
+            servers.forEach { chatAPI.setDisplayName(name, it) }
         }
     }
 }

@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.loki
 
 import android.content.ContentValues
 import android.content.Context
+import android.database.Cursor
 import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.Database
 import org.thoughtcrime.securesms.database.DatabaseFactory
@@ -12,6 +13,7 @@ import org.whispersystems.signalservice.loki.api.LokiGroupChat
 import org.whispersystems.signalservice.loki.messaging.LokiThreadDatabaseProtocol
 import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus
 import org.whispersystems.signalservice.loki.messaging.LokiThreadSessionResetStatus
+import java.lang.Exception
 
 class LokiThreadDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), LokiThreadDatabaseProtocol {
     var delegate: LokiThreadDatabaseDelegate? = null
@@ -19,11 +21,11 @@ class LokiThreadDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
     companion object {
         private val friendRequestTableName = "loki_thread_friend_request_database"
         private val sessionResetTableName = "loki_thread_session_reset_database"
-        private val groupChatMappingTableName = "loki_group_chat_mapping_database"
-        private val threadID = "thread_id"
+        public val groupChatMappingTableName = "loki_group_chat_mapping_database"
+        public val threadID = "thread_id"
         private val friendRequestStatus = "friend_request_status"
         private val sessionResetStatus = "session_reset_status"
-        private val groupChatJSON = "group_chat_json"
+        public val groupChatJSON = "group_chat_json"
         @JvmStatic val createFriendRequestTableCommand = "CREATE TABLE $friendRequestTableName ($threadID INTEGER PRIMARY KEY, $friendRequestStatus INTEGER DEFAULT 0);"
         @JvmStatic val createSessionResetTableCommand = "CREATE TABLE $sessionResetTableName ($threadID INTEGER PRIMARY KEY, $sessionResetStatus INTEGER DEFAULT 0);"
         @JvmStatic val createGroupChatMappingTableCommand = "CREATE TABLE $groupChatMappingTableName ($threadID INTEGER PRIMARY KEY, $groupChatJSON TEXT);"
@@ -90,7 +92,35 @@ class LokiThreadDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
         notifyConversationListeners(threadID)
     }
 
+    fun getAllGroupChats(): Map<Long, LokiGroupChat> {
+        val database = databaseHelper.readableDatabase
+        var cursor: Cursor? = null
+
+        try {
+            val map = mutableMapOf<Long, LokiGroupChat>()
+            cursor = database.rawQuery("select * from $groupChatMappingTableName", null)
+            while (cursor != null && cursor.moveToNext()) {
+                val threadID = cursor.getLong(Companion.threadID)
+                val string = cursor.getString(groupChatJSON)
+                val chat = LokiGroupChat.fromJSON(string)
+                if (chat != null) { map[threadID] = chat }
+            }
+            return map
+        } catch (e: Exception) {
+
+        }  finally {
+            cursor?.close()
+        }
+
+        return mapOf()
+    }
+
+    fun getAllGroupChatServers(): Set<String> {
+        return getAllGroupChats().values.fold(setOf<String>()) { set, chat -> set.plus(chat.server) }
+    }
+
     override fun getGroupChat(threadID: Long): LokiGroupChat? {
+        if (threadID < 0) { return null }
         val database = databaseHelper.readableDatabase
         return database.get(groupChatMappingTableName, "${Companion.threadID} = ?", arrayOf( threadID.toString() )) { cursor ->
             val string = cursor.getString(groupChatJSON)
@@ -99,6 +129,8 @@ class LokiThreadDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
     }
 
     override fun setGroupChat(groupChat: LokiGroupChat, threadID: Long) {
+        if (threadID < 0) { return }
+
         val database = databaseHelper.writableDatabase
         val contentValues = ContentValues(2)
         contentValues.put(Companion.threadID, threadID)

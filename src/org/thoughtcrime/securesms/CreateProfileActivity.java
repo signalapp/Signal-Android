@@ -61,6 +61,7 @@ import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.crypto.ProfileCipher;
 import org.whispersystems.signalservice.api.util.StreamDetails;
+import org.whispersystems.signalservice.loki.api.LokiGroupChat;
 import org.whispersystems.signalservice.loki.api.LokiGroupChatAPI;
 import org.whispersystems.signalservice.loki.utilities.Analytics;
 
@@ -68,6 +69,8 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.security.SecureRandom;
+import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
 import javax.inject.Inject;
@@ -377,12 +380,13 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
         Analytics.Companion.getShared().track("Display Name Updated");
 
         TextSecurePreferences.setProfileName(context, name);
-
-        String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context);
-        byte[] userPrivateKey = IdentityKeyUtil.getIdentityKeyPair(context).getPrivateKey().serialize();
-        LokiAPIDatabase apiDatabase = DatabaseFactory.getLokiAPIDatabase(context);
-        LokiUserDatabase userDatabase = DatabaseFactory.getLokiUserDatabase(context);
-        new LokiGroupChatAPI(userHexEncodedPublicKey, userPrivateKey, apiDatabase, userDatabase).setDisplayName(name, LokiGroupChatAPI.getPublicChatServer());
+        LokiGroupChatAPI chatAPI = ApplicationContext.getInstance(context).getLokiGroupChatAPI();
+        if (chatAPI != null) {
+          Set<String> groupChatServers = DatabaseFactory.getLokiThreadDatabase(context).getAllGroupChatServers();
+          for (String server : groupChatServers) {
+            chatAPI.setDisplayName(name, server);
+          }
+        }
 
         // Loki - Original code
         // ========

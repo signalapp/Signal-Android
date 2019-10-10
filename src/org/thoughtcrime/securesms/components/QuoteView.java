@@ -21,6 +21,7 @@ import com.annimon.stream.Stream;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
+import org.thoughtcrime.securesms.database.Database;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.GlideRequests;
@@ -31,6 +32,7 @@ import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.signalservice.loki.api.LokiGroupChat;
 import org.whispersystems.signalservice.loki.api.LokiGroupChatAPI;
 
 import java.util.List;
@@ -194,18 +196,14 @@ public class QuoteView extends FrameLayout implements RecipientModifiedListener 
     boolean isOwnNumber = Util.isOwnNumber(getContext(), author.getAddress());
 
     String quoteeDisplayName = author.toShortString();
-    if (quoteeDisplayName.equals(author.getAddress().toString())) {
-      quoteeDisplayName = DatabaseFactory.getLokiUserDatabase(getContext()).getServerDisplayName(LokiGroupChatAPI.getPublicChatServer() + "." + LokiGroupChatAPI.getPublicChatServerID(), author.getAddress().toString());
-    }
 
     // If we're in a group then try and use the display name in the group
     if (conversationRecipient.isGroupRecipient()) {
-      try {
-        String serverId = GroupUtil.getDecodedStringId(conversationRecipient.getAddress().serialize());
-        String senderDisplayName = DatabaseFactory.getLokiUserDatabase(getContext()).getServerDisplayName(serverId, author.getAddress().serialize());
+      long threadId = DatabaseFactory.getThreadDatabase(getContext()).getThreadIdFor(conversationRecipient);
+      LokiGroupChat chat = DatabaseFactory.getLokiThreadDatabase(getContext()).getGroupChat(threadId);
+      if (chat != null) {
+        String senderDisplayName = DatabaseFactory.getLokiUserDatabase(getContext()).getServerDisplayName(chat.getId(), author.getAddress().serialize());
         if (senderDisplayName != null) { quoteeDisplayName = senderDisplayName; }
-      } catch (Exception e) {
-        // Do nothing
       }
     }
 

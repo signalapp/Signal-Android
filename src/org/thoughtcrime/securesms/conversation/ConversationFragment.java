@@ -70,6 +70,7 @@ import org.thoughtcrime.securesms.conversation.ConversationAdapter.HeaderViewHol
 import org.thoughtcrime.securesms.conversation.ConversationAdapter.ItemClickListener;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.database.Address;
+import org.thoughtcrime.securesms.database.Database;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
@@ -105,6 +106,7 @@ import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.internal.util.concurrent.SettableFuture;
+import org.whispersystems.signalservice.loki.api.LokiGroupChat;
 import org.whispersystems.signalservice.loki.api.LokiGroupChatAPI;
 
 import java.io.IOException;
@@ -408,14 +410,15 @@ public class ConversationFragment extends Fragment
     boolean isGroupChat = recipient.isGroupRecipient();
 
     if (isGroupChat) {
-      boolean isLokiPublicChat = recipient.getName() != null && recipient.getName().equals("Loki Public Chat");
+      LokiGroupChat groupChat = DatabaseFactory.getLokiThreadDatabase(getContext()).getGroupChat(threadId);
+      boolean isPublicChat = groupChat != null;
       int selectedMessageCount = messageRecords.size();
       boolean isSentByUser = ((MessageRecord)messageRecords.toArray()[0]).isOutgoing();
-      menu.findItem(R.id.menu_context_copy_public_key).setVisible(isLokiPublicChat && selectedMessageCount == 1 && !isSentByUser);
-      menu.findItem(R.id.menu_context_reply).setVisible(isLokiPublicChat && selectedMessageCount == 1);
+      menu.findItem(R.id.menu_context_copy_public_key).setVisible(isPublicChat && selectedMessageCount == 1 && !isSentByUser);
+      menu.findItem(R.id.menu_context_reply).setVisible(isPublicChat && selectedMessageCount == 1);
       String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(getContext());
-      boolean userCanModerate = LokiGroupChatAPI.Companion.isUserModerator(userHexEncodedPublicKey, LokiGroupChatAPI.getPublicChatServerID(), LokiGroupChatAPI.getPublicChatServer());
-      boolean isDeleteOptionVisible = isLokiPublicChat && selectedMessageCount == 1 && (isSentByUser || userCanModerate);
+      boolean userCanModerate = groupChat != null && LokiGroupChatAPI.Companion.isUserModerator(userHexEncodedPublicKey, groupChat.getChannel(), groupChat.getServer());
+      boolean isDeleteOptionVisible = isPublicChat && selectedMessageCount == 1 && (isSentByUser || userCanModerate);
       menu.findItem(R.id.menu_context_delete_message).setVisible(isDeleteOptionVisible);
     } else {
       menu.findItem(R.id.menu_context_copy_public_key).setVisible(false);
@@ -509,8 +512,8 @@ public class ConversationFragment extends Fragment
     builder.setMessage(getActivity().getResources().getQuantityString(R.plurals.ConversationFragment_this_will_permanently_delete_all_n_selected_messages, messagesCount, messagesCount));
     builder.setCancelable(true);
 
-    // Loki - The delete option is only visible to the user in a group chat if it's the Loki Public Chat
-    boolean isLokiPublicChat = this.recipient.isGroupRecipient();
+    // Loki - The delete option is only visible to the user in a group chat
+    LokiGroupChat groupChat = DatabaseFactory.getLokiThreadDatabase(getContext()).getGroupChat(threadId);
 
     builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
       @Override
@@ -524,19 +527,16 @@ public class ConversationFragment extends Fragment
             for (MessageRecord messageRecord : messageRecords) {
               boolean isThreadDeleted;
 
-              if (isLokiPublicChat) {
+              if (groupChat != null) {
                 final SettableFuture<?>[] future = { new SettableFuture<Unit>() };
 
-                String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(getContext());
-                LokiAPIDatabase lokiAPIDatabase = DatabaseFactory.getLokiAPIDatabase(getContext());
-                LokiUserDatabase lokiUserDatabase = DatabaseFactory.getLokiUserDatabase(getContext());
-                byte[] userPrivateKey = IdentityKeyUtil.getIdentityKeyPair(getContext()).getPrivateKey().serialize();
+                LokiGroupChatAPI chatAPI = ApplicationContext.getInstance(getContext()).getLokiGroupChatAPI();
                 boolean isSentByUser = messageRecord.isOutgoing();
                 Long serverID = DatabaseFactory.getLokiMessageDatabase(getContext()).getServerID(messageRecord.id);
 
-                if (serverID != null) {
-                  new LokiGroupChatAPI(userHexEncodedPublicKey, userPrivateKey, lokiAPIDatabase, lokiUserDatabase)
-                  .deleteMessage(serverID, LokiGroupChatAPI.getPublicChatServerID(), LokiGroupChatAPI.getPublicChatServer(), isSentByUser)
+                if (chatAPI != null && serverID != null) {
+                  chatAPI
+                  .deleteMessage(serverID, groupChat.getChannel(), groupChat.getServer(), isSentByUser)
                   .success(l -> {
                     @SuppressWarnings("unchecked") SettableFuture<Unit> f = (SettableFuture<Unit>) future[0];
                     f.set(Unit.INSTANCE);

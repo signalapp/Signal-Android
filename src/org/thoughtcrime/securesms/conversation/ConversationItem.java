@@ -71,6 +71,7 @@ import org.thoughtcrime.securesms.components.StickerView;
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
+import org.thoughtcrime.securesms.database.Database;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
@@ -112,6 +113,7 @@ import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.views.Stub;
 import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.loki.api.LokiGroupChat;
 import org.whispersystems.signalservice.loki.api.LokiGroupChatAPI;
 
 import java.util.Collections;
@@ -934,13 +936,15 @@ public class ConversationItem extends LinearLayout
 
       if (!next.isPresent() || next.get().isUpdate() || !current.getRecipient().getAddress().equals(next.get().getRecipient().getAddress())) {
         contactPhoto.setVisibility(VISIBLE);
-        int visibility;
-        if (conversationRecipient.getName() != null && conversationRecipient.getName().equals("Loki Public Chat")) {
-          boolean isModerator = LokiGroupChatAPI.Companion.isUserModerator(current.getRecipient().getAddress().toString(), LokiGroupChatAPI.getPublicChatServerID(), LokiGroupChatAPI.getPublicChatServer());
+        int visibility = View.GONE;
+
+        // If we have a chat then use that to determine mod status
+        LokiGroupChat groupChat = DatabaseFactory.getLokiThreadDatabase(context).getGroupChat(messageRecord.getThreadId());
+        if (groupChat != null) {
+          boolean isModerator = LokiGroupChatAPI.Companion.isUserModerator(current.getRecipient().getAddress().toString(), groupChat.getChannel(), groupChat.getServer());
           visibility = isModerator ? View.VISIBLE : View.GONE;
-        } else {
-          visibility = View.GONE;
         }
+
         moderatorIconImageView.setVisibility(visibility);
       } else {
         contactPhoto.setVisibility(GONE);

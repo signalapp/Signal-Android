@@ -137,6 +137,12 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         database.insertOrUpdate(lastMessageServerIDCache, row, "$lastMessageServerIDCacheIndex = ?", wrap(index))
     }
 
+    fun removeLastMessageServerID(group: Long, server: String) {
+        val database = databaseHelper.writableDatabase
+        val index = "$server.$group"
+        database.delete(lastMessageServerIDCache,"$lastMessageServerIDCacheIndex = ?", wrap(index))
+    }
+
     override fun getLastDeletionServerID(group: Long, server: String): Long? {
         val database = databaseHelper.readableDatabase
         val index = "$server.$group"
@@ -150,6 +156,12 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         val index = "$server.$group"
         val row = wrap(mapOf( lastDeletionServerIDCacheIndex to index, lastDeletionServerID to newValue.toString() ))
         database.insertOrUpdate(lastDeletionServerIDCache, row, "$lastDeletionServerIDCacheIndex = ?", wrap(index))
+    }
+
+    fun removeLastDeletionServerID(group: Long, server: String) {
+        val database = databaseHelper.writableDatabase
+        val index = "$server.$group"
+        database.delete(lastDeletionServerIDCache,"$lastDeletionServerIDCacheIndex = ?", wrap(index))
     }
 
     override fun getPairingAuthorisations(hexEncodedPublicKey: String): List<PairingAuthorisation> {

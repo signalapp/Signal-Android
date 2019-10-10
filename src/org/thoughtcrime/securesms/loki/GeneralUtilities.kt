@@ -24,8 +24,8 @@ fun toPx(dp: Int, resources: Resources): Int {
     return (dp * scale).roundToInt()
 }
 
-fun isGroupRecipient(recipient: String): Boolean {
-    return (LokiGroupChatAPI.publicChatServer == recipient)
+fun isGroupRecipient(context: Context, recipient: String): Boolean {
+    return DatabaseFactory.getLokiThreadDatabase(context).getAllGroupChats().values.map { it.server }.contains(recipient)
 }
 
 fun getFriendPublicKeys(context: Context, devicePublicKeys: Set<String>): Set<String> {
