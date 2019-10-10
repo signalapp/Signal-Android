@@ -39,7 +39,7 @@ class LokiPublicChatManager(private val context: Context) {
   }
 
   public fun addChat(server: String, channel: Long): Promise<LokiGroupChat, Exception> {
-    val groupChatAPI = ApplicationContext.getInstance(context).lokiGroupChatAPI ?: return Promise.ofFail(IllegalStateException())
+    val groupChatAPI = ApplicationContext.getInstance(context).lokiGroupChatAPI ?: return Promise.ofFail(IllegalStateException("LokiGroupChatAPI is not set!"))
     return groupChatAPI.getAuthToken(server).bind {
       groupChatAPI.getChannelInfo(channel, server)
     }.map {
