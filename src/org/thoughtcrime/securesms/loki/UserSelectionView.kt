@@ -8,11 +8,12 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ListView
 import nl.komponents.kovenant.combine.Tuple2
+import org.thoughtcrime.securesms.database.DatabaseFactory
 
 class UserSelectionView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : ListView(context, attrs, defStyleAttr) {
-    var users = listOf<Tuple2<String, String>>()
+    private var users = listOf<Tuple2<String, String>>()
         set(newValue) { field = newValue; userSelectionViewAdapter.users = newValue }
-    var hasGroupContext = false
+    private var hasGroupContext = false
 
     private val userSelectionViewAdapter by lazy { Adapter(context) }
 
@@ -48,5 +49,19 @@ class UserSelectionView(context: Context, attrs: AttributeSet?, defStyleAttr: In
     init {
         adapter = userSelectionViewAdapter
         userSelectionViewAdapter.users = users
+    }
+
+    fun show(users: List<Tuple2<String, String>>, threadID: Long) {
+        hasGroupContext = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(threadID)!!.isGroupRecipient
+        this.users = users
+        val layoutParams = this.layoutParams as ViewGroup.LayoutParams
+        layoutParams.height = toPx(6 + Math.min(users.count(), 4) * 52, resources)
+        this.layoutParams = layoutParams
+    }
+
+    fun hide() {
+        val layoutParams = this.layoutParams as ViewGroup.LayoutParams
+        layoutParams.height = 0
+        this.layoutParams = layoutParams
     }
 }
