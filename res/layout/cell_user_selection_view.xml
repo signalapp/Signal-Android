@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<org.thoughtcrime.securesms.loki.UserSelectionViewCell
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="52dp"
+    android:orientation="horizontal"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
+    android:gravity="center_vertical"
+    android:background="?attr/conversation_list_item_background">
+
+    <RelativeLayout
+        android:layout_width="36dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="1dp">
+
+        <!-- The frame layout below is a workaround for an avatar image view bug -->
+
+        <FrameLayout
+            android:id="@+id/profilePictureImageViewContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <org.thoughtcrime.securesms.components.AvatarImageView
+                android:id="@+id/profilePictureImageView"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginBottom="2dp" />
+
+        </FrameLayout>
+
+        <ImageView
+            android:id="@+id/moderatorIconImageView"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginEnd="1.5dp"
+            android:src="@drawable/icon_crown"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/displayNameTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        style="@style/Signal.Text.Body"
+        android:ellipsize="end" />
+
+</org.thoughtcrime.securesms.loki.UserSelectionViewCell>

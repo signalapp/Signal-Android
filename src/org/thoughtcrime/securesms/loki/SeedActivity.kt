@@ -9,9 +9,6 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_seed.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.BaseActionBarActivity
@@ -180,13 +177,12 @@ class SeedActivity : BaseActionBarActivity(), DeviceLinkingDialogDelegate {
             IdentityKeyUtil.generateIdentityKeyPair(this, seed)
         }
         val keyPair = IdentityKeyUtil.getIdentityKeyPair(this)
-        val publicKey = keyPair.publicKey
-        val hexEncodedPublicKey = keyPair.hexEncodedPublicKey
+        val userHexEncodedPublicKey = keyPair.hexEncodedPublicKey
         val registrationID = KeyHelper.generateRegistrationId(false)
         TextSecurePreferences.setLocalRegistrationId(this, registrationID)
-        DatabaseFactory.getIdentityDatabase(this).saveIdentity(Address.fromSerialized(hexEncodedPublicKey), publicKey,
+        DatabaseFactory.getIdentityDatabase(this).saveIdentity(Address.fromSerialized(userHexEncodedPublicKey), keyPair.publicKey,
             IdentityDatabase.VerifiedStatus.VERIFIED, true, System.currentTimeMillis(), true)
-        TextSecurePreferences.setLocalNumber(this, hexEncodedPublicKey)
+        TextSecurePreferences.setLocalNumber(this, userHexEncodedPublicKey)
         when (mode) {
             Mode.Register -> Analytics.shared.track("Seed Created")
             Mode.Restore -> Analytics.shared.track("Seed Restored")
@@ -195,22 +191,20 @@ class SeedActivity : BaseActionBarActivity(), DeviceLinkingDialogDelegate {
         if (mode == Mode.Link) {
             TextSecurePreferences.setHasSeenWelcomeScreen(this, true)
             TextSecurePreferences.setPromptedPushRegistration(this, true)
-            val primaryDevicePublicKey = publicKeyEditText.text.trim().toString()
-            val authorisation = PairingAuthorisation(primaryDevicePublicKey, hexEncodedPublicKey).sign(PairingAuthorisation.Type.REQUEST, keyPair.privateKey.serialize())
+            val masterHexEncodedPublicKey = publicKeyEditText.text.trim().toString()
+            val authorisation = PairingAuthorisation(masterHexEncodedPublicKey, userHexEncodedPublicKey).sign(PairingAuthorisation.Type.REQUEST, keyPair.privateKey.serialize())
             if (authorisation == null) {
-                Log.d("Loki", "Failed to sign outgoing pairing request.")
+                Log.d("Loki", "Failed to sign pairing request.")
                 resetForRegistration()
-                return Toast.makeText(application, "Failed to link device.", Toast.LENGTH_SHORT).show()
+                return Toast.makeText(application, "Couldn't start device linking process.", Toast.LENGTH_SHORT).show()
             }
             val application = ApplicationContext.getInstance(this)
             application.startLongPollingIfNeeded()
             application.setUpP2PAPI()
             application.setUpStorageAPIIfNeeded()
             DeviceLinkingDialog.show(this, DeviceLinkingView.Mode.Slave, this)
-            CoroutineScope(Dispatchers.Main).launch {
-                retryIfNeeded(8) {
-                    sendPairingAuthorisationMessage(this@SeedActivity, authorisation.primaryDevicePublicKey, authorisation).get()
-                }
+            retryIfNeeded(8) {
+                sendPairingAuthorisationMessage(this@SeedActivity, authorisation.primaryDevicePublicKey, authorisation).get()
             }
         } else {
             startActivity(Intent(this, DisplayNameActivity::class.java))

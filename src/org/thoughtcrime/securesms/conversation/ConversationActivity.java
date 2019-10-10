@@ -156,7 +156,10 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.FriendRequestViewDelegate;
+import org.thoughtcrime.securesms.loki.LokiAPIUtilities;
 import org.thoughtcrime.securesms.loki.LokiThreadDatabaseDelegate;
+import org.thoughtcrime.securesms.loki.LokiUserDatabase;
+import org.thoughtcrime.securesms.loki.UserSelectionView;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mediasend.MediaSendActivity;
 import org.thoughtcrime.securesms.mms.AttachmentManager;
@@ -224,6 +227,7 @@ import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
+import org.whispersystems.signalservice.loki.api.LokiAPI;
 import org.whispersystems.signalservice.loki.messaging.LokiMessageFriendRequestStatus;
 import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus;
 import org.whispersystems.signalservice.loki.utilities.Analytics;
@@ -239,7 +243,9 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import kotlin.Unit;
 import network.loki.messenger.R;
+import nl.komponents.kovenant.combine.Tuple2;
 
 import static org.thoughtcrime.securesms.TransportOption.Type;
 import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
@@ -292,23 +298,24 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private static final int SMS_DEFAULT         = 11;
   private static final int MEDIA_SENDER        = 12;
 
-  private   GlideRequests              glideRequests;
-  protected ComposeText                composeText;
-  private   AnimatingToggle            buttonToggle;
-  private   SendButton                 sendButton;
-  private   ImageButton                attachButton;
-  protected ConversationTitleView      titleView;
-  private   TextView                   charactersLeft;
-  private   ConversationFragment       fragment;
-  private   Button                     unblockButton;
-  private   Button                     makeDefaultSmsButton;
-  private   Button                     registerButton;
-  private   InputAwareLayout           container;
-  private   View                       composePanel;
-  protected Stub<ReminderView>         reminderView;
-  private   Stub<UnverifiedBannerView> unverifiedBannerView;
+  private   GlideRequests               glideRequests;
+  protected ComposeText                 composeText;
+  private   AnimatingToggle             buttonToggle;
+  private   SendButton                  sendButton;
+  private   ImageButton                 attachButton;
+  protected ConversationTitleView       titleView;
+  private   TextView                    charactersLeft;
+  private   ConversationFragment        fragment;
+  private   Button                      unblockButton;
+  private   Button                      makeDefaultSmsButton;
+  private   Button                      registerButton;
+  private   InputAwareLayout            container;
+  private   View                        composePanel;
+  protected Stub<ReminderView>          reminderView;
+  private   Stub<UnverifiedBannerView>  unverifiedBannerView;
   private   Stub<GroupShareProfileView> groupShareProfileView;
   private   TypingStatusTextWatcher     typingTextWatcher;
+  private   MentionTextWatcher          mentionTextWatcher;
   private   ConversationSearchBottomBar searchNav;
   private   MenuItem                    searchViewItem;
 
@@ -338,6 +345,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private final DynamicNoActionBarTheme dynamicTheme    = new DynamicNoActionBarTheme();
   private final DynamicLanguage         dynamicLanguage = new DynamicLanguage();
 
+  private UserSelectionView userSelectionView;
+  private int               mentionStartIndex = -1;
 
   @Override
   protected void onPreCreate() {
@@ -389,10 +398,20 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
               composeText.addTextChangedListener(typingTextWatcher);
             }
             composeText.setSelection(composeText.length(), composeText.length());
+            composeText.addTextChangedListener(mentionTextWatcher);
+            userSelectionView.setOnUserSelected(tuple -> {
+              String oldText = composeText.getText().toString();
+              String newText = oldText.substring(0, mentionStartIndex) + tuple.getFirst();
+              composeText.setText(newText);
+              composeText.setSelection(newText.length());
+              return Unit.INSTANCE;
+            });
           }
         });
       }
     });
+
+    LokiAPIUtilities.INSTANCE.populateUserIDCacheIfNeeded(threadId, this);
 
     if (this.recipient.isGroupRecipient()) {
       if (this.recipient.getName().equals("Loki Public Chat")) {
@@ -1552,6 +1571,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     inlineAttachmentToggle = ViewUtil.findById(this, R.id.inline_attachment_container);
     inputPanel             = ViewUtil.findById(this, R.id.bottom_panel);
     searchNav              = ViewUtil.findById(this, R.id.conversation_search_nav);
+    userSelectionView      = ViewUtil.findById(this, R.id.userSelectionView);
 
     ImageButton quickCameraToggle      = ViewUtil.findById(this, R.id.quick_camera_toggle);
     ImageButton inlineAttachmentButton = ViewUtil.findById(this, R.id.inline_attachment_button);
@@ -1564,6 +1584,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     attachmentManager      = new AttachmentManager(this, this);
     audioRecorder          = new AudioRecorder(this);
     typingTextWatcher      = new TypingStatusTextWatcher();
+    mentionTextWatcher     = new MentionTextWatcher();
 
     SendButtonListener        sendButtonListener        = new SendButtonListener();
     ComposeKeyPressedListener composeKeyPressedListener = new ComposeKeyPressedListener();
@@ -2591,7 +2612,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   private void silentlySetComposeText(String text) {
     typingTextWatcher.setEnabled(false);
+    mentionTextWatcher.setEnabled(false);
     composeText.setText(text);
+    mentionTextWatcher.setEnabled(true);
     typingTextWatcher.setEnabled(true);
   }
 
@@ -2706,13 +2729,42 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private class TypingStatusTextWatcher extends SimpleTextWatcher {
-
     private boolean enabled = true;
 
     @Override
     public void onTextChanged(String text) {
       if (enabled && threadId > 0 && isSecureText && !isSmsForced()) {
         ApplicationContext.getInstance(ConversationActivity.this).getTypingStatusSender().onTypingStarted(threadId);
+      }
+    }
+
+    public void setEnabled(boolean enabled) {
+      this.enabled = enabled;
+    }
+  }
+
+  private class MentionTextWatcher extends SimpleTextWatcher {
+    private boolean enabled = true;
+
+    @Override
+    public void onTextChanged(String text) {
+      if (!enabled | text.length() == 0) { return; }
+      int currentEndIndex = text.length() - 1;
+      char lastCharacter = text.charAt(currentEndIndex);
+      LokiUserDatabase userDatabase = DatabaseFactory.getLokiUserDatabase(ConversationActivity.this);
+      if (lastCharacter == '@') {
+        List<Tuple2<String, String>> users = LokiAPI.Companion.getUsers("", threadId, userDatabase);
+        mentionStartIndex = currentEndIndex + 1;
+        userSelectionView.show(users, threadId);
+      } else if (Character.getType(lastCharacter) != Character.UPPERCASE_LETTER && Character.getType(lastCharacter) != Character.LOWERCASE_LETTER) {
+        mentionStartIndex = -1;
+        userSelectionView.hide();
+      } else {
+        if (mentionStartIndex != -1) {
+          String query = text.substring(mentionStartIndex);
+          List<Tuple2<String, String>> users = LokiAPI.Companion.getUsers(query, threadId, userDatabase);
+          userSelectionView.show(users, threadId);
+        }
       }
     }
 
@@ -2747,11 +2799,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       }
 
       inputPanel.setQuote(GlideApp.with(this),
-                          messageRecord.getDateSent(),
-                          author,
-                          body,
-                          slideDeck,
-                          recipient);
+              messageRecord.getDateSent(),
+              author,
+              body,
+              slideDeck,
+              recipient);
 
     } else if (messageRecord.isMms() && !((MmsMessageRecord) messageRecord).getLinkPreviews().isEmpty()) {
       LinkPreview linkPreview = ((MmsMessageRecord) messageRecord).getLinkPreviews().get(0);
@@ -2762,18 +2814,18 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       }
 
       inputPanel.setQuote(GlideApp.with(this),
-                          messageRecord.getDateSent(),
-                          author,
-                          messageRecord.getBody(),
-                          slideDeck,
-                          recipient);
+              messageRecord.getDateSent(),
+              author,
+              messageRecord.getBody(),
+              slideDeck,
+              recipient);
     } else {
       inputPanel.setQuote(GlideApp.with(this),
-                          messageRecord.getDateSent(),
-                          author,
-                          messageRecord.getBody(),
-                          messageRecord.isMms() ? ((MmsMessageRecord) messageRecord).getSlideDeck() : new SlideDeck(),
-                          recipient);
+              messageRecord.getDateSent(),
+              author,
+              messageRecord.getBody(),
+              messageRecord.isMms() ? ((MmsMessageRecord) messageRecord).getSlideDeck() : new SlideDeck(),
+              recipient);
     }
   }
 

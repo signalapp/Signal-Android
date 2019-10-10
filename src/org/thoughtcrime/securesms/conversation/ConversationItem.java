@@ -42,6 +42,7 @@ import android.text.style.ForegroundColorSpan;
 import android.text.style.URLSpan;
 import android.text.util.Linkify;
 import android.util.AttributeSet;
+import android.util.Range;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
@@ -114,11 +115,14 @@ import org.thoughtcrime.securesms.util.views.Stub;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.loki.api.LokiGroupChatAPI;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import network.loki.messenger.R;
 
@@ -210,7 +214,7 @@ public class ConversationItem extends LinearLayout
     this.groupSenderProfileName  =            findViewById(R.id.group_message_sender_profile);
     this.alertView               =            findViewById(R.id.indicators_parent);
     this.contactPhoto            =            findViewById(R.id.contact_photo);
-    this.moderatorIconImageView      =            findViewById(R.id.moderator_icon_image_view);
+    this.moderatorIconImageView  =            findViewById(R.id.moderator_icon_image_view);
     this.contactPhotoHolder      =            findViewById(R.id.contact_photo_container);
     this.bodyBubble              =            findViewById(R.id.body_bubble);
     this.mediaThumbnailStub      = new Stub<>(findViewById(R.id.image_view_stub));
@@ -258,7 +262,7 @@ public class ConversationItem extends LinearLayout
     setMessageShape(messageRecord, previousMessageRecord, nextMessageRecord, groupThread);
     setMediaAttributes(messageRecord, previousMessageRecord, nextMessageRecord, conversationRecipient, groupThread);
     setInteractionState(messageRecord, pulseHighlight);
-    setBodyText(messageRecord, searchQuery);
+    setBodyText(messageRecord, searchQuery, groupThread);
     setBubbleState(messageRecord);
     setStatusIcons(messageRecord);
     setContactPhoto(recipient);
@@ -464,7 +468,7 @@ public class ConversationItem extends LinearLayout
            !StickerUrl.isValidShareLink(linkPreview.getUrl());
   }
 
-  private void setBodyText(MessageRecord messageRecord, @Nullable String searchQuery) {
+  private void setBodyText(MessageRecord messageRecord, @Nullable String searchQuery, boolean isGroupThread) {
     bodyText.setClickable(false);
     bodyText.setFocusable(false);
     bodyText.setTextSize(TypedValue.COMPLEX_UNIT_SP, TextSecurePreferences.getMessageBodyTextSize(context));
@@ -472,9 +476,9 @@ public class ConversationItem extends LinearLayout
     if (isCaptionlessMms(messageRecord)) {
       bodyText.setVisibility(View.GONE);
     } else {
-      Spannable styledText = linkifyMessageBody(messageRecord.getDisplayBody(getContext()), batchSelected.isEmpty());
-      styledText = SearchUtil.getHighlightedSpan(locale, () -> new BackgroundColorSpan(Color.YELLOW), styledText, searchQuery);
-      styledText = SearchUtil.getHighlightedSpan(locale, () -> new ForegroundColorSpan(Color.BLACK), styledText, searchQuery);
+      Spannable text = linkifyMessageBody(highlightMentions(messageRecord.getDisplayBody(context), isGroupThread), batchSelected.isEmpty());
+      text = SearchUtil.getHighlightedSpan(locale, () -> new BackgroundColorSpan(Color.YELLOW), text, searchQuery);
+      text = SearchUtil.getHighlightedSpan(locale, () -> new ForegroundColorSpan(Color.BLACK), text, searchQuery);
 
       if (hasExtraText(messageRecord)) {
         bodyText.setOverflowText(getLongMessageSpan(messageRecord));
@@ -482,7 +486,7 @@ public class ConversationItem extends LinearLayout
         bodyText.setOverflowText(null);
       }
 
-      bodyText.setText(styledText);
+      bodyText.setText(text);
       bodyText.setVisibility(View.VISIBLE);
     }
   }
@@ -770,6 +774,40 @@ public class ConversationItem extends LinearLayout
       }
     }
     return messageBody;
+  }
+
+  private SpannableString highlightMentions(CharSequence text, boolean isGroupThread) {
+    Pattern pattern = Pattern.compile("@\\w*");
+    Matcher matcher = pattern.matcher(text);
+    ArrayList<Range<Integer>> mentions = new ArrayList<>();
+    if (matcher.find() && isGroupThread) {
+      while (true) {
+        CharSequence userID = text.subSequence(matcher.start() + 1, matcher.end()); // +1 to get rid of the @
+        Integer matchEnd;
+        String userDisplayName;
+        if (userID.equals(TextSecurePreferences.getLocalNumber(context))) {
+          userDisplayName = TextSecurePreferences.getProfileName(context);
+        } else {
+          String publicChatID = LokiGroupChatAPI.getPublicChatServer() + "." + LokiGroupChatAPI.getPublicChatServerID();
+          userDisplayName = DatabaseFactory.getLokiUserDatabase(context).getServerDisplayName(publicChatID, userID.toString());
+        }
+        if (userDisplayName != null) {
+          text = text.subSequence(0, matcher.start()) + "@" + userDisplayName + text.subSequence(matcher.end(), Math.max(text.length(), matcher.end()));
+          matchEnd = matcher.start() + 1 + userDisplayName.length();
+          mentions.add(Range.create(matcher.start(), matchEnd));
+        } else {
+          matchEnd = matcher.end();
+        }
+        matcher = pattern.matcher(text.subSequence(matchEnd, Math.max(text.length(), matchEnd)));
+        if (!matcher.find()) { break; }
+      }
+    }
+    SpannableString result = new SpannableString(text);
+    for (Range<Integer> range : mentions) {
+      int highlightColor = (messageRecord.isOutgoing()) ? getResources().getColor(R.color.loki_dark_green) : getResources().getColor(R.color.loki_green);
+      result.setSpan(new BackgroundColorSpan(highlightColor), range.getLower(), range.getUpper(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+    }
+    return result;
   }
 
   private void setStatusIcons(MessageRecord messageRecord) {
