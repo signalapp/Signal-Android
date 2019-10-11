@@ -203,7 +203,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
         int height = profilePictureImageView.getHeight();
         if (width == 0 || height == 0) return true;
         profilePictureImageView.getViewTreeObserver().removeOnPreDrawListener(this);
-        JazzIdenticonDrawable identicon = new JazzIdenticonDrawable(width, height, recipient.getAddress().serialize());
+        JazzIdenticonDrawable identicon = new JazzIdenticonDrawable(width, height, recipient.getAddress().serialize().toLowerCase());
         profilePictureImageView.setImageDrawable(identicon);
         return true;
       }

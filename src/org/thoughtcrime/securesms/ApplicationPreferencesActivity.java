@@ -157,7 +157,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
       super.onCreate(icicle);
 
       String masterHexEncodedPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(getContext());
-      boolean isMasterDevice = (masterHexEncodedPublicKey != null);
+      boolean isMasterDevice = (masterHexEncodedPublicKey == null);
 
       Preference profilePreference = this.findPreference(PREFERENCE_CATEGORY_PROFILE);
       // Hide if this is a slave device

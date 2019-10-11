@@ -119,7 +119,7 @@ public class AvatarImageView extends AppCompatImageView {
 
       image = new GeneratedContactPhoto(name, R.drawable.ic_profile_default).asDrawable(context, fallbackColor.toAvatarColor(context));
     } else {
-      image = new JazzIdenticonDrawable(w, h, recipient.getAddress().serialize());
+      image = new JazzIdenticonDrawable(w, h, recipient.getAddress().serialize().toLowerCase());
     }
     setImageDrawable(image);
   }

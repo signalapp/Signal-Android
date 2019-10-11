@@ -100,7 +100,7 @@ public class ProfilePreference extends Preference {
         int height = avatarView.getHeight();
         if (width == 0 || height == 0) return true;
         avatarView.getViewTreeObserver().removeOnPreDrawListener(this);
-        JazzIdenticonDrawable identicon = new JazzIdenticonDrawable(width, height, userHexEncodedPublicKey);
+        JazzIdenticonDrawable identicon = new JazzIdenticonDrawable(width, height, userHexEncodedPublicKey.toLowerCase());
         avatarView.setImageDrawable(identicon);
         return true;
       }

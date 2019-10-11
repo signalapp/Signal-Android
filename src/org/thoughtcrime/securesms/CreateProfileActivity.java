@@ -229,7 +229,10 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
       public void onTextChanged(CharSequence s, int start, int before, int count) {}
       @Override
       public void afterTextChanged(Editable s) {
-        if (s.toString().getBytes().length > ProfileCipher.NAME_PADDED_LENGTH) {
+        if (s.toString().isEmpty()) {
+          name.getInput().setError("Invalid");
+          finishButton.setEnabled(false);
+        } else if (s.toString().getBytes().length > ProfileCipher.NAME_PADDED_LENGTH) {
           name.getInput().setError(getString(R.string.CreateProfileActivity_too_long));
           finishButton.setEnabled(false);
         } else if (name.getInput().getError() != null || !finishButton.isEnabled()) {
