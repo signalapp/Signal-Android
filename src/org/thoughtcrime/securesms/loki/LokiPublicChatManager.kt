@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.loki
 
 import android.content.Context
 import android.database.ContentObserver
+import android.text.TextUtils
 import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.functional.bind
 import nl.komponents.kovenant.functional.map
@@ -10,7 +11,9 @@ import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.database.DatabaseContentProviders
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.groups.GroupManager
+import org.thoughtcrime.securesms.util.GroupUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.loki.api.LokiGroupChat
 import org.whispersystems.signalservice.loki.api.LokiGroupChatAPI
 import java.util.HashSet
@@ -56,10 +59,13 @@ class LokiPublicChatManager(private val context: Context) {
       threadID = result.threadId
     }
     DatabaseFactory.getLokiThreadDatabase(context).setGroupChat(chat, threadID)
-    startPollersIfNeeded()
-
     // Set our name on the server
-    ApplicationContext.getInstance(context).lokiGroupChatAPI?.setDisplayName(server, TextSecurePreferences.getProfileName(context))
+    val displayName = TextSecurePreferences.getProfileName(context)
+    if (!TextUtils.isEmpty(displayName)) {
+      ApplicationContext.getInstance(context).lokiGroupChatAPI?.setDisplayName(server, displayName)
+    }
+    // Start polling
+    Util.runOnMain{ startPollersIfNeeded() }
 
     return chat
   }

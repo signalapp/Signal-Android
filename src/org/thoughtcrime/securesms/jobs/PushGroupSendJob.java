@@ -292,7 +292,9 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
     long threadID = GroupManager.getThreadIdFromGroupId(groupId, context);
     LokiGroupChat chat = DatabaseFactory.getLokiThreadDatabase(context).getGroupChat(threadID);
     if (chat != null) {
-      result.add(Address.fromSerialized(chat.getServer()));
+      // We need to somehow maintain information that will allow the sender to map
+      // a Recipient to the correct public chat thread, and so this might be a bit hacky
+      result.add(Address.fromPublicChatGroupID(groupId));
     }
 
     return result;

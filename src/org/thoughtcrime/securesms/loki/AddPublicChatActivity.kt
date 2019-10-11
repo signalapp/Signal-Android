@@ -58,8 +58,8 @@ class AddPublicChatActivity : PassphraseRequiredActionBarActivity() {
         val inputMethodManager = getSystemService(BaseActionBarActivity.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(serverUrlEditText.windowToken, 0)
 
-        val url = serverUrlEditText.text.toString().toLowerCase()
-        if (!Patterns.WEB_URL.matcher(url).matches()) { return Toast.makeText(this, R.string.fragment_add_public_chat_invalid_url_message, Toast.LENGTH_SHORT).show() }
+        val url = serverUrlEditText.text.toString().toLowerCase().replace("http://", "https://")
+        if (!Patterns.WEB_URL.matcher(url).matches() || !url.startsWith("https://")) { return Toast.makeText(this, R.string.fragment_add_public_chat_invalid_url_message, Toast.LENGTH_SHORT).show() }
 
         setButtonEnabled(false)
 
