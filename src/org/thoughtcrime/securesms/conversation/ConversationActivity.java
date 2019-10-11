@@ -159,8 +159,7 @@ import org.thoughtcrime.securesms.loki.FriendRequestViewDelegate;
 import org.thoughtcrime.securesms.loki.LokiAPIUtilities;
 import org.thoughtcrime.securesms.loki.LokiThreadDatabaseDelegate;
 import org.thoughtcrime.securesms.loki.LokiUserDatabase;
-import org.thoughtcrime.securesms.loki.Mention;
-import org.thoughtcrime.securesms.loki.UserSelectionView;
+import org.thoughtcrime.securesms.loki.MentionCandidateSelectionView;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mediasend.MediaSendActivity;
 import org.thoughtcrime.securesms.mms.AttachmentManager;
@@ -231,6 +230,7 @@ import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.loki.api.LokiAPI;
 import org.whispersystems.signalservice.loki.messaging.LokiMessageFriendRequestStatus;
 import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus;
+import org.whispersystems.signalservice.loki.messaging.Mention;
 import org.whispersystems.signalservice.loki.utilities.Analytics;
 
 import java.io.IOException;
@@ -247,7 +247,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import kotlin.Unit;
 import network.loki.messenger.R;
-import nl.komponents.kovenant.combine.Tuple2;
 
 import static org.thoughtcrime.securesms.TransportOption.Type;
 import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
@@ -348,7 +347,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private final DynamicLanguage         dynamicLanguage = new DynamicLanguage();
 
   // Mentions
-  private UserSelectionView userSelectionView;
+  private MentionCandidateSelectionView mentionCandidateSelectionView;
   private int currentMentionStartIndex = -1;
   private ArrayList<Mention> mentions = new ArrayList<>();
   private String oldText = "";
@@ -405,15 +404,15 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
             }
             composeText.setSelection(composeText.length(), composeText.length());
             composeText.addTextChangedListener(mentionTextWatcher);
-            userSelectionView.setOnUserSelected(tuple -> {
-              Mention mention = new Mention(currentMentionStartIndex, tuple.getFirst(), tuple.getSecond());
-              mentions.add(mention);
+            mentionCandidateSelectionView.setOnMentionCandidateSelected( mentionCandidate -> {
+              mentions.add(mentionCandidate);
               String oldText = composeText.getText().toString();
-              String newText = oldText.substring(0, currentMentionStartIndex) + "@" + tuple.getSecond();
+              String newText = oldText.substring(0, currentMentionStartIndex) + "@" + mentionCandidate.getDisplayName();
               composeText.setText(newText);
               composeText.setSelection(newText.length());
-              userSelectionView.hide();
               currentMentionStartIndex = -1;
+              mentionCandidateSelectionView.hide();
+              ConversationActivity.this.oldText = newText;
               return Unit.INSTANCE;
             });
           }
@@ -421,7 +420,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       }
     });
 
-    LokiAPIUtilities.INSTANCE.populateUserIDCacheIfNeeded(threadId, this);
+    LokiAPIUtilities.INSTANCE.populateUserHexEncodedPublicKeyCacheIfNeeded(threadId, this);
 
     if (this.recipient.isGroupRecipient()) {
       if (this.recipient.getName().equals("Loki Public Chat")) {
@@ -1581,7 +1580,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     inlineAttachmentToggle = ViewUtil.findById(this, R.id.inline_attachment_container);
     inputPanel             = ViewUtil.findById(this, R.id.bottom_panel);
     searchNav              = ViewUtil.findById(this, R.id.conversation_search_nav);
-    userSelectionView      = ViewUtil.findById(this, R.id.userSelectionView);
+    mentionCandidateSelectionView = ViewUtil.findById(this, R.id.userSelectionView);
 
     ImageButton quickCameraToggle      = ViewUtil.findById(this, R.id.quick_camera_toggle);
     ImageButton inlineAttachmentButton = ViewUtil.findById(this, R.id.inline_attachment_button);
@@ -2093,15 +2092,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private String getMessage() throws InvalidMessageException {
     String result = composeText.getTextTrimmed();
     if (result.length() < 1 && !attachmentManager.isAttachmentPresent()) throw new InvalidMessageException();
-    int shift = 0;
     for (Mention mention : mentions) {
       try {
-        int startIndex = mention.getLocationInString() + shift;
+        int startIndex = result.indexOf("@" + mention.getDisplayName());
         int endIndex = startIndex + mention.getDisplayName().length() + 1; // + 1 to include the @
-        shift = shift + mention.getHexEncodedPublicKey().length() - mention.getDisplayName().length();
         result = result.substring(0, startIndex) + "@" + mention.getHexEncodedPublicKey() + result.substring(endIndex);
       } catch (Exception exception) {
-        // Do nothing
+        Log.d("Loki", "Couldn't process mention due to error: " + exception.toString() + ".");
       }
     }
     return result;
@@ -2631,7 +2628,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private void silentlySetComposeText(String text) {
     typingTextWatcher.setEnabled(false);
     composeText.setText(text);
-    if (text.isEmpty()) clearMentions();
+    if (text.isEmpty()) resetMentions();
     typingTextWatcher.setEnabled(true);
   }
 
@@ -2767,43 +2764,43 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       boolean isBackspace = text.length() < oldText.length();
       if (isBackspace) {
         currentMentionStartIndex = -1;
-        for (Mention mention : mentions) {
-          boolean isValid;
-          if (mention.getLocationInString() > (text.length() - 1)) {
-            isValid = false;
-          } else {
-            isValid = text.substring(mention.getLocationInString()).startsWith("@" + mention.getDisplayName());
+        mentionCandidateSelectionView.hide();
+        try {
+          for (Mention mention : mentions) {
+            if (!text.contains(mention.getDisplayName())) {
+              mentions.remove(mention);
+            }
           }
-          if (!isValid) {
-            mentions.remove(mention);
-          }
+        } catch (Exception exception) {
+          mentions.clear(); // TODO: Dirty workaround for ConcurrentModificationException
         }
       } else if (text.length() > 0) {
         if (currentMentionStartIndex > text.length()) {
-            clearMentions(); // Should never occur
+            resetMentions(); // Should never occur
         }
-        int currentEndIndex = text.length() - 1;
-        char lastCharacter = text.charAt(currentEndIndex);
+        int lastCharacterIndex = text.length() - 1;
+        char lastCharacter = text.charAt(lastCharacterIndex);
         LokiUserDatabase userDatabase = DatabaseFactory.getLokiUserDatabase(ConversationActivity.this);
         if (lastCharacter == '@') {
-          List<Tuple2<String, String>> users = LokiAPI.Companion.getUsers("", threadId, userDatabase);
-          currentMentionStartIndex = currentEndIndex;
-          userSelectionView.show(users, threadId);
+          List<Mention> mentionCandidates = LokiAPI.Companion.getMentionCandidates("", threadId, userDatabase);
+          currentMentionStartIndex = lastCharacterIndex;
+          mentionCandidateSelectionView.show(mentionCandidates, threadId);
         } else if (Character.isWhitespace(lastCharacter)) {
           currentMentionStartIndex = -1;
-          userSelectionView.hide();
+          mentionCandidateSelectionView.hide();
         } else {
           if (currentMentionStartIndex != -1) {
             String query = text.substring(currentMentionStartIndex + 1); // + 1 to get rid of the @
-            List<Tuple2<String, String>> users = LokiAPI.Companion.getUsers(query, threadId, userDatabase);
-            userSelectionView.show(users, threadId);
+            List<Mention> mentionCandidates = LokiAPI.Companion.getMentionCandidates(query, threadId, userDatabase);
+            mentionCandidateSelectionView.show(mentionCandidates, threadId);
           }
         }
       }
+      ConversationActivity.this.oldText = text;
     }
   }
 
-  private void clearMentions() {
+  private void resetMentions() {
     oldText = "";
     currentMentionStartIndex = -1;
     mentions.clear();

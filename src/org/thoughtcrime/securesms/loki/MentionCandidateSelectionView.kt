@@ -7,38 +7,38 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ListView
-import nl.komponents.kovenant.combine.Tuple2
 import org.thoughtcrime.securesms.database.DatabaseFactory
+import org.whispersystems.signalservice.loki.messaging.Mention
 
-class UserSelectionView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : ListView(context, attrs, defStyleAttr) {
-    private var users = listOf<Tuple2<String, String>>()
-        set(newValue) { field = newValue; userSelectionViewAdapter.users = newValue }
+class MentionCandidateSelectionView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : ListView(context, attrs, defStyleAttr) {
+    private var mentionCandidates = listOf<Mention>()
+        set(newValue) { field = newValue; mentionCandidateSelectionViewAdapter.mentionCandidates = newValue }
     private var hasGroupContext = false
-    var onUserSelected: ((Tuple2<String, String>) -> Unit)? = null
+    var onMentionCandidateSelected: ((Mention) -> Unit)? = null
 
-    private val userSelectionViewAdapter by lazy { Adapter(context) }
+    private val mentionCandidateSelectionViewAdapter by lazy { Adapter(context) }
 
     private class Adapter(private val context: Context) : BaseAdapter() {
-        var users = listOf<Tuple2<String, String>>()
+        var mentionCandidates = listOf<Mention>()
             set(newValue) { field = newValue; notifyDataSetChanged() }
         var hasGroupContext = false
 
         override fun getCount(): Int {
-            return users.count()
+            return mentionCandidates.count()
         }
 
         override fun getItemId(position: Int): Long {
             return position.toLong()
         }
 
-        override fun getItem(position: Int): Tuple2<String, String> {
-            return users[position]
+        override fun getItem(position: Int): Mention {
+            return mentionCandidates[position]
         }
 
         override fun getView(position: Int, cellToBeReused: View?, parent: ViewGroup): View {
-            val cell = cellToBeReused as UserSelectionViewCell? ?: UserSelectionViewCell.inflate(LayoutInflater.from(context), parent)
-            val user = getItem(position)
-            cell.user = user
+            val cell = cellToBeReused as MentionCandidateSelectionViewCell? ?: MentionCandidateSelectionViewCell.inflate(LayoutInflater.from(context), parent)
+            val mentionCandidate = getItem(position)
+            cell.mentionCandidate = mentionCandidate
             cell.hasGroupContext = hasGroupContext
             return cell
         }
@@ -48,18 +48,18 @@ class UserSelectionView(context: Context, attrs: AttributeSet?, defStyleAttr: In
     constructor(context: Context) : this(context, null)
 
     init {
-        adapter = userSelectionViewAdapter
-        userSelectionViewAdapter.users = users
+        adapter = mentionCandidateSelectionViewAdapter
+        mentionCandidateSelectionViewAdapter.mentionCandidates = mentionCandidates
         setOnItemClickListener { _, _, position, _ ->
-            onUserSelected?.invoke(users[position])
+            onMentionCandidateSelected?.invoke(mentionCandidates[position])
         }
     }
 
-    fun show(users: List<Tuple2<String, String>>, threadID: Long) {
+    fun show(mentionCandidates: List<Mention>, threadID: Long) {
         hasGroupContext = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(threadID)!!.isGroupRecipient
-        this.users = users
+        this.mentionCandidates = mentionCandidates
         val layoutParams = this.layoutParams as ViewGroup.LayoutParams
-        layoutParams.height = toPx(6 + Math.min(users.count(), 4) * 52, resources)
+        layoutParams.height = toPx(6 + Math.min(mentionCandidates.count(), 4) * 52, resources)
         this.layoutParams = layoutParams
     }
 

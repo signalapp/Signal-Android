@@ -27,12 +27,12 @@ object MentionUtilities {
         var startIndex = 0
         if (matcher.find(startIndex) && isGroupThread) {
             while (true) {
-                val userID = text.subSequence(matcher.start() + 1, matcher.end()).toString() // +1 to get rid of the @
-                val userDisplayName: String? = if (userID.toLowerCase() == TextSecurePreferences.getLocalNumber(context).toLowerCase()) {
+                val hexEncodedPublicKey = text.subSequence(matcher.start() + 1, matcher.end()).toString() // +1 to get rid of the @
+                val userDisplayName: String? = if (hexEncodedPublicKey.toLowerCase() == TextSecurePreferences.getLocalNumber(context).toLowerCase()) {
                     TextSecurePreferences.getProfileName(context)
                 } else {
                     val publicChatID = LokiGroupChatAPI.publicChatServer + "." + LokiGroupChatAPI.publicChatServerID
-                    DatabaseFactory.getLokiUserDatabase(context).getServerDisplayName(publicChatID, userID)
+                    DatabaseFactory.getLokiUserDatabase(context).getServerDisplayName(publicChatID, hexEncodedPublicKey)
                 }
                 if (userDisplayName != null) {
                     text = text.subSequence(0, matcher.start()).toString() + "@" + userDisplayName + text.subSequence(matcher.end(), text.length)
