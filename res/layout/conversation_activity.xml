@@ -76,7 +76,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <include layout="@layout/view_user_selection" />
+                <include layout="@layout/view_mention_candidate_selection" />
 
                 <FrameLayout
                     android:layout_width="match_parent"
