@@ -780,10 +780,10 @@ public class ConversationItem extends LinearLayout
     Pattern pattern = Pattern.compile("@[0-9a-fA-F]*");
     Matcher matcher = pattern.matcher(text);
     ArrayList<Range<Integer>> mentions = new ArrayList<>();
-    if (matcher.find() && isGroupThread) {
+    int startIndex = 0;
+    if (matcher.find(startIndex) && isGroupThread) {
       while (true) {
         CharSequence userID = text.subSequence(matcher.start() + 1, matcher.end()); // +1 to get rid of the @
-        Integer matchEnd;
         String userDisplayName;
         if (userID.equals(TextSecurePreferences.getLocalNumber(context))) {
           userDisplayName = TextSecurePreferences.getProfileName(context);
@@ -792,14 +792,15 @@ public class ConversationItem extends LinearLayout
           userDisplayName = DatabaseFactory.getLokiUserDatabase(context).getServerDisplayName(publicChatID, userID.toString());
         }
         if (userDisplayName != null) {
-          text = text.subSequence(0, matcher.start()) + "@" + userDisplayName + text.subSequence(matcher.end(), Math.max(text.length(), matcher.end()));
-          matchEnd = matcher.start() + 1 + userDisplayName.length();
-          mentions.add(Range.create(matcher.start(), matchEnd));
+          text = text.subSequence(0, matcher.start()) + "@" + userDisplayName + text.subSequence(matcher.end(), text.length());
+          int endIndex = matcher.start() + 1 + userDisplayName.length();
+          startIndex = endIndex;
+          mentions.add(Range.create(matcher.start(), endIndex));
         } else {
-          matchEnd = matcher.end();
+          startIndex = matcher.end();
         }
-        matcher = pattern.matcher(text.subSequence(matchEnd, Math.max(text.length(), matchEnd)));
-        if (!matcher.find()) { break; }
+        matcher = pattern.matcher(text);
+        if (!matcher.find(startIndex)) { break; }
       }
     }
     SpannableString result = new SpannableString(text);

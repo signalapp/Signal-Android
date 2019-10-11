@@ -2626,7 +2626,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private void silentlySetComposeText(String text) {
     typingTextWatcher.setEnabled(false);
     composeText.setText(text);
-    clearMentions();
+    if (text.isEmpty()) clearMentions();
     typingTextWatcher.setEnabled(true);
   }
 
@@ -2774,6 +2774,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
           }
         }
       } else if (text.length() > 0) {
+        if (currentMentionStartIndex > text.length()) {
+            clearMentions(); // Should never occur
+        }
         int currentEndIndex = text.length() - 1;
         char lastCharacter = text.charAt(currentEndIndex);
         LokiUserDatabase userDatabase = DatabaseFactory.getLokiUserDatabase(ConversationActivity.this);
