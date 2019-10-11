@@ -159,6 +159,7 @@ import org.thoughtcrime.securesms.loki.FriendRequestViewDelegate;
 import org.thoughtcrime.securesms.loki.LokiAPIUtilities;
 import org.thoughtcrime.securesms.loki.LokiThreadDatabaseDelegate;
 import org.thoughtcrime.securesms.loki.LokiUserDatabase;
+import org.thoughtcrime.securesms.loki.Mention;
 import org.thoughtcrime.securesms.loki.UserSelectionView;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mediasend.MediaSendActivity;
@@ -234,6 +235,7 @@ import org.whispersystems.signalservice.loki.utilities.Analytics;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.LinkedList;
@@ -345,8 +347,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private final DynamicNoActionBarTheme dynamicTheme    = new DynamicNoActionBarTheme();
   private final DynamicLanguage         dynamicLanguage = new DynamicLanguage();
 
+  // Mentions
   private UserSelectionView userSelectionView;
-  private int               mentionStartIndex = -1;
+  private int currentMentionStartIndex = -1;
+  private ArrayList<Mention> mentions = new ArrayList<>();
+  private String oldText = "";
+
 
   @Override
   protected void onPreCreate() {
@@ -400,10 +406,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
             composeText.setSelection(composeText.length(), composeText.length());
             composeText.addTextChangedListener(mentionTextWatcher);
             userSelectionView.setOnUserSelected(tuple -> {
+              Mention mention = new Mention(currentMentionStartIndex, tuple.getFirst(), tuple.getSecond());
+              mentions.add(mention);
               String oldText = composeText.getText().toString();
-              String newText = oldText.substring(0, mentionStartIndex) + tuple.getFirst();
+              String newText = oldText.substring(0, currentMentionStartIndex) + "@" + tuple.getSecond();
               composeText.setText(newText);
               composeText.setSelection(newText.length());
+              userSelectionView.hide();
               return Unit.INSTANCE;
             });
           }
@@ -2081,12 +2090,16 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private String getMessage() throws InvalidMessageException {
-    String rawText = composeText.getTextTrimmed();
-
-    if (rawText.length() < 1 && !attachmentManager.isAttachmentPresent())
-      throw new InvalidMessageException(getString(R.string.ConversationActivity_message_is_empty_exclamation));
-
-    return rawText;
+    String result = composeText.getTextTrimmed();
+    if (result.length() < 1 && !attachmentManager.isAttachmentPresent()) throw new InvalidMessageException();
+    int shift = 0;
+    for (Mention mention : mentions) {
+      int startIndex = mention.getLocationInString() + shift;
+      int endIndex = startIndex + mention.getDisplayName().length() + 1; // + 1 to include the @
+      shift = shift + mention.getHexEncodedPublicKey().length() - mention.getDisplayName().length();
+      result = result.substring(0, startIndex) + "@" + mention.getHexEncodedPublicKey() + result.substring(endIndex);
+    }
+    return result;
   }
 
   private Pair<String, Optional<Slide>> getSplitMessage(String rawText, int maxPrimaryMessageSize) {
@@ -2612,9 +2625,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   private void silentlySetComposeText(String text) {
     typingTextWatcher.setEnabled(false);
-    mentionTextWatcher.setEnabled(false);
     composeText.setText(text);
-    mentionTextWatcher.setEnabled(true);
+    clearMentions();
     typingTextWatcher.setEnabled(true);
   }
 
@@ -2744,33 +2756,49 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private class MentionTextWatcher extends SimpleTextWatcher {
-    private boolean enabled = true;
 
     @Override
     public void onTextChanged(String text) {
-      if (!enabled | text.length() == 0) { return; }
-      int currentEndIndex = text.length() - 1;
-      char lastCharacter = text.charAt(currentEndIndex);
-      LokiUserDatabase userDatabase = DatabaseFactory.getLokiUserDatabase(ConversationActivity.this);
-      if (lastCharacter == '@') {
-        List<Tuple2<String, String>> users = LokiAPI.Companion.getUsers("", threadId, userDatabase);
-        mentionStartIndex = currentEndIndex + 1;
-        userSelectionView.show(users, threadId);
-      } else if (Character.isWhitespace(lastCharacter)) {
-        mentionStartIndex = -1;
-        userSelectionView.hide();
-      } else {
-        if (mentionStartIndex != -1) {
-          String query = text.substring(mentionStartIndex);
-          List<Tuple2<String, String>> users = LokiAPI.Companion.getUsers(query, threadId, userDatabase);
+      boolean isBackspace = text.length() < oldText.length();
+      if (isBackspace) {
+        currentMentionStartIndex = -1;
+        for (Mention mention : mentions) {
+          boolean isValid;
+          if (mention.getLocationInString() > (text.length() - 1)) {
+            isValid = false;
+          } else {
+            isValid = text.substring(mention.getLocationInString()).startsWith("@" + mention.getDisplayName());
+          }
+          if (!isValid) {
+            mentions.remove(mention);
+          }
+        }
+      } else if (text.length() > 0) {
+        int currentEndIndex = text.length() - 1;
+        char lastCharacter = text.charAt(currentEndIndex);
+        LokiUserDatabase userDatabase = DatabaseFactory.getLokiUserDatabase(ConversationActivity.this);
+        if (lastCharacter == '@') {
+          List<Tuple2<String, String>> users = LokiAPI.Companion.getUsers("", threadId, userDatabase);
+          currentMentionStartIndex = currentEndIndex;
           userSelectionView.show(users, threadId);
+        } else if (Character.isWhitespace(lastCharacter)) {
+          currentMentionStartIndex = -1;
+          userSelectionView.hide();
+        } else {
+          if (currentMentionStartIndex != -1) {
+            String query = text.substring(currentMentionStartIndex + 1); // + 1 to get rid of the @
+            List<Tuple2<String, String>> users = LokiAPI.Companion.getUsers(query, threadId, userDatabase);
+            userSelectionView.show(users, threadId);
+          }
         }
       }
     }
+  }
 
-    public void setEnabled(boolean enabled) {
-      this.enabled = enabled;
-    }
+  private void clearMentions() {
+    oldText = "";
+    currentMentionStartIndex = -1;
+    mentions.clear();
   }
 
   @Override
