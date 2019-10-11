@@ -475,8 +475,8 @@ public class ConversationItem extends LinearLayout
 
     if (isCaptionlessMms(messageRecord)) {
       bodyText.setVisibility(View.GONE);
-    } else {
-      Spannable text = linkifyMessageBody(highlightMentions(messageRecord.getDisplayBody(context), isGroupThread), batchSelected.isEmpty());
+    } else { ;
+      Spannable text = highlightMentions(linkifyMessageBody(messageRecord.getDisplayBody(context), batchSelected.isEmpty()), isGroupThread);
       text = SearchUtil.getHighlightedSpan(locale, () -> new BackgroundColorSpan(Color.YELLOW), text, searchQuery);
       text = SearchUtil.getHighlightedSpan(locale, () -> new ForegroundColorSpan(Color.BLACK), text, searchQuery);
 
@@ -783,9 +783,9 @@ public class ConversationItem extends LinearLayout
     int startIndex = 0;
     if (matcher.find(startIndex) && isGroupThread) {
       while (true) {
-        CharSequence userID = text.subSequence(matcher.start() + 1, matcher.end()); // +1 to get rid of the @
+        String userID = text.subSequence(matcher.start() + 1, matcher.end()).toString(); // +1 to get rid of the @
         String userDisplayName;
-        if (userID.equals(TextSecurePreferences.getLocalNumber(context))) {
+        if (userID.toLowerCase().equals(TextSecurePreferences.getLocalNumber(context).toLowerCase())) {
           userDisplayName = TextSecurePreferences.getProfileName(context);
         } else {
           String publicChatID = LokiGroupChatAPI.getPublicChatServer() + "." + LokiGroupChatAPI.getPublicChatServerID();
