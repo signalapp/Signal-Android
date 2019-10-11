@@ -413,6 +413,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
               composeText.setText(newText);
               composeText.setSelection(newText.length());
               userSelectionView.hide();
+              currentMentionStartIndex = -1;
               return Unit.INSTANCE;
             });
           }
@@ -2094,10 +2095,14 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     if (result.length() < 1 && !attachmentManager.isAttachmentPresent()) throw new InvalidMessageException();
     int shift = 0;
     for (Mention mention : mentions) {
-      int startIndex = mention.getLocationInString() + shift;
-      int endIndex = startIndex + mention.getDisplayName().length() + 1; // + 1 to include the @
-      shift = shift + mention.getHexEncodedPublicKey().length() - mention.getDisplayName().length();
-      result = result.substring(0, startIndex) + "@" + mention.getHexEncodedPublicKey() + result.substring(endIndex);
+      try {
+        int startIndex = mention.getLocationInString() + shift;
+        int endIndex = startIndex + mention.getDisplayName().length() + 1; // + 1 to include the @
+        shift = shift + mention.getHexEncodedPublicKey().length() - mention.getDisplayName().length();
+        result = result.substring(0, startIndex) + "@" + mention.getHexEncodedPublicKey() + result.substring(endIndex);
+      } catch (Exception exception) {
+        // Do nothing
+      }
     }
     return result;
   }
