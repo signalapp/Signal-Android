@@ -42,7 +42,6 @@ import android.text.style.ForegroundColorSpan;
 import android.text.style.URLSpan;
 import android.text.util.Linkify;
 import android.util.AttributeSet;
-import android.util.Range;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
@@ -91,6 +90,7 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.FriendRequestView;
 import org.thoughtcrime.securesms.loki.FriendRequestViewDelegate;
 import org.thoughtcrime.securesms.loki.LokiMessageDatabase;
+import org.thoughtcrime.securesms.loki.MentionUtilities;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.PartAuthority;
@@ -115,14 +115,11 @@ import org.thoughtcrime.securesms.util.views.Stub;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.loki.api.LokiGroupChatAPI;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import network.loki.messenger.R;
 
@@ -476,7 +473,7 @@ public class ConversationItem extends LinearLayout
     if (isCaptionlessMms(messageRecord)) {
       bodyText.setVisibility(View.GONE);
     } else { ;
-      Spannable text = highlightMentions(linkifyMessageBody(messageRecord.getDisplayBody(context), batchSelected.isEmpty()), isGroupThread);
+      Spannable text = MentionUtilities.highlightMentions(linkifyMessageBody(messageRecord.getDisplayBody(context), batchSelected.isEmpty()), messageRecord.isOutgoing(), isGroupThread, context);
       text = SearchUtil.getHighlightedSpan(locale, () -> new BackgroundColorSpan(Color.YELLOW), text, searchQuery);
       text = SearchUtil.getHighlightedSpan(locale, () -> new ForegroundColorSpan(Color.BLACK), text, searchQuery);
 
@@ -776,41 +773,6 @@ public class ConversationItem extends LinearLayout
     return messageBody;
   }
 
-  private SpannableString highlightMentions(CharSequence text, boolean isGroupThread) {
-    Pattern pattern = Pattern.compile("@[0-9a-fA-F]*");
-    Matcher matcher = pattern.matcher(text);
-    ArrayList<Range<Integer>> mentions = new ArrayList<>();
-    int startIndex = 0;
-    if (matcher.find(startIndex) && isGroupThread) {
-      while (true) {
-        String userID = text.subSequence(matcher.start() + 1, matcher.end()).toString(); // +1 to get rid of the @
-        String userDisplayName;
-        if (userID.toLowerCase().equals(TextSecurePreferences.getLocalNumber(context).toLowerCase())) {
-          userDisplayName = TextSecurePreferences.getProfileName(context);
-        } else {
-          String publicChatID = LokiGroupChatAPI.getPublicChatServer() + "." + LokiGroupChatAPI.getPublicChatServerID();
-          userDisplayName = DatabaseFactory.getLokiUserDatabase(context).getServerDisplayName(publicChatID, userID.toString());
-        }
-        if (userDisplayName != null) {
-          text = text.subSequence(0, matcher.start()) + "@" + userDisplayName + text.subSequence(matcher.end(), text.length());
-          int endIndex = matcher.start() + 1 + userDisplayName.length();
-          startIndex = endIndex;
-          mentions.add(Range.create(matcher.start(), endIndex));
-        } else {
-          startIndex = matcher.end();
-        }
-        matcher = pattern.matcher(text);
-        if (!matcher.find(startIndex)) { break; }
-      }
-    }
-    SpannableString result = new SpannableString(text);
-    for (Range<Integer> range : mentions) {
-      int highlightColor = (messageRecord.isOutgoing()) ? getResources().getColor(R.color.loki_dark_green) : getResources().getColor(R.color.loki_green);
-      result.setSpan(new BackgroundColorSpan(highlightColor), range.getLower(), range.getUpper(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-    }
-    return result;
-  }
-
   private void setStatusIcons(MessageRecord messageRecord) {
     bodyText.setCompoundDrawablesWithIntrinsicBounds(0, 0, messageRecord.isKeyExchange() ? R.drawable.ic_menu_login : 0, 0);
 
@@ -827,7 +789,7 @@ public class ConversationItem extends LinearLayout
     if (current.isMms() && !current.isMmsNotification() && ((MediaMmsMessageRecord)current).getQuote() != null) {
       Quote quote = ((MediaMmsMessageRecord)current).getQuote();
       //noinspection ConstantConditions
-      String quoteBody = highlightMentions(quote.getText(), isGroupThread).toString();
+      String quoteBody = MentionUtilities.highlightMentions(quote.getText(), isGroupThread, context);
       quoteView.setQuote(glideRequests, quote.getId(), Recipient.from(context, quote.getAuthor(), true), quoteBody, quote.isOriginalMissing(), quote.getAttachment(), conversationRecipient);
       quoteView.setVisibility(View.VISIBLE);
       quoteView.getLayoutParams().width = ViewGroup.LayoutParams.WRAP_CONTENT;
