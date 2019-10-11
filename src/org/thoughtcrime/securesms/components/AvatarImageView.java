@@ -19,6 +19,7 @@ import android.view.ViewOutlineProvider;
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
 import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto;
+import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.loki.JazzIdenticonDrawable;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -118,9 +119,13 @@ public class AvatarImageView extends AppCompatImageView {
 
       image = new GeneratedContactPhoto(name, R.drawable.ic_profile_default).asDrawable(context, fallbackColor.toAvatarColor(context));
     } else {
-      image = new JazzIdenticonDrawable(w, h, recipient.getAddress().serialize());
+      image = new JazzIdenticonDrawable(w, h, recipient.getAddress().serialize().toLowerCase());
     }
     setImageDrawable(image);
+  }
+
+  public void update(String hexEncodedPublicKey) {
+    this.recipient = Recipient.from(getContext(), Address.fromSerialized(hexEncodedPublicKey), false);
   }
 
   public void setAvatar(@NonNull GlideRequests requestManager, @Nullable Recipient recipient, boolean quickContactEnabled) {

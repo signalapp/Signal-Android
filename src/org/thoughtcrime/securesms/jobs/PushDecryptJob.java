@@ -67,6 +67,7 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.loki.LokiAPIUtilities;
 import org.thoughtcrime.securesms.loki.LokiMessageDatabase;
 import org.thoughtcrime.securesms.loki.LokiPreKeyBundleDatabase;
 import org.thoughtcrime.securesms.loki.LokiPreKeyRecordDatabase;
@@ -123,6 +124,7 @@ import org.whispersystems.signalservice.api.messages.multidevice.VerifiedMessage
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.loki.api.DeviceLinkingSession;
+import org.whispersystems.signalservice.loki.api.LokiAPI;
 import org.whispersystems.signalservice.loki.api.LokiStorageAPI;
 import org.whispersystems.signalservice.loki.api.PairingAuthorisation;
 import org.whispersystems.signalservice.loki.crypto.LokiServiceCipher;
@@ -1020,6 +1022,12 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     else                          threadId = null;
 
     if (smsMessageId.isPresent()) database.deleteMessage(smsMessageId.get());
+
+    // Loki - Cache the user hex encoded public key (for mentions)
+    if (threadId != null) {
+      LokiAPIUtilities.INSTANCE.populateUserIDCacheIfNeeded(threadId, context);
+      LokiAPI.Companion.cache(textMessage.getSender().serialize(), threadId);
+    }
 
     // Loki - Store message server ID
     updateGroupChatMessageServerID(messageServerIDOrNull, insertResult);

@@ -1552,7 +1552,7 @@
     <!-- Display name activity -->
     <string name="activity_display_name_title">Create Your Loki Messenger Account</string>
     <string name="activity_display_name_subtitle">Enter a name to be shown to your contacts</string>
-    <string name="activity_display_name_name_edit_text_label">Display Name (Optional)</string>
+    <string name="activity_display_name_name_edit_text_label">Display Name</string>
     <string name="activity_display_name_button_title">Next</string>
     <!-- Key pair activity -->
     <string name="activity_key_pair_title">Create Your Loki Messenger Account</string>

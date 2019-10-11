@@ -101,6 +101,7 @@
                         tools:visibility="invisible"
                         tools:hint="Send TextSecure message" >
                         <requestFocus />
+
                     </org.thoughtcrime.securesms.components.ComposeText>
 
                     <FrameLayout

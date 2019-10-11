@@ -91,6 +91,7 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.FriendRequestView;
 import org.thoughtcrime.securesms.loki.FriendRequestViewDelegate;
 import org.thoughtcrime.securesms.loki.LokiMessageDatabase;
+import org.thoughtcrime.securesms.loki.MentionUtilities;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.PartAuthority;
@@ -212,7 +213,7 @@ public class ConversationItem extends LinearLayout
     this.groupSenderProfileName  =            findViewById(R.id.group_message_sender_profile);
     this.alertView               =            findViewById(R.id.indicators_parent);
     this.contactPhoto            =            findViewById(R.id.contact_photo);
-    this.moderatorIconImageView      =            findViewById(R.id.moderator_icon_image_view);
+    this.moderatorIconImageView  =            findViewById(R.id.moderator_icon_image_view);
     this.contactPhotoHolder      =            findViewById(R.id.contact_photo_container);
     this.bodyBubble              =            findViewById(R.id.body_bubble);
     this.mediaThumbnailStub      = new Stub<>(findViewById(R.id.image_view_stub));
@@ -260,7 +261,7 @@ public class ConversationItem extends LinearLayout
     setMessageShape(messageRecord, previousMessageRecord, nextMessageRecord, groupThread);
     setMediaAttributes(messageRecord, previousMessageRecord, nextMessageRecord, conversationRecipient, groupThread);
     setInteractionState(messageRecord, pulseHighlight);
-    setBodyText(messageRecord, searchQuery);
+    setBodyText(messageRecord, searchQuery, groupThread);
     setBubbleState(messageRecord);
     setStatusIcons(messageRecord);
     setContactPhoto(recipient);
@@ -466,17 +467,17 @@ public class ConversationItem extends LinearLayout
            !StickerUrl.isValidShareLink(linkPreview.getUrl());
   }
 
-  private void setBodyText(MessageRecord messageRecord, @Nullable String searchQuery) {
+  private void setBodyText(MessageRecord messageRecord, @Nullable String searchQuery, boolean isGroupThread) {
     bodyText.setClickable(false);
     bodyText.setFocusable(false);
     bodyText.setTextSize(TypedValue.COMPLEX_UNIT_SP, TextSecurePreferences.getMessageBodyTextSize(context));
 
     if (isCaptionlessMms(messageRecord)) {
       bodyText.setVisibility(View.GONE);
-    } else {
-      Spannable styledText = linkifyMessageBody(messageRecord.getDisplayBody(getContext()), batchSelected.isEmpty());
-      styledText = SearchUtil.getHighlightedSpan(locale, () -> new BackgroundColorSpan(Color.YELLOW), styledText, searchQuery);
-      styledText = SearchUtil.getHighlightedSpan(locale, () -> new ForegroundColorSpan(Color.BLACK), styledText, searchQuery);
+    } else { ;
+      Spannable text = MentionUtilities.highlightMentions(linkifyMessageBody(messageRecord.getDisplayBody(context), batchSelected.isEmpty()), messageRecord.isOutgoing(), isGroupThread, context);
+      text = SearchUtil.getHighlightedSpan(locale, () -> new BackgroundColorSpan(Color.YELLOW), text, searchQuery);
+      text = SearchUtil.getHighlightedSpan(locale, () -> new ForegroundColorSpan(Color.BLACK), text, searchQuery);
 
       if (hasExtraText(messageRecord)) {
         bodyText.setOverflowText(getLongMessageSpan(messageRecord));
@@ -484,7 +485,7 @@ public class ConversationItem extends LinearLayout
         bodyText.setOverflowText(null);
       }
 
-      bodyText.setText(styledText);
+      bodyText.setText(text);
       bodyText.setVisibility(View.VISIBLE);
     }
   }
@@ -790,7 +791,8 @@ public class ConversationItem extends LinearLayout
     if (current.isMms() && !current.isMmsNotification() && ((MediaMmsMessageRecord)current).getQuote() != null) {
       Quote quote = ((MediaMmsMessageRecord)current).getQuote();
       //noinspection ConstantConditions
-      quoteView.setQuote(glideRequests, quote.getId(), Recipient.from(context, quote.getAuthor(), true), quote.getText(), quote.isOriginalMissing(), quote.getAttachment(), conversationRecipient);
+      String quoteBody = MentionUtilities.highlightMentions(quote.getText(), isGroupThread, context);
+      quoteView.setQuote(glideRequests, quote.getId(), Recipient.from(context, quote.getAuthor(), true), quoteBody, quote.isOriginalMissing(), quote.getAttachment(), conversationRecipient);
       quoteView.setVisibility(View.VISIBLE);
       quoteView.getLayoutParams().width = ViewGroup.LayoutParams.WRAP_CONTENT;
 
