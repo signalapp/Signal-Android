@@ -53,7 +53,8 @@ public class SignalPreference extends Preference {
     this.summary = summary;
 
     if (this.rightSummary != null) {
-      this.rightSummary.setText(summary);
+      CharSequence text = summary.length() > 20 ? summary.subSequence(0, 20) + "..." : summary;
+      this.rightSummary.setText(text);
     }
   }
 
