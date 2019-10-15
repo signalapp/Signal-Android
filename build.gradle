@@ -88,7 +88,7 @@ dependencies {
 
     implementation 'org.whispersystems:signal-service-android:2.13.8'
 
-    implementation 'org.whispersystems:webrtc-android:M77'
+    implementation 'org.signal:ringrtc-android:0.1.4'
 
     implementation "me.leolin:ShortcutBadger:1.1.16"
     implementation 'se.emilsjolander:stickylistheaders:2.7.0'
@@ -198,7 +198,7 @@ dependencyVerification {
         'org.conscrypt:conscrypt-android:400ca559a49b860a82862b22cee0e3110764bdcf7ee7c79e7479895c25cdfc09',
         'org.signal:aesgcmprovider:6eb4422e8a618b3b76cb2096a3619d251f9e27989dc68307a1e5414c3710f2d1',
         'org.whispersystems:signal-service-android:893d42dfa6d08fc1268c4da5aee6f6f3f1bb683ad4a241ef2f3e3d4dfb114e47',
-        'org.whispersystems:webrtc-android:c1254d6d8871c8a5a0e02f682626d0fc0ba1633587334c43edc75119f6977ac2',
+        'org.signal:ringrtc-android:8d336bde27de9a23e483843461c0423c147a191c3af97f933b8a85d406560957',
         'me.leolin:ShortcutBadger:e3cb3e7625892129b0c92dd5e4bc649faffdd526d5af26d9c45ee31ff8851774',
         'se.emilsjolander:stickylistheaders:a08ca948aa6b220f09d82f16bbbac395f6b78897e9eeac6a9f0b0ba755928eeb',
         'com.jpardogo.materialtabstrip:library:c6ef812fba4f74be7dc4a905faa4c2908cba261a94c13d4f96d5e67e4aad4aaa',
