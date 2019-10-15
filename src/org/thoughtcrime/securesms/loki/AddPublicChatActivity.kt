@@ -1,13 +1,10 @@
 package org.thoughtcrime.securesms.loki
 
-import android.Manifest
-import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
 import android.view.MenuItem
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
-import kotlinx.android.synthetic.main.activity_account_details.*
 import kotlinx.android.synthetic.main.fragment_add_public_chat.*
 import network.loki.messenger.R
 import nl.komponents.kovenant.ui.failUi
@@ -15,16 +12,7 @@ import nl.komponents.kovenant.ui.successUi
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.BaseActionBarActivity
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
-import org.thoughtcrime.securesms.conversation.ConversationActivity
-import org.thoughtcrime.securesms.database.Address
-import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.thoughtcrime.securesms.database.ThreadDatabase
-import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.DynamicTheme
-import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.whispersystems.signalservice.loki.api.LokiGroupChatAPI
-import org.whispersystems.signalservice.loki.utilities.Analytics
-import org.whispersystems.signalservice.loki.utilities.PublicKeyValidation
 
 class AddPublicChatActivity : PassphraseRequiredActionBarActivity() {
     private val dynamicTheme = DynamicTheme()

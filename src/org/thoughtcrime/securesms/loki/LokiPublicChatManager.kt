@@ -7,20 +7,17 @@ import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.functional.bind
 import nl.komponents.kovenant.functional.map
 import org.thoughtcrime.securesms.ApplicationContext
-import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.database.DatabaseContentProviders
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.groups.GroupManager
-import org.thoughtcrime.securesms.util.GroupUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
-import org.whispersystems.signalservice.loki.api.LokiGroupChat
-import org.whispersystems.signalservice.loki.api.LokiGroupChatAPI
-import java.util.HashSet
+import org.whispersystems.signalservice.loki.api.LokiPublicChat
+import java.util.*
 
 class LokiPublicChatManager(private val context: Context) {
-  private var chats = mutableMapOf<Long, LokiGroupChat>()
-  private val pollers = mutableMapOf<Long, LokiGroupChatPoller>()
+  private var chats = mutableMapOf<Long, LokiPublicChat>()
+  private val pollers = mutableMapOf<Long, LokiPublicChatPoller>()
   private val observers = mutableMapOf<Long, ContentObserver>()
   private var isPolling = false
 
@@ -28,7 +25,7 @@ class LokiPublicChatManager(private val context: Context) {
     refreshChatsAndPollers()
 
     for ((threadId, chat) in chats) {
-      val poller = pollers[threadId] ?: LokiGroupChatPoller(context, chat)
+      val poller = pollers[threadId] ?: LokiPublicChatPoller(context, chat)
       poller.startIfNeeded()
       listenToThreadDeletion(threadId)
       if (!pollers.containsKey(threadId)) { pollers[threadId] = poller }
@@ -41,8 +38,8 @@ class LokiPublicChatManager(private val context: Context) {
     isPolling = false
   }
 
-  public fun addChat(server: String, channel: Long): Promise<LokiGroupChat, Exception> {
-    val groupChatAPI = ApplicationContext.getInstance(context).lokiGroupChatAPI ?: return Promise.ofFail(IllegalStateException("LokiGroupChatAPI is not set!"))
+  public fun addChat(server: String, channel: Long): Promise<LokiPublicChat, Exception> {
+    val groupChatAPI = ApplicationContext.getInstance(context).lokiPublicChatAPI ?: return Promise.ofFail(IllegalStateException("LokiPublicChatAPI is not set!"))
     return groupChatAPI.getAuthToken(server).bind {
       groupChatAPI.getChannelInfo(channel, server)
     }.map {
@@ -50,19 +47,19 @@ class LokiPublicChatManager(private val context: Context) {
     }
   }
 
-  public fun addChat(server: String, channel: Long, name: String): LokiGroupChat {
-    val chat = LokiGroupChat(channel, server, name, true)
+  public fun addChat(server: String, channel: Long, name: String): LokiPublicChat {
+    val chat = LokiPublicChat(channel, server, name, true)
     var threadID =  GroupManager.getThreadId(chat.id, context)
     // Create the group if we don't have one
     if (threadID < 0) {
       val result = GroupManager.createGroup(chat.id, context, HashSet(), null, chat.displayName, false)
       threadID = result.threadId
     }
-    DatabaseFactory.getLokiThreadDatabase(context).setGroupChat(chat, threadID)
+    DatabaseFactory.getLokiThreadDatabase(context).setPublicChat(chat, threadID)
     // Set our name on the server
     val displayName = TextSecurePreferences.getProfileName(context)
     if (!TextUtils.isEmpty(displayName)) {
-      ApplicationContext.getInstance(context).lokiGroupChatAPI?.setDisplayName(server, displayName)
+      ApplicationContext.getInstance(context).lokiPublicChatAPI?.setDisplayName(server, displayName)
     }
     // Start polling
     Util.runOnMain{ startPollersIfNeeded() }
@@ -71,7 +68,7 @@ class LokiPublicChatManager(private val context: Context) {
   }
 
   private fun refreshChatsAndPollers() {
-    val chatsInDB = DatabaseFactory.getLokiThreadDatabase(context).getAllGroupChats()
+    val chatsInDB = DatabaseFactory.getLokiThreadDatabase(context).getAllPublicChats()
     val removedChatThreadIds = chats.keys.filter { !chatsInDB.keys.contains(it) }
     removedChatThreadIds.forEach { pollers.remove(it)?.stop() }
 
@@ -91,7 +88,7 @@ class LokiPublicChatManager(private val context: Context) {
         apiDatabase.removeLastMessageServerID(chat.channel, chat.server)
       }
 
-      DatabaseFactory.getLokiThreadDatabase(context).removeGroupChat(threadID)
+      DatabaseFactory.getLokiThreadDatabase(context).removePublicChat(threadID)
       pollers.remove(threadID)?.stop()
       observers.remove(threadID)
       startPollersIfNeeded()

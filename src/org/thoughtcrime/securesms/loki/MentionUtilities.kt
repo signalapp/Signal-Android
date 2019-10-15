@@ -8,31 +8,32 @@ import android.util.Range
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.whispersystems.signalservice.loki.api.LokiGroupChatAPI
 import java.util.regex.Pattern
 
 object MentionUtilities {
 
     @JvmStatic
-    fun highlightMentions(text: CharSequence, isGroupThread: Boolean, context: Context): String {
-        return MentionUtilities.highlightMentions(text, false, isGroupThread, context).toString() // isOutgoingMessage is irrelevant
+    fun highlightMentions(text: CharSequence, threadID: Long, context: Context): String {
+        return MentionUtilities.highlightMentions(text, false, threadID, context).toString() // isOutgoingMessage is irrelevant
     }
 
     @JvmStatic
-    fun highlightMentions(text: CharSequence, isOutgoingMessage: Boolean, isGroupThread: Boolean, context: Context): SpannableString {
+    fun highlightMentions(text: CharSequence, isOutgoingMessage: Boolean, threadID: Long, context: Context): SpannableString {
         var text = text
         val pattern = Pattern.compile("@[0-9a-fA-F]*")
         var matcher = pattern.matcher(text)
         val mentions = mutableListOf<Range<Int>>()
         var startIndex = 0
-        if (matcher.find(startIndex) && isGroupThread) {
+        val publicChat = DatabaseFactory.getLokiThreadDatabase(context).getPublicChat(threadID)
+        if (matcher.find(startIndex)) {
             while (true) {
                 val userID = text.subSequence(matcher.start() + 1, matcher.end()).toString() // +1 to get rid of the @
                 val userDisplayName: String? = if (userID.toLowerCase() == TextSecurePreferences.getLocalNumber(context).toLowerCase()) {
                     TextSecurePreferences.getProfileName(context)
+                } else if (publicChat != null) {
+                    DatabaseFactory.getLokiUserDatabase(context).getServerDisplayName(publicChat.id, userID)
                 } else {
-                    val publicChatID = LokiGroupChatAPI.publicChatServer + "." + LokiGroupChatAPI.publicChatServerID
-                    DatabaseFactory.getLokiUserDatabase(context).getServerDisplayName(publicChatID, userID)
+                    "" // TODO: Implement
                 }
                 if (userDisplayName != null) {
                     text = text.subSequence(0, matcher.start()).toString() + "@" + userDisplayName + text.subSequence(matcher.end(), text.length)

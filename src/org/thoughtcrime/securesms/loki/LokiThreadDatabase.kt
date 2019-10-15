@@ -9,11 +9,10 @@ import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.whispersystems.signalservice.internal.util.JsonUtil
-import org.whispersystems.signalservice.loki.api.LokiGroupChat
+import org.whispersystems.signalservice.loki.api.LokiPublicChat
 import org.whispersystems.signalservice.loki.messaging.LokiThreadDatabaseProtocol
 import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus
 import org.whispersystems.signalservice.loki.messaging.LokiThreadSessionResetStatus
-import java.lang.Exception
 
 class LokiThreadDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), LokiThreadDatabaseProtocol {
     var delegate: LokiThreadDatabaseDelegate? = null
@@ -92,17 +91,17 @@ class LokiThreadDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
         notifyConversationListeners(threadID)
     }
 
-    fun getAllGroupChats(): Map<Long, LokiGroupChat> {
+    fun getAllPublicChats(): Map<Long, LokiPublicChat> {
         val database = databaseHelper.readableDatabase
         var cursor: Cursor? = null
 
         try {
-            val map = mutableMapOf<Long, LokiGroupChat>()
+            val map = mutableMapOf<Long, LokiPublicChat>()
             cursor = database.rawQuery("select * from $groupChatMappingTableName", null)
             while (cursor != null && cursor.moveToNext()) {
                 val threadID = cursor.getLong(Companion.threadID)
                 val string = cursor.getString(groupChatJSON)
-                val chat = LokiGroupChat.fromJSON(string)
+                val chat = LokiPublicChat.fromJSON(string)
                 if (chat != null) { map[threadID] = chat }
             }
             return map
@@ -115,20 +114,20 @@ class LokiThreadDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
         return mapOf()
     }
 
-    fun getAllGroupChatServers(): Set<String> {
-        return getAllGroupChats().values.fold(setOf<String>()) { set, chat -> set.plus(chat.server) }
+    fun getAllPublicChatServers(): Set<String> {
+        return getAllPublicChats().values.fold(setOf<String>()) { set, chat -> set.plus(chat.server) }
     }
 
-    override fun getGroupChat(threadID: Long): LokiGroupChat? {
+    override fun getPublicChat(threadID: Long): LokiPublicChat? {
         if (threadID < 0) { return null }
         val database = databaseHelper.readableDatabase
         return database.get(groupChatMappingTableName, "${Companion.threadID} = ?", arrayOf( threadID.toString() )) { cursor ->
             val string = cursor.getString(groupChatJSON)
-            LokiGroupChat.fromJSON(string)
+            LokiPublicChat.fromJSON(string)
         }
     }
 
-    override fun setGroupChat(groupChat: LokiGroupChat, threadID: Long) {
+    override fun setPublicChat(groupChat: LokiPublicChat, threadID: Long) {
         if (threadID < 0) { return }
 
         val database = databaseHelper.writableDatabase
@@ -138,7 +137,7 @@ class LokiThreadDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
         database.insertOrUpdate(groupChatMappingTableName, contentValues, "${Companion.threadID} = ?", arrayOf( threadID.toString() ))
     }
 
-    override fun removeGroupChat(threadID: Long) {
+    override fun removePublicChat(threadID: Long) {
         databaseHelper.writableDatabase.delete(groupChatMappingTableName, "${Companion.threadID} = ?", arrayOf( threadID.toString() ))
     }
 }

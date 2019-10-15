@@ -61,8 +61,8 @@ import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.crypto.ProfileCipher;
 import org.whispersystems.signalservice.api.util.StreamDetails;
-import org.whispersystems.signalservice.loki.api.LokiGroupChat;
-import org.whispersystems.signalservice.loki.api.LokiGroupChatAPI;
+import org.whispersystems.signalservice.loki.api.LokiPublicChat;
+import org.whispersystems.signalservice.loki.api.LokiPublicChatAPI;
 import org.whispersystems.signalservice.loki.utilities.Analytics;
 
 import java.io.ByteArrayInputStream;
@@ -383,7 +383,7 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
         Analytics.Companion.getShared().track("Display Name Updated");
 
         TextSecurePreferences.setProfileName(context, name);
-        LokiGroupChatAPI chatAPI = ApplicationContext.getInstance(context).getLokiGroupChatAPI();
+        LokiPublicChatAPI chatAPI = ApplicationContext.getInstance(context).getLokiPublicChatAPI();
         if (chatAPI != null) {
           Set<String> groupChatServers = DatabaseFactory.getLokiThreadDatabase(context).getAllGroupChatServers();
           for (String server : groupChatServers) {

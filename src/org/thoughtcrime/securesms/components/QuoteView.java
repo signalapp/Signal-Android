@@ -32,8 +32,8 @@ import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.signalservice.loki.api.LokiGroupChat;
-import org.whispersystems.signalservice.loki.api.LokiGroupChatAPI;
+import org.whispersystems.signalservice.loki.api.LokiPublicChat;
+import org.whispersystems.signalservice.loki.api.LokiPublicChatAPI;
 
 import java.util.List;
 
@@ -200,7 +200,7 @@ public class QuoteView extends FrameLayout implements RecipientModifiedListener 
     // If we're in a group then try and use the display name in the group
     if (conversationRecipient.isGroupRecipient()) {
       long threadId = DatabaseFactory.getThreadDatabase(getContext()).getThreadIdFor(conversationRecipient);
-      LokiGroupChat chat = DatabaseFactory.getLokiThreadDatabase(getContext()).getGroupChat(threadId);
+      LokiPublicChat chat = DatabaseFactory.getLokiThreadDatabase(getContext()).getGroupChat(threadId);
       if (chat != null) {
         String senderDisplayName = DatabaseFactory.getLokiUserDatabase(getContext()).getServerDisplayName(chat.getId(), author.getAddress().serialize());
         if (senderDisplayName != null) { quoteeDisplayName = senderDisplayName; }

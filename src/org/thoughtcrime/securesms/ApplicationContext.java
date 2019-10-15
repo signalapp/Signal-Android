@@ -87,8 +87,8 @@ import org.whispersystems.libsignal.logging.SignalProtocolLoggerProvider;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 import org.whispersystems.signalservice.loki.api.LokiAPIDatabaseProtocol;
-import org.whispersystems.signalservice.loki.api.LokiGroupChat;
-import org.whispersystems.signalservice.loki.api.LokiGroupChatAPI;
+import org.whispersystems.signalservice.loki.api.LokiPublicChat;
+import org.whispersystems.signalservice.loki.api.LokiPublicChatAPI;
 import org.whispersystems.signalservice.loki.api.LokiLongPoller;
 import org.whispersystems.signalservice.loki.api.LokiP2PAPI;
 import org.whispersystems.signalservice.loki.api.LokiP2PAPIDelegate;
@@ -138,7 +138,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   private LokiRSSFeedPoller lokiNewsFeedPoller = null;
   private LokiRSSFeedPoller lokiMessengerUpdatesFeedPoller = null;
   private LokiPublicChatManager lokiPublicChatManager = null;
-  private LokiGroupChatAPI lokiGroupChatAPI = null;
+  private LokiPublicChatAPI lokiPublicChatAPI = null;
   public SignalCommunicationModule communicationModule;
   public MixpanelAPI mixpanel;
 
@@ -253,16 +253,16 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     return lokiPublicChatManager;
   }
 
-  public @Nullable LokiGroupChatAPI getLokiGroupChatAPI() {
-    if (lokiGroupChatAPI == null && IdentityKeyUtil.hasIdentityKey(this)) {
+  public @Nullable LokiPublicChatAPI getLokiPublicChatAPI() {
+    if (lokiPublicChatAPI == null && IdentityKeyUtil.hasIdentityKey(this)) {
       String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this);
       byte[] userPrivateKey = IdentityKeyUtil.getIdentityKeyPair(this).getPrivateKey().serialize();
       LokiAPIDatabase apiDatabase = DatabaseFactory.getLokiAPIDatabase(this);
       LokiUserDatabase userDatabase = DatabaseFactory.getLokiUserDatabase(this);
-      lokiGroupChatAPI = new LokiGroupChatAPI(userHexEncodedPublicKey, userPrivateKey, apiDatabase, userDatabase);
+      lokiPublicChatAPI = new LokiPublicChatAPI(userHexEncodedPublicKey, userPrivateKey, apiDatabase, userDatabase);
     }
 
-    return lokiGroupChatAPI;
+    return lokiPublicChatAPI;
   }
 
   private void initializeSecurityProvider() {
@@ -502,8 +502,8 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   }
 
   public void createGroupChatsIfNeeded() {
-    List<LokiGroupChat> defaultChats = LokiGroupChat.Companion.defaultChats(BuildConfig.DEBUG);
-    for (LokiGroupChat chat : defaultChats) {
+    List<LokiPublicChat> defaultChats = LokiPublicChat.Companion.defaultChats(BuildConfig.DEBUG);
+    for (LokiPublicChat chat : defaultChats) {
       long threadID = GroupManager.getThreadId(chat.getId(), this);
       String migrationKey = chat.getId() + "_migrated";
       boolean isChatMigrated = TextSecurePreferences.getBooleanPreference(this, migrationKey, false);

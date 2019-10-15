@@ -114,8 +114,8 @@ import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.views.Stub;
 import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.loki.api.LokiGroupChat;
-import org.whispersystems.signalservice.loki.api.LokiGroupChatAPI;
+import org.whispersystems.signalservice.loki.api.LokiPublicChat;
+import org.whispersystems.signalservice.loki.api.LokiPublicChatAPI;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -941,9 +941,9 @@ public class ConversationItem extends LinearLayout
         int visibility = View.GONE;
 
         // If we have a chat then use that to determine mod status
-        LokiGroupChat groupChat = DatabaseFactory.getLokiThreadDatabase(context).getGroupChat(messageRecord.getThreadId());
+        LokiPublicChat groupChat = DatabaseFactory.getLokiThreadDatabase(context).getGroupChat(messageRecord.getThreadId());
         if (groupChat != null) {
-          boolean isModerator = LokiGroupChatAPI.Companion.isUserModerator(current.getRecipient().getAddress().toString(), groupChat.getChannel(), groupChat.getServer());
+          boolean isModerator = LokiPublicChatAPI.Companion.isUserModerator(current.getRecipient().getAddress().toString(), groupChat.getChannel(), groupChat.getServer());
           visibility = isModerator ? View.VISIBLE : View.GONE;
         }
 

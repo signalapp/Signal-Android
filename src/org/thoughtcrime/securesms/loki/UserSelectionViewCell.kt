@@ -11,12 +11,13 @@ import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.cell_user_selection_view.view.*
 import network.loki.messenger.R
 import nl.komponents.kovenant.combine.Tuple2
-import org.whispersystems.signalservice.loki.api.LokiGroupChatAPI
+import org.whispersystems.signalservice.loki.api.LokiPublicChatAPI
 
 class UserSelectionViewCell(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : LinearLayout(context, attrs, defStyleAttr) {
     var user = Tuple2("", "")
         set(newValue) { field = newValue; update() }
-    var hasGroupContext = false
+    var publicChatServer: String? = null
+    var publicChatChannel: Long? = null
 
     constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
     constructor(context: Context) : this(context, null)
@@ -42,7 +43,11 @@ class UserSelectionViewCell(context: Context, attrs: AttributeSet?, defStyleAttr
     private fun update() {
         displayNameTextView.text = user.second
         profilePictureImageView.update(user.first)
-        val isUserModerator = LokiGroupChatAPI.isUserModerator(user.first, LokiGroupChatAPI.publicChatServerID, LokiGroupChatAPI.publicChatServer)
-        moderatorIconImageView.visibility = if (isUserModerator && hasGroupContext) View.VISIBLE else View.GONE
+        if (publicChatServer != null && publicChatChannel != null) {
+            val isUserModerator = LokiPublicChatAPI.isUserModerator(user.first, publicChatChannel!!, publicChatServer!!)
+            moderatorIconImageView.visibility = if (isUserModerator) View.VISIBLE else View.GONE
+        } else {
+            moderatorIconImageView.visibility = View.GONE
+        }
     }
 }

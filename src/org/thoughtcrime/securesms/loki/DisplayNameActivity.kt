@@ -8,11 +8,9 @@ import network.loki.messenger.R
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.BaseActionBarActivity
 import org.thoughtcrime.securesms.ConversationListActivity
-import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.crypto.ProfileCipher
-import org.whispersystems.signalservice.loki.api.LokiGroupChatAPI
 import org.whispersystems.signalservice.loki.utilities.Analytics
 
 class DisplayNameActivity : BaseActionBarActivity() {
@@ -46,9 +44,9 @@ class DisplayNameActivity : BaseActionBarActivity() {
         startActivity(Intent(this, ConversationListActivity::class.java))
         finish()
 
-        val chatAPI = ApplicationContext.getInstance(this).lokiGroupChatAPI
+        val chatAPI = ApplicationContext.getInstance(this).lokiPublicChatAPI
         if (chatAPI != null && name != null) {
-            val servers = DatabaseFactory.getLokiThreadDatabase(this).getAllGroupChatServers()
+            val servers = DatabaseFactory.getLokiThreadDatabase(this).getAllPublicChatServers()
             servers.forEach { chatAPI.setDisplayName(name, it) }
         }
     }

@@ -106,8 +106,8 @@ import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.internal.util.concurrent.SettableFuture;
-import org.whispersystems.signalservice.loki.api.LokiGroupChat;
-import org.whispersystems.signalservice.loki.api.LokiGroupChatAPI;
+import org.whispersystems.signalservice.loki.api.LokiPublicChat;
+import org.whispersystems.signalservice.loki.api.LokiPublicChatAPI;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -410,14 +410,14 @@ public class ConversationFragment extends Fragment
     boolean isGroupChat = recipient.isGroupRecipient();
 
     if (isGroupChat) {
-      LokiGroupChat groupChat = DatabaseFactory.getLokiThreadDatabase(getContext()).getGroupChat(threadId);
+      LokiPublicChat groupChat = DatabaseFactory.getLokiThreadDatabase(getContext()).getGroupChat(threadId);
       boolean isPublicChat = groupChat != null;
       int selectedMessageCount = messageRecords.size();
       boolean isSentByUser = ((MessageRecord)messageRecords.toArray()[0]).isOutgoing();
       menu.findItem(R.id.menu_context_copy_public_key).setVisible(isPublicChat && selectedMessageCount == 1 && !isSentByUser);
       menu.findItem(R.id.menu_context_reply).setVisible(isPublicChat && selectedMessageCount == 1);
       String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(getContext());
-      boolean userCanModerate = groupChat != null && LokiGroupChatAPI.Companion.isUserModerator(userHexEncodedPublicKey, groupChat.getChannel(), groupChat.getServer());
+      boolean userCanModerate = groupChat != null && LokiPublicChatAPI.Companion.isUserModerator(userHexEncodedPublicKey, groupChat.getChannel(), groupChat.getServer());
       boolean isDeleteOptionVisible = isPublicChat && selectedMessageCount == 1 && (isSentByUser || userCanModerate);
       menu.findItem(R.id.menu_context_delete_message).setVisible(isDeleteOptionVisible);
     } else {
@@ -513,7 +513,7 @@ public class ConversationFragment extends Fragment
     builder.setCancelable(true);
 
     // Loki - The delete option is only visible to the user in a group chat
-    LokiGroupChat groupChat = DatabaseFactory.getLokiThreadDatabase(getContext()).getGroupChat(threadId);
+    LokiPublicChat groupChat = DatabaseFactory.getLokiThreadDatabase(getContext()).getGroupChat(threadId);
 
     builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
       @Override
@@ -530,7 +530,7 @@ public class ConversationFragment extends Fragment
               if (groupChat != null) {
                 final SettableFuture<?>[] future = { new SettableFuture<Unit>() };
 
-                LokiGroupChatAPI chatAPI = ApplicationContext.getInstance(getContext()).getLokiGroupChatAPI();
+                LokiPublicChatAPI chatAPI = ApplicationContext.getInstance(getContext()).getLokiPublicChatAPI();
                 boolean isSentByUser = messageRecord.isOutgoing();
                 Long serverID = DatabaseFactory.getLokiMessageDatabase(getContext()).getServerID(messageRecord.id);
 

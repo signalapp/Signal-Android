@@ -21,23 +21,23 @@ import org.whispersystems.signalservice.api.messages.SignalServiceContent
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage
 import org.whispersystems.signalservice.api.messages.SignalServiceGroup
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
-import org.whispersystems.signalservice.loki.api.LokiGroupChat
-import org.whispersystems.signalservice.loki.api.LokiGroupChatAPI
-import org.whispersystems.signalservice.loki.api.LokiGroupMessage
+import org.whispersystems.signalservice.loki.api.LokiPublicChat
+import org.whispersystems.signalservice.loki.api.LokiPublicChatAPI
+import org.whispersystems.signalservice.loki.api.LokiPublicChatMessage
 
-class LokiGroupChatPoller(private val context: Context, private val group: LokiGroupChat) {
+class LokiPublicChatPoller(private val context: Context, private val group: LokiPublicChat) {
     private val handler = Handler()
     private var hasStarted = false
 
     // region Convenience
     private val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context)
 
-    private val api: LokiGroupChatAPI
+    private val api: LokiPublicChatAPI
         get() = {
             val userPrivateKey = IdentityKeyUtil.getIdentityKeyPair(context).privateKey.serialize()
             val lokiAPIDatabase = DatabaseFactory.getLokiAPIDatabase(context)
             val lokiUserDatabase = DatabaseFactory.getLokiUserDatabase(context)
-            LokiGroupChatAPI(userHexEncodedPublicKey, userPrivateKey, lokiAPIDatabase, lokiUserDatabase)
+            LokiPublicChatAPI(userHexEncodedPublicKey, userPrivateKey, lokiAPIDatabase, lokiUserDatabase)
         }()
     // endregion
 
@@ -94,7 +94,7 @@ class LokiGroupChatPoller(private val context: Context, private val group: LokiG
 
     // region Polling
     private fun pollForNewMessages() {
-        fun processIncomingMessage(message: LokiGroupMessage) {
+        fun processIncomingMessage(message: LokiPublicChatMessage) {
             val id = group.id.toByteArray()
             val x1 = SignalServiceGroup(SignalServiceGroup.Type.UPDATE, id, null, null, null)
             val quote: SignalServiceDataMessage.Quote?
@@ -113,7 +113,7 @@ class LokiGroupChatPoller(private val context: Context, private val group: LokiG
                 PushDecryptJob(context).handleTextMessage(x3, x2, Optional.absent(), Optional.of(message.serverID))
             }
         }
-        fun processOutgoingMessage(message: LokiGroupMessage) {
+        fun processOutgoingMessage(message: LokiPublicChatMessage) {
             val messageServerID = message.serverID ?: return
             val lokiMessageDatabase = DatabaseFactory.getLokiMessageDatabase(context)
             val isDuplicate = lokiMessageDatabase.getMessageID(messageServerID) != null

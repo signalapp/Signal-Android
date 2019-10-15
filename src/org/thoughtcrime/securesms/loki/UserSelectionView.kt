@@ -13,7 +13,10 @@ import org.thoughtcrime.securesms.database.DatabaseFactory
 class UserSelectionView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : ListView(context, attrs, defStyleAttr) {
     private var users = listOf<Tuple2<String, String>>()
         set(newValue) { field = newValue; userSelectionViewAdapter.users = newValue }
-    private var hasGroupContext = false
+    var publicChatServer: String? = null
+        set(newValue) { field = newValue; userSelectionViewAdapter.publicChatServer = publicChatServer }
+    var publicChatChannel: Long? = null
+        set(newValue) { field = newValue; userSelectionViewAdapter.publicChatChannel = publicChatChannel }
     var onUserSelected: ((Tuple2<String, String>) -> Unit)? = null
 
     private val userSelectionViewAdapter by lazy { Adapter(context) }
@@ -21,7 +24,8 @@ class UserSelectionView(context: Context, attrs: AttributeSet?, defStyleAttr: In
     private class Adapter(private val context: Context) : BaseAdapter() {
         var users = listOf<Tuple2<String, String>>()
             set(newValue) { field = newValue; notifyDataSetChanged() }
-        var hasGroupContext = false
+        var publicChatServer: String? = null
+        var publicChatChannel: Long? = null
 
         override fun getCount(): Int {
             return users.count()
@@ -39,7 +43,8 @@ class UserSelectionView(context: Context, attrs: AttributeSet?, defStyleAttr: In
             val cell = cellToBeReused as UserSelectionViewCell? ?: UserSelectionViewCell.inflate(LayoutInflater.from(context), parent)
             val user = getItem(position)
             cell.user = user
-            cell.hasGroupContext = hasGroupContext
+            cell.publicChatServer = publicChatServer
+            cell.publicChatChannel = publicChatChannel
             return cell
         }
     }
@@ -56,7 +61,11 @@ class UserSelectionView(context: Context, attrs: AttributeSet?, defStyleAttr: In
     }
 
     fun show(users: List<Tuple2<String, String>>, threadID: Long) {
-        hasGroupContext = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(threadID)!!.isGroupRecipient
+        val publicChat = DatabaseFactory.getLokiThreadDatabase(context).getPublicChat(threadID)
+        if (publicChat != null) {
+            publicChatServer = publicChat.server
+            publicChatChannel = publicChat.channel
+        }
         this.users = users
         val layoutParams = this.layoutParams as ViewGroup.LayoutParams
         layoutParams.height = toPx(6 + Math.min(users.count(), 4) * 52, resources)

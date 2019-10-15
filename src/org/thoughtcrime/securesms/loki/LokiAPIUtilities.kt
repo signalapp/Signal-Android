@@ -9,7 +9,7 @@ import org.whispersystems.signalservice.loki.api.LokiAPI
 object LokiAPIUtilities {
 
     fun populateUserIDCacheIfNeeded(threadID: Long, context: Context) {
-        if (LokiAPI.userIDCache[threadID] != null) { return }
+        if (LokiAPI.userHexEncodedPublicKeyCache[threadID] != null) { return }
         val result = mutableSetOf<String>()
         val messageDatabase = DatabaseFactory.getMmsSmsDatabase(context)
         val reader = messageDatabase.readerFor(messageDatabase.getConversation(threadID))
@@ -24,6 +24,6 @@ object LokiAPIUtilities {
         }
         reader.close()
         result.add(TextSecurePreferences.getLocalNumber(context))
-        LokiAPI.userIDCache[threadID] = result
+        LokiAPI.userHexEncodedPublicKeyCache[threadID] = result
     }
 }
