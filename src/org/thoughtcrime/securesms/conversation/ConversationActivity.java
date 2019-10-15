@@ -2775,7 +2775,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         } catch (Exception exception) {
           mentions.clear(); // TODO: Dirty workaround for ConcurrentModificationException
         }
-      } else if (text.length() > 0) {
+      }
+      if (text.length() > 0) {
         if (currentMentionStartIndex > text.length()) {
             resetMentions(); // Should never occur
         }
