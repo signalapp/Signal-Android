@@ -7,6 +7,7 @@ import android.app.NotificationManager;
 import android.app.job.JobScheduler;
 import android.content.Context;
 import android.hardware.display.DisplayManager;
+import android.location.LocationManager;
 import android.media.AudioManager;
 import android.net.ConnectivityManager;
 import android.os.Build;
@@ -15,6 +16,8 @@ import android.os.Vibrator;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.core.content.ContextCompat;
+
 import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
 import android.view.WindowManager;
@@ -78,5 +81,9 @@ public class ServiceUtil {
 
   public static ActivityManager getActivityManager(@NonNull Context context) {
     return (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+  }
+
+  public static LocationManager getLocationManager(@NonNull Context context) {
+    return ContextCompat.getSystemService(context, LocationManager.class);
   }
 }
