@@ -40,7 +40,7 @@ public abstract class Job {
     this.parameters = parameters;
   }
 
-  public final String getId() {
+  public final @NonNull String getId() {
     return parameters.getId();
   }
 
@@ -254,7 +254,7 @@ public abstract class Job {
       return queue;
     }
 
-    List<String> getConstraintKeys() {
+    @NonNull List<String> getConstraintKeys() {
       return constraintKeys;
     }
 
