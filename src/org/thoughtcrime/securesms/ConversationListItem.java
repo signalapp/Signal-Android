@@ -273,7 +273,7 @@ public class ConversationListItem extends RelativeLayout
 
   private @NonNull CharSequence getTrimmedSnippet(@NonNull CharSequence snippet) {
     LokiAPIUtilities.INSTANCE.populateUserHexEncodedPublicKeyCacheIfNeeded(threadId, getContext()); // TODO: Terrible place to do this, but okay for now
-    snippet = MentionUtilities.highlightMentions(snippet, this.recipient.isGroupRecipient(), getContext());
+    snippet = MentionUtilities.highlightMentions(snippet, threadId, getContext());
     return snippet.length() <= MAX_SNIPPET_LENGTH ? snippet : snippet.subSequence(0, MAX_SNIPPET_LENGTH);
   }
 

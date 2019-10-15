@@ -52,9 +52,17 @@ public class Address implements Parcelable, Comparable<Address> {
 
   private final String address;
 
+  // Loki - Special flag to indicate whether this address represents a public chat or not
+  private Boolean isPublicChat;
+
   private Address(@NonNull String address) {
+    this(address, false);
+  }
+
+  private Address(@NonNull String address, Boolean isPublicChat) {
     if (address == null) throw new AssertionError(address);
     this.address = address;
+    this.isPublicChat = isPublicChat;
   }
 
   public Address(Parcel in) {
@@ -67,6 +75,10 @@ public class Address implements Parcelable, Comparable<Address> {
 
   public static Address fromExternal(@NonNull Context context, @Nullable String external) {
     return Address.fromSerialized(external);
+  }
+
+  public static @NonNull Address fromPublicChatGroupID(@NonNull String serialized) {
+    return new Address(serialized, true);
   }
 
   public static @NonNull List<Address> fromSerializedList(@NonNull String serialized, char delimiter) {
@@ -131,7 +143,7 @@ public class Address implements Parcelable, Comparable<Address> {
   }
 
   public @NonNull String toPhoneString() {
-    if (!isPhone()) {
+    if (!isPhone() && !isPublicChat) {
       if (isEmail()) throw new AssertionError("Not e164, is email");
       if (isGroup()) throw new AssertionError("Not e164, is group");
       throw new AssertionError("Not e164, unknown");

@@ -71,7 +71,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int lokiV2                           = 23;
   private static final int lokiV3                           = 24;
 
-  private static final int    DATABASE_VERSION = lokiV2; // Loki - onUpgrade(...) must be updated to use Loki version numbers if Signal makes any database changes
+  private static final int    DATABASE_VERSION = lokiV3; // Loki - onUpgrade(...) must be updated to use Loki version numbers if Signal makes any database changes
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -131,6 +131,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     db.execSQL(LokiMessageDatabase.getCreateTableCommand());
     db.execSQL(LokiThreadDatabase.getCreateFriendRequestTableCommand());
     db.execSQL(LokiThreadDatabase.getCreateSessionResetTableCommand());
+    db.execSQL(LokiThreadDatabase.getCreatePublicChatTableCommand());
     db.execSQL(LokiUserDatabase.getCreateDisplayNameTableCommand());
     db.execSQL(LokiUserDatabase.getCreateServerDisplayNameTableCommand());
 
@@ -497,6 +498,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
       if (oldVersion < lokiV3) {
         db.execSQL(LokiAPIDatabase.getCreatePairingAuthorisationTableCommand());
+        db.execSQL(LokiThreadDatabase.getCreatePublicChatTableCommand());
       }
 
       db.setTransactionSuccessful();

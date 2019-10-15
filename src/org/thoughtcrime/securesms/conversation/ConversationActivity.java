@@ -157,6 +157,7 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.FriendRequestViewDelegate;
 import org.thoughtcrime.securesms.loki.LokiAPIUtilities;
+import org.thoughtcrime.securesms.loki.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.LokiThreadDatabaseDelegate;
 import org.thoughtcrime.securesms.loki.LokiUserDatabase;
 import org.thoughtcrime.securesms.loki.MentionCandidateSelectionView;
@@ -2765,24 +2766,25 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       if (isBackspace) {
         currentMentionStartIndex = -1;
         mentionCandidateSelectionView.hide();
-        try {
-          for (Mention mention : mentions) {
-            if (!text.contains(mention.getDisplayName())) {
-              mentions.remove(mention);
-            }
+        ArrayList<Mention> mentionsToRemove = new ArrayList<>();
+        for (Mention mention : mentions) {
+          if (!text.contains(mention.getDisplayName())) {
+            mentionsToRemove.add(mention);
           }
-        } catch (Exception exception) {
-          mentions.clear(); // TODO: Dirty workaround for ConcurrentModificationException
         }
-      } else if (text.length() > 0) {
+        mentions.removeAll(mentionsToRemove);
+      }
+      if (text.length() > 0) {
         if (currentMentionStartIndex > text.length()) {
             resetMentions(); // Should never occur
         }
         int lastCharacterIndex = text.length() - 1;
         char lastCharacter = text.charAt(lastCharacterIndex);
+        String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(ConversationActivity.this);
+        LokiThreadDatabase threadDatabase = DatabaseFactory.getLokiThreadDatabase(ConversationActivity.this);
         LokiUserDatabase userDatabase = DatabaseFactory.getLokiUserDatabase(ConversationActivity.this);
         if (lastCharacter == '@') {
-          List<Mention> mentionCandidates = LokiAPI.Companion.getMentionCandidates("", threadId, userDatabase);
+          List<Mention> mentionCandidates = LokiAPI.Companion.getMentionCandidates("", threadId, userHexEncodedPublicKey, threadDatabase, userDatabase);
           currentMentionStartIndex = lastCharacterIndex;
           mentionCandidateSelectionView.show(mentionCandidates, threadId);
         } else if (Character.isWhitespace(lastCharacter)) {
@@ -2791,7 +2793,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         } else {
           if (currentMentionStartIndex != -1) {
             String query = text.substring(currentMentionStartIndex + 1); // + 1 to get rid of the @
-            List<Mention> mentionCandidates = LokiAPI.Companion.getMentionCandidates(query, threadId, userDatabase);
+            List<Mention> mentionCandidates = LokiAPI.Companion.getMentionCandidates(query, threadId, userHexEncodedPublicKey, threadDatabase, userDatabase);
             mentionCandidateSelectionView.show(mentionCandidates, threadId);
           }
         }

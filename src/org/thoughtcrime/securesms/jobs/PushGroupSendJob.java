@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
+import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
@@ -44,7 +45,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceGroup;
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupContext;
-import org.whispersystems.signalservice.loki.api.LokiGroupChatAPI;
+import org.whispersystems.signalservice.loki.api.LokiPublicChat;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -285,7 +286,16 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
 
   private @NonNull List<Address> getGroupMessageRecipients(String groupId, long messageId) {
     ArrayList<Address> result = new ArrayList<>();
-    result.add(Address.fromSerialized(LokiGroupChatAPI.getPublicChatServer())); // Loki - All group messages should be directed to the Loki Public Chat for now
+
+    // Loki - All group messages should be directed to their respective servers
+    long threadID = GroupManager.getThreadIdFromGroupId(groupId, context);
+    LokiPublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(context).getPublicChat(threadID);
+    if (publicChat != null) {
+      // We need to somehow maintain information that will allow the sender to map
+      // a recipient to the correct public chat thread, and so this might be a bit hacky
+      result.add(Address.fromPublicChatGroupID(groupId));
+    }
+
     return result;
 
     /*

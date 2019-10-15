@@ -50,6 +50,10 @@ fun Cursor.getString(columnName: String): String {
     return getString(getColumnIndexOrThrow(columnName))
 }
 
+fun Cursor.getLong(columnName: String): Long {
+    return getLong(getColumnIndexOrThrow(columnName))
+}
+
 fun Cursor.getBase64EncodedData(columnName: String): ByteArray {
     return Base64.decode(getString(columnName))
 }

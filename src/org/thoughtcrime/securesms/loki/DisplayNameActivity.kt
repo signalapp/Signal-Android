@@ -8,11 +8,9 @@ import network.loki.messenger.R
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.BaseActionBarActivity
 import org.thoughtcrime.securesms.ConversationListActivity
-import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.crypto.ProfileCipher
-import org.whispersystems.signalservice.loki.api.LokiGroupChatAPI
 import org.whispersystems.signalservice.loki.utilities.Analytics
 
 class DisplayNameActivity : BaseActionBarActivity() {
@@ -45,10 +43,14 @@ class DisplayNameActivity : BaseActionBarActivity() {
         application.setUpStorageAPIIfNeeded()
         startActivity(Intent(this, ConversationListActivity::class.java))
         finish()
-        val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this)
-        val userPrivateKey = IdentityKeyUtil.getIdentityKeyPair(this).privateKey.serialize()
-        val apiDatabase = DatabaseFactory.getLokiAPIDatabase(this)
-        val userDatabase = DatabaseFactory.getLokiUserDatabase(this)
-        LokiGroupChatAPI(userHexEncodedPublicKey, userPrivateKey, apiDatabase, userDatabase).setDisplayName(name, LokiGroupChatAPI.publicChatServer)
+        val publicChatAPI = ApplicationContext.getInstance(this).lokiPublicChatAPI
+        if (publicChatAPI != null) {
+            application.createDefaultPublicChatsIfNeeded()
+            application.createRSSFeedsIfNeeded()
+            application.lokiPublicChatManager.startPollersIfNeeded()
+            application.startRSSFeedPollersIfNeeded()
+            val servers = DatabaseFactory.getLokiThreadDatabase(this).getAllPublicChatServers()
+            servers.forEach { publicChatAPI.setDisplayName(name, it) }
+        }
     }
 }

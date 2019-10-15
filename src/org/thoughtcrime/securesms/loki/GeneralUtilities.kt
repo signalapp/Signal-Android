@@ -7,7 +7,6 @@ import android.support.annotation.ColorRes
 import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.whispersystems.signalservice.loki.api.LokiGroupChatAPI
 import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus
 import kotlin.math.roundToInt
 
@@ -24,8 +23,8 @@ fun toPx(dp: Int, resources: Resources): Int {
     return (dp * scale).roundToInt()
 }
 
-fun isGroupRecipient(recipient: String): Boolean {
-    return (LokiGroupChatAPI.publicChatServer == recipient)
+fun isPublicChat(context: Context, recipient: String): Boolean {
+    return DatabaseFactory.getLokiThreadDatabase(context).getAllPublicChats().values.map { it.server }.contains(recipient)
 }
 
 fun getFriendPublicKeys(context: Context, devicePublicKeys: Set<String>): Set<String> {

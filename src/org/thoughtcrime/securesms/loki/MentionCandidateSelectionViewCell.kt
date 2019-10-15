@@ -10,13 +10,14 @@ import android.view.ViewOutlineProvider
 import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.cell_mention_candidate_selection_view.view.*
 import network.loki.messenger.R
-import org.whispersystems.signalservice.loki.api.LokiGroupChatAPI
+import org.whispersystems.signalservice.loki.api.LokiPublicChatAPI
 import org.whispersystems.signalservice.loki.messaging.Mention
 
 class MentionCandidateSelectionViewCell(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : LinearLayout(context, attrs, defStyleAttr) {
     var mentionCandidate = Mention("", "")
         set(newValue) { field = newValue; update() }
-    var hasGroupContext = false
+    var publicChatServer: String? = null
+    var publicChatChannel: Long? = null
 
     constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
     constructor(context: Context) : this(context, null)
@@ -42,7 +43,11 @@ class MentionCandidateSelectionViewCell(context: Context, attrs: AttributeSet?, 
     private fun update() {
         displayNameTextView.text = mentionCandidate.displayName
         profilePictureImageView.update(mentionCandidate.hexEncodedPublicKey)
-        val isUserModerator = LokiGroupChatAPI.isUserModerator(mentionCandidate.hexEncodedPublicKey, LokiGroupChatAPI.publicChatServerID, LokiGroupChatAPI.publicChatServer)
-        moderatorIconImageView.visibility = if (isUserModerator && hasGroupContext) View.VISIBLE else View.GONE
+        if (publicChatServer != null && publicChatChannel != null) {
+            val isUserModerator = LokiPublicChatAPI.isUserModerator(mentionCandidate.hexEncodedPublicKey, publicChatChannel!!, publicChatServer!!)
+            moderatorIconImageView.visibility = if (isUserModerator) View.VISIBLE else View.GONE
+        } else {
+            moderatorIconImageView.visibility = View.GONE
+        }
     }
 }

@@ -213,7 +213,7 @@ public class MessageSender {
 
     // Just send the message normally if it's a group message
     String recipientPublicKey = recipient.getAddress().serialize();
-    if (GeneralUtilitiesKt.isGroupRecipient(recipientPublicKey)) {
+    if (GeneralUtilitiesKt.isPublicChat(context, recipientPublicKey)) {
       jobManager.add(new PushTextSendJob(messageId, recipient.getAddress()));
       return;
     }
@@ -243,7 +243,7 @@ public class MessageSender {
 
     // Just send the message normally if it's a group message
     String recipientPublicKey = recipient.getAddress().serialize();
-    if (GeneralUtilitiesKt.isGroupRecipient(recipientPublicKey)) {
+    if (GeneralUtilitiesKt.isPublicChat(context, recipientPublicKey)) {
       PushMediaSendJob.enqueue(context, jobManager, messageId, recipient.getAddress());
       return;
     }

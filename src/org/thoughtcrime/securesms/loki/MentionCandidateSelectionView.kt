@@ -13,7 +13,10 @@ import org.whispersystems.signalservice.loki.messaging.Mention
 class MentionCandidateSelectionView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : ListView(context, attrs, defStyleAttr) {
     private var mentionCandidates = listOf<Mention>()
         set(newValue) { field = newValue; mentionCandidateSelectionViewAdapter.mentionCandidates = newValue }
-    private var hasGroupContext = false
+    var publicChatServer: String? = null
+        set(newValue) { field = newValue; mentionCandidateSelectionViewAdapter.publicChatServer = publicChatServer }
+    var publicChatChannel: Long? = null
+        set(newValue) { field = newValue; mentionCandidateSelectionViewAdapter.publicChatChannel = publicChatChannel }
     var onMentionCandidateSelected: ((Mention) -> Unit)? = null
 
     private val mentionCandidateSelectionViewAdapter by lazy { Adapter(context) }
@@ -21,7 +24,8 @@ class MentionCandidateSelectionView(context: Context, attrs: AttributeSet?, defS
     private class Adapter(private val context: Context) : BaseAdapter() {
         var mentionCandidates = listOf<Mention>()
             set(newValue) { field = newValue; notifyDataSetChanged() }
-        var hasGroupContext = false
+        var publicChatServer: String? = null
+        var publicChatChannel: Long? = null
 
         override fun getCount(): Int {
             return mentionCandidates.count()
@@ -39,7 +43,8 @@ class MentionCandidateSelectionView(context: Context, attrs: AttributeSet?, defS
             val cell = cellToBeReused as MentionCandidateSelectionViewCell? ?: MentionCandidateSelectionViewCell.inflate(LayoutInflater.from(context), parent)
             val mentionCandidate = getItem(position)
             cell.mentionCandidate = mentionCandidate
-            cell.hasGroupContext = hasGroupContext
+            cell.publicChatServer = publicChatServer
+            cell.publicChatChannel = publicChatChannel
             return cell
         }
     }
@@ -56,7 +61,11 @@ class MentionCandidateSelectionView(context: Context, attrs: AttributeSet?, defS
     }
 
     fun show(mentionCandidates: List<Mention>, threadID: Long) {
-        hasGroupContext = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(threadID)!!.isGroupRecipient
+        val publicChat = DatabaseFactory.getLokiThreadDatabase(context).getPublicChat(threadID)
+        if (publicChat != null) {
+            publicChatServer = publicChat.server
+            publicChatChannel = publicChat.channel
+        }
         this.mentionCandidates = mentionCandidates
         val layoutParams = this.layoutParams as ViewGroup.LayoutParams
         layoutParams.height = toPx(6 + Math.min(mentionCandidates.count(), 4) * 52, resources)

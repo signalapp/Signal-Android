@@ -113,7 +113,8 @@ import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.views.Stub;
 import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.loki.api.LokiGroupChatAPI;
+import org.whispersystems.signalservice.loki.api.LokiPublicChat;
+import org.whispersystems.signalservice.loki.api.LokiPublicChatAPI;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -473,7 +474,7 @@ public class ConversationItem extends LinearLayout
     if (isCaptionlessMms(messageRecord)) {
       bodyText.setVisibility(View.GONE);
     } else { ;
-      Spannable text = MentionUtilities.highlightMentions(linkifyMessageBody(messageRecord.getDisplayBody(context), batchSelected.isEmpty()), messageRecord.isOutgoing(), isGroupThread, context);
+      Spannable text = MentionUtilities.highlightMentions(linkifyMessageBody(messageRecord.getDisplayBody(context), batchSelected.isEmpty()), messageRecord.isOutgoing(), messageRecord.getThreadId(), context);
       text = SearchUtil.getHighlightedSpan(locale, () -> new BackgroundColorSpan(Color.YELLOW), text, searchQuery);
       text = SearchUtil.getHighlightedSpan(locale, () -> new ForegroundColorSpan(Color.BLACK), text, searchQuery);
 
@@ -789,7 +790,7 @@ public class ConversationItem extends LinearLayout
     if (current.isMms() && !current.isMmsNotification() && ((MediaMmsMessageRecord)current).getQuote() != null) {
       Quote quote = ((MediaMmsMessageRecord)current).getQuote();
       //noinspection ConstantConditions
-      String quoteBody = MentionUtilities.highlightMentions(quote.getText(), isGroupThread, context);
+      String quoteBody = MentionUtilities.highlightMentions(quote.getText(), current.getThreadId(), context);
       quoteView.setQuote(glideRequests, quote.getId(), Recipient.from(context, quote.getAuthor(), true), quoteBody, quote.isOriginalMissing(), quote.getAttachment(), conversationRecipient);
       quoteView.setVisibility(View.VISIBLE);
       quoteView.getLayoutParams().width = ViewGroup.LayoutParams.WRAP_CONTENT;
@@ -936,13 +937,14 @@ public class ConversationItem extends LinearLayout
 
       if (!next.isPresent() || next.get().isUpdate() || !current.getRecipient().getAddress().equals(next.get().getRecipient().getAddress())) {
         contactPhoto.setVisibility(VISIBLE);
-        int visibility;
-        if (conversationRecipient.getName() != null && conversationRecipient.getName().equals("Loki Public Chat")) {
-          boolean isModerator = LokiGroupChatAPI.Companion.isUserModerator(current.getRecipient().getAddress().toString(), LokiGroupChatAPI.getPublicChatServerID(), LokiGroupChatAPI.getPublicChatServer());
+        int visibility = View.GONE;
+
+        LokiPublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(context).getPublicChat(messageRecord.getThreadId());
+        if (publicChat != null) {
+          boolean isModerator = LokiPublicChatAPI.Companion.isUserModerator(current.getRecipient().getAddress().toString(), publicChat.getChannel(), publicChat.getServer());
           visibility = isModerator ? View.VISIBLE : View.GONE;
-        } else {
-          visibility = View.GONE;
         }
+
         moderatorIconImageView.setVisibility(visibility);
       } else {
         contactPhoto.setVisibility(GONE);

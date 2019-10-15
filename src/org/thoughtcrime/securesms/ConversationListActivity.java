@@ -29,6 +29,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.TooltipCompat;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,6 +45,7 @@ import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.lock.RegistrationLockDialog;
+import org.thoughtcrime.securesms.loki.AddPublicChatActivity;
 import org.thoughtcrime.securesms.loki.JazzIdenticonDrawable;
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
@@ -82,9 +84,9 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     dynamicLanguage.onCreate(this);
     if (TextSecurePreferences.getLocalNumber(this) != null) {
       ApplicationContext application = ApplicationContext.getInstance(this);
-      application.createGroupChatsIfNeeded();
+      application.createDefaultPublicChatsIfNeeded();
       application.createRSSFeedsIfNeeded();
-      application.startGroupChatPollersIfNeeded();
+      application.getLokiPublicChatManager().startPollersIfNeeded();
       application.startRSSFeedPollersIfNeeded();
     }
   }
@@ -127,18 +129,15 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
   @Override
   public boolean onPrepareOptionsMenu(Menu menu) {
-    return false;
-    /*
     MenuInflater inflater = this.getMenuInflater();
     menu.clear();
 
     inflater.inflate(R.menu.text_secure_normal, menu);
 
-    menu.findItem(R.id.menu_clear_passphrase).setVisible(!TextSecurePreferences.isPasswordDisabled(this));
+//    menu.findItem(R.id.menu_clear_passphrase).setVisible(!TextSecurePreferences.isPasswordDisabled(this));
 
     super.onPrepareOptionsMenu(menu);
     return true;
-     */
   }
 
   private void initializeSearchListener() {
@@ -235,12 +234,13 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     super.onOptionsItemSelected(item);
 
     switch (item.getItemId()) {
-    case R.id.menu_new_group:         createGroup();           return true;
-    case R.id.menu_settings:          handleDisplaySettings(); return true;
-    case R.id.menu_clear_passphrase:  handleClearPassphrase(); return true;
-    case R.id.menu_mark_all_read:     handleMarkAllRead();     return true;
-    case R.id.menu_invite:            handleInvite();          return true;
-    case R.id.menu_help:              handleHelp();            return true;
+//    case R.id.menu_new_group:                                createGroup();           return true;
+//    case R.id.menu_settings:                                 handleDisplaySettings(); return true;
+//    case R.id.menu_clear_passphrase:                         handleClearPassphrase(); return true;
+//    case R.id.menu_mark_all_read:                            handleMarkAllRead();     return true;
+//    case R.id.menu_invite:                                   handleInvite();          return true;
+//    case R.id.menu_help:                                     handleHelp();            return true;
+    case R.id.menu_conversation_list_add_public_chat_option: addNewPublicChat(); return true;
     }
 
     return false;
@@ -320,5 +320,9 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     } catch (ActivityNotFoundException e) {
       Toast.makeText(this, R.string.ConversationListActivity_there_is_no_browser_installed_on_your_device, Toast.LENGTH_LONG).show();
     }
+  }
+
+  private void addNewPublicChat() {
+    startActivity(new Intent(this, AddPublicChatActivity.class));
   }
 }

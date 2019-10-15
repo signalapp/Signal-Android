@@ -42,8 +42,8 @@
                 android:icon="@drawable/icon_qr_code"/>
 
     <Preference android:key="preference_category_link_device"
-        android:title="@string/activity_settings_link_device_button_title"
-        android:icon="@drawable/icon_link"/>
+                android:title="@string/activity_settings_link_device_button_title"
+                android:icon="@drawable/icon_link"/>
 
     <Preference android:key="preference_category_seed"
                 android:title="@string/activity_settings_show_seed_button_title"

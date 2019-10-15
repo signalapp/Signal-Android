@@ -28,10 +28,10 @@ import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
-import org.thoughtcrime.securesms.util.GroupUtil;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.signalservice.loki.api.LokiGroupChatAPI;
+import org.whispersystems.signalservice.loki.api.LokiPublicChat;
 
 import java.util.List;
 
@@ -194,19 +194,16 @@ public class QuoteView extends FrameLayout implements RecipientModifiedListener 
     boolean isOwnNumber = Util.isOwnNumber(getContext(), author.getAddress());
 
     String quoteeDisplayName = author.toShortString();
-    if (quoteeDisplayName.equals(author.getAddress().toString())) {
-      quoteeDisplayName = DatabaseFactory.getLokiUserDatabase(getContext()).getServerDisplayName(LokiGroupChatAPI.getPublicChatServer() + "." + LokiGroupChatAPI.getPublicChatServerID(), author.getAddress().toString());
-    }
 
-    // If we're in a group then try and use the display name in the group
-    if (conversationRecipient.isGroupRecipient()) {
-      try {
-        String serverId = GroupUtil.getDecodedStringId(conversationRecipient.getAddress().serialize());
-        String senderDisplayName = DatabaseFactory.getLokiUserDatabase(getContext()).getServerDisplayName(serverId, author.getAddress().serialize());
-        if (senderDisplayName != null) { quoteeDisplayName = senderDisplayName; }
-      } catch (Exception e) {
-        // Do nothing
-      }
+    long threadID = DatabaseFactory.getThreadDatabase(getContext()).getThreadIdFor(conversationRecipient);
+    String senderHexEncodedPublicKey = author.getAddress().serialize();
+    LokiPublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(getContext()).getPublicChat(threadID);
+    if (senderHexEncodedPublicKey.equalsIgnoreCase(TextSecurePreferences.getLocalNumber(getContext()))) {
+      quoteeDisplayName = TextSecurePreferences.getProfileName(getContext());
+    } else if (publicChat != null) {
+      quoteeDisplayName = DatabaseFactory.getLokiUserDatabase(getContext()).getServerDisplayName(publicChat.getId(), senderHexEncodedPublicKey);
+    } else {
+      quoteeDisplayName = DatabaseFactory.getLokiUserDatabase(getContext()).getDisplayName(senderHexEncodedPublicKey);
     }
 
     authorView.setText(isOwnNumber ? getContext().getString(R.string.QuoteView_you) : quoteeDisplayName);
