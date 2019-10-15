@@ -186,7 +186,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
       mixpanel.trackMap(event, properties);
       return Unit.INSTANCE;
     };
-
+    // Loki - Set up public chat manager
     lokiPublicChatManager = new LokiPublicChatManager(this);
   }
 
@@ -198,6 +198,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     KeyCachingService.onAppForegrounded(this);
     // Loki - Start long polling if needed
     startLongPollingIfNeeded();
+    lokiPublicChatManager.startPollersIfNeeded();
     setUpStorageAPIIfNeeded();
   }
 
@@ -261,7 +262,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
       LokiUserDatabase userDatabase = DatabaseFactory.getLokiUserDatabase(this);
       lokiPublicChatAPI = new LokiPublicChatAPI(userHexEncodedPublicKey, userPrivateKey, apiDatabase, userDatabase);
     }
-
     return lokiPublicChatAPI;
   }
 
@@ -501,20 +501,20 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     return new LokiRSSFeed("loki.network.messenger-updates.feed", "https://loki.network/category/messenger-updates/feed", "Loki Messenger Updates", false);
   }
 
-  public void createGroupChatsIfNeeded() {
-    List<LokiPublicChat> defaultChats = LokiPublicChatAPI.Companion.getDefaultChats(BuildConfig.DEBUG);
-    for (LokiPublicChat chat : defaultChats) {
-      long threadID = GroupManager.getThreadId(chat.getId(), this);
-      String migrationKey = chat.getId() + "_migrated";
+  public void createDefaultPublicChatsIfNeeded() {
+    List<LokiPublicChat> defaultPublicChats = LokiPublicChatAPI.Companion.getDefaultChats(BuildConfig.DEBUG);
+    for (LokiPublicChat publiChat : defaultPublicChats) {
+      long threadID = GroupManager.getThreadId(publiChat.getId(), this);
+      String migrationKey = publiChat.getId() + "_migrated";
       boolean isChatMigrated = TextSecurePreferences.getBooleanPreference(this, migrationKey, false);
-      boolean isChatSetUp = TextSecurePreferences.isChatSetUp(this, chat.getId());
-      if (!isChatSetUp || !chat.isDeletable()) {
-        lokiPublicChatManager.addChat(chat.getServer(), chat.getChannel(), chat.getDisplayName());
-        TextSecurePreferences.markChatSetUp(this, chat.getId());
+      boolean isChatSetUp = TextSecurePreferences.isChatSetUp(this, publiChat.getId());
+      if (!isChatSetUp || !publiChat.isDeletable()) {
+        lokiPublicChatManager.addChat(publiChat.getServer(), publiChat.getChannel(), publiChat.getDisplayName());
+        TextSecurePreferences.markChatSetUp(this, publiChat.getId());
         TextSecurePreferences.setBooleanPreference(this, migrationKey, true);
       } else if (threadID > -1 && !isChatMigrated) {
-        // Migrate the old public chats.
-        DatabaseFactory.getLokiThreadDatabase(this).setPublicChat(chat, threadID);
+        // Migrate the old public chats
+        DatabaseFactory.getLokiThreadDatabase(this).setPublicChat(publiChat, threadID);
         TextSecurePreferences.setBooleanPreference(this, migrationKey, true);
       }
     }
@@ -570,10 +570,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
       }
     };
     this.getContentResolver().registerContentObserver(DatabaseContentProviders.Conversation.getUriForThread(threadID), true, observer);
-  }
-
-  public void startGroupChatPollersIfNeeded() {
-    lokiPublicChatManager.startPollersIfNeeded();
   }
 
   public void startRSSFeedPollersIfNeeded() {

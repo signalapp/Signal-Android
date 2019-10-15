@@ -82,9 +82,9 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     dynamicLanguage.onCreate(this);
     if (TextSecurePreferences.getLocalNumber(this) != null) {
       ApplicationContext application = ApplicationContext.getInstance(this);
-      application.createGroupChatsIfNeeded();
+      application.createDefaultPublicChatsIfNeeded();
       application.createRSSFeedsIfNeeded();
-      application.startGroupChatPollersIfNeeded();
+      application.getLokiPublicChatManager().startPollersIfNeeded();
       application.startRSSFeedPollersIfNeeded();
     }
   }

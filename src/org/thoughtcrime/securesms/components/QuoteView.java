@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.loki.api.LokiPublicChat;
@@ -194,14 +195,15 @@ public class QuoteView extends FrameLayout implements RecipientModifiedListener 
 
     String quoteeDisplayName = author.toShortString();
 
-    // If we're in a group then try and use the display name in the group
-    if (conversationRecipient.isGroupRecipient()) {
-      long threadId = DatabaseFactory.getThreadDatabase(getContext()).getThreadIdFor(conversationRecipient);
-      LokiPublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(getContext()).getPublicChat(threadId);
-      if (publicChat != null) {
-        String senderDisplayName = DatabaseFactory.getLokiUserDatabase(getContext()).getServerDisplayName(publicChat.getId(), author.getAddress().serialize());
-        if (senderDisplayName != null) { quoteeDisplayName = senderDisplayName; }
-      }
+    long threadID = DatabaseFactory.getThreadDatabase(getContext()).getThreadIdFor(conversationRecipient);
+    String senderHexEncodedPublicKey = author.getAddress().serialize();
+    LokiPublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(getContext()).getPublicChat(threadID);
+    if (senderHexEncodedPublicKey.equalsIgnoreCase(TextSecurePreferences.getLocalNumber(getContext()))) {
+      quoteeDisplayName = TextSecurePreferences.getProfileName(getContext());
+    } else if (publicChat != null) {
+      quoteeDisplayName = DatabaseFactory.getLokiUserDatabase(getContext()).getServerDisplayName(publicChat.getId(), senderHexEncodedPublicKey);
+    } else {
+      quoteeDisplayName = DatabaseFactory.getLokiUserDatabase(getContext()).getDisplayName(senderHexEncodedPublicKey);
     }
 
     authorView.setText(isOwnNumber ? getContext().getString(R.string.QuoteView_you) : quoteeDisplayName);

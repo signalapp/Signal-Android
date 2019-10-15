@@ -27,7 +27,7 @@ class LokiThreadDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
         public val publicChat = "public_chat"
         @JvmStatic val createFriendRequestTableCommand = "CREATE TABLE $friendRequestTableName ($threadID INTEGER PRIMARY KEY, $friendRequestStatus INTEGER DEFAULT 0);"
         @JvmStatic val createSessionResetTableCommand = "CREATE TABLE $sessionResetTableName ($threadID INTEGER PRIMARY KEY, $sessionResetStatus INTEGER DEFAULT 0);"
-        @JvmStatic val createGroupChatMappingTableCommand = "CREATE TABLE $publicChatTableName ($threadID INTEGER PRIMARY KEY, $publicChat TEXT);"
+        @JvmStatic val createPublicChatTableCommand = "CREATE TABLE $publicChatTableName ($threadID INTEGER PRIMARY KEY, $publicChat TEXT);"
     }
 
     override fun getThreadID(hexEncodedPublicKey: String): Long {

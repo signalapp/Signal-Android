@@ -380,8 +380,8 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
         TextSecurePreferences.setProfileName(context, name);
         LokiPublicChatAPI publicChatAPI = ApplicationContext.getInstance(context).getLokiPublicChatAPI();
         if (publicChatAPI != null) {
-          Set<String> groupChatServers = DatabaseFactory.getLokiThreadDatabase(context).getAllPublicChatServers();
-          for (String server : groupChatServers) {
+          Set<String> servers = DatabaseFactory.getLokiThreadDatabase(context).getAllPublicChatServers();
+          for (String server : servers) {
             publicChatAPI.setDisplayName(name, server);
           }
         }

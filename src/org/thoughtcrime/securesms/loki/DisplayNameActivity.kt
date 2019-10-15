@@ -45,6 +45,10 @@ class DisplayNameActivity : BaseActionBarActivity() {
         finish()
         val publicChatAPI = ApplicationContext.getInstance(this).lokiPublicChatAPI
         if (publicChatAPI != null) {
+            application.createDefaultPublicChatsIfNeeded()
+            application.createRSSFeedsIfNeeded()
+            application.lokiPublicChatManager.startPollersIfNeeded()
+            application.startRSSFeedPollersIfNeeded()
             val servers = DatabaseFactory.getLokiThreadDatabase(this).getAllPublicChatServers()
             servers.forEach { publicChatAPI.setDisplayName(name, it) }
         }
