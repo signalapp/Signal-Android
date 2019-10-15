@@ -556,3 +556,9 @@ task qa {
   description 'Quality Assurance. Run before pushing.'
   dependsOn ':testPlayReleaseUnitTest', ':lintPlayRelease', ':assemblePlayDebug'
 }
+
+tasks.withType(Wrapper).configureEach {
+    gradleVersion = "5.2.1"
+    distributionType = Wrapper.DistributionType.ALL
+    distributionSha256Sum = "9dc729f6dbfbbc4df1692665d301e028976dacac296a126f16148941a9cf012e"
+}
