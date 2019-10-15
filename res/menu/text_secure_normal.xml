@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:title="@string/text_secure_normal__menu_new_group"
+    <item android:title="@string/activity_conversation_list_add_public_chat_button_title"
+          android:id="@+id/menu_conversation_list_add_public_chat_option"
+          android:icon="@drawable/ic_group_white_24dp"
+          app:showAsAction="always" />
+
+    <!-- <item android:title="@string/text_secure_normal__menu_new_group"
           android:id="@+id/menu_new_group" />
 
     <item android:title="@string/text_secure_normal__menu_clear_passphrase"
@@ -17,6 +23,6 @@
           android:id="@+id/menu_settings" />
 
     <item android:title="@string/text_secure_normal__help"
-          android:id="@+id/menu_help"/>
+          android:id="@+id/menu_help"/> -->
 
 </menu>

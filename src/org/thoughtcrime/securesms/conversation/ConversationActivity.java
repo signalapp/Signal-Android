@@ -2766,15 +2766,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       if (isBackspace) {
         currentMentionStartIndex = -1;
         mentionCandidateSelectionView.hide();
-        try {
-          for (Mention mention : mentions) {
-            if (!text.contains(mention.getDisplayName())) {
-              mentions.remove(mention);
-            }
+        ArrayList<Mention> mentionsToRemove = new ArrayList<>();
+        for (Mention mention : mentions) {
+          if (!text.contains(mention.getDisplayName())) {
+            mentionsToRemove.add(mention);
           }
-        } catch (Exception exception) {
-          mentions.clear(); // TODO: Dirty workaround for ConcurrentModificationException
         }
+        mentions.removeAll(mentionsToRemove);
       }
       if (text.length() > 0) {
         if (currentMentionStartIndex > text.length()) {
