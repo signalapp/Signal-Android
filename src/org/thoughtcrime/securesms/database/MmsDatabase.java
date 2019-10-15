@@ -921,6 +921,8 @@ public class MmsDatabase extends MessagingDatabase {
     if (notification.getFrom() != null) {
       Recipient recipient = Recipient.external(context, Util.toIsoString(notification.getFrom().getTextString()));
       contentValues.put(RECIPIENT_ID, recipient.getId().serialize());
+    } else {
+      contentValues.put(RECIPIENT_ID, RecipientId.UNKNOWN.serialize());
     }
 
     contentValues.put(MESSAGE_BOX, Types.BASE_INBOX_TYPE);
