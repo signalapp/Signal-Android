@@ -38,6 +38,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.ParcelFileDescriptor;
 import android.os.Vibrator;
 import android.provider.Browser;
 import android.provider.ContactsContract;
@@ -541,9 +542,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       supportInvalidateOptionsMenu();
       break;
     case TAKE_PHOTO:
-      if (attachmentManager.getCaptureUri() != null) {
-        setMedia(attachmentManager.getCaptureUri(), MediaType.IMAGE);
-      }
+      handleImageFromDeviceCameraApp();
       break;
     case ADD_CONTACT:
       onRecipientChanged(recipient.get());
@@ -618,6 +617,26 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       });
 
       break;
+    }
+  }
+
+  private void handleImageFromDeviceCameraApp() {
+    if (attachmentManager.getCaptureUri() == null) {
+      Log.w(TAG, "No image available.");
+      return;
+    }
+
+    try {
+      Uri mediaUri = BlobProvider.getInstance()
+                                 .forData(getContentResolver().openInputStream(attachmentManager.getCaptureUri()), 0L)
+                                 .withMimeType(MediaUtil.IMAGE_JPEG)
+                                 .createForSingleSessionOnDisk(this);
+
+      getContentResolver().delete(attachmentManager.getCaptureUri(), null, null);
+
+      setMedia(mediaUri, MediaType.IMAGE);
+    } catch (IOException ioe) {
+      Log.w(TAG, "Could not handle public image", ioe);
     }
   }
 
