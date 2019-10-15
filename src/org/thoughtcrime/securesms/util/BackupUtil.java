@@ -18,7 +18,19 @@ import java.util.Locale;
 
 public class BackupUtil {
 
+  private static class FilterBackups implements java.io.FilenameFilter {
+    public boolean accept(File dir, String name) {
+      return name.substring(0,6).equals("signal");
+    }
+  }
+
   private static final String TAG = BackupUtil.class.getSimpleName();
+
+  private static File[] listBackups() throws NoExternalStorageException {
+      File       backupDirectory = StorageUtil.getBackupDirectory();
+      FilterBackups filter = new FilterBackups();
+      return backupDirectory.listFiles(filter);
+  }
 
   public static @NonNull String getLastBackupTime(@NonNull Context context, @NonNull Locale locale) {
     try {
@@ -33,9 +45,9 @@ public class BackupUtil {
   }
 
   public static @Nullable BackupInfo getLatestBackup() throws NoExternalStorageException {
-    File       backupDirectory = StorageUtil.getBackupDirectory();
-    File[]     backups         = backupDirectory.listFiles();
+    
     BackupInfo latestBackup    = null;
+    File[] backups             = listBackups();
 
     for (File backup : backups) {
       long backupTimestamp = getBackupTimestamp(backup);
@@ -51,8 +63,7 @@ public class BackupUtil {
   @SuppressWarnings("ResultOfMethodCallIgnored")
   public static void deleteAllBackups() {
     try {
-      File   backupDirectory = StorageUtil.getBackupDirectory();
-      File[] backups         = backupDirectory.listFiles();
+      File[] backups = listBackups();
 
       for (File backup : backups) {
         if (backup.isFile()) backup.delete();
@@ -64,8 +75,7 @@ public class BackupUtil {
 
   public static void deleteOldBackups() {
     try {
-      File   backupDirectory = StorageUtil.getBackupDirectory();
-      File[] backups         = backupDirectory.listFiles();
+      File[] backups = listBackups();
 
       if (backups != null && backups.length > 2) {
         Arrays.sort(backups, (left, right) -> {
