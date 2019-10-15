@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.ExpirationInfo;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.MultiDeviceReadUpdateJob;
 import org.thoughtcrime.securesms.jobs.SendReadReceiptJob;
 import org.thoughtcrime.securesms.logging.Log;
@@ -76,9 +77,7 @@ public class MarkReadReceiver extends BroadcastReceiver {
       syncMessageIds.add(messageInfo.getSyncMessageId());
     }
 
-    ApplicationContext.getInstance(context)
-                      .getJobManager()
-                      .add(new MultiDeviceReadUpdateJob(syncMessageIds));
+    ApplicationDependencies.getJobManager().add(new MultiDeviceReadUpdateJob(syncMessageIds));
 
     Map<RecipientId, List<SyncMessageId>> recipientIdMap = Stream.of(markedReadMessages)
                                                                  .map(MarkedMessageInfo::getSyncMessageId)
@@ -87,9 +86,7 @@ public class MarkReadReceiver extends BroadcastReceiver {
     for (Map.Entry<RecipientId, List<SyncMessageId>> entry : recipientIdMap.entrySet()) {
       List<Long> timestamps = Stream.of(entry.getValue()).map(SyncMessageId::getTimetamp).toList();
 
-      ApplicationContext.getInstance(context)
-                        .getJobManager()
-                        .add(new SendReadReceiptJob(entry.getKey(), timestamps));
+      ApplicationDependencies.getJobManager().add(new SendReadReceiptJob(entry.getKey(), timestamps));
     }
   }
 

@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.IncomingMessageProcessor;
 import org.thoughtcrime.securesms.gcm.MessageRetriever;
+import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.recipients.LiveRecipientCache;
 import org.thoughtcrime.securesms.service.IncomingMessageObserver;
@@ -33,6 +34,7 @@ public class ApplicationDependencies {
   private static IncomingMessageProcessor     incomingMessageProcessor;
   private static MessageRetriever             messageRetriever;
   private static LiveRecipientCache           recipientCache;
+  private static JobManager                   jobManager;
 
   public static synchronized void init(@NonNull Application application, @NonNull Provider provider) {
     if (ApplicationDependencies.application != null || ApplicationDependencies.provider != null) {
@@ -116,6 +118,16 @@ public class ApplicationDependencies {
     return recipientCache;
   }
 
+  public static synchronized @NonNull JobManager getJobManager() {
+    assertInitialization();
+
+    if (jobManager == null) {
+      jobManager = provider.provideJobManager();
+    }
+
+    return jobManager;
+  }
+
   private static void assertInitialization() {
     if (application == null || provider == null) {
       throw new UninitializedException();
@@ -129,8 +141,8 @@ public class ApplicationDependencies {
     @NonNull SignalServiceNetworkAccess provideSignalServiceNetworkAccess();
     @NonNull IncomingMessageProcessor provideIncomingMessageProcessor();
     @NonNull MessageRetriever provideMessageRetriever();
-    @NonNull
-    LiveRecipientCache provideRecipientCache();
+    @NonNull LiveRecipientCache provideRecipientCache();
+    @NonNull JobManager provideJobManager();
   }
 
   private static class UninitializedException extends IllegalStateException {

@@ -22,6 +22,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Telephony;
 import android.telephony.SmsMessage;
+
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.ApplicationContext;
@@ -105,7 +107,7 @@ public class SmsListener extends BroadcastReceiver {
       Object[] pdus           = (Object[]) intent.getExtras().get("pdus");
       int      subscriptionId = intent.getExtras().getInt("subscription", -1);
 
-      ApplicationContext.getInstance(context).getJobManager().add(new SmsReceiveJob(pdus, subscriptionId));
+      ApplicationDependencies.getJobManager().add(new SmsReceiveJob(pdus, subscriptionId));
 
       abortBroadcast();
     }

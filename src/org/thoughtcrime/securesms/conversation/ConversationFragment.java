@@ -78,6 +78,7 @@ import org.thoughtcrime.securesms.database.loaders.ConversationLoader;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceViewOnceOpenJob;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
@@ -1026,9 +1027,7 @@ public class ConversationFragment extends Fragment
                             .getViewOnceMessageManager()
                             .scheduleIfNecessary();
 
-          ApplicationContext.getInstance(requireContext())
-                            .getJobManager()
-                            .add(new MultiDeviceViewOnceOpenJob(new MessagingDatabase.SyncMessageId(messageRecord.getIndividualRecipient().getId(), messageRecord.getDateSent())));
+          ApplicationDependencies.getJobManager().add(new MultiDeviceViewOnceOpenJob(new MessagingDatabase.SyncMessageId(messageRecord.getIndividualRecipient().getId(), messageRecord.getDateSent())));
 
           return tempUri;
         } catch (IOException e) {
@@ -1094,9 +1093,7 @@ public class ConversationFragment extends Fragment
     super.onActivityResult(requestCode, resultCode, data);
 
     if (requestCode == CODE_ADD_EDIT_CONTACT && getContext() != null) {
-      ApplicationContext.getInstance(getContext().getApplicationContext())
-                        .getJobManager()
-                        .add(new DirectoryRefreshJob(false));
+      ApplicationDependencies.getJobManager().add(new DirectoryRefreshJob(false));
     }
   }
 

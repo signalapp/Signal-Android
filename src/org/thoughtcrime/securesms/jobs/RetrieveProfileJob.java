@@ -221,9 +221,7 @@ public class RetrieveProfileJob extends BaseJob {
     if (recipient.getProfileKey() == null) return;
 
     if (!Util.equals(profileAvatar, recipient.getProfileAvatar())) {
-      ApplicationContext.getInstance(context)
-                        .getJobManager()
-                        .add(new RetrieveProfileAvatarJob(recipient, profileAvatar));
+      ApplicationDependencies.getJobManager().add(new RetrieveProfileAvatarJob(recipient, profileAvatar));
     }
   }
 

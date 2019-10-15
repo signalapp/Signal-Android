@@ -20,6 +20,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.provider.Telephony;
+
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.ApplicationContext;
@@ -54,9 +56,7 @@ public class MmsListener extends BroadcastReceiver {
       Log.i(TAG, "Relevant!");
       int subscriptionId = intent.getExtras().getInt("subscription", -1);
 
-      ApplicationContext.getInstance(context)
-                        .getJobManager()
-                        .add(new MmsReceiveJob(intent.getByteArrayExtra("data"), subscriptionId));
+      ApplicationDependencies.getJobManager().add(new MmsReceiveJob(intent.getByteArrayExtra("data"), subscriptionId));
 
       abortBroadcast();
     }

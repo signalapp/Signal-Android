@@ -79,7 +79,7 @@ public class StickerPackDownloadJob extends BaseJob {
     }
 
     SignalServiceMessageReceiver receiver        = ApplicationDependencies.getSignalServiceMessageReceiver();
-    JobManager                   jobManager      = ApplicationContext.getInstance(context).getJobManager();
+    JobManager                   jobManager      = ApplicationDependencies.getJobManager();
     StickerDatabase              stickerDatabase = DatabaseFactory.getStickerDatabase(context);
     byte[]                       packIdBytes     = Hex.fromStringCondensed(packId);
     byte[]                       packKeyBytes    = Hex.fromStringCondensed(packKey);

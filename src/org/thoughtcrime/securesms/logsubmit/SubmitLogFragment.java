@@ -57,6 +57,7 @@ import org.json.JSONObject;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.logsubmit.util.Scrubber;
 import org.thoughtcrime.securesms.util.BucketInfo;
@@ -394,7 +395,7 @@ public class SubmitLogFragment extends Fragment {
                    .append("\n\n\n")
                    .append(HEADER_JOBS)
                    .append("\n\n")
-                   .append(Scrubber.scrub(ApplicationContext.getInstance(context).getJobManager().getDebugInfo()))
+                   .append(Scrubber.scrub(ApplicationDependencies.getJobManager().getDebugInfo()))
                    .append("\n\n\n");
 
       if (VERSION.SDK_INT >= 28) {

@@ -381,7 +381,7 @@ public class CreateProfileActivity extends BaseActionBarActivity {
           return false;
         }
 
-        ApplicationContext.getInstance(context).getJobManager().add(new MultiDeviceProfileKeyUpdateJob());
+        ApplicationDependencies.getJobManager().add(new MultiDeviceProfileKeyUpdateJob());
 
         return true;
       }

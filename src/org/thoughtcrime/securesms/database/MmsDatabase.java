@@ -50,6 +50,7 @@ import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.NotificationMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.Quote;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.TrimThreadJob;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.logging.Log;
@@ -864,7 +865,7 @@ public class MmsDatabase extends MessagingDatabase {
     }
 
     notifyConversationListeners(threadId);
-    ApplicationContext.getInstance(context).getJobManager().add(new TrimThreadJob(threadId));
+    ApplicationDependencies.getJobManager().add(new TrimThreadJob(threadId));
 
     return Optional.of(new InsertResult(messageId, threadId));
   }
@@ -948,7 +949,7 @@ public class MmsDatabase extends MessagingDatabase {
       DatabaseFactory.getThreadDatabase(context).incrementUnread(threadId, 1);
     }
 
-    ApplicationContext.getInstance(context).getJobManager().add(new TrimThreadJob(threadId));
+    ApplicationDependencies.getJobManager().add(new TrimThreadJob(threadId));
   }
 
   public long insertMessageOutbox(@NonNull OutgoingMediaMessage message,
@@ -1022,7 +1023,7 @@ public class MmsDatabase extends MessagingDatabase {
 
     DatabaseFactory.getThreadDatabase(context).setLastSeen(threadId);
     DatabaseFactory.getThreadDatabase(context).setHasSent(threadId, true);
-    ApplicationContext.getInstance(context).getJobManager().add(new TrimThreadJob(threadId));
+    ApplicationDependencies.getJobManager().add(new TrimThreadJob(threadId));
 
     return messageId;
   }

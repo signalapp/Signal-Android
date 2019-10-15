@@ -14,6 +14,8 @@ import android.provider.ContactsContract;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import android.text.TextUtils;
+
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.logging.Log;
 
 import com.annimon.stream.Collectors;
@@ -81,9 +83,7 @@ public class DirectoryHelper {
     List<RecipientId> newlyActiveUsers = refreshDirectory(context, AccountManagerFactory.createManager(context));
 
     if (TextSecurePreferences.isMultiDevice(context)) {
-      ApplicationContext.getInstance(context)
-                        .getJobManager()
-                        .add(new MultiDeviceContactUpdateJob());
+      ApplicationDependencies.getJobManager().add(new MultiDeviceContactUpdateJob());
     }
 
     if (notifyOfNewUsers) notifyNewUsers(context, newlyActiveUsers);
@@ -349,7 +349,7 @@ public class DirectoryHelper {
         }
 
         if (!activeUser && TextSecurePreferences.isMultiDevice(context)) {
-          ApplicationContext.getInstance(context).getJobManager().add(new MultiDeviceContactUpdateJob());
+          ApplicationDependencies.getJobManager().add(new MultiDeviceContactUpdateJob());
         }
 
         if (!activeUser && systemContact && !TextSecurePreferences.getNeedsSqlCipherMigration(context)) {

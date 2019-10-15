@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.database.PushDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.PushDecryptJob;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -175,9 +176,7 @@ public class ConfirmIdentityDialog extends AlertDialog {
 
             long pushId = pushDatabase.insert(envelope);
 
-            ApplicationContext.getInstance(getContext())
-                              .getJobManager()
-                              .add(new PushDecryptJob(getContext(), pushId, messageRecord.getId()));
+            ApplicationDependencies.getJobManager().add(new PushDecryptJob(getContext(), pushId, messageRecord.getId()));
           } catch (IOException e) {
             throw new AssertionError(e);
           }

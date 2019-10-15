@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.MessagingDatabase.InsertResult;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.AvatarDownloadJob;
 import org.thoughtcrime.securesms.jobs.PushGroupUpdateJob;
 import org.thoughtcrime.securesms.logging.Log;
@@ -166,9 +167,7 @@ public class GroupMessageProcessor {
     Recipient sender = Recipient.external(context, content.getSender());
 
     if (record.getMembers().contains(sender.getId())) {
-      ApplicationContext.getInstance(context)
-                        .getJobManager()
-                        .add(new PushGroupUpdateJob(sender.getId(), group.getGroupId()));
+      ApplicationDependencies.getJobManager().add(new PushGroupUpdateJob(sender.getId(), group.getGroupId()));
     }
 
     return null;
@@ -205,8 +204,8 @@ public class GroupMessageProcessor {
                                              boolean  outgoing)
   {
     if (group.getAvatar().isPresent()) {
-      ApplicationContext.getInstance(context).getJobManager()
-                        .add(new AvatarDownloadJob(group.getGroupId()));
+      ApplicationDependencies.getJobManager()
+                             .add(new AvatarDownloadJob(group.getGroupId()));
     }
 
     try {

@@ -76,6 +76,7 @@ import org.thoughtcrime.securesms.components.reminder.UnauthorizedReminder;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.loaders.ConversationListLoader;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.ReminderUpdateEvent;
 import org.thoughtcrime.securesms.jobs.ServiceOutageDetectionJob;
 import org.thoughtcrime.securesms.mediasend.MediaSendActivity;
@@ -224,7 +225,7 @@ public class ConversationListFragment extends Fragment
         } else if (ExpiredBuildReminder.isEligible()) {
           return Optional.of(new ExpiredBuildReminder(context));
         } else if (ServiceOutageReminder.isEligible(context)) {
-          ApplicationContext.getInstance(context).getJobManager().add(new ServiceOutageDetectionJob());
+          ApplicationDependencies.getJobManager().add(new ServiceOutageDetectionJob());
           return Optional.of(new ServiceOutageReminder(context));
         } else if (OutdatedBuildReminder.isEligible()) {
           return Optional.of(new OutdatedBuildReminder(context));

@@ -99,7 +99,6 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
   private ViewOnceMessageManager   viewOnceMessageManager;
   private TypingStatusRepository   typingStatusRepository;
   private TypingStatusSender       typingStatusSender;
-  private JobManager               jobManager;
   private IncomingMessageObserver  incomingMessageObserver;
   private PersistentLogger         persistentLogger;
 
@@ -118,7 +117,6 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
     initializeCrashHandling();
     initializeFirstEverAppLaunch();
     initializeAppDependencies();
-    initializeJobManager();
     initializeApplicationMigrations();
     initializeMessageRetrieval();
     initializeExpiringMessageManager();
@@ -141,7 +139,7 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
       AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
     }
 
-    jobManager.beginJobLoop();
+    ApplicationDependencies.getJobManager().beginJobLoop();
   }
 
   @Override
@@ -158,10 +156,6 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
     Log.i(TAG, "App is no longer visible.");
     KeyCachingService.onAppBackgrounded(this);
     MessageNotifier.setVisibleThread(-1);
-  }
-
-  public JobManager getJobManager() {
-    return jobManager;
   }
 
   public ExpiringMessageManager getExpiringMessageManager() {
@@ -224,19 +218,8 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
     Thread.setDefaultUncaughtExceptionHandler(new UncaughtExceptionLogger(originalHandler));
   }
 
-  private void initializeJobManager() {
-    this.jobManager = new JobManager(this, new JobManager.Configuration.Builder()
-                                                                       .setDataSerializer(new JsonDataSerializer())
-                                                                       .setJobFactories(JobManagerFactories.getJobFactories(this))
-                                                                       .setConstraintFactories(JobManagerFactories.getConstraintFactories(this))
-                                                                       .setConstraintObservers(JobManagerFactories.getConstraintObservers(this))
-                                                                       .setJobStorage(new FastJobStorage(DatabaseFactory.getJobDatabase(this)))
-                                                                       .setJobMigrator(new JobMigrator(TextSecurePreferences.getJobManagerVersion(this), JobManager.CURRENT_VERSION, JobManagerFactories.getJobMigrations(this)))
-                                                                       .build());
-  }
-
   private void initializeApplicationMigrations() {
-    ApplicationMigrations.onApplicationCreate(this, jobManager);
+    ApplicationMigrations.onApplicationCreate(this, ApplicationDependencies.getJobManager());
   }
 
   public void initializeMessageRetrieval() {
@@ -266,14 +249,14 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
       long nextSetTime = TextSecurePreferences.getFcmTokenLastSetTime(this) + TimeUnit.HOURS.toMillis(6);
 
       if (TextSecurePreferences.getFcmToken(this) == null || nextSetTime <= System.currentTimeMillis()) {
-        this.jobManager.add(new FcmRefreshJob());
+        ApplicationDependencies.getJobManager().add(new FcmRefreshJob());
       }
     }
   }
 
   private void initializeSignedPreKeyCheck() {
     if (!TextSecurePreferences.isSignedPreKeyRegistered(this)) {
-      jobManager.add(new CreateSignedPreKeyJob(this));
+      ApplicationDependencies.getJobManager().add(new CreateSignedPreKeyJob(this));
     }
   }
 
@@ -360,7 +343,7 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
 
   private void executePendingContactSync() {
     if (TextSecurePreferences.needsFullContactSync(this)) {
-      ApplicationContext.getInstance(this).getJobManager().add(new MultiDeviceContactUpdateJob(true));
+      ApplicationDependencies.getJobManager().add(new MultiDeviceContactUpdateJob(true));
     }
   }
 
@@ -370,7 +353,7 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
       if (Build.VERSION.SDK_INT >= 26) {
         FcmJobService.schedule(this);
       } else {
-        ApplicationContext.getInstance(this).getJobManager().add(new PushNotificationReceiveJob(this));
+        ApplicationDependencies.getJobManager().add(new PushNotificationReceiveJob(this));
       }
       TextSecurePreferences.setNeedsMessagePull(this, false);
     }
@@ -378,7 +361,7 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
 
   private void initializeUnidentifiedDeliveryAbilityRefresh() {
     if (TextSecurePreferences.isMultiDevice(this) && !TextSecurePreferences.isUnidentifiedDeliveryEnabled(this)) {
-      jobManager.add(new RefreshUnidentifiedDeliveryAbilityJob());
+      ApplicationDependencies.getJobManager().add(new RefreshUnidentifiedDeliveryAbilityJob());
     }
   }
 

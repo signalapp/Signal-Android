@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.ShareActivity;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.StickerPackDownloadJob;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
@@ -162,9 +163,7 @@ public final class StickerPackPreviewActivity extends PassphraseRequiredActionBa
 
     installButton.setOnClickListener(v -> {
       SimpleTask.run(() -> {
-        ApplicationContext.getInstance(this)
-                          .getJobManager()
-                          .add(new StickerPackDownloadJob(manifest.getPackId(), manifest.getPackKey(), false));
+        ApplicationDependencies.getJobManager().add(new StickerPackDownloadJob(manifest.getPackId(), manifest.getPackKey(), false));
 
         return null;
       }, (nothing) -> finish());

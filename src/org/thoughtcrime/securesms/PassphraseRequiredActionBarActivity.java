@@ -9,6 +9,8 @@ import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
@@ -63,7 +65,7 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
     super.onResume();
 
     if (networkAccess.isCensored(this)) {
-      ApplicationContext.getInstance(this).getJobManager().add(new PushNotificationReceiveJob(this));
+      ApplicationDependencies.getJobManager().add(new PushNotificationReceiveJob(this));
     }
   }
 

@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.backup.BackupDialog;
 import org.thoughtcrime.securesms.backup.FullBackupBase.BackupEvent;
 import org.thoughtcrime.securesms.components.SwitchPreferenceCompat;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.LocalBackupJob;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.permissions.Permissions;
@@ -161,9 +162,7 @@ public class ChatsPreferenceFragment extends ListSummaryPreferenceFragment {
                  .ifNecessary()
                  .onAllGranted(() -> {
                    Log.i(TAG, "Queing backup...");
-                   ApplicationContext.getInstance(getContext())
-                                     .getJobManager()
-                                     .add(new LocalBackupJob());
+                   ApplicationDependencies.getJobManager().add(new LocalBackupJob());
                  })
                  .withPermanentDenialDialog(getString(R.string.ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups))
                  .execute();

@@ -36,6 +36,7 @@ import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
 import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.RotateProfileKeyJob;
 import org.thoughtcrime.securesms.logging.Log;
 import android.util.Pair;
@@ -602,9 +603,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
               DatabaseFactory.getRecipientDatabase(context).setColor(recipient.getId(), selectedColor);
 
               if (recipient.get().resolve().getRegistered() == RecipientDatabase.RegisteredState.REGISTERED) {
-                ApplicationContext.getInstance(context)
-                                  .getJobManager()
-                                  .add(new MultiDeviceContactUpdateJob(recipient.getId()));
+                ApplicationDependencies.getJobManager().add(new MultiDeviceContactUpdateJob(recipient.getId()));
               }
               return null;
             }
@@ -753,14 +752,11 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
             }
 
             if (blocked && (recipient.resolve().isSystemContact() || recipient.resolve().isProfileSharing())) {
-              ApplicationContext.getInstance(context)
-                                .getJobManager()
-                                .add(new RotateProfileKeyJob());
+              ApplicationDependencies.getJobManager().add(new RotateProfileKeyJob());
             }
 
-            ApplicationContext.getInstance(context)
-                              .getJobManager()
-                              .add(new MultiDeviceBlockedUpdateJob());
+            ApplicationDependencies.getJobManager().add(new MultiDeviceBlockedUpdateJob());
+
             return null;
           }
         }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);

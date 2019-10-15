@@ -149,6 +149,7 @@ import org.thoughtcrime.securesms.database.identity.IdentityRecordList;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.StickerRecord;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.ReminderUpdateEvent;
 import org.thoughtcrime.securesms.giph.ui.GiphyActivity;
 import org.thoughtcrime.securesms.jobs.MultiDeviceBlockedUpdateJob;
@@ -911,11 +912,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                        @Override
                        protected Void doInBackground(Void... params) {
                          DatabaseFactory.getRecipientDatabase(ConversationActivity.this)
-                             .setBlocked(recipient.getId(), false);
-
-                         ApplicationContext.getInstance(ConversationActivity.this)
-                             .getJobManager()
-                             .add(new MultiDeviceBlockedUpdateJob());
+                                        .setBlocked(recipient.getId(), false);
+                         ApplicationDependencies.getJobManager().add(new MultiDeviceBlockedUpdateJob());
 
                          return null;
                        }
@@ -1440,7 +1438,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     } else if (ExpiredBuildReminder.isEligible()) {
       reminderView.get().showReminder(new ExpiredBuildReminder(this));
     } else if (ServiceOutageReminder.isEligible(this)) {
-      ApplicationContext.getInstance(this).getJobManager().add(new ServiceOutageDetectionJob());
+      ApplicationDependencies.getJobManager().add(new ServiceOutageDetectionJob());
       reminderView.get().showReminder(new ServiceOutageReminder(this));
     } else if (TextSecurePreferences.isPushRegistered(this)      &&
                TextSecurePreferences.isShowInviteReminders(this) &&
@@ -1738,9 +1736,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       return;
     }
 
-    ApplicationContext.getInstance(this)
-                      .getJobManager()
-                      .add(new RetrieveProfileJob(recipient.get()));
+    ApplicationDependencies.getJobManager().add(new RetrieveProfileJob(recipient.get()));
   }
 
   private void onRecipientChanged(@NonNull Recipient recipient) {

@@ -64,6 +64,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.gcm.FcmUtil;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.jobs.RotateCertificateJob;
@@ -753,8 +754,8 @@ public class RegistrationActivity extends BaseActionBarActivity implements Verif
   }
 
   private void handleSuccessfulRegistration() {
-    ApplicationContext.getInstance(RegistrationActivity.this).getJobManager().add(new DirectoryRefreshJob(false));
-    ApplicationContext.getInstance(RegistrationActivity.this).getJobManager().add(new RotateCertificateJob(RegistrationActivity.this));
+    ApplicationDependencies.getJobManager().add(new DirectoryRefreshJob(false));
+    ApplicationDependencies.getJobManager().add(new RotateCertificateJob(RegistrationActivity.this));
 
     DirectoryRefreshListener.schedule(RegistrationActivity.this);
     RotateSignedPreKeyListener.schedule(RegistrationActivity.this);

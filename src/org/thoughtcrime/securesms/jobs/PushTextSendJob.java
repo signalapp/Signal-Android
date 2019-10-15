@@ -119,7 +119,7 @@ public class PushTextSendJob extends PushSendJob {
       warn(TAG, "Failure", e);
       database.markAsPendingInsecureSmsFallback(record.getId());
       MessageNotifier.notifyMessageDeliveryFailed(context, record.getRecipient(), record.getThreadId());
-      ApplicationContext.getInstance(context).getJobManager().add(new DirectoryRefreshJob(false));
+      ApplicationDependencies.getJobManager().add(new DirectoryRefreshJob(false));
     } catch (UntrustedIdentityException e) {
       warn(TAG, "Failure", e);
       database.addMismatchedIdentity(record.getId(), Recipient.external(context, e.getE164Number()).getId(), e.getIdentityKey());

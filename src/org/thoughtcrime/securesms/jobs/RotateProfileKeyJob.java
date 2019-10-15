@@ -56,9 +56,7 @@ public class RotateProfileKeyJob extends BaseJob {
     accountManager.setProfileName(profileKey, TextSecurePreferences.getProfileName(context));
     accountManager.setProfileAvatar(profileKey, getProfileAvatar());
 
-    ApplicationContext.getInstance(context)
-                      .getJobManager()
-                      .add(new RefreshAttributesJob());
+    ApplicationDependencies.getJobManager().add(new RefreshAttributesJob());
   }
 
   @Override

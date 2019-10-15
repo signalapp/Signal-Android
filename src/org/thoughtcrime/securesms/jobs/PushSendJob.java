@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
@@ -82,10 +83,7 @@ public abstract class PushSendJob extends SendJob {
   @Override
   protected final void onSend() throws Exception {
     if (TextSecurePreferences.getSignedPreKeyFailureCount(context) > 5) {
-      ApplicationContext.getInstance(context)
-                        .getJobManager()
-                        .add(new RotateSignedPreKeyJob());
-
+      ApplicationDependencies.getJobManager().add(new RotateSignedPreKeyJob());
       throw new TextSecureExpiredException("Too many signed prekey rotation failures");
     }
 
@@ -99,7 +97,7 @@ public abstract class PushSendJob extends SendJob {
 
     if (getRunAttempt() > 1) {
       Log.i(TAG, "Scheduling service outage detection job.");
-      ApplicationContext.getInstance(context).getJobManager().add(new ServiceOutageDetectionJob());
+      ApplicationDependencies.getJobManager().add(new ServiceOutageDetectionJob());
     }
   }
 

@@ -10,6 +10,7 @@ import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.PushDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.jobs.PushDecryptJob;
@@ -70,7 +71,7 @@ public class IncomingMessageProcessor {
       this.recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
       this.pushDatabase      = DatabaseFactory.getPushDatabase(context);
       this.mmsSmsDatabase    = DatabaseFactory.getMmsSmsDatabase(context);
-      this.jobManager        = ApplicationContext.getInstance(context).getJobManager();
+      this.jobManager        = ApplicationDependencies.getJobManager();
     }
 
     public void processEnvelope(@NonNull SignalServiceEnvelope envelope) {

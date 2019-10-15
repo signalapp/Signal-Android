@@ -3,6 +3,8 @@ package org.thoughtcrime.securesms.service;
 
 import android.content.Context;
 import android.content.Intent;
+
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.ApplicationContext;
@@ -29,9 +31,7 @@ public class UpdateApkRefreshListener extends PersistentAlarmManagerListener {
 
     if (scheduledTime != 0 && BuildConfig.PLAY_STORE_DISABLED) {
       Log.i(TAG, "Queueing APK update job...");
-      ApplicationContext.getInstance(context)
-                        .getJobManager()
-                        .add(new UpdateApkJob());
+      ApplicationDependencies.getJobManager().add(new UpdateApkJob());
     }
 
     long newTime = System.currentTimeMillis() + INTERVAL;
