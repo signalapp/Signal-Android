@@ -36,6 +36,7 @@ class JobController {
   private final JobInstantiator        jobInstantiator;
   private final ConstraintInstantiator constraintInstantiator;
   private final Data.Serializer        dataSerializer;
+  private final JobTracker             jobTracker;
   private final Scheduler              scheduler;
   private final Debouncer              debouncer;
   private final Callback               callback;
@@ -46,6 +47,7 @@ class JobController {
                 @NonNull JobInstantiator jobInstantiator,
                 @NonNull ConstraintInstantiator constraintInstantiator,
                 @NonNull Data.Serializer dataSerializer,
+                @NonNull JobTracker jobTracker,
                 @NonNull Scheduler scheduler,
                 @NonNull Debouncer debouncer,
                 @NonNull Callback callback)
@@ -55,6 +57,7 @@ class JobController {
     this.jobInstantiator        = jobInstantiator;
     this.constraintInstantiator = constraintInstantiator;
     this.dataSerializer         = dataSerializer;
+    this.jobTracker             = jobTracker;
     this.scheduler              = scheduler;
     this.debouncer              = debouncer;
     this.callback               = callback;
@@ -82,6 +85,7 @@ class JobController {
 
     if (chainExceedsMaximumInstances(chain)) {
       Job solo = chain.get(0).get(0);
+      jobTracker.onStateChange(solo.getId(), JobTracker.JobState.IGNORED);
       Log.w(TAG, JobLogger.format(solo, "Already at the max instance count of " + solo.getParameters().getMaxInstances() + ". Skipping."));
       return;
     }
@@ -98,6 +102,7 @@ class JobController {
     long nextRunAttemptTime = calculateNextRunAttemptTime(System.currentTimeMillis(), nextRunAttempt, job.getParameters().getMaxBackoff());
 
     jobStorage.updateJobAfterRetry(job.getId(), false, nextRunAttempt, nextRunAttemptTime);
+    jobTracker.onStateChange(job.getId(), JobTracker.JobState.PENDING);
 
     List<Constraint> constraints = Stream.of(jobStorage.getConstraintSpecs(job.getId()))
                                          .map(ConstraintSpec::getFactoryKey)
@@ -120,6 +125,7 @@ class JobController {
   @WorkerThread
   synchronized void onSuccess(@NonNull Job job) {
     jobStorage.deleteJob(job.getId());
+    jobTracker.onStateChange(job.getId(), JobTracker.JobState.SUCCESS);
     notifyAll();
   }
 
@@ -143,6 +149,7 @@ class JobController {
     all.addAll(dependents);
 
     jobStorage.deleteJobs(Stream.of(all).map(Job::getId).toList());
+    Stream.of(all).forEach(j -> jobTracker.onStateChange(j.getId(), JobTracker.JobState.FAILURE));
 
     return dependents;
   }
@@ -170,6 +177,7 @@ class JobController {
 
       jobStorage.updateJobRunningState(job.getId(), true);
       runningJobs.add(job.getId());
+      jobTracker.onStateChange(job.getId(), JobTracker.JobState.RUNNING);
 
       return job;
     } catch (InterruptedException e) {
@@ -253,9 +261,6 @@ class JobController {
 
   @WorkerThread
   private @NonNull FullSpec buildFullSpec(@NonNull Job job, @NonNull List<Job> dependsOn) {
-    String id = UUID.randomUUID().toString();
-
-    job.setId(id);
     job.setRunAttempt(0);
 
     JobSpec jobSpec = new JobSpec(job.getId(),
@@ -319,7 +324,6 @@ class JobController {
     Data           data       = dataSerializer.deserialize(jobSpec.getSerializedData());
     Job            job        = jobInstantiator.instantiate(jobSpec.getFactoryKey(), parameters, data);
 
-    job.setId(jobSpec.getId());
     job.setRunAttempt(jobSpec.getRunAttempt());
     job.setNextRunAttemptTime(jobSpec.getNextRunAttemptTime());
     job.setContext(application);
@@ -328,7 +332,7 @@ class JobController {
   }
 
   private @NonNull Job.Parameters buildJobParameters(@NonNull JobSpec jobSpec, @NonNull List<ConstraintSpec> constraintSpecs) {
-    return new Job.Parameters.Builder()
+    return new Job.Parameters.Builder(jobSpec.getId())
                   .setCreateTime(jobSpec.getCreateTime())
                   .setLifespan(jobSpec.getLifespan())
                   .setMaxAttempts(jobSpec.getMaxAttempts())
