@@ -21,7 +21,6 @@ import com.annimon.stream.Stream;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
-import org.thoughtcrime.securesms.database.Database;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.GlideRequests;
@@ -29,11 +28,9 @@ import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
-import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.loki.api.LokiPublicChat;
-import org.whispersystems.signalservice.loki.api.LokiPublicChatAPI;
 
 import java.util.List;
 
@@ -200,7 +197,7 @@ public class QuoteView extends FrameLayout implements RecipientModifiedListener 
     // If we're in a group then try and use the display name in the group
     if (conversationRecipient.isGroupRecipient()) {
       long threadId = DatabaseFactory.getThreadDatabase(getContext()).getThreadIdFor(conversationRecipient);
-      LokiPublicChat chat = DatabaseFactory.getLokiThreadDatabase(getContext()).getGroupChat(threadId);
+      LokiPublicChat chat = DatabaseFactory.getLokiThreadDatabase(getContext()).getPublicChat(threadId);
       if (chat != null) {
         String senderDisplayName = DatabaseFactory.getLokiUserDatabase(getContext()).getServerDisplayName(chat.getId(), author.getAddress().serialize());
         if (senderDisplayName != null) { quoteeDisplayName = senderDisplayName; }

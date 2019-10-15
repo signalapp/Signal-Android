@@ -44,7 +44,7 @@ class MentionCandidateSelectionViewCell(context: Context, attrs: AttributeSet?, 
         displayNameTextView.text = mentionCandidate.displayName
         profilePictureImageView.update(mentionCandidate.hexEncodedPublicKey)
         if (publicChatServer != null && publicChatChannel != null) {
-            val isUserModerator = LokiPublicChatAPI.isUserModerator(user.first, publicChatChannel!!, publicChatServer!!)
+            val isUserModerator = LokiPublicChatAPI.isUserModerator(mentionCandidate.hexEncodedPublicKey, publicChatChannel!!, publicChatServer!!)
             moderatorIconImageView.visibility = if (isUserModerator) View.VISIBLE else View.GONE
         } else {
             moderatorIconImageView.visibility = View.GONE

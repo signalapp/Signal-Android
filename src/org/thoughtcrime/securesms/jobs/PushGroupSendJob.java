@@ -46,7 +46,6 @@ import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupContext;
 import org.whispersystems.signalservice.loki.api.LokiPublicChat;
-import org.whispersystems.signalservice.loki.api.LokiPublicChatAPI;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -290,7 +289,7 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
 
     // Loki - All group messages should be directed to their servers
     long threadID = GroupManager.getThreadIdFromGroupId(groupId, context);
-    LokiPublicChat chat = DatabaseFactory.getLokiThreadDatabase(context).getGroupChat(threadID);
+    LokiPublicChat chat = DatabaseFactory.getLokiThreadDatabase(context).getPublicChat(threadID);
     if (chat != null) {
       // We need to somehow maintain information that will allow the sender to map
       // a Recipient to the correct public chat thread, and so this might be a bit hacky

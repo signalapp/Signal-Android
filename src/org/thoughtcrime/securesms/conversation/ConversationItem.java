@@ -71,7 +71,6 @@ import org.thoughtcrime.securesms.components.StickerView;
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
-import org.thoughtcrime.securesms.database.Database;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
@@ -475,7 +474,7 @@ public class ConversationItem extends LinearLayout
     if (isCaptionlessMms(messageRecord)) {
       bodyText.setVisibility(View.GONE);
     } else { ;
-      Spannable text = MentionUtilities.highlightMentions(linkifyMessageBody(messageRecord.getDisplayBody(context), batchSelected.isEmpty()), messageRecord.isOutgoing(), isGroupThread, context);
+      Spannable text = MentionUtilities.highlightMentions(linkifyMessageBody(messageRecord.getDisplayBody(context), batchSelected.isEmpty()), messageRecord.isOutgoing(), messageRecord.getThreadId(), context);
       text = SearchUtil.getHighlightedSpan(locale, () -> new BackgroundColorSpan(Color.YELLOW), text, searchQuery);
       text = SearchUtil.getHighlightedSpan(locale, () -> new ForegroundColorSpan(Color.BLACK), text, searchQuery);
 
@@ -791,7 +790,7 @@ public class ConversationItem extends LinearLayout
     if (current.isMms() && !current.isMmsNotification() && ((MediaMmsMessageRecord)current).getQuote() != null) {
       Quote quote = ((MediaMmsMessageRecord)current).getQuote();
       //noinspection ConstantConditions
-      String quoteBody = MentionUtilities.highlightMentions(quote.getText(), isGroupThread, context);
+      String quoteBody = MentionUtilities.highlightMentions(quote.getText(), current.getThreadId(), context);
       quoteView.setQuote(glideRequests, quote.getId(), Recipient.from(context, quote.getAuthor(), true), quoteBody, quote.isOriginalMissing(), quote.getAttachment(), conversationRecipient);
       quoteView.setVisibility(View.VISIBLE);
       quoteView.getLayoutParams().width = ViewGroup.LayoutParams.WRAP_CONTENT;
@@ -941,7 +940,7 @@ public class ConversationItem extends LinearLayout
         int visibility = View.GONE;
 
         // If we have a chat then use that to determine mod status
-        LokiPublicChat groupChat = DatabaseFactory.getLokiThreadDatabase(context).getGroupChat(messageRecord.getThreadId());
+        LokiPublicChat groupChat = DatabaseFactory.getLokiThreadDatabase(context).getPublicChat(messageRecord.getThreadId());
         if (groupChat != null) {
           boolean isModerator = LokiPublicChatAPI.Companion.isUserModerator(current.getRecipient().getAddress().toString(), groupChat.getChannel(), groupChat.getServer());
           visibility = isModerator ? View.VISIBLE : View.GONE;

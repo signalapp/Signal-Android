@@ -502,7 +502,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   }
 
   public void createGroupChatsIfNeeded() {
-    List<LokiPublicChat> defaultChats = LokiPublicChat.Companion.defaultChats(BuildConfig.DEBUG);
+    List<LokiPublicChat> defaultChats = LokiPublicChatAPI.Companion.getDefaultChats(BuildConfig.DEBUG);
     for (LokiPublicChat chat : defaultChats) {
       long threadID = GroupManager.getThreadId(chat.getId(), this);
       String migrationKey = chat.getId() + "_migrated";
@@ -514,7 +514,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         TextSecurePreferences.setBooleanPreference(this, migrationKey, true);
       } else if (threadID > -1 && !isChatMigrated) {
         // Migrate the old public chats.
-        DatabaseFactory.getLokiThreadDatabase(this).setGroupChat(chat, threadID);
+        DatabaseFactory.getLokiThreadDatabase(this).setPublicChat(chat, threadID);
         TextSecurePreferences.setBooleanPreference(this, migrationKey, true);
       }
     }

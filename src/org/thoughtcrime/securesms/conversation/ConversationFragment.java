@@ -68,9 +68,7 @@ import org.thoughtcrime.securesms.contactshare.ContactUtil;
 import org.thoughtcrime.securesms.contactshare.SharedContactDetailsActivity;
 import org.thoughtcrime.securesms.conversation.ConversationAdapter.HeaderViewHolder;
 import org.thoughtcrime.securesms.conversation.ConversationAdapter.ItemClickListener;
-import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.database.Address;
-import org.thoughtcrime.securesms.database.Database;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
@@ -82,8 +80,6 @@ import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.FriendRequestViewDelegate;
-import org.thoughtcrime.securesms.loki.LokiAPIDatabase;
-import org.thoughtcrime.securesms.loki.LokiUserDatabase;
 import org.thoughtcrime.securesms.longmessage.LongMessageActivity;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mms.GlideApp;
@@ -410,7 +406,7 @@ public class ConversationFragment extends Fragment
     boolean isGroupChat = recipient.isGroupRecipient();
 
     if (isGroupChat) {
-      LokiPublicChat groupChat = DatabaseFactory.getLokiThreadDatabase(getContext()).getGroupChat(threadId);
+      LokiPublicChat groupChat = DatabaseFactory.getLokiThreadDatabase(getContext()).getPublicChat(threadId);
       boolean isPublicChat = groupChat != null;
       int selectedMessageCount = messageRecords.size();
       boolean isSentByUser = ((MessageRecord)messageRecords.toArray()[0]).isOutgoing();
@@ -513,7 +509,7 @@ public class ConversationFragment extends Fragment
     builder.setCancelable(true);
 
     // Loki - The delete option is only visible to the user in a group chat
-    LokiPublicChat groupChat = DatabaseFactory.getLokiThreadDatabase(getContext()).getGroupChat(threadId);
+    LokiPublicChat groupChat = DatabaseFactory.getLokiThreadDatabase(getContext()).getPublicChat(threadId);
 
     builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
       @Override

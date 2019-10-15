@@ -10,7 +10,7 @@ import android.widget.ListView
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.whispersystems.signalservice.loki.messaging.Mention
 
-class UserSelectionView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : ListView(context, attrs, defStyleAttr) {
+class MentionCandidateSelectionView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : ListView(context, attrs, defStyleAttr) {
     private var mentionCandidates = listOf<Mention>()
         set(newValue) { field = newValue; mentionCandidateSelectionViewAdapter.mentionCandidates = newValue }
     var publicChatServer: String? = null

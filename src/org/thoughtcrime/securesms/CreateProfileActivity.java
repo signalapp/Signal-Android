@@ -35,15 +35,12 @@ import org.thoughtcrime.securesms.components.emoji.EmojiKeyboardProvider;
 import org.thoughtcrime.securesms.components.emoji.EmojiToggle;
 import org.thoughtcrime.securesms.components.emoji.MediaKeyboard;
 import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
-import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobs.MultiDeviceProfileKeyUpdateJob;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.loki.LokiAPIDatabase;
-import org.thoughtcrime.securesms.loki.LokiUserDatabase;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
@@ -61,7 +58,6 @@ import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.crypto.ProfileCipher;
 import org.whispersystems.signalservice.api.util.StreamDetails;
-import org.whispersystems.signalservice.loki.api.LokiPublicChat;
 import org.whispersystems.signalservice.loki.api.LokiPublicChatAPI;
 import org.whispersystems.signalservice.loki.utilities.Analytics;
 
@@ -69,7 +65,6 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.security.SecureRandom;
-import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
@@ -385,7 +380,7 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
         TextSecurePreferences.setProfileName(context, name);
         LokiPublicChatAPI chatAPI = ApplicationContext.getInstance(context).getLokiPublicChatAPI();
         if (chatAPI != null) {
-          Set<String> groupChatServers = DatabaseFactory.getLokiThreadDatabase(context).getAllGroupChatServers();
+          Set<String> groupChatServers = DatabaseFactory.getLokiThreadDatabase(context).getAllPublicChatServers();
           for (String server : groupChatServers) {
             chatAPI.setDisplayName(name, server);
           }
