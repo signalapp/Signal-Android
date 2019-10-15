@@ -52,7 +52,7 @@ public class Address implements Parcelable, Comparable<Address> {
 
   private final String address;
 
-  // Loki - Special flag to indicate whether this address is meant to representing a public chat or not
+  // Loki - Special flag to indicate whether this address represents a public chat or not
   private Boolean isPublicChat;
 
   private Address(@NonNull String address) {

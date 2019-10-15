@@ -23,7 +23,7 @@ fun toPx(dp: Int, resources: Resources): Int {
     return (dp * scale).roundToInt()
 }
 
-fun isGroupRecipient(context: Context, recipient: String): Boolean {
+fun isPublicChat(context: Context, recipient: String): Boolean {
     return DatabaseFactory.getLokiThreadDatabase(context).getAllPublicChats().values.map { it.server }.contains(recipient)
 }
 

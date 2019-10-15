@@ -44,26 +44,25 @@ class AddPublicChatActivity : PassphraseRequiredActionBarActivity() {
 
     private fun addPublicChatIfPossible() {
         val inputMethodManager = getSystemService(BaseActionBarActivity.INPUT_METHOD_SERVICE) as InputMethodManager
-        inputMethodManager.hideSoftInputFromWindow(serverUrlEditText.windowToken, 0)
+        inputMethodManager.hideSoftInputFromWindow(urlEditText.windowToken, 0)
 
-        val url = serverUrlEditText.text.toString().toLowerCase().replace("http://", "https://")
+        val url = urlEditText.text.toString().toLowerCase().replace("http://", "https://")
         if (!Patterns.WEB_URL.matcher(url).matches() || !url.startsWith("https://")) { return Toast.makeText(this, R.string.fragment_add_public_chat_invalid_url_message, Toast.LENGTH_SHORT).show() }
 
         setButtonEnabled(false)
 
         ApplicationContext.getInstance(this).lokiPublicChatManager.addChat(url, 1).successUi {
-            Toast.makeText(this, R.string.fragment_add_public_chat_success_message, Toast.LENGTH_SHORT).show()
             finish()
         }.failUi {
             setButtonEnabled(true)
-            Toast.makeText(this, R.string.fragment_add_public_chat_failed_connect_message, Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, R.string.fragment_add_public_chat_connection_failed_message, Toast.LENGTH_SHORT).show()
         }
     }
 
     private fun setButtonEnabled(enabled: Boolean) {
         addButton.isEnabled = enabled
-        val text = if (enabled) R.string.fragment_add_public_chat_add_button_title else R.string.fragment_add_public_chat_adding_server_button_title
+        val text = if (enabled) R.string.fragment_add_public_chat_add_button_title_1 else R.string.fragment_add_public_chat_add_button_title_2
         addButton.setText(text)
-        serverUrlEditText.isEnabled = enabled
+        urlEditText.isEnabled = enabled
     }
 }

@@ -939,10 +939,9 @@ public class ConversationItem extends LinearLayout
         contactPhoto.setVisibility(VISIBLE);
         int visibility = View.GONE;
 
-        // If we have a chat then use that to determine mod status
-        LokiPublicChat groupChat = DatabaseFactory.getLokiThreadDatabase(context).getPublicChat(messageRecord.getThreadId());
-        if (groupChat != null) {
-          boolean isModerator = LokiPublicChatAPI.Companion.isUserModerator(current.getRecipient().getAddress().toString(), groupChat.getChannel(), groupChat.getServer());
+        LokiPublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(context).getPublicChat(messageRecord.getThreadId());
+        if (publicChat != null) {
+          boolean isModerator = LokiPublicChatAPI.Companion.isUserModerator(current.getRecipient().getAddress().toString(), publicChat.getChannel(), publicChat.getServer());
           visibility = isModerator ? View.VISIBLE : View.GONE;
         }
 

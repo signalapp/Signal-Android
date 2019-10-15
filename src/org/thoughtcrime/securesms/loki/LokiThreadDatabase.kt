@@ -20,14 +20,14 @@ class LokiThreadDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
     companion object {
         private val friendRequestTableName = "loki_thread_friend_request_database"
         private val sessionResetTableName = "loki_thread_session_reset_database"
-        public val groupChatMappingTableName = "loki_group_chat_mapping_database"
+        public val publicChatTableName = "loki_public_chat_database"
         public val threadID = "thread_id"
         private val friendRequestStatus = "friend_request_status"
         private val sessionResetStatus = "session_reset_status"
-        public val groupChatJSON = "group_chat_json"
+        public val publicChat = "public_chat"
         @JvmStatic val createFriendRequestTableCommand = "CREATE TABLE $friendRequestTableName ($threadID INTEGER PRIMARY KEY, $friendRequestStatus INTEGER DEFAULT 0);"
         @JvmStatic val createSessionResetTableCommand = "CREATE TABLE $sessionResetTableName ($threadID INTEGER PRIMARY KEY, $sessionResetStatus INTEGER DEFAULT 0);"
-        @JvmStatic val createGroupChatMappingTableCommand = "CREATE TABLE $groupChatMappingTableName ($threadID INTEGER PRIMARY KEY, $groupChatJSON TEXT);"
+        @JvmStatic val createGroupChatMappingTableCommand = "CREATE TABLE $publicChatTableName ($threadID INTEGER PRIMARY KEY, $publicChat TEXT);"
     }
 
     override fun getThreadID(hexEncodedPublicKey: String): Long {
@@ -94,50 +94,46 @@ class LokiThreadDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
     fun getAllPublicChats(): Map<Long, LokiPublicChat> {
         val database = databaseHelper.readableDatabase
         var cursor: Cursor? = null
-
+        val result = mutableMapOf<Long, LokiPublicChat>()
         try {
-            val map = mutableMapOf<Long, LokiPublicChat>()
-            cursor = database.rawQuery("select * from $groupChatMappingTableName", null)
+            cursor = database.rawQuery("select * from $publicChatTableName", null)
             while (cursor != null && cursor.moveToNext()) {
-                val threadID = cursor.getLong(Companion.threadID)
-                val string = cursor.getString(groupChatJSON)
-                val chat = LokiPublicChat.fromJSON(string)
-                if (chat != null) { map[threadID] = chat }
+                val threadID = cursor.getLong(threadID)
+                val string = cursor.getString(publicChat)
+                val publicChat = LokiPublicChat.fromJSON(string)
+                if (publicChat != null) { result[threadID] = publicChat }
             }
-            return map
         } catch (e: Exception) {
-
+            // Do nothing
         }  finally {
             cursor?.close()
         }
-
-        return mapOf()
+        return result
     }
 
     fun getAllPublicChatServers(): Set<String> {
-        return getAllPublicChats().values.fold(setOf<String>()) { set, chat -> set.plus(chat.server) }
+        return getAllPublicChats().values.fold(setOf()) { set, chat -> set.plus(chat.server) }
     }
 
     override fun getPublicChat(threadID: Long): LokiPublicChat? {
         if (threadID < 0) { return null }
         val database = databaseHelper.readableDatabase
-        return database.get(groupChatMappingTableName, "${Companion.threadID} = ?", arrayOf( threadID.toString() )) { cursor ->
-            val string = cursor.getString(groupChatJSON)
-            LokiPublicChat.fromJSON(string)
+        return database.get(publicChatTableName, "${Companion.threadID} = ?", arrayOf( threadID.toString() )) { cursor ->
+            val publicChatAsJSON = cursor.getString(publicChat)
+            LokiPublicChat.fromJSON(publicChatAsJSON)
         }
     }
 
-    override fun setPublicChat(groupChat: LokiPublicChat, threadID: Long) {
+    override fun setPublicChat(publicChat: LokiPublicChat, threadID: Long) {
         if (threadID < 0) { return }
-
         val database = databaseHelper.writableDatabase
         val contentValues = ContentValues(2)
         contentValues.put(Companion.threadID, threadID)
-        contentValues.put(Companion.groupChatJSON, JsonUtil.toJson(groupChat.toJSON()))
-        database.insertOrUpdate(groupChatMappingTableName, contentValues, "${Companion.threadID} = ?", arrayOf( threadID.toString() ))
+        contentValues.put(Companion.publicChat, JsonUtil.toJson(publicChat.toJSON()))
+        database.insertOrUpdate(publicChatTableName, contentValues, "${Companion.threadID} = ?", arrayOf( threadID.toString() ))
     }
 
     override fun removePublicChat(threadID: Long) {
-        databaseHelper.writableDatabase.delete(groupChatMappingTableName, "${Companion.threadID} = ?", arrayOf( threadID.toString() ))
+        databaseHelper.writableDatabase.delete(publicChatTableName, "${Companion.threadID} = ?", arrayOf( threadID.toString() ))
     }
 }

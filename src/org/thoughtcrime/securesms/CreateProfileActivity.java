@@ -378,11 +378,11 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
         Analytics.Companion.getShared().track("Display Name Updated");
 
         TextSecurePreferences.setProfileName(context, name);
-        LokiPublicChatAPI chatAPI = ApplicationContext.getInstance(context).getLokiPublicChatAPI();
-        if (chatAPI != null) {
+        LokiPublicChatAPI publicChatAPI = ApplicationContext.getInstance(context).getLokiPublicChatAPI();
+        if (publicChatAPI != null) {
           Set<String> groupChatServers = DatabaseFactory.getLokiThreadDatabase(context).getAllPublicChatServers();
           for (String server : groupChatServers) {
-            chatAPI.setDisplayName(name, server);
+            publicChatAPI.setDisplayName(name, server);
           }
         }
 

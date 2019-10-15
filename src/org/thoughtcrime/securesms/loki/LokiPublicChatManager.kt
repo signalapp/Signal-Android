@@ -59,7 +59,7 @@ class LokiPublicChatManager(private val context: Context) {
     // Set our name on the server
     val displayName = TextSecurePreferences.getProfileName(context)
     if (!TextUtils.isEmpty(displayName)) {
-      ApplicationContext.getInstance(context).lokiPublicChatAPI?.setDisplayName(server, displayName)
+      ApplicationContext.getInstance(context).lokiPublicChatAPI?.setDisplayName(displayName, server)
     }
     // Start polling
     Util.runOnMain{ startPollersIfNeeded() }

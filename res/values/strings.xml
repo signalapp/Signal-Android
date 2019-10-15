@@ -1575,7 +1575,6 @@
     <string name="activity_settings_public_key_copied_message">Copied to clipboard</string>
     <string name="activity_settings_share_public_key_button_title">Share Public Key</string>
     <string name="activity_settings_show_qr_code_button_title">Show QR Code</string>
-    <string name="activity_settings_add_public_chat_button_title">Add Public Chat</string>
     <string name="activity_settings_link_device_button_title">Link Device</string>
     <string name="activity_settings_show_seed_button_title">Show Seed</string>
     <string name="activity_settings_seed_dialog_title">Your Seed</string>
@@ -1601,13 +1600,12 @@
     <string name="fragment_new_conversation_note_to_self_not_supported_message">Please enter the public key of the person you\'d like to message</string>
     <!-- Add public chat activity -->
     <string name="fragment_add_public_chat_title">Add Public Chat</string>
-    <string name="fragment_add_public_chat_server_url_edit_text_label">Server URL</string>
-    <string name="fragment_add_public_chat_explanation">Enter the full URL of the public server. E.g https://public-server.url</string>
-    <string name="fragment_add_public_chat_add_button_title">Add</string>
-    <string name="fragment_add_public_chat_adding_server_button_title">Adding Server...</string>
-    <string name="fragment_add_public_chat_invalid_url_message">Invalid Url provided</string>
-    <string name="fragment_add_public_chat_failed_connect_message">Failed to connect to server</string>
-    <string name="fragment_add_public_chat_success_message">Added public chat server</string>
+    <string name="fragment_add_public_chat_url_edit_text_label">URL</string>
+    <string name="fragment_add_public_chat_explanation">Enter the URL of the public chat you\'d like to join. The Loki Public Chat URL is https://chat.lokinet.org.</string>
+    <string name="fragment_add_public_chat_add_button_title_1">Add</string>
+    <string name="fragment_add_public_chat_add_button_title_2">Adding Server...</string>
+    <string name="fragment_add_public_chat_invalid_url_message">Invalid URL</string>
+    <string name="fragment_add_public_chat_connection_failed_message">Couldn\'t Connect</string>
     <!-- Friend request view -->
     <string name="view_friend_request_accept_button_title">Accept</string>
     <string name="view_friend_request_reject_button_title">Reject</string>

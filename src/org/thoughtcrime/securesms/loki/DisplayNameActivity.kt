@@ -43,11 +43,10 @@ class DisplayNameActivity : BaseActionBarActivity() {
         application.setUpStorageAPIIfNeeded()
         startActivity(Intent(this, ConversationListActivity::class.java))
         finish()
-
-        val chatAPI = ApplicationContext.getInstance(this).lokiPublicChatAPI
-        if (chatAPI != null && name != null) {
+        val publicChatAPI = ApplicationContext.getInstance(this).lokiPublicChatAPI
+        if (publicChatAPI != null) {
             val servers = DatabaseFactory.getLokiThreadDatabase(this).getAllPublicChatServers()
-            servers.forEach { chatAPI.setDisplayName(name, it) }
+            servers.forEach { publicChatAPI.setDisplayName(name, it) }
         }
     }
 }

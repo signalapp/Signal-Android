@@ -13,12 +13,12 @@
         android:orientation="vertical">
 
         <org.thoughtcrime.securesms.components.LabeledEditText
-            android:id="@+id/serverUrlEditText"
+            android:id="@+id/urlEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             app:labeledEditText_background="@color/loki_darkest_gray"
-            app:labeledEditText_label="@string/fragment_add_public_chat_server_url_edit_text_label"/>
+            app:labeledEditText_label="@string/fragment_add_public_chat_url_edit_text_label"/>
 
         <TextView
             android:id="@+id/explanationTextView"
@@ -41,7 +41,7 @@
             app:cpb_colorProgress="@color/textsecure_primary"
             app:cpb_cornerRadius="4dp"
             app:cpb_selectorIdle="@drawable/progress_button_state"
-            app:cpb_textIdle="@string/fragment_add_public_chat_add_button_title" />
+            app:cpb_textIdle="@string/fragment_add_public_chat_add_button_title_1" />
 
     </LinearLayout>
 

@@ -406,14 +406,14 @@ public class ConversationFragment extends Fragment
     boolean isGroupChat = recipient.isGroupRecipient();
 
     if (isGroupChat) {
-      LokiPublicChat groupChat = DatabaseFactory.getLokiThreadDatabase(getContext()).getPublicChat(threadId);
-      boolean isPublicChat = groupChat != null;
+      LokiPublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(getContext()).getPublicChat(threadId);
+      boolean isPublicChat = publicChat != null;
       int selectedMessageCount = messageRecords.size();
       boolean isSentByUser = ((MessageRecord)messageRecords.toArray()[0]).isOutgoing();
       menu.findItem(R.id.menu_context_copy_public_key).setVisible(isPublicChat && selectedMessageCount == 1 && !isSentByUser);
       menu.findItem(R.id.menu_context_reply).setVisible(isPublicChat && selectedMessageCount == 1);
       String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(getContext());
-      boolean userCanModerate = groupChat != null && LokiPublicChatAPI.Companion.isUserModerator(userHexEncodedPublicKey, groupChat.getChannel(), groupChat.getServer());
+      boolean userCanModerate = isPublicChat && LokiPublicChatAPI.Companion.isUserModerator(userHexEncodedPublicKey, publicChat.getChannel(), publicChat.getServer());
       boolean isDeleteOptionVisible = isPublicChat && selectedMessageCount == 1 && (isSentByUser || userCanModerate);
       menu.findItem(R.id.menu_context_delete_message).setVisible(isDeleteOptionVisible);
     } else {
@@ -508,8 +508,8 @@ public class ConversationFragment extends Fragment
     builder.setMessage(getActivity().getResources().getQuantityString(R.plurals.ConversationFragment_this_will_permanently_delete_all_n_selected_messages, messagesCount, messagesCount));
     builder.setCancelable(true);
 
-    // Loki - The delete option is only visible to the user in a group chat
-    LokiPublicChat groupChat = DatabaseFactory.getLokiThreadDatabase(getContext()).getPublicChat(threadId);
+    // Loki - The delete option is only visible to the user in a public chat
+    LokiPublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(getContext()).getPublicChat(threadId);
 
     builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
       @Override
@@ -523,16 +523,16 @@ public class ConversationFragment extends Fragment
             for (MessageRecord messageRecord : messageRecords) {
               boolean isThreadDeleted;
 
-              if (groupChat != null) {
+              if (publicChat != null) {
                 final SettableFuture<?>[] future = { new SettableFuture<Unit>() };
 
-                LokiPublicChatAPI chatAPI = ApplicationContext.getInstance(getContext()).getLokiPublicChatAPI();
+                LokiPublicChatAPI publicChatAPI = ApplicationContext.getInstance(getContext()).getLokiPublicChatAPI();
                 boolean isSentByUser = messageRecord.isOutgoing();
                 Long serverID = DatabaseFactory.getLokiMessageDatabase(getContext()).getServerID(messageRecord.id);
 
-                if (chatAPI != null && serverID != null) {
-                  chatAPI
-                  .deleteMessage(serverID, groupChat.getChannel(), groupChat.getServer(), isSentByUser)
+                if (publicChatAPI != null && serverID != null) {
+                  publicChatAPI
+                  .deleteMessage(serverID, publicChat.getChannel(), publicChat.getServer(), isSentByUser)
                   .success(l -> {
                     @SuppressWarnings("unchecked") SettableFuture<Unit> f = (SettableFuture<Unit>) future[0];
                     f.set(Unit.INSTANCE);

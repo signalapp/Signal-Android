@@ -477,12 +477,12 @@
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize" />
 
     <activity android:name="org.thoughtcrime.securesms.loki.NewConversationActivity"
-        android:windowSoftInputMode="stateAlwaysVisible"
-        android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize" />
+              android:windowSoftInputMode="stateAlwaysVisible"
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize" />
 
     <activity android:name="org.thoughtcrime.securesms.loki.AddPublicChatActivity"
-            android:windowSoftInputMode="stateAlwaysVisible"
-            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize" />
+              android:windowSoftInputMode="stateAlwaysVisible"
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize" />
     <!-- Loki -->
 
     <service android:enabled="true" android:name="org.thoughtcrime.securesms.service.WebRtcCallService"/>

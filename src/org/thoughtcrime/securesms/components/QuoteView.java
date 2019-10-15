@@ -197,9 +197,9 @@ public class QuoteView extends FrameLayout implements RecipientModifiedListener 
     // If we're in a group then try and use the display name in the group
     if (conversationRecipient.isGroupRecipient()) {
       long threadId = DatabaseFactory.getThreadDatabase(getContext()).getThreadIdFor(conversationRecipient);
-      LokiPublicChat chat = DatabaseFactory.getLokiThreadDatabase(getContext()).getPublicChat(threadId);
-      if (chat != null) {
-        String senderDisplayName = DatabaseFactory.getLokiUserDatabase(getContext()).getServerDisplayName(chat.getId(), author.getAddress().serialize());
+      LokiPublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(getContext()).getPublicChat(threadId);
+      if (publicChat != null) {
+        String senderDisplayName = DatabaseFactory.getLokiUserDatabase(getContext()).getServerDisplayName(publicChat.getId(), author.getAddress().serialize());
         if (senderDisplayName != null) { quoteeDisplayName = senderDisplayName; }
       }
     }
