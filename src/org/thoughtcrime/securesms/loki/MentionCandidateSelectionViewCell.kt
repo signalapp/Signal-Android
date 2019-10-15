@@ -8,13 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.ViewOutlineProvider
 import android.widget.LinearLayout
-import kotlinx.android.synthetic.main.cell_user_selection_view.view.*
+import kotlinx.android.synthetic.main.cell_mention_candidate_selection_view.view.*
 import network.loki.messenger.R
-import nl.komponents.kovenant.combine.Tuple2
 import org.whispersystems.signalservice.loki.api.LokiPublicChatAPI
+import org.whispersystems.signalservice.loki.messaging.Mention
 
-class UserSelectionViewCell(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : LinearLayout(context, attrs, defStyleAttr) {
-    var user = Tuple2("", "")
+class MentionCandidateSelectionViewCell(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : LinearLayout(context, attrs, defStyleAttr) {
+    var mentionCandidate = Mention("", "")
         set(newValue) { field = newValue; update() }
     var publicChatServer: String? = null
     var publicChatChannel: Long? = null
@@ -24,8 +24,8 @@ class UserSelectionViewCell(context: Context, attrs: AttributeSet?, defStyleAttr
 
     companion object {
 
-        fun inflate(layoutInflater: LayoutInflater, parent: ViewGroup): UserSelectionViewCell {
-            return layoutInflater.inflate(R.layout.cell_user_selection_view, parent, false) as UserSelectionViewCell
+        fun inflate(layoutInflater: LayoutInflater, parent: ViewGroup): MentionCandidateSelectionViewCell {
+            return layoutInflater.inflate(R.layout.cell_mention_candidate_selection_view, parent, false) as MentionCandidateSelectionViewCell
         }
     }
 
@@ -41,8 +41,8 @@ class UserSelectionViewCell(context: Context, attrs: AttributeSet?, defStyleAttr
     }
 
     private fun update() {
-        displayNameTextView.text = user.second
-        profilePictureImageView.update(user.first)
+        displayNameTextView.text = mentionCandidate.displayName
+        profilePictureImageView.update(mentionCandidate.hexEncodedPublicKey)
         if (publicChatServer != null && publicChatChannel != null) {
             val isUserModerator = LokiPublicChatAPI.isUserModerator(user.first, publicChatChannel!!, publicChatServer!!)
             moderatorIconImageView.visibility = if (isUserModerator) View.VISIBLE else View.GONE

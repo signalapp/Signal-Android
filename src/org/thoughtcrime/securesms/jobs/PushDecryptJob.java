@@ -1025,7 +1025,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
     // Loki - Cache the user hex encoded public key (for mentions)
     if (threadId != null) {
-      LokiAPIUtilities.INSTANCE.populateUserIDCacheIfNeeded(threadId, context);
+      LokiAPIUtilities.INSTANCE.populateUserHexEncodedPublicKeyCacheIfNeeded(threadId, context);
       LokiAPI.Companion.cache(textMessage.getSender().serialize(), threadId);
     }
 

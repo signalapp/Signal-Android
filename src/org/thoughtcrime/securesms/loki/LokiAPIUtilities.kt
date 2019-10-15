@@ -8,7 +8,7 @@ import org.whispersystems.signalservice.loki.api.LokiAPI
 
 object LokiAPIUtilities {
 
-    fun populateUserIDCacheIfNeeded(threadID: Long, context: Context) {
+    fun populateUserHexEncodedPublicKeyCacheIfNeeded(threadID: Long, context: Context) {
         if (LokiAPI.userHexEncodedPublicKeyCache[threadID] != null) { return }
         val result = mutableSetOf<String>()
         val messageDatabase = DatabaseFactory.getMmsSmsDatabase(context)
