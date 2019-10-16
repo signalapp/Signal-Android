@@ -44,10 +44,13 @@ public abstract class Attachment {
   @Nullable
   private final StickerLocator stickerLocator;
 
+  // Loki
+  private final String url;
+
   public Attachment(@NonNull String contentType, int transferState, long size, @Nullable String fileName,
                     @Nullable String location, @Nullable String key, @Nullable String relay,
                     @Nullable byte[] digest, @Nullable String fastPreflightId, boolean voiceNote,
-                    int width, int height, boolean quote, @Nullable String caption, @Nullable StickerLocator stickerLocator)
+                    int width, int height, boolean quote, @Nullable String caption, @Nullable StickerLocator stickerLocator, String url)
   {
     this.contentType     = contentType;
     this.transferState   = transferState;
@@ -64,6 +67,7 @@ public abstract class Attachment {
     this.quote           = quote;
     this.stickerLocator  = stickerLocator;
     this.caption         = caption;
+    this.url             = url;
   }
 
   @Nullable
@@ -147,4 +151,6 @@ public abstract class Attachment {
   public @Nullable String getCaption() {
     return caption;
   }
+
+  public String getUrl() { return url; }
 }

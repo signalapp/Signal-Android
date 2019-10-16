@@ -213,7 +213,7 @@ public class AttachmentDownloadJob extends BaseJob implements InjectableType {
                                                 Optional.fromNullable(attachment.getDigest()),
                                                 Optional.fromNullable(attachment.getFileName()),
                                                 attachment.isVoiceNote(),
-                                                Optional.absent());
+                                                Optional.absent(), attachment.getUrl());
     } catch (IOException | ArithmeticException e) {
       Log.w(TAG, e);
       throw new InvalidPartException(e);

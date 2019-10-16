@@ -80,8 +80,9 @@ public class AvatarDownloadJob extends BaseJob implements InjectableType {
         String           relay       = record.get().getRelay();
         Optional<byte[]> digest      = Optional.fromNullable(record.get().getAvatarDigest());
         Optional<String> fileName    = Optional.absent();
+        String url = record.get().getUrl();
 
-        if (avatarId == -1 || key == null) {
+        if (avatarId == -1 || key == null || url.isEmpty()) {
           return;
         }
 
@@ -92,7 +93,7 @@ public class AvatarDownloadJob extends BaseJob implements InjectableType {
         attachment = File.createTempFile("avatar", "tmp", context.getCacheDir());
         attachment.deleteOnExit();
 
-        SignalServiceAttachmentPointer pointer     = new SignalServiceAttachmentPointer(avatarId, contentType, key, Optional.of(0), Optional.absent(), 0, 0, digest, fileName, false, Optional.absent());
+        SignalServiceAttachmentPointer pointer     = new SignalServiceAttachmentPointer(avatarId, contentType, key, Optional.of(0), Optional.absent(), 0, 0, digest, fileName, false, Optional.absent(), url);
         InputStream                    inputStream = receiver.retrieveAttachment(pointer, attachment, MAX_AVATAR_SIZE);
         Bitmap                         avatar      = BitmapUtil.createScaledBitmap(context, new AttachmentModel(attachment, key, 0, digest), 500, 500);
 

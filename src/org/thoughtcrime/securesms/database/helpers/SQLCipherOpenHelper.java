@@ -499,6 +499,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
       if (oldVersion < lokiV3) {
         db.execSQL(LokiAPIDatabase.getCreatePairingAuthorisationTableCommand());
         db.execSQL(LokiThreadDatabase.getCreatePublicChatTableCommand());
+
+        db.execSQL("ALTER TABLE groups ADD COLUMN avatar_url TEXT");
+        db.execSQL("ALTER TABLE part ADD COLUMN url TEXT");
       }
 
       db.setTransactionSuccessful();

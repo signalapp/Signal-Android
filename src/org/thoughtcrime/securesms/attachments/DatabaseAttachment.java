@@ -19,9 +19,9 @@ public class DatabaseAttachment extends Attachment {
                             String fileName, String location, String key, String relay,
                             byte[] digest, String fastPreflightId, boolean voiceNote,
                             int width, int height, boolean quote, @Nullable String caption,
-                            @Nullable StickerLocator stickerLocator)
+                            @Nullable StickerLocator stickerLocator, String url)
   {
-    super(contentType, transferProgress, size, fileName, location, key, relay, digest, fastPreflightId, voiceNote, width, height, quote, caption, stickerLocator);
+    super(contentType, transferProgress, size, fileName, location, key, relay, digest, fastPreflightId, voiceNote, width, height, quote, caption, stickerLocator, url);
     this.attachmentId = attachmentId;
     this.hasData      = hasData;
     this.hasThumbnail = hasThumbnail;
