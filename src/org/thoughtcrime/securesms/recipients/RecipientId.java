@@ -23,6 +23,10 @@ public class RecipientId implements Parcelable, Comparable<RecipientId> {
   private final long id;
 
   public static RecipientId from(long id) {
+    if (id == 0) {
+      throw new AssertionError("Invalid ID!");
+    }
+
     return new RecipientId(id);
   }
 

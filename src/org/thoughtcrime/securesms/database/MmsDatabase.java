@@ -623,7 +623,7 @@ public class MmsDatabase extends MessagingDatabase {
         String           networkDocument    = cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.NETWORK_FAILURE));
 
         long              quoteId            = cursor.getLong(cursor.getColumnIndexOrThrow(QUOTE_ID));
-        RecipientId       quoteAuthor        = RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(QUOTE_AUTHOR)));
+        long              quoteAuthor        = cursor.getLong(cursor.getColumnIndexOrThrow(QUOTE_AUTHOR));
         String            quoteText          = cursor.getString(cursor.getColumnIndexOrThrow(QUOTE_BODY));
         boolean           quoteMissing       = cursor.getInt(cursor.getColumnIndexOrThrow(QUOTE_MISSING)) == 1;
         List<Attachment>  quoteAttachments   = Stream.of(associatedAttachments).filter(Attachment::isQuote).map(a -> (Attachment)a).toList();
@@ -641,8 +641,8 @@ public class MmsDatabase extends MessagingDatabase {
         List<IdentityKeyMismatch> mismatches      = new LinkedList<>();
         QuoteModel                quote           = null;
 
-        if (quoteId > 0 && (!TextUtils.isEmpty(quoteText) || !quoteAttachments.isEmpty())) {
-          quote = new QuoteModel(quoteId, quoteAuthor, quoteText, quoteMissing, quoteAttachments);
+        if (quoteId > 0 && quoteAuthor > 0 && (!TextUtils.isEmpty(quoteText) || !quoteAttachments.isEmpty())) {
+          quote = new QuoteModel(quoteId, RecipientId.from(quoteAuthor), quoteText, quoteMissing, quoteAttachments);
         }
 
         if (!TextUtils.isEmpty(mismatchDocument)) {
@@ -1538,15 +1538,15 @@ public class MmsDatabase extends MessagingDatabase {
 
     private @Nullable Quote getQuote(@NonNull Cursor cursor) {
       long                       quoteId          = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.QUOTE_ID));
-      RecipientId                quoteAuthor      = RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.QUOTE_AUTHOR)));
+      long                       quoteAuthor      = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.QUOTE_AUTHOR));
       String                     quoteText        = cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.QUOTE_BODY));
       boolean                    quoteMissing     = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.QUOTE_MISSING)) == 1;
       List<DatabaseAttachment>   attachments      = DatabaseFactory.getAttachmentDatabase(context).getAttachment(cursor);
       List<? extends Attachment> quoteAttachments = Stream.of(attachments).filter(Attachment::isQuote).toList();
       SlideDeck                  quoteDeck        = new SlideDeck(context, quoteAttachments);
 
-      if (quoteId > 0 && !quoteAuthor.isUnknown()) {
-        return new Quote(quoteId, quoteAuthor, quoteText, quoteMissing, quoteDeck);
+      if (quoteId > 0 && quoteAuthor > 0) {
+        return new Quote(quoteId, RecipientId.from(quoteAuthor), quoteText, quoteMissing, quoteDeck);
       } else {
         return null;
       }
