@@ -669,6 +669,9 @@
     <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Enter your phone number to get started</string>
     <string name="RegistrationActivity_you_will_receive_a_verification_code">You will receive a verification code. Carrier rates may apply.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Enter the code we sent to %s</string>
+
+    <string name="RegistrationActivity_phone_number_description">Phone number</string>
+    <string name="RegistrationActivity_country_code_description">Country code</string>
     <string name="RegistrationActivity_call">Call</string>
 
     <!-- RevealableMessageView -->
@@ -1581,6 +1584,10 @@
     <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Please enter the verification code sent to %s.</string>
     <string name="RegistrationActivity_wrong_number">Wrong number</string>
     <string name="RegistrationActivity_call_me_instead_available_in">Call me instead \n (Available in %1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_contact_signal_support">Contact Signal Support</string>
+    <string name="RegistrationActivity_support_email" translatable="false">support@signal.org</string>
+    <string name="RegistrationActivity_code_support_subject">Signal Registration - Verification Code for Android</string>
+    <string name="RegistrationActivity_code_support_body">Subject: Signal Registration - Verification Code for Android\nDevice info: %1$s\nAndroid version: %2$s\nSignal version: %3$s\nLocale: %4$s</string>
     <string name="BackupUtil_never">Never</string>
     <string name="BackupUtil_unknown">Unknown</string>
     <string name="preferences_app_protection__screen_lock">Screen lock</string>

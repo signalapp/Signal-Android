@@ -1,11 +1,9 @@
 package org.thoughtcrime.securesms.components.reminder;
 
-
 import android.content.Context;
-import android.content.Intent;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.RegistrationActivity;
+import org.thoughtcrime.securesms.registration.RegistrationNavigationActivity;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 public class UnauthorizedReminder extends Reminder {
@@ -15,9 +13,7 @@ public class UnauthorizedReminder extends Reminder {
           context.getString(R.string.UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device));
 
     setOkListener(v -> {
-      Intent intent = new Intent(context, RegistrationActivity.class);
-      intent.putExtra(RegistrationActivity.RE_REGISTRATION_EXTRA, true);
-      context.startActivity(intent);
+      context.startActivity(RegistrationNavigationActivity.newIntentForReRegistration(context));
     });
   }
 

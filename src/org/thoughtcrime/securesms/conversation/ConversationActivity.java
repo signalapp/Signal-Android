@@ -93,7 +93,6 @@ import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
 import org.thoughtcrime.securesms.PromptMmsActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.RecipientPreferenceActivity;
-import org.thoughtcrime.securesms.RegistrationActivity;
 import org.thoughtcrime.securesms.ShortcutLauncherActivity;
 import org.thoughtcrime.securesms.TransportOption;
 import org.thoughtcrime.securesms.VerifyIdentityActivity;
@@ -193,6 +192,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientExporter;
 import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.registration.RegistrationNavigationActivity;
 import org.thoughtcrime.securesms.search.model.MessageResult;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.sms.MessageSender;
@@ -929,9 +929,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void handleRegisterForSignal() {
-    Intent intent = new Intent(this, RegistrationActivity.class);
-    intent.putExtra(RegistrationActivity.RE_REGISTRATION_EXTRA, true);
-    startActivity(intent);
+    startActivity(RegistrationNavigationActivity.newIntentForReRegistration(this));
   }
 
   private void handleInviteLink() {

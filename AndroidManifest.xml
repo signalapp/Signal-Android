@@ -119,9 +119,6 @@
               android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|screenSize|fontScale"
               android:launchMode="singleTask"/>
 
-    <activity android:name=".CountrySelectionActivity"
-              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
-
     <activity android:name=".InviteActivity"
               android:theme="@style/TextSecure.HighlightTheme"
               android:windowSoftInputMode="stateHidden"
@@ -319,21 +316,9 @@
         </intent-filter>
     </activity>
 
-    <activity android:name=".registration.WelcomeActivity"
+    <activity android:name=".registration.RegistrationNavigationActivity"
               android:launchMode="singleTask"
               android:theme="@style/TextSecure.LightRegistrationTheme"
-              android:windowSoftInputMode="stateUnchanged"
-              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
-
-    <activity android:name=".RegistrationActivity"
-              android:launchMode="singleTask"
-              android:theme="@style/TextSecure.LightRegistrationTheme"
-              android:windowSoftInputMode="stateUnchanged"
-              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
-
-    <activity android:name=".registration.CaptchaActivity"
-              android:launchMode="singleTask"
-              android:theme="@style/TextSecure.LightNoActionBar"
               android:windowSoftInputMode="stateUnchanged"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 

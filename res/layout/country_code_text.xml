@@ -15,7 +15,9 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="3dp"
         android:src="@drawable/ic_add_white_original_24dp"
-        android:tint="@color/core_grey_60"/>
+        android:tint="@color/core_grey_60"
+        android:contentDescription="+"
+        tools:ignore="HardcodedText" />
 
     <EditText
         android:id="@+id/input"
@@ -28,6 +30,8 @@
         android:inputType="number"
         android:maxLength="3"
         android:digits="1234567890"
+        android:saveEnabled="false"
+        android:hint="@string/RegistrationActivity_country_code_description"
         tools:text="123" />
 
 </LinearLayout>
