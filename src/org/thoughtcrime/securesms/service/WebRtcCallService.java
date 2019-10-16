@@ -38,6 +38,7 @@ import org.thoughtcrime.securesms.database.RecipientDatabase.VibrateState;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.notifications.DoNotDisturbUtil;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -499,10 +500,15 @@ public class WebRtcCallService extends Service implements CallConnection.Observe
       this.lockManager.updatePhoneState(LockManager.PhoneState.INTERACTIVE);
 
       sendMessage(WebRtcViewModel.State.CALL_INCOMING, recipient, localCameraState, remoteVideoEnabled, bluetoothAvailable, microphoneEnabled);
-      startCallCardActivityIfPossible();
+
+      boolean shouldDisturbUserWithCall = DoNotDisturbUtil.shouldDisturbUserWithCall(getApplicationContext(), recipient);
+      if (shouldDisturbUserWithCall) {
+        startCallCardActivityIfPossible();
+      }
+
       audioManager.initializeAudioForCall();
 
-      if (TextSecurePreferences.isCallNotificationsEnabled(this)) {
+      if (shouldDisturbUserWithCall && TextSecurePreferences.isCallNotificationsEnabled(this)) {
         Uri          ringtone     = recipient.resolve().getCallRingtone();
         VibrateState vibrateState = recipient.resolve().getCallVibrate();
 

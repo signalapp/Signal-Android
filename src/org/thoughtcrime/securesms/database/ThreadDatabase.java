@@ -285,6 +285,10 @@ public class ThreadDatabase extends Database {
     }};
   }
 
+  public boolean hasCalledSince(@NonNull Recipient recipient, long timestamp) {
+    return DatabaseFactory.getMmsSmsDatabase(context).hasReceivedAnyCallsSince(getThreadIdFor(recipient), timestamp);
+  }
+
   public List<MarkedMessageInfo> setRead(long threadId, boolean lastSeen) {
     ContentValues contentValues = new ContentValues(1);
     contentValues.put(READ, 1);

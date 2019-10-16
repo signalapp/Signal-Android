@@ -29,7 +29,6 @@ import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.util.Util;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -202,6 +201,10 @@ public class MmsSmsDatabase extends Database {
       }
     }
     return -1;
+  }
+
+  boolean hasReceivedAnyCallsSince(long threadId, long timestamp) {
+    return DatabaseFactory.getSmsDatabase(context).hasReceivedAnyCallsSince(threadId, timestamp);
   }
 
   /**

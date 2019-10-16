@@ -487,6 +487,20 @@ public class SmsDatabase extends MessagingDatabase {
     }
   }
 
+  boolean hasReceivedAnyCallsSince(long threadId, long timestamp) {
+    SQLiteDatabase db            = databaseHelper.getReadableDatabase();
+    String[]       projection    = new String[]{SmsDatabase.TYPE};
+    String         selection     = THREAD_ID + " = ? AND " + DATE_RECEIVED  + " > ? AND (" + TYPE + " = ? OR " + TYPE + " = ?)";
+    String[]       selectionArgs = new String[]{String.valueOf(threadId),
+                                                String.valueOf(timestamp),
+                                                String.valueOf(Types.INCOMING_CALL_TYPE),
+                                                String.valueOf(Types.MISSED_CALL_TYPE)};
+
+    try (Cursor cursor = db.query(TABLE_NAME, projection, selection, selectionArgs, null, null, null)) {
+      return cursor != null && cursor.moveToFirst();
+    }
+  }
+
   public @NonNull Pair<Long, Long> insertReceivedCall(@NonNull RecipientId address) {
     return insertCallLog(address, Types.INCOMING_CALL_TYPE, false);
   }
