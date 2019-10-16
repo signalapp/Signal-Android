@@ -3,7 +3,6 @@ package org.whispersystems.witness
 import org.gradle.api.InvalidUserDataException
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.api.artifacts.Configuration
 import org.gradle.api.artifacts.ResolvedArtifact
 
 import java.security.MessageDigest
@@ -56,22 +55,24 @@ class WitnessPlugin implements Plugin<Project> {
         }
 
         project.task('calculateChecksums').doLast {
-            println "dependencyVerification {"
+            def stringBuilder = new StringBuilder()
 
-            def configurationName = project.dependencyVerification.configuration
-            if (configurationName != null) {
-                println "    configuration = '$configurationName'"
-            }
+            stringBuilder.append '// Auto-generated, use ./gradlew calculateChecksums to regenerate\n\n'
+            stringBuilder.append 'dependencyVerification {\n'
 
-            println "    verify = ["
+            stringBuilder.append '    verify = [\n'
 
-            allArtifacts(project).each {
-                dep ->
-                    println "        '" + dep.moduleVersion.id.group+ ":" + dep.name + ":" + calculateSha256(dep.file) + "',"
-            }
+            allArtifacts(project)
+                    .collect { dep -> dep.moduleVersion.id.group + ":" + dep.name + ":" + calculateSha256(dep.file) }
+                    .toSorted()
+                    .each {
+                        dep -> stringBuilder.append "        '$dep',\n"
+                    }
 
-            println "    ]"
-            println "}"
+            stringBuilder.append "    ]\n"
+            stringBuilder.append "}\n"
+
+            new File("witness-verifications.gradle").write(stringBuilder.toString())
         }
     }
 
