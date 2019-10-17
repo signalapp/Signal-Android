@@ -146,6 +146,7 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
   public void onStart(@NonNull LifecycleOwner owner) {
     isAppVisible = true;
     Log.i(TAG, "App is now visible.");
+    ApplicationDependencies.getRecipientCache().warmUp();
     executePendingContactSync();
     KeyCachingService.onAppForegrounded(this);
   }
