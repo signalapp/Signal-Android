@@ -373,7 +373,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     initializeLinkPreviewObserver();
     initializeSearchObserver();
     initializeStickerObserver();
-    initializeSecurity(false, isDefaultSms).addListener(new AssertedSuccessListener<Boolean>() {
+    initializeSecurity(recipient.get().isRegistered(), isDefaultSms).addListener(new AssertedSuccessListener<Boolean>() {
       @Override
       public void onSuccess(Boolean result) {
         initializeProfiles();
@@ -428,7 +428,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     setIntent(intent);
     initializeResources();
-    initializeSecurity(false, isDefaultSms).addListener(new AssertedSuccessListener<Boolean>() {
+    initializeSecurity(recipient.get().isRegistered(), isDefaultSms).addListener(new AssertedSuccessListener<Boolean>() {
       @Override
       public void onSuccess(Boolean result) {
         initializeDraft();

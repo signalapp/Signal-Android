@@ -358,6 +358,10 @@ public class Recipient {
     return registered;
   }
 
+  public boolean isRegistered() {
+    return registered == RegisteredState.REGISTERED || isPushGroup();
+  }
+
   public @Nullable String getNotificationChannel() {
     return !NotificationChannels.supported() ? null : notificationChannel;
   }
