@@ -12,13 +12,14 @@ import org.thoughtcrime.securesms.util.Util;
 
 public final class RegistrationViewModel extends ViewModel {
 
-  private final String                           secret;
-  private final MutableLiveData<NumberViewState> number;
-  private final MutableLiveData<String>          textCodeEntered;
-  private final MutableLiveData<String>          captchaToken;
-  private final MutableLiveData<String>          fcmToken;
-  private final MutableLiveData<Boolean>         restoreFlowShown;
-  private final MutableLiveData<Integer>         successfulCodeRequestAttempts;
+  private final String                                       secret;
+  private final MutableLiveData<NumberViewState>             number;
+  private final MutableLiveData<String>                      textCodeEntered;
+  private final MutableLiveData<String>                      captchaToken;
+  private final MutableLiveData<String>                      fcmToken;
+  private final MutableLiveData<Boolean>                     restoreFlowShown;
+  private final MutableLiveData<Integer>                     successfulCodeRequestAttempts;
+  private final MutableLiveData<LocalCodeRequestRateLimiter> requestLimiter;
 
   public RegistrationViewModel(@NonNull SavedStateHandle savedStateHandle) {
     secret = loadValue(savedStateHandle, "REGISTRATION_SECRET", Util.getSecret(18));
@@ -29,6 +30,7 @@ public final class RegistrationViewModel extends ViewModel {
     fcmToken                      = savedStateHandle.getLiveData("FCM_TOKEN");
     restoreFlowShown              = savedStateHandle.getLiveData("RESTORE_FLOW_SHOWN", false);
     successfulCodeRequestAttempts = savedStateHandle.getLiveData("SUCCESSFUL_CODE_REQUEST_ATTEMPTS", 0);
+    requestLimiter                = savedStateHandle.getLiveData("REQUEST_RATE_LIMITER", new LocalCodeRequestRateLimiter(60_000));
   }
 
   private static <T> T loadValue(@NonNull SavedStateHandle savedStateHandle, @NonNull String key, @NonNull T initialValue) {
@@ -126,5 +128,14 @@ public final class RegistrationViewModel extends ViewModel {
 
   public LiveData<Integer> getSuccessfulCodeRequestAttempts() {
     return successfulCodeRequestAttempts;
+  }
+
+  public @NonNull LocalCodeRequestRateLimiter getRequestLimiter() {
+    //noinspection ConstantConditions Live data was given an initial value
+    return requestLimiter.getValue();
+  }
+
+  public void updateLimiter() {
+    requestLimiter.setValue(requestLimiter.getValue());
   }
 }

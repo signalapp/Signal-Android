@@ -203,6 +203,14 @@ public final class EnterPhoneNumberFragment extends BaseRegistrationFragment {
 
     NavController navController = Navigation.findNavController(register);
 
+    if (!model.getRequestLimiter().canRequest(mode, e164number, System.currentTimeMillis())) {
+      Log.i(TAG, "Local rate limited");
+      navController.navigate(EnterPhoneNumberFragmentDirections.actionEnterVerificationCode());
+      cancelSpinning(register);
+      enableAllEntries();
+      return;
+    }
+
     RegistrationService registrationService = RegistrationService.getInstance(e164number, model.getRegistrationSecret());
 
     registrationService.requestVerificationCode(requireActivity(), mode, captcha,
@@ -213,6 +221,8 @@ public final class EnterPhoneNumberFragment extends BaseRegistrationFragment {
           navController.navigate(EnterPhoneNumberFragmentDirections.actionRequestCaptcha());
           cancelSpinning(register);
           enableAllEntries();
+          model.getRequestLimiter().onUnsuccessfulRequest();
+          model.updateLimiter();
         }
 
         @Override
@@ -222,6 +232,8 @@ public final class EnterPhoneNumberFragment extends BaseRegistrationFragment {
           navController.navigate(EnterPhoneNumberFragmentDirections.actionEnterVerificationCode());
           cancelSpinning(register);
           enableAllEntries();
+          model.getRequestLimiter().onSuccessfulRequest(mode, e164number, System.currentTimeMillis());
+          model.updateLimiter();
         }
 
         @Override
@@ -229,6 +241,8 @@ public final class EnterPhoneNumberFragment extends BaseRegistrationFragment {
           Toast.makeText(register.getContext(), R.string.RegistrationActivity_unable_to_connect_to_service, Toast.LENGTH_LONG).show();
           cancelSpinning(register);
           enableAllEntries();
+          model.getRequestLimiter().onUnsuccessfulRequest();
+          model.updateLimiter();
         }
       });
   }
