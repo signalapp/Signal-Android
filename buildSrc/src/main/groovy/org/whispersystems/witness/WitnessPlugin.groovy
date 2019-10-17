@@ -27,10 +27,10 @@ class WitnessPlugin implements Plugin<Project> {
         project.afterEvaluate {
             project.dependencyVerification.verify.each {
                 assertion ->
-                    List  parts  = assertion.tokenize(":")
+                    List   parts = assertion[0].tokenize(':')
                     String group = parts.get(0)
                     String name  = parts.get(1)
-                    String hash  = parts.get(2)
+                    String hash  = assertion[1]
 
                     def artifacts = allArtifacts(project).findAll {
                         return it.name.equals(name) && it.moduleVersion.id.group.equals(group)
@@ -63,10 +63,10 @@ class WitnessPlugin implements Plugin<Project> {
             stringBuilder.append '    verify = [\n'
 
             allArtifacts(project)
-                    .collect { dep -> dep.moduleVersion.id.group + ":" + dep.name + ":" + calculateSha256(dep.file) }
-                    .toSorted()
+                    .collect { dep -> "['$dep.moduleVersion.id.group:$dep.name:$dep.moduleVersion.id.version',\n         '${calculateSha256(dep.file)}']" }
+                    .sort()
                     .each {
-                        dep -> stringBuilder.append "        '$dep',\n"
+                        dep -> stringBuilder.append "\n        $dep,\n"
                     }
 
             stringBuilder.append "    ]\n"
