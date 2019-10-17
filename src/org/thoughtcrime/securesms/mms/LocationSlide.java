@@ -14,7 +14,7 @@ public class LocationSlide extends ImageSlide {
 
   public LocationSlide(@NonNull  Context context, @NonNull  Uri uri, long size, @NonNull SignalPlace place)
   {
-    super(context, uri, size, 0, 0);
+    super(context, uri, size, 0, 0, null);
     this.place = place;
   }
 

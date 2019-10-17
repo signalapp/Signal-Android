@@ -42,6 +42,7 @@ import org.json.JSONException;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
+import org.thoughtcrime.securesms.blurhash.BlurHash;
 import org.thoughtcrime.securesms.crypto.AttachmentSecret;
 import org.thoughtcrime.securesms.crypto.ClassicDecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.ModernDecryptingPartInputStream;
@@ -112,6 +113,7 @@ public class AttachmentDatabase extends Database {
           static final String HEIGHT                 = "height";
           static final String CAPTION                = "caption";
           static final String DATA_HASH              = "data_hash";
+          static final String BLUR_HASH              = "blur_hash";
 
   public  static final String DIRECTORY              = "parts";
 
@@ -130,7 +132,7 @@ public class AttachmentDatabase extends Database {
                                                            UNIQUE_ID, DIGEST, FAST_PREFLIGHT_ID, VOICE_NOTE,
                                                            QUOTE, DATA_RANDOM, THUMBNAIL_RANDOM, WIDTH, HEIGHT,
                                                            CAPTION, STICKER_PACK_ID, STICKER_PACK_KEY, STICKER_ID,
-                                                           DATA_HASH};
+                                                           DATA_HASH, BLUR_HASH};
 
   public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ROW_ID + " INTEGER PRIMARY KEY, " +
     MMS_ID + " INTEGER, " + "seq" + " INTEGER DEFAULT 0, "                        +
@@ -145,7 +147,7 @@ public class AttachmentDatabase extends Database {
     QUOTE + " INTEGER DEFAULT 0, " + WIDTH + " INTEGER DEFAULT 0, " + HEIGHT + " INTEGER DEFAULT 0, " +
     CAPTION + " TEXT DEFAULT NULL, " + STICKER_PACK_ID + " TEXT DEFAULT NULL, " +
     STICKER_PACK_KEY + " DEFAULT NULL, " + STICKER_ID + " INTEGER DEFAULT -1, " +
-    DATA_HASH + " TEXT DEFAULT NULL);";
+    DATA_HASH + " TEXT DEFAULT NULL, " + BLUR_HASH + " TEXT DEFAULT NULL);";
 
   public static final String[] CREATE_INDEXS = {
     "CREATE INDEX IF NOT EXISTS part_mms_id_index ON " + TABLE_NAME + " (" + MMS_ID + ");",
@@ -342,6 +344,7 @@ public class AttachmentDatabase extends Database {
     values.put(WIDTH, 0);
     values.put(HEIGHT, 0);
     values.put(TRANSFER_STATE, TRANSFER_PROGRESS_DONE);
+    values.put(BLUR_HASH, (String) null);
 
     database.update(TABLE_NAME, values, MMS_ID + " = ?", new String[] {mmsId + ""});
     notifyAttachmentListeners();
@@ -456,6 +459,10 @@ public class AttachmentDatabase extends Database {
       values.put(DATA_HASH, dataInfo.hash);
     }
 
+    if (placeholder != null && placeholder.getBlurHash() != null) {
+      values.put(BLUR_HASH, placeholder.getBlurHash().getHash());
+    }
+
     values.put(TRANSFER_STATE, TRANSFER_PROGRESS_DONE);
     values.put(CONTENT_LOCATION, (String)null);
     values.put(CONTENT_DISPOSITION, (String)null);
@@ -472,6 +479,11 @@ public class AttachmentDatabase extends Database {
     }
 
     thumbnailExecutor.submit(new ThumbnailFetchCallable(attachmentId));
+  }
+
+  private static @Nullable String getBlurHashStringOrNull(@Nullable BlurHash blurHash) {
+    if (blurHash == null) return null;
+    return blurHash.getHash();
   }
 
   public void copyAttachmentData(@NonNull AttachmentId sourceId, @NonNull AttachmentId destinationId)
@@ -507,7 +519,7 @@ public class AttachmentDatabase extends Database {
     contentValues.put(WIDTH, sourceAttachment.getWidth());
     contentValues.put(HEIGHT, sourceAttachment.getHeight());
     contentValues.put(CONTENT_TYPE, sourceAttachment.getContentType());
-
+    contentValues.put(BLUR_HASH, getBlurHashStringOrNull(sourceAttachment.getBlurHash()));
 
     database.update(TABLE_NAME, contentValues, PART_ID_WHERE, destinationId.toStrings());
   }
@@ -523,6 +535,7 @@ public class AttachmentDatabase extends Database {
     values.put(NAME, attachment.getRelay());
     values.put(SIZE, attachment.getSize());
     values.put(FAST_PREFLIGHT_ID, attachment.getFastPreflightId());
+    values.put(BLUR_HASH, getBlurHashStringOrNull(attachment.getBlurHash()));
 
     database.update(TABLE_NAME, values, PART_ID_WHERE, id.toStrings());
   }
@@ -862,7 +875,8 @@ public class AttachmentDatabase extends Database {
                                                   ? new StickerLocator(object.getString(STICKER_PACK_ID),
                                                                        object.getString(STICKER_PACK_KEY),
                                                                        object.getInt(STICKER_ID))
-                                                  : null));
+                                                  : null,
+                                              BlurHash.parseOrNull(object.getString(BLUR_HASH))));
           }
         }
 
@@ -891,7 +905,8 @@ public class AttachmentDatabase extends Database {
                                                                     ? new StickerLocator(cursor.getString(cursor.getColumnIndexOrThrow(STICKER_PACK_ID)),
                                                                                          cursor.getString(cursor.getColumnIndexOrThrow(STICKER_PACK_KEY)),
                                                                                          cursor.getInt(cursor.getColumnIndexOrThrow(STICKER_ID)))
-                                                                    : null));
+                                                                    : null,
+                                                                BlurHash.parseOrNull(cursor.getString(cursor.getColumnIndex(BLUR_HASH)))));
       }
     } catch (JSONException e) {
       throw new AssertionError(e);
@@ -930,6 +945,7 @@ public class AttachmentDatabase extends Database {
     contentValues.put(HEIGHT, attachment.getHeight());
     contentValues.put(QUOTE, quote);
     contentValues.put(CAPTION, attachment.getCaption());
+    contentValues.put(BLUR_HASH, getBlurHashStringOrNull(attachment.getBlurHash()));
 
     if (attachment.isSticker()) {
       contentValues.put(STICKER_PACK_ID, attachment.getSticker().getPackId());

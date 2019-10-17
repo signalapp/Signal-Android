@@ -126,8 +126,8 @@ dependencyVerification {
         'org.whispersystems:curve25519-java:0aadd43cf01d11e9b58f867b3c4f25c3194e8b0623d1953d32dfbfbee009e38d',
         'org.whispersystems:signal-protocol-android:c80aac5f93114da2810e2e89437831f79fcbc8bece652f64aeab313a651cba85',
         'org.whispersystems:signal-protocol-java:7f6df67a963acbab7716424b01b12fa7279f18a9623a2a7c8ba7b1c285830168',
-        'org.whispersystems:signal-service-android:893d42dfa6d08fc1268c4da5aee6f6f3f1bb683ad4a241ef2f3e3d4dfb114e47',
-        'org.whispersystems:signal-service-java:045026003e2ddef0325fe1e930de9ce503010aec8e8a8ac6ddbdd9a79f94e878',
+        'org.whispersystems:signal-service-android:e0a85fa937f7ad0a446ea65405204ab69533339a78d3aa098921cf43c7997348',
+        'org.whispersystems:signal-service-java:5d833e946dbbfb7b4f5dbcf26c1585376e92645aa2958503047ee7a17357897f',
         'pl.tajchert:waitingdots:2835d49e0787dbcb606c5a60021ced66578503b1e9fddcd7a5ef0cd5f095ba2c',
         'se.emilsjolander:stickylistheaders:a08ca948aa6b220f09d82f16bbbac395f6b78897e9eeac6a9f0b0ba755928eeb',
     ]

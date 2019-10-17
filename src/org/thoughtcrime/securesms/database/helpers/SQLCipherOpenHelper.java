@@ -84,8 +84,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int MMS_RECIPIENT_CLEANUP            = 27;
   private static final int ATTACHMENT_HASHING               = 28;
   private static final int NOTIFICATION_RECIPIENT_IDS       = 29;
+  private static final int BLUR_HASH                        = 30;
 
-  private static final int    DATABASE_VERSION = 29;
+  private static final int    DATABASE_VERSION = 30;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -582,6 +583,10 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
           contentValues.put("notification_channel", newChannel.getId());
           db.update("recipient", contentValues, "_id = ?", new String[] { recipientId });
         }
+      }
+
+      if (oldVersion < BLUR_HASH) {
+        db.execSQL("ALTER TABLE part ADD COLUMN blur_hash TEXT DEFAULT NULL");
       }
 
       db.setTransactionSuccessful();

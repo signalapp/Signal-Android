@@ -2,10 +2,13 @@ package org.thoughtcrime.securesms.components;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.UiThread;
 import android.util.AttributeSet;
+
+import org.thoughtcrime.securesms.blurhash.BlurHash;
 import org.thoughtcrime.securesms.logging.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +39,7 @@ import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.Collections;
 import java.util.Locale;
+import java.util.Objects;
 
 import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
 
@@ -50,6 +54,7 @@ public class ThumbnailView extends FrameLayout {
   private static final int    MAX_HEIGHT = 3;
 
   private ImageView       image;
+  private ImageView       blurhash;
   private View            playOverlay;
   private View            captionIcon;
   private OnClickListener parentClickListener;
@@ -79,6 +84,7 @@ public class ThumbnailView extends FrameLayout {
     inflate(context, R.layout.thumbnail_view, this);
 
     this.image       = findViewById(R.id.thumbnail_image);
+    this.blurhash    = findViewById(R.id.thumbnail_blurhash);
     this.playOverlay = findViewById(R.id.play_overlay);
     this.captionIcon = findViewById(R.id.thumbnail_caption_icon);
     super.setOnClickListener(new ThumbnailClickDispatcher());
@@ -270,22 +276,37 @@ public class ThumbnailView extends FrameLayout {
                + ", progress " + slide.getTransferState() + ", fast preflight id: " +
                slide.asAttachment().getFastPreflightId());
 
+    BlurHash previousBlurhash = this.slide != null ? this.slide.getPlaceholderBlur() : null;
+
     this.slide = slide;
 
     this.captionIcon.setVisibility(slide.getCaption().isPresent() ? VISIBLE : GONE);
 
     dimens[WIDTH]  = naturalWidth;
     dimens[HEIGHT] = naturalHeight;
+
     invalidate();
 
-    SettableFuture<Boolean> result = new SettableFuture<>();
+    SettableFuture<Boolean> result        = new SettableFuture<>();
+    boolean                 resultHandled = false;
+
+    if (slide.hasPlaceholder() && !Objects.equals(slide.getPlaceholderBlur(), previousBlurhash)) {
+      buildPlaceholderGlideRequest(glideRequests, slide).into(new GlideBitmapListeningTarget(blurhash, result));
+      resultHandled = true;
+    } else if (!slide.hasPlaceholder()) {
+      glideRequests.clear(blurhash);
+      blurhash.setImageDrawable(null);
+    }
 
     if (slide.getThumbnailUri() != null) {
       buildThumbnailGlideRequest(glideRequests, slide).into(new GlideDrawableListeningTarget(image, result));
-    } else if (slide.hasPlaceholder()) {
-      buildPlaceholderGlideRequest(glideRequests, slide).into(new GlideBitmapListeningTarget(image, result));
+      resultHandled = true;
     } else {
       glideRequests.clear(image);
+      image.setImageDrawable(null);
+    }
+
+    if (!resultHandled) {
       result.set(false);
     }
 
@@ -308,6 +329,7 @@ public class ThumbnailView extends FrameLayout {
     }
 
     request.into(new GlideDrawableListeningTarget(image, future));
+    blurhash.setImageDrawable(null);
 
     return future;
   }
@@ -352,9 +374,16 @@ public class ThumbnailView extends FrameLayout {
   }
 
   private RequestBuilder buildPlaceholderGlideRequest(@NonNull GlideRequests glideRequests, @NonNull Slide slide) {
-    return applySizing(glideRequests.asBitmap()
-                        .load(slide.getPlaceholderRes(getContext().getTheme()))
-                        .diskCacheStrategy(DiskCacheStrategy.NONE), new FitCenter());
+    GlideRequest<Bitmap> bitmap          = glideRequests.asBitmap();
+    BlurHash             placeholderBlur = slide.getPlaceholderBlur();
+
+    if (placeholderBlur != null) {
+      bitmap = bitmap.load(placeholderBlur);
+    } else {
+      bitmap = bitmap.load(slide.getPlaceholderRes(getContext().getTheme()));
+    }
+
+    return applySizing(bitmap.diskCacheStrategy(DiskCacheStrategy.NONE), new CenterCrop());
   }
 
   private GlideRequest applySizing(@NonNull GlideRequest request, @NonNull BitmapTransformation fitting) {

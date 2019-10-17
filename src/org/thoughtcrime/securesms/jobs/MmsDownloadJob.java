@@ -13,6 +13,7 @@ import com.google.android.mms.pdu_alt.RetrieveConf;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.UriAttachment;
+import org.thoughtcrime.securesms.blurhash.BlurHash;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -229,7 +230,7 @@ public class MmsDownloadJob extends BaseJob {
 
           attachments.add(new UriAttachment(uri, Util.toIsoString(part.getContentType()),
                                             AttachmentDatabase.TRANSFER_PROGRESS_DONE,
-                                            part.getData().length, name, false, false, null, null));
+                                            part.getData().length, name, false, false, null, null, null));
         }
       }
     }

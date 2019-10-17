@@ -4,6 +4,7 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.thoughtcrime.securesms.blurhash.BlurHash;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
 import org.thoughtcrime.securesms.util.Base64;
@@ -20,9 +21,10 @@ public class PointerAttachment extends Attachment {
                             @Nullable String fileName,  @NonNull String location,
                             @Nullable String key, @Nullable String relay,
                             @Nullable byte[] digest, @Nullable String fastPreflightId, boolean voiceNote,
-                            int width, int height, @Nullable String caption, @Nullable StickerLocator stickerLocator)
+                            int width, int height, @Nullable String caption, @Nullable StickerLocator stickerLocator,
+                            @Nullable BlurHash blurHash)
   {
-    super(contentType, transferState, size, fileName, location, key, relay, digest, fastPreflightId, voiceNote, width, height, false, caption, stickerLocator);
+    super(contentType, transferState, size, fileName, location, key, relay, digest, fastPreflightId, voiceNote, width, height, false, caption, stickerLocator, blurHash);
   }
 
   @Nullable
@@ -99,7 +101,8 @@ public class PointerAttachment extends Attachment {
                                       pointer.get().asPointer().getWidth(),
                                       pointer.get().asPointer().getHeight(),
                                       pointer.get().asPointer().getCaption().orNull(),
-        stickerLocator));
+                                      stickerLocator,
+                                      BlurHash.parseOrNull(pointer.get().asPointer().getBlurHash().orNull())));
 
   }
 
@@ -119,6 +122,7 @@ public class PointerAttachment extends Attachment {
                                              thumbnail != null ? thumbnail.asPointer().getWidth() : 0,
                                              thumbnail != null ? thumbnail.asPointer().getHeight() : 0,
                                              thumbnail != null ? thumbnail.asPointer().getCaption().orNull() : null,
+                                             null,
                                              null));
   }
 }

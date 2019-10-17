@@ -4,6 +4,7 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.thoughtcrime.securesms.blurhash.BlurHash;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
 
 public class UriAttachment extends Attachment {
@@ -13,17 +14,18 @@ public class UriAttachment extends Attachment {
 
   public UriAttachment(@NonNull Uri uri, @NonNull String contentType, int transferState, long size,
                        @Nullable String fileName, boolean voiceNote, boolean quote, @Nullable String caption,
-                       @Nullable StickerLocator stickerLocator)
+                       @Nullable StickerLocator stickerLocator, @Nullable BlurHash blurHash)
   {
-    this(uri, uri, contentType, transferState, size, 0, 0, fileName, null, voiceNote, quote, caption, stickerLocator);
+    this(uri, uri, contentType, transferState, size, 0, 0, fileName, null, voiceNote, quote, caption, stickerLocator, blurHash);
   }
 
   public UriAttachment(@NonNull Uri dataUri, @Nullable Uri thumbnailUri,
                        @NonNull String contentType, int transferState, long size, int width, int height,
                        @Nullable String fileName, @Nullable String fastPreflightId,
-                       boolean voiceNote, boolean quote, @Nullable String caption, @Nullable StickerLocator stickerLocator)
+                       boolean voiceNote, boolean quote, @Nullable String caption, @Nullable StickerLocator stickerLocator,
+                       @Nullable BlurHash blurHash)
   {
-    super(contentType, transferState, size, fileName, null, null, null, null, fastPreflightId, voiceNote, width, height, quote, caption, stickerLocator);
+    super(contentType, transferState, size, fileName, null, null, null, null, fastPreflightId, voiceNote, width, height, quote, caption, stickerLocator, blurHash);
     this.dataUri      = dataUri;
     this.thumbnailUri = thumbnailUri;
   }

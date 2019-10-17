@@ -25,6 +25,7 @@ import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.Attachment;
+import org.thoughtcrime.securesms.blurhash.BlurHash;
 import org.thoughtcrime.securesms.util.MediaUtil;
 
 public class ImageSlide extends Slide {
@@ -36,12 +37,12 @@ public class ImageSlide extends Slide {
     super(context, attachment);
   }
 
-  public ImageSlide(Context context, Uri uri, long size, int width, int height) {
-    this(context, uri, size, width, height, null);
+  public ImageSlide(Context context, Uri uri, long size, int width, int height, @Nullable BlurHash blurHash) {
+    this(context, uri, size, width, height, null, blurHash);
   }
 
-  public ImageSlide(Context context, Uri uri, long size, int width, int height, @Nullable String caption) {
-    super(context, constructAttachmentFromUri(context, uri, MediaUtil.IMAGE_JPEG, size, width, height, true, null, caption, null, false, false));
+  public ImageSlide(Context context, Uri uri, long size, int width, int height, @Nullable String caption, @Nullable BlurHash blurHash) {
+    super(context, constructAttachmentFromUri(context, uri, MediaUtil.IMAGE_JPEG, size, width, height, true, null, caption, null, blurHash, false, false));
   }
 
   @Override
@@ -57,6 +58,11 @@ public class ImageSlide extends Slide {
   @Override
   public boolean hasImage() {
     return true;
+  }
+
+  @Override
+  public boolean hasPlaceholder() {
+    return getPlaceholderBlur() != null;
   }
 
   @NonNull

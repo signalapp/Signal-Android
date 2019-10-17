@@ -1,5 +1,10 @@
 package org.thoughtcrime.securesms.jobs;
 
+import android.graphics.Bitmap;
+import android.media.MediaDataSource;
+import android.media.MediaMetadataRetriever;
+import android.os.Build;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -9,6 +14,7 @@ import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.attachments.PointerAttachment;
+import org.thoughtcrime.securesms.blurhash.BlurHashEncoder;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -20,6 +26,7 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.service.GenericForegroundService;
 import org.thoughtcrime.securesms.service.NotificationController;
+import org.thoughtcrime.securesms.util.MediaUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
@@ -116,24 +123,73 @@ public final class AttachmentUploadJob extends BaseJob {
     try {
       if (attachment.getDataUri() == null || attachment.getSize() == 0) throw new IOException("Assertion failed, outgoing attachment has no data!");
       InputStream is = PartAuthority.getAttachmentStream(context, attachment.getDataUri());
-      return SignalServiceAttachment.newStreamBuilder()
-                                    .withStream(is)
-                                    .withContentType(attachment.getContentType())
-                                    .withLength(attachment.getSize())
-                                    .withFileName(attachment.getFileName())
-                                    .withVoiceNote(attachment.isVoiceNote())
-                                    .withWidth(attachment.getWidth())
-                                    .withHeight(attachment.getHeight())
-                                    .withCaption(attachment.getCaption())
-                                    .withListener((total, progress) -> {
-                                      EventBus.getDefault().postSticky(new PartProgressEvent(attachment, PartProgressEvent.Type.NETWORK, total, progress));
-                                      if (notification != null) {
-                                        notification.setProgress(total, progress);
-                                      }
-                                    })
-                                    .build();
+      SignalServiceAttachment.Builder builder = SignalServiceAttachment.newStreamBuilder()
+                                                                       .withStream(is)
+                                                                       .withContentType(attachment.getContentType())
+                                                                       .withLength(attachment.getSize())
+                                                                       .withFileName(attachment.getFileName())
+                                                                       .withVoiceNote(attachment.isVoiceNote())
+                                                                       .withWidth(attachment.getWidth())
+                                                                       .withHeight(attachment.getHeight())
+                                                                       .withCaption(attachment.getCaption())
+                                                                       .withListener((total, progress) -> {
+                                                                         EventBus.getDefault().postSticky(new PartProgressEvent(attachment, PartProgressEvent.Type.NETWORK, total, progress));
+                                                                         if (notification != null) {
+                                                                           notification.setProgress(total, progress);
+                                                                         }
+                                                                       });
+      if (MediaUtil.isImageType(attachment.getContentType())) {
+        return builder.withBlurHash(getImageBlurHash(attachment)).build();
+      } else if (MediaUtil.isVideoType(attachment.getContentType())) {
+        return builder.withBlurHash(getVideoBlurHash(attachment)).build();
+      } else {
+        return builder.build();
+      }
+
     } catch (IOException ioe) {
       throw new InvalidAttachmentException(ioe);
+    }
+  }
+
+  private @Nullable String getImageBlurHash(@NonNull Attachment attachment) throws IOException {
+    if (attachment.getBlurHash() != null) return attachment.getBlurHash().getHash();
+    if (attachment.getDataUri() == null) return null;
+
+    return BlurHashEncoder.encode(PartAuthority.getAttachmentStream(context, attachment.getDataUri()));
+  }
+
+  private @Nullable String getVideoBlurHash(@NonNull Attachment attachment) throws IOException {
+    if (attachment.getThumbnailUri() != null) {
+      return BlurHashEncoder.encode(PartAuthority.getAttachmentStream(context, attachment.getThumbnailUri()));
+    }
+
+    if (attachment.getBlurHash() != null) return attachment.getBlurHash().getHash();
+
+    if (Build.VERSION.SDK_INT < 23) {
+      Log.w(TAG, "Video thumbnails not supported...");
+      return null;
+    }
+
+    try (MediaDataSource dataSource = DatabaseFactory.getAttachmentDatabase(context).mediaDataSourceFor(attachmentId)) {
+      if (dataSource == null) return null;
+
+      MediaMetadataRetriever retriever = new MediaMetadataRetriever();
+      retriever.setDataSource(dataSource);
+
+      Bitmap bitmap = retriever.getFrameAtTime(1000);
+
+      if (bitmap != null) {
+        Bitmap thumb = Bitmap.createScaledBitmap(bitmap, 100, 100, false);
+        bitmap.recycle();
+
+        Log.i(TAG, "Generated video thumbnail...");
+        String hash = BlurHashEncoder.encode(thumb);
+        thumb.recycle();
+
+        return hash;
+      } else {
+        return null;
+      }
     }
   }
 
