@@ -8,9 +8,14 @@ buildscript {
         maven {
             url "https://repo1.maven.org/maven2"
         }
+        jcenter {
+            content {
+                includeVersion 'org.jetbrains.trove4j', 'trove4j', '20160824'
+            }
+        }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.3.2'
+        classpath 'com.android.tools.build:gradle:3.5.1'
         classpath 'androidx.navigation:navigation-safe-args-gradle-plugin:2.1.0'
     }
 }
@@ -339,6 +344,7 @@ android {
     lintOptions {
         abortOnError true
         baseline file("lint-baseline.xml")
+        disable "LintError"
     }
 
     testOptions {
@@ -442,4 +448,8 @@ task qa {
   group 'Verification'
   description 'Quality Assurance. Run before pushing.'
   dependsOn ':testPlayReleaseUnitTest', ':lintPlayRelease', ':assemblePlayDebug'
+}
+
+wrapper {
+    distributionType = Wrapper.DistributionType.ALL
 }
