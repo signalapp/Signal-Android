@@ -96,7 +96,7 @@
     <string name="CameraActivity_image_save_failure">Failed to save image.</string>
 
     <!-- CameraXFragment -->
-    <string name="CameraXFragment_video_recording_available">Tap to take a picture, or keep your finger on the capture button to record a video.</string>
+    <string name="CameraXFragment_tap_for_photo_hold_for_video">Tap for photo, hold for video</string>
     <string name="CameraXFragment_capture_description">Capture</string>
     <string name="CameraXFragment_change_camera_description">Change camera</string>
     <string name="CameraXFragment_open_gallery_description">Open gallery</string>
