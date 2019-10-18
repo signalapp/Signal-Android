@@ -60,6 +60,19 @@ public class MediaSendVideoFragment extends Fragment implements MediaSendPageFra
   }
 
   @Override
+  public void onPause() {
+    super.onPause();
+    notifyHidden();
+  }
+
+  @Override
+  public void onHiddenChanged(boolean hidden) {
+    if (hidden) {
+      notifyHidden();
+    }
+  }
+
+  @Override
   public void setUri(@NonNull Uri uri) {
     this.uri = uri;
   }
@@ -82,4 +95,11 @@ public class MediaSendVideoFragment extends Fragment implements MediaSendPageFra
 
   @Override
   public void restoreState(@NonNull Object state) { }
+
+  @Override
+  public void notifyHidden() {
+    if (getView() != null) {
+      ((VideoPlayer) getView()).pause();
+    }
+  }
 }

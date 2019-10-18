@@ -9,6 +9,8 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.annimon.stream.Stream;
+
 import org.thoughtcrime.securesms.scribbles.ImageEditorFragment;
 import org.thoughtcrime.securesms.util.MediaUtil;
 
@@ -118,5 +120,22 @@ class MediaSendFragmentPagerAdapter extends FragmentStatePagerAdapter {
 
   @Nullable View getPlaybackControls(int position) {
     return fragments.containsKey(position) ? fragments.get(position).getPlaybackControls() : null;
+  }
+
+  void notifyHidden() {
+    Stream.of(fragments.values()).forEach(MediaSendPageFragment::notifyHidden);
+  }
+
+  void notifyPageChanged(int currentPage) {
+    notifyHiddenIfExists(currentPage - 1);
+    notifyHiddenIfExists(currentPage + 1);
+  }
+
+  private void notifyHiddenIfExists(int position) {
+    MediaSendPageFragment fragment = fragments.get(position);
+
+    if (fragment != null) {
+      fragment.notifyHidden();
+    }
   }
 }

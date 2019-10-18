@@ -212,6 +212,10 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
     }
   }
 
+  @Override
+  public void notifyHidden() {
+  }
+
   private void changeEntityColor(int selectedColor) {
     if (currentSelection != null) {
       Renderer renderer = currentSelection.getRenderer();
