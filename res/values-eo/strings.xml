@@ -225,6 +225,8 @@
   <string name="ConversationFragment_quoted_message_not_found">Origina mesaĝo ne troveblas</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Origina mesaĝo ne plu disponeblas</string>
   <string name="ConversationFragment_failed_to_open_message">Malsukceso malfermi la mesaĝon</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Vi povas ŝovumi dekstren iun mesaĝon por rapide respondi</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Vi povas ŝovumi maldekstren iun mesaĝon por rapide respondi</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Ne estas foliumilo instalata sur via aparato.</string>
   <!--ConversationListFragment-->

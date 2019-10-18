@@ -226,6 +226,8 @@
   <string name="ConversationFragment_quoted_message_not_found">Jatorrizko mezua ez da aurkitu</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Jatorrizko mezua ez dago eskuragarri jada</string>
   <string name="ConversationFragment_failed_to_open_message">Akatsa mezua irekitzean</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Azkar erantzuteko, irristatu hatza eskuinetara edozein mezuren gainean</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Azkar erantzuteko, irristatu hatza ezkerretara edozein mezuren gainean </string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Ez dago nabigatzaile instalaturik zure gailuan.</string>
   <!--ConversationListFragment-->

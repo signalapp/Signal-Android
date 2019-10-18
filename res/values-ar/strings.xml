@@ -102,6 +102,7 @@
   <string name="CameraContacts_no_signal_contacts">لا جهات اتصال في سغنال</string>
   <string name="CameraContacts_you_can_only_use_the_camera_button">يمكنك استخدام زر الكاميرا لإرسال الصور إلى من تراسل في سغنال.</string>
   <string name="CameraContacts_cant_find_who_youre_looking_for">ألم تتمكن من العثور على من تبحث عنه؟</string>
+  <string name="CameraContacts_invite_a_contact_to_join_signal">ادع جهة اتصال لتنضم الى سغنال</string>
   <string name="CameraContacts__menu_search">بحث</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">إزالة</string>
@@ -260,6 +261,7 @@
   <string name="ConversationFragment_deleting_messages">حذف الرسائل جارٍ...</string>
   <string name="ConversationFragment_quoted_message_not_found">لم يتم العثور على الرسالة الأصلية</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">الرسالة الأصلية لم تعد متوفرة</string>
+  <string name="ConversationFragment_failed_to_open_message">فشل في فتح الرسالة</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">لا يوجد متصفح بالجهاز.</string>
   <!--ConversationListFragment-->
@@ -314,6 +316,7 @@
   <string name="CreateProfileActivity_profile_name">اسم الشخصية</string>
   <string name="CreateProfileActivity_set_up_your_profile">إعداد الملف الشخصي</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">الملفات الشخصية في Signal مشفرة من النهاية إلى النهاية, وخدمة Signal ليس لديها وصول إلى هذه المعلومات أبداً.</string>
+  <string name="CreateProfileActivity_set_avatar_description">ضع صورة ملفك الشخصي</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">استخدام التخصيص: %s</string>
   <string name="CustomDefaultPreference_using_default">الاستخدام الافتراضي: %s</string>
@@ -762,6 +765,7 @@
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">افتراضي</string>
   <string name="NotificationChannel_calls">المُكالمات</string>
+  <string name="NotificationChannel_failures">الأخطاء</string>
   <string name="NotificationChannel_backups">النُسخ الإحتياطية</string>
   <string name="NotificationChannel_app_updates">تحديثات التطبيق</string>
   <string name="NotificationChannel_other">أخرى</string>
@@ -831,6 +835,7 @@
   <string name="contact_selection_activity__enter_name_or_number">أدخل أسم أو رقم</string>
   <string name="contact_selection_activity__invite_to_signal">ادعُ إلى Signal</string>
   <!--contact_filter_toolbar-->
+  <string name="contact_filter_toolbar__clear_entered_text_description">امسح النص اللذي ادخلته</string>
   <string name="contact_filter_toolbar__show_keyboard_description">إظهار لوحة المفاتيح</string>
   <string name="contact_filter_toolbar__show_dial_pad_description">إظهار لوحة الاتصال</string>
   <!--contact_selection_group_activity-->
