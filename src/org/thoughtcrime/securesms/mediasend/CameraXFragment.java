@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.mediasend;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Configuration;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
@@ -262,8 +263,10 @@ public class CameraXFragment extends Fragment implements CameraFragment {
         ));
         displayVideoRecordingTooltipIfNecessary(captureButton);
       } catch (IOException e) {
-        Log.w(TAG, "Video capture is not supported on this device.");
+        Log.w(TAG, "Video capture is not supported on this device.", e);
       }
+    } else {
+      Log.i(TAG, "Video capture not supported. API: " + Build.VERSION.SDK_INT + ", MFD: " + MemoryFileDescriptor.supported());
     }
 
     viewModel.onCameraControlsInitialized();
