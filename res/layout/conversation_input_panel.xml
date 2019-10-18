@@ -127,7 +127,8 @@
                                 android:paddingStart="6dp"
                                 android:paddingEnd="6dp"
                                 android:background="?selectableItemBackgroundBorderless"
-                                android:contentDescription="@string/conversation_activity__quick_attachment_drawer_toggle_camera_description" />
+                                android:contentDescription="@string/conversation_activity__quick_attachment_drawer_toggle_camera_description"
+                                android:visibility="gone"/>
 
                             <org.thoughtcrime.securesms.components.MicrophoneRecorderView
                                 android:id="@+id/recorder_view"
