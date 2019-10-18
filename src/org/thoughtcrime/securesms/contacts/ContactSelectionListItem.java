@@ -118,7 +118,7 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientF
     } else {
       this.numberView.setText(number);
       this.nameView.setEnabled(true);
-      this.labelView.setText(label);
+      this.labelView.setText(label != null ? label : "");
       this.labelView.setVisibility(View.VISIBLE);
     }
 
