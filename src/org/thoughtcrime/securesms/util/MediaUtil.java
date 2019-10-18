@@ -302,7 +302,7 @@ public class MediaUtil {
 
         mediaMetadataRetriever.setDataSource(mediaDataSource);
         return mediaMetadataRetriever.getFrameAtTime(1000);
-      } catch (IOException e) {
+      } catch (Exception e) { // XXX Some devices are hitting a native crash in setDataSource. Not much we can do.
         Log.w(TAG, "failed to get thumbnail for video blob uri: " + uri, e);
         return null;
       }
