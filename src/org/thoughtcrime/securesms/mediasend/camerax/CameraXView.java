@@ -1,5 +1,3 @@
-package org.thoughtcrime.securesms.mediasend.camerax;
-
 /*
  * Copyright (C) 2019 The Android Open Source Project
  *
@@ -16,9 +14,12 @@ package org.thoughtcrime.securesms.mediasend.camerax;
  * limitations under the License.
  */
 
+package org.thoughtcrime.securesms.mediasend.camerax;
+
 import android.Manifest.permission;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Rect;
@@ -31,6 +32,7 @@ import android.os.Looper;
 import android.os.Parcelable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.Size;
 import android.view.Display;
 import android.view.MotionEvent;
@@ -40,31 +42,35 @@ import android.view.TextureView;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
+import android.view.animation.BaseInterpolator;
 import android.view.animation.DecelerateInterpolator;
-import android.view.animation.Interpolator;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.RequiresPermission;
 import androidx.annotation.RestrictTo;
 import androidx.annotation.RestrictTo.Scope;
 import androidx.annotation.UiThread;
-import androidx.camera.core.CameraX.LensFacing;
+import androidx.camera.core.CameraInfoUnavailableException;
+import androidx.camera.core.CameraX;
 import androidx.camera.core.FlashMode;
-import androidx.camera.core.ImageCapture.OnImageCapturedListener;
-import androidx.camera.core.ImageCapture.OnImageSavedListener;
-import androidx.camera.core.ImageProxy;
+import androidx.camera.core.FocusMeteringAction;
+import androidx.camera.core.ImageCapture;
+import androidx.camera.core.MeteringPoint;
 import androidx.lifecycle.LifecycleOwner;
 
-import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.R;
 
 import java.io.File;
 import java.io.FileDescriptor;
+import java.util.concurrent.Executor;
 
 /**
  * A {@link View} that displays a preview of the camera with methods {@link
- * #takePicture(OnImageCapturedListener)}, {@link #takePicture(File, OnImageSavedListener)}, {@link
- * #startRecording(File, OnVideoSavedListener)} and {@link #stopRecording()}.
+ * #takePicture(Executor, OnImageCapturedListener)},
+ * {@link #takePicture(File, Executor, OnImageSavedListener)},
+ * {@link #startRecording(File, Executor, OnVideoSavedListener)} and {@link #stopRecording()}.
  *
  * <p>Because the Camera is a limited resource and consumes a high amount of power, CameraView must
  * be opened/closed. CameraView will handle opening/closing automatically through use of a {@link
@@ -88,8 +94,12 @@ public final class CameraXView extends ViewGroup {
   private static final String EXTRA_CAMERA_DIRECTION = "camera_direction";
   private static final String EXTRA_CAPTURE_MODE = "captureMode";
 
-  private final Rect mFocusingRect = new Rect();
-  private final Rect mMeteringRect = new Rect();
+  private static final int LENS_FACING_NONE = 0;
+  private static final int LENS_FACING_FRONT = 1;
+  private static final int LENS_FACING_BACK = 2;
+  private static final int FLASH_MODE_AUTO = 1;
+  private static final int FLASH_MODE_ON = 2;
+  private static final int FLASH_MODE_OFF = 4;
   // For tap-to-focus
   private long mDownEventTimestamp;
   // For pinch-to-zoom
@@ -116,8 +126,7 @@ public final class CameraXView extends ViewGroup {
   private ScaleType mScaleType = ScaleType.CENTER_CROP;
   // For accessibility event
   private MotionEvent mUpEvent;
-  private @Nullable
-  Paint mLayerPaint;
+  private @Nullable Paint mLayerPaint;
 
   public CameraXView(Context context) {
     this(context, null);
@@ -188,11 +197,52 @@ public final class CameraXView extends ViewGroup {
       onPreviewSourceDimensUpdated(640, 480);
     }
 
-    setScaleType(ScaleType.CENTER_CROP);
-    setPinchToZoomEnabled(true);
-    setCaptureMode(CaptureMode.IMAGE);
-    setCameraLensFacing(LensFacing.FRONT);
-    setFlash(FlashMode.OFF);
+    if (attrs != null) {
+      TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CameraView);
+      setScaleType(
+          ScaleType.fromId(
+              a.getInteger(R.styleable.CameraXView_scaleType,
+                  getScaleType().getId())));
+      setPinchToZoomEnabled(
+          a.getBoolean(
+              R.styleable.CameraXView_pinchToZoomEnabled, isPinchToZoomEnabled()));
+      setCaptureMode(
+          CaptureMode.fromId(
+              a.getInteger(R.styleable.CameraXView_captureMode,
+                  getCaptureMode().getId())));
+
+      int lensFacing = a.getInt(R.styleable.CameraXView_lensFacing, LENS_FACING_BACK);
+      switch (lensFacing) {
+        case LENS_FACING_NONE:
+          setCameraLensFacing(null);
+          break;
+        case LENS_FACING_FRONT:
+          setCameraLensFacing(CameraX.LensFacing.FRONT);
+          break;
+        case LENS_FACING_BACK:
+          setCameraLensFacing(CameraX.LensFacing.BACK);
+          break;
+        default:
+          // Unhandled event.
+      }
+
+      int flashMode = a.getInt(R.styleable.CameraXView_flash, 0);
+      switch (flashMode) {
+        case FLASH_MODE_AUTO:
+          setFlash(FlashMode.AUTO);
+          break;
+        case FLASH_MODE_ON:
+          setFlash(FlashMode.ON);
+          break;
+        case FLASH_MODE_OFF:
+          setFlash(FlashMode.OFF);
+          break;
+        default:
+          // Unhandled event.
+      }
+
+      a.recycle();
+    }
 
     if (getBackground() == null) {
       setBackgroundColor(0xFF111111);
@@ -245,7 +295,7 @@ public final class CameraXView extends ViewGroup {
       setCameraLensFacing(
           TextUtils.isEmpty(lensFacingString)
               ? null
-              : LensFacing.valueOf(lensFacingString));
+              : CameraX.LensFacing.valueOf(lensFacingString));
       setCaptureMode(CaptureMode.fromId(state.getInt(EXTRA_CAPTURE_MODE)));
     } else {
       super.onRestoreInstanceState(savedState);
@@ -578,33 +628,42 @@ public final class CameraXView extends ViewGroup {
    * Takes a picture, and calls {@link OnImageCapturedListener#onCaptureSuccess(ImageProxy, int)}
    * once when done.
    *
+   * @param executor The executor in which the listener callback methods will be run.
    * @param listener Listener which will receive success or failure callbacks.
    */
-  public void takePicture(OnImageCapturedListener listener) {
-    mCameraModule.takePicture(listener);
+  @SuppressLint("LambdaLast") // Maybe remove after https://issuetracker.google.com/135275901
+  public void takePicture(@NonNull Executor executor, @NonNull ImageCapture.OnImageCapturedListener listener) {
+    mCameraModule.takePicture(executor, listener);
   }
 
   /**
    * Takes a picture and calls {@link OnImageSavedListener#onImageSaved(File)} when done.
    *
    * @param file     The destination.
+   * @param executor The executor in which the listener callback methods will be run.
    * @param listener Listener which will receive success or failure callbacks.
    */
-  public void takePicture(File file, OnImageSavedListener listener) {
-    mCameraModule.takePicture(file, listener);
+  @SuppressLint("LambdaLast") // Maybe remove after https://issuetracker.google.com/135275901
+  public void takePicture(@NonNull File file, @NonNull Executor executor,
+                          @NonNull ImageCapture.OnImageSavedListener listener) {
+    mCameraModule.takePicture(file, executor, listener);
   }
 
-  // Begin Signal Custom Code Block
   /**
    * Takes a video and calls the OnVideoSavedListener when done.
    *
-   * @param fileDescriptor The destination.
+   * @param file The destination.
+   * @param executor The executor in which the listener callback methods will be run.
+   * @param listener Listener which will receive success or failure callbacks.
    */
+  // Begin Signal Custom Code Block
   @RequiresApi(26)
-  public void startRecording(FileDescriptor fileDescriptor, VideoCapture.OnVideoSavedListener listener) {
-    mCameraModule.startRecording(fileDescriptor, listener);
-  }
+  @SuppressLint("LambdaLast") // Maybe remove after https://issuetracker.google.com/135275901
+  public void startRecording(@NonNull FileDescriptor file, @NonNull Executor executor,
   // End Signal Custom Code Block
+                             @NonNull VideoCapture.OnVideoSavedListener listener) {
+    mCameraModule.startRecording(file, executor, listener);
+  }
 
   /** Stops an in progress video. */
   // Begin Signal Custom Code Block
@@ -626,7 +685,7 @@ public final class CameraXView extends ViewGroup {
    * @throws IllegalStateException if the CAMERA permission is not currently granted.
    */
   @RequiresPermission(permission.CAMERA)
-  public boolean hasCameraWithLensFacing(LensFacing lensFacing) {
+  public boolean hasCameraWithLensFacing(CameraX.LensFacing lensFacing) {
     return mCameraModule.hasCameraWithLensFacing(lensFacing);
   }
 
@@ -655,29 +714,21 @@ public final class CameraXView extends ViewGroup {
    *
    * @param lensFacing The desired camera lensFacing.
    */
-  public void setCameraLensFacing(@Nullable LensFacing lensFacing) {
+  public void setCameraLensFacing(@Nullable CameraX.LensFacing lensFacing) {
     mCameraModule.setCameraLensFacing(lensFacing);
   }
 
   /** Returns the currently selected {@link LensFacing}. */
   @Nullable
-  public LensFacing getCameraLensFacing() {
+  public CameraX.LensFacing getCameraLensFacing() {
     return mCameraModule.getLensFacing();
   }
 
-  /**
-   * Focuses the camera on the given area.
-   *
-   * <p>Sets the focus and exposure metering rectangles. Coordinates for both X and Y dimensions
-   * are Limited from -1000 to 1000, where (0, 0) is the center of the image and the width/height
-   * represent the values from -1000 to 1000.
-   *
-   * @param focus    Area used to focus the camera.
-   * @param metering Area used for exposure metering.
-   */
-  public void focus(Rect focus, Rect metering) {
-    mCameraModule.focus(focus, metering);
+  // Begin Signal Custom Code Block
+  public boolean hasFlash() {
+    return mCameraModule.hasFlash();
   }
+  // End Signal Custom Code Block
 
   /** Gets the active flash strategy. */
   public FlashMode getFlash() {
@@ -685,12 +736,8 @@ public final class CameraXView extends ViewGroup {
   }
 
   /** Sets the active flash strategy. */
-  public void setFlash(FlashMode flashMode) {
+  public void setFlash(@NonNull FlashMode flashMode) {
     mCameraModule.setFlash(flashMode);
-  }
-
-  public boolean hasFlash() {
-    return mCameraModule.hasFlash();
   }
 
   private int getRelativeCameraOrientation(boolean compensateForMirroring) {
@@ -702,7 +749,7 @@ public final class CameraXView extends ViewGroup {
   }
 
   @Override
-  public boolean onTouchEvent(MotionEvent event) {
+  public boolean onTouchEvent(@NonNull MotionEvent event) {
     // Disable pinch-to-zoom and tap-to-focus while the camera module is paused.
     if (mCameraModule.isPaused()) {
       return false;
@@ -745,10 +792,21 @@ public final class CameraXView extends ViewGroup {
     final float x = (mUpEvent != null) ? mUpEvent.getX() : getX() + getWidth() / 2f;
     final float y = (mUpEvent != null) ? mUpEvent.getY() : getY() + getHeight() / 2f;
     mUpEvent = null;
-    calculateTapArea(mFocusingRect, x, y, 1f);
-    calculateTapArea(mMeteringRect, x, y, 1.5f);
-    if (area(mFocusingRect) > 0 && area(mMeteringRect) > 0) {
-      focus(mFocusingRect, mMeteringRect);
+
+    TextureViewMeteringPointFactory pointFactory = new TextureViewMeteringPointFactory(
+        mCameraTextureView);
+    float afPointWidth = 1.0f / 6.0f;  // 1/6 total area
+    float aePointWidth = afPointWidth * 1.5f;
+    MeteringPoint afPoint = pointFactory.createPoint(x, y, afPointWidth, 1.0f);
+    MeteringPoint aePoint = pointFactory.createPoint(x, y, aePointWidth, 1.0f);
+
+    try {
+      CameraX.getCameraControl(getCameraLensFacing()).startFocusAndMetering(
+          FocusMeteringAction.Builder.from(afPoint, FocusMeteringAction.MeteringMode.AF_ONLY)
+              .addPoint(aePoint, FocusMeteringAction.MeteringMode.AE_ONLY)
+              .build());
+    } catch (CameraInfoUnavailableException e) {
+      Log.d(TAG, "cannot access camera", e);
     }
 
     return true;
@@ -757,80 +815,6 @@ public final class CameraXView extends ViewGroup {
   /** Returns the width * height of the given rect */
   private int area(Rect rect) {
     return rect.width() * rect.height();
-  }
-
-  /** The area must be between -1000,-1000 and 1000,1000 */
-  private void calculateTapArea(Rect rect, float x, float y, float coefficient) {
-    int max = 1000;
-    int min = -1000;
-
-    // Default to 300 (1/6th the total area) and scale by the coefficient
-    int areaSize = (int) (300 * coefficient);
-
-    // Rotate the coordinates if the camera orientation is different
-    int width = getWidth();
-    int height = getHeight();
-
-    // Compensate orientation as it's mirrored on preview for forward facing cameras
-    boolean compensateForMirroring = (getCameraLensFacing() == LensFacing.FRONT);
-    int relativeCameraOrientation = getRelativeCameraOrientation(compensateForMirroring);
-    int temp;
-    float tempf;
-    switch (relativeCameraOrientation) {
-      case 90:
-        // Fall-through
-      case 270:
-        // We're horizontal. Swap width/height. Swap x/y.
-        temp = width;
-        //noinspection SuspiciousNameCombination
-        width = height;
-        height = temp;
-
-        tempf = x;
-        //noinspection SuspiciousNameCombination
-        x = y;
-        y = tempf;
-        break;
-      default:
-        break;
-    }
-
-    switch (relativeCameraOrientation) {
-      // Map to correct coordinates according to relativeCameraOrientation
-      case 90:
-        y = height - y;
-        break;
-      case 180:
-        x = width - x;
-        y = height - y;
-        break;
-      case 270:
-        x = width - x;
-        break;
-      default:
-        break;
-    }
-
-    // Swap x if it's a mirrored preview
-    if (compensateForMirroring) {
-      x = width - x;
-    }
-
-    // Grab the x, y position from within the View and normalize it to -1000 to 1000
-    x = min + distance(max, min) * (x / width);
-    y = min + distance(max, min) * (y / height);
-
-    // Modify the rect to the bounding area
-    rect.top = (int) y - areaSize / 2;
-    rect.left = (int) x - areaSize / 2;
-    rect.bottom = rect.top + areaSize;
-    rect.right = rect.left + areaSize;
-
-    // Cap at -1000 to 1000
-    rect.top = rangeLimit(rect.top, max, min);
-    rect.left = rangeLimit(rect.left, max, min);
-    rect.bottom = rangeLimit(rect.bottom, max, min);
-    rect.right = rangeLimit(rect.right, max, min);
   }
 
   private int rangeLimit(int val, int max, int min) {
@@ -975,7 +959,7 @@ public final class CameraXView extends ViewGroup {
    * The capture mode used by CameraView.
    *
    * <p>This enum can be used to determine which capture mode will be enabled for {@link
-   * CameraXView}.
+   * CameraView}.
    */
   public enum CaptureMode {
     /** A mode where image capture is enabled. */
@@ -1024,7 +1008,7 @@ public final class CameraXView extends ViewGroup {
   private class PinchToZoomGestureDetector extends ScaleGestureDetector
       implements ScaleGestureDetector.OnScaleGestureListener {
     private static final float SCALE_MULTIPIER = 0.75f;
-    private final Interpolator mInterpolator = new DecelerateInterpolator(2f);
+    private final BaseInterpolator mInterpolator = new DecelerateInterpolator(2f);
     private float mNormalizedScaleFactor = 0;
 
     PinchToZoomGestureDetector(Context context) {

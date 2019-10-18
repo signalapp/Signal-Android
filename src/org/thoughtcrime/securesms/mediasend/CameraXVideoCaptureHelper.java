@@ -16,6 +16,8 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.util.Executors;
+
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.animation.AnimationCompleteListener;
 import org.thoughtcrime.securesms.components.TooltipPopup;
@@ -119,7 +121,7 @@ class CameraXVideoCaptureHelper implements CameraButtonView.VideoCaptureListener
     this.camera.setZoomLevel(0f);
     callback.onVideoRecordStarted();
     shrinkCaptureArea();
-    camera.startRecording(memoryFileDescriptor.getFileDescriptor(), videoSavedListener);
+    camera.startRecording(memoryFileDescriptor.getFileDescriptor(), Executors.mainThreadExecutor(), videoSavedListener);
     updateProgressAnimator.start();
   }
 

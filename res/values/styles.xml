@@ -340,4 +340,27 @@
         <attr name="recordSize" format="dimension" />
     </declare-styleable>
 
+    <declare-styleable name="CameraXView">
+        <attr format="enum" name="scaleType">
+            <enum name="centerCrop" value="0"/>
+            <enum name="centerInside" value="1"/>
+        </attr>
+        <attr format="enum" name="lensFacing">
+            <enum name="none" value="0"/>
+            <enum name="front" value="1"/>
+            <enum name="back" value="2"/>
+        </attr>
+        <attr format="enum" name="captureMode">
+            <enum name="image" value="0"/>
+            <enum name="video" value="1"/>
+            <enum name="mixed" value="2"/>
+        </attr>
+        <attr format="enum" name="flash">
+            <enum name="auto" value="1"/>
+            <enum name="on" value="2"/>
+            <enum name="off" value="4"/>
+        </attr>
+
+        <attr format="boolean" name="pinchToZoomEnabled"/>
+    </declare-styleable>
 </resources>

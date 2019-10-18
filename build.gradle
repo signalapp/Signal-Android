@@ -78,8 +78,8 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-savedstate:1.0.0-alpha05'
     implementation 'androidx.lifecycle:lifecycle-common-java8:2.1.0'
-    implementation "androidx.camera:camera-core:1.0.0-alpha04"
-    implementation "androidx.camera:camera-camera2:1.0.0-alpha04"
+    implementation "androidx.camera:camera-core:1.0.0-alpha06"
+    implementation "androidx.camera:camera-camera2:1.0.0-alpha06"
 
     implementation('com.google.firebase:firebase-messaging:17.3.4') {
         exclude group: 'com.google.firebase', module: 'firebase-core'

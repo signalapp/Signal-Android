@@ -1,9 +1,7 @@
 package org.thoughtcrime.securesms.mediasend;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
-import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.GestureDetector;
@@ -26,11 +24,13 @@ import androidx.annotation.RequiresApi;
 import androidx.camera.core.CameraX;
 import androidx.camera.core.ImageCapture;
 import androidx.camera.core.ImageProxy;
+import androidx.camera.core.impl.utils.executor.CameraXExecutors;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.util.Executors;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.TooltipPopup;
@@ -325,7 +325,7 @@ public class CameraXFragment extends Fragment implements CameraFragment {
         selfieFlash
     );
 
-    camera.takePicture(new ImageCapture.OnImageCapturedListener() {
+    camera.takePicture(Executors.mainThreadExecutor(), new ImageCapture.OnImageCapturedListener() {
       @Override
       public void onCaptureSuccess(ImageProxy image, int rotationDegrees) {
         flashHelper.endFlash();
@@ -352,7 +352,7 @@ public class CameraXFragment extends Fragment implements CameraFragment {
       }
 
       @Override
-      public void onError(ImageCapture.UseCaseError useCaseError, String message, @Nullable Throwable cause) {
+      public void onError(ImageCapture.ImageCaptureError useCaseError, String message, @Nullable Throwable cause) {
         flashHelper.endFlash();
         controller.onCameraError();
       }

@@ -24,11 +24,11 @@ dependencyVerification {
         ['androidx.asynclayoutinflater:asynclayoutinflater:1.0.0',
          'f7eab60c57addd94bb06275832fe7600611beaaae1a1ec597c231956faf96c8b'],
 
-        ['androidx.camera:camera-camera2:1.0.0-alpha04',
-         'b7897230aec96365d675712c92f5edcb8b464badfd61788c8f956ec2d6e49bfe'],
+        ['androidx.camera:camera-camera2:1.0.0-alpha06',
+         'e50f20deb950ffebcd4d1de5408ef7a5404bec80ec77119e05663c890739b903'],
 
-        ['androidx.camera:camera-core:1.0.0-alpha04',
-         'e1c70de55600a0caf826eb4f8a75c96c5ff8f0b626bf08413d31e80ffa55f8ba'],
+        ['androidx.camera:camera-core:1.0.0-alpha06',
+         '0096cabe539d9b4288f406acfb44264b137ebd600e38e33504ff425c979016c9'],
 
         ['androidx.cardview:cardview:1.0.0',
          '1193c04c22a3d6b5946dae9f4e8c59d6adde6a71b6bd5d87fb99d82dda1afec7'],
