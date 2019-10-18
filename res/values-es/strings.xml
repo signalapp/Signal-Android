@@ -79,6 +79,7 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Fallo al guardar la imagen.</string>
   <!--CameraXFragment-->
+  <string name="CameraXFragment_video_recording_available">Toca para tomar una foto o deja tu dedo sobre el botón de disparo para grabar un vídeo.</string>
   <string name="CameraXFragment_capture_description">Captura</string>
   <string name="CameraXFragment_change_camera_description">Cambiar cámara</string>
   <string name="CameraXFragment_open_gallery_description">Abrir galería de fotos</string>
@@ -577,11 +578,14 @@ número de teléfono
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Introduce tu número de teléfono para comenzar</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Recibirás un código de verificación SMS. Se aplican las tarifas de tu operador.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Introduce el código que hemos enviado a %s</string>
+  <string name="RegistrationActivity_phone_number_description">Número de teléfono</string>
+  <string name="RegistrationActivity_country_code_description">Código de país</string>
   <string name="RegistrationActivity_call">Llamada</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_view_photo">Ver foto</string>
-  <string name="RevealableMessageView_viewed">Visto</string>
   <string name="RevealableMessageView_photo">Foto</string>
+  <string name="RevealableMessageView_video">Vídeo</string>
+  <string name="RevealableMessageView_viewed">Visto</string>
+  <string name="RevealableMessageView_outgoing_media">Multimedia</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Fallo al guardar los cambios de la imagen</string>
   <!--Search-->
@@ -644,6 +648,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ThreadRecord_media_message">Mensaje multimedia</string>
   <string name="ThreadRecord_sticker">Cromo</string>
   <string name="ThreadRecord_disappearing_photo">Foto con caducidad</string>
+  <string name="ThreadRecord_disappearing_video">Vídeo con caducidad</string>
   <string name="ThreadRecord_s_is_on_signal">¡%s usa Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Desaparición de mensajes desactivada.</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">El tiempo de desaparición de mensajes se ha fijado en %s</string>
@@ -678,6 +683,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">No se encontraron cifras de seguridad en el portapapeles para comparar</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal necesita acceso a la cámara para escanear el código QR. Por favor, ve a la aplicación «Ajustes», selecciona Signal en el menú «Aplicaciones y notificaciones» y en «Permisos» activa «Cámara».</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">No se puede escanear un código QR sin acceso a la cámara</string>
+  <!--ViewOnceMessageActivity-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Mensaje cifrado erróneo</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">El mensaje ha sido cifrado para una sesión inexistente</string>
@@ -719,6 +725,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="MessageNotifier_media_message">Mensaje multimedia</string>
   <string name="MessageNotifier_sticker">Cromo</string>
   <string name="MessageNotifier_disappearing_photo">Foto con caducidad</string>
+  <string name="MessageNotifier_disappearing_video">Vídeo con caducidad</string>
   <string name="MessageNotifier_reply">Responder</string>
   <string name="MessageNotifier_signal_message">Mensaje de Signal</string>
   <string name="MessageNotifier_unsecured_sms">SMS no cifrado</string>
@@ -854,6 +861,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="QuoteView_audio">Audio</string>
   <string name="QuoteView_video">Vídeo</string>
   <string name="QuoteView_photo">Foto</string>
+  <string name="QuoteView_media">Mensaje multimedia</string>
   <string name="QuoteView_sticker">Cromo</string>
   <string name="QuoteView_document">Documento</string>
   <string name="QuoteView_you">Tú</string>
@@ -1065,8 +1073,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="arrays__max">Máximo</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
-    <item quantity="one">%d hora</item>
-    <item quantity="other">%d horas</item>
+    <item quantity="one">%d h</item>
+    <item quantity="other">%d h</item>
   </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">SMS y MMS</string>
@@ -1135,6 +1143,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="preferences__linked_devices">Dispositivos enlazados</string>
   <string name="preferences__light_theme">Claro</string>
   <string name="preferences__dark_theme">Oscuro</string>
+  <string name="preferences__system_theme">Sistema</string>
   <string name="preferences__appearance">Apariencia</string>
   <string name="preferences__theme">Tema</string>
   <string name="preferences__default">Por defecto</string>
@@ -1339,6 +1348,9 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Por favor, introduce el código de verificación enviado a %s.</string>
   <string name="RegistrationActivity_wrong_number">Número incorrecto</string>
   <string name="RegistrationActivity_call_me_instead_available_in">Recibir llamada con código \n (Disponible en %1$02d:%2$02d)</string>
+  <string name="RegistrationActivity_contact_signal_support">Contacta con el Centro de Asistencia de Signal</string>
+  <string name="RegistrationActivity_code_support_subject">Registro de Signal - Código de verificación para Android</string>
+  <string name="RegistrationActivity_code_support_body">Asunto: Registro de Signal - Código de verificación para Android\nInformación de dispositivo: %1$s\nVersión de android: %2$s\nVersión de Signal: %3$s\nLocalización: %4$s</string>
   <string name="BackupUtil_never">Nunca</string>
   <string name="BackupUtil_unknown">Desconocido</string>
   <string name="preferences_app_protection__screen_lock">Bloqueo de pantalla</string>

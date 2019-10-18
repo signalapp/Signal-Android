@@ -258,7 +258,7 @@
   <string name="CustomDefaultPreference_none">没有</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">现在</string>
-  <string name="DateUtils_minutes_ago">%d 分钟</string>
+  <string name="DateUtils_minutes_ago">%d 分</string>
   <string name="DateUtils_today">今天</string>
   <string name="DateUtils_yesterday">昨天</string>
   <!--DeliveryStatus-->
@@ -556,9 +556,10 @@
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">请输入我们发送到%s的验证码</string>
   <string name="RegistrationActivity_call">拨号</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_view_photo">查看照片</string>
-  <string name="RevealableMessageView_viewed">已阅</string>
   <string name="RevealableMessageView_photo">图片</string>
+  <string name="RevealableMessageView_video">视频</string>
+  <string name="RevealableMessageView_viewed">已阅</string>
+  <string name="RevealableMessageView_outgoing_media">媒体</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">无法保存图像更改</string>
   <!--Search-->
@@ -652,6 +653,7 @@
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">剪切板中没有安全代码进行比较</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal 需要相机权限以扫描 QR 码，但是该权限已经被永久拒绝，请进入应用程序设置，点击权限，并启用“相机”。</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">无法在没有访问相机的权限时扫描 QR 二维码</string>
+  <!--ViewOnceMessageActivity-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">已损坏的加密消息</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">已为不存在的会话加密其中的信息</string>
@@ -827,6 +829,7 @@
   <string name="QuoteView_audio">音频</string>
   <string name="QuoteView_video">视频</string>
   <string name="QuoteView_photo">图片</string>
+  <string name="QuoteView_media">附件信息</string>
   <string name="QuoteView_sticker">表情包</string>
   <string name="QuoteView_document">文档</string>
   <string name="QuoteView_you">您</string>
@@ -1032,9 +1035,6 @@
   <string name="arrays__high">高</string>
   <string name="arrays__max">最大</string>
   <!--plurals.xml-->
-  <plurals name="hours_ago">
-    <item quantity="other">%d 小时</item>
-  </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">短信和彩信</string>
   <string name="preferences__pref_all_sms_title">获得所有的短信</string>
@@ -1102,6 +1102,7 @@
   <string name="preferences__linked_devices">已连接的设备</string>
   <string name="preferences__light_theme">明亮</string>
   <string name="preferences__dark_theme">黑暗</string>
+  <string name="preferences__system_theme">系统</string>
   <string name="preferences__appearance">外观</string>
   <string name="preferences__theme">主题</string>
   <string name="preferences__default">默认</string>
@@ -1305,6 +1306,7 @@
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">请输入发送到 %s 的验证码。</string>
   <string name="RegistrationActivity_wrong_number">号码错误</string>
   <string name="RegistrationActivity_call_me_instead_available_in">打电话给我 \n （%1$02d:%2$02d后可用）</string>
+  <string name="RegistrationActivity_contact_signal_support">联系 Signal 支持</string>
   <string name="BackupUtil_never">永不</string>
   <string name="BackupUtil_unknown">未知</string>
   <string name="preferences_app_protection__screen_lock">锁屏</string>

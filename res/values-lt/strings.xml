@@ -85,6 +85,7 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Nepavyko įrašyti paveikslo</string>
   <!--CameraXFragment-->
+  <string name="CameraXFragment_video_recording_available">Bakstelėkite norėdami fotografuoti arba laikykite pirštą ant fotografavimo mygtuko, norėdami įrašyti vaizdo įrašą.</string>
   <string name="CameraXFragment_capture_description">Fotografuoti</string>
   <string name="CameraXFragment_change_camera_description">Keisti kamerą</string>
   <string name="CameraXFragment_open_gallery_description">Atverti galeriją</string>
@@ -245,6 +246,8 @@
   <string name="ConversationFragment_quoted_message_not_found">Pradinė žinutė nerasta</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Pradinė žinutė daugiau nebeprieinama</string>
   <string name="ConversationFragment_failed_to_open_message">Nepavyko atverti žinutės</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Norėdami greitai atsakyti į žinutę, galite perbraukti ją į dešinę</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Norėdami greitai atsakyti į žinutę, galite perbraukti ją į kairę</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Jūsų įrenginyje nėra įdiegtos naršyklės.</string>
   <!--ConversationListFragment-->
@@ -615,11 +618,14 @@
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Norėdami pradėti, įveskite savo telefono numerį</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Gausite patvirtinimo kodą. Gali būti taikomi mobiliojo ryšio tinklo operatoriaus mokesčiai.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Įveskite kodą, kurį išsiuntėme į %s</string>
+  <string name="RegistrationActivity_phone_number_description">Telefono numeris</string>
+  <string name="RegistrationActivity_country_code_description">Šalies kodas</string>
   <string name="RegistrationActivity_call">Skambinti</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_view_photo">Žiūrėti nuotrauką</string>
-  <string name="RevealableMessageView_viewed">Peržiūrėta</string>
   <string name="RevealableMessageView_photo">Nuotrauka</string>
+  <string name="RevealableMessageView_video">Vaizdo įrašai</string>
+  <string name="RevealableMessageView_viewed">Peržiūrėta</string>
+  <string name="RevealableMessageView_outgoing_media">Medija</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Nepavyko įrašyti paveikslo pakeitimų</string>
   <!--Search-->
@@ -682,6 +688,7 @@
   <string name="ThreadRecord_media_message">Medijos žinutė</string>
   <string name="ThreadRecord_sticker">Lipdukas</string>
   <string name="ThreadRecord_disappearing_photo">Išnykstanti nuotrauka</string>
+  <string name="ThreadRecord_disappearing_video">Išnykstantis vaizdo įrašas</string>
   <string name="ThreadRecord_s_is_on_signal">%s atėjo į Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Išnykstančios žinutės išjungtos</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Išnykstančių žinučių laikas nustatytas į %s</string>
@@ -716,6 +723,7 @@
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Iškarpinėje palyginimui nebuvo rasta jokio saugumo numerio</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Norint skenuoti QR kodą, Signal reikia kameros leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymų meniu, pasirinkite \"Leidimai\" ir įjunkite \"Kamerą\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Nepavyksta nuskenuoti QR kodo be kameros leidimo</string>
+  <!--ViewOnceMessageActivity-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Blogai šifruota žinutė</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Žinutė šifruota seansui, kurio nėra</string>
@@ -757,6 +765,7 @@
   <string name="MessageNotifier_media_message">Medijos žinutė</string>
   <string name="MessageNotifier_sticker">Lipdukas</string>
   <string name="MessageNotifier_disappearing_photo">Išnykstanti nuotrauka</string>
+  <string name="MessageNotifier_disappearing_video">Išnykstantis vaizdo įrašas</string>
   <string name="MessageNotifier_reply">Atsakyti</string>
   <string name="MessageNotifier_signal_message">Signal žinutė</string>
   <string name="MessageNotifier_unsecured_sms">Neapsaugota SMS</string>
@@ -894,6 +903,7 @@
   <string name="QuoteView_audio">Garso įrašai</string>
   <string name="QuoteView_video">Vaizdo įrašai</string>
   <string name="QuoteView_photo">Nuotrauka</string>
+  <string name="QuoteView_media">Medijos žinutė</string>
   <string name="QuoteView_sticker">Lipdukas</string>
   <string name="QuoteView_document">Dokumentas</string>
   <string name="QuoteView_you">Jūs</string>
@@ -1119,10 +1129,10 @@
   <string name="arrays__max">Maksimali</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
-    <item quantity="one">%d valanda</item>
-    <item quantity="few">%d valandos</item>
-    <item quantity="many">%d valandų</item>
-    <item quantity="other">%d valandų</item>
+    <item quantity="one">%d val.</item>
+    <item quantity="few">%d val.</item>
+    <item quantity="many">%d val.</item>
+    <item quantity="other">%d val.</item>
   </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">SMS ir MMS</string>
@@ -1191,6 +1201,7 @@
   <string name="preferences__linked_devices">Susieti įrenginiai</string>
   <string name="preferences__light_theme">Šviesi</string>
   <string name="preferences__dark_theme">Tamsi</string>
+  <string name="preferences__system_theme">Sisteminis</string>
   <string name="preferences__appearance">Išvaizda</string>
   <string name="preferences__theme">Tema</string>
   <string name="preferences__default">Numatytoji</string>
@@ -1396,6 +1407,9 @@
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Įveskite į %s išsiųstą patvirtinimo kodą.</string>
   <string name="RegistrationActivity_wrong_number">Neteisingas numeris</string>
   <string name="RegistrationActivity_call_me_instead_available_in">Vietoj to, man paskambinkite \n (Prieinama po %1$02d:%2$02d)</string>
+  <string name="RegistrationActivity_contact_signal_support">Susisiekti su Signal palaikymu</string>
+  <string name="RegistrationActivity_code_support_subject">Signal registracija - Patvirtinimo kodas, skirtas Android</string>
+  <string name="RegistrationActivity_code_support_body">Tema: Signal registracija - Patvirtinimo kodas, skirtas Android\nĮrenginio informacija: %1$s\nAndroid versija: %2$s\nSignal versija: %3$s\nLokalė: %4$s</string>
   <string name="BackupUtil_never">Niekada</string>
   <string name="BackupUtil_unknown">Nežinoma</string>
   <string name="preferences_app_protection__screen_lock">Ekrano užraktas</string>

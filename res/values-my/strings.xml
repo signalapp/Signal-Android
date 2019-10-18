@@ -6,10 +6,14 @@
   <string name="delete">ဖျက်ပါ</string>
   <string name="please_wait">ခဏစောင့်ပါ</string>
   <string name="save">သိမ်းသည် </string>
+  <string name="note_to_self">မိမိမှတ်စု</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">စာအသစ်</string>
   <!--AlbumThumbnailView-->
+  <string name="AlbumThumbnailView_plus">\+%d
+ </string>
   <!--ApplicationMigrationActivity-->
+  <string name="ApplicationMigrationActivity__signal_is_updating">Signal ကိုupdateနေသည်</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">လက်ရှိ: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">စကားဝှက်မသတ်မှတ်ရသေးပါ</string>
@@ -57,6 +61,8 @@
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">မိမိ၏ တည်နေရာကို ပို့နိုင်ရန် တည်နေရာအား Signalမှ အသုံးပြုခွင့်ရရန်လိုအပ်သည်။ သို့သော် အမြဲတမ်းတွက် ခွင့်မပြုပါ ဟုရွေးထားပြီး ဖြစ်နေသဖြင့် အပ်ပလီကေးရှင်း အပြင်အဆင်သို့ သွား၍ ခွင့်ပြုချက်များကို ရွေးချယ်ကာတည်နေရာကို အသုံးပြုနိုင်အောင် ပြုလုပ်ပါ။</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">ဓါတ်ပုံရိုက်နိုင်ရန် မိမိ ကင်မရာကို Signalမှ အသုံးပြုခွင့်ရရန်လိုအပ်သည်။ သို့သော် အမြဲတမ်းတွက် ခွင့်မပြုပါ ဟုရွေးထားပြီး ဖြစ်နေသဖြင့် အပ်ပလီကေးရှင်း အပြင်အဆင်သို့ သွား၍ ခွင့်ပြုချက်များကို ရွေးချယ်ကာ ကင်မရာကို အသုံးပြုနိုင်အောင် ပြုလုပ်ပါ။</string>
   <!--AttachmentUploadJob-->
+  <string name="AttachmentUploadJob_uploading_media">မီဒီယာဖိုင်တင်နေသည်</string>
+  <string name="AttachmentUploadJob_compressing_video_start">ဗီဒီယိုကိုချုံ့နေသည်</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">အသံဖွင့် မရပါ!</string>
   <!--BlockedContactsActivity-->
@@ -69,13 +75,25 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">အဝင်ဖုန်း​</string>
   <!--CameraActivity-->
+  <string name="CameraActivity_image_save_failure">ဓာတ်ပုံသိမ်း၍မရပါ</string>
   <!--CameraXFragment-->
+  <string name="CameraXFragment_capture_description">ဓာတ်ပုံရိုက်</string>
+  <string name="CameraXFragment_change_camera_description">ကင်မရာပြောင်းရန်</string>
+  <string name="CameraXFragment_open_gallery_description">ဓာတ်ပုံစာအုပ်ဖွင့်ရန်</string>
   <!--CameraContacts-->
+  <string name="CameraContacts_recent_contacts">နောက်ဆုံးဖုန်းမှတ်စု</string>
+  <string name="CameraContacts_signal_contacts">signal အဆက်အသွယ်</string>
+  <string name="CameraContacts_signal_groups">Signal အဖွဲ့</string>
+  <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">အများဆုံး%dစကားဝိုင်းကိုမျှဝေနိုင်သည်</string>
+  <string name="CameraContacts_you_can_only_use_the_camera_button">Signal သူငယ်ချင်းထံသို့ ကင်မရာခလုတ်နှိပ်၍ဓာတ်ပုံပို့နိုင်သည်</string>
+  <string name="CameraContacts_cant_find_who_youre_looking_for">သင်ရှာနေတာမတွေ့ဘူးလား</string>
+  <string name="CameraContacts_invite_a_contact_to_join_signal">Signal သို့ဝင်ရန်ဖိတ်ခေါ်ပါ</string>
   <string name="CameraContacts__menu_search">ရှာရန်</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">ဖယ်ရှားသည် </string>
   <string name="ClearProfileActivity_remove_profile_photo">ဓါတ်ပုံ ဖယ်ရှားမှာလား ?</string>
   <!--CommunicationActions-->
+  <string name="CommunicationActions_no_browser_found">Web Browser ကိုရှာမတွေ့ပါ</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">%1$sဖြင့် စိတ်ချရသော ဖုန်းနံပတ်ပြောင်းလဲသွားသည်။ တစ်စုံတစ်ယောက်က သင့်ဆက်သွယ်မှုကို ကြားဖြတ်ခြင်းကြောင့် သို့မဟုတ် %2$s Signal ကို ဖြုတ်လိုက်ခြင်းကြောင့် ဖြစ်နိုင်သည်။</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">ဤလူနှင့် ဆက်သွယ်ရန် စိတ်ချရသောနံပါတ်ကို အတည်ပြုပါမည်လား။ </string>
@@ -109,6 +127,9 @@
   <string name="ConversationItem_copied_text">ကူးပြီးပါပြီ %s </string>
   <string name="ConversationItem_from_s">%s မှ </string>
   <string name="ConversationItem_to_s">%s သို့ </string>
+  <string name="ConversationItem_read_more">ဆက်ဖတ်ရန်</string>
+  <string name="ConversationItem_download_more">download ဆွဲရန်</string>
+  <string name="ConversationItem_pending">လုပ်ဆောင်နေဆဲ</string>
   <!--ConversationActivity-->
   <string name="ConversationActivity_reset_secure_session_question">လုံခြုံသောဆက်ရှင် စပါ</string>
   <string name="ConversationActivity_this_may_help_if_youre_having_encryption_problems">အကယ်၍ သင့်စကားများကို encrypt လုပ်ရန်အခက်အခဲရှိပါက ဤနည်းက အသုံးဝင်သည်။ သင့်သတင်းစကားကို သိမ်းထားပါမည်။ </string>
@@ -121,6 +142,7 @@
   <string name="ConversationActivity_message_is_empty_exclamation">သတင်းစကား မရှိပါ! </string>
   <string name="ConversationActivity_group_members">အုပ်စုဝင်များ </string>
   <string name="ConversationActivity_invalid_recipient">လက်ခံမည့်သူမရှိပါ</string>
+  <string name="ConversationActivity_added_to_home_screen">home screen သို့ထည့်ပါ</string>
   <string name="ConversationActivity_calls_not_supported">ဖုန်းခေါ်ဆိုမှုများ မပြုလုပ်နိုင်ပါ </string>
   <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">ဖုန်းနံပါတ်နှိပ် ခေါ်ဆိုမှုကို ယခုစက်တွင်မရပါ။ </string>
   <string name="ConversationActivity_leave_group">အုပ်စုမှ နှုတ်ထွက်မလား? </string>
@@ -148,6 +170,9 @@
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
   <string name="ConversationActivity_yes">ဟုတ်ကဲ့</string>
   <string name="ConversationActivity_no">မလုပ်ပါ</string>
+  <string name="ConversationActivity_no_results">ရှာမတွေ့ပါ</string>
+  <string name="ConversationActivity_sticker_pack_installed">စတစ်ကာများသွင်းပြီးပါပြီ</string>
+  <string name="ConversationActivity_new_say_it_with_stickers">သူငယ်ချင်းအသစ်ကို stickers များဖြင့်နှုတ်ဆက်ပါ</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="other">မဖတ်ရသေးသည့် စာတို %d </item>
@@ -179,6 +204,7 @@
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">ဖျက်နေသည်</string>
   <string name="ConversationFragment_deleting_messages">စာများဖျက်နေသည်</string>
+  <string name="ConversationFragment_failed_to_open_message">စာတိုကိုဖွင့်လို့မရပါ</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">ဖုန်းထဲတွင်  browser သွင်းထားခြင်းမရှိပါ</string>
   <!--ConversationListFragment-->
@@ -211,17 +237,21 @@
   <string name="CreateProfileActivity_profile_photo">ကိုယ့်ပုံ </string>
   <string name="CreateProfileActivity_too_long">ရှည်လွန်းသည် </string>
   <string name="CreateProfileActivity_profile_name">ပရိုဖိုင်းနာမည်</string>
+  <string name="CreateProfileActivity_set_up_your_profile">သင့် ပရိုဖိုင်ကိုပြင်ဆင်ပါ</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">အထူးပြုသုံး %s</string>
   <string name="CustomDefaultPreference_using_default">မူရင်းကိုသုံး %s </string>
   <string name="CustomDefaultPreference_none">မည်သည့်အရာမှ မဟုတ်သော</string>
   <!--DateUtils-->
-  <string name="DateUtils_minutes_ago">%d မိနစ် </string>
+  <string name="DateUtils_just_now">ယခု</string>
+  <string name="DateUtils_minutes_ago">%dမိနစ်</string>
   <string name="DateUtils_today">ယနေ့ </string>
   <string name="DateUtils_yesterday">မနေ့က </string>
   <!--DeliveryStatus-->
+  <string name="DeliveryStatus_sending">ပို့နေသည်</string>
   <string name="DeliveryStatus_sent">ပို့ပြီးပြီ</string>
   <string name="DeliveryStatus_delivered">ပေးပို့ပြီး</string>
+  <string name="DeliveryStatus_read">ဖတ်ရန်</string>
   <!--DeviceListActivity-->
   <string name="DeviceListActivity_unlink_s">\'%s\' ကိုမချိတ်တော့ဘူးလား?</string>
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">မချိတ်ဆက်တော့သည့်အတွက် စာတိုများကို ပေးပို့ခြင်း သို့မဟုတ် လက်ခံခြင်း မပြုနိုင်တော့ပါ။ </string>
@@ -258,6 +288,7 @@
   <string name="ExperienceUpgradeActivity_no_thanks">မလုပ်လိုပါ</string>
   <string name="ExperienceUpgradeActivity_got_it">ရပြီ</string>
   <!--GcmBroadcastReceiver-->
+  <string name="GcmBroadcastReceiver_retrieving_a_message">message ကိုရယူနေပြီ</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Signal ဆက်သွယ်မှု လုံးဝမလုပ်နိုင်ပါ။</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal ကို Google Play Services ဖြင့် မှတ်ပုံတင်၍မရနိုင်ပါ။ Signal စာတိုနှင့် ဖုန်းခေါ်ဆိုမှု ကိုပိတ်လိုက်သည်။ ပြင်ဆင်ခြင်း &gt; အဆင့်မြင့်တွင် ပြန်လည်မှတ်ပုံတင်ကြည့်ပါ။ </string>
@@ -311,6 +342,7 @@
   <string name="InviteActivity_no_app_to_share_to">သင့်မှာမျှဝေစရာ app များရှိပုံမရပါ။</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">သူငယ်ချင်းမှန်ရင် ကိုယ့်သူငယ်ချင်းကို encrypt လုပ်မထားဘဲ မ chat စေရ။ </string>
   <!--Job-->
+  <string name="Job_working_in_the_background">နောက်ကွယ်တွင်လုပ်ဆောင်နေသည်</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">ပို့လွှတ်၍ မရပါ</string>
   <string name="MessageDetailsRecipient_new_safety_number">လုံခြုံရေးနံပါတ် အသစ်</string>
@@ -346,6 +378,7 @@
   <string name="NotificationMmsMessageRecord_downloading_mms_message">MMS များအား ဒေါင်းလုပ်ဆွဲမည်</string>
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">MMS များအားဒေါင်းလုပ်ဆွဲနေစဉ် ရပ်တန့်သွားသည်၊ ပြန်စရန် နှိပ်ပါ</string>
   <!--MediaPickerActivity-->
+  <string name="MediaPickerActivity__menu_open_camera">camera ဖွင့်ပါ</string>
   <!--MediaPickerItemFragment-->
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_message">စာ</string>
@@ -402,6 +435,7 @@
   <string name="PassphrasePromptActivity_ok_button_content_description">စကားဝှက် တင်သွင်းပါ</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">စကားဝှက် မှားနေသည်</string>
   <!--PlacePickerActivity-->
+  <string name="PlacePickerActivity_title">မြေပုံ</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">သင်သွင်းထားသော Google Play ဗားရှင်းသည် ကောင်းကောင်းအလုပ်မလုပ်ပါသဖြင့် အသစ်ပြန်သွင်းပြီး ထပ်မံစမ်းသပ်ကြည့်ပါ။</string>
   <!--RatingManager-->
@@ -463,6 +497,8 @@
   <string name="RegistrationActivity_call">ဖုန်းခေါ်ဆိုမှု </string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_photo">ရုပ်ပုံ</string>
+  <string name="RevealableMessageView_video">ရုပ်မြင်သံကြား</string>
+  <string name="RevealableMessageView_outgoing_media">ရုပ်၊သံ၊ပုံ များ</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">ပြောင်းလဲလိုက်သည့် ရုပ်ပုံကို သိမ်းလို့ မရပါ</string>
   <!--Search-->
@@ -540,6 +576,7 @@
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Clipboard တွင်တိုက်ကြည့်စရာ လုံခြုံရေးနံပါတ်များ မရှိပါ</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">QR Code အားစစ်ဆေးနိုင်ရန် မိမိ ကင်မရာကို Signalမှ အသုံးပြုခွင့်ရရန်လိုအပ်သည်။ သို့သော် အမြဲတမ်းတွက် ခွင့်မပြုပါ ဟုရွေးထားပြီး ဖြစ်နေသဖြင့် အပ်ပလီကေးရှင်း အပြင်အဆင်သို့ သွား၍ ခွင့်ပြုချက်များကို ရွေးချယ်ကာ ကင်မရာကို အသုံးပြုနိုင်အောင် ပြုလုပ်ပါ။</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">ကင်မရာကို ခွင့်ပြုချက် မပေးထားဘဲ QR ကုတ်ကို စကန်ဖတ်၍ မရပါ</string>
+  <!--ViewOnceMessageActivity-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">မှားယွင်းစွာ encrypt လုပ်ထားသောစာ</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">ရှိမနေတော့သည့် ဆက်ရှင်အတွက် စာများကို encrpyt လုပ်ထားပါသည်။</string>
@@ -692,6 +729,7 @@
   <string name="QuoteView_audio">အသံ</string>
   <string name="QuoteView_video">ဗီဒီယို</string>
   <string name="QuoteView_photo">ရုပ်ပုံ</string>
+  <string name="QuoteView_media">ရုပ်/သံ/ပုံပါ စာ</string>
   <string name="QuoteView_document">စာရွက်စာတမ်း</string>
   <string name="QuoteView_you">သင်</string>
   <!--conversation_fragment-->
@@ -881,9 +919,6 @@
   <string name="arrays__high">မြင့်သော</string>
   <string name="arrays__max">အများဆုံး</string>
   <!--plurals.xml-->
-  <plurals name="hours_ago">
-    <item quantity="other">%d နာရီများ</item>
-  </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">SMS နှင့် MMS</string>
   <string name="preferences__pref_all_sms_title">စာတိုများအားလုံးကို လက်ခံပါ။</string>

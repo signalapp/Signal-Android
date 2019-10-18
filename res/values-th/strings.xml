@@ -222,7 +222,7 @@
   <string name="CustomDefaultPreference_none">ไม่มี</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">เดี๋ยวนี้</string>
-  <string name="DateUtils_minutes_ago">%d นาที</string>
+  <string name="DateUtils_minutes_ago">%d m</string>
   <string name="DateUtils_today">วันนี้</string>
   <string name="DateUtils_yesterday">เมื่อวานนี้</string>
   <!--DeliveryStatus-->
@@ -479,6 +479,8 @@
   <string name="RegistrationActivity_call">โทร</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_photo">รูปภาพ</string>
+  <string name="RevealableMessageView_video">วิดีโอ</string>
+  <string name="RevealableMessageView_outgoing_media">สื่อ</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">บันทึกการเปลี่ยนแปลงของภาพล้มเหลว</string>
   <!--Search-->
@@ -561,6 +563,7 @@
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">ไม่พบรหัสความปลอดภัยที่จะเปรียบเทียบในคลิปบอร์ด</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">เพื่อที่จะสแกนรหัส QR ได้ Signal ต้องได้รับอนุญาตให้เข้าถึงกล้อง แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป และเลือก \"การอนุญาต\" และเปิดใช้งาน \"กล้อง\"</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">สแกนรหัส QR ไม่ได้ หากไม่ได้รับอนุญาตให้เข้าถึงกล้อง</string>
+  <!--ViewOnceMessageActivity-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">ข้อความที่เข้ารหัสมีความผิดปกติ</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">ข้อความถูกเข้ารหัสสำหรับเซสชันที่ไม่มีอยู่</string>
@@ -717,6 +720,7 @@
   <string name="QuoteView_audio">เสียง</string>
   <string name="QuoteView_video">วิดีโอ</string>
   <string name="QuoteView_photo">รูปภาพ</string>
+  <string name="QuoteView_media">ข้อความสื่อ</string>
   <string name="QuoteView_document">เอกสาร</string>
   <string name="QuoteView_you">คุณ</string>
   <string name="QuoteView_original_missing">ไม่พบข้อความดั้งเดิม</string>
@@ -914,9 +918,6 @@
   <string name="arrays__high">สูง</string>
   <string name="arrays__max">สูงสุด</string>
   <!--plurals.xml-->
-  <plurals name="hours_ago">
-    <item quantity="other">%d ชั่วโมง</item>
-  </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">SMS และ MMS</string>
   <string name="preferences__pref_all_sms_title">รับ SMS ทั้งหมด</string>

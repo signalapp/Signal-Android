@@ -302,7 +302,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="CustomDefaultPreference_none">Dim</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Nawr</string>
-  <string name="DateUtils_minutes_ago">%d mun</string>
+  <string name="DateUtils_minutes_ago">%dm</string>
   <string name="DateUtils_today">Heddiw</string>
   <string name="DateUtils_yesterday">Ddoe</string>
   <!--DeliveryStatus-->
@@ -617,9 +617,10 @@ Send neges heb ei ddiogelu?</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Rhowch y cod dilysu a anfonwyd i %s.</string>
   <string name="RegistrationActivity_call">Galw</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_view_photo">Gweld Llun</string>
-  <string name="RevealableMessageView_viewed">Gwelwyd</string>
   <string name="RevealableMessageView_photo">Llun</string>
+  <string name="RevealableMessageView_video">Fideo</string>
+  <string name="RevealableMessageView_viewed">Gwelwyd</string>
+  <string name="RevealableMessageView_outgoing_media">Cyfryngau</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Methu cadw newidiadau i ddelweddau</string>
   <!--Search-->
@@ -714,6 +715,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Dim rhif diogelwch i\'w gymharu yn y clipfwrdd</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Mae ar Signal angen caniatâd Camera er mwyn sganio cod QR, ond fe\'i rwystrwyd yn barhaol. Ewch i ddewislen gosodiadau\'r ap, dewis "Caniatâd", a galluogi "Camera".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Methu sganio cod QR heb ganiatâd y Camera</string>
+  <!--ViewOnceMessageActivity-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Neges amgryptio gwael</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Neges wedi\'i hamgryptio ar gyfer sesiwn nad yw\'n bodoli</string>
@@ -892,6 +894,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="QuoteView_audio">Sain</string>
   <string name="QuoteView_video">Fideo</string>
   <string name="QuoteView_photo">Llun</string>
+  <string name="QuoteView_media">Neges cyfrwng</string>
   <string name="QuoteView_sticker">Sticer</string>
   <string name="QuoteView_document">Dogfen</string>
   <string name="QuoteView_you">Chi</string>
@@ -1116,12 +1119,6 @@ Send neges heb ei ddiogelu?</string>
   <string name="arrays__high">Uchel</string>
   <string name="arrays__max">Mwyaf</string>
   <!--plurals.xml-->
-  <plurals name="hours_ago">
-    <item quantity="one">%d awr</item>
-    <item quantity="two">%d awr</item>
-    <item quantity="many">%d awr</item>
-    <item quantity="other">%d awr</item>
-  </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">SMS ac MMS</string>
   <string name="preferences__pref_all_sms_title">Derbyn yr holl SMS</string>

@@ -276,7 +276,7 @@
   <string name="CustomDefaultPreference_none">Жодного</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Зараз</string>
-  <string name="DateUtils_minutes_ago">%d хв</string>
+  <string name="DateUtils_minutes_ago">%dхв</string>
   <string name="DateUtils_today">Сьогодні</string>
   <string name="DateUtils_yesterday">Вчора</string>
   <!--DeliveryStatus-->
@@ -563,6 +563,8 @@
   <string name="RegistrationActivity_call">Виклик</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_photo">Світлини</string>
+  <string name="RevealableMessageView_video">Відео</string>
+  <string name="RevealableMessageView_outgoing_media">Медіа</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Не вдалось змінити зображення</string>
   <!--Search-->
@@ -647,6 +649,7 @@
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">У буфері обміну не було знайдено номеру безпеки для порівняння</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal потребує доступу \"Камера\", щоб сканувати QR коди, але наразі доступу немає. Будь ласка, перейдіть до налаштувань додатку, оберіть \"Дозволи\", та увімкніть \"Камера\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Для сканування QR коду необхідний доступ до Камери</string>
+  <!--ViewOnceMessageActivity-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Погано зашифроване повідомлення</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Повідомлення зашифроване для неіснуючої сесії</string>
@@ -803,6 +806,7 @@
   <string name="QuoteView_audio">Аудіо</string>
   <string name="QuoteView_video">Відео</string>
   <string name="QuoteView_photo">Світлини</string>
+  <string name="QuoteView_media">Медіа повідомлення</string>
   <string name="QuoteView_document">Документ</string>
   <string name="QuoteView_you">Ви</string>
   <string name="QuoteView_original_missing">Оригінальне повідомлення не знайдено</string>
@@ -1023,12 +1027,6 @@
   <string name="arrays__high">Великий</string>
   <string name="arrays__max">Максимум</string>
   <!--plurals.xml-->
-  <plurals name="hours_ago">
-    <item quantity="one">%d година</item>
-    <item quantity="few">%d години</item>
-    <item quantity="many">%d годин</item>
-    <item quantity="other">%d годин</item>
-  </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">SMS та MMS</string>
   <string name="preferences__pref_all_sms_title">Отримати усі SMS</string>
@@ -1293,6 +1291,7 @@
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Будь-ласка, введіть перевірочний код що відіслано до %s</string>
   <string name="RegistrationActivity_wrong_number">Недоступний номер</string>
   <string name="RegistrationActivity_call_me_instead_available_in">Подзвони мені взамін \n (Доступний о%1$02d:%2$02d)</string>
+  <string name="RegistrationActivity_contact_signal_support">Зверніться в службу підтримки Signal</string>
   <string name="BackupUtil_never">Ніколи</string>
   <string name="BackupUtil_unknown">Невідомо</string>
   <string name="preferences_app_protection__screen_lock">Блокування екрану</string>

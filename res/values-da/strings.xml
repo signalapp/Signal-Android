@@ -226,6 +226,8 @@
   <string name="ConversationFragment_quoted_message_not_found">Original besked blev ikke fundet</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Original besked er ikke længere tilgængelig</string>
   <string name="ConversationFragment_failed_to_open_message">Fejl ved åbning af besked</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Du kan swipe til højre på enhver besked, for at svare hurtigt</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Du kan swipe til venstre på enhver besked, for at svare hurtigt</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Ingen browser installeret på enheden</string>
   <!--ConversationListFragment-->
@@ -271,7 +273,7 @@
   <string name="CustomDefaultPreference_none">Ingen</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Nu</string>
-  <string name="DateUtils_minutes_ago">%d min</string>
+  <string name="DateUtils_minutes_ago">%dm</string>
   <string name="DateUtils_today">I dag</string>
   <string name="DateUtils_yesterday">I går</string>
   <!--DeliveryStatus-->
@@ -577,9 +579,10 @@ nummer (%s) er ugyldigt</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Indtast verifikationskoden sendt til %s</string>
   <string name="RegistrationActivity_call">Ring op</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_view_photo">Vis billed</string>
-  <string name="RevealableMessageView_viewed">Er set</string>
   <string name="RevealableMessageView_photo">Billed</string>
+  <string name="RevealableMessageView_video">Video</string>
+  <string name="RevealableMessageView_viewed">Er set</string>
+  <string name="RevealableMessageView_outgoing_media">Medie</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Fejl ved forsøg på at gemme redigeret billede</string>
   <!--Search-->
@@ -676,6 +679,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Sikkerhedsnummer til sammenligning findes ikke i udklipsholderen</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal kræver tilladelse til at tilgå dit kamera, for at kunne skanne en QR-kode, hvilket det er blevet nægtet. Gå venligst via appens menu til Indstillinger, vælg \"Tilladelser\" og tilvælg \"Kamera\"</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Ikke muligt at skanne QR-koden. Tilladelse til at tilgå kameraet mangler</string>
+  <!--ViewOnceMessageActivity-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Ugyldig krypteret besked</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Beskeden er krypteret til en session der ikke findes</string>
@@ -852,6 +856,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="QuoteView_audio">Lyd</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Billed</string>
+  <string name="QuoteView_media">Mediebesked</string>
   <string name="QuoteView_sticker">Klistermærke</string>
   <string name="QuoteView_document">Dokument</string>
   <string name="QuoteView_you">Dig</string>
@@ -1062,10 +1067,6 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="arrays__high">Høj</string>
   <string name="arrays__max">Max.</string>
   <!--plurals.xml-->
-  <plurals name="hours_ago">
-    <item quantity="one">%d time</item>
-    <item quantity="other">%d timer</item>
-  </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">SMS og MMS</string>
   <string name="preferences__pref_all_sms_title">Modtag alle SMS</string>

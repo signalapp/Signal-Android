@@ -225,6 +225,8 @@
   <string name="ConversationFragment_quoted_message_not_found">Non se atopou a mensaxe orixinal</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">A mensaxe orixinal xa non está máis dispoñible</string>
   <string name="ConversationFragment_failed_to_open_message">Erro ao abrir a mensaxe</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Podes pasar o dedo cara á dereita sobre calquera mensaxe para responder rapidamente</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Podes pasar o dedo cara á esquerda sobre calquera mensaxe para responder rapidamente</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Non hai ningún navegador instalado no teu dispositivo.</string>
   <!--ConversationListFragment-->
@@ -270,7 +272,7 @@
   <string name="CustomDefaultPreference_none">Ningunha</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Agora</string>
-  <string name="DateUtils_minutes_ago">%d min</string>
+  <string name="DateUtils_minutes_ago">%dm</string>
   <string name="DateUtils_today">Hoxe</string>
   <string name="DateUtils_yesterday">Onte</string>
   <!--DeliveryStatus-->
@@ -577,9 +579,10 @@
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Insire o código que che enviamos a %s</string>
   <string name="RegistrationActivity_call">Chamar</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_view_photo">Ver fotografía</string>
-  <string name="RevealableMessageView_viewed">Vista</string>
   <string name="RevealableMessageView_photo">Fotografía</string>
+  <string name="RevealableMessageView_video">Vídeo</string>
+  <string name="RevealableMessageView_viewed">Vista</string>
+  <string name="RevealableMessageView_outgoing_media">Ficheiros multimedia</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Erro ao gardar os cambios na imaxe</string>
   <!--Search-->
@@ -676,6 +679,7 @@
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Non se atopou no portapapeis número de seguranza ningún para comparar</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal necesita permiso para acceder á cámara e poder escanear un código QR, pero foi denegado de forma permanente. Vai aos axustes da aplicación, selecciona \"Permisos\" e activa \"Cámara\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Non é posible escanear o código QR sen permiso para acceder á cámara</string>
+  <!--ViewOnceMessageActivity-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Mensaxe mal cifrada</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Mensaxe cifrada para unha sesión que non existe</string>
@@ -846,11 +850,13 @@
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Foto do contacto</string>
   <!--audio_view-->
+  <string name="audio_view__play_pause_accessibility_description">Reproducir ... Deter</string>
   <string name="audio_view__download_accessibility_description">Descargar</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">Audio</string>
   <string name="QuoteView_video">Vídeo</string>
   <string name="QuoteView_photo">Fotografía</string>
+  <string name="QuoteView_media">Mensaxe multimedia</string>
   <string name="QuoteView_sticker">Adhesivo</string>
   <string name="QuoteView_document">Documento</string>
   <string name="QuoteView_you">Ti</string>
@@ -1061,10 +1067,6 @@
   <string name="arrays__high">Alta</string>
   <string name="arrays__max">Máxima</string>
   <!--plurals.xml-->
-  <plurals name="hours_ago">
-    <item quantity="one">%d hora</item>
-    <item quantity="other">%d horas</item>
-  </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">SMS e MMS</string>
   <string name="preferences__pref_all_sms_title">Recibir todas as SMS</string>

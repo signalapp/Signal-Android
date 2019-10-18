@@ -215,6 +215,8 @@
   <string name="ConversationFragment_quoted_message_not_found">រកមិនឃើញសារដើម</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">សារដើមលែងមានទៀតហើយ</string>
   <string name="ConversationFragment_failed_to_open_message">បរាជ័យក្នុងការបើកសារ</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_right_reply">អ្នកអាចអូសទៅស្តាំលើសារណាមួយ ដើម្បីឆ្លើយតបរហ័ស</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_left_reply">អ្នកអាចអូសទៅឆ្វេងលើសារណាមួយ ដើម្បីឆ្លើយតបរហ័ស</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">ពំុមានកម្មវិធីរុករកបានដំឡើងនៅលើឧបករណ៍របស់អ្នកទេ។</string>
   <!--ConversationListFragment-->
@@ -256,7 +258,7 @@
   <string name="CustomDefaultPreference_none">គ្មាន</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">ឥឡូវនេះ</string>
-  <string name="DateUtils_minutes_ago">%d នាទី</string>
+  <string name="DateUtils_minutes_ago">%dនាទី</string>
   <string name="DateUtils_today">ថ្ងៃនេះ</string>
   <string name="DateUtils_yesterday">ម្សិលមិញ</string>
   <!--DeliveryStatus-->
@@ -553,9 +555,10 @@
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">បញ្ចូលលេខកូដដែលយើងបានផ្ញើទៅ%s</string>
   <string name="RegistrationActivity_call">ហៅចេញ</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_view_photo">បើកមើលរូបភាព</string>
-  <string name="RevealableMessageView_viewed">បានបើកមើល</string>
   <string name="RevealableMessageView_photo">រូបភាព</string>
+  <string name="RevealableMessageView_video">វីដេអូ</string>
+  <string name="RevealableMessageView_viewed">បានបើកមើល</string>
+  <string name="RevealableMessageView_outgoing_media">ព័ត៌មាន</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">បានបរាជ័យក្នុងការរក្សាទុកការផ្លាស់ប្តូររូបភាព</string>
   <!--Search-->
@@ -650,6 +653,7 @@
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">ពុំមានលេខសុវត្ថិភាព ដើម្បីប្រៀបធៀបក្នុង clipboard</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signalត្រូវការសិទ្ធិប្រើប្រាស់កាមេរ៉ាដើម្បីស្កេនកូដ QR ប៉ុន្តែវាត្រូវបានបដិសេធរហូត។ សូមបន្តទៅកាន់ ការកំណត់ ជ្រើសរើស \"ការអនុញ្ញាត\" និងបើក \"កាមេរ៉ា\"។</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">មិនអាចស្កេនកូដ QR ដោយគ្មានការអនុញ្ញាតសិទ្ធប្រើប្រាស់កាមេរ៉ា</string>
+  <!--ViewOnceMessageActivity-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">សារដែលបានកាណាលកូដសម្ងាត់មិនត្រឹមត្រូវ</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">សារត្រូវបានកាណាល់កូដសម្ងាត់សម្រាប់កំឡុងពេលមិនប្រើប្រាស់</string>
@@ -825,6 +829,7 @@
   <string name="QuoteView_audio">សំឡេង</string>
   <string name="QuoteView_video">វីដេអូ</string>
   <string name="QuoteView_photo">រូបភាព</string>
+  <string name="QuoteView_media">សារក្នុងប្រព័ន្ធផ្សព្វផ្សាយ</string>
   <string name="QuoteView_sticker">ស្ទីកគ័រ</string>
   <string name="QuoteView_document">ឯកសារ</string>
   <string name="QuoteView_you">អ្នក</string>
@@ -1028,9 +1033,6 @@
   <string name="arrays__high">ខ្ពស់</string>
   <string name="arrays__max">អតិបរិមា</string>
   <!--plurals.xml-->
-  <plurals name="hours_ago">
-    <item quantity="other">%d ម៉ោង</item>
-  </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">SMS និង MMS</string>
   <string name="preferences__pref_all_sms_title">ទទួល SMS ទាំងអស់</string>
@@ -1098,6 +1100,7 @@
   <string name="preferences__linked_devices">ភ្ជាប់ឧបករណ៍</string>
   <string name="preferences__light_theme">ភ្លឺ</string>
   <string name="preferences__dark_theme">ងងឹត</string>
+  <string name="preferences__system_theme">ប្រព័ន្ធ</string>
   <string name="preferences__appearance">រូបរាង</string>
   <string name="preferences__theme">ប្តូរទម្រង់រូបរាង</string>
   <string name="preferences__default">លំនាំដើម</string>
@@ -1300,6 +1303,7 @@
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">សូមបញ្ចូលលេខកូដផ្ទៀងផ្ទាត់ដែលបានផ្ញើទៅកាន់ %s។</string>
   <string name="RegistrationActivity_wrong_number">ខុសលេខ</string>
   <string name="RegistrationActivity_call_me_instead_available_in">ហៅមកខ្ញុំជំនួសវិញ  \n (ទំនេរក្នុងរយៈពេល %1$02d:%2$02d)</string>
+  <string name="RegistrationActivity_contact_signal_support">ទាក់ទងជំនួយ Signal</string>
   <string name="BackupUtil_never">មិនធ្លាប់</string>
   <string name="BackupUtil_unknown">មិនស្គាល់</string>
   <string name="preferences_app_protection__screen_lock">ចាក់សោរអេក្រង់</string>

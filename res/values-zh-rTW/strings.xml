@@ -258,7 +258,7 @@
   <string name="CustomDefaultPreference_none">無</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">現在</string>
-  <string name="DateUtils_minutes_ago">%d 分鐘</string>
+  <string name="DateUtils_minutes_ago">%dm</string>
   <string name="DateUtils_today">今天</string>
   <string name="DateUtils_yesterday">昨天</string>
   <!--DeliveryStatus-->
@@ -556,9 +556,10 @@
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">輸入我們傳送給 %s 的驗證碼</string>
   <string name="RegistrationActivity_call">撥打</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_view_photo">查看照片</string>
-  <string name="RevealableMessageView_viewed">已查看</string>
   <string name="RevealableMessageView_photo">照片</string>
+  <string name="RevealableMessageView_video">影片</string>
+  <string name="RevealableMessageView_viewed">已查看</string>
+  <string name="RevealableMessageView_outgoing_media">媒體</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">無法儲存圖片的變更</string>
   <!--Search-->
@@ -655,6 +656,7 @@
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">沒有在剪貼簿中發現安全碼，因此無法進行比較</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal 需要相機的權限以掃描 QR code，但是現在被設定為永久拒絕使用。請到應用程式設定中，選取「權限」，並啟用「相機」的權限。</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">因為沒有「相機」的權限，無法掃描 QR code</string>
+  <!--ViewOnceMessageActivity-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">損毀的加密訊息</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">此加密訊息的對話已不存在</string>
@@ -830,6 +832,7 @@
   <string name="QuoteView_audio">音訊</string>
   <string name="QuoteView_video">影片</string>
   <string name="QuoteView_photo">照片</string>
+  <string name="QuoteView_media">媒體訊息</string>
   <string name="QuoteView_sticker">貼圖</string>
   <string name="QuoteView_document">文件</string>
   <string name="QuoteView_you">您</string>
@@ -1033,9 +1036,6 @@
   <string name="arrays__high">高的</string>
   <string name="arrays__max">最大的</string>
   <!--plurals.xml-->
-  <plurals name="hours_ago">
-    <item quantity="other">%d 小時</item>
-  </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">簡訊與多媒體簡訊</string>
   <string name="preferences__pref_all_sms_title">接收所有手機簡訊</string>
@@ -1103,6 +1103,7 @@
   <string name="preferences__linked_devices">已連結裝置</string>
   <string name="preferences__light_theme">明亮</string>
   <string name="preferences__dark_theme">深色</string>
+  <string name="preferences__system_theme">系統</string>
   <string name="preferences__appearance">介面設定</string>
   <string name="preferences__theme">主題</string>
   <string name="preferences__default">預設</string>
@@ -1305,6 +1306,7 @@
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">請輸入傳送給 %s 的驗證碼</string>
   <string name="RegistrationActivity_wrong_number">驗證碼錯誤</string>
   <string name="RegistrationActivity_call_me_instead_available_in">改用電話打給我 \n (只提供於 %1$02d : %2$02d )</string>
+  <string name="RegistrationActivity_contact_signal_support">聯絡 Signal 支援</string>
   <string name="BackupUtil_never">永不</string>
   <string name="BackupUtil_unknown">未知</string>
   <string name="preferences_app_protection__screen_lock">螢幕鎖定</string>

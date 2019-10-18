@@ -258,7 +258,7 @@
   <string name="CustomDefaultPreference_none">Không</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Vừa xong</string>
-  <string name="DateUtils_minutes_ago">%d phút</string>
+  <string name="DateUtils_minutes_ago">%dp</string>
   <string name="DateUtils_today">Hôm nay</string>
   <string name="DateUtils_yesterday">Hôm qua</string>
   <!--DeliveryStatus-->
@@ -555,9 +555,10 @@ mã quốc gia bạn</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Điền mã xác minh được gửi đến %s</string>
   <string name="RegistrationActivity_call">Gọi</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_view_photo">Xem ảnh</string>
-  <string name="RevealableMessageView_viewed">Đã xem</string>
   <string name="RevealableMessageView_photo">Ảnh</string>
+  <string name="RevealableMessageView_video">Video</string>
+  <string name="RevealableMessageView_viewed">Đã xem</string>
+  <string name="RevealableMessageView_outgoing_media">Đa phương tiện</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Không thể lưu thay đổi trên ảnh</string>
   <!--Search-->
@@ -652,6 +653,7 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Không tìm thấy mã số an toàn trong clipboard</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal cần quyền truy cập Máy ảnh để quét mã QR, nhưng đã bị từ chối vĩnh viễn. Vui lòng mở cài đặt ứng dụng, chọn \"Quyền\" và bật \"Máy ảnh\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Không thể quét mã QR khi không có quyền truy cập Máy ảnh</string>
+  <!--ViewOnceMessageActivity-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Tin nhắn mã hóa kém</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Tin nhắn mã hoá cho phiên không tồn tại</string>
@@ -827,6 +829,7 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <string name="QuoteView_audio">Âm thanh</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Ảnh</string>
+  <string name="QuoteView_media">Tin nhắn đa phương tiện</string>
   <string name="QuoteView_sticker">Nhãn dán</string>
   <string name="QuoteView_document">Tài liệu</string>
   <string name="QuoteView_you">Bạn</string>
@@ -1030,9 +1033,6 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <string name="arrays__high">Cao</string>
   <string name="arrays__max">Cao nhất</string>
   <!--plurals.xml-->
-  <plurals name="hours_ago">
-    <item quantity="other">%d giờ</item>
-  </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">SMS và MMS</string>
   <string name="preferences__pref_all_sms_title">Nhận tất cả SMS</string>
@@ -1100,6 +1100,7 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <string name="preferences__linked_devices">Các thiết bị đã liên kết</string>
   <string name="preferences__light_theme">Sáng</string>
   <string name="preferences__dark_theme">Tối</string>
+  <string name="preferences__system_theme">Hệ thống</string>
   <string name="preferences__appearance">Diện mạo</string>
   <string name="preferences__theme">Chủ đề</string>
   <string name="preferences__default">Mặc định</string>

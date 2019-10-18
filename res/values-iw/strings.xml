@@ -273,10 +273,10 @@
   </plurals>
   <string name="ConversationListFragment_undo">בטל עשייה</string>
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
-    <item quantity="one">השיחה הועברה לתיבת הדואר הנכנס</item>
-    <item quantity="two">%d שיחות הועברו לתיבת הדואר הנכנס</item>
-    <item quantity="many">%d שיחות הועברו לתיבת הדואר הנכנס</item>
-    <item quantity="other">%d שיחות הועברו לתיבת הדואר הנכנס</item>
+    <item quantity="one">השיחה הועברה לתיבה הנכנסת</item>
+    <item quantity="two">%d שיחות הועברו לתיבה הנכנסת</item>
+    <item quantity="many">%d שיחות הועברו לתיבה הנכנסת</item>
+    <item quantity="other">%d שיחות הועברו לתיבה הנכנסת</item>
   </plurals>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">הודעת החלפת מפתח</string>
@@ -300,7 +300,7 @@
   <string name="CustomDefaultPreference_none">אין</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">עכשיו</string>
-  <string name="DateUtils_minutes_ago">%d דק׳</string>
+  <string name="DateUtils_minutes_ago">%dד׳</string>
   <string name="DateUtils_today">היום</string>
   <string name="DateUtils_yesterday">אתמול</string>
   <!--DeliveryStatus-->
@@ -615,9 +615,10 @@
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">הכנס את הקוד ששלחנו אל %s</string>
   <string name="RegistrationActivity_call">חייג</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_view_photo">הצג תצלום</string>
-  <string name="RevealableMessageView_viewed">הוצג</string>
   <string name="RevealableMessageView_photo">תצלום</string>
+  <string name="RevealableMessageView_video">סרטון</string>
+  <string name="RevealableMessageView_viewed">הוצג</string>
+  <string name="RevealableMessageView_outgoing_media">מדיה</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">נכשל בשמירת שינויי תמונה</string>
   <!--Search-->
@@ -712,6 +713,7 @@
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">לא נמצא מספר ביטחון להשוואה בלוח העריכה</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal צריך את הרשאת המצלמה על מנת לסרוק קוד QR, אבל היא נדחתה לצמיתות. אנא המשך אל הגדרות היישום, בחר \"הרשאות\" ואפשר את \"מצלמה\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">לא היה ניתן לסרוק קוד QR ללא הרשאת מצלמה</string>
+  <!--ViewOnceMessageActivity-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">הודעה מוצפנת באופן גרוע</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">הודעה הוצפנה עבור שיח בלתי־קיים</string>
@@ -890,6 +892,7 @@
   <string name="QuoteView_audio">שמע</string>
   <string name="QuoteView_video">וידיאו</string>
   <string name="QuoteView_photo">תצלום</string>
+  <string name="QuoteView_media">הודעת מדיה</string>
   <string name="QuoteView_sticker">מדבקה</string>
   <string name="QuoteView_document">מסמך</string>
   <string name="QuoteView_you">אתה</string>
@@ -1114,12 +1117,6 @@
   <string name="arrays__high">גבוה</string>
   <string name="arrays__max">מרבי</string>
   <!--plurals.xml-->
-  <plurals name="hours_ago">
-    <item quantity="one">שעה %d</item>
-    <item quantity="two">%d שעות</item>
-    <item quantity="many">%d שעות</item>
-    <item quantity="other">%d שעות</item>
-  </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">מסרון ו-MMS</string>
   <string name="preferences__pref_all_sms_title">קבל את כל המסרונים</string>
@@ -1187,6 +1184,7 @@
   <string name="preferences__linked_devices">מכשירים מקושרים</string>
   <string name="preferences__light_theme">בהירה</string>
   <string name="preferences__dark_theme">חשוכה</string>
+  <string name="preferences__system_theme">מערכת</string>
   <string name="preferences__appearance">מראה</string>
   <string name="preferences__theme">ערכת נושא</string>
   <string name="preferences__default">ברירת מחדל</string>
@@ -1267,12 +1265,12 @@
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">תמונת איש קשר</string>
   <string name="conversation_list_item_view__archived">מאוחסן בארכיון</string>
-  <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">תיבת דואר נכנס אפס</string>
+  <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">תיבה נכנסת אפס</string>
   <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">כלום. שמץ. אפס. שום דבר.\nאתה מסודר!</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">שיחה חדשה</string>
   <string name="conversation_list_fragment__open_camera_description">פתח מצלמה</string>
-  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">תן לתיבת הדואר הנכנס שלך משהו לכתוב עליו בית. התחל ע\"י שליחת הודעה לחבר.</string>
+  <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">תן לתיבה שלך משהו לכתוב עליו בית. התחל ע\"י שליחת הודעה לחבר.</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">אפס שיח מאובטח</string>
   <!--conversation_muted-->
@@ -1392,6 +1390,7 @@
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">אנא הכנס את קוד הוידוא שנשלח אל %s.</string>
   <string name="RegistrationActivity_wrong_number">מספר שגוי</string>
   <string name="RegistrationActivity_call_me_instead_available_in">חייג אליי במקום \n (זמין ב־%1$02d:%2$02d)</string>
+  <string name="RegistrationActivity_contact_signal_support">צור קשר עם תמיכת Signal</string>
   <string name="BackupUtil_never">לעולם לא</string>
   <string name="BackupUtil_unknown">לא ידוע</string>
   <string name="preferences_app_protection__screen_lock">נעילת מסך</string>

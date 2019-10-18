@@ -85,6 +85,7 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Slike ni bilo možno shraniti.</string>
   <!--CameraXFragment-->
+  <string name="CameraXFragment_video_recording_available">Tapnite za zajem slike, oziroma držite prst na gumbu za video posnetek.</string>
   <string name="CameraXFragment_capture_description">Zajemi</string>
   <string name="CameraXFragment_change_camera_description">Zamenjaj kamero</string>
   <string name="CameraXFragment_open_gallery_description">Odpri galerijo</string>
@@ -610,11 +611,14 @@
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Za začetek vpišite svojo telefonsko številko.</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Prejeli boste potrditveno kodo. Sporočilo SMS je lahko plačljivo.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Vpišite kodo poslano na %s</string>
+  <string name="RegistrationActivity_phone_number_description">Telefonska številka</string>
+  <string name="RegistrationActivity_country_code_description">Koda države</string>
   <string name="RegistrationActivity_call">Kliči</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_view_photo">Ogled fotografije</string>
-  <string name="RevealableMessageView_viewed">Ogledano</string>
   <string name="RevealableMessageView_photo">Slika</string>
+  <string name="RevealableMessageView_video">Video</string>
+  <string name="RevealableMessageView_viewed">Ogledano</string>
+  <string name="RevealableMessageView_outgoing_media">Medijske datoteke</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Shranjevanje slik ni uspelo.</string>
   <!--Search-->
@@ -675,6 +679,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="ThreadRecord_media_message">Večpredstavno sporočilo</string>
   <string name="ThreadRecord_sticker">Nalepka</string>
   <string name="ThreadRecord_disappearing_photo">Izginjajoča fotografija</string>
+  <string name="ThreadRecord_disappearing_video">Izginjajoči video</string>
   <string name="ThreadRecord_s_is_on_signal">%s uporablja Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Izginjajoča sporočila so izklopljena</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Čas poteka sporočila je nastavljen na %s</string>
@@ -709,6 +714,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Iz odložišča ni bilo mogoče pridobiti nobenega varnostnega števila za primerjavo</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Dostop do kamere je bil trajno onemogočen. Aplikacija Signal potrebuje dovoljenje za dostop do kamere, da bi lahko skenirali kode QR. Prosimo, pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"Kamera\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Brez dovoljenja za dostop do kamere ne morem skenirati kode QR.</string>
+  <!--ViewOnceMessageActivity-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Napačno šifrirano sporočilo</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Sporočilo je bilo šifrirano za neobstoječo sejo</string>
@@ -750,6 +756,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="MessageNotifier_media_message">Večpredstavno sporočilo</string>
   <string name="MessageNotifier_sticker">Nalepka</string>
   <string name="MessageNotifier_disappearing_photo">Izginjajoča fotografija</string>
+  <string name="MessageNotifier_disappearing_video">Izginjajoči video</string>
   <string name="MessageNotifier_reply">Odgovor</string>
   <string name="MessageNotifier_signal_message">Sporočilo Signal</string>
   <string name="MessageNotifier_unsecured_sms">Nezavarovan SMS</string>
@@ -887,6 +894,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="QuoteView_audio">Zvok</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Fotografija</string>
+  <string name="QuoteView_media">Multimedijsko sporočilo</string>
   <string name="QuoteView_sticker">Nalepka</string>
   <string name="QuoteView_document">Dokument</string>
   <string name="QuoteView_you">Vi</string>
@@ -1112,10 +1120,10 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="arrays__max">Najvišja</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
-    <item quantity="one">%d ura</item>
-    <item quantity="two">%d uri</item>
-    <item quantity="few">%d ure</item>
-    <item quantity="other">%d ur</item>
+    <item quantity="one">%dura</item>
+    <item quantity="two">%duri</item>
+    <item quantity="few">%dure</item>
+    <item quantity="other">%dur</item>
   </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">Sporočila SMS in MMS</string>
@@ -1184,6 +1192,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences__linked_devices">Povezane naprave</string>
   <string name="preferences__light_theme">Svetla</string>
   <string name="preferences__dark_theme">Temna</string>
+  <string name="preferences__system_theme">Sistemske</string>
   <string name="preferences__appearance">Izgled</string>
   <string name="preferences__theme">Tema</string>
   <string name="preferences__default">Privzeto</string>
@@ -1389,6 +1398,9 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Prosimo, vnesite potrditveno kodo, poslano na %s.</string>
   <string name="RegistrationActivity_wrong_number">Napačna številka</string>
   <string name="RegistrationActivity_call_me_instead_available_in">Raje me pokličite \n (Dostopno čez %1$02d:%2$02d)</string>
+  <string name="RegistrationActivity_contact_signal_support">Kontaktiraj center za podporo Signal</string>
+  <string name="RegistrationActivity_code_support_subject">Registracija za storitev Signal - verifikacijska koda za Android</string>
+  <string name="RegistrationActivity_code_support_body">Predmet: Registracija Signal - Verifikacijska koda za Android\nPodatki o napravi: %1$s\nRazličica sistema Android: %2$s\nRazličica aplikacije Signal: %3$s\nJezik: %4$s</string>
   <string name="BackupUtil_never">Nikoli</string>
   <string name="BackupUtil_unknown">Neznano</string>
   <string name="preferences_app_protection__screen_lock">Zaklep zaslona</string>

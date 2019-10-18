@@ -272,7 +272,7 @@
   <string name="CustomDefaultPreference_none">Nenhum</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Agora</string>
-  <string name="DateUtils_minutes_ago">%d min</string>
+  <string name="DateUtils_minutes_ago">%dm</string>
   <string name="DateUtils_today">Hoje</string>
   <string name="DateUtils_yesterday">Ontem</string>
   <!--DeliveryStatus-->
@@ -575,9 +575,10 @@ especificou (%s) é inválido.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Introduza o código que enviamos para %s</string>
   <string name="RegistrationActivity_call">Telefonar</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_view_photo">Ver fotografia</string>
-  <string name="RevealableMessageView_viewed">Vista(s)</string>
   <string name="RevealableMessageView_photo">Fotografia</string>
+  <string name="RevealableMessageView_video">Vídeo</string>
+  <string name="RevealableMessageView_viewed">Vista(s)</string>
+  <string name="RevealableMessageView_outgoing_media">Média</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Falha ao guardar as alterações da imagem</string>
   <!--Search-->
@@ -674,6 +675,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Não foi encontrado na área de transferência nenhum número de segurança com o qual comparar </string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">O Signal requer permissão de acesso à câmara para ler códigos QR, mas esta foi negada permanentemente. Por favor, aceda às definições da aplicação, seleccione \"Permissões\" e ative \"Câmara\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Não é possível ler um código QR sem permissão de acesso à câmara.</string>
+  <!--ViewOnceMessageActivity-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Mensagem encriptada corrompida</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Mensagem encriptada para sessão inexistente</string>
@@ -850,6 +852,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="QuoteView_audio">Áudio</string>
   <string name="QuoteView_video">Vídeo</string>
   <string name="QuoteView_photo">Foto</string>
+  <string name="QuoteView_media">Mensagem multimédia</string>
   <string name="QuoteView_sticker">Autocolante</string>
   <string name="QuoteView_document">Documento</string>
   <string name="QuoteView_you">Você</string>
@@ -1060,10 +1063,6 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="arrays__high">Elevada</string>
   <string name="arrays__max">Máxima</string>
   <!--plurals.xml-->
-  <plurals name="hours_ago">
-    <item quantity="one">%d hora</item>
-    <item quantity="other">%d horas</item>
-  </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">SMS e MMS</string>
   <string name="preferences__pref_all_sms_title">Receber todos os SMS</string>
@@ -1131,6 +1130,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="preferences__linked_devices">Dispositivos associados</string>
   <string name="preferences__light_theme">Claro</string>
   <string name="preferences__dark_theme">Escuro</string>
+  <string name="preferences__system_theme">Sistema</string>
   <string name="preferences__appearance">Aspeto</string>
   <string name="preferences__theme">Tema</string>
   <string name="preferences__default">Pré-definição</string>
@@ -1334,6 +1334,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Por favor, insira o código de verificação enviado para %s.</string>
   <string name="RegistrationActivity_wrong_number">Número errado</string>
   <string name="RegistrationActivity_call_me_instead_available_in">Como alternativa, ligue-me \n (Disponível às %1$02d:%2$02d)</string>
+  <string name="RegistrationActivity_contact_signal_support">Contactar o Apoio do Signal</string>
   <string name="BackupUtil_never">Nunca</string>
   <string name="BackupUtil_unknown">Desconhecido</string>
   <string name="preferences_app_protection__screen_lock">Ecrã de bloqueio</string>

@@ -271,7 +271,7 @@
   <string name="CustomDefaultPreference_none">Asnjë</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Tani</string>
-  <string name="DateUtils_minutes_ago">%d min</string>
+  <string name="DateUtils_minutes_ago">%dm</string>
   <string name="DateUtils_today">Sot</string>
   <string name="DateUtils_yesterday">Dje</string>
   <!--DeliveryStatus-->
@@ -575,9 +575,10 @@
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Jepni kodin që dërguam te %s</string>
   <string name="RegistrationActivity_call">Thirrje</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_view_photo">Shihni Foton</string>
-  <string name="RevealableMessageView_viewed">Parë</string>
   <string name="RevealableMessageView_photo">Foto</string>
+  <string name="RevealableMessageView_video">Video</string>
+  <string name="RevealableMessageView_viewed">Parë</string>
+  <string name="RevealableMessageView_outgoing_media">Media</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">S’u arrit të ruheshin ndryshime të figurës.</string>
   <!--Search-->
@@ -672,6 +673,7 @@
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Në të papastër s\’u gjet numër sigurie për krahasim</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Që të mund të skanojë një kod QR, Signal-i lyp leje përdorimi të Kamerës, por kjo i është mohuar. Ju lutemi, kaloni te rregullimet e aplikacionit, përzgjidhni \"Leje\", dhe aktivizoni \"Kamera\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">S\’arrihet të skanohet kodi QR pa lejim të kamerës</string>
+  <!--ViewOnceMessageActivity-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Mesazh i fshehtëzuar keq</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Mesazh i fshehtëzuar për sesion që s\’ekziston</string>
@@ -848,6 +850,7 @@
   <string name="QuoteView_audio">Audio</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Foto</string>
+  <string name="QuoteView_media">Mesazh media</string>
   <string name="QuoteView_sticker">Ngjitës</string>
   <string name="QuoteView_document">Dokument</string>
   <string name="QuoteView_you">Ju</string>
@@ -1058,10 +1061,6 @@
   <string name="arrays__high">Lartësi</string>
   <string name="arrays__max">Maks.</string>
   <!--plurals.xml-->
-  <plurals name="hours_ago">
-    <item quantity="one">%d orë</item>
-    <item quantity="other">%d orë</item>
-  </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">SMS dhe MMS</string>
   <string name="preferences__pref_all_sms_title">Merri krejt SMS-të</string>
@@ -1129,6 +1128,7 @@
   <string name="preferences__linked_devices">Pajisje të lidhura</string>
   <string name="preferences__light_theme">E çelët</string>
   <string name="preferences__dark_theme">E errët</string>
+  <string name="preferences__system_theme">Sistem</string>
   <string name="preferences__appearance">Dukje</string>
   <string name="preferences__theme">Temë</string>
   <string name="preferences__default">Parazgjedhje</string>
@@ -1331,6 +1331,7 @@
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Ju lutemi, jepni kodin e verifikimit dërguar te %s.</string>
   <string name="RegistrationActivity_wrong_number">Numër i gabuar</string>
   <string name="RegistrationActivity_call_me_instead_available_in">Telefonomëni, më mirë \n (E përdorshme në %1$02d:%2$02d)</string>
+  <string name="RegistrationActivity_contact_signal_support">Lidhuni Me Asistencën e Signal-it</string>
   <string name="BackupUtil_never">Kurrë</string>
   <string name="BackupUtil_unknown">E panjohur</string>
   <string name="preferences_app_protection__screen_lock">Kyçje ekrani</string>

@@ -253,7 +253,7 @@
   <string name="CustomDefaultPreference_none">Dada</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Anois</string>
-  <string name="DateUtils_minutes_ago">%d nóim</string>
+  <string name="DateUtils_minutes_ago">%dm</string>
   <string name="DateUtils_today">Inniu</string>
   <string name="DateUtils_yesterday">Inné</string>
   <!--DeliveryStatus-->
@@ -501,9 +501,10 @@ a shonrú</string>
   <string name="RegistrationActivity_continue">Lean ar aghaidh</string>
   <string name="RegistrationActivity_call">Glao</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_view_photo">Féach ar an nGrianghraf</string>
-  <string name="RevealableMessageView_viewed">Feicthe</string>
   <string name="RevealableMessageView_photo">Grianghraf</string>
+  <string name="RevealableMessageView_video">Físeán</string>
+  <string name="RevealableMessageView_viewed">Feicthe</string>
+  <string name="RevealableMessageView_outgoing_media">Meáin</string>
   <!--ScribbleActivity-->
   <!--Search-->
   <string name="SearchFragment_no_results">Níor aimsíodh aon torthaí le haghaidh \'%s\'</string>
@@ -581,6 +582,7 @@ a shonrú</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Níl aon uimhir shábhála sa ghearrthaisce chun cuir i gcomórtas leis.</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Tá gá ag Signal cead cheamara chun QR code a scanadh, ach ní ceadaítear é go deo. Lean ar aghaidh, le do thoil, go socruithe aipe, roghnaigh \"Ceadanna\", agus cumasaigh \"Ceamara\". </string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Ní féidir QR code a scanadh gan cead Cheamara.</string>
+  <!--ViewOnceMessageActivity-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Teachtaireacht criptiú go mícheart</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Teachtaireacht criptiú le haghaidh rith teachtaireachta neamheiseach</string>
@@ -740,6 +742,7 @@ a shonrú</string>
   <string name="QuoteView_audio">Fuaim</string>
   <string name="QuoteView_video">Físeán</string>
   <string name="QuoteView_photo">Grianghraf</string>
+  <string name="QuoteView_media">Teachtaireacht mheán</string>
   <string name="QuoteView_sticker">Greamán</string>
   <string name="QuoteView_document">Cáipéis</string>
   <string name="QuoteView_you">Tusa</string>
@@ -910,13 +913,6 @@ a shonrú</string>
   <string name="arrays__high">Ard</string>
   <string name="arrays__max">Uasmhéid</string>
   <!--plurals.xml-->
-  <plurals name="hours_ago">
-    <item quantity="one">%d amháin</item>
-    <item quantity="two">%d uair</item>
-    <item quantity="few">%d uair</item>
-    <item quantity="many">%d uair</item>
-    <item quantity="other">%d uair</item>
-  </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">SMS agus MMS</string>
   <string name="preferences__pref_all_sms_title">Glac le gach SMS</string>

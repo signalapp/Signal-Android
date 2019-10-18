@@ -245,6 +245,8 @@
   <string name="ConversationFragment_quoted_message_not_found">Původní zpráva nebyla nalezena</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Původní zpráva již není dostupná</string>
   <string name="ConversationFragment_failed_to_open_message">Zprávu se nepovedlo otevřít</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Chcete-li rychle odpovědět, přejeďte prstem na zprávě do prava </string>
+  <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Chcete-li rychle odpovědět, přejeďte prstem na zprávě do leva</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Nemáte na vašem zařízení nainstalován žádný prohlížeč.</string>
   <!--ConversationListFragment-->
@@ -298,7 +300,7 @@
   <string name="CustomDefaultPreference_none">Nic</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Teď</string>
-  <string name="DateUtils_minutes_ago">%d min.</string>
+  <string name="DateUtils_minutes_ago">%dm</string>
   <string name="DateUtils_today">Dnes</string>
   <string name="DateUtils_yesterday">Včera</string>
   <!--DeliveryStatus-->
@@ -612,9 +614,10 @@ telefonní číslo</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Zadejte kód který jsme odeslali %s</string>
   <string name="RegistrationActivity_call">Volat</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_view_photo">Zobrazit fotku</string>
-  <string name="RevealableMessageView_viewed">Zobrazeno</string>
   <string name="RevealableMessageView_photo">Fotografie</string>
+  <string name="RevealableMessageView_video">Video</string>
+  <string name="RevealableMessageView_viewed">Zobrazeno</string>
+  <string name="RevealableMessageView_outgoing_media">Media</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Nepodařilo se uložit změny v obrázku.</string>
   <!--Search-->
@@ -708,6 +711,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Ve schránce nebyl nalezen žádný bezpečnostní kód pro porovnání.</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signál potřebuje oprávnění pro přístup k fotoaparátu aby skenovat QR kódy, ale toto oprávnění je nyní zakázáno. Prosím pokračujte do menu nastavení aplikací, vyberte \"Oprávnění\" a povolte \"Fotoaparát\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Nelze skenovat QR kód bez přístupu k fotoaparátu.</string>
+  <!--ViewOnceMessageActivity-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Chybně zašifrovaná zpráva</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Zpráva zašifrována pro neexistující konverzaci</string>
@@ -886,6 +890,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="QuoteView_audio">Audio</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Fotografie</string>
+  <string name="QuoteView_media">Multimediální zpráva</string>
   <string name="QuoteView_sticker">Nálepka</string>
   <string name="QuoteView_document">Dokument</string>
   <string name="QuoteView_you">Vy</string>
@@ -1110,12 +1115,6 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="arrays__high">Vysoká</string>
   <string name="arrays__max">Max</string>
   <!--plurals.xml-->
-  <plurals name="hours_ago">
-    <item quantity="one">%d hodina</item>
-    <item quantity="few">%d hodiny</item>
-    <item quantity="many">%d hodin</item>
-    <item quantity="other">%d hodin</item>
-  </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">SMS a MMS</string>
   <string name="preferences__pref_all_sms_title">Přijímat všechny SMS</string>
@@ -1183,6 +1182,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="preferences__linked_devices">Propojená zařízení</string>
   <string name="preferences__light_theme">Světlý</string>
   <string name="preferences__dark_theme">Tmavý</string>
+  <string name="preferences__system_theme">Systém</string>
   <string name="preferences__appearance">Chování</string>
   <string name="preferences__theme">Motiv</string>
   <string name="preferences__default">Výchozí</string>

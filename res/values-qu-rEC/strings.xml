@@ -235,7 +235,7 @@
   <string name="CustomDefaultPreference_none">Nimaykan</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Kunan</string>
-  <string name="DateUtils_minutes_ago">%d chinikukuna</string>
+  <string name="DateUtils_minutes_ago">%dm</string>
   <string name="DateUtils_today">Kunan</string>
   <string name="DateUtils_yesterday">Kayna</string>
   <!--DeliveryStatus-->
@@ -491,6 +491,8 @@ riksichinami kanki
   <string name="RegistrationActivity_call">Kayachina</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_photo">Shuyu</string>
+  <string name="RevealableMessageView_video">Shuyukuyuriy</string>
+  <string name="RevealableMessageView_outgoing_media">Uyayrikuchikkuna</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Kikinpa mushukyachishka shuyu mana allichirirka.</string>
   <!--Search-->
@@ -571,6 +573,7 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Mana pakalla yupayta tarirkanchikchu chimpapurankapak panka allichik ukuwan.</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal ari nichun munanmi kikinpa shuyullukchikman yaykushpa pakalla unancha QR hapinkapak,  shinapash mana arinirishkachu. Katipay menú de configuración ukuman, \"Permisos\" nikukta llapipay, \"Cámara\" paskarichun.</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">QR unanchata mana rikuyta ushankichu, shuyurikchata manara ari nishpaka.</string>
+  <!--ViewOnceMessageActivity-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Mana alli chaski pakashka</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Chaski pakakurka  shuk  illak paskashkapa</string>
@@ -726,6 +729,7 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <string name="QuoteView_audio">Uyariy</string>
   <string name="QuoteView_video">Shuyukuyuriy</string>
   <string name="QuoteView_photo">Shuyu</string>
+  <string name="QuoteView_media">Multimedia chaski</string>
   <string name="QuoteView_document">Panka</string>
   <string name="QuoteView_you">Kikin</string>
   <string name="QuoteView_original_missing">Mana kallari chaskita taririnchu</string>
@@ -935,10 +939,6 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <string name="arrays__high">Hatun</string>
   <string name="arrays__max">Chaykamanlla</string>
   <!--plurals.xml-->
-  <plurals name="hours_ago">
-    <item quantity="one">%dpacha</item>
-    <item quantity="other">%dpachakuna</item>
-  </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">SMS shinallata MMS</string>
   <string name="preferences__pref_all_sms_title">Tukuylla SMS killkashkata chaskina.</string>

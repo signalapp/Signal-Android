@@ -273,7 +273,7 @@
   <string name="CustomDefaultPreference_none">Egyik sem</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Most</string>
-  <string name="DateUtils_minutes_ago">%d perce</string>
+  <string name="DateUtils_minutes_ago">%dp</string>
   <string name="DateUtils_today">Ma</string>
   <string name="DateUtils_yesterday">Tegnap</string>
   <!--DeliveryStatus-->
@@ -581,9 +581,10 @@ szám (%s) érvénytelen.
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Add meg a %s számra küldött kódot</string>
   <string name="RegistrationActivity_call">Hívás</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_view_photo">Fotó megtekintése</string>
-  <string name="RevealableMessageView_viewed">Megtekintve</string>
   <string name="RevealableMessageView_photo">Kép</string>
+  <string name="RevealableMessageView_video">Videó</string>
+  <string name="RevealableMessageView_viewed">Megtekintve</string>
+  <string name="RevealableMessageView_outgoing_media">Média</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Nem sikerült elmenteni a kép változásait</string>
   <!--Search-->
@@ -680,6 +681,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">A vágólapon nem található biztonsági szám, amellyel össze lehetne hasonlítani</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">A Signal-nak szüksége van a Kamera engedélyre, hogy QR kódot szkennelhessen, de ez jelenleg nincs megadva. Kérlek menj az alkalmazásbeállításokhoz, válaszd az \"Engedélyek\"-et és engedélyezd a \"Kamera\"-t.</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Nem lehet QR kódot szkennelni Kamera engedély nélkül</string>
+  <!--ViewOnceMessageActivity-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Hibás titkosított üzenet</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Az üzenet nem létező munkamenethez lett titkosítva</string>
@@ -857,6 +859,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="QuoteView_audio">Hang</string>
   <string name="QuoteView_video">Videó</string>
   <string name="QuoteView_photo">Fotó</string>
+  <string name="QuoteView_media">Médiaüzenet</string>
   <string name="QuoteView_sticker">Matrica</string>
   <string name="QuoteView_document">Dokumentum</string>
   <string name="QuoteView_you">Te</string>
@@ -1067,10 +1070,6 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="arrays__high">Magas</string>
   <string name="arrays__max">Legmagasabb</string>
   <!--plurals.xml-->
-  <plurals name="hours_ago">
-    <item quantity="one">%d óra</item>
-    <item quantity="other">%d órája</item>
-  </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">SMS és MMS</string>
   <string name="preferences__pref_all_sms_title">Összes SMS fogadása</string>
@@ -1138,6 +1137,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="preferences__linked_devices">Társított eszközök</string>
   <string name="preferences__light_theme">Világos</string>
   <string name="preferences__dark_theme">Sötét</string>
+  <string name="preferences__system_theme">Rendszer</string>
   <string name="preferences__appearance">Megjelenés</string>
   <string name="preferences__theme">Téma</string>
   <string name="preferences__default">Alapértelmezett</string>

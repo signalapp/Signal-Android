@@ -298,7 +298,7 @@
   <string name="CustomDefaultPreference_none">Žiadna</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Teraz</string>
-  <string name="DateUtils_minutes_ago">%d min</string>
+  <string name="DateUtils_minutes_ago">%dm</string>
   <string name="DateUtils_today">Dnes</string>
   <string name="DateUtils_yesterday">Včera</string>
   <!--DeliveryStatus-->
@@ -616,9 +616,10 @@ telefónne číslo
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Zadajte kód, ktorý sme odoslali na %s</string>
   <string name="RegistrationActivity_call">Zavolať</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_view_photo">Zobraziť fotku</string>
-  <string name="RevealableMessageView_viewed">Zobrazené</string>
   <string name="RevealableMessageView_photo">Fotka</string>
+  <string name="RevealableMessageView_video">Video</string>
+  <string name="RevealableMessageView_viewed">Zobrazené</string>
+  <string name="RevealableMessageView_outgoing_media">Médiá</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Nepodarilo sa uložiť zmeny v obrázku</string>
   <!--Search-->
@@ -715,6 +716,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">V schránke sa nenašlo žiadne bezpečnostné číslo pre porovnanie</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal potrebuje prístup k fotoaparátu aby mohol naskenovať QR kód, ale prístup bol natrvalo zakázaný. Prosím v nastaveniach aplikácií zvoľte \"Oprávnenia\", a povoľte \"Fotoaparát\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Nedá sa naskenovať QR kód bez povolenia prístupu k fotoaparátu</string>
+  <!--ViewOnceMessageActivity-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Zlá šifrovaná správa</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Správa šifrovaná pre neexistujúcu reláciu</string>
@@ -892,6 +894,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="QuoteView_audio">Zvuk</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Fotka</string>
+  <string name="QuoteView_media">Multimediálna správa</string>
   <string name="QuoteView_sticker">Nálepka</string>
   <string name="QuoteView_document">Dokument</string>
   <string name="QuoteView_you">Vy</string>
@@ -1116,12 +1119,6 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="arrays__high">Vysoká</string>
   <string name="arrays__max">Maximálna</string>
   <!--plurals.xml-->
-  <plurals name="hours_ago">
-    <item quantity="one">%d hodina</item>
-    <item quantity="few">%d hodiny</item>
-    <item quantity="many">%d hodín</item>
-    <item quantity="other">%d hodín</item>
-  </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">SMS a MMS</string>
   <string name="preferences__pref_all_sms_title">Prijať všetky SMS</string>
@@ -1189,6 +1186,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="preferences__linked_devices">Pripojené zariadenia</string>
   <string name="preferences__light_theme">Svetlý</string>
   <string name="preferences__dark_theme">Tmavý</string>
+  <string name="preferences__system_theme">Systémový</string>
   <string name="preferences__appearance">Vzhľad</string>
   <string name="preferences__theme">Motív</string>
   <string name="preferences__default">Štandardné nastavenie</string>

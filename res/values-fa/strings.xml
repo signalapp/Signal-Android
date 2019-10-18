@@ -566,9 +566,10 @@
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">کدی که به %s ارسال کردیم را وارد کنید</string>
   <string name="RegistrationActivity_call">تماس</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_view_photo">مشاهده عکس</string>
-  <string name="RevealableMessageView_viewed">Viewed</string>
   <string name="RevealableMessageView_photo">تصویر</string>
+  <string name="RevealableMessageView_video">ویدیو</string>
+  <string name="RevealableMessageView_viewed">Viewed</string>
+  <string name="RevealableMessageView_outgoing_media">مدیا</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">ناموفقیت در ذخیره تغییرات تصویر</string>
   <!--Search-->
@@ -663,6 +664,7 @@
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">هیچ شماره امنیتی برای مقایسه در کلیپ بورد پیدا نشد</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal نیاز به دسترسی دوربین دارد تا بتواند یک کد QR را اسکن کند، اما این اجازه داده نشده است. لطفا به قسمت تنظیمات برنامه رفته، \"دسترسی ها\" را انتخاب کنید، و \"دوربین\" را فعال کنید.</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">ناتوانی در اسکن کد QR بدون دسترسی دوربین</string>
+  <!--ViewOnceMessageActivity-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">پیام بد رمزگذاری شده</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">پیام ها، برای نشست های غیر موجود رمزنگاری شده اند</string>
@@ -839,6 +841,7 @@
   <string name="QuoteView_audio">صوت</string>
   <string name="QuoteView_video">ویدئو</string>
   <string name="QuoteView_photo">تصویر</string>
+  <string name="QuoteView_media">پیام رسانه‌ای</string>
   <string name="QuoteView_sticker">استیکر</string>
   <string name="QuoteView_document">سند</string>
   <string name="QuoteView_you">شما</string>
@@ -1049,10 +1052,6 @@
   <string name="arrays__high">زیاد</string>
   <string name="arrays__max">حداکثر</string>
   <!--plurals.xml-->
-  <plurals name="hours_ago">
-    <item quantity="one">%d ساعت</item>
-    <item quantity="other">%d ساعت</item>
-  </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">SMS و MMS</string>
   <string name="preferences__pref_all_sms_title">دریافت تمام SMS</string>
@@ -1120,6 +1119,7 @@
   <string name="preferences__linked_devices">دستگاه‌های متصل‌شده</string>
   <string name="preferences__light_theme">روشن</string>
   <string name="preferences__dark_theme">تیره</string>
+  <string name="preferences__system_theme">سیستم</string>
   <string name="preferences__appearance">ظاهر برنامه</string>
   <string name="preferences__theme">قالب</string>
   <string name="preferences__default">پیش فرض</string>
@@ -1323,6 +1323,7 @@
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">لطفا کد تاییدیه ارسال شده به %s را وارد کنید.</string>
   <string name="RegistrationActivity_wrong_number">شماره اشتباه</string>
   <string name="RegistrationActivity_call_me_instead_available_in">در عوض به من زنگ بزن n\ (قابل دسترسی در %1$02d:%2$02d )</string>
+  <string name="RegistrationActivity_contact_signal_support">ارتباط با پشتیبانی Signal</string>
   <string name="BackupUtil_never">هرگز</string>
   <string name="BackupUtil_unknown">ناشناخته</string>
   <string name="preferences_app_protection__screen_lock">قفل صفحه</string>

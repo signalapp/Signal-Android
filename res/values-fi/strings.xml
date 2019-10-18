@@ -12,6 +12,7 @@
   <!--AlbumThumbnailView-->
   <string name="AlbumThumbnailView_plus">\+%d</string>
   <!--ApplicationMigrationActivity-->
+  <string name="ApplicationMigrationActivity__signal_is_updating">Signal päivittyy…</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Tällä hetkellä: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Et ole vielä määritellyt salalausetta!</string>
@@ -63,6 +64,7 @@
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal tarvitsee lupaa käyttää kameraa kuvien ottamista varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Kamera\".</string>
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">Lähetetään media…</string>
+  <string name="AttachmentUploadJob_compressing_video_start">Pakkataan videota…</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Virhe toistettaessa äänitallennetta!</string>
   <!--BlockedContactsActivity-->
@@ -77,6 +79,9 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Kuvan tallennus epäonnistui.</string>
   <!--CameraXFragment-->
+  <string name="CameraXFragment_capture_description">Nappaa</string>
+  <string name="CameraXFragment_change_camera_description">Vaihda kamera</string>
+  <string name="CameraXFragment_open_gallery_description">Avaa galleria</string>
   <!--CameraContacts-->
   <string name="CameraContacts_recent_contacts">Viimeisimmät yhteystiedot</string>
   <string name="CameraContacts_signal_contacts">Signal-yhteystiedot</string>
@@ -219,6 +224,9 @@
   <string name="ConversationFragment_deleting_messages">Viestejä poistetaan...</string>
   <string name="ConversationFragment_quoted_message_not_found">Alkuperäistä viestiä ei löytynyt</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Alkuperäinen viesti ei ole enää saatavilla</string>
+  <string name="ConversationFragment_failed_to_open_message">Viestin avaaminen epäonnistui</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Voit pyyhkäistä oikealle missä tahansa viestissä vastataksesi nopeasti</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Voit pyyhkäistä vasemmalle missä tahansa viestissä vastataksesi nopeasti</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Laitteessasi ei ole verkkoselainta asennettuna.</string>
   <!--ConversationListFragment-->
@@ -257,13 +265,14 @@
   <string name="CreateProfileActivity_profile_name">Profiilin nimi</string>
   <string name="CreateProfileActivity_set_up_your_profile">Aseta profiilisi</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal-profiilit ovat päästä päähän salattuja eikä Signal-palvelulla ole pääsyä näihin tietoihin.</string>
+  <string name="CreateProfileActivity_set_avatar_description">Aseta kuvake</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Käytä mukautettua: %s</string>
   <string name="CustomDefaultPreference_using_default">Käytä oletusta: %s</string>
   <string name="CustomDefaultPreference_none">Ei asetettu</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Nyt</string>
-  <string name="DateUtils_minutes_ago">%d min</string>
+  <string name="DateUtils_minutes_ago">%dm</string>
   <string name="DateUtils_today">tänään</string>
   <string name="DateUtils_yesterday">eilen</string>
   <!--DeliveryStatus-->
@@ -414,6 +423,7 @@
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Virhe ladattaessa MMS-viestiä. Yritä uudelleen napauttamalla.</string>
   <!--MediaPickerActivity-->
   <string name="MediaPickerActivity_send_to">Lähetä yhteystiedolle %s</string>
+  <string name="MediaPickerActivity__menu_open_camera">Avaa kamera</string>
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">Valitse napauttamalla</string>
   <!--MediaSendActivity-->
@@ -565,9 +575,10 @@ puhelinnumero</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Syötä koodi, jonka lähetimme numeroon %s</string>
   <string name="RegistrationActivity_call">Soita</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_view_photo">Näytä kuva</string>
-  <string name="RevealableMessageView_viewed">Nähty</string>
   <string name="RevealableMessageView_photo">Kuva</string>
+  <string name="RevealableMessageView_video">Video</string>
+  <string name="RevealableMessageView_viewed">Nähty</string>
+  <string name="RevealableMessageView_outgoing_media">Media</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Kuvaan tehtyjen muutosten tallentaminen ei onnistunut.</string>
   <!--Search-->
@@ -662,6 +673,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Leikepöydältä ei löytynyt turvanumeroa, johon verrata</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal tarvitsee lupaa käyttää kameraa QR-koodien skannaamista varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Kamera\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">QR-koodin skannaus ei onnistu ilman kameran käyttöoikeutta.</string>
+  <!--ViewOnceMessageActivity-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Viestin salaus on kelvoton</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Viesti salattu olemattomalle istunnolle</string>
@@ -758,8 +770,12 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--WebRtcCallControls Content Descriptions-->
   <string name="WebRtcCallControls_contact_photo_description">Yhteystiedon kuva</string>
   <string name="WebRtcCallControls_speaker_button_description">Kaiutin</string>
+  <string name="WebRtcCallControls_bluetooth_button_description">Bluetooth</string>
   <string name="WebRtcCallControls_mute_button_description">Mykistä</string>
+  <string name="WebRtcCallControls_your_camera_button_description">Sinun kamera</string>
+  <string name="WebRtcCallControls_switch_to_rear_camera_button_description">Vaihda takakameraan</string>
   <string name="WebRtcCallControls_answer_call_description">Vastaa puheluun</string>
+  <string name="WebRtcCallControls_reject_call_description">Hylkää puhelu</string>
   <!--attachment_type_selector-->
   <string name="attachment_type_selector__audio">Äänitallenne</string>
   <string name="attachment_type_selector__audio_description">Äänitallenne</string>
@@ -784,6 +800,9 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="contact_selection_activity__enter_name_or_number">Syötä nimi tai numero</string>
   <string name="contact_selection_activity__invite_to_signal">Kutsu Signaliin</string>
   <!--contact_filter_toolbar-->
+  <string name="contact_filter_toolbar__clear_entered_text_description">Tyhjennä syötetty teksti</string>
+  <string name="contact_filter_toolbar__show_keyboard_description">Näytä näppäimistö</string>
+  <string name="contact_filter_toolbar__show_dial_pad_description">Näytä numeronäppäimistö</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Ei yhteystietoja.</string>
   <string name="contact_selection_group_activity__finding_contacts">Ladataan yhteystietoja…</string>
@@ -825,11 +844,13 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Yhteystiedon kuva</string>
   <!--audio_view-->
+  <string name="audio_view__play_pause_accessibility_description">Pelaa … Tauko</string>
   <string name="audio_view__download_accessibility_description">Lataa</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">Äänitallenne</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Kuva</string>
+  <string name="QuoteView_media">Mediaviesti</string>
   <string name="QuoteView_sticker">Tarra</string>
   <string name="QuoteView_document">Dokumentti</string>
   <string name="QuoteView_you">Sinä</string>
@@ -1040,10 +1061,6 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="arrays__high">Korkea</string>
   <string name="arrays__max">Maksimi</string>
   <!--plurals.xml-->
-  <plurals name="hours_ago">
-    <item quantity="one">%d tunti</item>
-    <item quantity="other">%d tuntia</item>
-  </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">SMS ja MMS</string>
   <string name="preferences__pref_all_sms_title">Vastaanota kaikki tekstiviestit</string>
@@ -1111,6 +1128,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="preferences__linked_devices">Yhdistetyt laitteet</string>
   <string name="preferences__light_theme">Vaalea</string>
   <string name="preferences__dark_theme">Tumma</string>
+  <string name="preferences__system_theme">Järjestelmä</string>
   <string name="preferences__appearance">Ulkonäkö</string>
   <string name="preferences__theme">Teema</string>
   <string name="preferences__default">Oletus</string>
@@ -1186,6 +1204,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="conversation_list_batch_archive__menu_archive_selected">Arkistoi valitut</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Palauta valitut arkistosta</string>
   <!--conversation_list-->
+  <string name="conversation_list_settings_shortcut">Asetukset-pikakuvake</string>
   <string name="conversation_list_search_description">Hae</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Yhteystiedon kuva</string>
@@ -1194,6 +1213,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Postilaatikkosi on tyhjä.\nHyvää päivänjatkoa!</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Uusi keskustelu</string>
+  <string name="conversation_list_fragment__open_camera_description">Avaa kamera</string>
   <string name="conversation_list_fragment__give_your_inbox_something_to_write_home_about_get_started_by_messaging_a_friend">Anna postilaatikollesi jotain, mistä se voisi olla ylpeä. Aloita lähettämällä viesti ystävälle.</string>
   <!--conversation_secure_verified-->
   <string name="conversation_secure_verified__menu_reset_secure_session">Alusta suojattu istunto</string>
@@ -1312,6 +1332,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Syötä vahvistuskoodi, joka lähetettiin numeroon %s.</string>
   <string name="RegistrationActivity_wrong_number">Väärä numero</string>
   <string name="RegistrationActivity_call_me_instead_available_in">Soita minulle sen sijaan \n (Saatavilla ajassa %1$02d:%2$02d)</string>
+  <string name="RegistrationActivity_contact_signal_support">Ota yhteyttä Signalin tukeen</string>
   <string name="BackupUtil_never">ei koskaan</string>
   <string name="BackupUtil_unknown">Tuntematon</string>
   <string name="preferences_app_protection__screen_lock">Näytön lukitus</string>

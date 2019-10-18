@@ -79,6 +79,7 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Salvataggio immagine fallito.</string>
   <!--CameraXFragment-->
+  <string name="CameraXFragment_video_recording_available">Tocca per scattare una foto o tieni premuto il pulsante di cattura per registrare un video.</string>
   <string name="CameraXFragment_capture_description">Scatta</string>
   <string name="CameraXFragment_change_camera_description">Cambia camera</string>
   <string name="CameraXFragment_open_gallery_description">Apri galleria</string>
@@ -272,7 +273,7 @@
   <string name="CustomDefaultPreference_none">Nessuna</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Ora</string>
-  <string name="DateUtils_minutes_ago">%d min</string>
+  <string name="DateUtils_minutes_ago">%dm</string>
   <string name="DateUtils_today">Oggi</string>
   <string name="DateUtils_yesterday">Ieri</string>
   <!--DeliveryStatus-->
@@ -575,11 +576,14 @@ Sii te stesso in ogni messaggio.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Inserisci il tuo numero di telefono per iniziare</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Riceverai un codice di verifica. Potrebbero applicarsi costi del tuo gestore.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Inserisci il codice che abbiamo inviato a %s</string>
+  <string name="RegistrationActivity_phone_number_description">Numero di telefono</string>
+  <string name="RegistrationActivity_country_code_description">Prefisso internazionale</string>
   <string name="RegistrationActivity_call">Chiama</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_view_photo">Visualizza foto</string>
-  <string name="RevealableMessageView_viewed">Visualizzata</string>
   <string name="RevealableMessageView_photo">Foto</string>
+  <string name="RevealableMessageView_video">Video</string>
+  <string name="RevealableMessageView_viewed">Visualizzata</string>
+  <string name="RevealableMessageView_outgoing_media">Media</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Salvataggio modifiche all\'immagine fallito</string>
   <!--Search-->
@@ -641,6 +645,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="ThreadRecord_media_message">Messaggio multimediale</string>
   <string name="ThreadRecord_sticker">Adesivo</string>
   <string name="ThreadRecord_disappearing_photo">Foto a scomparsa</string>
+  <string name="ThreadRecord_disappearing_video">Video a scomparsa</string>
   <string name="ThreadRecord_s_is_on_signal">%s è su Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Messaggi a scomparsa disabilitati</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">La scomparsa dei messaggi è settata a %s</string>
@@ -675,6 +680,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Negli appunti non c\'è un codice di sicurezza da confrontare.</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal richiede l\'autorizzazione all\'uso della fotocamera per leggere codici QR, ma è stata negata in modo permanente. Si prega di continuare al menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Fotocamera\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Impossibile scannerizzare QR code senza il permesso della fotocamera</string>
+  <!--ViewOnceMessageActivity-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Cifratura messaggio non valida</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Messaggio cifrato per una sessione non esistente...</string>
@@ -716,6 +722,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="MessageNotifier_media_message">Messaggio multimediale</string>
   <string name="MessageNotifier_sticker">Adesivo</string>
   <string name="MessageNotifier_disappearing_photo">Foto a scomparsa</string>
+  <string name="MessageNotifier_disappearing_video">Video a scomparsa</string>
   <string name="MessageNotifier_reply">Rispondi</string>
   <string name="MessageNotifier_signal_message">Messaggio Signal</string>
   <string name="MessageNotifier_unsecured_sms">SMS non sicuro</string>
@@ -851,6 +858,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="QuoteView_audio">Audio</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Foto</string>
+  <string name="QuoteView_media">Messaggio multimediale</string>
   <string name="QuoteView_sticker">Adesivo</string>
   <string name="QuoteView_document">Documento</string>
   <string name="QuoteView_you">Tu</string>
@@ -1062,8 +1070,8 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="arrays__max">Massima</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
-    <item quantity="one">%d ora</item>
-    <item quantity="other">%d ore</item>
+    <item quantity="one">%dh</item>
+    <item quantity="other">%dh</item>
   </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">SMS ed MMS</string>
@@ -1132,6 +1140,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="preferences__linked_devices">Dispositivi collegati</string>
   <string name="preferences__light_theme">Chiaro</string>
   <string name="preferences__dark_theme">Scuro</string>
+  <string name="preferences__system_theme">Sistema</string>
   <string name="preferences__appearance">Aspetto</string>
   <string name="preferences__theme">Tema</string>
   <string name="preferences__default">Predefinito</string>
@@ -1335,6 +1344,9 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Per favore inserire il codice di verifica inviato a %s.</string>
   <string name="RegistrationActivity_wrong_number">Numero errato</string>
   <string name="RegistrationActivity_call_me_instead_available_in">Chiamami \n (Disponibile tra %1$02d:%2$02d)</string>
+  <string name="RegistrationActivity_contact_signal_support">Contatta l\'assistenza Signal</string>
+  <string name="RegistrationActivity_code_support_subject">Registrazione Signal - Codice di verifica per Android</string>
+  <string name="RegistrationActivity_code_support_body">Oggetto: Registrazione Signal - Codice di verifica per Android\nInformazioni dispositivo: %1$s\nVersione Android: %2$s\nVersione Signal: %3$s\nLocalità: %4$s</string>
   <string name="BackupUtil_never">Mai</string>
   <string name="BackupUtil_unknown">Sconosciuto</string>
   <string name="preferences_app_protection__screen_lock">Blocco schermo</string>

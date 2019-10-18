@@ -235,7 +235,7 @@
   <string name="CustomDefaultPreference_none">Hakuna</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Sasa</string>
-  <string name="DateUtils_minutes_ago">%ddk</string>
+  <string name="DateUtils_minutes_ago">d %d</string>
   <string name="DateUtils_today">Leo</string>
   <string name="DateUtils_yesterday">Jana</string>
   <!--DeliveryStatus-->
@@ -510,9 +510,10 @@ nambari yako ya simu</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Ingiza msimbo tuetuma kwa 1%s</string>
   <string name="RegistrationActivity_call">wito</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_view_photo">Onyesha Picha</string>
-  <string name="RevealableMessageView_viewed">Imeonyeshwa</string>
   <string name="RevealableMessageView_photo">picha</string>
+  <string name="RevealableMessageView_video">Video</string>
+  <string name="RevealableMessageView_viewed">Imeonyeshwa</string>
+  <string name="RevealableMessageView_outgoing_media">Midia</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">imefeli kuhifadhi picha zilizobadilika</string>
   <!--Search-->
@@ -594,6 +595,7 @@ nambari yako ya simu</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Inaonekana huna programu yoyote ya kushiriki</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal inahitaji ruhusa ya Kamera ili kupima msimbo wa QR, lakini imekataliwa kabisa. Tafadhali endelea kwenye mipangilio ya programu, chagua \"Ruhusa\", na uwawezesha \"Kamera\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">imeshindikana kuscani namba ya QR bila ruhusa ya kamera</string>
+  <!--ViewOnceMessageActivity-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">ujumbe mbaya encrypted</string>
   <!--MmsMessageRecord-->
@@ -760,6 +762,7 @@ nambari yako ya simu</string>
   <string name="QuoteView_audio">Sauti</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">picha</string>
+  <string name="QuoteView_media">Ujumbe wa vyombo vya habari</string>
   <string name="QuoteView_document">nyaraka</string>
   <string name="QuoteView_you">Wewe</string>
   <string name="QuoteView_original_missing">Meseji halisi haipatikani</string>
@@ -957,10 +960,6 @@ nambari yako ya simu</string>
   <string name="arrays__high">juu</string>
   <string name="arrays__max">mwisho</string>
   <!--plurals.xml-->
-  <plurals name="hours_ago">
-    <item quantity="one">masaa 1%d</item>
-    <item quantity="other">masaa %d </item>
-  </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">SMS na MMS</string>
   <string name="preferences__pref_all_sms_title">Pokea SMS zote</string>

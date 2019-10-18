@@ -6,10 +6,13 @@
   <string name="delete">मिटाओ</string>
   <string name="please_wait">कृपया इंतज़ार कीजिए </string>
   <string name="save">संरक्षित करें</string>
+  <string name="note_to_self">स्वयं को लिखें</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">नया Signal सन्देश</string>
   <!--AlbumThumbnailView-->
+  <string name="AlbumThumbnailView_plus">\+%d</string>
   <!--ApplicationMigrationActivity-->
+  <string name="ApplicationMigrationActivity__signal_is_updating">Signal का अद्यतन हो रहा है...</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">अभी %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">आपने अभी तक पासफ़्रेज सेट नहीं किया है!</string>
@@ -241,7 +244,7 @@
   <string name="CustomDefaultPreference_none">कुछ नहीं</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">अभी</string>
-  <string name="DateUtils_minutes_ago">%d  मिनट</string>
+  <string name="DateUtils_minutes_ago">%dm</string>
   <string name="DateUtils_today">आज</string>
   <string name="DateUtils_yesterday">कल</string>
   <!--DeliveryStatus-->
@@ -496,6 +499,8 @@
   <string name="RegistrationActivity_call">कोल</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_photo">फ़ोटो</string>
+  <string name="RevealableMessageView_video">वीडियो </string>
+  <string name="RevealableMessageView_outgoing_media">मीडिया</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">छवि परिवर्तनों को सहेजने में विफल</string>
   <!--Search-->
@@ -577,6 +582,7 @@
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">तुलना करने के लिए कोई सुरक्षा संख्या क्लिपबोर्ड में नहीं मिली थी</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">एक क्यूआर कोड स्कैन करने के लिए Signal को कैमरा अनुमति की आवश्यकता होती है, लेकिन इसे स्थायी रूप से अस्वीकार कर दिया गया है। कृपया ऐप सेटिंग्स जारी रखें, \"अनुमतियां\" चुनें, और \"कैमरा\" सक्षम करें।</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">कैमरा अनुमति के बिना क्यूआर कोड स्कैन करने में असमर्थ</string>
+  <!--ViewOnceMessageActivity-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">खराब एन्क्रिप्टेड संदेश</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">गैर-मौजूदा सत्र के लिए संदेश एन्क्रिप्ट किया गया</string>
@@ -734,6 +740,7 @@
   <string name="QuoteView_audio">ऑडियो</string>
   <string name="QuoteView_video">वीडियो </string>
   <string name="QuoteView_photo">फ़ोटो</string>
+  <string name="QuoteView_media">मीडिया संदेश</string>
   <string name="QuoteView_sticker">स्टिकर</string>
   <string name="QuoteView_document">दस्तावेज़</string>
   <string name="QuoteView_you">आप</string>
@@ -944,10 +951,6 @@
   <string name="arrays__high">उच्च</string>
   <string name="arrays__max">अधिकतम</string>
   <!--plurals.xml-->
-  <plurals name="hours_ago">
-    <item quantity="one">%dघंटे </item>
-    <item quantity="other">%dघंटे </item>
-  </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">एसएमएस और एमएसएस...</string>
   <string name="preferences__pref_all_sms_title">सभी एसएमएस प्राप्त करें</string>
@@ -1205,6 +1208,7 @@
   <string name="ProgressPreference_d_messages_so_far">अब तक %d संदेश</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">कृपया %s को भेजे गए सत्यापन कोड दर्ज करें।</string>
   <string name="RegistrationActivity_wrong_number">गलत नंबर</string>
+  <string name="RegistrationActivity_contact_signal_support">Signal समर्थन से संपर्क करें</string>
   <string name="BackupUtil_never">कभी नहीं</string>
   <string name="BackupUtil_unknown">अनजान</string>
   <string name="preferences_app_protection__screen_lock">स्क्रीन लॉक</string>
