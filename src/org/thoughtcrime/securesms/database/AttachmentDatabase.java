@@ -659,6 +659,7 @@ public class AttachmentDatabase extends Database {
 
         return result;
       } else {
+        int urlIndex = cursor.getColumnIndex(URL);
         return Collections.singletonList(new DatabaseAttachment(new AttachmentId(cursor.getLong(cursor.getColumnIndexOrThrow(ROW_ID)),
                                                                                  cursor.getLong(cursor.getColumnIndexOrThrow(UNIQUE_ID))),
                                                                 cursor.getLong(cursor.getColumnIndexOrThrow(MMS_ID)),
@@ -683,7 +684,7 @@ public class AttachmentDatabase extends Database {
                                                                                          cursor.getString(cursor.getColumnIndexOrThrow(STICKER_PACK_KEY)),
                                                                                          cursor.getInt(cursor.getColumnIndexOrThrow(STICKER_ID)))
                                                                     : null,
-                                                                cursor.getString(cursor.getColumnIndexOrThrow(URL))));
+                                                                urlIndex > 0 ? cursor.getString(urlIndex) : ""));
       }
     } catch (JSONException e) {
       throw new AssertionError(e);
