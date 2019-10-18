@@ -63,13 +63,14 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-    <ImageView
+    <View
         android:id="@+id/conversation_list_toolbar_shadow"
         android:layout_width="match_parent"
         android:layout_height="4dp"
         android:layout_below="@id/toolbar"
-        android:src="@drawable/toolbar_shadow"
-        android:visibility="gone" />
+        android:background="@drawable/toolbar_shadow"
+        android:visibility="gone"
+        tools:visibility="visible" />
 
     <FrameLayout android:id="@+id/fragment_container"
                  android:layout_below="@id/toolbar"
