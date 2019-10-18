@@ -20,19 +20,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-            <ImageView android:id="@+id/toolbar_icon"
-                       android:contentDescription="@string/conversation_list_settings_shortcut"
-                       android:layout_width="58dp"
-                       android:layout_height="48dp"
-                       android:layout_alignParentStart="true"
-                       android:paddingTop="10dp"
-                       android:paddingBottom="10dp"
-                       android:paddingStart="12dp"
-                       android:paddingEnd="18dp"
-                       app:layout_constraintStart_toStartOf="parent"
-                       app:layout_constraintTop_toTopOf="parent"
-                       app:layout_constraintBottom_toBottomOf="parent"
-                       tools:src="@drawable/ic_contact_picture" />
+            <org.thoughtcrime.securesms.components.AvatarImageView
+                android:id="@+id/toolbar_icon"
+                android:contentDescription="@string/conversation_list_settings_shortcut"
+                android:layout_width="58dp"
+                android:layout_height="48dp"
+                android:layout_alignParentStart="true"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingStart="12dp"
+                android:paddingEnd="18dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                tools:src="@drawable/ic_contact_picture" />
 
             <TextView android:layout_width="0dp"
                       android:layout_height="wrap_content"
@@ -63,15 +64,6 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-    <View
-        android:id="@+id/conversation_list_toolbar_shadow"
-        android:layout_width="match_parent"
-        android:layout_height="4dp"
-        android:layout_below="@id/toolbar"
-        android:background="@drawable/toolbar_shadow"
-        android:visibility="gone"
-        tools:visibility="visible" />
-
     <FrameLayout android:id="@+id/fragment_container"
                  android:layout_below="@id/toolbar"
                  android:layout_width="match_parent"
@@ -85,5 +77,14 @@
             android:background="?attr/conversation_list_toolbar_background"
             android:elevation="4dp"
             android:visibility="invisible" />
+    
+    <View
+        android:id="@+id/conversation_list_toolbar_shadow"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:layout_below="@id/toolbar"
+        android:background="@drawable/toolbar_shadow"
+        android:visibility="gone"
+        tools:visibility="visible" />
 
 </RelativeLayout>

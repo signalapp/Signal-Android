@@ -240,6 +240,9 @@ final class CameraXModule {
 
     mImageCaptureConfigBuilder.setTargetRotation(getDisplaySurfaceRotation());
     mImageCaptureConfigBuilder.setLensFacing(mCameraLensFacing);
+    // Begin Signal Custom Code Block
+    mImageCaptureConfigBuilder.setCaptureMode(CameraXUtil.getOptimalCaptureMode());
+    // End Signal Custom Code Block
     mImageCapture = new ImageCapture(mImageCaptureConfigBuilder.build());
 
     // Begin Signal Custom Code Block
