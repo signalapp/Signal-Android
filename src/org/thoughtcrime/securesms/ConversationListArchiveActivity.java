@@ -10,7 +10,7 @@ import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 
 public class ConversationListArchiveActivity extends PassphraseRequiredActionBarActivity
-    implements ConversationListFragment.ConversationSelectedListener
+    implements ConversationListFragment.Controller
 {
 
   private final DynamicTheme    dynamicTheme    = new DynamicTheme();
@@ -69,4 +69,13 @@ public class ConversationListArchiveActivity extends PassphraseRequiredActionBar
     throw new AssertionError();
   }
 
+  @Override
+  public void onListScrolledToTop() {
+
+  }
+
+  @Override
+  public void onListScrolledAwayFromTop() {
+
+  }
 }

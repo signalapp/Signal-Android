@@ -14,7 +14,6 @@
             android:layout_height="?attr/actionBarSize"
             android:minHeight="?attr/actionBarSize"
             android:background="?attr/conversation_list_toolbar_background"
-            android:elevation="4dp"
             android:theme="?attr/actionBarStyle">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -63,6 +62,14 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.appcompat.widget.Toolbar>
+
+    <ImageView
+        android:id="@+id/conversation_list_toolbar_shadow"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:layout_below="@id/toolbar"
+        android:src="@drawable/toolbar_shadow"
+        android:visibility="gone" />
 
     <FrameLayout android:id="@+id/fragment_container"
                  android:layout_below="@id/toolbar"

@@ -34,7 +34,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import androidx.fragment.app.Fragment;
 import androidx.loader.app.LoaderManager;
@@ -155,6 +154,7 @@ public class ConversationListFragment extends Fragment
     list.setHasFixedSize(true);
     list.setLayoutManager(new LinearLayoutManager(getActivity()));
     list.setItemAnimator(new DeleteItemAnimator());
+    list.addOnScrollListener(new ScrollListener());
 
     new ItemTouchHelper(new ArchiveListenerCallback()).attachToRecyclerView(list);
 
@@ -373,7 +373,7 @@ public class ConversationListFragment extends Fragment
   }
 
   private void handleCreateConversation(long threadId, Recipient recipient, int distributionType, long lastSeen) {
-    ((ConversationSelectedListener)getActivity()).onCreateConversation(threadId, recipient, distributionType, lastSeen);
+    ((Controller)getActivity()).onCreateConversation(threadId, recipient, distributionType, lastSeen);
   }
 
   @Override
@@ -441,12 +441,14 @@ public class ConversationListFragment extends Fragment
 
   @Override
   public void onSwitchToArchive() {
-    ((ConversationSelectedListener)getActivity()).onSwitchToArchive();
+    ((Controller)getActivity()).onSwitchToArchive();
   }
 
-  public interface ConversationSelectedListener {
+  public interface Controller {
     void onCreateConversation(long threadId, Recipient recipient, int distributionType, long lastSeen);
     void onSwitchToArchive();
+    void onListScrolledToTop();
+    void onListScrolledAwayFromTop();
 }
 
   @Override
@@ -625,6 +627,17 @@ public class ConversationListFragment extends Fragment
         viewHolder.itemView.setTranslationX(dX);
       } else {
         super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+      }
+    }
+  }
+
+  private class ScrollListener extends RecyclerView.OnScrollListener {
+    @Override
+    public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+      if (recyclerView.canScrollVertically(-1)) {
+        ((Controller) getActivity()).onListScrolledAwayFromTop();
+      } else {
+        ((Controller) getActivity()).onListScrolledToTop();
       }
     }
   }
