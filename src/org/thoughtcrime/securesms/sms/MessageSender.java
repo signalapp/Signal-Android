@@ -58,6 +58,7 @@ import org.whispersystems.signalservice.loki.api.LokiStorageAPI;
 import org.whispersystems.signalservice.loki.messaging.LokiMessageFriendRequestStatus;
 
 import java.io.IOException;
+import java.util.function.Function;
 
 import kotlin.Unit;
 
@@ -117,32 +118,18 @@ public class MessageSender {
     // Loki - Turn into a GIF message if possible
     if (message.getLinkPreviews().isEmpty() && message.getAttachments().isEmpty() && LinkPreviewUtil.isWhitelistedMediaUrl(message.getBody())) {
       new LinkPreviewRepository(context).fetchGIF(context, message.getBody(), attachmentOrNull -> Util.runOnMain(() -> {
-        if (attachmentOrNull.isPresent()) {
-          Attachment attachment = attachmentOrNull.get();
-          try {
-            message.getAttachments().add(attachment);
-            long messageID = database.insertMessageOutbox(message, allocatedThreadId, forceSms, insertListener);
-            // Loki - Set the message's friend request status as soon as it has hit the database
-            if (message.isFriendRequest) {
-              DatabaseFactory.getLokiMessageDatabase(context).setFriendRequestStatus(messageID, LokiMessageFriendRequestStatus.REQUEST_SENDING);
-            }
-            sendMediaMessage(context, recipient, forceSms, messageID, message.getExpiresIn());
-          } catch (Exception e) {
-            Log.w(TAG, e);
-            // TODO: Handle
+        Attachment attachment = attachmentOrNull.orNull();
+        try {
+          if (attachment != null) { message.getAttachments().add(attachment); }
+          long messageID = database.insertMessageOutbox(message, allocatedThreadId, forceSms, insertListener);
+          // Loki - Set the message's friend request status as soon as it has hit the database
+          if (message.isFriendRequest) {
+            DatabaseFactory.getLokiMessageDatabase(context).setFriendRequestStatus(messageID, LokiMessageFriendRequestStatus.REQUEST_SENDING);
           }
-        } else {
-          try {
-            long messageID = database.insertMessageOutbox(message, allocatedThreadId, forceSms, insertListener);
-            // Loki - Set the message's friend request status as soon as it has hit the database
-            if (message.isFriendRequest) {
-              DatabaseFactory.getLokiMessageDatabase(context).setFriendRequestStatus(messageID, LokiMessageFriendRequestStatus.REQUEST_SENDING);
-            }
-            sendMediaMessage(context, recipient, forceSms, messageID, message.getExpiresIn());
-          } catch (MmsException e) {
-            Log.w(TAG, e);
-            // TODO: Handle
-          }
+          sendMediaMessage(context, recipient, forceSms, messageID, message.getExpiresIn());
+        } catch (Exception e) {
+          Log.w(TAG, e);
+          // TODO: Handle
         }
       }));
     } else {

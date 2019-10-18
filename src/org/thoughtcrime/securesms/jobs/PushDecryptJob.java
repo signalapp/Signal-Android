@@ -795,6 +795,11 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
     database.beginTransaction();
 
+    // Ignore message if it has no body and no attachments or anything
+    if (mediaMessage.getBody().isEmpty() && mediaMessage.getAttachments().isEmpty() && mediaMessage.getSharedContacts().isEmpty() && mediaMessage.getLinkPreviews().isEmpty()) {
+      return;
+    }
+
     Optional<InsertResult> insertResult;
 
     try {

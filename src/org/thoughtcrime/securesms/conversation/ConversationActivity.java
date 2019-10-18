@@ -792,7 +792,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     switch (item.getItemId()) {
     case R.id.menu_call_secure:               handleDial(getRecipient(), true);                  return true;
     case R.id.menu_call_insecure:             handleDial(getRecipient(), false);                 return true;
-    // case R.id.menu_view_media:                handleViewMedia();                                 return true;
+    case R.id.menu_view_media:                handleViewMedia();                                 return true;
     case R.id.menu_add_shortcut:              handleAddShortcut();                               return true;
     case R.id.menu_search:                    handleSearch();                                    return true;
     case R.id.menu_add_to_contacts:           handleAddToContacts();                             return true;
@@ -2408,7 +2408,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
 
     if (composeText.getText().length() == 0 && !attachmentManager.isAttachmentPresent()) {
-      buttonToggle.display(sendButton);
+      buttonToggle.display(attachButton);
       quickAttachmentToggle.show();
       inlineAttachmentToggle.hide();
     } else {
