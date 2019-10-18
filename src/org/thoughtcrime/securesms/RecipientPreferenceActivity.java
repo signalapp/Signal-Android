@@ -199,7 +199,6 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
     });
 
     Toolbar toolbar = ViewUtil.findById(this, R.id.toolbar);
-    DrawableCompat.setTint(toolbar.getNavigationIcon(), ThemeUtil.getThemedColor(this, R.attr.conversation_subtitle_color));
     setSupportActionBar(toolbar);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     getSupportActionBar().setLogo(null);
