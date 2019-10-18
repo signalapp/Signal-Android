@@ -8,9 +8,9 @@
 
     <org.thoughtcrime.securesms.mediasend.CameraButtonView
         android:id="@+id/camera_capture_button"
-        android:layout_width="96dp"
-        android:layout_height="96dp"
-        android:layout_marginBottom="25dp"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:layout_marginBottom="6dp"
         android:contentDescription="@string/CameraXFragment_capture_description"
         app:imageCaptureSize="60dp"
         app:recordSize="42dp"
