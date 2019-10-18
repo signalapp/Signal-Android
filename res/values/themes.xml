@@ -65,7 +65,11 @@
         <item name="media_overview_document_secondary">@color/core_grey_25</item>
     </style>
 
-    <style name="TextSecure.HighlightTheme" parent="@style/TextSecure.LightNoActionBar.DarkToolbar">
+    <style name="TextSecure.HighlightTheme" parent="TextSecure.BaseHighlightTheme">
+        <!-- Empty for override -->
+    </style>
+
+    <style name="TextSecure.BaseHighlightTheme" parent="@style/TextSecure.LightNoActionBar.DarkToolbar">
         <item name="actionBarStyle">@style/TextSecure.HighlightActionBar</item>
         <item name="android:actionBarStyle">@style/TextSecure.HighlightActionBar</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Dark</item>
