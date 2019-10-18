@@ -57,8 +57,7 @@ import java.io.IOException;
 @RequiresApi(21)
 public class CameraXFragment extends Fragment implements CameraFragment {
 
-  private static final String TAG                                   = Log.tag(CameraXFragment.class);
-  private static final String HAS_DISMISSED_VIDEO_RECORDING_TOOLTIP = "camerax.fragment.has.dismissed.video.recording.tooltip";
+  private static final String TAG = Log.tag(CameraXFragment.class);
 
   private CameraXView          camera;
   private ViewGroup            controlsContainer;
@@ -283,11 +282,11 @@ public class CameraXFragment extends Fragment implements CameraFragment {
   }
 
   private boolean shouldDisplayVideoRecordingTooltip() {
-    return !TextSecurePreferences.getBooleanPreference(requireContext(), HAS_DISMISSED_VIDEO_RECORDING_TOOLTIP, false);
+    return !TextSecurePreferences.hasSeenVideoRecordingTooltip(requireContext()) && MediaConstraints.isVideoTranscodeAvailable();
   }
 
   private void neverDisplayVideoRecordingTooltipAgain() {
-    TextSecurePreferences.setBooleanPreference(requireContext(), HAS_DISMISSED_VIDEO_RECORDING_TOOLTIP, true);
+    TextSecurePreferences.setHasSeenVideoRecordingTooltip(requireContext(), true);
   }
 
   private void hideAndDisableControlsForVideoRecording(@NonNull View captureButton,

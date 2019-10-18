@@ -195,6 +195,8 @@ public class TextSecurePreferences {
 
   private static final String HAS_SEEN_SWIPE_TO_REPLY = "pref_has_seen_swipe_to_reply";
 
+  private static final String HAS_SEEN_VIDEO_RECORDING_TOOLTIP = "camerax.fragment.has.dismissed.video.recording.tooltip";
+
   public static boolean isScreenLockEnabled(@NonNull Context context) {
     return getBooleanPreference(context, SCREEN_LOCK, false);
   }
@@ -1156,6 +1158,14 @@ public class TextSecurePreferences {
 
   public static void setHasSeenSwipeToReplyTooltip(Context context, boolean value) {
     setBooleanPreference(context, HAS_SEEN_SWIPE_TO_REPLY, value);
+  }
+
+  public static boolean hasSeenVideoRecordingTooltip(Context context) {
+    return getBooleanPreference(context, HAS_SEEN_VIDEO_RECORDING_TOOLTIP, false);
+  }
+
+  public static void setHasSeenVideoRecordingTooltip(Context context, boolean value) {
+    setBooleanPreference(context, HAS_SEEN_VIDEO_RECORDING_TOOLTIP, value);
   }
 
   public static void setBooleanPreference(Context context, String key, boolean value) {
