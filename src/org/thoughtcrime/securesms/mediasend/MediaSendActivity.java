@@ -10,6 +10,7 @@ import android.graphics.Rect;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
@@ -36,7 +37,6 @@ import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.TransportOption;
 import org.thoughtcrime.securesms.TransportOptions;
-import org.thoughtcrime.securesms.blurhash.BlurHash;
 import org.thoughtcrime.securesms.components.ComposeText;
 import org.thoughtcrime.securesms.components.InputAwareLayout;
 import org.thoughtcrime.securesms.components.SendButton;
@@ -69,6 +69,7 @@ import org.thoughtcrime.securesms.util.CharacterCalculator.CharacterState;
 import org.thoughtcrime.securesms.util.Function3;
 import org.thoughtcrime.securesms.util.IOFunction;
 import org.thoughtcrime.securesms.util.MediaUtil;
+import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.Stopwatch;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
@@ -382,6 +383,12 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
     Toast.makeText(this, R.string.MediaSendActivity_camera_unavailable, Toast.LENGTH_SHORT).show();
     setResult(RESULT_CANCELED, new Intent());
     finish();
+  }
+
+  @Override
+  public void onVideoCaptureError() {
+    Vibrator vibrator = ServiceUtil.getVibrator(this);
+    vibrator.vibrate(50);
   }
 
   @Override

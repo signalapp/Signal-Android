@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.mediasend;
 
+import android.Manifest;
 import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.content.Context;
@@ -8,16 +9,21 @@ import android.util.Log;
 import android.util.Size;
 import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.fragment.app.Fragment;
 
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.animation.AnimationCompleteListener;
 import org.thoughtcrime.securesms.components.TooltipPopup;
 import org.thoughtcrime.securesms.mediasend.camerax.CameraXView;
 import org.thoughtcrime.securesms.mediasend.camerax.VideoCapture;
+import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.util.MemoryFileDescriptor;
+import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.video.VideoUtil;
 
 import java.io.FileDescriptor;
@@ -30,10 +36,13 @@ class CameraXVideoCaptureHelper implements CameraButtonView.VideoCaptureListener
   private static final String VIDEO_DEBUG_LABEL = "video-capture";
   private static final long   VIDEO_SIZE        = 10 * 1024 * 1024;
 
+  private final @NonNull Fragment             fragment;
   private final @NonNull CameraXView          camera;
   private final @NonNull Callback             callback;
   private final @NonNull MemoryFileDescriptor memoryFileDescriptor;
 
+  private       boolean       isRecording;
+  private       ValueAnimator cameraMetricsAnimator;
   private final ValueAnimator updateProgressAnimator = ValueAnimator.ofFloat(0f, 1f)
       .setDuration(VideoUtil.VIDEO_MAX_LENGTH_S * 1000);
 
@@ -55,14 +64,17 @@ class CameraXVideoCaptureHelper implements CameraButtonView.VideoCaptureListener
                         @Nullable Throwable cause)
     {
       callback.onVideoError(cause);
+      Util.runOnMain(() -> resetCameraSizing());
     }
   };
 
-  CameraXVideoCaptureHelper(@NonNull CameraButtonView captureButton,
+  CameraXVideoCaptureHelper(@NonNull Fragment fragment,
+                            @NonNull CameraButtonView captureButton,
                             @NonNull CameraXView camera,
                             @NonNull MemoryFileDescriptor memoryFileDescriptor,
                             @NonNull Callback callback)
   {
+    this.fragment             = fragment;
     this.camera               = camera;
     this.memoryFileDescriptor = memoryFileDescriptor;
     this.callback             = callback;
@@ -72,7 +84,7 @@ class CameraXVideoCaptureHelper implements CameraButtonView.VideoCaptureListener
     updateProgressAnimator.addListener(new AnimationCompleteListener() {
       @Override
       public void onAnimationEnd(Animator animation) {
-        onVideoCaptureComplete();
+        if (isRecording) onVideoCaptureComplete();
       }
     });
   }
@@ -81,22 +93,43 @@ class CameraXVideoCaptureHelper implements CameraButtonView.VideoCaptureListener
   public void onVideoCaptureStarted() {
     Log.d(TAG, "onVideoCaptureStarted");
 
-    this.camera.setZoomLevel(0f);
-    callback.onVideoRecordStarted();
-    shrinkCaptureArea(() -> {
-      camera.startRecording(memoryFileDescriptor.getFileDescriptor(), videoSavedListener);
-      updateProgressAnimator.start();
-    });
+    if (canRecordAudio()) {
+      isRecording = true;
+      beginCameraRecording();
+    } else {
+      displayAudioRecordingPermissionsDialog();
+    }
   }
 
-  private void shrinkCaptureArea(@NonNull Runnable onCaptureAreaShrank) {
+  private boolean canRecordAudio() {
+    return Permissions.hasAll(fragment.requireContext(), Manifest.permission.RECORD_AUDIO);
+  }
+
+  private void displayAudioRecordingPermissionsDialog() {
+    Permissions.with(fragment)
+               .request(Manifest.permission.RECORD_AUDIO)
+               .ifNecessary()
+               .withRationaleDialog(fragment.getString(R.string.ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound), R.drawable.ic_mic_solid_24)
+               .withPermanentDenialDialog(fragment.getString(R.string.ConversationActivity_signal_needs_the_recording_permissions_to_capture_video))
+               .onAnyDenied(() -> Toast.makeText(fragment.requireContext(), R.string.ConversationActivity_signal_needs_recording_permissions_to_capture_video, Toast.LENGTH_LONG).show())
+               .execute();
+  }
+
+  private void beginCameraRecording() {
+    this.camera.setZoomLevel(0f);
+    callback.onVideoRecordStarted();
+    shrinkCaptureArea();
+    camera.startRecording(memoryFileDescriptor.getFileDescriptor(), videoSavedListener);
+    updateProgressAnimator.start();
+  }
+
+  private void shrinkCaptureArea() {
     Size  screenSize               = getScreenSize();
     Size  videoRecordingSize       = VideoUtil.getVideoRecordingSize();
     float scale                    = getSurfaceScaleForRecording();
     float targetWidthForAnimation  = videoRecordingSize.getWidth() * scale;
     float scaleX                   = targetWidthForAnimation / screenSize.getWidth();
 
-    final ValueAnimator cameraMetricsAnimator;
     if (scaleX == 1f) {
       float targetHeightForAnimation = videoRecordingSize.getHeight() * scale;
       cameraMetricsAnimator = ValueAnimator.ofFloat(screenSize.getHeight(), targetHeightForAnimation);
@@ -110,8 +143,9 @@ class CameraXVideoCaptureHelper implements CameraButtonView.VideoCaptureListener
     cameraMetricsAnimator.addListener(new AnimationCompleteListener() {
       @Override
       public void onAnimationEnd(Animator animation) {
+        if (!isRecording) return;
+
         scaleCameraViewToMatchRecordingSizeAndAspectRatio();
-        onCaptureAreaShrank.run();
       }
     });
     cameraMetricsAnimator.addUpdateListener(animation -> {
@@ -150,11 +184,30 @@ class CameraXVideoCaptureHelper implements CameraButtonView.VideoCaptureListener
     return Math.min(screenSize.getHeight(), screenSize.getWidth()) / (float) Math.min(videoRecordingSize.getHeight(), videoRecordingSize.getWidth());
   }
 
+  private void resetCameraSizing() {
+    ViewGroup.LayoutParams layoutParams = camera.getLayoutParams();
+    layoutParams.width  = ViewGroup.LayoutParams.MATCH_PARENT;
+    layoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT;
+
+    camera.setLayoutParams(layoutParams);
+    camera.setScaleX(1);
+    camera.setScaleY(1);
+  }
+
   @Override
   public void onVideoCaptureComplete() {
+    isRecording = false;
+    if (!canRecordAudio()) return;
+
     Log.d(TAG, "onVideoCaptureComplete");
-    updateProgressAnimator.cancel();
     camera.stopRecording();
+
+
+    if (cameraMetricsAnimator != null && cameraMetricsAnimator.isRunning()) {
+      cameraMetricsAnimator.reverse();
+    }
+
+    updateProgressAnimator.cancel();
   }
 
   @Override

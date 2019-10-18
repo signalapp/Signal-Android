@@ -206,6 +206,9 @@
     <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">To capture photos and video, allow Signal access to the camera.</string>
     <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal needs the Camera permission to take photos or video, but it has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Camera\".</string>
     <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal needs Camera permissions to take photos or video</string>
+    <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">Enable the microphone permission to capture videos with sound.</string>
+    <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Signal needs microphone permissions to record videos, but they have been denied. Please continue to app settings, select \"Permissions\", and enable \"Microphone\" and \"Camera\".</string>
+    <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Signal needs microphone permissions to record videos.</string>
 
     <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
     <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal cannot send SMS/MMS messages because it is not your default SMS app. Would you like to change this in your Android settings?</string>

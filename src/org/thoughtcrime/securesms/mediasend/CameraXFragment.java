@@ -237,6 +237,7 @@ public class CameraXFragment extends Fragment implements CameraFragment {
 
         camera.setCaptureMode(CameraXView.CaptureMode.MIXED);
         captureButton.setVideoCaptureListener(new CameraXVideoCaptureHelper(
+            this,
             captureButton,
             camera,
             videoFileDescriptor,
@@ -255,7 +256,7 @@ public class CameraXFragment extends Fragment implements CameraFragment {
               @Override
               public void onVideoError(@Nullable Throwable cause) {
                 showAndEnableControlsAfterVideoRecording(captureButton, flashButton, flipButton, inAnimation);
-                controller.onCameraError();
+                controller.onVideoCaptureError();
               }
             }
         ));
