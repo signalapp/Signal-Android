@@ -41,7 +41,7 @@ abstract class MigrationJob extends Job {
       return Result.success();
     } catch (RuntimeException e) {
       Log.w(TAG, JobLogger.format(this, "Encountered a runtime exception."), e);
-      throw e;
+      throw new FailedMigrationError(e);
     } catch (Exception e) {
       if (shouldRetry(e)) {
         Log.w(TAG, JobLogger.format(this, "Encountered a retryable exception."), e);
