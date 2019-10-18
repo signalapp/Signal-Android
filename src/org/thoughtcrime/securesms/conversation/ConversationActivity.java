@@ -1615,11 +1615,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     ActionBar supportActionBar = getSupportActionBar();
     if (supportActionBar == null) throw new AssertionError();
 
-    Drawable drawable = ContextCompat.getDrawable(this, R.drawable.ic_arrow_left_24);
-    DrawableCompat.setTint(drawable, ThemeUtil.getThemedColor(this, R.attr.icon_tint_dark));
-    toolbar.setCollapseIcon(drawable);
-
-    supportActionBar.setHomeAsUpIndicator(drawable);
     supportActionBar.setDisplayHomeAsUpEnabled(true);
     supportActionBar.setDisplayShowTitleEnabled(false);
   }

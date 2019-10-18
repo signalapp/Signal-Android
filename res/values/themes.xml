@@ -71,7 +71,8 @@
         <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Dark</item>
         <item name="android:windowBackground">@color/signal_primary</item>
         <item name="android:windowContentOverlay">@null</item>
-        <item name="toolbarNavigationButtonStyle">@style/Signal.Toolbar.Navigation.Conversation</item>
+        <item name="homeAsUpIndicator">@drawable/ic_arrow_left_conversation_24</item>
+        <item name="android:homeAsUpIndicator">@drawable/ic_arrow_left_conversation_24</item>
         <item name="colorButtonNormal">@color/white</item>
         <item name="contact_filter_toolbar_icon_tint">?conversation_subtitle_color</item>
     </style>
@@ -583,27 +584,39 @@
     </style>
 
     <style name="TextSecure.LightNoActionBar.DarkToolbar" parent="TextSecure.LightNoActionBar">
-        <item name="toolbarNavigationButtonStyle">@style/Signal.Toolbar.Navigation.Conversation</item>
         <item name="android:windowLightStatusBar" tools:ignore="NewApi">false</item>
+        <item name="homeAsUpIndicator">@drawable/ic_arrow_left_conversation_24</item>
+        <item name="android:homeAsUpIndicator">@drawable/ic_arrow_left_conversation_24</item>
+        <item name="collapseIcon">@drawable/ic_arrow_left_conversation_24</item>
+        <item name="android:collapseIcon" tools:ignore="NewApi">@drawable/ic_arrow_left_conversation_24</item>
     </style>
 
     <style name="TextSecure.DarkNoActionBar.DarkToolbar" parent="TextSecure.DarkNoActionBar">
-        <item name="toolbarNavigationButtonStyle">@style/Signal.Toolbar.Navigation.Conversation</item>
         <item name="android:windowLightStatusBar" tools:ignore="NewApi">false</item>
+        <item name="homeAsUpIndicator">@drawable/ic_arrow_left_conversation_24</item>
+        <item name="android:homeAsUpIndicator">@drawable/ic_arrow_left_conversation_24</item>
+        <item name="collapseIcon">@drawable/ic_arrow_left_conversation_24</item>
+        <item name="android:collapseIcon" tools:ignore="NewApi">@drawable/ic_arrow_left_conversation_24</item>
     </style>
 
     <style name="TextSecure.LightTheme.Conversation">
         <item name="android:actionBarStyle">@style/TextSecure.DarkActionBar.Conversation</item>
         <item name="actionBarStyle">@style/TextSecure.DarkActionBar.Conversation</item>
-        <item name="toolbarNavigationButtonStyle">@style/Signal.Toolbar.Navigation.Conversation</item>
         <item name="android:windowLightStatusBar" tools:ignore="NewApi">false</item>
+        <item name="homeAsUpIndicator">@drawable/ic_arrow_left_conversation_24</item>
+        <item name="android:homeAsUpIndicator">@drawable/ic_arrow_left_conversation_24</item>
+        <item name="collapseIcon">@drawable/ic_arrow_left_conversation_24</item>
+        <item name="android:collapseIcon" tools:ignore="NewApi">@drawable/ic_arrow_left_conversation_24</item>
     </style>
 
     <style name="TextSecure.DarkTheme.Conversation">
         <item name="android:actionBarStyle">@style/TextSecure.DarkActionBar.Conversation</item>
         <item name="actionBarStyle">@style/TextSecure.DarkActionBar.Conversation</item>
-        <item name="toolbarNavigationButtonStyle">@style/Signal.Toolbar.Navigation.Conversation</item>
         <item name="android:windowLightStatusBar" tools:ignore="NewApi">false</item>
+        <item name="homeAsUpIndicator">@drawable/ic_arrow_left_conversation_24</item>
+        <item name="android:homeAsUpIndicator">@drawable/ic_arrow_left_conversation_24</item>
+        <item name="collapseIcon">@drawable/ic_arrow_left_conversation_24</item>
+        <item name="android:collapseIcon" tools:ignore="NewApi">@drawable/ic_arrow_left_conversation_24</item>
     </style>
 
     <style name="TextSecure.LightTheme.WebRTCCall">

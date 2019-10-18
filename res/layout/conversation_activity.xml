@@ -19,7 +19,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:navigationIcon="@drawable/ic_arrow_left_24"
             app:contentInsetStart="46dp"
             tools:background="#ff007f00">
 

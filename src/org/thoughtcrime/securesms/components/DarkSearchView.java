@@ -30,6 +30,6 @@ public class DarkSearchView extends androidx.appcompat.widget.SearchView {
     super(context, attrs, defStyleAttr);
 
     EditText searchText = findViewById(androidx.appcompat.R.id.search_src_text);
-    searchText.setTextColor(ContextCompat.getColor(context, R.color.transparent_white_90));
+    searchText.setTextColor(ThemeUtil.getThemedColor(context, R.attr.conversation_subtitle_color));
   }
 }

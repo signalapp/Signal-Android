@@ -313,9 +313,9 @@
     </style>
 
     <style name="Signal.SearchView.Dark">
-        <item name="closeIcon">@drawable/ic_x_dark_20</item>
-        <item name="searchHintIcon">@drawable/ic_search_dark_24</item>
-        <item name="searchIcon">@drawable/ic_search_dark_24</item>
+        <item name="closeIcon">@drawable/ic_x_conversation_20</item>
+        <item name="searchHintIcon">@drawable/ic_search_conversation_24</item>
+        <item name="searchIcon">@drawable/ic_search_conversation_24</item>
     </style>
 
     <style name="Signal.Toolbar.Overflow" parent="Widget.AppCompat.ActionButton.Overflow">
@@ -325,11 +325,8 @@
     </style>
 
     <style name="Signal.Toolbar.Overflow.Conversation">
-        <item name="android:tint">?conversation_subtitle_color</item>
-    </style>
-
-    <style name="Signal.Toolbar.Navigation.Conversation" parent="Widget.AppCompat.Toolbar.Button.Navigation">
-        <item name="android:tint">?conversation_subtitle_color</item>
+        <item name="srcCompat">@drawable/ic_more_vert_conversation_24</item>
+        <item name="android:tint">@null</item>
     </style>
 
     <style name="TextSecure.ActionModeStyle" parent="@style/Widget.AppCompat.ActionMode">
