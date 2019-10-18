@@ -76,6 +76,7 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">未能保存图像。</string>
   <!--CameraXFragment-->
+  <string name="CameraXFragment_video_recording_available">轻触拍摄照片，或者长按录制视频。</string>
   <string name="CameraXFragment_capture_description">拍摄</string>
   <string name="CameraXFragment_change_camera_description">切换摄像头</string>
   <string name="CameraXFragment_open_gallery_description">打开相册</string>
@@ -554,6 +555,8 @@
   <string name="RegistrationActivity_you_will_receive_a_verification_code">您会收到一条验证码。运营商可能会收取费用。
 </string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">请输入我们发送到%s的验证码</string>
+  <string name="RegistrationActivity_phone_number_description">手机号码</string>
+  <string name="RegistrationActivity_country_code_description">国家码</string>
   <string name="RegistrationActivity_call">拨号</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_photo">图片</string>
@@ -619,6 +622,7 @@
   <string name="ThreadRecord_media_message">多媒体信息</string>
   <string name="ThreadRecord_sticker">表情</string>
   <string name="ThreadRecord_disappearing_photo">闪照</string>
+  <string name="ThreadRecord_disappearing_video">自毁视频</string>
   <string name="ThreadRecord_s_is_on_signal">%s 在 Signal 上！</string>
   <string name="ThreadRecord_disappearing_messages_disabled">阅后即焚功能已关闭</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">信息销毁时间设置为 %s</string>
@@ -695,6 +699,7 @@
   <string name="MessageNotifier_media_message">媒体信息</string>
   <string name="MessageNotifier_sticker">表情包</string>
   <string name="MessageNotifier_disappearing_photo">闪照</string>
+  <string name="MessageNotifier_disappearing_video">自毁视频</string>
   <string name="MessageNotifier_reply">回复</string>
   <string name="MessageNotifier_signal_message">Signal 消息</string>
   <string name="MessageNotifier_unsecured_sms">未加密的短信</string>
@@ -1035,6 +1040,9 @@
   <string name="arrays__high">高</string>
   <string name="arrays__max">最大</string>
   <!--plurals.xml-->
+  <plurals name="hours_ago">
+    <item quantity="other">%d 小时</item>
+  </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">短信和彩信</string>
   <string name="preferences__pref_all_sms_title">获得所有的短信</string>
@@ -1307,6 +1315,8 @@
   <string name="RegistrationActivity_wrong_number">号码错误</string>
   <string name="RegistrationActivity_call_me_instead_available_in">打电话给我 \n （%1$02d:%2$02d后可用）</string>
   <string name="RegistrationActivity_contact_signal_support">联系 Signal 支持</string>
+  <string name="RegistrationActivity_code_support_subject">Signal 注册 - 安卓验证码</string>
+  <string name="RegistrationActivity_code_support_body">主题：Signal 注册 - 安卓验证码\n设备信息：%1$s\n安卓版本：%2$s\nSignal 版本：%3$s\n地区：%4$s</string>
   <string name="BackupUtil_never">永不</string>
   <string name="BackupUtil_unknown">未知</string>
   <string name="preferences_app_protection__screen_lock">锁屏</string>

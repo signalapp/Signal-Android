@@ -85,6 +85,7 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">נכשל בשמירת תמונה.</string>
   <!--CameraXFragment-->
+  <string name="CameraXFragment_video_recording_available">הקש כדי לצלם תמונה, או החזק את האצבע שלך על כפתור הלכידה כדי להקליט סרטון.</string>
   <string name="CameraXFragment_capture_description">לכוד</string>
   <string name="CameraXFragment_change_camera_description">שנה מצלמה</string>
   <string name="CameraXFragment_open_gallery_description">פתח גלריה</string>
@@ -613,6 +614,8 @@
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">הכנס את מספר הטלפון שלך כדי להתחיל</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">תקבל קוד וידוא. חיובי מפעיל עשויים לחול.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">הכנס את הקוד ששלחנו אל %s</string>
+  <string name="RegistrationActivity_phone_number_description">מספר טלפון</string>
+  <string name="RegistrationActivity_country_code_description">קוד מדינה</string>
   <string name="RegistrationActivity_call">חייג</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_photo">תצלום</string>
@@ -679,6 +682,7 @@
   <string name="ThreadRecord_media_message">הודעת מדיה</string>
   <string name="ThreadRecord_sticker">מדבקה</string>
   <string name="ThreadRecord_disappearing_photo">תצלום נעלם</string>
+  <string name="ThreadRecord_disappearing_video">סרטון נעלם</string>
   <string name="ThreadRecord_s_is_on_signal">%s משתמש ב-Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">הודעות נעלמות הושבתו</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">זמן הודעות נעלמות הוגדר אל %s</string>
@@ -755,6 +759,7 @@
   <string name="MessageNotifier_media_message">הודעת מדיה</string>
   <string name="MessageNotifier_sticker">מדבקה</string>
   <string name="MessageNotifier_disappearing_photo">תצלום נעלם</string>
+  <string name="MessageNotifier_disappearing_video">סרטון נעלם</string>
   <string name="MessageNotifier_reply">השב</string>
   <string name="MessageNotifier_signal_message">הודעת Signal</string>
   <string name="MessageNotifier_unsecured_sms">מסרון בלתי מאובטח</string>
@@ -1117,6 +1122,12 @@
   <string name="arrays__high">גבוה</string>
   <string name="arrays__max">מרבי</string>
   <!--plurals.xml-->
+  <plurals name="hours_ago">
+    <item quantity="one">%dשע</item>
+    <item quantity="two">%dשע</item>
+    <item quantity="many">%dשע</item>
+    <item quantity="other">%dשע</item>
+  </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">מסרון ו-MMS</string>
   <string name="preferences__pref_all_sms_title">קבל את כל המסרונים</string>
@@ -1391,6 +1402,8 @@
   <string name="RegistrationActivity_wrong_number">מספר שגוי</string>
   <string name="RegistrationActivity_call_me_instead_available_in">חייג אליי במקום \n (זמין ב־%1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">צור קשר עם תמיכת Signal</string>
+  <string name="RegistrationActivity_code_support_subject">הרשמת Signal - קוד וידוא עבור Android</string>
+  <string name="RegistrationActivity_code_support_body">נושא: הרשמת Signal - קוד וידוא עבור Android\nמידע מכשיר: %1$s\nAndroid גרסת: %2$s\nSignal גרסת: %3$s\nאזור: %4$s</string>
   <string name="BackupUtil_never">לעולם לא</string>
   <string name="BackupUtil_unknown">לא ידוע</string>
   <string name="preferences_app_protection__screen_lock">נעילת מסך</string>

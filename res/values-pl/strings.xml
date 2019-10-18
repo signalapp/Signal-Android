@@ -85,6 +85,7 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Błąd przy zapisie obrazu.</string>
   <!--CameraXFragment-->
+  <string name="CameraXFragment_video_recording_available">Dotknij, aby zrobić zdjęcie, lub przytrzymaj palec na przycisku, aby nagrać film.</string>
   <string name="CameraXFragment_capture_description">Przechwyć</string>
   <string name="CameraXFragment_change_camera_description">Zmień aparat</string>
   <string name="CameraXFragment_open_gallery_description">Otwórz galerię</string>
@@ -612,6 +613,8 @@
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Aby rozpocząć, wprowadź swój numer telefonu</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Otrzymasz kod weryfikacyjny. Mogą obowiązywać stawki operatora.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Wprowadź kod, który wysłaliśmy na %s</string>
+  <string name="RegistrationActivity_phone_number_description">Numer telefonu</string>
+  <string name="RegistrationActivity_country_code_description">Numer kierunkowy</string>
   <string name="RegistrationActivity_call">Zadzwoń</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_photo">Zdjęcie</string>
@@ -676,6 +679,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="ThreadRecord_media_message">Wiadomość multimedialna</string>
   <string name="ThreadRecord_sticker">Naklejka</string>
   <string name="ThreadRecord_disappearing_photo">Znikające zdjęcie</string>
+  <string name="ThreadRecord_disappearing_video">Znikające wideo</string>
   <string name="ThreadRecord_s_is_on_signal">%s jest w Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Znikające wiadomości zostały wyłączone</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Czas znikania wiadomości ustawiony na %s</string>
@@ -752,6 +756,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="MessageNotifier_media_message">Wiadomość multimedialna</string>
   <string name="MessageNotifier_sticker">Naklejka</string>
   <string name="MessageNotifier_disappearing_photo">Znikające zdjęcie</string>
+  <string name="MessageNotifier_disappearing_video">Znikające wideo</string>
   <string name="MessageNotifier_reply">Odpowiedź</string>
   <string name="MessageNotifier_signal_message">Wiadomość Signal</string>
   <string name="MessageNotifier_unsecured_sms">Nieszyfrowany SMS</string>
@@ -1114,6 +1119,12 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="arrays__high">Wysoki</string>
   <string name="arrays__max">Maksymalny</string>
   <!--plurals.xml-->
+  <plurals name="hours_ago">
+    <item quantity="one">%dg</item>
+    <item quantity="few">%dg</item>
+    <item quantity="many">%dg</item>
+    <item quantity="other">%dg</item>
+  </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">SMS i MMS</string>
   <string name="preferences__pref_all_sms_title">Otrzymuj wszystkie SMSy</string>

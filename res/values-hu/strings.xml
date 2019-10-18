@@ -79,6 +79,7 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Nem sikerült elmenteni a képet.</string>
   <!--CameraXFragment-->
+  <string name="CameraXFragment_video_recording_available">Koppints a fotózáshoz, vagy tartsd az ujjadat a elsütőgombon videó felvételéhez!</string>
   <string name="CameraXFragment_capture_description">Rögzítés</string>
   <string name="CameraXFragment_change_camera_description">Kamera váltása</string>
   <string name="CameraXFragment_open_gallery_description">Galéria megnyitása</string>
@@ -579,6 +580,8 @@ szám (%s) érvénytelen.
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Add meg telefonszámodat a kezdéshez</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Hamarosan megerősítő kódot fogsz kapni. Szolgáltatói költségek felmerülhetnek.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Add meg a %s számra küldött kódot</string>
+  <string name="RegistrationActivity_phone_number_description">Telefonszám</string>
+  <string name="RegistrationActivity_country_code_description">Országkód</string>
   <string name="RegistrationActivity_call">Hívás</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_photo">Kép</string>
@@ -647,6 +650,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ThreadRecord_media_message">Média üzenet</string>
   <string name="ThreadRecord_sticker">Matrica</string>
   <string name="ThreadRecord_disappearing_photo">Eltűnő fotó</string>
+  <string name="ThreadRecord_disappearing_video">Eltűnő videó</string>
   <string name="ThreadRecord_s_is_on_signal">%s a Signal-on van!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Eltűnő üzenetek letiltva</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Eltűnő üzenet ideje beállítva erre: %s</string>
@@ -723,6 +727,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="MessageNotifier_media_message">Médiaüzenet</string>
   <string name="MessageNotifier_sticker">Matrica</string>
   <string name="MessageNotifier_disappearing_photo">Eltűnő fotó</string>
+  <string name="MessageNotifier_disappearing_video">Eltűnő videó</string>
   <string name="MessageNotifier_reply">Válasz</string>
   <string name="MessageNotifier_signal_message">Signal üzenet</string>
   <string name="MessageNotifier_unsecured_sms">Titkosítatlan SMS</string>
@@ -1070,6 +1075,10 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="arrays__high">Magas</string>
   <string name="arrays__max">Legmagasabb</string>
   <!--plurals.xml-->
+  <plurals name="hours_ago">
+    <item quantity="one">%dó</item>
+    <item quantity="other">%dó</item>
+  </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">SMS és MMS</string>
   <string name="preferences__pref_all_sms_title">Összes SMS fogadása</string>
@@ -1341,6 +1350,9 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Kérlek add meg az alábbi számra kiküldött ellenőrző kódot: %s.</string>
   <string name="RegistrationActivity_wrong_number">Hibás szám</string>
   <string name="RegistrationActivity_call_me_instead_available_in">Hívást kérek inkább \n (elérhető %1$02d:%2$02d múlva)</string>
+  <string name="RegistrationActivity_contact_signal_support">Kapcsolatfelvétel a Signal támogatással</string>
+  <string name="RegistrationActivity_code_support_subject">Signal regisztráció - megerősítő kód Androidhoz</string>
+  <string name="RegistrationActivity_code_support_body">Tárgy: Signal regisztráció - megerősítő kód Androidhoz\nEszközinformáció: %1$s\nAndroid verzió: %2$s\nSignal verzió: %3$s\nRégió: %4$s</string>
   <string name="BackupUtil_never">Soha</string>
   <string name="BackupUtil_unknown">Ismeretlen</string>
   <string name="preferences_app_protection__screen_lock">Képernyőzár</string>

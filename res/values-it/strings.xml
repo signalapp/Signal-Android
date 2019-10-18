@@ -273,7 +273,7 @@
   <string name="CustomDefaultPreference_none">Nessuna</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Ora</string>
-  <string name="DateUtils_minutes_ago">%dm</string>
+  <string name="DateUtils_minutes_ago">%dmin</string>
   <string name="DateUtils_today">Oggi</string>
   <string name="DateUtils_yesterday">Ieri</string>
   <!--DeliveryStatus-->
@@ -582,7 +582,7 @@ Sii te stesso in ogni messaggio.</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_photo">Foto</string>
   <string name="RevealableMessageView_video">Video</string>
-  <string name="RevealableMessageView_viewed">Visualizzata</string>
+  <string name="RevealableMessageView_viewed">Visualizzato</string>
   <string name="RevealableMessageView_outgoing_media">Media</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Salvataggio modifiche all\'immagine fallito</string>
