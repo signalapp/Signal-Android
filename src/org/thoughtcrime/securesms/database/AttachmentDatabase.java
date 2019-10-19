@@ -57,6 +57,7 @@ import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.JsonUtils;
+import org.thoughtcrime.securesms.util.MediaMetadataRetrieverUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.MediaUtil.ThumbnailData;
 import org.thoughtcrime.securesms.util.StorageUtil;
@@ -1082,7 +1083,7 @@ public class AttachmentDatabase extends Database {
         if (dataSource == null) return null;
 
         MediaMetadataRetriever retriever = new MediaMetadataRetriever();
-        retriever.setDataSource(dataSource);
+        MediaMetadataRetrieverUtil.setDataSource(retriever, dataSource);
 
         Bitmap bitmap = retriever.getFrameAtTime(1000);
 

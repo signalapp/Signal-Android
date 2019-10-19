@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.service.GenericForegroundService;
 import org.thoughtcrime.securesms.service.NotificationController;
+import org.thoughtcrime.securesms.util.MediaMetadataRetrieverUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
@@ -174,7 +175,7 @@ public final class AttachmentUploadJob extends BaseJob {
       if (dataSource == null) return null;
 
       MediaMetadataRetriever retriever = new MediaMetadataRetriever();
-      retriever.setDataSource(dataSource);
+      MediaMetadataRetrieverUtil.setDataSource(retriever, dataSource);
 
       Bitmap bitmap = retriever.getFrameAtTime(1000);
 

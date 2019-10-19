@@ -300,9 +300,9 @@ public class MediaUtil {
         MediaDataSource        mediaDataSource        = BlobProvider.getInstance().getMediaDataSource(context, uri);
         MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
 
-        mediaMetadataRetriever.setDataSource(mediaDataSource);
+        MediaMetadataRetrieverUtil.setDataSource(mediaMetadataRetriever, mediaDataSource);
         return mediaMetadataRetriever.getFrameAtTime(1000);
-      } catch (Exception e) { // XXX Some devices are hitting a native crash in setDataSource. Not much we can do.
+      } catch (IOException e) {
         Log.w(TAG, "failed to get thumbnail for video blob uri: " + uri, e);
         return null;
       }
