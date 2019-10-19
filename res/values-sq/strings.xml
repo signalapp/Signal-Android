@@ -79,6 +79,8 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">S\’u arrit të ruhej figura.</string>
   <!--CameraXFragment-->
+  <string name="CameraXFragment_tap_for_photo_hold_for_video">Për foto, prekeni, për video mbajeni të prekur</string>
+  <string name="CameraXFragment_capture_description">Regjistro</string>
   <string name="CameraXFragment_change_camera_description">Ndërroni kamera</string>
   <string name="CameraXFragment_open_gallery_description">Hap galerinë</string>
   <!--CameraContacts-->
@@ -175,6 +177,9 @@
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Për të bërë foto dhe dhe video, lejojini Signal-it të përdorë kamerën.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Që të bëjë foto ose video, Signal-i lyp leje përdorimi të Kamerës, por kjo i është mohuar. Ju lutemi, kaloni te rregullimet e aplikacionit, përzgjidhni \"Leje\", dhe aktivizoni \"Kamerën\".</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Që të bëjë foto ose video, Signal-i lyp leje përdorimi të Kamerës</string>
+  <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">Për regjistrim videosh me zë, aktivizoni leje mbi mikrofonin.</string>
+  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Për regjistrim videosh, Signal-i lyp leje mbi mikrofonin, por këto janë mohuar. Ju lutemi, vazhdoni te rregullime aplikacioni, përzgjidhni \"Leje\", dhe aktivizoni \"Mikrofon\" dhe \"Kamera\".</string>
+  <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Që të bëjë regjistrojë video, Signal-i lyp leje përdorimi të mikrofonit</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal-i s\’mund të dërgojë mesazhe SMS/MMS, ngaqë s\’është aplikacioni juaj parazgjedhje për SMS. Doni ta ndryshoni këtë te rregullimet tuaja për Android-in?</string>
   <string name="ConversationActivity_yes">Po</string>
@@ -573,6 +578,8 @@
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Që t\’ia filloni, jepni numrin tuaj të telefonit</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Do të merrni një kod verifikimi. Mund të ketë tarifa operatori.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Jepni kodin që dërguam te %s</string>
+  <string name="RegistrationActivity_phone_number_description">Numër telefoni</string>
+  <string name="RegistrationActivity_country_code_description">Kod vendi</string>
   <string name="RegistrationActivity_call">Thirrje</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_photo">Foto</string>
@@ -639,6 +646,7 @@
   <string name="ThreadRecord_media_message">Mesazh media</string>
   <string name="ThreadRecord_sticker">Ngjitës</string>
   <string name="ThreadRecord_disappearing_photo">Foto që tretet</string>
+  <string name="ThreadRecord_disappearing_video">Video që zhduket</string>
   <string name="ThreadRecord_s_is_on_signal">%s është në Signal! </string>
   <string name="ThreadRecord_disappearing_messages_disabled">Zhdukja e mesazheve është e çaktivizuar</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Koha për zhdukje mesazhesh është vënë %s</string>
@@ -715,6 +723,7 @@
   <string name="MessageNotifier_media_message">Mesazh media</string>
   <string name="MessageNotifier_sticker">Ngjitës</string>
   <string name="MessageNotifier_disappearing_photo">Foto që tretet</string>
+  <string name="MessageNotifier_disappearing_video">Video që zhduket</string>
   <string name="MessageNotifier_reply">Përgjigju</string>
   <string name="MessageNotifier_signal_message">Mesazhe Signal</string>
   <string name="MessageNotifier_unsecured_sms">SMS e pasiguruar</string>
@@ -1061,6 +1070,10 @@
   <string name="arrays__high">Lartësi</string>
   <string name="arrays__max">Maks.</string>
   <!--plurals.xml-->
+  <plurals name="hours_ago">
+    <item quantity="one">%dh</item>
+    <item quantity="other">%dh</item>
+  </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">SMS dhe MMS</string>
   <string name="preferences__pref_all_sms_title">Merri krejt SMS-të</string>
@@ -1332,6 +1345,8 @@
   <string name="RegistrationActivity_wrong_number">Numër i gabuar</string>
   <string name="RegistrationActivity_call_me_instead_available_in">Telefonomëni, më mirë \n (E përdorshme në %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Lidhuni Me Asistencën e Signal-it</string>
+  <string name="RegistrationActivity_code_support_subject">Regjistrim Signal-i - Kod Verifikimi për Android</string>
+  <string name="RegistrationActivity_code_support_body">Subjekt: Regjistrim Signal-i - Kod Verifikimi për Android\nTë dhëna pajisjeje: %1$s\nVersion Android: %2$s\nVersion Signal-i: %3$s\nGjuhë: %4$s</string>
   <string name="BackupUtil_never">Kurrë</string>
   <string name="BackupUtil_unknown">E panjohur</string>
   <string name="preferences_app_protection__screen_lock">Kyçje ekrani</string>

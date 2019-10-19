@@ -85,7 +85,7 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Slike ni bilo možno shraniti.</string>
   <!--CameraXFragment-->
-  <string name="CameraXFragment_video_recording_available">Tapnite za zajem slike, oziroma držite prst na gumbu za video posnetek.</string>
+  <string name="CameraXFragment_tap_for_photo_hold_for_video">Tapnite za fotografijo, zadržite za video</string>
   <string name="CameraXFragment_capture_description">Zajemi</string>
   <string name="CameraXFragment_change_camera_description">Zamenjaj kamero</string>
   <string name="CameraXFragment_open_gallery_description">Odpri galerijo</string>
@@ -183,6 +183,9 @@
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Za zajemanje videa in fotografij dovolite aplikaciji Signal dostop do kamere naprave.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Dostop do kamere je bil trajno onemogočen. Aplikacija Signal potrebuje dovoljenje za dostop do kamere za zajemanje videa in fotografij. Prosimo, pojdite v meni Nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"Kamera\".</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Za zajemanje videa in fotografij potrebuje aplikacija Signal dostop do kamere.</string>
+  <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">Omogoči dostop do mikrofona za zajemanje zvoka in videa.</string>
+  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Dostop do mikrofona je bil onemogočen. Za snemanje videa potrebuje aplikacija Signal dovoljenje za dostop do mikrofona. Prosimo, nadaljujte v nastavitve aplikacij, izberite \"Dovoljenja\" in omogočite dovoljenje pod postavko \"Mikrofon\".</string>
+  <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Za snemanje videa potrebuje Signal dostop do mikrofona.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal ne more pošiljati sporočil SMS/MMS, ker ni nastavljen kot privzeta aplikacija SMS. Bi želeli to spremeniti v nastavitvah Android?</string>
   <string name="ConversationActivity_yes">Da</string>

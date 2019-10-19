@@ -79,6 +79,7 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Det gick inte att spara bilden.</string>
   <!--CameraXFragment-->
+  <string name="CameraXFragment_tap_for_photo_hold_for_video">Tryck för foto, håll för video</string>
   <string name="CameraXFragment_capture_description">Ta foto</string>
   <string name="CameraXFragment_change_camera_description">Byt kamera</string>
   <string name="CameraXFragment_open_gallery_description">Öppna galleri</string>
@@ -176,6 +177,8 @@
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">För att fånga fotografier och video, tillåt Signal att tillgå kameran.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal behöver behörigheten Kamera för att ta bilder och filma men har nekats den permanent. Fortsätt till inställningsmenyn för Appar och aviseringar, välj \"Behörigheter\" och aktivera \"Kamera\".</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal behöver behörigheten Kamera för att ta bilder och filma</string>
+  <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">Aktivera behörigheten Mikrofon för att spela in videor med ljud.</string>
+  <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Signal behöver behörigheten Mikrofon för att filma.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal kan inte skicka SMS/MMS eftersom det inte är din standardapp för SMS. Vill du ändra det här i dina Android-inställningar?</string>
   <string name="ConversationActivity_yes">Ja</string>
@@ -573,6 +576,8 @@ angav (%s) är ogiltigt.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Ange ditt telefonnummer för att komma igång</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Du kommer att få en verifieringskod. Din operatör kan ta betalt för det. </string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Ange koden vi skickade till %s</string>
+  <string name="RegistrationActivity_phone_number_description">Telefonnummer</string>
+  <string name="RegistrationActivity_country_code_description">Landskod</string>
   <string name="RegistrationActivity_call">Ring</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_photo">Foto</string>
@@ -639,6 +644,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ThreadRecord_media_message">Mediameddelande</string>
   <string name="ThreadRecord_sticker">Klistermärke</string>
   <string name="ThreadRecord_disappearing_photo">Försvinnande foto</string>
+  <string name="ThreadRecord_disappearing_video">Försvinnande video</string>
   <string name="ThreadRecord_s_is_on_signal">%s finns på Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Försvinnande meddelanden inaktiverat</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Tiden för försvinnande meddelanden inställd till %s</string>
@@ -715,6 +721,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="MessageNotifier_media_message">Mediameddelande</string>
   <string name="MessageNotifier_sticker">Klistermärke</string>
   <string name="MessageNotifier_disappearing_photo">Försvinnande foto</string>
+  <string name="MessageNotifier_disappearing_video">Försvinnande video</string>
   <string name="MessageNotifier_reply">Svara</string>
   <string name="MessageNotifier_signal_message">Signal-meddelande</string>
   <string name="MessageNotifier_unsecured_sms">Osäkert SMS</string>
@@ -1061,6 +1068,10 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="arrays__high">Hög</string>
   <string name="arrays__max">Max</string>
   <!--plurals.xml-->
+  <plurals name="hours_ago">
+    <item quantity="one">%dt</item>
+    <item quantity="other">%dt</item>
+  </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">SMS och MMS</string>
   <string name="preferences__pref_all_sms_title">Använd för alla SMS</string>

@@ -76,6 +76,7 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">画像を保存できませんでした。</string>
   <!--CameraXFragment-->
+  <string name="CameraXFragment_tap_for_photo_hold_for_video">写真はタップ、動画はホールド</string>
   <string name="CameraXFragment_capture_description">キャプチャー</string>
   <string name="CameraXFragment_change_camera_description">カメラの変更</string>
   <string name="CameraXFragment_open_gallery_description">ギャラリーを開く</string>
@@ -173,6 +174,9 @@
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">写真や動画を撮るには、Signalのカメラへのアクセスを許可してください。</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signalで写真や動画を撮るには、カメラへのアクセスを許可する必要がありますが、無効になっています。アプリ設定メニューから、『アプリの権限』を選び、『カメラ』へのアクセス許可を有効にしてください。</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signalで写真や動画を撮るには、カメラへのアクセス許可が必要です。</string>
+  <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">音も記録するためマイクを許可</string>
+  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">動画を保存するため、Signalにマイクを許可する必要があります。設定メニューの「アプリの権限」で、マイクとカメラのアクセス許可を有効にしてください。</string>
+  <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Signalで動画を撮るには、マイクへのアクセス許可が必要です。</string>
   <string name="ConversationActivity_quoted_contact_message">%2$s%1$s</string>
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signalは現在、デフォルトのショートメッセージアプリになっていないため、メッセージが送信できません。設定を変更しますか？</string>
   <string name="ConversationActivity_yes">はい</string>
@@ -550,6 +554,8 @@
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">あなたの電話番号を入力してください</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">認証コードが届きます。通信料金がかかるかもしれません。</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">%sに送ったコードを入力してください</string>
+  <string name="RegistrationActivity_phone_number_description">電話番号</string>
+  <string name="RegistrationActivity_country_code_description">国番号</string>
   <string name="RegistrationActivity_call">通話</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_photo">写真</string>
@@ -614,6 +620,7 @@
   <string name="ThreadRecord_media_message">メディアでのメッセージ</string>
   <string name="ThreadRecord_sticker">ステッカー</string>
   <string name="ThreadRecord_disappearing_photo">消える写真</string>
+  <string name="ThreadRecord_disappearing_video">消える動画</string>
   <string name="ThreadRecord_s_is_on_signal">%sがSignalに登録しています！</string>
   <string name="ThreadRecord_disappearing_messages_disabled">消えるメッセージが無効にされました</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">消えるメッセージの消去時間が%sに設定されました</string>
@@ -690,6 +697,7 @@
   <string name="MessageNotifier_media_message">メディアメッセージ</string>
   <string name="MessageNotifier_sticker">ステッカー</string>
   <string name="MessageNotifier_disappearing_photo">消える写真</string>
+  <string name="MessageNotifier_disappearing_video">消える動画</string>
   <string name="MessageNotifier_reply">返信</string>
   <string name="MessageNotifier_signal_message">Signalメッセージ</string>
   <string name="MessageNotifier_unsecured_sms">安全でないSMS</string>
@@ -1028,6 +1036,9 @@
   <string name="arrays__high">高</string>
   <string name="arrays__max">最大</string>
   <!--plurals.xml-->
+  <plurals name="hours_ago">
+    <item quantity="other">%d時間</item>
+  </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">SMSとMMS</string>
   <string name="preferences__pref_all_sms_title">全てのSMSを受信</string>
@@ -1299,6 +1310,8 @@
   <string name="RegistrationActivity_wrong_number">番号が違います</string>
   <string name="RegistrationActivity_call_me_instead_available_in">電話してください \n (Available in %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Signalサポートに問い合わせ</string>
+  <string name="RegistrationActivity_code_support_subject">Signal登録 - Android用認証コード</string>
+  <string name="RegistrationActivity_code_support_body">件名: Signal Registration - Verification Code for Android\nDevice info: %1$s\nAndroid version: %2$s\nSignal version: %3$s\nLocale: %4$s</string>
   <string name="BackupUtil_never">なし</string>
   <string name="BackupUtil_unknown">不明</string>
   <string name="preferences_app_protection__screen_lock">画面ロック</string>

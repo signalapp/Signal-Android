@@ -85,7 +85,7 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Błąd przy zapisie obrazu.</string>
   <!--CameraXFragment-->
-  <string name="CameraXFragment_video_recording_available">Dotknij, aby zrobić zdjęcie, lub przytrzymaj palec na przycisku, aby nagrać film.</string>
+  <string name="CameraXFragment_tap_for_photo_hold_for_video">Dotknij, aby zrobić zdjęcie. Przytrzymaj, aby nagrać wideo.</string>
   <string name="CameraXFragment_capture_description">Przechwyć</string>
   <string name="CameraXFragment_change_camera_description">Zmień aparat</string>
   <string name="CameraXFragment_open_gallery_description">Otwórz galerię</string>
@@ -183,6 +183,9 @@
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Aby móc robić zdjęcia i nagrywać wideo, zezwól Signal na dostęp do aparatu.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal wymaga pozwolenia na dostęp do aparatu w celu umożliwienia robienia zdjęć i nagrywania filmów, ale zostało one na stałe odrzucone. Przejdź do ustawień aplikacji, wybierz \"Uprawnienia\" i włącz \"Aparat\".</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal wymaga pozwolenia na dostęp do aparatu w celu umożliwienia robienia zdjęć i nagrywania filmów</string>
+  <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">Włącz uprawnienia mikrofonu, aby nagrać wideo z dźwiękiem.</string>
+  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Aby nagrać wideo, Signal wymaga dostępu do mikrofonu, ale zostało ono na stałe odrzucone. Przejdź do ustawień aplikacji, wybierz \"Uprawnienia\" i włącz \"Mikrofon\" oraz \"Aparat\".</string>
+  <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Aby nagrać film, Signal potrzebuje dostępu do mikrofonu.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal nie może wysyłać wiadomości SMS/MMS, ponieważ nie jest to Twoją domyślną aplikacją do obsługi SMS-ów. Czy chcesz to zmienić w ustawieniach Androida?</string>
   <string name="ConversationActivity_yes">Tak</string>
@@ -1399,6 +1402,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="RegistrationActivity_wrong_number">Błędny numer</string>
   <string name="RegistrationActivity_call_me_instead_available_in">Zadzwoń \n (Dostępne za %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Skontaktuj się ze wsparciem technicznym Signal</string>
+  <string name="RegistrationActivity_code_support_subject">Rejestracja Signal - Kod weryfikacyjny dla systemu Android</string>
+  <string name="RegistrationActivity_code_support_body">Temat: Rejestracja Signal - Kod weryfikacyjny dla systemu Android\nUrządzenie: %1$s\nWersja systemu Android: %2$s\nWersja aplikacji Signal: %3$s\nLokalizacja: %4$s</string>
   <string name="BackupUtil_never">Nigdy</string>
   <string name="BackupUtil_unknown">Nieznane</string>
   <string name="preferences_app_protection__screen_lock">Blokada ekranu</string>

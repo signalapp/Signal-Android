@@ -85,7 +85,6 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">נכשל בשמירת תמונה.</string>
   <!--CameraXFragment-->
-  <string name="CameraXFragment_video_recording_available">הקש כדי לצלם תמונה, או החזק את האצבע שלך על כפתור הלכידה כדי להקליט סרטון.</string>
   <string name="CameraXFragment_capture_description">לכוד</string>
   <string name="CameraXFragment_change_camera_description">שנה מצלמה</string>
   <string name="CameraXFragment_open_gallery_description">פתח גלריה</string>

@@ -82,7 +82,6 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Eroare la salvarea imaginii.</string>
   <!--CameraXFragment-->
-  <string name="CameraXFragment_video_recording_available">Apăsați pentru a face o poză, sau țineți degetul pe butonul de captură pentru a înregistra un video.</string>
   <string name="CameraXFragment_capture_description">Capturați</string>
   <string name="CameraXFragment_change_camera_description">Schimbați camera</string>
   <string name="CameraXFragment_open_gallery_description">Deschideți galeria</string>

@@ -76,7 +76,7 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">未能保存图像。</string>
   <!--CameraXFragment-->
-  <string name="CameraXFragment_video_recording_available">轻触拍摄照片，或者长按录制视频。</string>
+  <string name="CameraXFragment_tap_for_photo_hold_for_video">单触拍照，长按录像</string>
   <string name="CameraXFragment_capture_description">拍摄</string>
   <string name="CameraXFragment_change_camera_description">切换摄像头</string>
   <string name="CameraXFragment_open_gallery_description">打开相册</string>
@@ -174,6 +174,9 @@
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">要拍照或录像，请允许 Signal 访问相机。</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal 需要相机权限来拍摄照片或录制视频。但是该权限已经被永久拒绝，请进入应用程序设置，点击权限，并启用“相机”。</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal 需要相机权限以拍摄照片或视频</string>
+  <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">开启麦克风权限以录制有声视频。</string>
+  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Signal 需要麦克风权限以录制视频 ，但是该权限已被拒绝。请进入应用程序设置，点击权限，并启用“麦克风”和“相机”。</string>
+  <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Signal 需要麦克风权限以录制视频。</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s%2$s</string>
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal不能发送短信/彩信，因为它不是您默认的短信应用。您是否想在安卓设置里修改？</string>
   <string name="ConversationActivity_yes">是</string>

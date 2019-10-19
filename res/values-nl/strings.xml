@@ -79,7 +79,7 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Afbeelding opslaan mislukt.</string>
   <!--CameraXFragment-->
-  <string name="CameraXFragment_video_recording_available">Tik om een foto te nemen of houd je vinger op de vastleg-knop om een video op te nemen.</string>
+  <string name="CameraXFragment_tap_for_photo_hold_for_video">Tik voor foto, houd vast voor video</string>
   <string name="CameraXFragment_capture_description">Opnemen</string>
   <string name="CameraXFragment_change_camera_description">Camera wisselen</string>
   <string name="CameraXFragment_open_gallery_description">Galerij openen</string>
@@ -177,6 +177,9 @@
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Geef Signal toegang tot de camera om foto\'s en video\'s te maken.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal heeft toegang nodig tot de camera om foto’s en video’s te kunnen opnemen, maar deze is pertinent geweigerd. Ga naar de instellingen voor deze app, selecteer ‘Machtigingen’ en schakel ‘Camera’ in.</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal heeft toegang tot de camera nodig om foto’s en video’s te kunnen opnemen</string>
+  <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">Signal heeft toegang nodig tot de microfoon om video te kunnen opnemen met geluid.</string>
+  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Signal heeft toegang nodig tot de microfoon en camera om video te kunnen opnemen, maar deze is pertinent geweigerd. Ga naar de instellingen voor deze app, selecteer ‘Machtigingen’ en schakel ‘Microfoon’ en ‘Camera’ in.</string>
+  <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Signal heeft toegang nodig tot de microfoon om video te kunnen opnemen.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal kan geen sms-/mms-bericht verzenden omdat Signal niet je standaard sms-app is. Wil je dit veranderen in je Android-instellingen?</string>
   <string name="ConversationActivity_yes">Ja</string>

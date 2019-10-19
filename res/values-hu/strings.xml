@@ -79,7 +79,7 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Nem sikerült elmenteni a képet.</string>
   <!--CameraXFragment-->
-  <string name="CameraXFragment_video_recording_available">Koppints a fotózáshoz, vagy tartsd az ujjadat a elsütőgombon videó felvételéhez!</string>
+  <string name="CameraXFragment_tap_for_photo_hold_for_video">Koppints fotóhoz, tartsd nyomva videóhoz</string>
   <string name="CameraXFragment_capture_description">Rögzítés</string>
   <string name="CameraXFragment_change_camera_description">Kamera váltása</string>
   <string name="CameraXFragment_open_gallery_description">Galéria megnyitása</string>
@@ -178,6 +178,9 @@
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Fotók és videók készítéséhez engedélyezd a Signal-nak a kamerához való hozzáférést!</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">A Signal-nak szüksége van a Kamera engedélyre, hogy fotót vagy videót készíthessen, de ez jelenleg nincs megadva. Kérlek menj az alkalmazásbeállításokhoz, válaszd az \"Engedélyek\"-et és engedélyezd a \"Kamera\"-t.</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">A Signal-nak szüksége van Kamera engedélyekre fotók és videók készítéséhez</string>
+  <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">Engedélyezd a mikrofon-hozzáférést, hogy a videóhoz hangot is lehessen rögzíteni</string>
+  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">A Signal-nak szüksége van mikrofon-hozzáférési engedélyre, de ez jelenleg meg van tagadva. Kérlek menj az alkalmazásbeállításokhoz, válaszd az \"Engedélyek\"-et és engedélyezd a \"Mikrofon\"-t, valamint a \"Kamera\"-t.</string>
+  <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">A Signal-nak mikrofon-hozzáférési engedélyre van szüksége videók rögzítéséhez.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">A Signal nem tud SMS/MMS üzeneteket küldeni, mert nem az alapértelmezett SMS alkalmazásod. Szeretnél változtatni ezen az Android beállításaidban?</string>
   <string name="ConversationActivity_yes">Igen</string>

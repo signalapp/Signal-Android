@@ -79,7 +79,7 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Speichern des Bildes gescheitert.</string>
   <!--CameraXFragment-->
-  <string name="CameraXFragment_video_recording_available">Tippe zum Aufnehmen eines Fotos die Aufnahmeschaltfläche an oder halte sie zum Aufnehmen eines Videos gedrückt.</string>
+  <string name="CameraXFragment_tap_for_photo_hold_for_video">Antippen für Foto, Halten für Video</string>
   <string name="CameraXFragment_capture_description">Aufnehmen</string>
   <string name="CameraXFragment_change_camera_description">Kamera wechseln</string>
   <string name="CameraXFragment_open_gallery_description">Galerie öffnen</string>
@@ -177,6 +177,9 @@
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Erlaube Signal zum Aufnehmen von Fotos und Videos Zugriff auf deine Kamera.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal benötigt die Berechtigung »Kamera« für die Aufnahme von Fotos oder Videos, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Kamera«.</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal benötigt die Berechtigung »Kamera«, um Fotos oder Videos aufzunehmen.</string>
+  <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">Aktiviere die Berechtigung »Mikrofon«, um Videos mit Ton aufzunehmen.</string>
+  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Signal benötigt die Berechtigung »Mikrofon«, um Videos aufzunehmen, diese wurde jedoch abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Mikrofon« und »Kamera«.</string>
+  <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Signal benötigt die Berechtigung »Mikrofon«, um Videos aufzunehmen.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal kann keine SMS/MMS versenden, da es nicht als Standard-App für SMS festgelegt ist. Möchtest du dies in Androids Einstellungen ändern?</string>
   <string name="ConversationActivity_yes">Ja</string>

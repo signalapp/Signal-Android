@@ -79,7 +79,7 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Fallo al guardar la imagen.</string>
   <!--CameraXFragment-->
-  <string name="CameraXFragment_video_recording_available">Toca para tomar una foto o deja tu dedo sobre el botón de disparo para grabar un vídeo.</string>
+  <string name="CameraXFragment_tap_for_photo_hold_for_video">Toca para foto y mantén para vídeo</string>
   <string name="CameraXFragment_capture_description">Captura</string>
   <string name="CameraXFragment_change_camera_description">Cambiar cámara</string>
   <string name="CameraXFragment_open_gallery_description">Abrir galería de fotos</string>
@@ -177,6 +177,9 @@
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Para hacer fotos y vídeos, permite el acceso de Signal a la cámara.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal necesita acceso a la cámara para tomar fotos o vídeos. Por favor, ve a la aplicación «Ajustes», selecciona Signal en el menú «Aplicaciones y notificaciones» y en «Permisos» activa «Cámara».</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal necesita acceder a la cámara para tomar fotos o vídeo.</string>
+  <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">Activa el acceso al micrófono para grabar vídeos con sonido.</string>
+  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Signal necesita el micrófono para grabar vídeos, pero se le ha denegado el acceso. Ve a los ajustes se la aplicación, selecciona Permisos y activa Micrófono y Cámara.</string>
+  <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Signal necesita acceso al micrófono para grabar vídeos.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal no puede enviar SMS/MMS ya que no es la aplicación configurada por defecto. ¿Deseas cambiar la configuración de Android para que Signal sea la aplicación por defecto para SMS?</string>
   <string name="ConversationActivity_yes">Sí</string>

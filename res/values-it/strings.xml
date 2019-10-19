@@ -79,7 +79,7 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Salvataggio immagine fallito.</string>
   <!--CameraXFragment-->
-  <string name="CameraXFragment_video_recording_available">Tocca per scattare una foto o tieni premuto il pulsante di cattura per registrare un video.</string>
+  <string name="CameraXFragment_tap_for_photo_hold_for_video">Tocca per foto, tieni premuto per video</string>
   <string name="CameraXFragment_capture_description">Scatta</string>
   <string name="CameraXFragment_change_camera_description">Cambia camera</string>
   <string name="CameraXFragment_open_gallery_description">Apri galleria</string>
@@ -177,6 +177,9 @@
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Per poter catturare foto e video, permetti a Signal di accedere alla fotocamera del tuo dispositivo</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal richiede l\'autorizzazione all\'uso della fotocamera per scattare foto o registrare video, ma è stata negata in modo permanente. Si prega di continuare al menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Fotocamera\".</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal richiede l\'autorizzazione all\'uso della fotocamera per scattare foto o registrare video</string>
+  <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">Abilita l\'autorizzazione all\'uso del microfono per registrare video con audio.</string>
+  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Signal richiede l\'autorizzazione all\'uso del microfono per registrare video, ma è stata negata. Si prega di aprire il menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Microfono\" e \"Fotocamera\".</string>
+  <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Signal richiede l\'autorizzazione all\'uso del microfono per registrare video.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal non può inviare SMS/MMS perchè non è la tua app predefinita per sms. Vuoi cambiare questa cosa nelle impostazioni di Android?</string>
   <string name="ConversationActivity_yes">Sì</string>

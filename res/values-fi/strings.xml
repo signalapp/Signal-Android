@@ -79,6 +79,7 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Kuvan tallennus epäonnistui.</string>
   <!--CameraXFragment-->
+  <string name="CameraXFragment_tap_for_photo_hold_for_video">Napauttamalla saat kuvan, painamalla videon</string>
   <string name="CameraXFragment_capture_description">Nappaa</string>
   <string name="CameraXFragment_change_camera_description">Vaihda kamera</string>
   <string name="CameraXFragment_open_gallery_description">Avaa galleria</string>
@@ -176,6 +177,9 @@
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Jotta voit ottaa kuvia ja videoita, anna Signalille lupaa käyttää kameraa.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal tarvitsee lupaa käyttää laitteesi kameraa kuvien ja videoiden ottamista varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Kamera\".</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal tarvitsee kameran käyttöoikeutta kuvien ja videoiden ottamista varten.</string>
+  <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">Myönnä mikrofonin käyttöoikeus, jotta voit tallentaa äänellisiä videoita.</string>
+  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Signal tarvitsee mikrofonin käyttöoikeutta videoiden tallennusta varten, mutta ne on evätty. Jatka sovellusasetuksiin, valitse \"käyttöoikeudet\" ja ota käyttöön \"mikrofoni\" ja \"kamera\".</string>
+  <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Signal tarvitsee mikrofonin käyttöoikeutta videoiden tallennusta varten.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal ei voi lähettää SMS/MMS-viestejä, koska se ei ole oletus tekstiviestisovellus. Haluatko muuttaa tätä Androidin asetuksissa?</string>
   <string name="ConversationActivity_yes">Kyllä</string>
@@ -573,6 +577,8 @@ puhelinnumero</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Syötä puhelinnumerosi, jotta pääset alkuun</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Saat vahvistuskoodin. Matkapuhelinoperaattorisi hinnat voivat olla voimassa.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Syötä koodi, jonka lähetimme numeroon %s</string>
+  <string name="RegistrationActivity_phone_number_description">Puhelinnumero</string>
+  <string name="RegistrationActivity_country_code_description">Maatunnus</string>
   <string name="RegistrationActivity_call">Soita</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_photo">Kuva</string>
@@ -639,6 +645,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ThreadRecord_media_message">Mediaviesti</string>
   <string name="ThreadRecord_sticker">Tarra</string>
   <string name="ThreadRecord_disappearing_photo">Katoava kuva</string>
+  <string name="ThreadRecord_disappearing_video">Katoava video</string>
   <string name="ThreadRecord_s_is_on_signal">%s käyttää Signalia!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Katoavat viestit poistettu käytöstä</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Katoavien viestien ajaksi asetettu %s</string>
@@ -715,6 +722,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="MessageNotifier_media_message">Mediaviesti</string>
   <string name="MessageNotifier_sticker">Tarra</string>
   <string name="MessageNotifier_disappearing_photo">Katoava kuva</string>
+  <string name="MessageNotifier_disappearing_video">Katoava video</string>
   <string name="MessageNotifier_reply">Vastaa</string>
   <string name="MessageNotifier_signal_message">Signal viesti</string>
   <string name="MessageNotifier_unsecured_sms">Salaamaton SMS-viesti</string>
@@ -1061,6 +1069,10 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="arrays__high">Korkea</string>
   <string name="arrays__max">Maksimi</string>
   <!--plurals.xml-->
+  <plurals name="hours_ago">
+    <item quantity="one">%dh</item>
+    <item quantity="other">%dh</item>
+  </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">SMS ja MMS</string>
   <string name="preferences__pref_all_sms_title">Vastaanota kaikki tekstiviestit</string>
@@ -1333,6 +1345,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="RegistrationActivity_wrong_number">Väärä numero</string>
   <string name="RegistrationActivity_call_me_instead_available_in">Soita minulle sen sijaan \n (Saatavilla ajassa %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Ota yhteyttä Signalin tukeen</string>
+  <string name="RegistrationActivity_code_support_subject">Signalin rekisteröinti - vahvistuskoodi Androidille</string>
+  <string name="RegistrationActivity_code_support_body">Aihe: Signalin rekisteröinti - vahvistuskoodi Androidille\nLaitteen tiedot: %1$s\nAndroid versio: %2$s\nSignal versio: %3$s\nMaa: %4$s</string>
   <string name="BackupUtil_never">ei koskaan</string>
   <string name="BackupUtil_unknown">Tuntematon</string>
   <string name="preferences_app_protection__screen_lock">Näytön lukitus</string>

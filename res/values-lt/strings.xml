@@ -85,7 +85,6 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Nepavyko įrašyti paveikslo</string>
   <!--CameraXFragment-->
-  <string name="CameraXFragment_video_recording_available">Bakstelėkite norėdami fotografuoti arba laikykite pirštą ant fotografavimo mygtuko, norėdami įrašyti vaizdo įrašą.</string>
   <string name="CameraXFragment_capture_description">Fotografuoti</string>
   <string name="CameraXFragment_change_camera_description">Keisti kamerą</string>
   <string name="CameraXFragment_open_gallery_description">Atverti galeriją</string>

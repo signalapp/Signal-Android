@@ -85,7 +85,7 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Не удалось сохранить изображение.</string>
   <!--CameraXFragment-->
-  <string name="CameraXFragment_video_recording_available">Нажмите, чтобы сделать фото, или удерживайте палец на кнопке, чтобы записать видео.</string>
+  <string name="CameraXFragment_tap_for_photo_hold_for_video">Нажмите для фото, удерживайте для видео</string>
   <string name="CameraXFragment_capture_description">Снять</string>
   <string name="CameraXFragment_change_camera_description">Сменить камеру</string>
   <string name="CameraXFragment_open_gallery_description">Открыть галерею</string>
@@ -183,6 +183,9 @@
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Для создания фото и видео разрешите Signal доступ к камере.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal требуется разрешение на доступ к камере, чтобы снимать фото или видео, но оно было вами отклонено. Нажмите «Продолжить», чтобы перейти в настройки приложения, откройте «Разрешения» и включите «Камера».</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal требуется разрешение на доступ к камере, чтобы снимать фото или видео </string>
+  <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">Включите разрешение на доступ к микрофону, чтобы снимать видео со звуком.</string>
+  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Signal требуется разрешение на доступ к микрофону, чтобы снимать видео, но оно было вами отклонено. Нажмите «Продолжить», чтобы перейти в настройки приложения, откройте «Разрешения» и включите «Микрофон» и «Камера».</string>
+  <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Signal требуется разрешение на доступ к микрофону, чтобы записывать видео.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal не может отправлять SMS/MMS-сообщения, так как не является приложением по умолчанию для SMS. Хотите изменить это в настройках Android?</string>
   <string name="ConversationActivity_yes">Да</string>

@@ -79,6 +79,7 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Kunne ikke lagre bildet.</string>
   <!--CameraXFragment-->
+  <string name="CameraXFragment_tap_for_photo_hold_for_video">Trykk for foto, hold for video</string>
   <string name="CameraXFragment_capture_description">Ta bilde</string>
   <string name="CameraXFragment_change_camera_description">Bytt kamera</string>
   <string name="CameraXFragment_open_gallery_description">Åpne galleri</string>
@@ -176,6 +177,8 @@
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Du må gi Signal «Kamera»-tillatelse på systemet for å kunne filme og ta bilder.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal krever tillatelse fra systemet for å kunne ta bilder eller filme, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Kamera».</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Du må gi Signal «Kamera»-tillatelse på systemet for å kunne filme og ta bilder.</string>
+  <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">Aktiver mikrofonens tillatelse til å ta opp videoer med lyd.</string>
+  <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Signal trenger mikrofontillatelser for å spille inn videoer.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal kan ikke sende SMS/MMS-meldinger fordi det ikke er din standard SMS-app. Vil du endre dette i Android-innstillingene dine?</string>
   <string name="ConversationActivity_yes">Ja</string>
@@ -574,6 +577,8 @@ skrev inn (%s) er ugyldig.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Skriv inn telefonnummeret ditt for å komme i gang</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Du vil motta en bekreftelseskode. Teleoperatøren kan belaste deg for dette.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Bruk koden som ble sendt til %s</string>
+  <string name="RegistrationActivity_phone_number_description">Telefonnummer</string>
+  <string name="RegistrationActivity_country_code_description">Landskode</string>
   <string name="RegistrationActivity_call">Ring</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_photo">Bilde</string>
@@ -1335,6 +1340,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="RegistrationActivity_wrong_number">Feil nummer</string>
   <string name="RegistrationActivity_call_me_instead_available_in">Ring meg i stedet \n (Tilgjengelig om %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Kontakt Signal Kundestøtte</string>
+  <string name="RegistrationActivity_code_support_subject">Signal Registrering - Verifikasjonskode for Android</string>
   <string name="BackupUtil_never">Aldri</string>
   <string name="BackupUtil_unknown">Ukjent</string>
   <string name="preferences_app_protection__screen_lock">Skjermlås</string>
