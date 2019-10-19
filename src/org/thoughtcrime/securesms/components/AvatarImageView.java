@@ -165,6 +165,7 @@ public final class AvatarImageView extends AppCompatImageView {
       if (other == null) return false;
 
       return other.recipient.equals(recipient) &&
+             other.recipient.getColor().equals(recipient.getColor()) &&
              other.ready == ready &&
              Objects.equals(other.contactPhoto, contactPhoto);
     }
