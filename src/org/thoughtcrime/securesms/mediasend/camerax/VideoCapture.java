@@ -31,7 +31,6 @@ import android.media.MediaRecorder.AudioSource;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Looper;
-import android.util.Log;
 import android.util.Size;
 import android.view.Display;
 import android.view.Surface;
@@ -58,6 +57,7 @@ import androidx.camera.core.UseCaseConfig;
 import androidx.camera.core.VideoCaptureConfig;
 import androidx.camera.core.impl.utils.executor.CameraXExecutors;
 
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.video.VideoUtil;
 
 import java.io.File;
@@ -148,7 +148,6 @@ public class VideoCapture extends UseCase {
     /** Surface the camera writes to, which the videoEncoder uses as input. */
     Surface mCameraSurface;
     /** audio raw data */
-    @NonNull
     private AudioRecord mAudioRecorder;
     private int mAudioBufferSize;
     private boolean mIsRecording = false;
@@ -298,7 +297,13 @@ public class VideoCapture extends UseCase {
 
         try {
             // audioRecord start
-            mAudioRecorder.startRecording();
+            // Begin Signal Custom Code Block
+            if (mAudioRecorder != null) {
+                mAudioRecorder.startRecording();
+            } else {
+                Log.w(TAG, "Missing audio recorder in start()!");
+            }
+            // End Signal Custom Code Block
         } catch (IllegalStateException e) {
             postListener.onError(VideoCaptureError.ENCODER_ERROR, "AudioRecorder start fail", e);
             return;
@@ -753,7 +758,13 @@ public class VideoCapture extends UseCase {
         // Audio Stop
         try {
             Log.i(TAG, "audioRecorder stop");
-            mAudioRecorder.stop();
+            // Begin Signal Custom Code Block
+            if (mAudioRecorder != null) {
+                mAudioRecorder.stop();
+            } else {
+                Log.w(TAG, "Missing audio recorder in stop()!");
+            }
+            // End Signal Custom Code Block
         } catch (IllegalStateException e) {
             videoSavedListener.onError(
                 VideoCaptureError.ENCODER_ERROR, "Audio recorder stop failed!", e);
