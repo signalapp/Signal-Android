@@ -97,8 +97,9 @@
 
     <!-- CameraXFragment -->
     <string name="CameraXFragment_tap_for_photo_hold_for_video">Tap for photo, hold for video</string>
+    <string name="CameraXFragment_swipe_up_to_zoom">Swipe up to zoom</string>
     <string name="CameraXFragment_capture_description">Capture</string>
-    <string name="CameraXFragment_change_camera_description">Change camera</string>
+    <string name="CameraXFragment_change_camera_description">Switch between rear and front camera</string>
     <string name="CameraXFragment_open_gallery_description">Open gallery</string>
 
     <!-- CameraContacts -->
@@ -107,7 +108,7 @@
     <string name="CameraContacts_signal_groups">Signal groups</string>
     <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">You can share with a maximum of %d conversations.</string>
     <string name="CameraContacts_select_signal_recipients">Select Signal recipients</string>
-    <string name="CameraContacts_no_signal_contacts">No Signal contacts</string>
+    <string name="CameraContacts_no_signal_contacts">You have no contacts who use Signal</string>
     <string name="CameraContacts_you_can_only_use_the_camera_button">You can only use the camera button to send photos to Signal contacts.</string>
     <string name="CameraContacts_cant_find_who_youre_looking_for">Can\'t find who you\'re looking for?</string>
     <string name="CameraContacts_invite_a_contact_to_join_signal">Invite a contact to join Signal</string>
@@ -321,7 +322,7 @@
 
     <!-- DateUtils -->
     <string name="DateUtils_just_now">Now</string>
-    <string name="DateUtils_minutes_ago">%dm</string>
+    <string name="DateUtils_minutes_ago">%dmin</string>
     <string name="DateUtils_today">Today</string>
     <string name="DateUtils_yesterday">Yesterday</string>
     <string name="DateUtils_Sunday_abbreviated">Sun</string>
@@ -602,7 +603,7 @@
     <!-- PlacePickerActivity -->
     <string name="PlacePickerActivity_title">Map</string>
 
-    <string name="PlacePickerActivity_not_a_valid_address">Not a valid Address</string>
+    <string name="PlacePickerActivity_not_a_valid_address">Not a valid address</string>
     <string name="PlacePickerActivity_drop_pin">Drop pin</string>
     <string name="PlacePickerActivity_accept_address">Accept address</string>
 
@@ -923,7 +924,9 @@
     <string name="WebRtcCallControls_bluetooth_button_description">Bluetooth</string>
     <string name="WebRtcCallControls_mute_button_description">Mute</string>
     <string name="WebRtcCallControls_your_camera_button_description">Your camera</string>
-    <string name="WebRtcCallControls_switch_to_rear_camera_button_description">Switch to other camera</string>
+    <string name="WebRtcCallControls_switch_to_rear_camera_button_description">Switch to rear camera</string>
+    <string name="WebRtcCallControls_switch_to_front_camera_button_description">Switch to front camera</string>
+    <string name="WebRtcCallControls_switch_between_rear_and_front_camera_button_description">Switch between rear and front camera</string>
 
     <string name="WebRtcCallControls_answer_call_description">Answer call</string>
     <string name="WebRtcCallControls_reject_call_description">Reject call</string>
