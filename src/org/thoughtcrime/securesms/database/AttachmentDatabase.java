@@ -113,7 +113,7 @@ public class AttachmentDatabase extends Database {
           static final String WIDTH                  = "width";
           static final String HEIGHT                 = "height";
           static final String CAPTION                = "caption";
-          static final String DATA_HASH              = "data_hash";
+  private static final String DATA_HASH              = "data_hash";
           static final String BLUR_HASH              = "blur_hash";
 
   public  static final String DIRECTORY              = "parts";
@@ -293,14 +293,13 @@ public class AttachmentDatabase extends Database {
     Cursor cursor           = null;
 
     try {
-      cursor = database.query(TABLE_NAME, new String[] {DATA, THUMBNAIL, CONTENT_TYPE, DATA_HASH, ROW_ID, UNIQUE_ID}, MMS_ID + " = ?",
+      cursor = database.query(TABLE_NAME, new String[] {DATA, THUMBNAIL, CONTENT_TYPE, ROW_ID, UNIQUE_ID}, MMS_ID + " = ?",
                               new String[] {mmsId+""}, null, null, null);
 
       while (cursor != null && cursor.moveToNext()) {
         deleteAttachmentOnDisk(cursor.getString(cursor.getColumnIndex(DATA)),
                                cursor.getString(cursor.getColumnIndex(THUMBNAIL)),
                                cursor.getString(cursor.getColumnIndex(CONTENT_TYPE)),
-                               cursor.getString(cursor.getColumnIndex(DATA_HASH)),
                                new AttachmentId(cursor.getLong(cursor.getColumnIndex(ROW_ID)),
                                                 cursor.getLong(cursor.getColumnIndex(UNIQUE_ID))));
       }
@@ -318,14 +317,13 @@ public class AttachmentDatabase extends Database {
     Cursor cursor           = null;
 
     try {
-      cursor = database.query(TABLE_NAME, new String[] {DATA, THUMBNAIL, CONTENT_TYPE, DATA_HASH, ROW_ID, UNIQUE_ID}, MMS_ID + " = ?",
+      cursor = database.query(TABLE_NAME, new String[] {DATA, THUMBNAIL, CONTENT_TYPE, ROW_ID, UNIQUE_ID}, MMS_ID + " = ?",
           new String[] {mmsId+""}, null, null, null);
 
       while (cursor != null && cursor.moveToNext()) {
         deleteAttachmentOnDisk(cursor.getString(cursor.getColumnIndex(DATA)),
                                cursor.getString(cursor.getColumnIndex(THUMBNAIL)),
                                cursor.getString(cursor.getColumnIndex(CONTENT_TYPE)),
-                               cursor.getString(cursor.getColumnIndex(DATA_HASH)),
                                new AttachmentId(cursor.getLong(cursor.getColumnIndex(ROW_ID)),
                                                 cursor.getLong(cursor.getColumnIndex(UNIQUE_ID))));
       }
@@ -361,7 +359,7 @@ public class AttachmentDatabase extends Database {
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
 
     try (Cursor cursor = database.query(TABLE_NAME,
-                                        new String[]{DATA, THUMBNAIL, CONTENT_TYPE, DATA_HASH},
+                                        new String[]{DATA, THUMBNAIL, CONTENT_TYPE},
                                         PART_ID_WHERE,
                                         id.toStrings(),
                                         null,
@@ -375,10 +373,9 @@ public class AttachmentDatabase extends Database {
       String data        = cursor.getString(cursor.getColumnIndex(DATA));
       String thumbnail   = cursor.getString(cursor.getColumnIndex(THUMBNAIL));
       String contentType = cursor.getString(cursor.getColumnIndex(CONTENT_TYPE));
-      String dataHash    = cursor.getString(cursor.getColumnIndex(DATA_HASH));
 
       database.delete(TABLE_NAME, PART_ID_WHERE, id.toStrings());
-      deleteAttachmentOnDisk(data, thumbnail, contentType, dataHash, id);
+      deleteAttachmentOnDisk(data, thumbnail, contentType, id);
       notifyAttachmentListeners();
     }
   }
@@ -402,13 +399,14 @@ public class AttachmentDatabase extends Database {
   private void deleteAttachmentOnDisk(@Nullable String data,
                                       @Nullable String thumbnail,
                                       @Nullable String contentType,
-                                      @Nullable String attachmentHash,
                                       @NonNull AttachmentId attachmentId)
   {
-    boolean dataInUse = isDataUsedByAnotherAttachment(attachmentHash, attachmentId);
+    boolean dataInUse = isDataUsedByAnotherAttachment(data, attachmentId);
 
     if (dataInUse) {
-      Log.i(TAG, "Data is used by another attachment, skipping deletion");
+      Log.i(TAG, "[deleteAttachmentOnDisk] Attachment in use. Skipping deletion. " + data);
+    } else {
+      Log.i(TAG, "[deleteAttachmentOnDisk] No other users of this attachment. Safe to delete. " + data);
     }
 
     if (!TextUtils.isEmpty(data) && !dataInUse) {
@@ -424,15 +422,15 @@ public class AttachmentDatabase extends Database {
     }
   }
 
-  private boolean isDataUsedByAnotherAttachment(@Nullable String attachmentHash, @NonNull AttachmentId attachmentId) {
-    if (attachmentHash == null) return false;
+  private boolean isDataUsedByAnotherAttachment(@Nullable String data, @NonNull AttachmentId attachmentId) {
+    if (data == null) return false;
 
     SQLiteDatabase database = databaseHelper.getReadableDatabase();
     long           matches  = DatabaseUtils.longForQuery(database,
-                                                         "SELECT count(*) FROM " + TABLE_NAME + " WHERE " + DATA_HASH + " = ? AND " + UNIQUE_ID + " != ? AND " + ROW_ID + " != ?;",
-                                                         new String[]{attachmentHash,
-                                                             Long.toString(attachmentId.getUniqueId()),
-                                                             Long.toString(attachmentId.getRowId())});
+                                                         "SELECT count(*) FROM " + TABLE_NAME + " WHERE " + DATA + " = ? AND " + UNIQUE_ID + " != ? AND " + ROW_ID + " != ?;",
+                                                         new String[]{data,
+                                                                      Long.toString(attachmentId.getUniqueId()),
+                                                                      Long.toString(attachmentId.getRowId())});
 
     return matches != 0;
   }
@@ -447,7 +445,7 @@ public class AttachmentDatabase extends Database {
     DataInfo           dataInfo    = setAttachmentData(inputStream, false, attachmentId);
 
     if (oldInfo != null) {
-      updateAttachmentDataHash(database, dataInfo.hash, oldInfo.hash);
+      updateAttachmentDataHash(database, oldInfo.hash, dataInfo);
     }
 
     if (placeholder != null && placeholder.isQuote() && !placeholder.getContentType().startsWith("image")) {
@@ -578,27 +576,36 @@ public class AttachmentDatabase extends Database {
                                           mediaStream.getStream(),
                                           false,
                                           databaseAttachment.getAttachmentId());
-    updateAttachmentDataHash(database, dataInfo.hash, oldDataInfo.hash);
 
     ContentValues contentValues = new ContentValues();
     contentValues.put(SIZE, dataInfo.length);
     contentValues.put(CONTENT_TYPE, mediaStream.getMimeType());
     contentValues.put(WIDTH, mediaStream.getWidth());
     contentValues.put(HEIGHT, mediaStream.getHeight());
+    contentValues.put(DATA, dataInfo.file.getAbsolutePath());
     contentValues.put(DATA_RANDOM, dataInfo.random);
     contentValues.put(DATA_HASH, dataInfo.hash);
 
-    database.update(TABLE_NAME, contentValues, PART_ID_WHERE, databaseAttachment.getAttachmentId().toStrings());
+    String   selection = "(" + ROW_ID + " = ? AND " + UNIQUE_ID + " = ?) OR " +
+                         "(" + DATA_HASH + " NOT NULL AND " + DATA_HASH + " = ?)";
+    String[] args      = new String[]{String.valueOf(databaseAttachment.getAttachmentId().getRowId()),
+                                      String.valueOf(databaseAttachment.getAttachmentId().getUniqueId()),
+                                      oldDataInfo.hash};
+
+    int updateCount = database.update(TABLE_NAME, contentValues, selection, args);
+    Log.i(TAG, "[updateAttachmentData] Updated " + updateCount + " rows.");
   }
 
   private static void updateAttachmentDataHash(@NonNull SQLiteDatabase database,
-                                               @NonNull String newHash,
-                                               @Nullable String oldHash)
+                                               @NonNull String oldHash,
+                                               @NonNull DataInfo newData)
   {
     if (oldHash == null) return;
 
     ContentValues contentValues = new ContentValues();
-    contentValues.put(DATA_HASH, newHash);
+    contentValues.put(DATA, newData.file.getAbsolutePath());
+    contentValues.put(DATA_RANDOM, newData.random);
+    contentValues.put(DATA_HASH, newData.hash);
     database.update(TABLE_NAME,
                     contentValues,
                     DATA_HASH + " = ?",
@@ -775,14 +782,16 @@ public class AttachmentDatabase extends Database {
       String                     hash              = Base64.encodeBytes(digestInputStream.getMessageDigest().digest());
 
       if (!isThumbnail) {
-        Log.i(TAG, "setAttachmentData: " + destination.getAbsolutePath());
         SQLiteDatabase     database       = databaseHelper.getWritableDatabase();
         Optional<DataInfo> sharedDataInfo = findDuplicateDataFileInfo(database, hash, attachmentId);
         if (sharedDataInfo.isPresent()) {
-          if (sharedDataInfo.get().file != destination && !destination.delete()) {
-            Log.w(TAG, "setAttachmentData: Tried to delete original destination file but failed :(");
+          Log.i(TAG, "[setAttachmentData] Duplicate data file found! " + sharedDataInfo.get().file.getAbsolutePath());
+          if (sharedDataInfo.get().file != destination && destination.delete()) {
+            Log.i(TAG, "[setAttachmentData] Deleted original file. " + destination);
           }
           return sharedDataInfo.get();
+        } else {
+          Log.i(TAG, "[setAttachmentData] No matching attachment data found. " + destination.getAbsolutePath());
         }
       }
 
