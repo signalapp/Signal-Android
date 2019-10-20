@@ -78,7 +78,7 @@ public enum MaterialColor {
   }
 
   public @ColorInt int toStatusBarColor(@NonNull Context context) {
-    return context.getResources().getColor(shadeColor);
+    return context.getResources().getColor(mainColor);
   }
 
   public @ColorRes int toQuoteBarColorResource(@NonNull Context context, boolean outgoing) {
@@ -94,8 +94,8 @@ public enum MaterialColor {
       int alpha = isDarkTheme(context) ? (int) (0.2 * 255) : (int) (0.4 * 255);
       return Color.argb(alpha, Color.red(color), Color.green(color), Color.blue(color));
     }
-    return context.getResources().getColor(isDarkTheme(context) ? R.color.transparent_black_70
-                                                                : R.color.transparent_white_aa);
+    return context.getResources().getColor(isDarkTheme(context) ? R.color.transparent_black_40
+                                                                : R.color.transparent_white_60);
   }
 
   public @ColorInt int toQuoteFooterColor(@NonNull Context context, boolean outgoing) {
@@ -104,8 +104,8 @@ public enum MaterialColor {
       int alpha = isDarkTheme(context) ? (int) (0.4 * 255) : (int) (0.6 * 255);
       return Color.argb(alpha, Color.red(color), Color.green(color), Color.blue(color));
     }
-    return context.getResources().getColor(isDarkTheme(context) ? R.color.transparent_black_90
-                                                                : R.color.transparent_white_bb);
+    return context.getResources().getColor(isDarkTheme(context) ? R.color.transparent_black_60
+                                                                : R.color.transparent_white_80);
   }
 
   public boolean represents(Context context, int colorValue) {

@@ -26,6 +26,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -56,20 +57,28 @@ import org.json.JSONObject;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.logsubmit.util.Scrubber;
 import org.thoughtcrime.securesms.util.BucketInfo;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
+import org.whispersystems.libsignal.util.Pair;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
@@ -96,11 +105,13 @@ public class SubmitLogFragment extends Fragment {
 
   private static final String API_ENDPOINT = "https://debuglogs.org";
 
-  private static final String HEADER_SYSINFO = "========== SYSINFO ========";
-  private static final String HEADER_JOBS    = "=========== JOBS =========";
-  private static final String HEADER_POWER   = "========== POWER =========";
-  private static final String HEADER_LOGCAT  = "========== LOGCAT ========";
-  private static final String HEADER_LOGGER  = "========== LOGGER ========";
+  private static final String HEADER_SYSINFO     = "========= SYSINFO =========";
+  private static final String HEADER_JOBS        = "=========== JOBS ==========";
+  private static final String HEADER_POWER       = "========== POWER ==========";
+  private static final String HEADER_THREADS     = "===== BLOCKED THREADS =====";
+  private static final String HEADER_PERMISSIONS = "======= PERMISSIONS =======";
+  private static final String HEADER_LOGCAT      = "========== LOGCAT =========";
+  private static final String HEADER_LOGGER      = "========== LOGGER =========";
 
   private Button   okButton;
   private Button   cancelButton;
@@ -384,7 +395,7 @@ public class SubmitLogFragment extends Fragment {
                    .append("\n\n\n")
                    .append(HEADER_JOBS)
                    .append("\n\n")
-                   .append(Scrubber.scrub(ApplicationContext.getInstance(context).getJobManager().getDebugInfo()))
+                   .append(Scrubber.scrub(ApplicationDependencies.getJobManager().getDebugInfo()))
                    .append("\n\n\n");
 
       if (VERSION.SDK_INT >= 28) {
@@ -393,6 +404,16 @@ public class SubmitLogFragment extends Fragment {
                      .append(buildPower(context))
                      .append("\n\n\n");
       }
+
+      stringBuilder.append(HEADER_THREADS)
+                   .append("\n\n")
+                   .append(buildBlockedThreads())
+                   .append("\n\n\n");
+
+      stringBuilder.append(HEADER_PERMISSIONS)
+                   .append("\n\n")
+                   .append(buildPermissions(requireContext()))
+                   .append("\n\n\n");
 
       stringBuilder.append(HEADER_LOGCAT)
                    .append("\n\n")
@@ -513,19 +534,19 @@ public class SubmitLogFragment extends Fragment {
     final PackageManager pm      = context.getPackageManager();
     final StringBuilder  builder = new StringBuilder();
 
-    builder.append("Time    : ").append(System.currentTimeMillis()).append('\n');
-    builder.append("Device  : ")
-           .append(Build.MANUFACTURER).append(" ")
-           .append(Build.MODEL).append(" (")
-           .append(Build.PRODUCT).append(")\n");
-    builder.append("Android : ").append(VERSION.RELEASE).append(" (")
-                               .append(VERSION.INCREMENTAL).append(", ")
-                               .append(Build.DISPLAY).append(")\n");
-    builder.append("ABIs    : ").append(TextUtils.join(", ", getSupportedAbis())).append("\n");
-    builder.append("Memory  : ").append(getMemoryUsage(context)).append("\n");
-    builder.append("Memclass: ").append(getMemoryClass(context)).append("\n");
-    builder.append("OS Host : ").append(Build.HOST).append("\n");
-    builder.append("App     : ");
+    builder.append("Time         : ").append(System.currentTimeMillis()).append('\n');
+    builder.append("Device       : ").append(Build.MANUFACTURER).append(" ")
+                                     .append(Build.MODEL).append(" (")
+                                     .append(Build.PRODUCT).append(")\n");
+    builder.append("Android      : ").append(VERSION.RELEASE).append(" (")
+                                     .append(VERSION.INCREMENTAL).append(", ")
+                                     .append(Build.DISPLAY).append(")\n");
+    builder.append("ABIs         : ").append(TextUtils.join(", ", getSupportedAbis())).append("\n");
+    builder.append("Memory       : ").append(getMemoryUsage(context)).append("\n");
+    builder.append("Memclass     : ").append(getMemoryClass(context)).append("\n");
+    builder.append("OS Host      : ").append(Build.HOST).append("\n");
+    builder.append("First Version: ").append(TextSecurePreferences.getFirstInstallVersion(context)).append("\n");
+    builder.append("App          : ");
     try {
       builder.append(pm.getApplicationLabel(pm.getApplicationInfo(context.getPackageName(), 0)))
              .append(" ")
@@ -554,6 +575,54 @@ public class SubmitLogFragment extends Fragment {
                               .append("Highest bucket: ").append(BucketInfo.bucketToString(info.getBestBucket())).append('\n')
                               .append("Lowest bucket : ").append(BucketInfo.bucketToString(info.getWorstBucket())).append("\n\n")
                               .append(info.getHistory());
+  }
+
+  private static CharSequence buildBlockedThreads() {
+    Map<Thread, StackTraceElement[]> traces = Thread.getAllStackTraces();
+    StringBuilder                    out    = new StringBuilder();
+
+    for (Map.Entry<Thread, StackTraceElement[]> entry : traces.entrySet()) {
+      if (entry.getKey().getState() == Thread.State.BLOCKED) {
+        Thread thread = entry.getKey();
+        out.append("-- [").append(thread.getId()).append("] ")
+           .append(thread.getName()).append(" (").append(thread.getState().toString()).append(")\n");
+
+        for (StackTraceElement element : entry.getValue()) {
+          out.append(element.toString()).append("\n");
+        }
+        
+        out.append("\n");
+      }
+    }
+
+    return out.length() == 0 ? "None" : out;
+  }
+
+  private static CharSequence buildPermissions(@NonNull Context context) {
+    StringBuilder out = new StringBuilder();
+
+    List<Pair<String, Boolean>> status = new ArrayList<>();
+
+    try {
+      PackageInfo info = context.getPackageManager().getPackageInfo("org.thoughtcrime.securesms", PackageManager.GET_PERMISSIONS);
+
+      for (int i = 0; i < info.requestedPermissions.length; i++) {
+        status.add(new Pair<>(info.requestedPermissions[i],
+                             (info.requestedPermissionsFlags[i] & PackageInfo.REQUESTED_PERMISSION_GRANTED) != 0));
+      }
+    } catch (PackageManager.NameNotFoundException e) {
+      return "Unable to retrieve.";
+    }
+
+    Collections.sort(status, (o1, o2) -> o1.first().compareTo(o2.first()));
+
+    for (Pair<String, Boolean> pair : status) {
+      out.append(pair.first()).append(": ");
+      out.append(pair.second() ? "YES" : "NO");
+      out.append("\n");
+    }
+
+    return out;
   }
 
   private static Iterable<String> getSupportedAbis() {

@@ -141,6 +141,39 @@ public class JobDatabase extends Database {
     databaseHelper.getWritableDatabase().update(Jobs.TABLE_NAME, contentValues, null, null);
   }
 
+  public synchronized void updateJobs(@NonNull List<JobSpec> jobs) {
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+
+    db.beginTransaction();
+
+    try {
+      for (JobSpec job : jobs) {
+        ContentValues values = new ContentValues();
+        values.put(Jobs.JOB_SPEC_ID, job.getId());
+        values.put(Jobs.FACTORY_KEY, job.getFactoryKey());
+        values.put(Jobs.QUEUE_KEY, job.getQueueKey());
+        values.put(Jobs.CREATE_TIME, job.getCreateTime());
+        values.put(Jobs.NEXT_RUN_ATTEMPT_TIME, job.getNextRunAttemptTime());
+        values.put(Jobs.RUN_ATTEMPT, job.getRunAttempt());
+        values.put(Jobs.MAX_ATTEMPTS, job.getMaxAttempts());
+        values.put(Jobs.MAX_BACKOFF, job.getMaxBackoff());
+        values.put(Jobs.MAX_INSTANCES, job.getMaxInstances());
+        values.put(Jobs.LIFESPAN, job.getLifespan());
+        values.put(Jobs.SERIALIZED_DATA, job.getSerializedData());
+        values.put(Jobs.IS_RUNNING, job.isRunning() ? 1 : 0);
+
+        String   query = Jobs.JOB_SPEC_ID + " = ?";
+        String[] args  = new String[]{ job.getId() };
+
+        db.update(Jobs.TABLE_NAME, values, query, args);
+      }
+
+      db.setTransactionSuccessful();
+    } finally {
+      db.endTransaction();
+    }
+  }
+
   public synchronized void deleteJobs(@NonNull List<String> jobIds) {
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
 

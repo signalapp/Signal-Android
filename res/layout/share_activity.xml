@@ -13,8 +13,6 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:minHeight="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            android:elevation="4dp"
             android:theme="?attr/actionBarStyle">
 
         <RelativeLayout
@@ -24,7 +22,7 @@
             <TextView android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
                       android:text="@string/ShareActivity_share_with"
-                      android:textColor="@color/white"
+                      android:textColor="?attr/title_text_color_primary"
                       android:textSize="20sp"
                       android:layout_alignParentStart="true"
                       android:layout_centerVertical="true"
@@ -33,7 +31,8 @@
             <ImageView android:id="@+id/search_action"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
-                       android:src="@drawable/ic_search_white_24dp"
+                       wheel:srcCompat="@drawable/ic_search_24"
+                       android:tint="?icon_tint"
                        android:layout_alignParentEnd="true"
                        android:layout_centerVertical="true"/>
 

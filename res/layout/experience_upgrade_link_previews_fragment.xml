@@ -29,13 +29,14 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_gravity="center"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="16dp"
+        android:importantForAccessibility="no"
         android:src="@drawable/link_preview_splash"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
@@ -79,7 +80,7 @@
             android:text="@string/ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews"
             android:textColor="@color/core_white"
             android:textIsSelectable="false"
-            android:textSize="16dp" />
+            android:textSize="16sp" />
 
     </LinearLayout>
 

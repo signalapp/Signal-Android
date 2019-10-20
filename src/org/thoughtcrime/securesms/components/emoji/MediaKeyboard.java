@@ -1,17 +1,19 @@
 package org.thoughtcrime.securesms.components.emoji;
 
 import android.content.Context;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.viewpager.widget.PagerAdapter;
-import androidx.viewpager.widget.ViewPager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.InputAwareLayout.InputView;
@@ -29,16 +31,18 @@ public class MediaKeyboard extends FrameLayout implements InputView,
 
   private static final String TAG = Log.tag(MediaKeyboard.class);
 
-  private RecyclerView            categoryTabs;
-  private ViewPager               categoryPager;
-  private ViewGroup               providerTabs;
-  private RepeatableImageKey      backspaceButton;
-  private RepeatableImageKey      backspaceButtonBackup;
-  private View                    searchButton;
-  private View                    addButton;
-  private MediaKeyboardListener keyboardListener;
-  private MediaKeyboardProvider[] providers;
-  private int                     providerIndex;
+            private RecyclerView            categoryTabs;
+            private ViewPager               categoryPager;
+            private ViewGroup               providerTabs;
+            private RepeatableImageKey      backspaceButton;
+            private RepeatableImageKey      backspaceButtonBackup;
+            private View                    searchButton;
+            private View                    addButton;
+  @Nullable private MediaKeyboardListener   keyboardListener;
+            private MediaKeyboardProvider[] providers;
+            private int                     providerIndex;
+
+  private final boolean tabsAtBottom;
 
   private MediaKeyboardBottomTabAdapter categoryTabAdapter;
 
@@ -48,6 +52,14 @@ public class MediaKeyboard extends FrameLayout implements InputView,
 
   public MediaKeyboard(Context context, AttributeSet attrs) {
     super(context, attrs);
+
+    TypedArray typedArray = context.getTheme().obtainStyledAttributes(attrs, R.styleable.MediaKeyboard, 0, 0);
+
+    try {
+      tabsAtBottom = typedArray.getInt(R.styleable.MediaKeyboard_tabs_gravity, 0) == 0;
+    } finally {
+      typedArray.recycle();
+    }
   }
 
   public void setProviders(int startIndex, MediaKeyboardProvider... providers) {
@@ -59,7 +71,7 @@ public class MediaKeyboard extends FrameLayout implements InputView,
     }
   }
 
-  public void setKeyboardListener(MediaKeyboardListener listener) {
+  public void setKeyboardListener(@Nullable MediaKeyboardListener listener) {
     this.keyboardListener = listener;
   }
 
@@ -76,8 +88,14 @@ public class MediaKeyboard extends FrameLayout implements InputView,
     params.height = height;
     Log.i(TAG, "showing emoji drawer with height " + params.height);
     setLayoutParams(params);
-    setVisibility(VISIBLE);
 
+    show();
+  }
+
+  public void show() {
+    if (this.categoryPager == null) initView();
+
+    setVisibility(VISIBLE);
     if (keyboardListener != null) keyboardListener.onShown();
 
     requestPresent(providers, providerIndex);
@@ -122,7 +140,7 @@ public class MediaKeyboard extends FrameLayout implements InputView,
   public void requestDismissal() {
     hide(true);
     providerIndex = 0;
-    keyboardListener.onKeyboardProviderChanged(providers[providerIndex]);
+    if (keyboardListener != null) keyboardListener.onKeyboardProviderChanged(providers[providerIndex]);
   }
 
   @Override
@@ -148,7 +166,10 @@ public class MediaKeyboard extends FrameLayout implements InputView,
   private void initView() {
     final View view = LayoutInflater.from(getContext()).inflate(R.layout.media_keyboard, this, true);
 
-    this.categoryTabs          = view.findViewById(R.id.media_keyboard_tabs);
+    RecyclerView categoryTabsTop    = view.findViewById(R.id.media_keyboard_tabs_top);
+    RecyclerView categoryTabsBottom = view.findViewById(R.id.media_keyboard_tabs);
+
+    this.categoryTabs          = tabsAtBottom ? categoryTabsBottom : categoryTabsTop;
     this.categoryPager         = view.findViewById(R.id.media_keyboard_pager);
     this.providerTabs          = view.findViewById(R.id.media_keyboard_provider_tabs);
     this.backspaceButton       = view.findViewById(R.id.media_keyboard_backspace);
@@ -156,10 +177,11 @@ public class MediaKeyboard extends FrameLayout implements InputView,
     this.searchButton          = view.findViewById(R.id.media_keyboard_search);
     this.addButton             = view.findViewById(R.id.media_keyboard_add);
 
-    this.categoryTabAdapter = new MediaKeyboardBottomTabAdapter(GlideApp.with(this), this);
+    this.categoryTabAdapter = new MediaKeyboardBottomTabAdapter(GlideApp.with(this), this, tabsAtBottom);
 
     categoryTabs.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
     categoryTabs.setAdapter(categoryTabAdapter);
+    categoryTabs.setVisibility(VISIBLE);
   }
 
   private void requestPresent(@NonNull MediaKeyboardProvider[] providers, int newIndex) {

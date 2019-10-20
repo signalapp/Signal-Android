@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
 
 import com.pnikosis.materialishprogress.ProgressWheel;
 
@@ -22,6 +23,8 @@ import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.mms.Slide;
+import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.Util;
 
 public class ViewOnceMessageView extends LinearLayout {
@@ -101,12 +104,12 @@ public class ViewOnceMessageView extends LinearLayout {
   private void presentText(@NonNull MmsMessageRecord messageRecord) {
     if (messageRecord.isOutgoing()) {
       foregroundColor = openedForegroundColor;
-      text.setText(R.string.RevealableMessageView_photo);
+      text.setText(R.string.RevealableMessageView_outgoing_media);
       icon.setImageResource(R.drawable.ic_play_outline_24);
       progress.setVisibility(GONE);
     } else if (ViewOnceUtil.isViewable(messageRecord)) {
       foregroundColor = unopenedForegroundColor;
-      text.setText(R.string.RevealableMessageView_view_photo);
+      text.setText(getDescriptionId(messageRecord));
       icon.setImageResource(R.drawable.ic_play_solid_24);
       progress.setVisibility(GONE);
     } else if (networkInProgress(messageRecord)) {
@@ -144,6 +147,16 @@ public class ViewOnceMessageView extends LinearLayout {
 
     long size = messageRecord.getSlideDeck().getThumbnailSlide().getFileSize();
     return Util.getPrettyFileSize(size);
+  }
+
+  private static @StringRes int getDescriptionId(@NonNull MmsMessageRecord messageRecord) {
+    Slide thumbnailSlide = messageRecord.getSlideDeck().getThumbnailSlide();
+
+    if (thumbnailSlide != null && MediaUtil.isVideoType(thumbnailSlide.getContentType())) {
+      return R.string.RevealableMessageView_video;
+    }
+
+    return R.string.RevealableMessageView_photo;
   }
 
   @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)

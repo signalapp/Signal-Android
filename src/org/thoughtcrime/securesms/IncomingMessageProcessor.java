@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -10,6 +11,7 @@ import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.PushDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.jobs.PushDecryptJob;
@@ -70,40 +72,49 @@ public class IncomingMessageProcessor {
       this.recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
       this.pushDatabase      = DatabaseFactory.getPushDatabase(context);
       this.mmsSmsDatabase    = DatabaseFactory.getMmsSmsDatabase(context);
-      this.jobManager        = ApplicationContext.getInstance(context).getJobManager();
+      this.jobManager        = ApplicationDependencies.getJobManager();
     }
 
-    public void processEnvelope(@NonNull SignalServiceEnvelope envelope) {
+    /**
+     * @return The id of the {@link PushDecryptJob} that was scheduled to process the message, if
+     *         one was created. Otherwise null.
+     */
+    public @Nullable String processEnvelope(@NonNull SignalServiceEnvelope envelope) {
       if (envelope.hasSource()) {
-        Address   source    = Address.fromExternal(context, envelope.getSource());
-        Recipient recipient = Recipient.from(context, source, false);
+        Recipient recipient = Recipient.external(context, envelope.getSource());
 
         if (!isActiveNumber(recipient)) {
-          recipientDatabase.setRegistered(recipient, RecipientDatabase.RegisteredState.REGISTERED);
+          recipientDatabase.setRegistered(recipient.getId(), RecipientDatabase.RegisteredState.REGISTERED);
           jobManager.add(new DirectoryRefreshJob(recipient, false));
         }
       }
 
       if (envelope.isReceipt()) {
         processReceipt(envelope);
+        return null;
       } else if (envelope.isPreKeySignalMessage() || envelope.isSignalMessage() || envelope.isUnidentifiedSender()) {
-        processMessage(envelope);
+        return processMessage(envelope);
       } else {
         Log.w(TAG, "Received envelope of unknown type: " + envelope.getType());
+        return null;
       }
     }
 
-    private void processMessage(@NonNull SignalServiceEnvelope envelope) {
+    private @NonNull String processMessage(@NonNull SignalServiceEnvelope envelope) {
       Log.i(TAG, "Received message. Inserting in PushDatabase.");
-      long id = pushDatabase.insert(envelope);
-      jobManager.add(new PushDecryptJob(context, id));
+
+      long           id  = pushDatabase.insert(envelope);
+      PushDecryptJob job = new PushDecryptJob(context, id);
+
+      jobManager.add(job);
+
+      return job.getId();
     }
 
     private void processReceipt(@NonNull SignalServiceEnvelope envelope) {
       Log.i(TAG, String.format(Locale.ENGLISH, "Received receipt: (XXXXX, %d)", envelope.getTimestamp()));
-      mmsSmsDatabase.incrementDeliveryReceiptCount(new SyncMessageId(Address.fromExternal(context, envelope.getSource()),
-              envelope.getTimestamp()),
-          System.currentTimeMillis());
+      mmsSmsDatabase.incrementDeliveryReceiptCount(new SyncMessageId(Recipient.external(context, envelope.getSource()).getId(), envelope.getTimestamp()),
+                                                   System.currentTimeMillis());
     }
 
     private boolean isActiveNumber(@NonNull Recipient recipient) {

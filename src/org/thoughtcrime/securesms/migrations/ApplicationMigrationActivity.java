@@ -35,7 +35,7 @@ public class ApplicationMigrationActivity extends BaseActivity {
   public void onCreate(Bundle bundle) {
     super.onCreate(bundle);
 
-    ApplicationMigrations.isUiBlockingMigrationRunning().observe(this, running -> {
+    ApplicationMigrations.getUiBlockingMigrationStatus().observe(this, running -> {
       if (running == null) {
         return;
       }

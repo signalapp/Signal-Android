@@ -7,6 +7,7 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
+import org.thoughtcrime.securesms.contacts.ContactRepository;
 import org.thoughtcrime.securesms.database.CursorList;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.search.SearchRepository;
@@ -37,8 +38,8 @@ public class ConversationSearchViewModel extends AndroidViewModel {
     debouncer        = new Debouncer(500);
     searchRepository = new SearchRepository(context,
                                             DatabaseFactory.getSearchDatabase(context),
-                                            DatabaseFactory.getContactsDatabase(context),
                                             DatabaseFactory.getThreadDatabase(context),
+                                            new ContactRepository(application),
                                             ContactAccessor.getInstance(),
                                             SignalExecutors.SERIAL);
   }

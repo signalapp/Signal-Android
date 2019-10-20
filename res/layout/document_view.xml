@@ -60,7 +60,6 @@
                               android:textAlignment="center"
                               android:scaleType="centerInside"
                               style="@style/Signal.Text.Caption"
-                              android:textAllCaps="true"
                               android:textSize="10sp"
                               android:textColor="@color/core_black"
                               tools:visibility="visible"

@@ -17,9 +17,11 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.ExpirationInfo;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.MultiDeviceReadUpdateJob;
 import org.thoughtcrime.securesms.jobs.SendReadReceiptJob;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 
 import java.util.LinkedList;
@@ -75,20 +77,16 @@ public class MarkReadReceiver extends BroadcastReceiver {
       syncMessageIds.add(messageInfo.getSyncMessageId());
     }
 
-    ApplicationContext.getInstance(context)
-                      .getJobManager()
-                      .add(new MultiDeviceReadUpdateJob(syncMessageIds));
+    ApplicationDependencies.getJobManager().add(new MultiDeviceReadUpdateJob(syncMessageIds));
 
-    Map<Address, List<SyncMessageId>> addressMap = Stream.of(markedReadMessages)
-                                                         .map(MarkedMessageInfo::getSyncMessageId)
-                                                         .collect(Collectors.groupingBy(SyncMessageId::getAddress));
+    Map<RecipientId, List<SyncMessageId>> recipientIdMap = Stream.of(markedReadMessages)
+                                                                 .map(MarkedMessageInfo::getSyncMessageId)
+                                                                 .collect(Collectors.groupingBy(SyncMessageId::getRecipientId));
 
-    for (Address address : addressMap.keySet()) {
-      List<Long> timestamps = Stream.of(addressMap.get(address)).map(SyncMessageId::getTimetamp).toList();
+    for (Map.Entry<RecipientId, List<SyncMessageId>> entry : recipientIdMap.entrySet()) {
+      List<Long> timestamps = Stream.of(entry.getValue()).map(SyncMessageId::getTimetamp).toList();
 
-      ApplicationContext.getInstance(context)
-                        .getJobManager()
-                        .add(new SendReadReceiptJob(address, timestamps));
+      ApplicationDependencies.getJobManager().add(new SendReadReceiptJob(entry.getKey(), timestamps));
     }
   }
 

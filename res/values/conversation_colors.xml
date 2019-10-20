@@ -8,7 +8,7 @@
     <color name="conversation_vermillion_tint">#eba78e</color>
     <color name="conversation_vermillion_shade">#872600</color>
 
-    <color name="conversation_burlap">#756c53</color>
+    <color name="conversation_burlap">#746c53</color>
     <color name="conversation_burlap_tint">#c4b997</color>
     <color name="conversation_burlap_shade">#58513c</color>
 
@@ -29,7 +29,7 @@
     <color name="conversation_blue_shade">#285480</color>
 
     <color name="conversation_indigo">#5951c8</color>
-    <color name="conversation_indigo_tint">#c2c1e8</color>
+    <color name="conversation_indigo_tint">#c2c1e7</color>
     <color name="conversation_indigo_shade">#4840a0</color>
 
     <color name="conversation_violet">#862caf</color>

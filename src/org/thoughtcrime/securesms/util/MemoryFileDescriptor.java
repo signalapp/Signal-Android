@@ -22,8 +22,32 @@ public final class MemoryFileDescriptor implements Closeable {
 
   private static final String TAG = Log.tag(MemoryFileDescriptor.class);
 
+  private static Boolean supported;
+
   private final ParcelFileDescriptor parcelFileDescriptor;
   private final AtomicLong           sizeEstimate;
+
+  /**
+   * Does this device support memory file descriptor.
+   */
+  public synchronized static boolean supported() {
+    if (supported == null) {
+      try {
+        int fileDescriptor = FileUtils.createMemoryFileDescriptor("CHECK");
+
+        if (fileDescriptor < 0) {
+          supported = false;
+          Log.w(TAG, "MemoryFileDescriptor is not available.");
+        } else {
+          supported = true;
+          ParcelFileDescriptor.adoptFd(fileDescriptor).close();
+        }
+      } catch (IOException e) {
+        Log.w(TAG, e);
+      }
+    }
+    return supported;
+  }
 
   /**
    * memfd files do not show on the available RAM, so we must track our allocations in addition.
@@ -47,12 +71,12 @@ public final class MemoryFileDescriptor implements Closeable {
    *                     Use zero to avoid RAM check.
    * @return MemoryFileDescriptor
    * @throws MemoryLimitException If there is not enough available RAM to comfortably fit this file.
-   * @throws IOException          If fails to create a memory file descriptor.
+   * @throws MemoryFileCreationException If fails to create a memory file descriptor.
    */
   public static MemoryFileDescriptor newMemoryFileDescriptor(@NonNull Context context,
                                                              @NonNull String debugName,
                                                              long sizeEstimate)
-      throws MemoryLimitException, IOException
+      throws MemoryFileException
   {
     if (sizeEstimate < 0) throw new IllegalArgumentException();
 
@@ -89,7 +113,8 @@ public final class MemoryFileDescriptor implements Closeable {
     int fileDescriptor = FileUtils.createMemoryFileDescriptor(debugName);
 
     if (fileDescriptor < 0) {
-      throw new IOException("Failed to create a memory file descriptor " + fileDescriptor);
+      Log.w(TAG, "Failed to create file descriptor: " + fileDescriptor);
+      throw new MemoryFileCreationException();
     }
 
     return new MemoryFileDescriptor(ParcelFileDescriptor.adoptFd(fileDescriptor), sizeEstimate);
@@ -154,5 +179,14 @@ public final class MemoryFileDescriptor implements Closeable {
     try (FileInputStream fileInputStream = new FileInputStream(getFileDescriptor())) {
       return fileInputStream.getChannel().size();
     }
+  }
+
+  public static class MemoryFileException extends IOException {
+  }
+
+  private static final class MemoryLimitException extends MemoryFileException {
+  }
+
+  private static final class MemoryFileCreationException extends MemoryFileException {
   }
 }

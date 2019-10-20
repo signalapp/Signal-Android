@@ -25,10 +25,14 @@
                     app:layout_scrollFlags="scroll|enterAlways"/>
 
             <com.google.android.material.tabs.TabLayout
+                    app:tabBackground="@null"
+                    app:tabTextColor="?conversation_subtitle_color"
+                    app:tabSelectedTextColor="?conversation_title_color"
+                    app:tabIndicatorColor="?conversation_title_color"
                     android:id="@+id/tab_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:theme="?attr/actionBarTabBarStyle"
+                    android:theme="@style/TextSecure.Conversation.TabBar"
                     android:scrollbars="horizontal"/>
 
         </com.google.android.material.appbar.AppBarLayout>

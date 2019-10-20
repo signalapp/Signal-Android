@@ -23,7 +23,7 @@ import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.SmsDeliveryListener;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
-import org.thoughtcrime.securesms.util.NumberUtil;
+import org.thoughtcrime.securesms.phonenumbers.NumberUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.ArrayList;
@@ -40,11 +40,11 @@ public class SmsSendJob extends SendJob {
   private long messageId;
   private int  runAttempt;
 
-  public SmsSendJob(Context context, long messageId, @NonNull Address destination) {
+  public SmsSendJob(Context context, long messageId, @NonNull Recipient destination) {
     this(context, messageId, destination, 0);
   }
 
-  public SmsSendJob(Context context, long messageId, @NonNull Address destination, int runAttempt) {
+  public SmsSendJob(Context context, long messageId, @NonNull Recipient destination, int runAttempt) {
     this(constructParameters(context, destination), messageId, runAttempt);
   }
 
@@ -118,7 +118,7 @@ public class SmsSendJob extends SendJob {
       throw new UndeliverableMessageException("Trying to send a secure SMS?");
     }
 
-    String recipient = message.getIndividualRecipient().getAddress().serialize();
+    String recipient = message.getIndividualRecipient().requireAddress().serialize();
 
     // See issue #1516 for bug report, and discussion on commits related to #4833 for problems
     // related to the original fix to #1516. This still may not be a correct fix if networks allow
@@ -227,12 +227,12 @@ public class SmsSendJob extends SendJob {
     }
   }
 
-  private static Job.Parameters constructParameters(@NonNull Context context, @NonNull Address destination) {
+  private static Job.Parameters constructParameters(@NonNull Context context, @NonNull Recipient destination) {
     String constraint = TextSecurePreferences.isWifiSmsEnabled(context) ? NetworkOrCellServiceConstraint.KEY
                                                                         : CellServiceConstraint.KEY;
     return new Job.Parameters.Builder()
                              .setMaxAttempts(MAX_ATTEMPTS)
-                             .setQueue(destination.serialize())
+                             .setQueue(destination.getId().toQueueKey())
                              .addConstraint(constraint)
                              .build();
   }

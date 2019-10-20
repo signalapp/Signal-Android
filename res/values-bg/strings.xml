@@ -11,6 +11,7 @@
   <string name="AbstractNotificationBuilder_new_message">Ново съобщение</string>
   <!--AlbumThumbnailView-->
   <string name="AlbumThumbnailView_plus">\+%d</string>
+  <!--ApplicationMigrationActivity-->
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">В момента: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Все още не сте заложили парола!</string>
@@ -252,7 +253,7 @@
   <string name="CustomDefaultPreference_none">Нищо</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Току що</string>
-  <string name="DateUtils_minutes_ago">%d мин</string>
+  <string name="DateUtils_minutes_ago">%dm</string>
   <string name="DateUtils_today">Днес</string>
   <string name="DateUtils_yesterday">Вчера</string>
   <!--DeliveryStatus-->
@@ -548,6 +549,8 @@
   <string name="RegistrationActivity_call">Обаждане</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_photo">Снимка</string>
+  <string name="RevealableMessageView_video">Видео</string>
+  <string name="RevealableMessageView_outgoing_media">Медия</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Неуспешнп запазване на промененото изображение</string>
   <!--Search-->
@@ -641,6 +644,7 @@
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Не са открити копирани числа за сигурност</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal се нуждае от достъп до камерата Ви, за да може да сканирва QR кодове, но той му е отказан. Моля, отидете на настройки в менюто и изберете \"Разрешения\" и \"Камера\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Неуспешно сканирване на QR код без разрешение за достъп до камерата</string>
+  <!--ViewOnceMessageActivity-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Грешно криптирано съобщение</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Съобщението е криптирано за несъществуаща сесия</string>
@@ -760,6 +764,7 @@
   <string name="change_passphrase_activity__repeat_new_passphrase">Повторете новата парола</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Въведете име или номер</string>
+  <string name="contact_selection_activity__invite_to_signal">Покани в Signal</string>
   <!--contact_filter_toolbar-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Няма контакти.</string>
@@ -801,13 +806,12 @@
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Снимка на контакта</string>
   <!--audio_view-->
-  <string name="audio_view__play_accessibility_description">Пускане</string>
-  <string name="audio_view__pause_accessibility_description">Пауза</string>
   <string name="audio_view__download_accessibility_description">Изтегляне</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">Аудио</string>
   <string name="QuoteView_video">Видео</string>
   <string name="QuoteView_photo">Снимка</string>
+  <string name="QuoteView_media">Медийно съобщение</string>
   <string name="QuoteView_sticker">Стикер</string>
   <string name="QuoteView_document">Документ</string>
   <string name="QuoteView_you">Ти</string>
@@ -899,8 +903,6 @@
   <string name="database_migration_activity__import">Внасяне</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Това може да отнеме малко време. Моля, за търпение, ще те уведомим, когато вносът е завършен.</string>
   <string name="database_migration_activity__importing">ВНАСЯНЕ</string>
-  <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">Обновяване на базата данни...</string>
   <string name="import_fragment__import_system_sms_database">Внасяне на всички вече съществуващи SMS-и</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Внасяне на базата данни от системната програма за съобщения.</string>
   <string name="import_fragment__import_plaintext_backup">Внасяне на некриптиран архив </string>
@@ -1020,10 +1022,6 @@
   <string name="arrays__high">Високо</string>
   <string name="arrays__max">Максимално</string>
   <!--plurals.xml-->
-  <plurals name="hours_ago">
-    <item quantity="one">%d час</item>
-    <item quantity="other">%d часа</item>
-  </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">SMS и MMS</string>
   <string name="preferences__pref_all_sms_title">Използване за всички SMS-и</string>
@@ -1166,6 +1164,7 @@
   <string name="conversation_list_batch_archive__menu_archive_selected">Архивът е избран</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Деархивирай изрбания</string>
   <!--conversation_list-->
+  <string name="conversation_list_search_description">Търсене</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Изображение на контакта</string>
   <string name="conversation_list_item_view__archived">Архивиран</string>

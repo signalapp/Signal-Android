@@ -11,6 +11,8 @@
   <string name="AbstractNotificationBuilder_new_message">Új üzenet</string>
   <!--AlbumThumbnailView-->
   <string name="AlbumThumbnailView_plus">\+%d</string>
+  <!--ApplicationMigrationActivity-->
+  <string name="ApplicationMigrationActivity__signal_is_updating">A Signal frissít...</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Jelenleg: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Még nem állítottál be jelmondatot!</string>
@@ -77,6 +79,7 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Nem sikerült elmenteni a képet.</string>
   <!--CameraXFragment-->
+  <string name="CameraXFragment_tap_for_photo_hold_for_video">Koppints fotóhoz, tartsd nyomva videóhoz</string>
   <string name="CameraXFragment_capture_description">Rögzítés</string>
   <string name="CameraXFragment_change_camera_description">Kamera váltása</string>
   <string name="CameraXFragment_open_gallery_description">Galéria megnyitása</string>
@@ -175,6 +178,9 @@
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Fotók és videók készítéséhez engedélyezd a Signal-nak a kamerához való hozzáférést!</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">A Signal-nak szüksége van a Kamera engedélyre, hogy fotót vagy videót készíthessen, de ez jelenleg nincs megadva. Kérlek menj az alkalmazásbeállításokhoz, válaszd az \"Engedélyek\"-et és engedélyezd a \"Kamera\"-t.</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">A Signal-nak szüksége van Kamera engedélyekre fotók és videók készítéséhez</string>
+  <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">Engedélyezd a mikrofon-hozzáférést, hogy a videóhoz hangot is lehessen rögzíteni</string>
+  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">A Signal-nak szüksége van mikrofon-hozzáférési engedélyre, de ez jelenleg meg van tagadva. Kérlek menj az alkalmazásbeállításokhoz, válaszd az \"Engedélyek\"-et és engedélyezd a \"Mikrofon\"-t, valamint a \"Kamera\"-t.</string>
+  <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">A Signal-nak mikrofon-hozzáférési engedélyre van szüksége videók rögzítéséhez.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">A Signal nem tud SMS/MMS üzeneteket küldeni, mert nem az alapértelmezett SMS alkalmazásod. Szeretnél változtatni ezen az Android beállításaidban?</string>
   <string name="ConversationActivity_yes">Igen</string>
@@ -224,6 +230,8 @@
   <string name="ConversationFragment_quoted_message_not_found">Az eredeti üzenet nem található</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Az eredeti üzenet már nem érhető el</string>
   <string name="ConversationFragment_failed_to_open_message">Nem sikerült megnyitni az üzenetet</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Az üzenetet jobbra húzva gyorsan válaszolhatsz rá</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Az üzenetet balra húzva gyorsan válaszolhatsz rá</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Nincs böngésző telepítve a készülékedre.</string>
   <!--ConversationListFragment-->
@@ -269,7 +277,7 @@
   <string name="CustomDefaultPreference_none">Egyik sem</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Most</string>
-  <string name="DateUtils_minutes_ago">%d perce</string>
+  <string name="DateUtils_minutes_ago">%dp</string>
   <string name="DateUtils_today">Ma</string>
   <string name="DateUtils_yesterday">Tegnap</string>
   <!--DeliveryStatus-->
@@ -575,11 +583,14 @@ szám (%s) érvénytelen.
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Add meg telefonszámodat a kezdéshez</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Hamarosan megerősítő kódot fogsz kapni. Szolgáltatói költségek felmerülhetnek.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Add meg a %s számra küldött kódot</string>
+  <string name="RegistrationActivity_phone_number_description">Telefonszám</string>
+  <string name="RegistrationActivity_country_code_description">Országkód</string>
   <string name="RegistrationActivity_call">Hívás</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_view_photo">Fotó megtekintése</string>
-  <string name="RevealableMessageView_viewed">Megtekintve</string>
   <string name="RevealableMessageView_photo">Kép</string>
+  <string name="RevealableMessageView_video">Videó</string>
+  <string name="RevealableMessageView_viewed">Megtekintve</string>
+  <string name="RevealableMessageView_outgoing_media">Média</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Nem sikerült elmenteni a kép változásait</string>
   <!--Search-->
@@ -642,6 +653,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ThreadRecord_media_message">Média üzenet</string>
   <string name="ThreadRecord_sticker">Matrica</string>
   <string name="ThreadRecord_disappearing_photo">Eltűnő fotó</string>
+  <string name="ThreadRecord_disappearing_video">Eltűnő videó</string>
   <string name="ThreadRecord_s_is_on_signal">%s a Signal-on van!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Eltűnő üzenetek letiltva</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Eltűnő üzenet ideje beállítva erre: %s</string>
@@ -676,6 +688,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">A vágólapon nem található biztonsági szám, amellyel össze lehetne hasonlítani</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">A Signal-nak szüksége van a Kamera engedélyre, hogy QR kódot szkennelhessen, de ez jelenleg nincs megadva. Kérlek menj az alkalmazásbeállításokhoz, válaszd az \"Engedélyek\"-et és engedélyezd a \"Kamera\"-t.</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Nem lehet QR kódot szkennelni Kamera engedély nélkül</string>
+  <!--ViewOnceMessageActivity-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Hibás titkosított üzenet</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Az üzenet nem létező munkamenethez lett titkosítva</string>
@@ -717,6 +730,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="MessageNotifier_media_message">Médiaüzenet</string>
   <string name="MessageNotifier_sticker">Matrica</string>
   <string name="MessageNotifier_disappearing_photo">Eltűnő fotó</string>
+  <string name="MessageNotifier_disappearing_video">Eltűnő videó</string>
   <string name="MessageNotifier_reply">Válasz</string>
   <string name="MessageNotifier_signal_message">Signal üzenet</string>
   <string name="MessageNotifier_unsecured_sms">Titkosítatlan SMS</string>
@@ -801,6 +815,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="change_passphrase_activity__repeat_new_passphrase">Új jelmondat megismétlése</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Adj meg nevet vagy számot</string>
+  <string name="contact_selection_activity__invite_to_signal">Meghívás a Signal-ba</string>
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Beírt szöveg törlése</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Billentyázet megjelenítése</string>
@@ -846,13 +861,13 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Kontakt fotó</string>
   <!--audio_view-->
-  <string name="audio_view__play_accessibility_description">Lejátszás</string>
-  <string name="audio_view__pause_accessibility_description">Szünet</string>
+  <string name="audio_view__play_pause_accessibility_description">Lejátszás ... Szünet</string>
   <string name="audio_view__download_accessibility_description">Letöltés</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">Hang</string>
   <string name="QuoteView_video">Videó</string>
   <string name="QuoteView_photo">Fotó</string>
+  <string name="QuoteView_media">Médiaüzenet</string>
   <string name="QuoteView_sticker">Matrica</string>
   <string name="QuoteView_document">Dokumentum</string>
   <string name="QuoteView_you">Te</string>
@@ -944,8 +959,6 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="database_migration_activity__import">Importálás</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Ez eltarthat egy darabig. Kérlek légy türelemmel, értesíteni fogunk, amint az importálás befejeződött.</string>
   <string name="database_migration_activity__importing">IMPORTÁLÁS</string>
-  <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">Adatbázis frissítése...</string>
   <string name="import_fragment__import_system_sms_database">Rendszer SMS adatbázis importálása</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Adatbázis importálása a rendszer alapértelmezett üzenetküldő alkalmazásából</string>
   <string name="import_fragment__import_plaintext_backup">Titkosítatlan biztonsági mentés importálása</string>
@@ -1066,8 +1079,8 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="arrays__max">Legmagasabb</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
-    <item quantity="one">%d óra</item>
-    <item quantity="other">%d órája</item>
+    <item quantity="one">%dó</item>
+    <item quantity="other">%dó</item>
   </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">SMS és MMS</string>
@@ -1136,6 +1149,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="preferences__linked_devices">Társított eszközök</string>
   <string name="preferences__light_theme">Világos</string>
   <string name="preferences__dark_theme">Sötét</string>
+  <string name="preferences__system_theme">Rendszer</string>
   <string name="preferences__appearance">Megjelenés</string>
   <string name="preferences__theme">Téma</string>
   <string name="preferences__default">Alapértelmezett</string>
@@ -1212,6 +1226,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Kiválasztottak kivétele archívumból</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Beállítások parancsikon</string>
+  <string name="conversation_list_search_description">Keresés</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Kontakt fotó kép</string>
   <string name="conversation_list_item_view__archived">Archivált</string>
@@ -1338,6 +1353,9 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Kérlek add meg az alábbi számra kiküldött ellenőrző kódot: %s.</string>
   <string name="RegistrationActivity_wrong_number">Hibás szám</string>
   <string name="RegistrationActivity_call_me_instead_available_in">Hívást kérek inkább \n (elérhető %1$02d:%2$02d múlva)</string>
+  <string name="RegistrationActivity_contact_signal_support">Kapcsolatfelvétel a Signal támogatással</string>
+  <string name="RegistrationActivity_code_support_subject">Signal regisztráció - megerősítő kód Androidhoz</string>
+  <string name="RegistrationActivity_code_support_body">Tárgy: Signal regisztráció - megerősítő kód Androidhoz\nEszközinformáció: %1$s\nAndroid verzió: %2$s\nSignal verzió: %3$s\nRégió: %4$s</string>
   <string name="BackupUtil_never">Soha</string>
   <string name="BackupUtil_unknown">Ismeretlen</string>
   <string name="preferences_app_protection__screen_lock">Képernyőzár</string>

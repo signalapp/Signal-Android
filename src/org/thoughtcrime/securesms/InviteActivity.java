@@ -5,11 +5,15 @@ import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import androidx.annotation.AnimRes;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import androidx.appcompat.app.AlertDialog;
 import android.view.View;
@@ -27,7 +31,6 @@ import android.widget.Toast;
 import org.thoughtcrime.securesms.components.ContactFilterToolbar;
 import org.thoughtcrime.securesms.components.ContactFilterToolbar.OnFilterChangedListener;
 import org.thoughtcrime.securesms.contacts.ContactsCursorLoader.DisplayMode;
-import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.MessageSender;
@@ -55,10 +58,19 @@ public class InviteActivity extends PassphraseRequiredActionBarActivity implemen
     getIntent().putExtra(ContactSelectionListFragment.REFRESHABLE, false);
 
     setContentView(R.layout.invite_activity);
-    assert getSupportActionBar() != null;
-    getSupportActionBar().setTitle(R.string.AndroidManifest__invite_friends);
 
+    initializeAppBar();
     initializeResources();
+  }
+
+  private void initializeAppBar() {
+    Toolbar toolbar = findViewById(R.id.toolbar);
+    setSupportActionBar(toolbar);
+
+    assert getSupportActionBar() != null;
+
+    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    getSupportActionBar().setTitle(R.string.AndroidManifest__invite_friends);
   }
 
   private void initializeResources() {
@@ -88,7 +100,7 @@ public class InviteActivity extends PassphraseRequiredActionBarActivity implemen
     smsCancelButton.setOnClickListener(new SmsCancelClickListener());
     smsSendButton.setOnClickListener(new SmsSendClickListener());
     contactFilter.setOnFilterChangedListener(new ContactFilterChangedListener());
-    contactFilter.setNavigationIcon(R.drawable.ic_search_white_24dp);
+    contactFilter.setNavigationIcon(R.drawable.ic_search_24);
   }
 
   private Animation loadAnimation(@AnimRes int animResId) {
@@ -217,13 +229,13 @@ public class InviteActivity extends PassphraseRequiredActionBarActivity implemen
       if (context == null) return null;
 
       for (String number : numbers) {
-        Recipient recipient      = Recipient.from(context, Address.fromExternal(context, number), false);
+        Recipient recipient      = Recipient.external(context, number);
         int       subscriptionId = recipient.getDefaultSubscriptionId().or(-1);
 
         MessageSender.send(context, new OutgoingTextMessage(recipient, message, subscriptionId), -1L, true, null);
 
         if (recipient.getContactUri() != null) {
-          DatabaseFactory.getRecipientDatabase(context).setSeenInviteReminder(recipient, true);
+          DatabaseFactory.getRecipientDatabase(context).setSeenInviteReminder(recipient.getId(), true);
         }
       }
 

@@ -11,6 +11,8 @@
   <string name="AbstractNotificationBuilder_new_message">Mesaj nou</string>
   <!--AlbumThumbnailView-->
   <string name="AlbumThumbnailView_plus">\+%d</string>
+  <!--ApplicationMigrationActivity-->
+  <string name="ApplicationMigrationActivity__signal_is_updating">Signal se actualizează...</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Acum: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Nu ați setat înca o parolă!</string>
@@ -233,6 +235,8 @@
   <string name="ConversationFragment_quoted_message_not_found">Mesajul original nu a fost găsit</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Mesajul original nu mai este disponibil</string>
   <string name="ConversationFragment_failed_to_open_message">Mesajul nu a putut fi deschis</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Puteți săriți la dreapta pe orice mesaj pentru a răspunde rapid</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Puteți glisa la stânga pe orice mesaj pentru a răspunde rapid</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Nu aveți nici un browser instalat pe dispozitivul dvs.</string>
   <!--ConversationListFragment-->
@@ -282,7 +286,7 @@
   <string name="CustomDefaultPreference_none">Niciuna</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Acum</string>
-  <string name="DateUtils_minutes_ago">%d min</string>
+  <string name="DateUtils_minutes_ago">%dm</string>
   <string name="DateUtils_today">Azi</string>
   <string name="DateUtils_yesterday">Ieri</string>
   <!--DeliveryStatus-->
@@ -590,11 +594,14 @@ furnizat (%s) este invalid.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Introduceți numărul dvs. de telefon pentru a putea începe</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Veți primi un cod de verificare. Se pot aplica tarife de operator.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Introduceți codul trimis la %s</string>
+  <string name="RegistrationActivity_phone_number_description">Număr de telefon</string>
+  <string name="RegistrationActivity_country_code_description">Prefixul țării</string>
   <string name="RegistrationActivity_call">Apelează</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_view_photo">Vizualizați poza</string>
-  <string name="RevealableMessageView_viewed">Vizualizată</string>
   <string name="RevealableMessageView_photo">Poză</string>
+  <string name="RevealableMessageView_video">Video</string>
+  <string name="RevealableMessageView_viewed">Vizualizată</string>
+  <string name="RevealableMessageView_outgoing_media">Media</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Salvarea modificărilor din imagine a eșuat</string>
   <!--Search-->
@@ -655,6 +662,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="ThreadRecord_media_message">Mesaj media</string>
   <string name="ThreadRecord_sticker">Autocolant</string>
   <string name="ThreadRecord_disappearing_photo">Poză care dispare</string>
+  <string name="ThreadRecord_disappearing_video">Video care dispare</string>
   <string name="ThreadRecord_s_is_on_signal">%s folosește Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Mesajele care dispar sunt dezactivate</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Timpul setat pentru mesajele care dispar este %s</string>
@@ -689,6 +697,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Nu s-a găsit nici un număr de siguranță în clipboard pentru a fi comparat.</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal are nevoie de permisiunea pentru Cameră pentru a scana un cod QR dar i-a fost refuzat accesul permanent. Vă rog navigați în meniul de setări al aplicației, selectați \"Permisiuni\" și activați \"Cameră\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Codul QR nu poate fi scanat fără permisiunea pentru Cameră</string>
+  <!--ViewOnceMessageActivity-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Mesaj criptat incorect</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Mesaj criptat pentru o sesiune inexistentă</string>
@@ -730,6 +739,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="MessageNotifier_media_message">Mesaj media</string>
   <string name="MessageNotifier_sticker">Autocolant</string>
   <string name="MessageNotifier_disappearing_photo">Poză care dispare</string>
+  <string name="MessageNotifier_disappearing_video">Video care dispare</string>
   <string name="MessageNotifier_reply">Răspunde</string>
   <string name="MessageNotifier_signal_message">Mesaj Signal</string>
   <string name="MessageNotifier_unsecured_sms">SMS nesecurizat</string>
@@ -814,6 +824,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="change_passphrase_activity__repeat_new_passphrase">Repetă parola nouă</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Introduceți un nume sau un număr</string>
+  <string name="contact_selection_activity__invite_to_signal">Invitați la Signal</string>
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Ștergeți textul introdus</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Afișați tastatura</string>
@@ -859,13 +870,13 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Poză contact</string>
   <!--audio_view-->
-  <string name="audio_view__play_accessibility_description">Redare</string>
-  <string name="audio_view__pause_accessibility_description">Pauză</string>
+  <string name="audio_view__play_pause_accessibility_description">Redare ... Pauză</string>
   <string name="audio_view__download_accessibility_description">Descarcă</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">Audio</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Poză</string>
+  <string name="QuoteView_media">Mesaj media</string>
   <string name="QuoteView_sticker">Autocolant</string>
   <string name="QuoteView_document">Document</string>
   <string name="QuoteView_you">Tu</string>
@@ -963,8 +974,6 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="database_migration_activity__import">Importă</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">S-ar putea să dureze câteva momente. Vă rugăm să aveți răbdare, vă vom notifica când importul este complet.</string>
   <string name="database_migration_activity__importing">SE IMPORTĂ</string>
-  <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">Se actualizează baza de date...</string>
   <string name="import_fragment__import_system_sms_database">Import baza de date cu SMS-uri?</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Importă baza de date din aplicația implicită de mesagerie din sistem</string>
   <string name="import_fragment__import_plaintext_backup">Importă backup necriptat</string>
@@ -1086,9 +1095,9 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="arrays__max">Maximă</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
-    <item quantity="one">%d oră</item>
-    <item quantity="few">%d ore</item>
-    <item quantity="other">%d ore</item>
+    <item quantity="one">%do</item>
+    <item quantity="few">%do</item>
+    <item quantity="other">%do</item>
   </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">SMS și MMS</string>
@@ -1157,6 +1166,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences__linked_devices">Dispozitive asociate</string>
   <string name="preferences__light_theme">Deschisă</string>
   <string name="preferences__dark_theme">Închisă</string>
+  <string name="preferences__system_theme">Sistem</string>
   <string name="preferences__appearance">Aspect</string>
   <string name="preferences__theme">Tema</string>
   <string name="preferences__default">Implicit</string>
@@ -1234,6 +1244,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Dezarhivare selectată</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Scurtătură Setări</string>
+  <string name="conversation_list_search_description">Căutați</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Poză contact</string>
   <string name="conversation_list_item_view__archived">Arhivat</string>
@@ -1361,6 +1372,9 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Vă rugăm să introduceți codul de verificare trimis la %s.</string>
   <string name="RegistrationActivity_wrong_number">Număr greșit</string>
   <string name="RegistrationActivity_call_me_instead_available_in">Sună-mă mai bine \n (Disponibil în %1$02d:%2$02d)</string>
+  <string name="RegistrationActivity_contact_signal_support">Contactați suportul Signal</string>
+  <string name="RegistrationActivity_code_support_subject">Înregistrare Signal - Cod de verificare pentru Android</string>
+  <string name="RegistrationActivity_code_support_body">Subiect: Înregistrare Signal - Cod de verificare pentru Android\nInformații dispozitiv: %1$s\nVersiune Android: %2$s\nVersiune Signal: %3$s\nLimba: %4$s</string>
   <string name="BackupUtil_never">Niciodată</string>
   <string name="BackupUtil_unknown">Necunoscut</string>
   <string name="preferences_app_protection__screen_lock">Blocare ecran</string>

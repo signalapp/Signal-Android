@@ -16,9 +16,8 @@ import android.view.animation.OvershootInterpolator;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -74,25 +73,16 @@ public final class PlacePickerActivity extends AppCompatActivity {
 
     fab.setOnClickListener(v -> finishWithAddress());
 
-    FusedLocationProviderClient fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
-    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M ||
-        checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION)   == PackageManager.PERMISSION_GRANTED ||
-        checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
-    ) {
-      fusedLocationClient.getLastLocation()
-                         .addOnFailureListener(e -> {
-                           Log.w(TAG, "Failed to get location", e);
-                           setInitialLocation(PRIME_MERIDIAN);
-                         })
-                         .addOnSuccessListener(location -> {
-                           if (location == null) {
-                             Log.w(TAG, "Failed to get location");
-                             setInitialLocation(PRIME_MERIDIAN);
-                           } else {
-                             setInitialLocation(new LatLng(location.getLatitude(), location.getLongitude()));
-                           }
-                         });
+    if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)   == PackageManager.PERMISSION_GRANTED ||
+        ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED)
+    {
+      new LocationRetriever(this, this, location -> {
+        setInitialLocation(new LatLng(location.getLatitude(), location.getLongitude()));
+      }, () -> {
+        Log.w(TAG, "Failed to get location.");
+        setInitialLocation(PRIME_MERIDIAN);
+      });
     } else {
       Log.w(TAG, "No location permissions");
       setInitialLocation(PRIME_MERIDIAN);

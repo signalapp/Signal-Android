@@ -1,16 +1,15 @@
 package org.thoughtcrime.securesms.jobs;
 
-import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.DirectoryHelper;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
@@ -22,7 +21,7 @@ public class DirectoryRefreshJob extends BaseJob {
 
   private static final String TAG = DirectoryRefreshJob.class.getSimpleName();
 
-  private static final String KEY_ADDRESS             = "address";
+  private static final String KEY_RECIPIENT           = "recipient";
   private static final String KEY_NOTIFY_OF_NEW_USERS = "notify_of_new_users";
 
   @Nullable private Recipient recipient;
@@ -53,7 +52,7 @@ public class DirectoryRefreshJob extends BaseJob {
 
   @Override
   public @NonNull Data serialize() {
-    return new Data.Builder().putString(KEY_ADDRESS, recipient != null ? recipient.getAddress().serialize() : null)
+    return new Data.Builder().putString(KEY_RECIPIENT, recipient != null ? recipient.getId().serialize() : null)
                              .putBoolean(KEY_NOTIFY_OF_NEW_USERS, notifyOfNewUsers)
                              .build();
   }
@@ -85,18 +84,11 @@ public class DirectoryRefreshJob extends BaseJob {
 
   public static final class Factory implements Job.Factory<DirectoryRefreshJob> {
 
-    private final Application application;
-
-    public Factory(@NonNull Application application) {
-      this.application = application;
-    }
-
     @Override
     public @NonNull DirectoryRefreshJob create(@NonNull Parameters parameters, @NonNull Data data) {
-      String    serializedAddress = data.getString(KEY_ADDRESS);
-      Address   address           = serializedAddress != null ? Address.fromSerialized(serializedAddress) : null;
-      Recipient recipient         = address != null ? Recipient.from(application, address, true) : null;
-      boolean   notifyOfNewUsers  = data.getBoolean(KEY_NOTIFY_OF_NEW_USERS);
+      String    serialized       = data.hasString(KEY_RECIPIENT) ? data.getString(KEY_RECIPIENT) : null;
+      Recipient recipient        = serialized != null ? Recipient.resolved(RecipientId.from(serialized)) : null;
+      boolean   notifyOfNewUsers = data.getBoolean(KEY_NOTIFY_OF_NEW_USERS);
 
       return new DirectoryRefreshJob(parameters, recipient, notifyOfNewUsers);
     }

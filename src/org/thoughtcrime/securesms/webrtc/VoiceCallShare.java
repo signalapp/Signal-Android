@@ -8,8 +8,9 @@ import android.provider.ContactsContract;
 import android.text.TextUtils;
 
 import org.thoughtcrime.securesms.WebRtcCallActivity;
-import org.thoughtcrime.securesms.database.Address;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.WebRtcCallService;
+import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 
 public class VoiceCallShare extends Activity {
   
@@ -26,19 +27,20 @@ public class VoiceCallShare extends Activity {
         cursor = getContentResolver().query(getIntent().getData(), null, null, null, null);
 
         if (cursor != null && cursor.moveToNext()) {
-          String  destination = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.RawContacts.Data.DATA1));
-          Address address     = Address.fromExternal(this, destination);
-          
-          if (!TextUtils.isEmpty(destination)) {
-            Intent serviceIntent = new Intent(this, WebRtcCallService.class);
-            serviceIntent.setAction(WebRtcCallService.ACTION_OUTGOING_CALL);
-            serviceIntent.putExtra(WebRtcCallService.EXTRA_REMOTE_ADDRESS, address);
-            startService(serviceIntent);
+          String destination = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.RawContacts.Data.DATA1));
 
-            Intent activityIntent = new Intent(this, WebRtcCallActivity.class);
-            activityIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(activityIntent);
-          }
+          SimpleTask.run(() -> Recipient.external(this, destination), recipient -> {
+            if (!TextUtils.isEmpty(destination)) {
+              Intent serviceIntent = new Intent(this, WebRtcCallService.class);
+              serviceIntent.setAction(WebRtcCallService.ACTION_OUTGOING_CALL);
+              serviceIntent.putExtra(WebRtcCallService.EXTRA_REMOTE_RECIPIENT, recipient.getId());
+              startService(serviceIntent);
+
+              Intent activityIntent = new Intent(this, WebRtcCallActivity.class);
+              activityIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+              startActivity(activityIntent);
+            }
+          });
         }
       } finally {
         if (cursor != null) cursor.close();

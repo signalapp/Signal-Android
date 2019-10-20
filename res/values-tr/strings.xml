@@ -11,6 +11,8 @@
   <string name="AbstractNotificationBuilder_new_message">Yeni ileti</string>
   <!--AlbumThumbnailView-->
   <string name="AlbumThumbnailView_plus">\+%d</string>
+  <!--ApplicationMigrationActivity-->
+  <string name="ApplicationMigrationActivity__signal_is_updating">Signal güncelleniyor...</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Şu anda: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Henüz bir parola belirlemediniz!</string>
@@ -222,7 +224,9 @@
   <string name="ConversationFragment_deleting_messages">İletiler siliniyor...</string>
   <string name="ConversationFragment_quoted_message_not_found">İletinin aslı bulunamadı</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">İletinin aslı artık mevcut değil</string>
-  <string name="ConversationFragment_failed_to_open_message">İletiyi açma başarısız oldu.</string>
+  <string name="ConversationFragment_failed_to_open_message">İleti açılamadı</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Herhangi bir iletiyi hızlıca yanıtlamak için sağa kaydırabilirsiniz</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Herhangi bir iletiyi hızlıca yanıtlamak için sola kaydırabilirsiniz</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Cihazınıza yüklü tarayıcı bulunmamaktadır.</string>
   <!--ConversationListFragment-->
@@ -268,7 +272,7 @@
   <string name="CustomDefaultPreference_none">Hiçbiri</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Şimdi</string>
-  <string name="DateUtils_minutes_ago">%d dk.</string>
+  <string name="DateUtils_minutes_ago">%dd</string>
   <string name="DateUtils_today">Bugün</string>
   <string name="DateUtils_yesterday">Dün</string>
   <!--DeliveryStatus-->
@@ -576,9 +580,10 @@
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">%s numarasına gönderdiğimiz kodu girin</string>
   <string name="RegistrationActivity_call">Ara</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_view_photo">Fotoğrafı Görüntüle</string>
-  <string name="RevealableMessageView_viewed">Görüldü</string>
   <string name="RevealableMessageView_photo">Fotoğraf</string>
+  <string name="RevealableMessageView_video">Video</string>
+  <string name="RevealableMessageView_viewed">Görüldü</string>
+  <string name="RevealableMessageView_outgoing_media">İçerik</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Görüntü değişiklikleri kaydedilemedi</string>
   <!--Search-->
@@ -673,6 +678,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Panoda karşılaştırılacak bir güvenlik numarası bulunamadı</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal, bir karekod taramak için Kamera iznine ihtiyaç duyar, fakat bu izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne girip \"İzinler\" kısmını seçin, ve \"Kamera\"yı etkinleştirin.</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Kamera izni olmadan karekod taranamıyor.</string>
+  <!--ViewOnceMessageActivity-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Bozuk şifrelenmiş ileti</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">İleti var olmayan bir oturum için şifrelenmiş</string>
@@ -797,6 +803,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="change_passphrase_activity__repeat_new_passphrase">Yeni parolayı tekrarlayın</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">İsim veya numara girin</string>
+  <string name="contact_selection_activity__invite_to_signal">Signal\'e davet et</string>
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Yazılı metni temizle</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Klavyeyi göster</string>
@@ -842,13 +849,13 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Kişi fotoğrafı</string>
   <!--audio_view-->
-  <string name="audio_view__play_accessibility_description">Oynat</string>
-  <string name="audio_view__pause_accessibility_description">Durdur</string>
+  <string name="audio_view__play_pause_accessibility_description">Oynat ... Durdur</string>
   <string name="audio_view__download_accessibility_description">İndir</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">Ses</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Fotoğraf</string>
+  <string name="QuoteView_media">İçerik iletisi</string>
   <string name="QuoteView_sticker">Çıkartma</string>
   <string name="QuoteView_document">Doküman</string>
   <string name="QuoteView_you">Siz</string>
@@ -940,8 +947,6 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="database_migration_activity__import">İçe Aktar</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Bu biraz zaman alabilir. Lütfen bekleyiniz. İçe aktarım tamamlandığında bilgilendirileceksiniz.</string>
   <string name="database_migration_activity__importing">İÇE AKTARILIYOR</string>
-  <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">Veritabanı güncelleniyor...</string>
   <string name="import_fragment__import_system_sms_database">Sistem SMS veritabanını içe aktar</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Varsayılan sistem ileti uygulamasının veritabanını içe aktar</string>
   <string name="import_fragment__import_plaintext_backup">Şifrelenmemiş metin yedeğini içe aktar</string>
@@ -1061,10 +1066,6 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="arrays__high">Yüksek</string>
   <string name="arrays__max">En Yüksek</string>
   <!--plurals.xml-->
-  <plurals name="hours_ago">
-    <item quantity="one">%d saat</item>
-    <item quantity="other">%d saat</item>
-  </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">SMS ve MMS</string>
   <string name="preferences__pref_all_sms_title">Tüm SMS\'leri al</string>
@@ -1132,6 +1133,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="preferences__linked_devices">Bağlı cihazlar</string>
   <string name="preferences__light_theme">Açık</string>
   <string name="preferences__dark_theme">Koyu</string>
+  <string name="preferences__system_theme">Sistem</string>
   <string name="preferences__appearance">Görünüm</string>
   <string name="preferences__theme">Tema</string>
   <string name="preferences__default">Varsayılan</string>
@@ -1140,7 +1142,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="preferences__free_private_messages_and_calls">Signal kullanıcılarına ücretsiz özel iletiler ve aramalar</string>
   <string name="preferences__submit_debug_log">Hata ayıklama kaydı gönder</string>
   <string name="preferences__support_wifi_calling">\'WiFi Calling\' uyumluluk modu</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Cihazınız WiFi üzerinden SMS/MMS iletebiliyorsa etkinleştirin (sadece cihazınızda \'WiFi Üzerinden Arama\' seçeneği etkin ise ekinleştirin)</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Cihazınız WiFi üzerinden SMS/MMS iletebiliyorsa etkinleştirin (sadece cihazınızda \'WiFi Üzerinden Arama\' seçeneği etkin ise etkinleştirin)</string>
   <string name="preferences__incognito_keyboard">Gizli klavye</string>
   <string name="preferences__read_receipts">Okundu bilgisi</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Okundu bilgisi etkin değilse, başkalarının okundu bilgilerini göremeyeceksiniz.</string>
@@ -1208,6 +1210,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Seçilenleri arşivden çıkar</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Ayarlar kısayolu</string>
+  <string name="conversation_list_search_description">Sohbette Ara</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Kişi Fotoğrafı</string>
   <string name="conversation_list_item_view__archived">Arşivlendi</string>
@@ -1334,6 +1337,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Lütfen %s numarasına gönderilen doğrulama kodunu girin.</string>
   <string name="RegistrationActivity_wrong_number">Yanlış numara</string>
   <string name="RegistrationActivity_call_me_instead_available_in">Bunun yerine beni ara \n (Kullanılabilir olmasına %1$02d:%2$02d)</string>
+  <string name="RegistrationActivity_contact_signal_support">Signal Destek Ekibiyle İletişime Geç</string>
   <string name="BackupUtil_never">Asla</string>
   <string name="BackupUtil_unknown">Bilinmiyor</string>
   <string name="preferences_app_protection__screen_lock">Ekran kilidi</string>

@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -187,9 +188,11 @@ class MediaSendViewModel extends ViewModel {
     buttonState    = (recipient != null) ? ButtonState.SEND : ButtonState.CONTINUE;
 
     if (viewOnceState == ViewOnceState.GONE && viewOnceSupported()) {
-      // TODO[reveal]
-//      viewOnceState = TextSecurePreferences.isRevealableMessageEnabled(application) ? ViewOnceState.ENABLED : ViewOnceState.DISABLED;
-      viewOnceState = ViewOnceState.GONE;
+      if (FeatureFlags.VIEW_ONCE_SENDING) {
+        viewOnceState = TextSecurePreferences.isRevealableMessageEnabled(application) ? ViewOnceState.ENABLED : ViewOnceState.DISABLED;
+      } else {
+        viewOnceState = ViewOnceState.GONE;
+      }
     } else if (!viewOnceSupported()) {
       viewOnceState = ViewOnceState.GONE;
     }
@@ -363,7 +366,7 @@ class MediaSendViewModel extends ViewModel {
     hudState.setValue(buildHudState());
   }
 
-  void onImageCaptured(@NonNull Media media) {
+  void onMediaCaptured(@NonNull Media media) {
     lastCameraCapture = Optional.of(media);
 
     List<Media> selected = selectedMedia.getValue();
@@ -449,8 +452,7 @@ class MediaSendViewModel extends ViewModel {
   }
 
   boolean isViewOnce() {
-    // TODO[reveal]
-    return false;
+    return FeatureFlags.VIEW_ONCE_SENDING && viewOnceState == ViewOnceState.ENABLED;
   }
 
   private @NonNull List<Media> getSelectedMediaOrDefault() {
@@ -471,8 +473,7 @@ class MediaSendViewModel extends ViewModel {
   }
 
   private HudState buildHudState() {
-    // TODO[reveal]
-    ViewOnceState updatedViewOnceState  = ViewOnceState.GONE;
+    ViewOnceState updatedViewOnceState  = FeatureFlags.VIEW_ONCE_SENDING ? viewOnceState : ViewOnceState.GONE;
     List<Media>   selectedMedia         = getSelectedMediaOrDefault();
     int           selectionCount        = selectedMedia.size();
     ButtonState   updatedButtonState    = buttonState == ButtonState.COUNT && selectionCount == 0 ? ButtonState.GONE : buttonState;
@@ -493,7 +494,8 @@ class MediaSendViewModel extends ViewModel {
   }
 
   private boolean mediaSupportsRevealableMessage(@NonNull List<Media> media) {
-    return media.size() == 1 && MediaUtil.isImageType(media.get(0).getMimeType());
+    if (media.size() != 1) return false;
+    return MediaUtil.isImageOrVideoType(media.get(0).getMimeType());
   }
 
   @Override

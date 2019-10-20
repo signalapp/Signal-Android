@@ -71,7 +71,7 @@ public class CallConnectionWrapper {
     this.callConnection.setAudioPlayout(false);
     this.callConnection.setAudioRecording(false);
 
-    MediaStream mediaStream           = factory.createLocalMediaStream("ARDAMS");
+    MediaStream      mediaStream      = factory.createLocalMediaStream("ARDAMS");
     MediaConstraints audioConstraints = new MediaConstraints();
 
     audioConstraints.optional.add(new MediaConstraints.KeyValuePair("DtlsSrtpKeyAgreement", "true"));
@@ -129,11 +129,6 @@ public class CallConnectionWrapper {
     callConnection.answerCall();
   }
 
-  public void sendBusy(SignalMessageRecipient recipient, Long inCallId) throws CallException
-  {
-    callConnection.sendBusy(recipient, inCallId);
-  }
-
   public void setVideoEnabled(boolean enabled) throws CallException {
     if (videoTrack != null) {
       videoTrack.setEnabled(enabled);
@@ -182,9 +177,9 @@ public class CallConnectionWrapper {
 
     Camera(@NonNull Context context, @NonNull CameraEventListener cameraEventListener)
     {
-      this.cameraEventListener = cameraEventListener;
+      this.cameraEventListener    = cameraEventListener;
       CameraEnumerator enumerator = getCameraEnumerator(context);
-      cameraCount = enumerator.getDeviceNames().length;
+      cameraCount                 = enumerator.getDeviceNames().length;
 
       CameraVideoCapturer capturerCandidate = createVideoCapturer(enumerator, FRONT);
       if (capturerCandidate != null) {

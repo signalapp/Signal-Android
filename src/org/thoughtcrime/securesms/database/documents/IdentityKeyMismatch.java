@@ -1,5 +1,10 @@
 package org.thoughtcrime.securesms.database.documents;
 
+import android.content.Context;
+import android.text.TextUtils;
+
+import androidx.annotation.NonNull;
+
 import org.thoughtcrime.securesms.logging.Log;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -13,19 +18,25 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
-import org.thoughtcrime.securesms.database.Address;
+import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.Base64;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.InvalidKeyException;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class IdentityKeyMismatch {
 
   private static final String TAG = IdentityKeyMismatch.class.getSimpleName();
 
+  /** DEPRECATED */
   @JsonProperty(value = "a")
   private String address;
+
+  @JsonProperty(value = "r")
+  private String recipientId;
 
   @JsonProperty(value = "k")
   @JsonSerialize(using = IdentityKeySerializer.class)
@@ -34,14 +45,19 @@ public class IdentityKeyMismatch {
 
   public IdentityKeyMismatch() {}
 
-  public IdentityKeyMismatch(Address address, IdentityKey identityKey) {
-    this.address     = address.serialize();
+  public IdentityKeyMismatch(RecipientId recipientId, IdentityKey identityKey) {
+    this.recipientId = recipientId.serialize();
+    this.address     = "";
     this.identityKey = identityKey;
   }
 
   @JsonIgnore
-  public Address getAddress() {
-    return Address.fromSerialized(address);
+  public RecipientId getRecipientId(@NonNull Context context) {
+    if (!TextUtils.isEmpty(recipientId)) {
+      return RecipientId.from(recipientId);
+    } else {
+      return Recipient.external(context, address).getId();
+    }
   }
 
   public IdentityKey getIdentityKey() {
@@ -49,18 +65,18 @@ public class IdentityKeyMismatch {
   }
 
   @Override
-  public boolean equals(Object other) {
-    if (other == null || !(other instanceof IdentityKeyMismatch)) {
-      return false;
-    }
-
-    IdentityKeyMismatch that = (IdentityKeyMismatch)other;
-    return that.address.equals(this.address) && that.identityKey.equals(this.identityKey);
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    IdentityKeyMismatch that = (IdentityKeyMismatch) o;
+    return Objects.equals(address, that.address) &&
+        Objects.equals(recipientId, that.recipientId) &&
+        Objects.equals(identityKey, that.identityKey);
   }
 
   @Override
   public int hashCode() {
-    return address.hashCode() ^ identityKey.hashCode();
+    return Objects.hash(address, recipientId, identityKey);
   }
 
   private static class IdentityKeySerializer extends JsonSerializer<IdentityKey> {

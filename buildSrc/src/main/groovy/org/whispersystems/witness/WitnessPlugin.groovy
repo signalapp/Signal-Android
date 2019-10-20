@@ -3,7 +3,6 @@ package org.whispersystems.witness
 import org.gradle.api.InvalidUserDataException
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.api.artifacts.Configuration
 import org.gradle.api.artifacts.ResolvedArtifact
 
 import java.security.MessageDigest
@@ -28,10 +27,10 @@ class WitnessPlugin implements Plugin<Project> {
         project.afterEvaluate {
             project.dependencyVerification.verify.each {
                 assertion ->
-                    List  parts  = assertion.tokenize(":")
+                    List   parts = assertion[0].tokenize(':')
                     String group = parts.get(0)
                     String name  = parts.get(1)
-                    String hash  = parts.get(2)
+                    String hash  = assertion[1]
 
                     def artifacts = allArtifacts(project).findAll {
                         return it.name.equals(name) && it.moduleVersion.id.group.equals(group)
@@ -56,22 +55,24 @@ class WitnessPlugin implements Plugin<Project> {
         }
 
         project.task('calculateChecksums').doLast {
-            println "dependencyVerification {"
+            def stringBuilder = new StringBuilder()
 
-            def configurationName = project.dependencyVerification.configuration
-            if (configurationName != null) {
-                println "    configuration = '$configurationName'"
-            }
+            stringBuilder.append '// Auto-generated, use ./gradlew calculateChecksums to regenerate\n\n'
+            stringBuilder.append 'dependencyVerification {\n'
 
-            println "    verify = ["
+            stringBuilder.append '    verify = [\n'
 
-            allArtifacts(project).each {
-                dep ->
-                    println "        '" + dep.moduleVersion.id.group+ ":" + dep.name + ":" + calculateSha256(dep.file) + "',"
-            }
+            allArtifacts(project)
+                    .collect { dep -> "['$dep.moduleVersion.id.group:$dep.name:$dep.moduleVersion.id.version',\n         '${calculateSha256(dep.file)}']" }
+                    .sort()
+                    .each {
+                        dep -> stringBuilder.append "\n        $dep,\n"
+                    }
 
-            println "    ]"
-            println "}"
+            stringBuilder.append "    ]\n"
+            stringBuilder.append "}\n"
+
+            new File("witness-verifications.gradle").write(stringBuilder.toString())
         }
     }
 

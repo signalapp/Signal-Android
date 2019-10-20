@@ -19,10 +19,10 @@ class ContactShareEditViewModel extends ViewModel {
 
   private final MutableLiveData<List<Contact>> contacts;
   private final SingleLiveEvent<Event>         events;
-  private final ContactRepository              repo;
+  private final SharedContactRepository repo;
 
   ContactShareEditViewModel(@NonNull List<Uri>         contactUris,
-                            @NonNull ContactRepository contactRepository)
+                            @NonNull SharedContactRepository contactRepository)
   {
     contacts = new MutableLiveData<>();
     events              = new SingleLiveEvent<>();
@@ -98,9 +98,9 @@ class ContactShareEditViewModel extends ViewModel {
   static class Factory extends ViewModelProvider.NewInstanceFactory {
 
     private final List<Uri>         contactUris;
-    private final ContactRepository contactRepository;
+    private final SharedContactRepository contactRepository;
 
-    Factory(@NonNull List<Uri> contactUris, @NonNull ContactRepository contactRepository) {
+    Factory(@NonNull List<Uri> contactUris, @NonNull SharedContactRepository contactRepository) {
       this.contactUris       = contactUris;
       this.contactRepository = contactRepository;
     }

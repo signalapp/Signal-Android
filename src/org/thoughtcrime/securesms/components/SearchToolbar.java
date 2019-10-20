@@ -3,13 +3,14 @@ package org.thoughtcrime.securesms.components;
 
 import android.animation.Animator;
 import android.content.Context;
-import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import androidx.annotation.MainThread;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
+
 import android.util.AttributeSet;
 import android.view.MenuItem;
 import android.view.View;
@@ -47,11 +48,9 @@ public class SearchToolbar extends LinearLayout {
 
     Toolbar toolbar = findViewById(R.id.toolbar);
 
-    Drawable drawable = getContext().getResources().getDrawable(R.drawable.ic_arrow_back_white_24dp);
-    drawable.mutate();
-    drawable.setColorFilter(getContext().getResources().getColor(R.color.grey_700), PorterDuff.Mode.SRC_IN);
-
+    Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.ic_arrow_left_24);
     toolbar.setNavigationIcon(drawable);
+    toolbar.setCollapseIcon(drawable);
     toolbar.inflateMenu(R.menu.conversation_list_search);
 
     this.searchItem = toolbar.getMenu().findItem(R.id.action_filter_search);

@@ -14,7 +14,8 @@
                    android:gravity="center_vertical"
                    android:clickable="true"
                    android:background="@drawable/circle_touch_highlight_background"
-                   android:src="@drawable/ic_search_white_24dp" />
+                   android:tint="?conversation_subtitle_color"
+                   app:srcCompat="@drawable/ic_search_24" />
 
         <LinearLayout android:id="@+id/toggle_container"
                       android:layout_width="match_parent"
@@ -27,8 +28,8 @@
                       android:layout_weight="1"
                       android:layout_marginStart="5dp"
                       android:hint="@string/giphy_activity_toolbar__search_gifs_and_stickers"
-                      android:textColor="@color/white"
-                      android:textColorHint="@color/white"
+                      android:textColor="?conversation_title_color"
+                      android:textColorHint="?conversation_subtitle_color"
                       android:textCursorDrawable="@null"
                       android:maxLines="1"
                       android:singleLine="true"
@@ -47,7 +48,8 @@
                        android:focusable="true"
                        android:visibility="invisible"
                        android:background="@drawable/circle_touch_highlight_background"
-                       android:src="@drawable/ic_clear_white_24dp" />
+                       android:tint="?conversation_subtitle_color"
+                       app:srcCompat="@drawable/ic_x" />
 
             <org.thoughtcrime.securesms.components.AnimatingToggle
                     android:id="@+id/button_toggle"

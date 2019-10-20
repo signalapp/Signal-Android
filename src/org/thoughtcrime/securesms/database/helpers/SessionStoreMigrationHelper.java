@@ -79,7 +79,7 @@ class SessionStoreMigrationHelper {
 
 
             ContentValues contentValues = new ContentValues();
-            contentValues.put(SessionDatabase.ADDRESS, address.serialize());
+            contentValues.put(SessionDatabase.RECIPIENT_ID, address.serialize());
             contentValues.put(SessionDatabase.DEVICE, deviceId);
             contentValues.put(SessionDatabase.RECORD, sessionRecord.serialize());
 

@@ -17,7 +17,7 @@
         android:alpha="0"
         android:importantForAccessibility="no"
         android:src="@drawable/ic_keyboard_arrow_up_white_36dp"
-        android:tint="@color/gray20"
+        android:tint="@color/core_grey_20"
         tools:alpha="1" />
 
     <ImageView
@@ -29,7 +29,7 @@
         android:alpha="0"
         android:importantForAccessibility="no"
         android:src="@drawable/ic_keyboard_arrow_up_white_36dp"
-        android:tint="@color/gray20"
+        android:tint="@color/core_grey_20"
         tools:alpha="1" />
 
     <ImageView
@@ -41,7 +41,7 @@
         android:alpha="0"
         android:importantForAccessibility="no"
         android:src="@drawable/ic_keyboard_arrow_up_white_36dp"
-        android:tint="@color/gray20"
+        android:tint="@color/core_grey_20"
         tools:alpha="1" />
 
     <ImageView
@@ -53,7 +53,7 @@
         android:alpha="0"
         android:importantForAccessibility="no"
         android:src="@drawable/ic_keyboard_arrow_up_white_36dp"
-        android:tint="@color/gray20"
+        android:tint="@color/core_grey_20"
         tools:alpha="1" />
 
     <TextView
@@ -67,7 +67,7 @@
         android:shadowDy="2"
         android:shadowRadius="4"
         android:text="@string/webrtc_answer_decline_button__swipe_up_to_answer"
-        android:textColor="@color/gray20"
+        android:textColor="@color/core_grey_20"
         android:textStyle="italic" />
 
     <ImageView
@@ -93,7 +93,7 @@
         android:shadowDy="2"
         android:shadowRadius="4"
         android:text="@string/webrtc_answer_decline_button__swipe_down_to_reject"
-        android:textColor="@color/gray20"
+        android:textColor="@color/core_grey_20"
         android:textStyle="italic" />
 
 </merge>

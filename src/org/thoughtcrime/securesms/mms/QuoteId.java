@@ -1,5 +1,7 @@
 package org.thoughtcrime.securesms.mms;
 
+import android.content.Context;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -8,6 +10,8 @@ import org.json.JSONObject;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 
 /**
  * Represents the information required to find the {@link MessageRecord} pointed to by a quote.
@@ -16,13 +20,14 @@ public class QuoteId {
 
   private static final String TAG = QuoteId.class.getSimpleName();
 
-  private static final String ID      = "id";
-  private static final String AUTHOR  = "author";
+  private static final String ID                 = "id";
+  private static final String AUTHOR_DEPRECATED  = "author";
+  private static final String AUTHOR             = "author_id";
 
-  private final long    id;
-  private final Address author;
+  private final long        id;
+  private final RecipientId author;
 
-  public QuoteId(long id, @NonNull Address author) {
+  public QuoteId(long id, @NonNull RecipientId author) {
     this.id     = id;
     this.author = author;
   }
@@ -31,7 +36,7 @@ public class QuoteId {
     return id;
   }
 
-  public @NonNull Address getAuthor() {
+  public @NonNull RecipientId getAuthor() {
     return author;
   }
 
@@ -47,10 +52,13 @@ public class QuoteId {
     }
   }
 
-  public static @Nullable QuoteId deserialize(@NonNull String serialized) {
+  public static @Nullable QuoteId deserialize(@NonNull Context context, @NonNull String serialized) {
     try {
-      JSONObject json = new JSONObject(serialized);
-      return new QuoteId(json.getLong(ID), Address.fromSerialized(json.getString(AUTHOR)));
+      JSONObject  json = new JSONObject(serialized);
+      RecipientId id   = json.has(AUTHOR) ? RecipientId.from(json.getString(AUTHOR))
+                                          : Recipient.external(context, json.getString(AUTHOR_DEPRECATED)).getId();
+
+      return new QuoteId(json.getLong(ID), id);
     } catch (JSONException e) {
       Log.e(TAG, "Failed to deserialize from json", e);
       return null;

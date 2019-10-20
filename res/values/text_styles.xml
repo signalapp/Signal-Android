@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
+
     <style name="Signal.Text.Headline" parent="Base.TextAppearance.AppCompat.Headline">
         <item name="android:textSize">28sp</item>
         <item name="android:lineSpacingExtra">3sp</item>
@@ -7,13 +8,9 @@
         <item name="android:letterSpacing" tools:ignore="NewApi">0</item>
     </style>
 
-    <style name="Signal.Text.Headline.Registration" parent="Signal.Text.Headline">
-        <item name="android:fontFamily">sans-serif-medium</item>
-    </style>
-
     <style name="Signal.Text.Body" parent="Base.TextAppearance.AppCompat.Body1">
         <item name="android:textSize">16sp</item>
-        <item name="android:lineSpacingExtra">4sp</item>
+        <item name="android:lineSpacingExtra">2sp</item>
         <item name="android:fontFamily">sans-serif</item>
         <item name="android:letterSpacing" tools:ignore="NewApi">0.01</item>
     </style>

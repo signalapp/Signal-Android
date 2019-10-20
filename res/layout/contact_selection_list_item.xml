@@ -29,7 +29,7 @@
                   android:layout_marginEnd="16dp"
                   android:orientation="vertical">
 
-        <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+        <org.thoughtcrime.securesms.components.FromTextView
                 android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -38,7 +38,7 @@
                 android:ellipsize="marquee"
                 style="@style/Signal.Text.Body"
                 android:fontFamily="sans-serif-medium"
-                tools:text="Frieeeeeeedrich Nieeeeeeeeeetzsche" />
+                tools:text="Ottttooooooooo Ocataaaaaaaavius" />
 
         <LinearLayout android:id="@+id/number_container"
                       android:orientation="horizontal"

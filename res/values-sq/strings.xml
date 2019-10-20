@@ -8,9 +8,11 @@
   <string name="save">Ruaje</string>
   <string name="note_to_self">Shënim për Veten</string>
   <!--AbstractNotificationBuilder-->
-  <string name="AbstractNotificationBuilder_new_message">Mesazh i ri</string>
+  <string name="AbstractNotificationBuilder_new_message">Lajm i ri</string>
   <!--AlbumThumbnailView-->
   <string name="AlbumThumbnailView_plus">\+%d</string>
+  <!--ApplicationMigrationActivity-->
+  <string name="ApplicationMigrationActivity__signal_is_updating">Signal-i po përditësohet…</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">I tanishmi: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">S\’keni caktuar ende frazëkalim!</string>
@@ -77,6 +79,8 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">S\’u arrit të ruhej figura.</string>
   <!--CameraXFragment-->
+  <string name="CameraXFragment_tap_for_photo_hold_for_video">Për foto, prekeni, për video mbajeni të prekur</string>
+  <string name="CameraXFragment_capture_description">Regjistro</string>
   <string name="CameraXFragment_change_camera_description">Ndërroni kamera</string>
   <string name="CameraXFragment_open_gallery_description">Hap galerinë</string>
   <!--CameraContacts-->
@@ -173,6 +177,9 @@
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Për të bërë foto dhe dhe video, lejojini Signal-it të përdorë kamerën.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Që të bëjë foto ose video, Signal-i lyp leje përdorimi të Kamerës, por kjo i është mohuar. Ju lutemi, kaloni te rregullimet e aplikacionit, përzgjidhni \"Leje\", dhe aktivizoni \"Kamerën\".</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Që të bëjë foto ose video, Signal-i lyp leje përdorimi të Kamerës</string>
+  <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">Për regjistrim videosh me zë, aktivizoni leje mbi mikrofonin.</string>
+  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Për regjistrim videosh, Signal-i lyp leje mbi mikrofonin, por këto janë mohuar. Ju lutemi, vazhdoni te rregullime aplikacioni, përzgjidhni \"Leje\", dhe aktivizoni \"Mikrofon\" dhe \"Kamera\".</string>
+  <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Që të bëjë regjistrojë video, Signal-i lyp leje përdorimi të mikrofonit</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal-i s\’mund të dërgojë mesazhe SMS/MMS, ngaqë s\’është aplikacioni juaj parazgjedhje për SMS. Doni ta ndryshoni këtë te rregullimet tuaja për Android-in?</string>
   <string name="ConversationActivity_yes">Po</string>
@@ -222,6 +229,8 @@
   <string name="ConversationFragment_quoted_message_not_found">S\’u gjet mesazhi origjinal</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Mesazhi origjinal s\’gjendet më</string>
   <string name="ConversationFragment_failed_to_open_message">S’u arrit të hapet mesazhe</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Për t’u përgjigjur shpejt e shpejt, mund të fërkoni ekranin për djathtas</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Për t’u përgjigjur shpejt e shpejt, mund të fërkoni ekranin për majtas</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Në pajisjen tuaj s\’ka shfletues të instaluar.</string>
   <!--ConversationListFragment-->
@@ -267,7 +276,7 @@
   <string name="CustomDefaultPreference_none">Asnjë</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Tani</string>
-  <string name="DateUtils_minutes_ago">%d min</string>
+  <string name="DateUtils_minutes_ago">%dm</string>
   <string name="DateUtils_today">Sot</string>
   <string name="DateUtils_yesterday">Dje</string>
   <!--DeliveryStatus-->
@@ -569,11 +578,14 @@
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Që t\’ia filloni, jepni numrin tuaj të telefonit</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Do të merrni një kod verifikimi. Mund të ketë tarifa operatori.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Jepni kodin që dërguam te %s</string>
+  <string name="RegistrationActivity_phone_number_description">Numër telefoni</string>
+  <string name="RegistrationActivity_country_code_description">Kod vendi</string>
   <string name="RegistrationActivity_call">Thirrje</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_view_photo">Shihni Foton</string>
-  <string name="RevealableMessageView_viewed">Parë</string>
   <string name="RevealableMessageView_photo">Foto</string>
+  <string name="RevealableMessageView_video">Video</string>
+  <string name="RevealableMessageView_viewed">Parë</string>
+  <string name="RevealableMessageView_outgoing_media">Media</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">S’u arrit të ruheshin ndryshime të figurës.</string>
   <!--Search-->
@@ -634,6 +646,7 @@
   <string name="ThreadRecord_media_message">Mesazh media</string>
   <string name="ThreadRecord_sticker">Ngjitës</string>
   <string name="ThreadRecord_disappearing_photo">Foto që tretet</string>
+  <string name="ThreadRecord_disappearing_video">Video që zhduket</string>
   <string name="ThreadRecord_s_is_on_signal">%s është në Signal! </string>
   <string name="ThreadRecord_disappearing_messages_disabled">Zhdukja e mesazheve është e çaktivizuar</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Koha për zhdukje mesazhesh është vënë %s</string>
@@ -668,6 +681,7 @@
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Në të papastër s\’u gjet numër sigurie për krahasim</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Që të mund të skanojë një kod QR, Signal-i lyp leje përdorimi të Kamerës, por kjo i është mohuar. Ju lutemi, kaloni te rregullimet e aplikacionit, përzgjidhni \"Leje\", dhe aktivizoni \"Kamera\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">S\’arrihet të skanohet kodi QR pa lejim të kamerës</string>
+  <!--ViewOnceMessageActivity-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Mesazh i fshehtëzuar keq</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Mesazh i fshehtëzuar për sesion që s\’ekziston</string>
@@ -709,6 +723,7 @@
   <string name="MessageNotifier_media_message">Mesazh media</string>
   <string name="MessageNotifier_sticker">Ngjitës</string>
   <string name="MessageNotifier_disappearing_photo">Foto që tretet</string>
+  <string name="MessageNotifier_disappearing_video">Video që zhduket</string>
   <string name="MessageNotifier_reply">Përgjigju</string>
   <string name="MessageNotifier_signal_message">Mesazhe Signal</string>
   <string name="MessageNotifier_unsecured_sms">SMS e pasiguruar</string>
@@ -792,6 +807,7 @@
   <string name="change_passphrase_activity__repeat_new_passphrase">Përsëritni frazëkalimin e ri</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Jepni emër ose numër</string>
+  <string name="contact_selection_activity__invite_to_signal">Ftojeni në Signal</string>
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Spastro tekstin e dhënë</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Shfaq tastierën</string>
@@ -837,13 +853,13 @@
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Foto kontakti</string>
   <!--audio_view-->
-  <string name="audio_view__play_accessibility_description">Luaje</string>
-  <string name="audio_view__pause_accessibility_description">Ndalesë</string>
+  <string name="audio_view__play_pause_accessibility_description">Luaje … Pauzë</string>
   <string name="audio_view__download_accessibility_description">Shkarkoje</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">Audio</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Foto</string>
+  <string name="QuoteView_media">Mesazh media</string>
   <string name="QuoteView_sticker">Ngjitës</string>
   <string name="QuoteView_document">Dokument</string>
   <string name="QuoteView_you">Ju</string>
@@ -935,8 +951,6 @@
   <string name="database_migration_activity__import">Importoji</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Kjo do të marrë pak kohë. Ju lutemi, bëni durim, do t\’ju njoftojmë sapo të jetë plotësuar importimi.</string>
   <string name="database_migration_activity__importing">IMPORTIM</string>
-  <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">Po përditësohet baza e të dhënave…</string>
   <string name="import_fragment__import_system_sms_database">Importo bazë të dhënash SMS të sistemit</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Importoni bazën e të dhënave nga aplikacioni parazgjedhje  për shkëmbim mesazhesh i sistemit.</string>
   <string name="import_fragment__import_plaintext_backup">Importo kopjeruajtje tekst të thjeshtë</string>
@@ -1057,8 +1071,8 @@
   <string name="arrays__max">Maks.</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
-    <item quantity="one">%d orë</item>
-    <item quantity="other">%d orë</item>
+    <item quantity="one">%dh</item>
+    <item quantity="other">%dh</item>
   </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">SMS dhe MMS</string>
@@ -1127,6 +1141,7 @@
   <string name="preferences__linked_devices">Pajisje të lidhura</string>
   <string name="preferences__light_theme">E çelët</string>
   <string name="preferences__dark_theme">E errët</string>
+  <string name="preferences__system_theme">Sistem</string>
   <string name="preferences__appearance">Dukje</string>
   <string name="preferences__theme">Temë</string>
   <string name="preferences__default">Parazgjedhje</string>
@@ -1202,6 +1217,7 @@
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Çarkivo të përzgjedhurit</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Shkurtore rregullimesh</string>
+  <string name="conversation_list_search_description">Kërko</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Foto Kontakti</string>
   <string name="conversation_list_item_view__archived">Të arkivuar</string>
@@ -1328,6 +1344,9 @@
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Ju lutemi, jepni kodin e verifikimit dërguar te %s.</string>
   <string name="RegistrationActivity_wrong_number">Numër i gabuar</string>
   <string name="RegistrationActivity_call_me_instead_available_in">Telefonomëni, më mirë \n (E përdorshme në %1$02d:%2$02d)</string>
+  <string name="RegistrationActivity_contact_signal_support">Lidhuni Me Asistencën e Signal-it</string>
+  <string name="RegistrationActivity_code_support_subject">Regjistrim Signal-i - Kod Verifikimi për Android</string>
+  <string name="RegistrationActivity_code_support_body">Subjekt: Regjistrim Signal-i - Kod Verifikimi për Android\nTë dhëna pajisjeje: %1$s\nVersion Android: %2$s\nVersion Signal-i: %3$s\nGjuhë: %4$s</string>
   <string name="BackupUtil_never">Kurrë</string>
   <string name="BackupUtil_unknown">E panjohur</string>
   <string name="preferences_app_protection__screen_lock">Kyçje ekrani</string>

@@ -16,7 +16,7 @@
                       android:layout_weight="1"
                       android:hint="@string/contact_selection_activity__enter_name_or_number"
                       android:inputType="textPersonName"
-                      style="@style/TextSecure.TitleTextStyle"
+                      android:textAppearance="@style/TextSecure.TitleTextStyle"
                       android:background="@android:color/transparent"
                       android:layout_gravity="center_vertical"
                       android:gravity="center_vertical"
@@ -40,7 +40,8 @@
                            android:gravity="center_vertical"
                            android:clickable="true"
                            android:focusable="true"
-                           android:background="@drawable/circle_touch_highlight_background"
+                           android:tint="?contact_filter_toolbar_icon_tint"
+                           android:background="?actionBarItemBackground"
                            android:src="@drawable/ic_dialpad_white_24dp" />
 
                 <ImageView android:id="@+id/search_keyboard"
@@ -52,7 +53,8 @@
                            android:clickable="true"
                            android:visibility="gone"
                            android:focusable="true"
-                           android:background="@drawable/circle_touch_highlight_background"
+                           android:tint="?contact_filter_toolbar_icon_tint"
+                           android:background="?actionBarItemBackground"
                            android:src="@drawable/ic_keyboard_white_24dp" />
 
                 <ImageView android:id="@+id/search_clear"
@@ -64,7 +66,8 @@
                            android:clickable="true"
                            android:visibility="gone"
                            android:focusable="true"
-                           android:background="@drawable/circle_touch_highlight_background"
+                           android:tint="?contact_filter_toolbar_icon_tint"
+                           android:background="?actionBarItemBackground"
                            android:src="@drawable/ic_clear_white_24dp" />
 
             </org.thoughtcrime.securesms.components.AnimatingToggle>

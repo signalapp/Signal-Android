@@ -1,19 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:background="?attr/contact_list_divider">
-
-    <TextView android:id="@+id/label"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:paddingStart="16dp"
-              android:paddingTop="10dp"
-              android:paddingBottom="10dp"
-              android:textSize="14sp"
-              android:textColor="@color/signal_primary_dark"
-              tools:text="Recent chats"/>
-
-</LinearLayout>
+<org.thoughtcrime.securesms.components.emoji.EmojiTextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/label"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/camera_contacts_horizontal_margin"
+    android:layout_marginEnd="@dimen/camera_contacts_horizontal_margin"
+    android:layout_marginTop="16dp"
+    android:layout_marginBottom="24dp"
+    style="@style/Signal.Text.Preview"
+    android:fontFamily="sans-serif-medium"
+    tools:text="@string/CameraContacts_recent_contacts"/>

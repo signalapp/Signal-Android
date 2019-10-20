@@ -75,9 +75,7 @@ public class RefreshPreKeysJob extends BaseJob {
     PreKeyUtil.setActiveSignedPreKeyId(context, signedPreKeyRecord.getId());
     TextSecurePreferences.setSignedPreKeyRegistered(context, true);
 
-    ApplicationContext.getInstance(context)
-                      .getJobManager()
-                      .add(new CleanPreKeysJob());
+    ApplicationDependencies.getJobManager().add(new CleanPreKeysJob());
   }
 
   @Override

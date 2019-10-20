@@ -6,9 +6,13 @@
   <string name="delete">मिटाओ</string>
   <string name="please_wait">कृपया इंतज़ार कीजिए </string>
   <string name="save">संरक्षित करें</string>
+  <string name="note_to_self">स्वयं को लिखें</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">नया Signal सन्देश</string>
   <!--AlbumThumbnailView-->
+  <string name="AlbumThumbnailView_plus">\+%d</string>
+  <!--ApplicationMigrationActivity-->
+  <string name="ApplicationMigrationActivity__signal_is_updating">Signal का अद्यतन हो रहा है...</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">अभी %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">आपने अभी तक पासफ़्रेज सेट नहीं किया है!</string>
@@ -59,6 +63,8 @@
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">किसी स्थान को संलग्न करने के लिए Signal को स्थान अनुमति की आवश्यकता होती है, लेकिन इसे स्थायी रूप से अस्वीकार कर दिया गया है। कृपया ऐप सेटिंग्स मेनू पर जारी रखें, \"अनुमतियां\" चुनें, और \"स्थान\" सक्षम करें।</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal को फ़ोटो लेने के लिए कैमरा अनुमति की आवश्यकता होती है, लेकिन इसे स्थायी रूप से अस्वीकार कर दिया गया है। कृपया ऐप सेटिंग्स मेनू पर जारी रखें, \"अनुमतियां\" चुनें, और \"कैमरा\" सक्षम करें।</string>
   <!--AttachmentUploadJob-->
+  <string name="AttachmentUploadJob_uploading_media">मीडिया अपलोड कर रहा है...</string>
+  <string name="AttachmentUploadJob_compressing_video_start">वीडियो को संपीड़ित कर रहा है...</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">ऑडियो बजाने में त्रुटि!</string>
   <!--BlockedContactsActivity-->
@@ -71,13 +77,26 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">आने वाली कॉल</string>
   <!--CameraActivity-->
+  <string name="CameraActivity_image_save_failure">छवि सहेजने में विफल रहा</string>
   <!--CameraXFragment-->
+  <string name="CameraXFragment_tap_for_photo_hold_for_video">फोटो के लिए टैप, वीडियो के लिए दबाए रखें</string>
+  <string name="CameraXFragment_capture_description">कैप्चर</string>
+  <string name="CameraXFragment_change_camera_description">कैमरा बदलें</string>
+  <string name="CameraXFragment_open_gallery_description">गैलरी खोलें</string>
   <!--CameraContacts-->
+  <string name="CameraContacts_recent_contacts">हाल ही के सम्पर्क</string>
+  <string name="CameraContacts_signal_contacts">Signal सम्पर्क</string>
+  <string name="CameraContacts_signal_groups">Signal समूह</string>
+  <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">आप अधिकतम %d बातचीत साझा कर सकते हैं।</string>
+  <string name="CameraContacts_select_signal_recipients">Signal प्राप्तकर्ताओं को चुनें</string>
+  <string name="CameraContacts_no_signal_contacts">कोई Signal प्राप्तकर्ता नहीं</string>
+  <string name="CameraContacts_invite_a_contact_to_join_signal">सम्पर्क को Signal में जुड़ने के लिए आमंत्रित करें</string>
   <string name="CameraContacts__menu_search">सर्च</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">हटा दें </string>
   <string name="ClearProfileActivity_remove_profile_photo">प्रोफ़ाइल फ़ोटो निकालें?</string>
   <!--CommunicationActions-->
+  <string name="CommunicationActions_no_browser_found">कोई वेब ब्राउजर नहीं मिला</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">%1$s के साथ आपका सुरक्षा नंबर बदल गया है। इसका मतलब यह हो सकता है कि कोई आपके संचार को रोकने की कोशिश कर रहा है, या उस %2$s ने Signal को फिर से इंस्टॉल किया है।</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">आप इस संपर्क के साथ अपना सुरक्षा नंबर सत्यापित करना चाह सकते हैं।</string>
@@ -140,6 +159,7 @@
   <string name="ConversationActivity_error_leaving_group">समूह छोड़ने में त्रुटि</string>
   <string name="ConversationActivity_specify_recipient">कृपया एक संपर्क चुनें</string>
   <string name="ConversationActivity_unblock_this_contact_question">इस संपर्क को अनवरोधित करें?</string>
+  <string name="ConversationActivity_unblock_this_group_question">इस समूह को अनावरोधित करें?</string>
   <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">आप एक बार फिर से इस संपर्क से संदेश और कॉल प्राप्त करने में सक्षम होंगे।</string>
   <string name="ConversationActivity_unblock">अनब्लॉक करें</string>
   <string name="ConversationActivity_attachment_exceeds_size_limits">आपके द्वारा भेजे जा रहे संदेश के प्रकार के लिए अनुलग्नक आकार सीमा से अधिक है।</string>
@@ -240,7 +260,7 @@
   <string name="CustomDefaultPreference_none">कुछ नहीं</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">अभी</string>
-  <string name="DateUtils_minutes_ago">%d  मिनट</string>
+  <string name="DateUtils_minutes_ago">%dm</string>
   <string name="DateUtils_today">आज</string>
   <string name="DateUtils_yesterday">कल</string>
   <!--DeliveryStatus-->
@@ -342,10 +362,14 @@
   <string name="InviteActivity_no_app_to_share_to">ऐसा लगता है कि आपके पास साझा करने के लिए कोई ऐप नहीं है।</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">दोस्त अपने दोस्तों को अनएन्क्रिप्टेड चैट नहीं करने देते हैं।</string>
   <!--Job-->
+  <string name="Job_working_in_the_background">पृष्ठभूमि में चल रहा है...</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">भेजने में विफल</string>
   <string name="MessageDetailsRecipient_new_safety_number">नई सुरक्षा संख्या</string>
   <!--LongMessageActivity-->
+  <string name="LongMessageActivity_unable_to_find_message">संदेश खोजने में असमर्थ</string>
+  <string name="LongMessageActivity_message_from_s">%1$s से संदेश</string>
+  <string name="LongMessageActivity_your_message">आपका संदेश</string>
   <!--MessageRetrievalService-->
   <string name="MessageRetrievalService_signal">Signal</string>
   <string name="MessageRetrievalService_background_connection_enabled">पृष्ठभूमि कनेक्शन सक्षम</string>
@@ -378,9 +402,17 @@
   <string name="NotificationMmsMessageRecord_downloading_mms_message">एमएमएस संदेश डाउनलोड किया जा रहा है</string>
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">एमएमएस संदेश डाउनलोड करने में त्रुटि, पुनः प्रयास करने के लिए टैप करें</string>
   <!--MediaPickerActivity-->
+  <string name="MediaPickerActivity_send_to">%s को भेजें</string>
+  <string name="MediaPickerActivity__menu_open_camera">कैमरा खोलें</string>
   <!--MediaPickerItemFragment-->
+  <string name="MediaPickerItemFragment_tap_to_select">चयन के लिए टैप करें</string>
   <!--MediaSendActivity-->
+  <string name="MediaSendActivity_camera_unavailable">कैमरा अनुपलब्ध।</string>
+  <string name="MediaSendActivity_message_to_s">%s को संदेश</string>
+  <string name="MediaSendActivity_message">संदेश</string>
+  <string name="MediaSendActivity_select_recipients">प्राप्तकर्ताओं को चुनें</string>
   <string name="MediaSendActivity_signal_needs_access_to_your_contacts">आपके संपर्कों को प्रदर्शित करने के लिए Signal को आपके संपर्कों तक पहुंच की आवश्यकता है।</string>
+  <string name="MediaSendActivity_select_recipients_description">प्राप्तकर्ताओं को चुनें</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">सभी मीडिया</string>
   <!--MessageRecord-->
@@ -453,6 +485,7 @@
   <string name="RecipientPreferenceActivity_block">ब्लॉक</string>
   <string name="RecipientPreferenceActivity_unblock_this_contact_question">इस संपर्क को अनवरोधित करें?</string>
   <string name="RecipientPreferenceActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">आप एक बार फिर से इस संपर्क से संदेश और कॉल प्राप्त करने में सक्षम होंगे।</string>
+  <string name="RecipientPreferenceActivity_unblock_this_group_question">इस समूह को अनावरोधित करें?</string>
   <string name="RecipientPreferenceActivity_error_leaving_group">समूह छोड़ने में त्रुटि</string>
   <string name="RecipientPreferenceActivity_unblock">अनब्लॉक करें</string>
   <string name="RecipientPreferenceActivity_enabled">सक्षम</string>
@@ -495,6 +528,8 @@
   <string name="RegistrationActivity_call">कोल</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_photo">फ़ोटो</string>
+  <string name="RevealableMessageView_video">वीडियो </string>
+  <string name="RevealableMessageView_outgoing_media">मीडिया</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">छवि परिवर्तनों को सहेजने में विफल</string>
   <!--Search-->
@@ -513,6 +548,7 @@
   <string name="SharedContactView_message">Signal संदेश</string>
   <!--Slide-->
   <string name="Slide_image">तस्वीर </string>
+  <string name="Slide_sticker">स्टिकर</string>
   <string name="Slide_audio">ऑडियो </string>
   <string name="Slide_video">वीडियो </string>
   <!--SmsMessageRecord-->
@@ -541,6 +577,7 @@
   <string name="ThreadRecord_called_you">आपको बुलाया </string>
   <string name="ThreadRecord_missed_call">मिस कॉल</string>
   <string name="ThreadRecord_media_message">मीडिया संदेश</string>
+  <string name="ThreadRecord_sticker">स्टिकर</string>
   <string name="ThreadRecord_s_is_on_signal">%sअब Signal पर हैं! </string>
   <string name="ThreadRecord_disappearing_messages_disabled">संदेश जो गायब हो जाते हैं अक्षम</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">गायब संदेश समय %s तक सेट हो गया</string>
@@ -574,6 +611,7 @@
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">तुलना करने के लिए कोई सुरक्षा संख्या क्लिपबोर्ड में नहीं मिली थी</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">एक क्यूआर कोड स्कैन करने के लिए Signal को कैमरा अनुमति की आवश्यकता होती है, लेकिन इसे स्थायी रूप से अस्वीकार कर दिया गया है। कृपया ऐप सेटिंग्स जारी रखें, \"अनुमतियां\" चुनें, और \"कैमरा\" सक्षम करें।</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">कैमरा अनुमति के बिना क्यूआर कोड स्कैन करने में असमर्थ</string>
+  <!--ViewOnceMessageActivity-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">खराब एन्क्रिप्टेड संदेश</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">गैर-मौजूदा सत्र के लिए संदेश एन्क्रिप्ट किया गया</string>
@@ -613,6 +651,7 @@
   <string name="MessageNotifier_mark_all_as_read">सभी को पढ़ा हुआ मार्क करें</string>
   <string name="MessageNotifier_mark_read">पढ़ा हुआ चिह्नित करें</string>
   <string name="MessageNotifier_media_message">मीडिया संदेश</string>
+  <string name="MessageNotifier_sticker">स्टिकर</string>
   <string name="MessageNotifier_reply">उत्तर</string>
   <string name="MessageNotifier_signal_message">Signal संदेश</string>
   <string name="MessageNotifier_unsecured_sms">असुरक्षित एसएमएस</string>
@@ -684,6 +723,7 @@
   <string name="change_passphrase_activity__repeat_new_passphrase">नया पासफ्रेज दोहराएं</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">नाम या संख्या दर्ज करें</string>
+  <string name="contact_selection_activity__invite_to_signal">Signal का उपयोग करने के लिए आमंत्रित करें</string>
   <!--contact_filter_toolbar-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">कोई संपर्क नहीं</string>
@@ -711,6 +751,7 @@
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">रिकॉर्ड करें और ऑडियो अटैचमेंट भेजें</string>
   <string name="conversation_activity__enable_signal_for_sms">एसएमएस के लिए Signal सक्षम करें</string>
   <!--conversation_input_panel-->
+  <string name="conversation_input_panel__slide_to_cancel">रद्द करने के लिए स्लाइड करें</string>
   <string name="conversation_input_panel__cancel">रद्द करें</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">मीडिया संदेश</string>
@@ -723,13 +764,13 @@
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">संपर्क फोटो</string>
   <!--audio_view-->
-  <string name="audio_view__play_accessibility_description">चलाओ</string>
-  <string name="audio_view__pause_accessibility_description">रोको</string>
   <string name="audio_view__download_accessibility_description">डाउनलोड</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">ऑडियो</string>
   <string name="QuoteView_video">वीडियो </string>
   <string name="QuoteView_photo">फ़ोटो</string>
+  <string name="QuoteView_media">मीडिया संदेश</string>
+  <string name="QuoteView_sticker">स्टिकर</string>
   <string name="QuoteView_document">दस्तावेज़</string>
   <string name="QuoteView_you">आप</string>
   <string name="QuoteView_original_missing">मूल संदेश नहीं मिला</string>
@@ -820,8 +861,6 @@
   <string name="database_migration_activity__import">आयात</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">इसमें एक पल लग सकता है। कृपया धैर्य रखें, आयात पूरा होने पर हम आपको सूचित करेंगे।</string>
   <string name="database_migration_activity__importing">आयात किया जा रहा है</string>
-  <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">डेटाबेस अद्यतन</string>
   <string name="import_fragment__import_system_sms_database">सिस्टम एसएमएस डेटाबेस आयात करें</string>
   <string name="import_fragment__import_the_database_from_the_default_system">डिफ़ॉल्ट सिस्टम मैसेंजर ऐप से डेटाबेस आयात करें</string>
   <string name="import_fragment__import_plaintext_backup">प्लैनटेक्सट बैकअप आयात करें</string>
@@ -941,10 +980,6 @@
   <string name="arrays__high">उच्च</string>
   <string name="arrays__max">अधिकतम</string>
   <!--plurals.xml-->
-  <plurals name="hours_ago">
-    <item quantity="one">%dघंटे </item>
-    <item quantity="other">%dघंटे </item>
-  </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">एसएमएस और एमएसएस...</string>
   <string name="preferences__pref_all_sms_title">सभी एसएमएस प्राप्त करें</string>
@@ -1022,6 +1057,7 @@
   <string name="preferences__incognito_keyboard">गुप्त कीबोर्ड</string>
   <string name="preferences__read_receipts">पढ़ने की रसीदें</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">यदि रीड रसीद अक्षम हैं, तो आप दूसरों से पढ़ने की रसीदें नहीं देख पाएंगे।</string>
+  <string name="preferences__typing_indicators">टंकण संकेतक</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">व्यक्तिगत सीखने को अक्षम करने के लिए कीबोर्ड को अनुरोध करें</string>
   <string name="preferences_app_protection__blocked_contacts">ब्लॉक किये हुए कॉन्टेक्ट्स</string>
   <string name="preferences_chats__when_using_mobile_data">मोबाइल डेटा का उपयोग करते समय</string>
@@ -1077,6 +1113,8 @@
   <string name="conversation_list_batch_archive__menu_archive_selected">चयनित संग्रह करें</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">चयनित अनारक्षित करें</string>
   <!--conversation_list-->
+  <string name="conversation_list_settings_shortcut">सेटिंग्स शॉर्टकट</string>
+  <string name="conversation_list_search_description">खोजें</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">संपर्क फोटो छवि</string>
   <string name="conversation_list_item_view__archived">संग्रहीत</string>
@@ -1198,6 +1236,8 @@
   <string name="LocalBackupJob_creating_backup">बैकअप बनाया जा रहा है</string>
   <string name="ProgressPreference_d_messages_so_far">अब तक %d संदेश</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">कृपया %s को भेजे गए सत्यापन कोड दर्ज करें।</string>
+  <string name="RegistrationActivity_wrong_number">गलत नंबर</string>
+  <string name="RegistrationActivity_contact_signal_support">Signal समर्थन से संपर्क करें</string>
   <string name="BackupUtil_never">कभी नहीं</string>
   <string name="BackupUtil_unknown">अनजान</string>
   <string name="preferences_app_protection__screen_lock">स्क्रीन लॉक</string>

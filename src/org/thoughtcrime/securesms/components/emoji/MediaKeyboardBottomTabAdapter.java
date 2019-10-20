@@ -15,19 +15,22 @@ public class MediaKeyboardBottomTabAdapter extends RecyclerView.Adapter<MediaKey
 
   private final GlideRequests glideRequests;
   private final EventListener eventListener;
+  private final boolean       highlightTop;
 
   private TabIconProvider tabIconProvider;
   private int             activePosition;
   private int             count;
 
-  public MediaKeyboardBottomTabAdapter(@NonNull GlideRequests glideRequests, @NonNull EventListener eventListener) {
+  public MediaKeyboardBottomTabAdapter(@NonNull GlideRequests glideRequests, @NonNull EventListener eventListener, boolean highlightTop) {
     this.glideRequests = glideRequests;
     this.eventListener = eventListener;
+    this.highlightTop  = highlightTop;
   }
 
   @Override
   public @NonNull MediaKeyboardBottomTabViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-    return new MediaKeyboardBottomTabViewHolder(LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.media_keyboard_bottom_tab_item, viewGroup, false));
+    return new MediaKeyboardBottomTabViewHolder(LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.media_keyboard_bottom_tab_item, viewGroup, false),
+                                                highlightTop);
   }
 
   @Override
@@ -62,11 +65,16 @@ public class MediaKeyboardBottomTabAdapter extends RecyclerView.Adapter<MediaKey
     private final ImageView image;
     private final View      indicator;
 
-    public MediaKeyboardBottomTabViewHolder(@NonNull View itemView) {
+    public MediaKeyboardBottomTabViewHolder(@NonNull View itemView, boolean highlightTop) {
       super(itemView);
 
+      View indicatorTop    = itemView.findViewById(R.id.media_keyboard_top_tab_indicator);
+      View indicatorBottom = itemView.findViewById(R.id.media_keyboard_bottom_tab_indicator);
+
       this.image     = itemView.findViewById(R.id.media_keyboard_bottom_tab_image);
-      this.indicator = itemView.findViewById(R.id.media_keyboard_bottom_tab_indicator);
+      this.indicator = highlightTop ? indicatorTop : indicatorBottom;
+
+      this.indicator.setVisibility(View.VISIBLE);
     }
 
     void bind(@NonNull GlideRequests glideRequests,

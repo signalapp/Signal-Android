@@ -171,10 +171,7 @@ public class DeviceListFragment extends ListFragment
       protected Void doInBackground(Void... params) {
         try {
           accountManager.removeDevice(deviceId);
-
-          ApplicationContext.getInstance(getContext())
-                            .getJobManager()
-                            .add(new RefreshUnidentifiedDeliveryAbilityJob());
+          ApplicationDependencies.getJobManager().add(new RefreshUnidentifiedDeliveryAbilityJob());
         } catch (IOException e) {
           Log.w(TAG, e);
           Toast.makeText(getActivity(), R.string.DeviceListActivity_network_failed, Toast.LENGTH_LONG).show();

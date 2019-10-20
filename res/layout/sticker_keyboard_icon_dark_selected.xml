@@ -11,6 +11,6 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/ic_sticker_filled" />
+        app:srcCompat="@drawable/ic_sticker_solid_24" />
 
 </FrameLayout>

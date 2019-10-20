@@ -1232,8 +1232,8 @@ public class Base64
 	
 	
     /**
-     * Decodes data from Base64 notation, automatically
-     * detecting gzip-compressed data and decompressing it.
+     * Signal modified:
+     * Decodes data from Base64 notation, it does not detect gzip-compressed data.
      *
      * @param s the string to decode
      * @return the decoded data
@@ -1241,7 +1241,9 @@ public class Base64
      * @since 1.4
      */
     public static byte[] decode( String s ) throws java.io.IOException {
-        return decode( s, NO_OPTIONS );
+        // Signal: We never use gzip, avoid trying to unzip.
+        // return decode( s, NO_OPTIONS );
+        return decode( s, DONT_GUNZIP );
     }
 
     

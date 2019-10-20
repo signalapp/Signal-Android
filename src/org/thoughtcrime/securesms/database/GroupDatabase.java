@@ -15,7 +15,9 @@ import com.annimon.stream.Stream;
 import net.sqlcipher.database.SQLiteDatabase;
 
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.Util;
@@ -37,6 +39,7 @@ public class GroupDatabase extends Database {
           static final String TABLE_NAME          = "groups";
   private static final String ID                  = "_id";
           static final String GROUP_ID            = "group_id";
+          static final String RECIPIENT_ID        = "recipient_id";
   private static final String TITLE               = "title";
   private static final String MEMBERS             = "members";
   private static final String AVATAR              = "avatar";
@@ -47,12 +50,13 @@ public class GroupDatabase extends Database {
   private static final String AVATAR_DIGEST       = "avatar_digest";
   private static final String TIMESTAMP           = "timestamp";
   private static final String ACTIVE              = "active";
-  private static final String MMS                 = "mms";
+          static final String MMS                 = "mms";
 
   public static final String CREATE_TABLE =
       "CREATE TABLE " + TABLE_NAME +
           " (" + ID + " INTEGER PRIMARY KEY, " +
           GROUP_ID + " TEXT, " +
+          RECIPIENT_ID + " INTEGER, " +
           TITLE + " TEXT, " +
           MEMBERS + " TEXT, " +
           AVATAR + " BLOB, " +
@@ -67,10 +71,11 @@ public class GroupDatabase extends Database {
 
   public static final String[] CREATE_INDEXS = {
       "CREATE UNIQUE INDEX IF NOT EXISTS group_id_index ON " + TABLE_NAME + " (" + GROUP_ID + ");",
+      "CREATE UNIQUE INDEX IF NOT EXISTS group_recipient_id_index ON " + TABLE_NAME + " (" + RECIPIENT_ID + ");",
   };
 
   private static final String[] GROUP_PROJECTION = {
-      GROUP_ID, TITLE, MEMBERS, AVATAR, AVATAR_ID, AVATAR_KEY, AVATAR_CONTENT_TYPE, AVATAR_RELAY, AVATAR_DIGEST,
+      GROUP_ID, RECIPIENT_ID, TITLE, MEMBERS, AVATAR, AVATAR_ID, AVATAR_KEY, AVATAR_CONTENT_TYPE, AVATAR_RELAY, AVATAR_DIGEST,
       TIMESTAMP, ACTIVE, MMS
   };
 
@@ -78,6 +83,16 @@ public class GroupDatabase extends Database {
 
   public GroupDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
     super(context, databaseHelper);
+  }
+
+  public Optional<GroupRecord> getGroup(RecipientId recipientId) {
+    try (Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, null, RECIPIENT_ID + " = ?", new String[] {recipientId.serialize()}, null, null, null)) {
+      if (cursor != null && cursor.moveToNext()) {
+        return getGroup(cursor);
+      }
+
+      return Optional.absent();
+    }
   }
 
   public Optional<GroupRecord> getGroup(String groupId) {
@@ -111,12 +126,12 @@ public class GroupDatabase extends Database {
     return new Reader(cursor);
   }
 
-  public String getOrCreateGroupForMembers(List<Address> members, boolean mms) {
+  public String getOrCreateGroupForMembers(List<RecipientId> members, boolean mms) {
     Collections.sort(members);
 
     Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, new String[] {GROUP_ID},
                                                                MEMBERS + " = ? AND " + MMS + " = ?",
-                                                               new String[] {Address.toSerializedList(members, ','), mms ? "1" : "0"},
+                                                               new String[] {RecipientId.toSerializedList(members), mms ? "1" : "0"},
                                                                null, null, null);
     try {
       if (cursor != null && cursor.moveToNext()) {
@@ -138,28 +153,30 @@ public class GroupDatabase extends Database {
   }
 
   public @NonNull List<Recipient> getGroupMembers(String groupId, boolean includeSelf) {
-    List<Address>   members     = getCurrentMembers(groupId);
-    List<Recipient> recipients  = new LinkedList<>();
+    List<RecipientId> members     = getCurrentMembers(groupId);
+    List<Recipient>   recipients  = new LinkedList<>();
 
-    for (Address member : members) {
-      if (!includeSelf && Util.isOwnNumber(context, member))
+    for (RecipientId member : members) {
+      if (!includeSelf && Recipient.resolved(member).isLocalNumber()) {
         continue;
+      }
 
-      recipients.add(Recipient.from(context, member, false));
+      recipients.add(Recipient.resolved(member));
     }
 
     return recipients;
   }
 
-  public void create(@NonNull String groupId, @Nullable String title, @NonNull List<Address> members,
+  public void create(@NonNull String groupId, @Nullable String title, @NonNull List<RecipientId> members,
                      @Nullable SignalServiceAttachmentPointer avatar, @Nullable String relay)
   {
     Collections.sort(members);
 
     ContentValues contentValues = new ContentValues();
+    contentValues.put(RECIPIENT_ID, DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(groupId).serialize());
     contentValues.put(GROUP_ID, groupId);
     contentValues.put(TITLE, title);
-    contentValues.put(MEMBERS, Address.toSerializedList(members, ','));
+    contentValues.put(MEMBERS, RecipientId.toSerializedList(members));
 
     if (avatar != null) {
       contentValues.put(AVATAR_ID, avatar.getId());
@@ -175,11 +192,8 @@ public class GroupDatabase extends Database {
 
     databaseHelper.getWritableDatabase().insert(TABLE_NAME, null, contentValues);
 
-    Recipient.applyCached(Address.fromSerialized(groupId), recipient -> {
-      recipient.setName(title);
-      recipient.setGroupAvatarId(avatar != null ? avatar.getId() : null);
-      recipient.setParticipants(Stream.of(members).map(memberAddress -> Recipient.from(context, memberAddress, true)).toList());
-    });
+    RecipientId groupRecipient = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(groupId);
+    Recipient.live(groupRecipient).refresh();
 
     notifyConversationListListeners();
   }
@@ -199,10 +213,8 @@ public class GroupDatabase extends Database {
                                                 GROUP_ID + " = ?",
                                                 new String[] {groupId});
 
-    Recipient.applyCached(Address.fromSerialized(groupId), recipient -> {
-      recipient.setName(title);
-      recipient.setGroupAvatarId(avatar != null ? avatar.getId() : null);
-    });
+    RecipientId groupRecipient = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(groupId);
+    Recipient.live(groupRecipient).refresh();
 
     notifyConversationListListeners();
   }
@@ -213,8 +225,8 @@ public class GroupDatabase extends Database {
     databaseHelper.getWritableDatabase().update(TABLE_NAME, contentValues, GROUP_ID +  " = ?",
                                                 new String[] {groupId});
 
-    Recipient recipient = Recipient.from(context, Address.fromSerialized(groupId), false);
-    recipient.setName(title);
+    RecipientId groupRecipient = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(groupId);
+    Recipient.live(groupRecipient).refresh();
   }
 
   public void updateAvatar(String groupId, Bitmap avatar) {
@@ -235,44 +247,39 @@ public class GroupDatabase extends Database {
     databaseHelper.getWritableDatabase().update(TABLE_NAME, contentValues, GROUP_ID +  " = ?",
                                                 new String[] {groupId});
 
-    Recipient.applyCached(Address.fromSerialized(groupId), recipient -> recipient.setGroupAvatarId(avatarId == 0 ? null : avatarId));
+    RecipientId groupRecipient = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(groupId);
+    Recipient.live(groupRecipient).refresh();
   }
 
-  public void updateMembers(String groupId, List<Address> members) {
+  public void updateMembers(String groupId, List<RecipientId> members) {
     Collections.sort(members);
 
     ContentValues contents = new ContentValues();
-    contents.put(MEMBERS, Address.toSerializedList(members, ','));
+    contents.put(MEMBERS, RecipientId.toSerializedList(members));
     contents.put(ACTIVE, 1);
 
     databaseHelper.getWritableDatabase().update(TABLE_NAME, contents, GROUP_ID + " = ?",
                                                 new String[] {groupId});
 
-    Recipient.applyCached(Address.fromSerialized(groupId), recipient -> {
-      recipient.setParticipants(Stream.of(members).map(a -> Recipient.from(context, a, false)).toList());
-    });
+    RecipientId groupRecipient = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(groupId);
+    Recipient.live(groupRecipient).refresh();
   }
 
-  public void remove(String groupId, Address source) {
-    List<Address> currentMembers = getCurrentMembers(groupId);
+  public void remove(String groupId, RecipientId source) {
+    List<RecipientId> currentMembers = getCurrentMembers(groupId);
     currentMembers.remove(source);
 
     ContentValues contents = new ContentValues();
-    contents.put(MEMBERS, Address.toSerializedList(currentMembers, ','));
+    contents.put(MEMBERS, RecipientId.toSerializedList(currentMembers));
 
     databaseHelper.getWritableDatabase().update(TABLE_NAME, contents, GROUP_ID + " = ?",
                                                 new String[] {groupId});
 
-    Recipient.applyCached(Address.fromSerialized(groupId), recipient -> {
-      List<Recipient> current = recipient.getParticipants();
-      Recipient       removal = Recipient.from(context, source, false);
-
-      current.remove(removal);
-      recipient.setParticipants(current);
-    });
+    RecipientId groupRecipient = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(groupId);
+    Recipient.live(groupRecipient).refresh();
   }
 
-  private List<Address> getCurrentMembers(String groupId) {
+  private List<RecipientId> getCurrentMembers(String groupId) {
     Cursor cursor = null;
 
     try {
@@ -283,7 +290,7 @@ public class GroupDatabase extends Database {
 
       if (cursor != null && cursor.moveToFirst()) {
         String serializedMembers = cursor.getString(cursor.getColumnIndexOrThrow(MEMBERS));
-        return Address.fromSerializedList(serializedMembers, ',');
+        return RecipientId.fromSerializedList(serializedMembers);
       }
 
       return new LinkedList<>();
@@ -334,6 +341,7 @@ public class GroupDatabase extends Database {
       }
 
       return new GroupRecord(cursor.getString(cursor.getColumnIndexOrThrow(GROUP_ID)),
+                             RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(RECIPIENT_ID))),
                              cursor.getString(cursor.getColumnIndexOrThrow(TITLE)),
                              cursor.getString(cursor.getColumnIndexOrThrow(MEMBERS)),
                              cursor.getBlob(cursor.getColumnIndexOrThrow(AVATAR)),
@@ -355,23 +363,25 @@ public class GroupDatabase extends Database {
 
   public static class GroupRecord {
 
-    private final String        id;
-    private final String        title;
-    private final List<Address> members;
-    private final byte[]        avatar;
-    private final long          avatarId;
-    private final byte[]        avatarKey;
-    private final byte[]        avatarDigest;
-    private final String        avatarContentType;
-    private final String        relay;
-    private final boolean       active;
-    private final boolean       mms;
+    private final String            id;
+    private final RecipientId       recipientId;
+    private final String            title;
+    private final List<RecipientId> members;
+    private final byte[]            avatar;
+    private final long              avatarId;
+    private final byte[]            avatarKey;
+    private final byte[]            avatarDigest;
+    private final String            avatarContentType;
+    private final String            relay;
+    private final boolean           active;
+    private final boolean           mms;
 
-    public GroupRecord(String id, String title, String members, byte[] avatar,
+    public GroupRecord(String id, @NonNull RecipientId recipientId, String title, String members, byte[] avatar,
                        long avatarId, byte[] avatarKey, String avatarContentType,
                        String relay, boolean active, byte[] avatarDigest, boolean mms)
     {
       this.id                = id;
+      this.recipientId       = recipientId;
       this.title             = title;
       this.avatar            = avatar;
       this.avatarId          = avatarId;
@@ -382,7 +392,7 @@ public class GroupDatabase extends Database {
       this.active            = active;
       this.mms               = mms;
 
-      if (!TextUtils.isEmpty(members)) this.members = Address.fromSerializedList(members, ',');
+      if (!TextUtils.isEmpty(members)) this.members = RecipientId.fromSerializedList(members);
       else                             this.members = new LinkedList<>();
     }
 
@@ -394,6 +404,10 @@ public class GroupDatabase extends Database {
       }
     }
 
+    public @NonNull RecipientId getRecipientId() {
+      return recipientId;
+    }
+
     public String getEncodedId() {
       return id;
     }
@@ -402,7 +416,7 @@ public class GroupDatabase extends Database {
       return title;
     }
 
-    public List<Address> getMembers() {
+    public List<RecipientId> getMembers() {
       return members;
     }
 

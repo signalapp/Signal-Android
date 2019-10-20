@@ -36,6 +36,9 @@ public interface JobStorage {
   void updateAllJobsToBePending();
 
   @WorkerThread
+  void updateJobs(@NonNull List<JobSpec> jobSpecs);
+
+  @WorkerThread
   void deleteJob(@NonNull String id);
 
   @WorkerThread

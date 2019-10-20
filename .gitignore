@@ -1,4 +1,5 @@
 .classpath
+captures/
 project.properties
 .project
 .settings

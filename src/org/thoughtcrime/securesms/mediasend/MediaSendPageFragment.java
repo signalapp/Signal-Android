@@ -19,4 +19,6 @@ public interface MediaSendPageFragment {
   @Nullable Object saveState();
 
   void restoreState(@NonNull Object state);
+
+  void notifyHidden();
 }

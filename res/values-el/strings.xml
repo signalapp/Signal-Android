@@ -11,6 +11,7 @@
   <string name="AbstractNotificationBuilder_new_message">Νέο μήνυμα</string>
   <!--AlbumThumbnailView-->
   <string name="AlbumThumbnailView_plus">\+%d</string>
+  <!--ApplicationMigrationActivity-->
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Αυτή τη στιγμή: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Δεν έχετε ορίσει συνθηματικό ακόμα!</string>
@@ -262,7 +263,7 @@
   <string name="CustomDefaultPreference_none">Κανένα</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Τώρα</string>
-  <string name="DateUtils_minutes_ago">%d λεπ</string>
+  <string name="DateUtils_minutes_ago">%dλ</string>
   <string name="DateUtils_today">Σήμερα</string>
   <string name="DateUtils_yesterday">Χθες</string>
   <!--DeliveryStatus-->
@@ -564,9 +565,10 @@
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Εισάγετε τον κωδικό που στείλαμε στο %s</string>
   <string name="RegistrationActivity_call">Κλήση</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_view_photo">Προβολή φωτογραφίας</string>
-  <string name="RevealableMessageView_viewed">Διαβάστηκε</string>
   <string name="RevealableMessageView_photo">Φωτογραφία</string>
+  <string name="RevealableMessageView_video">Βίντεο</string>
+  <string name="RevealableMessageView_viewed">Διαβάστηκε</string>
+  <string name="RevealableMessageView_outgoing_media">Πολυμέσα</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Αποτυχία αποθήκευσης των αλλαγών της εικόνας</string>
   <!--Search-->
@@ -662,6 +664,7 @@
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Δε βρέθηκε αριθμός ασφαλείας στο πρόχειρο για να γίνει σύγκριση</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Το Signal χρειάζεται τα δικαιώματα Κάμερας για να μπορέσουμε να σκανάρουμε τον κωδικό QR, αλλά αυτά δεν έχουν δοθεί μόνιμα. Παρακαλώ πηγαίνετε στις ρυθμίσεις εφαρμογών, επιλέξτε τα \"Δικαιώματα\", και ενεργοποιήστε την \"Κάμερα\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Δεν μπορούμε να σκανάρουμε τον QR κωδικό χωρίς τα δικαιώματα Κάμερας</string>
+  <!--ViewOnceMessageActivity-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Μήνυμα με πρόβλημα στην κρυπτογράφησή του</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Το μήνυμα κρυπτογραφήθηκε για μη υπάρχον session</string>
@@ -782,6 +785,7 @@
   <string name="change_passphrase_activity__repeat_new_passphrase">Νέο συνθηματικό (ξανά)</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Εισαγωγή ονόματος ή αριθμού</string>
+  <string name="contact_selection_activity__invite_to_signal">Πρόσκληση στο Signal</string>
   <!--contact_filter_toolbar-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Δεν υπάρχουν επαφές.</string>
@@ -824,13 +828,12 @@
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Φωτογραφία επαφής</string>
   <!--audio_view-->
-  <string name="audio_view__play_accessibility_description">Αναπαραγωγή</string>
-  <string name="audio_view__pause_accessibility_description">Παύση</string>
   <string name="audio_view__download_accessibility_description">Λήψη</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">Ήχος</string>
   <string name="QuoteView_video">Βίντεο</string>
   <string name="QuoteView_photo">Φωτογραφία</string>
+  <string name="QuoteView_media">Μήνυμα πολυμέσων</string>
   <string name="QuoteView_sticker">Αυτοκόλλητο</string>
   <string name="QuoteView_document">Έγγραφο</string>
   <string name="QuoteView_you">Εσείς</string>
@@ -922,8 +925,6 @@
   <string name="database_migration_activity__import">Εισαγωγή</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Παρακαλώ περιμένετε, αυτό μπορεί να πάρει λίγη ώρα. Θα σας ειδοποιήσουμε μόλις τελειώσει η εισαγωγή.</string>
   <string name="database_migration_activity__importing">ΕΙΣΑΓΩΓΗ</string>
-  <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">Ενημέρωση βάσης δεδομένων...</string>
   <string name="import_fragment__import_system_sms_database">Εισαγωγή της βάσης δεδομένων SMS του συστήματος</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Εισαγωγή της βάσης δεδομένων από την προκαθορισμένη συσκευή μηνυμάτων του συστήματος</string>
   <string name="import_fragment__import_plaintext_backup">Εισαγωγή μη κρυπτογραφημένου αντίγραφου ασφαλείας</string>
@@ -1043,10 +1044,6 @@
   <string name="arrays__high">Υψηλό</string>
   <string name="arrays__max">Μέγιστο</string>
   <!--plurals.xml-->
-  <plurals name="hours_ago">
-    <item quantity="one">%d ώρα</item>
-    <item quantity="other">%d ώρες</item>
-  </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">SMS και MMS</string>
   <string name="preferences__pref_all_sms_title">Λήψη όλων των SMS</string>
@@ -1114,6 +1111,7 @@
   <string name="preferences__linked_devices">Συνδεδεμένες συσκευές</string>
   <string name="preferences__light_theme">Φωτεινό</string>
   <string name="preferences__dark_theme">Σκοτεινό</string>
+  <string name="preferences__system_theme">Σύστημα</string>
   <string name="preferences__appearance">Εμφάνιση</string>
   <string name="preferences__theme">Θέμα</string>
   <string name="preferences__default">Προκαθορισμένο</string>
@@ -1189,6 +1187,7 @@
   <string name="conversation_list_batch_archive__menu_archive_selected">Αρχειοθέτηση επιλεγμένων</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Απαρχειοθέτηση επιλέχθηκε</string>
   <!--conversation_list-->
+  <string name="conversation_list_search_description">Αναζήτηση</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Φωτογραφία επαφής</string>
   <string name="conversation_list_item_view__archived">Αρχειοθετημένα</string>

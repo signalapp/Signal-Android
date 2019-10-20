@@ -4,7 +4,6 @@ package org.thoughtcrime.securesms.jobs;
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
-import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
@@ -14,6 +13,7 @@ import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
@@ -41,10 +41,10 @@ public class PushGroupUpdateJob extends BaseJob {
   private static final String KEY_SOURCE   = "source";
   private static final String KEY_GROUP_ID = "group_id";
 
-  private String source;
-  private byte[] groupId;
+  private RecipientId source;
+  private byte[]      groupId;
 
-  public PushGroupUpdateJob(String source, byte[] groupId) {
+  public PushGroupUpdateJob(@NonNull RecipientId source, byte[] groupId) {
     this(new Job.Parameters.Builder()
                            .addConstraint(NetworkConstraint.KEY)
                            .setLifespan(TimeUnit.DAYS.toMillis(1))
@@ -54,7 +54,7 @@ public class PushGroupUpdateJob extends BaseJob {
         groupId);
   }
 
-  private PushGroupUpdateJob(@NonNull Job.Parameters parameters, String source, byte[] groupId) {
+  private PushGroupUpdateJob(@NonNull Job.Parameters parameters, RecipientId source, byte[] groupId) {
     super(parameters);
 
     this.source  = source;
@@ -63,7 +63,7 @@ public class PushGroupUpdateJob extends BaseJob {
 
   @Override
   public @NonNull Data serialize() {
-    return new Data.Builder().putString(KEY_SOURCE, source)
+    return new Data.Builder().putString(KEY_SOURCE, source.serialize())
                              .putString(KEY_GROUP_ID, GroupUtil.getEncodedId(groupId, false))
                              .build();
   }
@@ -94,8 +94,8 @@ public class PushGroupUpdateJob extends BaseJob {
 
     List<String> members = new LinkedList<>();
 
-    for (Address member : record.get().getMembers()) {
-      members.add(member.serialize());
+    for (RecipientId member : record.get().getMembers()) {
+      members.add(Recipient.resolved(member).requireAddress().serialize());
     }
 
     SignalServiceGroup groupContext = SignalServiceGroup.newBuilder(Type.UPDATE)
@@ -105,8 +105,8 @@ public class PushGroupUpdateJob extends BaseJob {
                                                         .withName(record.get().getTitle())
                                                         .build();
 
-    Address   groupAddress   = Address.fromSerialized(GroupUtil.getEncodedId(groupId, false));
-    Recipient groupRecipient = Recipient.from(context, groupAddress, false);
+    RecipientId groupRecipientId = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(GroupUtil.getEncodedId(groupId, false));
+    Recipient   groupRecipient   = Recipient.resolved(groupRecipientId);
 
     SignalServiceDataMessage message = SignalServiceDataMessage.newBuilder()
                                                                .asGroupMessage(groupContext)
@@ -115,8 +115,10 @@ public class PushGroupUpdateJob extends BaseJob {
                                                                .build();
 
     SignalServiceMessageSender messageSender = ApplicationDependencies.getSignalServiceMessageSender();
-    messageSender.sendMessage(new SignalServiceAddress(source),
-                              UnidentifiedAccessUtil.getAccessFor(context, Recipient.from(context, Address.fromSerialized(source), false)),
+    Recipient                  recipient     = Recipient.resolved(source);
+
+    messageSender.sendMessage(new SignalServiceAddress(recipient.requireAddress().serialize()),
+                              UnidentifiedAccessUtil.getAccessFor(context, recipient),
                               message);
   }
 
@@ -128,7 +130,6 @@ public class PushGroupUpdateJob extends BaseJob {
 
   @Override
   public void onCanceled() {
-
   }
 
   public static final class Factory implements Job.Factory<PushGroupUpdateJob> {
@@ -136,7 +137,7 @@ public class PushGroupUpdateJob extends BaseJob {
     public @NonNull PushGroupUpdateJob create(@NonNull Parameters parameters, @NonNull org.thoughtcrime.securesms.jobmanager.Data data) {
       try {
         return new PushGroupUpdateJob(parameters,
-                                      data.getString(KEY_SOURCE),
+                                      RecipientId.from(data.getString(KEY_SOURCE)),
                                       GroupUtil.getDecodedId(data.getString(KEY_GROUP_ID)));
       } catch (IOException e) {
         throw new AssertionError(e);

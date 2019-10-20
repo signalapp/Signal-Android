@@ -4,6 +4,7 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.thoughtcrime.securesms.blurhash.BlurHash;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
 
@@ -44,10 +45,14 @@ public abstract class Attachment {
   @Nullable
   private final StickerLocator stickerLocator;
 
+  @Nullable
+  private final BlurHash blurHash;
+
   public Attachment(@NonNull String contentType, int transferState, long size, @Nullable String fileName,
                     @Nullable String location, @Nullable String key, @Nullable String relay,
                     @Nullable byte[] digest, @Nullable String fastPreflightId, boolean voiceNote,
-                    int width, int height, boolean quote, @Nullable String caption, @Nullable StickerLocator stickerLocator)
+                    int width, int height, boolean quote, @Nullable String caption, @Nullable StickerLocator stickerLocator,
+                    @Nullable BlurHash blurHash)
   {
     this.contentType     = contentType;
     this.transferState   = transferState;
@@ -64,6 +69,7 @@ public abstract class Attachment {
     this.quote           = quote;
     this.stickerLocator  = stickerLocator;
     this.caption         = caption;
+    this.blurHash        = blurHash;
   }
 
   @Nullable
@@ -142,6 +148,10 @@ public abstract class Attachment {
 
   public @Nullable StickerLocator getSticker() {
     return stickerLocator;
+  }
+
+  public @Nullable BlurHash getBlurHash() {
+    return blurHash;
   }
 
   public @Nullable String getCaption() {

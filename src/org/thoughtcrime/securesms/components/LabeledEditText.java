@@ -84,4 +84,10 @@ public class LabeledEditText extends FrameLayout implements View.OnFocusChangeLi
     border.setBackgroundResource(hasFocus ? R.drawable.labeled_edit_text_background_active
                                           : R.drawable.labeled_edit_text_background_inactive);
   }
+
+  @Override
+  public void setEnabled(boolean enabled) {
+    super.setEnabled(enabled);
+    input.setEnabled(enabled);
+  }
 }

@@ -326,7 +326,7 @@ public class FullBackupExporter extends FullBackupBase {
     public void write(@NonNull String avatarName, @NonNull InputStream in, long size) throws IOException {
       write(outputStream, BackupProtos.BackupFrame.newBuilder()
                                                   .setAvatar(BackupProtos.Avatar.newBuilder()
-                                                                                .setName(avatarName)
+                                                                                .setRecipientId(avatarName)
                                                                                 .setLength(Util.toIntExact(size))
                                                                                 .build())
                                                   .build());

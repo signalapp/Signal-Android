@@ -18,7 +18,6 @@ import static android.provider.ContactsContract.Intents.Insert.PHONE;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -63,7 +62,7 @@ public final class RecipientExporterTest {
   private Recipient givenRecipient(String profileName, Address address) {
     Recipient recipient = mock(Recipient.class);
     when(recipient.getProfileName()).thenReturn(profileName);
-    when(recipient.getAddress()).thenReturn(address);
+    when(recipient.requireAddress()).thenReturn(address);
     return recipient;
   }
 

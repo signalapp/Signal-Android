@@ -5,6 +5,7 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.ApplicationContext;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.TypingSendJob;
 import org.thoughtcrime.securesms.util.Util;
 
@@ -74,7 +75,7 @@ public class TypingStatusSender {
   }
 
   private void sendTyping(long threadId, boolean typingStarted) {
-    ApplicationContext.getInstance(context).getJobManager().add(new TypingSendJob(threadId, typingStarted));
+    ApplicationDependencies.getJobManager().add(new TypingSendJob(threadId, typingStarted));
   }
 
   private class StartRunnable implements Runnable {

@@ -49,7 +49,7 @@ class MessageDetailsRecipientAdapter extends BaseAdapter implements AbsListView.
   @Override
   public long getItemId(int position) {
     try {
-      return Conversions.byteArrayToLong(MessageDigest.getInstance("SHA1").digest(members.get(position).recipient.getAddress().serialize().getBytes()));
+      return Conversions.byteArrayToLong(MessageDigest.getInstance("SHA1").digest(members.get(position).recipient.requireAddress().serialize().getBytes()));
     } catch (NoSuchAlgorithmException e) {
       throw new AssertionError(e);
     }

@@ -6,6 +6,10 @@ import android.content.Context;
 import android.graphics.Color;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
+import androidx.core.graphics.drawable.DrawableCompat;
+
+import android.graphics.drawable.Drawable;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,8 +29,10 @@ public class RationaleDialog {
     TextView  text   = view.findViewById(R.id.message);
 
     for (int i=0;i<drawables.length;i++) {
+      Drawable drawable = ContextCompat.getDrawable(context, drawables[i]);
+      DrawableCompat.setTint(drawable, ContextCompat.getColor(context, R.color.white));
       ImageView imageView = new ImageView(context);
-      imageView.setImageDrawable(context.getResources().getDrawable(drawables[i]));
+      imageView.setImageDrawable(drawable);
       imageView.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 
       header.addView(imageView);

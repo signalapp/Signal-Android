@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Signal.Text.Body"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/contact_selection_item_height"
+    android:drawableStart="@drawable/ic_invite_circle"
+    android:drawablePadding="16dp"
+    android:ellipsize="marquee"
+    android:fontFamily="sans-serif-medium"
+    android:gravity="center_vertical|start"
+    android:labelFor="@id/action_icon"
+    android:paddingStart="@dimen/selection_item_header_width"
+    android:singleLine="true"
+    android:text="@string/contact_selection_activity__invite_to_signal"
+    android:textAlignment="viewStart"
+    tools:ignore="RtlSymmetry" />

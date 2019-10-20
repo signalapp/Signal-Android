@@ -10,9 +10,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="4dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginEnd="28dp"
+        android:layout_height="1px"
         android:layout_marginBottom="3dp"
         android:background="?attr/conversation_item_last_seen_line_color" />
 
@@ -22,7 +20,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         style="@style/Signal.Text.Caption"
-        android:textAllCaps="true"
         android:fontFamily="sans-serif-medium"
         android:textColor="?attr/conversation_item_last_seen_text_color"
         tools:text="3 unread messages" />

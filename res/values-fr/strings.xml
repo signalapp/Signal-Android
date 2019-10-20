@@ -11,6 +11,8 @@
   <string name="AbstractNotificationBuilder_new_message">Nouveau message</string>
   <!--AlbumThumbnailView-->
   <string name="AlbumThumbnailView_plus">\+%d</string>
+  <!--ApplicationMigrationActivity-->
+  <string name="ApplicationMigrationActivity__signal_is_updating">Mise à jour Signal... </string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Actuellement : %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Vous n’avez pas encore défini de phrase de passe !</string>
@@ -78,8 +80,8 @@
   <string name="CameraActivity_image_save_failure">Échec d’enregistrement de l’image.</string>
   <!--CameraXFragment-->
   <string name="CameraXFragment_capture_description">Prendre</string>
-  <string name="CameraXFragment_change_camera_description">changer de caméra</string>
-  <string name="CameraXFragment_open_gallery_description">ouvrir la galerie</string>
+  <string name="CameraXFragment_change_camera_description">Changer de caméra</string>
+  <string name="CameraXFragment_open_gallery_description">Ouvrir la galerie</string>
   <!--CameraContacts-->
   <string name="CameraContacts_recent_contacts">Contacts récents</string>
   <string name="CameraContacts_signal_contacts">Contacts Signal</string>
@@ -573,9 +575,10 @@ votre numéro de téléphone</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Saisir le code envoyé au %s</string>
   <string name="RegistrationActivity_call">Appeler</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_view_photo">Afficher la photo</string>
-  <string name="RevealableMessageView_viewed">Vu</string>
   <string name="RevealableMessageView_photo">Photo</string>
+  <string name="RevealableMessageView_video">Vidéo</string>
+  <string name="RevealableMessageView_viewed">Vu</string>
+  <string name="RevealableMessageView_outgoing_media">Médias</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Échec d’enregistrement des modifications apportées aux images</string>
   <!--Search-->
@@ -669,6 +672,7 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Aucun numéro de sécurité à comparer n’a été trouvé dans le presse-papiers</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal a besoin de l’autorisation Appareil photo afin de balayer un code QR, mais elle a été refusée définitivement. Veuillez accéder au menu des paramètres des applis, sélectionner Autorisations et activer Appareil photo.</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Impossible de balayer le code QR sans l’autorisation Appareil photo</string>
+  <!--ViewOnceMessageActivity-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Mauvais message chiffré</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Message chiffré pour une session non existante</string>
@@ -793,6 +797,7 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="change_passphrase_activity__repeat_new_passphrase">Répéter la nouvelle phrase de passe</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Saisir un nom ou un numéro</string>
+  <string name="contact_selection_activity__invite_to_signal">Inviter à Signal</string>
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Supprimer le texte entré</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Montrer le clavier</string>
@@ -838,13 +843,13 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Photo du contact</string>
   <!--audio_view-->
-  <string name="audio_view__play_accessibility_description">Lire</string>
-  <string name="audio_view__pause_accessibility_description">Mettre en pause</string>
+  <string name="audio_view__play_pause_accessibility_description">Lecture ... Pause</string>
   <string name="audio_view__download_accessibility_description">Télécharger</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">Son</string>
   <string name="QuoteView_video">Vidéo</string>
   <string name="QuoteView_photo">Photo</string>
+  <string name="QuoteView_media">Message multimédia</string>
   <string name="QuoteView_sticker">Autocollant</string>
   <string name="QuoteView_document">Document</string>
   <string name="QuoteView_you">Vous</string>
@@ -936,8 +941,6 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="database_migration_activity__import">Importer</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Cela pourrait prendre un moment. Veuillez être patient, nous vous préviendrons lorsque l’importation sera terminée.</string>
   <string name="database_migration_activity__importing">IMPORTATION</string>
-  <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">Mise à jour de la base de données…</string>
   <string name="import_fragment__import_system_sms_database">Importer la base de données de textos du système</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Importer la base de données de l’appli de messagerie par défaut du système</string>
   <string name="import_fragment__import_plaintext_backup">Importer une sauvegarde en clair</string>
@@ -1057,10 +1060,6 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="arrays__high">Élevée</string>
   <string name="arrays__max">Maximale</string>
   <!--plurals.xml-->
-  <plurals name="hours_ago">
-    <item quantity="one">%d heure</item>
-    <item quantity="other">%d heures</item>
-  </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">Textos et messages multimédias</string>
   <string name="preferences__pref_all_sms_title">Recevoir tous les textos</string>
@@ -1128,6 +1127,7 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="preferences__linked_devices">Appareils reliés</string>
   <string name="preferences__light_theme">Clair</string>
   <string name="preferences__dark_theme">Sombre</string>
+  <string name="preferences__system_theme">Système</string>
   <string name="preferences__appearance">Apparence</string>
   <string name="preferences__theme">Thème</string>
   <string name="preferences__default">Valeur par défaut</string>
@@ -1204,6 +1204,7 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Désarchiver la sélection</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Raccourci des paramètres</string>
+  <string name="conversation_list_search_description">Chercher</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Photo de contact</string>
   <string name="conversation_list_item_view__archived">Archivée</string>
@@ -1330,6 +1331,7 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Veuillez saisir le code de vérification envoyé à %s.</string>
   <string name="RegistrationActivity_wrong_number">Mauvais numéro</string>
   <string name="RegistrationActivity_call_me_instead_available_in">Appelez-moi plutôt \n (disponible dans (%1$02d:%2$02d)</string>
+  <string name="RegistrationActivity_contact_signal_support">Contacter l\'assistance Signal</string>
   <string name="BackupUtil_never">Jamais</string>
   <string name="BackupUtil_unknown">Inconnu</string>
   <string name="preferences_app_protection__screen_lock">Verrouillage de l’écran</string>

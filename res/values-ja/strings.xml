@@ -11,6 +11,8 @@
   <string name="AbstractNotificationBuilder_new_message">新着メッセージ</string>
   <!--AlbumThumbnailView-->
   <string name="AlbumThumbnailView_plus">\+%d</string>
+  <!--ApplicationMigrationActivity-->
+  <string name="ApplicationMigrationActivity__signal_is_updating">Signalをアップデート中</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">現在： %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">パスワードが登録されていません。</string>
@@ -74,6 +76,7 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">画像を保存できませんでした。</string>
   <!--CameraXFragment-->
+  <string name="CameraXFragment_tap_for_photo_hold_for_video">写真はタップ、動画はホールド</string>
   <string name="CameraXFragment_capture_description">キャプチャー</string>
   <string name="CameraXFragment_change_camera_description">カメラの変更</string>
   <string name="CameraXFragment_open_gallery_description">ギャラリーを開く</string>
@@ -171,6 +174,9 @@
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">写真や動画を撮るには、Signalのカメラへのアクセスを許可してください。</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signalで写真や動画を撮るには、カメラへのアクセスを許可する必要がありますが、無効になっています。アプリ設定メニューから、『アプリの権限』を選び、『カメラ』へのアクセス許可を有効にしてください。</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signalで写真や動画を撮るには、カメラへのアクセス許可が必要です。</string>
+  <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">音も記録するためマイクを許可</string>
+  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">動画を保存するため、Signalにマイクを許可する必要があります。設定メニューの「アプリの権限」で、マイクとカメラのアクセス許可を有効にしてください。</string>
+  <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Signalで動画を撮るには、マイクへのアクセス許可が必要です。</string>
   <string name="ConversationActivity_quoted_contact_message">%2$s%1$s</string>
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signalは現在、デフォルトのショートメッセージアプリになっていないため、メッセージが送信できません。設定を変更しますか？</string>
   <string name="ConversationActivity_yes">はい</string>
@@ -213,6 +219,8 @@
   <string name="ConversationFragment_quoted_message_not_found">元のメッセージが見つかりません</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">元のメッセージはすでに削除されています</string>
   <string name="ConversationFragment_failed_to_open_message">メッセージの開封に失敗しました</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_right_reply">メッセージを右にスワイプすると返信できます。</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_left_reply">メッセージを左にスワイプすると返信できます。</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">ブラウザがインストールされていません</string>
   <!--ConversationListFragment-->
@@ -546,11 +554,14 @@
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">あなたの電話番号を入力してください</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">認証コードが届きます。通信料金がかかるかもしれません。</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">%sに送ったコードを入力してください</string>
+  <string name="RegistrationActivity_phone_number_description">電話番号</string>
+  <string name="RegistrationActivity_country_code_description">国番号</string>
   <string name="RegistrationActivity_call">通話</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_view_photo">写真を見る</string>
-  <string name="RevealableMessageView_viewed">閲覧済み</string>
   <string name="RevealableMessageView_photo">写真</string>
+  <string name="RevealableMessageView_video">動画</string>
+  <string name="RevealableMessageView_viewed">閲覧済み</string>
+  <string name="RevealableMessageView_outgoing_media">メディア</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">画像の変更を保存できませんでした</string>
   <!--Search-->
@@ -609,6 +620,7 @@
   <string name="ThreadRecord_media_message">メディアでのメッセージ</string>
   <string name="ThreadRecord_sticker">ステッカー</string>
   <string name="ThreadRecord_disappearing_photo">消える写真</string>
+  <string name="ThreadRecord_disappearing_video">消える動画</string>
   <string name="ThreadRecord_s_is_on_signal">%sがSignalに登録しています！</string>
   <string name="ThreadRecord_disappearing_messages_disabled">消えるメッセージが無効にされました</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">消えるメッセージの消去時間が%sに設定されました</string>
@@ -643,6 +655,7 @@
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">クリップボードで安全番号が見つかりませんでした</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">SignalでQRコードをスキャンするには、カメラへのアクセスを許可する必要がありますが、無効になっています。アプリ設定メニューから、『アプリの権限』を選び、『カメラ』へのアクセス許可を有効にしてください。</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">QRコードがスキャンできません。カメラへのアクセス許可が無効になっています。</string>
+  <!--ViewOnceMessageActivity-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">メッセージの暗号化が正しくありません</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">メッセージは存在しないセッションのために暗号化されています</string>
@@ -684,6 +697,7 @@
   <string name="MessageNotifier_media_message">メディアメッセージ</string>
   <string name="MessageNotifier_sticker">ステッカー</string>
   <string name="MessageNotifier_disappearing_photo">消える写真</string>
+  <string name="MessageNotifier_disappearing_video">消える動画</string>
   <string name="MessageNotifier_reply">返信</string>
   <string name="MessageNotifier_signal_message">Signalメッセージ</string>
   <string name="MessageNotifier_unsecured_sms">安全でないSMS</string>
@@ -766,6 +780,7 @@
   <string name="change_passphrase_activity__repeat_new_passphrase">新しいパスワードを再入力</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">名前もしくは番号を入力</string>
+  <string name="contact_selection_activity__invite_to_signal">Signalに招待する</string>
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">テキストを消去</string>
   <string name="contact_filter_toolbar__show_keyboard_description">キーボードを表示</string>
@@ -811,13 +826,13 @@
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">連絡先の写真</string>
   <!--audio_view-->
-  <string name="audio_view__play_accessibility_description">再生</string>
-  <string name="audio_view__pause_accessibility_description">一時停止</string>
+  <string name="audio_view__play_pause_accessibility_description">再生 ... 停止</string>
   <string name="audio_view__download_accessibility_description">ダウンロード</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">音声</string>
   <string name="QuoteView_video">動画</string>
   <string name="QuoteView_photo">写真</string>
+  <string name="QuoteView_media">メディアメッセージ</string>
   <string name="QuoteView_sticker">ステッカー</string>
   <string name="QuoteView_document">ドキュメント</string>
   <string name="QuoteView_you">あなた</string>
@@ -903,8 +918,6 @@
   <string name="database_migration_activity__import">インポート</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">この作業は時間がかかります。しばらくお待ち下さい。インポートが完了すると、通知されます。</string>
   <string name="database_migration_activity__importing">インポート中</string>
-  <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">データベースを更新中…</string>
   <string name="import_fragment__import_system_sms_database">システムのSMSデータベースをインポート</string>
   <string name="import_fragment__import_the_database_from_the_default_system">デフォルトのメッセージアプリからデータベースをインポートする</string>
   <string name="import_fragment__import_plaintext_backup">平文テキストのバックアップをインポート</string>
@@ -1093,6 +1106,7 @@
   <string name="preferences__linked_devices">追加されている端末</string>
   <string name="preferences__light_theme">ライト</string>
   <string name="preferences__dark_theme">ダーク</string>
+  <string name="preferences__system_theme">システム</string>
   <string name="preferences__appearance">デザイン設定</string>
   <string name="preferences__theme">テーマ</string>
   <string name="preferences__default">初期設定の言語</string>
@@ -1169,6 +1183,7 @@
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">選択した会話をアーカイブから取り除く</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">設定のショートカット</string>
+  <string name="conversation_list_search_description">検索</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">連絡先の画像</string>
   <string name="conversation_list_item_view__archived">アーカイブ済み</string>
@@ -1294,6 +1309,9 @@
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">%sに送った検証コードを入力してください。</string>
   <string name="RegistrationActivity_wrong_number">番号が違います</string>
   <string name="RegistrationActivity_call_me_instead_available_in">電話してください \n (Available in %1$02d:%2$02d)</string>
+  <string name="RegistrationActivity_contact_signal_support">Signalサポートに問い合わせ</string>
+  <string name="RegistrationActivity_code_support_subject">Signal登録 - Android用認証コード</string>
+  <string name="RegistrationActivity_code_support_body">件名: Signal Registration - Verification Code for Android\nDevice info: %1$s\nAndroid version: %2$s\nSignal version: %3$s\nLocale: %4$s</string>
   <string name="BackupUtil_never">なし</string>
   <string name="BackupUtil_unknown">不明</string>
   <string name="preferences_app_protection__screen_lock">画面ロック</string>

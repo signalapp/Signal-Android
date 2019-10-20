@@ -2,54 +2,43 @@
 <merge
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
+    android:gravity="center_vertical|end"
     tools:parentTag="org.thoughtcrime.securesms.components.ConversationItemFooter">
 
-    <LinearLayout
-        android:layout_width="0dp"
+    <TextView
+        android:id="@+id/footer_date"
+        android:autoLink="none"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:layout_marginEnd="6dp"
-        android:orientation="horizontal"
-        android:gravity="left|start|center_vertical">
+        android:linksClickable="false"
+        style="@style/Signal.Text.Caption.MessageSent"
+        android:textColor="?conversation_item_sent_text_secondary_color"
+        tools:text="30m"/>
 
-        <TextView
-            android:id="@+id/footer_date"
-            android:autoLink="none"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:linksClickable="false"
-            style="@style/Signal.Text.Caption.MessageSent"
-            android:textColor="?conversation_item_sent_text_secondary_color"
-            android:textAllCaps="true"
-            tools:text="30 mins"/>
-
-        <org.thoughtcrime.securesms.components.ExpirationTimerView
-            android:id="@+id/footer_expiration_timer"
-            android:layout_gravity="center_vertical|end"
-            android:layout_marginStart="6dp"
-            android:layout_width="12dp"
-            android:layout_height="12dp"
-            android:visibility="gone"
-            tools:visibility="visible"/>
-
-    </LinearLayout>
+    <org.thoughtcrime.securesms.components.ExpirationTimerView
+        android:id="@+id/footer_expiration_timer"
+        android:layout_marginStart="4dp"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_gravity="center_vertical"
+        android:visibility="gone"
+        tools:visibility="visible"/>
 
     <TextView
         android:id="@+id/footer_sim_info"
         android:autoLink="none"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="4dp"
+        android:layout_marginStart="4dp"
         android:maxWidth="140dp"
         android:maxLines="1"
         android:ellipsize="end"
         android:linksClickable="false"
         style="@style/Signal.Text.Caption.MessageSent"
-        android:layout_gravity="end|bottom"
+        android:layout_gravity="center_vertical"
         android:fontFamily="sans-serif-light"
         android:visibility="gone"
         tools:visibility="visible"
@@ -61,14 +50,16 @@
         android:layout_height="11dp"
         android:src="@drawable/ic_unlocked_white_18dp"
         android:visibility="gone"
-        android:layout_gravity="center_vertical|end"
+        android:layout_marginStart="4dp"
+        android:layout_gravity="center_vertical"
         android:contentDescription="@string/conversation_item__secure_message_description"
         tools:visibility="visible"/>
 
     <org.thoughtcrime.securesms.components.DeliveryStatusView
         android:id="@+id/footer_delivery_status"
-        android:layout_width="20dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical" />
+        android:layout_marginStart="4dp"
+        android:layout_gravity="center_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" />
 
 </merge>

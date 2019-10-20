@@ -173,12 +173,10 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
       boolean enabled = (boolean)newValue;
-      ApplicationContext.getInstance(getContext())
-                        .getJobManager()
-                        .add(new MultiDeviceConfigurationUpdateJob(enabled,
-                                                                   TextSecurePreferences.isTypingIndicatorsEnabled(requireContext()),
-                                                                   TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(getContext()),
-                                                                   TextSecurePreferences.isLinkPreviewsEnabled(getContext())));
+      ApplicationDependencies.getJobManager().add(new MultiDeviceConfigurationUpdateJob(enabled,
+                                                                                        TextSecurePreferences.isTypingIndicatorsEnabled(requireContext()),
+                                                                                        TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(getContext()),
+                                                                                        TextSecurePreferences.isLinkPreviewsEnabled(getContext())));
 
       return true;
     }
@@ -188,12 +186,10 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
       boolean enabled = (boolean)newValue;
-      ApplicationContext.getInstance(getContext())
-                        .getJobManager()
-                        .add(new MultiDeviceConfigurationUpdateJob(TextSecurePreferences.isReadReceiptsEnabled(requireContext()),
-                                                                   enabled,
-                                                                   TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(getContext()),
-                                                                   TextSecurePreferences.isLinkPreviewsEnabled(getContext())));
+      ApplicationDependencies.getJobManager().add(new MultiDeviceConfigurationUpdateJob(TextSecurePreferences.isReadReceiptsEnabled(requireContext()),
+                                                                                        enabled,
+                                                                                        TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(getContext()),
+                                                                                        TextSecurePreferences.isLinkPreviewsEnabled(getContext())));
 
       if (!enabled) {
         ApplicationContext.getInstance(requireContext()).getTypingStatusRepository().clear();
@@ -207,12 +203,10 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
       boolean enabled = (boolean)newValue;
-      ApplicationContext.getInstance(requireContext())
-                        .getJobManager()
-                        .add(new MultiDeviceConfigurationUpdateJob(TextSecurePreferences.isReadReceiptsEnabled(requireContext()),
-                                                                   TextSecurePreferences.isTypingIndicatorsEnabled(requireContext()),
-                                                                   TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(requireContext()),
-                                                                   enabled));
+      ApplicationDependencies.getJobManager().add(new MultiDeviceConfigurationUpdateJob(TextSecurePreferences.isReadReceiptsEnabled(requireContext()),
+                                                                                        TextSecurePreferences.isTypingIndicatorsEnabled(requireContext()),
+                                                                                        TextSecurePreferences.isShowUnidentifiedDeliveryIndicatorsEnabled(requireContext()),
+                                                                                        enabled));
 
       return true;
     }
@@ -310,12 +304,10 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
       boolean enabled = (boolean) newValue;
-      ApplicationContext.getInstance(getContext())
-                        .getJobManager()
-                        .add(new MultiDeviceConfigurationUpdateJob(TextSecurePreferences.isReadReceiptsEnabled(getContext()),
-                                                                   TextSecurePreferences.isTypingIndicatorsEnabled(getContext()),
-                                                                   enabled,
-                                                                   TextSecurePreferences.isLinkPreviewsEnabled(getContext())));
+      ApplicationDependencies.getJobManager().add(new MultiDeviceConfigurationUpdateJob(TextSecurePreferences.isReadReceiptsEnabled(getContext()),
+                                                                                        TextSecurePreferences.isTypingIndicatorsEnabled(getContext()),
+                                                                                        enabled,
+                                                                                        TextSecurePreferences.isLinkPreviewsEnabled(getContext())));
 
       return true;
     }
@@ -324,9 +316,7 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
   private class UniversalUnidentifiedAccessChangedListener implements Preference.OnPreferenceChangeListener {
     @Override
     public boolean onPreferenceChange(Preference preference, Object o) {
-      ApplicationContext.getInstance(getContext())
-                        .getJobManager()
-                        .add(new RefreshAttributesJob());
+      ApplicationDependencies.getJobManager().add(new RefreshAttributesJob());
       return true;
     }
   }

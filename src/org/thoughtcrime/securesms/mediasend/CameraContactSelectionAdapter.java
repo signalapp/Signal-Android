@@ -27,7 +27,7 @@ class CameraContactSelectionAdapter extends RecyclerView.Adapter<CameraContactSe
 
   @Override
   public long getItemId(int position) {
-    return idGenerator.getId(recipients.get(position).getAddress().serialize());
+    return idGenerator.getId(recipients.get(position).getId().serialize());
   }
 
   @Override

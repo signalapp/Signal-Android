@@ -233,7 +233,7 @@ public class BitmapUtil {
     ExifInterface exif   = new ExifInterface(inputStream);
     int           width  = exif.getAttributeInt(ExifInterface.TAG_IMAGE_WIDTH, 0);
     int           height = exif.getAttributeInt(ExifInterface.TAG_IMAGE_LENGTH, 0);
-    if (width == 0 && height == 0) {
+    if (width == 0 || height == 0) {
       return null;
     }
 

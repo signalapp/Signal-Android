@@ -13,4 +13,8 @@
 
     <issue id="CanvasSize" severity="error" />
 
+    <issue id="RestrictedApi" severity="error">
+        <ignore path="src/org/thoughtcrime/securesms/mediasend/camerax/VideoCapture.java" />
+    </issue>
+
 </lint>

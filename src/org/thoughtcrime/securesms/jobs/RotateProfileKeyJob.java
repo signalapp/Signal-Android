@@ -11,6 +11,7 @@ import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
@@ -55,9 +56,7 @@ public class RotateProfileKeyJob extends BaseJob {
     accountManager.setProfileName(profileKey, TextSecurePreferences.getProfileName(context));
     accountManager.setProfileAvatar(profileKey, getProfileAvatar());
 
-    ApplicationContext.getInstance(context)
-                      .getJobManager()
-                      .add(new RefreshAttributesJob());
+    ApplicationDependencies.getJobManager().add(new RefreshAttributesJob());
   }
 
   @Override
@@ -72,8 +71,7 @@ public class RotateProfileKeyJob extends BaseJob {
 
   private @Nullable StreamDetails getProfileAvatar() {
     try {
-      Address localAddress = Address.fromSerialized(TextSecurePreferences.getLocalNumber(context));
-      File    avatarFile   = AvatarHelper.getAvatarFile(context, localAddress);
+      File avatarFile = AvatarHelper.getAvatarFile(context, Recipient.self().getId());
 
       if (avatarFile.exists()) {
         return new StreamDetails(new FileInputStream(avatarFile), "image/jpeg", avatarFile.length());

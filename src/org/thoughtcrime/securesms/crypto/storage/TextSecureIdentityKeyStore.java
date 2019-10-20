@@ -10,7 +10,9 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase.IdentityRecord;
 import org.thoughtcrime.securesms.database.IdentityDatabase.VerifiedStatus;
+import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.IdentityKey;
@@ -47,12 +49,12 @@ public class TextSecureIdentityKeyStore implements IdentityKeyStore {
   public boolean saveIdentity(SignalProtocolAddress address, IdentityKey identityKey, boolean nonBlockingApproval) {
     synchronized (LOCK) {
       IdentityDatabase         identityDatabase = DatabaseFactory.getIdentityDatabase(context);
-      Address                  signalAddress    = Address.fromExternal(context, address.getName());
-      Optional<IdentityRecord> identityRecord   = identityDatabase.getIdentity(signalAddress);
+      Recipient                recipient        = Recipient.external(context, address.getName());
+      Optional<IdentityRecord> identityRecord   = identityDatabase.getIdentity(recipient.getId());
 
       if (!identityRecord.isPresent()) {
         Log.i(TAG, "Saving new identity...");
-        identityDatabase.saveIdentity(signalAddress, identityKey, VerifiedStatus.DEFAULT, true, System.currentTimeMillis(), nonBlockingApproval);
+        identityDatabase.saveIdentity(recipient.getId(), identityKey, VerifiedStatus.DEFAULT, true, System.currentTimeMillis(), nonBlockingApproval);
         return false;
       }
 
@@ -68,15 +70,15 @@ public class TextSecureIdentityKeyStore implements IdentityKeyStore {
           verifiedStatus = VerifiedStatus.DEFAULT;
         }
 
-        identityDatabase.saveIdentity(signalAddress, identityKey, verifiedStatus, false, System.currentTimeMillis(), nonBlockingApproval);
-        IdentityUtil.markIdentityUpdate(context, Recipient.from(context, signalAddress, true));
+        identityDatabase.saveIdentity(recipient.getId(), identityKey, verifiedStatus, false, System.currentTimeMillis(), nonBlockingApproval);
+        IdentityUtil.markIdentityUpdate(context, recipient);
         SessionUtil.archiveSiblingSessions(context, address);
         return true;
       }
 
       if (isNonBlockingApprovalRequired(identityRecord.get())) {
         Log.i(TAG, "Setting approval status...");
-        identityDatabase.setApproval(signalAddress, nonBlockingApproval);
+        identityDatabase.setApproval(recipient.getId(), nonBlockingApproval);
         return false;
       }
 
@@ -93,15 +95,15 @@ public class TextSecureIdentityKeyStore implements IdentityKeyStore {
   public boolean isTrustedIdentity(SignalProtocolAddress address, IdentityKey identityKey, Direction direction) {
     synchronized (LOCK) {
       IdentityDatabase identityDatabase = DatabaseFactory.getIdentityDatabase(context);
-      String           ourNumber        = TextSecurePreferences.getLocalNumber(context);
-      Address          theirAddress     = Address.fromExternal(context, address.getName());
+      RecipientId      ourRecipientId   = Recipient.self().getId();
+      RecipientId      theirRecipientId = Recipient.external(context, address.getName()).getId();
 
-      if (ourNumber.equals(address.getName()) || Address.fromSerialized(ourNumber).equals(theirAddress)) {
+      if (ourRecipientId.equals(theirRecipientId)) {
         return identityKey.equals(IdentityKeyUtil.getIdentityKey(context));
       }
 
       switch (direction) {
-        case SENDING:   return isTrustedForSending(identityKey, identityDatabase.getIdentity(theirAddress));
+        case SENDING:   return isTrustedForSending(identityKey, identityDatabase.getIdentity(theirRecipientId));
         case RECEIVING: return true;
         default:        throw new AssertionError("Unknown direction: " + direction);
       }
@@ -110,7 +112,8 @@ public class TextSecureIdentityKeyStore implements IdentityKeyStore {
 
   @Override
   public IdentityKey getIdentity(SignalProtocolAddress address) {
-    Optional<IdentityRecord> record = DatabaseFactory.getIdentityDatabase(context).getIdentity(Address.fromSerialized(address.getName()));
+    RecipientId              recipientId = Recipient.external(context, address.getName()).getId();
+    Optional<IdentityRecord> record      = DatabaseFactory.getIdentityDatabase(context).getIdentity(recipientId);
 
     if (record.isPresent()) {
       return record.get().getIdentityKey();

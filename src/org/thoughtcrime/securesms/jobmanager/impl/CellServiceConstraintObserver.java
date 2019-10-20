@@ -13,8 +13,8 @@ public class CellServiceConstraintObserver implements ConstraintObserver {
 
   private static final String REASON = CellServiceConstraintObserver.class.getSimpleName();
 
-  private Notifier     notifier;
-  private ServiceState lastKnownState;
+  private volatile Notifier     notifier;
+  private volatile ServiceState lastKnownState;
 
   private static CellServiceConstraintObserver instance;
 

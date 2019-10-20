@@ -76,7 +76,7 @@ class ConversationListAdapter extends CursorRecyclerViewAdapter<ConversationList
   public long getItemId(@NonNull Cursor cursor) {
     ThreadRecord  record  = getThreadRecord(cursor);
 
-    return Conversions.byteArrayToLong(digest.digest(record.getRecipient().getAddress().serialize().getBytes()));
+    return Conversions.byteArrayToLong(digest.digest(record.getRecipient().getId().serialize().getBytes()));
   }
 
   @Override

@@ -17,30 +17,23 @@
 package org.thoughtcrime.securesms.contacts;
 
 import android.accounts.Account;
-import android.annotation.SuppressLint;
 import android.content.ContentProviderOperation;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.OperationApplicationException;
 import android.database.Cursor;
-import android.database.CursorWrapper;
-import android.database.MatrixCursor;
-import android.database.MergeCursor;
 import android.net.Uri;
-import android.os.Build;
 import android.os.RemoteException;
 import android.provider.BaseColumns;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.RawContacts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import android.text.TextUtils;
-import android.util.Pair;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 
@@ -62,18 +55,6 @@ public class ContactsDatabase {
   private static final String CONTACT_MIMETYPE = "vnd.android.cursor.item/vnd.org.thoughtcrime.securesms.contact";
   private static final String CALL_MIMETYPE    = "vnd.android.cursor.item/vnd.org.thoughtcrime.securesms.call";
   private static final String SYNC             = "__TS";
-
-  static final String NAME_COLUMN         = "name";
-  static final String NUMBER_COLUMN       = "number";
-  static final String NUMBER_TYPE_COLUMN  = "number_type";
-  static final String LABEL_COLUMN        = "label";
-  static final String CONTACT_TYPE_COLUMN = "contact_type";
-
-  static final int NORMAL_TYPE  = 0;
-  static final int PUSH_TYPE    = 1;
-  static final int NEW_TYPE     = 2;
-  static final int RECENT_TYPE  = 3;
-  static final int DIVIDER_TYPE = 4;
 
   private final Context context;
 
@@ -148,109 +129,6 @@ public class ContactsDatabase {
     if (!operations.isEmpty()) {
       applyOperationsInBatches(context.getContentResolver(), ContactsContract.AUTHORITY, operations, 50);
     }
-  }
-
-  @SuppressLint("Recycle")
-  public @NonNull Cursor querySystemContacts(@Nullable String filter) {
-    Uri uri;
-
-    if (!TextUtils.isEmpty(filter)) {
-      uri = Uri.withAppendedPath(ContactsContract.CommonDataKinds.Phone.CONTENT_FILTER_URI, Uri.encode(filter));
-    } else {
-      uri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI;
-    }
-
-    if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-      uri = uri.buildUpon().appendQueryParameter(ContactsContract.REMOVE_DUPLICATE_ENTRIES, "true").build();
-    }
-
-    String[] projection = new String[]{ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME,
-                                       ContactsContract.CommonDataKinds.Phone.NUMBER,
-                                       ContactsContract.CommonDataKinds.Phone.TYPE,
-                                       ContactsContract.CommonDataKinds.Phone.LABEL};
-
-    String sort = ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + " COLLATE LOCALIZED ASC";
-
-    Map<String, String> projectionMap = new HashMap<String, String>() {{
-      put(NAME_COLUMN, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME);
-      put(NUMBER_COLUMN, ContactsContract.CommonDataKinds.Phone.NUMBER);
-      put(NUMBER_TYPE_COLUMN, ContactsContract.CommonDataKinds.Phone.TYPE);
-      put(LABEL_COLUMN, ContactsContract.CommonDataKinds.Phone.LABEL);
-    }};
-
-    String formattedNumber = "REPLACE(REPLACE(REPLACE(REPLACE(data1,' ',''),'-',''),'(',''),')','')";
-    String excludeSelection = "(" + formattedNumber +" NOT IN " +
-            "(SELECT data1 FROM view_data WHERE "+formattedNumber+" = data1) " +
-            "OR "+formattedNumber+" = data1)" +
-            "AND " + formattedNumber + "NOT IN (SELECT "+formattedNumber+" FROM view_data where mimetype = '"+CONTACT_MIMETYPE+"')" ;
-
-    String fallbackSelection = ContactsContract.Data.SYNC2 + " IS NULL OR " + ContactsContract.Data.SYNC2 + " != '" + SYNC + "'";
-
-    Cursor cursor;
-
-    try {
-      cursor = context.getContentResolver().query(uri, projection, excludeSelection, null, sort);
-    } catch (Exception e) {
-      Log.w(TAG, e);
-      cursor = context.getContentResolver().query(uri, projection, fallbackSelection, null, sort);
-    }
-
-    return new ProjectionMappingCursor(cursor, projectionMap, new Pair<>(CONTACT_TYPE_COLUMN, NORMAL_TYPE));
-  }
-
-  @SuppressLint("Recycle")
-  public @NonNull Cursor queryTextSecureContacts(String filter) {
-    String[] projection = new String[] {ContactsContract.Contacts.DISPLAY_NAME,
-                                        ContactsContract.Data.DATA1};
-
-    String  sort = ContactsContract.Contacts.DISPLAY_NAME + " COLLATE LOCALIZED ASC";
-
-    Map<String, String> projectionMap = new HashMap<String, String>(){{
-      put(NAME_COLUMN, ContactsContract.Contacts.DISPLAY_NAME);
-      put(NUMBER_COLUMN, ContactsContract.Data.DATA1);
-    }};
-
-    Cursor cursor;
-
-    if (TextUtils.isEmpty(filter)) {
-      cursor = context.getContentResolver().query(ContactsContract.Data.CONTENT_URI,
-                                                  projection,
-                                                  ContactsContract.Data.MIMETYPE + " = ?",
-                                                  new String[] {CONTACT_MIMETYPE},
-                                                  sort);
-    } else {
-      cursor = context.getContentResolver().query(ContactsContract.Data.CONTENT_URI,
-                                                  projection,
-                                                  ContactsContract.Data.MIMETYPE + " = ? AND (" + ContactsContract.Contacts.DISPLAY_NAME + " LIKE ? OR " + ContactsContract.Data.DATA1 + " LIKE ?)",
-                                                  new String[] {CONTACT_MIMETYPE,
-                                                                "%" + filter + "%", "%" + filter + "%"},
-                                                  sort);
-
-      if (context.getString(R.string.note_to_self).toLowerCase().contains(filter.toLowerCase())) {
-        Optional<SystemContactInfo> self      = getSystemContactInfo(Address.fromSerialized(TextSecurePreferences.getLocalNumber(context)));
-        boolean                     shouldAdd = true;
-
-        if (self.isPresent()) {
-          boolean nameMatch   = self.get().name != null && self.get().name.toLowerCase().contains(filter.toLowerCase());
-          boolean numberMatch = self.get().number != null && self.get().number.contains(filter);
-
-          shouldAdd = !nameMatch && !numberMatch;
-        }
-
-        if (shouldAdd) {
-          MatrixCursor selfCursor = new MatrixCursor(projection);
-          selfCursor.addRow(new Object[]{ context.getString(R.string.note_to_self), TextSecurePreferences.getLocalNumber(context)});
-
-          cursor = cursor == null ? selfCursor : new MergeCursor(new Cursor[]{ cursor, selfCursor });
-        }
-      }
-    }
-
-    return new ProjectionMappingCursor(cursor, projectionMap,
-                                       new Pair<>(LABEL_COLUMN, "TextSecure"),
-                                       new Pair<>(NUMBER_TYPE_COLUMN, 0),
-                                       new Pair<>(CONTACT_TYPE_COLUMN, PUSH_TYPE));
-
   }
 
   public @Nullable Cursor getNameDetails(long contactId) {
@@ -484,7 +362,7 @@ public class ContactsDatabase {
       cursor = context.getContentResolver().query(currentContactsUri, projection, null, null, null);
 
       while (cursor != null && cursor.moveToNext()) {
-        Address currentAddress              = Address.fromExternal(context, cursor.getString(1));
+        Address currentAddress              = Address.fromSerialized(PhoneNumberFormatter.get(context).format(cursor.getString(1)));
         long    rawContactId                = cursor.getLong(0);
         long    contactId                   = cursor.getLong(3);
         String  supportsVoice               = cursor.getString(2);
@@ -518,7 +396,7 @@ public class ContactsDatabase {
 
       while (numberCursor != null && numberCursor.moveToNext()) {
         String  systemNumber  = numberCursor.getString(0);
-        Address systemAddress = Address.fromExternal(context, systemNumber);
+        Address systemAddress = Address.fromSerialized(PhoneNumberFormatter.get(context).format(systemNumber));
 
         if (systemAddress.equals(address)) {
           idCursor = context.getContentResolver().query(RawContacts.CONTENT_URI,
@@ -569,105 +447,6 @@ public class ContactsDatabase {
     List<List<ContentProviderOperation>> batches = Util.chunk(operations, batchSize);
     for (List<ContentProviderOperation> batch : batches) {
       contentResolver.applyBatch(authority, new ArrayList<>(batch));
-    }
-  }
-
-  private static class ProjectionMappingCursor extends CursorWrapper {
-
-    private final Map<String, String>    projectionMap;
-    private final Pair<String, Object>[] extras;
-
-    @SafeVarargs
-    ProjectionMappingCursor(Cursor cursor,
-                            Map<String, String> projectionMap,
-                            Pair<String, Object>... extras)
-    {
-      super(cursor);
-      this.projectionMap = projectionMap;
-      this.extras        = extras;
-    }
-
-    @Override
-    public int getColumnCount() {
-      return super.getColumnCount() + extras.length;
-    }
-
-    @Override
-    public int getColumnIndex(String columnName) {
-      for (int i=0;i<extras.length;i++) {
-        if (extras[i].first.equals(columnName)) {
-          return super.getColumnCount() + i;
-        }
-      }
-
-      return super.getColumnIndex(projectionMap.get(columnName));
-    }
-
-    @Override
-    public int getColumnIndexOrThrow(String columnName) throws IllegalArgumentException {
-      int index = getColumnIndex(columnName);
-
-      if (index == -1) throw new IllegalArgumentException("Bad column name!");
-      else             return index;
-    }
-
-    @Override
-    public String getColumnName(int columnIndex) {
-      int baseColumnCount = super.getColumnCount();
-
-      if (columnIndex >= baseColumnCount) {
-        int offset = columnIndex - baseColumnCount;
-        return extras[offset].first;
-      }
-
-      return getReverseProjection(super.getColumnName(columnIndex));
-    }
-
-    @Override
-    public String[] getColumnNames() {
-      String[] names    = super.getColumnNames();
-      String[] allNames = new String[names.length + extras.length];
-
-      for (int i=0;i<names.length;i++) {
-        allNames[i] = getReverseProjection(names[i]);
-      }
-
-      for (int i=0;i<extras.length;i++) {
-        allNames[names.length + i] = extras[i].first;
-      }
-
-      return allNames;
-    }
-
-    @Override
-    public int getInt(int columnIndex) {
-      if (columnIndex >= super.getColumnCount()) {
-        int offset = columnIndex - super.getColumnCount();
-        return (Integer)extras[offset].second;
-      }
-
-      return super.getInt(columnIndex);
-    }
-
-    @Override
-    public String getString(int columnIndex) {
-      if (columnIndex >= super.getColumnCount()) {
-        int offset = columnIndex - super.getColumnCount();
-        return (String)extras[offset].second;
-      }
-
-      return super.getString(columnIndex);
-    }
-
-
-    private @Nullable String getReverseProjection(String columnName) {
-      for (Map.Entry<String, String> entry : projectionMap.entrySet()) {
-        if (entry.getValue().equals(columnName)) {
-          return entry.getKey();
-        }
-      }
-
-      return null;
     }
   }
 

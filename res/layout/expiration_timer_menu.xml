@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                style="?android:attr/actionButtonStyle"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:clickable="true"
-                android:focusable="true"
-                android:gravity="center">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="?android:attr/actionButtonStyle"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:focusable="true"
+    android:gravity="center">
 
     <ImageView
             android:id="@+id/menu_badge_icon"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_gravity="center"
-            android:src="@drawable/ic_timer"
+            app:srcCompat="@drawable/ic_timer_conversation_24"
             android:scaleType="fitCenter"/>
 
     <TextView
@@ -23,6 +24,6 @@
             android:gravity="center_horizontal|bottom"
             android:paddingBottom="3dp"
             android:paddingTop="1dp"
-            android:textColor="@android:color/white"
+            android:textColor="?conversation_subtitle_color"
             android:textSize="10sp" />
 </FrameLayout>

@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-    <color name="signal_primary">#ff2090ea</color>
+    <color name="signal_primary">@color/core_blue</color>
     <color name="signal_primary_dark">#ff1c7ac5</color>
     <color name="signal_primary_alpha33">#552090ea</color>
     <color name="signal_primary_alpha_focus">#882090ea</color>
@@ -9,42 +9,22 @@
     <color name="textsecure_primary_dark">@color/signal_primary_dark</color>
     <color name="textsecure_primary_alpha33">@color/signal_primary_alpha33</color>
 
-    <color name="white">#ffffffff</color>
-    <color name="black">#ff000000</color>
-    <color name="gray5">#ffeeeeee</color>
-    <color name="gray10">#ffdddddd</color>
-    <color name="gray12">#ffe0e0e0</color>
-    <color name="gray13">#ffababab</color>
-    <color name="gray20">#ffcccccc</color>
-    <color name="gray27">#ffbbbbbb</color>
-    <color name="gray50">#ff808080</color>
-    <color name="gray65">#ff595959</color>
-    <color name="gray70">#ff4d4d4d</color>
-    <color name="gray78">#ff383838</color>
-    <color name="gray95">#ff111111</color>
+    <color name="white">@color/core_white</color>
+    <color name="black">@color/core_black</color>
 
-    <color name="transparent_black_05">#05000000</color>
-    <color name="transparent_black_10">#10000000</color>
-    <color name="transparent_black_20">#20000000</color>
-    <color name="transparent_black_30">#30000000</color>
-    <color name="transparent_black_40">#40000000</color>
-    <color name="transparent_black_70">#70000000</color>
-    <color name="transparent_black_90">#90000000</color>
+    <color name="transparent_black_05">#0D000000</color>
+    <color name="transparent_black_20">#33000000</color>
+    <color name="transparent_black_40">#66000000</color>
+    <color name="transparent_black_60">#99000000</color>
 
-    <color name="transparent_white_05">#05ffffff</color>
-    <color name="transparent_white_10">#10ffffff</color>
-    <color name="transparent_white_20">#20ffffff</color>
-    <color name="transparent_white_30">#30ffffff</color>
-    <color name="transparent_white_40">#40ffffff</color>
-    <color name="transparent_white_60">#60ffffff</color>
-    <color name="transparent_white_70">#70ffffff</color>
-    <color name="transparent_white_aa">#aaffffff</color>
-    <color name="transparent_white_bb">#bbffffff</color>
-    <color name="transparent_white_dd">#ddffffff</color>
+    <color name="transparent_white_20">#33ffffff</color>
+    <color name="transparent_white_60">#99ffffff</color>
+    <color name="transparent_white_80">#ccffffff</color>
+    <color name="transparent_white_90">#e6ffffff</color>
 
     <color name="conversation_compose_divider">#32000000</color>
 
-    <color name="action_mode_status_bar">@color/gray65</color>
+    <color name="action_mode_status_bar">@color/core_grey_50</color>
     <color name="touch_highlight">#400099cc</color>
 
     <color name="device_link_item_background_light">#ffffffff</color>
@@ -68,6 +48,9 @@
 
     <color name="logsubmit_confirmation_background">#44ff2d00</color>
 
-    <color name="avatar_background">@color/transparent_black_90</color>
+    <color name="avatar_background">@color/transparent_black_40</color>
+
+    <color name="media_preview_bar_background">#90010101</color>
+    <color name="media_preview_bar_shade_center">#88000000</color>
 
 </resources>

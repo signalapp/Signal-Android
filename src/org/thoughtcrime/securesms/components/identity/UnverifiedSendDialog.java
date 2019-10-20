@@ -45,7 +45,7 @@ public class UnverifiedSendDialog extends AlertDialog.Builder implements DialogI
       protected Void doInBackground(Void... params) {
         synchronized (SESSION_LOCK) {
           for (IdentityRecord identityRecord : untrustedRecords) {
-            identityDatabase.setVerified(identityRecord.getAddress(),
+            identityDatabase.setVerified(identityRecord.getRecipientId(),
                                          identityRecord.getIdentityKey(),
                                          IdentityDatabase.VerifiedStatus.DEFAULT);
           }

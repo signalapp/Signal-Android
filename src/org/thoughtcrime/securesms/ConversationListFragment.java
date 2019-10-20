@@ -34,7 +34,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import androidx.fragment.app.Fragment;
 import androidx.loader.app.LoaderManager;
@@ -76,6 +75,7 @@ import org.thoughtcrime.securesms.components.reminder.UnauthorizedReminder;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.loaders.ConversationListLoader;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.ReminderUpdateEvent;
 import org.thoughtcrime.securesms.jobs.ServiceOutageDetectionJob;
 import org.thoughtcrime.securesms.mediasend.MediaSendActivity;
@@ -154,6 +154,7 @@ public class ConversationListFragment extends Fragment
     list.setHasFixedSize(true);
     list.setLayoutManager(new LinearLayoutManager(getActivity()));
     list.setItemAnimator(new DeleteItemAnimator());
+    list.addOnScrollListener(new ScrollListener());
 
     new ItemTouchHelper(new ArchiveListenerCallback()).attachToRecyclerView(list);
 
@@ -170,7 +171,7 @@ public class ConversationListFragment extends Fragment
       Permissions.with(requireActivity())
                  .request(Manifest.permission.CAMERA)
                  .ifNecessary()
-                 .withRationaleDialog(getString(R.string.ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera), R.drawable.ic_photo_camera_white_48dp)
+                 .withRationaleDialog(getString(R.string.ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera), R.drawable.ic_camera_solid_24)
                  .withPermanentDenialDialog(getString(R.string.ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video))
                  .onAllGranted(() -> startActivity(MediaSendActivity.buildCameraFirstIntent(requireActivity())))
                  .onAnyDenied(() -> Toast.makeText(requireContext(), R.string.ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video, Toast.LENGTH_LONG).show())
@@ -224,7 +225,7 @@ public class ConversationListFragment extends Fragment
         } else if (ExpiredBuildReminder.isEligible()) {
           return Optional.of(new ExpiredBuildReminder(context));
         } else if (ServiceOutageReminder.isEligible(context)) {
-          ApplicationContext.getInstance(context).getJobManager().add(new ServiceOutageDetectionJob());
+          ApplicationDependencies.getJobManager().add(new ServiceOutageDetectionJob());
           return Optional.of(new ServiceOutageReminder(context));
         } else if (OutdatedBuildReminder.isEligible()) {
           return Optional.of(new OutdatedBuildReminder(context));
@@ -372,7 +373,7 @@ public class ConversationListFragment extends Fragment
   }
 
   private void handleCreateConversation(long threadId, Recipient recipient, int distributionType, long lastSeen) {
-    ((ConversationSelectedListener)getActivity()).onCreateConversation(threadId, recipient, distributionType, lastSeen);
+    ((Controller)getActivity()).onCreateConversation(threadId, recipient, distributionType, lastSeen);
   }
 
   @Override
@@ -440,12 +441,14 @@ public class ConversationListFragment extends Fragment
 
   @Override
   public void onSwitchToArchive() {
-    ((ConversationSelectedListener)getActivity()).onSwitchToArchive();
+    ((Controller)getActivity()).onSwitchToArchive();
   }
 
-  public interface ConversationSelectedListener {
+  public interface Controller {
     void onCreateConversation(long threadId, Recipient recipient, int distributionType, long lastSeen);
     void onSwitchToArchive();
+    void onListScrolledToTop();
+    void onListScrolledAwayFromTop();
 }
 
   @Override
@@ -461,6 +464,10 @@ public class ConversationListFragment extends Fragment
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
       getActivity().getWindow().setStatusBarColor(getResources().getColor(R.color.action_mode_status_bar));
+    }
+
+    if (Build.VERSION.SDK_INT >= 23) {
+      getActivity().getWindow().getDecorView().setSystemUiVisibility(0);
     }
 
     return true;
@@ -490,6 +497,10 @@ public class ConversationListFragment extends Fragment
       TypedArray color = getActivity().getTheme().obtainStyledAttributes(new int[] {android.R.attr.statusBarColor});
       getActivity().getWindow().setStatusBarColor(color.getColor(0, Color.BLACK));
       color.recycle();
+    }
+
+    if (Build.VERSION.SDK_INT >= 23) {
+      getActivity().getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
     }
 
     actionMode = null;
@@ -616,6 +627,17 @@ public class ConversationListFragment extends Fragment
         viewHolder.itemView.setTranslationX(dX);
       } else {
         super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+      }
+    }
+  }
+
+  private class ScrollListener extends RecyclerView.OnScrollListener {
+    @Override
+    public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+      if (recyclerView.canScrollVertically(-1)) {
+        ((Controller) getActivity()).onListScrolledAwayFromTop();
+      } else {
+        ((Controller) getActivity()).onListScrolledToTop();
       }
     }
   }

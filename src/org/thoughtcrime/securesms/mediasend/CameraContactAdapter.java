@@ -172,7 +172,7 @@ class CameraContactAdapter extends SectionedRecyclerViewAdapter<String, CameraCo
       if (localPosition == 0) {
         return idGenerator.getId(tag);
       } else {
-        return idGenerator.getId(recipients.get(localPosition - 1).getAddress().serialize());
+        return idGenerator.getId(recipients.get(localPosition - 1).getId().serialize());
       }
     }
 

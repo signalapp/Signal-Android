@@ -36,11 +36,12 @@ abstract class MigrationJob extends Job {
   @Override
   public @NonNull Result run() {
     try {
+      Log.i(TAG, "About to run " + getClass().getSimpleName());
       performMigration();
       return Result.success();
     } catch (RuntimeException e) {
       Log.w(TAG, JobLogger.format(this, "Encountered a runtime exception."), e);
-      throw e;
+      throw new FailedMigrationError(e);
     } catch (Exception e) {
       if (shouldRetry(e)) {
         Log.w(TAG, JobLogger.format(this, "Encountered a retryable exception."), e);
@@ -54,7 +55,7 @@ abstract class MigrationJob extends Job {
 
   @Override
   public void onCanceled() {
-    throw new AssertionError("This job should never fail.");
+    throw new AssertionError("This job should never fail. " + getClass().getSimpleName());
   }
 
   /**

@@ -1,15 +1,31 @@
 package org.thoughtcrime.securesms.util;
 
 
+import android.text.TextUtils;
+
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mockito;
+import org.mockito.stubbing.Answer;
+import org.powermock.api.mockito.PowerMockito;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
 
 import static junit.framework.Assert.assertEquals;
 
+@RunWith(PowerMockRunner.class)
+@PrepareForTest(TextUtils.class)
 public class DelimiterUtilTest {
 
   @Before
-  public void setup() {}
+  public void setup() {
+    PowerMockito.mockStatic(TextUtils.class);
+    PowerMockito.when(TextUtils.isEmpty(Mockito.anyString())).thenAnswer((Answer<Boolean>) invocation -> {
+      if (invocation.getArguments()[0] == null) return true;
+      return ((String) invocation.getArguments()[0]).isEmpty();
+    });
+  }
 
   @Test
   public void testEscape() {

@@ -5,7 +5,7 @@
     <item
             android:id="@+id/action_filter_search"
             android:title=" "
-            app:actionViewClass="androidx.appcompat.widget.SearchView"
+            app:actionViewClass="org.thoughtcrime.securesms.components.SearchView"
             app:showAsAction="collapseActionView|always" />
 
 </menu>

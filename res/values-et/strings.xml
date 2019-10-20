@@ -11,6 +11,8 @@
   <string name="AbstractNotificationBuilder_new_message">Uus sõnum</string>
   <!--AlbumThumbnailView-->
   <string name="AlbumThumbnailView_plus">\+%d</string>
+  <!--ApplicationMigrationActivity-->
+  <string name="ApplicationMigrationActivity__signal_is_updating">Signal uueneb...</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Hetkel: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Sa pole veel salaväljendit määranud!</string>
@@ -223,6 +225,8 @@
   <string name="ConversationFragment_quoted_message_not_found">Originaalsõnumit ei leitud</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Originaalsõnum pole enam saadaval</string>
   <string name="ConversationFragment_failed_to_open_message">Sõnumi avamine ebaõnnestus</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Sa saad kiiresti vastamiseks mistahes sõnumil paremale viibata</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Sa saad kiiresti vastamiseks mistahes sõnumil vasakule viibata</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Sinu seadmesse pole installitud brauserit.</string>
   <!--ConversationListFragment-->
@@ -268,7 +272,7 @@
   <string name="CustomDefaultPreference_none">Puudub</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Nüüd</string>
-  <string name="DateUtils_minutes_ago">%d min</string>
+  <string name="DateUtils_minutes_ago">%dm</string>
   <string name="DateUtils_today">Täna</string>
   <string name="DateUtils_yesterday">Eile</string>
   <!--DeliveryStatus-->
@@ -575,9 +579,10 @@
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Sisesta kood, mulle saatsime numbrile %s</string>
   <string name="RegistrationActivity_call">Helista</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_view_photo">Vaata pilti</string>
-  <string name="RevealableMessageView_viewed">Vaadatud</string>
   <string name="RevealableMessageView_photo">Foto</string>
+  <string name="RevealableMessageView_video">Video</string>
+  <string name="RevealableMessageView_viewed">Vaadatud</string>
+  <string name="RevealableMessageView_outgoing_media">Meedia</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Pildi muutuste salvestamine ebaõnnestus</string>
   <!--Search-->
@@ -674,6 +679,7 @@
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Lõikelaualt ei leitud turvanumbrit, millega võrrelda</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal vajab kaamera luba, et skanneerida QR-koodi, ent see on püsivalt keelatud. Palun jätka rakenduse seadetes, vali \"Load\" ja luba \"Kaamera\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">QR-koodi ei saa skanneerida ilma kaamera loata</string>
+  <!--ViewOnceMessageActivity-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Halb krüptitud sõnum</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Sõnum krüptitud mitteeksisteeriva sessiooni jaoks</string>
@@ -798,6 +804,7 @@
   <string name="change_passphrase_activity__repeat_new_passphrase">Korda uut salaväljendit</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Sisesta nimi või number</string>
+  <string name="contact_selection_activity__invite_to_signal">Kutsu Signalisse</string>
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Tühjenda sisestatud tekst</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Kuva klaviatuuri</string>
@@ -843,13 +850,13 @@
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Kontakti foto</string>
   <!--audio_view-->
-  <string name="audio_view__play_accessibility_description">Esita</string>
-  <string name="audio_view__pause_accessibility_description">Paus</string>
+  <string name="audio_view__play_pause_accessibility_description">Esita ... Peata</string>
   <string name="audio_view__download_accessibility_description">Laadi alla</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">Heli</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Foto</string>
+  <string name="QuoteView_media">Meediasõnum</string>
   <string name="QuoteView_sticker">Kleeps</string>
   <string name="QuoteView_document">Dokument</string>
   <string name="QuoteView_you">Sina</string>
@@ -941,8 +948,6 @@
   <string name="database_migration_activity__import">Impordi</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">See võib aega võtta. Palun ole kannatlik, me anname teada kui import on valmis.</string>
   <string name="database_migration_activity__importing">IMPORTIMINE</string>
-  <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">Uuendan andmebaasi</string>
   <string name="import_fragment__import_system_sms_database">Impordi süsteemi SMS-andmebaas</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Impordi andmebaas vaikimisi süsteemi sõnumirakendusest</string>
   <string name="import_fragment__import_plaintext_backup">Impordi lihtteksti varundus</string>
@@ -1062,10 +1067,6 @@
   <string name="arrays__high">Kõrge</string>
   <string name="arrays__max">Maksimaalne</string>
   <!--plurals.xml-->
-  <plurals name="hours_ago">
-    <item quantity="one">%d tund</item>
-    <item quantity="other">%d tundi</item>
-  </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">SMS ja MMS</string>
   <string name="preferences__pref_all_sms_title">Saa kõiki SMSe</string>
@@ -1133,6 +1134,7 @@
   <string name="preferences__linked_devices">Lingitud seadmed</string>
   <string name="preferences__light_theme">Hele</string>
   <string name="preferences__dark_theme">Tume</string>
+  <string name="preferences__system_theme">Süsteem</string>
   <string name="preferences__appearance">Välimus</string>
   <string name="preferences__theme">Teema</string>
   <string name="preferences__default">Vaikimisi</string>
@@ -1209,6 +1211,7 @@
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Võta valitud arhiivist välja</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Seadete otsetee</string>
+  <string name="conversation_list_search_description">Otsi</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Kontakti foto pilt</string>
   <string name="conversation_list_item_view__archived">Arhiveeritud</string>
@@ -1335,6 +1338,7 @@
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Palun sisesta kinnituskood, mille saatsime numbrile %s.</string>
   <string name="RegistrationActivity_wrong_number">Vale number</string>
   <string name="RegistrationActivity_call_me_instead_available_in">Helista mulle selle asemel \n (Saadaval vahemikus %1$02d:%2$02d)</string>
+  <string name="RegistrationActivity_contact_signal_support">Võta ühendust Signal-i kasutajatoega</string>
   <string name="BackupUtil_never">Mitte kunagi</string>
   <string name="BackupUtil_unknown">Tundmatu</string>
   <string name="preferences_app_protection__screen_lock">Ekraanilukk</string>

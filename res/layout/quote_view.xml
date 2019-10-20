@@ -178,6 +178,6 @@
         android:layout_gravity="top|end"
         android:background="@drawable/dismiss_background"
         android:src="@drawable/ic_close_white_18dp"
-        android:tint="@color/gray70" />
+        android:tint="@color/core_grey_70" />
 
 </merge>

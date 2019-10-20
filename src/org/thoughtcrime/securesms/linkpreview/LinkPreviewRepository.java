@@ -12,6 +12,7 @@ import com.bumptech.glide.request.FutureTarget;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.UriAttachment;
+import org.thoughtcrime.securesms.blurhash.BlurHash;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.giph.model.ChunkedImageUrl;
@@ -174,6 +175,7 @@ public class LinkPreviewRepository {
                                                                        false,
                                                                        false,
                                                                        null,
+                                                                       null,
                                                                        null));
 
         callback.onComplete(thumbnail);
@@ -245,6 +247,7 @@ public class LinkPreviewRepository {
                                                        null,
                                                        false,
                                                        false,
+                                                       null,
                                                        null,
                                                        null));
 

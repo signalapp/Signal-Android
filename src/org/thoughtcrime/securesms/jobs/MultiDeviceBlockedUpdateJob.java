@@ -73,10 +73,10 @@ public class MultiDeviceBlockedUpdateJob extends BaseJob {
       Recipient recipient;
 
       while ((recipient = reader.getNext()) != null) {
-        if (recipient.isGroupRecipient()) {
-          blockedGroups.add(GroupUtil.getDecodedId(recipient.getAddress().toGroupString()));
+        if (recipient.isGroup()) {
+          blockedGroups.add(GroupUtil.getDecodedId(recipient.requireAddress().toGroupString()));
         } else {
-          blockedIndividuals.add(recipient.getAddress().serialize());
+          blockedIndividuals.add(recipient.requireAddress().serialize());
         }
       }
 

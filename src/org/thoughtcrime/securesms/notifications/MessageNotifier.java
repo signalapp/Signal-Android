@@ -34,6 +34,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.service.notification.StatusBarNotification;
 import androidx.annotation.NonNull;
+import androidx.annotation.StringRes;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import android.text.TextUtils;
@@ -51,10 +52,12 @@ import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.IncomingMessageObserver;
 import org.thoughtcrime.securesms.service.KeyCachingService;
+import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.SpanUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -110,7 +113,7 @@ public class MessageNotifier {
       sendInThreadNotification(context, recipient);
     } else {
       Intent intent = new Intent(context, ConversationActivity.class);
-      intent.putExtra(ConversationActivity.ADDRESS_EXTRA, recipient.getAddress());
+      intent.putExtra(ConversationActivity.RECIPIENT_EXTRA, recipient.getId());
       intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, threadId);
       intent.setData((Uri.parse("custom://" + System.currentTimeMillis())));
 
@@ -444,8 +447,8 @@ public class MessageNotifier {
     while ((record = reader.getNext()) != null) {
       long         id                    = record.getId();
       boolean      mms                   = record.isMms() || record.isMmsNotification();
-      Recipient    recipient             = record.getIndividualRecipient();
-      Recipient    conversationRecipient = record.getRecipient();
+      Recipient    recipient             = record.getIndividualRecipient().resolve();
+      Recipient    conversationRecipient = record.getRecipient().resolve();
       long         threadId              = record.getThreadId();
       CharSequence body                  = record.getDisplayBody(context);
       Recipient    threadRecipients      = null;
@@ -466,7 +469,7 @@ public class MessageNotifier {
         body = SpanUtil.italic(context.getString(R.string.MessageNotifier_sticker));
         slideDeck = ((MmsMessageRecord) record).getSlideDeck();
       } else if (record.isMms() && ((MmsMessageRecord) record).isViewOnce()) {
-        body = SpanUtil.italic(context.getString(R.string.MessageNotifier_disappearing_photo));
+        body = SpanUtil.italic(context.getString(getViewOnceDescription((MmsMessageRecord) record)));
       } else if (record.isMms() && TextUtils.isEmpty(body) && !((MmsMessageRecord) record).getSlideDeck().getSlides().isEmpty()) {
         body = SpanUtil.italic(context.getString(R.string.MessageNotifier_media_message));
         slideDeck = ((MediaMmsMessageRecord)record).getSlideDeck();
@@ -484,6 +487,24 @@ public class MessageNotifier {
 
     reader.close();
     return notificationState;
+  }
+
+  private static @StringRes int getViewOnceDescription(@NonNull MmsMessageRecord messageRecord) {
+    final String contentType = getMessageContentType(messageRecord);
+
+    if (MediaUtil.isImageType(contentType)) {
+      return R.string.MessageNotifier_disappearing_photo;
+    }
+    return R.string.MessageNotifier_disappearing_video;
+  }
+
+  private static String getMessageContentType(@NonNull MmsMessageRecord messageRecord) {
+    Slide thumbnailSlide = messageRecord.getSlideDeck().getThumbnailSlide();
+    if (thumbnailSlide == null) {
+      Log.w(TAG, "Could not distinguish view-once content type from message record, defaulting to JPEG");
+      return MediaUtil.IMAGE_JPEG;
+    }
+    return thumbnailSlide.getContentType();
   }
 
   private static void updateBadge(Context context, int count) {

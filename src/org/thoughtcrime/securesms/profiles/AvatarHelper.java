@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.database.Address;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -21,7 +22,7 @@ public class AvatarHelper {
 
   private static final String AVATAR_DIRECTORY = "avatars";
 
-  public static InputStream getInputStreamFor(@NonNull Context context, @NonNull Address address)
+  public static InputStream getInputStreamFor(@NonNull Context context, @NonNull RecipientId address)
       throws IOException
   {
     return new FileInputStream(getAvatarFile(context, address));
@@ -35,24 +36,24 @@ public class AvatarHelper {
     else                 return Stream.of(results).toList();
   }
 
-  public static void delete(@NonNull Context context, @NonNull Address address) {
-    getAvatarFile(context, address).delete();
+  public static void delete(@NonNull Context context, @NonNull RecipientId recipientId) {
+    getAvatarFile(context, recipientId).delete();
   }
 
-  public static @NonNull File getAvatarFile(@NonNull Context context, @NonNull Address address) {
+  public static @NonNull File getAvatarFile(@NonNull Context context, @NonNull RecipientId recipientId) {
     File avatarDirectory = new File(context.getFilesDir(), AVATAR_DIRECTORY);
     avatarDirectory.mkdirs();
 
-    return new File(avatarDirectory, new File(address.serialize()).getName());
+    return new File(avatarDirectory, new File(recipientId.serialize()).getName());
   }
 
-  public static void setAvatar(@NonNull Context context, @NonNull Address address, @Nullable byte[] data)
+  public static void setAvatar(@NonNull Context context, @NonNull RecipientId recipientId, @Nullable byte[] data)
     throws IOException
   {
     if (data == null)  {
-      delete(context, address);
+      delete(context, recipientId);
     } else {
-      FileOutputStream out = new FileOutputStream(getAvatarFile(context, address));
+      FileOutputStream out = new FileOutputStream(getAvatarFile(context, recipientId));
       out.write(data);
       out.close();
     }

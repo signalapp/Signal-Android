@@ -38,7 +38,7 @@ public class PushContactSelectionActivity extends ContactSelectionActivity {
     getIntent().putExtra(ContactSelectionListFragment.MULTI_SELECT, true);
     super.onCreate(icicle, ready);
 
-    getToolbar().setNavigationIcon(R.drawable.ic_check_white_24dp);
+    getToolbar().setNavigationIcon(R.drawable.ic_check_24);
     getToolbar().setNavigationOnClickListener(v -> {
       Intent resultIntent = getIntent();
       List<String> selectedContacts = contactsFragment.getSelectedContacts();

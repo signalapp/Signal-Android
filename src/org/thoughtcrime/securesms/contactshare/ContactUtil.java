@@ -22,10 +22,12 @@ import org.thoughtcrime.securesms.components.emoji.EmojiStrings;
 import org.thoughtcrime.securesms.contactshare.Contact.Email;
 import org.thoughtcrime.securesms.contactshare.Contact.Phone;
 import org.thoughtcrime.securesms.contactshare.Contact.PostalAddress;
-import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.PartAuthority;
+import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
+import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.SpanUtil;
 import org.thoughtcrime.securesms.util.Util;
 
@@ -104,7 +106,7 @@ public final class ContactUtil {
   private static @NonNull String getPrettyPhoneNumber(@NonNull String phoneNumber, @NonNull Locale fallbackLocale) {
     PhoneNumberUtil util = PhoneNumberUtil.getInstance();
     try {
-      PhoneNumber parsed = util.parse(phoneNumber, fallbackLocale.getISO3Country());
+      PhoneNumber parsed = util.parse(phoneNumber, fallbackLocale.getCountry());
       return util.format(parsed, PhoneNumberUtil.PhoneNumberFormat.INTERNATIONAL);
     } catch (NumberParseException e) {
       return phoneNumber;
@@ -112,8 +114,7 @@ public final class ContactUtil {
   }
 
   public static @NonNull String getNormalizedPhoneNumber(@NonNull Context context, @NonNull String number) {
-    Address address = Address.fromExternal(context, number);
-    return address.serialize();
+    return PhoneNumberFormatter.get(context).format(number);
   }
 
   @MainThread
@@ -122,7 +123,7 @@ public final class ContactUtil {
       CharSequence[] values = new CharSequence[choices.size()];
 
       for (int i = 0; i < values.length; i++) {
-        values[i] = getPrettyPhoneNumber(choices.get(i).getAddress().toPhoneString(), locale);
+        values[i] = getPrettyPhoneNumber(choices.get(i).requireAddress().toPhoneString(), locale);
       }
 
       new AlertDialog.Builder(context)
@@ -134,8 +135,8 @@ public final class ContactUtil {
     }
   }
 
-  public static List<Recipient> getRecipients(@NonNull Context context, @NonNull Contact contact) {
-    return Stream.of(contact.getPhoneNumbers()).map(phone -> Recipient.from(context, Address.fromExternal(context, phone.getNumber()), true)).toList();
+  public static List<RecipientId> getRecipients(@NonNull Context context, @NonNull Contact contact) {
+    return Stream.of(contact.getPhoneNumbers()).map(phone -> Recipient.external(context, phone.getNumber())).map(Recipient::getId).toList();
   }
 
   @WorkerThread

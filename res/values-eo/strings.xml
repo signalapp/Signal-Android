@@ -11,6 +11,8 @@
   <string name="AbstractNotificationBuilder_new_message">Nova mesaĝo</string>
   <!--AlbumThumbnailView-->
   <string name="AlbumThumbnailView_plus">\+%d</string>
+  <!--ApplicationMigrationActivity-->
+  <string name="ApplicationMigrationActivity__signal_is_updating">Ĝisdatigo de Signal...</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Aktuale: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Vi ankoraŭ ne metis pasfrazon!</string>
@@ -77,6 +79,7 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Eraro dum konservo de bildo.</string>
   <!--CameraXFragment-->
+  <string name="CameraXFragment_tap_for_photo_hold_for_video">Tuŝetu por foto, tuŝadu por videaĵo</string>
   <string name="CameraXFragment_capture_description">Ekkapti</string>
   <string name="CameraXFragment_change_camera_description">Elekti alian fotilon</string>
   <string name="CameraXFragment_open_gallery_description">Malfermi la galerion</string>
@@ -174,6 +177,9 @@
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Por registri bildojn kaj videaĵojn, donu al Signal aliron al la fotilo.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal bezonas la Fotilo-permeson por preni fotojn aŭ videojn, sed ĝi estis porĉiame malakceptita. Bonvolu daŭrigi al la aplikaĵaj agordoj, elekti „Permesoj“, kaj ŝalti „Fotilo“.</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal bezonas la Fotilo-permeson por preni fotojn aŭ videaĵojn</string>
+  <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">Ebligi la permeson pri mikrofono por fari videaĵon kun sono.</string>
+  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Signal bezonas permesojn uzi la mikrofonon por fari videaĵojn, sed ĝi estis porĉiame malakceptita. Bonvolu daŭrigi al la aplikaĵaj agordoj, elekti „Permesoj“, kaj ŝalti „Mikrofono“ kaj „Fotilo“.</string>
+  <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Signal bezonas permesojn uzi la mikrofonon por fari videaĵojn.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal ne povas sendi SMM aŭ MMS, ĉar ĝi ne estas via defaŭlta SMS-aplikaĵo. Ĉu vi volas ŝanĝi tion en via Androida agordon?</string>
   <string name="ConversationActivity_yes">Jes</string>
@@ -223,6 +229,8 @@
   <string name="ConversationFragment_quoted_message_not_found">Origina mesaĝo ne troveblas</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Origina mesaĝo ne plu disponeblas</string>
   <string name="ConversationFragment_failed_to_open_message">Malsukceso malfermi la mesaĝon</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Vi povas ŝovumi dekstren iun mesaĝon por rapide respondi</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Vi povas ŝovumi maldekstren iun mesaĝon por rapide respondi</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Ne estas foliumilo instalata sur via aparato.</string>
   <!--ConversationListFragment-->
@@ -573,11 +581,14 @@
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Entajpu vian telefonnumeron unue</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Vi ricevos konfirman kodon per SMS. Eble via sendrata provizanto pagigos al vi la SMS-on.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Bv. entajpi la kontrolkodon senditan al %s.</string>
+  <string name="RegistrationActivity_phone_number_description">Telefonnumero</string>
+  <string name="RegistrationActivity_country_code_description">Landokodo</string>
   <string name="RegistrationActivity_call">Alvoko</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_view_photo">Vidi foton</string>
-  <string name="RevealableMessageView_viewed">Vidita</string>
   <string name="RevealableMessageView_photo">Foto</string>
+  <string name="RevealableMessageView_video">Videaĵo</string>
+  <string name="RevealableMessageView_viewed">Vidita</string>
+  <string name="RevealableMessageView_outgoing_media">Aŭdvidaĵo</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Malsukcesis konservi bildajn ŝanĝojn</string>
   <!--Search-->
@@ -639,6 +650,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="ThreadRecord_media_message">Aŭdvida mesaĝo</string>
   <string name="ThreadRecord_sticker">Glumarko</string>
   <string name="ThreadRecord_disappearing_photo">Memviŝonta foto</string>
+  <string name="ThreadRecord_disappearing_video">Memviŝonta videaĵo</string>
   <string name="ThreadRecord_s_is_on_signal">%s estas ĉe Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Memviŝontaj mesaĝoj malŝaltita</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Daŭro de memviŝontaj mesaĝoj agordita je %s</string>
@@ -673,6 +685,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Neniu sekuriga numero komparota troveblis en la tondujo</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal bezonas la Fotilo-permeson por skani rapidrespondan (QR) kodon, sed ĝi estis porĉiame malakceptita. Bonvolu daŭrigi al la aplikaĵaj agordoj, elekti „Permesoj“, kaj ŝalti „Fotilo“.</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Ne eblas skani rapidrespondan (QR) kodon sen Fotilo-permeso</string>
+  <!--ViewOnceMessageActivity-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Malbone ĉifrita mesaĝo</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Mesaĝo ĉifrita por neekzistanta seanco</string>
@@ -714,6 +727,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="MessageNotifier_media_message">Aŭdvida mesaĝo</string>
   <string name="MessageNotifier_sticker">Glumarko</string>
   <string name="MessageNotifier_disappearing_photo">Memviŝonta foto</string>
+  <string name="MessageNotifier_disappearing_video">Memviŝonta videaĵo</string>
   <string name="MessageNotifier_reply">Respondi</string>
   <string name="MessageNotifier_signal_message">Signal-mesaĝo</string>
   <string name="MessageNotifier_unsecured_sms">Nesekura SMS</string>
@@ -757,7 +771,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="VideoPlayer_error_playing_video">Eraro dum ludo de videaĵo</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">Por respondi al la alvoko el %s, donu al Signal aliron al via mikrofono.</string>
-  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal bezonas permesojn uzi la mikrofonon kaj motilon por fari aŭ ricevi alvokojn, sed ĝi estis porĉiame malakceptita. Bonvolu daŭrigi al la aplikaĵaj agordoj, elekti „Permesoj“, kaj ŝalti „Mikrofono“ kaj „Fotilo“.</string>
+  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">Signal bezonas permesojn uzi la mikrofonon kaj fotilon por fari aŭ ricevi alvokojn, sed ĝi estis porĉiame malakceptita. Bonvolu daŭrigi al la aplikaĵaj agordoj, elekti „Permesoj“, kaj ŝalti „Mikrofono“ kaj „Fotilo“.</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">Via sekuriga numero pro via interparolo kun %1$s ŝanĝiĝis. Tio povas aŭ signifi, ke iu provas interkapti viajn komunikojn, aŭ ke %2$s simple reinstalis Signal-on.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">Vi certe volos kontroli vian sekurigan numeron kun ĉi tiu kontakto.</string>
@@ -797,6 +811,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="change_passphrase_activity__repeat_new_passphrase">Retajpu novan pasfrazon</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Entajpu nomon aŭ numeron</string>
+  <string name="contact_selection_activity__invite_to_signal">Inviti al Signal</string>
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Viŝi la entajpitan tekston</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Montri la klavaron</string>
@@ -842,13 +857,13 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Kontakta bildo</string>
   <!--audio_view-->
-  <string name="audio_view__play_accessibility_description">Ludi</string>
-  <string name="audio_view__pause_accessibility_description">Paŭzigi</string>
+  <string name="audio_view__play_pause_accessibility_description">Ludi ... Paŭzigi</string>
   <string name="audio_view__download_accessibility_description">Elŝuti</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">Sonaĵo</string>
   <string name="QuoteView_video">Videaĵo</string>
   <string name="QuoteView_photo">Foto</string>
+  <string name="QuoteView_media">Aŭdvida mesaĝo</string>
   <string name="QuoteView_sticker">Glumarko</string>
   <string name="QuoteView_document">Dokumento</string>
   <string name="QuoteView_you">Vi</string>
@@ -940,8 +955,6 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="database_migration_activity__import">Importi</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Tio povas daŭri longe. Bv. pacienci, ni sciigos vin, kiam la importado plenumos.</string>
   <string name="database_migration_activity__importing">IMPORTADO</string>
-  <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">Ĝisdatigo de datumbazo...</string>
   <string name="import_fragment__import_system_sms_database">Importi sisteman SMS-datumbazon</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Importi datumbazon el la defaŭlta sistema mesaĝilo</string>
   <string name="import_fragment__import_plaintext_backup">Importi nurtekstan savkopion</string>
@@ -1062,8 +1075,8 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="arrays__max">Maksimuma</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
-    <item quantity="one">%d horo</item>
-    <item quantity="other">%d horoj</item>
+    <item quantity="one">%d h</item>
+    <item quantity="other">%d h</item>
   </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">SMS kaj MMS</string>
@@ -1132,6 +1145,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="preferences__linked_devices">Ligitaj aparatoj</string>
   <string name="preferences__light_theme">Hela</string>
   <string name="preferences__dark_theme">Malhela</string>
+  <string name="preferences__system_theme">Sistema</string>
   <string name="preferences__appearance">Aspekto</string>
   <string name="preferences__theme">Etoso</string>
   <string name="preferences__default">Defaŭlta</string>
@@ -1208,6 +1222,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Elarĥivigi elektitajn</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Ŝparvojo al agordoj</string>
+  <string name="conversation_list_search_description">Serĉi</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Kontakta bildo</string>
   <string name="conversation_list_item_view__archived">Enarĥivigitaj</string>
@@ -1334,6 +1349,9 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Bv. entajpi la kontrolkodon senditan al %s.</string>
   <string name="RegistrationActivity_wrong_number">Erara numero</string>
   <string name="RegistrationActivity_call_me_instead_available_in">Alvoki min anstataŭe \n (Disponebla post %1$02d:%2$02d)</string>
+  <string name="RegistrationActivity_contact_signal_support">Kontakti Signal-helpon</string>
+  <string name="RegistrationActivity_code_support_subject">Signal-registriĝo — Konfirman kodo por Android</string>
+  <string name="RegistrationActivity_code_support_body">Pri: Signal-registriĝo — Konfirman kodo por Android\nAparata informo: %1$s\nAndroid-versio: %2$s\nSignal-versio: %3$s\nLokaĵaro: %4$s</string>
   <string name="BackupUtil_never">Neniam</string>
   <string name="BackupUtil_unknown">Nekonata</string>
   <string name="preferences_app_protection__screen_lock">Ekranŝloso</string>

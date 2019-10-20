@@ -11,6 +11,8 @@
   <string name="AbstractNotificationBuilder_new_message">Nova mensagem</string>
   <!--AlbumThumbnailView-->
   <string name="AlbumThumbnailView_plus">\+%d</string>
+  <!--ApplicationMigrationActivity-->
+  <string name="ApplicationMigrationActivity__signal_is_updating">O Signal está a atualizar...</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Actualmente: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Ainda não definiu uma frase-passe!</string>
@@ -223,6 +225,8 @@
   <string name="ConversationFragment_quoted_message_not_found">Não foi encontrada a mensagem original</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">A mensagem original já não está disponível</string>
   <string name="ConversationFragment_failed_to_open_message">Falha ao abrir a mensagem</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Pode deslizar qualquer mensagem para a direita para responder rapidamente</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Pode deslizar qualquer mensagem para a esquerda para responder rapidamente</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Não existe nenhum navegador instalado no seu dispositivo.</string>
   <!--ConversationListFragment-->
@@ -268,7 +272,7 @@
   <string name="CustomDefaultPreference_none">Nenhum</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Agora</string>
-  <string name="DateUtils_minutes_ago">%d min</string>
+  <string name="DateUtils_minutes_ago">%dm</string>
   <string name="DateUtils_today">Hoje</string>
   <string name="DateUtils_yesterday">Ontem</string>
   <!--DeliveryStatus-->
@@ -571,9 +575,10 @@ especificou (%s) é inválido.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Introduza o código que enviamos para %s</string>
   <string name="RegistrationActivity_call">Telefonar</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_view_photo">Ver fotografia</string>
-  <string name="RevealableMessageView_viewed">Vista(s)</string>
   <string name="RevealableMessageView_photo">Fotografia</string>
+  <string name="RevealableMessageView_video">Vídeo</string>
+  <string name="RevealableMessageView_viewed">Vista(s)</string>
+  <string name="RevealableMessageView_outgoing_media">Média</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Falha ao guardar as alterações da imagem</string>
   <!--Search-->
@@ -670,6 +675,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Não foi encontrado na área de transferência nenhum número de segurança com o qual comparar </string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">O Signal requer permissão de acesso à câmara para ler códigos QR, mas esta foi negada permanentemente. Por favor, aceda às definições da aplicação, seleccione \"Permissões\" e ative \"Câmara\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Não é possível ler um código QR sem permissão de acesso à câmara.</string>
+  <!--ViewOnceMessageActivity-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Mensagem encriptada corrompida</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Mensagem encriptada para sessão inexistente</string>
@@ -794,6 +800,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="change_passphrase_activity__repeat_new_passphrase">Repita a frase-passe nova</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Introduza o nome ou número</string>
+  <string name="contact_selection_activity__invite_to_signal">Convite para o Signal</string>
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Limpara o texto introduzido</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Exibir teclado</string>
@@ -839,13 +846,13 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Foto de contacto</string>
   <!--audio_view-->
-  <string name="audio_view__play_accessibility_description">Reproduzir</string>
-  <string name="audio_view__pause_accessibility_description">Pausar</string>
+  <string name="audio_view__play_pause_accessibility_description">Play ... Pausa</string>
   <string name="audio_view__download_accessibility_description">Descarregar</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">Áudio</string>
   <string name="QuoteView_video">Vídeo</string>
   <string name="QuoteView_photo">Foto</string>
+  <string name="QuoteView_media">Mensagem multimédia</string>
   <string name="QuoteView_sticker">Autocolante</string>
   <string name="QuoteView_document">Documento</string>
   <string name="QuoteView_you">Você</string>
@@ -937,8 +944,6 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="database_migration_activity__import">Importar</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Isto poderá demorar um pouco. Por favor, seja paciente. Será notificado quanto a importação estiver completa.</string>
   <string name="database_migration_activity__importing">A IMPORTAR</string>
-  <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">A atualizar a base de dados...</string>
   <string name="import_fragment__import_system_sms_database">Importar a base de dados de SMS do sistema</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Importar a base de dados da aplicação padrão de mensagens do sistema.</string>
   <string name="import_fragment__import_plaintext_backup">Importar cópia de segurança em texto simples</string>
@@ -1058,10 +1063,6 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="arrays__high">Elevada</string>
   <string name="arrays__max">Máxima</string>
   <!--plurals.xml-->
-  <plurals name="hours_ago">
-    <item quantity="one">%d hora</item>
-    <item quantity="other">%d horas</item>
-  </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">SMS e MMS</string>
   <string name="preferences__pref_all_sms_title">Receber todos os SMS</string>
@@ -1129,6 +1130,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="preferences__linked_devices">Dispositivos associados</string>
   <string name="preferences__light_theme">Claro</string>
   <string name="preferences__dark_theme">Escuro</string>
+  <string name="preferences__system_theme">Sistema</string>
   <string name="preferences__appearance">Aspeto</string>
   <string name="preferences__theme">Tema</string>
   <string name="preferences__default">Pré-definição</string>
@@ -1205,6 +1207,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Desarquivar selecionado(s)</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Atalho para definições</string>
+  <string name="conversation_list_search_description">Procurar</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Foto de contacto</string>
   <string name="conversation_list_item_view__archived">Arquivado</string>
@@ -1331,6 +1334,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Por favor, insira o código de verificação enviado para %s.</string>
   <string name="RegistrationActivity_wrong_number">Número errado</string>
   <string name="RegistrationActivity_call_me_instead_available_in">Como alternativa, ligue-me \n (Disponível às %1$02d:%2$02d)</string>
+  <string name="RegistrationActivity_contact_signal_support">Contactar o Apoio do Signal</string>
   <string name="BackupUtil_never">Nunca</string>
   <string name="BackupUtil_unknown">Desconhecido</string>
   <string name="preferences_app_protection__screen_lock">Ecrã de bloqueio</string>

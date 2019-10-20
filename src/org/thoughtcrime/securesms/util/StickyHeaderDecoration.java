@@ -88,7 +88,7 @@ public class StickyHeaderDecoration extends RecyclerView.ItemDecoration {
     if (headerHolder == null) {
 
       if (key != StickyHeaderAdapter.NO_HEADER_ID) {
-        headerHolder = adapter.onCreateHeaderViewHolder(parent  );
+        headerHolder = adapter.onCreateHeaderViewHolder(parent, position);
         //noinspection unchecked
         adapter.onBindHeaderViewHolder(headerHolder, position);
       }
@@ -221,7 +221,7 @@ public class StickyHeaderDecoration extends RecyclerView.ItemDecoration {
      * @param position position in the adapter
      * @return a view holder for the created view
      */
-    T onCreateHeaderViewHolder(ViewGroup parent);
+    T onCreateHeaderViewHolder(ViewGroup parent, int position);
 
     /**
      * Updates the header view to reflect the header data for the given position.

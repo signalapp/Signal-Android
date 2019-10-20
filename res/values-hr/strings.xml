@@ -11,6 +11,7 @@
   <string name="AbstractNotificationBuilder_new_message">Nova poruka</string>
   <!--AlbumThumbnailView-->
   <string name="AlbumThumbnailView_plus">\+%d</string>
+  <!--ApplicationMigrationActivity-->
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Trenutno: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Još niste postavili lozinku!</string>
@@ -276,7 +277,7 @@
   <string name="CustomDefaultPreference_none">Niti jedna</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Sada</string>
-  <string name="DateUtils_minutes_ago">%d min</string>
+  <string name="DateUtils_minutes_ago">%dm</string>
   <string name="DateUtils_today">Danas</string>
   <string name="DateUtils_yesterday">Jučer</string>
   <!--DeliveryStatus-->
@@ -585,9 +586,10 @@ telefona</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Unesite kôd koji smo poslali na %s</string>
   <string name="RegistrationActivity_call">Poziv</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_view_photo">Pogledaj fotografiju</string>
-  <string name="RevealableMessageView_viewed">Pregledano</string>
   <string name="RevealableMessageView_photo">Fotografija</string>
+  <string name="RevealableMessageView_video">Video</string>
+  <string name="RevealableMessageView_viewed">Pregledano</string>
+  <string name="RevealableMessageView_outgoing_media">Medij</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Slikovne promjene nisu uspjele.</string>
   <!--Search-->
@@ -682,6 +684,7 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Sigurnosni broj za usporedbu nije pronađen u međuspremniku</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal zahtijeva pristup Kameri za skeniranje QR koda ali pristup biva odbijen. Molim otvorite opcije aplikacije, odaberite \"Dozvole\" i uključite \"Kamera\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Nemoguće je skenirati QR kod bez dozvole pristupa kameri.</string>
+  <!--ViewOnceMessageActivity-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Loše kriptirana poruka</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Poruka kriptirana za nepostojeću sesiju</string>
@@ -803,6 +806,7 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="change_passphrase_activity__repeat_new_passphrase">Ponovite novu lozinku</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Unesite ime ili broj</string>
+  <string name="contact_selection_activity__invite_to_signal">Pozovi u Signal</string>
   <!--contact_filter_toolbar-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Nema kontakata.</string>
@@ -845,13 +849,12 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Slika kontakta</string>
   <!--audio_view-->
-  <string name="audio_view__play_accessibility_description">Reprodukcija</string>
-  <string name="audio_view__pause_accessibility_description">Zaustavi</string>
   <string name="audio_view__download_accessibility_description">Preuzmi</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">Zvuk</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Fotografija</string>
+  <string name="QuoteView_media">Medijska poruka</string>
   <string name="QuoteView_sticker">Stiker</string>
   <string name="QuoteView_document">Dokument</string>
   <string name="QuoteView_you">Vi</string>
@@ -949,8 +952,6 @@ Primljena poruka razmjene ključeva za pogrešnu inačicu protokola.</string>
   <string name="database_migration_activity__import">Uvoz</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Ovo može potrajati nekoliko trenutaka. Budite strpljivi, obavijestit ćemo vas kada uvoz bude gotov.</string>
   <string name="database_migration_activity__importing">UVOZ</string>
-  <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">Ažuriranje baze podataka...</string>
   <string name="import_fragment__import_system_sms_database">Uvezi SMS bazu podataka sustava</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Uvezi bazu podataka iz zadane aplikacije za poruke</string>
   <string name="import_fragment__import_plaintext_backup">Uvezi nekriptiranu kopiju</string>
@@ -1072,11 +1073,6 @@ Uvezi nekriptiranu kopiju. Kompatibilno s \'SMSBackup And Restore\'.</string>
   <string name="arrays__high">Visoko</string>
   <string name="arrays__max">Maks</string>
   <!--plurals.xml-->
-  <plurals name="hours_ago">
-    <item quantity="one">%d sat</item>
-    <item quantity="few">%d sata</item>
-    <item quantity="other">%d sati</item>
-  </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">SMS i MMS</string>
   <string name="preferences__pref_all_sms_title">Primi sve SMS</string>
@@ -1219,6 +1215,7 @@ Uvezi nekriptiranu kopiju. Kompatibilno s \'SMSBackup And Restore\'.</string>
   <string name="conversation_list_batch_archive__menu_archive_selected">Odabran arhiv</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Odabrano raspakiranje arhive</string>
   <!--conversation_list-->
+  <string name="conversation_list_search_description">Traži</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Slika kontakta</string>
   <string name="conversation_list_item_view__archived">Arhivirano</string>

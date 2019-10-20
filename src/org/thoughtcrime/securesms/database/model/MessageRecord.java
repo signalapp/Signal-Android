@@ -188,7 +188,7 @@ public abstract class MessageRecord extends DisplayRecord {
   }
 
   public Recipient getIndividualRecipient() {
-    return individualRecipient;
+    return individualRecipient.live().get();
   }
 
   public int getRecipientDeviceId() {
@@ -244,5 +244,9 @@ public abstract class MessageRecord extends DisplayRecord {
 
   public boolean isUnidentified() {
     return unidentified;
+  }
+
+  public boolean isViewOnce() {
+    return false;
   }
 }

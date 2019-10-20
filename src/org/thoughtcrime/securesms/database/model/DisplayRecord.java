@@ -84,7 +84,7 @@ public abstract class DisplayRecord {
   public abstract SpannableString getDisplayBody(@NonNull Context context);
 
   public Recipient getRecipient() {
-    return recipient;
+    return recipient.live().get();
   }
 
   public long getDateSent() {

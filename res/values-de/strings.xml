@@ -11,6 +11,8 @@
   <string name="AbstractNotificationBuilder_new_message">Neue Nachricht</string>
   <!--AlbumThumbnailView-->
   <string name="AlbumThumbnailView_plus">\+%d</string>
+  <!--ApplicationMigrationActivity-->
+  <string name="ApplicationMigrationActivity__signal_is_updating">Signal wird aktualisiert …</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Derzeit: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Du hast noch keine Passphrase festgelegt!</string>
@@ -77,6 +79,7 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Speichern des Bildes gescheitert.</string>
   <!--CameraXFragment-->
+  <string name="CameraXFragment_tap_for_photo_hold_for_video">Antippen für Foto, Halten für Video</string>
   <string name="CameraXFragment_capture_description">Aufnehmen</string>
   <string name="CameraXFragment_change_camera_description">Kamera wechseln</string>
   <string name="CameraXFragment_open_gallery_description">Galerie öffnen</string>
@@ -174,6 +177,9 @@
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Erlaube Signal zum Aufnehmen von Fotos und Videos Zugriff auf deine Kamera.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal benötigt die Berechtigung »Kamera« für die Aufnahme von Fotos oder Videos, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Kamera«.</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal benötigt die Berechtigung »Kamera«, um Fotos oder Videos aufzunehmen.</string>
+  <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">Aktiviere die Berechtigung »Mikrofon«, um Videos mit Ton aufzunehmen.</string>
+  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Signal benötigt die Berechtigung »Mikrofon«, um Videos aufzunehmen, diese wurde jedoch abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Mikrofon« und »Kamera«.</string>
+  <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Signal benötigt die Berechtigung »Mikrofon«, um Videos aufzunehmen.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal kann keine SMS/MMS versenden, da es nicht als Standard-App für SMS festgelegt ist. Möchtest du dies in Androids Einstellungen ändern?</string>
   <string name="ConversationActivity_yes">Ja</string>
@@ -223,6 +229,8 @@
   <string name="ConversationFragment_quoted_message_not_found">Originalnachricht nicht gefunden</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Originalnachricht nicht mehr verfügbar</string>
   <string name="ConversationFragment_failed_to_open_message">Nachricht konnte nicht geöffnet werden</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Zum schnellen Antworten kannst du auf jeder Nachricht nach rechts wischen</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Zum schnellen Antworten kannst du auf jeder Nachricht nach links wischen</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Auf deinem Gerät ist derzeit kein Browser installiert.</string>
   <!--ConversationListFragment-->
@@ -268,7 +276,7 @@
   <string name="CustomDefaultPreference_none">Kein Eintrag</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Jetzt</string>
-  <string name="DateUtils_minutes_ago">%d min</string>
+  <string name="DateUtils_minutes_ago">%dmin</string>
   <string name="DateUtils_today">Heute</string>
   <string name="DateUtils_yesterday">Gestern</string>
   <!--DeliveryStatus-->
@@ -565,11 +573,14 @@
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Gib deine Rufnummer ein, um zu beginnen</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Du wirst einen Verifikationscode erhalten. Dabei können Mobilfunkgebühren anfallen.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Gib den Code ein, den wir an %s gesendet haben</string>
+  <string name="RegistrationActivity_phone_number_description">Rufnummer</string>
+  <string name="RegistrationActivity_country_code_description">Landesvorwahl</string>
   <string name="RegistrationActivity_call">Mich anrufen</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_view_photo">Foto ansehen</string>
-  <string name="RevealableMessageView_viewed">Angesehen</string>
   <string name="RevealableMessageView_photo">Foto</string>
+  <string name="RevealableMessageView_video">Video</string>
+  <string name="RevealableMessageView_viewed">Angesehen</string>
+  <string name="RevealableMessageView_outgoing_media">Medieninhalte</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Speichern von Bildänderungen gescheitert</string>
   <!--Search-->
@@ -629,6 +640,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ThreadRecord_media_message">Nachricht mit Medieninhalten</string>
   <string name="ThreadRecord_sticker">Sticker</string>
   <string name="ThreadRecord_disappearing_photo">Verschwindendes Foto</string>
+  <string name="ThreadRecord_disappearing_video">Verschwindendes Video</string>
   <string name="ThreadRecord_s_is_on_signal">%s ist bei Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Verschwindende Nachrichten deaktiviert</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Zeit für verschwindende Nachrichten auf %s festgelegt</string>
@@ -663,6 +675,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Keine zu vergleichende Sicherheitsnummer in der Zwischenablage gefunden</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal benötigt die Berechtigung »Kamera« für das Einscannen von QR-Codes, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Kamera«.</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">QR-Codes können ohne die Berechtigung »Kamera« nicht eingescannt werden.</string>
+  <!--ViewOnceMessageActivity-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Fehlerhaft verschlüsselte Nachricht</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Nachricht wurde für eine nicht bestehende sichere Sitzung verschlüsselt</string>
@@ -704,6 +717,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="MessageNotifier_media_message">Nachricht mit Medieninhalten</string>
   <string name="MessageNotifier_sticker">Sticker</string>
   <string name="MessageNotifier_disappearing_photo">Verschwindendes Foto</string>
+  <string name="MessageNotifier_disappearing_video">Verschwindendes Video</string>
   <string name="MessageNotifier_reply">Antworten</string>
   <string name="MessageNotifier_signal_message">Signal-Nachricht</string>
   <string name="MessageNotifier_unsecured_sms">Unsichere SMS</string>
@@ -787,6 +801,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="change_passphrase_activity__repeat_new_passphrase">Neue Passphrase wiederholen</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Name/Nummer eingeben</string>
+  <string name="contact_selection_activity__invite_to_signal">Zu Signal einladen</string>
   <!--contact_filter_toolbar-->
   <string name="contact_filter_toolbar__clear_entered_text_description">Texteingabe leeren</string>
   <string name="contact_filter_toolbar__show_keyboard_description">Tastatur anzeigen</string>
@@ -832,13 +847,13 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Kontaktbild</string>
   <!--audio_view-->
-  <string name="audio_view__play_accessibility_description">Wiedergeben</string>
-  <string name="audio_view__pause_accessibility_description">Pause</string>
+  <string name="audio_view__play_pause_accessibility_description">Abspielen … Pause</string>
   <string name="audio_view__download_accessibility_description">Herunterladen</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">Audio</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Foto</string>
+  <string name="QuoteView_media">Nachricht mit Medieninhalten</string>
   <string name="QuoteView_sticker">Sticker</string>
   <string name="QuoteView_document">Dokument</string>
   <string name="QuoteView_you">Du</string>
@@ -930,8 +945,6 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="database_migration_activity__import">Importieren</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Dies kann eine Weile dauern, bitte etwas Geduld. Du wirst benachrichtigt, sobald der Import abgeschlossen ist.</string>
   <string name="database_migration_activity__importing">IMPORTIEREN</string>
-  <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">Datenbank wird aktualisiert …</string>
   <string name="import_fragment__import_system_sms_database">System-SMS-Datenbank importieren</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Datenbank aus der Standard-SMS-App importieren</string>
   <string name="import_fragment__import_plaintext_backup">Klartextsicherung importieren</string>
@@ -1052,8 +1065,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="arrays__max">Maximal</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
-    <item quantity="one">%d Stunde</item>
-    <item quantity="other">%d Stunden</item>
+    <item quantity="one">%dh</item>
+    <item quantity="other">%dh</item>
   </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">SMS und MMS</string>
@@ -1122,6 +1135,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences__linked_devices">Gekoppelte Geräte</string>
   <string name="preferences__light_theme">Hell</string>
   <string name="preferences__dark_theme">Dunkel</string>
+  <string name="preferences__system_theme">System</string>
   <string name="preferences__appearance">Darstellung</string>
   <string name="preferences__theme">Design</string>
   <string name="preferences__default">Standard</string>
@@ -1198,6 +1212,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Ausgewählte in Eingang verschieben</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Einstellungsverknüpfung</string>
+  <string name="conversation_list_search_description">Suchen</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Kontaktbild</string>
   <string name="conversation_list_item_view__archived">Archiviert</string>
@@ -1324,6 +1339,9 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Bitte gib den an %s gesendeten Verifikationscode ein.</string>
   <string name="RegistrationActivity_wrong_number">Falsche Rufnummer</string>
   <string name="RegistrationActivity_call_me_instead_available_in">Mich stattdessen anrufen \n (Verfügbar in %1$02d:%2$02d)</string>
+  <string name="RegistrationActivity_contact_signal_support">Wende dich an den Signal-Support</string>
+  <string name="RegistrationActivity_code_support_subject">Signal-Registrierung – Verifikationscode für Android</string>
+  <string name="RegistrationActivity_code_support_body">Betreff: Signal-Registrierung – Verifikationscode für Android\nGeräteinfo: %1$s\nAndroid-Version: %2$s\nSignal-Version: %3$s\nGebietsschema: %4$s</string>
   <string name="BackupUtil_never">Nie</string>
   <string name="BackupUtil_unknown">Unbekannt</string>
   <string name="preferences_app_protection__screen_lock">Bildschirmsperre</string>

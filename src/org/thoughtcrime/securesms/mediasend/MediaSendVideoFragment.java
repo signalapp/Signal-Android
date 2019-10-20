@@ -47,7 +47,7 @@ public class MediaSendVideoFragment extends Fragment implements MediaSendPageFra
     VideoSlide slide = new VideoSlide(requireContext(), uri, 0);
 
     ((VideoPlayer) view).setWindow(requireActivity().getWindow());
-    ((VideoPlayer) view).setVideoSource(slide, false);
+    ((VideoPlayer) view).setVideoSource(slide, true);
   }
 
   @Override
@@ -56,6 +56,19 @@ public class MediaSendVideoFragment extends Fragment implements MediaSendPageFra
 
     if (getView() != null) {
       ((VideoPlayer) getView()).cleanup();
+    }
+  }
+
+  @Override
+  public void onPause() {
+    super.onPause();
+    notifyHidden();
+  }
+
+  @Override
+  public void onHiddenChanged(boolean hidden) {
+    if (hidden) {
+      notifyHidden();
     }
   }
 
@@ -82,4 +95,11 @@ public class MediaSendVideoFragment extends Fragment implements MediaSendPageFra
 
   @Override
   public void restoreState(@NonNull Object state) { }
+
+  @Override
+  public void notifyHidden() {
+    if (getView() != null) {
+      ((VideoPlayer) getView()).pause();
+    }
+  }
 }

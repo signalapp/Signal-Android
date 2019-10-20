@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.jobs;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.database.JobDatabase;
@@ -92,7 +93,7 @@ public class FastJobStorage implements JobStorage {
   public synchronized @NonNull List<JobSpec> getPendingJobsWithNoDependenciesInCreatedOrder(long currentTime) {
     Optional<JobSpec> migrationJob = getMigrationJob();
 
-    if (migrationJob.isPresent() && !migrationJob.get().isRunning()) {
+    if (migrationJob.isPresent() && !migrationJob.get().isRunning() && migrationJob.get().getNextRunAttemptTime() <= currentTime) {
       return Collections.singletonList(migrationJob.get());
     } else if (migrationJob.isPresent()) {
       return Collections.emptyList();
@@ -212,6 +213,23 @@ public class FastJobStorage implements JobStorage {
   }
 
   @Override
+  public void updateJobs(@NonNull List<JobSpec> jobSpecs) {
+    jobDatabase.updateJobs(jobSpecs);
+
+    Map<String, JobSpec>  updates = Stream.of(jobSpecs).collect(Collectors.toMap(JobSpec::getId));
+    ListIterator<JobSpec> iter    = jobs.listIterator();
+
+    while (iter.hasNext()) {
+      JobSpec existing = iter.next();
+      JobSpec update   = updates.get(existing.getId());
+
+      if (update != null) {
+        iter.set(update);
+      }
+    }
+  }
+
+  @Override
   public synchronized void deleteJob(@NonNull String jobId) {
     deleteJobs(Collections.singletonList(jobId));
   }
@@ -260,6 +278,26 @@ public class FastJobStorage implements JobStorage {
 
   @Override
   public synchronized @NonNull List<DependencySpec> getDependencySpecsThatDependOnJob(@NonNull String jobSpecId) {
+    List<DependencySpec> layer = getSingleLayerOfDependencySpecsThatDependOnJob(jobSpecId);
+    List<DependencySpec> all   = new ArrayList<>(layer);
+
+    Set<String> activeJobIds;
+
+    do {
+      activeJobIds = Stream.of(layer).map(DependencySpec::getJobId).collect(Collectors.toSet());
+      layer.clear();
+
+      for (String activeJobId : activeJobIds) {
+        layer.addAll(getSingleLayerOfDependencySpecsThatDependOnJob(activeJobId));
+      }
+
+      all.addAll(layer);
+    } while (!layer.isEmpty());
+
+    return all;
+  }
+
+  private @NonNull List<DependencySpec> getSingleLayerOfDependencySpecsThatDependOnJob(@NonNull String jobSpecId) {
     return Stream.of(dependenciesByJobId.entrySet())
                  .map(Map.Entry::getValue)
                  .flatMap(Stream::of)

@@ -11,6 +11,8 @@
   <string name="AbstractNotificationBuilder_new_message">Нова порука</string>
   <!--AlbumThumbnailView-->
   <string name="AlbumThumbnailView_plus">\+%d</string>
+  <!--ApplicationMigrationActivity-->
+  <string name="ApplicationMigrationActivity__signal_is_updating">Signal се ажурира...</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Тренутно: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Још нисте поставили лозинку!</string>
@@ -60,6 +62,7 @@
   <string name="DraftDatabase_Draft_quote_snippet">(одговор)</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Нема апликације за избор медијума.</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal захтева дозовле за меморију како би могао слати фотографије, видео снимке или аудио снимке, али су трајно забрањене. Молимо Вас идите у мени за подешавања и дозволите приступ меморији.</string>
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">Отпремање медија</string>
   <!--AudioSlidePlayer-->
@@ -261,7 +264,7 @@
   <string name="CustomDefaultPreference_none">Ништа</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Сад</string>
-  <string name="DateUtils_minutes_ago">%d минута</string>
+  <string name="DateUtils_minutes_ago">%d m</string>
   <string name="DateUtils_today">Данас</string>
   <string name="DateUtils_yesterday">Јуче</string>
   <!--DeliveryStatus-->
@@ -510,6 +513,8 @@
   <string name="RegistrationActivity_call">Позови</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_photo">Слика</string>
+  <string name="RevealableMessageView_video">Видео</string>
+  <string name="RevealableMessageView_outgoing_media">Медији</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Неуспех уписа промене слике</string>
   <!--Search-->
@@ -583,6 +588,7 @@
   <string name="VerifyIdentityActivity_our_signal_safety_number">Наш Signal безбедносни број:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Изгледа да немате ниједну апликацију преко које бисте могли да делите.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">У клипборду нема безбедносног броја за упоређивање.</string>
+  <!--ViewOnceMessageActivity-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Лоше шифрована порука</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Порука шифрована за непостојећу сесију</string>
@@ -683,6 +689,7 @@
   <string name="change_passphrase_activity__repeat_new_passphrase">Поновите нову лозинку</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Унесите име или број</string>
+  <string name="contact_selection_activity__invite_to_signal">Позивница за Signal</string>
   <!--contact_filter_toolbar-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Нема контаката.</string>
@@ -719,13 +726,12 @@
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Фотографија контакта</string>
   <!--audio_view-->
-  <string name="audio_view__play_accessibility_description">Пусти</string>
-  <string name="audio_view__pause_accessibility_description">Паузирај</string>
   <string name="audio_view__download_accessibility_description">Преузми</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">Звук</string>
   <string name="QuoteView_video">Видео</string>
   <string name="QuoteView_photo">Слика</string>
+  <string name="QuoteView_media">Без текста</string>
   <string name="QuoteView_document">Документ</string>
   <string name="QuoteView_you">Ви</string>
   <string name="QuoteView_original_missing">Оригинална порука није нађена</string>
@@ -808,8 +814,6 @@
   <string name="database_migration_activity__import">Увези</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Ово би могло мало да потраје. Будите стрпљиви, обавестићемо вас када се увоз заврши.</string>
   <string name="database_migration_activity__importing">УВОЗИМ</string>
-  <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">Ажурирам базу података...</string>
   <string name="import_fragment__import_system_sms_database">Увези системску СМС базу података</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Увоз базе података из подразумеване системске апликације за размену порука</string>
   <string name="import_fragment__import_plaintext_backup">Увези текстуалну резерву</string>
@@ -918,11 +922,6 @@
   <string name="arrays__high">Висок</string>
   <string name="arrays__max">Највиши</string>
   <!--plurals.xml-->
-  <plurals name="hours_ago">
-    <item quantity="one">%d сат</item>
-    <item quantity="few">%d сата</item>
-    <item quantity="other">%d сати</item>
-  </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">СМС и ММС</string>
   <string name="preferences__pref_all_sms_title">Примај све СМС</string>
@@ -1048,6 +1047,7 @@
   <string name="conversation_list_batch_archive__menu_archive_selected">Архивирај изабрано</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Деархивирај изабрано</string>
   <!--conversation_list-->
+  <string name="conversation_list_search_description">Тражи</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Фотографија контакта</string>
   <string name="conversation_list_item_view__archived">Архивирано</string>

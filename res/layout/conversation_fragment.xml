@@ -27,7 +27,6 @@
               android:layout_marginTop="8dp"
               style="@style/Signal.Text.Caption"
               android:textColor="?attr/conversation_item_sticky_date_text_color"
-              android:textAllCaps="true"
               android:background="?attr/conversation_item_sticky_date_background"
               android:elevation="9dp"
               android:visibility="gone"

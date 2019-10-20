@@ -47,8 +47,7 @@ public class QuickResponseService extends IntentService {
         number = URLDecoder.decode(number);
       }
 
-      Address   address        = Address.fromExternal(this, number);
-      Recipient recipient      = Recipient.from(this, address, false);
+      Recipient recipient      = Recipient.external(this, number);
       int       subscriptionId = recipient.getDefaultSubscriptionId().or(-1);
       long      expiresIn      = recipient.getExpireMessages() * 1000L;
 

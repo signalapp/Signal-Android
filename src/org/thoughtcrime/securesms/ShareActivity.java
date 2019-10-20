@@ -24,7 +24,6 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Parcel;
 import android.os.Process;
 import android.provider.OpenableColumns;
 import androidx.annotation.NonNull;
@@ -39,7 +38,6 @@ import android.widget.ImageView;
 import org.thoughtcrime.securesms.components.SearchToolbar;
 import org.thoughtcrime.securesms.contacts.ContactsCursorLoader.DisplayMode;
 import org.thoughtcrime.securesms.conversation.ConversationActivity;
-import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.logging.Log;
@@ -47,6 +45,7 @@ import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
@@ -55,6 +54,8 @@ import org.thoughtcrime.securesms.util.FileUtils;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ViewUtil;
+import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
+import org.whispersystems.libsignal.util.Pair;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -72,7 +73,7 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
   private static final String TAG = ShareActivity.class.getSimpleName();
 
   public static final String EXTRA_THREAD_ID          = "thread_id";
-  public static final String EXTRA_ADDRESS_MARSHALLED = "address_marshalled";
+  public static final String EXTRA_RECIPIENT_ID       = "recipient_id";
   public static final String EXTRA_DISTRIBUTION_TYPE  = "distribution_type";
 
   private final DynamicTheme    dynamicTheme    = new DynamicNoActionBarTheme();
@@ -216,35 +217,30 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void handleResolvedMedia(Intent intent, boolean animate) {
-    long      threadId         = intent.getLongExtra(EXTRA_THREAD_ID, -1);
-    int       distributionType = intent.getIntExtra(EXTRA_DISTRIBUTION_TYPE, -1);
-    Address   address          = null;
+    long        threadId         = intent.getLongExtra(EXTRA_THREAD_ID, -1);
+    int         distributionType = intent.getIntExtra(EXTRA_DISTRIBUTION_TYPE, -1);
+    RecipientId recipientId      = null;
 
-    if (intent.hasExtra(EXTRA_ADDRESS_MARSHALLED)) {
-      Parcel parcel = Parcel.obtain();
-      byte[] marshalled = intent.getByteArrayExtra(EXTRA_ADDRESS_MARSHALLED);
-      parcel.unmarshall(marshalled, 0, marshalled.length);
-      parcel.setDataPosition(0);
-      address = parcel.readParcelable(getClassLoader());
-      parcel.recycle();
+    if (intent.hasExtra(EXTRA_RECIPIENT_ID)) {
+      recipientId = RecipientId.from(intent.getStringExtra(EXTRA_RECIPIENT_ID));
     }
 
-    boolean hasResolvedDestination = threadId != -1 && address != null && distributionType != -1;
+    boolean hasResolvedDestination = threadId != -1 && recipientId != null && distributionType != -1;
 
-    if (!hasResolvedDestination && animate) {
-      ViewUtil.fadeIn(contactsFragment.getView(), 300);
+    if (hasResolvedDestination) {
+      createConversation(threadId, recipientId, distributionType);
+    } else if (animate) {
+      ViewUtil.fadeIn(contactsFragment.requireView(), 300);
       ViewUtil.fadeOut(progressWheel, 300);
-    } else if (!hasResolvedDestination) {
-      contactsFragment.getView().setVisibility(View.VISIBLE);
-      progressWheel.setVisibility(View.GONE);
     } else {
-      createConversation(threadId, address, distributionType);
+      contactsFragment.requireView().setVisibility(View.VISIBLE);
+      progressWheel.setVisibility(View.GONE);
     }
   }
 
-  private void createConversation(long threadId, Address address, int distributionType) {
+  private void createConversation(long threadId, @NonNull RecipientId recipientId, int distributionType) {
     final Intent intent = getBaseShareIntent(ConversationActivity.class);
-    intent.putExtra(ConversationActivity.ADDRESS_EXTRA, address);
+    intent.putExtra(ConversationActivity.RECIPIENT_EXTRA, recipientId);
     intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, threadId);
     intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, distributionType);
 
@@ -277,9 +273,14 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
 
   @Override
   public void onContactSelected(String number) {
-    Recipient recipient = Recipient.from(this, Address.fromExternal(this, number), true);
-    long existingThread = DatabaseFactory.getThreadDatabase(this).getThreadIdIfExistsFor(recipient);
-    createConversation(existingThread, recipient.getAddress(), ThreadDatabase.DistributionTypes.DEFAULT);
+    SimpleTask.run(this.getLifecycle(), () -> {
+      Recipient recipient = Recipient.external(this, number);
+      long existingThread = DatabaseFactory.getThreadDatabase(this).getThreadIdIfExistsFor(recipient);
+      return new Pair<>(existingThread, recipient);
+    }, result -> {
+      createConversation(result.first(), result.second().getId(), ThreadDatabase.DistributionTypes.DEFAULT);
+    });
+
   }
 
   @Override

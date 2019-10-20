@@ -3475,6 +3475,21 @@ public final class BackupProtos {
     com.google.protobuf.ByteString
         getNameBytes();
 
+    // optional string recipientId = 3;
+    /**
+     * <code>optional string recipientId = 3;</code>
+     */
+    boolean hasRecipientId();
+    /**
+     * <code>optional string recipientId = 3;</code>
+     */
+    java.lang.String getRecipientId();
+    /**
+     * <code>optional string recipientId = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getRecipientIdBytes();
+
     // optional uint32 length = 2;
     /**
      * <code>optional uint32 length = 2;</code>
@@ -3542,8 +3557,13 @@ public final class BackupProtos {
               break;
             }
             case 16: {
-              bitField0_ |= 0x00000002;
+              bitField0_ |= 0x00000004;
               length_ = input.readUInt32();
+              break;
+            }
+            case 26: {
+              bitField0_ |= 0x00000002;
+              recipientId_ = input.readBytes();
               break;
             }
           }
@@ -3629,6 +3649,49 @@ public final class BackupProtos {
       }
     }
 
+    // optional string recipientId = 3;
+    public static final int RECIPIENTID_FIELD_NUMBER = 3;
+    private java.lang.Object recipientId_;
+    /**
+     * <code>optional string recipientId = 3;</code>
+     */
+    public boolean hasRecipientId() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>optional string recipientId = 3;</code>
+     */
+    public java.lang.String getRecipientId() {
+      java.lang.Object ref = recipientId_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          recipientId_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string recipientId = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getRecipientIdBytes() {
+      java.lang.Object ref = recipientId_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        recipientId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
     // optional uint32 length = 2;
     public static final int LENGTH_FIELD_NUMBER = 2;
     private int length_;
@@ -3636,7 +3699,7 @@ public final class BackupProtos {
      * <code>optional uint32 length = 2;</code>
      */
     public boolean hasLength() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
+      return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     /**
      * <code>optional uint32 length = 2;</code>
@@ -3647,6 +3710,7 @@ public final class BackupProtos {
 
     private void initFields() {
       name_ = "";
+      recipientId_ = "";
       length_ = 0;
     }
     private byte memoizedIsInitialized = -1;
@@ -3664,8 +3728,11 @@ public final class BackupProtos {
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         output.writeBytes(1, getNameBytes());
       }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
         output.writeUInt32(2, length_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeBytes(3, getRecipientIdBytes());
       }
       getUnknownFields().writeTo(output);
     }
@@ -3680,9 +3747,13 @@ public final class BackupProtos {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(1, getNameBytes());
       }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(2, length_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(3, getRecipientIdBytes());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -3802,8 +3873,10 @@ public final class BackupProtos {
         super.clear();
         name_ = "";
         bitField0_ = (bitField0_ & ~0x00000001);
-        length_ = 0;
+        recipientId_ = "";
         bitField0_ = (bitField0_ & ~0x00000002);
+        length_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
 
@@ -3839,6 +3912,10 @@ public final class BackupProtos {
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
+        result.recipientId_ = recipientId_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
         result.length_ = length_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
@@ -3859,6 +3936,11 @@ public final class BackupProtos {
         if (other.hasName()) {
           bitField0_ |= 0x00000001;
           name_ = other.name_;
+          onChanged();
+        }
+        if (other.hasRecipientId()) {
+          bitField0_ |= 0x00000002;
+          recipientId_ = other.recipientId_;
           onChanged();
         }
         if (other.hasLength()) {
@@ -3965,13 +4047,87 @@ public final class BackupProtos {
         return this;
       }
 
+      // optional string recipientId = 3;
+      private java.lang.Object recipientId_ = "";
+      /**
+       * <code>optional string recipientId = 3;</code>
+       */
+      public boolean hasRecipientId() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional string recipientId = 3;</code>
+       */
+      public java.lang.String getRecipientId() {
+        java.lang.Object ref = recipientId_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          recipientId_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string recipientId = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getRecipientIdBytes() {
+        java.lang.Object ref = recipientId_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          recipientId_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string recipientId = 3;</code>
+       */
+      public Builder setRecipientId(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+        recipientId_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string recipientId = 3;</code>
+       */
+      public Builder clearRecipientId() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        recipientId_ = getDefaultInstance().getRecipientId();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string recipientId = 3;</code>
+       */
+      public Builder setRecipientIdBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+        recipientId_ = value;
+        onChanged();
+        return this;
+      }
+
       // optional uint32 length = 2;
       private int length_ ;
       /**
        * <code>optional uint32 length = 2;</code>
        */
       public boolean hasLength() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
+        return ((bitField0_ & 0x00000004) == 0x00000004);
       }
       /**
        * <code>optional uint32 length = 2;</code>
@@ -3983,7 +4139,7 @@ public final class BackupProtos {
        * <code>optional uint32 length = 2;</code>
        */
       public Builder setLength(int value) {
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         length_ = value;
         onChanged();
         return this;
@@ -3992,7 +4148,7 @@ public final class BackupProtos {
        * <code>optional uint32 length = 2;</code>
        */
       public Builder clearLength() {
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000004);
         length_ = 0;
         onChanged();
         return this;
@@ -6692,19 +6848,19 @@ public final class BackupProtos {
       "\030\001 \001(\t\022\013\n\003key\030\002 \001(\t\022\r\n\005value\030\003 \001(\t\"A\n\nAt" +
       "tachment\022\r\n\005rowId\030\001 \001(\004\022\024\n\014attachmentId\030" +
       "\002 \001(\004\022\016\n\006length\030\003 \001(\r\"(\n\007Sticker\022\r\n\005rowI",
-      "d\030\001 \001(\004\022\016\n\006length\030\002 \001(\r\"&\n\006Avatar\022\014\n\004nam" +
-      "e\030\001 \001(\t\022\016\n\006length\030\002 \001(\r\"\"\n\017DatabaseVersi" +
-      "on\022\017\n\007version\030\001 \001(\r\"\"\n\006Header\022\n\n\002iv\030\001 \001(" +
-      "\014\022\014\n\004salt\030\002 \001(\014\"\245\002\n\013BackupFrame\022\036\n\006heade" +
-      "r\030\001 \001(\0132\016.signal.Header\022\'\n\tstatement\030\002 \001" +
-      "(\0132\024.signal.SqlStatement\022,\n\npreference\030\003" +
-      " \001(\0132\030.signal.SharedPreference\022&\n\nattach" +
-      "ment\030\004 \001(\0132\022.signal.Attachment\022(\n\007versio" +
-      "n\030\005 \001(\0132\027.signal.DatabaseVersion\022\013\n\003end\030" +
-      "\006 \001(\010\022\036\n\006avatar\030\007 \001(\0132\016.signal.Avatar\022 \n",
-      "\007sticker\030\010 \001(\0132\017.signal.StickerB1\n!org.t" +
-      "houghtcrime.securesms.backupB\014BackupProt" +
-      "os"
+      "d\030\001 \001(\004\022\016\n\006length\030\002 \001(\r\";\n\006Avatar\022\014\n\004nam" +
+      "e\030\001 \001(\t\022\023\n\013recipientId\030\003 \001(\t\022\016\n\006length\030\002" +
+      " \001(\r\"\"\n\017DatabaseVersion\022\017\n\007version\030\001 \001(\r" +
+      "\"\"\n\006Header\022\n\n\002iv\030\001 \001(\014\022\014\n\004salt\030\002 \001(\014\"\245\002\n" +
+      "\013BackupFrame\022\036\n\006header\030\001 \001(\0132\016.signal.He" +
+      "ader\022\'\n\tstatement\030\002 \001(\0132\024.signal.SqlStat" +
+      "ement\022,\n\npreference\030\003 \001(\0132\030.signal.Share" +
+      "dPreference\022&\n\nattachment\030\004 \001(\0132\022.signal" +
+      ".Attachment\022(\n\007version\030\005 \001(\0132\027.signal.Da" +
+      "tabaseVersion\022\013\n\003end\030\006 \001(\010\022\036\n\006avatar\030\007 \001",
+      "(\0132\016.signal.Avatar\022 \n\007sticker\030\010 \001(\0132\017.si" +
+      "gnal.StickerB1\n!org.thoughtcrime.secures" +
+      "ms.backupB\014BackupProtos"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -6746,7 +6902,7 @@ public final class BackupProtos {
           internal_static_signal_Avatar_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_signal_Avatar_descriptor,
-              new java.lang.String[] { "Name", "Length", });
+              new java.lang.String[] { "Name", "RecipientId", "Length", });
           internal_static_signal_DatabaseVersion_descriptor =
             getDescriptor().getMessageTypes().get(5);
           internal_static_signal_DatabaseVersion_fieldAccessorTable = new

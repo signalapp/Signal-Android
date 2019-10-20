@@ -32,19 +32,22 @@ import org.greenrobot.eventbus.EventBus;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.WebRtcCallActivity;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
-import org.thoughtcrime.securesms.database.Address;
+import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase.VibrateState;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.notifications.DoNotDisturbUtil;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.ringrtc.CameraState;
 import org.thoughtcrime.securesms.ringrtc.MessageRecipient;
 import org.thoughtcrime.securesms.ringrtc.CallConnectionWrapper;
 import org.thoughtcrime.securesms.util.FutureTaskListener;
+import org.thoughtcrime.securesms.util.ListenableFutureTask;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TelephonyUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -71,6 +74,9 @@ import org.whispersystems.libsignal.InvalidKeyException;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
+import org.whispersystems.signalservice.api.messages.calls.BusyMessage;
+import org.whispersystems.signalservice.api.messages.calls.SignalServiceCallMessage;
+import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
 import org.whispersystems.signalservice.internal.util.concurrent.SettableFuture;
 
@@ -79,6 +85,7 @@ import java.io.IOException;
 import java.security.SecureRandom;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -100,9 +107,7 @@ public class WebRtcCallService extends Service implements CallConnection.Observe
     STATE_IDLE, STATE_DIALING, STATE_ANSWERING, STATE_REMOTE_RINGING, STATE_LOCAL_RINGING, STATE_CONNECTED
   }
 
-  private static final String DATA_CHANNEL_NAME = "signaling";
-
-  public static final String EXTRA_REMOTE_ADDRESS     = "remote_address";
+  public static final String EXTRA_REMOTE_RECIPIENT   = "remote_recipient";
   public static final String EXTRA_MUTE               = "mute_value";
   public static final String EXTRA_AVAILABLE          = "enabled_value";
   public static final String EXTRA_REMOTE_DESCRIPTION = "remote_description";
@@ -167,7 +172,8 @@ public class WebRtcCallService extends Service implements CallConnection.Observe
   @Nullable private SurfaceViewRenderer remoteRenderer;
   @Nullable private EglBase             eglBase;
 
-  private ExecutorService          serviceExecutor = Executors.newSingleThreadExecutor();
+  private final ExecutorService    serviceExecutor = Executors.newSingleThreadExecutor();
+  private final ExecutorService    networkExecutor = Executors.newSingleThreadExecutor();
 
   private final PhoneStateListener hangUpRtcOnDeviceCallAnswered = new HangUpRtcOnPstnCallAnsweredListener();
 
@@ -337,7 +343,7 @@ public class WebRtcCallService extends Service implements CallConnection.Observe
     this.recipient               = getRemoteRecipient(intent);
     this.messageRecipient        = new MessageRecipient(messageSender, recipient);
 
-    Log.i(TAG, "handleIncomingCall(): callId: " + callId);
+    Log.i(TAG, "handleIncomingCall(): callId: 0x" + Long.toHexString(callId));
 
     if (isIncomingMessageExpired(intent)) {
       insertMissedCall(this.recipient, true);
@@ -352,14 +358,8 @@ public class WebRtcCallService extends Service implements CallConnection.Observe
     initializeVideo();
 
     try {
-      boolean isSystemContact = false;
-
-      if (Permissions.hasAny(WebRtcCallService.this, Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS)) {
-        isSystemContact = ContactAccessor.getInstance().isSystemContact(WebRtcCallService.this, recipient.getAddress().serialize());
-      }
-
       boolean isAlwaysTurn = TextSecurePreferences.isTurnOnly(WebRtcCallService.this);
-      boolean hideIp       = !isSystemContact || isAlwaysTurn;
+      boolean hideIp       = !recipient.isSystemContact() || isAlwaysTurn;
 
       this.callConnection = new CallConnectionWrapper(WebRtcCallService.this,
                                                       callConnectionFactory,
@@ -404,7 +404,7 @@ public class WebRtcCallService extends Service implements CallConnection.Observe
     this.messageRecipient = new MessageRecipient(messageSender, recipient);
     this.callId           = new SecureRandom().nextLong();
 
-    Log.i(TAG, "handleOutgoingCall() callId: " + callId);
+    Log.i(TAG, "handleOutgoingCall() callId: 0x" + Long.toHexString(callId));
 
     initializeVideo();
 
@@ -415,7 +415,7 @@ public class WebRtcCallService extends Service implements CallConnection.Observe
     bluetoothStateManager.setWantsConnection(true);
 
     setCallInProgressNotification(TYPE_OUTGOING_RINGING, recipient);
-    DatabaseFactory.getSmsDatabase(this).insertOutgoingCall(recipient.getAddress());
+    DatabaseFactory.getSmsDatabase(this).insertOutgoingCall(recipient.getId());
 
     try {
       this.callConnection = new CallConnectionWrapper(WebRtcCallService.this,
@@ -449,8 +449,7 @@ public class WebRtcCallService extends Service implements CallConnection.Observe
     long callId = getCallId(intent);
 
     try {
-      Log.i(TAG, "handleResponseMessage(): callId: " + callId +
-            " Got response: " + intent.getStringExtra(EXTRA_REMOTE_DESCRIPTION));
+      Log.i(TAG, "handleResponseMessage(): callId: 0x" + Long.toHexString(callId));
 
       if (this.callConnection == null) {
         Log.i(TAG, "Received stale answer while no call in progress");
@@ -459,7 +458,7 @@ public class WebRtcCallService extends Service implements CallConnection.Observe
 
       MessageRecipient messageRecipient = new MessageRecipient(messageSender, getRemoteRecipient(intent));
       if (!this.callConnection.validateResponse(messageRecipient, callId)) {
-        Log.w(TAG, "Received answer for recipient and call id for inactive call: callId: " + callId);
+        Log.w(TAG, "Received answer for recipient and call id for inactive call: callId: 0x" + Long.toHexString(callId));
         return;
       }
 
@@ -475,7 +474,7 @@ public class WebRtcCallService extends Service implements CallConnection.Observe
   private void handleRemoteIceCandidate(Intent intent) {
     long callId = getCallId(intent);
 
-    Log.i(TAG, "handleRemoteIceCandidate(): callId: " + callId);
+    Log.i(TAG, "handleRemoteIceCandidate(): callId: 0x" + Long.toHexString(callId));
 
     if (Util.isEquals(this.callId, callId)) {
       IceCandidate candidate = new IceCandidate(intent.getStringExtra(EXTRA_ICE_SDP_MID),
@@ -501,10 +500,15 @@ public class WebRtcCallService extends Service implements CallConnection.Observe
       this.lockManager.updatePhoneState(LockManager.PhoneState.INTERACTIVE);
 
       sendMessage(WebRtcViewModel.State.CALL_INCOMING, recipient, localCameraState, remoteVideoEnabled, bluetoothAvailable, microphoneEnabled);
-      startCallCardActivityIfPossible();
+
+      boolean shouldDisturbUserWithCall = DoNotDisturbUtil.shouldDisturbUserWithCall(getApplicationContext(), recipient);
+      if (shouldDisturbUserWithCall) {
+        startCallCardActivityIfPossible();
+      }
+
       audioManager.initializeAudioForCall();
 
-      if (TextSecurePreferences.isCallNotificationsEnabled(this)) {
+      if (shouldDisturbUserWithCall && TextSecurePreferences.isCallNotificationsEnabled(this)) {
         Uri          ringtone     = recipient.resolve().getCallRingtone();
         VibrateState vibrateState = recipient.resolve().getCallVibrate();
 
@@ -526,22 +530,7 @@ public class WebRtcCallService extends Service implements CallConnection.Observe
     }
   }
 
-  private void handleCallConnected(Intent intent) {
-    Log.i(TAG, "handleCallConnected()");
-    if (callState != CallState.STATE_REMOTE_RINGING && callState != CallState.STATE_LOCAL_RINGING) {
-      Log.w(TAG, "Ignoring call connected for unknown state: " + callState);
-      return;
-    }
-
-    if (!Util.isEquals(this.callId, getCallId(intent))) {
-      Log.w(TAG, "Ignoring connected for unknown call id: " + getCallId(intent));
-      return;
-    }
-
-    if (recipient == null || this.callConnection == null) {
-      throw new AssertionError("assert");
-    }
-
+  private void activateCallMedia() {
     audioManager.startCommunication(callState == CallState.STATE_REMOTE_RINGING);
     bluetoothStateManager.setWantsConnection(true);
 
@@ -568,11 +557,29 @@ public class WebRtcCallService extends Service implements CallConnection.Observe
 
   }
 
+  private void handleCallConnected(Intent intent) {
+    if (callState != CallState.STATE_REMOTE_RINGING) {
+      Log.w(TAG, "Ignoring call connected for unknown state: " + callState);
+      return;
+    }
+
+    if (!Util.isEquals(this.callId, getCallId(intent))) {
+      Log.w(TAG, "Ignoring call connected for unknown callId: 0x" + Long.toHexString(getCallId(intent)));
+      return;
+    }
+
+    if (recipient == null || callConnection == null) {
+      throw new AssertionError("assert");
+    }
+
+    activateCallMedia();
+  }
+
   private void handleBusyCall(Intent intent) {
     Recipient recipient = getRemoteRecipient(intent);
     long      callId    = getCallId(intent);
 
-    Log.i(TAG, "handleBusyCall() callId: " + callId);
+    Log.i(TAG, "handleBusyCall() callId: 0x" + Long.toHexString(callId));
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
       switch (callState) {
@@ -590,12 +597,7 @@ public class WebRtcCallService extends Service implements CallConnection.Observe
       stopForeground(true);
     }
 
-    try {
-      MessageRecipient messageRecipient = new MessageRecipient(messageSender, recipient);
-      this.callConnection.sendBusy(messageRecipient, callId);
-    } catch (CallException e) {
-      Log.w(TAG, e);
-    }
+    sendMessage(recipient, SignalServiceCallMessage.forBusy(new BusyMessage(callId)));
     insertMissedCall(getRemoteRecipient(intent), false);
   }
 
@@ -603,7 +605,7 @@ public class WebRtcCallService extends Service implements CallConnection.Observe
     final Recipient recipient = getRemoteRecipient(intent);
     final long      callId    = getCallId(intent);
 
-    Log.i(TAG, "handleBusyMessage(): callId: " + callId);
+    Log.i(TAG, "handleBusyMessage(): callId: 0x" + Long.toHexString(callId));
 
     if (callState != CallState.STATE_DIALING || !Util.isEquals(this.callId, callId) || !recipient.equals(this.recipient)) {
       Log.w(TAG, "Got busy message for inactive session...");
@@ -619,7 +621,7 @@ public class WebRtcCallService extends Service implements CallConnection.Observe
         Intent intent = new Intent(WebRtcCallService.this, WebRtcCallService.class);
         intent.setAction(ACTION_LOCAL_HANGUP);
         intent.putExtra(EXTRA_CALL_ID, intent.getLongExtra(EXTRA_CALL_ID, -1));
-        intent.putExtra(EXTRA_REMOTE_ADDRESS, intent.getStringExtra(EXTRA_REMOTE_ADDRESS));
+        intent.putExtra(EXTRA_REMOTE_RECIPIENT, (RecipientId) intent.getParcelableExtra(EXTRA_REMOTE_RECIPIENT));
 
         startService(intent);
       }
@@ -631,7 +633,7 @@ public class WebRtcCallService extends Service implements CallConnection.Observe
         this.callId == intent.getLongExtra(EXTRA_CALL_ID, -1) &&
         this.callState != CallState.STATE_CONNECTED)
     {
-      Log.w(TAG, "Timing out call: " + this.callId);
+      Log.w(TAG, "Timing out call: callId: 0x" + Long.toHexString(this.callId));
       sendMessage(WebRtcViewModel.State.CALL_DISCONNECTED, this.recipient, localCameraState, remoteVideoEnabled, bluetoothAvailable, microphoneEnabled);
 
       if (this.callState == CallState.STATE_ANSWERING || this.callState == CallState.STATE_LOCAL_RINGING) {
@@ -651,7 +653,7 @@ public class WebRtcCallService extends Service implements CallConnection.Observe
   }
 
   private void insertMissedCall(@NonNull Recipient recipient, boolean signal) {
-    Pair<Long, Long> messageAndThreadId = DatabaseFactory.getSmsDatabase(this).insertMissedCall(recipient.getAddress());
+    Pair<Long, Long> messageAndThreadId = DatabaseFactory.getSmsDatabase(this).insertMissedCall(recipient.getId());
     MessageNotifier.updateNotification(this, messageAndThreadId.second, signal);
   }
 
@@ -665,13 +667,13 @@ public class WebRtcCallService extends Service implements CallConnection.Observe
       throw new AssertionError("assert");
     }
 
-    DatabaseFactory.getSmsDatabase(this).insertReceivedCall(recipient.getAddress());
+    DatabaseFactory.getSmsDatabase(this).insertReceivedCall(recipient.getId());
 
     try {
       Log.i(TAG, "handleAnswerCall()");
       this.callConnection.answerCall();
       intent.putExtra(EXTRA_CALL_ID, callId);
-      intent.putExtra(EXTRA_REMOTE_ADDRESS, recipient.getAddress());
+      intent.putExtra(EXTRA_REMOTE_RECIPIENT, recipient.getId());
       handleCallConnected(intent);
     } catch (CallException e) {
       Log.w(TAG, e);
@@ -679,6 +681,7 @@ public class WebRtcCallService extends Service implements CallConnection.Observe
       terminate();
     }
 
+    activateCallMedia();
   }
 
   private void handleDenyCall(Intent intent) {
@@ -694,7 +697,7 @@ public class WebRtcCallService extends Service implements CallConnection.Observe
     try {
       Log.i(TAG, "handleDenyCall()");
       this.callConnection.hangUp();
-      DatabaseFactory.getSmsDatabase(this).insertMissedCall(recipient.getAddress());
+      DatabaseFactory.getSmsDatabase(this).insertMissedCall(recipient.getId());
     } catch (CallException e) {
       Log.w(TAG, e);
     }
@@ -722,7 +725,7 @@ public class WebRtcCallService extends Service implements CallConnection.Observe
   private void handleRemoteHangup(Intent intent) {
 
     long callId = getCallId(intent);
-    Log.i(TAG, "handleRemoteHangup(): callId: " + callId);
+    Log.i(TAG, "handleRemoteHangup(): callId: 0x" + Long.toHexString(callId));
 
     if (!Util.isEquals(this.callId, callId)) {
       Log.w(TAG, "hangup for non-active call...");
@@ -1010,6 +1013,25 @@ public class WebRtcCallService extends Service implements CallConnection.Observe
                                                          microphoneEnabled));
   }
 
+  private ListenableFutureTask<Boolean> sendMessage(@NonNull final Recipient recipient,
+                                                    @NonNull final SignalServiceCallMessage callMessage)
+  {
+    Callable<Boolean> callable = new Callable<Boolean>() {
+      @Override
+      public Boolean call() throws Exception {
+        messageSender.sendCallMessage(new SignalServiceAddress(recipient.requireAddress().toPhoneString()),
+                                      UnidentifiedAccessUtil.getAccessFor(WebRtcCallService.this, recipient),
+                                      callMessage);
+        return true;
+      }
+    };
+
+    ListenableFutureTask<Boolean> listenableFutureTask = new ListenableFutureTask<>(callable, null, serviceExecutor);
+    networkExecutor.execute(listenableFutureTask);
+
+    return listenableFutureTask;
+  }
+
   private void startCallCardActivityIfPossible() {
     if (Build.VERSION.SDK_INT >= 29 && !ApplicationContext.getInstance(getApplicationContext()).isAppVisible()) {
       return;
@@ -1024,10 +1046,10 @@ public class WebRtcCallService extends Service implements CallConnection.Observe
   ///
 
   private @NonNull Recipient getRemoteRecipient(Intent intent) {
-    Address remoteAddress = intent.getParcelableExtra(EXTRA_REMOTE_ADDRESS);
-    if (remoteAddress == null) throw new AssertionError("No recipient in intent!");
+    RecipientId recipientId = intent.getParcelableExtra(EXTRA_REMOTE_RECIPIENT);
+    if (recipientId == null) throw new AssertionError("No recipient in intent!");
 
-    return Recipient.from(this, remoteAddress, true);
+    return Recipient.resolved(recipientId);
   }
 
   private long getCallId(Intent intent) {
@@ -1217,15 +1239,17 @@ public class WebRtcCallService extends Service implements CallConnection.Observe
   public void onCallEvent(SignalMessageRecipient   eventRecipient,
                           long                     callId,
                           CallConnection.CallEvent event) {
-    Log.i(TAG, "handling onCallEvent(): " + callId + ", event: " + event.toString());
+    Log.i(TAG, "handling onCallEvent(): 0x" + Long.toHexString(callId) + ", event: " + event.toString());
     if (eventRecipient instanceof MessageRecipient) {
       MessageRecipient recipient = (MessageRecipient)eventRecipient;
 
       Intent intent = new Intent(this, WebRtcCallService.class);
       intent.putExtra(EXTRA_CALL_ID, callId);
+      intent.putExtra(EXTRA_REMOTE_RECIPIENT, recipient.getId());
 
       switch (event) {
         case RINGING:
+        case CALL_RECONNECTING:
           intent.setAction(ACTION_CALL_RINGING);
           break;
         case REMOTE_CONNECTED:
@@ -1240,7 +1264,7 @@ public class WebRtcCallService extends Service implements CallConnection.Observe
           intent.putExtra(EXTRA_MUTE, true);
           break;
         case REMOTE_HANGUP:
-        case CALL_DISCONNECTED:
+        case CONNECTION_FAILED:
           intent.setAction(ACTION_REMOTE_HANGUP);
           break;
         case CALL_TIMEOUT:
@@ -1260,14 +1284,14 @@ public class WebRtcCallService extends Service implements CallConnection.Observe
   public void onCallError(SignalMessageRecipient   eventRecipient,
                           long                     callId,
                           Exception                error) {
-    Log.i(TAG, "handling onCallError(): " + callId + ", error: " + error.toString());
+    Log.i(TAG, "handling onCallError(): callId: 0x" + Long.toHexString(callId) + ", error: " + error.toString());
     if (eventRecipient instanceof SignalMessageRecipient) {
       MessageRecipient recipient = (MessageRecipient)eventRecipient;
 
       Intent intent = new Intent(this, WebRtcCallService.class);
       intent.setAction(ACTION_CALL_ERROR);
       intent.putExtra(EXTRA_CALL_ID, callId);
-      intent.putExtra(EXTRA_REMOTE_ADDRESS, recipient.getAddress());
+      intent.putExtra(EXTRA_REMOTE_RECIPIENT, recipient.getId());
 
       if (error instanceof UntrustedIdentityException) {
         intent.putExtra(EXTRA_CALL_ERROR, CallError.UNTRUSTED_IDENTITY.ordinal());
@@ -1293,7 +1317,7 @@ public class WebRtcCallService extends Service implements CallConnection.Observe
   public void onAddStream(SignalMessageRecipient   eventRecipient,
                           long                     callId,
                           MediaStream              stream) {
-    Log.i(TAG, "onAddStream: callId: " + callId + ", stream: " + stream);
+    Log.i(TAG, "onAddStream: callId: 0x" + Long.toHexString(callId) + ", stream: " + stream);
 
     for (AudioTrack audioTrack : stream.audioTracks) {
       Log.i(TAG, "onAddStream: enabling audioTrack");

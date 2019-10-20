@@ -11,6 +11,8 @@
   <string name="AbstractNotificationBuilder_new_message">رسالة جديدة</string>
   <!--AlbumThumbnailView-->
   <string name="AlbumThumbnailView_plus">/+%d</string>
+  <!--ApplicationMigrationActivity-->
+  <string name="ApplicationMigrationActivity__signal_is_updating">يُحدّث سغنال...</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">حاليا: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">لم تقم بتحديد عبارة سرية بعد!</string>
@@ -96,7 +98,11 @@
   <string name="CameraContacts_recent_contacts">جهات الاتصال الأخيرة</string>
   <string name="CameraContacts_signal_contacts">جهات اتصال سغنال</string>
   <string name="CameraContacts_signal_groups">مجموعات سغنال</string>
+  <string name="CameraContacts_select_signal_recipients">اختر المتلقّيين والمتلقّيات بسغنال</string>
   <string name="CameraContacts_no_signal_contacts">لا جهات اتصال في سغنال</string>
+  <string name="CameraContacts_you_can_only_use_the_camera_button">يمكنك استخدام زر الكاميرا لإرسال الصور إلى من تراسل في سغنال.</string>
+  <string name="CameraContacts_cant_find_who_youre_looking_for">ألم تتمكن من العثور على من تبحث عنه؟</string>
+  <string name="CameraContacts_invite_a_contact_to_join_signal">ادع جهة اتصال لتنضم الى سغنال</string>
   <string name="CameraContacts__menu_search">بحث</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">إزالة</string>
@@ -255,6 +261,7 @@
   <string name="ConversationFragment_deleting_messages">حذف الرسائل جارٍ...</string>
   <string name="ConversationFragment_quoted_message_not_found">لم يتم العثور على الرسالة الأصلية</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">الرسالة الأصلية لم تعد متوفرة</string>
+  <string name="ConversationFragment_failed_to_open_message">فشل في فتح الرسالة</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">لا يوجد متصفح بالجهاز.</string>
   <!--ConversationListFragment-->
@@ -309,13 +316,14 @@
   <string name="CreateProfileActivity_profile_name">اسم الشخصية</string>
   <string name="CreateProfileActivity_set_up_your_profile">إعداد الملف الشخصي</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">الملفات الشخصية في Signal مشفرة من النهاية إلى النهاية, وخدمة Signal ليس لديها وصول إلى هذه المعلومات أبداً.</string>
+  <string name="CreateProfileActivity_set_avatar_description">ضع صورة ملفك الشخصي</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">استخدام التخصيص: %s</string>
   <string name="CustomDefaultPreference_using_default">الاستخدام الافتراضي: %s</string>
   <string name="CustomDefaultPreference_none">لا شيء </string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">الآن</string>
-  <string name="DateUtils_minutes_ago">%d دقيقة</string>
+  <string name="DateUtils_minutes_ago">%dm</string>
   <string name="DateUtils_today">اليوم</string>
   <string name="DateUtils_yesterday">البارحة</string>
   <!--DeliveryStatus-->
@@ -482,7 +490,9 @@
   <string name="MediaSendActivity_camera_unavailable">الكاميرا غير متاحة.</string>
   <string name="MediaSendActivity_message_to_s">رسالة إلى %s</string>
   <string name="MediaSendActivity_message">رسالة</string>
+  <string name="MediaSendActivity_select_recipients">اختر المتلقّيين والمتلقّيات</string>
   <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal بحاجة إلى النفاذ إلى قائمة مراسليك و ذلك قصد عرضها.</string>
+  <string name="MediaSendActivity_select_recipients_description">اختر المتلقّيين والمتلقّيات</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">جميع الوسائط</string>
   <!--MessageRecord-->
@@ -611,9 +621,10 @@
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">أدخل الرمز الذي أرسلناه إلى%s</string>
   <string name="RegistrationActivity_call">اتصل</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_view_photo">مشاهدة الصورة</string>
-  <string name="RevealableMessageView_viewed">تمت المشاهدة</string>
   <string name="RevealableMessageView_photo">صورة</string>
+  <string name="RevealableMessageView_video">فيديو</string>
+  <string name="RevealableMessageView_viewed">تمت المشاهدة</string>
+  <string name="RevealableMessageView_outgoing_media">الوسائط</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">تعذر حفظ التغييرات بالصورة</string>
   <!--Search-->
@@ -705,6 +716,7 @@
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">لم يُعثر على رقم أمان في الحافظة من أجل المقارنة</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">يحتاج Signal إلى إذن الكاميرا من أجل مسح رمز الاستجابة السريع QR ولكن تم إيقاف الإذن على نحو دائم، رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"الكاميرا\".</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">لا يمكن مسح رمز الإستجابة السريعة QR بدون إذن استخدام الكاميرا</string>
+  <!--ViewOnceMessageActivity-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">رسالة مشفرة رديئة</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">الرسالة مشفرة دون وجود قناة اتصال...</string>
@@ -755,6 +767,7 @@
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">افتراضي</string>
   <string name="NotificationChannel_calls">المُكالمات</string>
+  <string name="NotificationChannel_failures">الأخطاء</string>
   <string name="NotificationChannel_backups">النُسخ الإحتياطية</string>
   <string name="NotificationChannel_app_updates">تحديثات التطبيق</string>
   <string name="NotificationChannel_other">أخرى</string>
@@ -822,7 +835,9 @@
   <string name="change_passphrase_activity__repeat_new_passphrase">إعادة العبارة السرية الجديدة</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">أدخل أسم أو رقم</string>
+  <string name="contact_selection_activity__invite_to_signal">ادعُ إلى Signal</string>
   <!--contact_filter_toolbar-->
+  <string name="contact_filter_toolbar__clear_entered_text_description">امسح النص اللذي ادخلته</string>
   <string name="contact_filter_toolbar__show_keyboard_description">إظهار لوحة المفاتيح</string>
   <string name="contact_filter_toolbar__show_dial_pad_description">إظهار لوحة الاتصال</string>
   <!--contact_selection_group_activity-->
@@ -866,13 +881,12 @@
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">صورة جهة الاتصال</string>
   <!--audio_view-->
-  <string name="audio_view__play_accessibility_description">تشغيل</string>
-  <string name="audio_view__pause_accessibility_description">توقف</string>
   <string name="audio_view__download_accessibility_description">تنزيل</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">صوت</string>
   <string name="QuoteView_video">فيديو</string>
   <string name="QuoteView_photo">صورة</string>
+  <string name="QuoteView_media">رسائل الاعلام</string>
   <string name="QuoteView_sticker">ملصق</string>
   <string name="QuoteView_document">مستند</string>
   <string name="QuoteView_you">أنت</string>
@@ -978,8 +992,6 @@
   <string name="database_migration_activity__import">استيراد</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">قد تستغرق العملية عدة دقائق. يرجى الانتظار. سيتم تنبيهك عند انتهاء العملية.</string>
   <string name="database_migration_activity__importing">مهم!</string>
-  <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">تحديث قاعدة البيانات...</string>
   <string name="import_fragment__import_system_sms_database">استيراد قاعدة بيانات الرسائل بالنظام</string>
   <string name="import_fragment__import_the_database_from_the_default_system">استيراد قاعدة البيانات من تطبيق الرسائل الافتراضي لنظام التشغيل</string>
   <string name="import_fragment__import_plaintext_backup">استيراد نسخة احتياطية غير مشفرة</string>
@@ -1101,14 +1113,6 @@
   <string name="arrays__high">عالي</string>
   <string name="arrays__max">الأقصى</string>
   <!--plurals.xml-->
-  <plurals name="hours_ago">
-    <item quantity="zero">%d ساعة</item>
-    <item quantity="one">%d ساعة</item>
-    <item quantity="two">%d ساعتين</item>
-    <item quantity="few">%d ساعات</item>
-    <item quantity="many">%d ساعة</item>
-    <item quantity="other">%d ساعة</item>
-  </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">رسالة نصية ورسالة وسائط متعددة</string>
   <string name="preferences__pref_all_sms_title">اإستقبال كل الرسائل النصية</string>
@@ -1247,6 +1251,8 @@
   <string name="conversation_list_batch_archive__menu_archive_selected">تم اختيار الأرشيف</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">اختيار غير المؤرشف</string>
   <!--conversation_list-->
+  <string name="conversation_list_settings_shortcut">اختصار الإعدادات</string>
+  <string name="conversation_list_search_description">بحث</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">صورة جهة الاتصال</string>
   <string name="conversation_list_item_view__archived">الأرشيف</string>
@@ -1374,6 +1380,7 @@
   <string name="ProgressPreference_d_messages_so_far">%dرسالة إلى الآن</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">رجاء إدخال كود التحقق الذي تم إرساله إلى %s.</string>
   <string name="RegistrationActivity_wrong_number">رقم خاطئ </string>
+  <string name="RegistrationActivity_contact_signal_support">الاتصال بخدمة دعم تطبيق Signal</string>
   <string name="BackupUtil_never">أبدا</string>
   <string name="BackupUtil_unknown">مجهول</string>
   <string name="preferences_app_protection__screen_lock">قفل الشاشة</string>

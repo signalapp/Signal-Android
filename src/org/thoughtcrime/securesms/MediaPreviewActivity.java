@@ -29,6 +29,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,6 +38,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.util.Pair;
+import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
@@ -61,7 +63,7 @@ import org.thoughtcrime.securesms.mediapreview.MediaRailAdapter;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.AttachmentUtil;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
@@ -76,15 +78,14 @@ import java.util.Map;
  * Activity for displaying media attachments in-app
  */
 public final class MediaPreviewActivity extends PassphraseRequiredActionBarActivity
-  implements RecipientModifiedListener,
-             LoaderManager.LoaderCallbacks<Pair<Cursor, Integer>>,
+  implements LoaderManager.LoaderCallbacks<Pair<Cursor, Integer>>,
              MediaRailAdapter.RailItemListener,
              MediaPreviewFragment.Events
 {
 
   private final static String TAG = MediaPreviewActivity.class.getSimpleName();
 
-  public static final String ADDRESS_EXTRA        = "address";
+  public static final String RECIPIENT_EXTRA      = "recipient_id";
   public static final String DATE_EXTRA           = "date";
   public static final String SIZE_EXTRA           = "size";
   public static final String CAPTION_EXTRA        = "caption";
@@ -109,20 +110,22 @@ public final class MediaPreviewActivity extends PassphraseRequiredActionBarActiv
 
   private int restartItem = -1;
 
-
   @SuppressWarnings("ConstantConditions")
   @Override
   protected void onCreate(Bundle bundle, boolean ready) {
-    this.setTheme(R.style.TextSecure_DarkTheme);
+    this.setTheme(R.style.TextSecure_MediaPreview);
+    setContentView(R.layout.media_preview_activity);
+
+    setSupportActionBar(findViewById(R.id.toolbar));
 
     viewModel = ViewModelProviders.of(this).get(MediaPreviewViewModel.class);
 
-    getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
     getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                          WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+    showSystemUI();
+
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    setContentView(R.layout.media_preview_activity);
 
     initializeViews();
     initializeResources();
@@ -132,11 +135,6 @@ public final class MediaPreviewActivity extends PassphraseRequiredActionBarActiv
   @Override
   public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
     Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
-  }
-
-  @Override
-  public void onModified(Recipient recipient) {
-    Util.runOnMain(this::initializeActionBar);
   }
 
   @Override
@@ -208,10 +206,18 @@ public final class MediaPreviewActivity extends PassphraseRequiredActionBarActiv
     caption                   = findViewById(R.id.media_preview_caption);
     captionContainer          = findViewById(R.id.media_preview_caption_container);
     playbackControlsContainer = findViewById(R.id.media_preview_playback_controls_container);
+
+    View toolbarLayout = findViewById(R.id.toolbar_layout);
+
+    anchorMarginsToBottomInsets(detailsContainer);
+
+    anchorMarginsToTopInsets(toolbarLayout);
+
+    showAndHideWithSystemUI(getWindow(), detailsContainer, toolbarLayout);
   }
 
   private void initializeResources() {
-    Address address = getIntent().getParcelableExtra(ADDRESS_EXTRA);
+    RecipientId recipientId = getIntent().getParcelableExtra(RECIPIENT_EXTRA);
 
     initialMediaUri  = getIntent().getData();
     initialMediaType = getIntent().getType();
@@ -220,8 +226,8 @@ public final class MediaPreviewActivity extends PassphraseRequiredActionBarActiv
     leftIsRecent     = getIntent().getBooleanExtra(LEFT_IS_RECENT_EXTRA, false);
     restartItem      = -1;
 
-    if (address != null) {
-      conversationRecipient = Recipient.from(this, address, true);
+    if (recipientId != null) {
+      conversationRecipient = Recipient.live(recipientId).get();
     } else {
       conversationRecipient = null;
     }
@@ -293,7 +299,7 @@ public final class MediaPreviewActivity extends PassphraseRequiredActionBarActiv
 
   private void showOverview() {
     Intent intent = new Intent(this, MediaOverviewActivity.class);
-    intent.putExtra(MediaOverviewActivity.ADDRESS_EXTRA, conversationRecipient.getAddress());
+    intent.putExtra(MediaOverviewActivity.RECIPIENT_EXTRA, conversationRecipient.getId());
     startActivity(intent);
   }
 
@@ -421,14 +427,14 @@ public final class MediaPreviewActivity extends PassphraseRequiredActionBarActiv
       mediaPager.setAdapter(adapter);
       adapter.setActive(true);
 
-      viewModel.setCursor(this, data.first, leftIsRecent);
-
       int item = restartItem >= 0 ? restartItem : data.second;
       mediaPager.setCurrentItem(item);
 
       if (item == 0) {
         viewPagerListener.onPageSelected(0);
       }
+
+      Util.postToMain(() -> viewModel.setCursor(this, data.first, leftIsRecent));
     }
   }
 
@@ -439,9 +445,34 @@ public final class MediaPreviewActivity extends PassphraseRequiredActionBarActiv
 
   @Override
   public boolean singleTapOnMedia() {
-    detailsContainer.setVisibility(detailsContainer.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
-
+    toggleUiVisibility();
     return true;
+  }
+
+  private void toggleUiVisibility() {
+    int systemUiVisibility = getWindow().getDecorView().getSystemUiVisibility();
+    if ((systemUiVisibility & View.SYSTEM_UI_FLAG_FULLSCREEN) != 0) {
+      showSystemUI();
+    } else {
+      hideSystemUI();
+    }
+  }
+
+  private void hideSystemUI() {
+    getWindow().getDecorView().setSystemUiVisibility(
+        View.SYSTEM_UI_FLAG_IMMERSIVE              |
+        View.SYSTEM_UI_FLAG_LAYOUT_STABLE          |
+        View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION |
+        View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN      |
+        View.SYSTEM_UI_FLAG_HIDE_NAVIGATION        |
+        View.SYSTEM_UI_FLAG_FULLSCREEN              );
+  }
+
+  private void showSystemUI() {
+    getWindow().getDecorView().setSystemUiVisibility(
+        View.SYSTEM_UI_FLAG_LAYOUT_STABLE          |
+        View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION |
+        View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN       );
   }
 
   private class ViewPagerListener extends ExtendedOnPageChangedListener {
@@ -454,7 +485,7 @@ public final class MediaPreviewActivity extends PassphraseRequiredActionBarActiv
 
       if (adapter != null) {
         MediaItem item = adapter.getMediaItemFor(position);
-        if (item.recipient != null) item.recipient.addListener(MediaPreviewActivity.this);
+        if (item.recipient != null) item.recipient.live().observe(MediaPreviewActivity.this, r -> initializeActionBar());
         viewModel.setActiveAlbumRailItem(MediaPreviewActivity.this, position);
         initializeActionBar();
       }
@@ -467,7 +498,7 @@ public final class MediaPreviewActivity extends PassphraseRequiredActionBarActiv
 
       if (adapter != null) {
         MediaItem item = adapter.getMediaItemFor(position);
-        if (item.recipient != null) item.recipient.removeListener(MediaPreviewActivity.this);
+        if (item.recipient != null) item.recipient.live().removeObservers(MediaPreviewActivity.this);
 
         adapter.pause(position);
       }
@@ -532,6 +563,48 @@ public final class MediaPreviewActivity extends PassphraseRequiredActionBarActiv
       }
       return null;
     }
+  }
+
+  private static void anchorMarginsToBottomInsets(@NonNull View viewToAnchor) {
+    ViewCompat.setOnApplyWindowInsetsListener(viewToAnchor, (view, insets) -> {
+      ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
+
+      layoutParams.setMargins(insets.getSystemWindowInsetLeft(),
+                              layoutParams.topMargin,
+                              insets.getSystemWindowInsetRight(),
+                              insets.getSystemWindowInsetBottom());
+
+      view.setLayoutParams(layoutParams);
+
+      return insets;
+    });
+  }
+
+  private static void anchorMarginsToTopInsets(@NonNull View viewToAnchor) {
+    ViewCompat.setOnApplyWindowInsetsListener(viewToAnchor, (view, insets) -> {
+      ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
+
+      layoutParams.setMargins(insets.getSystemWindowInsetLeft(),
+                              insets.getSystemWindowInsetTop(),
+                              insets.getSystemWindowInsetRight(),
+                              layoutParams.bottomMargin);
+
+      view.setLayoutParams(layoutParams);
+
+      return insets;
+    });
+  }
+
+  private static void showAndHideWithSystemUI(@NonNull Window window, @NonNull View... views) {
+    window.getDecorView().setOnSystemUiVisibilityChangeListener(visibility -> {
+      boolean hide = (visibility & View.SYSTEM_UI_FLAG_FULLSCREEN) != 0;
+
+      for (View view : views) {
+        view.animate()
+            .alpha(hide ? 0 : 1)
+            .start();
+      }
+    });
   }
 
   private static class CursorPagerAdapter extends FragmentStatePagerAdapter implements MediaItemAdapter {
@@ -603,11 +676,11 @@ public final class MediaPreviewActivity extends PassphraseRequiredActionBarActiv
     public MediaItem getMediaItemFor(int position) {
       cursor.moveToPosition(getCursorPosition(position));
       MediaRecord mediaRecord = MediaRecord.from(context, cursor);
-      Address     address     = mediaRecord.getAddress();
+      RecipientId recipientId = mediaRecord.getRecipientId();
 
       if (mediaRecord.getAttachment().getDataUri() == null) throw new AssertionError();
 
-      return new MediaItem(address != null ? Recipient.from(context, address,true) : null,
+      return new MediaItem(Recipient.live(recipientId).get(),
                            mediaRecord.getAttachment(),
                            mediaRecord.getAttachment().getDataUri(),
                            mediaRecord.getContentType(),

@@ -217,7 +217,7 @@
                         android:src="@drawable/ic_keyboard_arrow_down_white_24dp"
                         android:scaleType="center"
                         android:contentDescription="@string/attachment_type_selector__drawer_description"
-                        app:circleColor="@color/gray50"/>
+                        app:circleColor="@color/core_grey_50"/>
 
                 <TextView android:layout_marginTop="10dp"
                           android:layout_width="wrap_content"

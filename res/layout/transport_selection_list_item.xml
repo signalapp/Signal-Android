@@ -15,7 +15,9 @@
                android:padding="7dp"
                android:background="@drawable/circle_tintable"
                android:contentDescription="@string/transport_selection_list_item__transport_icon"
-               tools:src="@drawable/ic_send_push_white_24dp"
+               android:tint="@color/white"
+               tools:src="@drawable/ic_send_lock_24"
+               tools:tint="@color/white"
                tools:backgroundTint="@color/textsecure_primary" />
 
     <LinearLayout android:orientation="vertical"

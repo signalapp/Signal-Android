@@ -11,6 +11,7 @@
   <string name="AbstractNotificationBuilder_new_message">Yeni mesaj</string>
   <!--AlbumThumbnailView-->
   <string name="AlbumThumbnailView_plus">\+%d</string>
+  <!--ApplicationMigrationActivity-->
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Hal-hazırda: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Açar sözü təyin etməmisən!</string>
@@ -250,7 +251,7 @@
   <string name="CustomDefaultPreference_none">Heç biri</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">İndi</string>
-  <string name="DateUtils_minutes_ago">%d dəq</string>
+  <string name="DateUtils_minutes_ago">%dm</string>
   <string name="DateUtils_today">Bu gün</string>
   <string name="DateUtils_yesterday">Dünən</string>
   <!--DeliveryStatus-->
@@ -550,6 +551,8 @@
   <string name="RegistrationActivity_call">Zəng et</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_photo">Şəkil</string>
+  <string name="RevealableMessageView_video">Video</string>
+  <string name="RevealableMessageView_outgoing_media">Media</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Şəkilə olan dəyişiklikləri yadda saxlaya bilmədik</string>
   <!--Search-->
@@ -639,6 +642,7 @@
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Mübadilə buferində müqayisə etmək üçün təhlükəsizlik rəqəmi tapılmadı</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">QR şifrəni skan edə bilməsi üçün Signal-ın Kamera seçimlərinə giriş icazəsi olmalıdır ki, o da hal hazırda qadağa edilmişdir. Davam edə bilmək üçün zəhmət olmasa aplikasiya parametrləri menyusuna, oradan isə \"İcazələr bölməsinə keçərək \"Kamera\" hissəsini aktivləşdir.</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Kameraya giriş icazəsi olmadan QR şifrəni skan etmək mümkün deyil</string>
+  <!--ViewOnceMessageActivity-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">Pis şifrələnmiş mesaj</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Mesaj mövcud olmayan sessiya üçün şifrələnib</string>
@@ -756,6 +760,7 @@
   <string name="change_passphrase_activity__repeat_new_passphrase">Yeni şifrə ifadəsini təkrarla</string>
   <!--contact_selection_activity-->
   <string name="contact_selection_activity__enter_name_or_number">Ad və ya nömrəni yaz</string>
+  <string name="contact_selection_activity__invite_to_signal">Signal-a dəvət et</string>
   <!--contact_filter_toolbar-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Əlaqə yoxdur.</string>
@@ -797,13 +802,12 @@
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Əlaqənin şəkli</string>
   <!--audio_view-->
-  <string name="audio_view__play_accessibility_description">Başla</string>
-  <string name="audio_view__pause_accessibility_description">Pauza</string>
   <string name="audio_view__download_accessibility_description">Yüklə</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">Səs</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Şəkil</string>
+  <string name="QuoteView_media">Media mesajı</string>
   <string name="QuoteView_sticker">Sticker</string>
   <string name="QuoteView_document">Sənəd</string>
   <string name="QuoteView_you">Sən</string>
@@ -895,8 +899,6 @@
   <string name="database_migration_activity__import">Daxil et</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Bu bir qədər zaman ala bilər. Lütfən səbrli ol, daxil etmə prosesi bitən kimi səni xəbərdar edəcəyik.</string>
   <string name="database_migration_activity__importing">DAXİL EDİLİR</string>
-  <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">Məlumat bazası yenilənir...</string>
   <string name="import_fragment__import_system_sms_database">Sistem SMS məlumat bazasını daxil et</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Mövcud sistem mesencer aplikasiyasından məlumat bazasını daxil et</string>
   <string name="import_fragment__import_plaintext_backup">Sadə mətn arxivini daxil et</string>
@@ -1016,10 +1018,6 @@
   <string name="arrays__high">Uca</string>
   <string name="arrays__max">Maksimum</string>
   <!--plurals.xml-->
-  <plurals name="hours_ago">
-    <item quantity="one">%d saat</item>
-    <item quantity="other">%d saat</item>
-  </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">SMS və MMS</string>
   <string name="preferences__pref_all_sms_title">Bütün SMS-ləri al</string>
@@ -1161,6 +1159,7 @@
   <string name="conversation_list_batch_archive__menu_archive_selected">Seçilmişi arxivləşdir</string>
   <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Seçilmişi arxivdən çıxar</string>
   <!--conversation_list-->
+  <string name="conversation_list_search_description">Axtar</string>
   <!--conversation_list_item_view-->
   <string name="conversation_list_item_view__contact_photo_image">Əlaqənin Şəkli</string>
   <string name="conversation_list_item_view__archived">Arxivləşdirildi</string>

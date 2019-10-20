@@ -29,10 +29,14 @@ import android.provider.ContactsContract.PhoneLookup;
 import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 
+import com.annimon.stream.Stream;
+
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.ArrayList;
@@ -72,7 +76,7 @@ public class ContactAccessor {
     try (Cursor cursor = context.getContentResolver().query(Phone.CONTENT_URI, new String[] {Phone.NUMBER}, null ,null, null)) {
       while (cursor != null && cursor.moveToNext()) {
         if (!TextUtils.isEmpty(cursor.getString(0))) {
-          results.add(Address.fromExternal(context, cursor.getString(0)));
+          results.add(Address.fromSerialized(PhoneNumberFormatter.get(context).format(cursor.getString(0))));
         }
       }
     }
@@ -81,7 +85,7 @@ public class ContactAccessor {
   }
 
   public Cursor getAllSystemContacts(Context context) {
-    return context.getContentResolver().query(Phone.CONTENT_URI, new String[] {Phone.NUMBER, Phone.DISPLAY_NAME, Phone.LABEL, Phone.PHOTO_URI, Phone._ID, Phone.LOOKUP_KEY}, null, null, null);
+    return context.getContentResolver().query(Phone.CONTENT_URI, new String[] {Phone.NUMBER, Phone.DISPLAY_NAME, Phone.LABEL, Phone.PHOTO_URI, Phone._ID, Phone.LOOKUP_KEY, Phone.TYPE}, null, null, null);
   }
 
   public boolean isSystemContact(Context context, String number) {
@@ -105,7 +109,7 @@ public class ContactAccessor {
     final ContentResolver resolver = context.getContentResolver();
     final String[] inProjection    = new String[]{PhoneLookup._ID, PhoneLookup.DISPLAY_NAME};
 
-    final List<Address>           registeredAddresses = DatabaseFactory.getRecipientDatabase(context).getRegistered();
+    final List<Address>           registeredAddresses = Stream.of(DatabaseFactory.getRecipientDatabase(context).getRegistered()).map(Recipient::resolved).map(Recipient::requireAddress).toList();
     final Collection<ContactData> lookupData          = new ArrayList<>(registeredAddresses.size());
 
     for (Address registeredAddress : registeredAddresses) {

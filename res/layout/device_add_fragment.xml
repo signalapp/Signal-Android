@@ -37,7 +37,7 @@
                        android:src="@drawable/ic_devices_white"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
-                       android:tint="@color/gray27"
+                       android:tint="@color/core_grey_25"
                        android:transitionName="devices"
                        android:layout_marginBottom="16dp"/>
 
