@@ -183,16 +183,29 @@ public class AttachmentDownloadJob extends BaseJob implements InjectableType {
   SignalServiceAttachmentPointer createAttachmentPointer(Attachment attachment)
       throws InvalidPartException
   {
+    boolean isPublicAttachment = TextUtils.isEmpty(attachment.getKey()) && attachment.getDigest() == null;
+
     if (TextUtils.isEmpty(attachment.getLocation())) {
       throw new InvalidPartException("empty content id");
     }
 
-    if (TextUtils.isEmpty(attachment.getKey())) {
+    if (TextUtils.isEmpty(attachment.getKey()) && !isPublicAttachment) {
       throw new InvalidPartException("empty encrypted key");
     }
 
     try {
       long   id    = Long.parseLong(attachment.getLocation());
+      if (isPublicAttachment) {
+        return new SignalServiceAttachmentPointer(id, null, new byte[0],
+                Optional.of(Util.toIntExact(attachment.getSize())),
+                Optional.absent(),
+                0, 0,
+                Optional.fromNullable(attachment.getDigest()),
+                Optional.fromNullable(attachment.getFileName()),
+                attachment.isVoiceNote(),
+                Optional.absent(), attachment.getUrl());
+      }
+
       byte[] key   = Base64.decode(attachment.getKey());
       String relay = null;
 

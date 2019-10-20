@@ -114,9 +114,14 @@ public class AttachmentUtil {
 
     if (message == null) { return true; }
 
+    // TODO: Fix this so we can detect whether attachment is from a public group or not
+    return false;
+
+    /*
     // check to see if we're friends with the person
     long threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(message.getRecipient());
     boolean isFriend = threadId >= 0 && DatabaseFactory.getLokiThreadDatabase(context).getFriendRequestStatus(threadId) == LokiThreadFriendRequestStatus.FRIENDS;
     return (!isFriend && !message.isOutgoing() && !Util.isOwnNumber(context, message.getRecipient().getAddress()));
+    */
   }
 }
