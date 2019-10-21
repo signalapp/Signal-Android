@@ -67,6 +67,8 @@ import java.io.IOException;
 import java.security.SecureRandom;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.inject.Inject;
 
@@ -227,8 +229,13 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
       public void onTextChanged(CharSequence s, int start, int before, int count) {}
       @Override
       public void afterTextChanged(Editable s) {
+        Pattern pattern = Pattern.compile("[a-zA-Z0-9_]+");
+        Matcher matcher = pattern.matcher(s.toString());
         if (s.toString().isEmpty()) {
           name.getInput().setError("Invalid");
+          finishButton.setEnabled(false);
+        } else if (!matcher.matches()) {
+          name.getInput().setError("Invalid (a-z, A-Z, 0-9 and _ only)");
           finishButton.setEnabled(false);
         } else if (s.toString().getBytes().length > ProfileCipher.NAME_PADDED_LENGTH) {
           name.getInput().setError(getString(R.string.CreateProfileActivity_too_long));

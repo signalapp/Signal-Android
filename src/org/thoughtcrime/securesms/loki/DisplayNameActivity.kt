@@ -27,6 +27,9 @@ class DisplayNameActivity : BaseActionBarActivity() {
         if (name.isEmpty()) {
             return nameEditText.input.setError("Invalid")
         }
+        if (!name.matches(Regex("[a-zA-Z0-9_]+"))) {
+            return nameEditText.input.setError("Invalid (a-z, A-Z, 0-9 and _ only)")
+        }
         if (name.toByteArray().size > ProfileCipher.NAME_PADDED_LENGTH) {
             return nameEditText.input.setError("Too Long")
         } else {
