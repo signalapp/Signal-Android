@@ -17,9 +17,11 @@ import org.thoughtcrime.securesms.util.GroupUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.libsignal.util.guava.Optional
-import org.whispersystems.signalservice.api.messages.*
+import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer
+import org.whispersystems.signalservice.api.messages.SignalServiceContent
+import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage
+import org.whispersystems.signalservice.api.messages.SignalServiceGroup
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
-import org.whispersystems.signalservice.internal.push.SignalServiceProtos
 import org.whispersystems.signalservice.loki.api.LokiPublicChat
 import org.whispersystems.signalservice.loki.api.LokiPublicChatAPI
 import org.whispersystems.signalservice.loki.api.LokiPublicChatMessage
@@ -131,10 +133,7 @@ class LokiPublicChatPoller(private val context: Context, private val group: Loki
             val lokiMessageDatabase = DatabaseFactory.getLokiMessageDatabase(context)
             val isDuplicate = lokiMessageDatabase.getMessageID(messageServerID) != null
             if (isDuplicate) { return }
-
-            // Ignore empty messages with no attachments or quotes
             if (message.body.isEmpty() && message.attachments.isEmpty() && message.quote == null) { return }
-
             val id = group.id.toByteArray()
             val mmsDatabase = DatabaseFactory.getMmsDatabase(context)
             val recipient = Recipient.from(context, Address.fromSerialized(GroupUtil.getEncodedId(id, false)), false)
