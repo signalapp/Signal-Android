@@ -1,8 +1,6 @@
 package org.thoughtcrime.securesms.mediasend;
 
 import android.Manifest;
-import android.animation.Animator;
-import android.animation.ValueAnimator;
 import android.content.Context;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -17,10 +15,10 @@ import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.util.Executors;
+import com.nineoldandroids.animation.Animator;
+import com.nineoldandroids.animation.ValueAnimator;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.animation.AnimationCompleteListener;
-import org.thoughtcrime.securesms.components.TooltipPopup;
 import org.thoughtcrime.securesms.mediasend.camerax.CameraXView;
 import org.thoughtcrime.securesms.mediasend.camerax.VideoCapture;
 import org.thoughtcrime.securesms.permissions.Permissions;
@@ -83,7 +81,7 @@ class CameraXVideoCaptureHelper implements CameraButtonView.VideoCaptureListener
 
     updateProgressAnimator.setInterpolator(new LinearInterpolator());
     updateProgressAnimator.addUpdateListener(anim -> captureButton.setProgress(anim.getAnimatedFraction()));
-    updateProgressAnimator.addListener(new AnimationCompleteListener() {
+    updateProgressAnimator.addListener(new AnimationEndCallback() {
       @Override
       public void onAnimationEnd(Animator animation) {
         if (isRecording) onVideoCaptureComplete();
@@ -142,7 +140,7 @@ class CameraXVideoCaptureHelper implements CameraButtonView.VideoCaptureListener
     ViewGroup.LayoutParams params = camera.getLayoutParams();
     cameraMetricsAnimator.setInterpolator(new LinearInterpolator());
     cameraMetricsAnimator.setDuration(200);
-    cameraMetricsAnimator.addListener(new AnimationCompleteListener() {
+    cameraMetricsAnimator.addListener(new AnimationEndCallback() {
       @Override
       public void onAnimationEnd(Animator animation) {
         if (!isRecording) return;
@@ -224,6 +222,24 @@ class CameraXVideoCaptureHelper implements CameraButtonView.VideoCaptureListener
         VIDEO_DEBUG_LABEL,
         VIDEO_SIZE
     );
+  }
+
+  private abstract class AnimationEndCallback implements Animator.AnimatorListener {
+
+    @Override
+    public final void onAnimationStart(Animator animation) {
+
+    }
+
+    @Override
+    public final void onAnimationCancel(Animator animation) {
+
+    }
+
+    @Override
+    public final void onAnimationRepeat(Animator animation) {
+
+    }
   }
 
   interface Callback {
