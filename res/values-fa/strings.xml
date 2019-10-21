@@ -75,6 +75,7 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">تصویر ذخیره نشد</string>
   <!--CameraXFragment-->
+  <string name="CameraXFragment_tap_for_photo_hold_for_video">برای عکس ضربه بزنید ، برای فیلم نگه دارید</string>
   <string name="CameraXFragment_capture_description">گرفتن</string>
   <string name="CameraXFragment_change_camera_description">تغییر دوربین</string>
   <string name="CameraXFragment_open_gallery_description">بازکردن گالری</string>
@@ -172,6 +173,9 @@
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">برای گرفتن تصاویر و ویدیو، به سیگنال اجازه دسترسی به دوربین را بدهید.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal برای عکس گرفتن یا ضبط ویدئو نیاز به دسترسی به دوربین دارد، اما دسترسی به آن به طور دائم رد شده است. لطفا به تنظیمات برنامه رفته، \"دسترسی ها\" را انتخاب کرده، و دوربین را فعال کنید. </string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal برای گرفتن عکس یا ضبط ویدئو به دسترسیِ دوربین نیاز دارد</string>
+  <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">مجوز میکروفون را برای ضبط فیلم ها با صدا فعال کنید.</string>
+  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">سیگنال برای ضبط فیلم به مجوزها ی میکروفون احتیاج دارد ، اما آنها رد شده اند. لطفاً تنظیمات برنامه را ادامه دهید ، \"مجوزها\" را انتخاب کرده و \"میکروفون\" و \"دوربین\" را فعال کنید.</string>
+  <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">سیگنال برای ضبط فیلم به مجوزها ی میکروفون احتیاج دارد.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal نمی‌تواند پیامک (SMS)/فراپیام (MMS) بفرستد چون برنامهٔ پیش‌فرض پیامک شما نیست. آیا مایل به تغییر برنامۀ پیش‌فرض پیامک در تنظیمات اَندروید خود هستید؟</string>
   <string name="ConversationActivity_yes">بله</string>
@@ -217,6 +221,8 @@
   <string name="ConversationFragment_quoted_message_not_found">پیام اصلی یافت نشد</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">پیام اصلی دیگر در دسترس نیست</string>
   <string name="ConversationFragment_failed_to_open_message">باز کردن پیام ناموفق بود</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_right_reply">برای پاسخ سریع می توانید در هر پیام به راست بکشید</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_left_reply">برای پاسخ سریع می توانید به سمت چپ روی هر پیام بکشید</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">برروی دستگاه شما هیچ مرورگری نصب نیست.</string>
   <!--ConversationListFragment-->
@@ -564,6 +570,8 @@
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">برای شروع شماره تلفن خود را وارد کنید</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">شما یک کد تاییدیه دریافت خواهید کرد. اپراتور شما ممکن است مبلغی در ازای این کار دریافت کند.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">کدی که به %s ارسال کردیم را وارد کنید</string>
+  <string name="RegistrationActivity_phone_number_description">شماره تلفن</string>
+  <string name="RegistrationActivity_country_code_description">کد کشور</string>
   <string name="RegistrationActivity_call">تماس</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_photo">تصویر</string>
@@ -630,6 +638,7 @@
   <string name="ThreadRecord_media_message">پیام رسانه</string>
   <string name="ThreadRecord_sticker">استیکر</string>
   <string name="ThreadRecord_disappearing_photo">عکس ناپدید شد</string>
+  <string name="ThreadRecord_disappearing_video">ویدیو ناپدید شونده</string>
   <string name="ThreadRecord_s_is_on_signal">%s در Signal است!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">پیام های نابود شونده غیر فعال شد</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">زمان پنهان شدن پیام بر روی %s تنظیم شد</string>
@@ -706,6 +715,7 @@
   <string name="MessageNotifier_media_message">پیام رسانه</string>
   <string name="MessageNotifier_sticker">استیکر</string>
   <string name="MessageNotifier_disappearing_photo">عکس ناپدید شد</string>
+  <string name="MessageNotifier_disappearing_video">ویدیو ناپدید شونده</string>
   <string name="MessageNotifier_reply">پاسخ</string>
   <string name="MessageNotifier_signal_message">پیام Signal</string>
   <string name="MessageNotifier_unsecured_sms">پیامک ناامن</string>
@@ -1052,6 +1062,10 @@
   <string name="arrays__high">زیاد</string>
   <string name="arrays__max">حداکثر</string>
   <!--plurals.xml-->
+  <plurals name="hours_ago">
+    <item quantity="one">%dساعت</item>
+    <item quantity="other">%d ساعت</item>
+  </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">SMS و MMS</string>
   <string name="preferences__pref_all_sms_title">دریافت تمام SMS</string>
@@ -1324,6 +1338,8 @@
   <string name="RegistrationActivity_wrong_number">شماره اشتباه</string>
   <string name="RegistrationActivity_call_me_instead_available_in">در عوض به من زنگ بزن n\ (قابل دسترسی در %1$02d:%2$02d )</string>
   <string name="RegistrationActivity_contact_signal_support">ارتباط با پشتیبانی Signal</string>
+  <string name="RegistrationActivity_code_support_subject">ثبت نام سیگنال - کد تأیید برای اَندروید</string>
+  <string name="RegistrationActivity_code_support_body">موضوع: ثبت نام سیگنال - کد تأیید برای اَندروید اطلاعات مشاوره:%1$s نسخه Android%2$s نسخه اصلی%3$s موقعیت محلی:%4$s</string>
   <string name="BackupUtil_never">هرگز</string>
   <string name="BackupUtil_unknown">ناشناخته</string>
   <string name="preferences_app_protection__screen_lock">قفل صفحه</string>

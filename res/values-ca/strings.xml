@@ -79,6 +79,7 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">No s\'ha pogut desar la imatge.</string>
   <!--CameraXFragment-->
+  <string name="CameraXFragment_tap_for_photo_hold_for_video">Un toc per fer una fotografia, pressió contínua per fer vídeo</string>
   <string name="CameraXFragment_capture_description">Captura</string>
   <string name="CameraXFragment_change_camera_description">Canvia la càmera</string>
   <string name="CameraXFragment_open_gallery_description">Obre la galeria</string>
@@ -176,6 +177,9 @@
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Per captar fotografies i vídeos, permeteu que el Signal tingui accés a la càmera.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">El Signal necessita el permís de la càmera per tal de fer fotografies i vídeos, però s\'ha denegat permanentment. Si us plau, continueu cap al menú de configuració de l\'aplicació, seleccioneu Permisos i habiliteu-hi la càmera.</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">El Signal necessita el permís de la càmera per fer fotografies i vídeos.</string>
+  <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">Habiliteu el permís del micròfon per capturar vídeos amb so.</string>
+  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">El Signal necessita el permís del micròfon per gravar vídeos, però s\'han denegat. Si us plau, continueu cap al menú de configuració de l\'aplicació, seleccioneu Permisos i habiliteu-hi el micròfon i la càmera.</string>
+  <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">El Signal necessita el permís del telèfon per gravar vídeos.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">El Signal no pot enviar missatges SMS / MMS perquè no és la vostra aplicació d\'SMS predeterminada. Voleu canviar-ho a la configuració d\'Android?</string>
   <string name="ConversationActivity_yes">Sí</string>
@@ -573,6 +577,8 @@ especificat (%s) no és vàlid.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Per començar, introduïu el número de telèfon.</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Rebreu un codi de verificació. La vostra operadora podria aplicar algun càrrec.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Introduïu el codi que hem enviat a %s</string>
+  <string name="RegistrationActivity_phone_number_description">Número de telèfon</string>
+  <string name="RegistrationActivity_country_code_description">Codi de país</string>
   <string name="RegistrationActivity_call">Truca</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_photo">Foto</string>
@@ -639,6 +645,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ThreadRecord_media_message">Missatge multimèdia</string>
   <string name="ThreadRecord_sticker">Adhesiu</string>
   <string name="ThreadRecord_disappearing_photo">Fotografia efímera</string>
+  <string name="ThreadRecord_disappearing_video">Vídeo efímer</string>
   <string name="ThreadRecord_s_is_on_signal">%s és al Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Missatges efímers inhabilitats</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">El temps del missatge efímer s\'ha establit a %s</string>
@@ -715,6 +722,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="MessageNotifier_media_message">Missatge multimèdia</string>
   <string name="MessageNotifier_sticker">Adhesiu</string>
   <string name="MessageNotifier_disappearing_photo">Fotografia efímera</string>
+  <string name="MessageNotifier_disappearing_video">Vídeo efímer</string>
   <string name="MessageNotifier_reply">Respon</string>
   <string name="MessageNotifier_signal_message">Missatge del Signal</string>
   <string name="MessageNotifier_unsecured_sms">SMS no segur</string>
@@ -1061,6 +1069,10 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="arrays__high">Alta</string>
   <string name="arrays__max">Màxima</string>
   <!--plurals.xml-->
+  <plurals name="hours_ago">
+    <item quantity="one">%dh</item>
+    <item quantity="other">%dh</item>
+  </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">SMS i MMS</string>
   <string name="preferences__pref_all_sms_title">Rep tots els SMS</string>
@@ -1333,6 +1345,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="RegistrationActivity_wrong_number">Número no correcte</string>
   <string name="RegistrationActivity_call_me_instead_available_in">Millor que em truquis.\n (Disponible d\'aquí a %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Contacteu amb el suport de Signal</string>
+  <string name="RegistrationActivity_code_support_subject">Registre del Signal - Codi de verificació per a Android</string>
+  <string name="RegistrationActivity_code_support_body">Assumpte: registre del Signal - codi de verificació per a Android\nInformació del dispositiu: %1$s\nVersió d\'Android: %2$s\nVersió del Signal: %3$s\nLlengua: %4$s</string>
   <string name="BackupUtil_never">Mai</string>
   <string name="BackupUtil_unknown">Desconegut</string>
   <string name="preferences_app_protection__screen_lock">Bloqueig de pantalla</string>

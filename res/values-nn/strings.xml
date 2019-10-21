@@ -79,6 +79,7 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Klarte ikkje lagra bildet.</string>
   <!--CameraXFragment-->
+  <string name="CameraXFragment_tap_for_photo_hold_for_video">Trykk for bilde, hold for video</string>
   <string name="CameraXFragment_capture_description">Ta opp</string>
   <string name="CameraXFragment_change_camera_description">Byt kamera</string>
   <string name="CameraXFragment_open_gallery_description">Opna galleri</string>
@@ -176,6 +177,9 @@
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Gi Signal tilgang til kameraet for å ta bilde eller videoopptak.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal treng tilgang til kameraet for å ta bilde eller videoar, men tilgangen er permanent avslått. Opna app-innstillingsmenyen og vel «Tilgang» – eventuelt «Tillatelser» – og skru på «Kamera».</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal treng tilgang til kameraet for å ta bilde eller videoopptak</string>
+  <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">Tillat bruk av mikrofonen for å ta opp film med lyd.</string>
+  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Signal treng tilgang til mikrofonen for å ta opp filmklipp, men tilgangen er permanent avslått. Opna app-innstillingsmenyen og vel «Tilgang» – eventuelt «Tillatelser» – og skru på «Mikrofon» og «Kamera».</string>
+  <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Signal treng tilgang til mikrofonen for å ta opp film.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s%2$s</string>
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal kan ikkje senda SMS/MMS-meldingar utan å vera standard SMS-app. Vil du endra dette no i Android-innstillingane dine?</string>
   <string name="ConversationActivity_yes">Ja</string>
@@ -576,6 +580,8 @@ Ver deg sjølv i kvar einaste melding.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Skriv inn telefonnummeret ditt for å komma i gang</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Du vil få ei stadfestingskode. Operatøren din kan ta betalt for meldinga.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Skriv inn koden me sende til %s</string>
+  <string name="RegistrationActivity_phone_number_description">Telefonnummer</string>
+  <string name="RegistrationActivity_country_code_description">Landkode</string>
   <string name="RegistrationActivity_call">Ring</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_photo">Bilde</string>
@@ -642,6 +648,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="ThreadRecord_media_message">Mediemelding</string>
   <string name="ThreadRecord_sticker">Klistremerke</string>
   <string name="ThreadRecord_disappearing_photo">Forsvinnande foto</string>
+  <string name="ThreadRecord_disappearing_video">Forsvinnande film</string>
   <string name="ThreadRecord_s_is_on_signal">%s er på Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Forsvinnande meldingar skrudd av</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Utløpstid for melding endra til %s</string>
@@ -718,6 +725,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="MessageNotifier_media_message">Mediemelding</string>
   <string name="MessageNotifier_sticker">Klistremerke</string>
   <string name="MessageNotifier_disappearing_photo">Forsvinnande foto</string>
+  <string name="MessageNotifier_disappearing_video">Forsvinnande film</string>
   <string name="MessageNotifier_reply">Svar</string>
   <string name="MessageNotifier_signal_message">Signal-melding</string>
   <string name="MessageNotifier_unsecured_sms">Usikra SMS</string>
@@ -1066,6 +1074,10 @@ Ved registrering sender me litt kontaktinformasjon til tenaren. Informasjonen ve
   <string name="arrays__high">Høg</string>
   <string name="arrays__max">Maks</string>
   <!--plurals.xml-->
+  <plurals name="hours_ago">
+    <item quantity="one">%dt</item>
+    <item quantity="other">%dt</item>
+  </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">SMS og MMS</string>
   <string name="preferences__pref_all_sms_title">Ta imot alle SMS</string>
@@ -1339,6 +1351,9 @@ Du er à jour!</string>
   <string name="RegistrationActivity_wrong_number">Feil nummer</string>
   <string name="RegistrationActivity_call_me_instead_available_in">Ring meg i staden \n
  (Tilgjengeleg i %1$02d:%2$02d)</string>
+  <string name="RegistrationActivity_contact_signal_support">Ta kontakt med Signal brukarstøtte</string>
+  <string name="RegistrationActivity_code_support_subject">Signal-registrering – stadfestingskode for Android</string>
+  <string name="RegistrationActivity_code_support_body">Emne: Signal-registrering – stadfestingskode for Android\nEiningsinfo: %1$s\nAndroid-utgåve: %2$s\nSignal-utgåve: %3$s\nSpråkvariant: %4$s</string>
   <string name="BackupUtil_never">Aldri</string>
   <string name="BackupUtil_unknown">Ukjend</string>
   <string name="preferences_app_protection__screen_lock">Skjermlås</string>

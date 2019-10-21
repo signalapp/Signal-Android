@@ -178,6 +178,7 @@
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal vajab ligipääsu kaamerale, et salvestada fotosid ja videosid, kuid see on püsivalt keelatud. Palun ava rakenduse sätete menüü, vali \"Õigused\" ja luba \"Kaamera\".</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal vajab fotode ja videote salvestamiseks ligipääsu kaamerale</string>
   <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">Luba mikrofoni kasutus, et teha heliga videoid.</string>
+  <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Signal vajab videote salvestamiseks mikrofoniluba.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal ei saa SMS/MMS sõnumeid saata, kuna see pole sinu vaikimisi SMS-i rakendus. Kas soovid seda muuta oma Androidi seadetes?</string>
   <string name="ConversationActivity_yes">Jah</string>

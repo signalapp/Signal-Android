@@ -79,6 +79,7 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Resim kaydedilemedi.</string>
   <!--CameraXFragment-->
+  <string name="CameraXFragment_tap_for_photo_hold_for_video">Fotoğraf için dokunun, video için basılı tutun</string>
   <string name="CameraXFragment_capture_description">Yakala</string>
   <string name="CameraXFragment_change_camera_description">Kamerayı değiştir</string>
   <string name="CameraXFragment_open_gallery_description">Galeriyi aç</string>
@@ -176,6 +177,9 @@
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Fotoğraf veya video çekmek için, Signal\'in kameraya erişmesine izin verin.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal, fotoğraf veya video çekmek için Kamera iznine ihtiyaç duyar, fakat bu izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne girip \"İzinler\" kısmını seçin, ve \"Kamera\"yı etkinleştirin.</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal fotoğraf veya video çekebilmek için kamera erişimine ihtiyaç duyar</string>
+  <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">Sesli videolar kaydedebilmek için mikrofon erişim iznini etkinleştirin.</string>
+  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Signal videolar kaydedebilmek için mikrofon erişimine ihtiyaç duyar, ama bu erişim reddedilmiş. Lütfen uygulama ayarlarına girip, \"İzinler\"i seçin, sonrasında \"Mikrofon\" ve \"Kamera\"yı etkinleştirin.</string>
+  <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Signal video kaydedebilmek için mikrofon erişimine izin duyar.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal varsayılan SMS uygulaması olmadığı için SMS/MMS iletileri gönderemiyor. Bunu Android ayarlarınızdan değiştirmek ister misiniz?</string>
   <string name="ConversationActivity_yes">Evet</string>
@@ -578,6 +582,8 @@
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Başlamak için telefon numaranızı giriniz</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Doğrulama kodu alacaksınız. Tarife ücreti uygulanabilir. </string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">%s numarasına gönderdiğimiz kodu girin</string>
+  <string name="RegistrationActivity_phone_number_description">Telefon numarası</string>
+  <string name="RegistrationActivity_country_code_description">Ülke kodu</string>
   <string name="RegistrationActivity_call">Ara</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_photo">Fotoğraf</string>
@@ -644,6 +650,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="ThreadRecord_media_message">İçerik iletisi</string>
   <string name="ThreadRecord_sticker">Çıkartma</string>
   <string name="ThreadRecord_disappearing_photo">Kaybolan fotoğraf</string>
+  <string name="ThreadRecord_disappearing_video">Kaybolan video</string>
   <string name="ThreadRecord_s_is_on_signal">%s Signal\'e katıldı!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Kaybolan iletiler devre dışı</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Kaybolan ileti süresi %s olarak ayarlandı</string>
@@ -720,6 +727,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="MessageNotifier_media_message">İçerik iletisi</string>
   <string name="MessageNotifier_sticker">Çıkartma</string>
   <string name="MessageNotifier_disappearing_photo">Kaybolan fotoğraf</string>
+  <string name="MessageNotifier_disappearing_video">Kaybolan video</string>
   <string name="MessageNotifier_reply">Cevapla</string>
   <string name="MessageNotifier_signal_message">Signal İletisi</string>
   <string name="MessageNotifier_unsecured_sms">Şifresiz SMS</string>
@@ -1066,6 +1074,10 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="arrays__high">Yüksek</string>
   <string name="arrays__max">En Yüksek</string>
   <!--plurals.xml-->
+  <plurals name="hours_ago">
+    <item quantity="one">%ds</item>
+    <item quantity="other">%ds</item>
+  </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">SMS ve MMS</string>
   <string name="preferences__pref_all_sms_title">Tüm SMS\'leri al</string>
@@ -1338,6 +1350,8 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="RegistrationActivity_wrong_number">Yanlış numara</string>
   <string name="RegistrationActivity_call_me_instead_available_in">Bunun yerine beni ara \n (Kullanılabilir olmasına %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Signal Destek Ekibiyle İletişime Geç</string>
+  <string name="RegistrationActivity_code_support_subject">Signal Kaydı - Android için Doğrulama Kodu</string>
+  <string name="RegistrationActivity_code_support_body">Konu: Signal Kaydı - Android için Doğrulama Kodu\nCihaz bilgisi: %1$s\nAndroid sürümü: %2$s\nSignal sürümü: %3$s\nKonum: %4$s</string>
   <string name="BackupUtil_never">Asla</string>
   <string name="BackupUtil_unknown">Bilinmiyor</string>
   <string name="preferences_app_protection__screen_lock">Ekran kilidi</string>

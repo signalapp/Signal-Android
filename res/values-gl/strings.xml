@@ -79,6 +79,7 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Erro ao gardar a imaxe.</string>
   <!--CameraXFragment-->
+  <string name="CameraXFragment_tap_for_photo_hold_for_video">Tocar para fotografía, arrastrar para vídeo</string>
   <string name="CameraXFragment_capture_description">Capturar</string>
   <string name="CameraXFragment_change_camera_description">Cambiar cámara</string>
   <string name="CameraXFragment_open_gallery_description">Abrir galería</string>
@@ -176,6 +177,9 @@
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Para tirar fotografías e facer vídeos, Signal necesita acceder á cámara.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal necesita permiso para acceder á cámara e poder tirar fotografías, pero foi denegado de forma permanente. Vai aos axustes da aplicación, selecciona \"Permisos\" e activa \"Cámara\".</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal necesita permiso para acceder á cámara e tirar fotografías ou facer vídeos.</string>
+  <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">Habilitar o permiso ao micrófono para gravar vídeos con son.</string>
+  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Signal necesita permiso para acceder ao micrófono e poder gravar vídeos, pero foi denegado. Vai aos axustes da aplicación, selecciona \"Permisos\" e activa \"Micrófono\" e \"Cámara\".</string>
+  <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Signal necesita acceder ao micrófono para gravar vídeos.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal non pode enviar SMS nin MMS porque non é a túa aplicación predefinida de SMS. Gustaríache cambiar isto nos axustes de Android?</string>
   <string name="ConversationActivity_yes">Si</string>
@@ -577,6 +581,8 @@
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Insire o teu número de teléfono para comezar</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Recibirás un código de verificación. Pode supoñer algunha tarifa por parte do operador.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Insire o código que che enviamos a %s</string>
+  <string name="RegistrationActivity_phone_number_description">Número de teléfono</string>
+  <string name="RegistrationActivity_country_code_description">Código de país</string>
   <string name="RegistrationActivity_call">Chamar</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_photo">Fotografía</string>
@@ -645,6 +651,7 @@
   <string name="ThreadRecord_media_message">Mensaxe multimedia</string>
   <string name="ThreadRecord_sticker">Adhesivo</string>
   <string name="ThreadRecord_disappearing_photo">Desaparición das fotografías</string>
+  <string name="ThreadRecord_disappearing_video">Desaparición do vídeo</string>
   <string name="ThreadRecord_s_is_on_signal">%s está en Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Desaparición das mensaxes desactivada</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Desaparición das mensaxes establecida en%s</string>
@@ -721,6 +728,7 @@
   <string name="MessageNotifier_media_message">Mensaxe multimedia</string>
   <string name="MessageNotifier_sticker">Adhesivo</string>
   <string name="MessageNotifier_disappearing_photo">Desaparición das fotografías</string>
+  <string name="MessageNotifier_disappearing_video">Desaparición do vídeo</string>
   <string name="MessageNotifier_reply">Responder</string>
   <string name="MessageNotifier_signal_message">Mensaxe de Signal</string>
   <string name="MessageNotifier_unsecured_sms">SMS insegura</string>
@@ -1067,6 +1075,10 @@
   <string name="arrays__high">Alta</string>
   <string name="arrays__max">Máxima</string>
   <!--plurals.xml-->
+  <plurals name="hours_ago">
+    <item quantity="one">%dh</item>
+    <item quantity="other">%dh</item>
+  </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">SMS e MMS</string>
   <string name="preferences__pref_all_sms_title">Recibir todas as SMS</string>
@@ -1134,6 +1146,7 @@
   <string name="preferences__linked_devices">Dispositivos vinculados</string>
   <string name="preferences__light_theme">Claro</string>
   <string name="preferences__dark_theme">Escuro</string>
+  <string name="preferences__system_theme">Sistema</string>
   <string name="preferences__appearance">Aparencia</string>
   <string name="preferences__theme">Tema</string>
   <string name="preferences__default">Por defecto</string>
@@ -1337,6 +1350,9 @@
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Por favor, insire o código de verificación enviado a %s.</string>
   <string name="RegistrationActivity_wrong_number">Número incorrecto</string>
   <string name="RegistrationActivity_call_me_instead_available_in">Chámame mellor \n (Dispoñible en%1$02d:%2$02d)</string>
+  <string name="RegistrationActivity_contact_signal_support">Contacta co Centro de Axuda de Signal</string>
+  <string name="RegistrationActivity_code_support_subject">Rexistrarse en Signal - Código de verificación para Android</string>
+  <string name="RegistrationActivity_code_support_body">Asunto: Rexistrarse en Signal - Código de verificación para Android\nDispositivo: %1$s\nVersión de Android: %2$s\nVersión de Signal: %3$s\nLocalización: %4$s</string>
   <string name="BackupUtil_never">Nunca</string>
   <string name="BackupUtil_unknown">Descoñecido</string>
   <string name="preferences_app_protection__screen_lock">Bloqueo da pantalla</string>
