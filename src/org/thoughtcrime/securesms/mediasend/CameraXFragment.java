@@ -45,6 +45,7 @@ import org.thoughtcrime.securesms.util.MemoryFileDescriptor;
 import org.thoughtcrime.securesms.util.Stopwatch;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ThemeUtil;
+import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.whispersystems.libsignal.util.guava.Optional;
 
@@ -236,7 +237,14 @@ public class CameraXFragment extends Fragment implements CameraFragment {
         Animation inAnimation  = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in);
         Animation outAnimation = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_out);
 
-        camera.setCaptureMode(CameraXView.CaptureMode.MIXED);
+        if (CameraXUtil.isMixedModeSupported(requireContext())) {
+          Log.i(TAG, "Device supports mixed mode recording. [" + CameraXUtil.getLowestSupportedHardwareLevel(requireContext()) + "]");
+          camera.setCaptureMode(CameraXView.CaptureMode.MIXED);
+        } else {
+          Log.i(TAG, "Device does not support mixed mode recording, falling back to IMAGE [" + CameraXUtil.getLowestSupportedHardwareLevel(requireContext()) + "]");
+          camera.setCaptureMode(CameraXView.CaptureMode.IMAGE);
+        }
+
         captureButton.setVideoCaptureListener(new CameraXVideoCaptureHelper(
             this,
             captureButton,
@@ -245,6 +253,9 @@ public class CameraXFragment extends Fragment implements CameraFragment {
             new CameraXVideoCaptureHelper.Callback() {
               @Override
               public void onVideoRecordStarted() {
+                if (camera.getCaptureMode() == CameraXView.CaptureMode.IMAGE) {
+                  camera.setCaptureMode(CameraXView.CaptureMode.VIDEO);
+                }
                 hideAndDisableControlsForVideoRecording(captureButton, flashButton, flipButton, outAnimation);
               }
 
@@ -320,6 +331,12 @@ public class CameraXFragment extends Fragment implements CameraFragment {
   }
 
   private void onCaptureClicked() {
+    if (camera.getCaptureMode() == CameraXView.CaptureMode.VIDEO) {
+      camera.setCaptureMode(CameraXView.CaptureMode.IMAGE);
+      Util.runOnMainDelayed(this::onCaptureClicked, 100);
+      return;
+    }
+
     Stopwatch stopwatch = new Stopwatch("Capture");
 
     CameraXSelfieFlashHelper flashHelper = new CameraXSelfieFlashHelper(

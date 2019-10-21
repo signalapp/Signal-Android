@@ -50,6 +50,7 @@ class CameraXVideoCaptureHelper implements CameraButtonView.VideoCaptureListener
     @Override
     public void onVideoSaved(@NonNull FileDescriptor fileDescriptor) {
       try {
+        isRecording = false;
         camera.setZoomLevel(0f);
         memoryFileDescriptor.seek(0);
         callback.onVideoSaved(fileDescriptor);
@@ -63,6 +64,7 @@ class CameraXVideoCaptureHelper implements CameraButtonView.VideoCaptureListener
                         @NonNull String message,
                         @Nullable Throwable cause)
     {
+      isRecording = false;
       callback.onVideoError(cause);
       Util.runOnMain(() -> resetCameraSizing());
     }
@@ -201,7 +203,6 @@ class CameraXVideoCaptureHelper implements CameraButtonView.VideoCaptureListener
 
     Log.d(TAG, "onVideoCaptureComplete");
     camera.stopRecording();
-
 
     if (cameraMetricsAnimator != null && cameraMetricsAnimator.isRunning()) {
       cameraMetricsAnimator.reverse();
