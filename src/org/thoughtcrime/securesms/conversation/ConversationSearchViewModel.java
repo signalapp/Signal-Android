@@ -48,13 +48,13 @@ public class ConversationSearchViewModel extends AndroidViewModel {
     return result;
   }
 
-  void onQueryUpdated(@NonNull String query, long threadId) {
+  void onQueryUpdated(@NonNull String query, long threadId, boolean forced) {
     if (firstSearch && query.length() < 2) {
       result.postValue(new SearchResult(CursorList.emptyList(), 0));
       return;
     }
 
-    if (query.equals(activeQuery)) {
+    if (query.equals(activeQuery) && !forced) {
       return;
     }
 

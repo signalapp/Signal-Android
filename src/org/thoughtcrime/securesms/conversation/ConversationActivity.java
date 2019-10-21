@@ -726,7 +726,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     SearchView.OnQueryTextListener queryListener = new SearchView.OnQueryTextListener() {
       @Override
       public boolean onQueryTextSubmit(String query) {
-        searchViewModel.onQueryUpdated(query, threadId);
+        searchViewModel.onQueryUpdated(query, threadId, true);
         searchNav.showLoading();
         fragment.onSearchQueryUpdated(query);
         return true;
@@ -734,7 +734,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
       @Override
       public boolean onQueryTextChange(String query) {
-        searchViewModel.onQueryUpdated(query, threadId);
+        searchViewModel.onQueryUpdated(query, threadId, false);
         searchNav.showLoading();
         fragment.onSearchQueryUpdated(query);
         return true;
