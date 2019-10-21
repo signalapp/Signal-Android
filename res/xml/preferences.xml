@@ -42,7 +42,7 @@
                 android:icon="@drawable/icon_qr_code"/>
 
     <Preference android:key="preference_category_link_device"
-                android:title="@string/activity_settings_link_device_button_title"
+                android:title="Link Device (Coming Soon)"
                 android:icon="@drawable/icon_link"/>
 
     <Preference android:key="preference_category_seed"

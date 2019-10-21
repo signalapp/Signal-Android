@@ -54,7 +54,8 @@ class SeedActivity : BaseActionBarActivity(), DeviceLinkingDialogDelegate {
         copyButton.setOnClickListener { copy() }
         toggleRegisterModeButton.setOnClickListener { mode = Mode.Register }
         toggleRestoreModeButton.setOnClickListener { mode = Mode.Restore }
-        toggleLinkModeButton.setOnClickListener { mode = Mode.Link }
+        // TODO: Enable this again later
+//        toggleLinkModeButton.setOnClickListener { mode = Mode.Link }
         mainButton.setOnClickListener { handleMainButtonTapped() }
         Analytics.shared.track("Seed Screen Viewed")
     }
