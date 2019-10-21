@@ -140,7 +140,7 @@ class LokiPublicChatPoller(private val context: Context, private val group: Loki
             val serviceContent = SignalServiceContent(serviceDataMessage, message.hexEncodedPublicKey, SignalServiceAddress.DEFAULT_DEVICE_ID, message.timestamp, false)
             val senderDisplayName = "${message.displayName} (...${message.hexEncodedPublicKey.takeLast(8)})"
             DatabaseFactory.getLokiUserDatabase(context).setServerDisplayName(group.id, message.hexEncodedPublicKey, senderDisplayName)
-            if (quote != null || attachments.count() > 0) {
+            if (quote != null || attachments.count() > 0 || linkPreview != null) {
                 PushDecryptJob(context).handleMediaMessage(serviceContent, serviceDataMessage, Optional.absent(), Optional.of(message.serverID))
             } else {
                 PushDecryptJob(context).handleTextMessage(serviceContent, serviceDataMessage, Optional.absent(), Optional.of(message.serverID))

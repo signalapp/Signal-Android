@@ -939,7 +939,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
       // Insert the message into the database
       Optional<InsertResult> insertResult = database.insertMessageInbox(textMessage);
-      
+
       if (insertResult.isPresent()) threadId = insertResult.get().getThreadId();
       else                          threadId = null;
 
