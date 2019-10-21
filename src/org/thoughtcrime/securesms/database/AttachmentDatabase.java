@@ -33,6 +33,7 @@ import androidx.annotation.RequiresApi;
 import androidx.annotation.VisibleForTesting;
 
 import com.bumptech.glide.Glide;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import net.sqlcipher.DatabaseUtils;
 import net.sqlcipher.database.SQLiteDatabase;
@@ -64,6 +65,7 @@ import org.thoughtcrime.securesms.util.StorageUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.video.EncryptedMediaDataSource;
 import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.internal.util.JsonUtil;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -115,6 +117,7 @@ public class AttachmentDatabase extends Database {
           static final String CAPTION                = "caption";
   private static final String DATA_HASH              = "data_hash";
           static final String BLUR_HASH              = "blur_hash";
+          static final String TRANSFORM_PROPERTIES   = "transform_properties";
 
   public  static final String DIRECTORY              = "parts";
 
@@ -133,7 +136,7 @@ public class AttachmentDatabase extends Database {
                                                            UNIQUE_ID, DIGEST, FAST_PREFLIGHT_ID, VOICE_NOTE,
                                                            QUOTE, DATA_RANDOM, THUMBNAIL_RANDOM, WIDTH, HEIGHT,
                                                            CAPTION, STICKER_PACK_ID, STICKER_PACK_KEY, STICKER_ID,
-                                                           DATA_HASH, BLUR_HASH};
+                                                           DATA_HASH, BLUR_HASH, TRANSFORM_PROPERTIES};
 
   public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ROW_ID + " INTEGER PRIMARY KEY, " +
     MMS_ID + " INTEGER, " + "seq" + " INTEGER DEFAULT 0, "                        +
@@ -148,7 +151,8 @@ public class AttachmentDatabase extends Database {
     QUOTE + " INTEGER DEFAULT 0, " + WIDTH + " INTEGER DEFAULT 0, " + HEIGHT + " INTEGER DEFAULT 0, " +
     CAPTION + " TEXT DEFAULT NULL, " + STICKER_PACK_ID + " TEXT DEFAULT NULL, " +
     STICKER_PACK_KEY + " DEFAULT NULL, " + STICKER_ID + " INTEGER DEFAULT -1, " +
-    DATA_HASH + " TEXT DEFAULT NULL, " + BLUR_HASH + " TEXT DEFAULT NULL);";
+    DATA_HASH + " TEXT DEFAULT NULL, " + BLUR_HASH + " TEXT DEFAULT NULL, " +
+    TRANSFORM_PROPERTIES + " TEXT DEFAULT NULL);";
 
   public static final String[] CREATE_INDEXS = {
     "CREATE INDEX IF NOT EXISTS part_mms_id_index ON " + TABLE_NAME + " (" + MMS_ID + ");",
@@ -586,14 +590,37 @@ public class AttachmentDatabase extends Database {
     contentValues.put(DATA_RANDOM, dataInfo.random);
     contentValues.put(DATA_HASH, dataInfo.hash);
 
+    int updateCount = updateAttachmentAndMatchingHashes(database, databaseAttachment.getAttachmentId(), dataInfo.hash, contentValues);
+    Log.i(TAG, "[updateAttachmentData] Updated " + updateCount + " rows.");
+  }
+
+  public void markAttachmentAsTransformed(@NonNull AttachmentId attachmentId) {
+    DataInfo dataInfo = getAttachmentDataFileInfo(attachmentId, DATA);
+
+    if (dataInfo == null) {
+      Log.w(TAG, "[markAttachmentAsTransformed] No data info found!");
+      return;
+    }
+
+    ContentValues contentValues = new ContentValues();
+    contentValues.put(TRANSFORM_PROPERTIES, TransformProperties.forSkipTransform().serialize());
+
+    int updateCount = updateAttachmentAndMatchingHashes(databaseHelper.getWritableDatabase(), attachmentId, dataInfo.hash, contentValues);
+    Log.i(TAG, "[markAttachmentAsTransformed] Updated " + updateCount + " rows.");
+  }
+
+  private static int updateAttachmentAndMatchingHashes(@NonNull SQLiteDatabase database,
+                                                       @NonNull AttachmentId attachmentId,
+                                                       @Nullable String dataHash,
+                                                       @NonNull ContentValues contentValues)
+  {
     String   selection = "(" + ROW_ID + " = ? AND " + UNIQUE_ID + " = ?) OR " +
                          "(" + DATA_HASH + " NOT NULL AND " + DATA_HASH + " = ?)";
-    String[] args      = new String[]{String.valueOf(databaseAttachment.getAttachmentId().getRowId()),
-                                      String.valueOf(databaseAttachment.getAttachmentId().getUniqueId()),
-                                      oldDataInfo.hash};
+    String[] args      = new String[]{String.valueOf(attachmentId.getRowId()),
+                                      String.valueOf(attachmentId.getUniqueId()),
+                                      String.valueOf(dataHash)};
 
-    int updateCount = database.update(TABLE_NAME, contentValues, selection, args);
-    Log.i(TAG, "[updateAttachmentData] Updated " + updateCount + " rows.");
+    return database.update(TABLE_NAME, contentValues, selection, args);
   }
 
   private static void updateAttachmentDataHash(@NonNull SQLiteDatabase database,
@@ -723,14 +750,14 @@ public class AttachmentDatabase extends Database {
                               null, null, null);
 
       if (cursor != null && cursor.moveToFirst()) {
-        if (cursor.isNull(0)) {
+        if (cursor.isNull(cursor.getColumnIndexOrThrow(dataType))) {
           return null;
         }
 
-        return new DataInfo(new File(cursor.getString(0)),
-                            cursor.getLong(1),
-                            cursor.getBlob(2),
-                            cursor.getString(3));
+        return new DataInfo(new File(cursor.getString(cursor.getColumnIndexOrThrow(dataType))),
+                            cursor.getLong(cursor.getColumnIndexOrThrow(SIZE)),
+                            cursor.getBlob(cursor.getColumnIndexOrThrow(randomColumn)),
+                            cursor.getString(cursor.getColumnIndexOrThrow(DATA_HASH)));
       } else {
         return null;
       }
@@ -886,7 +913,8 @@ public class AttachmentDatabase extends Database {
                                                                        object.getString(STICKER_PACK_KEY),
                                                                        object.getInt(STICKER_ID))
                                                   : null,
-                                              BlurHash.parseOrNull(object.getString(BLUR_HASH))));
+                                              BlurHash.parseOrNull(object.getString(BLUR_HASH)),
+                                              TransformProperties.parse(object.getString(TRANSFORM_PROPERTIES))));
           }
         }
 
@@ -916,7 +944,8 @@ public class AttachmentDatabase extends Database {
                                                                                          cursor.getString(cursor.getColumnIndexOrThrow(STICKER_PACK_KEY)),
                                                                                          cursor.getInt(cursor.getColumnIndexOrThrow(STICKER_ID)))
                                                                     : null,
-                                                                BlurHash.parseOrNull(cursor.getString(cursor.getColumnIndex(BLUR_HASH)))));
+                                                                BlurHash.parseOrNull(cursor.getString(cursor.getColumnIndexOrThrow(BLUR_HASH))),
+                                                                TransformProperties.parse(cursor.getString(cursor.getColumnIndexOrThrow(TRANSFORM_PROPERTIES)))));
       }
     } catch (JSONException e) {
       throw new AssertionError(e);
@@ -938,9 +967,20 @@ public class AttachmentDatabase extends Database {
       Log.d(TAG, "Wrote part to file: " + dataInfo.file.getAbsolutePath());
     }
 
+    Attachment template = attachment;
+
+    if (dataInfo != null && dataInfo.hash != null) {
+      Attachment possibleTemplate = findTemplateAttachment(dataInfo.hash);
+
+      if (possibleTemplate != null) {
+        Log.i(TAG, "Found a duplicate attachment upon insertion. Using it as a template.");
+        template = possibleTemplate;
+      }
+    }
+
     ContentValues contentValues = new ContentValues();
     contentValues.put(MMS_ID, mmsId);
-    contentValues.put(CONTENT_TYPE, attachment.getContentType());
+    contentValues.put(CONTENT_TYPE, template.getContentType());
     contentValues.put(TRANSFER_STATE, attachment.getTransferState());
     contentValues.put(UNIQUE_ID, uniqueId);
     contentValues.put(CONTENT_LOCATION, attachment.getLocation());
@@ -948,14 +988,15 @@ public class AttachmentDatabase extends Database {
     contentValues.put(CONTENT_DISPOSITION, attachment.getKey());
     contentValues.put(NAME, attachment.getRelay());
     contentValues.put(FILE_NAME, StorageUtil.getCleanFileName(attachment.getFileName()));
-    contentValues.put(SIZE, attachment.getSize());
+    contentValues.put(SIZE, template.getSize());
     contentValues.put(FAST_PREFLIGHT_ID, attachment.getFastPreflightId());
     contentValues.put(VOICE_NOTE, attachment.isVoiceNote() ? 1 : 0);
-    contentValues.put(WIDTH, attachment.getWidth());
-    contentValues.put(HEIGHT, attachment.getHeight());
+    contentValues.put(WIDTH, template.getWidth());
+    contentValues.put(HEIGHT, template.getHeight());
     contentValues.put(QUOTE, quote);
     contentValues.put(CAPTION, attachment.getCaption());
     contentValues.put(BLUR_HASH, getBlurHashStringOrNull(attachment.getBlurHash()));
+    contentValues.put(TRANSFORM_PROPERTIES, template.getTransformProperties().serialize());
 
     if (attachment.isSticker()) {
       contentValues.put(STICKER_PACK_ID, attachment.getSticker().getPackId());
@@ -1011,6 +1052,19 @@ public class AttachmentDatabase extends Database {
     }
 
     return attachmentId;
+  }
+
+  private @Nullable DatabaseAttachment findTemplateAttachment(@NonNull String dataHash) {
+    String   selection = DATA_HASH + " = ?";
+    String[] args      = new String[] { dataHash };
+
+    try (Cursor cursor = databaseHelper.getWritableDatabase().query(TABLE_NAME, null, selection, args, null, null, null)) {
+      if (cursor != null && cursor.moveToFirst()) {
+        return getAttachment(cursor).get(0);
+      }
+    }
+
+    return null;
   }
 
   @SuppressWarnings("WeakerAccess")
@@ -1121,10 +1175,47 @@ public class AttachmentDatabase extends Database {
     private final String hash;
 
     private DataInfo(File file, long length, byte[] random, String hash) {
-      this.file = file;
+      this.file   = file;
       this.length = length;
       this.random = random;
-      this.hash = hash;
+      this.hash   = hash;
+    }
+  }
+  public static final class TransformProperties {
+
+    @JsonProperty private final boolean skipTransform;
+
+    public TransformProperties(@JsonProperty("skipTransform") boolean skipTransform) {
+      this.skipTransform = skipTransform;
+    }
+
+    public static @NonNull TransformProperties empty() {
+      return new TransformProperties(false);
+    }
+
+    public static @NonNull TransformProperties forSkipTransform() {
+      return new TransformProperties(true);
+    }
+
+    public boolean shouldSkipTransform() {
+      return skipTransform;
+    }
+
+    @NonNull String serialize() {
+      return JsonUtil.toJson(this);
+    }
+
+    static @NonNull TransformProperties parse(@Nullable String serialized) {
+      if (serialized == null) {
+        return empty();
+      }
+
+      try {
+        return JsonUtil.fromJson(serialized, TransformProperties.class);
+      } catch (IOException e) {
+        Log.w(TAG, "Failed to parse TransformProperties!", e);
+        return empty();
+      }
     }
   }
 }

@@ -24,7 +24,7 @@ public class PointerAttachment extends Attachment {
                             int width, int height, @Nullable String caption, @Nullable StickerLocator stickerLocator,
                             @Nullable BlurHash blurHash)
   {
-    super(contentType, transferState, size, fileName, location, key, relay, digest, fastPreflightId, voiceNote, width, height, false, caption, stickerLocator, blurHash);
+    super(contentType, transferState, size, fileName, location, key, relay, digest, fastPreflightId, voiceNote, width, height, false, caption, stickerLocator, blurHash, null);
   }
 
   @Nullable

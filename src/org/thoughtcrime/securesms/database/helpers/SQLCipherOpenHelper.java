@@ -86,8 +86,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int NOTIFICATION_RECIPIENT_IDS       = 29;
   private static final int BLUR_HASH                        = 30;
   private static final int MMS_RECIPIENT_CLEANUP_2          = 31;
+  private static final int ATTACHMENT_TRANSFORM_PROPERTIES  = 32;
 
-  private static final int    DATABASE_VERSION = 31;
+  private static final int    DATABASE_VERSION = 32;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -595,6 +596,10 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
         values.put("address", "-1");
         int count = db.update("mms", values, "address = ? OR address IS NULL", new String[] { "0" });
         Log.i(TAG, "MMS recipient cleanup 2 updated " + count + " rows.");
+      }
+
+      if (oldVersion < ATTACHMENT_TRANSFORM_PROPERTIES) {
+        db.execSQL("ALTER TABLE part ADD COLUMN transform_properties TEXT DEFAULT NULL");
       }
 
       db.setTransactionSuccessful();

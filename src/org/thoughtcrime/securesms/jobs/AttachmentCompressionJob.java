@@ -115,6 +115,11 @@ public final class AttachmentCompressionJob extends BaseJob {
       throw new UndeliverableMessageException("Cannot find the specified attachment.");
     }
 
+    if (databaseAttachment.getTransformProperties().shouldSkipTransform()) {
+      Log.i(TAG, "Skipping at the direction of the TransformProperties.");
+      return;
+    }
+
     MediaConstraints mediaConstraints = mms ? MediaConstraints.getMmsMediaConstraints(mmsSubscriptionId)
                                             : MediaConstraints.getPushMediaConstraints();
 
@@ -141,10 +146,12 @@ public final class AttachmentCompressionJob extends BaseJob {
         if (MediaUtil.isJpeg(attachment)) {
           MediaStream stripped = getResizedMedia(context, attachment, constraints);
           attachmentDatabase.updateAttachmentData(attachment, stripped);
+          attachmentDatabase.markAttachmentAsTransformed(attachmentId);
         }
       } else if (constraints.canResize(attachment)) {
         MediaStream resized = getResizedMedia(context, attachment, constraints);
         attachmentDatabase.updateAttachmentData(attachment, resized);
+        attachmentDatabase.markAttachmentAsTransformed(attachmentId);
       } else {
         throw new UndeliverableMessageException("Size constraints could not be met!");
       }
@@ -184,6 +191,7 @@ public final class AttachmentCompressionJob extends BaseJob {
             });
 
             attachmentDatabase.updateAttachmentData(attachment, mediaStream);
+            attachmentDatabase.markAttachmentAsTransformed(attachment.getAttachmentId());
           }
         }
       }
