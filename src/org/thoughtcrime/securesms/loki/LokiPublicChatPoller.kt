@@ -103,22 +103,40 @@ class LokiPublicChatPoller(private val context: Context, private val group: Loki
             } else {
                 null
             }
-            val attachments = message.attachments.map { attachment ->
+            val attachments = message.attachments.mapNotNull { attachment ->
+                if (attachment.kind != LokiPublicChatMessage.Attachment.Kind.Attachment) { return@mapNotNull null }
                 SignalServiceAttachmentPointer(
-                        attachment.serverID,
-                        attachment.contentType,
+                    attachment.serverID,
+                    attachment.contentType,
+                    ByteArray(0),
+                    Optional.of(attachment.size),
+                    Optional.absent(),
+                    attachment.width, attachment.height,
+                    Optional.absent(),
+                    Optional.of(attachment.fileName),
+                    false,
+                    Optional.fromNullable(attachment.caption),
+                    attachment.url)
+            }
+            val linkPreview = message.attachments.firstOrNull { it.kind == LokiPublicChatMessage.Attachment.Kind.LinkPreview }
+            val signalLinkPreviews = mutableListOf<SignalServiceDataMessage.Preview>()
+            if (linkPreview != null) {
+                val attachment = SignalServiceAttachmentPointer(
+                        linkPreview.serverID,
+                        linkPreview.contentType,
                         ByteArray(0),
-                        Optional.of(attachment.size),
+                        Optional.of(linkPreview.size),
                         Optional.absent(),
-                        attachment.width, attachment.height,
+                        linkPreview.width, linkPreview.height,
                         Optional.absent(),
-                        Optional.of(attachment.fileName),
+                        Optional.of(linkPreview.fileName),
                         false,
-                        Optional.fromNullable(attachment.caption),
-                        attachment.url)
+                        Optional.fromNullable(linkPreview.caption),
+                        linkPreview.url)
+                signalLinkPreviews.add(SignalServiceDataMessage.Preview(linkPreview.linkPreviewURL!!, linkPreview.linkPreviewTitle!!, Optional.of(attachment)))
             }
             val body = if (message.body == message.timestamp.toString()) "" else message.body // Workaround for the fact that the back-end doesn't accept messages without a body
-            val serviceDataMessage = SignalServiceDataMessage(message.timestamp, serviceGroup, attachments, body, false, 0, false, null, false, quote, null, null, null)
+            val serviceDataMessage = SignalServiceDataMessage(message.timestamp, serviceGroup, attachments, body, false, 0, false, null, false, quote, null, signalLinkPreviews, null)
             val serviceContent = SignalServiceContent(serviceDataMessage, message.hexEncodedPublicKey, SignalServiceAddress.DEFAULT_DEVICE_ID, message.timestamp, false)
             val senderDisplayName = "${message.displayName} (...${message.hexEncodedPublicKey.takeLast(8)})"
             DatabaseFactory.getLokiUserDatabase(context).setServerDisplayName(group.id, message.hexEncodedPublicKey, senderDisplayName)
