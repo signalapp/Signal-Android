@@ -33,7 +33,8 @@
                       android:padding="5dp"
                       tools:visibility="visible"
                       android:text="@string/message_details_header__issues_need_your_attention"
-                      android:drawableStart="?dialog_info_icon"
+                      android:drawablePadding="4dp"
+                      android:drawableStart="@drawable/ic_info_outline_message_details_24"
                       android:gravity="center_vertical" />
 
             <Button
