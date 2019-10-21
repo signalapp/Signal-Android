@@ -79,6 +79,7 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Não foi possível guardar a imagem.</string>
   <!--CameraXFragment-->
+  <string name="CameraXFragment_tap_for_photo_hold_for_video">Toque para fotografia, mantenha para vídeo</string>
   <string name="CameraXFragment_capture_description">Capturar</string>
   <string name="CameraXFragment_change_camera_description">Alterar câmara</string>
   <string name="CameraXFragment_open_gallery_description">Abrir galeria</string>
@@ -176,6 +177,9 @@
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Para tirar fotos e filmar vídeos, dê permissões ao Signal para acesso à câmara.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">O Signal requer permissão de acesso à câmara para tirar fotos ou vídeo, mas esta foi negada permanentemente. Por favor, aceda às definições da aplicação, seleccione \"Permissões\" e ative \"Câmara\".</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">O Signal requer permissão de acesso à Câmara para tirar fotos ou vídeo</string>
+  <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">Ative a permissão do microfone para poder capturar vídeos com som.</string>
+  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">O Sinal necessita de permissões de microfone para poder gravar vídeos. mas elas foram negadas. Por favor, continue para as definições da aplicação. selecione \"Permissões\", e ative \"Microfone\" e \"Câmara\"</string>
+  <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">O Signal necessita de permissões de microfone para poder gravar vídeos.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s%2$s</string>
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">O Signal não consegue enviar mensagens SMS/MMS porque não é a sua aplicação padrão para lidar com SMS. Deseja alterar isto nas definições do Android?</string>
   <string name="ConversationActivity_yes">Sim</string>
@@ -573,6 +577,8 @@ especificou (%s) é inválido.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Para começar introduza o seu número de telefone</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Irá receber um código de verificação. Poderão existir custos por parte da sua operadora.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Introduza o código que enviamos para %s</string>
+  <string name="RegistrationActivity_phone_number_description">Número de telefone</string>
+  <string name="RegistrationActivity_country_code_description">Código do país</string>
   <string name="RegistrationActivity_call">Telefonar</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_photo">Fotografia</string>
@@ -641,6 +647,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="ThreadRecord_media_message">Mensagem multimédia</string>
   <string name="ThreadRecord_sticker">Autocolante</string>
   <string name="ThreadRecord_disappearing_photo">Destruição de fotografia</string>
+  <string name="ThreadRecord_disappearing_video">Destruição de vídeo</string>
   <string name="ThreadRecord_s_is_on_signal">%s está no Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Destruição de mensagens desactivada</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">O tempo a decorrer até que as mensagens sejam destruídas está definido para %s</string>
@@ -717,6 +724,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="MessageNotifier_media_message">Mensagem multimédia</string>
   <string name="MessageNotifier_sticker">Autocolante</string>
   <string name="MessageNotifier_disappearing_photo">Destruição de fotografia</string>
+  <string name="MessageNotifier_disappearing_video">Destruição de vídeo</string>
   <string name="MessageNotifier_reply">Responder</string>
   <string name="MessageNotifier_signal_message">Mensagem do Signal</string>
   <string name="MessageNotifier_unsecured_sms">SMS inseguro</string>
@@ -1063,6 +1071,10 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="arrays__high">Elevada</string>
   <string name="arrays__max">Máxima</string>
   <!--plurals.xml-->
+  <plurals name="hours_ago">
+    <item quantity="one">%dh</item>
+    <item quantity="other">%dh </item>
+  </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">SMS e MMS</string>
   <string name="preferences__pref_all_sms_title">Receber todos os SMS</string>
@@ -1334,7 +1346,9 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Por favor, insira o código de verificação enviado para %s.</string>
   <string name="RegistrationActivity_wrong_number">Número errado</string>
   <string name="RegistrationActivity_call_me_instead_available_in">Como alternativa, ligue-me \n (Disponível às %1$02d:%2$02d)</string>
-  <string name="RegistrationActivity_contact_signal_support">Contactar o Apoio do Signal</string>
+  <string name="RegistrationActivity_contact_signal_support">Contactar o Suporte do Signal</string>
+  <string name="RegistrationActivity_code_support_subject">Registo Signal - Código de verificação para Android</string>
+  <string name="RegistrationActivity_code_support_body">Assunto: Registo Signal - Código de verificação para Android\nInformação de dispositivo: %1$s\nVersão do Android: %2$s\nVersão do Signal: %3$s\nLocal: %4$s</string>
   <string name="BackupUtil_never">Nunca</string>
   <string name="BackupUtil_unknown">Desconhecido</string>
   <string name="preferences_app_protection__screen_lock">Ecrã de bloqueio</string>

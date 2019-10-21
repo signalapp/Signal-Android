@@ -259,7 +259,7 @@
   <!--ConversationListItemAction-->
   <string name="ConversationListItemAction_archived_conversations_d">Gearchiveerde gesprekken (%d)</string>
   <!--ConversationTitleView-->
-  <string name="ConversationTitleView_verified">Ik heb deze contactpersoon geverifieerd</string>
+  <string name="ConversationTitleView_verified">Verified</string>
   <!--CreateProfileActivity-->
   <string name="CreateProfileActivity_your_profile_info">Jouw profielinformatie</string>
   <string name="CreateProfileActivity_error_setting_profile_photo">Fout bij instellen van profielfoto</string>

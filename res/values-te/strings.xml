@@ -79,9 +79,10 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">చిత్రాన్ని భద్రపరచడంలో విఫలమైంది.</string>
   <!--CameraXFragment-->
+  <string name="CameraXFragment_tap_for_photo_hold_for_video">ఫోటో కోసం నొక్కండి, వీడియో కోసం పట్టుకోండి</string>
   <string name="CameraXFragment_capture_description">క్యాప్చర్</string>
   <string name="CameraXFragment_change_camera_description">కెమెరాను మార్చండి</string>
-  <string name="CameraXFragment_open_gallery_description">ఓపెన్ గ్యాలరీ</string>
+  <string name="CameraXFragment_open_gallery_description">చిత్రశాల ను తెరువు </string>
   <!--CameraContacts-->
   <string name="CameraContacts_recent_contacts">ఇటీవలి పరిచయాలు</string>
   <string name="CameraContacts_signal_contacts">Signal పరిచయాలు</string>
@@ -176,6 +177,9 @@
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">చిత్రాలు మరియు వీడియోలను సంగ్రహించడానికి, కెమెరాకి Signal ప్రాప్తిని అనుమతించండి.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">చిత్రాలను లేదా వీడియోను తీసుకోవడానికి Signal కు కెమెరా అనుమతి అవసరం, కానీ ఇది శాశ్వతంగా తిరస్కరించబడింది. దయచేసి అనువర్తనం సెట్టింగ్లకు కొనసాగించండి, \"అనుమతులు\" ఎంచుకోండి మరియు \"కెమెరా\" ని ప్రారంభించండి.</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">ఛాయాచిత్రాలను లేదా వీడియోను తీసుకోవడానికి కెమెరా అనుమతులను Signalకి అవసరం</string>
+  <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">ధ్వనితో వీడియోలను సంగ్రహించడానికి మైక్రోఫోన్ అనుమతిని ప్రారంభించండి.</string>
+  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">వీడియోలను రికార్డ్ చేయడానికి Signal కు మైక్రోఫోన్ అనుమతులు అవసరం, కానీ అవి తిరస్కరించబడ్డాయి. దయచేసి అనువర్తన సెట్టింగ్‌లకు కొనసాగండి, \"అనుమతులు\" ఎంచుకోండి మరియు \"మైక్రోఫోన్\" మరియు \"కెమెరా\" ని ప్రారంభించండి.</string>
+  <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">వీడియోలను రికార్డ్ చేయడానికి Signal కు మైక్రోఫోన్ అనుమతులు అవసరం.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal SMS / MMS సందేశాలను పంపదు ఎందుకంటే ఇది మీ అప్రమేయ  SMS అనువర్తనం కాదు. మీరు దీన్ని మీ Android సెట్టింగ్‌లలో మార్చాలనుకుంటున్నారా?</string>
   <string name="ConversationActivity_yes">అవును</string>
@@ -307,7 +311,7 @@
   <string name="ShareActivity_share_with">తో పంచు</string>
   <!--ExperienceUpgradeActivity-->
   <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Signal కి స్వాగతం.</string>
-  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">Textsecure మరియు RedPhone అన్నీ పరిస్థితిలొను ఒక ప్రైవేట్ మెసెంజర్ ఇప్పుడు క్రిందివిధంగా ఉన్నాయి: Signal.</string>
+  <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">Textsecure మరియు RedPhone అన్నీ పరిస్థితిలొను ఒక వ్యక్తిగత  మెసెంజర్ ఇప్పుడు క్రిందివిధంగా ఉన్నాయి: Signal.</string>
   <string name="ExperienceUpgradeActivity_welcome_to_signal_excited">Signal కి స్వాగతం!</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure ఇప్పుడు Signal.</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">Signal: Textsecure మరియు RedPhone ఇప్పుడు ఒకే అప్లికేషన్. విశ్లేషించడానికి నొక్కండి.</string>
@@ -580,6 +584,8 @@
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">ప్రారంభించడానికి మీ ఫోన్ నంబర్‌ను నమోదు చేయండి</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">మీరు ధృవీకరణ కోడ్‌ను అందుకుంటారు. క్యారియర్ రేట్లు వర్తించవచ్చు.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">మేము పంపిన కోడ్‌ను నమోదు చేయండి %s</string>
+  <string name="RegistrationActivity_phone_number_description">ఫోను నంబరు</string>
+  <string name="RegistrationActivity_country_code_description">దేశం కోడ్</string>
   <string name="RegistrationActivity_call">కాల్</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_photo">చిత్రం </string>
@@ -645,6 +651,7 @@
   <string name="ThreadRecord_media_message">మీడియ సందేశం</string>
   <string name="ThreadRecord_sticker">స్టికర్</string>
   <string name="ThreadRecord_disappearing_photo">అదృశ్యమవుతున్న చిత్రం</string>
+  <string name="ThreadRecord_disappearing_video">అదృశ్యమవుతున్న వీడియో</string>
   <string name="ThreadRecord_s_is_on_signal">1%s Signal ఉంది!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">కనుమరుగవుతున్న సందేశాలు నిలిపివేయబడ్డాయి</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s"> కనుమరుగవుథున సంధెషం కొరకు సమయం కుర్చుత కొసం %s</string>
@@ -721,6 +728,7 @@
   <string name="MessageNotifier_media_message">మీడియ సందేశం</string>
   <string name="MessageNotifier_sticker">స్టికర్</string>
   <string name="MessageNotifier_disappearing_photo">అదృశ్యమవుతున్న  చిత్రం</string>
+  <string name="MessageNotifier_disappearing_video">అదృశ్యమవుతున్న వీడియో</string>
   <string name="MessageNotifier_reply">స్పంధించు</string>
   <string name="MessageNotifier_signal_message">Signal సందేశం</string>
   <string name="MessageNotifier_unsecured_sms">భద్రతలేని సందేశం</string>
@@ -1067,6 +1075,10 @@
   <string name="arrays__high">అధికం</string>
   <string name="arrays__max">గరిష్టం</string>
   <!--plurals.xml-->
+  <plurals name="hours_ago">
+    <item quantity="one">%dగం</item>
+    <item quantity="other">%dగం</item>
+  </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">ఎస్సెమ్మెస్ మరియు ఎమ్మెమ్మెస్</string>
   <string name="preferences__pref_all_sms_title">అన్ని ఎస్సెమ్మెస్ లను స్వీకరించండి</string>
@@ -1339,6 +1351,8 @@
   <string name="RegistrationActivity_wrong_number">తప్పు సంఖ్య</string>
   <string name="RegistrationActivity_call_me_instead_available_in">బదులుగా నాకు కాల్ చేయండి \n (అందుబాటులో ఉంది %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Signal మద్దతును సంప్రదించండి</string>
+  <string name="RegistrationActivity_code_support_subject">Signal రిజిస్ట్రేషన్ - Android కోసం ధృవీకరణ కోడ్</string>
+  <string name="RegistrationActivity_code_support_body">విషయం: Signal రిజిస్ట్రేషన్ - Android కోసం ధృవీకరణ కోడ్\nపరికర సమాచారం: %1$s \nAndroid వెర్షన్: %2$s \nSignal వెర్షన్: %3$s \nలొకేల్: %4$s</string>
   <string name="BackupUtil_never">ఎప్పుడూ</string>
   <string name="BackupUtil_unknown">తెలియని</string>
   <string name="preferences_app_protection__screen_lock">స్క్రీన్ తాళం</string>

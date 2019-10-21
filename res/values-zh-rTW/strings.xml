@@ -76,6 +76,7 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">儲存照片失敗。</string>
   <!--CameraXFragment-->
+  <string name="CameraXFragment_tap_for_photo_hold_for_video">點取播放照片，長按以撥放影片</string>
   <string name="CameraXFragment_capture_description">擷取</string>
   <string name="CameraXFragment_change_camera_description">切換相機</string>
   <string name="CameraXFragment_open_gallery_description">開啟相簿</string>
@@ -173,6 +174,9 @@
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">請授予 Signal 使用相機的權限，才能拍攝照片和影片</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal 需要相機的權限來拍攝照片或是影片 ，但是現在系統設定為總是拒絕 Signal。請到 Signal 的應用程式設定中，點選「權限」，並啟用相機的權限。</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal 需要使用相機的權限來拍攝照片和影片</string>
+  <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">開啟麥克風權限以擷取帶有音效的影片。</string>
+  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Signal需要麥克風權限才能錄製影片，但已被拒絕。 請繼續進行應用程式設定，選擇“權限”，然後啟用“麥克風”和“相機”。</string>
+  <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Signal 需要麥克風權限以錄製影片。</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal 無法傳送 SMS/MMS 訊息，因為Signal 不是你預設 SMS 應用軟體。你要在 Android 設定中改變這個設定嗎？</string>
   <string name="ConversationActivity_yes">是</string>
@@ -554,6 +558,8 @@
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">輸入你的電話號碼即可開始使用。</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">你將收到驗證碼。各電信公司的收費費率可能有所不同。</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">輸入我們傳送給 %s 的驗證碼</string>
+  <string name="RegistrationActivity_phone_number_description">電話號碼</string>
+  <string name="RegistrationActivity_country_code_description">國碼</string>
   <string name="RegistrationActivity_call">撥打</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_photo">照片</string>
@@ -621,6 +627,7 @@
   <string name="ThreadRecord_media_message">媒體訊息</string>
   <string name="ThreadRecord_sticker">貼圖</string>
   <string name="ThreadRecord_disappearing_photo">銷毀照片</string>
+  <string name="ThreadRecord_disappearing_video">銷毀影片</string>
   <string name="ThreadRecord_s_is_on_signal">%s 在 Signal 了！</string>
   <string name="ThreadRecord_disappearing_messages_disabled">自動銷毀訊息功能已被關閉。</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">訊息銷毀時間設定為 %s</string>
@@ -698,6 +705,7 @@
   <string name="MessageNotifier_media_message">媒體訊息</string>
   <string name="MessageNotifier_sticker">貼圖</string>
   <string name="MessageNotifier_disappearing_photo">銷毀照片</string>
+  <string name="MessageNotifier_disappearing_video">銷毀影片</string>
   <string name="MessageNotifier_reply">回覆</string>
   <string name="MessageNotifier_signal_message">Signal 訊息</string>
   <string name="MessageNotifier_unsecured_sms">不安全的簡訊</string>
@@ -1036,6 +1044,9 @@
   <string name="arrays__high">高的</string>
   <string name="arrays__max">最大的</string>
   <!--plurals.xml-->
+  <plurals name="hours_ago">
+    <item quantity="other">%dh</item>
+  </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">簡訊與多媒體簡訊</string>
   <string name="preferences__pref_all_sms_title">接收所有手機簡訊</string>
@@ -1307,6 +1318,8 @@
   <string name="RegistrationActivity_wrong_number">驗證碼錯誤</string>
   <string name="RegistrationActivity_call_me_instead_available_in">改用電話打給我 \n (只提供於 %1$02d : %2$02d )</string>
   <string name="RegistrationActivity_contact_signal_support">聯絡 Signal 支援</string>
+  <string name="RegistrationActivity_code_support_subject">Signal 註冊 - Android驗證碼</string>
+  <string name="RegistrationActivity_code_support_body">主題：Signal 註冊- Android\n裝置資訊的驗證碼：%1$s \nAndroid版本：%2$s\nSignal版本：%3$s\n區域：%4$s</string>
   <string name="BackupUtil_never">永不</string>
   <string name="BackupUtil_unknown">未知</string>
   <string name="preferences_app_protection__screen_lock">螢幕鎖定</string>

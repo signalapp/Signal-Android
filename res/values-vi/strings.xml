@@ -1305,6 +1305,7 @@ Các tin nhắn và cuộc gọi riêng tư miễn phí đến người dùng Si
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Vui lòng điền mã xác minh được gửi đến %s.</string>
   <string name="RegistrationActivity_wrong_number">Sai số điện thoại</string>
   <string name="RegistrationActivity_call_me_instead_available_in">Hãy gọi tôi \n  (Khả dụng sau %1$02d:%2$02d)</string>
+  <string name="RegistrationActivity_contact_signal_support">Liên lạc Bộ phận hỗ trợ của Signal</string>
   <string name="BackupUtil_never">Không bao giờ</string>
   <string name="BackupUtil_unknown">Không rõ</string>
   <string name="preferences_app_protection__screen_lock">Khoá màn hình</string>

@@ -79,7 +79,7 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Speichern des Bildes gescheitert.</string>
   <!--CameraXFragment-->
-  <string name="CameraXFragment_tap_for_photo_hold_for_video">Antippen für Foto, Halten für Video</string>
+  <string name="CameraXFragment_tap_for_photo_hold_for_video">Für Foto antippen, für Video halten</string>
   <string name="CameraXFragment_capture_description">Aufnehmen</string>
   <string name="CameraXFragment_change_camera_description">Kamera wechseln</string>
   <string name="CameraXFragment_open_gallery_description">Galerie öffnen</string>

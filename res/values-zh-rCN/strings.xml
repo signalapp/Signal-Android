@@ -76,7 +76,7 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">未能保存图像。</string>
   <!--CameraXFragment-->
-  <string name="CameraXFragment_tap_for_photo_hold_for_video">单触拍照，长按录像</string>
+  <string name="CameraXFragment_tap_for_photo_hold_for_video">单击拍照，长按录像</string>
   <string name="CameraXFragment_capture_description">拍摄</string>
   <string name="CameraXFragment_change_camera_description">切换摄像头</string>
   <string name="CameraXFragment_open_gallery_description">打开相册</string>
