@@ -52,7 +52,7 @@ public class AttachmentUploadJob extends BaseJob implements InjectableType {
     this(new Job.Parameters.Builder()
                            .addConstraint(NetworkConstraint.KEY)
                            .setLifespan(TimeUnit.DAYS.toMillis(1))
-                           .setMaxAttempts(Parameters.UNLIMITED)
+                           .setMaxAttempts(3)
                            .build(),
          attachmentId, destination);
   }
