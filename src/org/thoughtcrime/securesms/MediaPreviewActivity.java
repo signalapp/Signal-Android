@@ -427,14 +427,16 @@ public final class MediaPreviewActivity extends PassphraseRequiredActionBarActiv
       mediaPager.setAdapter(adapter);
       adapter.setActive(true);
 
-      int item = restartItem >= 0 ? restartItem : data.second;
-      mediaPager.setCurrentItem(item);
+      Util.postToMain(() -> {
+        viewModel.setCursor(this, data.first, leftIsRecent);
 
-      if (item == 0) {
-        viewPagerListener.onPageSelected(0);
-      }
+        int item = restartItem >= 0 ? restartItem : data.second;
+        mediaPager.setCurrentItem(item);
 
-      Util.postToMain(() -> viewModel.setCursor(this, data.first, leftIsRecent));
+        if (item == 0) {
+          viewPagerListener.onPageSelected(0);
+        }
+      });
     }
   }
 
