@@ -778,7 +778,8 @@ public class MmsDatabase extends MessagingDatabase {
                                                databaseAttachment.getHeight(),
                                                databaseAttachment.isQuote(),
                                                databaseAttachment.getCaption(),
-                                               databaseAttachment.getSticker()));
+                                               databaseAttachment.getSticker(),
+                                               databaseAttachment.getUrl()));
       }
 
       return insertMediaMessage(request.getBody(),

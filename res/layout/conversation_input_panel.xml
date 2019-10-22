@@ -108,8 +108,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:clipChildren="false"
-                        android:clipToPadding="false"
-                        android:visibility="gone">
+                        android:clipToPadding="false">
 
                         <org.thoughtcrime.securesms.components.HidingLinearLayout
                             android:id="@+id/quick_attachment_toggle"
@@ -127,6 +126,7 @@
                                 android:src="?quick_camera_icon"
                                 android:paddingStart="6dp"
                                 android:paddingEnd="6dp"
+                                android:layout_marginEnd="8dp"
                                 android:background="?selectableItemBackgroundBorderless"
                                 android:contentDescription="@string/conversation_activity__quick_attachment_drawer_toggle_camera_description" />
 
@@ -136,7 +136,8 @@
                                 android:layout_width="36dp"
                                 android:layout_gravity="center_vertical"
                                 android:clipChildren="false"
-                                android:clipToPadding="false">
+                                android:clipToPadding="false"
+                                android:visibility="gone">
 
                                 <include layout="@layout/microphone_recorder_view" />
 
@@ -148,8 +149,7 @@
                             android:id="@+id/inline_attachment_container"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:layout_gravity="right|end"
-                            android:visibility="gone">
+                            android:layout_gravity="right|end">
 
                             <ImageButton
                                 android:id="@+id/inline_attachment_button"

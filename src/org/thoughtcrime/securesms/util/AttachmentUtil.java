@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.logging.Log;
+import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus;
 
 import java.util.Collections;
 import java.util.Set;
@@ -106,14 +107,21 @@ public class AttachmentUtil {
 
   @WorkerThread
   private static boolean isFromUnknownContact(@NonNull Context context, @NonNull DatabaseAttachment attachment) {
+    MessageRecord message;
     try (Cursor messageCursor = DatabaseFactory.getMmsDatabase(context).getMessage(attachment.getMmsId())) {
-      final MessageRecord message = DatabaseFactory.getMmsDatabase(context).readerFor(messageCursor).getNext();
-
-      if (message == null || (!message.getRecipient().isSystemContact() && !message.isOutgoing() && !Util.isOwnNumber(context, message.getRecipient().getAddress()))) {
-        return true;
-      }
+      message = DatabaseFactory.getMmsDatabase(context).readerFor(messageCursor).getNext();
     }
 
+    if (message == null) { return true; }
+
+    // TODO: Fix this so we can detect whether attachment is from a public group or not
     return false;
+
+    /*
+    // check to see if we're friends with the person
+    long threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(message.getRecipient());
+    boolean isFriend = threadId >= 0 && DatabaseFactory.getLokiThreadDatabase(context).getFriendRequestStatus(threadId) == LokiThreadFriendRequestStatus.FRIENDS;
+    return (!isFriend && !message.isOutgoing() && !Util.isOwnNumber(context, message.getRecipient().getAddress()));
+    */
   }
 }

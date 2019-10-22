@@ -125,7 +125,6 @@
                 android:text="160/160 (1)"
                 android:visibility="gone" />
 
-
             <ViewStub
                 android:id="@+id/emoji_drawer_stub"
                 android:layout_width="match_parent"

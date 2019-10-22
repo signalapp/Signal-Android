@@ -23,7 +23,7 @@ public class UriAttachment extends Attachment {
                        @Nullable String fileName, @Nullable String fastPreflightId,
                        boolean voiceNote, boolean quote, @Nullable String caption, @Nullable StickerLocator stickerLocator)
   {
-    super(contentType, transferState, size, fileName, null, null, null, null, fastPreflightId, voiceNote, width, height, quote, caption, stickerLocator);
+    super(contentType, transferState, size, fileName, null, null, null, null, fastPreflightId, voiceNote, width, height, quote, caption, stickerLocator, "");
     this.dataUri      = dataUri;
     this.thumbnailUri = thumbnailUri;
   }

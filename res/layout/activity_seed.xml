@@ -123,7 +123,8 @@
             android:layout_height="50dp"
             android:background="@color/transparent"
             android:textColor="@color/signal_primary"
-            android:text="@string/activity_key_pair_toggle_mode_button_title_3"
+            android:text="Link Device (Coming Soon)"
+            android:alpha="0.24"
             android:elevation="0dp"
             android:stateListAnimator="@null" />
 

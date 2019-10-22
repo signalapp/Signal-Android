@@ -172,7 +172,7 @@ public abstract class PushSendJob extends SendJob {
                                                 Optional.fromNullable(attachment.getDigest()),
                                                 Optional.fromNullable(attachment.getFileName()),
                                                 attachment.isVoiceNote(),
-                                                Optional.fromNullable(attachment.getCaption()));
+                                                Optional.fromNullable(attachment.getCaption()), attachment.getUrl());
     } catch (IOException | ArithmeticException e) {
       Log.w(TAG, e);
       return null;

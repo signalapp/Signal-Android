@@ -50,6 +50,9 @@ public class GroupDatabase extends Database {
   private static final String ACTIVE              = "active";
   private static final String MMS                 = "mms";
 
+  // Loki
+  private static final String AVATAR_URL          = "avatar_url";
+
   public static final String CREATE_TABLE =
       "CREATE TABLE " + TABLE_NAME +
           " (" + ID + " INTEGER PRIMARY KEY, " +
@@ -64,6 +67,7 @@ public class GroupDatabase extends Database {
           TIMESTAMP + " INTEGER, " +
           ACTIVE + " INTEGER DEFAULT 1, " +
           AVATAR_DIGEST + " BLOB, " +
+          AVATAR_URL + " TEXT, " +
           MMS + " INTEGER DEFAULT 0);";
 
   public static final String[] CREATE_INDEXS = {
@@ -72,7 +76,7 @@ public class GroupDatabase extends Database {
 
   private static final String[] GROUP_PROJECTION = {
       GROUP_ID, TITLE, MEMBERS, AVATAR, AVATAR_ID, AVATAR_KEY, AVATAR_CONTENT_TYPE, AVATAR_RELAY, AVATAR_DIGEST,
-      TIMESTAMP, ACTIVE, MMS
+      TIMESTAMP, ACTIVE, MMS, AVATAR_URL
   };
 
   static final List<String> TYPED_GROUP_PROJECTION = Stream.of(GROUP_PROJECTION).map(columnName -> TABLE_NAME + "." + columnName).toList();
@@ -167,6 +171,7 @@ public class GroupDatabase extends Database {
       contentValues.put(AVATAR_KEY, avatar.getKey());
       contentValues.put(AVATAR_CONTENT_TYPE, avatar.getContentType());
       contentValues.put(AVATAR_DIGEST, avatar.getDigest().orNull());
+      contentValues.put(AVATAR_URL, avatar.getUrl());
     }
 
     contentValues.put(AVATAR_RELAY, relay);
@@ -194,6 +199,7 @@ public class GroupDatabase extends Database {
       contentValues.put(AVATAR_CONTENT_TYPE, avatar.getContentType());
       contentValues.put(AVATAR_KEY, avatar.getKey());
       contentValues.put(AVATAR_DIGEST, avatar.getDigest().orNull());
+      contentValues.put(AVATAR_URL, avatar.getUrl());
     }
 
     databaseHelper.getWritableDatabase().update(TABLE_NAME, contentValues,
@@ -344,7 +350,8 @@ public class GroupDatabase extends Database {
                              cursor.getString(cursor.getColumnIndexOrThrow(AVATAR_RELAY)),
                              cursor.getInt(cursor.getColumnIndexOrThrow(ACTIVE)) == 1,
                              cursor.getBlob(cursor.getColumnIndexOrThrow(AVATAR_DIGEST)),
-                             cursor.getInt(cursor.getColumnIndexOrThrow(MMS)) == 1);
+                             cursor.getInt(cursor.getColumnIndexOrThrow(MMS)) == 1,
+                             cursor.getString(cursor.getColumnIndexOrThrow(AVATAR_URL)));
     }
 
     @Override
@@ -367,10 +374,11 @@ public class GroupDatabase extends Database {
     private final String        relay;
     private final boolean       active;
     private final boolean       mms;
+    private final String        url;
 
     public GroupRecord(String id, String title, String members, byte[] avatar,
                        long avatarId, byte[] avatarKey, String avatarContentType,
-                       String relay, boolean active, byte[] avatarDigest, boolean mms)
+                       String relay, boolean active, byte[] avatarDigest, boolean mms, String url)
     {
       this.id                = id;
       this.title             = title;
@@ -382,6 +390,7 @@ public class GroupDatabase extends Database {
       this.relay             = relay;
       this.active            = active;
       this.mms               = mms;
+      this.url               = url;
 
       if (!TextUtils.isEmpty(members)) this.members = Address.fromSerializedList(members, ',');
       else                             this.members = new LinkedList<>();
@@ -438,5 +447,7 @@ public class GroupDatabase extends Database {
     public boolean isMms() {
       return mms;
     }
+
+    public String getUrl() { return url; }
   }
 }

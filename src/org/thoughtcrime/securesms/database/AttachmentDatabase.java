@@ -103,7 +103,7 @@ public class AttachmentDatabase extends Database {
           static final String WIDTH                  = "width";
           static final String HEIGHT                 = "height";
           static final String CAPTION                = "caption";
-
+  public  static final String URL                    = "url";
   public  static final String DIRECTORY              = "parts";
 
   public static final int TRANSFER_PROGRESS_DONE    = 0;
@@ -119,7 +119,7 @@ public class AttachmentDatabase extends Database {
                                                            SIZE, FILE_NAME, THUMBNAIL, THUMBNAIL_ASPECT_RATIO,
                                                            UNIQUE_ID, DIGEST, FAST_PREFLIGHT_ID, VOICE_NOTE,
                                                            QUOTE, DATA_RANDOM, THUMBNAIL_RANDOM, WIDTH, HEIGHT,
-                                                           CAPTION, STICKER_PACK_ID, STICKER_PACK_KEY, STICKER_ID};
+                                                           CAPTION, STICKER_PACK_ID, STICKER_PACK_KEY, STICKER_ID, URL};
 
   public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ROW_ID + " INTEGER PRIMARY KEY, " +
     MMS_ID + " INTEGER, " + "seq" + " INTEGER DEFAULT 0, "                        +
@@ -132,7 +132,7 @@ public class AttachmentDatabase extends Database {
     UNIQUE_ID + " INTEGER NOT NULL, " + DIGEST + " BLOB, " + FAST_PREFLIGHT_ID + " TEXT, " +
     VOICE_NOTE + " INTEGER DEFAULT 0, " + DATA_RANDOM + " BLOB, " + THUMBNAIL_RANDOM + " BLOB, " +
     QUOTE + " INTEGER DEFAULT 0, " + WIDTH + " INTEGER DEFAULT 0, " + HEIGHT + " INTEGER DEFAULT 0, " +
-    CAPTION + " TEXT DEFAULT NULL, " + STICKER_PACK_ID + " TEXT DEFAULT NULL, " +
+    CAPTION + " TEXT DEFAULT NULL, " + URL + " TEXT, " + STICKER_PACK_ID + " TEXT DEFAULT NULL, " +
     STICKER_PACK_KEY + " DEFAULT NULL, " + STICKER_ID + " INTEGER DEFAULT -1);";
 
   public static final String[] CREATE_INDEXS = {
@@ -361,6 +361,7 @@ public class AttachmentDatabase extends Database {
     values.put(DIGEST, (byte[])null);
     values.put(NAME, (String) null);
     values.put(FAST_PREFLIGHT_ID, (String)null);
+    values.put(URL, "");
 
     if (database.update(TABLE_NAME, values, PART_ID_WHERE, attachmentId.toStrings()) == 0) {
       //noinspection ResultOfMethodCallIgnored
@@ -384,6 +385,7 @@ public class AttachmentDatabase extends Database {
     values.put(NAME, attachment.getRelay());
     values.put(SIZE, attachment.getSize());
     values.put(FAST_PREFLIGHT_ID, attachment.getFastPreflightId());
+    values.put(URL, attachment.getUrl());
 
     database.update(TABLE_NAME, values, PART_ID_WHERE, id.toStrings());
   }
@@ -451,7 +453,8 @@ public class AttachmentDatabase extends Database {
                                   mediaStream.getHeight(),
                                   databaseAttachment.isQuote(),
                                   databaseAttachment.getCaption(),
-                                  databaseAttachment.getSticker());
+                                  databaseAttachment.getSticker(),
+                                  databaseAttachment.getUrl());
   }
 
 
@@ -650,12 +653,13 @@ public class AttachmentDatabase extends Database {
                                                   ? new StickerLocator(object.getString(STICKER_PACK_ID),
                                                                        object.getString(STICKER_PACK_KEY),
                                                                        object.getInt(STICKER_ID))
-                                                  : null));
+                                                  : null, "")); // TODO: Not sure if this will break something
           }
         }
 
         return result;
       } else {
+        int urlIndex = cursor.getColumnIndex(URL);
         return Collections.singletonList(new DatabaseAttachment(new AttachmentId(cursor.getLong(cursor.getColumnIndexOrThrow(ROW_ID)),
                                                                                  cursor.getLong(cursor.getColumnIndexOrThrow(UNIQUE_ID))),
                                                                 cursor.getLong(cursor.getColumnIndexOrThrow(MMS_ID)),
@@ -679,7 +683,8 @@ public class AttachmentDatabase extends Database {
                                                                     ? new StickerLocator(cursor.getString(cursor.getColumnIndexOrThrow(STICKER_PACK_ID)),
                                                                                          cursor.getString(cursor.getColumnIndexOrThrow(STICKER_PACK_KEY)),
                                                                                          cursor.getInt(cursor.getColumnIndexOrThrow(STICKER_ID)))
-                                                                    : null));
+                                                                    : null,
+                                                                urlIndex > 0 ? cursor.getString(urlIndex) : ""));
       }
     } catch (JSONException e) {
       throw new AssertionError(e);
@@ -718,6 +723,7 @@ public class AttachmentDatabase extends Database {
     contentValues.put(HEIGHT, attachment.getHeight());
     contentValues.put(QUOTE, quote);
     contentValues.put(CAPTION, attachment.getCaption());
+    contentValues.put(URL, attachment.getUrl());
 
     if (attachment.isSticker()) {
       contentValues.put(STICKER_PACK_ID, attachment.getSticker().getPackId());

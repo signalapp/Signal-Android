@@ -792,7 +792,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     switch (item.getItemId()) {
     case R.id.menu_call_secure:               handleDial(getRecipient(), true);                  return true;
     case R.id.menu_call_insecure:             handleDial(getRecipient(), false);                 return true;
-    // case R.id.menu_view_media:                handleViewMedia();                                 return true;
+    case R.id.menu_view_media:                handleViewMedia();                                 return true;
     case R.id.menu_add_shortcut:              handleAddShortcut();                               return true;
     case R.id.menu_search:                    handleSearch();                                    return true;
     case R.id.menu_add_to_contacts:           handleAddToContacts();                             return true;
@@ -2189,6 +2189,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   private void updateInputPanel() {
     boolean hasPendingFriendRequest = !recipient.isGroupRecipient() && DatabaseFactory.getLokiThreadDatabase(this).hasPendingFriendRequest(threadId);
+    updateToggleButtonState();
     inputPanel.setEnabled(!hasPendingFriendRequest);
     int hintID = hasPendingFriendRequest ? R.string.activity_conversation_pending_friend_request_hint : R.string.activity_conversation_default_hint;
     inputPanel.setHint(getResources().getString(hintID));
@@ -2400,6 +2401,15 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void updateToggleButtonState() {
+    // Don't allow attachments if we're not friends
+    LokiThreadFriendRequestStatus friendRequestStatus = DatabaseFactory.getLokiThreadDatabase(this).getFriendRequestStatus(threadId);
+    if (!recipient.isGroupRecipient() && friendRequestStatus != LokiThreadFriendRequestStatus.FRIENDS) {
+      buttonToggle.display(sendButton);
+      quickAttachmentToggle.hide();
+      inlineAttachmentToggle.hide();
+      return;
+    }
+
     if (inputPanel.isRecordingInLockedMode()) {
       buttonToggle.display(sendButton);
       quickAttachmentToggle.show();
@@ -2408,7 +2418,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
 
     if (composeText.getText().length() == 0 && !attachmentManager.isAttachmentPresent()) {
-      buttonToggle.display(sendButton);
+      buttonToggle.display(attachButton);
       quickAttachmentToggle.show();
       inlineAttachmentToggle.hide();
     } else {

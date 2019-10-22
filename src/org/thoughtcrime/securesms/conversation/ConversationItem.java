@@ -473,7 +473,7 @@ public class ConversationItem extends LinearLayout
 
     if (isCaptionlessMms(messageRecord)) {
       bodyText.setVisibility(View.GONE);
-    } else { ;
+    } else {
       Spannable text = MentionUtilities.highlightMentions(linkifyMessageBody(messageRecord.getDisplayBody(context), batchSelected.isEmpty()), messageRecord.isOutgoing(), messageRecord.getThreadId(), context);
       text = SearchUtil.getHighlightedSpan(locale, () -> new BackgroundColorSpan(Color.YELLOW), text, searchQuery);
       text = SearchUtil.getHighlightedSpan(locale, () -> new ForegroundColorSpan(Color.BLACK), text, searchQuery);
