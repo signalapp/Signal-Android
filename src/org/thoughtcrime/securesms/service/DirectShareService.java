@@ -39,13 +39,13 @@ public class DirectShareService extends ChooserTargetService {
     List<ChooserTarget> results        = new LinkedList<>();
     ComponentName       componentName  = new ComponentName(this, ShareActivity.class);
     ThreadDatabase      threadDatabase = DatabaseFactory.getThreadDatabase(this);
-    Cursor              cursor         = threadDatabase.getDirectShareList();
+    Cursor              cursor         = threadDatabase.getRecentConversationList(10, false);
 
     try {
       ThreadDatabase.Reader reader = threadDatabase.readerFor(cursor);
       ThreadRecord record;
 
-      while ((record = reader.getNext()) != null && results.size() < 10) {
+      while ((record = reader.getNext()) != null) {
           Recipient recipient = Recipient.resolved(record.getRecipient().getId());
           String    name      = recipient.toShortString();
 

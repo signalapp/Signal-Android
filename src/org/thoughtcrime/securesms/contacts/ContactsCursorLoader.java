@@ -51,10 +51,11 @@ public class ContactsCursorLoader extends CursorLoader {
   private static final String TAG = ContactsCursorLoader.class.getSimpleName();
 
   public static final class DisplayMode {
-    public static final int FLAG_PUSH   = 1;
-    public static final int FLAG_SMS    = 1 << 1;
-    public static final int FLAG_GROUPS = 1 << 2;
-    public static final int FLAG_ALL    = FLAG_PUSH | FLAG_SMS | FLAG_GROUPS;
+    public static final int FLAG_PUSH            = 1;
+    public static final int FLAG_SMS             = 1 << 1;
+    public static final int FLAG_ACTIVE_GROUPS   = 1 << 2;
+    public static final int FLAG_INACTIVE_GROUPS = 1 << 3;
+    public static final int FLAG_ALL             = FLAG_PUSH |  FLAG_SMS | FLAG_ACTIVE_GROUPS | FLAG_INACTIVE_GROUPS;
   }
 
   private static final String[] CONTACT_PROJECTION = new String[]{ContactRepository.ID_COLUMN,
@@ -75,6 +76,10 @@ public class ContactsCursorLoader extends CursorLoader {
   public ContactsCursorLoader(@NonNull Context context, int mode, String filter, boolean recents)
   {
     super(context);
+
+    if (flagSet(mode, DisplayMode.FLAG_INACTIVE_GROUPS) && !flagSet(mode, DisplayMode.FLAG_ACTIVE_GROUPS)) {
+      throw new AssertionError("Inactive group flag set, but the active group flag isn't!");
+    }
 
     this.filter            = filter == null ? "" : filter;
     this.mode              = mode;
@@ -172,7 +177,7 @@ public class ContactsCursorLoader extends CursorLoader {
     ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(getContext());
 
     MatrixCursor recentConversations = new MatrixCursor(CONTACT_PROJECTION, RECENT_CONVERSATION_MAX);
-    try (Cursor rawConversations = threadDatabase.getRecentConversationList(RECENT_CONVERSATION_MAX)) {
+    try (Cursor rawConversations = threadDatabase.getRecentConversationList(RECENT_CONVERSATION_MAX, flagSet(mode, DisplayMode.FLAG_INACTIVE_GROUPS))) {
       ThreadDatabase.Reader reader = threadDatabase.readerFor(rawConversations);
       ThreadRecord threadRecord;
       while ((threadRecord = reader.getNext()) != null) {
@@ -208,7 +213,7 @@ public class ContactsCursorLoader extends CursorLoader {
 
   private Cursor getGroupsCursor() {
     MatrixCursor groupContacts = new MatrixCursor(CONTACT_PROJECTION);
-    try (GroupDatabase.Reader reader = DatabaseFactory.getGroupDatabase(getContext()).getGroupsFilteredByTitle(filter)) {
+    try (GroupDatabase.Reader reader = DatabaseFactory.getGroupDatabase(getContext()).getGroupsFilteredByTitle(filter, flagSet(mode, DisplayMode.FLAG_INACTIVE_GROUPS))) {
       GroupDatabase.GroupRecord groupRecord;
       while ((groupRecord = reader.getNext()) != null) {
         groupContacts.addRow(new Object[] { groupRecord.getRecipientId().serialize(),
@@ -266,14 +271,18 @@ public class ContactsCursorLoader extends CursorLoader {
   }
 
   private static boolean pushEnabled(int mode) {
-    return (mode & DisplayMode.FLAG_PUSH) > 0;
+    return flagSet(mode, DisplayMode.FLAG_PUSH);
   }
 
   private static boolean smsEnabled(int mode) {
-    return (mode & DisplayMode.FLAG_SMS) > 0;
+    return flagSet(mode, DisplayMode.FLAG_SMS);
   }
 
   private static boolean groupsEnabled(int mode) {
-    return (mode & DisplayMode.FLAG_GROUPS) > 0;
+    return flagSet(mode, DisplayMode.FLAG_ACTIVE_GROUPS);
+  }
+
+  private static boolean flagSet(int mode, int flag) {
+    return (mode & flag) > 0;
   }
 }

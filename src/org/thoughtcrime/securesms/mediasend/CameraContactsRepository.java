@@ -65,7 +65,7 @@ class CameraContactsRepository {
 
     List<Recipient> recipients = new ArrayList<>(RECENT_MAX);
 
-    try (ThreadDatabase.Reader threadReader = threadDatabase.readerFor(threadDatabase.getRecentPushConversationList(RECENT_MAX))) {
+    try (ThreadDatabase.Reader threadReader = threadDatabase.readerFor(threadDatabase.getRecentPushConversationList(RECENT_MAX, false))) {
       ThreadRecord threadRecord;
       while ((threadRecord = threadReader.getNext()) != null) {
         recipients.add(threadRecord.getRecipient().resolve());
@@ -98,7 +98,7 @@ class CameraContactsRepository {
 
     List<Recipient> recipients = new ArrayList<>();
 
-    try (GroupDatabase.Reader reader = groupDatabase.getGroupsFilteredByTitle(query)) {
+    try (GroupDatabase.Reader reader = groupDatabase.getGroupsFilteredByTitle(query, false)) {
       GroupDatabase.GroupRecord groupRecord;
       while ((groupRecord = reader.getNext()) != null) {
         RecipientId recipientId = recipientDatabase.getOrInsertFromGroupId(groupRecord.getEncodedId());

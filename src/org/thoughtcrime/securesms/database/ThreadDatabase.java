@@ -374,23 +374,25 @@ public class ThreadDatabase extends Database {
     return cursor;
   }
 
-  public Cursor getRecentConversationList(int limit) {
+  public Cursor getRecentConversationList(int limit, boolean includeInactiveGroups) {
     SQLiteDatabase db    = databaseHelper.getReadableDatabase();
-    String         query = createQuery(MESSAGE_COUNT + " != 0", limit);
-
-    return db.rawQuery(query, null);
+    String         query = !includeInactiveGroups ? MESSAGE_COUNT + " != 0 AND " + GroupDatabase.TABLE_NAME + "." + GroupDatabase.ACTIVE + " = 1"
+                                                  : MESSAGE_COUNT + " != 0";
+    return db.rawQuery(createQuery(query, limit), null);
   }
 
-  public Cursor getRecentPushConversationList(int limit) {
-    SQLiteDatabase db    = databaseHelper.getReadableDatabase();
-    String         where = MESSAGE_COUNT + " != 0 AND " +
-                           "(" +
-                             RecipientDatabase.REGISTERED + " = " + RecipientDatabase.RegisteredState.REGISTERED.getId() + " OR " +
-                             "(" +
-                               GroupDatabase.TABLE_NAME + "." + GroupDatabase.GROUP_ID + " NOT NULL AND " +
-                               GroupDatabase.TABLE_NAME + "." + GroupDatabase.MMS + " = 0" +
-                             ")" +
-                           ")";
+  public Cursor getRecentPushConversationList(int limit, boolean includeInactiveGroups) {
+    SQLiteDatabase db               = databaseHelper.getReadableDatabase();
+    String         activeGroupQuery = !includeInactiveGroups ? " AND " + GroupDatabase.TABLE_NAME + "." + GroupDatabase.ACTIVE + " = 1" : "";
+    String         where            = MESSAGE_COUNT + " != 0 AND " +
+                                      "(" +
+                                        RecipientDatabase.REGISTERED + " = " + RecipientDatabase.RegisteredState.REGISTERED.getId() + " OR " +
+                                        "(" +
+                                          GroupDatabase.TABLE_NAME + "." + GroupDatabase.GROUP_ID + " NOT NULL AND " +
+                                          GroupDatabase.TABLE_NAME + "." + GroupDatabase.MMS + " = 0" +
+                                          activeGroupQuery +
+                                        ")" +
+                                      ")";
     String         query = createQuery(where, limit);
 
     return db.rawQuery(query, null);
@@ -412,13 +414,6 @@ public class ThreadDatabase extends Database {
     setNotifyConverationListListeners(cursor);
 
     return cursor;
-  }
-
-  public Cursor getDirectShareList() {
-    SQLiteDatabase db    = databaseHelper.getReadableDatabase();
-    String         query = createQuery(MESSAGE_COUNT + " != 0", 0);
-
-    return db.rawQuery(query, null);
   }
 
   public int getArchivedConversationListCount() {
