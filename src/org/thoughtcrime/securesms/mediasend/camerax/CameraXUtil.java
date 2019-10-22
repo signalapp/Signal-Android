@@ -101,6 +101,11 @@ public class CameraXUtil {
                                                   : ImageCapture.CaptureMode.MIN_LATENCY;
   }
 
+  public static int getIdealResolution(int displayWidth, int displayHeight) {
+    int maxDisplay = Math.max(displayWidth, displayHeight);
+    return Math.max(maxDisplay, 1920);
+  }
+
   @TargetApi(21)
   public static @NonNull Size buildResolutionForRatio(int longDimension, @NonNull Rational ratio, boolean isPortrait) {
     int shortDimension = longDimension * ratio.getDenominator() / ratio.getNumerator();

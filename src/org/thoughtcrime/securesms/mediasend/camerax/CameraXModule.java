@@ -19,6 +19,7 @@ package org.thoughtcrime.securesms.mediasend.camerax;
 import android.Manifest.permission;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Matrix;
 import android.graphics.Rect;
 import android.graphics.SurfaceTexture;
@@ -231,11 +232,13 @@ final class CameraXModule {
 
     // Begin Signal Custom Code Block
     Rational targetAspectRatio;
+    int resolution = CameraXUtil.getIdealResolution(Resources.getSystem().getDisplayMetrics().widthPixels, Resources.getSystem().getDisplayMetrics().heightPixels);
+    Log.i(TAG, "Ideal resolution: " + resolution);
     if (getCaptureMode() == CameraXView.CaptureMode.IMAGE) {
-      mImageCaptureConfigBuilder.setTargetResolution(CameraXUtil.buildResolutionForRatio(1920, ASPECT_RATIO_4_3, isDisplayPortrait));
+      mImageCaptureConfigBuilder.setTargetResolution(CameraXUtil.buildResolutionForRatio(resolution, ASPECT_RATIO_4_3, isDisplayPortrait));
       targetAspectRatio = isDisplayPortrait ? ASPECT_RATIO_3_4 : ASPECT_RATIO_4_3;
     } else {
-      mImageCaptureConfigBuilder.setTargetResolution(CameraXUtil.buildResolutionForRatio(1920, ASPECT_RATIO_16_9, isDisplayPortrait));
+      mImageCaptureConfigBuilder.setTargetResolution(CameraXUtil.buildResolutionForRatio(resolution, ASPECT_RATIO_16_9, isDisplayPortrait));
       targetAspectRatio = isDisplayPortrait ? ASPECT_RATIO_9_16 : ASPECT_RATIO_16_9;
     }
     mImageCaptureConfigBuilder.setCaptureMode(CameraXUtil.getOptimalCaptureMode());
