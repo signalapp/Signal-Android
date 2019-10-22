@@ -376,7 +376,7 @@ public class ThreadDatabase extends Database {
 
   public Cursor getRecentConversationList(int limit, boolean includeInactiveGroups) {
     SQLiteDatabase db    = databaseHelper.getReadableDatabase();
-    String         query = !includeInactiveGroups ? MESSAGE_COUNT + " != 0 AND " + GroupDatabase.TABLE_NAME + "." + GroupDatabase.ACTIVE + " = 1"
+    String         query = !includeInactiveGroups ? MESSAGE_COUNT + " != 0 AND (" + GroupDatabase.TABLE_NAME + "." + GroupDatabase.ACTIVE + " IS NULL OR " + GroupDatabase.TABLE_NAME + "." + GroupDatabase.ACTIVE + " = 1)"
                                                   : MESSAGE_COUNT + " != 0";
     return db.rawQuery(createQuery(query, limit), null);
   }
