@@ -195,8 +195,8 @@ dependencies {
     }
 }
 
-def canonicalVersionCode = 15
-def canonicalVersionName = "1.2.0"
+def canonicalVersionCode = 16
+def canonicalVersionName = "1.3.0"
 
 def postFixSize = 10
 def abiPostFix = ['armeabi-v7a' : 1,
