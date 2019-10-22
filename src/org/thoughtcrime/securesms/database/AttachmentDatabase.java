@@ -293,6 +293,8 @@ public class AttachmentDatabase extends Database {
 
   @SuppressWarnings("ResultOfMethodCallIgnored")
   public void deleteAttachmentsForMessage(long mmsId) {
+    Log.d(TAG, "[deleteAttachmentsForMessage] mmsId: " + mmsId);
+
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
     Cursor cursor           = null;
 
@@ -317,6 +319,8 @@ public class AttachmentDatabase extends Database {
   }
 
   public void deleteAttachmentFilesForMessage(long mmsId) {
+    Log.d(TAG, "[deleteAttachmentFilesForMessage] mmsId: " + mmsId);
+
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
     Cursor cursor           = null;
 
@@ -360,6 +364,8 @@ public class AttachmentDatabase extends Database {
 
 
   public void deleteAttachment(@NonNull AttachmentId id) {
+    Log.d(TAG, "[deleteAttachment] attachmentId: " + id);
+
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
 
     try (Cursor cursor = database.query(TABLE_NAME,
@@ -408,9 +414,9 @@ public class AttachmentDatabase extends Database {
     boolean dataInUse = isDataUsedByAnotherAttachment(data, attachmentId);
 
     if (dataInUse) {
-      Log.i(TAG, "[deleteAttachmentOnDisk] Attachment in use. Skipping deletion. " + data);
+      Log.i(TAG, "[deleteAttachmentOnDisk] Attachment in use. Skipping deletion. " + data + " " + attachmentId);
     } else {
-      Log.i(TAG, "[deleteAttachmentOnDisk] No other users of this attachment. Safe to delete. " + data);
+      Log.i(TAG, "[deleteAttachmentOnDisk] No other users of this attachment. Safe to delete. " + data + " " + attachmentId);
     }
 
     if (!TextUtils.isEmpty(data) && !dataInUse) {

@@ -95,6 +95,8 @@ public final class AttachmentUploadJob extends BaseJob {
       throw new InvalidAttachmentException("Cannot find the specified attachment.");
     }
 
+    Log.i(TAG, "Uploading attachment for message " + databaseAttachment.getMmsId() + " with ID " + databaseAttachment.getAttachmentId());
+
     try (NotificationController notification = getNotificationForAttachment(databaseAttachment)) {
       SignalServiceAttachment        localAttachment  = getAttachmentFor(databaseAttachment, notification);
       SignalServiceAttachmentPointer remoteAttachment = messageSender.uploadAttachment(localAttachment.asStream());
