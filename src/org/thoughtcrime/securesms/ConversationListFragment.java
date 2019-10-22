@@ -467,7 +467,8 @@ public class ConversationListFragment extends Fragment
     }
 
     if (Build.VERSION.SDK_INT >= 23) {
-      getActivity().getWindow().getDecorView().setSystemUiVisibility(0);
+      int current = getActivity().getWindow().getDecorView().getSystemUiVisibility();
+      getActivity().getWindow().getDecorView().setSystemUiVisibility(current & ~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
     }
 
     return true;
@@ -500,7 +501,8 @@ public class ConversationListFragment extends Fragment
     }
 
     if (Build.VERSION.SDK_INT >= 23) {
-      getActivity().getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+      int current = getActivity().getWindow().getDecorView().getSystemUiVisibility();
+      getActivity().getWindow().getDecorView().setSystemUiVisibility(current | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
     }
 
     actionMode = null;
