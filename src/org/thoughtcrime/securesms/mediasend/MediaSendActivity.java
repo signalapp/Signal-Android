@@ -546,6 +546,8 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
   }
 
   public void onAddMediaClicked(@NonNull String bucketId) {
+    hud.hideCurrentInput(composeText);
+
     // TODO: Get actual folder title somehow
     MediaPickerFolderFragment folderFragment = MediaPickerFolderFragment.newInstance(this, recipient != null ? recipient.get() : null);
     MediaPickerItemFragment   itemFragment   = MediaPickerItemFragment.newInstance(bucketId, "", viewModel.getMaxSelection());
