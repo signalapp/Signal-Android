@@ -301,7 +301,10 @@ public class CameraXFragment extends Fragment implements CameraFragment {
   }
 
   private void neverDisplayVideoRecordingTooltipAgain() {
-    TextSecurePreferences.setHasSeenVideoRecordingTooltip(requireContext(), true);
+    Context context = getContext();
+    if (context != null) {
+      TextSecurePreferences.setHasSeenVideoRecordingTooltip(requireContext(), true);
+    }
   }
 
   private void hideAndDisableControlsForVideoRecording(@NonNull View captureButton,
