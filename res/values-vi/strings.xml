@@ -76,6 +76,7 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Không thể lưu ảnh.</string>
   <!--CameraXFragment-->
+  <string name="CameraXFragment_tap_for_photo_hold_for_video">Nhấn để chụp ảnh, giữ để quay video</string>
   <string name="CameraXFragment_capture_description">Chụp</string>
   <string name="CameraXFragment_change_camera_description">Chuyển camera</string>
   <string name="CameraXFragment_open_gallery_description">Mở bộ sưu tập</string>
@@ -173,6 +174,9 @@
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Để chụp ảnh, hãy cho phép Signal truy cập máy ảnh.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal cần quyền truy cập Máy ảnh để chụp ảnh và quay video, nhưng đã bị từ chối vĩnh viễn. Vui lòng mở cài đặt ứng dụng, chọn \"Quyền\" và bật \"Máy ảnh\".</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal cần quyền truy cập Máy ảnh để chụp ảnh và quay video</string>
+  <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">Cho phép quyền truy cập microphone để quay video với âm thanh.</string>
+  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Signal cần quyền truy cập microphone để quay videos, nhưng quyền này đã bị từ chối. Vui lòng mở cài đặt ứng dụng, chọn \"Quyền truy cập\", và cho phép \"Microphone\" và \"Camera\".</string>
+  <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Signal cần quyền truy cập microphone để quay video.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s%2$s</string>
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal không thể gửi SMS/MMS vì Signal không phải ứng dụng SMS mặc định. Bạn có muốn thay đổi trong cài đặt Android?</string>
   <string name="ConversationActivity_yes">Có</string>
@@ -553,6 +557,8 @@ mã quốc gia bạn</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Điền số điện thoại của bạn để bắt đầu</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Bạn sẽ nhận tin nhắn chứa mã xác minh. Có thể mất phí nhà mạng.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Điền mã xác minh được gửi đến %s</string>
+  <string name="RegistrationActivity_phone_number_description">Số điện thoại</string>
+  <string name="RegistrationActivity_country_code_description">Mã quốc gia</string>
   <string name="RegistrationActivity_call">Gọi</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_photo">Ảnh</string>
@@ -619,6 +625,7 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <string name="ThreadRecord_media_message">Tin nhắn đa phương tiện</string>
   <string name="ThreadRecord_sticker">Nhãn dán</string>
   <string name="ThreadRecord_disappearing_photo">Ảnh tự huỷ</string>
+  <string name="ThreadRecord_disappearing_video">Video biến mất</string>
   <string name="ThreadRecord_s_is_on_signal">%s đang sử dụng Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Tin nhắn tự hủy đã được vô hiệu hóa</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Tin nhắn sẽ tự hủy sau %s</string>
@@ -695,6 +702,7 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <string name="MessageNotifier_media_message">Tin nhắn đa phương tiện</string>
   <string name="MessageNotifier_sticker">Nhãn dán</string>
   <string name="MessageNotifier_disappearing_photo">Ảnh tự huỷ</string>
+  <string name="MessageNotifier_disappearing_video">Video biến mất</string>
   <string name="MessageNotifier_reply">Trả lời</string>
   <string name="MessageNotifier_signal_message">Tin nhắn Signal</string>
   <string name="MessageNotifier_unsecured_sms">SMS không bảo mật</string>
@@ -1033,6 +1041,9 @@ Nhận thông tin trao đổi chìa khóa về phiên bản giao thức không h
   <string name="arrays__high">Cao</string>
   <string name="arrays__max">Cao nhất</string>
   <!--plurals.xml-->
+  <plurals name="hours_ago">
+    <item quantity="other">%dg</item>
+  </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">SMS và MMS</string>
   <string name="preferences__pref_all_sms_title">Nhận tất cả SMS</string>
@@ -1306,6 +1317,8 @@ Các tin nhắn và cuộc gọi riêng tư miễn phí đến người dùng Si
   <string name="RegistrationActivity_wrong_number">Sai số điện thoại</string>
   <string name="RegistrationActivity_call_me_instead_available_in">Hãy gọi tôi \n  (Khả dụng sau %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Liên lạc Bộ phận hỗ trợ của Signal</string>
+  <string name="RegistrationActivity_code_support_subject">Đăng ký Signal - Mã xác minh cho Android</string>
+  <string name="RegistrationActivity_code_support_body">Tiêu đề: Đăng ký Signal - Mã xác minh cho Android\n Thông tin thiết bị: %1$s \n Phiên bản Android: %2$s\n Phiên bản Signal: %3$s \n Vị trí: %4$s</string>
   <string name="BackupUtil_never">Không bao giờ</string>
   <string name="BackupUtil_unknown">Không rõ</string>
   <string name="preferences_app_protection__screen_lock">Khoá màn hình</string>

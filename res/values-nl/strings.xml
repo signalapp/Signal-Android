@@ -88,10 +88,10 @@
   <string name="CameraContacts_signal_contacts">Signal-gebruikers</string>
   <string name="CameraContacts_signal_groups">Signal-groepen</string>
   <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">Je kunt dit delen met maximaal %d gesprekken.</string>
-  <string name="CameraContacts_select_signal_recipients">Selecteer ontvangers wie Signal gebruiken.</string>
+  <string name="CameraContacts_select_signal_recipients">Selecteer Signal-ontvangers</string>
   <string name="CameraContacts_no_signal_contacts">Geen Signal-gebuikers</string>
   <string name="CameraContacts_you_can_only_use_the_camera_button">Je kunt de cameraknop alleen gebruiken om foto\'s te verzenden aan Signal-gebruikers.</string>
-  <string name="CameraContacts_cant_find_who_youre_looking_for">Kun je niet vinden waar je naar zoekt?</string>
+  <string name="CameraContacts_cant_find_who_youre_looking_for">Kun je de persoon die je zoekt niet vinden?</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">Nodig een contactpersoon uit om ook Signal te gebruiken</string>
   <string name="CameraContacts__menu_search">Zoek</string>
   <!--ClearProfileActivity-->
@@ -303,7 +303,7 @@
   <string name="DozeReminder_optimize_for_missing_play_services">Optimaliseren voor ontbrekende Google Play Services</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Dit apparaat biedt geen ondersteuning voor Google Play Services. Tik om de optimalisaties m.b.t. stroomverbruik uit te schakelen, die Signal momenteel verhinderen om berichten te ontvangen op de achtergrond.</string>
   <!--ShareActivity-->
-  <string name="ShareActivity_share_with">Delen met</string>
+  <string name="ShareActivity_share_with">Doorsturen naar</string>
   <!--ExperienceUpgradeActivity-->
   <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Welkom bij Signal.</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_called_signal">TextSecure en RedPhone zijn vanaf nu samen één privé-messenger, geschikt voor iedere situatie: Signal.</string>
@@ -383,7 +383,7 @@ weergaven.</string>
     <item quantity="other">%d sms-uitnodigingen verzenden?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Laten we Signal gebruiken om een gesprek te voeren: %1$s</string>
-  <string name="InviteActivity_no_app_to_share_to">Het lijkt erop dat je geen apps hebt om naar te delen.</string>
+  <string name="InviteActivity_no_app_to_share_to">Het lijkt erop dat je geen apps hebt om naar door te sturen.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Vrienden laten vrienden niet onversleuteld chatten.</string>
   <!--Job-->
   <string name="Job_working_in_the_background">Bezig op de achtergrond…</string>
@@ -682,7 +682,7 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Deze contactpersoon gebruikt een oude versie van Signal. Vraag hem om eerst Signal bij te werken, alvorens je het veiligheidsnummer verifieert.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Deze contactpersoon gebruikt een nieuwere versie van Signal met een incompatibel QR-codeformaat. Werk Signal bij om te vergelijken.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">De gescande QR-code is geen goed geformatteerd veiligheidsnummer-verificatiecode. Probeer de code opnieuw te scannen.</string>
-  <string name="VerifyIdentityActivity_share_safety_number_via">Veiligheidsnummer delen via…</string>
+  <string name="VerifyIdentityActivity_share_safety_number_via">Veiligheidsnummer doorsturen via…</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">Ons Signal-veiligheidsnummer:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Het lijkt erop dat je geen apps hebt om naar te delen.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Geen veiligheidsnummer gevonden op het klembord</string>
@@ -1025,7 +1025,7 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <string name="verify_display_fragment__loading">Bezig met laden…</string>
   <string name="verify_display_fragment__verified">Ik heb deze contactpersoon geverifieerd</string>
   <!--verify_identity-->
-  <string name="verify_identity__share_safety_number">Veiligheidsnummer delen</string>
+  <string name="verify_identity__share_safety_number">Veiligheidsnummer doorsturen</string>
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">Veeg omhoog om te beantwoorden</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Veeg omlaag om te weigeren</string>

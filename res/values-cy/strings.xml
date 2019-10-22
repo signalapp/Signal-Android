@@ -85,6 +85,7 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Methu cadw delwedd</string>
   <!--CameraXFragment-->
+  <string name="CameraXFragment_tap_for_photo_hold_for_video">Tapio am lun, dal am fideo</string>
   <string name="CameraXFragment_capture_description">Cipio</string>
   <string name="CameraXFragment_change_camera_description">Newid camera</string>
   <string name="CameraXFragment_open_gallery_description">Agor yr oriel</string>
@@ -184,6 +185,9 @@ Send neges heb ei ddiogelu?</string>
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">I gipio lluniau a fideo, caniatewch i Signal gael mynediad i\'r camera.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Mae ar Signal angen caniatâd Camera er mwyn atodi tynnu lluniau neu fideos, ond fe\'i rwystrwyd yn barhaol. Ewch i ddewislen gosodiadau\'r ap, dewis "Caniatâd", a galluogi "Camera".</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Angen Signal angen caniatâd camera i dynnu lluniau neu fideo</string>
+  <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">Galluogi caniatâd meicroffon i gipio fideo gyda sain.</string>
+  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Mae Signal ange caniatâd meicroffon i recordio fideos, and mae wedi ei atal. Ewch i osodiadau\'r ap, dewis \"Caniatâd\" a galluogi \"Meicroffon\" a \"Camera\"</string>
+  <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Mae Signal ange caniatad meicroffon i recordio fideos.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Nid yw Signal yn gallu anfon negeseuon SMS/MMS gan nad yw eich ap ragosodedig SMS.Hoffech chi newid hyn yn eich gosodiadau Android?</string>
   <string name="ConversationActivity_yes">Iawn</string>
@@ -615,6 +619,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Rhowch eich rhif ffôn i gychwyn arni</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Byddwch yn derbyn cod dilysu. Gall cyfraddau darparwr gael eu codi. </string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Rhowch y cod dilysu a anfonwyd i %s.</string>
+  <string name="RegistrationActivity_phone_number_description">Rhif ffôn</string>
+  <string name="RegistrationActivity_country_code_description">Cod gwlad</string>
   <string name="RegistrationActivity_call">Galw</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_photo">Llun</string>
@@ -681,6 +687,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="ThreadRecord_media_message">Neges cyfryngau</string>
   <string name="ThreadRecord_sticker">Sticer</string>
   <string name="ThreadRecord_disappearing_photo">Llun yn diflannu</string>
+  <string name="ThreadRecord_disappearing_video">Fideos yn diflannu</string>
   <string name="ThreadRecord_s_is_on_signal">Mae %s ar Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Negeseuon diflanedig wedi\'u hanalluogi</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Amser neges diflanedig wedi\'i osod i %s</string>
@@ -757,6 +764,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="MessageNotifier_media_message">Neges cyfryngau</string>
   <string name="MessageNotifier_sticker">Sticer</string>
   <string name="MessageNotifier_disappearing_photo">Llun yn diflannu</string>
+  <string name="MessageNotifier_disappearing_video">Fideos yn diflannu</string>
   <string name="MessageNotifier_reply">Ymateb</string>
   <string name="MessageNotifier_signal_message">Neges Signal</string>
   <string name="MessageNotifier_unsecured_sms">SMS anniogel</string>
@@ -1119,6 +1127,12 @@ Send neges heb ei ddiogelu?</string>
   <string name="arrays__high">Uchel</string>
   <string name="arrays__max">Mwyaf</string>
   <!--plurals.xml-->
+  <plurals name="hours_ago">
+    <item quantity="one">%d</item>
+    <item quantity="two">%da</item>
+    <item quantity="many">%da</item>
+    <item quantity="other">%da</item>
+  </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">SMS ac MMS</string>
   <string name="preferences__pref_all_sms_title">Derbyn yr holl SMS</string>
@@ -1186,6 +1200,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="preferences__linked_devices">Dyfeisiau cysylltiedig</string>
   <string name="preferences__light_theme">Golau</string>
   <string name="preferences__dark_theme">Tywyll</string>
+  <string name="preferences__system_theme">System</string>
   <string name="preferences__appearance">Golwg</string>
   <string name="preferences__theme">Thema</string>
   <string name="preferences__default">Rhagosodiad</string>
@@ -1391,6 +1406,9 @@ Send neges heb ei ddiogelu?</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Rhowch y cod dilysu a anfonwyd i %s.</string>
   <string name="RegistrationActivity_wrong_number">Rhif anghywir</string>
   <string name="RegistrationActivity_call_me_instead_available_in">Galw fi yn lle hynny\n (Ar gael ymhen %1$02d:%2$02d)</string>
+  <string name="RegistrationActivity_contact_signal_support">Cysylltu â Chefnogaeth Signal</string>
+  <string name="RegistrationActivity_code_support_subject">Cofrestru Signal - Cod Dilysu Android</string>
+  <string name="RegistrationActivity_code_support_body">Pwnc: Cofrestru Signal - Cod Dilysu Android\nManylion y ddyfais: %1$s \nFersiwn Android: %2$s\nFersiwn Signal: %3$s \nLocale: %4$s</string>
   <string name="BackupUtil_never">Byth</string>
   <string name="BackupUtil_unknown">Anhysbys</string>
   <string name="preferences_app_protection__screen_lock">Clo sgrin</string>

@@ -85,6 +85,7 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Nepavyko įrašyti paveikslo</string>
   <!--CameraXFragment-->
+  <string name="CameraXFragment_tap_for_photo_hold_for_video">Bakstelėkite norėdami fotografuoti, laikykite norėdami filmuoti</string>
   <string name="CameraXFragment_capture_description">Fotografuoti</string>
   <string name="CameraXFragment_change_camera_description">Keisti kamerą</string>
   <string name="CameraXFragment_open_gallery_description">Atverti galeriją</string>
@@ -182,6 +183,9 @@
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Norėdami fotografuoti ir filmuoti vaizdo įrašus, leiskite Signal prieigą prie kameros.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Norint fotografuoti, Signal reikia kameros leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymų meniu, pasirinkite \"Leidimai\" ir įjunkite \"Kamerą\".</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Norint fotografuoti ar filmuoti, Signal reikalinga prieiga prie kameros</string>
+  <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">Norėdami įrašinėti vaizdo įrašus su garsu, įjunkite prieigą prie mikrofono.</string>
+  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Norint įrašinėti vaizdo įrašus, Signal reikia mikrofono leidimo, tačiau jis buvo uždraustas. Pereikite į programėlės nustatymus, pasirinkite \"Leidimai\" ir įjunkite \"Mikrofoną\" ir \"Kamerą\".</string>
+  <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Norint įrašinėti vaizdo įrašus, Signal reikalingas mikrofono leidimas.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal negali siųsti SMS/MMS žinučių, nes ji nėra jūsų numatytoji SMS programėlė. Ar norėtumėte tai pakeisti savo Android nustatymuose?</string>
   <string name="ConversationActivity_yes">Taip</string>
