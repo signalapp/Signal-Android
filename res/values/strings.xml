@@ -362,7 +362,7 @@
     <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">This device does not support Google Play Services. Tap to disable Android battery optimizations that prevent Signal from retrieving messages while inactive.</string>
 
     <!-- ShareActivity -->
-    <string name="ShareActivity_share_with">Share with</string>
+    <string name="ShareActivity_share_with">Forward to</string>
 
     <!-- ExperienceUpgradeActivity -->
     <string name="ExperienceUpgradeActivity_welcome_to_signal_dgaf">Welcome to Signal.</string>
