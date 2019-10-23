@@ -819,7 +819,7 @@ public class AttachmentDatabase extends Database {
         Optional<DataInfo> sharedDataInfo = findDuplicateDataFileInfo(database, hash, attachmentId);
         if (sharedDataInfo.isPresent()) {
           Log.i(TAG, "[setAttachmentData] Duplicate data file found! " + sharedDataInfo.get().file.getAbsolutePath());
-          if (sharedDataInfo.get().file != destination && destination.delete()) {
+          if (!destination.equals(sharedDataInfo.get().file) && destination.delete()) {
             Log.i(TAG, "[setAttachmentData] Deleted original file. " + destination);
           }
           return sharedDataInfo.get();

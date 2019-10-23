@@ -74,7 +74,7 @@ public final class AttachmentCompressionJob extends BaseJob {
                        .addConstraint(NetworkConstraint.KEY)
                        .setLifespan(TimeUnit.DAYS.toMillis(1))
                        .setMaxAttempts(Parameters.UNLIMITED)
-                       .setQueue(isVideoTranscode ? "VIDEO_TRANSCODE" : null)
+                       .setQueue(isVideoTranscode ? "VIDEO_TRANSCODE" : "GENERIC_TRANSCODE")
                        .build(),
          attachmentId,
          mms,
@@ -108,6 +108,8 @@ public final class AttachmentCompressionJob extends BaseJob {
 
   @Override
   public void onRun() throws Exception {
+    Log.d(TAG, "Running for: " + attachmentId);
+
     AttachmentDatabase         database           = DatabaseFactory.getAttachmentDatabase(context);
     DatabaseAttachment         databaseAttachment = database.getAttachment(attachmentId);
 
