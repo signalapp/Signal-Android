@@ -51,6 +51,7 @@ import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.FileUtils;
+import org.thoughtcrime.securesms.util.LinkCleaner;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ViewUtil;
@@ -253,7 +254,13 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
 
   private Intent getBaseShareIntent(final @NonNull Class<?> target) {
     final Intent           intent       = new Intent(this, target);
-    final String           textExtra    = getIntent().getStringExtra(Intent.EXTRA_TEXT);
+    final String           textExtra;
+    if (Intent.ACTION_SEND.equals(getIntent().getAction())
+        && "text/plain".equals(getIntent().getType())) {
+      textExtra = LinkCleaner.cleanText(getIntent().getStringExtra(Intent.EXTRA_TEXT));
+    } else {
+      textExtra = getIntent().getStringExtra(Intent.EXTRA_TEXT);
+    }
     final ArrayList<Media> mediaExtra   = getIntent().getParcelableArrayListExtra(ConversationActivity.MEDIA_EXTRA);
     final StickerLocator   stickerExtra = getIntent().getParcelableExtra(ConversationActivity.STICKER_EXTRA);
 
