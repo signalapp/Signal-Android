@@ -126,7 +126,6 @@
                                 android:src="?quick_camera_icon"
                                 android:paddingStart="6dp"
                                 android:paddingEnd="6dp"
-                                android:layout_marginEnd="8dp"
                                 android:background="?selectableItemBackgroundBorderless"
                                 android:contentDescription="@string/conversation_activity__quick_attachment_drawer_toggle_camera_description" />
 
@@ -136,8 +135,7 @@
                                 android:layout_width="36dp"
                                 android:layout_gravity="center_vertical"
                                 android:clipChildren="false"
-                                android:clipToPadding="false"
-                                android:visibility="gone">
+                                android:clipToPadding="false">
 
                                 <include layout="@layout/microphone_recorder_view" />
 
