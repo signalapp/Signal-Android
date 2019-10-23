@@ -30,7 +30,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginTop="16dp"
-            android:weightSum="2">
+            android:weightSum="3">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -112,8 +112,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="vertical"
-                android:visibility="gone">
+                android:orientation="vertical">
 
                 <org.thoughtcrime.securesms.components.CircleColorImageView
                     android:id="@+id/document_button"
@@ -169,7 +168,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
-            android:weightSum="2">
+            android:weightSum="3">
 
             <LinearLayout
                 android:id="@+id/location_linear_layout"
@@ -178,7 +177,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:visibility="gone">
+                android:visibility="invisible">
 
                 <org.thoughtcrime.securesms.components.CircleColorImageView
                     android:id="@+id/location_button"
@@ -197,7 +196,6 @@
                     android:text="@string/attachment_type_selector__location" />
 
             </LinearLayout>
-
 
             <LinearLayout
                 android:layout_width="match_parent"
