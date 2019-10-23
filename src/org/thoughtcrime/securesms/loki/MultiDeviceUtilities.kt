@@ -3,6 +3,8 @@ package org.thoughtcrime.securesms.loki
 import android.content.Context
 import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.deferred
+import nl.komponents.kovenant.functional.bind
+import nl.komponents.kovenant.functional.map
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
@@ -16,6 +18,22 @@ import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.loki.api.LokiStorageAPI
 import org.whispersystems.signalservice.loki.api.PairingAuthorisation
 import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus
+
+fun getAllDeviceFriendRequestStatus(context: Context, hexEncodedPublicKey: String, storageAPI: LokiStorageAPI): Promise<Map<String, LokiThreadFriendRequestStatus>, Exception> {
+  val lokiThreadDatabase = DatabaseFactory.getLokiThreadDatabase(context)
+  return storageAPI.getAllDevicePublicKeys(hexEncodedPublicKey).map { keys ->
+    val map = mutableMapOf<String, LokiThreadFriendRequestStatus>()
+
+    for (devicePublicKey in keys) {
+      val device = Recipient.from(context, Address.fromSerialized(devicePublicKey), false)
+      val threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(device)
+      val friendRequestStatus = if (threadID < 0) LokiThreadFriendRequestStatus.NONE else lokiThreadDatabase.getFriendRequestStatus(threadID)
+      map.put(devicePublicKey, friendRequestStatus);
+    }
+
+    map
+  }
+}
 
 fun getAllDevicePublicKeys(context: Context, hexEncodedPublicKey: String, storageAPI: LokiStorageAPI, block: (devicePublicKey: String, isFriend: Boolean, friendCount: Int) -> Unit) {
   val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context)
