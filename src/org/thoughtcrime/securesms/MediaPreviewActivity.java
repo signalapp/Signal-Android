@@ -239,6 +239,11 @@ public final class MediaPreviewActivity extends PassphraseRequiredActionBarActiv
         return;
       }
 
+      if (!((MediaItemAdapter) mediaPager.getAdapter()).hasFragmentFor(mediaPager.getCurrentItem())) {
+        Log.d(TAG, "MediaItemAdapter wasn't ready. Posting again...");
+        viewModel.resubmitPreviewData();
+      }
+
       View playbackControls = ((MediaItemAdapter) mediaPager.getAdapter()).getPlaybackControls(mediaPager.getCurrentItem());
 
       if (previewData.getAlbumThumbnails().isEmpty() && previewData.getCaption() == null && playbackControls == null) {
@@ -427,16 +432,14 @@ public final class MediaPreviewActivity extends PassphraseRequiredActionBarActiv
       mediaPager.setAdapter(adapter);
       adapter.setActive(true);
 
-      Util.postToMain(() -> {
-        viewModel.setCursor(this, data.first, leftIsRecent);
+      viewModel.setCursor(this, data.first, leftIsRecent);
 
-        int item = restartItem >= 0 ? restartItem : data.second;
-        mediaPager.setCurrentItem(item);
+      int item = restartItem >= 0 ? restartItem : data.second;
+      mediaPager.setCurrentItem(item);
 
-        if (item == 0) {
-          viewPagerListener.onPageSelected(0);
-        }
-      });
+      if (item == 0) {
+        viewPagerListener.onPageSelected(0);
+      }
     }
   }
 
@@ -564,6 +567,11 @@ public final class MediaPreviewActivity extends PassphraseRequiredActionBarActiv
         return mediaPreviewFragment.getPlaybackControls();
       }
       return null;
+    }
+
+    @Override
+    public boolean hasFragmentFor(int position) {
+      return mediaPreviewFragment != null;
     }
   }
 
@@ -703,6 +711,11 @@ public final class MediaPreviewActivity extends PassphraseRequiredActionBarActiv
       return null;
     }
 
+    @Override
+    public boolean hasFragmentFor(int position) {
+      return mediaFragments.containsKey(position);
+    }
+
     private int getCursorPosition(int position) {
       if (leftIsRecent) return position;
       else              return cursor.getCount() - 1 - position;
@@ -737,5 +750,6 @@ public final class MediaPreviewActivity extends PassphraseRequiredActionBarActiv
     MediaItem getMediaItemFor(int position);
     void pause(int position);
     @Nullable View getPlaybackControls(int position);
+    boolean hasFragmentFor(int position);
   }
 }
