@@ -136,7 +136,11 @@ public class ComposeText extends EmojiEditText {
     }
 
     setInputType(inputType);
-    setImeOptions(imeOptions);
+    if (isIncognito) {
+      setImeOptions(imeOptions | 16777216);
+    } else {
+      setImeOptions(imeOptions);
+    }
     /*
     setHint(transport.getComposeHint(),
             transport.getSimName().isPresent()

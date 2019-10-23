@@ -50,6 +50,7 @@ class SeedActivity : BaseActionBarActivity(), DeviceLinkingDialogDelegate {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_seed)
         setUpLanguageFileDirectory()
+        mnemonicEditText.input.imeOptions = mnemonicEditText.input.imeOptions or 16777216 // Always use incognito keyboard for this
         updateSeed()
         copyButton.setOnClickListener { copy() }
         toggleRegisterModeButton.setOnClickListener { mode = Mode.Register }
