@@ -6,6 +6,7 @@ import nl.komponents.kovenant.deferred
 import nl.komponents.kovenant.functional.bind
 import nl.komponents.kovenant.functional.map
 import org.thoughtcrime.securesms.ApplicationContext
+import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.logging.Log
@@ -18,6 +19,7 @@ import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.loki.api.LokiStorageAPI
 import org.whispersystems.signalservice.loki.api.PairingAuthorisation
 import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus
+import org.whispersystems.signalservice.loki.utilities.retryIfNeeded
 
 fun getAllDeviceFriendRequestStatus(context: Context, hexEncodedPublicKey: String, storageAPI: LokiStorageAPI): Promise<Map<String, LokiThreadFriendRequestStatus>, Exception> {
   val lokiThreadDatabase = DatabaseFactory.getLokiThreadDatabase(context)
@@ -101,5 +103,23 @@ fun sendPairingAuthorisationMessage(context: Context, contactHexEncodedPublicKey
   } catch (e: Exception) {
     Log.d("Loki", "Failed to send authorisation message to: $contactHexEncodedPublicKey.")
     Promise.ofFail(e)
+  }
+}
+
+fun signAndSendPairingAuthorisationMessage(context: Context, pairingAuthorisation: PairingAuthorisation) {
+  val userPrivateKey = IdentityKeyUtil.getIdentityKeyPair(context).privateKey.serialize()
+  val signedPairingAuthorisation = pairingAuthorisation.sign(PairingAuthorisation.Type.GRANT, userPrivateKey)
+  if (signedPairingAuthorisation == null || signedPairingAuthorisation.type != PairingAuthorisation.Type.GRANT) {
+    Log.d("Loki", "Failed to sign pairing authorization.")
+    return
+  }
+  retryIfNeeded(8) {
+    sendPairingAuthorisationMessage(context, pairingAuthorisation.secondaryDevicePublicKey, signedPairingAuthorisation).get()
+  }.fail {
+    Log.d("Loki", "Failed to send pairing authorization message to ${pairingAuthorisation.secondaryDevicePublicKey}.")
+  }
+  DatabaseFactory.getLokiAPIDatabase(context).insertOrUpdatePairingAuthorisation(signedPairingAuthorisation)
+  LokiStorageAPI.shared.updateUserDeviceMappings().fail { exception ->
+    Log.w("Loki", "Failed to update device mapping")
   }
 }

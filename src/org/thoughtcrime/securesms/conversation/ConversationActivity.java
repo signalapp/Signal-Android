@@ -2203,7 +2203,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     boolean shouldEnableInput = isFriendsWithAnyLinkedDevices || !hasPendingFriendRequest;
     updateToggleButtonState();
     inputPanel.setEnabled(shouldEnableInput);
-    int hintID = shouldEnableInput ? R.string.activity_conversation_pending_friend_request_hint : R.string.activity_conversation_default_hint;
+    int hintID = shouldEnableInput ? R.string.activity_conversation_default_hint : R.string.activity_conversation_pending_friend_request_hint;
     inputPanel.setHint(getResources().getString(hintID));
     if (!shouldEnableInput) {
       inputPanel.composeText.requestFocus();

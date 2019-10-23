@@ -58,6 +58,7 @@ import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
+import org.whispersystems.signalservice.loki.api.LokiStorageAPI;
 
 import java.util.List;
 

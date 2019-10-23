@@ -225,22 +225,6 @@ class SeedActivity : BaseActionBarActivity(), DeviceLinkingDialogDelegate {
         resetForRegistration()
     }
 
-    override fun sendPairingAuthorizedMessage(pairingAuthorisation: PairingAuthorisation) {
-        val userPrivateKey = IdentityKeyUtil.getIdentityKeyPair(this).privateKey.serialize()
-        val signedPairingAuthorisation = pairingAuthorisation.sign(PairingAuthorisation.Type.GRANT, userPrivateKey)
-        if (signedPairingAuthorisation == null || signedPairingAuthorisation.type != PairingAuthorisation.Type.GRANT) {
-            Log.d("Loki", "Failed to sign pairing authorization.")
-            return
-        }
-        retryIfNeeded(8) {
-            sendPairingAuthorisationMessage(this, pairingAuthorisation.secondaryDevicePublicKey, signedPairingAuthorisation).get()
-        }.fail {
-            Log.d("Loki", "Failed to send pairing authorization message to ${pairingAuthorisation.secondaryDevicePublicKey}.")
-        }
-        DatabaseFactory.getLokiAPIDatabase(this).insertOrUpdatePairingAuthorisation(signedPairingAuthorisation)
-        LokiStorageAPI.shared.updateUserDeviceMappings()
-    }
-
     private fun resetForRegistration() {
         IdentityKeyUtil.delete(this, IdentityKeyUtil.lokiSeedKey)
         TextSecurePreferences.removeLocalRegistrationId(this)

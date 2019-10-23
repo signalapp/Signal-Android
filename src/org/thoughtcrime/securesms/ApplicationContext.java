@@ -188,6 +188,12 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     };
     // Loki - Set up public chat manager
     lokiPublicChatManager = new LokiPublicChatManager(this);
+
+    // Loki - Update device mappings
+    setUpStorageAPIIfNeeded();
+    if (IdentityKeyUtil.hasIdentityKey(this)) {
+      LokiStorageAPI.Companion.getShared().updateUserDeviceMappings();
+    }
   }
 
   @Override
@@ -199,7 +205,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     // Loki - Start long polling if needed
     startLongPollingIfNeeded();
     lokiPublicChatManager.startPollersIfNeeded();
-    setUpStorageAPIIfNeeded();
   }
 
   @Override

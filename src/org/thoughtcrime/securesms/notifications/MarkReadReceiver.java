@@ -76,7 +76,9 @@ public class MarkReadReceiver extends BroadcastReceiver {
 
     for (MarkedMessageInfo messageInfo : markedReadMessages) {
       scheduleDeletion(context, messageInfo.getExpirationInfo());
-      syncMessageIds.add(messageInfo.getSyncMessageId());
+      if (!messageInfo.getSyncMessageId().getAddress().isGroup()) {
+        syncMessageIds.add(messageInfo.getSyncMessageId());
+      }
     }
 
     ApplicationContext.getInstance(context)
