@@ -255,7 +255,8 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
   private Intent getBaseShareIntent(final @NonNull Class<?> target) {
     final Intent           intent       = new Intent(this, target);
     final String           textExtra;
-    if (Intent.ACTION_SEND.equals(getIntent().getAction())
+    if (TextSecurePreferences.isCleanSharedLinksEnabled(this)
+        && Intent.ACTION_SEND.equals(getIntent().getAction())
         && "text/plain".equals(getIntent().getType())) {
       textExtra = LinkCleaner.cleanText(getIntent().getStringExtra(Intent.EXTRA_TEXT));
     } else {

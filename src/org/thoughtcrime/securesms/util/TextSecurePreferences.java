@@ -177,6 +177,8 @@ public class TextSecurePreferences {
 
   public static final String LINK_PREVIEWS = "pref_link_previews";
 
+  public static final String CLEAN_SHARED_LINKS = "pref_clean_shared_links";
+
   private static final String GIF_GRID_LAYOUT = "pref_gif_grid_layout";
 
   private static final String SEEN_STICKER_INTRO_TOOLTIP = "pref_seen_sticker_intro_tooltip";
@@ -380,6 +382,14 @@ public class TextSecurePreferences {
 
   public static boolean isLinkPreviewsEnabled(Context context) {
     return getBooleanPreference(context, LINK_PREVIEWS, true);
+  }
+
+  public static boolean isCleanSharedLinksEnabled(Context context) {
+    return getBooleanPreference(context, CLEAN_SHARED_LINKS, true);
+  }
+
+  public static void setCleanSharedLinksEnabled(Context context, boolean enabled) {
+    setBooleanPreference(context, CLEAN_SHARED_LINKS, enabled);
   }
 
   public static boolean isGifSearchInGridLayout(Context context) {
