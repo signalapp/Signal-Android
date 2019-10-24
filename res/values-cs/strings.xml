@@ -85,6 +85,7 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Nepodařilo se uložit obrázek.</string>
   <!--CameraXFragment-->
+  <string name="CameraXFragment_tap_for_photo_hold_for_video">Klepnout pro fotografii, přidržet pro video</string>
   <string name="CameraXFragment_capture_description">Pořídit</string>
   <string name="CameraXFragment_change_camera_description">Změnit kameru</string>
   <string name="CameraXFragment_open_gallery_description">Otevřít galerii</string>
@@ -182,6 +183,9 @@
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Pro pořizování fotografií nebo videa potřebuje Signál přístup k fotoaparátu.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signál potřebuje oprávnění pro přístup k fotoaparátu aby mohl pořizovat fotografie nebo video, ale toto oprávnění je nyní zakázáno. Prosím pokračujte do menu nastavení aplikací, vyberte \"Oprávnění\" a povolte \"Fotoaparát\".</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signál potřebuje přístup k fotoaparátu aby mohl pořizovat fotografie nebo videa.</string>
+  <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">Povolte oprávnění k mikrofonu pro nahrávání videa se zvukem.</string>
+  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Signal potřebuje oprávnění k mikrofonu pro nahrávání videí, která ale byla zamítnuta. Pokračujte v nastavení aplikace, vyberte „Oprávnění“ a povolte „Mikrofon“ a „Fotoaparát“.</string>
+  <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Signal potřebuje oprávnění k mikrofonu pro nahrávání videa.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal nemůže posílat SMS/MMS zprávy, protože není výchozí SMS aplikací. Chcete to změnit v nastavení Android?</string>
   <string name="ConversationActivity_yes">Ano</string>
@@ -612,6 +616,8 @@ telefonní číslo</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Začněte zadáním telefonního čísla</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Bude vám zaslán ověřovací kód. Zaslání může být zpoplatněno.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Zadejte kód který jsme odeslali %s</string>
+  <string name="RegistrationActivity_phone_number_description">Telefonní číslo</string>
+  <string name="RegistrationActivity_country_code_description">Kód země</string>
   <string name="RegistrationActivity_call">Volat</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_photo">Fotografie</string>
@@ -677,6 +683,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="ThreadRecord_media_message">Multimediální zpráva</string>
   <string name="ThreadRecord_sticker">Nálepka</string>
   <string name="ThreadRecord_disappearing_photo">Mizející obrázek</string>
+  <string name="ThreadRecord_disappearing_video">Mizející video</string>
   <string name="ThreadRecord_s_is_on_signal">%s má Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Mizení zpráv je zakázáno</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Čas zmizení zprávy nastaven na %s</string>
@@ -753,6 +760,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="MessageNotifier_media_message">Multimediální zpráva</string>
   <string name="MessageNotifier_sticker">Nálepka</string>
   <string name="MessageNotifier_disappearing_photo">Mizející obrázek</string>
+  <string name="MessageNotifier_disappearing_video">Mizející video</string>
   <string name="MessageNotifier_reply">Odpověď</string>
   <string name="MessageNotifier_signal_message">Zpráva Signal</string>
   <string name="MessageNotifier_unsecured_sms">Nezabezpečená SMS</string>
@@ -1115,6 +1123,12 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="arrays__high">Vysoká</string>
   <string name="arrays__max">Max</string>
   <!--plurals.xml-->
+  <plurals name="hours_ago">
+    <item quantity="one">%dh</item>
+    <item quantity="few">%dh</item>
+    <item quantity="many">%dh</item>
+    <item quantity="other">%dh</item>
+  </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">SMS a MMS</string>
   <string name="preferences__pref_all_sms_title">Přijímat všechny SMS</string>
@@ -1389,6 +1403,9 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Prosím vložte ověřovací kód zaslaný %s</string>
   <string name="RegistrationActivity_wrong_number">Chybné číslo</string>
   <string name="RegistrationActivity_call_me_instead_available_in">Raději mi zavolejte \n (V době %1$02d: %2$02d)</string>
+  <string name="RegistrationActivity_contact_signal_support">Kontaktujte podporu Signalu</string>
+  <string name="RegistrationActivity_code_support_subject">Registrace Signalu - ověřovací kód pro Android</string>
+  <string name="RegistrationActivity_code_support_body">Předmět: Registrace signálu - ověřovací kód pro Android\nInformace o zařízení: %1$s\nVerze Androidu: %2$s\nVerze Signalu: %3$s\nNárodní prostředí: %4$s</string>
   <string name="BackupUtil_never">Nikdy</string>
   <string name="BackupUtil_unknown">Neznámý</string>
   <string name="preferences_app_protection__screen_lock">Zámek obrazovky</string>

@@ -960,8 +960,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="message_recipients_list_item__resending">Wird erneut gesendet …</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
-    <item quantity="one">%1$s ist der Gruppe beigetreten.</item>
-    <item quantity="other">%1$s sind der Gruppe beigetreten.</item>
+    <item quantity="one">%1$s ist der Gruppe beigetreten</item>
+    <item quantity="other">%1$s sind der Gruppe beigetreten</item>
   </plurals>
   <string name="GroupUtil_group_name_is_now">Gruppenname lautet jetzt »%1$s«.</string>
   <!--profile_group_share_view-->

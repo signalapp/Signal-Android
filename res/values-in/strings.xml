@@ -76,6 +76,7 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Gagal menyimpan gambar.</string>
   <!--CameraXFragment-->
+  <string name="CameraXFragment_tap_for_photo_hold_for_video">Ketuk untuk foto, tahan untuk video</string>
   <string name="CameraXFragment_capture_description">Tangkap</string>
   <string name="CameraXFragment_change_camera_description">Ganti kamera</string>
   <string name="CameraXFragment_open_gallery_description">Buka galeri</string>
@@ -173,6 +174,9 @@
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Untuk merekam foto dan video, izinkan Signal mengakses kamera.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal memerlukan izin Kamera untuk mengambil foto dan video, tetapi telah ditolak secara permanen. Silakan lanjut ke pengaturan aplikasi, pilih \"Perizinan\" dan aktifkan \"Kamera\".</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal memerlukan izin Kamera untuk mengambil foto atau video.</string>
+  <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">Aktifkan izin mikrofon untuk mengambil video dengan suara.</string>
+  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Signal membutuhkan izin mikrofon untuk merekam video, tapi ditolak. Mohon lanjutkan ke pengaturan aplikasi, pilih \"Perizinan\", dan aktifkan \"Mikrofon\" dan \"Kamera\".</string>
+  <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Signal membutuhkan izin mikrofon untuk merekam video.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s%2$s</string>
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal tidak dapat mengirimkan pesan SMS/MMS karena Signal bukan aplikasi SMS standar Anda. Apakah anda ingin menggantinya pada pengaturan Android Anda?</string>
   <string name="ConversationActivity_yes">Ya</string>
@@ -557,6 +561,8 @@ isikan (%s) tidak tepat.
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">masukkan nomor telepon untuk memulai</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">andak akan mendapakan kode verifikasi, Tarif operator berlaku</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">masukkan kode yang telah dikirimkan pada %s</string>
+  <string name="RegistrationActivity_phone_number_description">Nomor telepon</string>
+  <string name="RegistrationActivity_country_code_description">Kode negara</string>
   <string name="RegistrationActivity_call">Panggil</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_photo">Foto</string>
@@ -624,6 +630,7 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="ThreadRecord_media_message">Pesan media</string>
   <string name="ThreadRecord_sticker">Stiker</string>
   <string name="ThreadRecord_disappearing_photo">Foto yang hilang</string>
+  <string name="ThreadRecord_disappearing_video">Video menghilang</string>
   <string name="ThreadRecord_s_is_on_signal">%s ada di Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Pesan menghilang dinonaktifkan</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Waktu pesan hilang diatur ke %s</string>
@@ -700,6 +707,7 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="MessageNotifier_media_message">Pesan media</string>
   <string name="MessageNotifier_sticker">Stiker</string>
   <string name="MessageNotifier_disappearing_photo">Foto yang hilang</string>
+  <string name="MessageNotifier_disappearing_video">Video menghilang</string>
   <string name="MessageNotifier_reply">Balas</string>
   <string name="MessageNotifier_signal_message">Pesan Signal</string>
   <string name="MessageNotifier_unsecured_sms">Kirim SMS tidak aman</string>
@@ -1038,6 +1046,9 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="arrays__high">Tinggi</string>
   <string name="arrays__max">Maks</string>
   <!--plurals.xml-->
+  <plurals name="hours_ago">
+    <item quantity="other">%dj</item>
+  </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">SMS dan MMS</string>
   <string name="preferences__pref_all_sms_title">Terima semua SMS</string>
@@ -1308,6 +1319,9 @@ Diterima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Silakan masukkan kode verifikasi yang telah dikirim ke %s.</string>
   <string name="RegistrationActivity_wrong_number">Nomor salah</string>
   <string name="RegistrationActivity_call_me_instead_available_in">Telepon saya \n (Tersedia di %1$02d:%2$02d)</string>
+  <string name="RegistrationActivity_contact_signal_support">Kontak Pusat Bantuan Signal</string>
+  <string name="RegistrationActivity_code_support_subject">Pendaftaran Signal - Kode Verifikasi untuk Android</string>
+  <string name="RegistrationActivity_code_support_body">Subyek: Pendaftaran Signal - Kode Verifikasi untuk Android\nInfo perangkat: %1$s\nVersi android:%2$s\nVersi Signal: %3$s\nLocale: %4$s</string>
   <string name="BackupUtil_never">Tidak pernah</string>
   <string name="BackupUtil_unknown">Tidak dikenal</string>
   <string name="preferences_app_protection__screen_lock">Layar terkunci</string>

@@ -76,6 +76,7 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">បរាជ័យការរក្សារូបភាព</string>
   <!--CameraXFragment-->
+  <string name="CameraXFragment_tap_for_photo_hold_for_video">ចុច សម្រាប់រូបភាព សង្កត់ សម្រាប់វីដេអូ</string>
   <string name="CameraXFragment_capture_description">ថត</string>
   <string name="CameraXFragment_change_camera_description">ប្តូរកាមេរ៉ា</string>
   <string name="CameraXFragment_open_gallery_description">បើកវិចិត្រសាល</string>
@@ -173,6 +174,9 @@
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">ដើម្បីថតរូបភាព និងវីដេអូ, សូមអនុញ្ញាត Signal ចូលប្រើប្រាស់កាមេរ៉ា។</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signalត្រូវការសិទ្ធិប្រើប្រាស់កាមេរ៉ាដើម្បីថតរូប ឬវីដេអូ ប៉ុន្តែវាត្រូវបានបដិសេធរហូត។ សូមបន្តទៅការកំណត់ជ្រើសរើស \"អនុញ្ញាត\" ហើយបើក \"កាមេរ៉ា\"។</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal​ សុំសិទ្ធិប្រើប្រាស់កាមេរ៉ា ដើម្បីថតរូបភាព ឬវីដេអូ</string>
+  <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">បើកការអនុញ្ញាតមីក្រូហ្វូន ដើម្បីចាប់យកវីដេអូជាមួយសំឡេង។</string>
+  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Signal ត្រូវការការអនុញ្ញាតមីក្រូហ្វូន ដើម្បីថតវីដេអូ តែវាត្រូវបានបដិសេធ។ សូមបន្តក្នុងការកំណត់កម្មវិធី ជ្រើសរើស \"ការអនុញ្ញាត\" និងបើក \"មីក្រូហ្វូន\" និង \"កាមេរ៉ា\"។</string>
+  <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Signal ត្រូវការការអនុញ្ញាត ដើម្បីថតវីដេអូ។</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal មិនអាចផ្ញើសារ SMS/MMS ពីព្រោះវាមិនមែនកម្មវិធីសារ SMS លំនាំដើម។ តើអ្នកចង់ផ្លាស់ប្តូរវា ក្នុងកម្មវិធីកំណត់របស់ Android​ អ្នកទេ?</string>
   <string name="ConversationActivity_yes">មែន</string>
@@ -553,6 +557,8 @@
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">បញ្ចូលលេខទូរស័ព្ទរបស់អ្នកដើម្បីចាប់ផ្ដើម</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">អ្នកនឹងទទួលបានកូដផ្ទៀងផ្ទាត់។ អត្រាគិតប្រាក់ក្រុមហ៊ុនអាចនឹងត្រូវបានអនុវត្ត។</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">បញ្ចូលលេខកូដដែលយើងបានផ្ញើទៅ%s</string>
+  <string name="RegistrationActivity_phone_number_description">លេខទូរស័ព្ទ</string>
+  <string name="RegistrationActivity_country_code_description">កូដប្រទេស</string>
   <string name="RegistrationActivity_call">ហៅចេញ</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_photo">រូបភាព</string>
@@ -619,6 +625,7 @@
   <string name="ThreadRecord_media_message">សារក្នុងប្រព័ន្ធផ្សព្វផ្សាយ</string>
   <string name="ThreadRecord_sticker">ស្ទីកគ័រ</string>
   <string name="ThreadRecord_disappearing_photo">រួបភាពបាត់ទៅវិញ</string>
+  <string name="ThreadRecord_disappearing_video">វីដេអូបាត់ទៅវិញ</string>
   <string name="ThreadRecord_s_is_on_signal">%s ប្រើ Signal!​</string>
   <string name="ThreadRecord_disappearing_messages_disabled">សារបាត់ទៅវិញបានបិទ</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">កំណត់រយៈពេលលុបសារ %s</string>
@@ -695,6 +702,7 @@
   <string name="MessageNotifier_media_message">សារក្នុងប្រព័ន្ធផ្សព្វផ្សាយ</string>
   <string name="MessageNotifier_sticker">ស្ទីកគ័រ</string>
   <string name="MessageNotifier_disappearing_photo">រួបភាពបាត់ទៅវិញ</string>
+  <string name="MessageNotifier_disappearing_video">វីដេអូបាត់ទៅវិញ</string>
   <string name="MessageNotifier_reply">ឆ្លើយតប</string>
   <string name="MessageNotifier_signal_message">សារ Signal </string>
   <string name="MessageNotifier_unsecured_sms">SMS គ្មានសុវត្ថិភាព</string>
@@ -1033,6 +1041,9 @@
   <string name="arrays__high">ខ្ពស់</string>
   <string name="arrays__max">អតិបរិមា</string>
   <!--plurals.xml-->
+  <plurals name="hours_ago">
+    <item quantity="other">%dម៉</item>
+  </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">SMS និង MMS</string>
   <string name="preferences__pref_all_sms_title">ទទួល SMS ទាំងអស់</string>
@@ -1304,6 +1315,8 @@
   <string name="RegistrationActivity_wrong_number">ខុសលេខ</string>
   <string name="RegistrationActivity_call_me_instead_available_in">ហៅមកខ្ញុំជំនួសវិញ  \n (ទំនេរក្នុងរយៈពេល %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">ទាក់ទងជំនួយ Signal</string>
+  <string name="RegistrationActivity_code_support_subject">ការចុះឈ្មោះ Signal - ការផ្ទៀងផ្ទាត់កូដសម្រាប់ Android</string>
+  <string name="RegistrationActivity_code_support_body">Subject: Signal Registration - Verification Code for Android\nDevice info: %1$s\nAndroid version: %2$s\nSignal version: %3$s\nLocale: %4$s</string>
   <string name="BackupUtil_never">មិនធ្លាប់</string>
   <string name="BackupUtil_unknown">មិនស្គាល់</string>
   <string name="preferences_app_protection__screen_lock">ចាក់សោរអេក្រង់</string>
