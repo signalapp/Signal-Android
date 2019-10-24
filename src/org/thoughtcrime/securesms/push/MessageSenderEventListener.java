@@ -3,25 +3,27 @@ package org.thoughtcrime.securesms.push;
 import android.content.Context;
 
 import org.thoughtcrime.securesms.crypto.SecurityEvent;
-import org.thoughtcrime.securesms.database.Address;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.RecipientDatabase;
-import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.loki.LokiMessageSyncEvent;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
-public class SecurityEventListener implements SignalServiceMessageSender.EventListener {
+public class MessageSenderEventListener implements SignalServiceMessageSender.EventListener {
 
-  private static final String TAG = SecurityEventListener.class.getSimpleName();
+  private static final String TAG = MessageSenderEventListener.class.getSimpleName();
 
   private final Context context;
 
-  public SecurityEventListener(Context context) {
+  public MessageSenderEventListener(Context context) {
     this.context = context.getApplicationContext();
   }
 
   @Override
   public void onSecurityEvent(SignalServiceAddress textSecureAddress) {
     SecurityEvent.broadcastSecurityUpdateEvent(context);
+  }
+
+  @Override
+  public void onSyncEvent(long messageID, long timestamp, byte[] message, int ttl) {
+    LokiMessageSyncEvent.INSTANCE.broadcastSecurityUpdateEvent(context, messageID, timestamp, message, ttl);
   }
 }

@@ -20,13 +20,17 @@ import android.annotation.SuppressLint;
 import android.arch.lifecycle.DefaultLifecycleObserver;
 import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.ProcessLifecycleOwner;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.database.ContentObserver;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.multidex.MultiDexApplication;
+import android.support.v4.content.LocalBroadcastManager;
 
 import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.security.ProviderInstaller;
@@ -62,6 +66,7 @@ import org.thoughtcrime.securesms.logging.PersistentLogger;
 import org.thoughtcrime.securesms.logging.UncaughtExceptionLogger;
 import org.thoughtcrime.securesms.loki.BackgroundPollWorker;
 import org.thoughtcrime.securesms.loki.LokiAPIDatabase;
+import org.thoughtcrime.securesms.loki.LokiMessageSyncEvent;
 import org.thoughtcrime.securesms.loki.LokiPublicChatManager;
 import org.thoughtcrime.securesms.loki.LokiRSSFeedPoller;
 import org.thoughtcrime.securesms.loki.LokiUserDatabase;
@@ -77,6 +82,7 @@ import org.thoughtcrime.securesms.service.LocalBackupListener;
 import org.thoughtcrime.securesms.service.RotateSenderCertificateListener;
 import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener;
 import org.thoughtcrime.securesms.service.UpdateApkRefreshListener;
+import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.dynamiclanguage.DynamicLanguageContextWrapper;
 import org.webrtc.PeerConnectionFactory;
@@ -141,6 +147,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   private LokiPublicChatAPI lokiPublicChatAPI = null;
   public SignalCommunicationModule communicationModule;
   public MixpanelAPI mixpanel;
+  private BroadcastReceiver syncMessageEventReceiver;
 
   private volatile boolean isAppVisible;
 
@@ -193,6 +200,22 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     if (setUpStorageAPIIfNeeded()) {
       LokiStorageAPI.Companion.getShared().updateUserDeviceMappings();
     }
+
+    // Loki - Event listener
+    syncMessageEventReceiver = new BroadcastReceiver() {
+      @Override
+      public void onReceive(Context context, Intent intent) {
+        // Send the sync message to our devices
+        long messageID = intent.getLongExtra(LokiMessageSyncEvent.MESSAGE_ID, -1);
+        long timestamp = intent.getLongExtra(LokiMessageSyncEvent.TIMESTAMP, -1);
+        byte[] message = intent.getByteArrayExtra(LokiMessageSyncEvent.SYNC_MESSAGE);
+        int ttl = intent.getIntExtra(LokiMessageSyncEvent.TTL, -1);
+        if (messageID > 0 && timestamp > 0 && message != null && ttl > 0) {
+          MessageSender.sendSyncMessageToOurDevices(context, messageID, timestamp, message, ttl);
+        }
+      }
+    };
+    LocalBroadcastManager.getInstance(this).registerReceiver(syncMessageEventReceiver, new IntentFilter(LokiMessageSyncEvent.MESSAGE_SYNC_EVENT));
   }
 
   @Override
@@ -220,6 +243,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   @Override
   public void onTerminate() {
     stopKovenant();
+    LocalBroadcastManager.getInstance(this).unregisterReceiver(syncMessageEventReceiver);
     super.onTerminate();
   }
 

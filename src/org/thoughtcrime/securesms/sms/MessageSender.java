@@ -44,6 +44,7 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.GeneralUtilitiesKt;
 import org.thoughtcrime.securesms.loki.MultiDeviceUtilitiesKt;
+import org.thoughtcrime.securesms.loki.PushMessageSyncSendJob;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.push.AccountManagerFactory;
@@ -149,6 +150,28 @@ public class MessageSender {
     return allocatedThreadId;
   }
 
+  public static void sendSyncMessageToOurDevices(final Context context,
+                                                 final long    messageID,
+                                                 final long    timestamp,
+                                                 final byte[]  message,
+                                                 final int     ttl) {
+    String ourPublicKey = TextSecurePreferences.getLocalNumber(context);
+    LokiStorageAPI storageAPI = LokiStorageAPI.Companion.getShared();
+    JobManager jobManager = ApplicationContext.getInstance(context).getJobManager();
+
+    storageAPI.getAllDevicePublicKeys(ourPublicKey).success(devices -> {
+      for (String device : devices) {
+        // Don't send to ourselves
+        if (device.equals(ourPublicKey)) { continue; }
+
+        // Create a send job for our device
+        Address address = Address.fromSerialized(device);
+        jobManager.add(new PushMessageSyncSendJob(messageID, address, timestamp, message, ttl));
+      }
+      return Unit.INSTANCE;
+    });
+  }
+
   public static void resendGroupMessage(Context context, MessageRecord messageRecord, Address filterAddress) {
     if (!messageRecord.isMms()) throw new AssertionError("Not Group");
     sendGroupPush(context, messageRecord.getRecipient(), messageRecord.getId(), filterAddress);
@@ -204,22 +227,27 @@ public class MessageSender {
       jobManager.add(new PushTextSendJob(messageId, recipient.getAddress()));
       return;
     }
+    boolean[] hasSentSyncMessage = { false };
 
     MultiDeviceUtilitiesKt.getAllDevicePublicKeys(context, recipientPublicKey, storageAPI, (devicePublicKey, isFriend, friendCount) -> {
-      Address address = Address.fromSerialized(devicePublicKey);
-      long messageIDToUse = recipientPublicKey.equals(devicePublicKey) ? messageId : -1L;
+      Util.runOnMain(() -> {
+        Address address = Address.fromSerialized(devicePublicKey);
+        long messageIDToUse = recipientPublicKey.equals(devicePublicKey) ? messageId : -1L;
 
-      if (isFriend) {
-        // Send a normal message if the user is friends with the recipient
-        jobManager.add(new PushTextSendJob(messageId, messageIDToUse, address));
-      } else {
-        // Send friend requests to non friends. If the user is friends with any
-        // of the devices then send out a default friend request message.
-        boolean isFriendsWithAny = (friendCount > 0);
-        String defaultFriendRequestMessage = isFriendsWithAny ? "Accept this friend request to enable messages to be synced across devices" : null;
-        jobManager.add(new PushTextSendJob(messageId, messageIDToUse, address, true, defaultFriendRequestMessage));
-      }
-
+        if (isFriend) {
+          // Send a normal message if the user is friends with the recipient
+          // We should also send a sync message if we haven't already sent one
+          boolean shouldSendSyncMessage = !hasSentSyncMessage[0] && MultiDeviceUtilitiesKt.shouldSendSycMessage(context, address);
+          jobManager.add(new PushTextSendJob(messageId, messageIDToUse, address, shouldSendSyncMessage));
+          hasSentSyncMessage[0] = shouldSendSyncMessage;
+        } else {
+          // Send friend requests to non friends. If the user is friends with any
+          // of the devices then send out a default friend request message.
+          boolean isFriendsWithAny = (friendCount > 0);
+          String defaultFriendRequestMessage = isFriendsWithAny ? "Accept this friend request to enable messages to be synced across devices" : null;
+          jobManager.add(new PushTextSendJob(messageId, messageIDToUse, address, true, defaultFriendRequestMessage, false));
+        }
+      });
       return Unit.INSTANCE;
     });
   }
@@ -231,25 +259,31 @@ public class MessageSender {
     // Just send the message normally if it's a group message
     String recipientPublicKey = recipient.getAddress().serialize();
     if (GeneralUtilitiesKt.isPublicChat(context, recipientPublicKey)) {
-      PushMediaSendJob.enqueue(context, jobManager, messageId, recipient.getAddress());
+      PushMediaSendJob.enqueue(context, jobManager, messageId, recipient.getAddress(), false);
       return;
     }
 
+    boolean[] hasSentSyncMessage = { false };
+
     MultiDeviceUtilitiesKt.getAllDevicePublicKeys(context, recipientPublicKey, storageAPI, (devicePublicKey, isFriend, friendCount) -> {
-      Address address = Address.fromSerialized(devicePublicKey);
-      long messageIDToUse = recipientPublicKey.equals(devicePublicKey) ? messageId : -1L;
+      Util.runOnMain(() -> {
+        Address address = Address.fromSerialized(devicePublicKey);
+        long messageIDToUse = recipientPublicKey.equals(devicePublicKey) ? messageId : -1L;
 
-      if (isFriend) {
-        // Send a normal message if the user is friends with the recipient
-        PushMediaSendJob.enqueue(context, jobManager, messageId, messageIDToUse, address);
-      } else {
-        // Send friend requests to non friends. If the user is friends with any
-        // of the devices then send out a default friend request message.
-        boolean isFriendsWithAny = friendCount > 0;
-        String defaultFriendRequestMessage = isFriendsWithAny ? "Accept this friend request to enable messages to be synced across devices" : null;
-        PushMediaSendJob.enqueue(context, jobManager, messageId, messageIDToUse, address, true, defaultFriendRequestMessage);
-      }
-
+        if (isFriend) {
+          // Send a normal message if the user is friends with the recipient
+          // We should also send a sync message if we haven't already sent one
+          boolean shouldSendSyncMessage = !hasSentSyncMessage[0] && MultiDeviceUtilitiesKt.shouldSendSycMessage(context, address);
+          PushMediaSendJob.enqueue(context, jobManager, messageId, messageIDToUse, address, shouldSendSyncMessage);
+          hasSentSyncMessage[0] = shouldSendSyncMessage;
+        } else {
+          // Send friend requests to non friends. If the user is friends with any
+          // of the devices then send out a default friend request message.
+          boolean isFriendsWithAny = friendCount > 0;
+          String defaultFriendRequestMessage = isFriendsWithAny ? "Accept this friend request to enable messages to be synced across devices" : null;
+          PushMediaSendJob.enqueue(context, jobManager, messageId, messageIDToUse, address, true, defaultFriendRequestMessage, false);
+        }
+      });
       return Unit.INSTANCE;
     });
 

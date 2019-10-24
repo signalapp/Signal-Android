@@ -821,8 +821,8 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   }
 
   private long handleSynchronizeSentExpirationUpdate(@NonNull SentTranscriptMessage message) throws MmsException {
-    MmsDatabase database   = DatabaseFactory.getMmsDatabase(context);
-    Recipient   recipient  = getSyncMessageDestination(message);
+    MmsDatabase database         = DatabaseFactory.getMmsDatabase(context);
+    Recipient   recipient        = getSyncMessagePrimaryDestination(message);
 
     OutgoingExpirationUpdateMessage expirationUpdateMessage = new OutgoingExpirationUpdateMessage(recipient,
                                                                                                   message.getTimestamp(),
@@ -842,7 +842,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       throws MmsException
   {
     MmsDatabase                 database        = DatabaseFactory.getMmsDatabase(context);
-    Recipient                   recipients      = getSyncMessageDestination(message);
+    Recipient                   recipients      = getSyncMessagePrimaryDestination(message);
     Optional<QuoteModel>        quote           = getValidatedQuote(message.getMessage().getQuote());
     Optional<Attachment>        sticker         = getStickerAttachment(message.getMessage().getSticker());
     Optional<List<Contact>>     sharedContacts  = getContacts(message.getMessage().getSharedContacts());
@@ -1172,7 +1172,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       throws MmsException
   {
 
-    Recipient recipient       = getSyncMessageDestination(message);
+    Recipient recipient       = getSyncMessagePrimaryDestination(message);
     String    body            = message.getMessage().getBody().or("");
     long      expiresInMillis = message.getMessage().getExpiresInSeconds() * 1000L;
 
@@ -1523,35 +1523,11 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     }
   }
 
-  private Recipient getMessagePrimaryDestination(SignalServiceContent content, SignalServiceDataMessage message) {
-    if (message.getGroupInfo().isPresent()) {
-      return Recipient.from(context, Address.fromSerialized(GroupUtil.getEncodedId(message.getGroupInfo().get().getGroupId(), false)), false);
+  private Recipient getSyncMessagePrimaryDestination(SentTranscriptMessage message) {
+    if (message.getMessage().getGroupInfo().isPresent()) {
+      return getSyncMessageDestination(message);
     } else {
-      SettableFuture<String> device = new SettableFuture<>();
-      String contentSender = content.getSender();
-
-      // Get the primary device
-      LokiStorageAPI.shared.getPrimaryDevicePublicKey(contentSender).success(primaryDevice -> {
-        String publicKey = (primaryDevice != null) ? primaryDevice : contentSender;
-        // If our the public key matches our primary device then we need to forward the message to ourselves (Note to self)
-        String ourPrimaryDevice = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
-        if (ourPrimaryDevice != null && ourPrimaryDevice.equals(publicKey)) {
-          publicKey = TextSecurePreferences.getLocalNumber(context);
-        }
-        device.set(publicKey);
-        return Unit.INSTANCE;
-      }).fail(exception -> {
-        device.set(contentSender);
-        return Unit.INSTANCE;
-      });
-
-      try {
-        String primarySender = device.get();
-        return Recipient.from(context, Address.fromSerialized(primarySender), false);
-      } catch (Exception e) {
-        Log.d("Loki", "Failed to get primary device public key for message. " + e.getMessage());
-        return Recipient.from(context, Address.fromSerialized(content.getSender()), false);
-      }
+      return getPrimaryDeviceRecipient(message.getDestination().get());
     }
   }
 
@@ -1560,6 +1536,41 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       return Recipient.from(context, Address.fromSerialized(GroupUtil.getEncodedId(message.getGroupInfo().get().getGroupId(), false)), false);
     } else {
       return Recipient.from(context, Address.fromSerialized(content.getSender()), false);
+    }
+  }
+
+  private Recipient getMessagePrimaryDestination(SignalServiceContent content, SignalServiceDataMessage message) {
+    if (message.getGroupInfo().isPresent()) {
+      return getMessageDestination(content, message);
+    } else {
+      return getPrimaryDeviceRecipient(content.getSender());
+    }
+  }
+
+  private Recipient getPrimaryDeviceRecipient(String recipient) {
+    SettableFuture<String> device = new SettableFuture<>();
+
+    // Get the primary device
+    LokiStorageAPI.shared.getPrimaryDevicePublicKey(recipient).success(primaryDevice -> {
+      String publicKey = (primaryDevice != null) ? primaryDevice : recipient;
+      // If our the public key matches our primary device then we need to forward the message to ourselves (Note to self)
+      String ourPrimaryDevice = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
+      if (ourPrimaryDevice != null && ourPrimaryDevice.equals(publicKey)) {
+        publicKey = TextSecurePreferences.getLocalNumber(context);
+      }
+      device.set(publicKey);
+      return Unit.INSTANCE;
+    }).fail(exception -> {
+      device.set(recipient);
+      return Unit.INSTANCE;
+    });
+
+    try {
+      String primarySender = device.get();
+      return Recipient.from(context, Address.fromSerialized(primarySender), false);
+    } catch (Exception e) {
+      Log.d("Loki", "Failed to get primary device public key for message. " + e.getMessage());
+      return Recipient.from(context, Address.fromSerialized(recipient), false);
     }
   }
 
@@ -1609,6 +1620,11 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       }
     } else if (content.getCallMessage().isPresent() || content.getTypingMessage().isPresent()) {
       return sender.isBlocked();
+    } else if (content.getSyncMessage().isPresent()) {
+      // We should ignore a sync message if the sender is not one of our devices
+      boolean isOurDevice = MultiDeviceUtilitiesKt.isOneOfOurDevices(context, sender.getAddress());
+      if (!isOurDevice) { Log.w(TAG, "Got a sync message from a device that is not ours!."); }
+      return !isOurDevice;
     }
 
     return false;

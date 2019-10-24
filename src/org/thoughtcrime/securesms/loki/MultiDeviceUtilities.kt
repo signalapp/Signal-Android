@@ -138,3 +138,68 @@ fun signAndSendPairingAuthorisationMessage(context: Context, pairingAuthorisatio
     Log.w("Loki", "Failed to update device mapping")
   }
 }
+
+fun shouldSendSycMessage(context: Context, address: Address): Boolean {
+  if (address.isGroup || address.isEmail || address.isMmsGroup) {
+    return false
+  }
+
+  // Don't send sync messages if it's our address
+  val publicKey = address.serialize()
+  if (publicKey == TextSecurePreferences.getLocalNumber(context)) {
+    return false
+  }
+
+  val storageAPI = LokiStorageAPI.shared
+  val future = SettableFuture<Boolean>()
+  storageAPI.getPrimaryDevicePublicKey(publicKey).success { primaryDevicePublicKey ->
+    val isOurPrimaryDevice = primaryDevicePublicKey != null && TextSecurePreferences.getMasterHexEncodedPublicKey(context) == publicKey
+    // Don't send sync message if the primary device is the same as ours
+    future.set(!isOurPrimaryDevice)
+  }.fail {
+    future.set(false)
+  }
+
+  return try {
+    future.get()
+  } catch (e: Exception) {
+    false
+  }
+}
+
+fun isOneOfOurDevices(context: Context, address: Address): Boolean {
+  if (address.isGroup || address.isEmail || address.isMmsGroup) {
+    return false
+  }
+
+  val ourPublicKey = TextSecurePreferences.getLocalNumber(context)
+  val storageAPI = LokiStorageAPI.shared
+  val future = SettableFuture<Boolean>()
+  storageAPI.getAllDevicePublicKeys(ourPublicKey).success {
+    future.set(it.contains(address.serialize()))
+  }.fail {
+    future.set(false)
+  }
+
+  return try {
+    future.get()
+  } catch (e: Exception) {
+    false
+  }
+}
+
+fun getPrimaryDevicePublicKey(hexEncodedPublicKey: String): String? {
+  val storageAPI = LokiStorageAPI.shared
+  val future = SettableFuture<String?>()
+  storageAPI.getPrimaryDevicePublicKey(hexEncodedPublicKey).success {
+    future.set(it)
+  }.fail {
+    future.set(null)
+  }
+
+  return try {
+    future.get()
+  } catch (e: Exception) {
+    null
+  }
+}
