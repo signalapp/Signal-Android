@@ -722,7 +722,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     if (isSingleConversation() && getRecipient().getContactUri() == null) {
       inflater.inflate(R.menu.conversation_add_to_contacts, menu);
     }
-     */
+
 
     if (recipient != null && recipient.isLocalNumber()) {
       if (isSecureText) menu.findItem(R.id.menu_call_secure).setVisible(false);
@@ -734,6 +734,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         muteItem.setVisible(false);
       }
     }
+     */
 
     searchViewItem = menu.findItem(R.id.menu_search);
 

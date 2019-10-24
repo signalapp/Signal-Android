@@ -305,6 +305,12 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       Optional<String> rawSenderDisplayName = content.senderDisplayName;
       if (rawSenderDisplayName.isPresent() && rawSenderDisplayName.get().length() > 0) {
         setDisplayName(envelope.getSource(), rawSenderDisplayName.get());
+
+        // If we got a name from our primary device then we also set that
+        String ourPrimaryDevice = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
+        if (ourPrimaryDevice != null && envelope.getSource().equals(ourPrimaryDevice)) {
+          TextSecurePreferences.setProfileName(context, rawSenderDisplayName.get());
+        }
       }
 
       // TODO: Deleting the display name
@@ -1526,7 +1532,12 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
       // Get the primary device
       LokiStorageAPI.shared.getPrimaryDevicePublicKey(contentSender).success(primaryDevice -> {
-        String publicKey = primaryDevice == null ? contentSender : primaryDevice;
+        String publicKey = (primaryDevice != null) ? primaryDevice : contentSender;
+        // If our the public key matches our primary device then we need to forward the message to ourselves (Note to self)
+        String ourPrimaryDevice = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
+        if (ourPrimaryDevice != null && ourPrimaryDevice.equals(publicKey)) {
+          publicKey = TextSecurePreferences.getLocalNumber(context);
+        }
         device.set(publicKey);
         return Unit.INSTANCE;
       }).fail(exception -> {

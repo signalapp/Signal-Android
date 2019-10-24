@@ -58,9 +58,11 @@ fun shouldAutomaticallyBecomeFriendsWithDevice(publicKey: String, context: Conte
   val future = SettableFuture<Boolean>()
   storageAPI.getPrimaryDevicePublicKey(publicKey).success { primaryDevicePublicKey ->
     if (primaryDevicePublicKey == null) {
+      // If the public key doesn't have any other devices then go through regular friend request logic
       future.set(false)
       return@success
     }
+    // If we are the primary device and the public key is our secondary device then we should become friends
     val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context)
     if (primaryDevicePublicKey == userHexEncodedPublicKey) {
       storageAPI.getSecondaryDevicePublicKeys(userHexEncodedPublicKey).success { secondaryDevices ->
@@ -70,6 +72,13 @@ fun shouldAutomaticallyBecomeFriendsWithDevice(publicKey: String, context: Conte
       }
       return@success
     }
+    // If we share the same primary device then we should become friends
+    val ourPrimaryDevice = TextSecurePreferences.getMasterHexEncodedPublicKey(context)
+    if (ourPrimaryDevice != null && ourPrimaryDevice == primaryDevicePublicKey) {
+      future.set(true)
+      return@success
+    }
+    // If we are friends with the primary device then we should become friends
     val primaryDevice = Recipient.from(context, Address.fromSerialized(primaryDevicePublicKey), false)
     val threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(primaryDevice)
     if (threadID < 0) {
