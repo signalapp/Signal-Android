@@ -296,10 +296,11 @@
               android:windowSoftInputMode="stateHidden"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
-        <activity android:name=".mediasend.MediaSendActivity"
-                  android:theme="@style/TextSecure.FullScreenMedia"
-                  android:windowSoftInputMode="stateHidden"
-                  android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
+    <activity android:name=".mediasend.MediaSendActivity"
+              android:theme="@style/TextSecure.FullScreenMedia"
+              android:windowSoftInputMode="stateHidden"
+              android:launchMode="singleTask"
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".PassphraseChangeActivity"
               android:label="@string/AndroidManifest__change_passphrase"
