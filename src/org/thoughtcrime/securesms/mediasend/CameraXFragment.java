@@ -101,7 +101,7 @@ public class CameraXFragment extends Fragment implements CameraFragment {
     this.camera            = view.findViewById(R.id.camerax_camera);
     this.controlsContainer = view.findViewById(R.id.camerax_controls_container);
 
-    camera.bindToLifecycle(this);
+    camera.bindToLifecycle(getViewLifecycleOwner());
     camera.setCameraLensFacing(CameraXUtil.toLensFacing(TextSecurePreferences.getDirectCaptureCameraId(requireContext())));
 
     onOrientationChanged(getResources().getConfiguration().orientation);
@@ -122,8 +122,6 @@ public class CameraXFragment extends Fragment implements CameraFragment {
   @Override
   public void onDestroyView() {
     super.onDestroyView();
-    CameraX.unbindAll();
-
     closeVideoFileDescriptor();
   }
 
@@ -353,7 +351,7 @@ public class CameraXFragment extends Fragment implements CameraFragment {
       public void onCaptureSuccess(ImageProxy image, int rotationDegrees) {
         flashHelper.endFlash();
 
-        SimpleTask.run(CameraXFragment.this.getLifecycle(), () -> {
+        SimpleTask.run(CameraXFragment.this.getViewLifecycleOwner().getLifecycle(), () -> {
           stopwatch.split("captured");
           try {
             return CameraXUtil.toJpeg(image, rotationDegrees, camera.getCameraLensFacing() == CameraX.LensFacing.FRONT);
@@ -388,6 +386,7 @@ public class CameraXFragment extends Fragment implements CameraFragment {
     if (videoFileDescriptor != null) {
       try {
         videoFileDescriptor.close();
+        videoFileDescriptor = null;
       } catch (IOException e) {
         Log.w(TAG, "Failed to close video file descriptor", e);
       }
