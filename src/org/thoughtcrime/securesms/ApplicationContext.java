@@ -190,8 +190,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     lokiPublicChatManager = new LokiPublicChatManager(this);
 
     // Loki - Update device mappings
-    setUpStorageAPIIfNeeded();
-    if (IdentityKeyUtil.hasIdentityKey(this)) {
+    if (setUpStorageAPIIfNeeded()) {
       LokiStorageAPI.Companion.getShared().updateUserDeviceMappings();
     }
   }
@@ -455,14 +454,16 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   }
 
   // region Loki
-  public void setUpStorageAPIIfNeeded() {
+  public boolean setUpStorageAPIIfNeeded() {
     String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this);
     if (userHexEncodedPublicKey != null && IdentityKeyUtil.hasIdentityKey(this)) {
       boolean isDebugMode = BuildConfig.DEBUG;
       byte[] userPrivateKey = IdentityKeyUtil.getIdentityKeyPair(this).getPrivateKey().serialize();
       LokiAPIDatabaseProtocol database = DatabaseFactory.getLokiAPIDatabase(this);
       LokiStorageAPI.Companion.configure(isDebugMode, userHexEncodedPublicKey, userPrivateKey, database);
+      return true;
     }
+    return false;
   }
 
   public void setUpP2PAPI() {

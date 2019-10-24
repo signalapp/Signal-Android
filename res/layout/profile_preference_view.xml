@@ -30,6 +30,14 @@
                   android:layout_height="wrap_content"
                   tools:text="+14151231234"/>
 
+        <TextView
+            android:id="@+id/tag"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textColor="#A2A2A2"
+            tools:text="Secondary Device" />
+
     </LinearLayout>
 
 </LinearLayout>

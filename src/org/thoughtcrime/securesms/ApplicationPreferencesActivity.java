@@ -164,9 +164,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
       boolean isMasterDevice = (masterHexEncodedPublicKey == null);
 
       Preference profilePreference = this.findPreference(PREFERENCE_CATEGORY_PROFILE);
-      // Hide if this is a slave device
-      profilePreference.setVisible(isMasterDevice);
-      profilePreference.setOnPreferenceClickListener(new ProfileClickListener());
+      if (isMasterDevice) { profilePreference.setOnPreferenceClickListener(new ProfileClickListener()); }
       /*
       this.findPreference(PREFERENCE_CATEGORY_SMS_MMS)
         .setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_SMS_MMS));
