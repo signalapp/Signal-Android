@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.logging.Log
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.thoughtcrime.securesms.util.concurrent.SettableFuture
 import org.whispersystems.libsignal.util.guava.Optional
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage
@@ -51,33 +52,38 @@ fun getAllDevicePublicKeys(context: Context, hexEncodedPublicKey: String, storag
   }
 }
 
-fun shouldAutomaticallyBecomeFriendsWithDevice(publicKey: String, context: Context): Promise<Boolean, Unit> {
+fun shouldAutomaticallyBecomeFriendsWithDevice(publicKey: String, context: Context): Boolean {
   val lokiThreadDatabase = DatabaseFactory.getLokiThreadDatabase(context)
   val storageAPI = LokiStorageAPI.shared
-  val deferred = deferred<Boolean, Unit>()
+  val future = SettableFuture<Boolean>()
   storageAPI.getPrimaryDevicePublicKey(publicKey).success { primaryDevicePublicKey ->
     if (primaryDevicePublicKey == null) {
-      deferred.resolve(false)
+      future.set(false)
       return@success
     }
     val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context)
     if (primaryDevicePublicKey == userHexEncodedPublicKey) {
       storageAPI.getSecondaryDevicePublicKeys(userHexEncodedPublicKey).success { secondaryDevices ->
-        deferred.resolve(secondaryDevices.contains(publicKey))
+        future.set(secondaryDevices.contains(publicKey))
       }.fail {
-        deferred.resolve(false)
+        future.set(false)
       }
       return@success
     }
     val primaryDevice = Recipient.from(context, Address.fromSerialized(primaryDevicePublicKey), false)
     val threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(primaryDevice)
     if (threadID < 0) {
-      deferred.resolve(false)
+      future.set(false)
       return@success
     }
-    deferred.resolve(lokiThreadDatabase.getFriendRequestStatus(threadID) == LokiThreadFriendRequestStatus.FRIENDS)
+    future.set(lokiThreadDatabase.getFriendRequestStatus(threadID) == LokiThreadFriendRequestStatus.FRIENDS)
   }
-  return deferred.promise
+
+  return try {
+    future.get()
+  } catch (e: Exception) {
+    false
+  }
 }
 
 fun sendPairingAuthorisationMessage(context: Context, contactHexEncodedPublicKey: String, authorisation: PairingAuthorisation): Promise<Unit, Exception> {

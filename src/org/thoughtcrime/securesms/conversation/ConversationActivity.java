@@ -3015,6 +3015,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         messageSender.sendMessage(0, address, Optional.absent(), message); // The message ID doesn't matter
         DatabaseFactory.getLokiThreadDatabase(context).setFriendRequestStatus(threadId, LokiThreadFriendRequestStatus.FRIENDS);
         lokiMessageDatabase.setFriendRequestStatus(friendRequest.id, LokiMessageFriendRequestStatus.REQUEST_ACCEPTED);
+        Util.runOnMain(this::updateInputPanel);
       } catch (Exception e) {
         Log.d("Loki", "Failed to send background message to: " + contactID + ".");
       }
@@ -3030,6 +3031,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     DatabaseFactory.getLokiThreadDatabase(this).setFriendRequestStatus(threadId, LokiThreadFriendRequestStatus.NONE);
     String contactID = DatabaseFactory.getThreadDatabase(this).getRecipientForThreadId(threadId).getAddress().toString();
     DatabaseFactory.getLokiPreKeyBundleDatabase(this).removePreKeyBundle(contactID);
+    updateInputPanel();
   }
 
   public boolean isFriendsWithAnyLinkedDevice() {

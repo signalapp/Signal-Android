@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.loki
 
 import android.content.ContentValues
 import android.content.Context
+import net.sqlcipher.Cursor
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.crypto.PreKeyUtil
 import org.thoughtcrime.securesms.database.Database
@@ -92,7 +93,14 @@ class LokiPreKeyBundleDatabase(context: Context, helper: SQLCipherOpenHelper) : 
 
     fun hasPreKeyBundle(hexEncodedPublicKey: String): Boolean {
         val database = databaseHelper.readableDatabase
-        val cursor = database.query(tableName, null, "${Companion.hexEncodedPublicKey} = ?", arrayOf( hexEncodedPublicKey ), null, null, null)
-        return cursor != null && cursor.count > 0
+        var cursor: Cursor? = null
+        return try {
+            cursor = database.query(tableName, null, "${Companion.hexEncodedPublicKey} = ?", arrayOf( hexEncodedPublicKey ), null, null, null)
+            cursor != null && cursor.count > 0
+        } catch (e: Exception) {
+            false
+        } finally {
+          cursor?.close()
+        }
     }
 }

@@ -144,6 +144,7 @@ import javax.inject.Inject;
 
 import kotlin.Unit;
 import network.loki.messenger.R;
+import nl.komponents.kovenant.Promise;
 
 public class PushDecryptJob extends BaseJob implements InjectableType {
 
@@ -1097,57 +1098,55 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   private void updateFriendRequestStatusIfNeeded(@NonNull SignalServiceEnvelope envelope, @NonNull SignalServiceContent content, @NonNull SignalServiceDataMessage message) {
     if (!envelope.isFriendRequest()) { return; }
     // This handles the case where another user sends us a regular message without authorisation
-    MultiDeviceUtilitiesKt.shouldAutomaticallyBecomeFriendsWithDevice(content.getSender(), context).success(becomeFriends -> {
-      if (becomeFriends) {
-        // Become friends AND update the message they sent
-        becomeFriendsWithContact(content.getSender());
-        // Send them an accept message back
+    boolean shouldBecomeFriends = MultiDeviceUtilitiesKt.shouldAutomaticallyBecomeFriendsWithDevice(content.getSender(), context);
+    if (shouldBecomeFriends) {
+      // Become friends AND update the message they sent
+      becomeFriendsWithContact(content.getSender());
+      // Send them an accept message back
+      sendBackgroundMessage(content.getSender());
+    } else {
+      // Do regular friend request logic checks
+      Recipient originalRecipient = getMessageDestination(content, message);
+      Recipient primaryDeviceRecipient = getMessagePrimaryDestination(content, message);
+      LokiThreadDatabase lokiThreadDatabase = DatabaseFactory.getLokiThreadDatabase(context);
+      SmsDatabase smsMessageDatabase = DatabaseFactory.getSmsDatabase(context);
+      MmsDatabase mmsMessageDatabase = DatabaseFactory.getMmsDatabase(context);
+      LokiMessageDatabase lokiMessageDatabase= DatabaseFactory.getLokiMessageDatabase(context);
+
+      long threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(originalRecipient);
+      long primaryDeviceThreadID = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(primaryDeviceRecipient);
+      LokiThreadFriendRequestStatus threadFriendRequestStatus = lokiThreadDatabase.getFriendRequestStatus(threadID);
+      int messageCount = smsMessageDatabase.getMessageCountForThread(primaryDeviceThreadID);
+      if (threadFriendRequestStatus == LokiThreadFriendRequestStatus.REQUEST_SENT) {
+        // This can happen if Alice sent Bob a friend request, Bob declined, but then Bob changed his
+        // mind and sent a friend request to Alice. In this case we want Alice to auto-accept the request
+        // and send a friend request accepted message back to Bob. We don't check that sending the
+        // friend request accepted message succeeded. Even if it doesn't, the thread's current friend
+        // request status will be set to `FRIENDS` for Alice making it possible
+        // for Alice to send messages to Bob. When Bob receives a message, his thread's friend request status
+        // will then be set to `FRIENDS`. If we do check for a successful send
+        // before updating Alice's thread's friend request status to `FRIENDS`,
+        // we can end up in a deadlock where both users' threads' friend request statuses are
+        // `REQUEST_SENT`.
+        lokiThreadDatabase.setFriendRequestStatus(threadID, LokiThreadFriendRequestStatus.FRIENDS);
+        // Since messages are forwarded to the primary device thread, we need to update it there
+        long messageID = smsMessageDatabase.getIDForMessageAtIndex(primaryDeviceThreadID, messageCount - 2); // The message before the one that was just received
+        lokiMessageDatabase.setFriendRequestStatus(messageID, LokiMessageFriendRequestStatus.REQUEST_ACCEPTED);
+        // Accept the friend request
         sendBackgroundMessage(content.getSender());
-      } else {
-        // Do regular friend request logic checks
-        Recipient contactID = getMessageDestination(content, message);
-        LokiThreadDatabase lokiThreadDatabase = DatabaseFactory.getLokiThreadDatabase(context);
-        long threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(contactID);
-        LokiThreadFriendRequestStatus threadFriendRequestStatus = lokiThreadDatabase.getFriendRequestStatus(threadID);
-        SmsDatabase smsMessageDatabase = DatabaseFactory.getSmsDatabase(context);
-        MmsDatabase mmsMessageDatabase = DatabaseFactory.getMmsDatabase(context);
-        LokiMessageDatabase lokiMessageDatabase= DatabaseFactory.getLokiMessageDatabase(context);
-        int messageCount = smsMessageDatabase.getMessageCountForThread(threadID);
-        if (threadFriendRequestStatus == LokiThreadFriendRequestStatus.REQUEST_SENT) {
-          // This can happen if Alice sent Bob a friend request, Bob declined, but then Bob changed his
-          // mind and sent a friend request to Alice. In this case we want Alice to auto-accept the request
-          // and send a friend request accepted message back to Bob. We don't check that sending the
-          // friend request accepted message succeeded. Even if it doesn't, the thread's current friend
-          // request status will be set to `FRIENDS` for Alice making it possible
-          // for Alice to send messages to Bob. When Bob receives a message, his thread's friend request status
-          // will then be set to `FRIENDS`. If we do check for a successful send
-          // before updating Alice's thread's friend request status to `FRIENDS`,
-          // we can end up in a deadlock where both users' threads' friend request statuses are
-          // `REQUEST_SENT`.
-          lokiThreadDatabase.setFriendRequestStatus(threadID, LokiThreadFriendRequestStatus.FRIENDS);
-          long messageID = smsMessageDatabase.getIDForMessageAtIndex(threadID, messageCount - 2); // The message before the one that was just received
-          // TODO: MMS
-          lokiMessageDatabase.setFriendRequestStatus(messageID, LokiMessageFriendRequestStatus.REQUEST_ACCEPTED);
-          // Accept the friend request
-          sendBackgroundMessage(content.getSender());
-        } else if (threadFriendRequestStatus != LokiThreadFriendRequestStatus.FRIENDS) {
-          // Checking that the sender of the message isn't already a friend is necessary because otherwise
-          // the following situation can occur: Alice and Bob are friends. Bob loses his database and his
-          // friend request status is reset to `NONE`. Bob now sends Alice a friend
-          // request. Alice's thread's friend request status is reset to
-          // `REQUEST_RECEIVED`.
-          lokiThreadDatabase.setFriendRequestStatus(threadID, LokiThreadFriendRequestStatus.REQUEST_RECEIVED);
-          long messageID = smsMessageDatabase.getIDForMessageAtIndex(threadID, messageCount - 1); // The message that was just received
-          if (messageID != -1) {
-            lokiMessageDatabase.setFriendRequestStatus(messageID, LokiMessageFriendRequestStatus.REQUEST_PENDING);
-          } else {
-            // TODO: The code below is ugly due to Java limitations
-            lokiMessageDatabase.setFriendRequestStatus(mmsMessageDatabase.getIDForMessageAtIndex(threadID, 0), LokiMessageFriendRequestStatus.REQUEST_PENDING);
-          }
-        }
+      } else if (threadFriendRequestStatus != LokiThreadFriendRequestStatus.FRIENDS) {
+        // Checking that the sender of the message isn't already a friend is necessary because otherwise
+        // the following situation can occur: Alice and Bob are friends. Bob loses his database and his
+        // friend request status is reset to `NONE`. Bob now sends Alice a friend
+        // request. Alice's thread's friend request status is reset to
+        // `REQUEST_RECEIVED`.
+        lokiThreadDatabase.setFriendRequestStatus(threadID, LokiThreadFriendRequestStatus.REQUEST_RECEIVED);
+        // Since messages are forwarded to the primary device thread, we need to update it there
+        long smsMessageID = smsMessageDatabase.getIDForMessageAtIndex(primaryDeviceThreadID, messageCount - 1); // The message that was just received
+        long messageID = smsMessageID != -1 ? smsMessageID : mmsMessageDatabase.getIDForMessageAtIndex(primaryDeviceThreadID, 0);
+        lokiMessageDatabase.setFriendRequestStatus(messageID, LokiMessageFriendRequestStatus.REQUEST_PENDING);
       }
-      return Unit.INSTANCE;
-    });
+    }
   }
 
   private void sendBackgroundMessage(String contactHexEncodedPublicKey) {
