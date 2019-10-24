@@ -36,6 +36,11 @@ class LokiPreKeyBundleDatabase(context: Context, helper: SQLCipherOpenHelper) : 
             "$signedPreKeySignature TEXT," + "$identityKey TEXT NOT NULL," + "$deviceID INTEGER," + "$registrationID INTEGER" + ");"
     }
 
+    fun resetAllPreKeyBundleInfo() {
+        TextSecurePreferences.removeLocalRegistrationId(context)
+        TextSecurePreferences.setSignedPreKeyRegistered(context, false)
+    }
+
     fun generatePreKeyBundle(hexEncodedPublicKey: String): PreKeyBundle? {
         var registrationID = TextSecurePreferences.getLocalRegistrationId(context)
         if (registrationID == 0) {

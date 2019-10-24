@@ -227,7 +227,7 @@ class SeedActivity : BaseActionBarActivity(), DeviceLinkingDialogDelegate {
 
     private fun resetForRegistration() {
         IdentityKeyUtil.delete(this, IdentityKeyUtil.lokiSeedKey)
-        TextSecurePreferences.removeLocalRegistrationId(this)
+        DatabaseFactory.getLokiPreKeyBundleDatabase(this).resetAllPreKeyBundleInfo()
         TextSecurePreferences.removeLocalNumber(this)
         TextSecurePreferences.setHasSeenWelcomeScreen(this, false)
         TextSecurePreferences.setPromptedPushRegistration(this, false)
