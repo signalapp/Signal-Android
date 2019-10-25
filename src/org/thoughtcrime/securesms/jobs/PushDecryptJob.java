@@ -779,6 +779,11 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       return;
     }
 
+    // Don't insert friend request if we're already friends with a one of the users other device
+    if (message.isFriendRequest() && MultiDeviceUtilitiesKt.isFriendsWithAnyLinkedDevice(context, primaryDeviceRecipient)) {
+      return;
+    }
+
     Optional<InsertResult> insertResult;
 
     try {
@@ -956,6 +961,11 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       // Ignore the message if the body is empty
       if (textMessage.getMessageBody().length() == 0) { return; }
 
+      // Don't insert friend request if we're already friends with a one of the users other device
+      if (message.isFriendRequest() && MultiDeviceUtilitiesKt.isFriendsWithAnyLinkedDevice(context, primaryDeviceRecipient)) {
+        return;
+      }
+
       // Insert the message into the database
       Optional<InsertResult> insertResult = database.insertMessageInbox(textMessage);
 
@@ -1014,13 +1024,13 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   private void handlePairingMessage(@NonNull PairingAuthorisation authorisation, @NonNull SignalServiceEnvelope envelope, @NonNull SignalServiceContent content) {
     String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context);
     if (authorisation.getType() == PairingAuthorisation.Type.REQUEST) {
-      handlePairingRequestMessage(authorisation, envelope);
+      handlePairingRequestMessage(authorisation);
     } else if (authorisation.getSecondaryDevicePublicKey().equals(userHexEncodedPublicKey)) {
       handlePairingAuthorisationMessage(authorisation, envelope, content);
     }
   }
 
-  private void handlePairingRequestMessage(@NonNull PairingAuthorisation authorisation, @NonNull SignalServiceEnvelope envelope) {
+  private void handlePairingRequestMessage(@NonNull PairingAuthorisation authorisation) {
     boolean isValid = isValidPairingMessage(authorisation);
     DeviceLinkingSession linkingSession = DeviceLinkingSession.Companion.getShared();
     if (isValid && linkingSession.isListeningForLinkingRequests()) {
@@ -1093,6 +1103,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     // it must be a friend request accepted message. Declining a friend request doesn't send a message.
     lokiThreadDatabase.setFriendRequestStatus(threadID, LokiThreadFriendRequestStatus.FRIENDS);
     // Update the last message if needed
+    // TODO: Fix this logic to update the last friend request message
     SmsDatabase smsDatabase = DatabaseFactory.getSmsDatabase(context);
     LokiMessageDatabase lokiMessageDatabase = DatabaseFactory.getLokiMessageDatabase(context);
     int messageCount = smsDatabase.getMessageCountForThread(threadID);
@@ -1137,6 +1148,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         // `REQUEST_SENT`.
         lokiThreadDatabase.setFriendRequestStatus(threadID, LokiThreadFriendRequestStatus.FRIENDS);
         // Since messages are forwarded to the primary device thread, we need to update it there
+        // TODO: Fix this logic to update the last friend request message
         long messageID = smsMessageDatabase.getIDForMessageAtIndex(primaryDeviceThreadID, messageCount - 2); // The message before the one that was just received
         lokiMessageDatabase.setFriendRequestStatus(messageID, LokiMessageFriendRequestStatus.REQUEST_ACCEPTED);
         // Accept the friend request

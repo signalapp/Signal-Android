@@ -2200,7 +2200,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       inputMethodManager.showSoftInput(inputPanel.composeText, 0);
     }
     boolean hasPendingFriendRequest = !recipient.isGroupRecipient() && hasPendingFriendRequestWithAnyLinkedDevice();
-    boolean isFriendsWithAnyLinkedDevices = isFriendsWithAnyLinkedDevice();
+    boolean isFriendsWithAnyLinkedDevices = MultiDeviceUtilitiesKt.isFriendsWithAnyLinkedDevice(this, recipient);
     boolean shouldEnableInput = isFriendsWithAnyLinkedDevices || !hasPendingFriendRequest;
     updateToggleButtonState();
     inputPanel.setEnabled(shouldEnableInput);
@@ -3030,33 +3030,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     String contactID = DatabaseFactory.getThreadDatabase(this).getRecipientForThreadId(threadId).getAddress().toString();
     DatabaseFactory.getLokiPreKeyBundleDatabase(this).removePreKeyBundle(contactID);
     updateInputPanel();
-  }
-
-  public boolean isFriendsWithAnyLinkedDevice() {
-    if (recipient.isGroupRecipient()) return true;
-    SettableFuture<Boolean> future = new SettableFuture<>();
-    LokiStorageAPI storageAPI = LokiStorageAPI.Companion.getShared();
-
-    MultiDeviceUtilitiesKt.getAllDeviceFriendRequestStatus(this, recipient.getAddress().serialize(), storageAPI).success(map -> {
-      for (LokiThreadFriendRequestStatus status : map.values()) {
-        if (status == LokiThreadFriendRequestStatus.FRIENDS) {
-          future.set(true);
-          break;
-        }
-      }
-
-      if (!future.isDone()) { future.set(false); }
-      return Unit.INSTANCE;
-    }).fail(e -> {
-      future.set(false);
-      return Unit.INSTANCE;
-    });
-
-    try {
-      return future.get();
-    } catch (Exception e) {
-      return false;
-    }
   }
 
   public boolean hasPendingFriendRequestWithAnyLinkedDevice() {

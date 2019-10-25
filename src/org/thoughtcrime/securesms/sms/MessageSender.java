@@ -42,6 +42,7 @@ import org.thoughtcrime.securesms.jobs.SmsSendJob;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.loki.FriendRequestHandler;
 import org.thoughtcrime.securesms.loki.GeneralUtilitiesKt;
 import org.thoughtcrime.securesms.loki.MultiDeviceUtilitiesKt;
 import org.thoughtcrime.securesms.loki.PushMessageSyncSendJob;
@@ -131,7 +132,7 @@ public class MessageSender {
 
     // Loki - Set the message's friend request status as soon as it has hit the database
     if (message.isFriendRequest) {
-      DatabaseFactory.getLokiMessageDatabase(context).setFriendRequestStatus(messageId, LokiMessageFriendRequestStatus.REQUEST_SENDING);
+      FriendRequestHandler.handleFriendRequest(context, FriendRequestHandler.ActionType.Sending, messageId, allocatedThreadId);
     }
 
     sendTextMessage(context, recipient, forceSms, keyExchange, messageId);
@@ -167,7 +168,7 @@ public class MessageSender {
           long messageID = database.insertMessageOutbox(message, allocatedThreadId, forceSms, insertListener);
           // Loki - Set the message's friend request status as soon as it has hit the database
           if (message.isFriendRequest) {
-            DatabaseFactory.getLokiMessageDatabase(context).setFriendRequestStatus(messageID, LokiMessageFriendRequestStatus.REQUEST_SENDING);
+            FriendRequestHandler.handleFriendRequest(context, FriendRequestHandler.ActionType.Sending, messageID, allocatedThreadId);
           }
           sendMediaMessage(context, recipient, forceSms, messageID, message.getExpiresIn());
         } catch (Exception e) {
@@ -180,7 +181,7 @@ public class MessageSender {
         long messageID = database.insertMessageOutbox(message, allocatedThreadId, forceSms, insertListener);
         // Loki - Set the message's friend request status as soon as it has hit the database
         if (message.isFriendRequest) {
-          DatabaseFactory.getLokiMessageDatabase(context).setFriendRequestStatus(messageID, LokiMessageFriendRequestStatus.REQUEST_SENDING);
+          FriendRequestHandler.handleFriendRequest(context, FriendRequestHandler.ActionType.Sending, messageID, allocatedThreadId);
         }
         sendMediaMessage(context, recipient, forceSms, messageID, message.getExpiresIn());
       } catch (MmsException e) {

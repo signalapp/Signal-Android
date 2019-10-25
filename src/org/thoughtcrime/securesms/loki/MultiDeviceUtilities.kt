@@ -203,3 +203,31 @@ fun getPrimaryDevicePublicKey(hexEncodedPublicKey: String): String? {
     null
   }
 }
+
+fun isFriendsWithAnyLinkedDevice(context: Context, recipient: Recipient): Boolean {
+  if (recipient.isGroupRecipient) return true
+  val future = SettableFuture<Boolean>()
+  val storageAPI = LokiStorageAPI.shared
+
+  getAllDeviceFriendRequestStatus(context, recipient.address.serialize(), storageAPI).success { map ->
+    for (status in map.values) {
+      if (status == LokiThreadFriendRequestStatus.FRIENDS) {
+        future.set(true)
+        break
+      }
+    }
+
+    if (!future.isDone) {
+      future.set(false)
+    }
+  }.fail { e ->
+    future.set(false)
+  }
+
+  try {
+    return future.get()
+  } catch (e: Exception) {
+    return false
+  }
+
+}
