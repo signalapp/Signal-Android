@@ -54,18 +54,60 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
+import org.whispersystems.signalservice.api.SignalServiceMessageSender;
+import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.push.ContactTokenDetails;
+import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.loki.api.LokiStorageAPI;
 import org.whispersystems.signalservice.loki.messaging.LokiMessageFriendRequestStatus;
+import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus;
 
 import java.io.IOException;
-import java.util.function.Function;
 
 import kotlin.Unit;
 
 public class MessageSender {
 
   private static final String TAG = MessageSender.class.getSimpleName();
+
+  public static void sendBackgroundMessageToAllDevices(Context context, String contactHexEncodedPublicKey) {
+    // Send the background message to the original pubkey
+    sendBackgroundMessage(context, contactHexEncodedPublicKey);
+
+    // Go through the other devices and only send background messages if we're friends or we have received friend request
+    LokiStorageAPI storageAPI = LokiStorageAPI.Companion.getShared();
+    storageAPI.getAllDevicePublicKeys(contactHexEncodedPublicKey).success(devices -> {
+      for (String device : devices) {
+        // Don't send message to the device we already have sent to
+        if (device.equals(contactHexEncodedPublicKey)) { continue; }
+        Recipient recipient = Recipient.from(context, Address.fromSerialized(device), false);
+        long threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(recipient);
+        if (threadID < 0) { continue; }
+        LokiThreadFriendRequestStatus friendRequestStatus = DatabaseFactory.getLokiThreadDatabase(context).getFriendRequestStatus(threadID);
+        if (friendRequestStatus == LokiThreadFriendRequestStatus.FRIENDS || friendRequestStatus == LokiThreadFriendRequestStatus.REQUEST_RECEIVED) {
+          sendBackgroundMessage(context, device);
+        }
+
+        // TODO: Do we want to send a custom FR Message if we're not friends and we haven't received a friend request?
+      }
+
+      return Unit.INSTANCE;
+    });
+  }
+
+  public static void sendBackgroundMessage(Context context, String contactHexEncodedPublicKey) {
+    Util.runOnMain(() -> {
+      SignalServiceMessageSender messageSender = ApplicationContext.getInstance(context).communicationModule.provideSignalMessageSender();
+      SignalServiceAddress address = new SignalServiceAddress(contactHexEncodedPublicKey);
+      SignalServiceDataMessage message = new SignalServiceDataMessage(System.currentTimeMillis(), "");
+      try {
+        // Try send to the original person
+        messageSender.sendMessage(0, address, Optional.absent(), message); // The message ID doesn't matter
+      } catch (Exception e) {
+        Log.d("Loki", "Failed to send background message to: " + contactHexEncodedPublicKey + ".");
+      }
+    });
+  }
 
   public static long send(final Context context,
                           final OutgoingTextMessage message,

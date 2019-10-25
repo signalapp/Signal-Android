@@ -3007,13 +3007,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     long threadId = originalThreadID < 0 ? this.threadId : originalThreadID;
 
     String contactID = DatabaseFactory.getThreadDatabase(this).getRecipientForThreadId(threadId).getAddress().toString();
-    SignalServiceMessageSender messageSender = ApplicationContext.getInstance(this).communicationModule.provideSignalMessageSender();
-    SignalServiceAddress address = new SignalServiceAddress(contactID);
-    SignalServiceDataMessage message = new SignalServiceDataMessage(System.currentTimeMillis(), "");
     Context context = this;
     AsyncTask.execute(() -> {
       try {
-        messageSender.sendMessage(0, address, Optional.absent(), message); // The message ID doesn't matter
+        MessageSender.sendBackgroundMessageToAllDevices(this, contactID);
         DatabaseFactory.getLokiThreadDatabase(context).setFriendRequestStatus(threadId, LokiThreadFriendRequestStatus.FRIENDS);
         lokiMessageDatabase.setFriendRequestStatus(friendRequest.id, LokiMessageFriendRequestStatus.REQUEST_ACCEPTED);
         Util.runOnMain(this::updateInputPanel);

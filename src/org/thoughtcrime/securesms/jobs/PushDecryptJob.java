@@ -87,6 +87,7 @@ import org.thoughtcrime.securesms.service.WebRtcCallService;
 import org.thoughtcrime.securesms.sms.IncomingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.IncomingEndSessionMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
+import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.OutgoingEndSessionMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
@@ -524,7 +525,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
       Log.d("Loki", "Sending a ping back to " + content.getSender() + ".");
       String contactID = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(threadId).getAddress().toString();
-      sendBackgroundMessage(contactID);
+      MessageSender.sendBackgroundMessage(context, contactID);
 
       SecurityEvent.broadcastSecurityUpdateEvent(context);
       MessageNotifier.updateNotification(context, threadId);
@@ -1053,7 +1054,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     DatabaseFactory.getLokiAPIDatabase(context).insertOrUpdatePairingAuthorisation(authorisation);
     TextSecurePreferences.setMasterHexEncodedPublicKey(context, authorisation.getPrimaryDevicePublicKey());
     // Send a background message to the primary device
-    sendBackgroundMessage(authorisation.getPrimaryDevicePublicKey());
+    MessageSender.sendBackgroundMessage(context, authorisation.getPrimaryDevicePublicKey());
     // Propagate the updates to the file server
     LokiStorageAPI storageAPI = LokiStorageAPI.Companion.getShared();
     storageAPI.updateUserDeviceMappings();
@@ -1109,7 +1110,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       // Become friends AND update the message they sent
       becomeFriendsWithContact(content.getSender());
       // Send them an accept message back
-      sendBackgroundMessage(content.getSender());
+      MessageSender.sendBackgroundMessage(context, content.getSender());
     } else {
       // Do regular friend request logic checks
       Recipient originalRecipient = getMessageDestination(content, message);
@@ -1139,7 +1140,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         long messageID = smsMessageDatabase.getIDForMessageAtIndex(primaryDeviceThreadID, messageCount - 2); // The message before the one that was just received
         lokiMessageDatabase.setFriendRequestStatus(messageID, LokiMessageFriendRequestStatus.REQUEST_ACCEPTED);
         // Accept the friend request
-        sendBackgroundMessage(content.getSender());
+        MessageSender.sendBackgroundMessage(context, content.getSender());
       } else if (threadFriendRequestStatus != LokiThreadFriendRequestStatus.FRIENDS) {
         // Checking that the sender of the message isn't already a friend is necessary because otherwise
         // the following situation can occur: Alice and Bob are friends. Bob loses his database and his
@@ -1153,19 +1154,6 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         lokiMessageDatabase.setFriendRequestStatus(messageID, LokiMessageFriendRequestStatus.REQUEST_PENDING);
       }
     }
-  }
-
-  private void sendBackgroundMessage(String contactHexEncodedPublicKey) {
-    Util.runOnMain(() -> {
-      SignalServiceMessageSender messageSender = ApplicationContext.getInstance(context).communicationModule.provideSignalMessageSender();
-      SignalServiceAddress address = new SignalServiceAddress(contactHexEncodedPublicKey);
-      SignalServiceDataMessage message = new SignalServiceDataMessage(System.currentTimeMillis(), "");
-      try {
-        messageSender.sendMessage(0, address, Optional.absent(), message); // The message ID doesn't matter
-      } catch (Exception e) {
-        Log.d("Loki", "Failed to send background message to: " + contactHexEncodedPublicKey + ".");
-      }
-    });
   }
 
   private long handleSynchronizeSentTextMessage(@NonNull SentTranscriptMessage message)
