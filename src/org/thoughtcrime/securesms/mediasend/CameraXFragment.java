@@ -227,7 +227,7 @@ public class CameraXFragment extends Fragment implements CameraFragment {
     galleryButton.setOnClickListener(v -> controller.onGalleryClicked());
     countButton.setOnClickListener(v -> controller.onCameraCountButtonClicked());
 
-    if (MediaConstraints.isVideoTranscodeAvailable()) {
+    if (isVideoRecordingSupported(requireContext())) {
       try {
         closeVideoFileDescriptor();
         videoFileDescriptor = CameraXVideoCaptureHelper.createFileDescriptor(requireContext());
@@ -235,13 +235,7 @@ public class CameraXFragment extends Fragment implements CameraFragment {
         Animation inAnimation  = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in);
         Animation outAnimation = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_out);
 
-        if (CameraXUtil.isMixedModeSupported(requireContext())) {
-          Log.i(TAG, "Device supports mixed mode recording. [" + CameraXUtil.getLowestSupportedHardwareLevel(requireContext()) + "]");
-          camera.setCaptureMode(CameraXView.CaptureMode.MIXED);
-        } else {
-          Log.i(TAG, "Device does not support mixed mode recording, falling back to IMAGE [" + CameraXUtil.getLowestSupportedHardwareLevel(requireContext()) + "]");
-          camera.setCaptureMode(CameraXView.CaptureMode.IMAGE);
-        }
+        camera.setCaptureMode(CameraXView.CaptureMode.MIXED);
 
         captureButton.setVideoCaptureListener(new CameraXVideoCaptureHelper(
             this,
@@ -251,9 +245,6 @@ public class CameraXFragment extends Fragment implements CameraFragment {
             new CameraXVideoCaptureHelper.Callback() {
               @Override
               public void onVideoRecordStarted() {
-                if (camera.getCaptureMode() == CameraXView.CaptureMode.IMAGE) {
-                  camera.setCaptureMode(CameraXView.CaptureMode.VIDEO);
-                }
                 hideAndDisableControlsForVideoRecording(captureButton, flashButton, flipButton, outAnimation);
               }
 
@@ -275,10 +266,14 @@ public class CameraXFragment extends Fragment implements CameraFragment {
         Log.w(TAG, "Video capture is not supported on this device.", e);
       }
     } else {
-      Log.i(TAG, "Video capture not supported. API: " + Build.VERSION.SDK_INT + ", MFD: " + MemoryFileDescriptor.supported());
+      Log.i(TAG, "Video capture not supported. API: " + Build.VERSION.SDK_INT + ", MFD: " + MemoryFileDescriptor.supported() + ", Camera: " + CameraXUtil.getLowestSupportedHardwareLevel(requireContext()));
     }
 
     viewModel.onCameraControlsInitialized();
+  }
+
+  private boolean isVideoRecordingSupported(@NonNull Context context) {
+    return MediaConstraints.isVideoTranscodeAvailable() && CameraXUtil.isMixedModeSupported(context);
   }
 
   private void displayVideoRecordingTooltipIfNecessary(CameraButtonView captureButton) {
@@ -332,12 +327,6 @@ public class CameraXFragment extends Fragment implements CameraFragment {
   }
 
   private void onCaptureClicked() {
-    if (camera.getCaptureMode() == CameraXView.CaptureMode.VIDEO) {
-      camera.setCaptureMode(CameraXView.CaptureMode.IMAGE);
-      Util.runOnMainDelayed(this::onCaptureClicked, 100);
-      return;
-    }
-
     Stopwatch stopwatch = new Stopwatch("Capture");
 
     CameraXSelfieFlashHelper flashHelper = new CameraXSelfieFlashHelper(
