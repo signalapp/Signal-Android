@@ -1020,7 +1020,7 @@
     <!-- QuoteView -->
     <string name="QuoteView_audio">Audio</string>
     <string name="QuoteView_video">Video</string>
-    <string name="QuoteView_photo">Photo</string>
+    <string name="QuoteView_photo">Image</string>
     <string name="QuoteView_media">Media message</string>
     <string name="QuoteView_sticker">Sticker</string>
     <string name="QuoteView_document">Document</string>
