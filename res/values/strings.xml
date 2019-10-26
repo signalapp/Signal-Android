@@ -1019,11 +1019,27 @@
 
     <!-- QuoteView -->
     <string name="QuoteView_audio">Audio</string>
+    <plurals name="QuoteView_audio_new">
+        <item quantity="one">Audio</item>
+        <item quantity="other">Audio</item>
+    </plurals>
     <string name="QuoteView_video">Video</string>
+    <plurals name="QuoteView_video_new">
+        <item quantity="one">Video</item>
+        <item quantity="other">Video</item>
+    </plurals>
     <string name="QuoteView_photo">Image</string>
+    <plurals name="QuoteView_image">
+        <item quantity="one">Image</item>
+        <item quantity="other">Images</item>
+    </plurals>
     <string name="QuoteView_media">Media message</string>
     <string name="QuoteView_sticker">Sticker</string>
     <string name="QuoteView_document">Document</string>
+    <plurals name="QuoteView_document_new">
+        <item quantity="one">Document</item>
+        <item quantity="other">Documents</item>
+    </plurals>
     <string name="QuoteView_you">You</string>
     <string name="QuoteView_original_missing">Original message not found</string>
 
