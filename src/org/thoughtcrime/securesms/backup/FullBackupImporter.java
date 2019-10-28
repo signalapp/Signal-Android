@@ -128,17 +128,25 @@ public class FullBackupImporter extends FullBackupBase {
   private static void processAttachment(@NonNull Context context, @NonNull AttachmentSecret attachmentSecret, @NonNull SQLiteDatabase db, @NonNull Attachment attachment, BackupRecordInputStream inputStream)
       throws IOException
   {
-    File partsDirectory = context.getDir(AttachmentDatabase.DIRECTORY, Context.MODE_PRIVATE);
-    File dataFile       = File.createTempFile("part", ".mms", partsDirectory);
-
-    Pair<byte[], OutputStream> output = ModernEncryptingPartOutputStream.createFor(attachmentSecret, dataFile, false);
-
-    inputStream.readAttachmentTo(output.second, attachment.getLength());
+    File                       partsDirectory = context.getDir(AttachmentDatabase.DIRECTORY, Context.MODE_PRIVATE);
+    File                       dataFile       = File.createTempFile("part", ".mms", partsDirectory);
+    Pair<byte[], OutputStream> output         = ModernEncryptingPartOutputStream.createFor(attachmentSecret, dataFile, false);
 
     ContentValues contentValues = new ContentValues();
-    contentValues.put(AttachmentDatabase.DATA, dataFile.getAbsolutePath());
-    contentValues.put(AttachmentDatabase.THUMBNAIL, (String)null);
-    contentValues.put(AttachmentDatabase.DATA_RANDOM, output.first);
+
+    try {
+      inputStream.readAttachmentTo(output.second, attachment.getLength());
+
+      contentValues.put(AttachmentDatabase.DATA, dataFile.getAbsolutePath());
+      contentValues.put(AttachmentDatabase.THUMBNAIL, (String)null);
+      contentValues.put(AttachmentDatabase.DATA_RANDOM, output.first);
+    } catch (BadMacException e) {
+      Log.w(TAG, "Bad MAC for attachment " + attachment.getAttachmentId() + "! Can't restore it.", e);
+      dataFile.delete();
+      contentValues.put(AttachmentDatabase.DATA, (String) null);
+      contentValues.put(AttachmentDatabase.THUMBNAIL, (String) null);
+      contentValues.put(AttachmentDatabase.DATA_RANDOM, (String) null);
+    }
 
     db.update(AttachmentDatabase.TABLE_NAME, contentValues,
               AttachmentDatabase.ROW_ID + " = ? AND " + AttachmentDatabase.UNIQUE_ID + " = ?",
@@ -285,13 +293,11 @@ public class FullBackupImporter extends FullBackupBase {
         try {
           Util.readFully(in, theirMac);
         } catch (IOException e) {
-          //destination.delete();
           throw new IOException(e);
         }
 
         if (!MessageDigest.isEqual(ourMac, theirMac)) {
-          //destination.delete();
-          throw new IOException("Bad MAC");
+          throw new BadMacException();
         }
       } catch (InvalidKeyException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
         throw new AssertionError(e);
@@ -327,6 +333,8 @@ public class FullBackupImporter extends FullBackupBase {
       }
     }
   }
+
+  private static class BadMacException extends IOException {}
 
   public static class DatabaseDowngradeException extends IOException {
     DatabaseDowngradeException(int currentVersion, int backupVersion) {
