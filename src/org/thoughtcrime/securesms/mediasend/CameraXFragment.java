@@ -47,6 +47,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
+import org.thoughtcrime.securesms.video.VideoUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.FileDescriptor;
@@ -237,11 +238,15 @@ public class CameraXFragment extends Fragment implements CameraFragment {
 
         camera.setCaptureMode(CameraXView.CaptureMode.MIXED);
 
+        int maxDuration = VideoUtil.getMaxVideoDurationInSeconds(requireContext(), viewModel.getMediaConstraints());
+        Log.d(TAG, "Max duration: " + maxDuration + " sec");
+
         captureButton.setVideoCaptureListener(new CameraXVideoCaptureHelper(
             this,
             captureButton,
             camera,
             videoFileDescriptor,
+            maxDuration,
             new CameraXVideoCaptureHelper.Callback() {
               @Override
               public void onVideoRecordStarted() {
@@ -266,14 +271,20 @@ public class CameraXFragment extends Fragment implements CameraFragment {
         Log.w(TAG, "Video capture is not supported on this device.", e);
       }
     } else {
-      Log.i(TAG, "Video capture not supported. API: " + Build.VERSION.SDK_INT + ", MFD: " + MemoryFileDescriptor.supported() + ", Camera: " + CameraXUtil.getLowestSupportedHardwareLevel(requireContext()));
+      Log.i(TAG, "Video capture not supported. " +
+                 "API: " + Build.VERSION.SDK_INT + ", " +
+                 "MFD: " + MemoryFileDescriptor.supported() + ", " +
+                 "Camera: " + CameraXUtil.getLowestSupportedHardwareLevel(requireContext()) + ", " +
+                 "MaxDuration: " + VideoUtil.getMaxVideoDurationInSeconds(requireContext(), viewModel.getMediaConstraints()) + " sec");
     }
 
     viewModel.onCameraControlsInitialized();
   }
 
   private boolean isVideoRecordingSupported(@NonNull Context context) {
-    return MediaConstraints.isVideoTranscodeAvailable() && CameraXUtil.isMixedModeSupported(context);
+    return MediaConstraints.isVideoTranscodeAvailable() &&
+           CameraXUtil.isMixedModeSupported(context)    &&
+           VideoUtil.getMaxVideoDurationInSeconds(context, viewModel.getMediaConstraints()) > 0;
   }
 
   private void displayVideoRecordingTooltipIfNecessary(CameraButtonView captureButton) {

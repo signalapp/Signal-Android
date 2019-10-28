@@ -40,11 +40,10 @@ class CameraXVideoCaptureHelper implements CameraButtonView.VideoCaptureListener
   private final @NonNull CameraXView          camera;
   private final @NonNull Callback             callback;
   private final @NonNull MemoryFileDescriptor memoryFileDescriptor;
+  private final @NonNull ValueAnimator        updateProgressAnimator;
 
   private       boolean       isRecording;
   private       ValueAnimator cameraMetricsAnimator;
-  private final ValueAnimator updateProgressAnimator = ValueAnimator.ofFloat(0f, 1f)
-      .setDuration(VideoUtil.VIDEO_MAX_LENGTH_S * 1000);
 
   private final VideoCapture.OnVideoSavedListener videoSavedListener = new VideoCapture.OnVideoSavedListener() {
     @Override
@@ -74,12 +73,14 @@ class CameraXVideoCaptureHelper implements CameraButtonView.VideoCaptureListener
                             @NonNull CameraButtonView captureButton,
                             @NonNull CameraXView camera,
                             @NonNull MemoryFileDescriptor memoryFileDescriptor,
+                            int      maxVideoDurationSec,
                             @NonNull Callback callback)
   {
-    this.fragment             = fragment;
-    this.camera               = camera;
-    this.memoryFileDescriptor = memoryFileDescriptor;
-    this.callback             = callback;
+    this.fragment               = fragment;
+    this.camera                 = camera;
+    this.memoryFileDescriptor   = memoryFileDescriptor;
+    this.callback               = callback;
+    this.updateProgressAnimator = ValueAnimator.ofFloat(0f, 1f).setDuration(maxVideoDurationSec * 1000);
 
     updateProgressAnimator.setInterpolator(new LinearInterpolator());
     updateProgressAnimator.addUpdateListener(anim -> captureButton.setProgress(anim.getAnimatedFraction()));
