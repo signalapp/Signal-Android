@@ -57,6 +57,8 @@ import org.thoughtcrime.securesms.logging.CustomSignalProtocolLogger;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.logging.PersistentLogger;
 import org.thoughtcrime.securesms.logging.UncaughtExceptionLogger;
+import org.thoughtcrime.securesms.mediasend.LegacyCameraModels;
+import org.thoughtcrime.securesms.mediasend.camerax.CameraXUtil;
 import org.thoughtcrime.securesms.migrations.ApplicationMigrations;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
@@ -374,7 +376,7 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
 
   @SuppressLint("RestrictedApi")
   private void initializeCameraX() {
-    if (Build.VERSION.SDK_INT >= 21) {
+    if (CameraXUtil.isSupported()) {
       new Thread(() -> {
         try {
           CameraX.init(this, Camera2AppConfig.create(this));

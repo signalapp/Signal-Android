@@ -25,6 +25,8 @@ import androidx.camera.core.ImageCapture;
 import androidx.camera.core.ImageProxy;
 
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.mediasend.LegacyCameraModels;
+import org.thoughtcrime.securesms.migrations.LegacyMigrationJob;
 import org.thoughtcrime.securesms.util.Stopwatch;
 
 import java.io.ByteArrayOutputStream;
@@ -78,6 +80,10 @@ public class CameraXUtil {
     }
 
     return new ImageResult(data, width, height);
+  }
+
+  public static boolean isSupported() {
+    return Build.VERSION.SDK_INT >= 21 && !LegacyCameraModels.isLegacyCameraModel();
   }
 
   public static int toCameraDirectionInt(@Nullable CameraX.LensFacing facing) {
