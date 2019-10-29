@@ -16,7 +16,6 @@
             android:hint="@string/enter_backup_passphrase_dialog__backup_passphrase"
             android:imeOptions="actionDone"
             android:inputType="number"
-            android:maxLength="35"
             android:textSize="16sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
