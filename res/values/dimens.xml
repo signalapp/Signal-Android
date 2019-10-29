@@ -53,7 +53,7 @@
     <dimen name="media_keyboard_provider_icon_padding">5dp</dimen>
     <dimen name="media_keyboard_provider_icon_margin">4dp</dimen>
 
-    <dimen name="mediasend_progress_dialog_size">120dp</dimen>
+    <dimen name="progress_dialog_size">120dp</dimen>
 
     <dimen name="thumbnail_default_radius">4dp</dimen>
 

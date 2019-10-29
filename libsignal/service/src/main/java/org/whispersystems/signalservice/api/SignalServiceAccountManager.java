@@ -453,6 +453,14 @@ public class SignalServiceAccountManager {
     this.pushServiceSocket.setProfileAvatar(profileAvatarData);
   }
 
+  public void setUsername(String username) throws IOException {
+    this.pushServiceSocket.setUsername(username);
+  }
+
+  public void deleteUsername() throws IOException {
+    this.pushServiceSocket.deleteUsername();
+  }
+
   public void setSoTimeoutMillis(long soTimeoutMillis) {
     this.pushServiceSocket.setSoTimeoutMillis(soTimeoutMillis);
   }

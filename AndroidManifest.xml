@@ -460,7 +460,13 @@
     <activity
             android:name=".maps.PlacePickerActivity"
             android:label="@string/PlacePickerActivity_title"
-            android:theme="@style/TextSecure.LightNoActionBar" />
+            android:theme="@style/TextSecure.LightNoActionBar"
+            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
+
+    <activity
+        android:name=".usernames.ProfileEditActivityV2"
+        android:theme="@style/TextSecure.LightNoActionBar"
+        android:windowSoftInputMode="adjustResize"/>
 
     <service android:enabled="true" android:name="org.thoughtcrime.securesms.service.WebRtcCallService"/>
     <service android:enabled="true" android:name=".service.ApplicationMigrationService"/>

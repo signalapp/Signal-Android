@@ -33,6 +33,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.Loader;
@@ -47,16 +48,21 @@ import org.thoughtcrime.securesms.contacts.ContactSelectionListAdapter;
 import org.thoughtcrime.securesms.contacts.ContactSelectionListItem;
 import org.thoughtcrime.securesms.contacts.ContactsCursorLoader;
 import org.thoughtcrime.securesms.contacts.ContactsCursorLoader.DisplayMode;
+import org.thoughtcrime.securesms.contacts.SelectedContact;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.contacts.sync.DirectoryHelper;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.UsernameUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.adapter.FixedViewsAdapter;
 import org.thoughtcrime.securesms.util.adapter.RecyclerViewConcatenateAdapterStickyHeader;
+import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
+import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.IOException;
@@ -82,7 +88,7 @@ public final class ContactSelectionListFragment extends    Fragment
   public static final String RECENTS      = "recents";
 
   private TextView                    emptyText;
-  private Set<String>                 selectedContacts;
+  private Set<SelectedContact>        selectedContacts;
   private OnContactSelectedListener   onContactSelectedListener;
   private SwipeRefreshLayout          swipeRefresh;
   private View                        showContactsLayout;
@@ -163,8 +169,8 @@ public final class ContactSelectionListFragment extends    Fragment
     Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
   }
 
-  public @NonNull List<String> getSelectedContacts() {
-    List<String> selected = new LinkedList<>();
+  public @NonNull List<SelectedContact> getSelectedContacts() {
+    List<SelectedContact> selected = new LinkedList<>();
     if (selectedContacts != null) {
       selected.addAll(selectedContacts);
     }
@@ -327,14 +333,48 @@ public final class ContactSelectionListFragment extends    Fragment
   private class ListClickListener implements ContactSelectionListAdapter.ItemClickListener {
     @Override
     public void onItemClick(ContactSelectionListItem contact) {
-      if (!isMulti() || !selectedContacts.contains(contact.getNumber())) {
-        selectedContacts.add(contact.getNumber());
-        contact.setChecked(true);
-        if (onContactSelectedListener != null) onContactSelectedListener.onContactSelected(contact.getRecipientId(), contact.getNumber());
+      SelectedContact selectedContact = contact.isUsernameType() ? SelectedContact.forUsername(contact.getRecipientId().orNull(), contact.getNumber())
+                                                                 : SelectedContact.forPhone(contact.getRecipientId().orNull(), contact.getNumber());
+
+      if (!isMulti() || !selectedContacts.contains(selectedContact)) {
+        if (contact.isUsernameType()) {
+          AlertDialog loadingDialog = SimpleProgressDialog.show(requireContext());
+
+          SimpleTask.run(getViewLifecycleOwner().getLifecycle(), () -> {
+            return UsernameUtil.fetchUuidForUsername(requireContext(), contact.getNumber());
+          }, uuid -> {
+            loadingDialog.dismiss();
+            if (uuid.isPresent()) {
+              Recipient recipient = Recipient.externalUsername(requireContext(), uuid.get(), contact.getNumber());
+              selectedContacts.add(SelectedContact.forUsername(recipient.getId(), contact.getNumber()));
+              contact.setChecked(true);
+
+              if (onContactSelectedListener != null) {
+                onContactSelectedListener.onContactSelected(Optional.of(recipient.getId()), null);
+              }
+            } else {
+              new AlertDialog.Builder(requireContext())
+                             .setTitle(R.string.ContactSelectionListFragment_username_not_found)
+                             .setMessage(getString(R.string.ContactSelectionListFragment_s_is_not_a_signal_user, contact.getNumber()))
+                             .setPositiveButton(R.string.ContactSelectionListFragment_okay, (dialog, which) -> dialog.dismiss())
+                             .show();
+            }
+          });
+        } else {
+          selectedContacts.add(selectedContact);
+          contact.setChecked(true);
+
+          if (onContactSelectedListener != null) {
+            onContactSelectedListener.onContactSelected(contact.getRecipientId(), contact.getNumber());
+          }
+        }
       } else {
-        selectedContacts.remove(contact.getNumber());
+        selectedContacts.remove(selectedContact);
         contact.setChecked(false);
-        if (onContactSelectedListener != null) onContactSelectedListener.onContactDeselected(contact.getRecipientId(), contact.getNumber());
+
+        if (onContactSelectedListener != null) {
+          onContactSelectedListener.onContactDeselected(contact.getRecipientId(), contact.getNumber());
+        }
       }
     }
   }

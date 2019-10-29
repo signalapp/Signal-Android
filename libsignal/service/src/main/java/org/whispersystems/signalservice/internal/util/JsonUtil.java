@@ -20,9 +20,11 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.InvalidKeyException;
 import org.whispersystems.libsignal.logging.Log;
+import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.util.Base64;
 
 import java.io.IOException;
+import java.util.UUID;
 
 public class JsonUtil {
 
@@ -69,5 +71,19 @@ public class JsonUtil {
     }
   }
 
+  public static class UuidSerializer extends JsonSerializer<UUID> {
+    @Override
+    public void serialize(UUID value, JsonGenerator gen, SerializerProvider serializers)
+        throws IOException
+    {
+      gen.writeString(value.toString());
+    }
+  }
 
+  public static class UuidDeserializer extends JsonDeserializer<UUID> {
+    @Override
+    public UUID deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+      return UuidUtil.parseOrNull(p.getValueAsString());
+    }
+  }
 }

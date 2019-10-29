@@ -24,6 +24,7 @@ import java.util.UUID;
 public class RecipientDetails {
 
   final UUID                   uuid;
+  final String                 username;
   final String                 e164;
   final String                 email;
   final String                 groupId;
@@ -68,6 +69,7 @@ public class RecipientDetails {
     this.customLabel                     = settings.getSystemPhoneLabel();
     this.contactUri                      = Util.uri(settings.getSystemContactUri());
     this.uuid                            = settings.getUuid();
+    this.username                        = settings.getUsername();
     this.e164                            = settings.getE164();
     this.email                           = settings.getEmail();
     this.groupId                         = settings.getGroupId();
@@ -104,6 +106,7 @@ public class RecipientDetails {
     this.customLabel            = null;
     this.contactUri             = null;
     this.uuid                   = null;
+    this.username               = null;
     this.e164                   = null;
     this.email                  = null;
     this.groupId                = null;

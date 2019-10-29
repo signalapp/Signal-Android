@@ -2,6 +2,12 @@ package org.whispersystems.signalservice.api.profiles;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import org.whispersystems.signalservice.internal.util.JsonUtil;
+
+import java.util.UUID;
 
 public class SignalServiceProfile {
 
@@ -22,6 +28,14 @@ public class SignalServiceProfile {
 
   @JsonProperty
   private Capabilities capabilities;
+
+  @JsonProperty
+  private String username;
+
+  @JsonProperty
+  @JsonSerialize(using = JsonUtil.UuidSerializer.class)
+  @JsonDeserialize(using = JsonUtil.UuidDeserializer.class)
+  private UUID uuid;
 
   public SignalServiceProfile() {}
 
@@ -47,6 +61,14 @@ public class SignalServiceProfile {
 
   public Capabilities getCapabilities() {
     return capabilities;
+  }
+
+  public String getUsername() {
+    return username;
+  }
+
+  public UUID getUuid() {
+    return uuid;
   }
 
   public static class Capabilities {

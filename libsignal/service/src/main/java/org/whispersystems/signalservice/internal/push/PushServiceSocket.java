@@ -34,6 +34,8 @@ import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException
 import org.whispersystems.signalservice.api.push.exceptions.RateLimitException;
 import org.whispersystems.signalservice.api.push.exceptions.RemoteAttestationResponseExpiredException;
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
+import org.whispersystems.signalservice.api.push.exceptions.UsernameMalformedException;
+import org.whispersystems.signalservice.api.push.exceptions.UsernameTakenException;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
 import org.whispersystems.signalservice.api.util.Tls12SocketFactory;
 import org.whispersystems.signalservice.api.util.UuidUtil;
@@ -108,6 +110,8 @@ public class PushServiceSocket {
   private static final String PIN_PATH                  = "/v1/accounts/pin/";
   private static final String REQUEST_PUSH_CHALLENGE    = "/v1/accounts/fcm/preauth/%s/%s";
   private static final String WHO_AM_I                  = "/v1/accounts/whoami";
+  private static final String SET_USERNAME_PATH         = "/v1/accounts/username/%s";
+  private static final String DELETE_USERNAME_PATH      = "/v1/accounts/username";
 
   private static final String PREKEY_METADATA_PATH      = "/v2/keys/";
   private static final String PREKEY_PATH               = "/v2/keys/%s";
@@ -128,6 +132,7 @@ public class PushServiceSocket {
   private static final String ATTACHMENT_PATH           = "/v2/attachments/form/upload";
 
   private static final String PROFILE_PATH              = "/v1/profile/%s";
+  private static final String PROFILE_USERNAME_PATH     = "/v1/profile/username/%s";
 
   private static final String SENDER_CERTIFICATE_LEGACY_PATH = "/v1/certificate/delivery";
   private static final String SENDER_CERTIFICATE_PATH        = "/v1/certificate/delivery?includeUuid=true";
@@ -491,8 +496,22 @@ public class PushServiceSocket {
   public SignalServiceProfile retrieveProfile(SignalServiceAddress target, Optional<UnidentifiedAccess> unidentifiedAccess)
       throws NonSuccessfulResponseCodeException, PushNetworkException
   {
+    String response = makeServiceRequest(String.format(PROFILE_PATH, target.getIdentifier()), "GET", null, NO_HEADERS, unidentifiedAccess);
+
     try {
-      String response = makeServiceRequest(String.format(PROFILE_PATH, target.getIdentifier()), "GET", null, NO_HEADERS, unidentifiedAccess);
+      return JsonUtil.fromJson(response, SignalServiceProfile.class);
+    } catch (IOException e) {
+      Log.w(TAG, e);
+      throw new NonSuccessfulResponseCodeException("Unable to parse entity");
+    }
+  }
+
+  public SignalServiceProfile retrieveProfileByUsername(String username, Optional<UnidentifiedAccess> unidentifiedAccess)
+      throws NonSuccessfulResponseCodeException, PushNetworkException
+  {
+    String response = makeServiceRequest(String.format(PROFILE_USERNAME_PATH, username), "GET", null, NO_HEADERS, unidentifiedAccess);
+
+    try {
       return JsonUtil.fromJson(response, SignalServiceProfile.class);
     } catch (IOException e) {
       Log.w(TAG, e);
@@ -531,6 +550,22 @@ public class PushServiceSocket {
                   profileAvatar.getContentType(), profileAvatar.getDataLength(),
                   profileAvatar.getOutputStreamFactory(), null);
     }
+  }
+
+  public void setUsername(String username) throws IOException {
+    makeServiceRequest(String.format(SET_USERNAME_PATH, username), "PUT", "", NO_HEADERS, new ResponseCodeHandler() {
+      @Override
+      public void handle(int responseCode) throws NonSuccessfulResponseCodeException {
+        switch (responseCode) {
+          case 400: throw new UsernameMalformedException();
+          case 409: throw new UsernameTakenException();
+        }
+      }
+    }, Optional.<UnidentifiedAccess>absent());
+  }
+
+  public void deleteUsername() throws IOException {
+    makeServiceRequest(DELETE_USERNAME_PATH, "DELETE", null);
   }
 
   public List<ContactTokenDetails> retrieveDirectory(Set<String> contactTokens)

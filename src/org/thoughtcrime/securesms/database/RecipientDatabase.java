@@ -45,6 +45,7 @@ public class RecipientDatabase extends Database {
           static final String TABLE_NAME               = "recipient";
   public  static final String ID                       = "_id";
   private static final String UUID                     = "uuid";
+  private static final String USERNAME                 = "username";
   public  static final String PHONE                    = "phone";
   public  static final String EMAIL                    = "email";
           static final String GROUP_ID                 = "group_id";
@@ -76,7 +77,7 @@ public class RecipientDatabase extends Database {
   private static final String SORT_NAME                = "sort_name";
 
   private static final String[] RECIPIENT_PROJECTION = new String[] {
-      UUID, PHONE, EMAIL, GROUP_ID,
+      UUID, USERNAME, PHONE, EMAIL, GROUP_ID,
       BLOCKED, MESSAGE_RINGTONE, CALL_RINGTONE, MESSAGE_VIBRATE, CALL_VIBRATE, MUTE_UNTIL, COLOR, SEEN_INVITE_REMINDER, DEFAULT_SUBSCRIPTION_ID, MESSAGE_EXPIRATION_TIME, REGISTERED,
       PROFILE_KEY, SYSTEM_DISPLAY_NAME, SYSTEM_PHOTO_URI, SYSTEM_PHONE_LABEL, SYSTEM_PHONE_TYPE, SYSTEM_CONTACT_URI,
       SIGNAL_PROFILE_NAME, SIGNAL_PROFILE_AVATAR, PROFILE_SHARING, NOTIFICATION_CHANNEL,
@@ -84,8 +85,8 @@ public class RecipientDatabase extends Database {
       FORCE_SMS_SELECTION, UUID_SUPPORTED
   };
 
-  private static final String[]     ID_PROJECTION              = new String[]{ID                                                                                                                                                                                               };
-  public  static final String[]     SEARCH_PROJECTION          = new String[]{ID, SYSTEM_DISPLAY_NAME, SIGNAL_PROFILE_NAME, PHONE, EMAIL, SYSTEM_PHONE_LABEL, SYSTEM_PHONE_TYPE, REGISTERED, "IFNULL(" + SYSTEM_DISPLAY_NAME + ", " + SIGNAL_PROFILE_NAME + ") AS " + SORT_NAME};
+  private static final String[]     ID_PROJECTION              = new String[]{ID};
+  public  static final String[]     SEARCH_PROJECTION          = new String[]{ID, SYSTEM_DISPLAY_NAME, SIGNAL_PROFILE_NAME, PHONE, EMAIL, SYSTEM_PHONE_LABEL, SYSTEM_PHONE_TYPE, REGISTERED, "COALESCE(" + SYSTEM_DISPLAY_NAME + ", " + SIGNAL_PROFILE_NAME + ", " + USERNAME + ") AS " + SORT_NAME};
           static final List<String> TYPED_RECIPIENT_PROJECTION = Stream.of(RECIPIENT_PROJECTION)
                                                                        .map(columnName -> TABLE_NAME + "." + columnName)
                                                                        .toList();
@@ -169,6 +170,7 @@ public class RecipientDatabase extends Database {
   public static final String CREATE_TABLE =
       "CREATE TABLE " + TABLE_NAME + " (" + ID                       + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                                             UUID                     + " TEXT UNIQUE DEFAULT NULL, " +
+                                            USERNAME                 + " TEXT UNIQUE DEFAULT NULL, " +
                                             PHONE                    + " TEXT UNIQUE DEFAULT NULL, " +
                                             EMAIL                    + " TEXT UNIQUE DEFAULT NULL, " +
                                             GROUP_ID                 + " TEXT UNIQUE DEFAULT NULL, " +
@@ -240,6 +242,10 @@ public class RecipientDatabase extends Database {
     return getByColumn(UUID, uuid.toString());
   }
 
+  public @NonNull Optional<RecipientId> getByUsername(@NonNull String username) {
+    return getByColumn(USERNAME, username);
+  }
+
   public @NonNull RecipientId getOrInsertFromUuid(@NonNull UUID uuid) {
     return getOrInsertByColumn(UUID, uuid.toString());
   }
@@ -292,6 +298,7 @@ public class RecipientDatabase extends Database {
   @NonNull RecipientSettings getRecipientSettings(@NonNull Cursor cursor) {
     long    id                     = cursor.getLong(cursor.getColumnIndexOrThrow(ID));
     UUID    uuid                   = UuidUtil.parseOrNull(cursor.getString(cursor.getColumnIndexOrThrow(UUID)));
+    String  username               = cursor.getString(cursor.getColumnIndexOrThrow(USERNAME));
     String  e164                   = cursor.getString(cursor.getColumnIndexOrThrow(PHONE));
     String  email                  = cursor.getString(cursor.getColumnIndexOrThrow(EMAIL));
     String  groupId                = cursor.getString(cursor.getColumnIndexOrThrow(GROUP_ID));
@@ -338,7 +345,7 @@ public class RecipientDatabase extends Database {
       }
     }
 
-    return new RecipientSettings(RecipientId.from(id), uuid, e164, email, groupId, blocked, muteUntil,
+    return new RecipientSettings(RecipientId.from(id), uuid, username, e164, email, groupId, blocked, muteUntil,
                                  VibrateState.fromId(messageVibrateState),
                                  VibrateState.fromId(callVibrateState),
                                  Util.uri(messageRingtone), Util.uri(callRingtone),
@@ -515,6 +522,30 @@ public class RecipientDatabase extends Database {
     Recipient.live(id).refresh();
   }
 
+  public void setUsername(@NonNull RecipientId id, @Nullable String username) {
+    if (username != null) {
+      Optional<RecipientId> existingUsername = getByUsername(username);
+
+      if (existingUsername.isPresent() && !id.equals(existingUsername.get())) {
+        Log.i(TAG, "Username was previously thought to be owned by " + existingUsername.get() + ". Clearing their username.");
+        setUsername(existingUsername.get(), null);
+      }
+    }
+
+    ContentValues contentValues = new ContentValues(1);
+    contentValues.put(USERNAME, username);
+    update(id, contentValues);
+    Recipient.live(id).refresh();
+  }
+
+  public void clearUsernameIfExists(@NonNull String username) {
+    Optional<RecipientId> existingUsername = getByUsername(username);
+
+    if (existingUsername.isPresent()) {
+      setUsername(existingUsername.get(), null);
+    }
+  }
+
   public Set<String> getAllPhoneNumbers() {
     SQLiteDatabase db      = databaseHelper.getReadableDatabase();
     Set<String>    results = new HashSet<>();
@@ -685,9 +716,9 @@ public class RecipientDatabase extends Database {
                          REGISTERED      + " = ? AND " +
                          GROUP_ID        + " IS NULL AND " +
                          "(" + SYSTEM_DISPLAY_NAME + " NOT NULL OR " + PROFILE_SHARING + " = ?) AND " +
-                         "(" + SYSTEM_DISPLAY_NAME + " NOT NULL OR " + SIGNAL_PROFILE_NAME + " NOT NULL)";
+                         "(" + SYSTEM_DISPLAY_NAME + " NOT NULL OR " + SIGNAL_PROFILE_NAME + " NOT NULL OR " + USERNAME + " NOT NULL)";
     String[] args      = new String[] { "0", String.valueOf(RegisteredState.REGISTERED.getId()), "1" };
-    String   orderBy   = SORT_NAME + ", " + SYSTEM_DISPLAY_NAME + ", " + SIGNAL_PROFILE_NAME + ", " + PHONE;
+    String   orderBy   = SORT_NAME + ", " + SYSTEM_DISPLAY_NAME + ", " + SIGNAL_PROFILE_NAME + ", " + USERNAME + ", " + PHONE;
 
     return databaseHelper.getReadableDatabase().query(TABLE_NAME, SEARCH_PROJECTION, selection, args, null, null, orderBy);
   }
@@ -699,13 +730,14 @@ public class RecipientDatabase extends Database {
     String   selection = BLOCKED         + " = ? AND " +
                          REGISTERED      + " = ? AND " +
                          GROUP_ID        + " IS NULL AND " +
-                         "(" + SYSTEM_DISPLAY_NAME + " NOT NULL OR " + PROFILE_SHARING + " = ?) AND " +
+                         "(" + SYSTEM_DISPLAY_NAME + " NOT NULL OR " + PROFILE_SHARING + " = ? OR " + USERNAME + " NOT NULL) AND " +
                          "(" +
                            PHONE               + " LIKE ? OR " +
                            SYSTEM_DISPLAY_NAME + " LIKE ? OR " +
-                           SIGNAL_PROFILE_NAME + " LIKE ?" +
+                           SIGNAL_PROFILE_NAME + " LIKE ? OR " +
+                           USERNAME            + " LIKE ?" +
                          ")";
-    String[] args      = new String[] { "0", String.valueOf(RegisteredState.REGISTERED.getId()), "1", query, query, query };
+    String[] args      = new String[] { "0", String.valueOf(RegisteredState.REGISTERED.getId()), "1", query, query, query, query };
     String   orderBy   = SORT_NAME + ", " + SYSTEM_DISPLAY_NAME + ", " + SIGNAL_PROFILE_NAME + ", " + PHONE;
 
     return databaseHelper.getReadableDatabase().query(TABLE_NAME, SEARCH_PROJECTION, selection, args, null, null, orderBy);
@@ -877,6 +909,7 @@ public class RecipientDatabase extends Database {
   public static class RecipientSettings {
     private final RecipientId            id;
     private final UUID                   uuid;
+    private final String                 username;
     private final String                 e164;
     private final String                 email;
     private final String                 groupId;
@@ -906,6 +939,7 @@ public class RecipientDatabase extends Database {
 
     RecipientSettings(@NonNull RecipientId id,
                       @Nullable UUID uuid,
+                      @Nullable String username,
                       @Nullable String e164,
                       @Nullable String email,
                       @Nullable String groupId,
@@ -934,6 +968,7 @@ public class RecipientDatabase extends Database {
     {
       this.id                     = id;
       this.uuid                   = uuid;
+      this.username               = username;
       this.e164                   = e164;
       this.email                  = email;
       this.groupId                = groupId;
@@ -968,6 +1003,10 @@ public class RecipientDatabase extends Database {
 
     public @Nullable UUID getUuid() {
       return uuid;
+    }
+
+    public @Nullable String getUsername() {
+      return username;
     }
 
     public @Nullable String getE164() {

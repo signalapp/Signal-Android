@@ -92,8 +92,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int ATTACHMENT_CLEAR_HASHES          = 33;
   private static final int ATTACHMENT_CLEAR_HASHES_2        = 34;
   private static final int UUIDS                            = 35;
+  private static final int USERNAMES                        = 36;
 
-  private static final int    DATABASE_VERSION = 35;
+  private static final int    DATABASE_VERSION = 36;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -618,6 +619,11 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
       if (oldVersion < UUIDS) {
         db.execSQL("ALTER TABLE recipient ADD COLUMN uuid_supported INTEGER DEFAULT 0");
         db.execSQL("ALTER TABLE push ADD COLUMN source_uuid TEXT DEFAULT NULL");
+      }
+
+      if (oldVersion < USERNAMES) {
+        db.execSQL("ALTER TABLE recipient ADD COLUMN username TEXT DEFAULT NULL");
+        db.execSQL("CREATE UNIQUE INDEX IF NOT EXISTS recipient_username_index ON recipient (username)");
       }
 
       db.setTransactionSuccessful();

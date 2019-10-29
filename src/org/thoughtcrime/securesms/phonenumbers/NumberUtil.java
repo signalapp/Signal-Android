@@ -23,11 +23,27 @@ import java.util.regex.Pattern;
 
 public class NumberUtil {
 
-  private static final Pattern emailPattern = android.util.Patterns.EMAIL_ADDRESS;
+  private static final Pattern EMAIL_PATTERN = android.util.Patterns.EMAIL_ADDRESS;
+  private static final Pattern PHONE_PATTERN = android.util.Patterns.PHONE;
 
   public static boolean isValidEmail(String number) {
-    Matcher matcher = emailPattern.matcher(number);
+    Matcher matcher = EMAIL_PATTERN.matcher(number);
     return matcher.matches();
+  }
+
+  public static boolean isVisuallyValidNumber(String number) {
+    Matcher matcher = PHONE_PATTERN.matcher(number);
+    return matcher.matches();
+  }
+
+  /**
+   * Whether or not a number entered by the user is a valid phone or email address. Differs from
+   * {@link #isValidSmsOrEmail(String)} in that it only returns true for numbers that a user would
+   * enter themselves, as opposed to the crazy network prefixes that could theoretically be in an
+   * SMS address.
+   */
+  public static boolean isVisuallyValidNumberOrEmail(String number) {
+    return isVisuallyValidNumber(number) || isValidEmail(number);
   }
 
   public static boolean isValidSmsOrEmail(String number) {

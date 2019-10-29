@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.service.IncomingMessageObserver;
 import org.thoughtcrime.securesms.util.Base64;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.ProfileUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -104,6 +105,7 @@ public class RetrieveProfileJob extends BaseJob {
 
     setProfileName(recipient, profile.getName());
     setProfileAvatar(recipient, profile.getAvatar());
+    if (FeatureFlags.USERNAMES) setUsername(recipient, profile.getUsername());
     setProfileCapabilities(recipient, profile.getCapabilities());
     setIdentityKey(recipient, profile.getIdentityKey());
     setUnidentifiedAccessMode(recipient, profile.getUnidentifiedAccess(), profile.isUnrestrictedUnidentifiedAccess());
@@ -195,6 +197,10 @@ public class RetrieveProfileJob extends BaseJob {
     if (!Util.equals(profileAvatar, recipient.getProfileAvatar())) {
       ApplicationDependencies.getJobManager().add(new RetrieveProfileAvatarJob(recipient, profileAvatar));
     }
+  }
+
+  private void setUsername(Recipient recipient, @Nullable String username) {
+    DatabaseFactory.getRecipientDatabase(context).setUsername(recipient.getId(), username);
   }
 
   private void setProfileCapabilities(@NonNull Recipient recipient, @Nullable SignalServiceProfile.Capabilities capabilities) {

@@ -103,7 +103,7 @@ public class RecipientUtil {
     if (!isBlockable(recipient)) {
       throw new AssertionError("Recipient is not blockable!");
     }
-    
+
     DatabaseFactory.getRecipientDatabase(context).setBlocked(recipient.getId(), false);
     ApplicationDependencies.getJobManager().add(new MultiDeviceBlockedUpdateJob());
   }

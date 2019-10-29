@@ -130,6 +130,8 @@
     <string name="ContactsCursorLoader_recent_chats">Recent chats</string>
     <string name="ContactsCursorLoader_contacts">Contacts</string>
     <string name="ContactsCursorLoader_groups">Groups</string>
+    <string name="ContactsCursorLoader_phone_number_search">Phone number search</string>
+    <string name="ContactsCursorLoader_username_search">Username search</string>
 
     <!-- ContactsDatabase -->
     <string name="ContactsDatabase_message_s">Message %s</string>
@@ -596,6 +598,19 @@
     <!-- PlayServicesProblemFragment -->
     <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">The version of Google Play Services you have installed is not functioning correctly.  Please reinstall Google Play Services and try again.</string>
 
+    <!-- ProfileEditNameFragment -->
+    <string name="ProfileEditNameFragment_profile_name">Profile name</string>
+    <string name="ProfileEditNameFragment_your_profile_name_can_be_seen_by_your_contacts">Your profile name can be seen by your contacts and by other users or groups when you initiate a conversation or accept a conversation request.</string>
+    <string name="ProfileEditNameFragment_save">Save</string>
+
+    <!-- ProfileEditOverviewFragment -->
+    <string name="ProfileEditOverviewFragment_profile">Profile</string>
+    <string name="ProfileEditOverviewFragment_profile_name">Profile name</string>
+    <string name="ProfileEditOverviewFragment_username">Username</string>
+    <string name="ProfileEditOverviewFragment_create_a_profile_name">Create a profile name</string>
+    <string name="ProfileEditOverviewFragment_create_a_username">Create a username</string>
+    <string name="ProfileEditOverviewFragment_your_signal_profile_can_be_seen_by">Your Signal Profile can be seen by your contacts and by other users or groups when you initiate a conversation or accept a conversation request. <a href="https://support.signal.org/hc/en-us/articles/360007459591-Signal-Profiles">Tap here to learn more</a>.</string>
+
     <!-- RatingManager -->
     <string name="RatingManager_rate_this_app">Rate this app</string>
     <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">If you enjoy using this app, please take a moment to help us by rating it.</string>
@@ -785,6 +800,21 @@
     <string name="UnverifiedSendDialog_send_message">Send message?</string>
     <string name="UnverifiedSendDialog_send">Send</string>
 
+    <!-- UsernameEditFragment -->
+    <string name="UsernameEditFragment_username">Username</string>
+    <string name="UsernameEditFragment_submit">Submit</string>
+    <string name="UsernameEditFragment_delete">Delete</string>
+    <string name="UsernameEditFragment_successfully_set_username">Successfully set username.</string>
+    <string name="UsernameEditFragment_successfully_removed_username">Successfully removed username.</string>
+    <string name="UsernameEditFragment_encountered_a_network_error">Encountered a network error.</string>
+    <string name="UsernameEditFragment_this_username_is_taken">This username is taken.</string>
+    <string name="UsernameEditFragment_this_username_is_available">This username is available.</string>
+    <string name="UsernameEditFragment_usernames_can_only_include">Usernames can only include a-Z, 0-9, and underscores.</string>
+    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Usernames cannot begin with a number.</string>
+    <string name="UsernameEditFragment_username_is_invalid">Username is invalid.</string>
+    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Usernames must be between %1$d and %2$d characters.</string>
+    <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Other Signal users can send message requests to your unique username without knowing your phone number. Choosing a username is optional.</string>
+
     <!-- VerifyIdentityActivity -->
     <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Your contact is running an old version of Signal. Please ask them to update before verifying your safety number.</string>
     <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Your contact is running a newer version of Signal with an incompatible QR code format. Please update to compare.</string>
@@ -866,6 +896,10 @@
     <string name="NotificationChannel_other">Other</string>
     <string name="NotificationChannel_group_messages">Messages</string>
     <string name="NotificationChannel_missing_display_name">Unknown</string>
+
+    <!-- ProfileEditNameFragment -->
+    <string name="ProfileEditNameFragment_successfully_set_profile_name">Successfully set profile name.</string>
+    <string name="ProfileEditNameFragment_encountered_a_network_error">Encountered a network error.</string>
 
     <!-- QuickResponseService -->
     <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Quick response unavailable when Signal is locked!</string>
@@ -966,6 +1000,9 @@
     <!-- ContactSelectionListFragment-->
     <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal requires the Contacts permission in order to display your contacts, but it has been permanently denied. Please continue to the app settings menu, select \"Permissions\", and enable \"Contacts\".</string>
     <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Error retrieving contacts, check your network connection</string>
+    <string name="ContactSelectionListFragment_username_not_found">Username not found</string>
+    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"%1$s" is not a Signal user. Please check the username and try again.</string>
+    <string name="ContactSelectionListFragment_okay">Okay</string>
 
     <!-- blocked_contacts_fragment -->
     <string name="blocked_contacts_fragment__no_blocked_contacts">No blocked contacts</string>

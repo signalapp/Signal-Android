@@ -11,12 +11,12 @@ public class FeatureFlags {
   /** UUID-related stuff that shouldn't be activated until the user-facing launch. */
   public static final boolean UUIDS = false;
 
-  /** Usernames. */
-  public static final boolean USERNAMES = false;
-
-  /** New Profile Display */
+  /** Favoring profile names when displaying contacts. */
   public static final boolean PROFILE_DISPLAY = UUIDS;
 
   /** MessageRequest stuff */
   public static final boolean MESSAGE_REQUESTS = UUIDS;
+
+  /** Creating usernames, sending messages by username. Requires {@link #UUIDS}. */
+  public static final boolean USERNAMES = false;
 }

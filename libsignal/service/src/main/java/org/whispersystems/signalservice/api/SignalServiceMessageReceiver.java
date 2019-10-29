@@ -116,6 +116,12 @@ public class SignalServiceMessageReceiver {
     return socket.retrieveProfile(address, unidentifiedAccess);
   }
 
+  public SignalServiceProfile retrieveProfileByUsername(String username, Optional<UnidentifiedAccess> unidentifiedAccess)
+      throws IOException
+  {
+    return socket.retrieveProfileByUsername(username, unidentifiedAccess);
+  }
+
   public InputStream retrieveProfileAvatar(String path, File destination, byte[] profileKey, int maxSizeBytes)
     throws IOException
   {
