@@ -9,13 +9,14 @@ import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.jobs.TypingSendJob;
-import org.thoughtcrime.securesms.loki.MultiDeviceUtilitiesKt;
+import org.thoughtcrime.securesms.loki.MultiDeviceUtilities;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.loki.api.LokiStorageAPI;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import kotlin.Unit;
@@ -91,14 +92,14 @@ public class TypingStatusSender {
       return;
     }
 
-    MultiDeviceUtilitiesKt.getAllDevicePublicKeys(context, recipient.getAddress().serialize(), storageAPI, (devicePublicKey, isFriend, friendCount) -> {
-      Recipient device = Recipient.from(context, Address.fromSerialized(devicePublicKey), false);
-      long deviceThreadID = threadDatabase.getThreadIdIfExistsFor(device);
+    Set<String> devices = LokiStorageAPI.shared.getAllDevicePublicKeys(recipient.getAddress().serialize());
+    for (String device : devices) {
+      Recipient deviceRecipient = Recipient.from(context, Address.fromSerialized(device), false);
+      long deviceThreadID = threadDatabase.getThreadIdIfExistsFor(deviceRecipient);
       if (deviceThreadID > -1) {
         ApplicationContext.getInstance(context).getJobManager().add(new TypingSendJob(deviceThreadID, typingStarted));
       }
-      return Unit.INSTANCE;
-    });
+    }
   }
 
   private class StartRunnable implements Runnable {

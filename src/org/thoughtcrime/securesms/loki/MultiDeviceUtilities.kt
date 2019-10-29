@@ -1,11 +1,9 @@
+@file:JvmName("MultiDeviceUtilities")
 package org.thoughtcrime.securesms.loki
 
 import android.content.Context
 import android.os.Handler
 import nl.komponents.kovenant.Promise
-import nl.komponents.kovenant.deferred
-import nl.komponents.kovenant.functional.bind
-import nl.komponents.kovenant.functional.map
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.database.Address
@@ -13,7 +11,6 @@ import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.logging.Log
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.thoughtcrime.securesms.util.concurrent.SettableFuture
 import org.whispersystems.libsignal.util.guava.Optional
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage
@@ -23,85 +20,53 @@ import org.whispersystems.signalservice.loki.api.PairingAuthorisation
 import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus
 import org.whispersystems.signalservice.loki.utilities.retryIfNeeded
 
-fun getAllDeviceFriendRequestStatus(context: Context, hexEncodedPublicKey: String, storageAPI: LokiStorageAPI): Promise<Map<String, LokiThreadFriendRequestStatus>, Exception> {
+fun getAllDeviceFriendRequestStatuses(context: Context, hexEncodedPublicKey: String): Map<String, LokiThreadFriendRequestStatus> {
   val lokiThreadDatabase = DatabaseFactory.getLokiThreadDatabase(context)
-  return storageAPI.getAllDevicePublicKeys(hexEncodedPublicKey).map { keys ->
-    val map = mutableMapOf<String, LokiThreadFriendRequestStatus>()
-
-    for (devicePublicKey in keys) {
-      val device = Recipient.from(context, Address.fromSerialized(devicePublicKey), false)
-      val threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(device)
-      val friendRequestStatus = if (threadID < 0) LokiThreadFriendRequestStatus.NONE else lokiThreadDatabase.getFriendRequestStatus(threadID)
-      map.put(devicePublicKey, friendRequestStatus);
-    }
-
-    map
+  val keys = LokiStorageAPI.shared.getAllDevicePublicKeys(hexEncodedPublicKey)
+  val map = mutableMapOf<String, LokiThreadFriendRequestStatus>()
+  for (devicePublicKey in keys) {
+    val device = Recipient.from(context, Address.fromSerialized(devicePublicKey), false)
+    val threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(device)
+    val friendRequestStatus = if (threadID < 0) LokiThreadFriendRequestStatus.NONE else lokiThreadDatabase.getFriendRequestStatus(threadID)
+    map[devicePublicKey] = friendRequestStatus
   }
+  return map
 }
 
-fun getAllDevicePublicKeys(context: Context, hexEncodedPublicKey: String, storageAPI: LokiStorageAPI, block: (devicePublicKey: String, isFriend: Boolean, friendCount: Int) -> Unit) {
+fun getAllDevicePublicKeysWithFriendStatus(context: Context, hexEncodedPublicKey: String): Map<String, Boolean> {
   val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context)
-  val devices = getAllDevicePublicKeys(hexEncodedPublicKey, storageAPI).toMutableSet()
+  val devices = LokiStorageAPI.shared.getAllDevicePublicKeys(hexEncodedPublicKey).toMutableSet()
   if (hexEncodedPublicKey != userHexEncodedPublicKey) {
     devices.remove(userHexEncodedPublicKey)
   }
   val friends = getFriendPublicKeys(context, devices)
+  val map = mutableMapOf<String, Boolean>()
   for (device in devices) {
-    block(device, friends.contains(device), friends.count())
+    map[device] = friends.contains(device)
   }
+  return map
 }
 
-fun getAllDevicePublicKeys(hexEncodedPublicKey: String, storageAPI: LokiStorageAPI): Set<String> {
-  val future = SettableFuture<Set<String>>()
-  storageAPI.getAllDevicePublicKeys(hexEncodedPublicKey).success { future.set(it) }.fail { future.setException(it) }
-  return try {
-    future.get()
-  } catch (e: Exception) {
-    setOf()
-  }
+fun getFriendCount(context: Context, devices: Set<String>): Int {
+  return getFriendPublicKeys(context, devices).count()
 }
 
 fun shouldAutomaticallyBecomeFriendsWithDevice(publicKey: String, context: Context): Boolean {
   val lokiThreadDatabase = DatabaseFactory.getLokiThreadDatabase(context)
   val storageAPI = LokiStorageAPI.shared
-  val future = SettableFuture<Boolean>()
-  storageAPI.getPrimaryDevicePublicKey(publicKey).success { primaryDevicePublicKey ->
-    if (primaryDevicePublicKey == null) {
-      // If the public key doesn't have any other devices then go through regular friend request logic
-      future.set(false)
-      return@success
-    }
-    // If we are the primary device and the public key is our secondary device then we should become friends
-    val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context)
-    if (primaryDevicePublicKey == userHexEncodedPublicKey) {
-      storageAPI.getSecondaryDevicePublicKeys(userHexEncodedPublicKey).success { secondaryDevices ->
-        future.set(secondaryDevices.contains(publicKey))
-      }.fail {
-        future.set(false)
-      }
-      return@success
-    }
-    // If we share the same primary device then we should become friends
-    val ourPrimaryDevice = TextSecurePreferences.getMasterHexEncodedPublicKey(context)
-    if (ourPrimaryDevice != null && ourPrimaryDevice == primaryDevicePublicKey) {
-      future.set(true)
-      return@success
-    }
-    // If we are friends with the primary device then we should become friends
-    val primaryDevice = Recipient.from(context, Address.fromSerialized(primaryDevicePublicKey), false)
-    val threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(primaryDevice)
-    if (threadID < 0) {
-      future.set(false)
-      return@success
-    }
-    future.set(lokiThreadDatabase.getFriendRequestStatus(threadID) == LokiThreadFriendRequestStatus.FRIENDS)
+
+  // If the public key doesn't have any other devices then go through regular friend request logic
+  val primaryDevicePublicKey = storageAPI.getPrimaryDevicePublicKey(publicKey) ?: return false
+
+  // If this is one of our devices then we should become friends
+  if (isOneOfOurDevices(context, publicKey)) {
+    return true
   }
 
-  return try {
-    future.get()
-  } catch (e: Exception) {
-    false
-  }
+  // If we are friends with the primary device then we should become friends
+  val primaryDevice = Recipient.from(context, Address.fromSerialized(primaryDevicePublicKey), false)
+  val primaryDeviceThreadID = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(primaryDevice)
+  return primaryDeviceThreadID >= 0 && lokiThreadDatabase.getFriendRequestStatus(primaryDeviceThreadID) == LokiThreadFriendRequestStatus.FRIENDS
 }
 
 fun sendPairingAuthorisationMessage(context: Context, contactHexEncodedPublicKey: String, authorisation: PairingAuthorisation): Promise<Unit, Exception> {
@@ -157,27 +122,12 @@ fun shouldSendSycMessage(context: Context, address: Address): Boolean {
     return false
   }
 
-  // Don't send sync messages if it's our address
-  val publicKey = address.serialize()
-  if (publicKey == TextSecurePreferences.getLocalNumber(context)) {
-    return false
-  }
+  // Don't send sync messages if it's one of our devices
+  return !isOneOfOurDevices(context, address)
+}
 
-  val storageAPI = LokiStorageAPI.shared
-  val future = SettableFuture<Boolean>()
-  storageAPI.getPrimaryDevicePublicKey(publicKey).success { primaryDevicePublicKey ->
-    val isOurPrimaryDevice = primaryDevicePublicKey != null && TextSecurePreferences.getMasterHexEncodedPublicKey(context) == publicKey
-    // Don't send sync message if the primary device is the same as ours
-    future.set(!isOurPrimaryDevice)
-  }.fail {
-    future.set(false)
-  }
-
-  return try {
-    future.get()
-  } catch (e: Exception) {
-    false
-  }
+fun isOneOfOurDevices(context: Context, publicKey: String): Boolean {
+  return isOneOfOurDevices(context, Address.fromSerialized(publicKey))
 }
 
 fun isOneOfOurDevices(context: Context, address: Address): Boolean {
@@ -186,61 +136,18 @@ fun isOneOfOurDevices(context: Context, address: Address): Boolean {
   }
 
   val ourPublicKey = TextSecurePreferences.getLocalNumber(context)
-  val storageAPI = LokiStorageAPI.shared
-  val future = SettableFuture<Boolean>()
-  storageAPI.getAllDevicePublicKeys(ourPublicKey).success {
-    future.set(it.contains(address.serialize()))
-  }.fail {
-    future.set(false)
-  }
-
-  return try {
-    future.get()
-  } catch (e: Exception) {
-    false
-  }
-}
-
-fun getPrimaryDevicePublicKey(hexEncodedPublicKey: String): String? {
-  val storageAPI = LokiStorageAPI.shared
-  val future = SettableFuture<String?>()
-  storageAPI.getPrimaryDevicePublicKey(hexEncodedPublicKey).success {
-    future.set(it)
-  }.fail {
-    future.set(null)
-  }
-
-  return try {
-    future.get()
-  } catch (e: Exception) {
-    null
-  }
+  val devices = LokiStorageAPI.shared.getAllDevicePublicKeys(ourPublicKey)
+  return devices.contains(address.serialize())
 }
 
 fun isFriendsWithAnyLinkedDevice(context: Context, recipient: Recipient): Boolean {
   if (recipient.isGroupRecipient) return true
-  val future = SettableFuture<Boolean>()
-  val storageAPI = LokiStorageAPI.shared
 
-  getAllDeviceFriendRequestStatus(context, recipient.address.serialize(), storageAPI).success { map ->
-    for (status in map.values) {
-      if (status == LokiThreadFriendRequestStatus.FRIENDS) {
-        future.set(true)
-        break
-      }
+  val map = getAllDeviceFriendRequestStatuses(context, recipient.address.serialize())
+  for (status in map.values) {
+    if (status == LokiThreadFriendRequestStatus.FRIENDS) {
+      return true
     }
-
-    if (!future.isDone) {
-      future.set(false)
-    }
-  }.fail { e ->
-    future.set(false)
   }
-
-  try {
-    return future.get()
-  } catch (e: Exception) {
-    return false
-  }
-
+  return false
 }

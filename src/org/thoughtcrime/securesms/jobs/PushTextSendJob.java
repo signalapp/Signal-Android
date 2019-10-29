@@ -14,7 +14,7 @@ import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
-import org.thoughtcrime.securesms.loki.MultiDeviceUtilitiesKt;
+import org.thoughtcrime.securesms.loki.MultiDeviceUtilities;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
@@ -30,6 +30,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
+import org.whispersystems.signalservice.loki.api.LokiStorageAPI;
 import org.whispersystems.signalservice.loki.messaging.LokiSyncMessage;
 
 import java.io.IOException;
@@ -231,7 +232,7 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
         LokiSyncMessage syncMessage = null;
         if (shouldSendSyncMessage) {
           // Set the sync message destination to the primary device, this way it will show that we sent a message to the primary device and not a secondary device
-          String primaryDevice = MultiDeviceUtilitiesKt.getPrimaryDevicePublicKey(address.getNumber());
+          String primaryDevice = LokiStorageAPI.shared.getPrimaryDevicePublicKey(address.getNumber());
           SignalServiceAddress primaryAddress = primaryDevice == null ? address : new SignalServiceAddress(primaryDevice);
           // We also need to use the original message id and not -1
           syncMessage = new LokiSyncMessage(primaryAddress, templateMessageId);

@@ -44,7 +44,7 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.FriendRequestHandler;
 import org.thoughtcrime.securesms.loki.GeneralUtilitiesKt;
-import org.thoughtcrime.securesms.loki.MultiDeviceUtilitiesKt;
+import org.thoughtcrime.securesms.loki.MultiDeviceUtilities;
 import org.thoughtcrime.securesms.loki.PushMessageSyncSendJob;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
@@ -63,6 +63,8 @@ import org.whispersystems.signalservice.loki.api.LokiStorageAPI;
 import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus;
 
 import java.io.IOException;
+import java.util.Map;
+import java.util.Set;
 
 import kotlin.Unit;
 
@@ -75,24 +77,20 @@ public class MessageSender {
     sendBackgroundMessage(context, contactHexEncodedPublicKey);
 
     // Go through the other devices and only send background messages if we're friends or we have received friend request
-    LokiStorageAPI storageAPI = LokiStorageAPI.Companion.getShared();
-    storageAPI.getAllDevicePublicKeys(contactHexEncodedPublicKey).success(devices -> {
-      for (String device : devices) {
-        // Don't send message to the device we already have sent to
-        if (device.equals(contactHexEncodedPublicKey)) { continue; }
-        Recipient recipient = Recipient.from(context, Address.fromSerialized(device), false);
-        long threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(recipient);
-        if (threadID < 0) { continue; }
-        LokiThreadFriendRequestStatus friendRequestStatus = DatabaseFactory.getLokiThreadDatabase(context).getFriendRequestStatus(threadID);
-        if (friendRequestStatus == LokiThreadFriendRequestStatus.FRIENDS || friendRequestStatus == LokiThreadFriendRequestStatus.REQUEST_RECEIVED) {
-          sendBackgroundMessage(context, device);
-        }
-
-        // TODO: Do we want to send a custom FR Message if we're not friends and we haven't received a friend request?
+    Set<String> devices = LokiStorageAPI.shared.getAllDevicePublicKeys(contactHexEncodedPublicKey);
+    for (String device : devices) {
+      // Don't send message to the device we already have sent to
+      if (device.equals(contactHexEncodedPublicKey)) { continue; }
+      Recipient recipient = Recipient.from(context, Address.fromSerialized(device), false);
+      long threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(recipient);
+      if (threadID < 0) { continue; }
+      LokiThreadFriendRequestStatus friendRequestStatus = DatabaseFactory.getLokiThreadDatabase(context).getFriendRequestStatus(threadID);
+      if (friendRequestStatus == LokiThreadFriendRequestStatus.FRIENDS || friendRequestStatus == LokiThreadFriendRequestStatus.REQUEST_RECEIVED) {
+        sendBackgroundMessage(context, device);
       }
 
-      return Unit.INSTANCE;
-    });
+      // TODO: Do we want to send a custom FR Message if we're not friends and we haven't received a friend request?
+    }
   }
 
   public static void sendBackgroundMessage(Context context, String contactHexEncodedPublicKey) {
@@ -198,20 +196,16 @@ public class MessageSender {
                                                  final byte[]  message,
                                                  final int     ttl) {
     String ourPublicKey = TextSecurePreferences.getLocalNumber(context);
-    LokiStorageAPI storageAPI = LokiStorageAPI.Companion.getShared();
     JobManager jobManager = ApplicationContext.getInstance(context).getJobManager();
+    Set<String> devices = LokiStorageAPI.shared.getAllDevicePublicKeys(ourPublicKey);
+    for (String device : devices) {
+      // Don't send to ourselves
+      if (device.equals(ourPublicKey)) { continue; }
 
-    storageAPI.getAllDevicePublicKeys(ourPublicKey).success(devices -> {
-      for (String device : devices) {
-        // Don't send to ourselves
-        if (device.equals(ourPublicKey)) { continue; }
-
-        // Create a send job for our device
-        Address address = Address.fromSerialized(device);
-        jobManager.add(new PushMessageSyncSendJob(messageID, address, timestamp, message, ttl));
-      }
-      return Unit.INSTANCE;
-    });
+      // Create a send job for our device
+      Address address = Address.fromSerialized(device);
+      jobManager.add(new PushMessageSyncSendJob(messageID, address, timestamp, message, ttl));
+    }
   }
 
   public static void resendGroupMessage(Context context, MessageRecord messageRecord, Address filterAddress) {
@@ -260,7 +254,6 @@ public class MessageSender {
   }
 
   private static void sendTextPush(Context context, Recipient recipient, long messageId) {
-    LokiStorageAPI storageAPI = LokiStorageAPI.Companion.getShared();
     JobManager jobManager = ApplicationContext.getInstance(context).getJobManager();
 
     // Just send the message normally if it's a group message
@@ -271,39 +264,40 @@ public class MessageSender {
     }
 
     // Note to self
-    boolean isNoteToSelf = MultiDeviceUtilitiesKt.isOneOfOurDevices(context, recipient.getAddress());
+    boolean isNoteToSelf = MultiDeviceUtilities.isOneOfOurDevices(context, recipient.getAddress());
     if (isNoteToSelf) {
       jobManager.add(new PushTextSendJob(messageId, recipient.getAddress()));
       return;
     }
 
-    boolean[] hasSentSyncMessage = { false };
+    boolean hasSentSyncMessage = false;
 
-    MultiDeviceUtilitiesKt.getAllDevicePublicKeys(context, recipientPublicKey, storageAPI, (devicePublicKey, isFriend, friendCount) -> {
-      Util.runOnMain(() -> {
-        Address address = Address.fromSerialized(devicePublicKey);
-        long messageIDToUse = recipientPublicKey.equals(devicePublicKey) ? messageId : -1L;
+    Map<String, Boolean> devices = MultiDeviceUtilities.getAllDevicePublicKeysWithFriendStatus(context, recipientPublicKey);
+    int friendCount = MultiDeviceUtilities.getFriendCount(context, devices.keySet());
+    for (Map.Entry<String, Boolean> entry : devices.entrySet()) {
+      String devicePublicKey = entry.getKey();
+      boolean isFriend = entry.getValue();
 
-        if (isFriend) {
-          // Send a normal message if the user is friends with the recipient
-          // We should also send a sync message if we haven't already sent one
-          boolean shouldSendSyncMessage = !hasSentSyncMessage[0] && MultiDeviceUtilitiesKt.shouldSendSycMessage(context, address);
-          jobManager.add(new PushTextSendJob(messageId, messageIDToUse, address, shouldSendSyncMessage));
-          hasSentSyncMessage[0] = shouldSendSyncMessage;
-        } else {
-          // Send friend requests to non friends. If the user is friends with any
-          // of the devices then send out a default friend request message.
-          boolean isFriendsWithAny = (friendCount > 0);
-          String defaultFriendRequestMessage = isFriendsWithAny ? "Accept this friend request to enable messages to be synced across devices" : null;
-          jobManager.add(new PushTextSendJob(messageId, messageIDToUse, address, true, defaultFriendRequestMessage, false));
-        }
-      });
-      return Unit.INSTANCE;
-    });
+      Address address = Address.fromSerialized(devicePublicKey);
+      long messageIDToUse = recipientPublicKey.equals(devicePublicKey) ? messageId : -1L;
+
+      if (isFriend) {
+        // Send a normal message if the user is friends with the recipient
+        // We should also send a sync message if we haven't already sent one
+        boolean shouldSendSyncMessage = !hasSentSyncMessage && MultiDeviceUtilities.shouldSendSycMessage(context, address);
+        jobManager.add(new PushTextSendJob(messageId, messageIDToUse, address, shouldSendSyncMessage));
+        hasSentSyncMessage = shouldSendSyncMessage;
+      } else {
+        // Send friend requests to non friends. If the user is friends with any
+        // of the devices then send out a default friend request message.
+        boolean isFriendsWithAny = (friendCount > 0);
+        String defaultFriendRequestMessage = isFriendsWithAny ? "Accept this friend request to enable messages to be synced across devices" : null;
+        jobManager.add(new PushTextSendJob(messageId, messageIDToUse, address, true, defaultFriendRequestMessage, false));
+      }
+    }
   }
 
   private static void sendMediaPush(Context context, Recipient recipient, long messageId) {
-    LokiStorageAPI storageAPI = LokiStorageAPI.Companion.getShared();
     JobManager jobManager = ApplicationContext.getInstance(context).getJobManager();
 
     // Just send the message normally if it's a group message
@@ -314,36 +308,37 @@ public class MessageSender {
     }
 
     // Note to self
-    boolean isNoteToSelf = MultiDeviceUtilitiesKt.isOneOfOurDevices(context, recipient.getAddress());
+    boolean isNoteToSelf = MultiDeviceUtilities.isOneOfOurDevices(context, recipient.getAddress());
     if (isNoteToSelf) {
       jobManager.add(new PushTextSendJob(messageId, recipient.getAddress()));
       return;
     }
 
-    boolean[] hasSentSyncMessage = { false };
+    boolean hasSentSyncMessage = false;
 
-    MultiDeviceUtilitiesKt.getAllDevicePublicKeys(context, recipientPublicKey, storageAPI, (devicePublicKey, isFriend, friendCount) -> {
-      Util.runOnMain(() -> {
-        Address address = Address.fromSerialized(devicePublicKey);
-        long messageIDToUse = recipientPublicKey.equals(devicePublicKey) ? messageId : -1L;
+    Map<String, Boolean> devices = MultiDeviceUtilities.getAllDevicePublicKeysWithFriendStatus(context, recipientPublicKey);
+    int friendCount = MultiDeviceUtilities.getFriendCount(context, devices.keySet());
+    for (Map.Entry<String, Boolean> entry : devices.entrySet()) {
+      String devicePublicKey = entry.getKey();
+      boolean isFriend = entry.getValue();
 
-        if (isFriend) {
-          // Send a normal message if the user is friends with the recipient
-          // We should also send a sync message if we haven't already sent one
-          boolean shouldSendSyncMessage = !hasSentSyncMessage[0] && MultiDeviceUtilitiesKt.shouldSendSycMessage(context, address);
-          PushMediaSendJob.enqueue(context, jobManager, messageId, messageIDToUse, address, shouldSendSyncMessage);
-          hasSentSyncMessage[0] = shouldSendSyncMessage;
-        } else {
-          // Send friend requests to non friends. If the user is friends with any
-          // of the devices then send out a default friend request message.
-          boolean isFriendsWithAny = friendCount > 0;
-          String defaultFriendRequestMessage = isFriendsWithAny ? "Accept this friend request to enable messages to be synced across devices" : null;
-          PushMediaSendJob.enqueue(context, jobManager, messageId, messageIDToUse, address, true, defaultFriendRequestMessage, false);
-        }
-      });
-      return Unit.INSTANCE;
-    });
+      Address address = Address.fromSerialized(devicePublicKey);
+      long messageIDToUse = recipientPublicKey.equals(devicePublicKey) ? messageId : -1L;
 
+      if (isFriend) {
+        // Send a normal message if the user is friends with the recipient
+        // We should also send a sync message if we haven't already sent one
+        boolean shouldSendSyncMessage = !hasSentSyncMessage && MultiDeviceUtilities.shouldSendSycMessage(context, address);
+        PushMediaSendJob.enqueue(context, jobManager, messageId, messageIDToUse, address, shouldSendSyncMessage);
+        hasSentSyncMessage = shouldSendSyncMessage;
+      } else {
+        // Send friend requests to non friends. If the user is friends with any
+        // of the devices then send out a default friend request message.
+        boolean isFriendsWithAny = (friendCount > 0);
+        String defaultFriendRequestMessage = isFriendsWithAny ? "Accept this friend request to enable messages to be synced across devices" : null;
+        PushMediaSendJob.enqueue(context, jobManager, messageId, messageIDToUse, address, true, defaultFriendRequestMessage, false);
+      }
+    }
   }
 
   private static void sendGroupPush(Context context, Recipient recipient, long messageId, Address filterAddress) {

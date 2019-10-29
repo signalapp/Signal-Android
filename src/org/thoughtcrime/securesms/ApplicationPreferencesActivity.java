@@ -44,7 +44,7 @@ import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.loki.DeviceLinkingDialog;
 import org.thoughtcrime.securesms.loki.DeviceLinkingDialogDelegate;
 import org.thoughtcrime.securesms.loki.DeviceLinkingView;
-import org.thoughtcrime.securesms.loki.MultiDeviceUtilitiesKt;
+import org.thoughtcrime.securesms.loki.MultiDeviceUtilities;
 import org.thoughtcrime.securesms.loki.QRCodeDialog;
 import org.thoughtcrime.securesms.preferences.AppProtectionPreferenceFragment;
 import org.thoughtcrime.securesms.preferences.ChatsPreferenceFragment;
@@ -394,7 +394,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
       }
 
       @Override public void sendPairingAuthorizedMessage(@NotNull PairingAuthorisation pairingAuthorisation) {
-        MultiDeviceUtilitiesKt.signAndSendPairingAuthorisationMessage(context, pairingAuthorisation);
+        MultiDeviceUtilities.signAndSendPairingAuthorisationMessage(context, pairingAuthorisation);
       }
       @Override public void handleDeviceLinkAuthorized(@NotNull PairingAuthorisation pairingAuthorisation) {}
       @Override public void handleDeviceLinkingDialogDismissed() {}

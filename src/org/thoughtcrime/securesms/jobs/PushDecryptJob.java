@@ -72,7 +72,7 @@ import org.thoughtcrime.securesms.loki.LokiMessageDatabase;
 import org.thoughtcrime.securesms.loki.LokiPreKeyBundleDatabase;
 import org.thoughtcrime.securesms.loki.LokiPreKeyRecordDatabase;
 import org.thoughtcrime.securesms.loki.LokiThreadDatabase;
-import org.thoughtcrime.securesms.loki.MultiDeviceUtilitiesKt;
+import org.thoughtcrime.securesms.loki.MultiDeviceUtilities;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingExpirationUpdateMessage;
@@ -780,11 +780,6 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       return;
     }
 
-    // Don't insert friend request if we're already friends with a one of the users other device
-    if (message.isFriendRequest() && MultiDeviceUtilitiesKt.isFriendsWithAnyLinkedDevice(context, primaryDeviceRecipient)) {
-      return;
-    }
-
     Optional<InsertResult> insertResult;
 
     try {
@@ -828,8 +823,8 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   }
 
   private long handleSynchronizeSentExpirationUpdate(@NonNull SentTranscriptMessage message) throws MmsException {
-    MmsDatabase database         = DatabaseFactory.getMmsDatabase(context);
-    Recipient   recipient        = getSyncMessagePrimaryDestination(message);
+    MmsDatabase database  = DatabaseFactory.getMmsDatabase(context);
+    Recipient   recipient = getSyncMessagePrimaryDestination(message);
 
     OutgoingExpirationUpdateMessage expirationUpdateMessage = new OutgoingExpirationUpdateMessage(recipient,
                                                                                                   message.getTimestamp(),
@@ -1099,7 +1094,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     // it must be a friend request accepted message. Declining a friend request doesn't send a message.
     lokiThreadDatabase.setFriendRequestStatus(threadID, LokiThreadFriendRequestStatus.FRIENDS);
     // Update the last message if needed
-    String primaryDevice = MultiDeviceUtilitiesKt.getPrimaryDevicePublicKey(pubKey);
+    String primaryDevice = LokiStorageAPI.shared.getPrimaryDevicePublicKey(pubKey);
     long primaryDeviceThreadID = primaryDevice == null ? threadID : DatabaseFactory.getThreadDatabase(context).getThreadIdFor(Recipient.from(context, Address.fromSerialized(primaryDevice), false));
     FriendRequestHandler.updateLastFriendRequestMessage(context, primaryDeviceThreadID, LokiMessageFriendRequestStatus.REQUEST_ACCEPTED);
   }
@@ -1107,7 +1102,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   private void updateFriendRequestStatusIfNeeded(@NonNull SignalServiceEnvelope envelope, @NonNull SignalServiceContent content, @NonNull SignalServiceDataMessage message) {
     if (!envelope.isFriendRequest()) { return; }
     // This handles the case where another user sends us a regular message without authorisation
-    boolean shouldBecomeFriends = MultiDeviceUtilitiesKt.shouldAutomaticallyBecomeFriendsWithDevice(content.getSender(), context);
+    boolean shouldBecomeFriends = MultiDeviceUtilities.shouldAutomaticallyBecomeFriendsWithDevice(content.getSender(), context);
     if (shouldBecomeFriends) {
       // Become friends AND update the message they sent
       becomeFriendsWithContact(content.getSender());
@@ -1536,26 +1531,15 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   }
 
   private Recipient getPrimaryDeviceRecipient(String recipient) {
-    SettableFuture<String> device = new SettableFuture<>();
-
-    // Get the primary device
-    LokiStorageAPI.shared.getPrimaryDevicePublicKey(recipient).success(primaryDevice -> {
+    try {
+      String primaryDevice = LokiStorageAPI.shared.getPrimaryDevicePublicKey(recipient);
       String publicKey = (primaryDevice != null) ? primaryDevice : recipient;
-      // If our the public key matches our primary device then we need to forward the message to ourselves (Note to self)
+      // If the public key matches our primary device then we need to forward the message to ourselves (Note to self)
       String ourPrimaryDevice = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
       if (ourPrimaryDevice != null && ourPrimaryDevice.equals(publicKey)) {
         publicKey = TextSecurePreferences.getLocalNumber(context);
       }
-      device.set(publicKey);
-      return Unit.INSTANCE;
-    }).fail(exception -> {
-      device.set(recipient);
-      return Unit.INSTANCE;
-    });
-
-    try {
-      String primarySender = device.get();
-      return Recipient.from(context, Address.fromSerialized(primarySender), false);
+      return Recipient.from(context, Address.fromSerialized(publicKey), false);
     } catch (Exception e) {
       Log.d("Loki", "Failed to get primary device public key for message. " + e.getMessage());
       return Recipient.from(context, Address.fromSerialized(recipient), false);
@@ -1610,7 +1594,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       return sender.isBlocked();
     } else if (content.getSyncMessage().isPresent()) {
       // We should ignore a sync message if the sender is not one of our devices
-      boolean isOurDevice = MultiDeviceUtilitiesKt.isOneOfOurDevices(context, sender.getAddress());
+      boolean isOurDevice = MultiDeviceUtilities.isOneOfOurDevices(context, sender.getAddress());
       if (!isOurDevice) { Log.w(TAG, "Got a sync message from a device that is not ours!."); }
       return !isOurDevice;
     }

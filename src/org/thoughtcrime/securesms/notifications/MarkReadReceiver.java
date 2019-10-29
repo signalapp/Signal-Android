@@ -20,7 +20,7 @@ import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.jobs.MultiDeviceReadUpdateJob;
 import org.thoughtcrime.securesms.jobs.SendReadReceiptJob;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.loki.MultiDeviceUtilitiesKt;
+import org.thoughtcrime.securesms.loki.MultiDeviceUtilities;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.whispersystems.signalservice.loki.api.LokiStorageAPI;
 
@@ -90,17 +90,17 @@ public class MarkReadReceiver extends BroadcastReceiver {
                                                          .collect(Collectors.groupingBy(SyncMessageId::getAddress));
 
     for (Address address : addressMap.keySet()) {
-      LokiStorageAPI storageAPI = LokiStorageAPI.Companion.getShared();
-
       List<Long> timestamps = Stream.of(addressMap.get(address)).map(SyncMessageId::getTimetamp).toList();
 
-      MultiDeviceUtilitiesKt.getAllDevicePublicKeys(context, address.serialize(), storageAPI, (devicePublicKey, isFriend, friendCount) -> {
+      Map<String, Boolean> devices = MultiDeviceUtilities.getAllDevicePublicKeysWithFriendStatus(context, address.serialize());
+      for (Map.Entry<String, Boolean> entry : devices.entrySet()) {
+        String device = entry.getKey();
+        boolean isFriend = entry.getValue();
         // Loki - This also prevents read receipts from being sent in group chats as they don't maintain a friend request status
         if (isFriend) {
-          ApplicationContext.getInstance(context).getJobManager().add(new SendReadReceiptJob(Address.fromSerialized(devicePublicKey), timestamps));
+          ApplicationContext.getInstance(context).getJobManager().add(new SendReadReceiptJob(Address.fromSerialized(device), timestamps));
         }
-        return Unit.INSTANCE;
-      });
+      }
     }
   }
 

@@ -38,7 +38,6 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.Vibrator;
 import android.provider.Browser;
 import android.provider.ContactsContract;
@@ -128,7 +127,6 @@ import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher;
 import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
 import org.thoughtcrime.securesms.crypto.SecurityEvent;
 import org.thoughtcrime.securesms.database.Address;
-import org.thoughtcrime.securesms.database.Database;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.DraftDatabase;
 import org.thoughtcrime.securesms.database.DraftDatabase.Draft;
@@ -163,7 +161,7 @@ import org.thoughtcrime.securesms.loki.LokiMessageDatabase;
 import org.thoughtcrime.securesms.loki.LokiThreadDatabaseDelegate;
 import org.thoughtcrime.securesms.loki.LokiUserDatabase;
 import org.thoughtcrime.securesms.loki.MentionCandidateSelectionView;
-import org.thoughtcrime.securesms.loki.MultiDeviceUtilitiesKt;
+import org.thoughtcrime.securesms.loki.MultiDeviceUtilities;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mediasend.MediaSendActivity;
 import org.thoughtcrime.securesms.mms.AttachmentManager;
@@ -228,9 +226,6 @@ import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
 import org.thoughtcrime.securesms.util.views.Stub;
 import org.whispersystems.libsignal.InvalidMessageException;
 import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.api.SignalServiceMessageSender;
-import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
-import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.loki.api.LokiAPI;
 import org.whispersystems.signalservice.loki.api.LokiStorageAPI;
 import org.whispersystems.signalservice.loki.messaging.LokiMessageFriendRequestStatus;
@@ -246,6 +241,7 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -2195,7 +2191,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         Recipient threadRecipient = DatabaseFactory.getThreadDatabase(this).getRecipientForThreadId(threadID);
         if (threadRecipient != null && !threadRecipient.isGroupRecipient()) {
           // We should update our input if this thread is a part of the other threads device
-          Set<String> devices = MultiDeviceUtilitiesKt.getAllDevicePublicKeys(threadRecipient.getAddress().serialize(), LokiStorageAPI.Companion.getShared());
+          Set<String> devices = LokiStorageAPI.shared.getAllDevicePublicKeys(threadRecipient.getAddress().serialize());
           shouldUpdateInputPanel = devices.contains(recipient.getAddress().serialize());
         } else {
           shouldUpdateInputPanel = false;
@@ -2216,13 +2212,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       inputMethodManager.showSoftInput(inputPanel.composeText, 0);
     }
     boolean hasPendingFriendRequest = !recipient.isGroupRecipient() && hasPendingFriendRequestWithAnyLinkedDevice();
-    boolean isFriendsWithAnyLinkedDevices = MultiDeviceUtilitiesKt.isFriendsWithAnyLinkedDevice(this, recipient);
+    boolean isFriendsWithAnyLinkedDevices = MultiDeviceUtilities.isFriendsWithAnyLinkedDevice(this, recipient);
     boolean shouldEnableInput = isFriendsWithAnyLinkedDevices || !hasPendingFriendRequest;
     updateToggleButtonState();
     inputPanel.setEnabled(shouldEnableInput);
     int hintID = shouldEnableInput ? R.string.activity_conversation_default_hint : R.string.activity_conversation_pending_friend_request_hint;
     inputPanel.setHint(getResources().getString(hintID));
-    if (!shouldEnableInput) {
+    if (shouldEnableInput) {
       inputPanel.composeText.requestFocus();
       InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
       inputMethodManager.showSoftInput(inputPanel.composeText, 0);
@@ -3050,31 +3046,15 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   public boolean hasPendingFriendRequestWithAnyLinkedDevice() {
     if (recipient.isGroupRecipient()) return false;
-    SettableFuture<Boolean> future = new SettableFuture<>();
-    LokiStorageAPI storageAPI = LokiStorageAPI.Companion.getShared();
 
-    MultiDeviceUtilitiesKt.getAllDeviceFriendRequestStatus(this, recipient.getAddress().serialize(), storageAPI).success(map -> {
-      for (LokiThreadFriendRequestStatus status : map.values()) {
-        // Break out of the loop as soon as one of the device has a pending friend request
-        if (status == LokiThreadFriendRequestStatus.REQUEST_SENDING || status == LokiThreadFriendRequestStatus.REQUEST_SENT || status == LokiThreadFriendRequestStatus.REQUEST_RECEIVED) {
-          future.set(true);
-          break;
-        }
+    Map<String, LokiThreadFriendRequestStatus> map = MultiDeviceUtilities.getAllDeviceFriendRequestStatuses(this, recipient.getAddress().serialize());
+    for (LokiThreadFriendRequestStatus status : map.values()) {
+      if (status == LokiThreadFriendRequestStatus.REQUEST_SENDING || status == LokiThreadFriendRequestStatus.REQUEST_SENT || status == LokiThreadFriendRequestStatus.REQUEST_RECEIVED) {
+        return true;
       }
-
-      // If we reached this and we haven't set anything on the future then it means that we don't have a pending request
-      if (!future.isDone()) { future.set(false); }
-      return Unit.INSTANCE;
-    }).fail(e -> {
-      future.set(false);
-      return Unit.INSTANCE;
-    });
-
-    try {
-      return future.get();
-    } catch (Exception e) {
-      return false;
     }
+
+    return false;
   }
   // endregion
 }
