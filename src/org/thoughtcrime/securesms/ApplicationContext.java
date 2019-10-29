@@ -147,7 +147,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   private LokiPublicChatAPI lokiPublicChatAPI = null;
   public SignalCommunicationModule communicationModule;
   public MixpanelAPI mixpanel;
-  private BroadcastReceiver syncMessageEventReceiver;
 
   private volatile boolean isAppVisible;
 
@@ -200,22 +199,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     if (setUpStorageAPIIfNeeded()) {
       LokiStorageAPI.Companion.getShared().updateUserDeviceMappings();
     }
-
-    // Loki - Event listener
-    syncMessageEventReceiver = new BroadcastReceiver() {
-      @Override
-      public void onReceive(Context context, Intent intent) {
-        // Send the sync message to our devices
-        long messageID = intent.getLongExtra(LokiMessageSyncEvent.MESSAGE_ID, -1);
-        long timestamp = intent.getLongExtra(LokiMessageSyncEvent.TIMESTAMP, -1);
-        byte[] message = intent.getByteArrayExtra(LokiMessageSyncEvent.SYNC_MESSAGE);
-        int ttl = intent.getIntExtra(LokiMessageSyncEvent.TTL, -1);
-        if (messageID > 0 && timestamp > 0 && message != null && ttl > 0) {
-          MessageSender.sendSyncMessageToOurDevices(context, messageID, timestamp, message, ttl);
-        }
-      }
-    };
-    LocalBroadcastManager.getInstance(this).registerReceiver(syncMessageEventReceiver, new IntentFilter(LokiMessageSyncEvent.MESSAGE_SYNC_EVENT));
   }
 
   @Override
@@ -243,7 +226,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   @Override
   public void onTerminate() {
     stopKovenant();
-    LocalBroadcastManager.getInstance(this).unregisterReceiver(syncMessageEventReceiver);
     super.onTerminate();
   }
 
@@ -532,6 +514,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   }
 
   public void createDefaultPublicChatsIfNeeded() {
+    /*
     List<LokiPublicChat> defaultPublicChats = LokiPublicChatAPI.Companion.getDefaultChats(BuildConfig.DEBUG);
     for (LokiPublicChat publiChat : defaultPublicChats) {
       long threadID = GroupManager.getThreadId(publiChat.getId(), this);
@@ -548,6 +531,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         TextSecurePreferences.setBooleanPreference(this, migrationKey, true);
       }
     }
+     */
   }
 
   public void createRSSFeedsIfNeeded() {

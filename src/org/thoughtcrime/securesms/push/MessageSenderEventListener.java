@@ -5,6 +5,7 @@ import android.content.Context;
 import org.thoughtcrime.securesms.crypto.SecurityEvent;
 import org.thoughtcrime.securesms.loki.FriendRequestHandler;
 import org.thoughtcrime.securesms.loki.LokiMessageSyncEvent;
+import org.thoughtcrime.securesms.sms.MessageSender;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
@@ -25,7 +26,9 @@ public class MessageSenderEventListener implements SignalServiceMessageSender.Ev
 
   @Override
   public void onSyncEvent(long messageID, long timestamp, byte[] message, int ttl) {
-    LokiMessageSyncEvent.INSTANCE.broadcastSecurityUpdateEvent(context, messageID, timestamp, message, ttl);
+    if (messageID > 0 && timestamp > 0 && message != null && ttl > 0) {
+      MessageSender.sendSyncMessageToOurDevices(context, messageID, timestamp, message, ttl);
+    }
   }
 
   @Override public void onFriendRequestSending(long messageID, long threadID) {
