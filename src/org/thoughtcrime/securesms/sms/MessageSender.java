@@ -60,7 +60,6 @@ import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.push.ContactTokenDetails;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.loki.api.LokiStorageAPI;
-import org.whispersystems.signalservice.loki.messaging.LokiMessageFriendRequestStatus;
 import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus;
 
 import java.io.IOException;
@@ -132,7 +131,7 @@ public class MessageSender {
 
     // Loki - Set the message's friend request status as soon as it has hit the database
     if (message.isFriendRequest) {
-      FriendRequestHandler.handleFriendRequest(context, FriendRequestHandler.ActionType.Sending, messageId, allocatedThreadId);
+      FriendRequestHandler.updateFriendRequestState(context, FriendRequestHandler.ActionType.Sending, messageId, allocatedThreadId);
     }
 
     sendTextMessage(context, recipient, forceSms, keyExchange, messageId);
@@ -168,7 +167,7 @@ public class MessageSender {
           long messageID = database.insertMessageOutbox(message, allocatedThreadId, forceSms, insertListener);
           // Loki - Set the message's friend request status as soon as it has hit the database
           if (message.isFriendRequest) {
-            FriendRequestHandler.handleFriendRequest(context, FriendRequestHandler.ActionType.Sending, messageID, allocatedThreadId);
+            FriendRequestHandler.updateFriendRequestState(context, FriendRequestHandler.ActionType.Sending, messageID, allocatedThreadId);
           }
           sendMediaMessage(context, recipient, forceSms, messageID, message.getExpiresIn());
         } catch (Exception e) {
@@ -181,7 +180,7 @@ public class MessageSender {
         long messageID = database.insertMessageOutbox(message, allocatedThreadId, forceSms, insertListener);
         // Loki - Set the message's friend request status as soon as it has hit the database
         if (message.isFriendRequest) {
-          FriendRequestHandler.handleFriendRequest(context, FriendRequestHandler.ActionType.Sending, messageID, allocatedThreadId);
+          FriendRequestHandler.updateFriendRequestState(context, FriendRequestHandler.ActionType.Sending, messageID, allocatedThreadId);
         }
         sendMediaMessage(context, recipient, forceSms, messageID, message.getExpiresIn());
       } catch (MmsException e) {

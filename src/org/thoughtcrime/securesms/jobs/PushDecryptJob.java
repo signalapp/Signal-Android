@@ -66,6 +66,7 @@ import org.thoughtcrime.securesms.linkpreview.Link;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.loki.FriendRequestHandler;
 import org.thoughtcrime.securesms.loki.LokiAPIUtilities;
 import org.thoughtcrime.securesms.loki.LokiMessageDatabase;
 import org.thoughtcrime.securesms.loki.LokiPreKeyBundleDatabase;
@@ -961,11 +962,6 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       // Ignore the message if the body is empty
       if (textMessage.getMessageBody().length() == 0) { return; }
 
-      // Don't insert friend request if we're already friends with a one of the users other device
-      if (message.isFriendRequest() && MultiDeviceUtilitiesKt.isFriendsWithAnyLinkedDevice(context, primaryDeviceRecipient)) {
-        return;
-      }
-
       // Insert the message into the database
       Optional<InsertResult> insertResult = database.insertMessageInbox(textMessage);
 
@@ -1103,14 +1099,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     // it must be a friend request accepted message. Declining a friend request doesn't send a message.
     lokiThreadDatabase.setFriendRequestStatus(threadID, LokiThreadFriendRequestStatus.FRIENDS);
     // Update the last message if needed
-    // TODO: Fix this logic to update the last friend request message
-    SmsDatabase smsDatabase = DatabaseFactory.getSmsDatabase(context);
-    LokiMessageDatabase lokiMessageDatabase = DatabaseFactory.getLokiMessageDatabase(context);
-    int messageCount = smsDatabase.getMessageCountForThread(threadID);
-    long messageID = smsDatabase.getIDForMessageAtIndex(threadID, messageCount - 1);
-    if (messageID > -1 && lokiMessageDatabase.getFriendRequestStatus(messageID) != LokiMessageFriendRequestStatus.REQUEST_ACCEPTED) {
-      lokiMessageDatabase.setFriendRequestStatus(messageID, LokiMessageFriendRequestStatus.REQUEST_ACCEPTED);
-    }
+    FriendRequestHandler.updateLastFriendRequestMessage(context, threadID, LokiMessageFriendRequestStatus.REQUEST_ACCEPTED);
   }
 
   private void updateFriendRequestStatusIfNeeded(@NonNull SignalServiceEnvelope envelope, @NonNull SignalServiceContent content, @NonNull SignalServiceDataMessage message) {
@@ -1134,7 +1123,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       long threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(originalRecipient);
       long primaryDeviceThreadID = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(primaryDeviceRecipient);
       LokiThreadFriendRequestStatus threadFriendRequestStatus = lokiThreadDatabase.getFriendRequestStatus(threadID);
-      int messageCount = smsMessageDatabase.getMessageCountForThread(primaryDeviceThreadID);
+
       if (threadFriendRequestStatus == LokiThreadFriendRequestStatus.REQUEST_SENT) {
         // This can happen if Alice sent Bob a friend request, Bob declined, but then Bob changed his
         // mind and sent a friend request to Alice. In this case we want Alice to auto-accept the request
@@ -1148,9 +1137,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         // `REQUEST_SENT`.
         lokiThreadDatabase.setFriendRequestStatus(threadID, LokiThreadFriendRequestStatus.FRIENDS);
         // Since messages are forwarded to the primary device thread, we need to update it there
-        // TODO: Fix this logic to update the last friend request message
-        long messageID = smsMessageDatabase.getIDForMessageAtIndex(primaryDeviceThreadID, messageCount - 2); // The message before the one that was just received
-        lokiMessageDatabase.setFriendRequestStatus(messageID, LokiMessageFriendRequestStatus.REQUEST_ACCEPTED);
+        FriendRequestHandler.updateLastFriendRequestMessage(context, primaryDeviceThreadID, LokiMessageFriendRequestStatus.REQUEST_ACCEPTED);
         // Accept the friend request
         MessageSender.sendBackgroundMessage(context, content.getSender());
       } else if (threadFriendRequestStatus != LokiThreadFriendRequestStatus.FRIENDS) {
@@ -1160,10 +1147,9 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         // request. Alice's thread's friend request status is reset to
         // `REQUEST_RECEIVED`.
         lokiThreadDatabase.setFriendRequestStatus(threadID, LokiThreadFriendRequestStatus.REQUEST_RECEIVED);
+
         // Since messages are forwarded to the primary device thread, we need to update it there
-        long smsMessageID = smsMessageDatabase.getIDForMessageAtIndex(primaryDeviceThreadID, messageCount - 1); // The message that was just received
-        long messageID = smsMessageID != -1 ? smsMessageID : mmsMessageDatabase.getIDForMessageAtIndex(primaryDeviceThreadID, 0);
-        lokiMessageDatabase.setFriendRequestStatus(messageID, LokiMessageFriendRequestStatus.REQUEST_PENDING);
+        FriendRequestHandler.receivedIncomingFriendRequestMessage(context, primaryDeviceThreadID);
       }
     }
   }

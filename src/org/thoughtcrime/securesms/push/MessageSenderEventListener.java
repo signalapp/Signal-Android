@@ -29,14 +29,14 @@ public class MessageSenderEventListener implements SignalServiceMessageSender.Ev
   }
 
   @Override public void onFriendRequestSending(long messageID, long threadID) {
-    FriendRequestHandler.handleFriendRequest(context, FriendRequestHandler.ActionType.Sending, messageID, threadID);
+    FriendRequestHandler.updateFriendRequestState(context, FriendRequestHandler.ActionType.Sending, messageID, threadID);
   }
 
   @Override public void onFriendRequestSent(long messageID, long threadID) {
-    FriendRequestHandler.handleFriendRequest(context, FriendRequestHandler.ActionType.Sent, messageID, threadID);
+    FriendRequestHandler.updateFriendRequestState(context, FriendRequestHandler.ActionType.Sent, messageID, threadID);
   }
 
   @Override public void onFriendRequestSendingFail(long messageID, long threadID) {
-    FriendRequestHandler.handleFriendRequest(context, FriendRequestHandler.ActionType.Failed, messageID, threadID);
+    FriendRequestHandler.updateFriendRequestState(context, FriendRequestHandler.ActionType.Failed, messageID, threadID);
   }
 }

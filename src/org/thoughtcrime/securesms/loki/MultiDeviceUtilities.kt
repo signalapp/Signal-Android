@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.loki
 
 import android.content.Context
+import android.os.Handler
 import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.deferred
 import nl.komponents.kovenant.functional.bind
@@ -134,9 +135,13 @@ fun signAndSendPairingAuthorisationMessage(context: Context, pairingAuthorisatio
     Log.d("Loki", "Failed to send pairing authorization message to ${pairingAuthorisation.secondaryDevicePublicKey}.")
   }
   DatabaseFactory.getLokiAPIDatabase(context).insertOrUpdatePairingAuthorisation(signedPairingAuthorisation)
-  LokiStorageAPI.shared.updateUserDeviceMappings().fail { exception ->
-    Log.w("Loki", "Failed to update device mapping")
-  }
+  // Call function after a short delay
+  Handler().postDelayed({
+    LokiStorageAPI.shared.updateUserDeviceMappings().fail {
+      Log.w("Loki", "Failed to update device mapping")
+    }
+  }, 100)
+
 }
 
 fun shouldSendSycMessage(context: Context, address: Address): Boolean {

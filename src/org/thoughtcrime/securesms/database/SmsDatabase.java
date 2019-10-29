@@ -47,6 +47,7 @@ import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.IOException;
 import java.security.SecureRandom;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -191,6 +192,23 @@ public class SmsDatabase extends MessagingDatabase {
       }
     }
     return -1;
+  }
+
+  public Set<Long> getAllMessageIDs(long threadID) {
+    SQLiteDatabase database = databaseHelper.getReadableDatabase();
+    Cursor cursor = null;
+    Set<Long> messageIDs = new HashSet<>();
+    try {
+      cursor = database.query(TABLE_NAME, null, THREAD_ID + " = ?", new String[] { threadID + "" }, null, null, null);
+      while (cursor != null && cursor.moveToNext()) {
+        messageIDs.add(cursor.getLong(0));
+      }
+    } finally {
+      if (cursor != null) {
+        cursor.close();
+      }
+    }
+    return messageIDs;
   }
 
   public void markAsEndSession(long id) {
