@@ -1099,7 +1099,9 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     // it must be a friend request accepted message. Declining a friend request doesn't send a message.
     lokiThreadDatabase.setFriendRequestStatus(threadID, LokiThreadFriendRequestStatus.FRIENDS);
     // Update the last message if needed
-    FriendRequestHandler.updateLastFriendRequestMessage(context, threadID, LokiMessageFriendRequestStatus.REQUEST_ACCEPTED);
+    String primaryDevice = MultiDeviceUtilitiesKt.getPrimaryDevicePublicKey(pubKey);
+    long primaryDeviceThreadID = primaryDevice == null ? threadID : DatabaseFactory.getThreadDatabase(context).getThreadIdFor(Recipient.from(context, Address.fromSerialized(primaryDevice), false));
+    FriendRequestHandler.updateLastFriendRequestMessage(context, primaryDeviceThreadID, LokiMessageFriendRequestStatus.REQUEST_ACCEPTED);
   }
 
   private void updateFriendRequestStatusIfNeeded(@NonNull SignalServiceEnvelope envelope, @NonNull SignalServiceContent content, @NonNull SignalServiceDataMessage message) {

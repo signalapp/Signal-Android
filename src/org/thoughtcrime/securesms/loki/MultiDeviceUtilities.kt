@@ -41,15 +41,23 @@ fun getAllDeviceFriendRequestStatus(context: Context, hexEncodedPublicKey: Strin
 
 fun getAllDevicePublicKeys(context: Context, hexEncodedPublicKey: String, storageAPI: LokiStorageAPI, block: (devicePublicKey: String, isFriend: Boolean, friendCount: Int) -> Unit) {
   val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context)
-  storageAPI.getAllDevicePublicKeys(hexEncodedPublicKey).success { items ->
-    val devices = items.toMutableSet()
-    if (hexEncodedPublicKey != userHexEncodedPublicKey) {
-      devices.remove(userHexEncodedPublicKey)
-    }
-    val friends = getFriendPublicKeys(context, devices)
-    for (device in devices) {
-      block(device, friends.contains(device), friends.count())
-    }
+  val devices = getAllDevicePublicKeys(hexEncodedPublicKey, storageAPI).toMutableSet()
+  if (hexEncodedPublicKey != userHexEncodedPublicKey) {
+    devices.remove(userHexEncodedPublicKey)
+  }
+  val friends = getFriendPublicKeys(context, devices)
+  for (device in devices) {
+    block(device, friends.contains(device), friends.count())
+  }
+}
+
+fun getAllDevicePublicKeys(hexEncodedPublicKey: String, storageAPI: LokiStorageAPI): Set<String> {
+  val future = SettableFuture<Set<String>>()
+  storageAPI.getAllDevicePublicKeys(hexEncodedPublicKey).success { future.set(it) }.fail { future.setException(it) }
+  return try {
+    future.get()
+  } catch (e: Exception) {
+    setOf()
   }
 }
 

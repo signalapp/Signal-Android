@@ -128,6 +128,7 @@ import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher;
 import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
 import org.thoughtcrime.securesms.crypto.SecurityEvent;
 import org.thoughtcrime.securesms.database.Address;
+import org.thoughtcrime.securesms.database.Database;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.DraftDatabase;
 import org.thoughtcrime.securesms.database.DraftDatabase.Draft;
@@ -245,6 +246,7 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -2187,8 +2189,22 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   @Override
   public void handleThreadFriendRequestStatusChanged(long threadID) {
-    if (threadID != this.threadId) { return; }
-    new Handler(getMainLooper()).post(this::updateInputPanel);
+    Util.runOnMain(() -> {
+      boolean shouldUpdateInputPanel = true;
+      if (threadID != this.threadId) {
+        Recipient threadRecipient = DatabaseFactory.getThreadDatabase(this).getRecipientForThreadId(threadID);
+        if (threadRecipient != null && !threadRecipient.isGroupRecipient()) {
+          // We should update our input if this thread is a part of the other threads device
+          Set<String> devices = MultiDeviceUtilitiesKt.getAllDevicePublicKeys(threadRecipient.getAddress().serialize(), LokiStorageAPI.Companion.getShared());
+          shouldUpdateInputPanel = devices.contains(recipient.getAddress().serialize());
+        } else {
+          shouldUpdateInputPanel = false;
+        }
+      }
+      if (shouldUpdateInputPanel) {
+        this.updateInputPanel();
+      }
+    });
   }
 
   private void updateInputPanel() {
