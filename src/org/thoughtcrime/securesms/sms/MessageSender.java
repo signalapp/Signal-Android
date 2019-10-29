@@ -269,6 +269,14 @@ public class MessageSender {
       jobManager.add(new PushTextSendJob(messageId, recipient.getAddress()));
       return;
     }
+
+    // Note to self
+    boolean isNoteToSelf = MultiDeviceUtilitiesKt.isOneOfOurDevices(context, recipient.getAddress());
+    if (isNoteToSelf) {
+      jobManager.add(new PushTextSendJob(messageId, recipient.getAddress()));
+      return;
+    }
+
     boolean[] hasSentSyncMessage = { false };
 
     MultiDeviceUtilitiesKt.getAllDevicePublicKeys(context, recipientPublicKey, storageAPI, (devicePublicKey, isFriend, friendCount) -> {
@@ -302,6 +310,13 @@ public class MessageSender {
     String recipientPublicKey = recipient.getAddress().serialize();
     if (GeneralUtilitiesKt.isPublicChat(context, recipientPublicKey)) {
       PushMediaSendJob.enqueue(context, jobManager, messageId, recipient.getAddress(), false);
+      return;
+    }
+
+    // Note to self
+    boolean isNoteToSelf = MultiDeviceUtilitiesKt.isOneOfOurDevices(context, recipient.getAddress());
+    if (isNoteToSelf) {
+      jobManager.add(new PushTextSendJob(messageId, recipient.getAddress()));
       return;
     }
 

@@ -225,12 +225,12 @@ public class PushTextSendJob extends PushSendJob implements InjectableType {
         Optional<UnidentifiedAccessPair> syncAccess  = UnidentifiedAccessUtil.getAccessForSync(context);
         SignalServiceSyncMessage         syncMessage = buildSelfSendSyncMessage(context, textSecureMessage, syncAccess);
 
-        messageSender.sendMessage(messageId, syncMessage, syncAccess);
+        messageSender.sendMessage(templateMessageId, syncMessage, syncAccess);
         return syncAccess.isPresent();
       } else {
         LokiSyncMessage syncMessage = null;
         if (shouldSendSyncMessage) {
-          // Set the sync message destination the primary device, this way it will show that we sent a message to the primary device and not a secondary device
+          // Set the sync message destination to the primary device, this way it will show that we sent a message to the primary device and not a secondary device
           String primaryDevice = MultiDeviceUtilitiesKt.getPrimaryDevicePublicKey(address.getNumber());
           SignalServiceAddress primaryAddress = primaryDevice == null ? address : new SignalServiceAddress(primaryDevice);
           // We also need to use the original message id and not -1

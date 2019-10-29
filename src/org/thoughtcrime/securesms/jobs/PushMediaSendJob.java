@@ -274,7 +274,7 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
         Optional<UnidentifiedAccessPair> syncAccess  = UnidentifiedAccessUtil.getAccessForSync(context);
         SignalServiceSyncMessage         syncMessage = buildSelfSendSyncMessage(context, mediaMessage, syncAccess);
 
-        messageSender.sendMessage(messageId, syncMessage, syncAccess);
+        messageSender.sendMessage(templateMessageId, syncMessage, syncAccess);
         return syncAccess.isPresent();
       } else {
         LokiSyncMessage syncMessage = null;

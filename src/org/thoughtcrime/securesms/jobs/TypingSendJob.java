@@ -10,6 +10,7 @@ import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.loki.MultiDeviceUtilitiesKt;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -96,9 +97,8 @@ public class TypingSendJob extends BaseJob implements InjectableType {
     List<Optional<UnidentifiedAccessPair>> unidentifiedAccess = Stream.of(recipients).map(r -> UnidentifiedAccessUtil.getAccessFor(context, r)).toList();
     SignalServiceTypingMessage             typingMessage      = new SignalServiceTypingMessage(typing ? Action.STARTED : Action.STOPPED, System.currentTimeMillis(), groupId);
 
-    // Loki - Don't send typing indicators in group chats
-    if (!recipient.isGroupRecipient()) {
-      // TODO: Message ID
+    // Loki - Don't send typing indicators in group chats or to ourselves
+    if (!recipient.isGroupRecipient() && !MultiDeviceUtilitiesKt.isOneOfOurDevices(context, recipient.getAddress())) {
       messageSender.sendTyping(0, addresses, unidentifiedAccess, typingMessage);
     }
   }
