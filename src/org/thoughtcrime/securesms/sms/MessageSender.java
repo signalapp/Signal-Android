@@ -97,7 +97,7 @@ public class MessageSender {
     Util.runOnMain(() -> {
       SignalServiceMessageSender messageSender = ApplicationContext.getInstance(context).communicationModule.provideSignalMessageSender();
       SignalServiceAddress address = new SignalServiceAddress(contactHexEncodedPublicKey);
-      SignalServiceDataMessage message = new SignalServiceDataMessage(System.currentTimeMillis(), "");
+      SignalServiceDataMessage message = new SignalServiceDataMessage(System.currentTimeMillis(), null);
       try {
         // Try send to the original person
         messageSender.sendMessage(0, address, Optional.absent(), message); // The message ID doesn't matter
