@@ -1620,6 +1620,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void initializeResources() {
+    if (recipient != null) {
+      recipient.removeObservers(this);
+    }
+
     recipient        = Recipient.live(getIntent().getParcelableExtra(RECIPIENT_EXTRA));
     threadId         = getIntent().getLongExtra(THREAD_ID_EXTRA, -1);
     archived         = getIntent().getBooleanExtra(IS_ARCHIVED_EXTRA, false);
