@@ -514,7 +514,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   }
 
   public void createDefaultPublicChatsIfNeeded() {
-    /*
     List<LokiPublicChat> defaultPublicChats = LokiPublicChatAPI.Companion.getDefaultChats(BuildConfig.DEBUG);
     for (LokiPublicChat publiChat : defaultPublicChats) {
       long threadID = GroupManager.getThreadId(publiChat.getId(), this);
@@ -531,7 +530,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         TextSecurePreferences.setBooleanPreference(this, migrationKey, true);
       }
     }
-     */
   }
 
   public void createRSSFeedsIfNeeded() {
