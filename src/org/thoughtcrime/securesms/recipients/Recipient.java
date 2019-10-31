@@ -300,13 +300,22 @@ public class Recipient {
       List<String> names = new LinkedList<>();
 
       for (Recipient recipient : participants) {
-        names.add(recipient.getDisplayName(context));
+        names.add(recipient.toShortString(context));
       }
 
       return Util.join(names, ", ");
     }
 
     return this.name;
+  }
+
+  /**
+   * TODO [UUID] -- Remove once UUID Feature Flag is removed
+   */
+  @Deprecated
+  public @NonNull String toShortString(@NonNull Context context) {
+    if (FeatureFlags.PROFILE_DISPLAY) return getDisplayName(context);
+    else                    return Optional.fromNullable(getName(context)).or(getSmsAddress()).or("");
   }
 
   public @NonNull String getDisplayName(@NonNull Context context) {
@@ -425,10 +434,6 @@ public class Recipient {
     }
   }
 
-  public @Nullable String getCustomLabel() {
-    return customLabel;
-  }
-
   /**
    * @return A single string to represent the recipient, in order of precedence:
    *
@@ -452,6 +457,11 @@ public class Recipient {
 
   public @Nullable String getProfileName() {
     return profileName;
+  }
+
+  public @Nullable String getCustomLabel() {
+    if (FeatureFlags.PROFILE_DISPLAY) throw new AssertionError("This method should never be called if PROFILE_DISPLAY is enabled.");
+    return customLabel;
   }
 
   public @Nullable String getProfileAvatar() {

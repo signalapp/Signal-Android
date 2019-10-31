@@ -445,7 +445,7 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
     }
 
     private void setRecipientText(Recipient recipient) {
-      description.setText(Html.fromHtml(String.format(getActivity().getString(R.string.verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s), recipient.getDisplayName(getContext()))));
+      description.setText(Html.fromHtml(String.format(getActivity().getString(R.string.verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s), recipient.toShortString(getContext()))));
       description.setMovementMethod(LinkMovementMethod.getInstance());
     }
 

@@ -499,7 +499,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
 
         if (failIfNotPush && !isPush) {
           results.add(new Result(null, false, activity.getString(R.string.GroupCreateActivity_cannot_add_non_push_to_existing_group,
-                                                                 recipient.getDisplayName(activity))));
+                                                                 recipient.toShortString(activity))));
         } else if (TextUtils.equals(TextSecurePreferences.getLocalNumber(activity), recipient.getE164().or(""))) {
           results.add(new Result(null, false, activity.getString(R.string.GroupCreateActivity_youre_already_in_the_group)));
         } else {

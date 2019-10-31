@@ -10,6 +10,7 @@ import android.text.TextUtils;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientExporter;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.util.LinkedList;
@@ -105,12 +106,24 @@ public class GroupMembersDialog extends AsyncTask<Void, Void, List<Recipient>> {
         if (recipient.isLocalNumber()) {
           recipientStrings.add(context.getString(R.string.GroupMembersDialog_me));
         } else {
-          String name = recipient.getDisplayName(context);
+          String name = getRecipientName(recipient);
           recipientStrings.add(name);
         }
       }
 
       return recipientStrings.toArray(new String[members.size()]);
+    }
+
+    private String getRecipientName(Recipient recipient) {
+      if (FeatureFlags.PROFILE_DISPLAY) return recipient.getDisplayName(context);
+
+      String name = recipient.toShortString(context);
+
+      if (recipient.getName(context) == null && !TextUtils.isEmpty(recipient.getProfileName())) {
+        name += " ~" + recipient.getProfileName();
+      }
+
+      return name;
     }
 
     public Recipient get(int index) {

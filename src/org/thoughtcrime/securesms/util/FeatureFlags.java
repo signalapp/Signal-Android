@@ -13,4 +13,7 @@ public class FeatureFlags {
 
   /** Usernames. */
   public static final boolean USERNAMES = false;
+
+  /** New Profile Display */
+  public static final boolean PROFILE_DISPLAY = UUIDS;
 }

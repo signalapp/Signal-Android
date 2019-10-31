@@ -143,6 +143,12 @@
                 android:layout_height="wrap_content"
                 android:visibility="gone" />
 
+            <TextView
+                android:id="@+id/group_message_sender_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+
             <org.thoughtcrime.securesms.components.ConversationItemFooter
                 android:id="@+id/conversation_item_footer"
                 android:layout_width="match_parent"

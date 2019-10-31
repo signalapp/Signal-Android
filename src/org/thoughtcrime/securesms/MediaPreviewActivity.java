@@ -160,7 +160,7 @@ public final class MediaPreviewActivity extends PassphraseRequiredActionBarActiv
       }
 
       if      (mediaItem.outgoing)          getSupportActionBar().setTitle(getString(R.string.MediaPreviewActivity_you));
-      else if (mediaItem.recipient != null) getSupportActionBar().setTitle(mediaItem.recipient.getDisplayName(this));
+      else if (mediaItem.recipient != null) getSupportActionBar().setTitle(mediaItem.recipient.toShortString(this));
       else                                  getSupportActionBar().setTitle("");
 
       getSupportActionBar().setSubtitle(relativeTimeSpan);

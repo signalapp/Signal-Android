@@ -38,6 +38,8 @@ import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.RotateProfileKeyJob;
 import org.thoughtcrime.securesms.logging.Log;
+
+import android.telephony.PhoneNumberUtils;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -79,6 +81,7 @@ import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.DynamicDarkToolbarTheme;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -225,7 +228,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
     else                      this.avatar.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
     this.avatar.setBackgroundColor(recipient.getColor().toActionBarColor(this));
-    this.toolbarLayout.setTitle(recipient.getDisplayName(this));
+    this.toolbarLayout.setTitle(recipient.toShortString(this));
     this.toolbarLayout.setContentScrimColor(recipient.getColor().toActionBarColor(this));
   }
 
@@ -420,9 +423,14 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
         colorPreference.setColors(MaterialColors.CONVERSATION_PALETTE.asConversationColorArray(requireActivity()));
         colorPreference.setColor(recipient.getColor().toActionBarColor(requireActivity()));
 
-        aboutPreference.setTitle(recipient.getDisplayName(requireContext()));
+        if (FeatureFlags.PROFILE_DISPLAY) {
+          aboutPreference.setTitle(recipient.getDisplayName(requireContext()));
+          aboutPreference.setSummary(recipient.resolve().getE164().or(""));
+        } else {
+          aboutPreference.setTitle(formatRecipient(recipient));
+          aboutPreference.setSummary(recipient.getCustomLabel());
+        }
 
-        aboutPreference.setSummary(recipient.resolve().getE164().or(""));
         aboutPreference.setSecure(recipient.getRegistered() == RecipientDatabase.RegisteredState.REGISTERED);
 
         if (recipient.isBlocked()) blockPreference.setTitle(R.string.RecipientPreferenceActivity_unblock);
@@ -448,6 +456,12 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
           }
         });
       }
+    }
+
+    private @NonNull String formatRecipient(@NonNull Recipient recipient) {
+      if      (recipient.getE164().isPresent())  return PhoneNumberUtils.formatNumber(recipient.requireE164());
+      else if (recipient.getEmail().isPresent()) return recipient.requireEmail();
+      else                                       return "";
     }
 
     private @NonNull String getRingtoneSummary(@NonNull Context context, @Nullable Uri ringtone) {
