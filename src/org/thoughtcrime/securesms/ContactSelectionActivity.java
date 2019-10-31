@@ -128,7 +128,6 @@ public abstract class ContactSelectionActivity extends PassphraseRequiredActionB
 
     @Override
     protected Void doInBackground(Context... params) {
-
       try {
         DirectoryHelper.refreshDirectory(params[0], true);
       } catch (IOException e) {
