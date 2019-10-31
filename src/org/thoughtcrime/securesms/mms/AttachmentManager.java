@@ -410,6 +410,7 @@ public class AttachmentManager {
   }
 
   public static void selectLocation(Activity activity, int requestCode) {
+    /* Loki - Enable again once we have location sharing
     Permissions.with(activity)
                .request(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
                .ifNecessary()
@@ -422,6 +423,7 @@ public class AttachmentManager {
                  }
                })
                .execute();
+     */
   }
 
   public static void selectGif(Activity activity, int requestCode, boolean isForMms) {

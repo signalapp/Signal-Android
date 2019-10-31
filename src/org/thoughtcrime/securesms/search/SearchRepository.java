@@ -121,6 +121,8 @@ public class SearchRepository {
   }
 
   private CursorList<Recipient> queryContacts(String query) {
+    return CursorList.emptyList();
+    /* Loki - Don't need contact permissions
     if (!Permissions.hasAny(context, Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS)) {
       return CursorList.emptyList();
     }
@@ -130,6 +132,7 @@ public class SearchRepository {
     MergeCursor contacts           = new MergeCursor(new Cursor[]{ textSecureContacts, systemContacts });
 
     return new CursorList<>(contacts, new RecipientModelBuilder(context));
+     */
   }
 
   private CursorList<ThreadRecord> queryConversations(@NonNull String query) {

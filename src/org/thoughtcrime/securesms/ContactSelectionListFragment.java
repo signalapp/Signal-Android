@@ -178,6 +178,7 @@ public class ContactSelectionListFragment extends    Fragment
     showContactsDescription.setText(R.string.contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them);
     showContactsButton.setVisibility(View.VISIBLE);
 
+    /*
     showContactsButton.setOnClickListener(v -> {
       Permissions.with(this)
                  .request(Manifest.permission.WRITE_CONTACTS, Manifest.permission.READ_CONTACTS)
@@ -190,6 +191,7 @@ public class ContactSelectionListFragment extends    Fragment
                  })
                  .execute();
     });
+    */
   }
 
   public void setQueryFilter(String filter) {

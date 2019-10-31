@@ -158,6 +158,7 @@ public class MultiDeviceContactUpdateJob extends BaseJob implements InjectableTy
   private void generateFullContactUpdate()
       throws IOException, UntrustedIdentityException, NetworkException
   {
+    /* Loki - Disabled
     if (!Permissions.hasAny(context, Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS)) {
       Log.w(TAG, "No contact permissions, skipping multi-device contact update...");
       return;
@@ -214,6 +215,7 @@ public class MultiDeviceContactUpdateJob extends BaseJob implements InjectableTy
     } finally {
       if (contactDataFile != null) contactDataFile.delete();
     }
+    */
   }
 
   @Override
