@@ -1080,7 +1080,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
   private void acceptFriendRequestIfNeeded(@NonNull SignalServiceEnvelope envelope, @NonNull SignalServiceContent content) {
     // If we get anything other than a friend request, we can assume that we have a session with the other user
-    if (envelope.isFriendRequest()) { return; }
+    if (envelope.isFriendRequest() || isGroupChatMessage(content)) { return; }
     becomeFriendsWithContact(content.getSender());
   }
 
@@ -1100,7 +1100,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   }
 
   private void updateFriendRequestStatusIfNeeded(@NonNull SignalServiceEnvelope envelope, @NonNull SignalServiceContent content, @NonNull SignalServiceDataMessage message) {
-    if (!envelope.isFriendRequest()) { return; }
+    if (!envelope.isFriendRequest() || isGroupChatMessage(message)) { return; }
     // This handles the case where another user sends us a regular message without authorisation
     boolean shouldBecomeFriends = MultiDeviceUtilities.shouldAutomaticallyBecomeFriendsWithDevice(content.getSender(), context);
     if (shouldBecomeFriends) {
@@ -1600,6 +1600,14 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     }
 
     return false;
+  }
+
+  private boolean isGroupChatMessage(SignalServiceContent content) {
+    return content.getDataMessage().isPresent() && isGroupChatMessage(content.getDataMessage().get());
+  }
+
+  private boolean isGroupChatMessage(SignalServiceDataMessage message) {
+    return message.isGroupUpdate();
   }
 
   private void resetRecipientToPush(@NonNull Recipient recipient) {
