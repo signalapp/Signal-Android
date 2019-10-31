@@ -25,6 +25,7 @@ import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.loki.api.LokiPublicChat
 import org.whispersystems.signalservice.loki.api.LokiPublicChatAPI
 import org.whispersystems.signalservice.loki.api.LokiPublicChatMessage
+import org.whispersystems.signalservice.loki.utilities.successBackground
 
 class LokiPublicChatPoller(private val context: Context, private val group: LokiPublicChat) {
     private val handler = Handler()
@@ -197,7 +198,8 @@ class LokiPublicChatPoller(private val context: Context, private val group: Loki
                 finalize()
             }
         }
-        api.getMessages(group.channel, group.server).success { messages ->
+        api.getMessages(group.channel, group.server).successBackground { messages ->
+            // Process messages in the background
             messages.forEach { message ->
                 if (message.hexEncodedPublicKey != userHexEncodedPublicKey) {
                     processIncomingMessage(message)
