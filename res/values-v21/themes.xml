@@ -24,6 +24,17 @@
         <item name="android:statusBarColor">@color/core_grey_60</item>
     </style>
 
+
+    <style name="TextSecure.LightRegistrationTheme" parent="TextSecure.LightNoActionBar">
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:navigationBarColor">@color/core_black</item>
+    </style>
+
+    <style name="TextSecure.DarkRegistrationTheme" parent="TextSecure.DarkNoActionBar">
+        <item name="android:statusBarColor">@color/core_grey_95</item>
+        <item name="android:navigationBarColor">@color/core_black</item>
+    </style>
+
     <style name="TextSecure.MediaPreview" parent="@style/TextSecure.BaseMediaPreview">
         <item name="android:navigationBarColor">@color/media_preview_bar_background</item>
     </style>

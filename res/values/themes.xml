@@ -626,6 +626,8 @@
     <style name="TextSecure.LightTheme.WebRTCCall">
         <item name="android:statusBarColor" tools:ignore="NewApi">@color/signal_primary</item>
         <item name="android:windowLightStatusBar" tools:ignore="NewApi">false</item>
+        <item name="android:navigationBarColor" tools:ignore="NewApi">@color/core_black</item>
+        <item name="android:windowLightNavigationBar" tools:ignore="NewApi">false</item>
     </style>
 
 </resources>

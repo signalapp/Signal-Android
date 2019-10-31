@@ -14,12 +14,13 @@
     <style name="TextSecure.LightRegistrationTheme" parent="TextSecure.LightNoActionBar">
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:statusBarColor">@color/white</item>
+        <item name="android:navigationBarColor">@color/core_black</item>
     </style>
 
     <style name="TextSecure.DarkRegistrationTheme" parent="TextSecure.DarkNoActionBar">
         <item name="android:windowLightStatusBar">false</item>
         <item name="android:statusBarColor">@color/core_grey_95</item>
-        <item name="android:navigationBarColor">@color/core_grey_95</item>
+        <item name="android:navigationBarColor">@color/core_black</item>
     </style>
 
     <style name="TextSecure.LightNoActionBar" parent="TextSecure.BaseLightNoActionBar">
