@@ -4,6 +4,8 @@ package org.thoughtcrime.securesms.loki
 import android.content.Context
 import android.os.Handler
 import nl.komponents.kovenant.Promise
+import nl.komponents.kovenant.functional.map
+import nl.komponents.kovenant.toFailVoid
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.database.Address
@@ -20,6 +22,10 @@ import org.whispersystems.signalservice.loki.api.PairingAuthorisation
 import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus
 import org.whispersystems.signalservice.loki.utilities.retryIfNeeded
 
+/*
+ All functions within this class, excluding the ones which return promises, BLOCK the thread! Don't run them on the main thread!
+ */
+
 fun getAllDeviceFriendRequestStatuses(context: Context, hexEncodedPublicKey: String): Map<String, LokiThreadFriendRequestStatus> {
   val lokiThreadDatabase = DatabaseFactory.getLokiThreadDatabase(context)
   val keys = LokiStorageAPI.shared.getAllDevicePublicKeys(hexEncodedPublicKey)
@@ -33,18 +39,20 @@ fun getAllDeviceFriendRequestStatuses(context: Context, hexEncodedPublicKey: Str
   return map
 }
 
-fun getAllDevicePublicKeysWithFriendStatus(context: Context, hexEncodedPublicKey: String): Map<String, Boolean> {
+fun getAllDevicePublicKeysWithFriendStatus(context: Context, hexEncodedPublicKey: String): Promise<Map<String, Boolean>, Unit> {
   val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context)
-  val devices = LokiStorageAPI.shared.getAllDevicePublicKeys(hexEncodedPublicKey).toMutableSet()
-  if (hexEncodedPublicKey != userHexEncodedPublicKey) {
-    devices.remove(userHexEncodedPublicKey)
-  }
-  val friends = getFriendPublicKeys(context, devices)
-  val map = mutableMapOf<String, Boolean>()
-  for (device in devices) {
-    map[device] = friends.contains(device)
-  }
-  return map
+  return LokiStorageAPI.shared.getAllDevicePublicKeysAsync(hexEncodedPublicKey).map { keys ->
+    val devices = keys.toMutableSet()
+    if (hexEncodedPublicKey != userHexEncodedPublicKey) {
+      devices.remove(userHexEncodedPublicKey)
+    }
+    val friends = getFriendPublicKeys(context, devices)
+    val friendMap = mutableMapOf<String, Boolean>()
+    for (device in devices) {
+      friendMap[device] = friends.contains(device)
+    }
+    friendMap
+  }.toFailVoid()
 }
 
 fun getFriendCount(context: Context, devices: Set<String>): Int {

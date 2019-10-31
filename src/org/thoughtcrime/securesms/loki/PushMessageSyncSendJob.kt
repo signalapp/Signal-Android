@@ -39,6 +39,7 @@ class PushMessageSyncSendJob private constructor(
 
   constructor(messageID: Long, recipient: Address, timestamp: Long, message: ByteArray, ttl: Int) : this(Parameters.Builder()
           .addConstraint(NetworkConstraint.KEY)
+          .setQueue(KEY)
           .setLifespan(TimeUnit.DAYS.toMillis(1))
           .setMaxAttempts(3)
           .build(),

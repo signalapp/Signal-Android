@@ -249,7 +249,11 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import kotlin.Unit;
 import network.loki.messenger.R;
+import nl.komponents.kovenant.Kovenant;
+import nl.komponents.kovenant.KovenantApi;
+import nl.komponents.kovenant.Promise;
 
+import static nl.komponents.kovenant.KovenantApi.task;
 import static org.thoughtcrime.securesms.TransportOption.Type;
 import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 import static org.whispersystems.libsignal.SessionCipher.SESSION_LOCK;
@@ -2185,44 +2189,50 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   @Override
   public void handleThreadFriendRequestStatusChanged(long threadID) {
-    Util.runOnMain(() -> {
-      boolean shouldUpdateInputPanel = true;
       if (threadID != this.threadId) {
         Recipient threadRecipient = DatabaseFactory.getThreadDatabase(this).getRecipientForThreadId(threadID);
         if (threadRecipient != null && !threadRecipient.isGroupRecipient()) {
-          // We should update our input if this thread is a part of the other threads device
-          Set<String> devices = LokiStorageAPI.shared.getAllDevicePublicKeys(threadRecipient.getAddress().serialize());
-          shouldUpdateInputPanel = devices.contains(recipient.getAddress().serialize());
-        } else {
-          shouldUpdateInputPanel = false;
+          LokiStorageAPI.shared.getAllDevicePublicKeysAsync(threadRecipient.getAddress().serialize()).success(devices -> {
+            // We should update our input if this thread is a part of the other threads device
+            if (devices.contains(recipient.getAddress().serialize())) {
+              this.updateInputPanel();
+            }
+            return Unit.INSTANCE;
+          });
         }
+        return;
       }
-      if (shouldUpdateInputPanel) {
-        this.updateInputPanel();
-      }
-    });
+
+      this.updateInputPanel();
   }
 
   private void updateInputPanel() {
-    if (recipient.isGroupRecipient()) {
+    if (recipient.isGroupRecipient() || isNoteToSelf()) {
+      setInputPanelEnabled(true);
+      return;
+    }
+
+    task(() -> {
+      // Run the functions below in a background thread since they are blocking
+      return MultiDeviceUtilities.isFriendsWithAnyLinkedDevice(this, recipient) || !hasPendingFriendRequestWithAnyLinkedDevice();
+    }).success(shouldEnableInput -> {
+      setInputPanelEnabled(shouldEnableInput);
+      return Unit.INSTANCE;
+    });
+  }
+
+  private void setInputPanelEnabled(boolean enabled) {
+    Util.runOnMain(() -> {
       updateToggleButtonState();
-      inputPanel.setEnabled(true);
-      inputPanel.composeText.requestFocus();
-      InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-      inputMethodManager.showSoftInput(inputPanel.composeText, 0);
-    }
-    boolean hasPendingFriendRequest = !recipient.isGroupRecipient() && hasPendingFriendRequestWithAnyLinkedDevice();
-    boolean isFriendsWithAnyLinkedDevices = MultiDeviceUtilities.isFriendsWithAnyLinkedDevice(this, recipient);
-    boolean shouldEnableInput = isFriendsWithAnyLinkedDevices || !hasPendingFriendRequest;
-    updateToggleButtonState();
-    inputPanel.setEnabled(shouldEnableInput);
-    int hintID = shouldEnableInput ? R.string.activity_conversation_default_hint : R.string.activity_conversation_pending_friend_request_hint;
-    inputPanel.setHint(getResources().getString(hintID));
-    if (shouldEnableInput) {
-      inputPanel.composeText.requestFocus();
-      InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-      inputMethodManager.showSoftInput(inputPanel.composeText, 0);
-    }
+      int hintID = enabled ? R.string.activity_conversation_default_hint : R.string.activity_conversation_pending_friend_request_hint;
+      inputPanel.setHint(getResources().getString(hintID));
+      inputPanel.setEnabled(enabled);
+      if (enabled) {
+        inputPanel.composeText.requestFocus();
+        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        inputMethodManager.showSoftInput(inputPanel.composeText, 0);
+      }
+    });
   }
 
   private void sendMessage() {
@@ -2428,7 +2438,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private void updateToggleButtonState() {
     // Don't allow attachments if we're not friends
     LokiThreadFriendRequestStatus friendRequestStatus = DatabaseFactory.getLokiThreadDatabase(this).getFriendRequestStatus(threadId);
-    if (!recipient.isGroupRecipient() && friendRequestStatus != LokiThreadFriendRequestStatus.FRIENDS) {
+    if (!isNoteToSelf() && !recipient.isGroupRecipient() && friendRequestStatus != LokiThreadFriendRequestStatus.FRIENDS) {
       buttonToggle.display(sendButton);
       quickAttachmentToggle.hide();
       inlineAttachmentToggle.hide();
@@ -3047,6 +3057,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   public boolean hasPendingFriendRequestWithAnyLinkedDevice() {
     if (recipient.isGroupRecipient()) return false;
 
+    // This call will block the thread that is being run on! be careful
     Map<String, LokiThreadFriendRequestStatus> map = MultiDeviceUtilities.getAllDeviceFriendRequestStatuses(this, recipient.getAddress().serialize());
     for (LokiThreadFriendRequestStatus status : map.values()) {
       if (status == LokiThreadFriendRequestStatus.REQUEST_SENDING || status == LokiThreadFriendRequestStatus.REQUEST_SENT || status == LokiThreadFriendRequestStatus.REQUEST_RECEIVED) {
@@ -3055,6 +3066,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
 
     return false;
+  }
+
+  public boolean isNoteToSelf() {
+    return TextSecurePreferences.getLocalNumber(this).equalsIgnoreCase(recipient.getAddress().serialize());
   }
   // endregion
 }

@@ -91,15 +91,16 @@ public class TypingStatusSender {
       ApplicationContext.getInstance(context).getJobManager().add(new TypingSendJob(threadId, typingStarted));
       return;
     }
-
-    Set<String> devices = LokiStorageAPI.shared.getAllDevicePublicKeys(recipient.getAddress().serialize());
-    for (String device : devices) {
-      Recipient deviceRecipient = Recipient.from(context, Address.fromSerialized(device), false);
-      long deviceThreadID = threadDatabase.getThreadIdIfExistsFor(deviceRecipient);
-      if (deviceThreadID > -1) {
-        ApplicationContext.getInstance(context).getJobManager().add(new TypingSendJob(deviceThreadID, typingStarted));
+    LokiStorageAPI.shared.getAllDevicePublicKeysAsync(recipient.getAddress().serialize()).success(devices -> {
+      for (String device : devices) {
+        Recipient deviceRecipient = Recipient.from(context, Address.fromSerialized(device), false);
+        long deviceThreadID = threadDatabase.getThreadIdIfExistsFor(deviceRecipient);
+        if (deviceThreadID > -1) {
+          ApplicationContext.getInstance(context).getJobManager().add(new TypingSendJob(deviceThreadID, typingStarted));
+        }
       }
-    }
+      return Unit.INSTANCE;
+    });
   }
 
   private class StartRunnable implements Runnable {

@@ -72,6 +72,8 @@ public class MessageSender {
 
   private static final String TAG = MessageSender.class.getSimpleName();
 
+  private enum MessageType { TEXT, MEDIA }
+
   public static void sendBackgroundMessageToAllDevices(Context context, String contactHexEncodedPublicKey) {
     // Send the background message to the original pubkey
     sendBackgroundMessage(context, contactHexEncodedPublicKey);
@@ -254,91 +256,64 @@ public class MessageSender {
   }
 
   private static void sendTextPush(Context context, Recipient recipient, long messageId) {
-    JobManager jobManager = ApplicationContext.getInstance(context).getJobManager();
-
-    // Just send the message normally if it's a group message
-    String recipientPublicKey = recipient.getAddress().serialize();
-    if (GeneralUtilitiesKt.isPublicChat(context, recipientPublicKey)) {
-      jobManager.add(new PushTextSendJob(messageId, recipient.getAddress()));
-      return;
-    }
-
-    // Note to self
-    boolean isNoteToSelf = MultiDeviceUtilities.isOneOfOurDevices(context, recipient.getAddress());
-    if (isNoteToSelf) {
-      jobManager.add(new PushTextSendJob(messageId, recipient.getAddress()));
-      return;
-    }
-
-    boolean hasSentSyncMessage = false;
-
-    Map<String, Boolean> devices = MultiDeviceUtilities.getAllDevicePublicKeysWithFriendStatus(context, recipientPublicKey);
-    int friendCount = MultiDeviceUtilities.getFriendCount(context, devices.keySet());
-    for (Map.Entry<String, Boolean> entry : devices.entrySet()) {
-      String devicePublicKey = entry.getKey();
-      boolean isFriend = entry.getValue();
-
-      Address address = Address.fromSerialized(devicePublicKey);
-      long messageIDToUse = recipientPublicKey.equals(devicePublicKey) ? messageId : -1L;
-
-      if (isFriend) {
-        // Send a normal message if the user is friends with the recipient
-        // We should also send a sync message if we haven't already sent one
-        boolean shouldSendSyncMessage = !hasSentSyncMessage && MultiDeviceUtilities.shouldSendSycMessage(context, address);
-        jobManager.add(new PushTextSendJob(messageId, messageIDToUse, address, shouldSendSyncMessage));
-        hasSentSyncMessage = shouldSendSyncMessage;
-      } else {
-        // Send friend requests to non friends. If the user is friends with any
-        // of the devices then send out a default friend request message.
-        boolean isFriendsWithAny = (friendCount > 0);
-        String defaultFriendRequestMessage = isFriendsWithAny ? "Accept this friend request to enable messages to be synced across devices" : null;
-        jobManager.add(new PushTextSendJob(messageId, messageIDToUse, address, true, defaultFriendRequestMessage, false));
-      }
-    }
+    sendMessagePush(context, MessageType.TEXT, recipient, messageId);
   }
 
   private static void sendMediaPush(Context context, Recipient recipient, long messageId) {
+    sendMessagePush(context, MessageType.MEDIA, recipient, messageId);
+  }
+
+  private static void sendMessagePush(Context context, MessageType type, Recipient recipient, long messageId) {
     JobManager jobManager = ApplicationContext.getInstance(context).getJobManager();
 
-    // Just send the message normally if it's a group message
+    // Just send the message normally if it's a group message or we're sending to one of our devices
+    // TODO: Test how badly this will block the thread
     String recipientPublicKey = recipient.getAddress().serialize();
-    if (GeneralUtilitiesKt.isPublicChat(context, recipientPublicKey)) {
-      PushMediaSendJob.enqueue(context, jobManager, messageId, recipient.getAddress(), false);
-      return;
-    }
-
-    // Note to self
-    boolean isNoteToSelf = MultiDeviceUtilities.isOneOfOurDevices(context, recipient.getAddress());
-    if (isNoteToSelf) {
-      jobManager.add(new PushTextSendJob(messageId, recipient.getAddress()));
-      return;
-    }
-
-    boolean hasSentSyncMessage = false;
-
-    Map<String, Boolean> devices = MultiDeviceUtilities.getAllDevicePublicKeysWithFriendStatus(context, recipientPublicKey);
-    int friendCount = MultiDeviceUtilities.getFriendCount(context, devices.keySet());
-    for (Map.Entry<String, Boolean> entry : devices.entrySet()) {
-      String devicePublicKey = entry.getKey();
-      boolean isFriend = entry.getValue();
-
-      Address address = Address.fromSerialized(devicePublicKey);
-      long messageIDToUse = recipientPublicKey.equals(devicePublicKey) ? messageId : -1L;
-
-      if (isFriend) {
-        // Send a normal message if the user is friends with the recipient
-        // We should also send a sync message if we haven't already sent one
-        boolean shouldSendSyncMessage = !hasSentSyncMessage && MultiDeviceUtilities.shouldSendSycMessage(context, address);
-        PushMediaSendJob.enqueue(context, jobManager, messageId, messageIDToUse, address, shouldSendSyncMessage);
-        hasSentSyncMessage = shouldSendSyncMessage;
+    if (GeneralUtilitiesKt.isPublicChat(context, recipientPublicKey) || MultiDeviceUtilities.isOneOfOurDevices(context, recipient.getAddress())) {
+      if (type == MessageType.MEDIA) {
+        PushMediaSendJob.enqueue(context, jobManager, messageId, recipient.getAddress(), false);
       } else {
-        // Send friend requests to non friends. If the user is friends with any
-        // of the devices then send out a default friend request message.
-        boolean isFriendsWithAny = (friendCount > 0);
-        String defaultFriendRequestMessage = isFriendsWithAny ? "Accept this friend request to enable messages to be synced across devices" : null;
-        PushMediaSendJob.enqueue(context, jobManager, messageId, messageIDToUse, address, true, defaultFriendRequestMessage, false);
+        jobManager.add(new PushTextSendJob(messageId, recipient.getAddress()));
       }
+      return;
     }
+
+    boolean[] hasSentSyncMessage = { false };
+    MultiDeviceUtilities.getAllDevicePublicKeysWithFriendStatus(context, recipientPublicKey).success(devices -> {
+      int friendCount = MultiDeviceUtilities.getFriendCount(context, devices.keySet());
+      Util.runOnMain(() -> {
+        for (Map.Entry<String, Boolean> entry : devices.entrySet()) {
+          String devicePublicKey = entry.getKey();
+          boolean isFriend = entry.getValue();
+
+          Address address = Address.fromSerialized(devicePublicKey);
+          long messageIDToUse = recipientPublicKey.equals(devicePublicKey) ? messageId : -1L;
+
+          if (isFriend) {
+            // Send a normal message if the user is friends with the recipient
+            // We should also send a sync message if we haven't already sent one
+            boolean shouldSendSyncMessage = !hasSentSyncMessage[0] && MultiDeviceUtilities.shouldSendSycMessage(context, address);
+            if (type == MessageType.MEDIA) {
+              PushMediaSendJob.enqueue(context, jobManager, messageId, messageIDToUse, address, shouldSendSyncMessage);
+            } else {
+              jobManager.add(new PushTextSendJob(messageId, messageIDToUse, address, shouldSendSyncMessage));
+            }
+            hasSentSyncMessage[0] = shouldSendSyncMessage;
+          } else {
+            // Send friend requests to non friends. If the user is friends with any
+            // of the devices then send out a default friend request message.
+            boolean isFriendsWithAny = (friendCount > 0);
+            String defaultFriendRequestMessage = isFriendsWithAny ? "Accept this friend request to enable messages to be synced across devices" : null;
+            if (type == MessageType.MEDIA) {
+              PushMediaSendJob.enqueue(context, jobManager, messageId, messageIDToUse, address, true, defaultFriendRequestMessage, false);
+            } else {
+              jobManager.add(new PushTextSendJob(messageId, messageIDToUse, address, true, defaultFriendRequestMessage, false));
+            }
+          }
+        }
+      });
+      return Unit.INSTANCE;
+    });
   }
 
   private static void sendGroupPush(Context context, Recipient recipient, long messageId, Address filterAddress) {
