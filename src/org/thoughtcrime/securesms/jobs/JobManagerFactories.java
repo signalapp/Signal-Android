@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.jobmanager.migrations.RecipientIdFollowUpJobMi
 import org.thoughtcrime.securesms.jobmanager.migrations.RecipientIdFollowUpJobMigration2;
 import org.thoughtcrime.securesms.jobmanager.migrations.RecipientIdJobMigration;
 import org.thoughtcrime.securesms.migrations.AvatarMigrationJob;
+import org.thoughtcrime.securesms.migrations.CachedAttachmentsMigrationJob;
 import org.thoughtcrime.securesms.migrations.DatabaseMigrationJob;
 import org.thoughtcrime.securesms.migrations.LegacyMigrationJob;
 import org.thoughtcrime.securesms.migrations.MigrationCompleteJob;
@@ -90,6 +91,7 @@ public final class JobManagerFactories {
       put(MigrationCompleteJob.KEY,                  new MigrationCompleteJob.Factory());
       put(RecipientSearchMigrationJob.KEY,           new RecipientSearchMigrationJob.Factory());
       put(UuidMigrationJob.KEY,                      new UuidMigrationJob.Factory());
+      put(CachedAttachmentsMigrationJob.KEY,         new CachedAttachmentsMigrationJob.Factory());
 
       // Dead jobs
       put("PushContentReceiveJob",                   new FailingJob.Factory());
