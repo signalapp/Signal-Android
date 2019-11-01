@@ -125,6 +125,7 @@
     <attr name="contact_selection_header_text" format="reference|color" />
 
     <attr name="contact_filter_toolbar_icon_tint" format="color" />
+    <attr name="contact_filter_toolbar_keyboard_icon" format="reference" />
 
     <attr name="device_link_item_card_background" format="reference|color" />
 

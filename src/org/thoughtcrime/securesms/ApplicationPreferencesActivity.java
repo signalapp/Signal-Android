@@ -19,6 +19,8 @@ package org.thoughtcrime.securesms;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.PorterDuff;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -40,6 +42,7 @@ import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.ThemeUtil;
 
 /**
  * The Activity for application preference display and management.
@@ -148,6 +151,15 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
         .setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_DEVICES));
       this.findPreference(PREFERENCE_CATEGORY_ADVANCED)
         .setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_ADVANCED));
+
+      tintIcons();
+    }
+
+    private void tintIcons() {
+      if (Build.VERSION.SDK_INT >= 21) return;
+
+      Preference preference = this.findPreference(PREFERENCE_CATEGORY_SMS_MMS);
+      preference.getIcon().setColorFilter(ThemeUtil.getThemedColor(requireContext(), R.attr.icon_tint), PorterDuff.Mode.SRC_IN);
     }
 
     @Override
