@@ -98,7 +98,7 @@ dependencies {
 
     implementation 'org.whispersystems:signal-service-android:2.13.9'
 
-    implementation 'org.signal:ringrtc-android:0.1.7'
+    implementation 'org.signal:ringrtc-android:0.1.7.2'
 
     implementation "me.leolin:ShortcutBadger:1.1.16"
     implementation 'se.emilsjolander:stickylistheaders:2.7.0'

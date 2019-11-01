@@ -351,8 +351,8 @@ dependencyVerification {
         ['org.signal:android-database-sqlcipher:3.5.9-S3',
          '33d4063336893af00b9d68b418e7b290cace74c20ce8aacffddc0911010d3d73'],
 
-        ['org.signal:ringrtc-android:0.1.7',
-         '5fae8d29349425a685088fdb7b458668ffd832cf3f53c1d678198bebfce6256a'],
+        ['org.signal:ringrtc-android:0.1.7.2',
+         '7b39083b011ac754117d2b74e26ec8323278ece7656be3ba8c766cae523d378f'],
 
         ['org.signal:signal-metadata-android:0.0.3',
          '02323bc29317fa9d3b62fab0b507c94ba2e9bcc4a78d588888ffd313853757b3'],
