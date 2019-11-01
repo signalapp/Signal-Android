@@ -118,7 +118,7 @@ fun signAndSendPairingAuthorisationMessage(context: Context, pairingAuthorisatio
     return
   }
   retryIfNeeded(8) {
-    sendPairingAuthorisationMessage(context, pairingAuthorisation.secondaryDevicePublicKey, signedPairingAuthorisation).get()
+    sendPairingAuthorisationMessage(context, pairingAuthorisation.secondaryDevicePublicKey, signedPairingAuthorisation)
   }.fail {
     Log.d("Loki", "Failed to send pairing authorization message to ${pairingAuthorisation.secondaryDevicePublicKey}.")
   }

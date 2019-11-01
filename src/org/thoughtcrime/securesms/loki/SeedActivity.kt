@@ -203,7 +203,7 @@ class SeedActivity : BaseActionBarActivity(), DeviceLinkingDialogDelegate {
             application.setUpStorageAPIIfNeeded()
             DeviceLinkingDialog.show(this, DeviceLinkingView.Mode.Slave, this)
             retryIfNeeded(8) {
-                sendPairingAuthorisationMessage(this@SeedActivity, authorisation.primaryDevicePublicKey, authorisation).get()
+                sendPairingAuthorisationMessage(this@SeedActivity, authorisation.primaryDevicePublicKey, authorisation)
             }
         } else {
             startActivity(Intent(this, DisplayNameActivity::class.java))
