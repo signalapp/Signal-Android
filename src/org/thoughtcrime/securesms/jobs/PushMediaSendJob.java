@@ -45,6 +45,7 @@ import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
 import org.whispersystems.signalservice.loki.api.LokiStorageAPI;
 import org.whispersystems.signalservice.loki.messaging.LokiSyncMessage;
+import org.whispersystems.signalservice.loki.utilities.PromiseUtil;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -281,7 +282,7 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
         LokiSyncMessage syncMessage = null;
         if (shouldSendSyncMessage) {
           // Set the sync message destination the primary device, this way it will show that we sent a message to the primary device and not a secondary device
-          String primaryDevice = LokiStorageAPI.shared.getPrimaryDevicePublicKey(address.getNumber());
+          String primaryDevice = PromiseUtil.get(LokiStorageAPI.shared.getPrimaryDevicePublicKey(address.getNumber()), null);
           SignalServiceAddress primaryAddress = primaryDevice == null ? address : new SignalServiceAddress(primaryDevice);
           // We also need to use the original message id and not -1
           syncMessage = new LokiSyncMessage(primaryAddress, templateMessageId);

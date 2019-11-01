@@ -20,6 +20,7 @@ import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
 import org.whispersystems.signalservice.api.messages.SignalServiceTypingMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceTypingMessage.Action;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
+import org.whispersystems.signalservice.loki.utilities.PromiseUtil;
 
 import java.util.Collections;
 import java.util.List;
@@ -98,7 +99,10 @@ public class TypingSendJob extends BaseJob implements InjectableType {
     SignalServiceTypingMessage             typingMessage      = new SignalServiceTypingMessage(typing ? Action.STARTED : Action.STOPPED, System.currentTimeMillis(), groupId);
 
     // Loki - Don't send typing indicators in group chats or to ourselves
-    if (!recipient.isGroupRecipient() && !MultiDeviceUtilities.isOneOfOurDevices(context, recipient.getAddress())) {
+    if (recipient.isGroupRecipient()) { return; }
+
+    boolean isOurDevice = PromiseUtil.get(MultiDeviceUtilities.isOneOfOurDevices(context, recipient.getAddress()), false);
+    if (!isOurDevice) {
       messageSender.sendTyping(0, addresses, unidentifiedAccess, typingMessage);
     }
   }

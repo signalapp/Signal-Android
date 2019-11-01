@@ -61,12 +61,15 @@ import org.whispersystems.signalservice.api.push.ContactTokenDetails;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.loki.api.LokiStorageAPI;
 import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus;
+import org.whispersystems.signalservice.loki.utilities.PromiseUtil;
 
 import java.io.IOException;
 import java.util.Map;
 import java.util.Set;
 
 import kotlin.Unit;
+import nl.komponents.kovenant.Kovenant;
+import nl.komponents.kovenant.Promise;
 
 public class MessageSender {
 
@@ -79,20 +82,24 @@ public class MessageSender {
     sendBackgroundMessage(context, contactHexEncodedPublicKey);
 
     // Go through the other devices and only send background messages if we're friends or we have received friend request
-    Set<String> devices = LokiStorageAPI.shared.getAllDevicePublicKeys(contactHexEncodedPublicKey);
-    for (String device : devices) {
-      // Don't send message to the device we already have sent to
-      if (device.equals(contactHexEncodedPublicKey)) { continue; }
-      Recipient recipient = Recipient.from(context, Address.fromSerialized(device), false);
-      long threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(recipient);
-      if (threadID < 0) { continue; }
-      LokiThreadFriendRequestStatus friendRequestStatus = DatabaseFactory.getLokiThreadDatabase(context).getFriendRequestStatus(threadID);
-      if (friendRequestStatus == LokiThreadFriendRequestStatus.FRIENDS || friendRequestStatus == LokiThreadFriendRequestStatus.REQUEST_RECEIVED) {
-        sendBackgroundMessage(context, device);
-      }
+    LokiStorageAPI.shared.getAllDevicePublicKeys(contactHexEncodedPublicKey).success(devices -> {
+      Util.runOnMain(() -> {
+        for (String device : devices) {
+          // Don't send message to the device we already have sent to
+          if (device.equals(contactHexEncodedPublicKey)) { continue; }
+          Recipient recipient = Recipient.from(context, Address.fromSerialized(device), false);
+          long threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(recipient);
+          if (threadID < 0) { continue; }
+          LokiThreadFriendRequestStatus friendRequestStatus = DatabaseFactory.getLokiThreadDatabase(context).getFriendRequestStatus(threadID);
+          if (friendRequestStatus == LokiThreadFriendRequestStatus.FRIENDS || friendRequestStatus == LokiThreadFriendRequestStatus.REQUEST_RECEIVED) {
+            sendBackgroundMessage(context, device);
+          }
 
-      // TODO: Do we want to send a custom FR Message if we're not friends and we haven't received a friend request?
-    }
+          // TODO: Do we want to send a custom FR Message if we're not friends and we haven't received a friend request?
+        }
+      });
+      return Unit.INSTANCE;
+    });
   }
 
   public static void sendBackgroundMessage(Context context, String contactHexEncodedPublicKey) {
@@ -199,15 +206,19 @@ public class MessageSender {
                                                  final int     ttl) {
     String ourPublicKey = TextSecurePreferences.getLocalNumber(context);
     JobManager jobManager = ApplicationContext.getInstance(context).getJobManager();
-    Set<String> devices = LokiStorageAPI.shared.getAllDevicePublicKeys(ourPublicKey);
-    for (String device : devices) {
-      // Don't send to ourselves
-      if (device.equals(ourPublicKey)) { continue; }
+    LokiStorageAPI.shared.getAllDevicePublicKeys(ourPublicKey).success(devices -> {
+      Util.runOnMain(() -> {
+        for (String device : devices) {
+          // Don't send to ourselves
+          if (device.equals(ourPublicKey)) { continue; }
 
-      // Create a send job for our device
-      Address address = Address.fromSerialized(device);
-      jobManager.add(new PushMessageSyncSendJob(messageID, address, timestamp, message, ttl));
-    }
+          // Create a send job for our device
+          Address address = Address.fromSerialized(device);
+          jobManager.add(new PushMessageSyncSendJob(messageID, address, timestamp, message, ttl));
+        }
+      });
+      return Unit.INSTANCE;
+    });
   }
 
   public static void resendGroupMessage(Context context, MessageRecord messageRecord, Address filterAddress) {
@@ -267,9 +278,8 @@ public class MessageSender {
     JobManager jobManager = ApplicationContext.getInstance(context).getJobManager();
 
     // Just send the message normally if it's a group message or we're sending to one of our devices
-    // TODO: Test how badly this will block the thread
     String recipientPublicKey = recipient.getAddress().serialize();
-    if (GeneralUtilitiesKt.isPublicChat(context, recipientPublicKey) || MultiDeviceUtilities.isOneOfOurDevices(context, recipient.getAddress())) {
+    if (GeneralUtilitiesKt.isPublicChat(context, recipientPublicKey) || PromiseUtil.get(MultiDeviceUtilities.isOneOfOurDevices(context, recipient.getAddress()), false)) {
       if (type == MessageType.MEDIA) {
         PushMediaSendJob.enqueue(context, jobManager, messageId, recipient.getAddress(), false);
       } else {
@@ -292,13 +302,24 @@ public class MessageSender {
           if (isFriend) {
             // Send a normal message if the user is friends with the recipient
             // We should also send a sync message if we haven't already sent one
-            boolean shouldSendSyncMessage = !hasSentSyncMessage[0] && MultiDeviceUtilities.shouldSendSycMessage(context, address);
-            if (type == MessageType.MEDIA) {
-              PushMediaSendJob.enqueue(context, jobManager, messageId, messageIDToUse, address, shouldSendSyncMessage);
-            } else {
-              jobManager.add(new PushTextSendJob(messageId, messageIDToUse, address, shouldSendSyncMessage));
+            Promise<Boolean, Exception> promise = Promise.Companion.of(false, Kovenant.INSTANCE.getContext());
+            if (!hasSentSyncMessage[0]) {
+              promise =  MultiDeviceUtilities.shouldSendSycMessage(context, address).success(value -> {
+                hasSentSyncMessage[0] = value;
+                return Unit.INSTANCE;
+              });
             }
-            hasSentSyncMessage[0] = shouldSendSyncMessage;
+
+            promise.success(shouldSendSyncMessage -> {
+              Util.runOnMain(() -> {
+                if (type == MessageType.MEDIA) {
+                  PushMediaSendJob.enqueue(context, jobManager, messageId, messageIDToUse, address, shouldSendSyncMessage);
+                } else {
+                  jobManager.add(new PushTextSendJob(messageId, messageIDToUse, address, shouldSendSyncMessage));
+                }
+              });
+              return Unit.INSTANCE;
+            });
           } else {
             // Send friend requests to non friends. If the user is friends with any
             // of the devices then send out a default friend request message.

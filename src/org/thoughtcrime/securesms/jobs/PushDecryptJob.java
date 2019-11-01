@@ -134,6 +134,7 @@ import org.whispersystems.signalservice.loki.messaging.LokiMessageFriendRequestS
 import org.whispersystems.signalservice.loki.messaging.LokiServiceMessage;
 import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus;
 import org.whispersystems.signalservice.loki.messaging.LokiThreadSessionResetStatus;
+import org.whispersystems.signalservice.loki.utilities.PromiseUtil;
 
 import java.security.MessageDigest;
 import java.security.SecureRandom;
@@ -1094,15 +1095,19 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     // it must be a friend request accepted message. Declining a friend request doesn't send a message.
     lokiThreadDatabase.setFriendRequestStatus(threadID, LokiThreadFriendRequestStatus.FRIENDS);
     // Update the last message if needed
-    String primaryDevice = LokiStorageAPI.shared.getPrimaryDevicePublicKey(pubKey);
-    long primaryDeviceThreadID = primaryDevice == null ? threadID : DatabaseFactory.getThreadDatabase(context).getThreadIdFor(Recipient.from(context, Address.fromSerialized(primaryDevice), false));
-    FriendRequestHandler.updateLastFriendRequestMessage(context, primaryDeviceThreadID, LokiMessageFriendRequestStatus.REQUEST_ACCEPTED);
+    LokiStorageAPI.shared.getPrimaryDevicePublicKey(pubKey).success(primaryDevice -> {
+      Util.runOnMain(() -> {
+        long primaryDeviceThreadID = primaryDevice == null ? threadID : DatabaseFactory.getThreadDatabase(context).getThreadIdFor(Recipient.from(context, Address.fromSerialized(primaryDevice), false));
+        FriendRequestHandler.updateLastFriendRequestMessage(context, primaryDeviceThreadID, LokiMessageFriendRequestStatus.REQUEST_ACCEPTED);
+      });
+      return Unit.INSTANCE;
+    });
   }
 
   private void updateFriendRequestStatusIfNeeded(@NonNull SignalServiceEnvelope envelope, @NonNull SignalServiceContent content, @NonNull SignalServiceDataMessage message) {
     if (!envelope.isFriendRequest() || isGroupChatMessage(message)) { return; }
     // This handles the case where another user sends us a regular message without authorisation
-    boolean shouldBecomeFriends = MultiDeviceUtilities.shouldAutomaticallyBecomeFriendsWithDevice(content.getSender(), context);
+    boolean shouldBecomeFriends = PromiseUtil.get(MultiDeviceUtilities.shouldAutomaticallyBecomeFriendsWithDevice(content.getSender(), context), false);
     if (shouldBecomeFriends) {
       // Become friends AND update the message they sent
       becomeFriendsWithContact(content.getSender());
@@ -1113,9 +1118,6 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       Recipient originalRecipient = getMessageDestination(content, message);
       Recipient primaryDeviceRecipient = getMessagePrimaryDestination(content, message);
       LokiThreadDatabase lokiThreadDatabase = DatabaseFactory.getLokiThreadDatabase(context);
-      SmsDatabase smsMessageDatabase = DatabaseFactory.getSmsDatabase(context);
-      MmsDatabase mmsMessageDatabase = DatabaseFactory.getMmsDatabase(context);
-      LokiMessageDatabase lokiMessageDatabase= DatabaseFactory.getLokiMessageDatabase(context);
 
       long threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(originalRecipient);
       long primaryDeviceThreadID = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(primaryDeviceRecipient);
@@ -1532,7 +1534,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
   private Recipient getPrimaryDeviceRecipient(String recipient) {
     try {
-      String primaryDevice = LokiStorageAPI.shared.getPrimaryDevicePublicKey(recipient);
+      String primaryDevice = LokiStorageAPI.shared.getPrimaryDevicePublicKey(recipient).get();
       String publicKey = (primaryDevice != null) ? primaryDevice : recipient;
       // If the public key matches our primary device then we need to forward the message to ourselves (Note to self)
       String ourPrimaryDevice = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
@@ -1593,10 +1595,16 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     } else if (content.getCallMessage().isPresent() || content.getTypingMessage().isPresent()) {
       return sender.isBlocked();
     } else if (content.getSyncMessage().isPresent()) {
-      // We should ignore a sync message if the sender is not one of our devices
-      boolean isOurDevice = MultiDeviceUtilities.isOneOfOurDevices(context, sender.getAddress());
-      if (!isOurDevice) { Log.w(TAG, "Got a sync message from a device that is not ours!."); }
-      return !isOurDevice;
+      try {
+        // We should ignore a sync message if the sender is not one of our devices
+        boolean isOurDevice = MultiDeviceUtilities.isOneOfOurDevices(context, sender.getAddress()).get();
+        if (!isOurDevice) {
+          Log.w(TAG, "Got a sync message from a device that is not ours!.");
+        }
+        return !isOurDevice;
+      } catch (Exception e) {
+        return true;
+      }
     }
 
     return false;

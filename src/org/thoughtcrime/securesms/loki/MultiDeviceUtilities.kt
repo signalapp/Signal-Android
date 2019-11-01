@@ -3,9 +3,9 @@ package org.thoughtcrime.securesms.loki
 
 import android.content.Context
 import android.os.Handler
-import nl.komponents.kovenant.Promise
+import nl.komponents.kovenant.*
+import nl.komponents.kovenant.functional.bind
 import nl.komponents.kovenant.functional.map
-import nl.komponents.kovenant.toFailVoid
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.database.Address
@@ -20,28 +20,26 @@ import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.loki.api.LokiStorageAPI
 import org.whispersystems.signalservice.loki.api.PairingAuthorisation
 import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus
+import org.whispersystems.signalservice.loki.utilities.recover
 import org.whispersystems.signalservice.loki.utilities.retryIfNeeded
 
-/*
- All functions within this class, excluding the ones which return promises, BLOCK the thread! Don't run them on the main thread!
- */
-
-fun getAllDeviceFriendRequestStatuses(context: Context, hexEncodedPublicKey: String): Map<String, LokiThreadFriendRequestStatus> {
+fun getAllDeviceFriendRequestStatuses(context: Context, hexEncodedPublicKey: String): Promise<Map<String, LokiThreadFriendRequestStatus>, Exception> {
   val lokiThreadDatabase = DatabaseFactory.getLokiThreadDatabase(context)
-  val keys = LokiStorageAPI.shared.getAllDevicePublicKeys(hexEncodedPublicKey)
-  val map = mutableMapOf<String, LokiThreadFriendRequestStatus>()
-  for (devicePublicKey in keys) {
-    val device = Recipient.from(context, Address.fromSerialized(devicePublicKey), false)
-    val threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(device)
-    val friendRequestStatus = if (threadID < 0) LokiThreadFriendRequestStatus.NONE else lokiThreadDatabase.getFriendRequestStatus(threadID)
-    map[devicePublicKey] = friendRequestStatus
-  }
-  return map
+  return LokiStorageAPI.shared.getAllDevicePublicKeys(hexEncodedPublicKey).map { keys ->
+    val map = mutableMapOf<String, LokiThreadFriendRequestStatus>()
+    for (devicePublicKey in keys) {
+      val device = Recipient.from(context, Address.fromSerialized(devicePublicKey), false)
+      val threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(device)
+      val friendRequestStatus = if (threadID < 0) LokiThreadFriendRequestStatus.NONE else lokiThreadDatabase.getFriendRequestStatus(threadID)
+      map[devicePublicKey] = friendRequestStatus
+    }
+    map
+  }.recover { mutableMapOf() }
 }
 
 fun getAllDevicePublicKeysWithFriendStatus(context: Context, hexEncodedPublicKey: String): Promise<Map<String, Boolean>, Unit> {
   val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context)
-  return LokiStorageAPI.shared.getAllDevicePublicKeysAsync(hexEncodedPublicKey).map { keys ->
+  return LokiStorageAPI.shared.getAllDevicePublicKeys(hexEncodedPublicKey).map { keys ->
     val devices = keys.toMutableSet()
     if (hexEncodedPublicKey != userHexEncodedPublicKey) {
       devices.remove(userHexEncodedPublicKey)
@@ -59,22 +57,31 @@ fun getFriendCount(context: Context, devices: Set<String>): Int {
   return getFriendPublicKeys(context, devices).count()
 }
 
-fun shouldAutomaticallyBecomeFriendsWithDevice(publicKey: String, context: Context): Boolean {
+fun shouldAutomaticallyBecomeFriendsWithDevice(publicKey: String, context: Context): Promise<Boolean, Exception> {
   val lokiThreadDatabase = DatabaseFactory.getLokiThreadDatabase(context)
   val storageAPI = LokiStorageAPI.shared
 
-  // If the public key doesn't have any other devices then go through regular friend request logic
-  val primaryDevicePublicKey = storageAPI.getPrimaryDevicePublicKey(publicKey) ?: return false
-
-  // If this is one of our devices then we should become friends
-  if (isOneOfOurDevices(context, publicKey)) {
-    return true
+  // If this public key is our primary device then we should become friends
+  if (publicKey == TextSecurePreferences.getMasterHexEncodedPublicKey(context)) {
+    return Promise.of(true)
   }
 
-  // If we are friends with the primary device then we should become friends
-  val primaryDevice = Recipient.from(context, Address.fromSerialized(primaryDevicePublicKey), false)
-  val primaryDeviceThreadID = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(primaryDevice)
-  return primaryDeviceThreadID >= 0 && lokiThreadDatabase.getFriendRequestStatus(primaryDeviceThreadID) == LokiThreadFriendRequestStatus.FRIENDS
+  return storageAPI.getPrimaryDevicePublicKey(publicKey).map { primaryDevicePublicKey ->
+    // If the public key doesn't have any other devices then go through regular friend request logic
+    if (primaryDevicePublicKey == null) {
+      return@map false
+    }
+
+    // If the primary device public key matches our primary device then we should become friends since this is our other device
+    if (primaryDevicePublicKey == TextSecurePreferences.getMasterHexEncodedPublicKey(context)) {
+      return@map true
+    }
+
+    // If we are friends with the primary device then we should become friends
+    val primaryDevice = Recipient.from(context, Address.fromSerialized(primaryDevicePublicKey), false)
+    val primaryDeviceThreadID = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(primaryDevice)
+    primaryDeviceThreadID >= 0 && lokiThreadDatabase.getFriendRequestStatus(primaryDeviceThreadID) == LokiThreadFriendRequestStatus.FRIENDS
+  }
 }
 
 fun sendPairingAuthorisationMessage(context: Context, contactHexEncodedPublicKey: String, authorisation: PairingAuthorisation): Promise<Unit, Exception> {
@@ -125,37 +132,55 @@ fun signAndSendPairingAuthorisationMessage(context: Context, pairingAuthorisatio
 
 }
 
-fun shouldSendSycMessage(context: Context, address: Address): Boolean {
+fun shouldSendSycMessage(context: Context, address: Address): Promise<Boolean, Exception> {
   if (address.isGroup || address.isEmail || address.isMmsGroup) {
-    return false
+    return Promise.of(false)
   }
 
   // Don't send sync messages if it's one of our devices
-  return !isOneOfOurDevices(context, address)
+  return isOneOfOurDevices(context, address).map { !it }
 }
 
-fun isOneOfOurDevices(context: Context, publicKey: String): Boolean {
-  return isOneOfOurDevices(context, Address.fromSerialized(publicKey))
-}
-
-fun isOneOfOurDevices(context: Context, address: Address): Boolean {
+fun isOneOfOurDevices(context: Context, address: Address): Promise<Boolean, Exception> {
   if (address.isGroup || address.isEmail || address.isMmsGroup) {
-    return false
+    return Promise.of(false)
   }
 
   val ourPublicKey = TextSecurePreferences.getLocalNumber(context)
-  val devices = LokiStorageAPI.shared.getAllDevicePublicKeys(ourPublicKey)
-  return devices.contains(address.serialize())
+  return LokiStorageAPI.shared.getAllDevicePublicKeys(ourPublicKey).map { devices ->
+    devices.contains(address.serialize())
+  }
 }
 
-fun isFriendsWithAnyLinkedDevice(context: Context, recipient: Recipient): Boolean {
-  if (recipient.isGroupRecipient) return true
+fun isFriendsWithAnyLinkedDevice(context: Context, recipient: Recipient): Promise<Boolean, Exception> {
+  if (recipient.isGroupRecipient) { return Promise.of(true) }
 
-  val map = getAllDeviceFriendRequestStatuses(context, recipient.address.serialize())
-  for (status in map.values) {
-    if (status == LokiThreadFriendRequestStatus.FRIENDS) {
-      return true
+  return getAllDeviceFriendRequestStatuses(context, recipient.address.serialize()).map { map ->
+    for (status in map.values) {
+      if (status == LokiThreadFriendRequestStatus.FRIENDS) {
+        return@map true
+      }
     }
+    false
   }
-  return false
+}
+
+fun hasPendingFriendRequestWithAnyLinkedDevice(context: Context, recipient: Recipient): Promise<Boolean, Exception> {
+  if (recipient.isGroupRecipient) { return Promise.of(false) }
+
+  return getAllDeviceFriendRequestStatuses(context, recipient.address.serialize()).map { map ->
+    for (status in map.values) {
+      if (status == LokiThreadFriendRequestStatus.REQUEST_SENDING || status == LokiThreadFriendRequestStatus.REQUEST_SENT || status == LokiThreadFriendRequestStatus.REQUEST_RECEIVED) {
+        return@map true
+      }
+    }
+    false
+  }
+}
+
+fun shouldEnableUserInput(context: Context, recipient: Recipient): Promise<Boolean, Exception> {
+  // Input should be enabled if we don't have any pending requests OR we're friends with any linked device
+  return hasPendingFriendRequestWithAnyLinkedDevice(context, recipient).bind { hasPendingFriendRequest ->
+    if (!hasPendingFriendRequest) Promise.of(true) else isFriendsWithAnyLinkedDevice(context, recipient)
+  }.recover { true }
 }

@@ -127,6 +127,7 @@ import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher;
 import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
 import org.thoughtcrime.securesms.crypto.SecurityEvent;
 import org.thoughtcrime.securesms.database.Address;
+import org.thoughtcrime.securesms.database.Database;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.DraftDatabase;
 import org.thoughtcrime.securesms.database.DraftDatabase.Draft;
@@ -2192,7 +2193,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       if (threadID != this.threadId) {
         Recipient threadRecipient = DatabaseFactory.getThreadDatabase(this).getRecipientForThreadId(threadID);
         if (threadRecipient != null && !threadRecipient.isGroupRecipient()) {
-          LokiStorageAPI.shared.getAllDevicePublicKeysAsync(threadRecipient.getAddress().serialize()).success(devices -> {
+          LokiStorageAPI.shared.getAllDevicePublicKeys(threadRecipient.getAddress().serialize()).success(devices -> {
             // We should update our input if this thread is a part of the other threads device
             if (devices.contains(recipient.getAddress().serialize())) {
               this.updateInputPanel();
@@ -2212,10 +2213,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       return;
     }
 
-    task(() -> {
-      // Run the functions below in a background thread since they are blocking
-      return MultiDeviceUtilities.isFriendsWithAnyLinkedDevice(this, recipient) || !hasPendingFriendRequestWithAnyLinkedDevice();
-    }).success(shouldEnableInput -> {
+    // It could take a while before our promise resolves, so we assume the best case
+    LokiThreadFriendRequestStatus friendRequestStatus = DatabaseFactory.getLokiThreadDatabase(this).getFriendRequestStatus(threadId);
+    boolean isPending = friendRequestStatus == LokiThreadFriendRequestStatus.REQUEST_SENDING || friendRequestStatus == LokiThreadFriendRequestStatus.REQUEST_SENT || friendRequestStatus == LokiThreadFriendRequestStatus.REQUEST_RECEIVED;
+    setInputPanelEnabled(!isPending);
+
+    // This promise correctly updates the UI for multidevice
+    MultiDeviceUtilities.shouldEnableUserInput(this, recipient).success(shouldEnableInput -> {
       setInputPanelEnabled(shouldEnableInput);
       return Unit.INSTANCE;
     });
@@ -3052,20 +3056,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     String contactID = DatabaseFactory.getThreadDatabase(this).getRecipientForThreadId(threadId).getAddress().toString();
     DatabaseFactory.getLokiPreKeyBundleDatabase(this).removePreKeyBundle(contactID);
     updateInputPanel();
-  }
-
-  public boolean hasPendingFriendRequestWithAnyLinkedDevice() {
-    if (recipient.isGroupRecipient()) return false;
-
-    // This call will block the thread that is being run on! be careful
-    Map<String, LokiThreadFriendRequestStatus> map = MultiDeviceUtilities.getAllDeviceFriendRequestStatuses(this, recipient.getAddress().serialize());
-    for (LokiThreadFriendRequestStatus status : map.values()) {
-      if (status == LokiThreadFriendRequestStatus.REQUEST_SENDING || status == LokiThreadFriendRequestStatus.REQUEST_SENT || status == LokiThreadFriendRequestStatus.REQUEST_RECEIVED) {
-        return true;
-      }
-    }
-
-    return false;
   }
 
   public boolean isNoteToSelf() {

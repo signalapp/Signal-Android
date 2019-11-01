@@ -91,7 +91,7 @@ public class TypingStatusSender {
       ApplicationContext.getInstance(context).getJobManager().add(new TypingSendJob(threadId, typingStarted));
       return;
     }
-    LokiStorageAPI.shared.getAllDevicePublicKeysAsync(recipient.getAddress().serialize()).success(devices -> {
+    LokiStorageAPI.shared.getAllDevicePublicKeys(recipient.getAddress().serialize()).success(devices -> {
       for (String device : devices) {
         Recipient deviceRecipient = Recipient.from(context, Address.fromSerialized(device), false);
         long deviceThreadID = threadDatabase.getThreadIdIfExistsFor(deviceRecipient);
