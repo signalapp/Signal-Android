@@ -282,7 +282,8 @@ public class CameraXFragment extends Fragment implements CameraFragment {
   }
 
   private boolean isVideoRecordingSupported(@NonNull Context context) {
-    return MediaConstraints.isVideoTranscodeAvailable() &&
+    return Build.VERSION.SDK_INT >= 26                  &&
+           MediaConstraints.isVideoTranscodeAvailable() &&
            CameraXUtil.isMixedModeSupported(context)    &&
            VideoUtil.getMaxVideoDurationInSeconds(context, viewModel.getMediaConstraints()) > 0;
   }
