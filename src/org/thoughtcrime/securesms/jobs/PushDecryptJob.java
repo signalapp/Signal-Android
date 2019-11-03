@@ -769,7 +769,10 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     Optional<List<Contact>>     sharedContacts = getContacts(message.getSharedContacts());
     Optional<List<LinkPreview>> linkPreviews   = getLinkPreviews(message.getPreviews(), message.getBody().or(""));
     Optional<Attachment>        sticker        = getStickerAttachment(message.getSticker());
-    IncomingMediaMessage        mediaMessage   = new IncomingMediaMessage(primaryDeviceRecipient.getAddress(), message.getTimestamp(), -1,
+
+    // If message is from group then we need to map it to the correct sender
+    Address sender = message.isGroupUpdate() ? Address.fromSerialized(content.getSender()) : primaryDeviceRecipient.getAddress();
+    IncomingMediaMessage        mediaMessage   = new IncomingMediaMessage(sender, message.getTimestamp(), -1,
        message.getExpiresInSeconds() * 1000L, false, content.isNeedsReceipt(), message.getBody(), message.getGroupInfo(), message.getAttachments(),
         quote, sharedContacts, linkPreviews, sticker);
 
@@ -933,7 +936,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     SmsDatabase database  = DatabaseFactory.getSmsDatabase(context);
     String      body      = message.getBody().isPresent() ? message.getBody().get() : "";
     Recipient   originalRecipient = getMessageDestination(content, message);
-    Recipient   primaryDeviceRecipient = message.isGroupUpdate() ? originalRecipient : getMessagePrimaryDestination(content, message);
+    Recipient   primaryDeviceRecipient = getMessagePrimaryDestination(content, message);
 
     if (message.getExpiresInSeconds() != originalRecipient.getExpireMessages()) {
       handleExpirationUpdate(content, message, Optional.absent());
@@ -946,7 +949,9 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     } else {
       notifyTypingStoppedFromIncomingMessage(primaryDeviceRecipient, content.getSender(), content.getSenderDevice());
 
-      IncomingTextMessage _textMessage = new IncomingTextMessage(primaryDeviceRecipient.getAddress(),
+      // If message is from group then we need to map it to the correct sender
+      Address sender = message.isGroupUpdate() ? Address.fromSerialized(content.getSender()) : primaryDeviceRecipient.getAddress();
+      IncomingTextMessage _textMessage = new IncomingTextMessage(sender,
                                                                 content.getSenderDevice(),
                                                                 message.getTimestamp(), body,
                                                                 message.getGroupInfo(),
@@ -1105,7 +1110,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   }
 
   private void updateFriendRequestStatusIfNeeded(@NonNull SignalServiceEnvelope envelope, @NonNull SignalServiceContent content, @NonNull SignalServiceDataMessage message) {
-    if (!envelope.isFriendRequest() || isGroupChatMessage(message)) { return; }
+    if (!envelope.isFriendRequest() || message.isGroupUpdate()) { return; }
     // This handles the case where another user sends us a regular message without authorisation
     boolean shouldBecomeFriends = PromiseUtil.get(MultiDeviceUtilities.shouldAutomaticallyBecomeFriendsWithDevice(content.getSender(), context), false);
     if (shouldBecomeFriends) {
@@ -1611,11 +1616,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   }
 
   private boolean isGroupChatMessage(SignalServiceContent content) {
-    return content.getDataMessage().isPresent() && isGroupChatMessage(content.getDataMessage().get());
-  }
-
-  private boolean isGroupChatMessage(SignalServiceDataMessage message) {
-    return message.isGroupUpdate();
+    return content.getDataMessage().isPresent() && content.getDataMessage().get().isGroupUpdate();
   }
 
   private void resetRecipientToPush(@NonNull Recipient recipient) {
