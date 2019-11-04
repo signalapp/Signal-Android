@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.Address;
+import org.thoughtcrime.securesms.database.Database;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
@@ -38,6 +39,7 @@ import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSy
 import org.whispersystems.signalservice.api.messages.multidevice.VerifiedMessage;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 import org.whispersystems.signalservice.api.util.InvalidNumberException;
+import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -83,7 +85,7 @@ public class MultiDeviceContactUpdateJob extends BaseJob implements InjectableTy
                            .addConstraint(NetworkConstraint.KEY)
                            .setQueue("MultiDeviceContactUpdateJob")
                            .setLifespan(TimeUnit.DAYS.toMillis(1))
-                           .setMaxAttempts(Parameters.UNLIMITED)
+                           .setMaxAttempts(3)
                            .build(),
          address,
          forceSync);
@@ -126,6 +128,9 @@ public class MultiDeviceContactUpdateJob extends BaseJob implements InjectableTy
   private void generateSingleContactUpdate(@NonNull Address address)
       throws IOException, UntrustedIdentityException, NetworkException
   {
+    // Loki - Only sync regular contacts
+    if (!address.isPhone()) { return; }
+
     File contactDataFile = createTempFile("multidevice-contact-update");
 
     try {
@@ -134,16 +139,19 @@ public class MultiDeviceContactUpdateJob extends BaseJob implements InjectableTy
       Optional<IdentityDatabase.IdentityRecord> identityRecord  = DatabaseFactory.getIdentityDatabase(context).getIdentity(address);
       Optional<VerifiedMessage>                 verifiedMessage = getVerifiedMessage(recipient, identityRecord);
 
-      out.write(new DeviceContact(address.toPhoneString(),
-                                  Optional.fromNullable(recipient.getName()),
-                                  getAvatar(recipient.getContactUri()),
-                                  Optional.fromNullable(recipient.getColor().serialize()),
-                                  verifiedMessage,
-                                  Optional.fromNullable(recipient.getProfileKey()),
-                                  recipient.isBlocked(),
-                                  recipient.getExpireMessages() > 0 ?
-                                      Optional.of(recipient.getExpireMessages()) :
-                                      Optional.absent()));
+      // Loki - Only sync contacts we are friends with
+      if (getFriendRequestStatus(recipient) == LokiThreadFriendRequestStatus.FRIENDS) {
+        out.write(new DeviceContact(address.toPhoneString(),
+                Optional.fromNullable(recipient.getName()),
+                getAvatar(recipient.getContactUri()),
+                Optional.fromNullable(recipient.getColor().serialize()),
+                verifiedMessage,
+                Optional.fromNullable(recipient.getProfileKey()),
+                recipient.isBlocked(),
+                recipient.getExpireMessages() > 0 ?
+                        Optional.of(recipient.getExpireMessages()) :
+                        Optional.absent()));
+      }
 
       out.close();
       sendUpdate(messageSender, contactDataFile, false);
@@ -158,11 +166,6 @@ public class MultiDeviceContactUpdateJob extends BaseJob implements InjectableTy
   private void generateFullContactUpdate()
       throws IOException, UntrustedIdentityException, NetworkException
   {
-    if (!Permissions.hasAny(context, Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS)) {
-      Log.w(TAG, "No contact permissions, skipping multi-device contact update...");
-      return;
-    }
-
     boolean isAppVisible      = ApplicationContext.getInstance(context).isAppVisible();
     long    timeSinceLastSync = System.currentTimeMillis() - TextSecurePreferences.getLastFullContactSyncTime(context);
 
@@ -189,13 +192,16 @@ public class MultiDeviceContactUpdateJob extends BaseJob implements InjectableTy
         Recipient                                 recipient   = Recipient.from(context, address, false);
         Optional<IdentityDatabase.IdentityRecord> identity    = DatabaseFactory.getIdentityDatabase(context).getIdentity(address);
         Optional<VerifiedMessage>                 verified    = getVerifiedMessage(recipient, identity);
-        Optional<String>                          name        = Optional.fromNullable(contactData.name);
+        Optional<String>                          name        = Optional.fromNullable(DatabaseFactory.getLokiUserDatabase(context).getDisplayName(address.serialize()));
         Optional<String>                          color       = Optional.of(recipient.getColor().serialize());
         Optional<byte[]>                          profileKey  = Optional.fromNullable(recipient.getProfileKey());
         boolean                                   blocked     = recipient.isBlocked();
         Optional<Integer>                         expireTimer = recipient.getExpireMessages() > 0 ? Optional.of(recipient.getExpireMessages()) : Optional.absent();
 
-        out.write(new DeviceContact(address.toPhoneString(), name, getAvatar(contactUri), color, verified, profileKey, blocked, expireTimer));
+        // Loki - Only sync contacts we are friends with
+        if (getFriendRequestStatus(recipient) == LokiThreadFriendRequestStatus.FRIENDS) {
+          out.write(new DeviceContact(address.toPhoneString(), name, getAvatar(contactUri), color, verified, profileKey, blocked, expireTimer));
+        }
       }
 
       if (ProfileKeyUtil.hasProfileKey(context)) {
@@ -214,6 +220,11 @@ public class MultiDeviceContactUpdateJob extends BaseJob implements InjectableTy
     } finally {
       if (contactDataFile != null) contactDataFile.delete();
     }
+  }
+
+  private LokiThreadFriendRequestStatus getFriendRequestStatus(Recipient recipient) {
+    long threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(recipient);
+    return DatabaseFactory.getLokiThreadDatabase(context).getFriendRequestStatus(threadId);
   }
 
   @Override
@@ -239,7 +250,6 @@ public class MultiDeviceContactUpdateJob extends BaseJob implements InjectableTy
                                                                                 .build();
 
       try {
-        // TODO: Message ID
         messageSender.sendMessage(0, SignalServiceSyncMessage.forContacts(new ContactsMessage(attachmentStream, complete)),
                                   UnidentifiedAccessUtil.getAccessForSync(context));
       } catch (IOException ioe) {
@@ -318,6 +328,9 @@ public class MultiDeviceContactUpdateJob extends BaseJob implements InjectableTy
       case DEFAULT:    state = VerifiedMessage.VerifiedState.DEFAULT;    break;
       default: throw new AssertionError("Unknown state: " + identity.get().getVerifiedStatus());
     }
+
+    // Loki - For now always set to verified
+    state = VerifiedMessage.VerifiedState.VERIFIED;
 
     return Optional.of(new VerifiedMessage(destination, identityKey, state, System.currentTimeMillis()));
   }

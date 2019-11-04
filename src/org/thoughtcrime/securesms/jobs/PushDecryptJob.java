@@ -1060,6 +1060,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     DatabaseFactory.getLokiAPIDatabase(context).removePairingAuthorisations(userHexEncodedPublicKey);
     DatabaseFactory.getLokiAPIDatabase(context).insertOrUpdatePairingAuthorisation(authorisation);
     TextSecurePreferences.setMasterHexEncodedPublicKey(context, authorisation.getPrimaryDevicePublicKey());
+    TextSecurePreferences.setMultiDevice(context, true);
     // Send a background message to the primary device
     MessageSender.sendBackgroundMessage(context, authorisation.getPrimaryDevicePublicKey());
     // Propagate the updates to the file server

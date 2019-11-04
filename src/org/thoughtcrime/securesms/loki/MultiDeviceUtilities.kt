@@ -118,6 +118,7 @@ fun signAndSendPairingAuthorisationMessage(context: Context, pairingAuthorisatio
     Log.d("Loki", "Failed to send pairing authorization message to ${pairingAuthorisation.secondaryDevicePublicKey}.")
   }
   DatabaseFactory.getLokiAPIDatabase(context).insertOrUpdatePairingAuthorisation(signedPairingAuthorisation)
+  TextSecurePreferences.setMultiDevice(context, true)
   // Call function after a short delay
   Handler().postDelayed({
     LokiStorageAPI.shared.updateUserDeviceMappings().fail {
