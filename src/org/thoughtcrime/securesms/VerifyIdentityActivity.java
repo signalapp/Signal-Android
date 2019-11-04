@@ -79,6 +79,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.DynamicDarkActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
@@ -88,6 +89,7 @@ import org.whispersystems.libsignal.fingerprint.Fingerprint;
 import org.whispersystems.libsignal.fingerprint.FingerprintParsingException;
 import org.whispersystems.libsignal.fingerprint.FingerprintVersionMismatchException;
 import org.whispersystems.libsignal.fingerprint.NumericFingerprintGenerator;
+import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
@@ -205,13 +207,9 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
     public static final String VERIFIED_STATE  = "verified_state";
 
     private LiveRecipient recipient;
-    private String        localNumber;
-    private String        remoteNumber;
-
-    private IdentityKey localIdentity;
-    private IdentityKey remoteIdentity;
-
-    private Fingerprint fingerprint;
+    private IdentityKey   localIdentity;
+    private IdentityKey   remoteIdentity;
+    private Fingerprint   fingerprint;
 
     private View                 container;
     private View                 numbersContainer;
@@ -269,14 +267,24 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
       if (localIdentityParcelable == null)  throw new AssertionError("local identity required");
       if (remoteIdentityParcelable == null) throw new AssertionError("remote identity required");
 
-      this.localNumber    = TextSecurePreferences.getLocalNumber(requireContext());
       this.localIdentity  = localIdentityParcelable.get();
       this.recipient      = Recipient.live(recipientId);
-      this.remoteNumber   = recipient.resolve().getE164().or("");
       this.remoteIdentity = remoteIdentityParcelable.get();
 
-      if (TextUtils.isEmpty(remoteNumber)) {
-        Log.w(TAG, "Empty remote number! Did we get a UUID-only message somehow?");
+      int    version;
+      byte[] localId;
+      byte[] remoteId;
+
+      if (FeatureFlags.UUIDS && recipient.resolve().getUuid().isPresent()) {
+        Log.i(TAG, "Using UUID (version 2).");
+        version  = 2;
+        localId  = UuidUtil.toByteArray(TextSecurePreferences.getLocalUuid(requireContext()));
+        remoteId = UuidUtil.toByteArray(recipient.resolve().getUuid().get());
+      } else {
+        Log.i(TAG, "Using E164 (version 1).");
+        version  = 1;
+        localId  = TextSecurePreferences.getLocalNumber(requireContext()).getBytes();
+        remoteId = recipient.resolve().requireE164().getBytes();
       }
 
       this.recipient.observe(this, this::setRecipientText);
@@ -284,8 +292,9 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
       new AsyncTask<Void, Void, Fingerprint>() {
         @Override
         protected Fingerprint doInBackground(Void... params) {
-          return new NumericFingerprintGenerator(5200).createFor(localNumber, localIdentity,
-                                                                 remoteNumber, remoteIdentity);
+          return new NumericFingerprintGenerator(5200).createFor(version,
+                                                                 localId, localIdentity,
+                                                                 remoteId, remoteIdentity);
         }
 
         @Override

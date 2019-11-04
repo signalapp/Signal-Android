@@ -3,12 +3,15 @@ package org.thoughtcrime.securesms.database;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.text.TextUtils;
+
 import androidx.annotation.NonNull;
-import org.thoughtcrime.securesms.logging.Log;
+import androidx.annotation.Nullable;
 
 import net.sqlcipher.database.SQLiteDatabase;
 
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.Base64;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
@@ -17,6 +20,7 @@ import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.util.Util;
 
 import java.io.IOException;
+import java.util.UUID;
 
 public class PushDatabase extends Database {
 
@@ -72,14 +76,13 @@ public class PushDatabase extends Database {
                                                           null, null, null);
 
       if (cursor != null && cursor.moveToNext()) {
-        String               legacyMessage = cursor.getString(cursor.getColumnIndexOrThrow(LEGACY_MSG));
-        String               content       = cursor.getString(cursor.getColumnIndexOrThrow(CONTENT));
-        String               uuid          = cursor.getString(cursor.getColumnIndexOrThrow(SOURCE_UUID));
-        String               e164          = cursor.getString(cursor.getColumnIndexOrThrow(SOURCE_E164));
-        SignalServiceAddress address       = new SignalServiceAddress(UuidUtil.parseOrNull(uuid), e164);
+        String legacyMessage = cursor.getString(cursor.getColumnIndexOrThrow(LEGACY_MSG));
+        String content       = cursor.getString(cursor.getColumnIndexOrThrow(CONTENT));
+        String uuid          = cursor.getString(cursor.getColumnIndexOrThrow(SOURCE_UUID));
+        String e164          = cursor.getString(cursor.getColumnIndexOrThrow(SOURCE_E164));
 
         return new SignalServiceEnvelope(cursor.getInt(cursor.getColumnIndexOrThrow(TYPE)),
-                                         address,
+                                         SignalServiceAddress.fromRaw(uuid, e164),
                                          cursor.getInt(cursor.getColumnIndexOrThrow(DEVICE_ID)),
                                          cursor.getLong(cursor.getColumnIndexOrThrow(TIMESTAMP)),
                                          Util.isEmpty(legacyMessage) ? null : Base64.decode(legacyMessage),
@@ -162,7 +165,7 @@ public class PushDatabase extends Database {
         String serverGuid      = cursor.getString(cursor.getColumnIndexOrThrow(SERVER_GUID));
 
         return new SignalServiceEnvelope(type,
-                                         new SignalServiceAddress(UuidUtil.parseOrNull(sourceUuid), sourceE164),
+                                         SignalServiceAddress.fromRaw(sourceUuid, sourceE164),
                                          deviceId,
                                          timestamp,
                                          legacyMessage != null ? Base64.decode(legacyMessage) : null,

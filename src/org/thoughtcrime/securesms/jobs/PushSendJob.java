@@ -331,7 +331,7 @@ public abstract class PushSendJob extends SendJob {
 
   protected SignalServiceSyncMessage buildSelfSendSyncMessage(@NonNull Context context, @NonNull SignalServiceDataMessage message, Optional<UnidentifiedAccessPair> syncAccess) {
     SignalServiceAddress  localAddress = new SignalServiceAddress(TextSecurePreferences.getLocalUuid(context), TextSecurePreferences.getLocalNumber(context));
-    SentTranscriptMessage transcript   = new SentTranscriptMessage(localAddress,
+    SentTranscriptMessage transcript   = new SentTranscriptMessage(Optional.of(localAddress),
                                                                    message.getTimestamp(),
                                                                    message,
                                                                    message.getExpiresInSeconds(),
