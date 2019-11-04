@@ -116,6 +116,9 @@ import org.whispersystems.signalservice.api.messages.calls.HangupMessage;
 import org.whispersystems.signalservice.api.messages.calls.IceUpdateMessage;
 import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
 import org.whispersystems.signalservice.api.messages.calls.SignalServiceCallMessage;
+import org.whispersystems.signalservice.api.messages.multidevice.ContactsMessage;
+import org.whispersystems.signalservice.api.messages.multidevice.DeviceContact;
+import org.whispersystems.signalservice.api.messages.multidevice.DeviceContactsInputStream;
 import org.whispersystems.signalservice.api.messages.multidevice.ReadMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.RequestMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.SentTranscriptMessage;
@@ -135,6 +138,7 @@ import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestSt
 import org.whispersystems.signalservice.loki.messaging.LokiThreadSessionResetStatus;
 import org.whispersystems.signalservice.loki.utilities.PromiseUtil;
 
+import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.SecureRandom;
 import java.util.ArrayList;
@@ -352,6 +356,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         else if (syncMessage.getRead().isPresent())                  handleSynchronizeReadMessage(syncMessage.getRead().get(), content.getTimestamp());
         else if (syncMessage.getVerified().isPresent())              handleSynchronizeVerifiedMessage(syncMessage.getVerified().get());
         else if (syncMessage.getStickerPackOperations().isPresent()) handleSynchronizeStickerPackOperation(syncMessage.getStickerPackOperations().get());
+        else if (syncMessage.getContacts().isPresent())              handleSynchronizeContactMessage(syncMessage.getContacts().get());
         else                                                         Log.w(TAG, "Contains no known sync types...");
       } else if (content.getCallMessage().isPresent()) {
         Log.i(TAG, "Got call message...");
@@ -639,6 +644,46 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         Log.w(TAG, "Received incomplete sticker pack operation sync.");
       }
     }
+  }
+
+  private void handleSynchronizeContactMessage(@NonNull ContactsMessage contactsMessage) {
+    if (contactsMessage.getContactsStream().isStream()) {
+      try {
+        DeviceContactsInputStream contactsInputStream = new DeviceContactsInputStream(contactsMessage.getContactsStream().asStream().getInputStream());
+        DeviceContact deviceContact = contactsInputStream.read();
+        while (deviceContact != null) {
+          // Check if we have the contact as a friend
+          Address address = Address.fromSerialized(deviceContact.getNumber());
+          if (!address.isPhone()) { continue; }
+
+          /*
+          If we're not friends with the contact we received or our friend request expired then we should send them a friend request
+          otherwise if we have received a friend request with from them then we should automatically accept the friend request
+           */
+          Recipient recipient = Recipient.from(context, address, false);
+          long threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
+          LokiThreadFriendRequestStatus status = DatabaseFactory.getLokiThreadDatabase(context).getFriendRequestStatus(threadId);
+          if (status == LokiThreadFriendRequestStatus.NONE || status == LokiThreadFriendRequestStatus.REQUEST_EXPIRED) {
+            MessageSender.sendBackgroundFriendRequest(context, deviceContact.getNumber(), "This is an automated friend request. Still under testing!");
+          } else if (status == LokiThreadFriendRequestStatus.REQUEST_RECEIVED) {
+            // Accept the incoming friend request
+            becomeFriendsWithContact(deviceContact.getNumber());
+          }
+
+          // TODO: Handle blocked - If user is not blocked then we should do the friend request logic otherwise add them to our block list
+          // TODO: Handle expiration timer - Update expiration timer?
+          // TODO: Handle avatar - Download and set avatar?
+
+          // Read the next contact
+          deviceContact = contactsInputStream.read();
+        }
+      } catch (IOException e) {
+        // Exception is thrown when we don't have any more contacts to read from
+      } catch (Exception e) {
+        Log.d("Loki", "Failed to sync contact: " + e.getMessage());
+      }
+    }
+
   }
 
   private void handleSynchronizeSentMessage(@NonNull SignalServiceContent content,

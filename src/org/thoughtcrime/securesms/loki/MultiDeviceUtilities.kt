@@ -82,7 +82,7 @@ fun shouldAutomaticallyBecomeFriendsWithDevice(publicKey: String, context: Conte
 fun sendPairingAuthorisationMessage(context: Context, contactHexEncodedPublicKey: String, authorisation: PairingAuthorisation): Promise<Unit, Exception> {
   val messageSender = ApplicationContext.getInstance(context).communicationModule.provideSignalMessageSender()
   val address = SignalServiceAddress(contactHexEncodedPublicKey)
-  val message = SignalServiceDataMessage.newBuilder().withBody("").withPairingAuthorisation(authorisation)
+  val message = SignalServiceDataMessage.newBuilder().withBody(null).withPairingAuthorisation(authorisation)
   // A REQUEST should always act as a friend request. A GRANT should always be replying back as a normal message.
   if (authorisation.type == PairingAuthorisation.Type.REQUEST) {
     val preKeyBundle = DatabaseFactory.getLokiPreKeyBundleDatabase(context).generatePreKeyBundle(address.number)

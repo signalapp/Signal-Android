@@ -55,6 +55,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.libsignal.state.PreKeyBundle;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
@@ -120,18 +121,28 @@ public class MessageSender {
   }
 
   public static void sendBackgroundMessage(Context context, String contactHexEncodedPublicKey) {
-    sendMessageWithBody(context, contactHexEncodedPublicKey, null);
+    SignalServiceDataMessage message = new SignalServiceDataMessage(System.currentTimeMillis(), null);
+    sendMessage(context, contactHexEncodedPublicKey, message);
   }
 
-  public static void sendMessageWithBody(Context context, String contactHexEncodedPublicKey, @Nullable String messageBody) {
+  public static void sendBackgroundFriendRequest(Context context, String contactHexEncodedPublicKey, String messageBody) {
+    PreKeyBundle bundle = DatabaseFactory.getLokiPreKeyBundleDatabase(context).generatePreKeyBundle(contactHexEncodedPublicKey);
+    SignalServiceDataMessage message = SignalServiceDataMessage.newBuilder()
+            .withTimestamp(System.currentTimeMillis())
+            .withBody(messageBody)
+            .asFriendRequest(true)
+            .withPreKeyBundle(bundle)
+            .build();
+    sendMessage(context, contactHexEncodedPublicKey, message);
+  }
+
+  private static void sendMessage(Context context, String contactHexEncodedPublicKey, SignalServiceDataMessage message) {
     Util.runOnMain(() -> {
       SignalServiceMessageSender messageSender = ApplicationContext.getInstance(context).communicationModule.provideSignalMessageSender();
       SignalServiceAddress address = new SignalServiceAddress(contactHexEncodedPublicKey);
-      String body = (messageBody == null || messageBody.isEmpty()) ? null : messageBody;
-      SignalServiceDataMessage message = new SignalServiceDataMessage(System.currentTimeMillis(), body);
       try {
         // Try send to the original person
-        messageSender.sendMessage(0, address, Optional.absent(), message); // The message ID doesn't matter
+        messageSender.sendMessage(-1, address, Optional.absent(), message); // The message ID doesn't matter
       } catch (Exception e) {
         Log.d("Loki", "Failed to send background message to: " + contactHexEncodedPublicKey + ".");
       }

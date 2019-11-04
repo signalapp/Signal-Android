@@ -26,7 +26,7 @@ public class MessageSenderEventListener implements SignalServiceMessageSender.Ev
 
   @Override
   public void onSyncEvent(long messageID, long timestamp, byte[] message, int ttl) {
-    if (messageID > 0 && timestamp > 0 && message != null && ttl > 0) {
+    if (messageID >= 0 && timestamp > 0 && message != null && ttl > 0) {
       MessageSender.sendSyncMessageToOurDevices(context, messageID, timestamp, message, ttl);
     }
   }
