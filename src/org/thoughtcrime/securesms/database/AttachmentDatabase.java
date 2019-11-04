@@ -596,7 +596,7 @@ public class AttachmentDatabase extends Database {
     contentValues.put(DATA_RANDOM, dataInfo.random);
     contentValues.put(DATA_HASH, dataInfo.hash);
 
-    int updateCount = updateAttachmentAndMatchingHashes(database, databaseAttachment.getAttachmentId(), dataInfo.hash, contentValues);
+    int updateCount = updateAttachmentAndMatchingHashes(database, databaseAttachment.getAttachmentId(), oldDataInfo.hash, contentValues);
     Log.i(TAG, "[updateAttachmentData] Updated " + updateCount + " rows.");
   }
 
