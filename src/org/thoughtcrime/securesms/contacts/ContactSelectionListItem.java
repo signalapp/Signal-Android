@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.recipients.RecipientForeverObserver;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
+import org.whispersystems.libsignal.util.guava.Optional;
 
 public class ContactSelectionListItem extends LinearLayout implements RecipientForeverObserver {
 
@@ -126,6 +127,10 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientF
 
   public String getNumber() {
     return number;
+  }
+
+  public Optional<RecipientId> getRecipientId() {
+    return recipient != null ? Optional.of(recipient.getId()) : Optional.absent();
   }
 
   @Override

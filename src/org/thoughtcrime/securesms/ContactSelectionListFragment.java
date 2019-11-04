@@ -51,11 +51,13 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.contacts.sync.DirectoryHelper;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.adapter.FixedViewsAdapter;
 import org.thoughtcrime.securesms.util.adapter.RecyclerViewConcatenateAdapterStickyHeader;
+import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.IOException;
 import java.util.LinkedList;
@@ -328,11 +330,11 @@ public final class ContactSelectionListFragment extends    Fragment
       if (!isMulti() || !selectedContacts.contains(contact.getNumber())) {
         selectedContacts.add(contact.getNumber());
         contact.setChecked(true);
-        if (onContactSelectedListener != null) onContactSelectedListener.onContactSelected(contact.getNumber());
+        if (onContactSelectedListener != null) onContactSelectedListener.onContactSelected(contact.getRecipientId(), contact.getNumber());
       } else {
         selectedContacts.remove(contact.getNumber());
         contact.setChecked(false);
-        if (onContactSelectedListener != null) onContactSelectedListener.onContactDeselected(contact.getNumber());
+        if (onContactSelectedListener != null) onContactSelectedListener.onContactDeselected(contact.getRecipientId(), contact.getNumber());
       }
     }
   }
@@ -346,8 +348,8 @@ public final class ContactSelectionListFragment extends    Fragment
   }
 
   public interface OnContactSelectedListener {
-    void onContactSelected(String number);
-    void onContactDeselected(String number);
+    void onContactSelected(Optional<RecipientId> recipientId, String number);
+    void onContactDeselected(Optional<RecipientId> recipientId, String number);
   }
 
   public interface InviteCallback {

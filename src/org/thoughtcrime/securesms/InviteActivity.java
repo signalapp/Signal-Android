@@ -33,11 +33,13 @@ import org.thoughtcrime.securesms.components.ContactFilterToolbar.OnFilterChange
 import org.thoughtcrime.securesms.contacts.ContactsCursorLoader.DisplayMode;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture.Listener;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
+import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.concurrent.ExecutionException;
 
@@ -110,12 +112,12 @@ public class InviteActivity extends PassphraseRequiredActionBarActivity implemen
   }
 
   @Override
-  public void onContactSelected(String number) {
+  public void onContactSelected(Optional<RecipientId> recipientId, String number) {
     updateSmsButtonText();
   }
 
   @Override
-  public void onContactDeselected(String number) {
+  public void onContactDeselected(Optional<RecipientId> recipientId, String number) {
     updateSmsButtonText();
   }
 

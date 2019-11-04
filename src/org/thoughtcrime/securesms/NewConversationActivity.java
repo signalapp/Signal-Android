@@ -26,7 +26,10 @@ import android.view.View;
 import org.thoughtcrime.securesms.conversation.ConversationActivity;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.whispersystems.libsignal.util.guava.Optional;
 
 /**
  * Activity container for starting a new conversation.
@@ -49,8 +52,14 @@ public class NewConversationActivity extends ContactSelectionActivity
   }
 
   @Override
-  public void onContactSelected(String number) {
-    Recipient recipient = Recipient.external(this, number);
+  public void onContactSelected(Optional<RecipientId> recipientId, String number) {
+    Recipient recipient;
+    if (recipientId.isPresent()) {
+      recipient = Recipient.resolved(recipientId.get());
+    } else {
+      Log.i(TAG, "[onContactSelected] Maybe creating a new recipient.");
+      recipient = Recipient.external(this, number);
+    }
 
     Intent intent = new Intent(this, ConversationActivity.class);
     intent.putExtra(ConversationActivity.RECIPIENT_EXTRA, recipient.getId());

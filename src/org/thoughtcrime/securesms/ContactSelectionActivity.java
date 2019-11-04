@@ -26,11 +26,14 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.components.ContactFilterToolbar;
 import org.thoughtcrime.securesms.contacts.ContactsCursorLoader.DisplayMode;
 import org.thoughtcrime.securesms.contacts.sync.DirectoryHelper;
+import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ViewUtil;
+import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.IOException;
 import java.lang.ref.WeakReference;
@@ -113,10 +116,10 @@ public abstract class ContactSelectionActivity extends PassphraseRequiredActionB
   }
 
   @Override
-  public void onContactSelected(String number) {}
+  public void onContactSelected(Optional<RecipientId> recipientId, String number) {}
 
   @Override
-  public void onContactDeselected(String number) {}
+  public void onContactDeselected(Optional<RecipientId> recipientId, String number) {}
 
   private static class RefreshDirectoryTask extends AsyncTask<Context, Void, Void> {
 

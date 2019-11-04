@@ -56,6 +56,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.whispersystems.libsignal.util.Pair;
+import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -275,19 +276,25 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
   }
 
   @Override
-  public void onContactSelected(String number) {
+  public void onContactSelected(Optional<RecipientId> recipientId, String number) {
     SimpleTask.run(this.getLifecycle(), () -> {
-      Recipient recipient = Recipient.external(this, number);
+      Recipient recipient;
+      if (recipientId.isPresent()) {
+        recipient = Recipient.resolved(recipientId.get());
+      } else {
+        Log.i(TAG, "[onContactSelected] Maybe creating a new recipient.");
+        recipient = Recipient.external(this, number);
+      }
+
       long existingThread = DatabaseFactory.getThreadDatabase(this).getThreadIdIfExistsFor(recipient);
       return new Pair<>(existingThread, recipient);
     }, result -> {
       createConversation(result.first(), result.second().getId(), ThreadDatabase.DistributionTypes.DEFAULT);
     });
-
   }
 
   @Override
-  public void onContactDeselected(String number) {
+  public void onContactDeselected(@NonNull Optional<RecipientId> recipientId, String number) {
 
   }
 

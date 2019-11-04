@@ -181,9 +181,12 @@ public class ContactsCursorLoader extends CursorLoader {
       ThreadDatabase.Reader reader = threadDatabase.readerFor(rawConversations);
       ThreadRecord threadRecord;
       while ((threadRecord = reader.getNext()) != null) {
-        recentConversations.addRow(new Object[] { threadRecord.getRecipient().getId().serialize(),
-                                                  threadRecord.getRecipient().toShortString(getContext()),
-                                                  threadRecord.getRecipient().requireStringId(),
+        Recipient recipient = threadRecord.getRecipient();
+        String    stringId  = recipient.isGroup() ? recipient.requireGroupId() : recipient.getE164().or(recipient.getEmail()).or("");
+
+        recentConversations.addRow(new Object[] { recipient.getId().serialize(),
+                                                  recipient.toShortString(getContext()),
+                                                  stringId,
                                                   ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE,
                                                   "",
                                                   ContactRepository.RECENT_TYPE });
