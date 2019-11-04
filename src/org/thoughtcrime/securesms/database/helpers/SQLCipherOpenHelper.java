@@ -46,6 +46,7 @@ import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.ServiceUtil;
+import org.thoughtcrime.securesms.util.SqlUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.io.File;
@@ -296,12 +297,12 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
       }
 
       // Note: This column only being checked due to upgrade issues as described in #8184
-      if (oldVersion < QUOTE_MISSING && !columnExists(db, "mms", "quote_missing")) {
+      if (oldVersion < QUOTE_MISSING && !SqlUtil.columnExists(db, "mms", "quote_missing")) {
         db.execSQL("ALTER TABLE mms ADD COLUMN quote_missing INTEGER DEFAULT 0");
       }
 
       // Note: The column only being checked due to upgrade issues as described in #8184
-      if (oldVersion < NOTIFICATION_CHANNELS && !columnExists(db, "recipient_preferences", "notification_channel")) {
+      if (oldVersion < NOTIFICATION_CHANNELS && !SqlUtil.columnExists(db, "recipient_preferences", "notification_channel")) {
         db.execSQL("ALTER TABLE recipient_preferences ADD COLUMN notification_channel TEXT DEFAULT NULL");
         NotificationChannels.create(context);
 
@@ -354,7 +355,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
       // 4.30.8 included a migration, but not a correct CREATE_TABLE statement, so we need to add
       // this column if it isn't present.
       if (oldVersion < ATTACHMENT_CAPTIONS_FIX) {
-        if (!columnExists(db, "part", "caption")) {
+        if (!SqlUtil.columnExists(db, "part", "caption")) {
           db.execSQL("ALTER TABLE part ADD COLUMN caption TEXT DEFAULT NULL");
         }
       }
@@ -636,21 +637,5 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private void executeStatements(SQLiteDatabase db, String[] statements) {
     for (String statement : statements)
       db.execSQL(statement);
-  }
-
-  private static boolean columnExists(@NonNull SQLiteDatabase db, @NonNull String table, @NonNull String column) {
-    try (Cursor cursor = db.rawQuery("PRAGMA table_info(" + table + ")", null)) {
-      int nameColumnIndex = cursor.getColumnIndexOrThrow("name");
-
-      while (cursor.moveToNext()) {
-        String name = cursor.getString(nameColumnIndex);
-
-        if (name.equals(column)) {
-          return true;
-        }
-      }
-    }
-
-    return false;
   }
 }

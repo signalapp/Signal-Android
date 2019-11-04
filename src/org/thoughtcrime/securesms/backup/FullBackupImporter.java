@@ -30,10 +30,12 @@ import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.Conversions;
+import org.thoughtcrime.securesms.util.SqlUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.kdf.HKDFv3;
 import org.whispersystems.libsignal.util.ByteUtil;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -82,7 +84,7 @@ public class FullBackupImporter extends FullBackupBase {
         else if (frame.hasPreference()) processPreference(context, frame.getPreference());
         else if (frame.hasAttachment()) processAttachment(context, attachmentSecret, db, frame.getAttachment(), inputStream);
         else if (frame.hasSticker())    processSticker(context, attachmentSecret, db, frame.getSticker(), inputStream);
-        else if (frame.hasAvatar())     processAvatar(context, frame.getAvatar(), inputStream);
+        else if (frame.hasAvatar())     processAvatar(context, db, frame.getAvatar(), inputStream);
       }
 
       db.setTransactionSuccessful();
@@ -172,11 +174,23 @@ public class FullBackupImporter extends FullBackupBase {
               new String[] {String.valueOf(sticker.getRowId())});
   }
 
-  private static void processAvatar(@NonNull Context context, @NonNull BackupProtos.Avatar avatar, @NonNull BackupRecordInputStream inputStream) throws IOException {
-    Recipient recipient = avatar.hasRecipientId() ? Recipient.resolved(RecipientId.from(avatar.getRecipientId()))
-                                                  : Recipient.external(context, avatar.getName());
+  private static void processAvatar(@NonNull Context context, @NonNull SQLiteDatabase db, @NonNull BackupProtos.Avatar avatar, @NonNull BackupRecordInputStream inputStream) throws IOException {
+    if (avatar.hasRecipientId()) {
+      RecipientId recipientId = RecipientId.from(avatar.getRecipientId());
+      inputStream.readAttachmentTo(new FileOutputStream(AvatarHelper.getAvatarFile(context, recipientId)), avatar.getLength());
+    } else {
+      if (avatar.hasName() && SqlUtil.tableExists(db, "recipient_preferences")) {
+        Log.w(TAG, "Avatar is missing a recipientId. Clearing signal_profile_avatar (legacy) so it can be fetched later.");
+        db.execSQL("UPDATE recipient_preferences SET signal_profile_avatar = NULL WHERE recipient_ids = ?", new String[] { avatar.getName() });
+      } else if (avatar.hasName() && SqlUtil.tableExists(db, "recipient")) {
+        Log.w(TAG, "Avatar is missing a recipientId. Clearing signal_profile_avatar so it can be fetched later.");
+        db.execSQL("UPDATE recipient SET signal_profile_avatar = NULL WHERE phone = ?", new String[] { avatar.getName() });
+      } else {
+        Log.w(TAG, "Avatar is missing a recipientId. Skipping avatar restore.");
+      }
 
-    inputStream.readAttachmentTo(new FileOutputStream(AvatarHelper.getAvatarFile(context, recipient.getId())), avatar.getLength());
+      inputStream.readAttachmentTo(new ByteArrayOutputStream(), avatar.getLength());
+    }
   }
 
   @SuppressLint("ApplySharedPref")
