@@ -99,7 +99,6 @@ import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
-import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
 import org.whispersystems.libsignal.state.PreKeyBundle;
 import org.whispersystems.libsignal.state.SignalProtocolStore;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -147,7 +146,6 @@ import javax.inject.Inject;
 
 import kotlin.Unit;
 import network.loki.messenger.R;
-import nl.komponents.kovenant.Promise;
 
 public class PushDecryptJob extends BaseJob implements InjectableType {
 
@@ -1100,6 +1098,8 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     // If the thread's friend request status is not `FRIENDS`, but we're receiving a message,
     // it must be a friend request accepted message. Declining a friend request doesn't send a message.
     lokiThreadDatabase.setFriendRequestStatus(threadID, LokiThreadFriendRequestStatus.FRIENDS);
+    // Send out a contact sync message
+    MessageSender.syncContact(context, contactID.getAddress());
     // Update the last message if needed
     LokiStorageAPI.shared.getPrimaryDevicePublicKey(pubKey).success(primaryDevice -> {
       Util.runOnMain(() -> {
@@ -1145,6 +1145,8 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         FriendRequestHandler.updateLastFriendRequestMessage(context, primaryDeviceThreadID, LokiMessageFriendRequestStatus.REQUEST_ACCEPTED);
         // Accept the friend request
         MessageSender.sendBackgroundMessage(context, content.getSender());
+        // Send contact sync message
+        MessageSender.syncContact(context, originalRecipient.getAddress());
       } else if (threadFriendRequestStatus != LokiThreadFriendRequestStatus.FRIENDS) {
         // Checking that the sender of the message isn't already a friend is necessary because otherwise
         // the following situation can occur: Alice and Bob are friends. Bob loses his database and his

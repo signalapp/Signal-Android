@@ -2,7 +2,6 @@
 package org.thoughtcrime.securesms.loki
 
 import android.content.Context
-import android.os.Handler
 import nl.komponents.kovenant.*
 import nl.komponents.kovenant.functional.bind
 import nl.komponents.kovenant.functional.map
@@ -10,7 +9,6 @@ import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob
 import org.thoughtcrime.securesms.logging.Log
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.sms.MessageSender
@@ -130,7 +128,7 @@ fun signAndSendPairingAuthorisationMessage(context: Context, pairingAuthorisatio
   // If both promises complete successfully then we should sync our contacts
   all(listOf(sendPromise, updatePromise), cancelOthersOnError = false).success {
     Log.d("Loki", "Successfully pairing with a secondary device! Syncing contacts.")
-    MessageSender.sendContactSyncMessage(context)
+    MessageSender.syncAllContacts(context)
   }
 }
 

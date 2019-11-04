@@ -127,7 +127,6 @@ import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher;
 import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
 import org.thoughtcrime.securesms.crypto.SecurityEvent;
 import org.thoughtcrime.securesms.database.Address;
-import org.thoughtcrime.securesms.database.Database;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.DraftDatabase;
 import org.thoughtcrime.securesms.database.DraftDatabase.Draft;
@@ -242,17 +241,12 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
-import java.util.Set;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import kotlin.Unit;
 import network.loki.messenger.R;
-import nl.komponents.kovenant.Kovenant;
-import nl.komponents.kovenant.KovenantApi;
-import nl.komponents.kovenant.Promise;
 
 import static nl.komponents.kovenant.KovenantApi.task;
 import static org.thoughtcrime.securesms.TransportOption.Type;
@@ -3032,16 +3026,18 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     long originalThreadID = lokiMessageDatabase.getOriginalThreadID(friendRequest.id);
     long threadId = originalThreadID < 0 ? this.threadId : originalThreadID;
 
-    String contactID = DatabaseFactory.getThreadDatabase(this).getRecipientForThreadId(threadId).getAddress().toString();
+    Address contact = DatabaseFactory.getThreadDatabase(this).getRecipientForThreadId(threadId).getAddress();
+    String contactPubKey = contact.toString();
     Context context = this;
     AsyncTask.execute(() -> {
       try {
-        MessageSender.sendBackgroundMessageToAllDevices(this, contactID);
+        MessageSender.sendBackgroundMessageToAllDevices(this, contactPubKey);
+        MessageSender.syncContact(this, contact);
         DatabaseFactory.getLokiThreadDatabase(context).setFriendRequestStatus(threadId, LokiThreadFriendRequestStatus.FRIENDS);
         lokiMessageDatabase.setFriendRequestStatus(friendRequest.id, LokiMessageFriendRequestStatus.REQUEST_ACCEPTED);
         Util.runOnMain(this::updateInputPanel);
       } catch (Exception e) {
-        Log.d("Loki", "Failed to send background message to: " + contactID + ".");
+        Log.d("Loki", "Failed to send background message to: " + contactPubKey + ".");
       }
     });
   }

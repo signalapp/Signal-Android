@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms.sms;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.attachments.Attachment;
@@ -66,7 +67,6 @@ import org.whispersystems.signalservice.loki.utilities.PromiseUtil;
 
 import java.io.IOException;
 import java.util.Map;
-import java.util.Set;
 
 import kotlin.Unit;
 import nl.komponents.kovenant.Kovenant;
@@ -78,12 +78,21 @@ public class MessageSender {
 
   private enum MessageType { TEXT, MEDIA }
 
-  public static void sendContactSyncMessage(Context context) {
+  public static void syncAllContacts(Context context) {
     ApplicationContext.getInstance(context).getJobManager().add(new MultiDeviceContactUpdateJob(context, true));
   }
 
-  public static void sendContactSyncMessage(Context context, Address address) {
-    ApplicationContext.getInstance(context).getJobManager().add(new MultiDeviceContactUpdateJob(context, address));
+  /**
+   * Send a contact sync message to all our devices telling them that we want to sync `contact`
+   */
+  public static void syncContact(Context context, Address contact) {
+    // Don't bother sending a contact sync message if it's one of our devices that we want to sync across
+    MultiDeviceUtilities.isOneOfOurDevices(context, contact).success(isOneOfOurDevice -> {
+      if (!isOneOfOurDevice) {
+        ApplicationContext.getInstance(context).getJobManager().add(new MultiDeviceContactUpdateJob(context, contact));
+      }
+      return Unit.INSTANCE;
+    });
   }
 
   public static void sendBackgroundMessageToAllDevices(Context context, String contactHexEncodedPublicKey) {
@@ -100,11 +109,10 @@ public class MessageSender {
           long threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(recipient);
           if (threadID < 0) { continue; }
           LokiThreadFriendRequestStatus friendRequestStatus = DatabaseFactory.getLokiThreadDatabase(context).getFriendRequestStatus(threadID);
+          // TODO: Do we want to send a bg message regardless of FR status? OR do we want to send a custom FR to those we are not friends with
           if (friendRequestStatus == LokiThreadFriendRequestStatus.FRIENDS || friendRequestStatus == LokiThreadFriendRequestStatus.REQUEST_RECEIVED) {
             sendBackgroundMessage(context, device);
           }
-
-          // TODO: Do we want to send a custom FR Message if we're not friends and we haven't received a friend request?
         }
       });
       return Unit.INSTANCE;
@@ -112,10 +120,15 @@ public class MessageSender {
   }
 
   public static void sendBackgroundMessage(Context context, String contactHexEncodedPublicKey) {
+    sendMessageWithBody(context, contactHexEncodedPublicKey, null);
+  }
+
+  public static void sendMessageWithBody(Context context, String contactHexEncodedPublicKey, @Nullable String messageBody) {
     Util.runOnMain(() -> {
       SignalServiceMessageSender messageSender = ApplicationContext.getInstance(context).communicationModule.provideSignalMessageSender();
       SignalServiceAddress address = new SignalServiceAddress(contactHexEncodedPublicKey);
-      SignalServiceDataMessage message = new SignalServiceDataMessage(System.currentTimeMillis(), null);
+      String body = (messageBody == null || messageBody.isEmpty()) ? null : messageBody;
+      SignalServiceDataMessage message = new SignalServiceDataMessage(System.currentTimeMillis(), body);
       try {
         // Try send to the original person
         messageSender.sendMessage(0, address, Optional.absent(), message); // The message ID doesn't matter
