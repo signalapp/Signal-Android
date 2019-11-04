@@ -10,8 +10,10 @@ import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
+import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob
 import org.thoughtcrime.securesms.logging.Log
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.libsignal.util.guava.Optional
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair
@@ -112,20 +114,24 @@ fun signAndSendPairingAuthorisationMessage(context: Context, pairingAuthorisatio
     Log.d("Loki", "Failed to sign pairing authorization.")
     return
   }
-  retryIfNeeded(8) {
+  DatabaseFactory.getLokiAPIDatabase(context).insertOrUpdatePairingAuthorisation(signedPairingAuthorisation)
+  TextSecurePreferences.setMultiDevice(context, true)
+
+  val sendPromise = retryIfNeeded(8) {
     sendPairingAuthorisationMessage(context, pairingAuthorisation.secondaryDevicePublicKey, signedPairingAuthorisation)
   }.fail {
     Log.d("Loki", "Failed to send pairing authorization message to ${pairingAuthorisation.secondaryDevicePublicKey}.")
   }
-  DatabaseFactory.getLokiAPIDatabase(context).insertOrUpdatePairingAuthorisation(signedPairingAuthorisation)
-  TextSecurePreferences.setMultiDevice(context, true)
-  // Call function after a short delay
-  Handler().postDelayed({
-    LokiStorageAPI.shared.updateUserDeviceMappings().fail {
-      Log.w("Loki", "Failed to update device mapping")
-    }
-  }, 100)
 
+  val updatePromise = LokiStorageAPI.shared.updateUserDeviceMappings().fail {
+    Log.d("Loki", "Failed to update device mapping")
+  }
+
+  // If both promises complete successfully then we should sync our contacts
+  all(listOf(sendPromise, updatePromise), cancelOthersOnError = false).success {
+    Log.d("Loki", "Successfully pairing with a secondary device! Syncing contacts.")
+    MessageSender.sendContactSyncMessage(context)
+  }
 }
 
 fun isOneOfOurDevices(context: Context, address: Address): Promise<Boolean, Exception> {

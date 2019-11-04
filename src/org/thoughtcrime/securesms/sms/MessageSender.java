@@ -35,6 +35,7 @@ import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobs.MmsSendJob;
+import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
 import org.thoughtcrime.securesms.jobs.PushGroupSendJob;
 import org.thoughtcrime.securesms.jobs.PushMediaSendJob;
 import org.thoughtcrime.securesms.jobs.PushTextSendJob;
@@ -76,6 +77,14 @@ public class MessageSender {
   private static final String TAG = MessageSender.class.getSimpleName();
 
   private enum MessageType { TEXT, MEDIA }
+
+  public static void sendContactSyncMessage(Context context) {
+    ApplicationContext.getInstance(context).getJobManager().add(new MultiDeviceContactUpdateJob(context, true));
+  }
+
+  public static void sendContactSyncMessage(Context context, Address address) {
+    ApplicationContext.getInstance(context).getJobManager().add(new MultiDeviceContactUpdateJob(context, address));
+  }
 
   public static void sendBackgroundMessageToAllDevices(Context context, String contactHexEncodedPublicKey) {
     // Send the background message to the original pubkey
