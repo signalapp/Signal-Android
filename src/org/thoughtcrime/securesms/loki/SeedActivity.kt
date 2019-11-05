@@ -4,6 +4,7 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
+import android.os.AsyncTask
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -202,8 +203,10 @@ class SeedActivity : BaseActionBarActivity(), DeviceLinkingDialogDelegate {
             application.setUpP2PAPI()
             application.setUpStorageAPIIfNeeded()
             DeviceLinkingDialog.show(this, DeviceLinkingView.Mode.Slave, this)
-            retryIfNeeded(8) {
-                sendPairingAuthorisationMessage(this@SeedActivity, authorisation.primaryDevicePublicKey, authorisation)
+            AsyncTask.execute {
+                retryIfNeeded(8) {
+                    sendPairingAuthorisationMessage(this@SeedActivity, authorisation.primaryDevicePublicKey, authorisation)
+                }
             }
         } else {
             startActivity(Intent(this, DisplayNameActivity::class.java))

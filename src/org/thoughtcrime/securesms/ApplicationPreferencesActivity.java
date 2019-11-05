@@ -26,6 +26,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Build.VERSION;
 import android.os.Bundle;
@@ -394,7 +395,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
       }
 
       @Override public void sendPairingAuthorizedMessage(@NotNull PairingAuthorisation pairingAuthorisation) {
-        MultiDeviceUtilities.signAndSendPairingAuthorisationMessage(context, pairingAuthorisation);
+        AsyncTask.execute(() -> MultiDeviceUtilities.signAndSendPairingAuthorisationMessage(context, pairingAuthorisation));
       }
       @Override public void handleDeviceLinkAuthorized(@NotNull PairingAuthorisation pairingAuthorisation) {}
       @Override public void handleDeviceLinkingDialogDismissed() {}
