@@ -155,14 +155,18 @@ public class Recipient {
 
       return resolved(recipient.getId());
     } else if (uuid != null) {
-      RecipientId id = db.getOrInsertFromUuid(uuid);
-      db.markRegistered(id, uuid);
+      if (FeatureFlags.UUIDS || e164 != null) {
+        RecipientId id = db.getOrInsertFromUuid(uuid);
+        db.markRegistered(id, uuid);
 
-      if (e164 != null) {
-        db.setPhoneNumber(id, e164);
+        if (e164 != null) {
+          db.setPhoneNumber(id, e164);
+        }
+
+        return resolved(id);
+      } else {
+        throw new UuidRecipientError();
       }
-
-      return resolved(id);
     } else if (e164 != null) {
       Recipient recipient = resolved(db.getOrInsertFromE164(e164));
 
@@ -196,7 +200,19 @@ public class Recipient {
     RecipientId       id = null;
 
     if (UuidUtil.isUuid(identifier)) {
-      id = db.getOrInsertFromUuid(UuidUtil.parseOrThrow(identifier));
+      UUID uuid = UuidUtil.parseOrThrow(identifier);
+
+      if (FeatureFlags.UUIDS) {
+        id = db.getOrInsertFromUuid(uuid);
+      } else {
+        Optional<RecipientId> possibleId = db.getByUuid(uuid);
+
+        if (possibleId.isPresent()) {
+          id = possibleId.get();
+        } else {
+          throw new UuidRecipientError();
+        }
+      }
     } else if (GroupUtil.isEncodedGroup(identifier)) {
       id = db.getOrInsertFromGroupId(identifier);
     } else if (NumberUtil.isValidEmail(identifier)) {
@@ -627,5 +643,8 @@ public class Recipient {
   }
 
   private static class MissingAddressError extends AssertionError {
+  }
+
+  private static class UuidRecipientError extends AssertionError {
   }
 }
