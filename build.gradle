@@ -357,6 +357,9 @@ android {
             java.srcDirs = ['test/unitTest/java']
             resources.srcDirs = ['test/unitTest/resources']
         }
+        staging {
+            res.srcDirs = ['staging/res']
+        }
 
         website.manifest.srcFile 'website/AndroidManifest.xml'
     }
