@@ -375,11 +375,11 @@ dependencyVerification {
         ['org.whispersystems:signal-protocol-java:2.8.1',
          'b19db36839ab008fdccefc7f8c005f2ea43dc7c7298a209bc424e6f9b6d5617b'],
 
-        ['org.whispersystems:signal-service-android:2.15.0',
+        ['org.whispersystems:signal-service-android:2.15.1',
          '27c6cf63393a2d466474e45162ec254c557f6a19e91962d0e4acc870373c41fd'],
 
-        ['org.whispersystems:signal-service-java:2.15.0',
-         '38298e3eae7f5f93e5169541261fa04cbfebcf91599368890bfaedb158662979'],
+        ['org.whispersystems:signal-service-java:2.15.1',
+         'd0023125e232b11ead150bbf38361fa61a3dbf3adc81c2473c673735380db9c2'],
 
         ['pl.tajchert:waitingdots:0.1.0',
          '2835d49e0787dbcb606c5a60021ced66578503b1e9fddcd7a5ef0cd5f095ba2c'],
