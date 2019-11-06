@@ -58,29 +58,24 @@ fun getFriendCount(context: Context, devices: Set<String>): Int {
 }
 
 fun shouldAutomaticallyBecomeFriendsWithDevice(publicKey: String, context: Context): Promise<Boolean, Exception> {
-  val lokiThreadDatabase = DatabaseFactory.getLokiThreadDatabase(context)
-  val storageAPI = LokiStorageAPI.shared
-
   // If this public key is our primary device then we should become friends
   if (publicKey == TextSecurePreferences.getMasterHexEncodedPublicKey(context)) {
     return Promise.of(true)
   }
 
-  return storageAPI.getPrimaryDevicePublicKey(publicKey).map { primaryDevicePublicKey ->
+  return LokiStorageAPI.shared.getPrimaryDevicePublicKey(publicKey).bind { primaryDevicePublicKey ->
     // If the public key doesn't have any other devices then go through regular friend request logic
     if (primaryDevicePublicKey == null) {
-      return@map false
+      return@bind Promise.of(false)
     }
 
     // If the primary device public key matches our primary device then we should become friends since this is our other device
     if (primaryDevicePublicKey == TextSecurePreferences.getMasterHexEncodedPublicKey(context)) {
-      return@map true
+      return@bind Promise.of(true)
     }
 
-    // If we are friends with the primary device then we should become friends
-    val primaryDevice = Recipient.from(context, Address.fromSerialized(primaryDevicePublicKey), false)
-    val primaryDeviceThreadID = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(primaryDevice)
-    primaryDeviceThreadID >= 0 && lokiThreadDatabase.getFriendRequestStatus(primaryDeviceThreadID) == LokiThreadFriendRequestStatus.FRIENDS
+    // If we are friends with any of the other devices then we should become friends
+    isFriendsWithAnyLinkedDevice(context, Address.fromSerialized(primaryDevicePublicKey))
   }
 }
 
@@ -153,9 +148,13 @@ fun isOneOfOurDevices(context: Context, address: Address): Promise<Boolean, Exce
 }
 
 fun isFriendsWithAnyLinkedDevice(context: Context, recipient: Recipient): Promise<Boolean, Exception> {
-  if (recipient.isGroupRecipient) { return Promise.of(true) }
+  return isFriendsWithAnyLinkedDevice(context, recipient.address)
+}
 
-  return getAllDeviceFriendRequestStatuses(context, recipient.address.serialize()).map { map ->
+fun isFriendsWithAnyLinkedDevice(context: Context, address: Address): Promise<Boolean, Exception> {
+  if (!address.isPhone) { return Promise.of(true) }
+
+  return getAllDeviceFriendRequestStatuses(context, address.serialize()).map { map ->
     for (status in map.values) {
       if (status == LokiThreadFriendRequestStatus.FRIENDS) {
         return@map true
