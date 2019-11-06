@@ -464,7 +464,7 @@ public class WebRtcCallService extends Service implements CallConnection.Observe
     } catch (CallException e) {
       Log.w(TAG, e);
       sendMessage(WebRtcViewModel.State.NETWORK_FAILURE, recipient, localCameraState, remoteVideoEnabled, bluetoothAvailable, microphoneEnabled);
-      terminate();
+      hangupAndTerminate();
     }
   }
 
@@ -549,7 +549,7 @@ public class WebRtcCallService extends Service implements CallConnection.Observe
     } catch (CallException e) {
       Log.w(TAG, e);
       sendMessage(WebRtcViewModel.State.NETWORK_FAILURE, recipient, localCameraState, remoteVideoEnabled, bluetoothAvailable, microphoneEnabled);
-      terminate();
+      hangupAndTerminate();
     }
 
   }
@@ -672,13 +672,13 @@ public class WebRtcCallService extends Service implements CallConnection.Observe
       intent.putExtra(EXTRA_CALL_ID, callId);
       intent.putExtra(EXTRA_REMOTE_RECIPIENT, recipient.getId());
       handleCallConnected(intent);
+      activateCallMedia();
     } catch (CallException e) {
       Log.w(TAG, e);
       sendMessage(WebRtcViewModel.State.NETWORK_FAILURE, recipient, localCameraState, remoteVideoEnabled, bluetoothAvailable, microphoneEnabled);
-      terminate();
+      hangupAndTerminate();
     }
 
-    activateCallMedia();
   }
 
   private void handleDenyCall(Intent intent) {
@@ -770,7 +770,8 @@ public class WebRtcCallService extends Service implements CallConnection.Observe
       } catch (CallException e) {
         Log.w(TAG, e);
         sendMessage(WebRtcViewModel.State.NETWORK_FAILURE, recipient, localCameraState, remoteVideoEnabled, bluetoothAvailable, microphoneEnabled);
-        terminate();
+        hangupAndTerminate();
+        return;
       }
     }
 
@@ -890,7 +891,7 @@ public class WebRtcCallService extends Service implements CallConnection.Observe
       sendMessage(WebRtcViewModel.State.NETWORK_FAILURE, recipient, localCameraState, remoteVideoEnabled, bluetoothAvailable, microphoneEnabled);
       break;
     }
-    terminate();
+    hangupAndTerminate();
 
   }
 
@@ -932,6 +933,22 @@ public class WebRtcCallService extends Service implements CallConnection.Observe
   private void setCallInProgressNotification(int type, Recipient recipient) {
     startForeground(CallNotificationBuilder.getNotificationId(getApplicationContext(), type),
                     CallNotificationBuilder.getCallInProgressNotification(this, type, recipient));
+  }
+
+  private void hangupAndTerminate() {
+    if (callConnection != null && callId != null) {
+      accountManager.cancelInFlightRequests();
+      messageSender.cancelInFlightRequests();
+
+      try {
+        callConnection.hangUp();
+      } catch (CallException e) {
+        Log.w(TAG, e);
+      }
+
+    }
+
+    terminate();
   }
 
   private synchronized void terminate() {
