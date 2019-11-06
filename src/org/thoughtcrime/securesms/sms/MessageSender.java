@@ -288,6 +288,7 @@ public class MessageSender {
       return;
     }
 
+    // If we get here then we are sending a message to a device that is not ours
     boolean[] hasSentSyncMessage = { false };
     MultiDeviceUtilities.getAllDevicePublicKeysWithFriendStatus(context, recipientPublicKey).success(devices -> {
       int friendCount = MultiDeviceUtilities.getFriendCount(context, devices.keySet());
@@ -302,24 +303,13 @@ public class MessageSender {
           if (isFriend) {
             // Send a normal message if the user is friends with the recipient
             // We should also send a sync message if we haven't already sent one
-            Promise<Boolean, Exception> promise = Promise.Companion.of(false, Kovenant.INSTANCE.getContext());
-            if (!hasSentSyncMessage[0]) {
-              promise =  MultiDeviceUtilities.shouldSendSycMessage(context, address).success(value -> {
-                hasSentSyncMessage[0] = value;
-                return Unit.INSTANCE;
-              });
+            boolean shouldSendSyncMessage = !hasSentSyncMessage[0] && address.isPhone();
+            if (type == MessageType.MEDIA) {
+              PushMediaSendJob.enqueue(context, jobManager, messageId, messageIDToUse, address, shouldSendSyncMessage);
+            } else {
+              jobManager.add(new PushTextSendJob(messageId, messageIDToUse, address, shouldSendSyncMessage));
             }
-
-            promise.success(shouldSendSyncMessage -> {
-              Util.runOnMain(() -> {
-                if (type == MessageType.MEDIA) {
-                  PushMediaSendJob.enqueue(context, jobManager, messageId, messageIDToUse, address, shouldSendSyncMessage);
-                } else {
-                  jobManager.add(new PushTextSendJob(messageId, messageIDToUse, address, shouldSendSyncMessage));
-                }
-              });
-              return Unit.INSTANCE;
-            });
+            if (shouldSendSyncMessage) { hasSentSyncMessage[0] = true; }
           } else {
             // Send friend requests to non friends. If the user is friends with any
             // of the devices then send out a default friend request message.

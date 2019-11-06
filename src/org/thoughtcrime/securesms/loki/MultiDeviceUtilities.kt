@@ -127,15 +127,6 @@ fun signAndSendPairingAuthorisationMessage(context: Context, pairingAuthorisatio
 
 }
 
-fun shouldSendSycMessage(context: Context, address: Address): Promise<Boolean, Exception> {
-  if (address.isGroup || address.isEmail || address.isMmsGroup) {
-    return Promise.of(false)
-  }
-
-  // Don't send sync messages if it's one of our devices
-  return isOneOfOurDevices(context, address).map { !it }
-}
-
 fun isOneOfOurDevices(context: Context, address: Address): Promise<Boolean, Exception> {
   if (address.isGroup || address.isEmail || address.isMmsGroup) {
     return Promise.of(false)
