@@ -667,7 +667,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
             MessageSender.sendBackgroundFriendRequest(context, deviceContact.getNumber(), "This is an automated friend request. Still under testing!");
           } else if (status == LokiThreadFriendRequestStatus.REQUEST_RECEIVED) {
             // Accept the incoming friend request
-            becomeFriendsWithContact(deviceContact.getNumber());
+            becomeFriendsWithContact(deviceContact.getNumber(), false);
           }
 
           // TODO: Handle blocked - If user is not blocked then we should do the friend request logic otherwise add them to our block list
@@ -1131,10 +1131,10 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   private void acceptFriendRequestIfNeeded(@NonNull SignalServiceEnvelope envelope, @NonNull SignalServiceContent content) {
     // If we get anything other than a friend request, we can assume that we have a session with the other user
     if (envelope.isFriendRequest() || isGroupChatMessage(content)) { return; }
-    becomeFriendsWithContact(content.getSender());
+    becomeFriendsWithContact(content.getSender(), true);
   }
 
-  private void becomeFriendsWithContact(String pubKey) {
+  private void becomeFriendsWithContact(String pubKey, boolean syncContact) {
     LokiThreadDatabase lokiThreadDatabase = DatabaseFactory.getLokiThreadDatabase(context);
     Recipient contactID = Recipient.from(context, Address.fromSerialized(pubKey), false);
     long threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(contactID);
@@ -1144,7 +1144,9 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     // it must be a friend request accepted message. Declining a friend request doesn't send a message.
     lokiThreadDatabase.setFriendRequestStatus(threadID, LokiThreadFriendRequestStatus.FRIENDS);
     // Send out a contact sync message
-    MessageSender.syncContact(context, contactID.getAddress());
+    if (syncContact) {
+      MessageSender.syncContact(context, contactID.getAddress());
+    }
     // Update the last message if needed
     LokiStorageAPI.shared.getPrimaryDevicePublicKey(pubKey).success(primaryDevice -> {
       Util.runOnMain(() -> {
@@ -1161,7 +1163,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     boolean shouldBecomeFriends = PromiseUtil.get(MultiDeviceUtilities.shouldAutomaticallyBecomeFriendsWithDevice(content.getSender(), context), false);
     if (shouldBecomeFriends) {
       // Become friends AND update the message they sent
-      becomeFriendsWithContact(content.getSender());
+      becomeFriendsWithContact(content.getSender(), true);
       // Send them an accept message back
       MessageSender.sendBackgroundMessage(context, content.getSender());
     } else {

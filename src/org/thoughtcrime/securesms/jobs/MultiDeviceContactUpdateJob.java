@@ -46,7 +46,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
@@ -183,8 +185,8 @@ public class MultiDeviceContactUpdateJob extends BaseJob implements InjectableTy
     File contactDataFile = createTempFile("multidevice-contact-update");
 
     try {
-      DeviceContactsOutputStream out      = new DeviceContactsOutputStream(new FileOutputStream(contactDataFile));
-      Collection<ContactData>    contacts = ContactAccessor.getInstance().getContactsWithPush(context);
+      DeviceContactsOutputStream out = new DeviceContactsOutputStream(new FileOutputStream(contactDataFile));
+      List<ContactData> contacts     = getAllContacts();
 
       for (ContactData contactData : contacts) {
         Uri                                       contactUri  = Uri.withAppendedPath(ContactsContract.Contacts.CONTENT_URI, String.valueOf(contactData.id));
@@ -192,7 +194,7 @@ public class MultiDeviceContactUpdateJob extends BaseJob implements InjectableTy
         Recipient                                 recipient   = Recipient.from(context, address, false);
         Optional<IdentityDatabase.IdentityRecord> identity    = DatabaseFactory.getIdentityDatabase(context).getIdentity(address);
         Optional<VerifiedMessage>                 verified    = getVerifiedMessage(recipient, identity);
-        Optional<String>                          name        = Optional.fromNullable(DatabaseFactory.getLokiUserDatabase(context).getDisplayName(address.serialize()));
+        Optional<String>                          name        = Optional.fromNullable(contactData.name);
         Optional<String>                          color       = Optional.of(recipient.getColor().serialize());
         Optional<byte[]>                          profileKey  = Optional.fromNullable(recipient.getProfileKey());
         boolean                                   blocked     = recipient.isBlocked();
@@ -220,6 +222,20 @@ public class MultiDeviceContactUpdateJob extends BaseJob implements InjectableTy
     } finally {
       if (contactDataFile != null) contactDataFile.delete();
     }
+  }
+
+  private List<ContactData> getAllContacts() {
+    List<Address> contactAddresses = DatabaseFactory.getRecipientDatabase(context).getRegistered();
+    List<ContactData> contacts     = new ArrayList<>(contactAddresses.size());
+    for (Address address : contactAddresses) {
+      if (!address.isPhone()) { continue; }
+      long threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(Recipient.from(context, address, false));
+      String name = DatabaseFactory.getLokiUserDatabase(context).getDisplayName(address.serialize());
+      ContactData contactData = new ContactData(threadId, name);
+      contactData.numbers.add(new ContactAccessor.NumberData("TextSecure", address.serialize()));
+      contacts.add(contactData);
+    }
+    return contacts;
   }
 
   private LokiThreadFriendRequestStatus getFriendRequestStatus(Recipient recipient) {
@@ -259,6 +275,9 @@ public class MultiDeviceContactUpdateJob extends BaseJob implements InjectableTy
   }
 
   private Optional<SignalServiceAttachmentStream> getAvatar(@Nullable Uri uri) throws IOException {
+    return Optional.absent();
+
+    /* Loki - Disabled until we support custom avatars. This will need to be reworked
     if (uri == null) {
       return Optional.absent();
     }
@@ -312,6 +331,7 @@ public class MultiDeviceContactUpdateJob extends BaseJob implements InjectableTy
         cursor.close();
       }
     }
+     */
   }
 
   private Optional<VerifiedMessage> getVerifiedMessage(Recipient recipient, Optional<IdentityDatabase.IdentityRecord> identity) throws InvalidNumberException {
