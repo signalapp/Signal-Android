@@ -2,14 +2,14 @@ package org.thoughtcrime.securesms.util;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import android.util.Patterns;
+import androidx.core.util.PatternsCompat;
 
 public class LinkCleaner {
 
   private final static String CLEANING_REGEX = "(?i)(\\?|&)(utm_[a-z_]*|ocid|fbclid|igshid)=([^&]+)";
 
   public static String cleanText(String text) {
-    Matcher linksMatcher = Patterns.WEB_URL.matcher(text);
+    Matcher linksMatcher = PatternsCompat.WEB_URL.matcher(text);
     String originalLink, cleanLink;
     while (linksMatcher.find()) {
       originalLink = linksMatcher.group();
@@ -53,4 +53,3 @@ public class LinkCleaner {
     return link;
   }
 }
-
