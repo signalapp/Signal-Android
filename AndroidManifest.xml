@@ -462,7 +462,21 @@
             android:label="@string/PlacePickerActivity_title"
             android:theme="@style/TextSecure.LightNoActionBar" />
 
-    <service android:enabled="true" android:name="org.thoughtcrime.securesms.service.WebRtcCallService"/>
+    <activity
+            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
+            android:name=".ViewProfilePhotoActivity"
+            android:icon="@drawable/ic_photo_core_blue"
+            android:label="View photo">
+
+        <intent-filter>
+            <action android:name="org.thoughtcrime.securesms.action.VIEW_PROFILE_PHOTO"/>
+            <category android:name="android.intent.category.DEFAULT"/>
+        </intent-filter>
+    </activity>
+
+        <service
+            android:name="org.thoughtcrime.securesms.service.WebRtcCallService"
+            android:enabled="true" />
     <service android:enabled="true" android:name=".service.ApplicationMigrationService"/>
     <service android:enabled="true" android:exported="false" android:name=".service.KeyCachingService"/>
     <service android:enabled="true" android:name=".service.IncomingMessageObserver$ForegroundService"/>
