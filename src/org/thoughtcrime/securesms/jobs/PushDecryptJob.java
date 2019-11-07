@@ -652,9 +652,9 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         DeviceContactsInputStream contactsInputStream = new DeviceContactsInputStream(contactsMessage.getContactsStream().asStream().getInputStream());
         DeviceContact deviceContact = contactsInputStream.read();
         while (deviceContact != null) {
-          // Check if we have the contact as a friend
+          // Check if we have the contact as a friend and that we're not trying to sync our own device
           Address address = Address.fromSerialized(deviceContact.getNumber());
-          if (!address.isPhone()) { continue; }
+          if (!address.isPhone() || address.toPhoneString().equalsIgnoreCase(TextSecurePreferences.getLocalNumber(context))) { continue; }
 
           /*
           If we're not friends with the contact we received or our friend request expired then we should send them a friend request

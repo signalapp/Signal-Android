@@ -41,7 +41,7 @@ class PushMessageSyncSendJob private constructor(
           .addConstraint(NetworkConstraint.KEY)
           .setQueue(KEY)
           .setLifespan(TimeUnit.DAYS.toMillis(1))
-          .setMaxAttempts(3)
+          .setMaxAttempts(1)
           .build(),
           messageID, recipient, timestamp, message, ttl)
 

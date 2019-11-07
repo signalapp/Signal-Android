@@ -2,6 +2,7 @@
 package org.thoughtcrime.securesms.loki
 
 import android.content.Context
+import android.os.Handler
 import nl.komponents.kovenant.*
 import nl.komponents.kovenant.functional.bind
 import nl.komponents.kovenant.functional.map
@@ -22,6 +23,8 @@ import org.whispersystems.signalservice.loki.api.PairingAuthorisation
 import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus
 import org.whispersystems.signalservice.loki.utilities.recover
 import org.whispersystems.signalservice.loki.utilities.retryIfNeeded
+import java.util.*
+import kotlin.concurrent.schedule
 
 fun getAllDeviceFriendRequestStatuses(context: Context, hexEncodedPublicKey: String): Promise<Map<String, LokiThreadFriendRequestStatus>, Exception> {
   val lokiThreadDatabase = DatabaseFactory.getLokiThreadDatabase(context)
@@ -128,7 +131,10 @@ fun signAndSendPairingAuthorisationMessage(context: Context, pairingAuthorisatio
   // If both promises complete successfully then we should sync our contacts
   all(listOf(sendPromise, updatePromise), cancelOthersOnError = false).success {
     Log.d("Loki", "Successfully pairing with a secondary device! Syncing contacts.")
-    MessageSender.syncAllContacts(context)
+    // Send out sync contact after a delay
+    Timer().schedule(3000) {
+      MessageSender.syncAllContacts(context)
+    }
   }
 }
 

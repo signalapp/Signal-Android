@@ -17,6 +17,7 @@
 package org.thoughtcrime.securesms.sms;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
@@ -47,6 +48,7 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.FriendRequestHandler;
 import org.thoughtcrime.securesms.loki.GeneralUtilitiesKt;
 import org.thoughtcrime.securesms.loki.MultiDeviceUtilities;
+import org.thoughtcrime.securesms.loki.PushBackgroundMessageSendJob;
 import org.thoughtcrime.securesms.loki.PushMessageSyncSendJob;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
@@ -110,9 +112,10 @@ public class MessageSender {
           long threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(recipient);
           if (threadID < 0) { continue; }
           LokiThreadFriendRequestStatus friendRequestStatus = DatabaseFactory.getLokiThreadDatabase(context).getFriendRequestStatus(threadID);
-          // TODO: Do we want to send a bg message regardless of FR status? OR do we want to send a custom FR to those we are not friends with
           if (friendRequestStatus == LokiThreadFriendRequestStatus.FRIENDS || friendRequestStatus == LokiThreadFriendRequestStatus.REQUEST_RECEIVED) {
             sendBackgroundMessage(context, device);
+          } else if (friendRequestStatus == LokiThreadFriendRequestStatus.NONE || friendRequestStatus == LokiThreadFriendRequestStatus.REQUEST_EXPIRED) {
+            sendBackgroundFriendRequest(context, device, "This is a friend request from android! please replace this message in the future");
           }
         }
       });
@@ -120,34 +123,18 @@ public class MessageSender {
     });
   }
 
+  // region Background message
+
+  // We don't call the message sender here directly and instead we just opt to create a specific job for the send
+  // This is because calling message sender directly would cause the application to freeze in some cases as it was blocking the thread when waiting for a response from the send
   public static void sendBackgroundMessage(Context context, String contactHexEncodedPublicKey) {
-    SignalServiceDataMessage message = new SignalServiceDataMessage(System.currentTimeMillis(), null);
-    sendMessage(context, contactHexEncodedPublicKey, message);
+    ApplicationContext.getInstance(context).getJobManager().add(new PushBackgroundMessageSendJob(contactHexEncodedPublicKey));
   }
 
   public static void sendBackgroundFriendRequest(Context context, String contactHexEncodedPublicKey, String messageBody) {
-    PreKeyBundle bundle = DatabaseFactory.getLokiPreKeyBundleDatabase(context).generatePreKeyBundle(contactHexEncodedPublicKey);
-    SignalServiceDataMessage message = SignalServiceDataMessage.newBuilder()
-            .withTimestamp(System.currentTimeMillis())
-            .withBody(messageBody)
-            .asFriendRequest(true)
-            .withPreKeyBundle(bundle)
-            .build();
-    sendMessage(context, contactHexEncodedPublicKey, message);
+    ApplicationContext.getInstance(context).getJobManager().add(new PushBackgroundMessageSendJob(contactHexEncodedPublicKey, messageBody, true));
   }
-
-  private static void sendMessage(Context context, String contactHexEncodedPublicKey, SignalServiceDataMessage message) {
-    Util.runOnMain(() -> {
-      SignalServiceMessageSender messageSender = ApplicationContext.getInstance(context).communicationModule.provideSignalMessageSender();
-      SignalServiceAddress address = new SignalServiceAddress(contactHexEncodedPublicKey);
-      try {
-        // Try send to the original person
-        messageSender.sendMessage(-1, address, Optional.absent(), message); // The message ID doesn't matter
-      } catch (Exception e) {
-        Log.d("Loki", "Failed to send background message to: " + contactHexEncodedPublicKey + ".");
-      }
-    });
-  }
+  // endregion
 
   public static long send(final Context context,
                           final OutgoingTextMessage message,
