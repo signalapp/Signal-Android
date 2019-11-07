@@ -4,7 +4,7 @@
   <string name="yes">Ja</string>
   <string name="no">Nei</string>
   <string name="delete">Slett</string>
-  <string name="please_wait">Vennligst vent...</string>
+  <string name="please_wait">Vennligst vent…</string>
   <string name="save">Lagre</string>
   <string name="note_to_self">Notat til meg selv</string>
   <!--AbstractNotificationBuilder-->
@@ -12,7 +12,7 @@
   <!--AlbumThumbnailView-->
   <string name="AlbumThumbnailView_plus">\+%d</string>
   <!--ApplicationMigrationActivity-->
-  <string name="ApplicationMigrationActivity__signal_is_updating">Signal oppdateres...</string>
+  <string name="ApplicationMigrationActivity__signal_is_updating">Signal oppdateres…</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Gjeldende: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Du har ikke angitt en passordfrase ennå!</string>
@@ -63,8 +63,8 @@
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal krever tillatelse fra systemet for å kunne legge til posisjonsdata, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Posisjon».</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal krever tillatelse fra systemet for å kunne ta bilder, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Kamera».</string>
   <!--AttachmentUploadJob-->
-  <string name="AttachmentUploadJob_uploading_media">Laster opp media...</string>
-  <string name="AttachmentUploadJob_compressing_video_start">Komprimerer video...</string>
+  <string name="AttachmentUploadJob_uploading_media">Laster opp media…</string>
+  <string name="AttachmentUploadJob_compressing_video_start">Komprimerer video…</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Feil ved avspilling av lyd!</string>
   <!--BlockedContactsActivity-->
@@ -219,7 +219,7 @@
     <item quantity="one">Lagrer vedlegg på enhetslager …</item>
     <item quantity="other">Lagrer %1$d vedlegg på enhetslager …</item>
   </plurals>
-  <string name="ConversationFragment_pending">Venter...</string>
+  <string name="ConversationFragment_pending">Venter…</string>
   <string name="ConversationFragment_push">Data (Signal)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
@@ -328,7 +328,7 @@
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Du kan deaktivere eller aktivere denne funksjonen når som helst i innstillingene for Signal (Personvern &gt; Send linkforhåndsvisninger).</string>
   <string name="ExperienceUpgradeActivity_got_it">Ålreit</string>
   <!--GcmBroadcastReceiver-->
-  <string name="GcmBroadcastReceiver_retrieving_a_message">Mottar en melding...</string>
+  <string name="GcmBroadcastReceiver_retrieving_a_message">Mottar en melding…</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Permanent Signal kommunikasjonssvikt!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal klarte ikke å registrere seg som Google Play-tjeneste. Signal-meldinger og samtaler er derfor slått av. Prøv å registrere programmet på nytt under Innstillinger &gt; Avansert.</string>
@@ -384,7 +384,7 @@
   <string name="InviteActivity_no_app_to_share_to">Det ser ut som at du ikke har noen programmer å dele denne informasjonen med.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Venner bør ikke prate ukryptert over nettet.</string>
   <!--Job-->
-  <string name="Job_working_in_the_background">Jobber i bakgrunnen...</string>
+  <string name="Job_working_in_the_background">Jobber i bakgrunnen…</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Sending mislyktes</string>
   <string name="MessageDetailsRecipient_new_safety_number">Nytt sikkerhetsnummer</string>
@@ -673,7 +673,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Kontakten kjører en gammel versjon av Signal. Be vedkommende om å oppdatere og deretter bekrefte sikkerhetsnummeret ditt.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Kontakten kjører en nyere versjon av Signal og bruker et QR-kodeformat som ikke kan brukes med din versjon. Oppdater Signal for å sammenligne.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">QR-koden du skannet er feilformatert. Prøv å skanne på nytt.</string>
-  <string name="VerifyIdentityActivity_share_safety_number_via">Del sikkerhetsnummer via...</string>
+  <string name="VerifyIdentityActivity_share_safety_number_via">Del sikkerhetsnummer via…</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">Vår Signal sikkerhet nummer:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Det ser ut som at du ikke har noen programmer å dele denne informasjonen med.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Ingen sikkerhet nummer å sammenligne ble funnet i utklippstavlen </string>
@@ -850,7 +850,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Kontaktfoto</string>
   <!--audio_view-->
-  <string name="audio_view__play_pause_accessibility_description">Spill av ... Pause</string>
+  <string name="audio_view__play_pause_accessibility_description">Spill av … Pause</string>
   <string name="audio_view__download_accessibility_description">Last ned</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">Lyd</string>
@@ -933,8 +933,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="log_submit_activity__button_got_it">Ålreit</string>
   <string name="log_submit_activity__button_compose_email">Skriv epost</string>
   <string name="log_submit_activity__this_log_will_be_posted_online">Denne loggen blir publisert på nett for bruk blant bidragsytere. Du kan undersøke og redigere den før du sender den inn.</string>
-  <string name="log_submit_activity__loading_logs">Laster inn logger...</string>
-  <string name="log_submit_activity__uploading_logs">Laster opp logger...</string>
+  <string name="log_submit_activity__loading_logs">Laster inn logger…</string>
+  <string name="log_submit_activity__uploading_logs">Laster opp logger…</string>
   <string name="log_submit_activity__success">Suksess!</string>
   <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">Kopier denne nettadressen og legg den til i problemrapporten din eller støtte-e-postadressen:\n\n<b>%1$s</b>/n
 </string>
@@ -961,7 +961,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">VIS</string>
   <string name="message_recipients_list_item__resend">SEND PÅ NYTT</string>
-  <string name="message_recipients_list_item__resending">Sender på nytt...</string>
+  <string name="message_recipients_list_item__resending">Sender på nytt…</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s ble med i gruppa.</item>
@@ -1013,7 +1013,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Hvis du vil bekrefte at du har sikker kryptering mot %s, bør du sammenlikne tallene overfor med tallene på motpartens enhet. Du kan også skanne koden på motpartens enhet, eller be dem om å skanne din <a href="https://signal.org/redirect/safety-numbers">Les mer.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Trykk for å skanne</string>
-  <string name="verify_display_fragment__loading">Laster...</string>
+  <string name="verify_display_fragment__loading">Laster…</string>
   <string name="verify_display_fragment__verified">Bekreftet</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Del sikkerhetsnummer</string>
@@ -1292,7 +1292,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="trimmer__old_messages_successfully_deleted">Gamle meldinger ble slettet</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transport-ikon</string>
-  <string name="ConversationListFragment_loading">Laster...</string>
+  <string name="ConversationListFragment_loading">Laster…</string>
   <string name="CallNotificationBuilder_connecting">Kobler til…</string>
   <string name="Permissions_permission_required">Tillatelse kreves</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal krever tillatelse fra systemet for å kunne sende SMS-meldinger, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «SMS».</string>
@@ -1319,7 +1319,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Kan ikke importere sikkerhetskopier fra nyere versjoner av Signal.</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">Feil passordfrase for sikkerhetskopi</string>
   <string name="RegistrationActivity_checking">Kontrollerer…</string>
-  <string name="RegistrationActivity_d_messages_so_far">%d meldinger så langt...</string>
+  <string name="RegistrationActivity_d_messages_so_far">%d meldinger så langt…</string>
   <string name="RegistrationActivity_restore_from_backup">Vil du gjenopprette fra sikkerhetskopi?</string>
   <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Gjenopprett meldinger og medier fra en lokal sikkerhetskopi. Du får ingen flere muligheter til å gjøre dette senere.</string>
   <string name="RegistrationActivity_backup_size_s">Sikkerhetskopi-størrelse: %s</string>

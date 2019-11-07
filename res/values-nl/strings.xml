@@ -22,8 +22,8 @@
   </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Nu alle oude berichten wissen?</string>
   <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
-    <item quantity="one">Dit zal onmiddellijk alle gesprekken inkorten tot het laatste bericht.</item>
-    <item quantity="other">Dit zal onmiddellijk alle gesprekken inkorten tot de laatste %d berichten.</item>
+    <item quantity="one">Dit zal onmiddellijk alle gesprekken inkorten tot het laatste bericht, maar alleen voor jezelf.</item>
+    <item quantity="other">Dit zal onmiddellijk alle gesprekken inkorten tot de laatste %d berichten, maar alleen voor jezelf.</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">Wissen</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Wachtwoord uitschakelen?</string>
@@ -199,8 +199,8 @@
     <item quantity="other">Geselecteerde berichten wissen?</item>
   </plurals>
   <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
-    <item quantity="one">Dit zal het geselecteerde bericht onherroepelijk wissen.</item>
-    <item quantity="other">Dit zal alle %1$d geselecteerde berichten onherroepelijk wissen.</item>
+    <item quantity="one">Dit zal het geselecteerde bericht onherroepelijk wissen, maar alleen voor jezelf.</item>
+    <item quantity="other">Dit zal alle %1$d geselecteerde berichten onherroepelijk wissen, maar alleen voor jezelf.</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">Opslaan naar SD-kaart?</string>
   <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
@@ -240,8 +240,8 @@
     <item quantity="other">Geselecteerde gesprekken wissen?</item>
   </plurals>
   <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-    <item quantity="one">Dit zal het geselecteerde gesprek onherroepelijk wissen.</item>
-    <item quantity="other">Dit zal alle %1$d geselecteerde gesprekken onherroepelijk wissen.</item>
+    <item quantity="one">Dit zal het geselecteerde gesprek onherroepelijk wissen, maar alleen voor jezelf.</item>
+    <item quantity="other">Dit zal alle %1$d geselecteerde gesprekken onherroepelijk wissen, maar alleen voor jezelf.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">Verwijderen</string>
   <string name="ConversationListFragment_deleting_selected_conversations">Geselecteerde gesprekken aan het verwijderen…</string>
@@ -406,8 +406,8 @@ weergaven.</string>
     <item quantity="other">Geselecteerde berichten wissen?</item>
   </plurals>
   <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-    <item quantity="one">Dit zal het geselecteerde bericht onherroepelijk wissen.</item>
-    <item quantity="other">Dit zal alle %1$d geselecteerde berichten onherroepelijk wissen.</item>
+    <item quantity="one">Dit zal het geselecteerde bericht onherroepelijk wissen, maar alleen voor jezelf.</item>
+    <item quantity="other">Dit zal alle %1$d geselecteerde berichten onherroepelijk wissen, maar alleen voor jezelf.</item>
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Aan het verwijderen</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Berichten aan het verwijderen…</string>
@@ -716,7 +716,7 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal heeft toegang tot externe opslagruimte nodig om iets op te slaan op de externe opslag, maar deze toegang is pertinent geweigerd. Ga naar de instellingen voor deze app, selecteer ‘Machtigingen’ en schakel ‘Opslagruimte’ in.</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Kan niet opslaan naar externe opslag zonder machtiging</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Bericht wissen?</string>
-  <string name="MediaPreviewActivity_media_delete_confirmation_message">Dit bericht zal onherroepelijk gewist worden.</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_message">Dit bericht zal onherroepelijk gewist worden, maar alleen voor jezelf.</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nieuwe berichten in %2$d gesprekken</string>
   <string name="MessageNotifier_most_recent_from_s">Meest recente van: %1$s</string>
@@ -865,7 +865,7 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <!--QuoteView-->
   <string name="QuoteView_audio">Audio</string>
   <string name="QuoteView_video">Video</string>
-  <string name="QuoteView_photo">Foto</string>
+  <string name="QuoteView_photo">Afbeelding</string>
   <string name="QuoteView_media">Mediabericht</string>
   <string name="QuoteView_sticker">Sticker</string>
   <string name="QuoteView_document">Document</string>
@@ -1020,7 +1020,7 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <string name="unknown_sender_view__add_to_contacts">TOEVOEGEN AAN CONTACTEN</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">NIET TOEVOEGEN, MAAR MIJN PROFIEL WEL ZICHTBAAR MAKEN</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Als je de veiligheid van je eind-tot-eind-versleuteling met %s wilt verifiëren, vergelijk dan het bovenstaande nummer met het nummer op het apparaat van je gesprekspartner. Je kunt ook de QR-code op zijn telefoon scannen, of hem vragen jouw QR-code te scannen. <a href="https://signal.org/redirect/safety-numbers">Leer meer hierover.</a>]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Als je de veiligheid van je eind-tot-eind-versleuteling met %s wilt verifiëren, vergelijk dan het bovenstaande nummer met het nummer op het apparaat van je gesprekspartner. Je kunt ook de QR-code op zijn telefoon scannen, of hem vragen jouw QR-code te scannen. <a href="https://signal.org/redirect/safety-numbers">Meer leren hierover.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Tik om te scannen</string>
   <string name="verify_display_fragment__loading">Bezig met laden…</string>
   <string name="verify_display_fragment__verified">Ik heb deze contactpersoon geverifieerd</string>

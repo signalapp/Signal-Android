@@ -4,7 +4,7 @@
   <string name="yes">Iawn</string>
   <string name="no">Na</string>
   <string name="delete">Dileu</string>
-  <string name="please_wait">Arhoswch...</string>
+  <string name="please_wait">Arhoswch…</string>
   <string name="save">Cadw</string>
   <string name="note_to_self">Nodyn i Fi Fy Hun</string>
   <!--AbstractNotificationBuilder-->
@@ -12,7 +12,7 @@
   <!--AlbumThumbnailView-->
   <string name="AlbumThumbnailView_plus">\+%d</string>
   <!--ApplicationMigrationActivity-->
-  <string name="ApplicationMigrationActivity__signal_is_updating">Mae Signal yn diweddaru...</string>
+  <string name="ApplicationMigrationActivity__signal_is_updating">Mae Signal yn diweddaru…</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Yn gyfredol: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Nid ydych wedi gosod cyfrinymadrodd eto!</string>
@@ -34,7 +34,7 @@
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Bydd hyn yn datgloi Signal a hysbysiadau negeseuon yn barhaol.</string>
   <string name="ApplicationPreferencesActivity_disable">Analluogi</string>
   <string name="ApplicationPreferencesActivity_unregistering">Datgofrestru</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Datgofrestru o negeseuon a galwadau Signal...</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Datgofrestru o negeseuon a galwadau Signal…</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Analluogi negeseuon a galwadau Signal?</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Analluogi negeseuon a galwadau Signal drwy ddadgofrestru o\'r gweinydd. Bydd angen i chi ailgofrestru eich rhif ffón i\'w defnyddio eto\'n y dyfodol.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Gwall cysylltu â\'r gweinydd!</string>
@@ -69,8 +69,8 @@
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Mae ar Signal angen caniatâd Lleoliad er mwyn atodi gwybodaeth lleoliad, ond fe\'i rwystrwyd yn barhaol. Ewch i ddewislen gosodiadau\'r ap, dewis "Caniatâd", a galluogi "Lleoliadau".</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Mae ar Signal angen caniatâd Camera er mwyn atodi tynnu lluniau, ond fe\'i rwystrwyd yn barhaol. Ewch i ddewislen gosodiadau\'r ap, dewis "Caniatâd", a galluogi "Camera".</string>
   <!--AttachmentUploadJob-->
-  <string name="AttachmentUploadJob_uploading_media">Llwytho cyfrwng...</string>
-  <string name="AttachmentUploadJob_compressing_video_start">Cywasgu fideo...</string>
+  <string name="AttachmentUploadJob_uploading_media">Llwytho cyfrwng…</string>
+  <string name="AttachmentUploadJob_compressing_video_start">Cywasgu fideo…</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Gwall chwarae sain!</string>
   <!--BlockedContactsActivity-->
@@ -205,7 +205,7 @@ Send neges heb ei ddiogelu?</string>
   </plurals>
   <!--ConversationFragment-->
   <plurals name="ConversationFragment_delete_selected_messages">
-    <item quantity="one">Dileu\'r negeseuon hyn?</item>
+    <item quantity="one">Dileu\'r neges hon?</item>
     <item quantity="two">Dileu\'r negeseuon hyn?</item>
     <item quantity="many">Dileu\'r negeseuon hyn?</item>
     <item quantity="other">Dileu\'r negeseuon hyn?</item>
@@ -237,17 +237,17 @@ Send neges heb ei ddiogelu?</string>
     <item quantity="other">Cadw %1$d atodiad</item>
   </plurals>
   <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-    <item quantity="one">Cadw atodiad i\'r storfa...</item>
+    <item quantity="one">Cadw atodiad i\'r storfa…</item>
     <item quantity="two">Cadw %1$d atodiad i\'r storfa</item>
     <item quantity="many">Cadw %1$d atodiad i\'r storfa</item>
     <item quantity="other">Cadw %1$d atodiad i\'r storfa</item>
   </plurals>
-  <string name="ConversationFragment_pending">Yn aros...</string>
+  <string name="ConversationFragment_pending">Yn aros…</string>
   <string name="ConversationFragment_push">Data (Signal)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Wrthi\'n dileu</string>
-  <string name="ConversationFragment_deleting_messages">Dileu negeseuon...</string>
+  <string name="ConversationFragment_deleting_messages">Dileu negeseuon…</string>
   <string name="ConversationFragment_quoted_message_not_found">Heb ganfod y neges wreiddiol</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Nid yw\'r neges wreiddiol bellach ar gael</string>
   <string name="ConversationFragment_failed_to_open_message">Methu agor neges</string>
@@ -258,7 +258,7 @@ Send neges heb ei ddiogelu?</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_no_results_found_for_s_">Dim canlyniadau ar gyfer \'%s\'</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
-    <item quantity="one">Dileu\'r sgyrsiau hyn?</item>
+    <item quantity="one">Dileu\'r sgwrs hon?</item>
     <item quantity="two">Dileu\'r sgyrsiau hyn?</item>
     <item quantity="many">Dileu\'r sgyrsiau hyn?</item>
     <item quantity="other">Dileu\'r sgyrsiau hyn?</item>
@@ -270,7 +270,7 @@ Send neges heb ei ddiogelu?</string>
     <item quantity="other">Bydd hyn yn dileu yn barhaol y %1$d sgwrs sydd wedi\'u dewis.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">Wrthi\'n dileu</string>
-  <string name="ConversationListFragment_deleting_selected_conversations">Dileu\'r sgyrsiau hyn...</string>
+  <string name="ConversationListFragment_deleting_selected_conversations">Dileu\'r sgyrsiau hyn…</string>
   <plurals name="ConversationListFragment_conversations_archived">
     <item quantity="one">Sgwrs wedi\'i archifo</item>
     <item quantity="two">% d sgwrs wedi\'u harchifo</item>
@@ -359,7 +359,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Gallwch alluogi neu analluogi\'r nodwedd yng ngosodiadau Signal. (Preifatrwydd &gt; Anfon dolen rhagolwg).</string>
   <string name="ExperienceUpgradeActivity_got_it">Iawn, rwy\'n deall</string>
   <!--GcmBroadcastReceiver-->
-  <string name="GcmBroadcastReceiver_retrieving_a_message">Estyn neges...</string>
+  <string name="GcmBroadcastReceiver_retrieving_a_message">Estyn neges…</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Methiant cyfathrebu Signal parhaol!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Nid yw Signal yn gallu cofrestru gyda Google Play Services. Mae negeseuon a galwadau Signal wedi\'u hanalluogi, ceisiwch ailgofrestru yn Gosodiadau &gt; Uwch.</string>
@@ -379,10 +379,10 @@ Send neges heb ei ddiogelu?</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Mae gan un o aelodau eich grŵp rif nad oes modd ei ddarllen yn iawn. Dylech ddileu neu ddileu\'r cyswllt hwnnw a cheisio eto.</string>
   <string name="GroupCreateActivity_avatar_content_description">Llun y grŵp</string>
   <string name="GroupCreateActivity_menu_apply_button">Gosod</string>
-  <string name="GroupCreateActivity_creating_group">Creu %1$s...</string>
-  <string name="GroupCreateActivity_updating_group">Yn diweddaru %1$s...</string>
+  <string name="GroupCreateActivity_creating_group">Creu %1$s…</string>
+  <string name="GroupCreateActivity_updating_group">Yn diweddaru %1$s…</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Methu ychwanegu %1$s oherwydd nad yw\'n ddefnyddiwr Signal.</string>
-  <string name="GroupCreateActivity_loading_group_details">Llwytho manylion grŵp...</string>
+  <string name="GroupCreateActivity_loading_group_details">Llwytho manylion grŵp…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Rydych eisoes yn y grŵp.</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Rhannu\'ch enw a\'ch llun proffil gyda\'r grŵp hwn?</string>
@@ -399,7 +399,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="InviteActivity_share">Rhannu</string>
   <string name="InviteActivity_choose_contacts">Dewis cysylltiadau</string>
   <string name="InviteActivity_cancel">Diddymu</string>
-  <string name="InviteActivity_sending">Anfon...</string>
+  <string name="InviteActivity_sending">Anfon…</string>
   <string name="InviteActivity_heart_content_description">Calon</string>
   <string name="InviteActivity_invitations_sent">Gwahoddiadau wedi\'u anfon!</string>
   <string name="InviteActivity_invite_to_signal">Gwahodd i Signal</string>
@@ -419,7 +419,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="InviteActivity_no_app_to_share_to">Mae\'n edrych fel nad oes gennych unrhyw apiau i\'w rhannu.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Dyw ffrindiau ddim yn gadael i ffrindiau sgwrsio heb amgryptiad.</string>
   <!--Job-->
-  <string name="Job_working_in_the_background">Yn gweithio yn y cefndir...</string>
+  <string name="Job_working_in_the_background">Yn gweithio yn y cefndir…</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Methwyd anfon</string>
   <string name="MessageDetailsRecipient_new_safety_number">Rhif diogelwch newydd</string>
@@ -435,22 +435,22 @@ Send neges heb ei ddiogelu?</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Cyfryngau</string>
   <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
-    <item quantity="one">Dileu\'r negeseuon hyn?</item>
+    <item quantity="one">Dileu\'r neges hon?</item>
     <item quantity="two">Dileu\'r negeseuon hyn?</item>
     <item quantity="many">Dileu\'r negeseuon hyn?</item>
     <item quantity="other">Dileu\'r negeseuon hyn?</item>
   </plurals>
   <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-    <item quantity="one">Bydd hyn yn dileu yn barhaol y sgwrs sydd wedi\'i dewis.</item>
+    <item quantity="one">Bydd hyn yn dileu yn barhaol y neges sydd wedi\'i dewis.</item>
     <item quantity="two">Bydd hyn yn dileu yn barhaol y %1$d neges sydd wedi\'u dewis.</item>
     <item quantity="many">Bydd hyn yn dileu yn barhaol y %1$d neges sydd wedi\'u dewis.</item>
     <item quantity="other">Bydd hyn yn dileu yn barhaol y %1$d neges sydd wedi\'u dewis.</item>
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Wrthi\'n dileu</string>
-  <string name="MediaOverviewActivity_Media_delete_progress_message">Dileu negeseuon...</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">Dileu negeseuon…</string>
   <string name="MediaOverviewActivity_Documents">Dogfennau</string>
   <string name="MediaOverviewActivity_Select_all">Dewis popeth</string>
-  <string name="MediaOverviewActivity_collecting_attachments">Casglu atodiadau...</string>
+  <string name="MediaOverviewActivity_collecting_attachments">Casglu atodiadau…</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Ar ganol galwad Signal</string>
   <string name="NotificationBarManager__establishing_signal_call">Sicrhau galwad Signal</string>
@@ -469,7 +469,7 @@ Send neges heb ei ddiogelu?</string>
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">Tapio i ddewis</string>
   <!--MediaSendActivity-->
-  <string name="MediaSendActivity_add_a_caption">Ychwanegu neges...</string>
+  <string name="MediaSendActivity_add_a_caption">Ychwanegu neges…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Cafodd eitem ei thynnu gan ei bod yn fwy na\'r maint mwyaf</string>
   <string name="MediaSendActivity_camera_unavailable">Camera ddim ar gael</string>
   <string name="MediaSendActivity_message_to_s">Neges i %s</string>
@@ -520,7 +520,7 @@ Send neges heb ei ddiogelu?</string>
 • Darllen eich holl negeseuon\n• Anfon negeseuon yn eich enw
 </string>
   <string name="DeviceProvisioningActivity_content_progress_title">Cysylltu dyfais</string>
-  <string name="DeviceProvisioningActivity_content_progress_content">Cysylltu dyfais newydd...</string>
+  <string name="DeviceProvisioningActivity_content_progress_content">Cysylltu dyfais newydd…</string>
   <string name="DeviceProvisioningActivity_content_progress_success">Dyfais wedi ei chymeradwyo!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Heb ganfod dyfais.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Gwall rhwydwaith.</string>
@@ -716,7 +716,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Mae eich cyswllt yn rhedeg hen fersiwn o Signal. Gofynnwch iddynt ddiweddaru cyn gwirio eich rhif diogelwch.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Mae eich cyswllt yn rhedeg fersiwn newydd o Signal gyda fformat cod QR anghydnaws. Diweddarwch i gymharu.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Nid yw\'r cod QR sganedig yn god dilysu rhif diogelwch cywir. Ceisiwch sganio eto.</string>
-  <string name="VerifyIdentityActivity_share_safety_number_via">Rhannu\'r rhif diogelwch drwy...</string>
+  <string name="VerifyIdentityActivity_share_safety_number_via">Rhannu\'r rhif diogelwch drwy…</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">Ein rhif diogelwch Signal:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Mae\'n edrych fel nad oes gennych unrhyw apiau i\'w rhannu.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Dim rhif diogelwch i\'w gymharu yn y clipfwrdd</string>
@@ -857,7 +857,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="contact_filter_toolbar__show_dial_pad_description">Dangos pad deialu</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Dim cysylltiadau.</string>
-  <string name="contact_selection_group_activity__finding_contacts">Llwytho cysylltiadau...</string>
+  <string name="contact_selection_group_activity__finding_contacts">Llwytho cysylltiadau…</string>
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Llun Cyswllt</string>
   <!--ContactSelectionListFragment-->
@@ -896,7 +896,7 @@ Send neges heb ei ddiogelu?</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Llun cyswllt</string>
   <!--audio_view-->
-  <string name="audio_view__play_pause_accessibility_description">Chwarae ... Oedi</string>
+  <string name="audio_view__play_pause_accessibility_description">Chwarae … Oedi</string>
   <string name="audio_view__download_accessibility_description">Llwytho i lawr</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">Sain</string>
@@ -910,7 +910,7 @@ Send neges heb ei ddiogelu?</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Sgrolio i\'r gwaelod</string>
   <!--country_selection_fragment-->
-  <string name="country_selection_fragment__loading_countries">Llwytho gwledydd...</string>
+  <string name="country_selection_fragment__loading_countries">Llwytho gwledydd…</string>
   <string name="country_selection_fragment__search">Chwilio</string>
   <!--device_add_fragment-->
   <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Sganiwch god QR y ddyfais i\'w chysylltu</string>
@@ -991,8 +991,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="log_submit_activity__button_got_it">Iawn, rwy\'n deall</string>
   <string name="log_submit_activity__button_compose_email">Ysgrifennu e-bost</string>
   <string name="log_submit_activity__this_log_will_be_posted_online">Caiff y cofnod hwn ei bostio\'n gyhoeddus ar-lein i gyfranwyr ei weld, fe allwch ei archwilio a\'i olygu cyn ei gyflwyno.</string>
-  <string name="log_submit_activity__loading_logs">Llwytho cofnodion...</string>
-  <string name="log_submit_activity__uploading_logs">Llwytho cofnodion...</string>
+  <string name="log_submit_activity__loading_logs">Llwytho cofnodion…</string>
+  <string name="log_submit_activity__uploading_logs">Llwytho cofnodion…</string>
   <string name="log_submit_activity__success">Llwyddiant!</string>
   <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">Copïwch yr URL hwn a\'i ychwanegu at eich adroddiad neu e-bost cymorth:\n\n<b>%1$s</b>\n</string>
   <string name="log_submit_activity__copied_to_clipboard">Wedi\'i gopïo i\'r clipfwrdd</string>
@@ -1018,7 +1018,7 @@ Send neges heb ei ddiogelu?</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">GWELD</string>
   <string name="message_recipients_list_item__resend">AIL ANFON</string>
-  <string name="message_recipients_list_item__resending">Ail anfon...</string>
+  <string name="message_recipients_list_item__resending">Ail anfon…</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">Ymunodd %1$s â\'r grŵp.</item>
@@ -1072,7 +1072,7 @@ Send neges heb ei ddiogelu?</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s">&lt;![CDATA[If you wish to verify the security of your encryption with %s, compare the number above with the number on their device. Alternatively, you can scan the code on their phone, or ask them to scan your code. &lt;a href="https://signal.org/redirect/safety-numbers"&gt; Dysgu mwy. ]]&amp;gt;</string>
   <string name="verify_display_fragment__tap_to_scan">Tapio i sganio</string>
-  <string name="verify_display_fragment__loading">Llwytho...</string>
+  <string name="verify_display_fragment__loading">Llwytho…</string>
   <string name="verify_display_fragment__verified">Gwiriwyd</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Rhannu\'r rif diogelwch</string>
@@ -1250,7 +1250,7 @@ Send neges heb ei ddiogelu?</string>
   <!--menus-->
   <!--****************************************-->
   <!--contact_selection_list-->
-  <string name="contact_selection_list__unknown_contact">Neges newydd at...</string>
+  <string name="contact_selection_list__unknown_contact">Neges newydd at…</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Galw</string>
   <!--conversation_callable_secure-->
@@ -1355,12 +1355,12 @@ Send neges heb ei ddiogelu?</string>
   <!--redphone_audio_popup_menu-->
   <!--Trimmer-->
   <string name="trimmer__deleting">Wrthi\'n dileu</string>
-  <string name="trimmer__deleting_old_messages">Dileu hen negeseuon...</string>
+  <string name="trimmer__deleting_old_messages">Dileu hen negeseuon…</string>
   <string name="trimmer__old_messages_successfully_deleted">Dilëwyd hen negeseuon yn llwyddiannus</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Eicon trafnidiaeth</string>
-  <string name="ConversationListFragment_loading">Llwytho...</string>
-  <string name="CallNotificationBuilder_connecting">Wrthi\'n cysylltu...</string>
+  <string name="ConversationListFragment_loading">Llwytho…</string>
+  <string name="CallNotificationBuilder_connecting">Wrthi\'n cysylltu…</string>
   <string name="Permissions_permission_required">Angen caniatâd</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Mae ar Signal angen caniatâd Camera er mwyn anfon SMS, ond fe\'i rwystrwyd yn barhaol. Ewch i ddewislen gosodiadau\'r ap, dewis "Caniatâd", a galluogi "SMS".</string>
   <string name="Permissions_continue">Parhau</string>
@@ -1385,7 +1385,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="RegistrationActivity_restore">Adfer</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Methu mewnforio o fersiynau mwy diweddar o Signal</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">Cyfrinymadrodd wrth gefn anghywir</string>
-  <string name="RegistrationActivity_checking">Gwirio...</string>
+  <string name="RegistrationActivity_checking">Gwirio…</string>
   <string name="RegistrationActivity_d_messages_so_far">%d neges hyd yn hyn</string>
   <string name="RegistrationActivity_restore_from_backup">Adfer o\'r wrth gefn?</string>
   <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Adfer eich negeseuon a\'ch cyfryngau o gefn wrth gefn lleol. Os na fyddwch yn adfer nawr, ni fyddwch yn gallu adfer yn ddiweddarach.</string>
@@ -1401,7 +1401,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Mae ar Signal angen caniatâd storio allanol er mwyn creu copïau wrth gefn, ond fe\'i rwystrwyd yn barhaol. Ewch i ddewislen gosodiadau\'r ap, dewis "Caniatâd", a galluogi "Storio".</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Copi wrth gefn diwethaf %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Cynnydd</string>
-  <string name="LocalBackupJob_creating_backup">Creu copi wrth gefn ...</string>
+  <string name="LocalBackupJob_creating_backup">Creu copi wrth gefn …</string>
   <string name="ProgressPreference_d_messages_so_far">%d neges hyd yn hyn</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Rhowch y cod dilysu a anfonwyd i %s.</string>
   <string name="RegistrationActivity_wrong_number">Rhif anghywir</string>

@@ -4,7 +4,7 @@
   <string name="yes">是</string>
   <string name="no">否</string>
   <string name="delete">刪除</string>
-  <string name="please_wait">請稍候...</string>
+  <string name="please_wait">請稍候…</string>
   <string name="save">儲存</string>
   <string name="note_to_self">給自己的筆記</string>
   <!--AbstractNotificationBuilder-->
@@ -12,7 +12,7 @@
   <!--AlbumThumbnailView-->
   <string name="AlbumThumbnailView_plus">\+%d</string>
   <!--ApplicationMigrationActivity-->
-  <string name="ApplicationMigrationActivity__signal_is_updating">Signal 更新中...</string>
+  <string name="ApplicationMigrationActivity__signal_is_updating">Signal 更新中…</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">目前: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">您還沒有建立密碼！</string>
@@ -28,7 +28,7 @@
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">這將會永久性地解鎖 Signal 與訊息通知。</string>
   <string name="ApplicationPreferencesActivity_disable">停用</string>
   <string name="ApplicationPreferencesActivity_unregistering">取消註冊</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">取消註冊 Signal 訊息與通話...</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">取消註冊 Signal 訊息與通話…</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">停用 Signal 訊息與通話？</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">這將會從伺服器上登出您的 Signal 並停用。 未來如果還想使用該功能，則需要再次註冊。</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">與伺服器的連線發生錯誤！</string>
@@ -61,7 +61,7 @@
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal 需要相機的權限用以拍照，但是現在被設定為永久拒絕使用。請到應用程式設定中，選取「權限」，並啟用「相機」的權限。</string>
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">上傳媒體檔案</string>
-  <string name="AttachmentUploadJob_compressing_video_start">壓縮影片...</string>
+  <string name="AttachmentUploadJob_compressing_video_start">壓縮影片…</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">播放音訊時出現錯誤！</string>
   <!--BlockedContactsActivity-->
@@ -208,14 +208,14 @@
     <item quantity="other">正在保存 %1$d 個附件</item>
   </plurals>
   <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-    <item quantity="other">正在保存 %1$d 個附件至儲存空間...</item>
+    <item quantity="other">正在保存 %1$d 個附件至儲存空間…</item>
   </plurals>
   <string name="ConversationFragment_pending">等待中…</string>
   <string name="ConversationFragment_push">資料 (Signal)</string>
   <string name="ConversationFragment_mms">多媒體訊息</string>
   <string name="ConversationFragment_sms">簡訊</string>
   <string name="ConversationFragment_deleting">正在刪除</string>
-  <string name="ConversationFragment_deleting_messages">正在刪除訊息...</string>
+  <string name="ConversationFragment_deleting_messages">正在刪除訊息…</string>
   <string name="ConversationFragment_quoted_message_not_found">無法找到原始訊息</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">原始訊息已不存在</string>
   <string name="ConversationFragment_failed_to_open_message">開啟訊息失敗</string>
@@ -232,7 +232,7 @@
     <item quantity="other">這將會永久性地刪除所有 %1$d 已選對話。</item>
   </plurals>
   <string name="ConversationListFragment_deleting">正在刪除</string>
-  <string name="ConversationListFragment_deleting_selected_conversations">正在刪除已選擇的對話...</string>
+  <string name="ConversationListFragment_deleting_selected_conversations">正在刪除已選擇的對話…</string>
   <plurals name="ConversationListFragment_conversations_archived">
     <item quantity="other">%d 個對話已經被存檔</item>
   </plurals>
@@ -275,7 +275,7 @@
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">如果取消連結此裝置，它將不能再接受或傳送訊息。</string>
   <string name="DeviceListActivity_network_connection_failed">網路連線失敗</string>
   <string name="DeviceListActivity_try_again">再試一次</string>
-  <string name="DeviceListActivity_unlinking_device">取消連結裝置...</string>
+  <string name="DeviceListActivity_unlinking_device">取消連結裝置…</string>
   <string name="DeviceListActivity_unlinking_device_no_ellipsis">取消連結裝置</string>
   <string name="DeviceListActivity_network_failed">網路失敗！</string>
   <!--DeviceListItem-->
@@ -315,7 +315,7 @@
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">任何時候你可以在 Signal 設定中關閉或開啟這個功能 (隱私權 &gt; 傳送連結預覽)。</string>
   <string name="ExperienceUpgradeActivity_got_it">收到</string>
   <!--GcmBroadcastReceiver-->
-  <string name="GcmBroadcastReceiver_retrieving_a_message">回收一個訊息...</string>
+  <string name="GcmBroadcastReceiver_retrieving_a_message">回收一個訊息…</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Signal 持續發生傳輸異常！</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal 無法順利與 Google Play Services 註冊，Signal 訊息與通話已經停用，請嘗試在設定 &gt; 進階中重新註冊。</string>
@@ -336,7 +336,7 @@
   <string name="GroupCreateActivity_avatar_content_description">群組的大頭照</string>
   <string name="GroupCreateActivity_menu_apply_button">應用</string>
   <string name="GroupCreateActivity_creating_group">%1$s 建立中…</string>
-  <string name="GroupCreateActivity_updating_group">更新中 %1$s...</string>
+  <string name="GroupCreateActivity_updating_group">更新中 %1$s…</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">無法新增 %1$s，因為他們不是 Signal 使用者。</string>
   <string name="GroupCreateActivity_loading_group_details">正在載入群組細節…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">您已在此群組中</string>
@@ -355,7 +355,7 @@
   <string name="InviteActivity_share">分享</string>
   <string name="InviteActivity_choose_contacts">選擇聯絡人</string>
   <string name="InviteActivity_cancel">取消</string>
-  <string name="InviteActivity_sending">正在傳送...</string>
+  <string name="InviteActivity_sending">正在傳送…</string>
   <string name="InviteActivity_heart_content_description">心</string>
   <string name="InviteActivity_invitations_sent">邀請已傳送！</string>
   <string name="InviteActivity_invite_to_signal">邀請至 Signal</string>
@@ -369,7 +369,7 @@
   <string name="InviteActivity_no_app_to_share_to">看起來您沒有任何可以分享的應用。</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">朋友不該讓朋友之間的聊天未經加密。</string>
   <!--Job-->
-  <string name="Job_working_in_the_background">在背景作業...</string>
+  <string name="Job_working_in_the_background">在背景作業…</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">傳送失敗</string>
   <string name="MessageDetailsRecipient_new_safety_number">新的安全碼</string>
@@ -391,10 +391,10 @@
     <item quantity="other">這將永久刪除所有 1%1$d 選取的訊息。</item>
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">正在刪除</string>
-  <string name="MediaOverviewActivity_Media_delete_progress_message">正在刪除訊息...</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">正在刪除訊息…</string>
   <string name="MediaOverviewActivity_Documents">文件</string>
   <string name="MediaOverviewActivity_Select_all">全選</string>
-  <string name="MediaOverviewActivity_collecting_attachments">正在收集附件...</string>
+  <string name="MediaOverviewActivity_collecting_attachments">正在收集附件…</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal 通話進行中</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal 通話連線中</string>
@@ -413,7 +413,7 @@
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">點取以選擇</string>
   <!--MediaSendActivity-->
-  <string name="MediaSendActivity_add_a_caption">加入一個標題...</string>
+  <string name="MediaSendActivity_add_a_caption">加入一個標題…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">一個項目因為超過容量的限制而被移除</string>
   <string name="MediaSendActivity_camera_unavailable">相機無法使用。</string>
   <string name="MediaSendActivity_message_to_s">傳訊息給 %s</string>
@@ -461,7 +461,7 @@
 • 閱讀您的所有訊息
 \n• 以您的名義傳送訊息</string>
   <string name="DeviceProvisioningActivity_content_progress_title">正在連結裝置</string>
-  <string name="DeviceProvisioningActivity_content_progress_content">正在連結新的裝置...</string>
+  <string name="DeviceProvisioningActivity_content_progress_content">正在連結新的裝置…</string>
   <string name="DeviceProvisioningActivity_content_progress_success">裝置已認可！</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">未找到裝置。</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">網路錯誤。</string>
@@ -657,7 +657,7 @@
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">您的聯絡人使用的是新版本的 Signal，程式無法識別這個聯絡人的二維碼。
 請升級您的 Signal。</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">掃描的 QR 碼格式不正確。請重新掃一次。</string>
-  <string name="VerifyIdentityActivity_share_safety_number_via">通過...分享安全碼</string>
+  <string name="VerifyIdentityActivity_share_safety_number_via">通過…分享安全碼</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">我方 Signal 安全碼：</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">看起來您沒有任何可以分享的應用。</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">沒有在剪貼簿中發現安全碼，因此無法進行比較</string>
@@ -834,7 +834,7 @@
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">聯絡人的相片</string>
   <!--audio_view-->
-  <string name="audio_view__play_pause_accessibility_description">播放 ... 暫停</string>
+  <string name="audio_view__play_pause_accessibility_description">播放 … 暫停</string>
   <string name="audio_view__download_accessibility_description">下載</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">音訊</string>
@@ -848,7 +848,7 @@
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">向下滑動至底部</string>
   <!--country_selection_fragment-->
-  <string name="country_selection_fragment__loading_countries">載入國家清單中...</string>
+  <string name="country_selection_fragment__loading_countries">載入國家清單中…</string>
   <string name="country_selection_fragment__search">搜尋</string>
   <!--device_add_fragment-->
   <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">掃描裝置上顯示的 QR 碼以便連結</string>
@@ -911,8 +911,8 @@
   <string name="log_submit_activity__button_got_it">收到</string>
   <string name="log_submit_activity__button_compose_email">撰寫電子郵件</string>
   <string name="log_submit_activity__this_log_will_be_posted_online">本日誌檔將會在網路上公開以供他人檢視，你可以在提交前檢視及編輯。</string>
-  <string name="log_submit_activity__loading_logs">讀取日誌檔...</string>
-  <string name="log_submit_activity__uploading_logs">上傳日誌檔...</string>
+  <string name="log_submit_activity__loading_logs">讀取日誌檔…</string>
+  <string name="log_submit_activity__uploading_logs">上傳日誌檔…</string>
   <string name="log_submit_activity__success">成功！</string>
   <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">複製此連結及加入你的錯誤報告或技術支援電子郵件:\n\n<b>%1$s</b>\n</string>
   <string name="log_submit_activity__copied_to_clipboard">已複製到剪貼簿</string>
@@ -938,7 +938,7 @@
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">檢視</string>
   <string name="message_recipients_list_item__resend">重新傳送</string>
-  <string name="message_recipients_list_item__resending">重送中...</string>
+  <string name="message_recipients_list_item__resending">重送中…</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="other">%1$s 加入了群組。</item>
@@ -989,7 +989,7 @@
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[如果你希望用 %s 來驗證你的加密的安全性，比對上面的號碼與他們裝置上的號碼。或者，你可以掃描在他們手機上的 QR code，或讓他們掃描您的 QR Code。<a href="https://signal.org/redirect/safety-numbers">瞭解更多</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">點擊掃描</string>
-  <string name="verify_display_fragment__loading">載入中...</string>
+  <string name="verify_display_fragment__loading">載入中…</string>
   <string name="verify_display_fragment__verified">已驗證</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">分享安全碼</string>
@@ -1164,7 +1164,7 @@
   <!--menus-->
   <!--****************************************-->
   <!--contact_selection_list-->
-  <string name="contact_selection_list__unknown_contact">傳送新訊息給...</string>
+  <string name="contact_selection_list__unknown_contact">傳送新訊息給…</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">撥出</string>
   <!--conversation_callable_secure-->
@@ -1266,12 +1266,12 @@
   <!--redphone_audio_popup_menu-->
   <!--Trimmer-->
   <string name="trimmer__deleting">正在刪除</string>
-  <string name="trimmer__deleting_old_messages">正在刪除舊訊息...</string>
+  <string name="trimmer__deleting_old_messages">正在刪除舊訊息…</string>
   <string name="trimmer__old_messages_successfully_deleted">已完成刪除舊訊息</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">傳輸圖示</string>
-  <string name="ConversationListFragment_loading">載入中...</string>
-  <string name="CallNotificationBuilder_connecting">連線中...</string>
+  <string name="ConversationListFragment_loading">載入中…</string>
+  <string name="CallNotificationBuilder_connecting">連線中…</string>
   <string name="Permissions_permission_required">需要權限</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal 需要\"簡訊\"的權限以傳送訊息，但是現在被設定為永久拒絕存取。請到應用程式設定中，選取\"權限\"，並啟用\"簡訊\"的權限。</string>
   <string name="Permissions_continue">繼續</string>
@@ -1296,7 +1296,7 @@
   <string name="RegistrationActivity_restore">還原</string>
   <string name="RegistrationActivity_backup_failure_downgrade">無法從較新版本的 Signal 匯入備份檔</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">不正確的備份密碼</string>
-  <string name="RegistrationActivity_checking">檢查中... </string>
+  <string name="RegistrationActivity_checking">檢查中… </string>
   <string name="RegistrationActivity_d_messages_so_far">目前為止有 %d 則訊息.. </string>
   <string name="RegistrationActivity_restore_from_backup">從備份來還原？</string>
   <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">從本機備份還原你的訊息及媒體，如果現在不還原，你將無法在之後進行還原。</string>
@@ -1312,7 +1312,7 @@
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">為了要建立備份，Signal 需要外部空間的權限，但是已被永久拒絕。請到應用程式設定，選擇「權限」及開啟「儲存」。</string>
   <string name="ChatsPreferenceFragment_last_backup_s">上一次備份︰%s</string>
   <string name="ChatsPreferenceFragment_in_progress">處理中</string>
-  <string name="LocalBackupJob_creating_backup">正在建立備份...</string>
+  <string name="LocalBackupJob_creating_backup">正在建立備份…</string>
   <string name="ProgressPreference_d_messages_so_far">目前有 %d 則訊息</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">請輸入傳送給 %s 的驗證碼</string>
   <string name="RegistrationActivity_wrong_number">驗證碼錯誤</string>

@@ -4,7 +4,7 @@
   <string name="yes">Evet</string>
   <string name="no">Hayır</string>
   <string name="delete">Sil</string>
-  <string name="please_wait">Lütfen bekleyin...</string>
+  <string name="please_wait">Lütfen bekleyin…</string>
   <string name="save">Kaydet</string>
   <string name="note_to_self">Kendime Not</string>
   <!--AbstractNotificationBuilder-->
@@ -12,7 +12,7 @@
   <!--AlbumThumbnailView-->
   <string name="AlbumThumbnailView_plus">\+%d</string>
   <!--ApplicationMigrationActivity-->
-  <string name="ApplicationMigrationActivity__signal_is_updating">Signal güncelleniyor...</string>
+  <string name="ApplicationMigrationActivity__signal_is_updating">Signal güncelleniyor…</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Şu anda: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Henüz bir parola belirlemediniz!</string>
@@ -30,7 +30,7 @@
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Bu işlem Signal ve ileti bildirimlerinin kilidini kalıcı olarak açacaktır.</string>
   <string name="ApplicationPreferencesActivity_disable">Devre dışı bırak</string>
   <string name="ApplicationPreferencesActivity_unregistering">Kayıt siliniyor</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Signal iletileri ve aramalarından kaydınız siliniyor...</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Signal iletileri ve aramalarından kaydınız siliniyor…</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Signal iletilerini ve aramalarını devre dışı bırak?</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Sunucudaki kaydınızı silerek Signal iletilerini ve aramalarını devre dışı bırakın. Bu özellikleri gelecekte yeniden kullanabilmeniz için telefon numaranızı tekrar kaydetmeniz gerekir.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Sunucuya bağlanırken hata!</string>
@@ -63,8 +63,8 @@
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal, konum bilgisi eklemek için Konum iznine ihtiyaç duyar, fakat bu izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne girip \"İzinler\" kısmını seçin, ve \"Konum\"u etkinleştirin.</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal, fotoğraf çekmek için Kamera iznine ihtiyaç duyar, fakat bu izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne girip \"İzinler\" kısmını seçin, ve \"Kamera\"yı etkinleştirin.</string>
   <!--AttachmentUploadJob-->
-  <string name="AttachmentUploadJob_uploading_media">İçerik yükleniyor...</string>
-  <string name="AttachmentUploadJob_compressing_video_start">Video sıkıştırılıyor...</string>
+  <string name="AttachmentUploadJob_uploading_media">İçerik yükleniyor…</string>
+  <string name="AttachmentUploadJob_compressing_video_start">Video sıkıştırılıyor…</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Ses oynatılırken hata!</string>
   <!--BlockedContactsActivity-->
@@ -217,15 +217,15 @@
     <item quantity="other">%1$d eklenti kaydediliyor</item>
   </plurals>
   <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-    <item quantity="one">Eklenti hafızaya kaydediliyor...</item>
-    <item quantity="other">%1$d eklenti hafızaya kaydediliyor...</item>
+    <item quantity="one">Eklenti hafızaya kaydediliyor…</item>
+    <item quantity="other">%1$d eklenti hafızaya kaydediliyor…</item>
   </plurals>
-  <string name="ConversationFragment_pending">Beklemede...</string>
+  <string name="ConversationFragment_pending">Beklemede…</string>
   <string name="ConversationFragment_push">Veri (Signal)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Siliniyor</string>
-  <string name="ConversationFragment_deleting_messages">İletiler siliniyor...</string>
+  <string name="ConversationFragment_deleting_messages">İletiler siliniyor…</string>
   <string name="ConversationFragment_quoted_message_not_found">İletinin aslı bulunamadı</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">İletinin aslı artık mevcut değil</string>
   <string name="ConversationFragment_failed_to_open_message">İleti açılamadı</string>
@@ -244,7 +244,7 @@
     <item quantity="other">Bu işlem seçilmiş %1$d sohbeti kalıcı olarak silecektir.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">Siliniyor</string>
-  <string name="ConversationListFragment_deleting_selected_conversations">Seçilen sohbetler siliniyor...</string>
+  <string name="ConversationListFragment_deleting_selected_conversations">Seçilen sohbetler siliniyor…</string>
   <plurals name="ConversationListFragment_conversations_archived">
     <item quantity="one">Sohbet arşivlendi</item>
     <item quantity="other">%d sohbet arşivlendi</item>
@@ -289,7 +289,7 @@
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Bu cihazın bağlantısını kaldırarak, artık ileti alamayacak ya da gönderemeyeceksiniz.</string>
   <string name="DeviceListActivity_network_connection_failed">Ağ bağlantısı başarısız</string>
   <string name="DeviceListActivity_try_again">Tekrar dene</string>
-  <string name="DeviceListActivity_unlinking_device">Cihaz bağlantısı kaldırılıyor...</string>
+  <string name="DeviceListActivity_unlinking_device">Cihaz bağlantısı kaldırılıyor…</string>
   <string name="DeviceListActivity_unlinking_device_no_ellipsis">Cihaz bağlantısı kaldırılıyor</string>
   <string name="DeviceListActivity_network_failed">Ağ bağlantısı başarısız oldu!</string>
   <!--DeviceListItem-->
@@ -329,7 +329,7 @@
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Bu özelliği istediğiniz zaman Signal ayarlarınızdan (Gizlilik &gt; Bağlantı ön izlemelerini gönder). etkinleştirebilir veya devre dışı bırakabilirsiniz.</string>
   <string name="ExperienceUpgradeActivity_got_it">Anladım</string>
   <!--GcmBroadcastReceiver-->
-  <string name="GcmBroadcastReceiver_retrieving_a_message">Bir ileti alınıyor...</string>
+  <string name="GcmBroadcastReceiver_retrieving_a_message">Bir ileti alınıyor…</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Kalıcı Signal haberleşme hatası!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal Google Play Hizmetleri\'ne kaydolamadı. Signal iletileri ve aramaları devre dışı bırakıldı, lütfen Ayarlar &gt; Gelişmiş kısmından tekrar kaydolmayı deneyin.</string>
@@ -350,9 +350,9 @@
   <string name="GroupCreateActivity_avatar_content_description">Grup resmi</string>
   <string name="GroupCreateActivity_menu_apply_button">Uygula</string>
   <string name="GroupCreateActivity_creating_group">%1$s oluşturuluyor…</string>
-  <string name="GroupCreateActivity_updating_group">%1$s güncelleniyor...</string>
+  <string name="GroupCreateActivity_updating_group">%1$s güncelleniyor…</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">%1$s Signal kullanıcısı olmadığı için eklenemedi.</string>
-  <string name="GroupCreateActivity_loading_group_details">Grup ayrıntıları yükleniyor...</string>
+  <string name="GroupCreateActivity_loading_group_details">Grup ayrıntıları yükleniyor…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Zaten gruptasınız.</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Profil adınız ve fotoğrafınız bu grupla paylaşılsın mı?</string>
@@ -369,7 +369,7 @@
   <string name="InviteActivity_share">Paylaş</string>
   <string name="InviteActivity_choose_contacts">Kişileri seç</string>
   <string name="InviteActivity_cancel">İptal</string>
-  <string name="InviteActivity_sending">Gönderiliyor...</string>
+  <string name="InviteActivity_sending">Gönderiliyor…</string>
   <string name="InviteActivity_heart_content_description">Erişilebilirlik</string>
   <string name="InviteActivity_invitations_sent">Davetler gönderildi!</string>
   <string name="InviteActivity_invite_to_signal">Signal\'e davet et</string>
@@ -385,7 +385,7 @@
   <string name="InviteActivity_no_app_to_share_to">Paylaşmak için herhangi bir uygulamanız yok gibi görünüyor.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Arkadaşlar, arkadaşlarının şifresiz sohbet etmesine izin vermez.</string>
   <!--Job-->
-  <string name="Job_working_in_the_background">Arka planda çalışıyor...</string>
+  <string name="Job_working_in_the_background">Arka planda çalışıyor…</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Gönderilemedi</string>
   <string name="MessageDetailsRecipient_new_safety_number">Yeni güvenlik numarası</string>
@@ -409,10 +409,10 @@
     <item quantity="other">Bu eylem seçtiğiniz %1$d iletiyi kalıcı olarak silecektir.</item>
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Siliniyor</string>
-  <string name="MediaOverviewActivity_Media_delete_progress_message">İletiler siliniyor...</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">İletiler siliniyor…</string>
   <string name="MediaOverviewActivity_Documents">Belgeler</string>
   <string name="MediaOverviewActivity_Select_all">Hepsini seç</string>
-  <string name="MediaOverviewActivity_collecting_attachments">Eklentiler toplanıyor...</string>
+  <string name="MediaOverviewActivity_collecting_attachments">Eklentiler toplanıyor…</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal araması sürüyor</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal araması kuruluyor</string>
@@ -431,7 +431,7 @@
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">Seçmek için dokunun</string>
   <!--MediaSendActivity-->
-  <string name="MediaSendActivity_add_a_caption">Bir başlık ekleyin...</string>
+  <string name="MediaSendActivity_add_a_caption">Bir başlık ekleyin…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Boyut sınırını aştığı için bir öğe kaldırıldı.</string>
   <string name="MediaSendActivity_camera_unavailable">Kamera kullanılamıyor.</string>
   <string name="MediaSendActivity_message_to_s">%s kişisine mesaj</string>
@@ -481,7 +481,7 @@
         \n• Adınıza ileti gönderme
     </string>
   <string name="DeviceProvisioningActivity_content_progress_title">Cihaz bağlama</string>
-  <string name="DeviceProvisioningActivity_content_progress_content">Yeni cihaz bağlanıyor...</string>
+  <string name="DeviceProvisioningActivity_content_progress_content">Yeni cihaz bağlanıyor…</string>
   <string name="DeviceProvisioningActivity_content_progress_success">Cihaz onaylandı!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Hiç cihaz bulanamadı.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Ağ hatası.</string>
@@ -679,7 +679,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Kişiniz Signal\'in eski bir sürümünü kullanmakta. Güvenlik numaranızı doğrulamadan önce uygulamayı güncellemelerini rica edin.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Kişiniz Signal\'in uyumsuz karekod formatına sahip yeni bir sürümünü kullanıyor. Karşılaştırmak için lütfen güncelleyin.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Taranan karekod düzgün biçimlendirilmiş bir güvenlik numarası doğrulama kodu değil. Lütfen tekrar taramayı deneyin.</string>
-  <string name="VerifyIdentityActivity_share_safety_number_via">Güvenlik numarasını paylaş...</string>
+  <string name="VerifyIdentityActivity_share_safety_number_via">Güvenlik numarasını paylaş…</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">Signal güvenlik numaramız:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Paylaşmak için herhangi bir uygulamanız yok gibi görünüyor. </string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Panoda karşılaştırılacak bir güvenlik numarası bulunamadı</string>
@@ -818,7 +818,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="contact_filter_toolbar__show_dial_pad_description">Arama tuşlarını göster</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Kişi yok.</string>
-  <string name="contact_selection_group_activity__finding_contacts">Kişiler yükleniyor...</string>
+  <string name="contact_selection_group_activity__finding_contacts">Kişiler yükleniyor…</string>
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Kişi Fotoğrafı</string>
   <!--ContactSelectionListFragment-->
@@ -857,7 +857,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">Kişi fotoğrafı</string>
   <!--audio_view-->
-  <string name="audio_view__play_pause_accessibility_description">Oynat ... Durdur</string>
+  <string name="audio_view__play_pause_accessibility_description">Oynat … Durdur</string>
   <string name="audio_view__download_accessibility_description">İndir</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">Ses</string>
@@ -871,7 +871,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">En alta kaydır</string>
   <!--country_selection_fragment-->
-  <string name="country_selection_fragment__loading_countries">Ülkeler yükleniyor...</string>
+  <string name="country_selection_fragment__loading_countries">Ülkeler yükleniyor…</string>
   <string name="country_selection_fragment__search">Ara</string>
   <!--device_add_fragment-->
   <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Bağlamak için cihazda gösterilen QR kodunu tarayın</string>
@@ -940,8 +940,8 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="log_submit_activity__button_got_it">Anladım</string>
   <string name="log_submit_activity__button_compose_email">Eposta oluştur</string>
   <string name="log_submit_activity__this_log_will_be_posted_online">Bu günlük katkıda bulunanların görebilmeleri için herkese açık bir şekilde gönderilecektir. Göndermeden önce inceleyip düzenleyebilirsiniz.</string>
-  <string name="log_submit_activity__loading_logs">Günlükler yükleniyor...</string>
-  <string name="log_submit_activity__uploading_logs">Günlükler gönderiliyor...</string>
+  <string name="log_submit_activity__loading_logs">Günlükler yükleniyor…</string>
+  <string name="log_submit_activity__uploading_logs">Günlükler gönderiliyor…</string>
   <string name="log_submit_activity__success">Başarılı!</string>
   <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">Bu URL\'yi kopyalayın ve sorun bildirinize veya destek epostasına ekleyin:\n\n<b>%1$s</b>\n</string>
   <string name="log_submit_activity__copied_to_clipboard">Panoya kopyalandı</string>
@@ -967,7 +967,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">GÖRÜNTÜLE</string>
   <string name="message_recipients_list_item__resend">YENİDEN GÖNDER</string>
-  <string name="message_recipients_list_item__resending">Yeniden gönderiliyor...</string>
+  <string name="message_recipients_list_item__resending">Yeniden gönderiliyor…</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s gruba katıldı.</item>
@@ -1019,7 +1019,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[%s ile şifreleme güvenliğini doğrulamak isterseniz,  yukarıdaki sayıları kişinin cihazındaki numaralar ile karşılaştırın. Alternatif olarak, kişinin telefonundaki kodu kendiniz tarayabilirsiniz, ya da kendisinin taramasını isteyebilirsiniz. <a href="https://signal.org/redirect/safety-numbers">Dahasını öğrenin.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Taramak için dokunun</string>
-  <string name="verify_display_fragment__loading">Yükleniyor...</string>
+  <string name="verify_display_fragment__loading">Yükleniyor…</string>
   <string name="verify_display_fragment__verified">Doğrulandı</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Güvenlik numarasını paylaş</string>
@@ -1195,7 +1195,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--menus-->
   <!--****************************************-->
   <!--contact_selection_list-->
-  <string name="contact_selection_list__unknown_contact">Yeni ileti...</string>
+  <string name="contact_selection_list__unknown_contact">Yeni ileti…</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Arama</string>
   <!--conversation_callable_secure-->
@@ -1298,12 +1298,12 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <!--redphone_audio_popup_menu-->
   <!--Trimmer-->
   <string name="trimmer__deleting">Siliniyor</string>
-  <string name="trimmer__deleting_old_messages">Eski iletiler siliniyor...</string>
+  <string name="trimmer__deleting_old_messages">Eski iletiler siliniyor…</string>
   <string name="trimmer__old_messages_successfully_deleted">Eski iletiler başarıyla silindi</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ulaştırma simgesi</string>
-  <string name="ConversationListFragment_loading">Yükleniyor...</string>
-  <string name="CallNotificationBuilder_connecting">Bağlanılıyor...</string>
+  <string name="ConversationListFragment_loading">Yükleniyor…</string>
+  <string name="CallNotificationBuilder_connecting">Bağlanılıyor…</string>
   <string name="Permissions_permission_required">İzin gerekli</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal, SMS göndermek için SMS iznine ihtiyaç duyar, fakat bu izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne girip \"İzinler\" kısmını seçin, ve \"SMS\"i etkinleştirin.</string>
   <string name="Permissions_continue">Devam Et</string>
@@ -1328,8 +1328,8 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="RegistrationActivity_restore">Geri yükle</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Signal\'in daha yeni sürümlerinden yedek alınamaz</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">Yedek parolası yanlış</string>
-  <string name="RegistrationActivity_checking">Kontrol ediliyor...</string>
-  <string name="RegistrationActivity_d_messages_so_far">Şu ana kadar %d ileti....</string>
+  <string name="RegistrationActivity_checking">Kontrol ediliyor…</string>
+  <string name="RegistrationActivity_d_messages_so_far">Şu ana kadar %d ileti….</string>
   <string name="RegistrationActivity_restore_from_backup">Yedekten geri yüklensin mi?</string>
   <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">İleti ve ileti içeriklerinizi yerel bir yedekten geri yükleyin. Eğer şimdi yüklemezseniz, daha sonra yükleyemezsiniz.</string>
   <string name="RegistrationActivity_backup_size_s">Yedek boyutu: %s</string>
@@ -1344,7 +1344,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal, yedek oluşturabilmek için Depolama iznine ihtiyaç duyar, fakat bu izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne girip \"İzinler\" kısmını seçin, ve \"Depolama\"yı etkinleştirin.</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Son yedek: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Devam etmekte</string>
-  <string name="LocalBackupJob_creating_backup">Yedek oluşturuluyor...</string>
+  <string name="LocalBackupJob_creating_backup">Yedek oluşturuluyor…</string>
   <string name="ProgressPreference_d_messages_so_far">Şimdiye kadar %d ileti</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Lütfen %s numarasına gönderilen doğrulama kodunu girin.</string>
   <string name="RegistrationActivity_wrong_number">Yanlış numara</string>

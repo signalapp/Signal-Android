@@ -198,7 +198,7 @@
   <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
     <item quantity="other">ပူးတွဲဖိုင် %1$d ကို ဖုန်း ထဲတွင် သိမ်းနေသည် </item>
   </plurals>
-  <string name="ConversationFragment_pending">ဆိုင်းငံ့ထားသည်...</string>
+  <string name="ConversationFragment_pending">ဆိုင်းငံ့ထားသည်…</string>
   <string name="ConversationFragment_push">ဒေတာ (Signal)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
@@ -328,7 +328,7 @@
   <string name="InviteActivity_share">မျှဝေရန်</string>
   <string name="InviteActivity_choose_contacts">ဆက်သွယ်ရန်လူရွေးပါ</string>
   <string name="InviteActivity_cancel">မလုပ်တော့ပါ</string>
-  <string name="InviteActivity_sending">ပို့နေသည်...</string>
+  <string name="InviteActivity_sending">ပို့နေသည်…</string>
   <string name="InviteActivity_heart_content_description">အသည်းပုံ</string>
   <string name="InviteActivity_invitations_sent">ဖိတ်ကြားမှု ပြုလုပ်ပြီး!</string>
   <string name="InviteActivity_invite_to_signal">Signal သုံးဖို့ဖိတ်ရန်</string>
@@ -570,7 +570,7 @@
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">သင့်မိတ်ဆွေသည် signal ဗားရှင်းအဟောင်းအသုံးပြုထားပါသည်။ လုံခြုံရေးနံပါတ်များ အတည်မပြုခင် Signal ဗားရှင်းအား မြှင့်တင်ခိုင်းလိုက်ပါ။</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">သင့်မိတ်ဆွေသည်  Signal ဗားရှင်းအသစ်နှင့် သင်နှင့်လိုက်လျောညီထွေမရှိသည့် QR code ပုံစံကိုအသုံးပြုထားပါသည်။ နှိုင်းယှဉ်စစ်ဆေးရန် အဆင့်မြှင့်ပါ။</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">စကန်ဖတ်ထားသော QR ကုဒ်သည် မှန်ကန်သော လုံခြုံရေးနံပါတ်ပုံစံမဟုတ်သဖြင့် ထပ်မံ စကန်ဖတ်လိုက်ပါ။</string>
-  <string name="VerifyIdentityActivity_share_safety_number_via">... မှတဆင့် လုံခြုံရေးနံပါတ်ကို မျှဝေမယ်</string>
+  <string name="VerifyIdentityActivity_share_safety_number_via">… မှတဆင့် လုံခြုံရေးနံပါတ်ကို မျှဝေမယ်</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">တို့တွေရဲ့ Signal လုံခြုံရေးနံပါတ်:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">သင့်မှာမျှဝေစရာ app များရှိပုံမရပါ။</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Clipboard တွင်တိုက်ကြည့်စရာ လုံခြုံရေးနံပါတ်များ မရှိပါ</string>
@@ -687,7 +687,7 @@
   <!--contact_filter_toolbar-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">လိပ်စာများ မရှိ။</string>
-  <string name="contact_selection_group_activity__finding_contacts">လိပ်စာများ ရှာဖွေနေသည် ...</string>
+  <string name="contact_selection_group_activity__finding_contacts">လိပ်စာများ ရှာဖွေနေသည် …</string>
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">လိပ်စာတွင်ထည့်ရန်ဓာတ်ပုံ</string>
   <!--ContactSelectionListFragment-->
@@ -735,7 +735,7 @@
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">အောက်သို့ ဆွဲလိုက်ပါ</string>
   <!--country_selection_fragment-->
-  <string name="country_selection_fragment__loading_countries">နိုင်ငံစာရင်းများ ရှာဖွေနေသည် ....</string>
+  <string name="country_selection_fragment__loading_countries">နိုင်ငံစာရင်းများ ရှာဖွေနေသည် ….</string>
   <string name="country_selection_fragment__search">ရှာရန်</string>
   <!--device_add_fragment-->
   <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">ချိတ်ဆက်မည့် ဖုန်းတွင်ဖော်ပြထားသည့် QR ကုဒ်ကို စကင်န်လုပ်ပါ </string>
@@ -815,7 +815,7 @@
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">​ကြည့်</string>
   <string name="message_recipients_list_item__resend">ပြန်ပို့သည်</string>
-  <string name="message_recipients_list_item__resending">ပြန်ပို့နေသည်....... </string>
+  <string name="message_recipients_list_item__resending">ပြန်ပို့နေသည်……. </string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="other">အဖွဲ့ထဲ %1$s ၀င်ရောက်လာသည်။</item>
@@ -864,7 +864,7 @@
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[အကယ်၍ သင်၏ လုံခြုံရေးကို %sနှင့် တိုက်ဆိုင်စစ်ဆေးလိုပါက အထက်ပါ နံပါတ်ကို သူတို့၏ ဖုန်းပေါ်တွင်ရှိသော နံပါတ်ဖြင့် တိုက်ဆိုင်စစ်ဆေးပါ။ တခြားနည်းအနေဖြင့် သူတို့၏ ဖုန်းပေါ်တွင်ရှိသော ကုတ်နံပါတ်ကို scan ဖတ်နိုင်ပါသည် သို့မဟုတ် သင်၏ ကုတ်နံပါတ်ကို သူတို့ကို scan ဖတ်ခိုင်းပါ။ <a href="https://signal.org/redirect/safety-numbers">ထပ်မံသိရှိလိုပါက </a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">စကန်ဖတ်ရန်နှိပ်ပါ</string>
-  <string name="verify_display_fragment__loading">လုပ်ဆောင်နေသည်...</string>
+  <string name="verify_display_fragment__loading">လုပ်ဆောင်နေသည်…</string>
   <string name="verify_display_fragment__verified">အသိအမှတ်ပြုပြီးပြီ</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">လုံခြုံရေးနံပါတ်ကို မျှဝေပါ</string>
@@ -1024,7 +1024,7 @@
   <!--menus-->
   <!--****************************************-->
   <!--contact_selection_list-->
-  <string name="contact_selection_list__unknown_contact">သို့ စာအသစ် ...</string>
+  <string name="contact_selection_list__unknown_contact">သို့ စာအသစ် …</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">ခေါ်ပါ</string>
   <!--conversation_callable_secure-->
@@ -1122,11 +1122,11 @@
   <!--redphone_audio_popup_menu-->
   <!--Trimmer-->
   <string name="trimmer__deleting">ဖျက်နေဆဲ</string>
-  <string name="trimmer__deleting_old_messages">စာအဟောင်းများကို ဖျက်နေဆဲ ....</string>
+  <string name="trimmer__deleting_old_messages">စာအဟောင်းများကို ဖျက်နေဆဲ ….</string>
   <string name="trimmer__old_messages_successfully_deleted">စာအဟောင်းများကို အောင်မြင်စွာ ဖျက်ပြီး</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">ပုံသင်္ကေတကို ပို့ဆောင်ပါ။</string>
-  <string name="ConversationListFragment_loading">လုပ်ဆောင်နေသည်...</string>
+  <string name="ConversationListFragment_loading">လုပ်ဆောင်နေသည်…</string>
   <string name="CallNotificationBuilder_connecting">ချိတ်ဆက်နေသည်</string>
   <string name="Permissions_permission_required">ခွင့်ပြုချက် လိုအပ်သည်</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">SMS များပို့နိုင်ရန် မိမိ SMS ကို Signal မှ အသုံးပြုခွင့်ရရန် လိုအပ်သည်။ သို့သော် လုံးဝခွင့်မပြုပါ ဟုရွေးထားပြီး ဖြစ်နေသဖြင့် အပ်ပလီကေးရှင်း အပြင်အဆင်သို့ သွား၍ ခွင့်ပြုချက်များကို ရွေးချယ်ကာ SMS ကို အသုံးပြုနိုင်အောင် ပြုလုပ်ပါ</string>
@@ -1151,7 +1151,7 @@
   <string name="RegistrationActivity_enter_backup_passphrase">အရံသိမ်းဆည်းမှုအတွက် စကားဝှက် ထည့်ပါ</string>
   <string name="RegistrationActivity_restore">ပြန်သိမ်းသည်</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">အရံသိမ်းဆည်းမှုအတွက်စကားဝှက် မမှန်ကန်ပါ</string>
-  <string name="RegistrationActivity_checking">စစ်ဆေးနေသည်...</string>
+  <string name="RegistrationActivity_checking">စစ်ဆေးနေသည်…</string>
   <string name="RegistrationActivity_d_messages_so_far">လက်ရှိအချိန်အထိ %d စာ ရှိပါသည်</string>
   <string name="RegistrationActivity_restore_from_backup">အရံသိမ်းထားသည်များကို ပြန်ရယူမည်လား?</string>
   <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">သင်၏ စာတိုများ၊ ဖုန်းထဲတွင် အရံသိမ်းဆည်းထားသော ရုပ်/သံ/ပုံ ဖိုင်များကို ပြန်လည်ရယူထားပါ။ ယခုမရယူထားပါက နောက်ပိုင်းတွင် ပြန်လည်ရယူနိုင်မည်မဟုတ်ပါ။</string>
@@ -1167,7 +1167,7 @@
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">သင်၏ အပလီကေးရှင်းပြင်ပ ဖုန်းထဲတွင် သိမ်းထားခွင့်အား  Signal ကို ပေးရန်လိုအပ်ပါသည်။သို့သော် လုံးဝခွင့်မပြုပါဟု ရွေးထားပြီး ဖြစ်နေသဖြင့် အပ်ပလီကေးရှင်း အပြင်အဆင်သို့ သွား၍ ခွင့်ပြုချက်များကို ရွေးချယ်ကာ သိုလှောင်မှုခွင့်ပြုချက်ကို အသုံးပြုနိုင်အောင် ပြုလုပ်ပါ။</string>
   <string name="ChatsPreferenceFragment_last_backup_s">နောက်ဆုံးအရံသိမ်းဆည်းမှု %s</string>
   <string name="ChatsPreferenceFragment_in_progress">ဆောင်ရွက်နေဆဲ</string>
-  <string name="LocalBackupJob_creating_backup">အရံသိမ်းဆည်းမှုများ ဖန်တီးနေပါသည်...</string>
+  <string name="LocalBackupJob_creating_backup">အရံသိမ်းဆည်းမှုများ ဖန်တီးနေပါသည်…</string>
   <string name="ProgressPreference_d_messages_so_far">လက်ရှိအချိန်အထိ %d စာ ရှိပါသည်</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">ကျေးဇူးပြု၍ %s သို့ ပေးပို့ထားသော အတည်ပြုကုတ် ထည့်ပါ။</string>
   <string name="BackupUtil_never">ဘယ်တော့မှ</string>

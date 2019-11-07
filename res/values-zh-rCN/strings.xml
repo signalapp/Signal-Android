@@ -12,7 +12,7 @@
   <!--AlbumThumbnailView-->
   <string name="AlbumThumbnailView_plus">\+%d</string>
   <!--ApplicationMigrationActivity-->
-  <string name="ApplicationMigrationActivity__signal_is_updating">Signal 正在更新...</string>
+  <string name="ApplicationMigrationActivity__signal_is_updating">Signal 正在更新…</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">当前：%s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">您尚未设置密码！</string>
@@ -60,8 +60,8 @@
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal 需要\"位置信息\"权限才能发送位置信息，但是该权限已被永久禁用。请转到系统的应用设置菜单，找到权限设置，选择 Signal 应用，并启用\"位置信息\"权限。</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal 需要\"相机\"权限才能拍照并发送相片，但是该权限已被永久禁用。请转到系统的应用设置菜单，找到权限设置，选择 Signal 应用，并启用\"相机\"权限。</string>
   <!--AttachmentUploadJob-->
-  <string name="AttachmentUploadJob_uploading_media">上传媒体中...</string>
-  <string name="AttachmentUploadJob_compressing_video_start">正在压缩视频...</string>
+  <string name="AttachmentUploadJob_uploading_media">上传媒体中…</string>
+  <string name="AttachmentUploadJob_compressing_video_start">正在压缩视频…</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">播放音频时出现错误！</string>
   <!--BlockedContactsActivity-->
@@ -413,7 +413,7 @@
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">点击以选择</string>
   <!--MediaSendActivity-->
-  <string name="MediaSendActivity_add_a_caption">添加注释...</string>
+  <string name="MediaSendActivity_add_a_caption">添加注释…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">一个附件已被移除，因为它超过了文件大小限制。</string>
   <string name="MediaSendActivity_camera_unavailable">摄像头不可用。</string>
   <string name="MediaSendActivity_message_to_s">发送给 %s 的消息</string>
@@ -831,7 +831,7 @@
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">联系人照片</string>
   <!--audio_view-->
-  <string name="audio_view__play_pause_accessibility_description">播放 ... 暂停</string>
+  <string name="audio_view__play_pause_accessibility_description">播放 … 暂停</string>
   <string name="audio_view__download_accessibility_description">下载</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">音频</string>
@@ -845,7 +845,7 @@
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">滚动到底部</string>
   <!--country_selection_fragment-->
-  <string name="country_selection_fragment__loading_countries">正在读取国家列表...</string>
+  <string name="country_selection_fragment__loading_countries">正在读取国家列表…</string>
   <string name="country_selection_fragment__search">搜索</string>
   <!--device_add_fragment-->
   <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">扫描设备上显示的二维码以便连接</string>
@@ -1296,7 +1296,7 @@
   <string name="RegistrationActivity_restore">还原</string>
   <string name="RegistrationActivity_backup_failure_downgrade">不能导入来自新版本的 Signal 备份。</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">备份密码错误</string>
-  <string name="RegistrationActivity_checking">检查中...</string>
+  <string name="RegistrationActivity_checking">检查中…</string>
   <string name="RegistrationActivity_d_messages_so_far">已处理 %d 条消息…</string>
   <string name="RegistrationActivity_restore_from_backup">从备份还原吗？</string>
   <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">从本地备份恢复您的聊天信息和媒体信息。如果您现在不恢复，您将没有机会恢复。</string>

@@ -4,7 +4,7 @@
   <string name="yes">Sim</string>
   <string name="no">Não</string>
   <string name="delete">Excluir</string>
-  <string name="please_wait">Aguarde...</string>
+  <string name="please_wait">Aguarde…</string>
   <string name="save">Salvar</string>
   <string name="note_to_self">Nota para mim</string>
   <!--AbstractNotificationBuilder-->
@@ -30,7 +30,7 @@
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Isto irá destravar permanentemente as notificações do Signal e das mensagens.</string>
   <string name="ApplicationPreferencesActivity_disable">Desabilitar</string>
   <string name="ApplicationPreferencesActivity_unregistering">Desfazer cadastro</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Descadastrando de mensagens e chamadas Signal...</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Descadastrando de mensagens e chamadas Signal…</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Desabilitar mensagens e chamadas Signal?</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Desabilitar mensagens e chamadas Signal descadastrando-o do servidor. Você precisará recadastrar seu número de telefone para usar o Signal novamente no futuro.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Erro ao conectar-se com o servidor!</string>
@@ -64,7 +64,7 @@
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">O Signal precisa da permissão Câmera para tirar fotos, mas ela foi permanentemente negada. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"Câmera\".</string>
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">Enviando mídia…</string>
-  <string name="AttachmentUploadJob_compressing_video_start">Comprimindo vídeo...</string>
+  <string name="AttachmentUploadJob_compressing_video_start">Comprimindo vídeo…</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Erro ao tocar áudio!</string>
   <!--BlockedContactsActivity-->
@@ -79,6 +79,7 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Falha ao salvar imagem.</string>
   <!--CameraXFragment-->
+  <string name="CameraXFragment_tap_for_photo_hold_for_video">Clique para foto, segure para vídeo</string>
   <string name="CameraXFragment_capture_description">Capturar</string>
   <string name="CameraXFragment_change_camera_description">Mudar de câmera</string>
   <string name="CameraXFragment_open_gallery_description">Abrir galeria</string>
@@ -176,6 +177,9 @@
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Para tirar fotos e fazer vídeos permita ao Signal acessar a câmera.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">O Signal precisa da permissão Câmera para tirar fotos e fazer vídeos, mas ela foi permanentemente negada. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"Câmera\".</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">O Signal precisa da permissão Câmera para tirar fotos ou fazer vídeos</string>
+  <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">Habilite a permissão de microfone para capturar vídeos com som.</string>
+  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">O Signal precisa das permissões de microfone para gravar vídeos, mas elas foram negadas. Por favor vá nas configurações de aplicativos, selecione \"Permissões\", e habilite \"Microfone\" e \"Câmera\".</string>
+  <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">O Signal precisa das permissões de microfone para gravar vídeos.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s%2$s</string>
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">O Signal não pode enviar mensagens de SMS/MMS porque não é seu aplicativo de mensagens padrão. Você gostaria de mudar isso nas configurações do seu Android?</string>
   <string name="ConversationActivity_yes">Sim</string>
@@ -213,18 +217,20 @@
     <item quantity="other">Gravando %1$d anexos</item>
   </plurals>
   <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-    <item quantity="one">Gravando anexo no armazenamento...</item>
-    <item quantity="other">Gravando %1$d anexos no armazenamento...</item>
+    <item quantity="one">Gravando anexo no armazenamento…</item>
+    <item quantity="other">Gravando %1$d anexos no armazenamento…</item>
   </plurals>
-  <string name="ConversationFragment_pending">Pendente...</string>
+  <string name="ConversationFragment_pending">Pendente…</string>
   <string name="ConversationFragment_push">Dados (Signal)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Excluindo</string>
-  <string name="ConversationFragment_deleting_messages">Excluindo mensagens...</string>
+  <string name="ConversationFragment_deleting_messages">Excluindo mensagens…</string>
   <string name="ConversationFragment_quoted_message_not_found">Mensagem original não encontrada</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Mensagem original indisponível</string>
   <string name="ConversationFragment_failed_to_open_message">Falha ao abrir mensagem</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Você pode deslizar para a direita em qualquer mensagem para responder rapidamente</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Você pode deslizar para a esquerda em qualquer mensagem para responder rapidamente</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Não há nenhum navegador instalado no seu dispositivo.</string>
   <!--ConversationListFragment-->
@@ -238,7 +244,7 @@
     <item quantity="other">Isto irá excluir permanentemente todas as %1$d conversas selecionadas.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">Excluindo</string>
-  <string name="ConversationListFragment_deleting_selected_conversations">Excluindo conversas selecionadas...</string>
+  <string name="ConversationListFragment_deleting_selected_conversations">Excluindo conversas selecionadas…</string>
   <plurals name="ConversationListFragment_conversations_archived">
     <item quantity="one">Conversa arquivada</item>
     <item quantity="other">%d conversas arquivadas</item>
@@ -283,7 +289,7 @@
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Ao desvincular este dispositivo, ele não será mais capaz de enviar ou receber mensagens.</string>
   <string name="DeviceListActivity_network_connection_failed">Falha de conexão de rede </string>
   <string name="DeviceListActivity_try_again">Tentar de novo</string>
-  <string name="DeviceListActivity_unlinking_device">Desvinculando dispositivo...</string>
+  <string name="DeviceListActivity_unlinking_device">Desvinculando dispositivo…</string>
   <string name="DeviceListActivity_unlinking_device_no_ellipsis">Desvinculando dispositivo</string>
   <string name="DeviceListActivity_network_failed">Rede falhou!</string>
   <!--DeviceListItem-->
@@ -323,7 +329,7 @@
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Você pode desativar ou ativar esta função quando quiser nas configurações do seu Signal (Privacidade &gt; Enviar pré-visualizações de links).</string>
   <string name="ExperienceUpgradeActivity_got_it">Entendi</string>
   <!--GcmBroadcastReceiver-->
-  <string name="GcmBroadcastReceiver_retrieving_a_message">Recuperando uma mensagem...</string>
+  <string name="GcmBroadcastReceiver_retrieving_a_message">Recuperando uma mensagem…</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Falha permanente de comunicação do Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">O Signal não pôde cadastrar-se no Serviços Google Play. Mensagens e chamadas Signal foram desabilitadas; tente recadastrar em Configurações &gt; Avançado.</string>
@@ -344,9 +350,9 @@
   <string name="GroupCreateActivity_avatar_content_description">Avatar do grupo</string>
   <string name="GroupCreateActivity_menu_apply_button">Aplicar</string>
   <string name="GroupCreateActivity_creating_group">Criando %1$s…</string>
-  <string name="GroupCreateActivity_updating_group">Atualizando %1$s...</string>
+  <string name="GroupCreateActivity_updating_group">Atualizando %1$s…</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Não foi possível adicionar %1$s porque o grupo não é usuário do Signal.</string>
-  <string name="GroupCreateActivity_loading_group_details">Carregando detalhes do grupo...</string>
+  <string name="GroupCreateActivity_loading_group_details">Carregando detalhes do grupo…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Você já está quase no grupo.</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Compartilhar seu nome e foto do perfil com este grupo?</string>
@@ -363,7 +369,7 @@
   <string name="InviteActivity_share">Encaminhar para</string>
   <string name="InviteActivity_choose_contacts">Escolher contatos</string>
   <string name="InviteActivity_cancel">Cancelar</string>
-  <string name="InviteActivity_sending">Enviando...</string>
+  <string name="InviteActivity_sending">Enviando…</string>
   <string name="InviteActivity_heart_content_description">Coração</string>
   <string name="InviteActivity_invitations_sent">Convites enviados!</string>
   <string name="InviteActivity_invite_to_signal">Convidar para o Signal</string>
@@ -379,7 +385,7 @@
   <string name="InviteActivity_no_app_to_share_to">Parece que você não tem aplicativos para onde compartilhar.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Amigos não deixam amigos conversarem sem criptografia.</string>
   <!--Job-->
-  <string name="Job_working_in_the_background">Trabalhando em segundo plano...</string>
+  <string name="Job_working_in_the_background">Trabalhando em segundo plano…</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Falha no envio</string>
   <string name="MessageDetailsRecipient_new_safety_number">Novo número de segurança</string>
@@ -403,10 +409,10 @@
     <item quantity="other">Isto irá excluir permanentemente todas as %1$d mensagens selecionadas.</item>
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Excluindo</string>
-  <string name="MediaOverviewActivity_Media_delete_progress_message">Excluindo mensagens...</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">Excluindo mensagens…</string>
   <string name="MediaOverviewActivity_Documents">Documentos</string>
   <string name="MediaOverviewActivity_Select_all">Marcar todos</string>
-  <string name="MediaOverviewActivity_collecting_attachments">Coletando anexos...</string>
+  <string name="MediaOverviewActivity_collecting_attachments">Coletando anexos…</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Chamada Signal em andamento</string>
   <string name="NotificationBarManager__establishing_signal_call">Estabelecendo uma ligação via Signal</string>
@@ -425,7 +431,7 @@
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">Toque para selecionar</string>
   <!--MediaSendActivity-->
-  <string name="MediaSendActivity_add_a_caption">Adicionar legenda...</string>
+  <string name="MediaSendActivity_add_a_caption">Adicionar legenda…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Um item foi removido porque excedeu o limite de tamanho</string>
   <string name="MediaSendActivity_camera_unavailable">Câmera indisponível.</string>
   <string name="MediaSendActivity_message_to_s">Mensagem para %s</string>
@@ -475,7 +481,7 @@
         \n• Enviar mensagens em seu nome
     </string>
   <string name="DeviceProvisioningActivity_content_progress_title">Vinculando dispositivo</string>
-  <string name="DeviceProvisioningActivity_content_progress_content">Vinculando novo dispositivo...</string>
+  <string name="DeviceProvisioningActivity_content_progress_content">Vinculando novo dispositivo…</string>
   <string name="DeviceProvisioningActivity_content_progress_success">Dispositivo aprovado!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Nenhum dispositivo encontrado.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Erro de rede.</string>
@@ -575,6 +581,8 @@
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Insira o seu número de telefone para começar</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Você vai receber um código de verificação. Taxas da operadora podem ser aplicadas.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Insira o código que enviamos para %s</string>
+  <string name="RegistrationActivity_phone_number_description">Número de telefone</string>
+  <string name="RegistrationActivity_country_code_description">Código do país</string>
   <string name="RegistrationActivity_call">Ligar</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_photo">Foto</string>
@@ -643,6 +651,7 @@
   <string name="ThreadRecord_media_message">MMS</string>
   <string name="ThreadRecord_sticker">Figurinha</string>
   <string name="ThreadRecord_disappearing_photo">Foto efêmera</string>
+  <string name="ThreadRecord_disappearing_video">Vídeo efêmero</string>
   <string name="ThreadRecord_s_is_on_signal">%s está no Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Mensagens efêmeras desabilitadas</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Expiração da mensagem efêmera definida para %s</string>
@@ -671,7 +680,7 @@
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Seu contato está usando uma versão antiga do Signal. Peça a ele para atualizá-la antes de verificar o seu número de segurança.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Seu contato está usando uma versão mais nova do Signal com um formato de código QR incompatível. Atualize para poder comparar.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">O código QR escaneado não é um código de verificação de número de segurança formatado corretamente. Por favor, tente escanear de novo.</string>
-  <string name="VerifyIdentityActivity_share_safety_number_via">Compartilhar número de segurança por...</string>
+  <string name="VerifyIdentityActivity_share_safety_number_via">Compartilhar número de segurança por…</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">Nosso número de segurança Signal:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Parece que você não tem aplicativos para onde compartilhar.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Nenhum número de segurança a ser comaprado foi encontrado na área de transferência.</string>
@@ -719,6 +728,7 @@
   <string name="MessageNotifier_media_message">Mensagem multimídia</string>
   <string name="MessageNotifier_sticker">Figurinha</string>
   <string name="MessageNotifier_disappearing_photo">Foto efêmera</string>
+  <string name="MessageNotifier_disappearing_video">Vídeo efêmero</string>
   <string name="MessageNotifier_reply">Responder</string>
   <string name="MessageNotifier_signal_message">Mensagem no Signal</string>
   <string name="MessageNotifier_unsecured_sms">SMS inseguro</string>
@@ -809,7 +819,7 @@
   <string name="contact_filter_toolbar__show_dial_pad_description">Mostrar discador</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Nenhum contato.</string>
-  <string name="contact_selection_group_activity__finding_contacts">Carregando contatos...</string>
+  <string name="contact_selection_group_activity__finding_contacts">Carregando contatos…</string>
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Foto do contato</string>
   <!--ContactSelectionListFragment-->
@@ -862,7 +872,7 @@
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Rolar para o final</string>
   <!--country_selection_fragment-->
-  <string name="country_selection_fragment__loading_countries">Carregando países...</string>
+  <string name="country_selection_fragment__loading_countries">Carregando países…</string>
   <string name="country_selection_fragment__search">Procurar</string>
   <!--device_add_fragment-->
   <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Escaneie o código QR mostrado no aparelho para vincular</string>
@@ -931,8 +941,8 @@
   <string name="log_submit_activity__button_got_it">Entendi</string>
   <string name="log_submit_activity__button_compose_email">Escrever e-mail</string>
   <string name="log_submit_activity__this_log_will_be_posted_online">Este registro será postado publicamente on-line para que os contribuidores possam vê-lo. Você pode analisá-lo e editá-lo antes de enviar.</string>
-  <string name="log_submit_activity__loading_logs">Carregando registros...</string>
-  <string name="log_submit_activity__uploading_logs">Atualizando registros...</string>
+  <string name="log_submit_activity__loading_logs">Carregando registros…</string>
+  <string name="log_submit_activity__uploading_logs">Atualizando registros…</string>
   <string name="log_submit_activity__success">Sucesso!</string>
   <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">Copie e adicione este URL ao relatório de problema ou e-mail de ajuda:\n\n<b>%1$s</b>\n</string>
   <string name="log_submit_activity__copied_to_clipboard">Copiada para a área de transferência</string>
@@ -958,7 +968,7 @@
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">VER</string>
   <string name="message_recipients_list_item__resend">REENVIAR</string>
-  <string name="message_recipients_list_item__resending">Reenviando...</string>
+  <string name="message_recipients_list_item__resending">Reenviando…</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s entrou no  grupo.</item>
@@ -1010,7 +1020,7 @@
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Se vocẽ quiser verificar a segurança da sua criptografia ponta a ponta com %s, compare os números acima com os números no aparelho dessa pessoa. Outra opção é escanear o código QR no telefone dela, ou pedir que ela escaneie o código no seu dispositivo. <a href="https://signal.org/redirect/safety-numbers">Saiba mais.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Clique para escanear</string>
-  <string name="verify_display_fragment__loading">Carregando...</string>
+  <string name="verify_display_fragment__loading">Carregando…</string>
   <string name="verify_display_fragment__verified">Verificado</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Compartilhar número de segurança</string>
@@ -1065,6 +1075,10 @@
   <string name="arrays__high">Alto</string>
   <string name="arrays__max">Máx</string>
   <!--plurals.xml-->
+  <plurals name="hours_ago">
+    <item quantity="one">%dh</item>
+    <item quantity="other">%dh</item>
+  </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">SMS e MMS</string>
   <string name="preferences__pref_all_sms_title">Receber todos os SMS</string>
@@ -1182,7 +1196,7 @@
   <!--menus-->
   <!--****************************************-->
   <!--contact_selection_list-->
-  <string name="contact_selection_list__unknown_contact">Nova mensagem para...</string>
+  <string name="contact_selection_list__unknown_contact">Nova mensagem para…</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Chamar</string>
   <!--conversation_callable_secure-->
@@ -1286,12 +1300,12 @@
   <!--redphone_audio_popup_menu-->
   <!--Trimmer-->
   <string name="trimmer__deleting">Excluindo</string>
-  <string name="trimmer__deleting_old_messages">Excluindo mensagens antigas...</string>
+  <string name="trimmer__deleting_old_messages">Excluindo mensagens antigas…</string>
   <string name="trimmer__old_messages_successfully_deleted">Mensagens antigas excluídas com sucesso</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ícone do transporte</string>
-  <string name="ConversationListFragment_loading">Carregando...</string>
-  <string name="CallNotificationBuilder_connecting">Conectando...</string>
+  <string name="ConversationListFragment_loading">Carregando…</string>
+  <string name="CallNotificationBuilder_connecting">Conectando…</string>
   <string name="Permissions_permission_required">Permissão necessária</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">O Signal precisa da permissão SMS para enviar mensagens SMS, mas ela foi permanentemente negada. Favor ir no menu de configurações de aplicativos, selecionar \"Permissões\", e habilitar \"SMS\".</string>
   <string name="Permissions_continue">Continuar</string>
@@ -1316,8 +1330,8 @@
   <string name="RegistrationActivity_restore">Restaurar</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Não é possível importar backups feitos com versões mais novas do Signal</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">Frase-chave de backup incorreta</string>
-  <string name="RegistrationActivity_checking">Checando...</string>
-  <string name="RegistrationActivity_d_messages_so_far">%d mensagens até agora...</string>
+  <string name="RegistrationActivity_checking">Checando…</string>
+  <string name="RegistrationActivity_d_messages_so_far">%d mensagens até agora…</string>
   <string name="RegistrationActivity_restore_from_backup">Restaurar do backup?</string>
   <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Restaurar suas mensagens e mídias de um backup local. Se você não restaurar agora, você não conseguirá restaurar depois.</string>
   <string name="RegistrationActivity_backup_size_s">Tamanho do backup: %s</string>
@@ -1332,12 +1346,14 @@
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">O Signal precisa de acesso ao armazenamento externo para fazer backup. Por favor, vá para as configurações de aplicativos, entre em \"Permissões\" e habilite o \"Armazenamento\".</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Último backup: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Em andamento</string>
-  <string name="LocalBackupJob_creating_backup">Criando backup...</string>
+  <string name="LocalBackupJob_creating_backup">Criando backup…</string>
   <string name="ProgressPreference_d_messages_so_far">%d mensagens até agora</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Favor digitar o código de verificação enviado para %s.</string>
   <string name="RegistrationActivity_wrong_number">Número incorreto</string>
   <string name="RegistrationActivity_call_me_instead_available_in">Me liga \n (Disponível em %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">Entre em contato com o Suporte do Signal</string>
+  <string name="RegistrationActivity_code_support_subject">Cadastro Signal - Código de verificação para Android</string>
+  <string name="RegistrationActivity_code_support_body">Assunto: Cadastro Signal - Código de verificação para Android\nInfo do dispositivo: %1$s\nVersão do Android: %2$s\nVersão do Signal: %3$s\nLocalidade: %4$s</string>
   <string name="BackupUtil_never">Nunca</string>
   <string name="BackupUtil_unknown">Desconhecida</string>
   <string name="preferences_app_protection__screen_lock">Bloqueio de tela</string>
@@ -1369,10 +1385,10 @@
   <string name="RegistrationLockDialog_forgotten_pin">Esqueceu o PIN?</string>
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">O Bloqueio de Cadastro ajuda a proteger seu número de telefone de tentativas de cadastro não autorizadas. Esse recurso pode ser desativado a qualquer instante nas configurações de privacidade do Signal.</string>
   <string name="RegistrationLockDialog_registration_lock">Bloqueio de Cadastro</string>
-  <string name="RegistrationLockDialog_enable">Permitir</string>
+  <string name="RegistrationLockDialog_enable">Habilitar</string>
   <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">O PIN de Desbloqueio de Cadastro deve ter ao menos 4 dígitos.</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Os PINs inseridos não combinam.</string>
-  <string name="RegistrationLockDialog_error_connecting_to_the_service">Error ao conectar o serviço</string>
+  <string name="RegistrationLockDialog_error_connecting_to_the_service">Error ao conectar ao serviço</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">Desabilitar PIN de Desbloqueio de Cadastro?</string>
   <string name="RegistrationLockDialog_disable">Desabilitar</string>
   <string name="preferences_chats__backups">Backups</string>

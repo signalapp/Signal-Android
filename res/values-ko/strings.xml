@@ -292,7 +292,7 @@
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Signal 설정(개인정보 &gt; 링크 미리보기 보내기)에서 기능을 켜고 끌 수 있습니다.</string>
   <string name="ExperienceUpgradeActivity_got_it">확인</string>
   <!--GcmBroadcastReceiver-->
-  <string name="GcmBroadcastReceiver_retrieving_a_message">메시지 받아오는 중...</string>
+  <string name="GcmBroadcastReceiver_retrieving_a_message">메시지 받아오는 중…</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">영구적인 Signal 통신 실패!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal은 Google Play 서비스에 등록할 수 없습니다. Signal 메시지와 통화는 사용 중지되었으므로 Signal 설정 메뉴에서 재가입해 주세요.</string>
@@ -346,7 +346,7 @@
   <string name="InviteActivity_no_app_to_share_to">친구 초대 위해 공유할 수 있는 앱 없음</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">좋은 친구라면 친구의 메시지도 암호화 해주세요~</string>
   <!--Job-->
-  <string name="Job_working_in_the_background">백그라운드에서 동작 중...</string>
+  <string name="Job_working_in_the_background">백그라운드에서 동작 중…</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">전송 실패</string>
   <string name="MessageDetailsRecipient_new_safety_number">새 안전 번호</string>
@@ -389,7 +389,7 @@
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">탭하여 선택</string>
   <!--MediaSendActivity-->
-  <string name="MediaSendActivity_add_a_caption">설명 추가...</string>
+  <string name="MediaSendActivity_add_a_caption">설명 추가…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">용량 제한이 초과되어 항목이 삭제됨</string>
   <string name="MediaSendActivity_camera_unavailable">카메라를 사용할 수 없습니다.</string>
   <string name="MediaSendActivity_message_to_s">%s에게 메시지</string>
@@ -612,7 +612,7 @@
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">해당 연락처는 오래된 버전의 Signal을 쓰고 있습니다. 안전 번호를 검증하기 전에 먼저 업데이트를 요청하세요.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">해당 연락처는 상위 버전 Signal의 호환되지 않는 QR 코드 형식을 사용하고 있습니다. 앱을 업데이트하세요.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">해당 QR 코드는 안전 번호 검증 코드 형식이 아닌 것 같습니다. 다시 시도해보세요.</string>
-  <string name="VerifyIdentityActivity_share_safety_number_via">다음으로 안전 번호 공유...</string>
+  <string name="VerifyIdentityActivity_share_safety_number_via">다음으로 안전 번호 공유…</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">우리의 Signal 안전 번호:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">친구 초대 위해 공유할 수 있는 앱 없음</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">클립보드에 비교할 수 있는 안전 번호가 없음</string>
@@ -856,8 +856,8 @@
   <string name="log_submit_activity__button_got_it">확인</string>
   <string name="log_submit_activity__button_compose_email">이메일 작성</string>
   <string name="log_submit_activity__this_log_will_be_posted_online">해당 로그가 열람을 위해 온라인에 게시됩니다. 제출하기 전 로그를 보고 수정할 수 있습니다.</string>
-  <string name="log_submit_activity__loading_logs">로그 불러오는 중...</string>
-  <string name="log_submit_activity__uploading_logs">로그 업로드 중...</string>
+  <string name="log_submit_activity__loading_logs">로그 불러오는 중…</string>
+  <string name="log_submit_activity__uploading_logs">로그 업로드 중…</string>
   <string name="log_submit_activity__success">성공</string>
   <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">이 URL을 복사하여 문제점을 보고하거나 이메일을 작성하세요:\n\n<b>%1$s</b>\n</string>
   <string name="log_submit_activity__copied_to_clipboard">클립보드로 복사됨</string>
@@ -883,7 +883,7 @@
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">보기</string>
   <string name="message_recipients_list_item__resend">다시 보내기</string>
-  <string name="message_recipients_list_item__resending">재전송 중...</string>
+  <string name="message_recipients_list_item__resending">재전송 중…</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="other">%1$s님께서 그룹에 참여했습니다.</item>
@@ -1236,8 +1236,8 @@
   <string name="RegistrationActivity_restore">복원</string>
   <string name="RegistrationActivity_backup_failure_downgrade">상위 버전의 Signal에서 생성된 백업에서는 가져올 수 없습니다</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">백업 비밀번호가 틀립니다</string>
-  <string name="RegistrationActivity_checking">확인 중...</string>
-  <string name="RegistrationActivity_d_messages_so_far">현재 메시지 %d개 처리됨...</string>
+  <string name="RegistrationActivity_checking">확인 중…</string>
+  <string name="RegistrationActivity_d_messages_so_far">현재 메시지 %d개 처리됨…</string>
   <string name="RegistrationActivity_restore_from_backup">백업에서 복구하시겠습니까?</string>
   <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">로컬 백업에서 메시지와 미디어를 복원합니다. 지금 복원하지 않으면 이후에는 복원할 수 없습니다.</string>
   <string name="RegistrationActivity_backup_size_s">백업 크기: %s</string>
@@ -1252,7 +1252,7 @@
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal이 백업을 저장하려면 저장공간 권한이 필요하지만 현재 거부되어 있습니다. 앱 설정 메뉴에서 \"권한\"을 선택한 후 \"저장공간\" 항목을 허용하세요.</string>
   <string name="ChatsPreferenceFragment_last_backup_s">마지막 백업: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">진행 중</string>
-  <string name="LocalBackupJob_creating_backup">백업 생성 중...</string>
+  <string name="LocalBackupJob_creating_backup">백업 생성 중…</string>
   <string name="ProgressPreference_d_messages_so_far">현재 메시지 %d개 처리됨</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">%s에 보낸 인증 코드를 입력하세요</string>
   <string name="RegistrationActivity_wrong_number">잘못된 번호</string>
