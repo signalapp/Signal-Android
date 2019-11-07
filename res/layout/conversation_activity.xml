@@ -117,10 +117,10 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:background="?android:windowBackground"
-                android:paddingStart="5dip"
-                android:text="160/160 (1)"
-                android:visibility="gone" />
-
+                android:paddingStart="5dp"
+                android:visibility="gone"
+                tools:text="160/160 (1)"
+                tools:visibility="visible" />
 
             <ViewStub
                 android:id="@+id/emoji_drawer_stub"

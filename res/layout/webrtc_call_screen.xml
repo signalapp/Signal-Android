@@ -76,17 +76,17 @@
                     android:maxWidth="250dp">
 
                     <Button
-                        android:id="@+id/accept_safety_numbers"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="10dp"
-                        android:text="@string/WebRtcCallScreen_accept" />
-
-                    <Button
                         android:id="@+id/cancel_safety_numbers"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
                         android:text="@android:string/cancel" />
+
+                    <Button
+                        android:id="@+id/accept_safety_numbers"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/WebRtcCallScreen_accept" />
 
                 </LinearLayout>
 

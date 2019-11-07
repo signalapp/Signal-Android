@@ -2,7 +2,8 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="wrap_content">
 
@@ -223,7 +224,8 @@
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
                           style="@style/AttachmentTypeLabel"
-                          android:text=" "/>
+                          android:text=" "
+                          tools:ignore="HardcodedText" />
 
             </LinearLayout>
 

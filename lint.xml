@@ -12,6 +12,9 @@
     <issue id="ImpliedQuantity" severity="warning" />
 
     <issue id="CanvasSize" severity="error" />
+    <issue id="HardcodedText" severity="error" />
+    <issue id="VectorRaster" severity="error" />
+    <issue id="ButtonOrder" severity="error" />
 
     <issue id="RestrictedApi" severity="error">
         <ignore path="src/org/thoughtcrime/securesms/mediasend/camerax/VideoCapture.java" />
