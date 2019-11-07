@@ -23,6 +23,7 @@ buildscript {
 apply plugin: 'com.android.application'
 apply plugin: 'androidx.navigation.safeargs'
 apply plugin: 'witness'
+apply from: 'translations.gradle'
 apply from: 'witness-verifications.gradle'
 
 repositories {
@@ -429,19 +430,6 @@ def getLastCommitTimestamp() {
 
         return os.toString() + "000"
     }
-}
-
-/**
- * Discovers supported languages listed as under the res/values- directory.
- */
-static def autoResConfig() {
-    def files = new ArrayList<String>()
-    def root = new File('res')
-    root.eachFile { f -> files.add(f.name) }
-    ['en'] + files.collect { f -> f =~ /^values-([a-z]{2}(-r[A-Z]{2})?)$/ }
-         .findAll { matcher -> matcher.find() }
-         .collect { matcher -> matcher.group(1) }
-         .sort()
 }
 
 task qa {
