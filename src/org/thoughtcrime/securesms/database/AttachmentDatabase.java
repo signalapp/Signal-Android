@@ -343,6 +343,7 @@ public class AttachmentDatabase extends Database {
     ContentValues values = new ContentValues();
     values.put(DATA, (String) null);
     values.put(DATA_RANDOM, (byte[]) null);
+    values.put(DATA_HASH, (String) null);
     values.put(THUMBNAIL, (String) null);
     values.put(THUMBNAIL_RANDOM, (byte[]) null);
     values.put(FILE_NAME, (String) null);
