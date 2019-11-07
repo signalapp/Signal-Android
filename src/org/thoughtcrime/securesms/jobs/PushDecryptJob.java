@@ -1137,6 +1137,8 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   private void becomeFriendsWithContact(String pubKey, boolean syncContact) {
     LokiThreadDatabase lokiThreadDatabase = DatabaseFactory.getLokiThreadDatabase(context);
     Recipient contactID = Recipient.from(context, Address.fromSerialized(pubKey), false);
+    if (contactID.isGroupRecipient()) return;
+
     long threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(contactID);
     LokiThreadFriendRequestStatus threadFriendRequestStatus = lokiThreadDatabase.getFriendRequestStatus(threadID);
     if (threadFriendRequestStatus == LokiThreadFriendRequestStatus.FRIENDS) { return; }
@@ -1171,6 +1173,9 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       Recipient originalRecipient = getMessageDestination(content, message);
       Recipient primaryDeviceRecipient = getMessagePrimaryDestination(content, message);
       LokiThreadDatabase lokiThreadDatabase = DatabaseFactory.getLokiThreadDatabase(context);
+
+      // Loki - Friend requests only work in direct chats
+      if (!originalRecipient.getAddress().isPhone()) { return; }
 
       long threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(originalRecipient);
       long primaryDeviceThreadID = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(primaryDeviceRecipient);

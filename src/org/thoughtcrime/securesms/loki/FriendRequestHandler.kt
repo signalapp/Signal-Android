@@ -16,20 +16,20 @@ object FriendRequestHandler {
 
   @JvmStatic
   fun updateFriendRequestState(context: Context, type: ActionType, messageId: Long, threadId: Long) {
+    if (threadId < 0) return
+    val recipient = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(threadId) ?: return
+    if (!recipient.address.isPhone) { return }
+
     // Update thread status
-    // Note: Do we need to only update these if we're not friends?
-    if (threadId >= 0) {
-      val threadFriendStatus = when (type) {
-        ActionType.Sending -> LokiThreadFriendRequestStatus.REQUEST_SENDING
-        ActionType.Failed -> LokiThreadFriendRequestStatus.NONE
-        ActionType.Sent -> LokiThreadFriendRequestStatus.REQUEST_SENT
-      }
-      DatabaseFactory.getLokiThreadDatabase(context).setFriendRequestStatus(threadId, threadFriendStatus)
+    val threadFriendStatus = when (type) {
+      ActionType.Sending -> LokiThreadFriendRequestStatus.REQUEST_SENDING
+      ActionType.Failed -> LokiThreadFriendRequestStatus.NONE
+      ActionType.Sent -> LokiThreadFriendRequestStatus.REQUEST_SENT
     }
+    DatabaseFactory.getLokiThreadDatabase(context).setFriendRequestStatus(threadId, threadFriendStatus)
 
     // Update message status
-    val recipient = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(threadId)
-    if (recipient != null && messageId >= 0) {
+    if (messageId >= 0) {
       val messageDatabase = DatabaseFactory.getLokiMessageDatabase(context)
       val friendRequestStatus = messageDatabase.getFriendRequestStatus(messageId)
       if (type == ActionType.Sending) {
@@ -73,6 +73,8 @@ object FriendRequestHandler {
     // We only want to update the last message status if we're not friends with any of their linked devices
     // This ensures that we don't spam the UI with accept/decline messages
     val recipient = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(threadId) ?: return
+    if (!recipient.address.isPhone) { return }
+
     isFriendsWithAnyLinkedDevice(context, recipient).successUi { isFriends ->
       if (isFriends) { return@successUi }
 

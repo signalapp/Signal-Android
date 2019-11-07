@@ -61,6 +61,11 @@ fun getFriendCount(context: Context, devices: Set<String>): Int {
 }
 
 fun shouldAutomaticallyBecomeFriendsWithDevice(publicKey: String, context: Context): Promise<Boolean, Exception> {
+  // Don't become friends if we're a group
+  if (!Address.fromSerialized(publicKey).isPhone) {
+    return Promise.of(false)
+  }
+
   // If this public key is our primary device then we should become friends
   if (publicKey == TextSecurePreferences.getMasterHexEncodedPublicKey(context)) {
     return Promise.of(true)
