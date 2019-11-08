@@ -14,12 +14,12 @@ import androidx.annotation.NonNull;
 import android.text.TextUtils;
 
 import com.annimon.stream.Stream;
+import com.bumptech.glide.Glide;
 
 import net.sqlcipher.database.SQLiteDatabase;
 import net.sqlcipher.database.SQLiteDatabaseHook;
 import net.sqlcipher.database.SQLiteOpenHelper;
 
-import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.crypto.DatabaseSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
@@ -89,8 +89,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int MMS_RECIPIENT_CLEANUP_2          = 31;
   private static final int ATTACHMENT_TRANSFORM_PROPERTIES  = 32;
   private static final int ATTACHMENT_CLEAR_HASHES          = 33;
+  private static final int ATTACHMENT_CLEAR_HASHES_2        = 34;
 
-  private static final int    DATABASE_VERSION = 33;
+  private static final int    DATABASE_VERSION = 34;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -606,6 +607,11 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
       if (oldVersion < ATTACHMENT_CLEAR_HASHES) {
         db.execSQL("UPDATE part SET data_hash = null");
+      }
+
+      if (oldVersion < ATTACHMENT_CLEAR_HASHES_2) {
+        db.execSQL("UPDATE part SET data_hash = null");
+        Glide.get(context).clearDiskCache();
       }
 
       db.setTransactionSuccessful();
