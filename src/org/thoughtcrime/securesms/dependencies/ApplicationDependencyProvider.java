@@ -147,6 +147,7 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
     @Override
     public void onConnected() {
       Log.i(TAG, "onConnected()");
+      TextSecurePreferences.setUnauthorizedReceived(context, false);
     }
 
     @Override
