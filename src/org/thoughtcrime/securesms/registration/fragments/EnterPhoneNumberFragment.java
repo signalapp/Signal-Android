@@ -218,6 +218,10 @@ public final class EnterPhoneNumberFragment extends BaseRegistrationFragment {
 
         @Override
         public void onNeedCaptcha() {
+          if (getContext() == null) {
+            Log.i(TAG, "Got onNeedCaptcha response, but fragment is no longer attached.");
+            return;
+          }
           navController.navigate(EnterPhoneNumberFragmentDirections.actionRequestCaptcha());
           cancelSpinning(register);
           enableAllEntries();
@@ -227,6 +231,10 @@ public final class EnterPhoneNumberFragment extends BaseRegistrationFragment {
 
         @Override
         public void requestSent(@Nullable String fcmToken) {
+          if (getContext() == null) {
+            Log.i(TAG, "Got requestSent response, but fragment is no longer attached.");
+            return;
+          }
           model.setFcmToken(fcmToken);
           model.markASuccessfulAttempt();
           navController.navigate(EnterPhoneNumberFragmentDirections.actionEnterVerificationCode());
