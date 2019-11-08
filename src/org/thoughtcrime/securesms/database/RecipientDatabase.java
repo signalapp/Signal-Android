@@ -16,12 +16,15 @@ import net.sqlcipher.database.SQLiteDatabase;
 
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.Base64;
+import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.io.Closeable;
@@ -761,6 +764,50 @@ public class RecipientDatabase extends Database {
 
     return databaseHelper.getReadableDatabase().query(TABLE_NAME, SEARCH_PROJECTION, selection, args, null, null, orderBy);
   }
+
+  public void applyBlockedUpdate(@NonNull List<SignalServiceAddress> blocked, List<byte[]> groupIds) {
+    List<String> blockedE164 = Stream.of(blocked)
+                                     .filter(b -> b.getNumber().isPresent())
+                                     .map(b -> b.getNumber().get())
+                                     .toList();
+    List<String> blockedUuid = Stream.of(blocked)
+                                     .filter(b -> b.getUuid().isPresent())
+                                     .map(b -> b.getUuid().get().toString().toLowerCase())
+                                     .toList();
+
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+
+    db.beginTransaction();
+    try {
+      ContentValues resetBlocked = new ContentValues();
+      resetBlocked.put(BLOCKED, 0);
+      db.update(TABLE_NAME, resetBlocked, null, null);
+
+      ContentValues setBlocked = new ContentValues();
+      setBlocked.put(BLOCKED, 1);
+
+      for (String e164 : blockedE164) {
+        db.update(TABLE_NAME, setBlocked, PHONE + " = ?", new String[] { e164 });
+      }
+
+      for (String uuid : blockedUuid) {
+        db.update(TABLE_NAME, setBlocked, UUID + " = ?", new String[] { uuid });
+      }
+
+      List<String> groupIdStrings = Stream.of(groupIds).map(g -> GroupUtil.getEncodedId(g, false)).toList();
+
+      for (String groupId : groupIdStrings) {
+        db.update(TABLE_NAME, setBlocked, GROUP_ID + " = ?", new String[] { groupId });
+      }
+
+      db.setTransactionSuccessful();
+    } finally {
+      db.endTransaction();
+    }
+
+    ApplicationDependencies.getRecipientCache().clear();
+  }
+
 
   private int update(@NonNull RecipientId id, ContentValues contentValues) {
     SQLiteDatabase database = databaseHelper.getWritableDatabase();

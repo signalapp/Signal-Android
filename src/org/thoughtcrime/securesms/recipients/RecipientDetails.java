@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.database.RecipientDatabase.InsightsBannerTier;
+import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RegisteredState;
 import org.thoughtcrime.securesms.database.RecipientDatabase.UnidentifiedAccessMode;
@@ -82,7 +83,7 @@ public class RecipientDetails {
     this.profileName                     = isLocalNumber ? TextSecurePreferences.getProfileName(context) : settings.getProfileName();
     this.defaultSubscriptionId           = settings.getDefaultSubscriptionId();
     this.registered                      = settings.getRegistered();
-    this.profileKey                      = settings.getProfileKey();
+    this.profileKey                      = isLocalNumber ? ProfileKeyUtil.getProfileKey(context) : settings.getProfileKey();
     this.profileAvatar                   = settings.getProfileAvatar();
     this.profileSharing                  = settings.isProfileSharing();
     this.systemContact                   = systemContact;

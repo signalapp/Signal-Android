@@ -39,6 +39,8 @@ import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.MultiDeviceProfileKeyUpdateJob;
+import org.thoughtcrime.securesms.jobs.MultiDeviceProfileContentUpdateJob;
+import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.permissions.Permissions;
@@ -380,6 +382,7 @@ public class CreateProfileActivity extends BaseActionBarActivity {
         }
 
         ApplicationDependencies.getJobManager().add(new MultiDeviceProfileKeyUpdateJob());
+        ApplicationDependencies.getJobManager().add(new MultiDeviceProfileContentUpdateJob());
 
         return true;
       }

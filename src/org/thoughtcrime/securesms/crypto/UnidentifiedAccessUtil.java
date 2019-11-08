@@ -48,8 +48,9 @@ public class UnidentifiedAccessUtil {
     try {
       byte[] theirUnidentifiedAccessKey       = getTargetUnidentifiedAccessKey(recipient);
       byte[] ourUnidentifiedAccessKey         = getSelfUnidentifiedAccessKey(context);
-      byte[] ourUnidentifiedAccessCertificate = recipient.resolve().isUuidSupported() ? TextSecurePreferences.getUnidentifiedAccessCertificate(context)
-                                                                                      : TextSecurePreferences.getUnidentifiedAccessCertificateLegacy(context) ;
+      byte[] ourUnidentifiedAccessCertificate = recipient.resolve().isUuidSupported() && Recipient.self().isUuidSupported()
+                                                  ? TextSecurePreferences.getUnidentifiedAccessCertificate(context)
+                                                  : TextSecurePreferences.getUnidentifiedAccessCertificateLegacy(context);
 
       if (TextSecurePreferences.isUniversalUnidentifiedAccess(context)) {
         ourUnidentifiedAccessKey = Util.getSecretBytes(16);

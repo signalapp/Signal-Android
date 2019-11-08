@@ -114,6 +114,8 @@ import org.whispersystems.signalservice.api.messages.calls.HangupMessage;
 import org.whispersystems.signalservice.api.messages.calls.IceUpdateMessage;
 import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
 import org.whispersystems.signalservice.api.messages.calls.SignalServiceCallMessage;
+import org.whispersystems.signalservice.api.messages.multidevice.BlockedListMessage;
+import org.whispersystems.signalservice.api.messages.multidevice.ConfigurationMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.ReadMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.RequestMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.SentTranscriptMessage;
@@ -268,6 +270,9 @@ public class PushDecryptJob extends BaseJob {
         else if (syncMessage.getViewOnceOpen().isPresent())          handleSynchronizeViewOnceOpenMessage(syncMessage.getViewOnceOpen().get(), content.getTimestamp());
         else if (syncMessage.getVerified().isPresent())              handleSynchronizeVerifiedMessage(syncMessage.getVerified().get());
         else if (syncMessage.getStickerPackOperations().isPresent()) handleSynchronizeStickerPackOperation(syncMessage.getStickerPackOperations().get());
+        else if (syncMessage.getConfiguration().isPresent())         handleSynchronizeConfigurationMessage(syncMessage.getConfiguration().get());
+        else if (syncMessage.getBlockedList().isPresent())           handleSynchronizeBlockedListMessage(syncMessage.getBlockedList().get());
+        else if (syncMessage.getFetchType().isPresent())             handleSynchronizeFetchMessage(syncMessage.getFetchType().get());
         else                                                         Log.w(TAG, "Contains no known sync types...");
       } else if (content.getCallMessage().isPresent()) {
         Log.i(TAG, "Got call message...");
@@ -543,6 +548,36 @@ public class PushDecryptJob extends BaseJob {
       } else {
         Log.w(TAG, "Received incomplete sticker pack operation sync.");
       }
+    }
+  }
+
+  private void handleSynchronizeConfigurationMessage(@NonNull ConfigurationMessage configurationMessage) {
+    if (configurationMessage.getReadReceipts().isPresent()) {
+      TextSecurePreferences.setReadReceiptsEnabled(context, configurationMessage.getReadReceipts().get());
+    }
+
+    if (configurationMessage.getUnidentifiedDeliveryIndicators().isPresent()) {
+      TextSecurePreferences.setShowUnidentifiedDeliveryIndicatorsEnabled(context, configurationMessage.getReadReceipts().get());
+    }
+
+    if (configurationMessage.getTypingIndicators().isPresent()) {
+      TextSecurePreferences.setTypingIndicatorsEnabled(context, configurationMessage.getTypingIndicators().get());
+    }
+
+    if (configurationMessage.getLinkPreviews().isPresent()) {
+      TextSecurePreferences.setLinkPreviewsEnabled(context, configurationMessage.getReadReceipts().get());
+    }
+  }
+
+  private void handleSynchronizeBlockedListMessage(@NonNull BlockedListMessage blockMessage) {
+    DatabaseFactory.getRecipientDatabase(context).applyBlockedUpdate(blockMessage.getAddresses(), blockMessage.getGroupIds());
+  }
+
+  private void handleSynchronizeFetchMessage(@NonNull SignalServiceSyncMessage.FetchType fetchType) {
+    if (fetchType == SignalServiceSyncMessage.FetchType.LOCAL_PROFILE) {
+      ApplicationDependencies.getJobManager().add(new RefreshOwnProfileJob());
+    } else {
+      Log.w(TAG, "Received a fetch message for an unknown type.");
     }
   }
 

@@ -126,4 +126,9 @@ public final class LiveRecipientCache {
       }
     });
   }
+
+  @AnyThread
+  public synchronized void clear() {
+    recipients.clear();
+  }
 }

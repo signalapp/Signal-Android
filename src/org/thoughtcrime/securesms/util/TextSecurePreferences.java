@@ -386,6 +386,10 @@ public class TextSecurePreferences {
     return getBooleanPreference(context, LINK_PREVIEWS, true);
   }
 
+  public static void setLinkPreviewsEnabled(Context context, boolean enabled) {
+    setBooleanPreference(context, LINK_PREVIEWS, enabled);
+  }
+
   public static boolean isGifSearchInGridLayout(Context context) {
     return getBooleanPreference(context, GIF_GRID_LAYOUT, false);
   }
@@ -605,6 +609,10 @@ public class TextSecurePreferences {
 
   public static boolean isUniversalUnidentifiedAccess(Context context) {
     return getBooleanPreference(context, UNIVERSAL_UNIDENTIFIED_ACCESS, false);
+  }
+
+  public static void setShowUnidentifiedDeliveryIndicatorsEnabled(Context context, boolean enabled) {
+    setBooleanPreference(context, SHOW_UNIDENTIFIED_DELIVERY_INDICATORS, enabled);
   }
 
   public static boolean isShowUnidentifiedDeliveryIndicatorsEnabled(Context context) {

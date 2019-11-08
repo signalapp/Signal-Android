@@ -115,7 +115,7 @@ dependencies {
     implementation 'org.conscrypt:conscrypt-android:2.0.0'
     implementation 'org.signal:aesgcmprovider:0.0.3'
 
-    implementation 'org.whispersystems:signal-service-android:2.15.1'
+    implementation 'org.whispersystems:signal-service-android:2.15.3'
 
     implementation 'org.signal:ringrtc-android:0.1.9'
 
