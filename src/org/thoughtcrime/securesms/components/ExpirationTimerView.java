@@ -19,19 +19,19 @@ public class ExpirationTimerView extends androidx.appcompat.widget.AppCompatImag
   private boolean visible = false;
   private boolean stopped = true;
 
-  private final int[] frames = new int[]{ R.drawable.ic_timer_00_16,
-                                          R.drawable.ic_timer_05_16,
-                                          R.drawable.ic_timer_10_16,
-                                          R.drawable.ic_timer_15_16,
-                                          R.drawable.ic_timer_20_16,
-                                          R.drawable.ic_timer_25_16,
-                                          R.drawable.ic_timer_30_16,
-                                          R.drawable.ic_timer_35_16,
-                                          R.drawable.ic_timer_40_16,
-                                          R.drawable.ic_timer_45_16,
-                                          R.drawable.ic_timer_50_16,
-                                          R.drawable.ic_timer_55_16,
-                                          R.drawable.ic_timer_60_16 };
+  private final int[] frames = new int[]{ R.drawable.ic_timer_00_12,
+                                          R.drawable.ic_timer_05_12,
+                                          R.drawable.ic_timer_10_12,
+                                          R.drawable.ic_timer_15_12,
+                                          R.drawable.ic_timer_20_12,
+                                          R.drawable.ic_timer_25_12,
+                                          R.drawable.ic_timer_30_12,
+                                          R.drawable.ic_timer_35_12,
+                                          R.drawable.ic_timer_40_12,
+                                          R.drawable.ic_timer_45_12,
+                                          R.drawable.ic_timer_50_12,
+                                          R.drawable.ic_timer_55_12,
+                                          R.drawable.ic_timer_60_12 };
 
   public ExpirationTimerView(Context context) {
     super(context);
