@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="app_name">Signal</string>
+  <!-- Removed by excludeNonTranslatables <string name="app_name">Signal</string> -->
   <string name="yes">हो</string>
   <string name="no">नाही</string>
   <string name="delete">काढून टाका</string>
