@@ -56,7 +56,7 @@ task cleanApostropheErrors {
     doLast {
         allStringsResourceFiles { f ->
             def before = f.text
-            def after = before.replaceAll(/([^\\=08])(')/,'$1\\\\\'')
+            def after = before.replaceAll(/([^\\=08])(')/, '$1\\\\\'')
             if (before != after) {
                 f.text = after
                 logger.info("$f.parentFile.name/$f.name...updated")
@@ -66,8 +66,43 @@ task cleanApostropheErrors {
     mustRunAfter replaceEllipsis
 }
 
+task excludeNonTranslatables {
+    group 'Translate'
+    description 'Remove strings that are marked "translatable"="false" or are ExtraTranslations.'
+    doLast {
+        def englishFile = file('res/values/strings.xml')
+
+        def english = new XmlParser().parse(englishFile)
+        def nonTranslatable = english
+                .findAll { it['@translatable'] == 'false' }
+                .collect { it['@name'] }
+                .toSet()
+        def all = english.collect { it['@name'] }.toSet()
+        def translatable = all - nonTranslatable
+
+        allStringsResourceFiles { f ->
+            if (f != englishFile) {
+                def newLines = f.readLines()
+                        .collect { line ->
+                            def matcher = line =~ /name="([^"]*)".*<\//
+                            if (matcher.find()) {
+                                def name = matcher.group(1)
+                                if (!line.contains('excludeNonTranslatables') && !translatable.contains(name)) {
+                                    return "  <!-- Removed by excludeNonTranslatables ${line.trim()} -->"
+                                }
+                            }
+                            return line
+                        }
+
+                f.write(newLines.join("\n") + "\n")
+            }
+        }
+    }
+    mustRunAfter cleanApostropheErrors
+}
+
 task translate {
     group 'Translate'
-    description 'Pull translations and post-process for ellipsis and apostrophes.'
-    dependsOn pullTranslations, replaceEllipsis, cleanApostropheErrors
+    description 'Pull translations and post-process for ellipsis, apostrophes and non-translatables.'
+    dependsOn pullTranslations, replaceEllipsis, cleanApostropheErrors, excludeNonTranslatables
 }
