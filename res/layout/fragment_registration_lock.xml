@@ -38,7 +38,7 @@
             android:layout_marginTop="40dp"
             android:layout_marginEnd="32dp"
             android:gravity="center"
-            android:text="@string/RegistrationActivity_enter_your_phone_number_to_get_started"
+            android:text="@string/RegistrationActivity_registration_lock_pin"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -53,7 +53,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
             android:gravity="center"
-            android:text="@string/RegistrationActivity_you_will_receive_a_verification_code"
+            android:text="@string/RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin"
             app:layout_constraintTop_toBottomOf="@+id/verify_header"
             tools:layout_editor_absoluteX="0dp" />
 

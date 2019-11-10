@@ -1252,6 +1252,7 @@ public class PushDecryptJob extends BaseJob {
                                            false,
                                            null,
                                            stickerLocator,
+                                           null,
                                            null));
     } else {
       return Optional.of(PointerAttachment.forPointer(Optional.of(sticker.get().getAttachment()), stickerLocator).get());

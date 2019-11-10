@@ -15,6 +15,7 @@
         android:foreground="@drawable/contact_photo_background"
         android:layout_width="@dimen/conversation_item_avatar_size"
         android:layout_height="@dimen/conversation_item_avatar_size"
+        android:layout_marginStart="4dp"
         android:cropToPadding="true"
         android:contentDescription="@string/conversation_item_received__contact_photo_description"
         app:fallbackImageSize="small" />

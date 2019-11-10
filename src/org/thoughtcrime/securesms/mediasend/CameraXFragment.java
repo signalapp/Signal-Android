@@ -45,7 +45,9 @@ import org.thoughtcrime.securesms.util.MemoryFileDescriptor;
 import org.thoughtcrime.securesms.util.Stopwatch;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ThemeUtil;
+import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
+import org.thoughtcrime.securesms.video.VideoUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.FileDescriptor;
@@ -100,7 +102,7 @@ public class CameraXFragment extends Fragment implements CameraFragment {
     this.camera            = view.findViewById(R.id.camerax_camera);
     this.controlsContainer = view.findViewById(R.id.camerax_controls_container);
 
-    camera.bindToLifecycle(this);
+    camera.bindToLifecycle(getViewLifecycleOwner());
     camera.setCameraLensFacing(CameraXUtil.toLensFacing(TextSecurePreferences.getDirectCaptureCameraId(requireContext())));
 
     onOrientationChanged(getResources().getConfiguration().orientation);
@@ -121,8 +123,6 @@ public class CameraXFragment extends Fragment implements CameraFragment {
   @Override
   public void onDestroyView() {
     super.onDestroyView();
-    CameraX.unbindAll();
-
     closeVideoFileDescriptor();
   }
 
@@ -228,7 +228,7 @@ public class CameraXFragment extends Fragment implements CameraFragment {
     galleryButton.setOnClickListener(v -> controller.onGalleryClicked());
     countButton.setOnClickListener(v -> controller.onCameraCountButtonClicked());
 
-    if (MediaConstraints.isVideoTranscodeAvailable()) {
+    if (isVideoRecordingSupported(requireContext())) {
       try {
         closeVideoFileDescriptor();
         videoFileDescriptor = CameraXVideoCaptureHelper.createFileDescriptor(requireContext());
@@ -237,11 +237,16 @@ public class CameraXFragment extends Fragment implements CameraFragment {
         Animation outAnimation = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_out);
 
         camera.setCaptureMode(CameraXView.CaptureMode.MIXED);
+
+        int maxDuration = VideoUtil.getMaxVideoDurationInSeconds(requireContext(), viewModel.getMediaConstraints());
+        Log.d(TAG, "Max duration: " + maxDuration + " sec");
+
         captureButton.setVideoCaptureListener(new CameraXVideoCaptureHelper(
             this,
             captureButton,
             camera,
             videoFileDescriptor,
+            maxDuration,
             new CameraXVideoCaptureHelper.Callback() {
               @Override
               public void onVideoRecordStarted() {
@@ -266,10 +271,21 @@ public class CameraXFragment extends Fragment implements CameraFragment {
         Log.w(TAG, "Video capture is not supported on this device.", e);
       }
     } else {
-      Log.i(TAG, "Video capture not supported. API: " + Build.VERSION.SDK_INT + ", MFD: " + MemoryFileDescriptor.supported());
+      Log.i(TAG, "Video capture not supported. " +
+                 "API: " + Build.VERSION.SDK_INT + ", " +
+                 "MFD: " + MemoryFileDescriptor.supported() + ", " +
+                 "Camera: " + CameraXUtil.getLowestSupportedHardwareLevel(requireContext()) + ", " +
+                 "MaxDuration: " + VideoUtil.getMaxVideoDurationInSeconds(requireContext(), viewModel.getMediaConstraints()) + " sec");
     }
 
     viewModel.onCameraControlsInitialized();
+  }
+
+  private boolean isVideoRecordingSupported(@NonNull Context context) {
+    return Build.VERSION.SDK_INT >= 26                  &&
+           MediaConstraints.isVideoTranscodeAvailable() &&
+           CameraXUtil.isMixedModeSupported(context)    &&
+           VideoUtil.getMaxVideoDurationInSeconds(context, viewModel.getMediaConstraints()) > 0;
   }
 
   private void displayVideoRecordingTooltipIfNecessary(CameraButtonView captureButton) {
@@ -290,7 +306,10 @@ public class CameraXFragment extends Fragment implements CameraFragment {
   }
 
   private void neverDisplayVideoRecordingTooltipAgain() {
-    TextSecurePreferences.setHasSeenVideoRecordingTooltip(requireContext(), true);
+    Context context = getContext();
+    if (context != null) {
+      TextSecurePreferences.setHasSeenVideoRecordingTooltip(requireContext(), true);
+    }
   }
 
   private void hideAndDisableControlsForVideoRecording(@NonNull View captureButton,
@@ -333,7 +352,7 @@ public class CameraXFragment extends Fragment implements CameraFragment {
       public void onCaptureSuccess(ImageProxy image, int rotationDegrees) {
         flashHelper.endFlash();
 
-        SimpleTask.run(CameraXFragment.this.getLifecycle(), () -> {
+        SimpleTask.run(CameraXFragment.this.getViewLifecycleOwner().getLifecycle(), () -> {
           stopwatch.split("captured");
           try {
             return CameraXUtil.toJpeg(image, rotationDegrees, camera.getCameraLensFacing() == CameraX.LensFacing.FRONT);
@@ -368,6 +387,7 @@ public class CameraXFragment extends Fragment implements CameraFragment {
     if (videoFileDescriptor != null) {
       try {
         videoFileDescriptor.close();
+        videoFileDescriptor = null;
       } catch (IOException e) {
         Log.w(TAG, "Failed to close video file descriptor", e);
       }

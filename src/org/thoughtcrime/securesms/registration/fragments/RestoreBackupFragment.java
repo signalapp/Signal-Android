@@ -302,6 +302,10 @@ public final class RestoreBackupFragment extends BaseRegistrationFragment {
       for (int i = GROUP_SIZE; i < length; i += GROUP_SIZE) {
         editable.setSpan(new SpaceSpan(), i - 1, i, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
       }
+
+      if (editable.length() > 30) {
+        editable.delete(30, editable.length());
+      }
     }
 
     @Override

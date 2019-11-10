@@ -4,7 +4,7 @@
   <string name="yes">ਹਾਂ</string>
   <string name="no">ਨਹੀਂ </string>
   <string name="delete">ਮਿਟਾਓ </string>
-  <string name="please_wait">ਕ੍ਰਿਪਾ ਕਰਕੇ ਰੁਕੋ ...</string>
+  <string name="please_wait">ਕ੍ਰਿਪਾ ਕਰਕੇ ਰੁਕੋ …</string>
   <string name="save">ਦਰਜ ਕਰੋ </string>
   <string name="note_to_self">ਆਪਣੇ ਆਪ ਨੂੰ ਨੋਟ </string>
   <!--AbstractNotificationBuilder-->
@@ -207,7 +207,7 @@
     <item quantity="one">ਅਟੈਚਮੈਂਟਸ ਸਟੋਰੇਜ ਵਿਚ ਦਰਜ ਕਰ ਰਿਹਾ ਹੈ </item>
     <item quantity="other">%1$d ਅਟੈਚਮੈਂਟਸ ਦਰਜ ਕਰ ਰਿਹਾ ਹੈ </item>
   </plurals>
-  <string name="ConversationFragment_pending">ਬਕਾਇਆ ...</string>
+  <string name="ConversationFragment_pending">ਬਕਾਇਆ …</string>
   <string name="ConversationFragment_push">ਡੇਟਾ(Signal)</string>
   <string name="ConversationFragment_mms">ਐਮਐਮਐੱਸ </string>
   <string name="ConversationFragment_sms">ਐਸਐਮਐਸ</string>
@@ -228,7 +228,7 @@
     <item quantity="other">%1$d ਚੁਣੀ ਗਈਆਂ ਗੱਲਾਬਾਤਾਂ ਹਮੇਸ਼ਾ ਲਈ ਮਿੱਟਾ ਦਿਤੀਆਂ ਜਾਣਗੀਆਂ </item>
   </plurals>
   <string name="ConversationListFragment_deleting">ਮਿਟਾਇਆ ਜਾ ਰਿਹਾ ਹੈ</string>
-  <string name="ConversationListFragment_deleting_selected_conversations">ਚੁਣੀ ਗਈਆਂ ਗੱਲਾਬਾਤਾਂ ਮਿੱਟਾਈਆਂ ਜਾ ਰਹੀਆਂ ਹਨ ...</string>
+  <string name="ConversationListFragment_deleting_selected_conversations">ਚੁਣੀ ਗਈਆਂ ਗੱਲਾਬਾਤਾਂ ਮਿੱਟਾਈਆਂ ਜਾ ਰਹੀਆਂ ਹਨ …</string>
   <plurals name="ConversationListFragment_conversations_archived">
     <item quantity="one"> ਗੱਲਾਂਬਾਤਾਂ ਆਰਕਾਈਵਡ ਕੀਤੀਆਂ </item>
     <item quantity="other">%d ਗੱਲਾਂਬਾਤਾਂ ਆਰਕਾਈਵਡ ਕੀਤੀਆਂ </item>
@@ -272,7 +272,7 @@
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">ਇਸ ਡਿਵਾਈਸ ਨੂੰ ਅਨਲਿੰਕ ਕਰਨ ਨਾਲ, ਇਹ ਹੁਣ ਸੁਨੇਹੇ ਭੇਜਣ ਅਤੇ ਪ੍ਰਾਪਤ ਕਰਨ ਦੇ ਯੋਗ ਨਹੀਂ ਹੋਵੇਗਾ</string>
   <string name="DeviceListActivity_network_connection_failed">ਨੈਟਵਰਕ ਕਨੈਕਸ਼ਨ ਅਸਫਲ</string>
   <string name="DeviceListActivity_try_again">ਫਿਰ ਕੋਸ਼ਿਸ਼ ਕਰੋ</string>
-  <string name="DeviceListActivity_unlinking_device">ਡਿਵਾਈਸ ਨੂੰ ਅਨਲਿੰਕ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ ...</string>
+  <string name="DeviceListActivity_unlinking_device">ਡਿਵਾਈਸ ਨੂੰ ਅਨਲਿੰਕ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ …</string>
   <string name="DeviceListActivity_unlinking_device_no_ellipsis">ਡਿਵਾਈਸ ਨੂੰ ਅਨਲਿੰਕ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ </string>
   <string name="DeviceListActivity_network_failed">ਨੈੱਟਵਰਕ ਫੇਲ੍ਹ ਹੋਇਆ!</string>
   <!--DeviceListItem-->
@@ -332,8 +332,8 @@
   <string name="GroupCreateActivity_contacts_invalid_number">ਤੁਹਾਡੇ ਸਮੂਹ ਦੇ ਮੈਂਬਰਾਂ ਵਿੱਚੋਂ ਇਕ ਅਜਿਹਾ ਨੰਬਰ ਹੈ ਜੋ ਸਹੀ ਢੰਗ ਨਾਲ ਪੜ੍ਹਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ |  ਕਿਰਪਾ ਕਰਕੇ ਉਸ ਸੰਪਰਕ ਨੂੰ ਠੀਕ ਕਰੋ ਜਾਂ ਹਟਾਓ ਅਤੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ.</string>
   <string name="GroupCreateActivity_avatar_content_description">ਗਰੁੱਪ ਦਾ ਅਵਤਾਰ</string>
   <string name="GroupCreateActivity_menu_apply_button">ਲਾਗੂ ਕਰੋ</string>
-  <string name="GroupCreateActivity_creating_group">%1$sਬਣਾਇਆ ਜਾ ਰਿਹਾ ਹੈ ...</string>
-  <string name="GroupCreateActivity_updating_group">%1$sਅੱਪਡੇਟ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ ...</string>
+  <string name="GroupCreateActivity_creating_group">%1$sਬਣਾਇਆ ਜਾ ਰਿਹਾ ਹੈ …</string>
+  <string name="GroupCreateActivity_updating_group">%1$sਅੱਪਡੇਟ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ …</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">%1$s ਸ਼ਾਮਲ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਿਆ ਕਿਉਂਕਿ ਉਹ ਇੱਕ Signal ਉਪਭੋਗਤਾ ਨਹੀਂ ਹਨ.</string>
   <string name="GroupCreateActivity_loading_group_details">ਗਰੁੱਪ ਵੇਰਵੇ ਲੋਡ ਕਰ ਰਿਹਾ ਹੈ ..</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">ਤੁਸੀਂ ਪਹਿਲਾਂ ਤੋਂ ਹੀ ਗਰੁੱਪ ਵਿੱਚ ਹੋ.</string>
@@ -368,7 +368,7 @@
   <string name="InviteActivity_no_app_to_share_to">ਇੰਜ ਜਾਪਦਾ ਹੈ ਕਿ ਤੁਹਾਡੇ ਕੋਲ ਸ਼ੇਅਰ ਕਰਨ ਲਈ ਕੋਈ ਐਪਸ ਨਹੀਂ ਹਨ |</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">ਦੋਸਤ ਦੋਸਤਾਂ ਨੂੰ ਬਿਨਾਂ ਏਨਕ੍ਰਿਪਟਡ ਚੈਟ ਕਰਨ ਨਹੀਂ  ਦਿੰਦੇ ਹਨ.</string>
   <!--Job-->
-  <string name="Job_working_in_the_background">ਪਿਛੋਕੜ ਵਿੱਚ ਕੰਮ ਕਰ ਰਿਹਾ ਹੈ ...</string>
+  <string name="Job_working_in_the_background">ਪਿਛੋਕੜ ਵਿੱਚ ਕੰਮ ਕਰ ਰਿਹਾ ਹੈ …</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">ਭੇਜ ਨਾ ਸਕਿਆ</string>
   <string name="MessageDetailsRecipient_new_safety_number">ਨਵਾਂ ਸੁਰੱਖਿਆ ਨੰਬਰ</string>
@@ -395,7 +395,7 @@
   <string name="MediaOverviewActivity_Media_delete_progress_message">ਸੁਨੇਹਿਆਂ ਨੂੰ ਮਿਟਾਇਆ ਜਾ ਰਿਹਾ ਹੈ</string>
   <string name="MediaOverviewActivity_Documents">ਦਸਤਾਵੇਜ਼</string>
   <string name="MediaOverviewActivity_Select_all">ਸਾਰਿਆ ਨੂੰ ਚੁਣੋ</string>
-  <string name="MediaOverviewActivity_collecting_attachments">ਅਟੈਚਮੈਂਟ ਇਕੱਠੇ ਕਰਨੇ ...</string>
+  <string name="MediaOverviewActivity_collecting_attachments">ਅਟੈਚਮੈਂਟ ਇਕੱਠੇ ਕਰਨੇ …</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal ਕਾਲ ਪ੍ਰਗਤੀ ਵਿੱਚ ਹੈ</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal ਕਾਲ ਸਥਾਪਤ ਕਰ ਰਿਹਾ ਹੈ</string>
@@ -413,7 +413,7 @@
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">ਚੁਣਨ ਲਈ ਟੈਪ ਕਰੋ</string>
   <!--MediaSendActivity-->
-  <string name="MediaSendActivity_add_a_caption">ਕੈਪਸ਼ਨ ਜੋੜੋ ... </string>
+  <string name="MediaSendActivity_add_a_caption">ਕੈਪਸ਼ਨ ਜੋੜੋ … </string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">ਆਈਟਮ ਹਟਾਈ ਗਈ ਸੀ ਕਿਉਂਕਿ ਇਹ ਆਕਾਰ ਦੀ ਸੀਮਾ ਤੋਂ ਵੱਧ ਗਈ ਸੀ</string>
   <string name="MediaSendActivity_camera_unavailable">ਕੈਮਰਾ ਅਣਉਪਲਬਧ.</string>
   <string name="MediaSendActivity_message_to_s">%s ਨੂੰ ਸੁਨੇਹਾ</string>
@@ -458,7 +458,7 @@
 ਆਪਣੇ ਸਾਰੇ ਸੰਦੇਸ਼ ਪੜ੍ਹੋ
 ਤੁਹਾਡੇ ਨਾਮ ਤੇ ਸੁਨੇਹੇ ਭੇਜੋ</string>
   <string name="DeviceProvisioningActivity_content_progress_title">ਡਿਵਾਈਸ ਨੂੰ ਲਿੰਕ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ </string>
-  <string name="DeviceProvisioningActivity_content_progress_content">ਨਵੇਂ ਡਿਵਾਈਸ ਨੂੰ ਲਿੰਕ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ ...</string>
+  <string name="DeviceProvisioningActivity_content_progress_content">ਨਵੇਂ ਡਿਵਾਈਸ ਨੂੰ ਲਿੰਕ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ …</string>
   <string name="DeviceProvisioningActivity_content_progress_success">ਡਿਵਾਈਸ ਪ੍ਰਵਾਨਗੀ!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">ਕੋਈ ਡਿਵਾਈਸ ਨਹੀਂ ਮਿਲੀ.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">ਨੈੱਟਵਰਕ ਫੇਲ੍ਹ ਹੋਇਆ!</string>
@@ -642,7 +642,7 @@
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">ਤੁਹਾਡਾ ਸੰਪਰਕ Signal ਦੇ ਪੁਰਾਣੇ ਸੰਸਕਰਣ ਨੂੰ ਚਲਾ ਰਿਹਾ ਹੈ ਆਪਣੇ ਸੁਰੱਖਿਆ ਨੰਬਰ ਦੀ ਜਾਂਚ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਕਿਰਪਾ ਕਰਕੇ ਉਨ੍ਹਾਂ ਨੂੰ ਅਪਡੇਟ ਕਰਨ ਲਈ ਕਹੋ</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">ਤੁਹਾਡਾ ਸੰਪਰਕ ਇੱਕ ਅਸੰਗਤ QR ਕੋਡ ਫਾਰਮੇਟ ਦੇ ਨਾਲ Signal ਦੇ ਨਵੇਂ ਵਰਜਨ ਨੂੰ ਚਲਾ ਰਿਹਾ ਹੈ. ਕਿਰਪਾ ਕਰਕੇ ਤੁਲਨਾ ਕਰਨ ਲਈ ਅਪਡੇਟ ਕਰੋ.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">ਸਕੈਨ ਕੀਤੇ ਕਯੂ.ਆਰ ਕੋਡ ਇੱਕ ਸਹੀ ਰੂਪ ਵਿੱਚ ਫਾਰਮੈਟਡ ਸੁਰੱਖਿਆ ਨੰਬਰ ਪ੍ਰਮਾਣਿਕਤਾ ਕੋਡ ਨਹੀਂ ਹੈ. ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਸਕੈਨਿੰਗ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰੋ.</string>
-  <string name="VerifyIdentityActivity_share_safety_number_via">ਇਸ ਰਾਹੀਂ ਸੁਰੱਖਿਆ ਨੰਬਰ ਸਾਂਝਾ ਕਰੋ ...</string>
+  <string name="VerifyIdentityActivity_share_safety_number_via">ਇਸ ਰਾਹੀਂ ਸੁਰੱਖਿਆ ਨੰਬਰ ਸਾਂਝਾ ਕਰੋ …</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">ਸਾਡਾ Signal ਸੁਰੱਖਿਆ ਨੰਬਰ:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">ਇੰਜ ਜਾਪਦਾ ਹੈ ਕਿ ਤੁਹਾਡੇ ਕੋਲ ਸ਼ੇਅਰ ਕਰਨ ਲਈ ਕੋਈ ਐਪਸ ਨਹੀਂ ਹਨ.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">ਕਲਿਪਬੋਰਡ ਵਿੱਚ ਤੁਲਨਾ ਕਰਨ ਲਈ ਕੋਈ ਸੁਰੱਖਿਆ ਨੰਬਰ ਨਹੀਂ ਮਿਲਿਆ</string>
@@ -769,7 +769,7 @@
   <!--contact_filter_toolbar-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">ਕੋਈ ਸੰਪਰਕ ਨਹੀਂ</string>
-  <string name="contact_selection_group_activity__finding_contacts">ਸੰਪਰਕ ਲੋਡ ਕਰ ਰਿਹਾ ਹੈ ...</string>
+  <string name="contact_selection_group_activity__finding_contacts">ਸੰਪਰਕ ਲੋਡ ਕਰ ਰਿਹਾ ਹੈ …</string>
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">ਸੰਪਰਕ ਫੋਟੋ</string>
   <!--ContactSelectionListFragment-->
@@ -821,7 +821,7 @@
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">ਥੱਲੇ ਤਕ ਸਕ੍ਰੌਲ ਕਰੋ</string>
   <!--country_selection_fragment-->
-  <string name="country_selection_fragment__loading_countries">ਦੇਸ਼ਾਂ ਨੂੰ ਲੋਡ ਕਰ ਰਿਹਾ ਹੈ ...</string>
+  <string name="country_selection_fragment__loading_countries">ਦੇਸ਼ਾਂ ਨੂੰ ਲੋਡ ਕਰ ਰਿਹਾ ਹੈ …</string>
   <string name="country_selection_fragment__search">ਖੋਜ</string>
   <!--device_add_fragment-->
   <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">ਲਿੰਕ ਕਰਨ ਲਈ ਡਿਵਾਈਸ \'ਤੇ ਪ੍ਰਦਰਸ਼ਿਤ QR ਕੋਡ ਨੂੰ ਸਕੈਨ ਕਰੋ</string>
@@ -890,8 +890,8 @@
   <string name="log_submit_activity__button_got_it">ਮਿਲ ਗਿਆ</string>
   <string name="log_submit_activity__button_compose_email">ਈਮੇਲ ਲਿਖੋ</string>
   <string name="log_submit_activity__this_log_will_be_posted_online">ਇਸ ਲੌਗ ਨੂੰ ਦੇਖਣ ਲਈ ਯੋਗੀਆਂ ਲਈ ਆਨਲਾਇਨ ਪੋਸਟ ਕੀਤਾ ਜਾਵੇਗਾ, ਤੁਸੀਂ ਇਸ ਨੂੰ ਪ੍ਰਸਤੁਤ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਸੰਪਾਦਿਤ ਕਰ ਸਕਦੇ ਹੋ.</string>
-  <string name="log_submit_activity__loading_logs">ਲਾਗ ਲੋਡ ਕਰ ਰਿਹਾ ਹੈ ...</string>
-  <string name="log_submit_activity__uploading_logs">ਲਾਗ ਅੱਪਲੋਡ ਕਰ ਰਿਹਾ ਹੈ ...</string>
+  <string name="log_submit_activity__loading_logs">ਲਾਗ ਲੋਡ ਕਰ ਰਿਹਾ ਹੈ …</string>
+  <string name="log_submit_activity__uploading_logs">ਲਾਗ ਅੱਪਲੋਡ ਕਰ ਰਿਹਾ ਹੈ …</string>
   <string name="log_submit_activity__success">ਸਫਲਤਾ!</string>
   <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">ਇਸ URL ਨੂੰ ਕਾਪੀ ਕਰੋ ਅਤੇ ਇਸਨੂੰ ਆਪਣੇ ਮੁੱਦੇ ਦੀ ਰਿਪੋਰਟ ਜਾਂ ਸਹਾਇਤਾ ਈਮੇਲ ਵਿੱਚ ਜੋੜੋ:\n\n<b>%1$s</b>\n</string>
   <string name="log_submit_activity__copied_to_clipboard">ਕਲਿਪਬੋਰਡ ਤੇ ਕਾਪੀ ਕੀਤਾ ਗਿਆ</string>
@@ -911,13 +911,13 @@
   <string name="import_fragment__import_a_plaintext_backup_file">ਸਧਾਰਨ-ਟੈਕਸਟ ਬੈਕਅੱਪ ਫਾਇਲ ਆਯਾਤ ਕਰੋ | \'ਐਸਐਮਐਸ ਬੈਕਅਪ &amp; ਰੀਸਟੋਰ\' ਦੇ ਅਨੁਕੂਲ.</string>
   <!--load_more_header-->
   <string name="load_more_header__see_full_conversation">ਪੂਰੀ ਗੱਲਬਾਤ ਵੇਖੋ</string>
-  <string name="load_more_header__loading">ਲੋਡ ਕਰ ਰਿਹਾ ਹੈ ...</string>
+  <string name="load_more_header__loading">ਲੋਡ ਕਰ ਰਿਹਾ ਹੈ …</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">ਕੋਈ ਮੀਡੀਆ ਨਹੀਂ</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">ਝਲਕ</string>
   <string name="message_recipients_list_item__resend">ਦੋਬਾਰਾ ਭੇਜੋ</string>
-  <string name="message_recipients_list_item__resending">ਦੋਬਾਰਾ ਭੇਜਿਆ ਜਾ ਰਿਹਾ ਹੈ....</string>
+  <string name="message_recipients_list_item__resending">ਦੋਬਾਰਾ ਭੇਜਿਆ ਜਾ ਰਿਹਾ ਹੈ….</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s ਗਰੁੱਪ ਵਿਚ ਸ਼ਾਮਲ ਹੋ ਗਏ.</item>
@@ -969,7 +969,7 @@
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ਜੇ ਤੁਸੀਂ %s ਨਾਲ ਆਪਣੇ ਏਨਕ੍ਰਿਪਸ਼ਨ ਦੀ ਸੁਰੱਖਿਆ ਦੀ ਪੁਸ਼ਟੀ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ ਤਾਂ ਉਪਰੋਕਤ ਨੰਬਰ ਦੀ ਤੁਲਨਾ ਉਨ੍ਹਾਂ ਦੀ ਡਿਵਾਈਸ \'ਤੇ ਕਰੋ. ਵਿਕਲਪਕ ਤੌਰ ਤੇ, ਤੁਸੀਂ ਉਨ੍ਹਾਂ ਦੇ ਫੋਨ ਤੇ ਕੋਡ ਸਕੈਨ ਕਰ ਸਕਦੇ ਹੋ, ਜਾਂ ਆਪਣੇ ਕੋਡ ਨੂੰ ਸਕੈਨ ਕਰਨ ਲਈ ਕਹਿ ਸਕਦੇ ਹੋ. <a href="https://signal.org/redirect/safety-numbers">ਜਿਆਦਾ ਜਾਣੋ.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">ਸਕੈਨ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ</string>
-  <string name="verify_display_fragment__loading">ਲੋਡ ਕਰ ਰਿਹਾ ਹੈ ...</string>
+  <string name="verify_display_fragment__loading">ਲੋਡ ਕਰ ਰਿਹਾ ਹੈ …</string>
   <string name="verify_display_fragment__verified">ਪ੍ਰਮਾਣਿਤ</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">ਸੁਰੱਖਿਆ ਨੰਬਰ ਸਾਂਝਾ ਕਰੋ</string>
@@ -1140,7 +1140,7 @@
   <!--menus-->
   <!--****************************************-->
   <!--contact_selection_list-->
-  <string name="contact_selection_list__unknown_contact">ਨਵਾਂ ਸੁਨੇਹਾ ...</string>
+  <string name="contact_selection_list__unknown_contact">ਨਵਾਂ ਸੁਨੇਹਾ …</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">ਕਾਲ</string>
   <!--conversation_callable_secure-->
@@ -1241,12 +1241,12 @@
   <!--redphone_audio_popup_menu-->
   <!--Trimmer-->
   <string name="trimmer__deleting">ਮਿਟਾਇਆ ਜਾ ਰਿਹਾ ਹੈ</string>
-  <string name="trimmer__deleting_old_messages">ਪੁਰਾਣੇ ਸੁਨੇਹਿਆਂ ਨੂੰ ਮਿਟਾਇਆ ਜਾ ਰਿਹਾ ਹੈ...</string>
+  <string name="trimmer__deleting_old_messages">ਪੁਰਾਣੇ ਸੁਨੇਹਿਆਂ ਨੂੰ ਮਿਟਾਇਆ ਜਾ ਰਿਹਾ ਹੈ…</string>
   <string name="trimmer__old_messages_successfully_deleted">ਪੁਰਾਣੇ ਸੁਨੇਹੇ ਸਫਲਤਾਪੂਰਵਕ ਮਿਟਾਏ ਗਏ</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">ਆਵਾਜਾਈ ਆਈਕਨ</string>
-  <string name="ConversationListFragment_loading">ਲੋਡ ਕਰ ਰਿਹਾ ਹੈ ...</string>
-  <string name="CallNotificationBuilder_connecting">ਕਨੈਕਟ ਕਰ ਰਿਹਾ ਹੈ ...</string>
+  <string name="ConversationListFragment_loading">ਲੋਡ ਕਰ ਰਿਹਾ ਹੈ …</string>
+  <string name="CallNotificationBuilder_connecting">ਕਨੈਕਟ ਕਰ ਰਿਹਾ ਹੈ …</string>
   <string name="Permissions_permission_required">ਅਧਿਕਾਰ ਦੀ ਲੋੜ ਹੈ</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">SMS ਭੇਜਣ ਲਈ Signal ਨੂੰ SMS ਅਨੁਮਤੀ ਦੀ ਲੋੜ ਹੁੰਦੀ ਹੈ, ਪਰ ਇਸਨੂੰ ਪੱਕੇ ਤੌਰ ਤੇ ਨਾਮਨਜ਼ੂਰ ਕਰ ਦਿੱਤਾ ਗਿਆ ਹੈ. ਕਿਰਪਾ ਕਰਕੇ ਐਪ ਸੈਟਿੰਗਾਂ ਨੂੰ ਜਾਰੀ ਰੱਖੋ, \"ਅਨੁਮਤੀਆਂ\" ਚੁਣੋ ਅਤੇ \"SMS\" ਨੂੰ ਸਮਰੱਥ ਕਰੋ</string>
   <string name="Permissions_continue">ਜਾਰੀ ਰੱਖੋ</string>
@@ -1271,8 +1271,8 @@
   <string name="RegistrationActivity_restore">ਰੀਸਟੋਰ ਕਰੋ</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Signal ਦੇ ਨਵੇਂ ਵਰਜਨਾਂ ਤੋਂ ਬੈਕਅੱਪ ਆਯਾਤ ਨਹੀਂ ਕਰ ਸਕਦਾ</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">ਗਲਤ ਬੈਕਅਪ ਪਾਸਫਰੇਜ</string>
-  <string name="RegistrationActivity_checking">ਜਾਂਚ ਕਰ ਰਿਹਾ ਹੈ ...</string>
-  <string name="RegistrationActivity_d_messages_so_far">ਅਜੇ ਤੱਕ %d ਸੁਨੇਹੇ ...</string>
+  <string name="RegistrationActivity_checking">ਜਾਂਚ ਕਰ ਰਿਹਾ ਹੈ …</string>
+  <string name="RegistrationActivity_d_messages_so_far">ਅਜੇ ਤੱਕ %d ਸੁਨੇਹੇ …</string>
   <string name="RegistrationActivity_restore_from_backup">ਬੈਕਅਪ ਤੋਂ ਰੀਸਟੋਰ ਕਰੋ?</string>
   <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">ਸਥਾਨਕ ਸੁਨੇਹਿਆਂ ਤੋਂ ਆਪਣੇ ਸੁਨੇਹਿਆਂ ਅਤੇ ਮੀਡੀਆ ਨੂੰ ਪੁਨਰ ਸਥਾਪਿਤ ਕਰੋ | ਜੇਕਰ ਤੁਸੀਂ ਹੁਣ ਮੁੜ ਬਹਾਲ ਨਹੀਂ ਕਰਦੇ ਹੋ, ਤਾਂ ਤੁਸੀਂ ਬਾਅਦ ਵਿੱਚ ਰੀਸਟੋਰ ਨਹੀਂ ਕਰ ਸਕੋਗੇ.</string>
   <string name="RegistrationActivity_backup_size_s">ਬੈਕਅਪ ਆਕਾਰ:%s</string>
@@ -1287,7 +1287,7 @@
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">ਬੈਕਅਪ ਬਣਾਉਣ ਲਈ Signal ਨੂੰ ਬਾਹਰੀ ਸਟੋਰੇਜ ਅਨੁਮਤੀ ਦੀ ਲੋੜ ਹੁੰਦੀ ਹੈ, ਪਰ ਇਸਨੂੰ ਪੱਕੇ ਤੌਰ ਤੇ ਨਾਮਨਜ਼ੂਰ ਕਰ ਦਿੱਤਾ ਗਿਆ ਹੈ | ਕਿਰਪਾ ਕਰਕੇ ਐਪ ਸੈਟਿੰਗਾਂ ਨੂੰ ਜਾਰੀ ਰੱਖੋ, \"ਅਨੁਮਤੀਆਂ\" ਚੁਣੋ ਅਤੇ \"ਸਟੋਰੇਜ\" ਸਮਰੱਥ ਕਰੋ.</string>
   <string name="ChatsPreferenceFragment_last_backup_s">ਆਖਰੀ ਬੈਕਅਪ: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">ਤਰੱਕੀ ਹੋ ਰਹੀ ਹੈ</string>
-  <string name="LocalBackupJob_creating_backup">ਬੈਕਅਪ ਬਣਾ ਰਿਹਾ ਹੈ ...</string>
+  <string name="LocalBackupJob_creating_backup">ਬੈਕਅਪ ਬਣਾ ਰਿਹਾ ਹੈ …</string>
   <string name="ProgressPreference_d_messages_so_far">ਅਜੇ ਤੱਕ %d ਸੁਨੇਹੇ</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">ਕਿਰਪਾ ਕਰਕੇ %s ਨੂੰ ਭੇਜਿਆ ਗਿਆ ਕੋਡ ਦਾਖਲ ਕਰੋ </string>
   <string name="RegistrationActivity_wrong_number">ਗਲਤ ਨੰਬਰ</string>

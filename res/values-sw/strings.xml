@@ -4,7 +4,7 @@
   <string name="yes">Ndio</string>
   <string name="no">Hapana</string>
   <string name="delete">Futa</string>
-  <string name="please_wait">Tafadhali Subiri...</string>
+  <string name="please_wait">Tafadhali subiri…</string>
   <string name="save">Hifadhi</string>
   <string name="note_to_self">Kumbuka kwake</string>
   <!--AbstractNotificationBuilder-->
@@ -12,7 +12,7 @@
   <!--AlbumThumbnailView-->
   <string name="AlbumThumbnailView_plus">\+ %d</string>
   <!--ApplicationMigrationActivity-->
-  <string name="ApplicationMigrationActivity__signal_is_updating">Signal inasasishwa...</string>
+  <string name="ApplicationMigrationActivity__signal_is_updating">Signal inasasishwa…</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Hivi sasa:  %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Bado hujapanga tungo</string>
@@ -63,8 +63,8 @@
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal inahitaji ruhusa ya Eneo ili kuunganisha mahali, lakini imekataliwa kabisa. Tafadhali endelea kwenye orodha ya mipangilio ya programu, chagua \"Ruhusa\", na uwezesha \"Eneo\".</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal inahitaji ruhusa ya Kamera ili kuchukua picha, lakini imekataliwa kabisa. Tafadhali endelea kwenye orodha ya mipangilio ya programu, chagua \"Ruhusa\", na uwawezesha \"Kamera\".</string>
   <!--AttachmentUploadJob-->
-  <string name="AttachmentUploadJob_uploading_media">Midia inapakiwa...</string>
-  <string name="AttachmentUploadJob_compressing_video_start">Video inafinyazwa...</string>
+  <string name="AttachmentUploadJob_uploading_media">Midia inapakiwa…</string>
+  <string name="AttachmentUploadJob_compressing_video_start">Video inafinyazwa…</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">Hitilafu ya kucheza sauti!</string>
   <!--BlockedContactsActivity-->
@@ -306,7 +306,7 @@
   <string name="GroupCreateActivity_avatar_content_description">kundi la avatar</string>
   <string name="GroupCreateActivity_menu_apply_button">omba</string>
   <string name="GroupCreateActivity_creating_group">unda 1%1$s</string>
-  <string name="GroupCreateActivity_updating_group">Inasasishwa %1$s...</string>
+  <string name="GroupCreateActivity_updating_group">Inasasishwa %1$s…</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Hatuwezi kuongea %1$s kwa sababu, hatatumia Signal.</string>
   <string name="GroupCreateActivity_loading_group_details">Inafungua habari za kundi</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Tayari upo kwenye kikundi</string>
@@ -590,7 +590,7 @@ nambari yako ya simu</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Mawasiliano yako inaendesha toleo la zamani la Signal. Tafadhali waulize update kabla ya kuthibitisha nambari yako ya usalama.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Mawasiliano yako inaendesha toleo jipya la Signal na muundo wa msimbo wa QR usiofanana. Tafadhali sasisha ili ulinganishe</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Scani ya msimbo wa QR haikupangwa sahihi namba ya usalama msimbo wa kuthibitisha. Tafadhali jaribu kuscani tena.</string>
-  <string name="VerifyIdentityActivity_share_safety_number_via">kushiriki namba salama kupitia...</string>
+  <string name="VerifyIdentityActivity_share_safety_number_via">kushiriki namba salama kupitia…</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">Namba yetu ya usalama ya Signal</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Inaonekana huna programu yoyote ya kushiriki</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal inahitaji ruhusa ya Kamera ili kupima msimbo wa QR, lakini imekataliwa kabisa. Tafadhali endelea kwenye mipangilio ya programu, chagua \"Ruhusa\", na uwawezesha \"Kamera\".</string>

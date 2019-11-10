@@ -455,6 +455,10 @@ class MediaSendViewModel extends ViewModel {
     return FeatureFlags.VIEW_ONCE_SENDING && viewOnceState == ViewOnceState.ENABLED;
   }
 
+  @NonNull MediaConstraints getMediaConstraints() {
+    return mediaConstraints;
+  }
+
   private @NonNull List<Media> getSelectedMediaOrDefault() {
     return selectedMedia.getValue() == null ? Collections.emptyList()
                                             : selectedMedia.getValue();

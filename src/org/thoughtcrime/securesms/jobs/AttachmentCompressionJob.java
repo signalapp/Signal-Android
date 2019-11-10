@@ -7,7 +7,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
 import org.greenrobot.eventbus.EventBus;
-import org.thoughtcrime.securesms.ExifTagBlacklist;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
@@ -75,7 +74,7 @@ public final class AttachmentCompressionJob extends BaseJob {
                        .addConstraint(NetworkConstraint.KEY)
                        .setLifespan(TimeUnit.DAYS.toMillis(1))
                        .setMaxAttempts(Parameters.UNLIMITED)
-                       .setQueue(isVideoTranscode ? "VIDEO_TRANSCODE" : null)
+                       .setQueue(isVideoTranscode ? "VIDEO_TRANSCODE" : "GENERIC_TRANSCODE")
                        .build(),
          attachmentId,
          mms,
@@ -109,11 +108,18 @@ public final class AttachmentCompressionJob extends BaseJob {
 
   @Override
   public void onRun() throws Exception {
+    Log.d(TAG, "Running for: " + attachmentId);
+
     AttachmentDatabase         database           = DatabaseFactory.getAttachmentDatabase(context);
     DatabaseAttachment         databaseAttachment = database.getAttachment(attachmentId);
 
     if (databaseAttachment == null) {
       throw new UndeliverableMessageException("Cannot find the specified attachment.");
+    }
+
+    if (databaseAttachment.getTransformProperties().shouldSkipTransform()) {
+      Log.i(TAG, "Skipping at the direction of the TransformProperties.");
+      return;
     }
 
     MediaConstraints mediaConstraints = mms ? MediaConstraints.getMmsMediaConstraints(mmsSubscriptionId)
@@ -139,13 +145,15 @@ public final class AttachmentCompressionJob extends BaseJob {
       if (MediaUtil.isVideo(attachment) && MediaConstraints.isVideoTranscodeAvailable()) {
         transcodeVideoIfNeededToDatabase(context, attachmentDatabase, attachment, constraints, EventBus.getDefault());
       } else if (constraints.isSatisfied(context, attachment)) {
-        if (MediaUtil.isJpeg(attachment) && ExifTagBlacklist.hasViolations(attachmentDatabase.getAttachmentStream(attachmentId, 0))) {
+        if (MediaUtil.isJpeg(attachment)) {
           MediaStream stripped = getResizedMedia(context, attachment, constraints);
           attachmentDatabase.updateAttachmentData(attachment, stripped);
+          attachmentDatabase.markAttachmentAsTransformed(attachmentId);
         }
       } else if (constraints.canResize(attachment)) {
         MediaStream resized = getResizedMedia(context, attachment, constraints);
         attachmentDatabase.updateAttachmentData(attachment, resized);
+        attachmentDatabase.markAttachmentAsTransformed(attachmentId);
       } else {
         throw new UndeliverableMessageException("Size constraints could not be met!");
       }
@@ -185,6 +193,7 @@ public final class AttachmentCompressionJob extends BaseJob {
             });
 
             attachmentDatabase.updateAttachmentData(attachment, mediaStream);
+            attachmentDatabase.markAttachmentAsTransformed(attachment.getAttachmentId());
           }
         }
       }

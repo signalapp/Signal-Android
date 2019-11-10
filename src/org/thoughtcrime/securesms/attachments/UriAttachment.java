@@ -5,6 +5,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.blurhash.BlurHash;
+import org.thoughtcrime.securesms.database.AttachmentDatabase;
+import org.thoughtcrime.securesms.database.AttachmentDatabase.TransformProperties;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
 
 public class UriAttachment extends Attachment {
@@ -14,18 +16,18 @@ public class UriAttachment extends Attachment {
 
   public UriAttachment(@NonNull Uri uri, @NonNull String contentType, int transferState, long size,
                        @Nullable String fileName, boolean voiceNote, boolean quote, @Nullable String caption,
-                       @Nullable StickerLocator stickerLocator, @Nullable BlurHash blurHash)
+                       @Nullable StickerLocator stickerLocator, @Nullable BlurHash blurHash, @Nullable TransformProperties transformProperties)
   {
-    this(uri, uri, contentType, transferState, size, 0, 0, fileName, null, voiceNote, quote, caption, stickerLocator, blurHash);
+    this(uri, uri, contentType, transferState, size, 0, 0, fileName, null, voiceNote, quote, caption, stickerLocator, blurHash, transformProperties);
   }
 
   public UriAttachment(@NonNull Uri dataUri, @Nullable Uri thumbnailUri,
                        @NonNull String contentType, int transferState, long size, int width, int height,
                        @Nullable String fileName, @Nullable String fastPreflightId,
                        boolean voiceNote, boolean quote, @Nullable String caption, @Nullable StickerLocator stickerLocator,
-                       @Nullable BlurHash blurHash)
+                       @Nullable BlurHash blurHash, @Nullable TransformProperties transformProperties)
   {
-    super(contentType, transferState, size, fileName, null, null, null, null, fastPreflightId, voiceNote, width, height, quote, caption, stickerLocator, blurHash);
+    super(contentType, transferState, size, fileName, null, null, null, null, fastPreflightId, voiceNote, width, height, quote, caption, stickerLocator, blurHash, transformProperties);
     this.dataUri      = dataUri;
     this.thumbnailUri = thumbnailUri;
   }

@@ -14,12 +14,12 @@ import androidx.annotation.NonNull;
 import android.text.TextUtils;
 
 import com.annimon.stream.Stream;
+import com.bumptech.glide.Glide;
 
 import net.sqlcipher.database.SQLiteDatabase;
 import net.sqlcipher.database.SQLiteDatabaseHook;
 import net.sqlcipher.database.SQLiteOpenHelper;
 
-import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.crypto.DatabaseSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
@@ -46,6 +46,7 @@ import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.ServiceUtil;
+import org.thoughtcrime.securesms.util.SqlUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.io.File;
@@ -86,8 +87,11 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int NOTIFICATION_RECIPIENT_IDS       = 29;
   private static final int BLUR_HASH                        = 30;
   private static final int MMS_RECIPIENT_CLEANUP_2          = 31;
+  private static final int ATTACHMENT_TRANSFORM_PROPERTIES  = 32;
+  private static final int ATTACHMENT_CLEAR_HASHES          = 33;
+  private static final int ATTACHMENT_CLEAR_HASHES_2        = 34;
 
-  private static final int    DATABASE_VERSION = 31;
+  private static final int    DATABASE_VERSION = 34;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -294,12 +298,12 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
       }
 
       // Note: This column only being checked due to upgrade issues as described in #8184
-      if (oldVersion < QUOTE_MISSING && !columnExists(db, "mms", "quote_missing")) {
+      if (oldVersion < QUOTE_MISSING && !SqlUtil.columnExists(db, "mms", "quote_missing")) {
         db.execSQL("ALTER TABLE mms ADD COLUMN quote_missing INTEGER DEFAULT 0");
       }
 
       // Note: The column only being checked due to upgrade issues as described in #8184
-      if (oldVersion < NOTIFICATION_CHANNELS && !columnExists(db, "recipient_preferences", "notification_channel")) {
+      if (oldVersion < NOTIFICATION_CHANNELS && !SqlUtil.columnExists(db, "recipient_preferences", "notification_channel")) {
         db.execSQL("ALTER TABLE recipient_preferences ADD COLUMN notification_channel TEXT DEFAULT NULL");
         NotificationChannels.create(context);
 
@@ -352,7 +356,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
       // 4.30.8 included a migration, but not a correct CREATE_TABLE statement, so we need to add
       // this column if it isn't present.
       if (oldVersion < ATTACHMENT_CAPTIONS_FIX) {
-        if (!columnExists(db, "part", "caption")) {
+        if (!SqlUtil.columnExists(db, "part", "caption")) {
           db.execSQL("ALTER TABLE part ADD COLUMN caption TEXT DEFAULT NULL");
         }
       }
@@ -597,6 +601,19 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
         Log.i(TAG, "MMS recipient cleanup 2 updated " + count + " rows.");
       }
 
+      if (oldVersion < ATTACHMENT_TRANSFORM_PROPERTIES) {
+        db.execSQL("ALTER TABLE part ADD COLUMN transform_properties TEXT DEFAULT NULL");
+      }
+
+      if (oldVersion < ATTACHMENT_CLEAR_HASHES) {
+        db.execSQL("UPDATE part SET data_hash = null");
+      }
+
+      if (oldVersion < ATTACHMENT_CLEAR_HASHES_2) {
+        db.execSQL("UPDATE part SET data_hash = null");
+        Glide.get(context).clearDiskCache();
+      }
+
       db.setTransactionSuccessful();
     } finally {
       db.endTransaction();
@@ -626,21 +643,5 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private void executeStatements(SQLiteDatabase db, String[] statements) {
     for (String statement : statements)
       db.execSQL(statement);
-  }
-
-  private static boolean columnExists(@NonNull SQLiteDatabase db, @NonNull String table, @NonNull String column) {
-    try (Cursor cursor = db.rawQuery("PRAGMA table_info(" + table + ")", null)) {
-      int nameColumnIndex = cursor.getColumnIndexOrThrow("name");
-
-      while (cursor.moveToNext()) {
-        String name = cursor.getString(nameColumnIndex);
-
-        if (name.equals(column)) {
-          return true;
-        }
-      }
-    }
-
-    return false;
   }
 }

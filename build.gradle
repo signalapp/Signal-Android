@@ -23,6 +23,7 @@ buildscript {
 apply plugin: 'com.android.application'
 apply plugin: 'androidx.navigation.safeargs'
 apply plugin: 'witness'
+apply from: 'translations.gradle'
 apply from: 'witness-verifications.gradle'
 
 repositories {
@@ -98,7 +99,7 @@ dependencies {
 
     implementation 'org.whispersystems:signal-service-android:2.13.9'
 
-    implementation 'org.signal:ringrtc-android:0.1.4'
+    implementation 'org.signal:ringrtc-android:0.1.7.2'
 
     implementation "me.leolin:ShortcutBadger:1.1.16"
     implementation 'se.emilsjolander:stickylistheaders:2.7.0'
@@ -175,8 +176,8 @@ dependencyVerification {
     configuration = '(play|website)(Debug|Release)RuntimeClasspath'
 }
 
-def canonicalVersionCode = 550
-def canonicalVersionName = "4.49.3"
+def canonicalVersionCode = 565
+def canonicalVersionName = "4.49.18"
 
 def postFixSize = 10
 def abiPostFix = ['universal'   : 0,
@@ -429,19 +430,6 @@ def getLastCommitTimestamp() {
 
         return os.toString() + "000"
     }
-}
-
-/**
- * Discovers supported languages listed as under the res/values- directory.
- */
-static def autoResConfig() {
-    def files = new ArrayList<String>()
-    def root = new File('res')
-    root.eachFile { f -> files.add(f.name) }
-    ['en'] + files.collect { f -> f =~ /^values-([a-z]{2}(-r[A-Z]{2})?)$/ }
-         .findAll { matcher -> matcher.find() }
-         .collect { matcher -> matcher.group(1) }
-         .sort()
 }
 
 task qa {

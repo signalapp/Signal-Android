@@ -21,6 +21,7 @@ public class ChunkedImageUrl implements Key {
   }
 
   public ChunkedImageUrl(@NonNull String url, long size) {
+    if (url == null) throw new RuntimeException();
     this.url = url;
     this.size   = size;
   }

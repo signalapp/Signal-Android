@@ -19,6 +19,7 @@ package org.thoughtcrime.securesms.mediasend.camerax;
 import android.Manifest.permission;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Matrix;
 import android.graphics.Rect;
 import android.graphics.SurfaceTexture;
@@ -229,20 +230,22 @@ final class CameraXModule {
     boolean isDisplayPortrait = getDisplayRotationDegrees() == 0
         || getDisplayRotationDegrees() == 180;
 
+    // Begin Signal Custom Code Block
     Rational targetAspectRatio;
+    int resolution = CameraXUtil.getIdealResolution(Resources.getSystem().getDisplayMetrics().widthPixels, Resources.getSystem().getDisplayMetrics().heightPixels);
+    Log.i(TAG, "Ideal resolution: " + resolution);
     if (getCaptureMode() == CameraXView.CaptureMode.IMAGE) {
-      mImageCaptureConfigBuilder.setTargetAspectRatio(AspectRatio.RATIO_4_3);
+      mImageCaptureConfigBuilder.setTargetResolution(CameraXUtil.buildResolutionForRatio(resolution, ASPECT_RATIO_4_3, isDisplayPortrait));
       targetAspectRatio = isDisplayPortrait ? ASPECT_RATIO_3_4 : ASPECT_RATIO_4_3;
     } else {
-      mImageCaptureConfigBuilder.setTargetAspectRatio(AspectRatio.RATIO_16_9);
+      mImageCaptureConfigBuilder.setTargetResolution(CameraXUtil.buildResolutionForRatio(resolution, ASPECT_RATIO_16_9, isDisplayPortrait));
       targetAspectRatio = isDisplayPortrait ? ASPECT_RATIO_9_16 : ASPECT_RATIO_16_9;
     }
+    mImageCaptureConfigBuilder.setCaptureMode(CameraXUtil.getOptimalCaptureMode());
+    mImageCaptureConfigBuilder.setLensFacing(mCameraLensFacing);
+    // End Signal Custom Code Block
 
     mImageCaptureConfigBuilder.setTargetRotation(getDisplaySurfaceRotation());
-    mImageCaptureConfigBuilder.setLensFacing(mCameraLensFacing);
-    // Begin Signal Custom Code Block
-    mImageCaptureConfigBuilder.setCaptureMode(CameraXUtil.getOptimalCaptureMode());
-    // End Signal Custom Code Block
     mImageCapture = new ImageCapture(mImageCaptureConfigBuilder.build());
 
     // Begin Signal Custom Code Block

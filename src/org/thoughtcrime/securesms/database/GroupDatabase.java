@@ -49,7 +49,7 @@ public class GroupDatabase extends Database {
   private static final String AVATAR_RELAY        = "avatar_relay";
   private static final String AVATAR_DIGEST       = "avatar_digest";
   private static final String TIMESTAMP           = "timestamp";
-  private static final String ACTIVE              = "active";
+          static final String ACTIVE              = "active";
           static final String MMS                 = "mms";
 
   public static final String CREATE_TABLE =
@@ -117,11 +117,19 @@ public class GroupDatabase extends Database {
     return !getGroup(groupId).isPresent();
   }
 
-  public Reader getGroupsFilteredByTitle(String constraint) {
-    @SuppressLint("Recycle")
-    Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, null, TITLE + " LIKE ?",
-                                                                                        new String[]{"%" + constraint + "%"},
-                                                                                        null, null, null);
+  public Reader getGroupsFilteredByTitle(String constraint, boolean includeInactive) {
+    String   query;
+    String[] queryArgs;
+
+    if (includeInactive) {
+      query     = TITLE + " LIKE ? AND (" + ACTIVE + " = ? OR " + RECIPIENT_ID + " IN (SELECT " + ThreadDatabase.RECIPIENT_ID + " FROM " + ThreadDatabase.TABLE_NAME + "))";
+      queryArgs = new String[]{"%" + constraint + "%", "1"};
+    } else {
+      query     = TITLE + " LIKE ? AND " + ACTIVE + " = ?";
+      queryArgs = new String[]{"%" + constraint + "%", "1"};
+    }
+
+    Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, null, query, queryArgs, null, null, TITLE + " COLLATE NOCASE ASC");
 
     return new Reader(cursor);
   }

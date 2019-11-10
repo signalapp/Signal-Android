@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.GroupReceiptDatabase.GroupReceiptInfo;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
@@ -90,6 +91,15 @@ public class PushGroupSendJob extends PushSendJob {
                              @Nullable RecipientId filterAddress)
   {
     try {
+      Recipient group = Recipient.resolved(destination);
+      if (!group.isPushGroup()) {
+        throw new AssertionError("Not a group!");
+      }
+
+      if (!DatabaseFactory.getGroupDatabase(context).isActive(group.requireAddress().toGroupString())) {
+        throw new MmsException("Inactive group!");
+      }
+
       MmsDatabase          database                    = DatabaseFactory.getMmsDatabase(context);
       OutgoingMediaMessage message                     = database.getOutgoingMessage(messageId);
       JobManager.Chain     compressAndUploadAttachment = createCompressingAndUploadAttachmentsChain(jobManager, message);

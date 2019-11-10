@@ -19,7 +19,6 @@ import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
-import com.bumptech.glide.load.resource.bitmap.FitCenter;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 
@@ -31,6 +30,7 @@ import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideClickListener;
 import org.thoughtcrime.securesms.mms.SlidesClickedListener;
+import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
@@ -40,6 +40,7 @@ import org.whispersystems.libsignal.util.guava.Optional;
 import java.util.Collections;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.concurrent.ExecutionException;
 
 import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
 
@@ -299,6 +300,12 @@ public class ThumbnailView extends FrameLayout {
     }
 
     if (slide.getThumbnailUri() != null) {
+      if (!MediaUtil.isJpegType(slide.getContentType()) && !MediaUtil.isVideoType(slide.getContentType())) {
+        SettableFuture<Boolean> thumbnailFuture = new SettableFuture<>();
+        thumbnailFuture.deferTo(result);
+        thumbnailFuture.addListener(new BlurhashClearListener(glideRequests, blurhash));
+      }
+
       buildThumbnailGlideRequest(glideRequests, slide).into(new GlideDrawableListeningTarget(image, result));
       resultHandled = true;
     } else {
@@ -443,6 +450,29 @@ public class ThumbnailView extends FrameLayout {
       } else {
         Log.w(TAG, "Received a download button click, but unable to execute it. slide: " + String.valueOf(slide) + "  downloadClickListener: " + String.valueOf(downloadClickListener));
       }
+    }
+  }
+
+  private static class BlurhashClearListener implements ListenableFuture.Listener<Boolean> {
+
+    private final GlideRequests glideRequests;
+    private final ImageView     blurhash;
+
+    private BlurhashClearListener(@NonNull GlideRequests glideRequests, @NonNull ImageView blurhash) {
+      this.glideRequests = glideRequests;
+      this.blurhash      = blurhash;
+    }
+
+    @Override
+    public void onSuccess(Boolean result) {
+      glideRequests.clear(blurhash);
+      blurhash.setImageDrawable(null);
+    }
+
+    @Override
+    public void onFailure(ExecutionException e) {
+      glideRequests.clear(blurhash);
+      blurhash.setImageDrawable(null);
     }
   }
 }

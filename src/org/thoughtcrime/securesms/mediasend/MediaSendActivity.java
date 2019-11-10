@@ -263,6 +263,8 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
         hud.hideSoftkey(composeText, null);
       }
 
+      sendButton.setEnabled(false);
+
       MediaSendFragment fragment = getMediaSendFragment();
 
       if (fragment != null) {
@@ -273,6 +275,8 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
         throw new AssertionError("No editor fragment available!");
       }
     });
+
+    sendButton.setOnLongClickListener(v -> true);
 
     sendButton.addOnTransportChangedListener((newTransport, manuallySelected) -> {
       presentCharactersRemaining();
@@ -546,6 +550,8 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
   }
 
   public void onAddMediaClicked(@NonNull String bucketId) {
+    hud.hideCurrentInput(composeText);
+
     // TODO: Get actual folder title somehow
     MediaPickerFolderFragment folderFragment = MediaPickerFolderFragment.newInstance(this, recipient != null ? recipient.get() : null);
     MediaPickerItemFragment   itemFragment   = MediaPickerItemFragment.newInstance(bucketId, "", viewModel.getMaxSelection());
