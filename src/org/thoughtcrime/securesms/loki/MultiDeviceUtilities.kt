@@ -123,10 +123,12 @@ fun signAndSendPairingAuthorisationMessage(context: Context, pairingAuthorisatio
   DatabaseFactory.getLokiAPIDatabase(context).insertOrUpdatePairingAuthorisation(signedPairingAuthorisation)
   TextSecurePreferences.setMultiDevice(context, true)
 
+  val address = Address.fromSerialized(pairingAuthorisation.secondaryDevicePublicKey);
+
   val sendPromise = retryIfNeeded(8) {
-    sendPairingAuthorisationMessage(context, pairingAuthorisation.secondaryDevicePublicKey, signedPairingAuthorisation)
+    sendPairingAuthorisationMessage(context, address.serialize(), signedPairingAuthorisation)
   }.fail {
-    Log.d("Loki", "Failed to send pairing authorization message to ${pairingAuthorisation.secondaryDevicePublicKey}.")
+    Log.d("Loki", "Failed to send pairing authorization message to ${address.serialize()}.")
   }
 
   val updatePromise = LokiStorageAPI.shared.updateUserDeviceMappings().fail {
@@ -138,7 +140,7 @@ fun signAndSendPairingAuthorisationMessage(context: Context, pairingAuthorisatio
     Log.d("Loki", "Successfully pairing with a secondary device! Syncing contacts.")
     // Send out sync contact after a delay
     Timer().schedule(3000) {
-      MessageSender.syncAllContacts(context)
+      MessageSender.syncAllContacts(context, address)
     }
   }
 }

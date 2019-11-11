@@ -81,8 +81,8 @@ public class MessageSender {
 
   private enum MessageType { TEXT, MEDIA }
 
-  public static void syncAllContacts(Context context) {
-    ApplicationContext.getInstance(context).getJobManager().add(new MultiDeviceContactUpdateJob(context, true));
+  public static void syncAllContacts(Context context, Address recipient) {
+    ApplicationContext.getInstance(context).getJobManager().add(new MultiDeviceContactUpdateJob(context, recipient, true));
   }
 
   /**

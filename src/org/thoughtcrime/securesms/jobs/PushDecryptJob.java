@@ -648,6 +648,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
   private void handleSynchronizeContactMessage(@NonNull ContactsMessage contactsMessage) {
     if (contactsMessage.getContactsStream().isStream()) {
+      Log.d("Loki", "Received contact sync message");
       try {
         DeviceContactsInputStream contactsInputStream = new DeviceContactsInputStream(contactsMessage.getContactsStream().asStream().getInputStream());
         DeviceContact deviceContact = contactsInputStream.read();
@@ -665,9 +666,11 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
           LokiThreadFriendRequestStatus status = DatabaseFactory.getLokiThreadDatabase(context).getFriendRequestStatus(threadId);
           if (status == LokiThreadFriendRequestStatus.NONE || status == LokiThreadFriendRequestStatus.REQUEST_EXPIRED) {
             MessageSender.sendBackgroundFriendRequest(context, deviceContact.getNumber(), "This is an automated friend request. Still under testing!");
+            Log.d("Loki", "Sent friend request to " + deviceContact.getNumber());
           } else if (status == LokiThreadFriendRequestStatus.REQUEST_RECEIVED) {
             // Accept the incoming friend request
             becomeFriendsWithContact(deviceContact.getNumber(), false);
+            Log.d("Loki", "Became friends with " + deviceContact.getNumber());
           }
 
           // TODO: Handle blocked - If user is not blocked then we should do the friend request logic otherwise add them to our block list
@@ -679,6 +682,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         }
       } catch (IOException e) {
         // Exception is thrown when we don't have any more contacts to read from
+        return;
       } catch (Exception e) {
         Log.d("Loki", "Failed to sync contact: " + e.getMessage());
       }
@@ -1112,6 +1116,11 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     // Update display names
     if (content.senderDisplayName.isPresent() && content.senderDisplayName.get().length() > 0) {
         setDisplayName(envelope.getSource(), content.senderDisplayName.get());
+    }
+
+    // Contact sync
+    if (content.getSyncMessage().isPresent() && content.getSyncMessage().get().getContacts().isPresent()) {
+      handleSynchronizeContactMessage(content.getSyncMessage().get().getContacts().get());
     }
   }
 

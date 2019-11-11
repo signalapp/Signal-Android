@@ -37,6 +37,7 @@ import org.whispersystems.signalservice.api.messages.multidevice.DeviceContact;
 import org.whispersystems.signalservice.api.messages.multidevice.DeviceContactsOutputStream;
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.VerifiedMessage;
+import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 import org.whispersystems.signalservice.api.util.InvalidNumberException;
 import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus;
@@ -62,41 +63,57 @@ public class MultiDeviceContactUpdateJob extends BaseJob implements InjectableTy
   private static final long FULL_SYNC_TIME = TimeUnit.HOURS.toMillis(6);
 
   private static final String KEY_ADDRESS    = "address";
+  private static final String KEY_RECIPIENT  = "recipient";
   private static final String KEY_FORCE_SYNC = "force_sync";
 
   @Inject SignalServiceMessageSender messageSender;
 
   private @Nullable String address;
 
+  // The recipient of this sync message. If null then we send to all devices
+  private @Nullable String recipient;
+
   private boolean forceSync;
 
+  /**
+   * Create a full contact sync job which syncs across to all other devices
+   */
   public MultiDeviceContactUpdateJob(@NonNull Context context) {
     this(context, false);
   }
+  public MultiDeviceContactUpdateJob(@NonNull Context context, boolean forceSync) { this(context, null, forceSync); }
 
-  public MultiDeviceContactUpdateJob(@NonNull Context context, boolean forceSync) {
-    this(context, null, forceSync);
+  /**
+   * Create a full contact sync job which only gets sent to `recipient`
+   */
+  public MultiDeviceContactUpdateJob(@NonNull Context context, @Nullable Address recipient, boolean forceSync) {
+    this(context, recipient, null, forceSync);
   }
 
+  /**
+   * Create a single contact sync job which syncs across `address` to the all other devices
+   */
   public MultiDeviceContactUpdateJob(@NonNull Context context, @Nullable Address address) {
-    this(context, address, true);
+    this(context, null, address, true);
   }
 
-  public MultiDeviceContactUpdateJob(@NonNull Context context, @Nullable Address address, boolean forceSync) {
+  private MultiDeviceContactUpdateJob(@NonNull Context context, @Nullable Address recipient, @Nullable Address address, boolean forceSync) {
     this(new Job.Parameters.Builder()
                            .addConstraint(NetworkConstraint.KEY)
                            .setQueue("MultiDeviceContactUpdateJob")
                            .setLifespan(TimeUnit.DAYS.toMillis(1))
-                           .setMaxAttempts(3)
+                           .setMaxAttempts(1)
                            .build(),
+         recipient,
          address,
          forceSync);
   }
 
-  private MultiDeviceContactUpdateJob(@NonNull Job.Parameters parameters, @Nullable Address address, boolean forceSync) {
+  private MultiDeviceContactUpdateJob(@NonNull Job.Parameters parameters,  @Nullable Address recipient, @Nullable Address address, boolean forceSync) {
     super(parameters);
 
     this.forceSync = forceSync;
+    this.recipient = (recipient != null) ? recipient.serialize() : null;
 
     if (address != null) this.address = address.serialize();
     else                 this.address = null;
@@ -106,6 +123,7 @@ public class MultiDeviceContactUpdateJob extends BaseJob implements InjectableTy
   public @NonNull Data serialize() {
     return new Data.Builder().putString(KEY_ADDRESS, address)
                              .putBoolean(KEY_FORCE_SYNC, forceSync)
+                             .putString(KEY_RECIPIENT, recipient)
                              .build();
   }
 
@@ -124,7 +142,7 @@ public class MultiDeviceContactUpdateJob extends BaseJob implements InjectableTy
     }
 
     if (address == null) generateFullContactUpdate();
-    else                 generateSingleContactUpdate(Address.fromSerialized(address));
+    else if (address != TextSecurePreferences.getMasterHexEncodedPublicKey(context)) generateSingleContactUpdate(Address.fromSerialized(address));
   }
 
   private void generateSingleContactUpdate(@NonNull Address address)
@@ -245,7 +263,8 @@ public class MultiDeviceContactUpdateJob extends BaseJob implements InjectableTy
 
   @Override
   public boolean onShouldRetry(@NonNull Exception exception) {
-    if (exception instanceof PushNetworkException) return true;
+    // Loki - Disabled because we have our own retrying
+    // if (exception instanceof PushNetworkException) return true;
     return false;
   }
 
@@ -265,9 +284,10 @@ public class MultiDeviceContactUpdateJob extends BaseJob implements InjectableTy
                                                                                 .withLength(contactsFile.length())
                                                                                 .build();
 
+      SignalServiceAddress messageRecipient = recipient != null ? new SignalServiceAddress(recipient) : null;
+
       try {
-        messageSender.sendMessage(0, SignalServiceSyncMessage.forContacts(new ContactsMessage(attachmentStream, complete)),
-                                  UnidentifiedAccessUtil.getAccessForSync(context));
+        messageSender.sendMessage(0, SignalServiceSyncMessage.forContacts(new ContactsMessage(attachmentStream, complete)), messageRecipient);
       } catch (IOException ioe) {
         throw new NetworkException(ioe);
       }
@@ -375,7 +395,10 @@ public class MultiDeviceContactUpdateJob extends BaseJob implements InjectableTy
       String  serialized = data.getString(KEY_ADDRESS);
       Address address    = serialized != null ? Address.fromSerialized(serialized) : null;
 
-      return new MultiDeviceContactUpdateJob(parameters, address, data.getBoolean(KEY_FORCE_SYNC));
+      String recipientSerialized = data.getString(KEY_RECIPIENT);
+      Address recipient = recipientSerialized != null ? Address.fromSerialized(recipientSerialized) : null;
+
+      return new MultiDeviceContactUpdateJob(parameters, recipient, address, data.getBoolean(KEY_FORCE_SYNC));
     }
   }
 }
