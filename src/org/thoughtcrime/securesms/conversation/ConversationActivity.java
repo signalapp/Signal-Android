@@ -2213,10 +2213,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     setInputPanelEnabled(!isPending);
 
     // This promise correctly updates the UI for multidevice
-    MultiDeviceUtilities.shouldEnableUserInput(this, recipient).success(shouldEnableInput -> {
-      setInputPanelEnabled(shouldEnableInput);
-      return Unit.INSTANCE;
-    });
+    if (friendRequestStatus != LokiThreadFriendRequestStatus.FRIENDS) {
+      MultiDeviceUtilities.shouldEnableUserInput(this, recipient).success(shouldEnableInput -> {
+        setInputPanelEnabled(shouldEnableInput);
+        return Unit.INSTANCE;
+      });
+    }
   }
 
   private void setInputPanelEnabled(boolean enabled) {
