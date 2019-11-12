@@ -323,8 +323,9 @@ public class ConversationFragment extends Fragment
 
       if (recipients.size() > 0) {
         if (!isTypingIndicatorShowing() && isAtBottom()) {
+          Context context = requireContext();
           list.setVerticalScrollBarEnabled(false);
-          list.post(() -> getListLayoutManager().smoothScrollToPosition(requireContext(), 0, 250));
+          list.post(() -> getListLayoutManager().smoothScrollToPosition(context, 0, 250));
           list.postDelayed(() -> list.setVerticalScrollBarEnabled(true), 300);
           adapter.setHeaderView(typingView);
           adapter.notifyItemInserted(0);
