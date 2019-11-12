@@ -115,7 +115,7 @@ public class MessageSender {
           if (friendRequestStatus == LokiThreadFriendRequestStatus.FRIENDS || friendRequestStatus == LokiThreadFriendRequestStatus.REQUEST_RECEIVED) {
             sendBackgroundMessage(context, device);
           } else if (friendRequestStatus == LokiThreadFriendRequestStatus.NONE || friendRequestStatus == LokiThreadFriendRequestStatus.REQUEST_EXPIRED) {
-            sendBackgroundFriendRequest(context, device, "This is a friend request from android! please replace this message in the future");
+            sendBackgroundFriendRequest(context, device, "Accept this friend request to enable messages to be synced across devices");
           }
         }
       });

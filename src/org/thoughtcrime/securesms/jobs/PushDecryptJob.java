@@ -14,6 +14,7 @@ import android.util.Pair;
 
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
+import com.google.android.gms.common.util.IOUtils;
 
 import org.signal.libsignal.metadata.InvalidMetadataMessageException;
 import org.signal.libsignal.metadata.InvalidMetadataVersionException;
@@ -139,6 +140,7 @@ import org.whispersystems.signalservice.loki.messaging.LokiThreadSessionResetSta
 import org.whispersystems.signalservice.loki.utilities.PromiseUtil;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.security.MessageDigest;
 import java.security.SecureRandom;
 import java.util.ArrayList;
@@ -649,10 +651,12 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   private void handleSynchronizeContactMessage(@NonNull ContactsMessage contactsMessage) {
     if (contactsMessage.getContactsStream().isStream()) {
       Log.d("Loki", "Received contact sync message");
+
       try {
-        DeviceContactsInputStream contactsInputStream = new DeviceContactsInputStream(contactsMessage.getContactsStream().asStream().getInputStream());
-        DeviceContact deviceContact = contactsInputStream.read();
-        while (deviceContact != null) {
+        InputStream in = contactsMessage.getContactsStream().asStream().getInputStream();
+        DeviceContactsInputStream contactsInputStream = new DeviceContactsInputStream(in);
+        List<DeviceContact> devices = contactsInputStream.readAll();
+        for (DeviceContact deviceContact : devices) {
           // Check if we have the contact as a friend and that we're not trying to sync our own device
           Address address = Address.fromSerialized(deviceContact.getNumber());
           if (!address.isPhone() || address.toPhoneString().equalsIgnoreCase(TextSecurePreferences.getLocalNumber(context))) { continue; }
@@ -676,17 +680,11 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
           // TODO: Handle blocked - If user is not blocked then we should do the friend request logic otherwise add them to our block list
           // TODO: Handle expiration timer - Update expiration timer?
           // TODO: Handle avatar - Download and set avatar?
-
-          // Read the next contact
-          deviceContact = contactsInputStream.read();
         }
-      } catch (IOException e) {
-        // Exception is thrown when we don't have any more contacts to read from
       } catch (Exception e) {
-        Log.d("Loki", "Failed to sync contact: " + e.getMessage());
+        Log.d("Loki", "Failed to sync contact: " + e);
       }
     }
-
   }
 
   private void handleSynchronizeSentMessage(@NonNull SignalServiceContent content,
