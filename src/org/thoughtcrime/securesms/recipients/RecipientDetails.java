@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.color.MaterialColor;
+import org.thoughtcrime.securesms.database.RecipientDatabase.InsightsBannerTier;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RegisteredState;
 import org.thoughtcrime.securesms.database.RecipientDatabase.UnidentifiedAccessMode;
@@ -40,7 +41,6 @@ public class RecipientDetails {
   final int                    expireMessages;
   final List<Recipient>        participants;
   final String                 profileName;
-  final boolean                seenInviteReminder;
   final Optional<Integer>      defaultSubscriptionId;
   final RegisteredState        registered;
   final byte[]                 profileKey;
@@ -52,6 +52,7 @@ public class RecipientDetails {
   final UnidentifiedAccessMode unidentifiedAccessMode;
   final boolean                forceSmsSelection;
   final boolean                uuidSuported;
+  final InsightsBannerTier     insightsBannerTier;
 
   RecipientDetails(@NonNull Context context,
                    @Nullable String name,
@@ -79,7 +80,6 @@ public class RecipientDetails {
     this.expireMessages                  = settings.getExpireMessages();
     this.participants                    = participants == null ? new LinkedList<>() : participants;
     this.profileName                     = isLocalNumber ? TextSecurePreferences.getProfileName(context) : settings.getProfileName();
-    this.seenInviteReminder              = settings.hasSeenInviteReminder();
     this.defaultSubscriptionId           = settings.getDefaultSubscriptionId();
     this.registered                      = settings.getRegistered();
     this.profileKey                      = settings.getProfileKey();
@@ -91,6 +91,7 @@ public class RecipientDetails {
     this.unidentifiedAccessMode          = settings.getUnidentifiedAccessMode();
     this.forceSmsSelection               = settings.isForceSmsSelection();
     this.uuidSuported                    = settings.isUuidSupported();
+    this.insightsBannerTier              = settings.getInsightsBannerTier();
 
     if (name == null) this.name = settings.getSystemDisplayName();
     else              this.name = name;
@@ -115,7 +116,7 @@ public class RecipientDetails {
     this.expireMessages         = 0;
     this.participants           = new LinkedList<>();
     this.profileName            = null;
-    this.seenInviteReminder     = true;
+    this.insightsBannerTier     = InsightsBannerTier.TIER_TWO;
     this.defaultSubscriptionId  = Optional.absent();
     this.registered             = RegisteredState.UNKNOWN;
     this.profileKey             = null;

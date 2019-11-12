@@ -1517,6 +1517,7 @@
     <string name="reminder_header_share_text">The more friends use Signal, the better it gets.</string>
     <string name="reminder_header_service_outage_text">Signal is experiencing technical difficulties. We are working hard to restore service as quickly as possible.</string>
     <string name="reminder_header_the_latest_signal_features_wont_work">The latest Signal features won\'t work on this version of Android. Please upgrade this device to receive future Signal updates.</string>
+    <string name="reminder_header_progress">%1$d%%</string>
 
     <!-- media_preview -->
     <string name="media_preview__save_title">Save</string>
@@ -1537,6 +1538,34 @@
     <string name="trimmer__deleting">Deleting</string>
     <string name="trimmer__deleting_old_messages">Deleting old messages…</string>
     <string name="trimmer__old_messages_successfully_deleted">Old messages successfully deleted</string>
+
+    <!-- Insights -->
+    <string name="Insights__percent">%</string>
+    <string name="Insights__title">Insights</string>
+    <string name="InsightsDashboardFragment__title">Insights</string>
+    <string name="InsightsDashboardFragment__tagline">%1$d%% of your outgoing messages in the past 7 days were end-to-end encrypted with Signal Protocol.</string>
+    <string name="InsightsDashboardFragment__boost_your_signal">Boost your Signal</string>
+    <string name="InsightsDashboardFragment__100_title">Your Signal is Strong</string>
+    <string name="InsightsDashboardFragment__no_signal_yet">No Signal (yet)</string>
+    <string name="InsightsDashboardFragment__youre_just_getting_started">You\'re just getting started. Insights will be displayed after you send a few messages.</string>
+    <string name="InsightsDashboardFragment__start_a_conversation">Start a conversation</string>
+    <string name="InsightsDashboardFragment__100_description">Signal\'s advanced privacy-preserving technology automatically protected all of your recent outgoing messages.</string>
+    <string name="InsightsDashboardFragment__invite_your_contacts">Start communicating securely and enable new features that go beyond the limitations of unencrypted SMS messages by inviting more contacts to join Signal.</string>
+    <string name="InsightsDashboardFragment__this_stat_was_generated_locally">This stat was locally generated on your device and can only be seen by you. It is never transmitted anywhere.</string>
+    <string name="InsightsDashboardFragment__encrypted_messages">Encrypted messages</string>
+    <string name="InsightsDashboardFragment__cancel">Cancel</string>
+    <string name="InsightsDashboardFragment__send">Send</string>
+    <string name="InsightsDashboardFragment__not_using_signal_yet">Not using Signal yet</string>
+    <string name="InsightsModalFragment__title">Introducing Insights</string>
+    <string name="InsightsModalFragment__description">Find out how many of your outgoing messages were sent securely, then quickly invite new contacts to boost your Signal percentage.</string>
+    <string name="InsightsModalFragment__view_insights">View Insights</string>
+
+    <string name="FirstInviteReminder__title">Invite to Signal</string>
+    <string name="FirstInviteReminder__description">You could increase the number of encrypted messages you send by %1$d%%</string>
+    <string name="SecondInviteReminder__title">Boost your Signal</string>
+    <string name="SecondInviteReminder__description">Invite %1$s</string>
+    <string name="InsightsReminder__view_insights">View Insights</string>
+    <string name="InsightsReminder__invite">Invite</string>
 
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">Transport icon</string>

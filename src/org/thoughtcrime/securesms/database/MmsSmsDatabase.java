@@ -31,6 +31,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class MmsSmsDatabase extends Database {
@@ -151,6 +152,27 @@ public class MmsSmsDatabase extends Database {
   public int getConversationCount(long threadId) {
     int count = DatabaseFactory.getSmsDatabase(context).getMessageCountForThread(threadId);
     count    += DatabaseFactory.getMmsDatabase(context).getMessageCountForThread(threadId);
+
+    return count;
+  }
+
+  public int getInsecureSentCount(long threadId) {
+    int count  = DatabaseFactory.getSmsDatabase(context).getInsecureMessagesSentForThread(threadId);
+    count     += DatabaseFactory.getMmsDatabase(context).getInsecureMessagesSentForThread(threadId);
+
+    return count;
+  }
+
+  public int getInsecureMessageCountForRecipients(List<RecipientId> recipients) {
+    int count = DatabaseFactory.getSmsDatabase(context).getInsecureMessageCountForRecipients(recipients);
+    count    += DatabaseFactory.getMmsDatabase(context).getInsecureMessageCountForRecipients(recipients);
+
+    return count;
+  }
+
+  public int getSecureMessageCountForRecipients(List<RecipientId> recipients) {
+    int count = DatabaseFactory.getSmsDatabase(context).getSecureMessageCountForRecipients(recipients);
+    count    += DatabaseFactory.getMmsDatabase(context).getSecureMessageCountForRecipients(recipients);
 
     return count;
   }

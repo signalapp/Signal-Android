@@ -232,7 +232,7 @@
         <item name="android:inputType">textAutoCorrect|textCapSentences|textMultiLine</item>
         <item name="android:contentDescription">@string/conversation_activity__compose_description</item>
     </style>
-    
+
     <style name="AttachmentTypeLabel">
         <item name="android:textColor">#ff999999</item>
         <item name="android:textSize">14sp</item>
@@ -279,7 +279,6 @@
         <item name="android:clickable">false</item>
         <item name="android:focusable">false</item>
     </style>
-
 
     <style name="PreferenceThemeOverlay.Fix" parent="PreferenceThemeOverlay.v14.Material">
         <item name="android:divider">@null</item>
@@ -334,6 +333,18 @@
         <item name="titleTextStyle">@style/TextSecure.TitleTextStyle.Conversation</item>
     </style>
 
+    <style name="Widget.Signal.ArcProgressBar" parent="">
+        <item name="android:layout_width">187dp</item>
+        <item name="android:layout_height">187dp</item>
+        <item name="arcBackgroundColor">?insight_progress_background</item>
+        <item name="arcForegroundColor">@color/signal_primary</item>
+        <item name="arcProgress">0.0</item>
+        <item name="arcStartAngle">120</item>
+        <item name="arcSweepAngle">300</item>
+        <item name="arcWidth">8dp</item>
+        <item name="arcRoundedEnds">true</item>
+    </style>
+
     <declare-styleable name="CameraButtonView">
         <attr name="imageCaptureSize" format="dimension" />
         <attr name="recordSize" format="dimension" />
@@ -361,5 +372,15 @@
         </attr>
 
         <attr format="boolean" name="pinchToZoomEnabled"/>
+    </declare-styleable>
+
+    <declare-styleable name="ArcProgressBar">
+        <attr name="arcWidth" format="dimension"         />
+        <attr name="arcBackgroundColor" format="color"   />
+        <attr name="arcForegroundColor" format="color"   />
+        <attr name="arcRoundedEnds" format="boolean" />
+        <attr name="arcStartAngle" format="float"   />
+        <attr name="arcSweepAngle" format="float"   />
+        <attr name="arcProgress" format="float"   />
     </declare-styleable>
 </resources>

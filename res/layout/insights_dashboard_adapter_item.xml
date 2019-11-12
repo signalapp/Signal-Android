@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="68dp">
+
+    <org.thoughtcrime.securesms.components.AvatarImageView
+        android:id="@+id/recipient_avatar"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/recipient_display_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="9dp"
+        android:textAppearance="@style/TextAppearance.Signal.Title.Insights"
+        app:layout_constraintBottom_toTopOf="@id/recipient_insecure_contribution"
+        app:layout_constraintStart_toEndOf="@id/recipient_avatar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="Cayce Pollard" />
+
+    <TextView
+        android:id="@+id/recipient_insecure_contribution"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="1dp"
+        android:text="@string/InsightsDashboardFragment__not_using_signal_yet"
+        android:textAppearance="@style/TextAppearance.Signal.Body.Insights"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/recipient_avatar"
+        app:layout_constraintTop_toBottomOf="@id/recipient_display_name"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <Button
+        android:id="@+id/recipient_invite"
+        style="@style/Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:text="@string/conversation_insecure__invite"
+        android:textAppearance="@style/TextAppearance.Signal.Caption.Insights"
+        android:textColor="@color/signal_primary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

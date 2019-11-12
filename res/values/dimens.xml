@@ -91,6 +91,17 @@
     <dimen name="unread_count_bubble_radius">13sp</dimen>
     <dimen name="unread_count_bubble_diameter">26sp</dimen>
 
+    <dimen name="insights_modal_title_margin_top">41dp</dimen>
+    <dimen name="insights_modal_description_margin_top">12dp</dimen>
+    <dimen name="insights_modal_progress_margin_top">23dp</dimen>
+    <dimen name="insights_modal_progress_size">187dp</dimen>
+    <dimen name="insights_modal_avatar_size">140dp</dimen>
+    <dimen name="insights_modal_percent_margin_top">6dp</dimen>
+    <dimen name="insights_modal_percent_sign_margin_top">15dp</dimen>
+    <dimen name="insights_modal_view_insights_margin_top">41dp</dimen>
+    <dimen name="insights_modal_percent_text_size">28sp</dimen>
+    <dimen name="insights_modal_percent_sign_text_size">20sp</dimen>
+
     <!-- RedPhone -->
 
     <!-- Height of the main row of in-call buttons. -->

@@ -32,13 +32,11 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.hardware.Camera;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.ParcelFileDescriptor;
 import android.os.Vibrator;
 import android.provider.Browser;
 import android.provider.ContactsContract;
@@ -62,16 +60,15 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
 import androidx.core.content.pm.ShortcutInfoCompat;
 import androidx.core.content.pm.ShortcutManagerCompat;
-import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.core.graphics.drawable.IconCompat;
 import androidx.core.view.MenuItemCompat;
 import androidx.lifecycle.ViewModelProviders;
@@ -100,7 +97,6 @@ import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.TombstoneAttachment;
 import org.thoughtcrime.securesms.audio.AudioRecorder;
 import org.thoughtcrime.securesms.audio.AudioSlidePlayer;
-import org.thoughtcrime.securesms.blurhash.BlurHash;
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.components.AnimatingToggle;
 import org.thoughtcrime.securesms.components.AttachmentTypeSelector;
@@ -120,12 +116,13 @@ import org.thoughtcrime.securesms.components.identity.UnverifiedBannerView;
 import org.thoughtcrime.securesms.components.identity.UnverifiedSendDialog;
 import org.thoughtcrime.securesms.components.location.SignalPlace;
 import org.thoughtcrime.securesms.components.reminder.ExpiredBuildReminder;
-import org.thoughtcrime.securesms.components.reminder.InviteReminder;
+import org.thoughtcrime.securesms.components.reminder.Reminder;
 import org.thoughtcrime.securesms.components.reminder.ReminderView;
 import org.thoughtcrime.securesms.components.reminder.ServiceOutageReminder;
 import org.thoughtcrime.securesms.components.reminder.UnauthorizedReminder;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactAccessor.ContactData;
+import org.thoughtcrime.securesms.contacts.sync.DirectoryHelper;
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.contactshare.ContactShareEditActivity;
 import org.thoughtcrime.securesms.contactshare.ContactUtil;
@@ -152,6 +149,9 @@ import org.thoughtcrime.securesms.database.model.StickerRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.ReminderUpdateEvent;
 import org.thoughtcrime.securesms.giph.ui.GiphyActivity;
+import org.thoughtcrime.securesms.insights.InsightsLauncher;
+import org.thoughtcrime.securesms.invites.InviteReminderModel;
+import org.thoughtcrime.securesms.invites.InviteReminderRepository;
 import org.thoughtcrime.securesms.jobs.MultiDeviceBlockedUpdateJob;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob;
 import org.thoughtcrime.securesms.jobs.ServiceOutageDetectionJob;
@@ -210,7 +210,6 @@ import org.thoughtcrime.securesms.util.CharacterCalculator.CharacterState;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.DynamicDarkToolbarTheme;
-import org.thoughtcrime.securesms.contacts.sync.DirectoryHelper;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
@@ -220,7 +219,6 @@ import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.TextSecurePreferences.MediaKeyboardMode;
-import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.AssertedSuccessListener;
@@ -322,6 +320,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private LinkPreviewViewModel         linkPreviewViewModel;
   private ConversationSearchViewModel  searchViewModel;
   private ConversationStickerViewModel stickerViewModel;
+  private InviteReminderModel          inviteReminderModel;
 
   private LiveRecipient recipient;
   private long          threadId;
@@ -399,6 +398,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         });
       }
     });
+    initializeInsightObserver();
   }
 
   @Override
@@ -816,7 +816,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   @Subscribe(threadMode = ThreadMode.MAIN)
   public void onEvent(ReminderUpdateEvent event) {
-    updateReminders(recipient.get().hasSeenInviteReminder());
+    updateReminders();
   }
 
   @Override
@@ -1423,12 +1423,17 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   private void onSecurityUpdated() {
     Log.i(TAG, "onSecurityUpdated()");
-    updateReminders(recipient.get().hasSeenInviteReminder());
+    updateReminders();
     updateDefaultSubscriptionId(recipient.get().getDefaultSubscriptionId());
   }
 
-  protected void updateReminders(boolean seenInvite) {
-    Log.i(TAG, "updateReminders(" + seenInvite + ")");
+  private void initializeInsightObserver() {
+    inviteReminderModel = new InviteReminderModel(this, new InviteReminderRepository(this));
+    inviteReminderModel.loadReminder(recipient, this::updateReminders);
+  }
+
+  protected void updateReminders() {
+    Optional<Reminder> inviteReminder = inviteReminderModel.getReminder();
 
     if (UnauthorizedReminder.isEligible(this)) {
       reminderView.get().showReminder(new UnauthorizedReminder(this));
@@ -1439,18 +1444,28 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       reminderView.get().showReminder(new ServiceOutageReminder(this));
     } else if (TextSecurePreferences.isPushRegistered(this)      &&
                TextSecurePreferences.isShowInviteReminders(this) &&
-               !isSecureText                                            &&
-               !seenInvite                                              &&
-               !recipient.get().isGroup())
-    {
-      InviteReminder reminder = new InviteReminder(this, recipient.get());
-      reminder.setOkListener(v -> {
-        handleInviteLink();
-        reminderView.get().requestDismiss();
-      });
-      reminderView.get().showReminder(reminder);
+               !isSecureText                                     &&
+               inviteReminder.isPresent()                        &&
+               !recipient.get().isGroup()) {
+      reminderView.get().setOnActionClickListener(this::handleReminderAction);
+      reminderView.get().setOnDismissListener(() -> inviteReminderModel.dismissReminder());
+      reminderView.get().showReminder(inviteReminder.get());
     } else if (reminderView.resolved()) {
       reminderView.get().hide();
+    }
+  }
+
+  private void handleReminderAction(@IdRes int reminderActionId) {
+    switch (reminderActionId) {
+      case R.id.reminder_action_invite:
+        handleInviteLink();
+        reminderView.get().requestDismiss();
+        break;
+      case R.id.reminder_action_view_insights:
+        InsightsLauncher.showInsightsDashboard(getSupportFragmentManager());
+        break;
+      default:
+        throw new IllegalArgumentException("Unknown ID: " + reminderActionId);
     }
   }
 
@@ -1742,7 +1757,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     setBlockedUserState(recipient, isSecureText, isDefaultSms);
     setActionBarColor(recipient.getColor());
     setGroupShareProfileReminder(recipient);
-    updateReminders(recipient.hasSeenInviteReminder());
+    updateReminders();
     updateDefaultSubscriptionId(recipient.getDefaultSubscriptionId());
     initializeSecurity(isSecureText, isDefaultSms);
 

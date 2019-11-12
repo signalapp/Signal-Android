@@ -5,15 +5,12 @@ import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import androidx.annotation.AnimRes;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import androidx.appcompat.app.AlertDialog;
 import android.view.View;
@@ -237,7 +234,7 @@ public class InviteActivity extends PassphraseRequiredActionBarActivity implemen
         MessageSender.send(context, new OutgoingTextMessage(recipient, message, subscriptionId), -1L, true, null);
 
         if (recipient.getContactUri() != null) {
-          DatabaseFactory.getRecipientDatabase(context).setSeenInviteReminder(recipient.getId(), true);
+          DatabaseFactory.getRecipientDatabase(context).setHasSentInvite(recipient.getId());
         }
       }
 

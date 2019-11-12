@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.database;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -140,6 +141,28 @@ public class RecipientDatabase extends Database {
     }
   }
 
+  public enum InsightsBannerTier {
+    NO_TIER(0), TIER_ONE(1), TIER_TWO(2);
+
+    private final int id;
+
+    InsightsBannerTier(int id) {
+      this.id = id;
+    }
+
+    public int getId() {
+      return id;
+    }
+
+    public boolean seen(InsightsBannerTier tier) {
+      return tier.getId() <= id;
+    }
+
+    public static InsightsBannerTier fromId(int id) {
+      return values()[id];
+    }
+  }
+
   public static final String CREATE_TABLE =
       "CREATE TABLE " + TABLE_NAME + " (" + ID                       + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                                             UUID                     + " TEXT UNIQUE DEFAULT NULL, " +
@@ -154,7 +177,7 @@ public class RecipientDatabase extends Database {
                                             NOTIFICATION_CHANNEL     + " TEXT DEFAULT NULL, " +
                                             MUTE_UNTIL               + " INTEGER DEFAULT 0, " +
                                             COLOR                    + " TEXT DEFAULT NULL, " +
-                                            SEEN_INVITE_REMINDER     + " INTEGER DEFAULT 0, " +
+                                            SEEN_INVITE_REMINDER     + " INTEGER DEFAULT " + InsightsBannerTier.NO_TIER.getId() + ", " +
                                             DEFAULT_SUBSCRIPTION_ID  + " INTEGER DEFAULT -1, " +
                                             MESSAGE_EXPIRATION_TIME  + " INTEGER DEFAULT 0, " +
                                             REGISTERED               + " INTEGER DEFAULT " + RegisteredState.UNKNOWN.getId() + ", " +
@@ -170,6 +193,17 @@ public class RecipientDatabase extends Database {
                                             UNIDENTIFIED_ACCESS_MODE + " INTEGER DEFAULT 0, " +
                                             FORCE_SMS_SELECTION      + " INTEGER DEFAULT 0, " +
                                             UUID_SUPPORTED           + " INTEGER DEFAULT 0);";
+
+  private static final String INSIGHTS_INVITEE_LIST = "SELECT " + TABLE_NAME + "." + ID +
+      " FROM " + TABLE_NAME +
+      " INNER JOIN " + ThreadDatabase.TABLE_NAME +
+      " ON " + TABLE_NAME + "." + ID + " = " + ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.RECIPIENT_ID +
+      " WHERE " +
+      TABLE_NAME + "." + GROUP_ID + " IS NULL AND " +
+      TABLE_NAME + "." + REGISTERED + " = " + RegisteredState.NOT_REGISTERED.id + " AND " +
+      TABLE_NAME + "." + SEEN_INVITE_REMINDER + " < " + InsightsBannerTier.TIER_TWO.id + " AND " +
+      ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.HAS_SENT +
+      " ORDER BY " + ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.DATE + " DESC";
 
   public RecipientDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
     super(context, databaseHelper);
@@ -264,7 +298,7 @@ public class RecipientDatabase extends Database {
     int     callVibrateState       = cursor.getInt(cursor.getColumnIndexOrThrow(CALL_VIBRATE));
     long    muteUntil              = cursor.getLong(cursor.getColumnIndexOrThrow(MUTE_UNTIL));
     String  serializedColor        = cursor.getString(cursor.getColumnIndexOrThrow(COLOR));
-    boolean seenInviteReminder     = cursor.getInt(cursor.getColumnIndexOrThrow(SEEN_INVITE_REMINDER)) == 1;
+    int     insightsBannerTier     = cursor.getInt(cursor.getColumnIndexOrThrow(SEEN_INVITE_REMINDER));
     int     defaultSubscriptionId  = cursor.getInt(cursor.getColumnIndexOrThrow(DEFAULT_SUBSCRIPTION_ID));
     int     expireMessages         = cursor.getInt(cursor.getColumnIndexOrThrow(MESSAGE_EXPIRATION_TIME));
     int     registeredState        = cursor.getInt(cursor.getColumnIndexOrThrow(REGISTERED));
@@ -304,14 +338,13 @@ public class RecipientDatabase extends Database {
                                  VibrateState.fromId(messageVibrateState),
                                  VibrateState.fromId(callVibrateState),
                                  Util.uri(messageRingtone), Util.uri(callRingtone),
-                                 color, seenInviteReminder,
-                                 defaultSubscriptionId, expireMessages,
+                                 color, defaultSubscriptionId, expireMessages,
                                  RegisteredState.fromId(registeredState),
                                  profileKey, systemDisplayName, systemContactPhoto,
                                  systemPhoneLabel, systemContactUri,
                                  signalProfileName, signalProfileAvatar, profileSharing,
                                  notificationChannel, UnidentifiedAccessMode.fromMode(unidentifiedAccessMode),
-                                 forceSmsSelection, uuidSupported);
+                                 forceSmsSelection, uuidSupported, InsightsBannerTier.fromId(insightsBannerTier));
   }
 
   public BulkOperationsHandle resetAllSystemContactInfo() {
@@ -392,10 +425,26 @@ public class RecipientDatabase extends Database {
     Recipient.live(id).refresh();
   }
 
-  public void setSeenInviteReminder(@NonNull RecipientId id, @SuppressWarnings("SameParameterValue") boolean seen) {
-    ContentValues values = new ContentValues(1);
-    values.put(SEEN_INVITE_REMINDER, seen ? 1 : 0);
-    update(id, values);
+  public void setSeenFirstInviteReminder(@NonNull RecipientId id) {
+    setInsightsBannerTier(id, InsightsBannerTier.TIER_ONE);
+  }
+
+  public void setSeenSecondInviteReminder(@NonNull RecipientId id) {
+    setInsightsBannerTier(id, InsightsBannerTier.TIER_TWO);
+  }
+
+  public void setHasSentInvite(@NonNull RecipientId id) {
+    setSeenSecondInviteReminder(id);
+  }
+
+  private void setInsightsBannerTier(@NonNull RecipientId id, @NonNull InsightsBannerTier insightsBannerTier) {
+    SQLiteDatabase database  = databaseHelper.getWritableDatabase();
+    ContentValues  values    = new ContentValues(1);
+    String         query     = ID + " = ? AND " + SEEN_INVITE_REMINDER + " < ?";
+    String[]       args      = new String[]{ id.serialize(), String.valueOf(insightsBannerTier) };
+
+    values.put(SEEN_INVITE_REMINDER, insightsBannerTier.id);
+    database.update(TABLE_NAME, values, query, args);
     Recipient.live(id).refresh();
   }
 
@@ -563,7 +612,45 @@ public class RecipientDatabase extends Database {
     }
   }
 
-  public List<RecipientId> getRegistered() {
+  public @NonNull List<RecipientId> getUninvitedRecipientsForInsights() {
+    SQLiteDatabase    db      = databaseHelper.getReadableDatabase();
+    List<RecipientId> results = new LinkedList<>();
+
+    try (Cursor cursor = db.rawQuery(INSIGHTS_INVITEE_LIST, null)) {
+      while (cursor != null && cursor.moveToNext()) {
+        results.add(RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(ID))));
+      }
+    }
+
+    return results;
+  }
+
+  public @NonNull List<RecipientId> getNotRegisteredForInsights() {
+    return getRecipientsForInsights(REGISTERED + " = ?", new String[]{String.valueOf(RegisteredState.NOT_REGISTERED.id)});
+  }
+
+  public @NonNull List<RecipientId> getRegisteredForInsights() {
+    final String   selfId = Recipient.self().getId().serialize();
+    final String   query  = REGISTERED + " = ? AND " + ID + " != ?";
+    final String[] args   = new String[]{String.valueOf(RegisteredState.REGISTERED.id), selfId};
+
+    return getRecipientsForInsights(query, args);
+  }
+
+  private @NonNull List<RecipientId> getRecipientsForInsights(@NonNull String query, @NonNull String[] args) {
+    SQLiteDatabase    db      = databaseHelper.getReadableDatabase();
+    List<RecipientId> results = new LinkedList<>();
+
+    try (Cursor cursor = db.query(TABLE_NAME, ID_PROJECTION, query + " AND " + GROUP_ID + " IS NULL", args, null, null, null)) {
+      while (cursor != null && cursor.moveToNext()) {
+        results.add(RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(ID))));
+      }
+    }
+
+    return results;
+  }
+
+  public @NonNull List<RecipientId> getRegistered() {
     SQLiteDatabase    db      = databaseHelper.getReadableDatabase();
     List<RecipientId> results = new LinkedList<>();
 
@@ -776,7 +863,6 @@ public class RecipientDatabase extends Database {
     private final Uri                    messageRingtone;
     private final Uri                    callRingtone;
     private final MaterialColor          color;
-    private final boolean                seenInviteReminder;
     private final int                    defaultSubscriptionId;
     private final int                    expireMessages;
     private final RegisteredState        registered;
@@ -792,6 +878,7 @@ public class RecipientDatabase extends Database {
     private final UnidentifiedAccessMode unidentifiedAccessMode;
     private final boolean                forceSmsSelection;
     private final boolean                uuidSupported;
+    private final InsightsBannerTier     insightsBannerTier;
 
     RecipientSettings(@NonNull RecipientId id,
                       @Nullable UUID uuid,
@@ -804,7 +891,6 @@ public class RecipientDatabase extends Database {
                       @Nullable Uri messageRingtone,
                       @Nullable Uri callRingtone,
                       @Nullable MaterialColor color,
-                      boolean seenInviteReminder,
                       int defaultSubscriptionId,
                       int expireMessages,
                       @NonNull  RegisteredState registered,
@@ -819,7 +905,8 @@ public class RecipientDatabase extends Database {
                       @Nullable String notificationChannel,
                       @NonNull UnidentifiedAccessMode unidentifiedAccessMode,
                       boolean forceSmsSelection,
-                      boolean uuidSupported)
+                      boolean uuidSupported,
+                      @NonNull InsightsBannerTier insightsBannerTier)
     {
       this.id                     = id;
       this.uuid                   = uuid;
@@ -833,7 +920,6 @@ public class RecipientDatabase extends Database {
       this.messageRingtone        = messageRingtone;
       this.callRingtone           = callRingtone;
       this.color                  = color;
-      this.seenInviteReminder     = seenInviteReminder;
       this.defaultSubscriptionId  = defaultSubscriptionId;
       this.expireMessages         = expireMessages;
       this.registered             = registered;
@@ -849,6 +935,7 @@ public class RecipientDatabase extends Database {
       this.unidentifiedAccessMode = unidentifiedAccessMode;
       this.forceSmsSelection      = forceSmsSelection;
       this.uuidSupported          = uuidSupported;
+      this.insightsBannerTier = insightsBannerTier;
     }
 
     public RecipientId getId() {
@@ -899,8 +986,8 @@ public class RecipientDatabase extends Database {
       return callRingtone;
     }
 
-    public boolean hasSeenInviteReminder() {
-      return seenInviteReminder;
+    public @NonNull InsightsBannerTier getInsightsBannerTier() {
+      return insightsBannerTier;
     }
 
     public Optional<Integer> getDefaultSubscriptionId() {

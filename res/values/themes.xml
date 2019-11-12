@@ -149,6 +149,13 @@
         <item name="icon_tint">@color/core_grey_75</item>
         <item name="icon_tint_dark">@color/core_grey_15</item>
 
+        <item name="insight_modal_background">@drawable/insights_modal_background</item>
+        <item name="insight_modal_button_background">@color/core_grey_10</item>
+        <item name="insight_title">@color/core_grey_90</item>
+        <item name="insight_body_2">@color/core_grey_60</item>
+        <item name="insight_dashboard_bottom_bar_background">@color/core_grey_02</item>
+        <item name="insight_progress_background">@color/core_grey_15</item>
+
         <item name="search_view_style">@style/Signal.SearchView</item>
         <item name="search_view_style_dark">@style/Signal.SearchView.Dark</item>
 
@@ -365,6 +372,13 @@
         <item name="icon_tint">@color/core_grey_15</item>
         <item name="icon_tint_dark">?icon_tint</item>
 
+        <item name="insight_modal_background">@drawable/insights_modal_background_dark</item>
+        <item name="insight_modal_button_background">@color/core_grey_60</item>
+        <item name="insight_title">@color/core_grey_25</item>
+        <item name="insight_body_2">@color/core_grey_25</item>
+        <item name="insight_progress_background">@color/core_grey_60</item>
+        <item name="insight_dashboard_bottom_bar_background">@color/core_grey_80</item>
+
         <item name="search_view_style">@style/Signal.SearchView</item>
         <item name="search_view_style_dark">@style/Signal.SearchView.Dark</item>
 
@@ -573,6 +587,9 @@
     
     <style name="RationaleDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:windowBackground">@drawable/permission_rationale_dialog_corners</item>
+    </style>
+
+    <style name="Theme.Signal.Insights.Modal" parent="@style/Theme.AppCompat.Dialog.MinWidth">
     </style>
 
     <style name="TextSecure.MediaSendProgressDialog" parent="@android:style/Theme.Dialog">

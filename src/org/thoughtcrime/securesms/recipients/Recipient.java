@@ -47,6 +47,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
+import static org.thoughtcrime.securesms.database.RecipientDatabase.InsightsBannerTier;
+
 public class Recipient {
 
   public static final Recipient UNKNOWN = new Recipient(RecipientId.UNKNOWN, new RecipientDetails());
@@ -69,7 +71,6 @@ public class Recipient {
   private final Uri                    messageRingtone;
   private final Uri                    callRingtone;
   private final MaterialColor          color;
-  private final boolean                seenInviteReminder;
   private final Optional<Integer>      defaultSubscriptionId;
   private final int                    expireMessages;
   private final RegisteredState        registered;
@@ -85,6 +86,7 @@ public class Recipient {
   private final UnidentifiedAccessMode unidentifiedAccessMode;
   private final boolean                forceSmsSelection;
   private final boolean                uuidSupported;
+  private final InsightsBannerTier     insightsBannerTier;
 
 
   /**
@@ -246,7 +248,7 @@ public class Recipient {
     this.messageRingtone        = null;
     this.callRingtone           = null;
     this.color                  = null;
-    this.seenInviteReminder     = true;
+    this.insightsBannerTier     = InsightsBannerTier.TIER_TWO;
     this.defaultSubscriptionId  = Optional.absent();
     this.expireMessages         = 0;
     this.registered             = RegisteredState.UNKNOWN;
@@ -281,7 +283,7 @@ public class Recipient {
     this.messageRingtone        = details.messageRingtone;
     this.callRingtone           = details.callRingtone;
     this.color                  = details.color;
-    this.seenInviteReminder     = details.seenInviteReminder;
+    this.insightsBannerTier     = details.insightsBannerTier;
     this.defaultSubscriptionId  = details.defaultSubscriptionId;
     this.expireMessages         = details.expireMessages;
     this.registered             = details.registered;
@@ -571,8 +573,12 @@ public class Recipient {
     return expireMessages;
   }
 
-  public boolean hasSeenInviteReminder() {
-    return seenInviteReminder;
+  public boolean hasSeenFirstInviteReminder() {
+    return insightsBannerTier.seen(InsightsBannerTier.TIER_ONE);
+  }
+
+  public boolean hasSeenSecondInviteReminder() {
+    return insightsBannerTier.seen(InsightsBannerTier.TIER_TWO);
   }
 
   public @NonNull RegisteredState getRegistered() {

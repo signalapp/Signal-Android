@@ -25,10 +25,6 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.appcompat.widget.Toolbar;
-import androidx.appcompat.widget.TooltipCompat;
-
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -37,6 +33,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.Toolbar;
+import androidx.appcompat.widget.TooltipCompat;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
@@ -49,6 +49,7 @@ import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
 import org.thoughtcrime.securesms.conversation.ConversationActivity;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
+import org.thoughtcrime.securesms.insights.InsightsLauncher;
 import org.thoughtcrime.securesms.lock.RegistrationLockDialog;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
@@ -131,6 +132,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
     inflater.inflate(R.menu.text_secure_normal, menu);
 
+    menu.findItem(R.id.menu_insights).setVisible(TextSecurePreferences.isSmsEnabled(this));
     menu.findItem(R.id.menu_clear_passphrase).setVisible(!TextSecurePreferences.isPasswordDisabled(this));
 
     super.onPrepareOptionsMenu(menu);
@@ -212,6 +214,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     case R.id.menu_clear_passphrase:  handleClearPassphrase(); return true;
     case R.id.menu_mark_all_read:     handleMarkAllRead();     return true;
     case R.id.menu_invite:            handleInvite();          return true;
+    case R.id.menu_insights:          handleInsights();        return true;
     case R.id.menu_help:              handleHelp();            return true;
     }
 
@@ -298,6 +301,10 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
   private void handleInvite() {
     startActivity(new Intent(this, InviteActivity.class));
+  }
+
+  private void handleInsights() {
+    InsightsLauncher.showInsightsDashboard(getSupportFragmentManager());
   }
 
   private void handleHelp() {
