@@ -665,7 +665,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
           long threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
           LokiThreadFriendRequestStatus status = DatabaseFactory.getLokiThreadDatabase(context).getFriendRequestStatus(threadId);
           if (status == LokiThreadFriendRequestStatus.NONE || status == LokiThreadFriendRequestStatus.REQUEST_EXPIRED) {
-            MessageSender.sendBackgroundFriendRequest(context, deviceContact.getNumber(), "This is an automated friend request. Still under testing!");
+            MessageSender.sendBackgroundFriendRequest(context, deviceContact.getNumber(), "Accept this friend request to enable messages to be synced across devices");
             Log.d("Loki", "Sent friend request to " + deviceContact.getNumber());
           } else if (status == LokiThreadFriendRequestStatus.REQUEST_RECEIVED) {
             // Accept the incoming friend request
@@ -682,7 +682,6 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         }
       } catch (IOException e) {
         // Exception is thrown when we don't have any more contacts to read from
-        return;
       } catch (Exception e) {
         Log.d("Loki", "Failed to sync contact: " + e.getMessage());
       }
@@ -1635,7 +1634,9 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
     Recipient sender = Recipient.from(context, Address.fromSerialized(content.getSender()), false);
 
-    if (content.getDataMessage().isPresent()) {
+    if (content.getPairingAuthorisation().isPresent()) {
+      return false;
+    } else if (content.getDataMessage().isPresent()) {
       SignalServiceDataMessage message      = content.getDataMessage().get();
       Recipient                conversation = getMessageDestination(content, message);
 
