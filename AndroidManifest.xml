@@ -299,7 +299,7 @@
     <activity android:name=".mediasend.MediaSendActivity"
               android:theme="@style/TextSecure.FullScreenMedia"
               android:windowSoftInputMode="stateHidden"
-              android:launchMode="singleTask"
+              android:launchMode="singleTop"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".PassphraseChangeActivity"
