@@ -322,14 +322,30 @@ class JobController {
 
   private @NonNull Job createJob(@NonNull JobSpec jobSpec, @NonNull List<ConstraintSpec> constraintSpecs) {
     Job.Parameters parameters = buildJobParameters(jobSpec, constraintSpecs);
-    Data           data       = dataSerializer.deserialize(jobSpec.getSerializedData());
-    Job            job        = jobInstantiator.instantiate(jobSpec.getFactoryKey(), parameters, data);
 
-    job.setRunAttempt(jobSpec.getRunAttempt());
-    job.setNextRunAttemptTime(jobSpec.getNextRunAttemptTime());
-    job.setContext(application);
+    try {
+      Data data = dataSerializer.deserialize(jobSpec.getSerializedData());
+      Job  job  = jobInstantiator.instantiate(jobSpec.getFactoryKey(), parameters, data);
 
-    return job;
+      job.setRunAttempt(jobSpec.getRunAttempt());
+      job.setNextRunAttemptTime(jobSpec.getNextRunAttemptTime());
+      job.setContext(application);
+
+      return job;
+    } catch (RuntimeException e) {
+      Log.e(TAG, "Failed to instantiate job! Failing it and its dependencies without calling Job#onCanceled. Crash imminent.");
+
+      List<String> failIds = Stream.of(jobStorage.getDependencySpecsThatDependOnJob(jobSpec.getId()))
+                                   .map(DependencySpec::getJobId)
+                                   .toList();
+
+      jobStorage.deleteJob(jobSpec.getId());
+      jobStorage.deleteJobs(failIds);
+
+      Log.e(TAG, "Failed " + failIds.size() + " dependent jobs.");
+
+      throw e;
+    }
   }
 
   private @NonNull Job.Parameters buildJobParameters(@NonNull JobSpec jobSpec, @NonNull List<ConstraintSpec> constraintSpecs) {
