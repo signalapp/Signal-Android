@@ -193,7 +193,7 @@ public final class LiveRecipient {
       List<Recipient> members  = Stream.of(groupRecord.get().getMembers()).filterNot(RecipientId::isUnknown).map(this::fetchRecipientFromDisk).toList();
       Optional<Long>  avatarId = Optional.absent();
 
-      if (settings.getGroupId() != null && GroupUtil.isMmsGroup(settings.getGroupId()) && title == null) {
+      if (settings.getGroupId() != null && !GroupUtil.isMmsGroup(settings.getGroupId()) && title == null) {
         title = unnamedGroupName;
       }
 
