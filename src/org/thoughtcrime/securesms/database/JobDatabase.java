@@ -18,12 +18,16 @@ import java.util.List;
 
 public class JobDatabase extends Database {
 
+  public static String JOBS_TABLE_NAME         = "job_spec";
+  public static String CONSTRAINTS_TABLE_NAME  = "constraint_spec";
+  public static String DEPENDENCIES_TABLE_NAME = "dependency_spec";
+
   public static final String[] CREATE_TABLE = new String[] { Jobs.CREATE_TABLE,
                                                              Constraints.CREATE_TABLE,
                                                              Dependencies.CREATE_TABLE };
 
   private static final class Jobs {
-    private static final String TABLE_NAME            = "job_spec";
+    private static final String TABLE_NAME            = JOBS_TABLE_NAME;
     private static final String ID                    = "_id";
     private static final String JOB_SPEC_ID           = "job_spec_id";
     private static final String FACTORY_KEY           = "factory_key";
@@ -54,7 +58,7 @@ public class JobDatabase extends Database {
   }
 
   private static final class Constraints {
-    private static final String TABLE_NAME  = "constraint_spec";
+    private static final String TABLE_NAME  = CONSTRAINTS_TABLE_NAME;
     private static final String ID          = "_id";
     private static final String JOB_SPEC_ID = "job_spec_id";
     private static final String FACTORY_KEY = "factory_key";
@@ -66,7 +70,7 @@ public class JobDatabase extends Database {
   }
 
   private static final class Dependencies {
-    private static final String TABLE_NAME             = "dependency_spec";
+    private static final String TABLE_NAME             = DEPENDENCIES_TABLE_NAME;
     private static final String ID                     = "_id";
     private static final String JOB_SPEC_ID            = "job_spec_id";
     private static final String DEPENDS_ON_JOB_SPEC_ID = "depends_on_job_spec_id";
