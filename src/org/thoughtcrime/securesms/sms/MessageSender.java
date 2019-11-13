@@ -35,6 +35,7 @@ import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
+import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobs.MmsSendJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
@@ -69,6 +70,8 @@ import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestSt
 import org.whispersystems.signalservice.loki.utilities.PromiseUtil;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import kotlin.Unit;
@@ -313,6 +316,7 @@ public class MessageSender {
     MultiDeviceUtilities.getAllDevicePublicKeysWithFriendStatus(context, recipientPublicKey).success(devices -> {
       int friendCount = MultiDeviceUtilities.getFriendCount(context, devices.keySet());
       Util.runOnMain(() -> {
+        ArrayList<Job> jobs = new ArrayList<>();
         for (Map.Entry<String, Boolean> entry : devices.entrySet()) {
           String devicePublicKey = entry.getKey();
           boolean isFriend = entry.getValue();
@@ -325,9 +329,9 @@ public class MessageSender {
             // We should also send a sync message if we haven't already sent one
             boolean shouldSendSyncMessage = !hasSentSyncMessage[0] && address.isPhone();
             if (type == MessageType.MEDIA) {
-              PushMediaSendJob.enqueue(context, jobManager, messageId, messageIDToUse, address, shouldSendSyncMessage);
+              jobs.add(new PushMediaSendJob(messageId, messageIDToUse, address, false, null, shouldSendSyncMessage));
             } else {
-              jobManager.add(new PushTextSendJob(messageId, messageIDToUse, address, shouldSendSyncMessage));
+              jobs.add(new PushTextSendJob(messageId, messageIDToUse, address, shouldSendSyncMessage));
             }
             if (shouldSendSyncMessage) { hasSentSyncMessage[0] = true; }
           } else {
@@ -336,11 +340,19 @@ public class MessageSender {
             boolean isFriendsWithAny = (friendCount > 0);
             String defaultFriendRequestMessage = isFriendsWithAny ? "Accept this friend request to enable messages to be synced across devices" : null;
             if (type == MessageType.MEDIA) {
-              PushMediaSendJob.enqueue(context, jobManager, messageId, messageIDToUse, address, true, defaultFriendRequestMessage, false);
+              jobs.add(new PushMediaSendJob(messageId, messageIDToUse, address, true, defaultFriendRequestMessage, false));
             } else {
-              jobManager.add(new PushTextSendJob(messageId, messageIDToUse, address, true, defaultFriendRequestMessage, false));
+              jobs.add(new PushTextSendJob(messageId, messageIDToUse, address, true, defaultFriendRequestMessage, false));
             }
           }
+        }
+
+        // Start the send
+        if (type == MessageType.MEDIA) {
+          PushMediaSendJob.enqueue(context, jobManager, (List<PushMediaSendJob>)(List)jobs);
+        } else {
+          // Schedule text send jobs
+          jobManager.startChain(jobs).enqueue();
         }
       });
       return Unit.INSTANCE;

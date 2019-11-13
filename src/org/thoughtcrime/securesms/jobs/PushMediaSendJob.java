@@ -49,6 +49,8 @@ import org.whispersystems.signalservice.loki.utilities.PromiseUtil;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -94,42 +96,48 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
     this.shouldSendSyncMessage = shouldSendSyncMessage;
   }
 
-  @WorkerThread
   public static void enqueue(@NonNull Context context, @NonNull JobManager jobManager, long messageId, @NonNull Address destination, boolean shouldSendSyncMessage) {
-    enqueue(context, jobManager, messageId, messageId, destination, shouldSendSyncMessage);
+    enqueue(context, jobManager, messageId, messageId, destination, false, null, shouldSendSyncMessage);
   }
 
-  @WorkerThread
-  public static void enqueue(@NonNull Context context, @NonNull JobManager jobManager, long templateMessageId, long messageId, @NonNull Address destination, boolean shouldSendSyncMessage) {
-    enqueue(context, jobManager, templateMessageId, messageId, destination, false, null, shouldSendSyncMessage);
-  }
-
-  @WorkerThread
   public static void enqueue(@NonNull Context context, @NonNull JobManager jobManager, long templateMessageId, long messageId, @NonNull Address destination, Boolean isFriendRequest, @Nullable String customFriendRequestMessage, boolean shouldSendSyncMessage) {
+    enqueue(context, jobManager, Collections.singletonList(new PushMediaSendJob(templateMessageId, messageId, destination, isFriendRequest, customFriendRequestMessage, shouldSendSyncMessage)));
+  }
+
+  @WorkerThread
+  public static void enqueue(@NonNull Context context, @NonNull JobManager jobManager, List<PushMediaSendJob> jobs) {
+    if (jobs.size() == 0) { return; }
+    PushMediaSendJob first = jobs.get(0);
+    long messageId = first.templateMessageId;
     try {
-      MmsDatabase          database    = DatabaseFactory.getMmsDatabase(context);
-      OutgoingMediaMessage message     = database.getOutgoingMessage(messageId);
-      List<Attachment>     attachments = new LinkedList<>();
-
-      attachments.addAll(message.getAttachments());
-      attachments.addAll(Stream.of(message.getLinkPreviews()).filter(p -> p.getThumbnail().isPresent()).map(p -> p.getThumbnail().get()).toList());
-      attachments.addAll(Stream.of(message.getSharedContacts()).filter(c -> c.getAvatar() != null).map(c -> c.getAvatar().getAttachment()).withoutNulls().toList());
-
-      List<AttachmentUploadJob> attachmentJobs = Stream.of(attachments).map(a -> new AttachmentUploadJob(((DatabaseAttachment) a).getAttachmentId(), destination)).toList();
+      List<AttachmentUploadJob> attachmentJobs = getAttachmentUploadJobs(context, messageId, first.destination);
 
       if (attachmentJobs.isEmpty()) {
-        jobManager.add(new PushMediaSendJob(templateMessageId, messageId, destination, isFriendRequest, customFriendRequestMessage, shouldSendSyncMessage));
+        for (PushMediaSendJob job : jobs) { jobManager.add(job); }
       } else {
         jobManager.startChain(attachmentJobs)
-                  .then(new PushMediaSendJob(templateMessageId, messageId, destination, isFriendRequest, customFriendRequestMessage, shouldSendSyncMessage))
-                  .enqueue();
+                .then((List<Job>)(List)jobs)
+                .enqueue();
       }
-
     } catch (NoSuchMessageException | MmsException e) {
       Log.w(TAG, "Failed to enqueue message.", e);
       DatabaseFactory.getMmsDatabase(context).markAsSentFailed(messageId);
       notifyMediaMessageDeliveryFailed(context, messageId);
     }
+  }
+
+  public static List<AttachmentUploadJob> getAttachmentUploadJobs(@NonNull Context context, long messageId, @NonNull Address destination)
+    throws NoSuchMessageException, MmsException
+  {
+    MmsDatabase database = DatabaseFactory.getMmsDatabase(context);
+    OutgoingMediaMessage message = database.getOutgoingMessage(messageId);
+    List<Attachment> attachments = new LinkedList<>();
+
+    attachments.addAll(message.getAttachments());
+    attachments.addAll(Stream.of(message.getLinkPreviews()).filter(p -> p.getThumbnail().isPresent()).map(p -> p.getThumbnail().get()).toList());
+    attachments.addAll(Stream.of(message.getSharedContacts()).filter(c -> c.getAvatar() != null).map(c -> c.getAvatar().getAttachment()).withoutNulls().toList());
+
+    return Stream.of(attachments).map(a -> new AttachmentUploadJob(((DatabaseAttachment) a).getAttachmentId(), destination)).toList();
   }
 
   @Override
