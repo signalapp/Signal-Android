@@ -658,7 +658,8 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         List<DeviceContact> devices = contactsInputStream.readAll();
         for (DeviceContact deviceContact : devices) {
           // Check if we have the contact as a friend and that we're not trying to sync our own device
-          Address address = Address.fromSerialized(deviceContact.getNumber());
+          String pubKey = deviceContact.getNumber();
+          Address address = Address.fromSerialized(pubKey);
           if (!address.isPhone() || address.toPhoneString().equalsIgnoreCase(TextSecurePreferences.getLocalNumber(context))) { continue; }
 
           /*
@@ -669,11 +670,13 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
           long threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
           LokiThreadFriendRequestStatus status = DatabaseFactory.getLokiThreadDatabase(context).getFriendRequestStatus(threadId);
           if (status == LokiThreadFriendRequestStatus.NONE || status == LokiThreadFriendRequestStatus.REQUEST_EXPIRED) {
-            MessageSender.sendBackgroundFriendRequest(context, deviceContact.getNumber(), "Accept this friend request to enable messages to be synced across devices");
-            Log.d("Loki", "Sent friend request to " + deviceContact.getNumber());
+            MessageSender.sendBackgroundFriendRequest(context, pubKey, "Accept this friend request to enable messages to be synced across devices");
+            Log.d("Loki", "Sent friend request to " + pubKey);
           } else if (status == LokiThreadFriendRequestStatus.REQUEST_RECEIVED) {
             // Accept the incoming friend request
-            becomeFriendsWithContact(deviceContact.getNumber(), false);
+            becomeFriendsWithContact(pubKey, false);
+            // Send them an accept message back
+            MessageSender.sendBackgroundMessage(context, pubKey);
             Log.d("Loki", "Became friends with " + deviceContact.getNumber());
           }
 
@@ -1386,10 +1389,17 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   private void handleDeliveryReceipt(@NonNull SignalServiceContent content,
                                      @NonNull SignalServiceReceiptMessage message)
   {
+    // Redirect message to primary device conversation
+    Address sender = Address.fromSerialized(content.getSender());
+    if (sender.isPhone()) {
+      Recipient primaryDevice = getPrimaryDeviceRecipient(content.getSender());
+      sender = primaryDevice.getAddress();
+    }
+
     for (long timestamp : message.getTimestamps()) {
       Log.i(TAG, String.format("Received encrypted delivery receipt: (XXXXX, %d)", timestamp));
       DatabaseFactory.getMmsSmsDatabase(context)
-                     .incrementDeliveryReceiptCount(new SyncMessageId(Address.fromSerialized(content.getSender()), timestamp), System.currentTimeMillis());
+                     .incrementDeliveryReceiptCount(new SyncMessageId(sender, timestamp), System.currentTimeMillis());
     }
   }
 
@@ -1398,11 +1408,19 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
                                  @NonNull SignalServiceReceiptMessage message)
   {
     if (TextSecurePreferences.isReadReceiptsEnabled(context)) {
+
+      // Redirect message to primary device conversation
+      Address sender = Address.fromSerialized(content.getSender());
+      if (sender.isPhone()) {
+        Recipient primaryDevice = getPrimaryDeviceRecipient(content.getSender());
+        sender = primaryDevice.getAddress();
+      }
+
       for (long timestamp : message.getTimestamps()) {
         Log.i(TAG, String.format("Received encrypted read receipt: (XXXXX, %d)", timestamp));
 
         DatabaseFactory.getMmsSmsDatabase(context)
-                       .incrementReadReceiptCount(new SyncMessageId(Address.fromSerialized(content.getSender()), timestamp), content.getTimestamp());
+                       .incrementReadReceiptCount(new SyncMessageId(sender, timestamp), content.getTimestamp());
       }
     }
   }
@@ -1424,6 +1442,8 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
       threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient);
     } else {
+      // See if we need to redirect the message
+      author = getPrimaryDeviceRecipient(content.getSender());
       threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(author);
     }
 
@@ -1598,10 +1618,17 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     }
   }
 
-  private Recipient getPrimaryDeviceRecipient(String recipient) {
+  /**
+   * Get the primary device recipient of the passed in device.
+   *
+   * If the device doesn't have a primary device then it will return the same device.
+   * If the device is our primary device then it will return our current device.
+   * Otherwise it will return the primary device.
+   */
+  private Recipient getPrimaryDeviceRecipient(String pubKey) {
     try {
-      String primaryDevice = LokiStorageAPI.shared.getPrimaryDevicePublicKey(recipient).get();
-      String publicKey = (primaryDevice != null) ? primaryDevice : recipient;
+      String primaryDevice = LokiStorageAPI.shared.getPrimaryDevicePublicKey(pubKey).get();
+      String publicKey = (primaryDevice != null) ? primaryDevice : pubKey;
       // If the public key matches our primary device then we need to forward the message to ourselves (Note to self)
       String ourPrimaryDevice = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
       if (ourPrimaryDevice != null && ourPrimaryDevice.equals(publicKey)) {
@@ -1610,7 +1637,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       return Recipient.from(context, Address.fromSerialized(publicKey), false);
     } catch (Exception e) {
       Log.d("Loki", "Failed to get primary device public key for message. " + e.getMessage());
-      return Recipient.from(context, Address.fromSerialized(recipient), false);
+      return Recipient.from(context, Address.fromSerialized(pubKey), false);
     }
   }
 

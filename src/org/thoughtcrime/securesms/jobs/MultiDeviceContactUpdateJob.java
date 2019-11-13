@@ -369,9 +369,6 @@ public class MultiDeviceContactUpdateJob extends BaseJob implements InjectableTy
       default: throw new AssertionError("Unknown state: " + identity.get().getVerifiedStatus());
     }
 
-    // Loki - For now always set to verified
-    state = VerifiedMessage.VerifiedState.VERIFIED;
-
     return Optional.of(new VerifiedMessage(destination, identityKey, state, System.currentTimeMillis()));
   }
 
