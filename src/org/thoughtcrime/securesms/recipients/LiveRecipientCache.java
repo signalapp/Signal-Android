@@ -85,8 +85,10 @@ public final class LiveRecipientCache {
 
         if (localUuid != null) {
           localRecipientId = recipientDatabase.getByUuid(localUuid).or(recipientDatabase.getByE164(localE164)).orNull();
-        } else {
+        } else if (localE164 != null) {
           localRecipientId = recipientDatabase.getByE164(localE164).orNull();
+        } else {
+          throw new AssertionError("Tried to call getSelf() before local data was set!");
         }
 
         if (localRecipientId == null) {

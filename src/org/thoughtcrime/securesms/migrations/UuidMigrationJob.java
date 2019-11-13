@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.migrations;
 
 import android.content.Context;
+import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 
@@ -52,8 +53,9 @@ public class UuidMigrationJob extends MigrationJob {
 
   @Override
   void performMigration() throws Exception {
-    if (!TextSecurePreferences.isPushRegistered(context)) {
+    if (!TextSecurePreferences.isPushRegistered(context) || TextUtils.isEmpty(TextSecurePreferences.getLocalNumber(context))) {
       Log.w(TAG, "Not registered! Skipping migration, as it wouldn't do anything.");
+      return;
     }
     
     fetchOwnUuid(context);
