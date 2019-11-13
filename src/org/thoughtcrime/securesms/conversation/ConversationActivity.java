@@ -329,7 +329,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   protected HidingLinearLayout     quickAttachmentToggle;
   protected HidingLinearLayout     inlineAttachmentToggle;
   private   InputPanel             inputPanel;
-  private   boolean                alwaysEnableInputPanel = false;
 
   private LinkPreviewViewModel         linkPreviewViewModel;
   private ConversationSearchViewModel  searchViewModel;
@@ -354,6 +353,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private ArrayList<Mention> mentions = new ArrayList<>();
   private String oldText = "";
 
+  // Multi Device
+  private   boolean isFriendsWithAnyDevice = false;
 
   @Override
   protected void onPreCreate() {
@@ -2204,13 +2205,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   private void updateInputPanel() {
     /*
-      alwaysEnableInputPanel caches whether we have enabled the input once.
+      isFriendsWithAnyDevice caches whether we are friends with any of the other users device.
 
       This stops the case where the input panel disables and enables rapidly.
         - This can occur when we are not friends with the current thread BUT multi-device tells us that we are friends with another one of their devices.
      */
-
-    if (recipient.isGroupRecipient() || isNoteToSelf() || alwaysEnableInputPanel) {
+    if (recipient.isGroupRecipient() || isNoteToSelf() || isFriendsWithAnyDevice) {
       setInputPanelEnabled(true);
       return;
     }
@@ -2220,13 +2220,23 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     boolean isPending = friendRequestStatus == LokiThreadFriendRequestStatus.REQUEST_SENDING || friendRequestStatus == LokiThreadFriendRequestStatus.REQUEST_SENT || friendRequestStatus == LokiThreadFriendRequestStatus.REQUEST_RECEIVED;
     setInputPanelEnabled(!isPending);
 
-    alwaysEnableInputPanel = friendRequestStatus == LokiThreadFriendRequestStatus.FRIENDS;
+    // We should always have the input panel enabled if we are friends with the current user
+    isFriendsWithAnyDevice = friendRequestStatus == LokiThreadFriendRequestStatus.FRIENDS;
 
-    // This promise correctly updates the UI for multidevice
-    if (friendRequestStatus != LokiThreadFriendRequestStatus.FRIENDS) {
-      MultiDeviceUtilities.shouldEnableUserInput(this, recipient).success(shouldEnableInput -> {
-        alwaysEnableInputPanel = shouldEnableInput;
-        setInputPanelEnabled(shouldEnableInput);
+    // Multi-device input logic
+    if (!isFriendsWithAnyDevice) {
+      // We should enable the input if we don't have any pending friend requests OR we are friends with a linked device
+      MultiDeviceUtilities.hasPendingFriendRequestWithAnyLinkedDevice(this, recipient).success(hasPendingRequests -> {
+        if (!hasPendingRequests) {
+          setInputPanelEnabled(true);
+        } else {
+          MultiDeviceUtilities.isFriendsWithAnyLinkedDevice(this, recipient).success(isFriends -> {
+            // If we are friend with any of the other devices then we want to make sure the input panel is always enabled for the duration of this conversation
+            isFriendsWithAnyDevice = isFriends;
+            setInputPanelEnabled(isFriends);
+            return Unit.INSTANCE;
+          });
+        }
         return Unit.INSTANCE;
       });
     }
@@ -2447,9 +2457,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void updateToggleButtonState() {
-    // Don't allow attachments if we're not friends
-    LokiThreadFriendRequestStatus friendRequestStatus = DatabaseFactory.getLokiThreadDatabase(this).getFriendRequestStatus(threadId);
-    if (!isNoteToSelf() && !recipient.isGroupRecipient() && friendRequestStatus != LokiThreadFriendRequestStatus.FRIENDS) {
+    // Don't allow attachments if we're not friends with any device
+    if (!isNoteToSelf() && !recipient.isGroupRecipient() && !isFriendsWithAnyDevice) {
       buttonToggle.display(sendButton);
       quickAttachmentToggle.hide();
       inlineAttachmentToggle.hide();

@@ -185,10 +185,3 @@ fun hasPendingFriendRequestWithAnyLinkedDevice(context: Context, recipient: Reci
     false
   }
 }
-
-fun shouldEnableUserInput(context: Context, recipient: Recipient): Promise<Boolean, Exception> {
-  // Input should be enabled if we don't have any pending requests OR we're friends with any linked device
-  return hasPendingFriendRequestWithAnyLinkedDevice(context, recipient).bind { hasPendingFriendRequest ->
-    if (!hasPendingFriendRequest) Promise.of(true) else isFriendsWithAnyLinkedDevice(context, recipient)
-  }.recover { true }
-}
