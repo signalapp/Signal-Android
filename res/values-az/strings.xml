@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <!-- Removed by excludeNonTranslatables <string name="app_name">Signal</string> -->
   <string name="yes">Bəli</string>
   <string name="no">Xeyr</string>
   <string name="delete">Sil</string>
@@ -10,7 +9,6 @@
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Yeni mesaj</string>
   <!--AlbumThumbnailView-->
-  <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus">\+%d</string> -->
   <!--ApplicationMigrationActivity-->
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Hal-hazırda: %s</string>
@@ -815,7 +813,7 @@
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Aşağıya sürüşdür</string>
   <!--country_selection_fragment-->
-  <string name="country_selection_fragment__loading_countries">Ölkələr yüklənir</string>
+  <string name="country_selection_fragment__loading_countries">Ölkələr yüklənir…</string>
   <string name="country_selection_fragment__search">Axtar</string>
   <!--device_add_fragment-->
   <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Cihazla bağlantı yaratmaq üçün nümayiş edilən QR şifrəni skan et</string>
@@ -1236,6 +1234,11 @@
   <string name="trimmer__deleting">Silinir</string>
   <string name="trimmer__deleting_old_messages">Köhnə mesajların silinməsi…</string>
   <string name="trimmer__old_messages_successfully_deleted">Köhnə mesajlar müvəffəqiyyətlə silindi</string>
+  <!--Insights-->
+  <string name="InsightsDashboardFragment__cancel">Ləğv et</string>
+  <string name="InsightsDashboardFragment__send">Göndər</string>
+  <string name="FirstInviteReminder__title">Signal-a dəvət et</string>
+  <string name="InsightsReminder__invite">Dəvət et</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ötürülmə ikonası</string>
   <string name="ConversationListFragment_loading">Yüklənir…</string>
@@ -1327,5 +1330,6 @@
   <string name="prompt_passphrase_activity__tap_to_unlock">Açmaq üçün toxun</string>
   <string name="RegistrationLockDialog_reminder">Xatırlatma:</string>
   <string name="recipient_preferences__about">Haqqında</string>
+  <string name="Recipient_unknown">Naməlum</string>
   <!--EOF-->
 </resources>

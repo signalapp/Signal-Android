@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <!-- Removed by excludeNonTranslatables <string name="app_name">Signal</string> -->
   <string name="yes">Si</string>
   <string name="no">Non</string>
   <string name="delete">Borrar</string>
@@ -10,7 +9,6 @@
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Nova mensaxe</string>
   <!--AlbumThumbnailView-->
-  <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus">\+%d</string> -->
   <!--ApplicationMigrationActivity-->
   <string name="ApplicationMigrationActivity__signal_is_updating">Signal está actualizándose…</string>
   <!--ApplicationPreferencesActivity-->
@@ -1301,6 +1299,11 @@
   <string name="trimmer__deleting">Borrando</string>
   <string name="trimmer__deleting_old_messages">Borrando as mensaxes antigas…</string>
   <string name="trimmer__old_messages_successfully_deleted">Mensaxes antigas borradas satisfactoriamente</string>
+  <!--Insights-->
+  <string name="InsightsDashboardFragment__cancel">Cancelar</string>
+  <string name="InsightsDashboardFragment__send">Enviar</string>
+  <string name="FirstInviteReminder__title">Convidar a Signal</string>
+  <string name="InsightsReminder__invite">Convidar</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icona do tráfico</string>
   <string name="ConversationListFragment_loading">Cargando…</string>
@@ -1395,5 +1398,6 @@
   <string name="prompt_passphrase_activity__tap_to_unlock">TOCA PARA DESBLOQUEAR</string>
   <string name="RegistrationLockDialog_reminder">Recordatorio:</string>
   <string name="recipient_preferences__about">Acerca de</string>
+  <string name="Recipient_unknown">Descoñecido</string>
   <!--EOF-->
 </resources>

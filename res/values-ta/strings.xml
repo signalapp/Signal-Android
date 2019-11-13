@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <!-- Removed by excludeNonTranslatables <string name="app_name">Signal</string> -->
   <string name="yes">ஆம்</string>
   <string name="no">இல்லை</string>
   <string name="delete">நீக்கு</string>
@@ -10,7 +9,6 @@
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">புதிய செய்தி</string>
   <!--AlbumThumbnailView-->
-  <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus">\+%d</string> -->
   <!--ApplicationMigrationActivity-->
   <string name="ApplicationMigrationActivity__signal_is_updating">Signal புதுப்பிக்கிறது …</string>
   <!--ApplicationPreferencesActivity-->
@@ -369,7 +367,7 @@
   <string name="InviteActivity_share">பகிர்</string>
   <string name="InviteActivity_choose_contacts">தொடர்புகளைத் தேர்வுசெய்க</string>
   <string name="InviteActivity_cancel">ரத்து செய் </string>
-  <string name="InviteActivity_sending">அனுப்படுகிறது…</string>
+  <string name="InviteActivity_sending">அனுப்புகிறது …</string>
   <string name="InviteActivity_heart_content_description">இதயம்</string>
   <string name="InviteActivity_invitations_sent">அழைப்புகள் அனுப்பட்டது!</string>
   <string name="InviteActivity_invite_to_signal">Signalக்கு அழை</string>
@@ -792,15 +790,15 @@
   <string name="attachment_type_selector__audio_description">ஒலி</string>
   <string name="attachment_type_selector__contact">தொடர்பு</string>
   <string name="attachment_type_selector__contact_description">தொடர்பு</string>
-  <string name="attachment_type_selector__camera">நிழற்படக்கருவி</string>
+  <string name="attachment_type_selector__camera">புகைப்பட கருவி</string>
   <string name="attachment_type_selector__camera_description">புகைப்பட கருவி</string>
   <string name="attachment_type_selector__location">இடம்</string>
   <string name="attachment_type_selector__location_description">இருப்பிடம்</string>
-  <string name="attachment_type_selector__gif">GIF,</string>
+  <string name="attachment_type_selector__gif">GIF</string>
   <string name="attachment_type_selector__gif_description">Gif</string>
   <string name="attachment_type_selector__gallery_description">படம் அல்லது வீடியோ</string>
   <string name="attachment_type_selector__file_description">கோப்பு</string>
-  <string name="attachment_type_selector__gallery">காட்சி கூடம்</string>
+  <string name="attachment_type_selector__gallery">கேலரி</string>
   <string name="attachment_type_selector__file">கோப்பு</string>
   <string name="attachment_type_selector__drawer_description">இணைப்பு அலமாரியை நிலைமாற்று</string>
   <!--change_passphrase_activity-->
@@ -1300,10 +1298,15 @@
   <string name="trimmer__deleting">நீக்கப்படுகிறது</string>
   <string name="trimmer__deleting_old_messages">பழையசெய்திகள் நீக்கப்படுகிறது…</string>
   <string name="trimmer__old_messages_successfully_deleted">பழையசெய்திகள் நீக்கப்பட்டது</string>
+  <!--Insights-->
+  <string name="InsightsDashboardFragment__cancel">ரத்து</string>
+  <string name="InsightsDashboardFragment__send">அனுப்புக</string>
+  <string name="FirstInviteReminder__title">Signal க்கு அழைக்கவும்</string>
+  <string name="InsightsReminder__invite">அழை</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">போக்குவரத்து குறும்படம்</string>
   <string name="ConversationListFragment_loading">ஏற்றுதல் …</string>
-  <string name="CallNotificationBuilder_connecting">இணைக்கப்படுகிறது…</string>
+  <string name="CallNotificationBuilder_connecting">இணைக்கிறது …</string>
   <string name="Permissions_permission_required">அனுமதி தேவை</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">எஸ்எம்எஸ் அனுப்ப Signal க்கு எஸ்எம்எஸ் அனுமதி தேவை, ஆனால் அது நிரந்தரமாக மறுக்கப்பட்டது. பயன்பாடு அமைப்புகளைத் தொடரவும், \"அனுமதிகள்\" என்பதைத் தேர்ந்தெடுத்து \"எஸ்எம்எஸ்\" ஐ இயக்கவும்.</string>
   <string name="Permissions_continue">தொடர்</string>
@@ -1394,5 +1397,6 @@
   <string name="prompt_passphrase_activity__tap_to_unlock">திறக்க தட்டவும் </string>
   <string name="RegistrationLockDialog_reminder">நினைவூட்டல்:</string>
   <string name="recipient_preferences__about">அறிமுகம்</string>
+  <string name="Recipient_unknown">தெரியாத</string>
   <!--EOF-->
 </resources>

@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <!-- Removed by excludeNonTranslatables <string name="app_name">Signal</string> -->
   <string name="yes">Jā</string>
   <string name="no">Nē</string>
   <string name="delete">Dzēst</string>
@@ -10,7 +9,6 @@
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Jauna ziņa</string>
   <!--AlbumThumbnailView-->
-  <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus">\+%d</string> -->
   <!--ApplicationMigrationActivity-->
   <string name="ApplicationMigrationActivity__signal_is_updating">Signal tiek atjaunots…</string>
   <!--ApplicationPreferencesActivity-->
@@ -395,7 +393,7 @@
   <string name="InviteActivity_no_app_to_share_to">Izkstās, ka tev nav nevienas aplikācijas, lai dalītos.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Draugi neļauj draugiem sazināties bez šifrēšanas.</string>
   <!--Job-->
-  <string name="Job_working_in_the_background">Strādā fonā..</string>
+  <string name="Job_working_in_the_background">Strādā fonā…</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Neizdevās nosūtīt</string>
   <string name="MessageDetailsRecipient_new_safety_number">Jauns drošības numurs</string>
@@ -1309,6 +1307,11 @@ Saņemts atslēgas apmaiņas ziņojums par nederīgu protokola versiju. </string
   <string name="trimmer__deleting">Dzēš</string>
   <string name="trimmer__deleting_old_messages">Izdzēst vecās ziņas</string>
   <string name="trimmer__old_messages_successfully_deleted">Vecās ziņas veiksmīgi izdzēstas</string>
+  <!--Insights-->
+  <string name="InsightsDashboardFragment__cancel">Atcelt</string>
+  <string name="InsightsDashboardFragment__send">Sūtīt</string>
+  <string name="FirstInviteReminder__title">Uzaicināt uz Signal</string>
+  <string name="InsightsReminder__invite">Uzacināt</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transporta ikona</string>
   <string name="ConversationListFragment_loading">Lādē…</string>
@@ -1400,5 +1403,6 @@ Saņemts atslēgas apmaiņas ziņojums par nederīgu protokola versiju. </string
   <string name="prompt_passphrase_activity__tap_to_unlock">PIESKARIES, LAI ATBLOĶĒTU</string>
   <string name="RegistrationLockDialog_reminder">Atgādinājums:</string>
   <string name="recipient_preferences__about">Par</string>
+  <string name="Recipient_unknown">Nezināms</string>
   <!--EOF-->
 </resources>

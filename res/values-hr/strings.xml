@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <!-- Removed by excludeNonTranslatables <string name="app_name">Signal</string> -->
   <string name="yes">Da</string>
   <string name="no">Ne</string>
   <string name="delete">Obriši</string>
@@ -10,7 +9,6 @@
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Nova poruka</string>
   <!--AlbumThumbnailView-->
-  <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus">\+%d</string> -->
   <!--ApplicationMigrationActivity-->
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Trenutno: %s</string>
@@ -1293,6 +1291,11 @@ Uvezi nekriptiranu kopiju. Kompatibilno s \'SMSBackup And Restore\'.</string>
   <string name="trimmer__deleting">Brisanje</string>
   <string name="trimmer__deleting_old_messages">Brisanje starih poruka…</string>
   <string name="trimmer__old_messages_successfully_deleted">Stare poruke su uspješno obrisane</string>
+  <!--Insights-->
+  <string name="InsightsDashboardFragment__cancel">Odustani</string>
+  <string name="InsightsDashboardFragment__send">Šalji</string>
+  <string name="FirstInviteReminder__title">Pozovi u Signal</string>
+  <string name="InsightsReminder__invite">Pozivnica</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona transporta</string>
   <string name="ConversationListFragment_loading">Učitavanje…</string>
@@ -1384,5 +1387,6 @@ Uvezi nekriptiranu kopiju. Kompatibilno s \'SMSBackup And Restore\'.</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">DODIRNI ZA OTKLJUČAVANJE</string>
   <string name="RegistrationLockDialog_reminder">Podsjetnik:</string>
   <string name="recipient_preferences__about">O aplikaciji</string>
+  <string name="Recipient_unknown">Nepoznato</string>
   <!--EOF-->
 </resources>

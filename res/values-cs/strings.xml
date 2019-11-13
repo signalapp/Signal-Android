@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <!-- Removed by excludeNonTranslatables <string name="app_name">Signal</string> -->
   <string name="yes">Ano</string>
   <string name="no">Ne</string>
   <string name="delete">Smazat</string>
@@ -10,7 +9,6 @@
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Nová zpráva</string>
   <!--AlbumThumbnailView-->
-  <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus">\+ %d</string> -->
   <!--ApplicationMigrationActivity-->
   <string name="ApplicationMigrationActivity__signal_is_updating">Signal se aktualizuje…</string>
   <!--ApplicationPreferencesActivity-->
@@ -397,7 +395,7 @@
   <string name="InviteActivity_share">Sdílet</string>
   <string name="InviteActivity_choose_contacts">Vyberte kontakty</string>
   <string name="InviteActivity_cancel">Storno</string>
-  <string name="InviteActivity_sending">Odesílám…</string>
+  <string name="InviteActivity_sending">Odesílaní…</string>
   <string name="InviteActivity_heart_content_description">Srdíčko</string>
   <string name="InviteActivity_invitations_sent">Pozvánka odeslána!</string>
   <string name="InviteActivity_invite_to_signal">Pozvat do Signalu</string>
@@ -1068,7 +1066,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Pokud chcete zkontrolovat bezpečnost šifrované komunikace s %s, porovnejte čísla nahoře na vašem zařízení s čísly na zařízení vašeho kontaktu. Můžete také oskenovat kód na jeho telefonu, nebo jej požádat, aby oskenoval kód na vašem zařízení. <a href="https://signal.org/redirect/safety-numbers">Zjistěte více o kontrolních kódech.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Klepnutím skenovat</string>
-  <string name="verify_display_fragment__loading">Načítám…</string>
+  <string name="verify_display_fragment__loading">Načítání…</string>
   <string name="verify_display_fragment__verified">Ověřeno</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Sdílet bezpečnostní kód</string>
@@ -1353,10 +1351,15 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="trimmer__deleting">Mažu</string>
   <string name="trimmer__deleting_old_messages">Mazání starých zpráv…</string>
   <string name="trimmer__old_messages_successfully_deleted">Staré zprávy byly úspěšně smazány.</string>
+  <!--Insights-->
+  <string name="InsightsDashboardFragment__cancel">Storno</string>
+  <string name="InsightsDashboardFragment__send">Odeslat</string>
+  <string name="FirstInviteReminder__title">Pozvat do Signalu</string>
+  <string name="InsightsReminder__invite">Pozvánka</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikona přenosu</string>
-  <string name="ConversationListFragment_loading">Načítám…</string>
-  <string name="CallNotificationBuilder_connecting">Probíhá připojování…</string>
+  <string name="ConversationListFragment_loading">Načítání…</string>
+  <string name="CallNotificationBuilder_connecting">Připojování…</string>
   <string name="Permissions_permission_required">Vyžadovaná oprávnění</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signál potřebuje oprávnění pro přístup k SMS aby mohl posílat SMS zprávy, ale toto oprávnění je nyní zakázáno. Prosím pokračujte do menu nastavení aplikací, vyberte \"Oprávnění\" a povolte \"SMS\".
 </string>
@@ -1448,5 +1451,6 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">Klepnutím odemkněte</string>
   <string name="RegistrationLockDialog_reminder">Připomínka:</string>
   <string name="recipient_preferences__about">Info o</string>
+  <string name="Recipient_unknown">Neznámý</string>
   <!--EOF-->
 </resources>

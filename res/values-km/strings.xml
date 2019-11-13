@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <!-- Removed by excludeNonTranslatables <string name="app_name"> Signal</string> -->
   <string name="yes">មែន</string>
   <string name="no">ទេ</string>
   <string name="delete">លុប</string>
@@ -10,7 +9,6 @@
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">សារថ្មី</string>
   <!--AlbumThumbnailView-->
-  <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus">\+%d</string> -->
   <!--ApplicationMigrationActivity-->
   <string name="ApplicationMigrationActivity__signal_is_updating">Signal កំពុងធ្វើបច្ចុប្បន្នភាព…</string>
   <!--ApplicationPreferencesActivity-->
@@ -413,7 +411,7 @@
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">ចុចដើម្បីជ្រើសរើស</string>
   <!--MediaSendActivity-->
-  <string name="MediaSendActivity_add_a_caption">ដាក់ចំណងជើង…</string>
+  <string name="MediaSendActivity_add_a_caption">ដាក់ចំណងជើងមួយ…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">ចំណុចមួយត្រូវបានលុបចេញព្រោះវាលើសពីទំហំកំណត់</string>
   <string name="MediaSendActivity_camera_unavailable">កាមេរ៉ាមិនដំណើរការ</string>
   <string name="MediaSendActivity_message_to_s">សារទៅកាន់ %s</string>
@@ -1265,10 +1263,15 @@
   <string name="trimmer__deleting">កំពុងលុប</string>
   <string name="trimmer__deleting_old_messages">កំពុងលុបសារចាស់ៗ…</string>
   <string name="trimmer__old_messages_successfully_deleted">សារចាស់ៗត្រូវបានលុបចេញដោយជោគជ័យ</string>
+  <!--Insights-->
+  <string name="InsightsDashboardFragment__cancel">បោះបង់</string>
+  <string name="InsightsDashboardFragment__send">ផ្ញើ</string>
+  <string name="FirstInviteReminder__title">អញ្ជើញចូលប្រើSignal</string>
+  <string name="InsightsReminder__invite">អញ្ជើញ</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">រូបសញ្ញាជញ្ជូន</string>
   <string name="ConversationListFragment_loading">កំពុងផ្ទុក…</string>
-  <string name="CallNotificationBuilder_connecting">កំពុងភ្ជាប់…</string>
+  <string name="CallNotificationBuilder_connecting">កំពុងតភ្ជាប់…</string>
   <string name="Permissions_permission_required">ទាមទារការអនុញ្ញាត</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signalត្រូវការសិទ្ធិប្រើប្រាស់សារ SMS ដើម្បីផ្ញើសារ SMS ប៉ុន្តែវាត្រូវបានបដិសេធរហូត។ សូមបន្តទៅកាន់ ការកំណត់ ជ្រើសរើស \"ការអនុញ្ញាត\" និងបើក \"សារ SMS\"។</string>
   <string name="Permissions_continue">បន្ត</string>
@@ -1359,5 +1362,6 @@
   <string name="prompt_passphrase_activity__tap_to_unlock">ចុច ដើម្បីដោះសោរ</string>
   <string name="RegistrationLockDialog_reminder">ក្រើនរំលឹក៖</string>
   <string name="recipient_preferences__about">អំពី</string>
+  <string name="Recipient_unknown">មិនស្គាល់</string>
   <!--EOF-->
 </resources>

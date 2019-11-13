@@ -1,16 +1,14 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <!-- Removed by excludeNonTranslatables <string name="app_name">Signal</string> -->
   <string name="yes">Sì</string>
   <string name="no">No</string>
   <string name="delete">Cancella</string>
-  <string name="please_wait">Attendere…</string>
+  <string name="please_wait">Attendere prego…</string>
   <string name="save">Salva</string>
   <string name="note_to_self">Note personali</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Nuovo messaggio</string>
   <!--AlbumThumbnailView-->
-  <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus">\+%d</string> -->
   <!--ApplicationMigrationActivity-->
   <string name="ApplicationMigrationActivity__signal_is_updating">Signal si sta aggiornando…</string>
   <!--ApplicationPreferencesActivity-->
@@ -217,15 +215,15 @@
     <item quantity="other">Salvataggio %1$d allegati</item>
   </plurals>
   <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-    <item quantity="one">Salvataggio allegato in memoria…</item>
-    <item quantity="other">Salvataggio %1$d allegati in memoria…</item>
+    <item quantity="one">Salvataggio di un allegato in memoria…</item>
+    <item quantity="other">Salvataggio di %1$d allegati in memoria…</item>
   </plurals>
-  <string name="ConversationFragment_pending">In sospeso…</string>
+  <string name="ConversationFragment_pending">In attesa…</string>
   <string name="ConversationFragment_push">Dati (Signal)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Cancellazione</string>
-  <string name="ConversationFragment_deleting_messages">Cancellazione messaggi…</string>
+  <string name="ConversationFragment_deleting_messages">Eliminazione messaggi…</string>
   <string name="ConversationFragment_quoted_message_not_found">Messaggio originale non trovato</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Messaggio originale non più disponibile</string>
   <string name="ConversationFragment_failed_to_open_message">Apertura messaggio fallita</string>
@@ -244,7 +242,7 @@
     <item quantity="other">Saranno eliminati definitivamente i %1$d messaggi selezionati.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">Eliminazione</string>
-  <string name="ConversationListFragment_deleting_selected_conversations">Eliminazione delle conversazioni selezionate…</string>
+  <string name="ConversationListFragment_deleting_selected_conversations">Eliminazione conversazioni selezionate…</string>
   <plurals name="ConversationListFragment_conversations_archived">
     <item quantity="one">Conversazione archiviata</item>
     <item quantity="other">%d conversazioni archiviate</item>
@@ -329,7 +327,7 @@
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Puoi disattivare o attivare questa funzione in qualsiasi momento nelle impostazioni di Signal (Privacy &gt; Invia anteprime dei link).</string>
   <string name="ExperienceUpgradeActivity_got_it">Capito</string>
   <!--GcmBroadcastReceiver-->
-  <string name="GcmBroadcastReceiver_retrieving_a_message">Reperimento di un messaggio…</string>
+  <string name="GcmBroadcastReceiver_retrieving_a_message">Recupero di un messaggio…</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Comunicazione Signal fallita definitivamente!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal è stato impossibilitato a registrarsi con i sevizi di Google Play.
@@ -351,7 +349,7 @@ I suoi messaggi e le chiamate sono state disabilitate, si prega di provare e ri-
   <string name="GroupCreateActivity_avatar_content_description">Avatar del gruppo</string>
   <string name="GroupCreateActivity_menu_apply_button">Applica</string>
   <string name="GroupCreateActivity_creating_group">Creo %1$s…</string>
-  <string name="GroupCreateActivity_updating_group">Aggiornamento %1$s…</string>
+  <string name="GroupCreateActivity_updating_group">Aggiornando %1$s…</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Impossibile aggiungere %1$s perché non è un utente di Signal.</string>
   <string name="GroupCreateActivity_loading_group_details">Caricamento dettagli del gruppo…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Sei già nel gruppo.</string>
@@ -370,7 +368,7 @@ I suoi messaggi e le chiamate sono state disabilitate, si prega di provare e ri-
   <string name="InviteActivity_share">Condividi</string>
   <string name="InviteActivity_choose_contacts">Scegli contatti</string>
   <string name="InviteActivity_cancel">Annulla</string>
-  <string name="InviteActivity_sending">Invio…</string>
+  <string name="InviteActivity_sending">Invio in corso…</string>
   <string name="InviteActivity_heart_content_description">Cuore</string>
   <string name="InviteActivity_invitations_sent">Inviti mandati!</string>
   <string name="InviteActivity_invite_to_signal">Invita su Signal</string>
@@ -386,7 +384,7 @@ I suoi messaggi e le chiamate sono state disabilitate, si prega di provare e ri-
   <string name="InviteActivity_no_app_to_share_to">Sembra che tu non abbia alcune applicazioni per condividere.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Gli amici non lasciano che gli amici chattino senza crittografia.</string>
   <!--Job-->
-  <string name="Job_working_in_the_background">Funzionamento in secondo piano…</string>
+  <string name="Job_working_in_the_background">Lavorando in background…</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">Invio fallito</string>
   <string name="MessageDetailsRecipient_new_safety_number">Nuovo codice di sicurezza</string>
@@ -410,7 +408,7 @@ I suoi messaggi e le chiamate sono state disabilitate, si prega di provare e ri-
     <item quantity="other">Tutti i %1$d messaggi selezionati verranno eliminati definitivamente.</item>
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Cancellazione</string>
-  <string name="MediaOverviewActivity_Media_delete_progress_message">Cancellazione messaggi…</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">Eliminazione messaggi…</string>
   <string name="MediaOverviewActivity_Documents">Documenti</string>
   <string name="MediaOverviewActivity_Select_all">Seleziona tutto</string>
   <string name="MediaOverviewActivity_collecting_attachments">Recupero allegati…</string>
@@ -448,7 +446,7 @@ I suoi messaggi e le chiamate sono state disabilitate, si prega di provare e ri-
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Tutti i file multimediali</string>
   <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Hai ricevuto un messaggio cifrato usando una vecchia versione di Signal che non è più supportata. Ti preghiamo di chiedere al mittente di aggiornare l\'app e rimandare il messaggio.</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Hai ricevuto un messaggio criptato usando una vecchia versione di Signal che non è più supportata. Per favore chiedi al mittente di aggiornare alla versione più recente e di inviare nuovamente il messaggio.</string>
   <string name="MessageRecord_left_group">Hai lasciato il gruppo.</string>
   <string name="MessageRecord_you_updated_group">Hai aggiornato il gruppo.</string>
   <string name="MessageRecord_you_called">Hai chiamato</string>
@@ -677,7 +675,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Il tuo contatto sta usando una vecchia versione di Signal. Chiedigli cortesemente di aggiornarla prima di verificare il codice di sicurezza.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Il tuo contatto sta eseguendo una versione più aggiornata di Signal con un formato di codice QR non compatibile. Per effettuare il confronto aggiorna la tua versione.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Il codice QR letto non è un codice di verifica formalmente valido per un codice di sicurezza. Si prega di rieseguire la scansione.</string>
-  <string name="VerifyIdentityActivity_share_safety_number_via">Condividi il codice di sicurezza tramite…</string>
+  <string name="VerifyIdentityActivity_share_safety_number_via">Condividi codice di sicurezza tramite…</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">I nostri codice di sicurezza Signal:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Sembra che tu non abbia alcune applicazioni per condividere.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Negli appunti non c\'è un codice di sicurezza da confrontare.</string>
@@ -685,11 +683,11 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Impossibile scannerizzare QR code senza il permesso della fotocamera</string>
   <!--ViewOnceMessageActivity-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Cifratura messaggio non valida</string>
-  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Messaggio cifrato per una sessione non esistente…</string>
+  <string name="MessageDisplayHelper_bad_encrypted_message">Crittografia messaggio non valida</string>
+  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Messaggio criptato per una sessione non esistente</string>
   <!--MmsMessageRecord-->
-  <string name="MmsMessageRecord_bad_encrypted_mms_message">Cifratura MMS non valida</string>
-  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Messaggio MMS cifrato per una sessione non esistente</string>
+  <string name="MmsMessageRecord_bad_encrypted_mms_message">Crittografia MMS non valida</string>
+  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Messaggio MMS criptato per una sessione non esistente</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Silenzia notifiche</string>
   <!--OutdatedBuildReminder-->
@@ -869,7 +867,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Salta alla fine</string>
   <!--country_selection_fragment-->
-  <string name="country_selection_fragment__loading_countries">Caricamento dei paese…</string>
+  <string name="country_selection_fragment__loading_countries">Caricamento paesi…</string>
   <string name="country_selection_fragment__search">Cerca</string>
   <!--device_add_fragment-->
   <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Scansiona il codice QR visualizzato sul dispositivo da collegare</string>
@@ -1015,7 +1013,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="unknown_sender_view__add_to_contacts">AGGIUNTI AI CONTATTI</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">NON AGGIUNGERE, MA RENDI IL MIO PROFILO VISIBILE</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Se desideri verificare la sicurezza della tua cifratura con %s, confronta il numero sopra con il numero sul suo dispositivo. Altrimenti, puoi scansionare il codice sul suo telefono o viceversa. <a href="https://signal.org/redirect/safety-numbers">Maggiori informazioni.</a>]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Se desideri verificare la sicurezza della tua crittografia con %s, confronta il numero sopra con il numero sul suo dispositivo. Altrimenti, puoi scansionare il codice sul suo telefono o chiedergli di scansionare il tuo codice. <a href="https://signal.org/redirect/safety-numbers">Maggiori informazioni.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Tocca per la scansione</string>
   <string name="verify_display_fragment__loading">Caricamento…</string>
   <string name="verify_display_fragment__verified">Verificato</string>
@@ -1129,7 +1127,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="preferences__advanced_mms_access_point_names">Impostazioni manuali MMS</string>
   <string name="preferences__mmsc_url">URL MMSC</string>
   <string name="preferences__mms_proxy_host">MMS Host Proxy</string>
-  <string name="preferences__mms_proxy_port">MMS Porta Proxy </string>
+  <string name="preferences__mms_proxy_port">MMS Porta Proxy</string>
   <string name="preferences__mmsc_username">MMSC Username</string>
   <string name="preferences__mmsc_password">MMSC Password</string>
   <string name="preferences__sms_delivery_reports">Rapporti di consegna SMS</string>
@@ -1216,8 +1214,8 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <!--conversation_list_batch-->
   <string name="conversation_list_batch__menu_delete_selected">Elimina selezionati</string>
   <string name="conversation_list_batch__menu_select_all">Seleziona tutto</string>
-  <string name="conversation_list_batch_archive__menu_archive_selected">Archivia queste conversazioni</string>
-  <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Non archiviate selezionato</string>
+  <string name="conversation_list_batch_archive__menu_archive_selected">Archivia</string>
+  <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Estrai dall\'archivio</string>
   <!--conversation_list-->
   <string name="conversation_list_settings_shortcut">Scorciatoia impostazioni</string>
   <string name="conversation_list_search_description">Cerca</string>
@@ -1225,7 +1223,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="conversation_list_item_view__contact_photo_image">Foto del contatto</string>
   <string name="conversation_list_item_view__archived">Archiviate</string>
   <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Inbox vuoootaaa</string>
-  <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Zero. Niente. Nada.\nSei a posto così! </string>
+  <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Zero. Niente. Nada.\nSei a posto così!</string>
   <!--conversation_list_fragment-->
   <string name="conversation_list_fragment__fab_content_description">Nuova conversazione</string>
   <string name="conversation_list_fragment__open_camera_description">Apri Fotocamera</string>
@@ -1274,7 +1272,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="reminder_header_sms_default_title">Usa come app per tutti gli SMS</string>
   <string name="reminder_header_sms_default_text">Tocca per usare Signal come applicazione di default per gli SMS.</string>
   <string name="reminder_header_sms_import_title">Importa gli SMS di sistema</string>
-  <string name="reminder_header_sms_import_text">Tocca per copiare i messaggi SMS del tuo telefono nel database cifrato di Signal</string>
+  <string name="reminder_header_sms_import_text">Tocca per copiare i messaggi SMS del tuo telefono nel database criptato di Signal.</string>
   <string name="reminder_header_push_title">Attiva i messaggi e le chiamate con Signal</string>
   <string name="reminder_header_push_text">Migliora la tua esperienza messaggi.</string>
   <string name="reminder_header_invite_title">Invita su Signal</string>
@@ -1283,6 +1281,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="reminder_header_share_text">Più amici usano Signal, più migliora.</string>
   <string name="reminder_header_service_outage_text">Signal sta riscontrando problemi tecnici. Stiamo lavorando per ripristinare il servizio nel minor tempo possibile.</string>
   <string name="reminder_header_the_latest_signal_features_wont_work">Le ultime funzionalità di Signal non funzionano in questa versione di Android. Aggiorna il dispositivo per ricevere i futuri aggiornamenti di Signal.</string>
+  <string name="reminder_header_progress">%1$d%%</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Salva</string>
   <string name="media_preview__forward_title">Inoltra</string>
@@ -1296,12 +1295,38 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <!--redphone_audio_popup_menu-->
   <!--Trimmer-->
   <string name="trimmer__deleting">Cancellazione</string>
-  <string name="trimmer__deleting_old_messages">Cancellazione vecchi messaggi…</string>
+  <string name="trimmer__deleting_old_messages">Eliminazione vecchi messaggi…</string>
   <string name="trimmer__old_messages_successfully_deleted">Vecchi messaggi cancellati con successo</string>
+  <!--Insights-->
+  <string name="Insights__percent">%</string>
+  <string name="Insights__title">Statistiche</string>
+  <string name="InsightsDashboardFragment__title">Statistiche</string>
+  <string name="InsightsDashboardFragment__tagline">Il %1$d%% dei tuoi messaggi in uscita negli ultimi 7 giorni sono stati crittografati end-to-end con il Protocollo Signal.</string>
+  <string name="InsightsDashboardFragment__boost_your_signal">Aumenta il tuo Signal</string>
+  <string name="InsightsDashboardFragment__100_title">Il tuo Signal è potente</string>
+  <string name="InsightsDashboardFragment__no_signal_yet">Nessun Signal (ancora)</string>
+  <string name="InsightsDashboardFragment__youre_just_getting_started">Hai appena iniziato. Le statistiche saranno visualizzate dopo che hai inviato alcuni messaggi.</string>
+  <string name="InsightsDashboardFragment__start_a_conversation">Inizia una conversazione</string>
+  <string name="InsightsDashboardFragment__100_description">L\'avanzata tecnologia di protezione della privacy di Signal ha automaticamente protetto tutti i tuoi recenti messaggi in uscita.</string>
+  <string name="InsightsDashboardFragment__invite_your_contacts">Inizia a comunicare in modo sicuro e attiva nuove funzionalità che vanno oltre le limitazioni dei messaggi SMS non criptati invitando più contatti a unirsi a Signal.</string>
+  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Questa statistica è generata localmente sul tuo dispositivo e può essere vista solo da te. Non è mai trasmessa da nessuna parte.</string>
+  <string name="InsightsDashboardFragment__encrypted_messages">Messaggi criptati</string>
+  <string name="InsightsDashboardFragment__cancel">Annulla</string>
+  <string name="InsightsDashboardFragment__send">Invia</string>
+  <string name="InsightsDashboardFragment__not_using_signal_yet">Non utilizza ancora Signal</string>
+  <string name="InsightsModalFragment__title">Ti presentiamo le statistiche</string>
+  <string name="InsightsModalFragment__description">Scopri quanti dei tuoi messaggi in uscita sono stati inviati in modo sicuro, quindi invita rapidamente nuovi contatti per aumentare la tua percentuale di Signal.</string>
+  <string name="InsightsModalFragment__view_insights">Visualizza statistiche</string>
+  <string name="FirstInviteReminder__title">Invita a Signal</string>
+  <string name="FirstInviteReminder__description">Puoi aumentare il numero di messaggi criptati che hai inviato del %1$d%%</string>
+  <string name="SecondInviteReminder__title">Aumenta il tuo Signal</string>
+  <string name="SecondInviteReminder__description">Invita %1$s</string>
+  <string name="InsightsReminder__view_insights">Visualizza statistiche</string>
+  <string name="InsightsReminder__invite">Invita</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icona trasporto</string>
   <string name="ConversationListFragment_loading">Caricamento…</string>
-  <string name="CallNotificationBuilder_connecting">Connessione in corso…</string>
+  <string name="CallNotificationBuilder_connecting">Connessione…</string>
   <string name="Permissions_permission_required">Autorizzazione necessaria</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal necessita l\'accesso agli SMS per poterli inviare, ma è stato negato in modo permanente. Si prega di continuare con le impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"SMS\".</string>
   <string name="Permissions_continue">Continua</string>
@@ -1327,7 +1352,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="RegistrationActivity_backup_failure_downgrade">Impossibile importare backup da versioni più recenti di Signal</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">Passphrase del backup errata</string>
   <string name="RegistrationActivity_checking">Controllo…</string>
-  <string name="RegistrationActivity_d_messages_so_far">Ancora %d messaggi …</string>
+  <string name="RegistrationActivity_d_messages_so_far">Ancora %d messaggi…</string>
   <string name="RegistrationActivity_restore_from_backup">Ripristinare da backup?</string>
   <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Ripristina i tuoi messaggi e contenuti multimediali da un backup locale. Se non lo ripristini ora, non sarai in grado di ripristinarlo in seguito</string>
   <string name="RegistrationActivity_backup_size_s">Dimensione backup: %s</string>
@@ -1392,5 +1417,6 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="prompt_passphrase_activity__tap_to_unlock">TOCCA PER SBLOCCARE</string>
   <string name="RegistrationLockDialog_reminder">Promemoria:</string>
   <string name="recipient_preferences__about">A riguardo</string>
+  <string name="Recipient_unknown">Sconosciuto</string>
   <!--EOF-->
 </resources>

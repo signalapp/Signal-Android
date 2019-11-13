@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <!-- Removed by excludeNonTranslatables <string name="app_name">Signal</string> -->
   <string name="yes">はい</string>
   <string name="no">いいえ</string>
   <string name="delete">削除</string>
@@ -10,7 +9,6 @@
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">新着メッセージ</string>
   <!--AlbumThumbnailView-->
-  <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus">\+%d</string> -->
   <!--ApplicationMigrationActivity-->
   <string name="ApplicationMigrationActivity__signal_is_updating">Signalをアップデート中</string>
   <!--ApplicationPreferencesActivity-->
@@ -355,7 +353,7 @@
   <string name="InviteActivity_share">シェア</string>
   <string name="InviteActivity_choose_contacts">連絡先を選んでください</string>
   <string name="InviteActivity_cancel">キャンセル</string>
-  <string name="InviteActivity_sending">送信中…</string>
+  <string name="InviteActivity_sending">送信しています…</string>
   <string name="InviteActivity_heart_content_description">ハート</string>
   <string name="InviteActivity_invitations_sent">招待状を送りました</string>
   <string name="InviteActivity_invite_to_signal">Signalに招待する</string>
@@ -413,7 +411,7 @@
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">タップで選択</string>
   <!--MediaSendActivity-->
-  <string name="MediaSendActivity_add_a_caption">キャプション追加…</string>
+  <string name="MediaSendActivity_add_a_caption">キャプションの追加…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">サイズの上限を超えたため、項目が削除されました。</string>
   <string name="MediaSendActivity_camera_unavailable">カメラは利用できません。</string>
   <string name="MediaSendActivity_message_to_s">%s へメッセージ</string>
@@ -981,7 +979,7 @@
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[%sに対する暗号化を検証したい場合は、上記の番号が相手端末上の番号と一致するか確認してください。あるいは相手の端末上のQRコードを読み取るか、こちらのQRコードを相手に読み取ってもらうこともできます。<a href="https://signal.org/redirect/safety-numbers">詳細</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">タップしてスキャンする</string>
-  <string name="verify_display_fragment__loading">取得中…</string>
+  <string name="verify_display_fragment__loading">読み込んでいます…</string>
   <string name="verify_display_fragment__verified">検証済み</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">安全番号を共有する</string>
@@ -1260,10 +1258,15 @@
   <string name="trimmer__deleting">削除中</string>
   <string name="trimmer__deleting_old_messages">古いメッセージを削除しています…</string>
   <string name="trimmer__old_messages_successfully_deleted">古いメッセージを削除しました</string>
+  <!--Insights-->
+  <string name="InsightsDashboardFragment__cancel">キャンセル</string>
+  <string name="InsightsDashboardFragment__send">送信</string>
+  <string name="FirstInviteReminder__title">Signalに招待する</string>
+  <string name="InsightsReminder__invite">招待する</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">転送アイコン</string>
-  <string name="ConversationListFragment_loading">読込中…</string>
-  <string name="CallNotificationBuilder_connecting">接続中…</string>
+  <string name="ConversationListFragment_loading">読み込んでいます…</string>
+  <string name="CallNotificationBuilder_connecting">接続しています…</string>
   <string name="Permissions_permission_required">アクセス許可が必要です</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">SignalでSMSを送信するには、SMSへのアクセスを許可する必要がありますが、無効になっています。アプリ設定メニューから、『アプリの権限』を選び、『SMS』へのアクセス許可を有効にしてください。</string>
   <string name="Permissions_continue">続行</string>
@@ -1354,5 +1357,6 @@
   <string name="prompt_passphrase_activity__tap_to_unlock">タップしてロック解除</string>
   <string name="RegistrationLockDialog_reminder">備忘:</string>
   <string name="recipient_preferences__about">Signalについて</string>
+  <string name="Recipient_unknown">不明</string>
   <!--EOF-->
 </resources>

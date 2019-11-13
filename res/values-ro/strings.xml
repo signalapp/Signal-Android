@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <!-- Removed by excludeNonTranslatables <string name="app_name">Signal</string> -->
   <string name="yes">Da</string>
   <string name="no">Nu</string>
   <string name="delete">Ștergeți</string>
@@ -10,7 +9,6 @@
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Mesaj nou</string>
   <!--AlbumThumbnailView-->
-  <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus">\+%d</string> -->
   <!--ApplicationMigrationActivity-->
   <string name="ApplicationMigrationActivity__signal_is_updating">Signal se actualizează…</string>
   <!--ApplicationPreferencesActivity-->
@@ -32,7 +30,7 @@
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Această acțiune va debloca permanent Signal și notificările pentru mesaje.</string>
   <string name="ApplicationPreferencesActivity_disable">Dezactivați</string>
   <string name="ApplicationPreferencesActivity_unregistering">Se anulează înregistrarea</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Se dezabonează de la mesajele și apelurile Signal… </string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Se dezabonează de la mesajele și apelurile Signal…</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Dezactivați mesajele și apelurile Signal? </string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Dezactivați mesajele și apeluri Signal prin dezabonarea de la server. Va trebui să vă re-înregistrezi numărul dvs. de telefon pentru a putea să le folosiți din nou în viitor.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Eroare de conectare la server!</string>
@@ -230,7 +228,7 @@
     <item quantity="few">Se salvează %1$d atașamente pe spațiul de stocare…</item>
     <item quantity="other">Se salvează %1$d atașamente pe spațiul de stocare…</item>
   </plurals>
-  <string name="ConversationFragment_pending">În așteptare…</string>
+  <string name="ConversationFragment_pending">În curs…</string>
   <string name="ConversationFragment_push">Date (Signal)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
@@ -449,7 +447,7 @@
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">Apăsați pentru a selecta</string>
   <!--MediaSendActivity-->
-  <string name="MediaSendActivity_add_a_caption">Adăugați un titlu…</string>
+  <string name="MediaSendActivity_add_a_caption">Adaugă un titlu…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Un element a fost eliminat pentru că depășește limita de mărime</string>
   <string name="MediaSendActivity_camera_unavailable">Cameră indisponibilă.</string>
   <string name="MediaSendActivity_message_to_s">Mesaj către %s</string>
@@ -1221,7 +1219,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <!--menus-->
   <!--****************************************-->
   <!--contact_selection_list-->
-  <string name="contact_selection_list__unknown_contact">Mesajul nou către…</string>
+  <string name="contact_selection_list__unknown_contact">Mesaj nou către…</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Apelează</string>
   <!--conversation_callable_secure-->
@@ -1327,6 +1325,11 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="trimmer__deleting">Se șterge</string>
   <string name="trimmer__deleting_old_messages">Se șterg mesajele vechi…</string>
   <string name="trimmer__old_messages_successfully_deleted">Mesajele vechi au fost șterse cu succes</string>
+  <!--Insights-->
+  <string name="InsightsDashboardFragment__cancel">Anulați</string>
+  <string name="InsightsDashboardFragment__send">Trimiteți</string>
+  <string name="FirstInviteReminder__title">Invitați la Signal</string>
+  <string name="InsightsReminder__invite">Invită</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Pictogramă transport</string>
   <string name="ConversationListFragment_loading">Se încarcă…</string>
@@ -1355,7 +1358,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="RegistrationActivity_restore">Restaurează</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Nu se pot importa backup-uri din versiuni mai noi de Signal</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">Parola pentru backup este incorectă</string>
-  <string name="RegistrationActivity_checking">În curs de verificare</string>
+  <string name="RegistrationActivity_checking">În curs de verificare…</string>
   <string name="RegistrationActivity_d_messages_so_far">%d mesaje până acum…</string>
   <string name="RegistrationActivity_restore_from_backup">Restaurez din backup?</string>
   <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Restaurați mesajele și media dintr-un backup local. Dacă nu restaurați acum, nu veți putea restaura mai târziu.</string>
@@ -1421,5 +1424,6 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="prompt_passphrase_activity__tap_to_unlock">APĂSAȚI PENTRU DEBLOCARE</string>
   <string name="RegistrationLockDialog_reminder">Memento:</string>
   <string name="recipient_preferences__about">Despre</string>
+  <string name="Recipient_unknown">Necunoscut</string>
   <!--EOF-->
 </resources>

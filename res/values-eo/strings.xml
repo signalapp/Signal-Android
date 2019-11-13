@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <!-- Removed by excludeNonTranslatables <string name="app_name">Signal</string> -->
   <string name="yes">Jes</string>
   <string name="no">Ne</string>
   <string name="delete">Forviŝi</string>
@@ -10,7 +9,6 @@
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Nova mesaĝo</string>
   <!--AlbumThumbnailView-->
-  <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus">\+%d</string> -->
   <!--ApplicationMigrationActivity-->
   <string name="ApplicationMigrationActivity__signal_is_updating">Ĝisdatigo de Signal…</string>
   <!--ApplicationPreferencesActivity-->
@@ -431,7 +429,7 @@
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">Tuŝeto por elekti</string>
   <!--MediaSendActivity-->
-  <string name="MediaSendActivity_add_a_caption">Aldoni klarigon…</string>
+  <string name="MediaSendActivity_add_a_caption">Aldoni priskribon…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Elemento estis forigita, ĉar ĝi transpasis la grandlimon.</string>
   <string name="MediaSendActivity_camera_unavailable">Fotilo ne disponeblas.</string>
   <string name="MediaSendActivity_message_to_s">Mesaĝo al %s</string>
@@ -1285,6 +1283,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="reminder_header_share_text">Ju pli da amikoj uzas Signal-on, des pli bona ĝi estas.</string>
   <string name="reminder_header_service_outage_text">Signal havas kelkajn teĥnikajn problemojn. Ni laboras diligente por revenigi la servon kiel eble plej rapide.</string>
   <string name="reminder_header_the_latest_signal_features_wont_work">La plej freŝaj trajtoj de Signal ne funkcias ĉe tiu versio de Android. Bv. ĝisdatigi vian aparaton por ricevi venontajn Signal-ĝisdatigojn.</string>
+  <string name="reminder_header_progress">%1$d %%</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Konservi</string>
   <string name="media_preview__forward_title">Plusendi</string>
@@ -1300,6 +1299,16 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="trimmer__deleting">Forviŝado</string>
   <string name="trimmer__deleting_old_messages">Forviŝado de malnovaj mesaĝoj…</string>
   <string name="trimmer__old_messages_successfully_deleted">Malnovaj mesaĝoj sukcese forviŝiĝis</string>
+  <!--Insights-->
+  <string name="Insights__title">Enrigardo</string>
+  <string name="InsightsDashboardFragment__title">Enrigardo</string>
+  <string name="InsightsDashboardFragment__tagline">%1$d %% el viaj elirintaj mesaĝoj en la lastaj 7 tagoj estis tutvoje ĉifritaj per Signal-protokolo.</string>
+  <string name="InsightsDashboardFragment__boost_your_signal">Plibonigu vian Signal-on</string>
+  <string name="InsightsDashboardFragment__cancel">Nuligi</string>
+  <string name="InsightsDashboardFragment__send">Sendi</string>
+  <string name="FirstInviteReminder__title">Inviti al Signal</string>
+  <string name="SecondInviteReminder__title">Plibonigu vian Signal-on</string>
+  <string name="InsightsReminder__invite">Inviti</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Piktogramo pri sendometodo</string>
   <string name="ConversationListFragment_loading">Ŝargado…</string>
@@ -1329,7 +1338,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="RegistrationActivity_backup_failure_downgrade">Ne eblas importi savkopiojn el pli novaj versioj de Signal</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">Neĝusta savkopia pasfrazo</string>
   <string name="RegistrationActivity_checking">Kontrolo…</string>
-  <string name="RegistrationActivity_d_messages_so_far">%d mesaĝoj ĝis nun…</string>
+  <string name="RegistrationActivity_d_messages_so_far">%d mesaĝoj ĝis nun</string>
   <string name="RegistrationActivity_restore_from_backup">Restaŭri el savkopio?</string>
   <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Restaŭri viajn mesaĝojn kaj aŭdvidaĵojn el loka savkopio. Se vi ne restaŭras nun, vi ne povos restaŭri poste.</string>
   <string name="RegistrationActivity_backup_size_s">Savkopigrando: %s</string>
@@ -1394,5 +1403,6 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="prompt_passphrase_activity__tap_to_unlock">TUŜETU POR MALŜLOSI</string>
   <string name="RegistrationLockDialog_reminder">Memorigo:</string>
   <string name="recipient_preferences__about">Pri</string>
+  <string name="Recipient_unknown">Nekonata</string>
   <!--EOF-->
 </resources>

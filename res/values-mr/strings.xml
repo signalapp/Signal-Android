@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <!-- Removed by excludeNonTranslatables <string name="app_name">Signal</string> -->
   <string name="yes">हो</string>
   <string name="no">नाही</string>
   <string name="delete">काढून टाका</string>
@@ -10,7 +9,6 @@
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">नवीन संदेश</string>
   <!--AlbumThumbnailView-->
-  <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus">\+%d</string> -->
   <!--ApplicationMigrationActivity-->
   <string name="ApplicationMigrationActivity__signal_is_updating">Signal अद्यतनित होत आहे…</string>
   <!--ApplicationPreferencesActivity-->
@@ -1017,7 +1015,7 @@
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[जर आपल्याला %s सोबत आपल्या एन्क्रिप्शनची सुरक्षा सत्यापित करायची असेल, तर त्यांचा डिव्हाईस वरील नंबरची तुलना करा. पर्यायीरीत्या, आपण त्यांच्या फोन वरील कोड स्कॅन करू शकता, किंवा त्यांना आपला कोड स्कॅन करण्यास विचारू शकता. <a href="https://signal.org/redirect/safety-numbers">अधिक जाणा</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">स्कॅन करण्यासाठी टॅप करा</string>
-  <string name="verify_display_fragment__loading">लोड करत आहे…</string>
+  <string name="verify_display_fragment__loading">लोड होत आहे…</string>
   <string name="verify_display_fragment__verified">सत्यापित</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">सुरक्षितता नंबर सामायिक करा</string>
@@ -1298,9 +1296,14 @@
   <string name="trimmer__deleting">हटवत आहे</string>
   <string name="trimmer__deleting_old_messages">जुने संदेश हटवत आहे…</string>
   <string name="trimmer__old_messages_successfully_deleted">जुने संदेश यशस्वीरीत्या हटवले</string>
+  <!--Insights-->
+  <string name="InsightsDashboardFragment__cancel">रद्द करा</string>
+  <string name="InsightsDashboardFragment__send">पाठवा</string>
+  <string name="FirstInviteReminder__title">Signal वर आमंत्रित करा</string>
+  <string name="InsightsReminder__invite">आमंत्रित करा</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">वाहतूक चिन्ह</string>
-  <string name="ConversationListFragment_loading">लोड करत आहे…</string>
+  <string name="ConversationListFragment_loading">लोड होत आहे…</string>
   <string name="CallNotificationBuilder_connecting">कनेक्ट करत आहे…</string>
   <string name="Permissions_permission_required">परवानगी आवश्यक</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">SMS पाठविण्यासाठी Signal ला SMS परवानगीची आवश्यकता असते, पण ती कायमची नाकारली गेली आहे. कृपया अॅप सेटिंग मेनू मध्ये सुरू ठेवा, \"परवानग्या\" निवडा, आणि \"SMS\" सक्षम करा.</string>
@@ -1392,5 +1395,6 @@
   <string name="prompt_passphrase_activity__tap_to_unlock">अनलॉक करण्यासाठी टॅप करा</string>
   <string name="RegistrationLockDialog_reminder">स्मरणपत्र:</string>
   <string name="recipient_preferences__about">याबद्दल</string>
+  <string name="Recipient_unknown">अज्ञात</string>
   <!--EOF-->
 </resources>

@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <!-- Removed by excludeNonTranslatables <string name="app_name">Signal</string> -->
   <string name="yes">جی ہاں</string>
   <string name="no">جی نہیں</string>
   <string name="delete">حذف کریں</string>
@@ -10,7 +9,6 @@
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">نيا پیغام</string>
   <!--AlbumThumbnailView-->
-  <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus">\+%d</string> -->
   <!--ApplicationMigrationActivity-->
   <string name="ApplicationMigrationActivity__signal_is_updating">Signal کی تجدید ہورہی ہے۔۔۔</string>
   <!--ApplicationPreferencesActivity-->
@@ -370,7 +368,7 @@
   <string name="InviteActivity_share">اشتراک کریں</string>
   <string name="InviteActivity_choose_contacts">رابطوں کا انتخاب کریں</string>
   <string name="InviteActivity_cancel">منسوخ کریں</string>
-  <string name="InviteActivity_sending">بھیج رہا ہے …</string>
+  <string name="InviteActivity_sending">بھیج رہا ہے۔۔۔</string>
   <string name="InviteActivity_heart_content_description">دل</string>
   <string name="InviteActivity_invitations_sent">دعوت نامے بھیجے گئے ہیں!</string>
   <string name="InviteActivity_invite_to_signal">Signal میں مدعو کریں</string>
@@ -432,7 +430,7 @@
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">منتخب کرنے کے لیے ٹیپ کریں</string>
   <!--MediaSendActivity-->
-  <string name="MediaSendActivity_add_a_caption">ہدایات جمح کریں۔۔۔</string>
+  <string name="MediaSendActivity_add_a_caption">عنوان جمح کریں۔۔۔</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">ایک آئٹم کو ہٹا دیا ہے کیونکہ اس نے سائز کی حد سے تجاوز کیا</string>
   <string name="MediaSendActivity_camera_unavailable">کیمرہ دستیاب نہیں ہے</string>
   <string name="MediaSendActivity_message_to_s">%sکو پیغام </string>
@@ -1012,7 +1010,7 @@
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ اگر آپ اپنی خفیہ کاری کی حفاظت کی تصدیق کرنا چاہتے ہیں تو %s ، مندرجہ بالا نمبر کو ان کے آلے کے نمبر سے موازنہ کریں۔ متبادل کے طور پر ، آپ ان کے فون پر کوڈ اسکین کرسکتے ہیں ، یا ان سے اپنا کوڈ اسکین کرنے کے لئے کہہ سکتے ہیں۔ <a href="https://signal.org/redirect/safety-numbers">مزید معلومات حاصل کریں۔</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">اسکین کرنے کے لیے کلک کریں</string>
-  <string name="verify_display_fragment__loading">لوڑ ہو رہا ہے۔۔۔</string>
+  <string name="verify_display_fragment__loading">لوڈ ہو رہا ہے۔۔۔</string>
   <string name="verify_display_fragment__verified">تصدیق شدہ</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">حفاظتی نمبر اشتراک کریں</string>
@@ -1293,10 +1291,15 @@
   <string name="trimmer__deleting">حذف ہو رہا ہے</string>
   <string name="trimmer__deleting_old_messages">پرانے پیغامات حذف ہو رہے ہیں۔۔۔</string>
   <string name="trimmer__old_messages_successfully_deleted">پرانے پیغامات کامیابی سے حذف ہو چکے ہیں</string>
+  <!--Insights-->
+  <string name="InsightsDashboardFragment__cancel">منسوخ کریں</string>
+  <string name="InsightsDashboardFragment__send">بھیجیں</string>
+  <string name="FirstInviteReminder__title">Signal میں مدعو کریں</string>
+  <string name="InsightsReminder__invite">مدعو کریں</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">ٹرانسپورٹ آئکن</string>
-  <string name="ConversationListFragment_loading">لوڑ ہو رہا ہے۔۔۔</string>
-  <string name="CallNotificationBuilder_connecting">منسلک ہو رہا ہے۔۔۔</string>
+  <string name="ConversationListFragment_loading">لوڈ ہو رہا ہے۔۔۔</string>
+  <string name="CallNotificationBuilder_connecting">منسلک ہورہا ہے۔۔۔۔۔</string>
   <string name="Permissions_permission_required">اجازت ضروری ہے</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal کو ایس ایم ایس بھیجنے کے لیے ایس ایم ایس کی اجازت کی ضرورت ہے، لیکن یہ مستقل طور کے لیے نہیں ہیں۔ برائے مہربانی ایپ کی ترتیبات میں جائیں، \"اجازت\" منتخب کریں اور \"ایس ایم ایس\" فعال کریں۔ </string>
   <string name="Permissions_continue">جاری رکھیں</string>
@@ -1387,5 +1390,6 @@
   <string name="prompt_passphrase_activity__tap_to_unlock">لاک کھولنے کے لیے ٹیپ کریں</string>
   <string name="RegistrationLockDialog_reminder">یاد دہانی کرانا:</string>
   <string name="recipient_preferences__about">متعلق</string>
+  <string name="Recipient_unknown">نامعلوم</string>
   <!--EOF-->
 </resources>

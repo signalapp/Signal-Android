@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <!-- Removed by excludeNonTranslatables <string name="app_name">Signal</string> -->
   <string name="yes">Oui</string>
   <string name="no">Non</string>
   <string name="delete">Supprimer</string>
@@ -10,7 +9,6 @@
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Nouveau message</string>
   <!--AlbumThumbnailView-->
-  <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus">\+%d</string> -->
   <!--ApplicationMigrationActivity-->
   <string name="ApplicationMigrationActivity__signal_is_updating">Mise à jour Signal… </string>
   <!--ApplicationPreferencesActivity-->
@@ -425,7 +423,7 @@
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">Touchez pour sélectionner</string>
   <!--MediaSendActivity-->
-  <string name="MediaSendActivity_add_a_caption">Ajouter un légende…</string>
+  <string name="MediaSendActivity_add_a_caption">Ajouter une légende…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Un élément a été supprimé, car il dépassait la taille limite</string>
   <string name="MediaSendActivity_camera_unavailable">L’appareil photo n’est pas disponible</string>
   <string name="MediaSendActivity_message_to_s">Message à %s</string>
@@ -1282,6 +1280,11 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="trimmer__deleting">Suppression</string>
   <string name="trimmer__deleting_old_messages">Suppression des anciens messages…</string>
   <string name="trimmer__old_messages_successfully_deleted">Les anciens messages ont été supprimés avec succès</string>
+  <!--Insights-->
+  <string name="InsightsDashboardFragment__cancel">Annuler</string>
+  <string name="InsightsDashboardFragment__send">Envoyer</string>
+  <string name="FirstInviteReminder__title">Inviter à Signal</string>
+  <string name="InsightsReminder__invite">Inviter</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icône de transport</string>
   <string name="ConversationListFragment_loading">Chargement…</string>
@@ -1374,5 +1377,6 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="prompt_passphrase_activity__tap_to_unlock">TOUCHEZ POUR DÉVERROUILLER</string>
   <string name="RegistrationLockDialog_reminder">Rappel :</string>
   <string name="recipient_preferences__about">À propos de Signal</string>
+  <string name="Recipient_unknown">Inconnu</string>
   <!--EOF-->
 </resources>

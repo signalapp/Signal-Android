@@ -1,16 +1,14 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <!-- Removed by excludeNonTranslatables <string name="app_name">Signal</string> -->
   <string name="yes">Ja</string>
   <string name="no">Nej</string>
   <string name="delete">Ta bort</string>
-  <string name="please_wait">Var god vänta…</string>
+  <string name="please_wait">Vänligen vänta…</string>
   <string name="save">Spara</string>
   <string name="note_to_self">Notering till mig själv</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Nytt meddelande</string>
   <!--AlbumThumbnailView-->
-  <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus">\+%d</string> -->
   <!--ApplicationMigrationActivity-->
   <string name="ApplicationMigrationActivity__signal_is_updating">Signal uppdateras…</string>
   <!--ApplicationPreferencesActivity-->
@@ -30,7 +28,7 @@
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Detta kommer permanent låsa upp Signal och meddelandeaviseringar.</string>
   <string name="ApplicationPreferencesActivity_disable">Inaktivera</string>
   <string name="ApplicationPreferencesActivity_unregistering">Avregistrering</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Avregistrerar från Signal-meddelanden och -samtal…</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Avregistrering från Signal-meddelanden och samtal…</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Inaktivera Signal-meddelanden och -samtal?</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Inaktivera Signal-meddelanden och -samtal genom att avregistrera dig från servern. Du kommer behöva återregistrera ditt telefonnummer för att använda dem igen senare.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Fel vid anslutning till server!</string>
@@ -217,15 +215,15 @@
     <item quantity="other">Sparar %1$d bifogade filer</item>
   </plurals>
   <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-    <item quantity="one">Sparar bifogad fil till lagring…</item>
-    <item quantity="other">Sparar %1$d bifogade filer till lagring…</item>
+    <item quantity="one">Spara bilaga till lagring…</item>
+    <item quantity="other">Sparar %1$d bilagor till lagring…</item>
   </plurals>
   <string name="ConversationFragment_pending">Väntar…</string>
   <string name="ConversationFragment_push">Data (Signal)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Raderar</string>
-  <string name="ConversationFragment_deleting_messages">Raderar meddelanden…</string>
+  <string name="ConversationFragment_deleting_messages">Tar bort meddelanden…</string>
   <string name="ConversationFragment_quoted_message_not_found">Hittade inte originalmeddelandet.</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Originalmeddelandet inte längre tillgänglig.</string>
   <string name="ConversationFragment_failed_to_open_message">Det gick inte att öppna meddelandet</string>
@@ -244,7 +242,7 @@
     <item quantity="other">Detta kommer permanent ta bort alla %1$d valda konversationer.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">Raderar</string>
-  <string name="ConversationListFragment_deleting_selected_conversations">Raderar markerade konversationer…</string>
+  <string name="ConversationListFragment_deleting_selected_conversations">Tar bort valda konversationer…</string>
   <plurals name="ConversationListFragment_conversations_archived">
     <item quantity="one">Konversation arkiverad</item>
     <item quantity="other">%d konversationer arkiverade</item>
@@ -289,7 +287,7 @@
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Genom att koppla bort denna enhet kommer den inte längre kunna skicka eller få meddelanden.</string>
   <string name="DeviceListActivity_network_connection_failed">Nätverksanslutning misslyckades</string>
   <string name="DeviceListActivity_try_again">Försök igen</string>
-  <string name="DeviceListActivity_unlinking_device">Kopplar bort enhet…</string>
+  <string name="DeviceListActivity_unlinking_device">Avlänkar enheten…</string>
   <string name="DeviceListActivity_unlinking_device_no_ellipsis">Kopplar bort enhet</string>
   <string name="DeviceListActivity_network_failed">Nätverket misslyckades</string>
   <!--DeviceListItem-->
@@ -409,10 +407,10 @@
     <item quantity="other">Detta kommer permanent ta bort %1$d valda meddelanden.</item>
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Raderar</string>
-  <string name="MediaOverviewActivity_Media_delete_progress_message">Raderar meddelanden…</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">Tar bort meddelanden…</string>
   <string name="MediaOverviewActivity_Documents">Dokument</string>
   <string name="MediaOverviewActivity_Select_all">Markera alla</string>
-  <string name="MediaOverviewActivity_collecting_attachments">Samlar bifogade filer…</string>
+  <string name="MediaOverviewActivity_collecting_attachments">Samlar bilagor…</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal-samtal pågår</string>
   <string name="NotificationBarManager__establishing_signal_call">Upprättar Signal-samtal</string>
@@ -431,7 +429,7 @@
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">Tryck för att välja</string>
   <!--MediaSendActivity-->
-  <string name="MediaSendActivity_add_a_caption">Lägg till en rubrik…</string>
+  <string name="MediaSendActivity_add_a_caption">Lägg till en bildtext…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Ett objekt togs bort eftersom det överskred storleksgränsen</string>
   <string name="MediaSendActivity_camera_unavailable">Kamera otillgänglig.</string>
   <string name="MediaSendActivity_message_to_s">Meddelande till %s</string>
@@ -962,7 +960,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">VISA</string>
   <string name="message_recipients_list_item__resend">SKICKA OM</string>
-  <string name="message_recipients_list_item__resending">Skickar om…</string>
+  <string name="message_recipients_list_item__resending">Skickar pånytt…</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s gick med i gruppen.</item>
@@ -1014,7 +1012,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Om du vill verifiera säkerheten i krypteringen med %s, jämför numret ovan med numret på hens enhet. Alternativt så kan du skanna koden på hens telefon eller be hen skanna din kod. <a href="https://signal.org/redirect/safety-numbers">Mer info.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Tryck för att skanna</string>
-  <string name="verify_display_fragment__loading">Läser in…</string>
+  <string name="verify_display_fragment__loading">Hämtar in…</string>
   <string name="verify_display_fragment__verified">Verifierad</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Dela säkerhetsnummer</string>
@@ -1293,11 +1291,16 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <!--redphone_audio_popup_menu-->
   <!--Trimmer-->
   <string name="trimmer__deleting">Raderar</string>
-  <string name="trimmer__deleting_old_messages">Raderar gamla meddelanden…</string>
+  <string name="trimmer__deleting_old_messages">Tar bort gamla meddelanden…</string>
   <string name="trimmer__old_messages_successfully_deleted">Gamla meddelanden har tagits bort</string>
+  <!--Insights-->
+  <string name="InsightsDashboardFragment__cancel">Avbryt</string>
+  <string name="InsightsDashboardFragment__send">Skicka</string>
+  <string name="FirstInviteReminder__title">Bjud in till Signal</string>
+  <string name="InsightsReminder__invite">Bjud in</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transportikon</string>
-  <string name="ConversationListFragment_loading">Läser in…</string>
+  <string name="ConversationListFragment_loading">Hämtar in…</string>
   <string name="CallNotificationBuilder_connecting">Ansluter…</string>
   <string name="Permissions_permission_required">Behörighet saknas</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal behöver behörigheten SMS för att skicka SMS men har nekats den permanent. Fortsätt till inställningsmenyn för Appar och aviseringar, välj \"Behörigheter\" och aktivera \"SMS\".</string>
@@ -1324,7 +1327,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Kan inte importera säkerhetskopior från nyare versioner av Signal</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">Fel lösenord för säkerhetskopian</string>
   <string name="RegistrationActivity_checking">Kontrollerar…</string>
-  <string name="RegistrationActivity_d_messages_so_far">%d meddelanden än så länge…</string>
+  <string name="RegistrationActivity_d_messages_so_far">%d meddelanden hittills…</string>
   <string name="RegistrationActivity_restore_from_backup">Återställ från säkerhetskopia?</string>
   <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Återställ dina meddelanden och media från en lokal säkerhetskopia. Om du inte återställer nu, kan du inte återställa senare.</string>
   <string name="RegistrationActivity_backup_size_s">Storlek på säkerhetskopia: %s</string>
@@ -1389,5 +1392,6 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">TRYCK FÖR ATT LÅSA UPP</string>
   <string name="RegistrationLockDialog_reminder">Påminnelse:</string>
   <string name="recipient_preferences__about">Om</string>
+  <string name="Recipient_unknown">Okänt</string>
   <!--EOF-->
 </resources>

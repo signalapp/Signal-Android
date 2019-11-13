@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <!-- Removed by excludeNonTranslatables <string name="app_name">Signal</string> -->
   <string name="yes">ဟုတ်ကဲ့</string>
   <string name="no">မလုပ်ပါ</string>
   <string name="delete">ဖျက်ပါ</string>
@@ -10,7 +9,6 @@
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">စာအသစ်</string>
   <!--AlbumThumbnailView-->
-  <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus">\+%d</string> -->
   <!--ApplicationMigrationActivity-->
   <string name="ApplicationMigrationActivity__signal_is_updating">Signal ကိုupdateနေသည်</string>
   <!--ApplicationPreferencesActivity-->
@@ -1123,10 +1121,15 @@
   <string name="trimmer__deleting">ဖျက်နေဆဲ</string>
   <string name="trimmer__deleting_old_messages">စာအဟောင်းများကို ဖျက်နေဆဲ ….</string>
   <string name="trimmer__old_messages_successfully_deleted">စာအဟောင်းများကို အောင်မြင်စွာ ဖျက်ပြီး</string>
+  <!--Insights-->
+  <string name="InsightsDashboardFragment__cancel">မလုပ်တော့ပါ</string>
+  <string name="InsightsDashboardFragment__send">ပေးပို့သည်</string>
+  <string name="FirstInviteReminder__title">Signal သို့ ဖိတ်ခေါ်မည်</string>
+  <string name="InsightsReminder__invite">ဖိတ်ခေါ်သည် </string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">ပုံသင်္ကေတကို ပို့ဆောင်ပါ။</string>
   <string name="ConversationListFragment_loading">လုပ်ဆောင်နေသည်…</string>
-  <string name="CallNotificationBuilder_connecting">ချိတ်ဆက်နေသည်</string>
+  <string name="CallNotificationBuilder_connecting">ချိတ်ဆက်နေသည်…</string>
   <string name="Permissions_permission_required">ခွင့်ပြုချက် လိုအပ်သည်</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">SMS များပို့နိုင်ရန် မိမိ SMS ကို Signal မှ အသုံးပြုခွင့်ရရန် လိုအပ်သည်။ သို့သော် လုံးဝခွင့်မပြုပါ ဟုရွေးထားပြီး ဖြစ်နေသဖြင့် အပ်ပလီကေးရှင်း အပြင်အဆင်သို့ သွား၍ ခွင့်ပြုချက်များကို ရွေးချယ်ကာ SMS ကို အသုံးပြုနိုင်အောင် ပြုလုပ်ပါ</string>
   <string name="Permissions_continue">ရှေ့ဆက်ပါ</string>
@@ -1211,5 +1214,6 @@
   <string name="prompt_passphrase_activity__tap_to_unlock">လော့ခ်ဖြည်ရန် မျက်နှာပြင်ကို ထိပါ</string>
   <string name="RegistrationLockDialog_reminder">သတိပေးချက်</string>
   <string name="recipient_preferences__about">အကြောင်း</string>
+  <string name="Recipient_unknown">မသိ</string>
   <!--EOF-->
 </resources>

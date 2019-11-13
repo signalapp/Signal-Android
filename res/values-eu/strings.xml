@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <!-- Removed by excludeNonTranslatables <string name="app_name">Signal</string> -->
   <string name="yes">Bai</string>
   <string name="no">Ez</string>
   <string name="delete">Ezabatu</string>
@@ -10,7 +9,6 @@
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Mezu berria</string>
   <!--AlbumThumbnailView-->
-  <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus">\+%d</string> -->
   <!--ApplicationMigrationActivity-->
   <string name="ApplicationMigrationActivity__signal_is_updating">Signal eguneratzen ari da…</string>
   <!--ApplicationPreferencesActivity-->
@@ -428,7 +426,7 @@
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">Tap egin aukeratzeko</string>
   <!--MediaSendActivity-->
-  <string name="MediaSendActivity_add_a_caption">Irudi-oina gehitu</string>
+  <string name="MediaSendActivity_add_a_caption">Gehitu goiburua…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Elementu bat ezabatu egin da tamaina muga gainditu duelako</string>
   <string name="MediaSendActivity_camera_unavailable">Kamera ez dago eskuragarri</string>
   <string name="MediaSendActivity_message_to_s">Honentzako mezua: %s</string>
@@ -578,6 +576,8 @@ zenbakia (%s) baliogabea da.
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Zure telefono zenbakia sartu hasteko</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Berifikazio kode bat jasoko duzu. Operadoreak tarifa bat jarri dezake.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Sartu %s telefonora bidali dugun kodea.</string>
+  <string name="RegistrationActivity_phone_number_description">Telefono zenbakia</string>
+  <string name="RegistrationActivity_country_code_description">Herrialde kodea</string>
   <string name="RegistrationActivity_call">Deitu</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_photo">Argazkia</string>
@@ -1291,6 +1291,11 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den zifratu gabeko babeskopi
   <string name="trimmer__deleting">Ezabatzen</string>
   <string name="trimmer__deleting_old_messages">Mezu zaharrak ezabatzen…</string>
   <string name="trimmer__old_messages_successfully_deleted">Mezu zaharrak ondo ezabatu dira</string>
+  <!--Insights-->
+  <string name="InsightsDashboardFragment__cancel">Utzi</string>
+  <string name="InsightsDashboardFragment__send">Bidali</string>
+  <string name="FirstInviteReminder__title">Gonbidatu Signal erabiltzera</string>
+  <string name="InsightsReminder__invite">Gonbidatu</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Garraio ikonoa</string>
   <string name="ConversationListFragment_loading">Kargatzen…</string>
@@ -1382,5 +1387,6 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den zifratu gabeko babeskopi
   <string name="prompt_passphrase_activity__tap_to_unlock">SAKATU DESBLOKEATZEKO</string>
   <string name="RegistrationLockDialog_reminder">Oroigarria:</string>
   <string name="recipient_preferences__about">Honi buruz</string>
+  <string name="Recipient_unknown">Ezezaguna</string>
   <!--EOF-->
 </resources>

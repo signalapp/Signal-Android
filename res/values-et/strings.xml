@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <!-- Removed by excludeNonTranslatables <string name="app_name">Signal</string> -->
   <string name="yes">Jah</string>
   <string name="no">Ei</string>
   <string name="delete">Kustuta</string>
@@ -10,9 +9,8 @@
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Uus sõnum</string>
   <!--AlbumThumbnailView-->
-  <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus">\+%d</string> -->
   <!--ApplicationMigrationActivity-->
-  <string name="ApplicationMigrationActivity__signal_is_updating">Signal uueneb…</string>
+  <string name="ApplicationMigrationActivity__signal_is_updating">Signalit uuendatakse…</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Hetkel: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Sa pole veel salaväljendit määranud!</string>
@@ -217,15 +215,15 @@
     <item quantity="other">Salvestan %1$d manust</item>
   </plurals>
   <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-    <item quantity="one">Salvestan manust sisemällu…</item>
-    <item quantity="other">Salvestan %1$d manust sisemällu…</item>
+    <item quantity="one">Manuse salvestamine sisemällu…</item>
+    <item quantity="other">%1$d manuse salvestamine sisemällu…</item>
   </plurals>
   <string name="ConversationFragment_pending">Ootel…</string>
   <string name="ConversationFragment_push">Andmeside (Signal)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Kustutan</string>
-  <string name="ConversationFragment_deleting_messages">Kustutan sõnumeid…</string>
+  <string name="ConversationFragment_deleting_messages">Sõnumite kustutamine…</string>
   <string name="ConversationFragment_quoted_message_not_found">Originaalsõnumit ei leitud</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Originaalsõnum pole enam saadaval</string>
   <string name="ConversationFragment_failed_to_open_message">Sõnumi avamine ebaõnnestus</string>
@@ -244,7 +242,7 @@
     <item quantity="other">See kustutab püsivalt valitud %1$d vestlust.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">Kustutan</string>
-  <string name="ConversationListFragment_deleting_selected_conversations">Kustutan valitud vestluseid…</string>
+  <string name="ConversationListFragment_deleting_selected_conversations">Valitud sõnumite kustutamine…</string>
   <plurals name="ConversationListFragment_conversations_archived">
     <item quantity="one">Vestlus arhiveeritud</item>
     <item quantity="other">%d vestlust arhiveeritud</item>
@@ -289,7 +287,7 @@
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Eemaldades selle seadme lingi, ei ole see enam võimeline sõnumeid saatma ja vastu võtma.</string>
   <string name="DeviceListActivity_network_connection_failed">Võrguühendus ebaõnnestus</string>
   <string name="DeviceListActivity_try_again">Proovi uuesti</string>
-  <string name="DeviceListActivity_unlinking_device">Eemaldan seadme lingi…</string>
+  <string name="DeviceListActivity_unlinking_device">Seadme lingi eemaldamine…</string>
   <string name="DeviceListActivity_unlinking_device_no_ellipsis">Eemaldan seadme lingi</string>
   <string name="DeviceListActivity_network_failed">Võrk ebaõnnestus!</string>
   <!--DeviceListItem-->
@@ -329,7 +327,7 @@
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Sa saad seda funktsiooni igal ajal keelata ja lubada oma Signali seadetes (Privaatsus &gt; Saada linkide eelvaateid).</string>
   <string name="ExperienceUpgradeActivity_got_it">Sain aru</string>
   <!--GcmBroadcastReceiver-->
-  <string name="GcmBroadcastReceiver_retrieving_a_message">Sõnumi vastuvõtmine…</string>
+  <string name="GcmBroadcastReceiver_retrieving_a_message">Sõnumi hankimine…</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Püsiv Signali ühendusviga!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal ei saanud registreerida teenusega Google Play Services. Signali sõnumid ja kõned on keelatud, palun proovi taas-registreerida menüüs Seaded &gt; Täpsem.</string>
@@ -350,9 +348,9 @@
   <string name="GroupCreateActivity_avatar_content_description">Grupi avatar</string>
   <string name="GroupCreateActivity_menu_apply_button">Rakenda</string>
   <string name="GroupCreateActivity_creating_group">Loon %1$s…</string>
-  <string name="GroupCreateActivity_updating_group">Uuendan %1$s…</string>
+  <string name="GroupCreateActivity_updating_group">%1$s uuendamine…</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">%1$s ei saanud lisada kuna ta pole Signali kasutaja.</string>
-  <string name="GroupCreateActivity_loading_group_details">Laadin grupi andmeid…</string>
+  <string name="GroupCreateActivity_loading_group_details">Grupi andmete laadimine…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Sa oled juba grupis.</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Jagad oma profiilinime ja -pilti selle grupiga?</string>
@@ -369,7 +367,7 @@
   <string name="InviteActivity_share">Jaga</string>
   <string name="InviteActivity_choose_contacts">Vali kontaktid</string>
   <string name="InviteActivity_cancel">Tühista</string>
-  <string name="InviteActivity_sending">Saadan…</string>
+  <string name="InviteActivity_sending">Saatmine…</string>
   <string name="InviteActivity_heart_content_description">Süda</string>
   <string name="InviteActivity_invitations_sent">Kutsed saadetud!</string>
   <string name="InviteActivity_invite_to_signal">Kutsu Signalisse</string>
@@ -409,10 +407,10 @@
     <item quantity="other">See kustutab püsivalt %1$d valitud sõnumit.</item>
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Kustutan</string>
-  <string name="MediaOverviewActivity_Media_delete_progress_message">Kustutan sõnumeid…</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">Sõnumite kustutamine…</string>
   <string name="MediaOverviewActivity_Documents">Dokumendid</string>
   <string name="MediaOverviewActivity_Select_all">Vali kõik</string>
-  <string name="MediaOverviewActivity_collecting_attachments">Kogun manuseid…</string>
+  <string name="MediaOverviewActivity_collecting_attachments">Manuste kogumine…</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signali kõne käib</string>
   <string name="NotificationBarManager__establishing_signal_call">Alustan Signali kõnet</string>
@@ -481,7 +479,7 @@
         \n• Saata sõnumeid sinu nime alt
     </string>
   <string name="DeviceProvisioningActivity_content_progress_title">Lingin seadme</string>
-  <string name="DeviceProvisioningActivity_content_progress_content">Lingin uue seadme…</string>
+  <string name="DeviceProvisioningActivity_content_progress_content">Uue seadme linkimine…</string>
   <string name="DeviceProvisioningActivity_content_progress_success">Seade heaks kiidetud!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Seadet ei leitud.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Võrgu viga.</string>
@@ -872,7 +870,7 @@
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Keri alla</string>
   <!--country_selection_fragment-->
-  <string name="country_selection_fragment__loading_countries">Laadin riike…</string>
+  <string name="country_selection_fragment__loading_countries">Riikide laadimine…</string>
   <string name="country_selection_fragment__search">Otsi</string>
   <!--device_add_fragment-->
   <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Skanneeri linkimiseks oma seadmes kuvatavat QR-koodi</string>
@@ -1196,7 +1194,7 @@
   <!--menus-->
   <!--****************************************-->
   <!--contact_selection_list-->
-  <string name="contact_selection_list__unknown_contact">Uus sõnum kontaktile…</string>
+  <string name="contact_selection_list__unknown_contact">Uus sõnum kasutajale…</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Kõne</string>
   <!--conversation_callable_secure-->
@@ -1286,6 +1284,7 @@
   <string name="reminder_header_share_text">Mida rohkem sõpru kasutavad Signalit, seda paremaks see muutub.</string>
   <string name="reminder_header_service_outage_text">Signalil on hetkel tehnilised probleemid. Töötame selle kallal, et taastada teenus nii kiiresti kui võimalik.</string>
   <string name="reminder_header_the_latest_signal_features_wont_work">Viimatised Signali funktsioonid ei tööta selles Androidi versioonis. Palun uuenda oma seadet, et saada tulevikus Signali uuendusi.</string>
+  <string name="reminder_header_progress">%1$d%%</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Salvesta</string>
   <string name="media_preview__forward_title">Edasta</string>
@@ -1299,12 +1298,28 @@
   <!--redphone_audio_popup_menu-->
   <!--Trimmer-->
   <string name="trimmer__deleting">Kustutan</string>
-  <string name="trimmer__deleting_old_messages">Kustutan vanu sõnumeid…</string>
+  <string name="trimmer__deleting_old_messages">Vanade sõnumite kustutamine…</string>
   <string name="trimmer__old_messages_successfully_deleted">Vanad sõnumid edukalt kustutatud</string>
+  <!--Insights-->
+  <string name="Insights__percent">%</string>
+  <string name="Insights__title">Pilguheit</string>
+  <string name="InsightsDashboardFragment__title">Pilguheit</string>
+  <string name="InsightsDashboardFragment__start_a_conversation">Alusta vestlust</string>
+  <string name="InsightsDashboardFragment__encrypted_messages">Krüpteeritud sõnumid</string>
+  <string name="InsightsDashboardFragment__cancel">Loobu</string>
+  <string name="InsightsDashboardFragment__send">Saada</string>
+  <string name="InsightsDashboardFragment__not_using_signal_yet">Ei kasuta veel Signalit</string>
+  <string name="InsightsModalFragment__title">Tutvustame Pilguheitu</string>
+  <string name="InsightsModalFragment__view_insights">Vaata Pilguheitu</string>
+  <string name="FirstInviteReminder__title">Kutsu Signalisse</string>
+  <string name="FirstInviteReminder__description">Sa võiksid täiendada krüpteeritud sõnumite saatmise arvu %1$d%%</string>
+  <string name="SecondInviteReminder__description">Kutsu %1$s</string>
+  <string name="InsightsReminder__view_insights">Vaata Pilguheitu</string>
+  <string name="InsightsReminder__invite">Kutsu</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transpordi ikoon</string>
   <string name="ConversationListFragment_loading">Laadimine…</string>
-  <string name="CallNotificationBuilder_connecting">Ühendan…</string>
+  <string name="CallNotificationBuilder_connecting">Ühendumine…</string>
   <string name="Permissions_permission_required">Luba on vajalik</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal vajab SMS-uba, et saata SMSi, ent see on püsivalt keelatud. Palun jätka rakenduse seadetes, vali \"Load\" ja luba \"SMS\".</string>
   <string name="Permissions_continue">Jätka</string>
@@ -1329,7 +1344,7 @@
   <string name="RegistrationActivity_restore">Taasta</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Uuematest Signali versioonidest ei saa varundusi importida</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">Vale varunduse salaväljend</string>
-  <string name="RegistrationActivity_checking">Kontrollin…</string>
+  <string name="RegistrationActivity_checking">Kontrollimine…</string>
   <string name="RegistrationActivity_d_messages_so_far">Siiani leidsime %d sõnumit…</string>
   <string name="RegistrationActivity_restore_from_backup">Taastad varundusest?</string>
   <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Taasta oma sõnumid ja meedia kohalikust varundusest. Kui sa kohe ei taasta, ei saa seda teha ka hiljem.</string>
@@ -1395,5 +1410,6 @@
   <string name="prompt_passphrase_activity__tap_to_unlock">KOPUTA AVAMISEKS</string>
   <string name="RegistrationLockDialog_reminder">Meeldetuletus:</string>
   <string name="recipient_preferences__about">Teave</string>
+  <string name="Recipient_unknown">Tundmatu</string>
   <!--EOF-->
 </resources>

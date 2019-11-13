@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <!-- Removed by excludeNonTranslatables <string name="app_name">Signal</string> -->
   <string name="yes">Ja</string>
   <string name="no">Nein</string>
   <string name="delete">Löschen</string>
@@ -10,7 +9,6 @@
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Neue Nachricht</string>
   <!--AlbumThumbnailView-->
-  <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus">\+%d</string> -->
   <!--ApplicationMigrationActivity-->
   <string name="ApplicationMigrationActivity__signal_is_updating">Signal wird aktualisiert …</string>
   <!--ApplicationPreferencesActivity-->
@@ -217,7 +215,7 @@
     <item quantity="other">%1$d Anhänge speichern</item>
   </plurals>
   <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-    <item quantity="one">Anhang wird im Gerätespeicher gespeichert …</item>
+    <item quantity="one">Anhang wird im Gerätespeicher gespeichert …</item>
     <item quantity="other">%1$d Anhänge werden im Gerätespeicher gespeichert …</item>
   </plurals>
   <string name="ConversationFragment_pending">Ausstehend …</string>
@@ -369,7 +367,7 @@
   <string name="InviteActivity_share">Teilen</string>
   <string name="InviteActivity_choose_contacts">Kontakte auswählen</string>
   <string name="InviteActivity_cancel">Abbrechen</string>
-  <string name="InviteActivity_sending">Wird gesendet …</string>
+  <string name="InviteActivity_sending">Am Senden …</string>
   <string name="InviteActivity_heart_content_description">Herz</string>
   <string name="InviteActivity_invitations_sent">Einladungen versendet!</string>
   <string name="InviteActivity_invite_to_signal">Zu Signal einladen</string>
@@ -957,7 +955,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">ANZEIGEN</string>
   <string name="message_recipients_list_item__resend">ERNEUT SENDEN</string>
-  <string name="message_recipients_list_item__resending">Wird erneut gesendet …</string>
+  <string name="message_recipients_list_item__resending">Am erneuten Senden …</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s ist der Gruppe beigetreten</item>
@@ -1009,7 +1007,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Falls du die Sicherheit deiner Verschlüsselung mit %s verifizieren möchtest, vergleiche bitte die oben dargestellte Nummer mit der Nummer auf dem Gerät deines Kontakts. Alternativ kannst du den Code deines Kontakts einscannen oder ihn deinen eigenen Code einscannen lassen. <a href="https://signal.org/redirect/safety-numbers">Mehr erfahren</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Zum Scannen antippen</string>
-  <string name="verify_display_fragment__loading">Wird geladen …</string>
+  <string name="verify_display_fragment__loading">Am Laden …</string>
   <string name="verify_display_fragment__verified">Verifiziert</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Sicherheitsnummer teilen</string>
@@ -1275,6 +1273,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="reminder_header_share_text">Je mehr Freunde Signal nutzen, desto besser das Erlebnis.</string>
   <string name="reminder_header_service_outage_text">Signal hat derzeit technische Schwierigkeiten. Wir arbeiten hart daran, den Betrieb so schnell wie möglich wiederherzustellen.</string>
   <string name="reminder_header_the_latest_signal_features_wont_work">Signals neueste Features werden mit dieser Android-Version nicht funktionieren. Bitte bringe dein Gerät auf den neusten Stand, um zukünftige Signal-Aktualisierungen zu erhalten.</string>
+  <string name="reminder_header_progress">%1$d%%</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Speichern</string>
   <string name="media_preview__forward_title">Weiterleiten</string>
@@ -1290,10 +1289,36 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="trimmer__deleting">Löschen</string>
   <string name="trimmer__deleting_old_messages">Alte Nachrichten werden gelöscht …</string>
   <string name="trimmer__old_messages_successfully_deleted">Alte Nachrichten wurden erfolgreich gelöscht</string>
+  <!--Insights-->
+  <string name="Insights__percent"> %</string>
+  <string name="Insights__title">Einblicke</string>
+  <string name="InsightsDashboardFragment__title">Einblicke</string>
+  <string name="InsightsDashboardFragment__tagline">%1$d%% deiner ausgehenden Nachrichten der letzten 7 Tage waren mit dem Signal Protocol Ende-zu-Ende-verschlüsselt.</string>
+  <string name="InsightsDashboardFragment__boost_your_signal">Stärke das Signal in dir</string>
+  <string name="InsightsDashboardFragment__100_title">Das Signal ist stark in dir</string>
+  <string name="InsightsDashboardFragment__no_signal_yet">Kein Signal (bisher)</string>
+  <string name="InsightsDashboardFragment__youre_just_getting_started">Du machst gerade deine ersten Schritte. Einblicke werden angezeigt, sobald du einige Nachrichten versendest.</string>
+  <string name="InsightsDashboardFragment__start_a_conversation">Beginne eine Unterhaltung</string>
+  <string name="InsightsDashboardFragment__100_description">Signals fortschrittliche Datenschutztechnologie hat alle deine kürzlich versendeten Nachrichten automatisch geschützt.</string>
+  <string name="InsightsDashboardFragment__invite_your_contacts">Kommuniziere von jetzt an sicher und ermögliche neue Funktionen, die über die Einschränkungen unverschlüsselter SMS hinausgehen, indem du mehr Kontakte dazu einlädst, Signal zu verwenden.</string>
+  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Die Statistik wurde lokal auf deinem Gerät berechnet und kann nur dort eingesehen werden. Sie wird nie übertragen.</string>
+  <string name="InsightsDashboardFragment__encrypted_messages">Verschlüsselte Nachrichten</string>
+  <string name="InsightsDashboardFragment__cancel">Abbrechen</string>
+  <string name="InsightsDashboardFragment__send">Senden</string>
+  <string name="InsightsDashboardFragment__not_using_signal_yet">Verwendet Signal noch nicht</string>
+  <string name="InsightsModalFragment__title">Einführung von Einblicken</string>
+  <string name="InsightsModalFragment__description">Finde heraus, wie viele deiner ausgehenden Nachrichten geschützt versendet wurden, und lade dann neue Kontakte ein, um deinen Signal-Prozentwert zu erhöhen.</string>
+  <string name="InsightsModalFragment__view_insights">Einblicke anzeigen</string>
+  <string name="FirstInviteReminder__title">Zu Signal einladen</string>
+  <string name="FirstInviteReminder__description">Du könntest die Anzahl deiner verschlüsselt versendeten Nachrichten um %1$d%% erhöhen</string>
+  <string name="SecondInviteReminder__title">Verstärke dein Signal</string>
+  <string name="SecondInviteReminder__description">%1$s einladen</string>
+  <string name="InsightsReminder__view_insights">Einblicke anzeigen</string>
+  <string name="InsightsReminder__invite">Einladen</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Übertragungssymbol</string>
-  <string name="ConversationListFragment_loading">Wird geladen …</string>
-  <string name="CallNotificationBuilder_connecting">Verbindung wird hergestellt …</string>
+  <string name="ConversationListFragment_loading">Am Laden …</string>
+  <string name="CallNotificationBuilder_connecting">Am Verbinden …</string>
   <string name="Permissions_permission_required">Berechtigung erforderlich</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal benötigt die Berechtigung »SMS« für das Senden von SMS, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »SMS«.</string>
   <string name="Permissions_continue">Weiter</string>
@@ -1318,7 +1343,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="RegistrationActivity_restore">Wiederherstellen</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Datensicherungen neuerer Signal-Versionen können nicht importiert werden</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">Falsche Sicherungspassphrase</string>
-  <string name="RegistrationActivity_checking">Wird überprüft …</string>
+  <string name="RegistrationActivity_checking">Am Überprüfen …</string>
   <string name="RegistrationActivity_d_messages_so_far">%d Nachrichten bisher …</string>
   <string name="RegistrationActivity_restore_from_backup">Aus Sicherung wiederherstellen?</string>
   <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Stelle deine Nachrichten und Medieninhalte aus einer lokalen Datensicherung wieder her. Falls du sie jetzt nicht wiederherstellst, wirst du dies später nicht mehr nachholen können.</string>
@@ -1339,7 +1364,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Bitte gib den an %s gesendeten Verifikationscode ein.</string>
   <string name="RegistrationActivity_wrong_number">Falsche Rufnummer</string>
   <string name="RegistrationActivity_call_me_instead_available_in">Mich stattdessen anrufen \n (Verfügbar in %1$02d:%2$02d)</string>
-  <string name="RegistrationActivity_contact_signal_support">Wende dich an den Signal-Support</string>
+  <string name="RegistrationActivity_contact_signal_support">Signal-Support kontaktieren</string>
   <string name="RegistrationActivity_code_support_subject">Signal-Registrierung – Verifikationscode für Android</string>
   <string name="RegistrationActivity_code_support_body">Betreff: Signal-Registrierung – Verifikationscode für Android\nGeräteinfo: %1$s\nAndroid-Version: %2$s\nSignal-Version: %3$s\nGebietsschema: %4$s</string>
   <string name="BackupUtil_never">Nie</string>
@@ -1384,5 +1409,6 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="prompt_passphrase_activity__tap_to_unlock">ZUM ENTSPERREN ANTIPPEN</string>
   <string name="RegistrationLockDialog_reminder">Erinnerung:</string>
   <string name="recipient_preferences__about">Über</string>
+  <string name="Recipient_unknown">Unbekannt</string>
   <!--EOF-->
 </resources>

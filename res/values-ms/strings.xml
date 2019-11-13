@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <!-- Removed by excludeNonTranslatables <string name="app_name">Signal</string> -->
   <string name="yes">Ya</string>
   <string name="no">Tidak</string>
   <string name="delete">Padam</string>
@@ -10,7 +9,6 @@
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Mesej baru</string>
   <!--AlbumThumbnailView-->
-  <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus">\+%d</string> -->
   <!--ApplicationMigrationActivity-->
   <string name="ApplicationMigrationActivity__signal_is_updating">Signal sedang mengemas kini…</string>
   <!--ApplicationPreferencesActivity-->
@@ -123,7 +121,7 @@
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_delivered">Gagal menghantar, ketik untuk butiran</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Menerima mesej pertukaran kunci, ketik untuk proses.</string>
-  <string name="ConversationItem_group_action_left">%1$s telah keluar daripada kumpulan.</string>
+  <string name="ConversationItem_group_action_left">%1$s telah meninggalkan kumpulan.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Gagal menghantar, ketik untuk sandaran tidak selamat</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Sandaran ke SMS yang tidak disulitkan?</string>
   <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Sandaran ke MMS yang tidak disulitkan?</string>
@@ -408,14 +406,14 @@
   <!--NotificationMmsMessageRecord-->
   <string name="NotificationMmsMessageRecord_multimedia_message">Mesej multimedia</string>
   <string name="NotificationMmsMessageRecord_downloading_mms_message">Memuat turun mesej MMS</string>
-  <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Ralat memuat turun mesej MMS, ketik untuk cuba lagi</string>
+  <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Ralat memuat turun mesej MMS, ketik untuk cuba semula</string>
   <!--MediaPickerActivity-->
   <string name="MediaPickerActivity_send_to">Hantar kepada %s</string>
   <string name="MediaPickerActivity__menu_open_camera">Membuka kamera</string>
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">Ketik untuk dipilih</string>
   <!--MediaSendActivity-->
-  <string name="MediaSendActivity_add_a_caption">Tambah kapsyen</string>
+  <string name="MediaSendActivity_add_a_caption">Tambah kapsyen…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Item telah dialih keluar kerana melebihi had saiz </string>
   <string name="MediaSendActivity_camera_unavailable">Kamera tidak tersedia.</string>
   <string name="MediaSendActivity_message_to_s">Mesej kepada %s</string>
@@ -431,7 +429,7 @@
   <string name="MediaRepository_all_media">Semua media</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Signal versi lama sudah tidak menyokong penerimaan mesej yang disulitkan. Sila minta penghantar untuk mengemas kini kepada versi yang terbaru dan hantar semula mesej. </string>
-  <string name="MessageRecord_left_group">Anda telah keluar daripada kumpulan.</string>
+  <string name="MessageRecord_left_group">Anda telah meninggalkan kumpulan.</string>
   <string name="MessageRecord_you_updated_group">Anda telah mengemas kini kumpulan.</string>
   <string name="MessageRecord_you_called">Anda memanggil</string>
   <string name="MessageRecord_called_you">Kenalan dipanggil</string>
@@ -614,7 +612,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Gagal memuatkan pek pelekat</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">Kumpulan dikemas kini</string>
-  <string name="ThreadRecord_left_the_group">Keluar daripada kumpulan</string>
+  <string name="ThreadRecord_left_the_group">Meninggalkan kumpulan</string>
   <string name="ThreadRecord_secure_session_reset">Sesi selamat ditetap semula</string>
   <string name="ThreadRecord_draft">Draf:</string>
   <string name="ThreadRecord_called">Anda memanggil</string>
@@ -1263,6 +1261,11 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="trimmer__deleting">Memadam</string>
   <string name="trimmer__deleting_old_messages">Memadam mesej-mesej lama…</string>
   <string name="trimmer__old_messages_successfully_deleted">Berjaya memadam mesej-mesej lama</string>
+  <!--Insights-->
+  <string name="InsightsDashboardFragment__cancel">Batal</string>
+  <string name="InsightsDashboardFragment__send">Hantar</string>
+  <string name="FirstInviteReminder__title">Jemput ke Signal</string>
+  <string name="InsightsReminder__invite">Jemput</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Pindah ikon</string>
   <string name="ConversationListFragment_loading">Memuatkan…</string>
@@ -1357,5 +1360,6 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">KETIK UNTUK MEMBUKA</string>
   <string name="RegistrationLockDialog_reminder">Peringatan:</string>
   <string name="recipient_preferences__about">Perihal</string>
+  <string name="Recipient_unknown">Tidak diketahui</string>
   <!--EOF-->
 </resources>

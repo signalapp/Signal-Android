@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <!-- Removed by excludeNonTranslatables <string name="app_name">Signal</string> -->
   <string name="yes">ਹਾਂ</string>
   <string name="no">ਨਹੀਂ </string>
   <string name="delete">ਮਿਟਾਓ </string>
@@ -10,9 +9,8 @@
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">ਨਵਾਂ ਸੰਦੇਸ਼ </string>
   <!--AlbumThumbnailView-->
-  <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus">\+%d</string> -->
   <!--ApplicationMigrationActivity-->
-  <string name="ApplicationMigrationActivity__signal_is_updating">Signal ਅਪਡੇਟ ਹੋ ਰਿਹਾ ਹੈ..</string>
+  <string name="ApplicationMigrationActivity__signal_is_updating">Signal ਅਪਡੇਟ ਹੋ ਰਿਹਾ ਹੈ…</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">ਇਸ ਵੇਲੇ %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">ਤੁਸੀਂ ਅਜੇ ਆਪਣਾ ਪਾਸਫਰੇਜ ਨਹੀਂ ਸੈੱਟ ਕੀਤਾ ਹੈ!</string>
@@ -312,7 +310,7 @@
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">ਤੁਸੀਂ ਆਪਣੀ Signal ਸੈਟਿੰਗਜ਼ ਵਿੱਚ ਕਿਸੇ ਵੀ ਸਮੇਂ ਇਸ ਵਿਸ਼ੇਸ਼ਤਾ ਨੂੰ ਅਸਮਰੱਥ ਜਾਂ ਸਮਰੱਥ ਬਣਾ ਸਕਦੇ ਹੋ | (Privacy &gt; Send link previews).</string>
   <string name="ExperienceUpgradeActivity_got_it">ਮਿਲ ਗਿਆ</string>
   <!--GcmBroadcastReceiver-->
-  <string name="GcmBroadcastReceiver_retrieving_a_message">ਸੁਨੇਹਾ ਪ੍ਰਾਪਤ ਕਰ ਰਿਹਾ ਹੈ ..</string>
+  <string name="GcmBroadcastReceiver_retrieving_a_message">ਸੁਨੇਹਾ ਪ੍ਰਾਪਤ ਕਰ ਰਿਹਾ ਹੈ …</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">ਸਥਾਈ Signal ਸੰਚਾਰ ਅਸਫਲ!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal Google Play ਸੇਵਾਵਾਂ ਨਾਲ ਰਜਿਸਟਰ ਕਰਨ ਵਿੱਚ ਅਸਮਰੱਥ ਸੀ. Signal ਸੁਨੇਹਿਆਂ ਅਤੇ ਕਾਲਾਂ ਅਸਮਰੱਥ ਕੀਤੀਆਂ ਗਈਆਂ ਹਨ, ਕਿਰਪਾ ਕਰਕੇ ਸੈਟਿੰਗਾਂ ਵਿਚ ਦੋਬਾਰਾ ਰਜਿਸਟਰ ਕਰੋ </string>
@@ -335,7 +333,7 @@
   <string name="GroupCreateActivity_creating_group">%1$sਬਣਾਇਆ ਜਾ ਰਿਹਾ ਹੈ …</string>
   <string name="GroupCreateActivity_updating_group">%1$sਅੱਪਡੇਟ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ …</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">%1$s ਸ਼ਾਮਲ ਨਹੀਂ ਕੀਤਾ ਜਾ ਸਕਿਆ ਕਿਉਂਕਿ ਉਹ ਇੱਕ Signal ਉਪਭੋਗਤਾ ਨਹੀਂ ਹਨ.</string>
-  <string name="GroupCreateActivity_loading_group_details">ਗਰੁੱਪ ਵੇਰਵੇ ਲੋਡ ਕਰ ਰਿਹਾ ਹੈ ..</string>
+  <string name="GroupCreateActivity_loading_group_details">ਗਰੁੱਪ ਵੇਰਵੇ ਲੋਡ ਕਰ ਰਿਹਾ ਹੈ …</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">ਤੁਸੀਂ ਪਹਿਲਾਂ ਤੋਂ ਹੀ ਗਰੁੱਪ ਵਿੱਚ ਹੋ.</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">ਕੀ ਇਸ ਸਮੂਹ ਦੇ ਨਾਲ ਤੁਸੀਂ ਆਪਣਾ ਪ੍ਰੋਫਾਈਲ ਨਾਮ ਅਤੇ ਫੋਟੋ ਸਾਂਝੀ ਕਰਨਾ ਚਾਉਂਦੇ ਹੋ ?</string>
@@ -352,7 +350,7 @@
   <string name="InviteActivity_share">ਸਾਂਝਾ ਕਰੋ</string>
   <string name="InviteActivity_choose_contacts">ਸੰਪਰਕ ਚੁਣੋ</string>
   <string name="InviteActivity_cancel">ਰੱਦ ਕਰੋ</string>
-  <string name="InviteActivity_sending">ਭੇਜ ਰਿਹਾ ਹੈ .. </string>
+  <string name="InviteActivity_sending">ਭੇਜ ਰਿਹਾ ਹੈ … </string>
   <string name="InviteActivity_heart_content_description">ਦਿਲ</string>
   <string name="InviteActivity_invitations_sent">ਸੱਦੇ ਭੇਜੇ ਗਏ !</string>
   <string name="InviteActivity_invite_to_signal">Signal ਲਈ ਸੱਦੋ</string>
@@ -1243,6 +1241,11 @@
   <string name="trimmer__deleting">ਮਿਟਾਇਆ ਜਾ ਰਿਹਾ ਹੈ</string>
   <string name="trimmer__deleting_old_messages">ਪੁਰਾਣੇ ਸੁਨੇਹਿਆਂ ਨੂੰ ਮਿਟਾਇਆ ਜਾ ਰਿਹਾ ਹੈ…</string>
   <string name="trimmer__old_messages_successfully_deleted">ਪੁਰਾਣੇ ਸੁਨੇਹੇ ਸਫਲਤਾਪੂਰਵਕ ਮਿਟਾਏ ਗਏ</string>
+  <!--Insights-->
+  <string name="InsightsDashboardFragment__cancel">ਰੱਦ ਕਰੋ</string>
+  <string name="InsightsDashboardFragment__send">ਭੇਜੋ</string>
+  <string name="FirstInviteReminder__title">Signal ਲਈ ਸੱਦੋ</string>
+  <string name="InsightsReminder__invite">ਸੱਦਾ</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">ਆਵਾਜਾਈ ਆਈਕਨ</string>
   <string name="ConversationListFragment_loading">ਲੋਡ ਕਰ ਰਿਹਾ ਹੈ …</string>
@@ -1334,5 +1337,6 @@
   <string name="prompt_passphrase_activity__tap_to_unlock">ਅਨਲੌਕ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ</string>
   <string name="RegistrationLockDialog_reminder">ਰੀਮਾਈਂਡਰ:</string>
   <string name="recipient_preferences__about">ਇਸ ਬਾਰੇ</string>
+  <string name="Recipient_unknown">ਅਣਜਾਣ</string>
   <!--EOF-->
 </resources>

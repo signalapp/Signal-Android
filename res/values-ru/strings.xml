@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <!-- Removed by excludeNonTranslatables <string name="app_name">Signal</string> -->
   <string name="yes">Да</string>
   <string name="no">Нет</string>
   <string name="delete">Удалить</string>
@@ -10,7 +9,6 @@
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Новое сообщение</string>
   <!--AlbumThumbnailView-->
-  <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus">\+%d</string> -->
   <!--ApplicationMigrationActivity-->
   <string name="ApplicationMigrationActivity__signal_is_updating">Signal обновляется…</string>
   <!--ApplicationPreferencesActivity-->
@@ -238,7 +236,7 @@
     <item quantity="one">Сохраняем вложение в хранилище…</item>
     <item quantity="few">Сохраняем %1$d вложений в хранилище…</item>
     <item quantity="many">Сохраняем %1$d вложений в хранилище…</item>
-    <item quantity="other">Сохраняем%1$d вложений в хранилище…</item>
+    <item quantity="other">Сохраняем %1$d вложений в хранилище…</item>
   </plurals>
   <string name="ConversationFragment_pending">Ожидание…</string>
   <string name="ConversationFragment_push">Интернет (Signal)</string>
@@ -397,7 +395,7 @@
   <string name="InviteActivity_share">Поделиться</string>
   <string name="InviteActivity_choose_contacts">Выбрать контакты</string>
   <string name="InviteActivity_cancel">Отмена</string>
-  <string name="InviteActivity_sending">Отправляем…</string>
+  <string name="InviteActivity_sending">Отправляется…</string>
   <string name="InviteActivity_heart_content_description">Сердце</string>
   <string name="InviteActivity_invitations_sent">Приглашения отправлены!</string>
   <string name="InviteActivity_invite_to_signal">Пригласить в Signal</string>
@@ -1069,7 +1067,7 @@
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Если вы хотите убедиться в надёжности шифрования переписки и звонков с %s, сравните этот код с таким же кодом на устройстве вашего собеседника. Также вы можете отсканировать код на устройстве собеседника или попросить его отсканировать ваш код. <a href="https://whispersystems.org/redirect/safety-numbers">Подробнее</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Сканировать</string>
-  <string name="verify_display_fragment__loading">Загрузка…</string>
+  <string name="verify_display_fragment__loading">Загружаем…</string>
   <string name="verify_display_fragment__verified">Подтверждён</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Поделиться кодом безопасности</string>
@@ -1339,6 +1337,7 @@
   <string name="reminder_header_share_text">Чем больше друзей пользуется Signal, тем лучше он становится.</string>
   <string name="reminder_header_service_outage_text">У Signal возникли технические неполадки. Мы прилагаем все усилия, чтобы как можно быстрее восстановить обслуживание.</string>
   <string name="reminder_header_the_latest_signal_features_wont_work">Новейшие функции Signal не будут работать на этой версии Android. Пожалуйста, обновите это устройство, чтобы получать будущие обновления Signal.</string>
+  <string name="reminder_header_progress">%1$d%%</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Сохранить</string>
   <string name="media_preview__forward_title">Переслать</string>
@@ -1354,10 +1353,36 @@
   <string name="trimmer__deleting">Удаление</string>
   <string name="trimmer__deleting_old_messages">Удаляем старые сообщения…</string>
   <string name="trimmer__old_messages_successfully_deleted">Старые сообщения успешно удалены</string>
+  <!--Insights-->
+  <string name="Insights__percent">%</string>
+  <string name="Insights__title">Выводы</string>
+  <string name="InsightsDashboardFragment__title">Выводы</string>
+  <string name="InsightsDashboardFragment__tagline">%1$d%% от ваших исходящих сообщений за последние 7 дней были защищены сквозным шифрованием с использованием Signal Protocol.</string>
+  <string name="InsightsDashboardFragment__boost_your_signal">Улучшите свой Signal</string>
+  <string name="InsightsDashboardFragment__100_title">Ваш Signal сильный</string>
+  <string name="InsightsDashboardFragment__no_signal_yet">Нет Signal (пока)</string>
+  <string name="InsightsDashboardFragment__youre_just_getting_started">Вы только начинаете. Выводы будут показаны, когда вы отправите несколько сообщений.</string>
+  <string name="InsightsDashboardFragment__start_a_conversation">Начните разговор</string>
+  <string name="InsightsDashboardFragment__100_description">Передовая технология сохранения конфиденциальности Signal автоматически защитила все из ваших недавних исходящих сообщений.</string>
+  <string name="InsightsDashboardFragment__invite_your_contacts">Начните общаться безопасно и включите новые функции, которые выходят за пределы ограничений незащищённых SMS, приглашая больше контактов присоединиться к Signal.</string>
+  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Эта статистика была сгенерирована локально на вашем устройстве и видна только вам. Она никогда никуда не передаётся.</string>
+  <string name="InsightsDashboardFragment__encrypted_messages">Зашифрованные сообщения</string>
+  <string name="InsightsDashboardFragment__cancel">Отменить</string>
+  <string name="InsightsDashboardFragment__send">Отправить</string>
+  <string name="InsightsDashboardFragment__not_using_signal_yet">Ещё не использует Signal</string>
+  <string name="InsightsModalFragment__title">Представляем «Выводы»</string>
+  <string name="InsightsModalFragment__description">Узнайте, сколько из ваших исходящих сообщений было отправлено безопасно, а затем быстро пригласите новые контакты, чтобы увеличить ваш процент Signal.</string>
+  <string name="InsightsModalFragment__view_insights">Просмотреть выводы</string>
+  <string name="FirstInviteReminder__title">Пригласить в Signal</string>
+  <string name="FirstInviteReminder__description">Вы могли бы увеличить количество отправляемых вами зашифрованных сообщений на %1$d%%</string>
+  <string name="SecondInviteReminder__title">Улучшите свой Signal</string>
+  <string name="SecondInviteReminder__description">Пригласить %1$s</string>
+  <string name="InsightsReminder__view_insights">Просмотреть выводы</string>
+  <string name="InsightsReminder__invite">Пригласить</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Значок транспорта</string>
-  <string name="ConversationListFragment_loading">Загрузка…</string>
-  <string name="CallNotificationBuilder_connecting">Соединение…</string>
+  <string name="ConversationListFragment_loading">Загружаем…</string>
+  <string name="CallNotificationBuilder_connecting">Соединеняемся…</string>
   <string name="Permissions_permission_required">Требуется разрешение</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal требуется разрешение на доступ к SMS-сообщениям для отправки SMS, но оно было вами отклонено. Нажмите «Продолжить», чтобы перейти в настройки приложения, откройте «Разрешения» и включите «Сообщения» («SMS»).</string>
   <string name="Permissions_continue">Продолжить</string>
@@ -1382,7 +1407,7 @@
   <string name="RegistrationActivity_restore">Восстановить</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Невозможно импортировать резервную копию из более новых версий Signal</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">Неверная парольная фраза резервной копии</string>
-  <string name="RegistrationActivity_checking">Проверка…</string>
+  <string name="RegistrationActivity_checking">Проверяем…</string>
   <string name="RegistrationActivity_d_messages_so_far">уже %d сообщений…</string>
   <string name="RegistrationActivity_restore_from_backup">Восстановить из\nрезервной копии?</string>
   <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Восстановите сообщения и медиа-файлы из локальной резервной копии. Если вы не сделаете это сейчас, вы не сможете восстановить их позже.</string>
@@ -1403,7 +1428,7 @@
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Пожалуйста, введите код подтверждения, отправленный на %s.</string>
   <string name="RegistrationActivity_wrong_number">Неправильный номер</string>
   <string name="RegistrationActivity_call_me_instead_available_in">Позвоните мне вместо SMS \n (Доступно через %1$02d:%2$02d)</string>
-  <string name="RegistrationActivity_contact_signal_support">Связаться со поддержкой Signal</string>
+  <string name="RegistrationActivity_contact_signal_support">Связаться с поддержкой Signal</string>
   <string name="RegistrationActivity_code_support_subject">Регистрация в Signal - код подтверждения для Android</string>
   <string name="RegistrationActivity_code_support_body">Тема: Регистрация в Signal - код подтверждения для Android\nИнформация об устройстве: %1$s\nВерсия Android: %2$s\n Версия Signal: %3$s\nРегион: %4$s</string>
   <string name="BackupUtil_never">Никогда</string>
@@ -1448,5 +1473,6 @@
   <string name="prompt_passphrase_activity__tap_to_unlock">РАЗБЛОКИРОВАТЬ</string>
   <string name="RegistrationLockDialog_reminder">Напоминание:</string>
   <string name="recipient_preferences__about">О собеседнике</string>
+  <string name="Recipient_unknown">Неизвестный</string>
   <!--EOF-->
 </resources>

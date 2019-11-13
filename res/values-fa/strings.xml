@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <!-- Removed by excludeNonTranslatables <string name="app_name">Signal</string> -->
   <string name="yes">بله</string>
   <string name="no">خیر</string>
   <string name="delete">حذف</string>
@@ -10,7 +9,6 @@
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">پیام جدید</string>
   <!--AlbumThumbnailView-->
-  <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus">\+%d</string> -->
   <!--ApplicationMigrationActivity-->
   <string name="ApplicationMigrationActivity__signal_is_updating">سیگنال در حال به‌روزرسانی است…</string>
   <!--ApplicationPreferencesActivity-->
@@ -361,7 +359,7 @@
   <string name="InviteActivity_share">اشتراک گذاری</string>
   <string name="InviteActivity_choose_contacts">انتخاب مخاطبین</string>
   <string name="InviteActivity_cancel">لغو</string>
-  <string name="InviteActivity_sending">در حال ارسال</string>
+  <string name="InviteActivity_sending">در حال ارسال…</string>
   <string name="InviteActivity_heart_content_description">فلب</string>
   <string name="InviteActivity_invitations_sent">دعوت نامه ارسال شد!</string>
   <string name="InviteActivity_invite_to_signal">دعوت به Signal</string>
@@ -1007,7 +1005,7 @@
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ اگر مایل هستید تا امنیت رمزنگاری خود را با %s تایید کنید، عدد آمده در بالا را با عدد در دستگاه آن ها مقایسه کنید. در غیر این صورت، شما میتوانید کد روی گوشی آن ها را اسکن کرده، یا از آن ها بخواهید تا کد شما را اسکن کنند. <a href="https://signal.org/redirect/safety-numbers">بیشتر یاد بگیرید.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">برای جستجو ضربه بزنید</string>
-  <string name="verify_display_fragment__loading">درحال بارگذاری…</string>
+  <string name="verify_display_fragment__loading">در حال بارگزاری…</string>
   <string name="verify_display_fragment__verified">تایید شده</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">به اشتراک گذاشتن شماره امنیتی</string>
@@ -1288,10 +1286,15 @@
   <string name="trimmer__deleting">در حال حذف</string>
   <string name="trimmer__deleting_old_messages">در حال حذف پیام‌های قدیمی…</string>
   <string name="trimmer__old_messages_successfully_deleted">پیام‌های قدیمی با موفقیت حذف شدند</string>
+  <!--Insights-->
+  <string name="InsightsDashboardFragment__cancel">لغو</string>
+  <string name="InsightsDashboardFragment__send">ارسال</string>
+  <string name="FirstInviteReminder__title">دعوت به Signal</string>
+  <string name="InsightsReminder__invite">دعوت کردن</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">آیکون های حمل و نقل</string>
-  <string name="ConversationListFragment_loading">درحال بارگذاری…</string>
-  <string name="CallNotificationBuilder_connecting">در حال اتصال …</string>
+  <string name="ConversationListFragment_loading">در حال بارگزاری…</string>
+  <string name="CallNotificationBuilder_connecting">در حال اتصال…</string>
   <string name="Permissions_permission_required">مجوز لازم است</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal برای ارسال پیامک نیاز به دسترسی به پیامک دارد اما این دسترسی به‌ طور همیشگی رد شده است. لطفاً به بخش برنامه‌ها در تنظیمات تلفن همراه خود رفته در ادامه  پس از یافتن Signal وارد بخش دسترسی ها شده و گزینهٔ پیامک را فعال کنید.</string>
   <string name="Permissions_continue">ادامه</string>
@@ -1382,5 +1385,6 @@
   <string name="prompt_passphrase_activity__tap_to_unlock">برای باز کردن قفل کلیک کنید.</string>
   <string name="RegistrationLockDialog_reminder">یادآور:</string>
   <string name="recipient_preferences__about">درباره ی ما</string>
+  <string name="Recipient_unknown">ناشناخته</string>
   <!--EOF-->
 </resources>

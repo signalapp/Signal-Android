@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <!-- Removed by excludeNonTranslatables <string name="app_name">Signal</string> -->
   <string name="yes">예</string>
   <string name="no">아니요</string>
   <string name="delete">삭제</string>
@@ -10,7 +9,6 @@
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">새 메시지</string>
   <!--AlbumThumbnailView-->
-  <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus">\+%d</string> -->
   <!--ApplicationMigrationActivity-->
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">현재: %s</string>
@@ -389,7 +387,7 @@
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">탭하여 선택</string>
   <!--MediaSendActivity-->
-  <string name="MediaSendActivity_add_a_caption">설명 추가…</string>
+  <string name="MediaSendActivity_add_a_caption">자막 추가…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">용량 제한이 초과되어 항목이 삭제됨</string>
   <string name="MediaSendActivity_camera_unavailable">카메라를 사용할 수 없습니다.</string>
   <string name="MediaSendActivity_message_to_s">%s에게 메시지</string>
@@ -1208,6 +1206,11 @@
   <string name="trimmer__deleting">이전 메시지 삭제</string>
   <string name="trimmer__deleting_old_messages">이전 메시지를 삭제 중…</string>
   <string name="trimmer__old_messages_successfully_deleted">이전 메시지 삭제됨</string>
+  <!--Insights-->
+  <string name="InsightsDashboardFragment__cancel">취소</string>
+  <string name="InsightsDashboardFragment__send">발신</string>
+  <string name="FirstInviteReminder__title">Signal로 초대</string>
+  <string name="InsightsReminder__invite">초대</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">전송 아이콘</string>
   <string name="ConversationListFragment_loading">불러오는 중</string>
@@ -1300,5 +1303,6 @@
   <string name="prompt_passphrase_activity__tap_to_unlock">탭하여 잠금 해제</string>
   <string name="RegistrationLockDialog_reminder">리마인더:</string>
   <string name="recipient_preferences__about">정보</string>
+  <string name="Recipient_unknown">알 수 없음</string>
   <!--EOF-->
 </resources>

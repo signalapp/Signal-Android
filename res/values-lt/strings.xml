@@ -1,18 +1,16 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <!-- Removed by excludeNonTranslatables <string name="app_name">Signal</string> -->
   <string name="yes">Taip</string>
   <string name="no">Ne</string>
   <string name="delete">Ištrinti</string>
-  <string name="please_wait">Prašome palaukti…</string>
+  <string name="please_wait">Palaukite…</string>
   <string name="save">Įrašyti</string>
   <string name="note_to_self">Pastabos sau</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Nauja žinutė</string>
   <!--AlbumThumbnailView-->
-  <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus">\+%d</string> -->
   <!--ApplicationMigrationActivity-->
-  <string name="ApplicationMigrationActivity__signal_is_updating">Signal atsinaujina…</string>
+  <string name="ApplicationMigrationActivity__signal_is_updating">Signal yra atnaujinama…</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Šiuo metu: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Jūs dar nesate nustatę slaptafrazės!</string>
@@ -235,10 +233,10 @@
     <item quantity="other">Įrašoma %1$d priedų</item>
   </plurals>
   <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-    <item quantity="one">Įrašomas į atmintį %1$d priedas…</item>
+    <item quantity="one">Įrašomas į atmintį priedas…</item>
     <item quantity="few">Įrašomi į atmintį %1$d priedai…</item>
     <item quantity="many">Įrašoma į atmintį %1$d priedų…</item>
-    <item quantity="other">Įrašoma į atmintį %1$d priedų…</item>
+    <item quantity="other">Įrašomas į atmintį %1$d priedas…</item>
   </plurals>
   <string name="ConversationFragment_pending">Laukiama…</string>
   <string name="ConversationFragment_push">Duomenys (Signal)</string>
@@ -1361,6 +1359,11 @@
   <string name="trimmer__deleting">Ištrinama</string>
   <string name="trimmer__deleting_old_messages">Ištrinamos senos žinutės…</string>
   <string name="trimmer__old_messages_successfully_deleted">Senos žinutės sėkmingai ištrintos</string>
+  <!--Insights-->
+  <string name="InsightsDashboardFragment__cancel">Atsisakyti</string>
+  <string name="InsightsDashboardFragment__send">Siųsti</string>
+  <string name="FirstInviteReminder__title">Pakviesti į Signal</string>
+  <string name="InsightsReminder__invite">Pakviesti</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Perdavimo piktograma</string>
   <string name="ConversationListFragment_loading">Įkeliama…</string>
@@ -1455,5 +1458,6 @@
   <string name="prompt_passphrase_activity__tap_to_unlock">BAKSTELĖKITE, NORĖDAMI ATRAKINTI</string>
   <string name="RegistrationLockDialog_reminder">Priminimas:</string>
   <string name="recipient_preferences__about">Apie</string>
+  <string name="Recipient_unknown">Nežinoma</string>
   <!--EOF-->
 </resources>

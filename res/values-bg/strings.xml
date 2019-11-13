@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <!-- Removed by excludeNonTranslatables <string name="app_name">Signal</string> -->
   <string name="yes">Да</string>
   <string name="no">Не</string>
   <string name="delete">Изтрий</string>
@@ -10,7 +9,6 @@
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Ново съобщение</string>
   <!--AlbumThumbnailView-->
-  <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus">\+%d</string> -->
   <!--ApplicationMigrationActivity-->
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">В момента: %s</string>
@@ -407,7 +405,7 @@
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">Натиснете, за да изберете</string>
   <!--MediaSendActivity-->
-  <string name="MediaSendActivity_add_a_caption">Добави надпис…</string>
+  <string name="MediaSendActivity_add_a_caption">Добави описание…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Един елемент бе премахнат, защото надхвърля ограничението за размер</string>
   <string name="MediaSendActivity_camera_unavailable">Не е открита камера.</string>
   <string name="MediaSendActivity_message_to_s">Изпрати на %s</string>
@@ -1241,6 +1239,11 @@
   <string name="trimmer__deleting">Изтриване</string>
   <string name="trimmer__deleting_old_messages">Изтриване на стари съобщения…</string>
   <string name="trimmer__old_messages_successfully_deleted">Старите съобщения бяха успешно изтрити</string>
+  <!--Insights-->
+  <string name="InsightsDashboardFragment__cancel">Отказ</string>
+  <string name="InsightsDashboardFragment__send">Изпращане</string>
+  <string name="FirstInviteReminder__title">Покани в Signal</string>
+  <string name="InsightsReminder__invite">Покани</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Икона за транспорт</string>
   <string name="ConversationListFragment_loading">Зареждане…</string>
@@ -1332,5 +1335,6 @@
   <string name="prompt_passphrase_activity__tap_to_unlock">НАТИСНЕТЕ ЗА ОТКЛЮЧВАНЕ</string>
   <string name="RegistrationLockDialog_reminder">Напомняне:</string>
   <string name="recipient_preferences__about">Относно</string>
+  <string name="Recipient_unknown">Непознат</string>
   <!--EOF-->
 </resources>

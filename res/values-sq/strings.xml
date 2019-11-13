@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <!-- Removed by excludeNonTranslatables <string name="app_name">Signal</string> -->
   <string name="yes">Po</string>
   <string name="no">Jo</string>
   <string name="delete">Fshije</string>
@@ -10,7 +9,6 @@
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Lajm i ri</string>
   <!--AlbumThumbnailView-->
-  <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus">\+%d</string> -->
   <!--ApplicationMigrationActivity-->
   <string name="ApplicationMigrationActivity__signal_is_updating">Signal-i po përditësohet…</string>
   <!--ApplicationPreferencesActivity-->
@@ -217,15 +215,15 @@
     <item quantity="other">Po ruhen %1$d bashkëngjitje</item>
   </plurals>
   <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-    <item quantity="one">Po ruhet bashkëngjitja në depozitë…</item>
-    <item quantity="other">Po ruhet %1$d në depozitë…</item>
+    <item quantity="one">Po ruhet bashkëngjitje në depozitë…</item>
+    <item quantity="other">Po ruhen %1$d bashkëngjitje në depozitë…</item>
   </plurals>
   <string name="ConversationFragment_pending">Pezull…</string>
   <string name="ConversationFragment_push">Të dhëna (Signal)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Po fshihet</string>
-  <string name="ConversationFragment_deleting_messages">Po fshihen mesazhe…</string>
+  <string name="ConversationFragment_deleting_messages">Po fshihen mesazhet…</string>
   <string name="ConversationFragment_quoted_message_not_found">S\’u gjet mesazhi origjinal</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">Mesazhi origjinal s\’gjendet më</string>
   <string name="ConversationFragment_failed_to_open_message">S’u arrit të hapet mesazhe</string>
@@ -1190,7 +1188,7 @@
   <!--menus-->
   <!--****************************************-->
   <!--contact_selection_list-->
-  <string name="contact_selection_list__unknown_contact">Mesazh i ri për…</string>
+  <string name="contact_selection_list__unknown_contact">Mesazh i ri për:</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Thirrje</string>
   <!--conversation_callable_secure-->
@@ -1265,7 +1263,7 @@
     <item quantity="one">Versioni juaj i Signal-it do të skadojë për %d ditë. Prekeni që të përditësohet me versionin më të ri.</item>
     <item quantity="other">Versioni juaj i Signal-it do të skadojë për %d ditë. Prekeni që të përditësohet me versionin më të ri.</item>
   </plurals>
-  <string name="reminder_header_outdated_build_details_today">Versioni juaj i Signal-it do të skadojë sot. Prekeni që të përditësohet me versionin më të ri..</string>
+  <string name="reminder_header_outdated_build_details_today">Versioni juaj i Signal-it do të skadojë sot. Prekeni që të përditësohet me versionin më të ri.</string>
   <string name="reminder_header_expired_build">Versioni juaj i Signal-it ka skaduar!</string>
   <string name="reminder_header_expired_build_details">Mesazhet s\’do të dërgohen më me sukses. Prekeni që të përditësohet me versionin më të ri.</string>
   <string name="reminder_header_sms_default_title">Përdoresi aplikacionin parazgjedhje për SMS-të</string>
@@ -1280,6 +1278,7 @@
   <string name="reminder_header_share_text">Sa më shumë shokë që përdorin Signal-in, aq më i mirë bëhet.</string>
   <string name="reminder_header_service_outage_text">Signal-i po kalon vështirësi teknike. Po punojmë fort të rikthejmë shërbimin sa më shpejt që të mundet.</string>
   <string name="reminder_header_the_latest_signal_features_wont_work">Veçoritë më të reja të Signal-it, s’do të funksionojnë në këtë version të Android-it. Ju lutemi, përmirësojeni këtë pajisje që të marrë përditësime të ardhshme të Signal-it.</string>
+  <string name="reminder_header_progress">%1$d%%</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Ruaje</string>
   <string name="media_preview__forward_title">Përcilleni</string>
@@ -1295,6 +1294,32 @@
   <string name="trimmer__deleting">Po fshihet</string>
   <string name="trimmer__deleting_old_messages">Po fshihen mesazhet e vjetra…</string>
   <string name="trimmer__old_messages_successfully_deleted">Mesazhet e vjetra u fshinë me sukses</string>
+  <!--Insights-->
+  <string name="Insights__percent">%</string>
+  <string name="Insights__title">Prirje</string>
+  <string name="InsightsDashboardFragment__title">Prirje</string>
+  <string name="InsightsDashboardFragment__tagline">%1$d%% e mesazheve tuaj ikës në 7 ditët e fundit qen të fshehtëzuara skaj-më-skaj me Protokollin Signal.</string>
+  <string name="InsightsDashboardFragment__boost_your_signal">Fuqizoni Signal-in tuaj</string>
+  <string name="InsightsDashboardFragment__100_title">Signal-i juaj është i Fortë</string>
+  <string name="InsightsDashboardFragment__no_signal_yet">(Ende) Pa Signal</string>
+  <string name="InsightsDashboardFragment__youre_just_getting_started">Sapo po filloni. Prirjet do të shfaqen pasi të dërgoni ca mesazhe.</string>
+  <string name="InsightsDashboardFragment__start_a_conversation">Nisni një bisedë</string>
+  <string name="InsightsDashboardFragment__100_description">Teknologjia Signal, që ruan privatësinë, ka mbrojtur automatikisht krejt mesazhet tuaj ikës së fundi.</string>
+  <string name="InsightsDashboardFragment__invite_your_contacts">Filloni të komunikoni në mënyrë të parrezik dhe aktivizoni veçorit të reja që shkojnë tej kufizimeve të mesazheve SMS të pafshehtëzuar, duke ftuar më tepër kontakte të bëhen pjesë e Signal-it.</string>
+  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Kjo statistikë qe prodhuar lokalisht dhe mund të shihet vetëm nga ju. Nuk transmetohet kurrë gjetkë.</string>
+  <string name="InsightsDashboardFragment__encrypted_messages">Mesazhe të fshehtëzuar</string>
+  <string name="InsightsDashboardFragment__cancel">Anuloje</string>
+  <string name="InsightsDashboardFragment__send">Dërgoje</string>
+  <string name="InsightsDashboardFragment__not_using_signal_yet">Ende s’përdoret Signal-i</string>
+  <string name="InsightsModalFragment__title">Ju Paraqesim Prirje</string>
+  <string name="InsightsModalFragment__description">Shihni se sa nga mesazhet tuaja ikës u dërguan në mënyrë të parrezik, mandej ftoni pa humbur kohë kontakte të rinj, për të fuqizuar përqindjen tuaj Signal.</string>
+  <string name="InsightsModalFragment__view_insights">Shihni Prirje</string>
+  <string name="FirstInviteReminder__title">Ftojeni në Signal</string>
+  <string name="FirstInviteReminder__description">Mund ta rritnit numrin e mesazheve të fshehtëzuar që dërgoni me %1$d%%</string>
+  <string name="SecondInviteReminder__title">Fuqizoni Signal-in tuaj</string>
+  <string name="SecondInviteReminder__description">Ftojeni %1$s</string>
+  <string name="InsightsReminder__view_insights">Shihni Prirje</string>
+  <string name="InsightsReminder__invite">Ftoni</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ikonë bartjesh</string>
   <string name="ConversationListFragment_loading">Po ngarkohet…</string>
@@ -1324,7 +1349,7 @@
   <string name="RegistrationActivity_backup_failure_downgrade">S\’mund të importohen kopjeruajtje prej versionesh më të rinj të Signal-it</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">Jepni frazëkalim kopjeruajtjeje</string>
   <string name="RegistrationActivity_checking">Po kontrollohet…</string>
-  <string name="RegistrationActivity_d_messages_so_far">%d mesazhe deri tani…</string>
+  <string name="RegistrationActivity_d_messages_so_far">%d mesazhe deri këtu…</string>
   <string name="RegistrationActivity_restore_from_backup">Të rikthehet prej kopjeruajtjeje?</string>
   <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Riktheni mesazhet dhe mediat tuaja që prej një kopjeruajtjeje vendore. Nëse s\’i riktheni tani, s\’do të jeni në gjendje t\’i riktheni më vonë.</string>
   <string name="RegistrationActivity_backup_size_s">Madhësi kopjeruajtjeje: %s</string>
@@ -1389,5 +1414,6 @@
   <string name="prompt_passphrase_activity__tap_to_unlock">PREKENI QË TË SHKYÇET</string>
   <string name="RegistrationLockDialog_reminder">Kujtues:</string>
   <string name="recipient_preferences__about">Mbi</string>
+  <string name="Recipient_unknown">I panjohur</string>
   <!--EOF-->
 </resources>

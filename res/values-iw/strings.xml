@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <!-- Removed by excludeNonTranslatables <string name="app_name">Signal</string> -->
   <string name="yes">כן</string>
   <string name="no">לא</string>
   <string name="delete">מחק</string>
@@ -10,7 +9,6 @@
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">הודעה חדשה</string>
   <!--AlbumThumbnailView-->
-  <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus">\+%d</string> -->
   <!--ApplicationMigrationActivity-->
   <string name="ApplicationMigrationActivity__signal_is_updating">Signal מתעדכן…</string>
   <!--ApplicationPreferencesActivity-->
@@ -1355,6 +1353,11 @@
   <string name="trimmer__deleting">מוחק</string>
   <string name="trimmer__deleting_old_messages">מוחק הודעות ישנות…</string>
   <string name="trimmer__old_messages_successfully_deleted">הודעות ישנות נמחקו בהצלחה</string>
+  <!--Insights-->
+  <string name="InsightsDashboardFragment__cancel">בטל</string>
+  <string name="InsightsDashboardFragment__send">שלח</string>
+  <string name="FirstInviteReminder__title">הזמן אל Signal</string>
+  <string name="InsightsReminder__invite">הזמן</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">צלמית תעבורה</string>
   <string name="ConversationListFragment_loading">טוען…</string>
@@ -1449,5 +1452,6 @@
   <string name="prompt_passphrase_activity__tap_to_unlock">הקש כדי לבטל נעילה</string>
   <string name="RegistrationLockDialog_reminder">תזכורת:</string>
   <string name="recipient_preferences__about">אודות</string>
+  <string name="Recipient_unknown">לא ידוע</string>
   <!--EOF-->
 </resources>

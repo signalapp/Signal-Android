@@ -1,16 +1,14 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <!-- Removed by excludeNonTranslatables <string name="app_name">Signal</string> -->
   <string name="yes">Ja</string>
   <string name="no">Nei</string>
   <string name="delete">Slett</string>
-  <string name="please_wait">Vent litt </string>
+  <string name="please_wait">Vent litt …</string>
   <string name="save">Lagra</string>
   <string name="note_to_self">Notat til meg sjølv</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Ny melding</string>
   <!--AlbumThumbnailView-->
-  <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus">\+%d</string> -->
   <!--ApplicationMigrationActivity-->
   <string name="ApplicationMigrationActivity__signal_is_updating">Signal oppdaterer seg …</string>
   <!--ApplicationPreferencesActivity-->
@@ -30,7 +28,7 @@
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Dette låser opp Signal og meldingsvarsel.</string>
   <string name="ApplicationPreferencesActivity_disable">Slå av</string>
   <string name="ApplicationPreferencesActivity_unregistering">Avregistrerer</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Avregistrerer frå Signal-meldingar og -samtalar </string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Avregistrerer frå Signal-meldingar og samtalar …</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Vil du slå av Signal-meldingar og -samtalar?</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Slå av Signal-meldingar og -samtalar ved å avregistrera deg frå tenaren. Du må registrera telefonnummeret ditt for å kunna finna igjen desse seinare.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Det oppstod ein feil under tilkopling til tenar.</string>
@@ -217,10 +215,10 @@
     <item quantity="other">Lagrar %1$d vedlegg</item>
   </plurals>
   <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-    <item quantity="one">Lagrar vedlegg på einingslager …</item>
-    <item quantity="other">Lagrar %1$d vedlegg på einingslager …</item>
+    <item quantity="one">Lagrar vedlegg …</item>
+    <item quantity="other">Lagrar %1$d vedlegg …</item>
   </plurals>
-  <string name="ConversationFragment_pending">Ventar </string>
+  <string name="ConversationFragment_pending">Ventar …</string>
   <string name="ConversationFragment_push">Data (Signal)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
@@ -352,7 +350,7 @@
   <string name="GroupCreateActivity_creating_group">Lagar %1$s …</string>
   <string name="GroupCreateActivity_updating_group">Oppdaterer %1$s …</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Klarte ikkje å leggja til %1$s fordi vedkomande ikkje brukar Signal.</string>
-  <string name="GroupCreateActivity_loading_group_details">Lastar inn gruppedetaljar </string>
+  <string name="GroupCreateActivity_loading_group_details">Lastar inn gruppedetaljar …</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Du ligg allereie i gruppa.</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Del profilnamnet og bildet ditt med denne gruppa?</string>
@@ -1301,6 +1299,11 @@ Du er à jour!</string>
   <string name="trimmer__deleting">Slettar</string>
   <string name="trimmer__deleting_old_messages">Slettar gamle meldingar …</string>
   <string name="trimmer__old_messages_successfully_deleted">Gamle meldingar vart sletta</string>
+  <!--Insights-->
+  <string name="InsightsDashboardFragment__cancel">Avbryt</string>
+  <string name="InsightsDashboardFragment__send">Send</string>
+  <string name="FirstInviteReminder__title">Inviter til Signal</string>
+  <string name="InsightsReminder__invite">Inviter</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transport-ikon</string>
   <string name="ConversationListFragment_loading">Lastar …</string>
@@ -1330,7 +1333,7 @@ Du er à jour!</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Kan ikkje importera reservekopiar frå nyare utgåver av Signal</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">Feil passordfrase til reservekopi</string>
   <string name="RegistrationActivity_checking">Sjekkar …</string>
-  <string name="RegistrationActivity_d_messages_so_far">%d meldingar så langt …</string>
+  <string name="RegistrationActivity_d_messages_so_far">%dmeldingar så langt …</string>
   <string name="RegistrationActivity_restore_from_backup">Gjenopprett frå reservekopi?</string>
   <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Gjenopprett meldingar og media frå ein lokal reservekopi. Viss du ikkje gjenopprettar no, vil du ikkje få gjenoppretta seinare.</string>
   <string name="RegistrationActivity_backup_size_s">Storleik på reservekopi: %s</string>
@@ -1396,5 +1399,6 @@ Du er à jour!</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">TRYKK FOR Å LÅSA OPP</string>
   <string name="RegistrationLockDialog_reminder">Hugs:</string>
   <string name="recipient_preferences__about">Om</string>
+  <string name="Recipient_unknown">Ukjend</string>
   <!--EOF-->
 </resources>

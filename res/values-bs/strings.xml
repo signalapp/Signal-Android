@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <!-- Removed by excludeNonTranslatables <string name="app_name">Signal</string> -->
   <string name="yes">Da</string>
   <string name="no">Ne</string>
   <string name="delete">Obriši</string>
@@ -10,7 +9,6 @@
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Nova poruka</string>
   <!--AlbumThumbnailView-->
-  <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus">\+%d</string> -->
   <!--ApplicationMigrationActivity-->
   <string name="ApplicationMigrationActivity__signal_is_updating">Signal se ažurira …</string>
   <!--ApplicationPreferencesActivity-->
@@ -1331,10 +1329,15 @@
   <string name="trimmer__deleting">Brisanje</string>
   <string name="trimmer__deleting_old_messages">Brišem stare poruke…</string>
   <string name="trimmer__old_messages_successfully_deleted">Stare poruke uspješno su izbrisane</string>
+  <!--Insights-->
+  <string name="InsightsDashboardFragment__cancel">Otkaži</string>
+  <string name="InsightsDashboardFragment__send">Šalji</string>
+  <string name="FirstInviteReminder__title">Pozovite na Signal</string>
+  <string name="InsightsReminder__invite">Pozovi</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Sličica transporta</string>
   <string name="ConversationListFragment_loading">Učitavanje…</string>
-  <string name="CallNotificationBuilder_connecting">Povezujem…</string>
+  <string name="CallNotificationBuilder_connecting">Povezivanje…</string>
   <string name="Permissions_permission_required">Potrebno dopuštenje</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signalu je potrebno dopuštenje da pristupi SMS porukama kako bi mogao slati SMS, ali je ono trajno uskraćeno. Molimo nastavite do postavki aplikacije, odaberite \"Dozvole\" i aktivirajte stavku \"SMS\".</string>
   <string name="Permissions_continue">Nastavi</string>
@@ -1425,5 +1428,6 @@
   <string name="prompt_passphrase_activity__tap_to_unlock">PRITISNITE DA OTKLJUČATE</string>
   <string name="RegistrationLockDialog_reminder">Podsjetnik:</string>
   <string name="recipient_preferences__about">O kontaktu</string>
+  <string name="Recipient_unknown">Nepoznato</string>
   <!--EOF-->
 </resources>

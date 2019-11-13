@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <!-- Removed by excludeNonTranslatables <string name="app_name">Signal</string> -->
   <string name="yes">అవును</string>
   <string name="no">కాదు</string>
   <string name="delete">తొలగించండి</string>
@@ -10,7 +9,6 @@
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">కొత్త సందేశం</string>
   <!--AlbumThumbnailView-->
-  <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus">\+%d</string> -->
   <!--ApplicationMigrationActivity-->
   <string name="ApplicationMigrationActivity__signal_is_updating">Signal నవీకరిస్తోంది …</string>
   <!--ApplicationPreferencesActivity-->
@@ -30,7 +28,7 @@
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">ఇది శాశ్వతంగా  Signal మరియు సందేశ ప్రకటనలను అన్లాక్ చేస్తుంది</string>
   <string name="ApplicationPreferencesActivity_disable">అచేతనించు</string>
   <string name="ApplicationPreferencesActivity_unregistering">నమోదు చేయలేనిది</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Signal సందేశాలు మరియు కాల్స్ నుండి నమోదును …</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Signal సందేశాలు మరియు కాల్‌ల నుండి నమోదు చేయలేదు…</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">   Signal సందేశాలు మరియు కాల్స్ ఆపివేయాలా?</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">సర్వర్ నుండి నమోదుని తీసివేయడానికి ద్వారా Signal సందేశాలు మరియు కాల్స్ ఆపివేయి. మీరు భవిష్యత్తులో మళ్ళీ వాటిని ఉపయోగించడానికి మీ ఫోన్ నంబర్ తిరిగి నమోదు అవసరం.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server"> సర్వర్ కి కలిపినపుడు లోపం!</string>
@@ -221,10 +219,10 @@
     <item quantity="other">%1$d జత పరిచినది దాచిపెడుతున్నాము</item>
   </plurals>
   <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-    <item quantity="one">జత పరిచినది నిల్వలొ దాచిపెడుతున్నాము…</item>
+    <item quantity="one"> జత పరిచినది నిల్వలొ దాచిపెడుతున్నాము…</item>
     <item quantity="other">%1$d జత పరిచినది నిల్వలొ దాచిపెడుతున్నాము…</item>
   </plurals>
-  <string name="ConversationFragment_pending">పెండింగ్…</string>
+  <string name="ConversationFragment_pending">  పెండింగ్</string>
   <string name="ConversationFragment_push">సమాచారం(Signal)</string>
   <string name="ConversationFragment_mms">ఎమ్మెమ్మెస్</string>
   <string name="ConversationFragment_sms">ఎస్సెమ్మెస్</string>
@@ -334,7 +332,7 @@
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">మీరు మీ Signal అమరికలలో ఎప్పుడైనా ఈ లక్షణాన్ని నిలిపివేయవచ్చు లేదా ప్రారంభించవచ్చు (గోప్యత &amp; gt; లింక్ పూర్వప్రదర్శనను పంపండి).</string>
   <string name="ExperienceUpgradeActivity_got_it">దొరికింది</string>
   <!--GcmBroadcastReceiver-->
-  <string name="GcmBroadcastReceiver_retrieving_a_message">సందేశాన్ని తిరిగి పొందుతోంది …</string>
+  <string name="GcmBroadcastReceiver_retrieving_a_message">సందేశాన్ని తిరిగి పొందుతోంది…</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Signal లో శాశ్వత సమాచార వైఫల్యం!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">గూగ్లె ప్లే సదుపాయలతొ Signal నమోదు కాలెదు. Signal సందెశాలు మరియు  కాల్స్ నిలిపివేయబడ్డాయి. దయచేసి ఆధునిక అమరికలు లో మళ్ళి నమోదు చెసుకొనగలరు.</string>
@@ -358,7 +356,7 @@
   <string name="GroupCreateActivity_creating_group">%1$s సృష్టించబడుతుంది</string>
   <string name="GroupCreateActivity_updating_group"> నవీకరిస్తోంది %1$s …</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">వారిని ఇందులో %1$sకలపలేము ఎందుకంటే వారు Signal వినియోగదరులు కారు</string>
-  <string name="GroupCreateActivity_loading_group_details">లోడ్ సమూహం వివరాలు …</string>
+  <string name="GroupCreateActivity_loading_group_details">సమూహ వివరాలను లోడ్ చేస్తోంది…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">మీరు ఇప్పటికే సమూహంలో ఉన్నారు.</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">మీ రూపం పేరు మరియు చిత్రం  ఈ గ్రూపుతో షేర్ చేయాలా?</string>
@@ -391,7 +389,7 @@
   <string name="InviteActivity_no_app_to_share_to">మీరు పంచుకొనడానికి మీ దగ్గర వేరే యాప్స్ లేనట్టు కనబడుతుంది.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">స్నేహితులారా , ఎన్క్రిప్ట్ చేయకుండా స్నేహితులని సంభాషించనివ్వొద్దు.</string>
   <!--Job-->
-  <string name="Job_working_in_the_background">నేపథ్యంలో పని చేస్తోంది …</string>
+  <string name="Job_working_in_the_background">నేపథ్యంలో పనిచేస్తోంది…</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">పంపించడం విఫలమైనది</string>
   <string name="MessageDetailsRecipient_new_safety_number">నూతన భద్రతా సంఖ్య</string>
@@ -418,7 +416,7 @@
   <string name="MediaOverviewActivity_Media_delete_progress_message">సందేశాలను తొలగిస్తోంది …</string>
   <string name="MediaOverviewActivity_Documents">పత్రాలు</string>
   <string name="MediaOverviewActivity_Select_all">అన్నీ ఎంచుకో</string>
-  <string name="MediaOverviewActivity_collecting_attachments">జోడింపుల సేకరణ …</string>
+  <string name="MediaOverviewActivity_collecting_attachments">జోడింపులను సేకరిస్తోంది …</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">పురోగతి లో Signal కాల్</string>
   <string name="NotificationBarManager__establishing_signal_call">స్థాపించబడుతున్న Signal కాల్</string>
@@ -486,7 +484,7 @@
 •మీ సందేశాలన్ని చదవండి
 \n• మీ పేరులో సందేశాలను పంపండి</string>
   <string name="DeviceProvisioningActivity_content_progress_title">బంధించిన పరికరం</string>
-  <string name="DeviceProvisioningActivity_content_progress_content">బంధించిన కొత్త పరికరం</string>
+  <string name="DeviceProvisioningActivity_content_progress_content">క్రొత్త పరికరాన్ని లింక్ చేస్తోంది…</string>
   <string name="DeviceProvisioningActivity_content_progress_success">పరికరం ఆమోదించబడింది!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">పరికరం కనుగొనబడలేదు.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">నెట్వర్క్ లోపం.</string>
@@ -680,7 +678,7 @@
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">మీ పరిచయం Signal యొక్క ఒక పాత వెర్షన్ను పై నడుస్థుంది. మీ భద్రత సంఖ్య ధ్రువీకరించే ముందుగా అప్డేట్ కోరండి.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">మీ పరిచయం అననుకూల QR కోడ్ ఫార్మాట్ Signal యొక్క కొత్త సంస్కరణను అమలు చేస్తోంది. దయచేసి పోల్చడానికి అప్డేట్ చెయండీ.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">స్కాన్ QR కోడ్ సంఖ్య ధృవీకరణ సరైన ఫార్మాట్ భద్రత కోడ్ కాదు. దయచేసి మళ్ళీ స్కానింగ్ చెయండీ.</string>
-  <string name="VerifyIdentityActivity_share_safety_number_via">భద్రతా సంఖ్యను… ద్వారా పంచు</string>
+  <string name="VerifyIdentityActivity_share_safety_number_via">దీని ద్వారా భద్రతా నంబర్‌ను భాగస్వామ్యం చేయండి …</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">మన Signal భద్రత సంఖ్య:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">మీరు పంచుకొనడానికి మీ దగ్గర వేరే యాప్స్ లేనట్టు కనబడుతుంది.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard"> ఏ భద్రతకు సంఖ్య పోల్చడానికి క్లిప్బోర్డ్కు లొ కనుగొనబడింది</string>
@@ -803,8 +801,8 @@
   <string name="attachment_type_selector__gif_description">గిఫ్</string>
   <string name="attachment_type_selector__gallery_description">ఇమెజ్   ఆర్   వీడియో</string>
   <string name="attachment_type_selector__file_description">పంక్తి</string>
-  <string name="attachment_type_selector__gallery">వారపాక</string>
-  <string name="attachment_type_selector__file">దస్థవెధి</string>
+  <string name="attachment_type_selector__gallery">చిత్రశాల</string>
+  <string name="attachment_type_selector__file">పత్రం</string>
   <string name="attachment_type_selector__drawer_description">టోగుల్ అటాచ్మెంట్ సొరుగు</string>
   <!--change_passphrase_activity-->
   <string name="change_passphrase_activity__old_passphrase">పాత సంకేతపదము</string>
@@ -968,7 +966,7 @@
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">వీక్షణ</string>
   <string name="message_recipients_list_item__resend">మళ్ళీ పంపు</string>
-  <string name="message_recipients_list_item__resending">తిరిగిపంపుతున్నాము…</string>
+  <string name="message_recipients_list_item__resending">మళ్ళీ పంపేందుకు …</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s సమూహంలొ చేరారు.</item>
@@ -1020,7 +1018,7 @@
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[మీరు మీ ఎన్క్రిప్షన్ యొక్క భద్రతను ధృవీకరించాలనుకుంటే %s, వారి పరికరంలో ఉన్న సంఖ్యతో ఉన్న సంఖ్యను సరిపోల్చండి. ప్రత్యామ్నాయంగా, మీరు వారి ఫోన్లో కోడ్ను స్కాన్ చేయవచ్చు లేదా మీ కోడ్ను స్కాన్ చేయమని అడగవచ్చు. <a href="https://signal.org/redirect/safety-numbers">ఇంకా నేర్చుకో.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">స్కాన్ నొక్కండి</string>
-  <string name="verify_display_fragment__loading">లోడింగ్…</string>
+  <string name="verify_display_fragment__loading">లోడ్…</string>
   <string name="verify_display_fragment__verified">ధృవీకరించబడింది</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">భద్రతా సంఖ్యను పంచు</string>
@@ -1196,7 +1194,7 @@
   <!--menus-->
   <!--****************************************-->
   <!--contact_selection_list-->
-  <string name="contact_selection_list__unknown_contact">….కు కొత్త సందేశం</string>
+  <string name="contact_selection_list__unknown_contact">దీనికి కొత్త సందేశం…</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">కాల్</string>
   <!--conversation_callable_secure-->
@@ -1301,9 +1299,14 @@
   <string name="trimmer__deleting">తొలగిపోతున్నాయ్</string>
   <string name="trimmer__deleting_old_messages">పాత సందేశాలను తొలగిస్తోంది …</string>
   <string name="trimmer__old_messages_successfully_deleted">పాత సందేశాలు విజయవంతంగా తొలగించబడ్డాయి </string>
+  <!--Insights-->
+  <string name="InsightsDashboardFragment__cancel">రద్దు</string>
+  <string name="InsightsDashboardFragment__send">పంపు</string>
+  <string name="FirstInviteReminder__title">Signal కు ఆహ్వానించండి</string>
+  <string name="InsightsReminder__invite">ఆహ్వానించండి</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">రవాణా చిహ్నం</string>
-  <string name="ConversationListFragment_loading">లోడింగ్…</string>
+  <string name="ConversationListFragment_loading">లోడ్…</string>
   <string name="CallNotificationBuilder_connecting">కలుస్తుంది…</string>
   <string name="Permissions_permission_required">అనుమతి అవసరం</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">SMS పంపేందుకు Signal SMS అనుమతి అవసరం, కానీ ఇది శాశ్వతంగా తిరస్కరించబడింది. దయచేసి అనువర్తనం సెట్టింగ్లకు కొనసాగించండి, \"అనుమతులు\" ఎంచుకుని, \"SMS\" ను ప్రారంభించండి.</string>
@@ -1330,7 +1333,7 @@
   <string name="RegistrationActivity_backup_failure_downgrade">Signal యొక్క నూతన సంస్కరణల నుండి ప్రత్యామ్నాయను దిగుమతి చేయలేరు</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">సరికాని ప్రత్యామ్నాయ పాస్ఫ్రేజ్</string>
   <string name="RegistrationActivity_checking">తనిఖీ చేస్తోంది…</string>
-  <string name="RegistrationActivity_d_messages_so_far">ఇప్పటివరకు %d సందేశాలు…</string>
+  <string name="RegistrationActivity_d_messages_so_far">ఇప్పటివరకు %d సందేశాలు</string>
   <string name="RegistrationActivity_restore_from_backup">ప్రత్యామ్నాయ నుండి పునరుద్ధరించాలా?</string>
   <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">స్థానిక ప్రత్యామ్నాయ నుండి మీ సందేశాలు మరియు మీడియాను పునరుద్ధరించండి. మీరు ఇప్పుడు పునరుద్ధరించకపోతే, తర్వాత మీరు పునరుద్ధరించలేరు.</string>
   <string name="RegistrationActivity_backup_size_s">ప్రత్యామ్నాయ పరిమాణం: %s</string>
@@ -1395,5 +1398,6 @@
   <string name="prompt_passphrase_activity__tap_to_unlock">అన్లాక్ చేయడానికి ట్యాప్ చేయండి</string>
   <string name="RegistrationLockDialog_reminder">రిమైండర్:</string>
   <string name="recipient_preferences__about">గురించి</string>
+  <string name="Recipient_unknown">తెలియని</string>
   <!--EOF-->
 </resources>

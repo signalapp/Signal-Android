@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <!-- Removed by excludeNonTranslatables <string name="app_name">Signal</string> -->
   <string name="yes">Ari</string>
   <string name="no">Mana</string>
   <string name="delete">Pichana</string>
@@ -1148,6 +1147,11 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <string name="trimmer__deleting">Pichanakunchik</string>
   <string name="trimmer__deleting_old_messages">Mawkayashka chaskikunata pichakun…</string>
   <string name="trimmer__old_messages_successfully_deleted">Mawka chaskikunata allipachami picharirka</string>
+  <!--Insights-->
+  <string name="InsightsDashboardFragment__cancel">Shayachina</string>
+  <string name="InsightsDashboardFragment__send">Kachana</string>
+  <string name="FirstInviteReminder__title">Signal ukuman kayachiy</string>
+  <string name="InsightsReminder__invite">Kayachina</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Iconota apana</string>
   <string name="ConversationListFragment_loading">Paskakun…</string>
@@ -1236,5 +1240,6 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <string name="prompt_passphrase_activity__tap_to_unlock">LLAPI APAMUNKAPAK</string>
   <string name="RegistrationLockDialog_reminder">Yuyarinkapak:</string>
   <string name="recipient_preferences__about">Willay</string>
+  <string name="Recipient_unknown">Mana riksishka</string>
   <!--EOF-->
 </resources>

@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <!-- Removed by excludeNonTranslatables <string name="app_name">Signal</string> -->
   <string name="yes">Igen</string>
   <string name="no">Nem</string>
   <string name="delete">Törlés</string>
@@ -10,7 +9,6 @@
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Új üzenet</string>
   <!--AlbumThumbnailView-->
-  <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus">\+%d</string> -->
   <!--ApplicationMigrationActivity-->
   <string name="ApplicationMigrationActivity__signal_is_updating">A Signal frissít…</string>
   <!--ApplicationPreferencesActivity-->
@@ -218,10 +216,10 @@
     <item quantity="other">%1$d db melléklet mentése</item>
   </plurals>
   <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-    <item quantity="one">Melléklet mentése a tárolóra…</item>
-    <item quantity="other">%1$d db melléklet mentése a tárolóra…</item>
+    <item quantity="one">Melléklet mentése a háttértárba…</item>
+    <item quantity="other">%1$d db melléklet mentése a háttértárba…</item>
   </plurals>
-  <string name="ConversationFragment_pending">Függőben…</string>
+  <string name="ConversationFragment_pending">Folyamatban…</string>
   <string name="ConversationFragment_push">Adat (Signal)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
@@ -353,7 +351,7 @@
   <string name="GroupCreateActivity_creating_group">%1$s létrehozása…</string>
   <string name="GroupCreateActivity_updating_group">%1$s frissítése…</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Nem lehet %1$s-t hozzáadni, mert nem Signal felhasználó.</string>
-  <string name="GroupCreateActivity_loading_group_details">A csoport részleteinek betöltése…</string>
+  <string name="GroupCreateActivity_loading_group_details">A csoport részletes adatainak betöltése…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Már a csoportban vagy.</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Megosztod a profilneved- és képed ezzel a csoporttal?</string>
@@ -432,7 +430,7 @@
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">Koppints a kiválasztáshoz</string>
   <!--MediaSendActivity-->
-  <string name="MediaSendActivity_add_a_caption">Felirat hozzáadása…</string>
+  <string name="MediaSendActivity_add_a_caption">Egy felirat hozzáadása…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Egy elem el lett távolítva, mivel túllépte a megengedett mérethatárt</string>
   <string name="MediaSendActivity_camera_unavailable">A kamera nem érhető el.</string>
   <string name="MediaSendActivity_message_to_s">Üzenet neki: %s</string>
@@ -682,7 +680,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">A kontaktod a Signal egy régebbi verzióját futtatja. Kérd meg, hogy frissítse azt biztonsági számotok ellenőrzése előtt!</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">A kontaktod a Signal egy újabb verzióját futtatja, amelynek QR kód formátuma nem kompatibilis a te verzióddal. Kérlek frissíts az összehasonlításhoz!</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">A szkennelt QR kód nem tartalmaz helyesen formázott biztonság szám ellenőrző kódot. Kérlek próbáld újraszkennelni!</string>
-  <string name="VerifyIdentityActivity_share_safety_number_via">Biztonsági szám megosztása ezen a csatornán…</string>
+  <string name="VerifyIdentityActivity_share_safety_number_via">Biztonsági szám megosztása…</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">Signal biztonsági számunk:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">Úgy néz ki, egy alkalmazásod sem alkalmas a megosztás kezeléséhez.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">A vágólapon nem található biztonsági szám, amellyel össze lehetne hasonlítani</string>
@@ -1289,6 +1287,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="reminder_header_share_text">Minél több barátod használja a Signal-t, annál jobbá válik.</string>
   <string name="reminder_header_service_outage_text">A Signal technikai nehézségekkel küzd. Keményen dolgozunk azért, hogy a lehető leghamarabb visszaállítsuk a szolgáltatást.</string>
   <string name="reminder_header_the_latest_signal_features_wont_work">A legújabb Signal funkciók nem fognak működni a jelenleg futó Android verzión. Kérlek frissítsd az eszközt annak érdekében, hogy a jövőben is hozzáférhess a Signal legújabb frissítéseihez!</string>
+  <string name="reminder_header_progress">%1$d%%</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Mentés</string>
   <string name="media_preview__forward_title">Továbbítás</string>
@@ -1304,10 +1303,16 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="trimmer__deleting">Törlés</string>
   <string name="trimmer__deleting_old_messages">Régi üzenetek törlése…</string>
   <string name="trimmer__old_messages_successfully_deleted">A régi üzenetek törlése sikerült</string>
+  <!--Insights-->
+  <string name="Insights__percent">%</string>
+  <string name="InsightsDashboardFragment__cancel">Mégse</string>
+  <string name="InsightsDashboardFragment__send">Küldés</string>
+  <string name="FirstInviteReminder__title">Meghívás a Signal-ba</string>
+  <string name="InsightsReminder__invite">Meghívás</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Átvitel ikon</string>
   <string name="ConversationListFragment_loading">Betöltés…</string>
-  <string name="CallNotificationBuilder_connecting">Kapcsolódás…</string>
+  <string name="CallNotificationBuilder_connecting">Csatlakozás…</string>
   <string name="Permissions_permission_required">Engedély szükséges</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">A Signal-nak szüksége van az SMS engedélyre annak érdekében, hogy képes legyen SMS-t küldeni, de ez jelenleg nincs megadva. Kérlek menj az alkalmazásbeállításokhoz, válaszd az \"Engedélyek\"-et és engedélyezd az \"SMS\"-t.</string>
   <string name="Permissions_continue">Folytatás</string>
@@ -1398,5 +1403,6 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="prompt_passphrase_activity__tap_to_unlock">ÉRINTS A FELOLDÁSHOZ</string>
   <string name="RegistrationLockDialog_reminder">Emlékeztető:</string>
   <string name="recipient_preferences__about">Névjegy</string>
+  <string name="Recipient_unknown">Ismeretlen</string>
   <!--EOF-->
 </resources>

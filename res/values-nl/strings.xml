@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <!-- Removed by excludeNonTranslatables <string name="app_name">Signal</string> -->
   <string name="yes">Ja</string>
   <string name="no">Nee</string>
   <string name="delete">Wissen</string>
@@ -10,7 +9,6 @@
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Nieuw bericht</string>
   <!--AlbumThumbnailView-->
-  <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus">\+%d</string> -->
   <!--ApplicationMigrationActivity-->
   <string name="ApplicationMigrationActivity__signal_is_updating">Signal wordt nu bijgewerkt…</string>
   <!--ApplicationPreferencesActivity-->
@@ -370,7 +368,7 @@ weergaven.</string>
   <string name="InviteActivity_share">Delen</string>
   <string name="InviteActivity_choose_contacts">Kies contactpersonen</string>
   <string name="InviteActivity_cancel">Annuleren</string>
-  <string name="InviteActivity_sending">Aan het verzenden…</string>
+  <string name="InviteActivity_sending">Bezig met verzenden…</string>
   <string name="InviteActivity_heart_content_description">Hartje</string>
   <string name="InviteActivity_invitations_sent">Uitnodigingen verzonden!</string>
   <string name="InviteActivity_invite_to_signal">Uitnodigen voor Signal</string>
@@ -410,7 +408,7 @@ weergaven.</string>
     <item quantity="other">Dit zal alle %1$d geselecteerde berichten onherroepelijk wissen, maar alleen voor jezelf.</item>
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Aan het verwijderen</string>
-  <string name="MediaOverviewActivity_Media_delete_progress_message">Berichten aan het verwijderen…</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">Berichten aan het wissen…</string>
   <string name="MediaOverviewActivity_Documents">Documenten</string>
   <string name="MediaOverviewActivity_Select_all">Alles selecteren</string>
   <string name="MediaOverviewActivity_collecting_attachments">Bijlagen aan het verzamelen…</string>
@@ -874,7 +872,7 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Scroll naar bodem</string>
   <!--country_selection_fragment-->
-  <string name="country_selection_fragment__loading_countries">Landen laden…</string>
+  <string name="country_selection_fragment__loading_countries">Landen aan het laden…</string>
   <string name="country_selection_fragment__search">Zoeken</string>
   <!--device_add_fragment-->
   <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Scan de QR-code welke wordt weergegeven op het te koppelen apparaat</string>
@@ -1022,7 +1020,7 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Als je de veiligheid van je eind-tot-eind-versleuteling met %s wilt verifiëren, vergelijk dan het bovenstaande nummer met het nummer op het apparaat van je gesprekspartner. Je kunt ook de QR-code op zijn telefoon scannen, of hem vragen jouw QR-code te scannen. <a href="https://signal.org/redirect/safety-numbers">Meer leren hierover.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Tik om te scannen</string>
-  <string name="verify_display_fragment__loading">Bezig met laden…</string>
+  <string name="verify_display_fragment__loading">Aan het laden…</string>
   <string name="verify_display_fragment__verified">Ik heb deze contactpersoon geverifieerd</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Veiligheidsnummer doorsturen</string>
@@ -1288,6 +1286,7 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <string name="reminder_header_share_text">Hoe meer mensen Signal gebruiken, des te vaker je beveiligd kunt communiceren.</string>
   <string name="reminder_header_service_outage_text">Signal heeft technische problemen. We werken er hard aan om zo snel mogelijk de dienst weer beschikbaar te maken.</string>
   <string name="reminder_header_the_latest_signal_features_wont_work">De meest recente functionaliteit van Signal kan niet werken op deze versie van Android. Waardeer dit apparaat op naar een hogere versie van Android om in de toekomst nog updates te ontvangen voor Signal.</string>
+  <string name="reminder_header_progress">%1$d%%</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Opslaan</string>
   <string name="media_preview__forward_title">Doorsturen</string>
@@ -1303,10 +1302,36 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <string name="trimmer__deleting">Aan het verwijderen</string>
   <string name="trimmer__deleting_old_messages">Oude berichten aan het verwijderen…</string>
   <string name="trimmer__old_messages_successfully_deleted">Oude berichten succesvol gewist</string>
+  <!--Insights-->
+  <string name="Insights__percent">%</string>
+  <string name="Insights__title">Inzichten</string>
+  <string name="InsightsDashboardFragment__title">Inzichten</string>
+  <string name="InsightsDashboardFragment__tagline">%1$d%% van je uitgaande berichten van de afgelopen 7 dagen waren eind-tot-eind-versleuteld met het Signal Protocol.</string>
+  <string name="InsightsDashboardFragment__boost_your_signal">Je kunt meer gesprekken beveiligd voeren</string>
+  <string name="InsightsDashboardFragment__100_title">Je gebruikt Signal optimaal</string>
+  <string name="InsightsDashboardFragment__no_signal_yet">Je maakt nog geen gebruik van beveiligde Signal-gesprekken</string>
+  <string name="InsightsDashboardFragment__youre_just_getting_started">Je bent pas net begonnen. Inzichten zullen worden weergeven nadat je een aantal berichten hebt verzonden.</string>
+  <string name="InsightsDashboardFragment__start_a_conversation">Begin een gesprek</string>
+  <string name="InsightsDashboardFragment__100_description">Signal\'s beschermde automatisch al je recent uitgaande berichten.</string>
+  <string name="InsightsDashboardFragment__invite_your_contacts">Communiceer voortaan beveiligd en maak nieuwe functies mogelijk welke verder gaan dan de limitaties van onversleutelde sms-berichten, door meer contactpersonen uit te nodigen om Signal te gebruiken.</string>
+  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Deze statistiek is lokaal gegenereerd op jouw apparaat en kan alleen door jou gezien worden. Het wordt nooit verzonden.</string>
+  <string name="InsightsDashboardFragment__encrypted_messages">Versleutelde berichten</string>
+  <string name="InsightsDashboardFragment__cancel">Annuleren</string>
+  <string name="InsightsDashboardFragment__send">Verzend</string>
+  <string name="InsightsDashboardFragment__not_using_signal_yet">Je gebuikt Signal nog niet</string>
+  <string name="InsightsModalFragment__title">We introduceren ‘inzichten’</string>
+  <string name="InsightsModalFragment__description">Ontdek hoeveel van je uitgaande berichten beveiligd zijn verzonden en nodig gemakkelijk nieuwe contactpersonen uit om je percentage beveiligde berichten te verhogen.</string>
+  <string name="InsightsModalFragment__view_insights">Inzichten weergeven</string>
+  <string name="FirstInviteReminder__title">Uitnodigen voor Signal</string>
+  <string name="FirstInviteReminder__description">Je kunt het aantal versleutelde berichten welke je verstuurt verhogen met %1$d%%</string>
+  <string name="SecondInviteReminder__title">Beveilig meer gesprekken</string>
+  <string name="SecondInviteReminder__description">Nodig %1$s uit</string>
+  <string name="InsightsReminder__view_insights">Inzichten weergeven</string>
+  <string name="InsightsReminder__invite">Uitnodigen</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transportmethodepictogram</string>
-  <string name="ConversationListFragment_loading">Bezig met laden…</string>
-  <string name="CallNotificationBuilder_connecting">Aan het verbinden…</string>
+  <string name="ConversationListFragment_loading">Aan het laden…</string>
+  <string name="CallNotificationBuilder_connecting">Verbinden…</string>
   <string name="Permissions_permission_required">Toestemming vereist</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal heeft toestemming nodig om sms-berichten te sturen, maar deze toestemming is pertinent geweigerd. Ga naar de instellingen voor deze app, selecteer ‘Machtigingen’ en schakel ‘Sms’ in.</string>
   <string name="Permissions_continue">Doorgaan</string>
@@ -1397,5 +1422,6 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <string name="prompt_passphrase_activity__tap_to_unlock">TIK OM TE ONTGRENDELEN</string>
   <string name="RegistrationLockDialog_reminder">Herinnering:</string>
   <string name="recipient_preferences__about">Over</string>
+  <string name="Recipient_unknown">Onbekend</string>
   <!--EOF-->
 </resources>
