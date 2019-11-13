@@ -329,6 +329,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   protected HidingLinearLayout     quickAttachmentToggle;
   protected HidingLinearLayout     inlineAttachmentToggle;
   private   InputPanel             inputPanel;
+  private   boolean                alwaysEnableInputPanel = false;
 
   private LinkPreviewViewModel         linkPreviewViewModel;
   private ConversationSearchViewModel  searchViewModel;
@@ -2202,7 +2203,14 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void updateInputPanel() {
-    if (recipient.isGroupRecipient() || isNoteToSelf()) {
+    /*
+      alwaysEnableInputPanel caches whether we have enabled the input once.
+
+      This stops the case where the input panel disables and enables rapidly.
+        - This can occur when we are not friends with the current thread BUT multi-device tells us that we are friends with another one of their devices.
+     */
+
+    if (recipient.isGroupRecipient() || isNoteToSelf() || alwaysEnableInputPanel) {
       setInputPanelEnabled(true);
       return;
     }
@@ -2212,9 +2220,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     boolean isPending = friendRequestStatus == LokiThreadFriendRequestStatus.REQUEST_SENDING || friendRequestStatus == LokiThreadFriendRequestStatus.REQUEST_SENT || friendRequestStatus == LokiThreadFriendRequestStatus.REQUEST_RECEIVED;
     setInputPanelEnabled(!isPending);
 
+    alwaysEnableInputPanel = friendRequestStatus == LokiThreadFriendRequestStatus.FRIENDS;
+
     // This promise correctly updates the UI for multidevice
     if (friendRequestStatus != LokiThreadFriendRequestStatus.FRIENDS) {
       MultiDeviceUtilities.shouldEnableUserInput(this, recipient).success(shouldEnableInput -> {
+        alwaysEnableInputPanel = shouldEnableInput;
         setInputPanelEnabled(shouldEnableInput);
         return Unit.INSTANCE;
       });

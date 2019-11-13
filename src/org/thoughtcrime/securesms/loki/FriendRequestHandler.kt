@@ -1,12 +1,8 @@
 package org.thoughtcrime.securesms.loki
 
 import android.content.Context
-import nl.komponents.kovenant.Promise
-import nl.komponents.kovenant.ui.alwaysUi
 import nl.komponents.kovenant.ui.successUi
 import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.thoughtcrime.securesms.util.Util
-import org.whispersystems.signalservice.loki.api.LokiStorageAPI
 import org.whispersystems.signalservice.loki.messaging.LokiMessageFriendRequestStatus
 import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus
 import java.lang.IllegalStateException
@@ -20,13 +16,20 @@ object FriendRequestHandler {
     val recipient = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(threadId) ?: return
     if (!recipient.address.isPhone) { return }
 
-    // Update thread status
-    val threadFriendStatus = when (type) {
-      ActionType.Sending -> LokiThreadFriendRequestStatus.REQUEST_SENDING
-      ActionType.Failed -> LokiThreadFriendRequestStatus.NONE
-      ActionType.Sent -> LokiThreadFriendRequestStatus.REQUEST_SENT
+    val currentFriendStatus = DatabaseFactory.getLokiThreadDatabase(context).getFriendRequestStatus(threadId)
+    // Update thread status if we haven't sent a friend request before
+    if (currentFriendStatus != LokiThreadFriendRequestStatus.REQUEST_RECEIVED &&
+            currentFriendStatus != LokiThreadFriendRequestStatus.REQUEST_SENT &&
+            currentFriendStatus != LokiThreadFriendRequestStatus.FRIENDS
+    ) {
+      val threadFriendStatus = when (type) {
+        ActionType.Sending -> LokiThreadFriendRequestStatus.REQUEST_SENDING
+        ActionType.Failed -> LokiThreadFriendRequestStatus.NONE
+        ActionType.Sent -> LokiThreadFriendRequestStatus.REQUEST_SENT
+      }
+      DatabaseFactory.getLokiThreadDatabase(context).setFriendRequestStatus(threadId, threadFriendStatus)
     }
-    DatabaseFactory.getLokiThreadDatabase(context).setFriendRequestStatus(threadId, threadFriendStatus)
+
 
     // Update message status
     if (messageId >= 0) {
