@@ -1556,7 +1556,6 @@
     <string name="InsightsDashboardFragment__encrypted_messages">Encrypted messages</string>
     <string name="InsightsDashboardFragment__cancel">Cancel</string>
     <string name="InsightsDashboardFragment__send">Send</string>
-    <string name="InsightsDashboardFragment__not_using_signal_yet">Not using Signal yet</string>
     <string name="InsightsModalFragment__title">Introducing Insights</string>
     <string name="InsightsModalFragment__description">Find out how many of your outgoing messages were sent securely, then quickly invite new contacts to boost your Signal percentage.</string>
     <string name="InsightsModalFragment__view_insights">View Insights</string>

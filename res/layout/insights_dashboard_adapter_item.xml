@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -22,28 +23,12 @@
         android:ellipsize="end"
         android:maxLines="1"
         android:textAppearance="@style/TextAppearance.Signal.Title.Insights"
-        app:layout_constraintBottom_toTopOf="@id/recipient_insecure_contribution"
         app:layout_constraintEnd_toStartOf="@id/recipient_invite"
         app:layout_constraintStart_toEndOf="@id/recipient_avatar"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed"
-        tools:text="Cayce Pollard (This is a long name to make sure we stick within our bounds)" />
-
-    <TextView
-        android:id="@+id/recipient_insecure_contribution"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="9dp"
-        android:layout_marginTop="1dp"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:text="@string/InsightsDashboardFragment__not_using_signal_yet"
-        android:textAppearance="@style/TextAppearance.Signal.Body.Insights"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/recipient_invite"
-        app:layout_constraintStart_toEndOf="@id/recipient_avatar"
-        app:layout_constraintTop_toBottomOf="@id/recipient_display_name"
-        app:layout_constraintVertical_chainStyle="packed" />
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="Peter Parker (This is a long name to make sure we stick within our bounds)" />
 
     <Button
         android:id="@+id/recipient_invite"
