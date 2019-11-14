@@ -496,6 +496,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Signal ikonoa</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Bidali pasahitza</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Pasahitz baliogabea!</string>
+  <string name="PassphrasePromptActivity_unlock_signal">Desblokeatu Signal</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Mapa</string>
   <string name="PlacePickerActivity_not_a_valid_address">Ez da baliozko helbide bat</string>

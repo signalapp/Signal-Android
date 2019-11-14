@@ -537,6 +537,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Signal piktograma</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Pateikti slaptafrazę</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Neteisinga slaptafrazė!</string>
+  <string name="PassphrasePromptActivity_unlock_signal">Atrakinti Signal</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Žemėlapis</string>
   <string name="PlacePickerActivity_not_a_valid_address">Neteisingas adresas</string>

@@ -498,6 +498,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Signal-kuvake</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Syötä salalause</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Salalause ei kelpaa!</string>
+  <string name="PassphrasePromptActivity_unlock_signal">Avaa Signalin lukitus</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Kartta</string>
   <string name="PlacePickerActivity_not_a_valid_address">Osoite ei kelvollinen</string>
@@ -1296,19 +1297,29 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="trimmer__old_messages_successfully_deleted">Vanhojen viestien poisto onnistui</string>
   <!--Insights-->
   <string name="Insights__percent">%</string>
+  <string name="Insights__title">Tilastot</string>
+  <string name="InsightsDashboardFragment__title">Tilastot</string>
   <string name="InsightsDashboardFragment__tagline">%1$d %% viimeisen 7 päivän lähtevistä viesteistäsi oli salattu päästä päähän Signal Protokollalla.</string>
   <string name="InsightsDashboardFragment__boost_your_signal">Paranna signaalia</string>
   <string name="InsightsDashboardFragment__100_title">Signaalisi on vahva</string>
   <string name="InsightsDashboardFragment__no_signal_yet">Ei signaalia (vielä)</string>
+  <string name="InsightsDashboardFragment__youre_just_getting_started">Olet vasta päässyt alkuun. Tilastot tulevat näkyviin, kun olet lähettänyt muutaman viestin.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Aloita keskustelu</string>
+  <string name="InsightsDashboardFragment__100_description">Signalin edistyksellinen yksityisyyttä suojaava tekniikka suojasi automaattisesti kaikki viimeaikaiset lähtevät viestit.</string>
+  <string name="InsightsDashboardFragment__invite_your_contacts">Kommunikoi tästä lähtien turvallisesti ja mahdollista uudet ominaisuudet, jotka ylittävät salaamattomien tekstiviestien rajoitukset kutsumalla lisää yhteyshenkilöitä liittymään Signaliin.</string>
   <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Tämä tilasto on luotu paikallisesti laitteellasi, ja vain sinä näet sen. Sitä ei koskaan lähetetä mihinkään.</string>
   <string name="InsightsDashboardFragment__encrypted_messages">Salatut viestit</string>
   <string name="InsightsDashboardFragment__cancel">Peruuta</string>
   <string name="InsightsDashboardFragment__send">Lähetä</string>
-  <string name="InsightsDashboardFragment__not_using_signal_yet">Ei vielä käytä Signalia</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__not_using_signal_yet">Ei vielä käytä Signalia</string> -->
+  <string name="InsightsModalFragment__title">Esittelemme tilastot</string>
   <string name="InsightsModalFragment__description">Selvitä, kuinka suuri osa lähtevistä viesteistäsi lähetettiin turvallisesti, ja kutsu nopeasti uusia yhteyshenkilöitä parantaaksesi signaaliprosenttiasi.</string>
+  <string name="InsightsModalFragment__view_insights">Näytä tilastot</string>
   <string name="FirstInviteReminder__title">Kutsu Signaliin</string>
+  <string name="FirstInviteReminder__description">Voisit lisätä lähettämiesi salattujen viestien määrää %1$d %%</string>
   <string name="SecondInviteReminder__title">Paranna signaalia</string>
+  <string name="SecondInviteReminder__description">Kutsu %1$s</string>
+  <string name="InsightsReminder__view_insights">Näytä tilastot</string>
   <string name="InsightsReminder__invite">Kutsu</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Tyypin kuvake</string>

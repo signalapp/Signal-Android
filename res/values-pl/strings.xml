@@ -536,6 +536,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Ikona Signal</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Wprowadź hasło</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Nieprawidłowe hasło!</string>
+  <string name="PassphrasePromptActivity_unlock_signal">Odblokuj Signal</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Mapa</string>
   <string name="PlacePickerActivity_not_a_valid_address">Nieprawidłowy adres</string>
@@ -1356,20 +1357,24 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="Insights__title">Statystyki</string>
   <string name="InsightsDashboardFragment__title">Statystyki</string>
   <string name="InsightsDashboardFragment__tagline">%1$d%% Twoich wiadomości wysyłanych w ciągu ostatnich 7 dni zostało zaszyfrowanych end-to-end za pomocą protokołu Signal.</string>
+  <string name="InsightsDashboardFragment__boost_your_signal">Zabezpiecz więcej konwersacji</string>
+  <string name="InsightsDashboardFragment__100_title">Twoje konwersacje są bezpieczne</string>
+  <string name="InsightsDashboardFragment__no_signal_yet">Twoje konwersacje (jeszcze) nie są bezpieczne</string>
   <string name="InsightsDashboardFragment__youre_just_getting_started">Dopiero zaczynasz. Statystyki zostaną wyświetlone, gdy wyślesz kilka wiadomości.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Rozpocznij rozmowę</string>
   <string name="InsightsDashboardFragment__100_description">Zaawansowana technologia ochrony prywatności Signal automatycznie zabezpieczyła wszystkie Twoje ostatnie wiadomości wychodzące.</string>
   <string name="InsightsDashboardFragment__invite_your_contacts">Rozpocznij bezpieczną komunikację i włącz nowe funkcje, które wykraczają poza ograniczenia niezaszyfrowanych wiadomości SMS, zapraszając więcej kontaktów do przyłączenia się do Signal.</string>
-  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Ta statystyka została wygenerowana lokalnie na Twoim urządzeniu i jest dostępna tylko dla Ciebie. Nie są one nigdzie nigdy przesyłane.</string>
+  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Ta statystyka została wygenerowana lokalnie na Twoim urządzeniu i jest dostępna tylko dla Ciebie. Nie jest ona nigdzie nigdy przesyłana.</string>
   <string name="InsightsDashboardFragment__encrypted_messages">Zaszyfrowane wiadomości</string>
   <string name="InsightsDashboardFragment__cancel">Anuluj</string>
   <string name="InsightsDashboardFragment__send">Wyślij</string>
-  <string name="InsightsDashboardFragment__not_using_signal_yet">Nie korzystasz jeszcze z Signal</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__not_using_signal_yet">Nie korzysta jeszcze z Signal</string> -->
   <string name="InsightsModalFragment__title">Przedstawiamy statystyki</string>
   <string name="InsightsModalFragment__description">Dowiedz się, ile wiadomości wychodzących zostało przesłanych bezpiecznie, a następnie szybko zaproś nowe kontakty, by zwiększyć procent wiadomości szyfrowanych przez Signal.</string>
   <string name="InsightsModalFragment__view_insights">Wyświetl statystyki</string>
   <string name="FirstInviteReminder__title">Zaproś do Signal</string>
   <string name="FirstInviteReminder__description">Możesz zwiększyć liczbę wysyłanych, zaszyfrowanych wiadomości o %1$d%%</string>
+  <string name="SecondInviteReminder__title">Zabezpiecz więcej konwersacji</string>
   <string name="SecondInviteReminder__description">Zaproś %1$s</string>
   <string name="InsightsReminder__view_insights">Wyświetl statystyki</string>
   <string name="InsightsReminder__invite">Zaproś</string>

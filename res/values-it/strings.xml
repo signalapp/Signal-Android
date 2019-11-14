@@ -499,6 +499,7 @@ I suoi messaggi e le chiamate sono state disabilitate, si prega di provare e ri-
   <string name="PassphrasePromptActivity_watermark_content_description">Icona Signal</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Inserisci password</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Password non valida!</string>
+  <string name="PassphrasePromptActivity_unlock_signal">Sblocca Signal</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Mappa</string>
   <string name="PlacePickerActivity_not_a_valid_address">Indirizzo non valido</string>
@@ -1313,7 +1314,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="InsightsDashboardFragment__encrypted_messages">Messaggi criptati</string>
   <string name="InsightsDashboardFragment__cancel">Annulla</string>
   <string name="InsightsDashboardFragment__send">Invia</string>
-  <string name="InsightsDashboardFragment__not_using_signal_yet">Non utilizza ancora Signal</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__not_using_signal_yet">Non utilizza ancora Signal</string> -->
   <string name="InsightsModalFragment__title">Ti presentiamo le statistiche</string>
   <string name="InsightsModalFragment__description">Scopri quanti dei tuoi messaggi in uscita sono stati inviati in modo sicuro, quindi invita rapidamente nuovi contatti per aumentare la tua percentuale di Signal.</string>
   <string name="InsightsModalFragment__view_insights">Visualizza statistiche</string>

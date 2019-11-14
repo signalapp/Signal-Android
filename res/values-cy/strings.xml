@@ -538,6 +538,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Eicon Signal</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Cyflwyno cyfrinymadrodd</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Cyfrinair annilys!</string>
+  <string name="PassphrasePromptActivity_unlock_signal">Datgloi Signal</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Map</string>
   <string name="PlacePickerActivity_not_a_valid_address">Nid yw\'n Gyfeiriad dilys</string>
@@ -1340,6 +1341,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="reminder_header_share_text">Gorau po fwyaf o ffrindiau sy\'n defnyddio Signal</string>
   <string name="reminder_header_service_outage_text">Mae Signal yn profi anawsterau technegol. Rydym yn gweithio\'n galed i adfer y gwasanaeth cyn gynted ā phosib.</string>
   <string name="reminder_header_the_latest_signal_features_wont_work">Ni fydd y nodwedd diweddaraf yn Signal yn gweithio gyda\'r fersiwn yma o Android. Diweddarwch y ddyfais i dderbyn diweddariadau Signal y dyfodol.</string>
+  <string name="reminder_header_progress">%1$d%%</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Cadw</string>
   <string name="media_preview__forward_title">Ymlaen</string>
@@ -1356,9 +1358,30 @@ Send neges heb ei ddiogelu?</string>
   <string name="trimmer__deleting_old_messages">Dileu hen negeseuon…</string>
   <string name="trimmer__old_messages_successfully_deleted">Dilëwyd hen negeseuon yn llwyddiannus</string>
   <!--Insights-->
+  <string name="Insights__percent">%</string>
+  <string name="Insights__title">Mewnwelediadau</string>
+  <string name="InsightsDashboardFragment__title">Mewnwelediadau</string>
+  <string name="InsightsDashboardFragment__tagline">Roedd %1$d%% o\'ch negeseuon allan yn ystod y 7 diwrnod diwethaf wedi eu hamgryptio o un pen i\'r llall gyda Signal Protocol</string>
+  <string name="InsightsDashboardFragment__boost_your_signal">Cynyddu eich Signal</string>
+  <string name="InsightsDashboardFragment__100_title">Mae eich Signal yn Gryf</string>
+  <string name="InsightsDashboardFragment__no_signal_yet">Dim Signal (eto)</string>
+  <string name="InsightsDashboardFragment__youre_just_getting_started">Rydych wrthi\'n cychwyn. Bydd mewnwelediadau\'n cael eu dangos ar ôl i chi anfon nifer o negeseuon.</string>
+  <string name="InsightsDashboardFragment__start_a_conversation">Cychwyn sgwrs</string>
+  <string name="InsightsDashboardFragment__100_description">Mae technoleg diogelu preifatrwydd uwch Signal wedi diogelu\'r cyfan o\'ch negeseuon allan.</string>
+  <string name="InsightsDashboardFragment__invite_your_contacts">Cychwynnwch gyfathrebu\'n ddiogel a galluogi nodweddion newydd sy\'n mynd tu hwnt i gyfyngiadau negeseuon SMS heb eu hamgryptio drwy wahodd eich cysylltiadau i ymuno â Signal.</string>
+  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Cafodd yr ystadegyn hwn ei gynhyrchu\'n lleol ar eich dyfais a dim ond chi gall ei weld. Nid yw\'n cael ei drosglwyddo i unlle.</string>
+  <string name="InsightsDashboardFragment__encrypted_messages">Negeseuon wedi\'u hamgryptio</string>
   <string name="InsightsDashboardFragment__cancel">Diddymu</string>
   <string name="InsightsDashboardFragment__send">Anfon</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__not_using_signal_yet">Ddim yn defnyddio Signal eto</string> -->
+  <string name="InsightsModalFragment__title">Yn cyflwyno Mewnweledigaethau</string>
+  <string name="InsightsModalFragment__description">Canfod faint o\'ch negeseuon allan gafodd eu anfon yn ddiogel, yna gwahodd cysylltiadau newydd i gynyddu eich canran Signal.</string>
+  <string name="InsightsModalFragment__view_insights">Gweld Mewnweledigaethau</string>
   <string name="FirstInviteReminder__title">Gwahodd i Signal</string>
+  <string name="FirstInviteReminder__description">Gallwch chi gynyddu\'r nifer o negeseuon wedi\'u hamgryptio rydych yn eu hanfon o %1$d%%</string>
+  <string name="SecondInviteReminder__title">Cynyddu eich Signal</string>
+  <string name="SecondInviteReminder__description">Gwahodd %1$s</string>
+  <string name="InsightsReminder__view_insights">Gweld Mewnweledigaethau</string>
   <string name="InsightsReminder__invite">Gwahodd</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Eicon trafnidiaeth</string>

@@ -498,6 +498,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Signal आइकन</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">पासफ्रेज जमा करें</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">अमान्य पासफ्रेज</string>
+  <string name="PassphrasePromptActivity_unlock_signal">Signal खोलो</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">नक्शा</string>
   <string name="PlacePickerActivity_not_a_valid_address">मान्य पता नहीं</string>

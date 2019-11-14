@@ -479,6 +479,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Signal 圖示</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">送出密碼</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">無效的密碼！</string>
+  <string name="PassphrasePromptActivity_unlock_signal">解鎖 Signal</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">地圖</string>
   <string name="PlacePickerActivity_not_a_valid_address">非有效的地址</string>
@@ -1283,7 +1284,7 @@
   <string name="InsightsDashboardFragment__encrypted_messages">已加密的訊息</string>
   <string name="InsightsDashboardFragment__cancel">取消</string>
   <string name="InsightsDashboardFragment__send">傳送</string>
-  <string name="InsightsDashboardFragment__not_using_signal_yet">尚未使用 Signal</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__not_using_signal_yet">尚未使用 Signal</string> -->
   <string name="InsightsModalFragment__title">介紹 Insights</string>
   <string name="InsightsModalFragment__description">找出安全傳送的訊息數量，然後迅速邀請新聯絡人提高 Signal 比例。</string>
   <string name="InsightsModalFragment__view_insights">檢視 Insights</string>

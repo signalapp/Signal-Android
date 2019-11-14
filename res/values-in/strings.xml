@@ -480,6 +480,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Ikon Signal</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Kirim frasa sandi</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Frasa sandi tidak valid!</string>
+  <string name="PassphrasePromptActivity_unlock_signal">Buka kunci Signal</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Peta</string>
   <string name="PlacePickerActivity_not_a_valid_address">Alamat tidak valid</string>

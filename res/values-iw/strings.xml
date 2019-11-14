@@ -536,6 +536,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">צלמית Signal</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">הגש משפט־סיסמה</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">משפט־סיסמה לא תקף!</string>
+  <string name="PassphrasePromptActivity_unlock_signal">בטל נעילת Signal</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">מפה</string>
   <string name="PlacePickerActivity_not_a_valid_address">אינה כתובת תקפה</string>
@@ -1338,6 +1339,7 @@
   <string name="reminder_header_share_text">ככל שיותר חברים משתמשים ב-Signal, כך הוא משתפר.</string>
   <string name="reminder_header_service_outage_text">Signal חווה קשיים טכניים. אנו עובדים קשה כדי לשחזר שירות מהר ככל האפשר.</string>
   <string name="reminder_header_the_latest_signal_features_wont_work">המאפיינים האחרונים של Signal לא יעבדו על גרסה זו של Android. אנא שדרג מכשיר זה כדי לקבל עדכונים עתידיים של Signal.</string>
+  <string name="reminder_header_progress">%1$d%%</string>
   <!--media_preview-->
   <string name="media_preview__save_title">שמור</string>
   <string name="media_preview__forward_title">העבר הלאה</string>
@@ -1354,9 +1356,23 @@
   <string name="trimmer__deleting_old_messages">מוחק הודעות ישנות…</string>
   <string name="trimmer__old_messages_successfully_deleted">הודעות ישנות נמחקו בהצלחה</string>
   <!--Insights-->
+  <string name="Insights__percent">%</string>
+  <string name="Insights__title">תובנות</string>
+  <string name="InsightsDashboardFragment__title">תובנות</string>
+  <string name="InsightsDashboardFragment__boost_your_signal">המרץ את Signal שלך</string>
+  <string name="InsightsDashboardFragment__100_title">Signal שלך חזק</string>
+  <string name="InsightsDashboardFragment__no_signal_yet">אין Signal (עדין)</string>
+  <string name="InsightsDashboardFragment__start_a_conversation">התחל שיחה</string>
+  <string name="InsightsDashboardFragment__encrypted_messages">הודעות מוצפנות</string>
   <string name="InsightsDashboardFragment__cancel">בטל</string>
   <string name="InsightsDashboardFragment__send">שלח</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__not_using_signal_yet">לא משתמש ב‏־Signal עדין</string> -->
+  <string name="InsightsModalFragment__title">מציגים את תובנות</string>
+  <string name="InsightsModalFragment__view_insights">הצג תובנות</string>
   <string name="FirstInviteReminder__title">הזמן אל Signal</string>
+  <string name="FirstInviteReminder__description">אתה יכול להגדיל את מספר ההודעות המוצפנות שאתה שולח ב־%1$d%%</string>
+  <string name="SecondInviteReminder__title">המרץ את Signal שלך</string>
+  <string name="InsightsReminder__view_insights">הצג תובנות</string>
   <string name="InsightsReminder__invite">הזמן</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">צלמית תעבורה</string>

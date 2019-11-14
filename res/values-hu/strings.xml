@@ -500,6 +500,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Signal ikon</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Jelmondat küldése</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Érvénytelen jelmondat!</string>
+  <string name="PassphrasePromptActivity_unlock_signal">Signal feloldása</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Térkép</string>
   <string name="PlacePickerActivity_not_a_valid_address">Érvénytelen cím</string>

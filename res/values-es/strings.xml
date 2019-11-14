@@ -499,6 +499,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Icono de Signal</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Enviar clave de acceso</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">¡Clave de acceso no válida!</string>
+  <string name="PassphrasePromptActivity_unlock_signal">Desbloquear Signal</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Mapa</string>
   <string name="PlacePickerActivity_not_a_valid_address">La dirección no es válida</string>
@@ -1303,29 +1304,29 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="trimmer__old_messages_successfully_deleted">Mensajes antiguos eliminados con éxito</string>
   <!--Insights-->
   <string name="Insights__percent">%</string>
-  <string name="Insights__title">Estadísticas</string>
-  <string name="InsightsDashboardFragment__title">Estadísticas</string>
+  <string name="Insights__title">Estadística</string>
+  <string name="InsightsDashboardFragment__title">Estadística</string>
   <string name="InsightsDashboardFragment__tagline">%1$d%% de tus mensajes enviados en los últimos 7 días fueron cifrados con el protocolo de Signal.</string>
   <string name="InsightsDashboardFragment__boost_your_signal">Mejora tu Signatura</string>
   <string name="InsightsDashboardFragment__100_title">Tu Signatura es sólida</string>
   <string name="InsightsDashboardFragment__no_signal_yet">Sin Signatura (todavía)</string>
-  <string name="InsightsDashboardFragment__youre_just_getting_started">Todavía estás comenzando. Las estadísticas se mostrarán tras enviar algunos mensajes.</string>
+  <string name="InsightsDashboardFragment__youre_just_getting_started">Todavía estás comenzando. Las estadística se mostrará tras enviar algunos mensajes.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Comenza un chat</string>
-  <string name="InsightsDashboardFragment__100_description">La tecnología de Signal proteje automáticamente tu intimidad en todos los mensajes que envías.</string>
-  <string name="InsightsDashboardFragment__invite_your_contacts">Comenza a comunicarte de manera segura con las características de Signal que van más allá de SMS sin cifrar e invita contactos a usar Signal contigo.</string>
+  <string name="InsightsDashboardFragment__100_description">La tecnología de Signal proteje automáticamente tu privacidad en todos los mensajes que envías.</string>
+  <string name="InsightsDashboardFragment__invite_your_contacts">Comienza a comunicarte de manera segura con las características de Signal que van más allá de SMS sin cifrar e invita contactos a chatear contigo con Signal.</string>
   <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Esta cifra se ha generado en este dispositivo y sólo tú puedes verla. No se envía a ningún servidor.</string>
   <string name="InsightsDashboardFragment__encrypted_messages">Mensajes cifrados</string>
   <string name="InsightsDashboardFragment__cancel">Cancelar</string>
   <string name="InsightsDashboardFragment__send">Enviar</string>
-  <string name="InsightsDashboardFragment__not_using_signal_yet">Todavía no usas Signal</string>
-  <string name="InsightsModalFragment__title">Presentando estadísticas</string>
-  <string name="InsightsModalFragment__description">Descubre cuántos de tus mensajes se han enviado de manera segura e invita a tus contaqctos a aumentar tu porcentaje de mensajes de Signal.</string>
-  <string name="InsightsModalFragment__view_insights">Ver estadísticas</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__not_using_signal_yet">Todavía no usas Signal</string> -->
+  <string name="InsightsModalFragment__title">Presentando la estadística</string>
+  <string name="InsightsModalFragment__description">Descubre cuántos de tus mensajes se han enviado de manera segura e invita a tus contactos a aumentar tu porcentaje de mensajes de Signal.</string>
+  <string name="InsightsModalFragment__view_insights">Ver estadística</string>
   <string name="FirstInviteReminder__title">Invitar a Signal</string>
-  <string name="FirstInviteReminder__description">Puedes aumentar el número de mensajes cifrados que envías a %1$d%%</string>
+  <string name="FirstInviteReminder__description">Puedes aumentar el número de mensajes cifrados que envías en %1$d%%</string>
   <string name="SecondInviteReminder__title">Mejora con Signal</string>
   <string name="SecondInviteReminder__description">Invitar a %1$s</string>
-  <string name="InsightsReminder__view_insights">Ver estadísticas</string>
+  <string name="InsightsReminder__view_insights">Ver estadística</string>
   <string name="InsightsReminder__invite">Invitar</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icono de transporte</string>

@@ -450,6 +450,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Sembola Signalê</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Borînbiwêjê radest bike</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Borînbiwêja nederbasdar!</string>
+  <string name="PassphrasePromptActivity_unlock_signal">Rakirina qilfê Signalê</string>
   <!--PlacePickerActivity-->
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Guhertoya Google Play Servicesê ya di amûra te da sazkirî baş naxebite. Ji kerema xwe dîsa saz bike û biceribîne.</string>

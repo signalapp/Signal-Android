@@ -504,6 +504,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Signal చిహ్నం</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">సంకేతపదమును సమర్పించండి</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">చెల్లని సంకేతపదము!</string>
+  <string name="PassphrasePromptActivity_unlock_signal">అన్లాక్ Signal</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">పటం</string>
   <string name="PlacePickerActivity_not_a_valid_address">చెల్లుబాటు అయ్యే చిరునామా కాదు</string>

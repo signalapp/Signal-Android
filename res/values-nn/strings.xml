@@ -498,6 +498,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Signal-ikon</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Send inn passordfrase</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Ugyldig passordfrase.</string>
+  <string name="PassphrasePromptActivity_unlock_signal">Lås opp Signal</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Kart</string>
   <string name="PlacePickerActivity_not_a_valid_address">Ikkje ei gyldig adresse</string>

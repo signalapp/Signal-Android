@@ -479,6 +479,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description"> Signal 图标</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">提交密钥</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">不真实的密钥！</string>
+  <string name="PassphrasePromptActivity_unlock_signal">解锁 Signal</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">地图</string>
   <string name="PlacePickerActivity_not_a_valid_address">非有效地址</string>

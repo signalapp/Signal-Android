@@ -499,6 +499,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Signal ஐகான்</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">கடவுச்சொல்லை சமர்ப்பிக்க</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">தவறான கடவுச்சொல்!</string>
+  <string name="PassphrasePromptActivity_unlock_signal">Signal லைத் திற</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">வரைபடம்</string>
   <string name="PlacePickerActivity_not_a_valid_address">சரியான முகவரி அல்ல</string>

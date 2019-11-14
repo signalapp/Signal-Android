@@ -480,6 +480,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Biểu tượng Signal</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Gửi mật khẩu</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Mật khẩu không đúng!</string>
+  <string name="PassphrasePromptActivity_unlock_signal">Mở khóa Signal</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Bản đồ</string>
   <string name="PlacePickerActivity_not_a_valid_address">Không phải địa chỉ hợp lệ</string>

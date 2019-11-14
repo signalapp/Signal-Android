@@ -530,6 +530,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Signal ikona</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Odoslať heslo</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Nesprávne heslo!</string>
+  <string name="PassphrasePromptActivity_unlock_signal">Odomknúť Signal</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Mapa</string>
   <string name="PlacePickerActivity_not_a_valid_address">Neplatná adresa</string>

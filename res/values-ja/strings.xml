@@ -479,6 +479,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Signalアイコン</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">パスフレーズを設定</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">無効なパスフレーズです！</string>
+  <string name="PassphrasePromptActivity_unlock_signal">Signalを解錠する</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">地図</string>
   <string name="PlacePickerActivity_not_a_valid_address">無効なアドレスです</string>

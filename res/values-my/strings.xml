@@ -431,6 +431,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Signal ပုံသင်္ကေတ</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">စကားဝှက် တင်သွင်းပါ</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">စကားဝှက် မှားနေသည်</string>
+  <string name="PassphrasePromptActivity_unlock_signal">Signal ကို ပြန်ဖြည်ပါ</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">မြေပုံ</string>
   <!--PlayServicesProblemFragment-->

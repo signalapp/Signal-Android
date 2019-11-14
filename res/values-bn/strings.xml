@@ -498,6 +498,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Signal আইকন</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">পাসফ্রেজ সাবমিট করুন</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">অকার্যকর পাসফ্রেজ!</string>
+  <string name="PassphrasePromptActivity_unlock_signal">Signal লক্ খুলুন</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">ম্যাপ</string>
   <string name="PlacePickerActivity_not_a_valid_address">কোনও বৈধ ঠিকানা নয়</string>

@@ -479,6 +479,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">រូប Signal </string>
   <string name="PassphrasePromptActivity_ok_button_content_description">បញ្ជូនឃ្លាសម្ងាត់</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">ឃ្លាសម្ងាត់មិនត្រឹមត្រូវ!</string>
+  <string name="PassphrasePromptActivity_unlock_signal">ដោះសោរSignal</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">ផែនទី</string>
   <string name="PlacePickerActivity_not_a_valid_address">អសយដ្ឋានមិនត្រឹមត្រូវ</string>

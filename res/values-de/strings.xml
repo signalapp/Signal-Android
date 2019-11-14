@@ -497,6 +497,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Signal-Symbol</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Passphrase übermitteln</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Passphrase ungültig!</string>
+  <string name="PassphrasePromptActivity_unlock_signal">Signal entsperren</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Karte</string>
   <string name="PlacePickerActivity_not_a_valid_address">Keine gültige Adresse</string>
@@ -1294,18 +1295,18 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="Insights__title">Einblicke</string>
   <string name="InsightsDashboardFragment__title">Einblicke</string>
   <string name="InsightsDashboardFragment__tagline">%1$d%% deiner ausgehenden Nachrichten der letzten 7 Tage waren mit dem Signal Protocol Ende-zu-Ende-verschlüsselt.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Stärke das Signal in dir</string>
+  <string name="InsightsDashboardFragment__boost_your_signal">Verstärke dein Signal</string>
   <string name="InsightsDashboardFragment__100_title">Das Signal ist stark in dir</string>
   <string name="InsightsDashboardFragment__no_signal_yet">Kein Signal (bisher)</string>
   <string name="InsightsDashboardFragment__youre_just_getting_started">Du machst gerade deine ersten Schritte. Einblicke werden angezeigt, sobald du einige Nachrichten versendest.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Beginne eine Unterhaltung</string>
   <string name="InsightsDashboardFragment__100_description">Signals fortschrittliche Datenschutztechnologie hat alle deine kürzlich versendeten Nachrichten automatisch geschützt.</string>
   <string name="InsightsDashboardFragment__invite_your_contacts">Kommuniziere von jetzt an sicher und ermögliche neue Funktionen, die über die Einschränkungen unverschlüsselter SMS hinausgehen, indem du mehr Kontakte dazu einlädst, Signal zu verwenden.</string>
-  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Die Statistik wurde lokal auf deinem Gerät berechnet und kann nur dort eingesehen werden. Sie wird nie übertragen.</string>
+  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Diese Statistik wurde lokal auf deinem Gerät erstellt und kann nur durch dich eingesehen werden. Sie wird niemals an jemand anderes übertragen.</string>
   <string name="InsightsDashboardFragment__encrypted_messages">Verschlüsselte Nachrichten</string>
   <string name="InsightsDashboardFragment__cancel">Abbrechen</string>
   <string name="InsightsDashboardFragment__send">Senden</string>
-  <string name="InsightsDashboardFragment__not_using_signal_yet">Verwendet Signal noch nicht</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__not_using_signal_yet">Verwendet Signal noch nicht</string> -->
   <string name="InsightsModalFragment__title">Einführung von Einblicken</string>
   <string name="InsightsModalFragment__description">Finde heraus, wie viele deiner ausgehenden Nachrichten geschützt versendet wurden, und lade dann neue Kontakte ein, um deinen Signal-Prozentwert zu erhöhen.</string>
   <string name="InsightsModalFragment__view_insights">Einblicke anzeigen</string>

@@ -490,6 +490,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">آیکون Signal</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">ثبت کردن عبارت عبور</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">رمز معتبر نیست!</string>
+  <string name="PassphrasePromptActivity_unlock_signal">آنلاک کردن Signal</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">نقشه</string>
   <string name="PlacePickerActivity_not_a_valid_address">آدرس معتبر نیست</string>

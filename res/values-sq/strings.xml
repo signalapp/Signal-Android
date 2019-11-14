@@ -498,6 +498,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Ikona e Signal-it</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Parashtroje frazëkalimin</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Frazëkalim i pavlefshëm!</string>
+  <string name="PassphrasePromptActivity_unlock_signal">Shkyçe Signal-in</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Hartë</string>
   <string name="PlacePickerActivity_not_a_valid_address">Adresë jo e vlefshme</string>
@@ -1310,7 +1311,7 @@
   <string name="InsightsDashboardFragment__encrypted_messages">Mesazhe të fshehtëzuar</string>
   <string name="InsightsDashboardFragment__cancel">Anuloje</string>
   <string name="InsightsDashboardFragment__send">Dërgoje</string>
-  <string name="InsightsDashboardFragment__not_using_signal_yet">Ende s’përdoret Signal-i</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__not_using_signal_yet">Ende s’përdoret Signal-i</string> -->
   <string name="InsightsModalFragment__title">Ju Paraqesim Prirje</string>
   <string name="InsightsModalFragment__description">Shihni se sa nga mesazhet tuaja ikës u dërguan në mënyrë të parrezik, mandej ftoni pa humbur kohë kontakte të rinj, për të fuqizuar përqindjen tuaj Signal.</string>
   <string name="InsightsModalFragment__view_insights">Shihni Prirje</string>

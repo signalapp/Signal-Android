@@ -500,6 +500,7 @@ weergaven.</string>
   <string name="PassphrasePromptActivity_watermark_content_description">Signal-pictogram</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Wachtwoord instellen</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Ongeldig wachtwoord!</string>
+  <string name="PassphrasePromptActivity_unlock_signal">Signal ontgrendelen</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Kaart</string>
   <string name="PlacePickerActivity_not_a_valid_address">Geen geldig adres</string>
@@ -1312,13 +1313,13 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <string name="InsightsDashboardFragment__no_signal_yet">Je maakt nog geen gebruik van beveiligde Signal-gesprekken</string>
   <string name="InsightsDashboardFragment__youre_just_getting_started">Je bent pas net begonnen. Inzichten zullen worden weergeven nadat je een aantal berichten hebt verzonden.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Begin een gesprek</string>
-  <string name="InsightsDashboardFragment__100_description">Signal\'s beschermde automatisch al je recent uitgaande berichten.</string>
+  <string name="InsightsDashboardFragment__100_description">Signal beschermde automatisch al je recent uitgaande berichten.</string>
   <string name="InsightsDashboardFragment__invite_your_contacts">Communiceer voortaan beveiligd en maak nieuwe functies mogelijk welke verder gaan dan de limitaties van onversleutelde sms-berichten, door meer contactpersonen uit te nodigen om Signal te gebruiken.</string>
   <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Deze statistiek is lokaal gegenereerd op jouw apparaat en kan alleen door jou gezien worden. Het wordt nooit verzonden.</string>
   <string name="InsightsDashboardFragment__encrypted_messages">Versleutelde berichten</string>
   <string name="InsightsDashboardFragment__cancel">Annuleren</string>
   <string name="InsightsDashboardFragment__send">Verzend</string>
-  <string name="InsightsDashboardFragment__not_using_signal_yet">Je gebuikt Signal nog niet</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__not_using_signal_yet">Gebuikt Signal nog niet</string> -->
   <string name="InsightsModalFragment__title">We introduceren ‘inzichten’</string>
   <string name="InsightsModalFragment__description">Ontdek hoeveel van je uitgaande berichten beveiligd zijn verzonden en nodig gemakkelijk nieuwe contactpersonen uit om je percentage beveiligde berichten te verhogen.</string>
   <string name="InsightsModalFragment__view_insights">Inzichten weergeven</string>

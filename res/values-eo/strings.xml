@@ -499,6 +499,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Signal-piktogramo</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Sendi pasfrazon</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Nevalida pasfrazo!</string>
+  <string name="PassphrasePromptActivity_unlock_signal">Malŝlosi Signal-on</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Mapo</string>
   <string name="PlacePickerActivity_not_a_valid_address">Nevalida adreso</string>
@@ -1300,14 +1301,30 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="trimmer__deleting_old_messages">Forviŝado de malnovaj mesaĝoj…</string>
   <string name="trimmer__old_messages_successfully_deleted">Malnovaj mesaĝoj sukcese forviŝiĝis</string>
   <!--Insights-->
-  <string name="Insights__title">Enrigardo</string>
-  <string name="InsightsDashboardFragment__title">Enrigardo</string>
+  <string name="Insights__percent">%</string>
+  <string name="Insights__title">Superrigardo</string>
+  <string name="InsightsDashboardFragment__title">Superrigardo</string>
   <string name="InsightsDashboardFragment__tagline">%1$d %% el viaj elirintaj mesaĝoj en la lastaj 7 tagoj estis tutvoje ĉifritaj per Signal-protokolo.</string>
   <string name="InsightsDashboardFragment__boost_your_signal">Plibonigu vian Signal-on</string>
+  <string name="InsightsDashboardFragment__100_title">Via Signal estas forta</string>
+  <string name="InsightsDashboardFragment__no_signal_yet">Neniu Signal-uzo (momente)</string>
+  <string name="InsightsDashboardFragment__youre_just_getting_started">Vi ĵus komenciĝis. „Superrigardo“ montriĝos, post kiam vi sendos kelkajn mesaĝojn.</string>
+  <string name="InsightsDashboardFragment__start_a_conversation">Krei novan interparolon</string>
+  <string name="InsightsDashboardFragment__100_description">La teĥnikoj por protekti la privatecon de Signal ŝirmis ĉiujn viajn lastajn elirantajn mesaĝojn.</string>
+  <string name="InsightsDashboardFragment__invite_your_contacts">Ekkomunikiĝu sekure pere de novaj funkcioj, kiuj transiras la limojn de nesekuraj SMS-mesaĝoj, invitante pli da kontaktoj uzi Signal-on.</string>
+  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Tiu statistikaĵo generiĝis ĉiaparate kaj videblas nur de vi. Ĝi neniam transiras aliloken.</string>
+  <string name="InsightsDashboardFragment__encrypted_messages">Ĉifritaj mesaĝoj</string>
   <string name="InsightsDashboardFragment__cancel">Nuligi</string>
   <string name="InsightsDashboardFragment__send">Sendi</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__not_using_signal_yet">Ne uzas Signal-on</string> -->
+  <string name="InsightsModalFragment__title">Jen „Superrigardo“</string>
+  <string name="InsightsModalFragment__description">Vidu, kiom da elirintaj mesaĝoj sendiĝis sekure, kaj poste invitu novajn kontaktojn por pligrandigi vian Signal-uzon.</string>
+  <string name="InsightsModalFragment__view_insights">Vidi superrigardon</string>
   <string name="FirstInviteReminder__title">Inviti al Signal</string>
+  <string name="FirstInviteReminder__description">Vi povus pligrandigi la nombron de ĉifritaj mesaĝoj je %1$d %%</string>
   <string name="SecondInviteReminder__title">Plibonigu vian Signal-on</string>
+  <string name="SecondInviteReminder__description">Inviti %1$s</string>
+  <string name="InsightsReminder__view_insights">Vidi superrigardon</string>
   <string name="InsightsReminder__invite">Inviti</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Piktogramo pri sendometodo</string>

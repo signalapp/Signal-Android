@@ -414,6 +414,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">ไอคอน Signal</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">ส่งวลีรหัสผ่าน</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">วลีรหัสผ่านไม่ถูกต้อง</string>
+  <string name="PassphrasePromptActivity_unlock_signal">ปลดล็อก Signal</string>
   <!--PlacePickerActivity-->
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">เวอร์ชันของ Google Play Services ที่คุณมีอยู่ทำงานไม่ถูกต้อง โปรดติดตั้ง Google Play Services ใหม่และลองอีกครั้ง</string>

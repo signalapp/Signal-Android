@@ -518,6 +518,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Pictogramă Signal</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Trimite parola</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Parolă incorectă!</string>
+  <string name="PassphrasePromptActivity_unlock_signal">Deblochează Signal</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Hartă</string>
   <string name="PlacePickerActivity_not_a_valid_address">Adresa nu e este validă</string>

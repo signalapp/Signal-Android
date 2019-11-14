@@ -555,6 +555,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">أيقونة Signal</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">أدخل العبارة السرية</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">عبارة سرية غير صحيحة!</string>
+  <string name="PassphrasePromptActivity_unlock_signal">فك القفل عن سيجنال</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">الخريطة</string>
   <string name="PlacePickerActivity_not_a_valid_address">ليس عنوان صالح</string>

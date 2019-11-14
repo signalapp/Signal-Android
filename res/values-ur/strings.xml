@@ -499,6 +499,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Signal آئکن</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">پاسفریز جمع کریں</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">غلط پاسفریز!</string>
+  <string name="PassphrasePromptActivity_unlock_signal">Signal ان لاک کریں</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">نقشہ</string>
   <string name="PlacePickerActivity_not_a_valid_address">ایڈریس درست نہیں</string>

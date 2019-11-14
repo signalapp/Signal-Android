@@ -499,6 +499,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Signali ikoon</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Saada salaväljend</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Sobimatu salaväljend!</string>
+  <string name="PassphrasePromptActivity_unlock_signal">Lukusta Signal lahti</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Kaart</string>
   <string name="PlacePickerActivity_not_a_valid_address">Pole sobiv aadress</string>
@@ -1308,7 +1309,7 @@
   <string name="InsightsDashboardFragment__encrypted_messages">Krüpteeritud sõnumid</string>
   <string name="InsightsDashboardFragment__cancel">Loobu</string>
   <string name="InsightsDashboardFragment__send">Saada</string>
-  <string name="InsightsDashboardFragment__not_using_signal_yet">Ei kasuta veel Signalit</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__not_using_signal_yet">Ei kasuta veel Signalit</string> -->
   <string name="InsightsModalFragment__title">Tutvustame Pilguheitu</string>
   <string name="InsightsModalFragment__view_insights">Vaata Pilguheitu</string>
   <string name="FirstInviteReminder__title">Kutsu Signalisse</string>

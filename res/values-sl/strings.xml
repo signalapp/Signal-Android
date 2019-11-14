@@ -536,6 +536,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Ikona Signal</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Vnesite geslo</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Napačno geslo!</string>
+  <string name="PassphrasePromptActivity_unlock_signal">Odkleni Signal</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Zemljevid</string>
   <string name="PlacePickerActivity_not_a_valid_address">Neveljaven naslov</string>
@@ -1367,7 +1368,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="InsightsDashboardFragment__encrypted_messages">Šifrirana sporočila</string>
   <string name="InsightsDashboardFragment__cancel">Prekliči</string>
   <string name="InsightsDashboardFragment__send">Pošlji</string>
-  <string name="InsightsDashboardFragment__not_using_signal_yet">Še ne uporablja stroritve Signal</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__not_using_signal_yet">Še ne uporablja stroritve Signal</string> -->
   <string name="InsightsModalFragment__title">Predstavljamo vam Pregled</string>
   <string name="InsightsModalFragment__description">Preverite koliko vaših sporočil je bilo poslanih na varen način, nato k varni uporabi povabite še druge uporabnike in izboljšajte svoj Signal.</string>
   <string name="InsightsModalFragment__view_insights">Odpri Pregled</string>

@@ -484,6 +484,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Εικονίδιο Signal</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Καταχώρηση συνθηματικού</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Μη έγκυρο συνθηματικό!</string>
+  <string name="PassphrasePromptActivity_unlock_signal">Ξεκλειδώστε το Signal</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Χάρτης</string>
   <string name="PlacePickerActivity_not_a_valid_address">Δεν είναι έγκυρη Διεύθυνση</string>

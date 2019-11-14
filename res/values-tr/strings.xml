@@ -499,6 +499,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Signal simgesi</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Parola gir</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Geçersiz parola!</string>
+  <string name="PassphrasePromptActivity_unlock_signal">Signal\'in Kilidini Aç</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Harita</string>
   <string name="PlacePickerActivity_not_a_valid_address">Geçersiz Adres</string>

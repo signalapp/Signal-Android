@@ -499,6 +499,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Signal चिन्ह</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">पासफ्रेझ प्रविष्ट करा</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">अवैध पासफ्रेझ!</string>
+  <string name="PassphrasePromptActivity_unlock_signal">Signal अनलॉक करा</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">नकाशा</string>
   <string name="PlacePickerActivity_not_a_valid_address">वैध पत्ता नाही</string>

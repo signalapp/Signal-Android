@@ -481,6 +481,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">ikon Signal</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Hantar frasa laluan</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Frasa laluan tidak sah!</string>
+  <string name="PassphrasePromptActivity_unlock_signal">Buka Signal</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Peta</string>
   <string name="PlacePickerActivity_not_a_valid_address">Bukan Alamat yang sah</string>

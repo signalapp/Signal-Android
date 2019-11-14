@@ -499,6 +499,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Icona de Signal</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Enviar frase de acceso</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Frase de acceso non válida!</string>
+  <string name="PassphrasePromptActivity_unlock_signal">Desbloquear Signal</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Mapa</string>
   <string name="PlacePickerActivity_not_a_valid_address">Non é un enderezo válido</string>

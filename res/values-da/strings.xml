@@ -500,6 +500,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Signal ikon</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Tilføj kodeord</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Ugyldigt kodeord!</string>
+  <string name="PassphrasePromptActivity_unlock_signal">Lås Signal op</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Kort</string>
   <string name="PlacePickerActivity_not_a_valid_address">Ugyldig adresse</string>
@@ -1073,6 +1074,10 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="arrays__high">Høj</string>
   <string name="arrays__max">Max.</string>
   <!--plurals.xml-->
+  <plurals name="hours_ago">
+    <item quantity="one">%dt</item>
+    <item quantity="other">%dt</item>
+  </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">SMS og MMS</string>
   <string name="preferences__pref_all_sms_title">Modtag alle SMS</string>
@@ -1280,6 +1285,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="reminder_header_share_text">Jo flere venner der bruger Signal, desto bedre bliver den</string>
   <string name="reminder_header_service_outage_text">Signal oplever tekniske problemer. Vi arbejder hårdt på at genoprette servicen, så hurtigt som muligt</string>
   <string name="reminder_header_the_latest_signal_features_wont_work">De nyeste Signal-funktioner virker ikke på denne version af Android. Opgrader venligst denne enhed for at modtage fremtidige Signal-opdateringer</string>
+  <string name="reminder_header_progress">%1$d %%</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Gem</string>
   <string name="media_preview__forward_title">Videresend</string>
@@ -1296,9 +1302,25 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="trimmer__deleting_old_messages">Sletter gamle beskeder…</string>
   <string name="trimmer__old_messages_successfully_deleted">Gamle beskeder slettet</string>
   <!--Insights-->
+  <string name="Insights__percent">%</string>
+  <string name="Insights__title">Indblik</string>
+  <string name="InsightsDashboardFragment__title">Indblik</string>
+  <string name="InsightsDashboardFragment__boost_your_signal">Boost din Signal</string>
+  <string name="InsightsDashboardFragment__100_title">Din Signal er stærk</string>
+  <string name="InsightsDashboardFragment__no_signal_yet">Ingen Signal (endnu)</string>
+  <string name="InsightsDashboardFragment__youre_just_getting_started">Du er lige ved at komme i gang. Indblik vises når du har sendt et par meddelelser</string>
+  <string name="InsightsDashboardFragment__start_a_conversation">Start en samtale</string>
+  <string name="InsightsDashboardFragment__encrypted_messages">Krypterede beskeder</string>
   <string name="InsightsDashboardFragment__cancel">Annuller</string>
   <string name="InsightsDashboardFragment__send">Send</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__not_using_signal_yet">Bruger ikke Signal endnu</string> -->
+  <string name="InsightsModalFragment__title">Vi introducerer Indblik</string>
+  <string name="InsightsModalFragment__view_insights">Vis Indblik</string>
   <string name="FirstInviteReminder__title">Invitér til Signal</string>
+  <string name="FirstInviteReminder__description">Du kan forøge antallet af krypterede beskeder du sendte til %1$d%%</string>
+  <string name="SecondInviteReminder__title">Boost din Signal</string>
+  <string name="SecondInviteReminder__description">Invitér %1$s</string>
+  <string name="InsightsReminder__view_insights">Vis Indblik</string>
   <string name="InsightsReminder__invite">Invitér kontakt</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transport ikon</string>

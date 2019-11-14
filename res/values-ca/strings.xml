@@ -498,6 +498,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Icona del Signal</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Envia la contrasenya</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Contrasenya incorrecta!</string>
+  <string name="PassphrasePromptActivity_unlock_signal">Desbloca el Signal</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Mapa</string>
   <string name="PlacePickerActivity_not_a_valid_address">No és una adreça vàlida.</string>
@@ -1278,6 +1279,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="reminder_header_share_text">Com més amistats usin el Signal, millor.</string>
   <string name="reminder_header_service_outage_text">El Signal està patint problemes tècnics. Este treballant per a recuperar el servei tan ràpid com sigui possible.</string>
   <string name="reminder_header_the_latest_signal_features_wont_work">Les darreres novetats del Signal no funcionaran en aquesta versió d\'Android. Si us plau, actualitzeu el dispositiu per rebre les futures actualitzacions del Signal.</string>
+  <string name="reminder_header_progress">%1$d%%</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Desa</string>
   <string name="media_preview__forward_title">Reenvia</string>
@@ -1294,9 +1296,30 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="trimmer__deleting_old_messages">Se suprimeixen missatges antics…</string>
   <string name="trimmer__old_messages_successfully_deleted">S\'han suprimit correctament els missatges antics</string>
   <!--Insights-->
+  <string name="Insights__percent">%</string>
+  <string name="Insights__title">Interior</string>
+  <string name="InsightsDashboardFragment__title">Interior</string>
+  <string name="InsightsDashboardFragment__tagline">%1$d%% dels missatges sortints dels darrers 7 dies es van encriptar de punt a punt amb el Protocol de Signal.</string>
+  <string name="InsightsDashboardFragment__boost_your_signal">Impulseu el Signal</string>
+  <string name="InsightsDashboardFragment__100_title">El vostre Signal és fort.</string>
+  <string name="InsightsDashboardFragment__no_signal_yet">Sense Signal (encara)</string>
+  <string name="InsightsDashboardFragment__youre_just_getting_started">Encara esteu començant. L\'interior es mostrarà quan hàgiu enviat alguns missatges.</string>
+  <string name="InsightsDashboardFragment__start_a_conversation">Inicieu una conversa</string>
+  <string name="InsightsDashboardFragment__100_description">La tecnologia avançada de conservació de la privacitat del Signal protegia automàticament tots els vostres missatges recents.</string>
+  <string name="InsightsDashboardFragment__invite_your_contacts">Comenceu a comunicar-vos de manera segura i activeu funcions noves que vagin més enllà de les limitacions dels missatges d\'SMS no encriptats convidant més contactes a unir-se al Signal.</string>
+  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Aquesta estadística es va generar localment al dispositiu i només vosaltres la podreu veure. Mai es transmet enlloc.</string>
+  <string name="InsightsDashboardFragment__encrypted_messages">Missatges encriptats</string>
   <string name="InsightsDashboardFragment__cancel">Cancel·la</string>
   <string name="InsightsDashboardFragment__send">Envia</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__not_using_signal_yet">Encara no usa el Signal.</string> -->
+  <string name="InsightsModalFragment__title">S\'introdueix l\'Interior</string>
+  <string name="InsightsModalFragment__description">Informeu-vos de quants dels vostres missatges de sortida es van enviar de forma segura i, després, convideu ràpidament nous contactes per augmentar el percentatge del Signal.</string>
+  <string name="InsightsModalFragment__view_insights">Mostra l\'Interior</string>
   <string name="FirstInviteReminder__title">Convida al Signal</string>
+  <string name="FirstInviteReminder__description">Podeu augmentar el nombre de missatges encriptats que envieu gràcies a %1$d%%</string>
+  <string name="SecondInviteReminder__title">Impulseu el Signal</string>
+  <string name="SecondInviteReminder__description">Convida %1$s</string>
+  <string name="InsightsReminder__view_insights">Mostra l\'Interior</string>
   <string name="InsightsReminder__invite">Convida</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icona de trànsit</string>
