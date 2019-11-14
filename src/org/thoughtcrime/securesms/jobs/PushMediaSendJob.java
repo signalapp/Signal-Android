@@ -227,8 +227,10 @@ public class PushMediaSendJob extends PushSendJob implements InjectableType {
       }
     } catch (UntrustedIdentityException uie) {
       warn(TAG, "Failure", uie);
-      database.addMismatchedIdentity(messageId, Address.fromSerialized(uie.getE164Number()), uie.getIdentityKey());
-      database.markAsSentFailed(messageId);
+      if (messageId >= 0) {
+        database.addMismatchedIdentity(messageId, Address.fromSerialized(uie.getE164Number()), uie.getIdentityKey());
+        database.markAsSentFailed(messageId);
+      }
     }
   }
 
