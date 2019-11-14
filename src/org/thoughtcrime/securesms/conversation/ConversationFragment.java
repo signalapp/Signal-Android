@@ -539,18 +539,13 @@ public class ConversationFragment extends Fragment
                 ignoredMessages.add(messageRecord.getId());
               }
             }
-            long[] serverIDsArray = new long[serverIDs.size()];
-            for (int i=0; i < serverIDs.size(); i++) {
-              serverIDsArray[i] = serverIDs.get(i);
-            }
             if (publicChat != null && publicChatAPI != null) {
               publicChatAPI
-              .deleteMessages(serverIDsArray, publicChat.getChannel(), publicChat.getServer(), isSentByUser)
+              .deleteMessages(serverIDs, publicChat.getChannel(), publicChat.getServer(), isSentByUser)
               .success(l -> {
-                List<Long> longList = Longs.asList(l);
                 for (MessageRecord messageRecord : messageRecords) {
                   Long serverID = DatabaseFactory.getLokiMessageDatabase(getContext()).getServerID(messageRecord.id);
-                  if (longList.contains(serverID)) {
+                  if (l.contains(serverID)) {
                     if (messageRecord.isMms()) {
                       DatabaseFactory.getMmsDatabase(getActivity()).delete(messageRecord.getId());
                     } else {
