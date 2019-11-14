@@ -165,9 +165,9 @@ public class FastJobStorageTest {
     JobDatabase    database = noopDatabase();
     FastJobStorage subject  = new FastJobStorage(database);
 
-    subject.updateJobAfterRetry("1", true, 1, 10);
+    subject.updateJobAfterRetry("1", true, 1, 10, "a");
 
-    verify(database).updateJobAfterRetry("1", true, 1, 10);
+    verify(database).updateJobAfterRetry("1", true, 1, 10, "a");
   }
 
   @Test
@@ -179,7 +179,7 @@ public class FastJobStorageTest {
     FastJobStorage subject = new FastJobStorage(fixedDataDatabase(Collections.singletonList(fullSpec)));
 
     subject.init();
-    subject.updateJobAfterRetry("1", false, 1, 10);
+    subject.updateJobAfterRetry("1", false, 1, 10, "a");
 
     JobSpec job = subject.getJobSpec("1");
 
@@ -187,6 +187,7 @@ public class FastJobStorageTest {
     assertFalse(job.isRunning());
     assertEquals(1, job.getRunAttempt());
     assertEquals(10, job.getNextRunAttemptTime());
+    assertEquals("a", job.getSerializedData());
   }
 
   @Test

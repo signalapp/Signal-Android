@@ -126,11 +126,12 @@ public class JobDatabase extends Database {
     databaseHelper.getWritableDatabase().update(Jobs.TABLE_NAME, contentValues, query, args);
   }
 
-  public synchronized void updateJobAfterRetry(@NonNull String id, boolean isRunning, int runAttempt, long nextRunAttemptTime) {
+  public synchronized void updateJobAfterRetry(@NonNull String id, boolean isRunning, int runAttempt, long nextRunAttemptTime, @NonNull String serializedData) {
     ContentValues contentValues = new ContentValues();
     contentValues.put(Jobs.IS_RUNNING, isRunning ? 1 : 0);
     contentValues.put(Jobs.RUN_ATTEMPT, runAttempt);
     contentValues.put(Jobs.NEXT_RUN_ATTEMPT_TIME, nextRunAttemptTime);
+    contentValues.put(Jobs.SERIALIZED_DATA, serializedData);
 
     String   query = Jobs.JOB_SPEC_ID + " = ?";
     String[] args  = new String[]{ id };

@@ -98,10 +98,11 @@ class JobController {
 
   @WorkerThread
   synchronized void onRetry(@NonNull Job job) {
-    int  nextRunAttempt     = job.getRunAttempt() + 1;
-    long nextRunAttemptTime = calculateNextRunAttemptTime(System.currentTimeMillis(), nextRunAttempt, job.getParameters().getMaxBackoff());
+    int    nextRunAttempt     = job.getRunAttempt() + 1;
+    long   nextRunAttemptTime = calculateNextRunAttemptTime(System.currentTimeMillis(), nextRunAttempt, job.getParameters().getMaxBackoff());
+    String serializedData     = dataSerializer.serialize(job.serialize());
 
-    jobStorage.updateJobAfterRetry(job.getId(), false, nextRunAttempt, nextRunAttemptTime);
+    jobStorage.updateJobAfterRetry(job.getId(), false, nextRunAttempt, nextRunAttemptTime, serializedData);
     jobTracker.onStateChange(job.getId(), JobTracker.JobState.PENDING);
 
     List<Constraint> constraints = Stream.of(jobStorage.getConstraintSpecs(job.getId()))
