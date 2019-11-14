@@ -5,13 +5,15 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import android.content.Context;
 import androidx.annotation.NonNull;
+import androidx.lifecycle.MutableLiveData;
 
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactRepository;
+import org.thoughtcrime.securesms.conversationlist.model.SearchResult;
 import org.thoughtcrime.securesms.database.CursorList;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.search.SearchRepository;
-import org.thoughtcrime.securesms.search.model.MessageResult;
+import org.thoughtcrime.securesms.conversationlist.model.MessageResult;
 import org.thoughtcrime.securesms.util.CloseableLiveData;
 import org.thoughtcrime.securesms.util.Debouncer;
 import org.thoughtcrime.securesms.util.Util;
@@ -22,9 +24,9 @@ import java.util.List;
 
 public class ConversationSearchViewModel extends AndroidViewModel {
 
-  private final SearchRepository                searchRepository;
-  private final CloseableLiveData<SearchResult> result;
-  private final Debouncer                       debouncer;
+  private final SearchRepository              searchRepository;
+  private final MutableLiveData<SearchResult> result;
+  private final Debouncer                     debouncer;
 
   private boolean firstSearch;
   private boolean searchOpen;
@@ -33,15 +35,9 @@ public class ConversationSearchViewModel extends AndroidViewModel {
 
   public ConversationSearchViewModel(@NonNull Application application) {
     super(application);
-    Context context = application.getApplicationContext();
-    result           = new CloseableLiveData<>();
+    result           = new MutableLiveData<>();
     debouncer        = new Debouncer(500);
-    searchRepository = new SearchRepository(context,
-                                            DatabaseFactory.getSearchDatabase(context),
-                                            DatabaseFactory.getThreadDatabase(context),
-                                            new ContactRepository(application),
-                                            ContactAccessor.getInstance(),
-                                            SignalExecutors.SERIAL);
+    searchRepository = new SearchRepository();
   }
 
   LiveData<SearchResult> getSearchResults() {
@@ -73,7 +69,7 @@ public class ConversationSearchViewModel extends AndroidViewModel {
     CursorList<MessageResult> messages = (CursorList<MessageResult>) result.getValue().getResults();
     int                       position = Math.min(result.getValue().getPosition() + 1, messages.size() - 1);
 
-    result.setValue(new SearchResult(messages, position), false);
+    result.setValue(new SearchResult(messages, position));
   }
 
   void onMoveDown() {
@@ -82,7 +78,7 @@ public class ConversationSearchViewModel extends AndroidViewModel {
     CursorList<MessageResult> messages = (CursorList<MessageResult>) result.getValue().getResults();
     int                       position = Math.max(result.getValue().getPosition() - 1, 0);
 
-    result.setValue(new SearchResult(messages, position), false);
+    result.setValue(new SearchResult(messages, position));
   }
 
 
@@ -94,13 +90,6 @@ public class ConversationSearchViewModel extends AndroidViewModel {
   void onSearchClosed() {
     searchOpen = false;
     debouncer.clear();
-    result.close();
-  }
-
-  @Override
-  protected void onCleared() {
-    super.onCleared();
-    result.close();
   }
 
   private void updateQuery(@NonNull String query, long threadId) {
@@ -114,20 +103,18 @@ public class ConversationSearchViewModel extends AndroidViewModel {
         Util.runOnMain(() -> {
           if (searchOpen && query.equals(activeQuery)) {
             result.setValue(new SearchResult(messages, 0));
-          } else {
-            messages.close();
           }
         });
       });
     });
   }
 
-  static class SearchResult implements Closeable {
+  static class SearchResult {
 
-    private final CursorList<MessageResult> results;
-    private final int                       position;
+    private final List<MessageResult> results;
+    private final int                 position;
 
-    SearchResult(CursorList<MessageResult> results, int position) {
+    SearchResult(@NonNull List<MessageResult> results, int position) {
       this.results  = results;
       this.position = position;
     }
@@ -138,11 +125,6 @@ public class ConversationSearchViewModel extends AndroidViewModel {
 
     public int getPosition() {
       return position;
-    }
-
-    @Override
-    public void close() {
-      results.close();
     }
   }
 }

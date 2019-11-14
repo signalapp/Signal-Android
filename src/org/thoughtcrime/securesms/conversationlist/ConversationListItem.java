@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.thoughtcrime.securesms;
+package org.thoughtcrime.securesms.conversationlist;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
@@ -32,6 +32,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.thoughtcrime.securesms.BindableConversationListItem;
+import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.Unbindable;
 import org.thoughtcrime.securesms.components.AlertView;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.components.DeliveryStatusView;
@@ -43,7 +46,7 @@ import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver;
-import org.thoughtcrime.securesms.search.model.MessageResult;
+import org.thoughtcrime.securesms.conversationlist.model.MessageResult;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.SearchUtil;
 import org.thoughtcrime.securesms.util.ThemeUtil;
@@ -55,7 +58,7 @@ import java.util.Set;
 
 public class ConversationListItem extends RelativeLayout
                                   implements RecipientForeverObserver,
-                                             BindableConversationListItem, Unbindable
+    BindableConversationListItem, Unbindable
 {
   @SuppressWarnings("unused")
   private final static String TAG = ConversationListItem.class.getSimpleName();

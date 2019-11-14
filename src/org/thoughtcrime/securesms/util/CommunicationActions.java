@@ -72,7 +72,6 @@ public class CommunicationActions {
         Intent intent = new Intent(context, ConversationActivity.class);
         intent.putExtra(ConversationActivity.RECIPIENT_EXTRA, recipient.getId());
         intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, threadId);
-        intent.putExtra(ConversationActivity.TIMING_EXTRA, System.currentTimeMillis());
 
         if (!TextUtils.isEmpty(text)) {
           intent.putExtra(ConversationActivity.TEXT_EXTRA, text);

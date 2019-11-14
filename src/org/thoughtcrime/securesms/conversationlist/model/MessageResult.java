@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.search.model;
+package org.thoughtcrime.securesms.conversationlist.model;
 
 import androidx.annotation.NonNull;
 

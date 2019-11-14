@@ -766,12 +766,29 @@ public class RecipientDatabase extends Database {
                          "(" + PHONE + " NOT NULL OR " + EMAIL + " NOT NULL) AND " +
                          "(" +
                            PHONE               + " LIKE ? OR " +
+                           EMAIL               + " LIKE ? OR " +
                            SYSTEM_DISPLAY_NAME + " LIKE ?" +
                          ")";
-    String[] args      = new String[] { "0", String.valueOf(RegisteredState.REGISTERED.getId()), query, query };
+    String[] args      = new String[] { "0", String.valueOf(RegisteredState.REGISTERED.getId()), query, query, query };
     String   orderBy   = SYSTEM_DISPLAY_NAME + ", " + PHONE;
 
     return databaseHelper.getReadableDatabase().query(TABLE_NAME, SEARCH_PROJECTION, selection, args, null, null, orderBy);
+  }
+
+  public @Nullable Cursor queryAllContacts(@NonNull String query) {
+    query = TextUtils.isEmpty(query) ? "*" : query;
+    query = "%" + query + "%";
+
+    String   selection = BLOCKED + " = ? AND " +
+                         "(" +
+                           SYSTEM_DISPLAY_NAME + " LIKE ? OR " +
+                           SIGNAL_PROFILE_NAME + " LIKE ? OR " +
+                           PHONE               + " LIKE ? OR " +
+                           EMAIL               + " LIKE ?" +
+                         ")";
+    String[] args      = new String[] { "0", query, query, query, query };
+
+    return databaseHelper.getReadableDatabase().query(TABLE_NAME, SEARCH_PROJECTION, selection, args, null, null, null);
   }
 
   public void applyBlockedUpdate(@NonNull List<SignalServiceAddress> blocked, List<byte[]> groupIds) {

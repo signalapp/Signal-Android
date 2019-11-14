@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms;
+package org.thoughtcrime.securesms.conversationlist;
 
 
 import android.content.Context;
@@ -9,13 +9,14 @@ import androidx.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.widget.LinearLayout;
 
+import org.thoughtcrime.securesms.BindableConversationListItem;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 
 import java.util.Locale;
 import java.util.Set;
 
-public class ConversationListItemInboxZero extends LinearLayout implements BindableConversationListItem{
+public class ConversationListItemInboxZero extends LinearLayout implements BindableConversationListItem {
   public ConversationListItemInboxZero(Context context) {
     super(context);
   }

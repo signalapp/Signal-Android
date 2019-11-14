@@ -80,11 +80,10 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.ConversationListActivity;
-import org.thoughtcrime.securesms.ConversationListArchiveActivity;
 import org.thoughtcrime.securesms.ExpirationDialog;
 import org.thoughtcrime.securesms.GroupCreateActivity;
 import org.thoughtcrime.securesms.GroupMembersDialog;
+import org.thoughtcrime.securesms.MainActivity;
 import org.thoughtcrime.securesms.MediaOverviewActivity;
 import org.thoughtcrime.securesms.MuteDialog;
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
@@ -197,7 +196,7 @@ import org.thoughtcrime.securesms.recipients.RecipientFormattingException;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.registration.RegistrationNavigationActivity;
-import org.thoughtcrime.securesms.search.model.MessageResult;
+import org.thoughtcrime.securesms.conversationlist.model.MessageResult;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingEncryptedMessage;
@@ -276,7 +275,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   public static final String MEDIA_EXTRA             = "media_list";
   public static final String STICKER_EXTRA           = "sticker_extra";
   public static final String DISTRIBUTION_TYPE_EXTRA = "distribution_type";
-  public static final String TIMING_EXTRA            = "timing";
   public static final String LAST_SEEN_EXTRA         = "last_seen";
   public static final String STARTING_POSITION_EXTRA = "starting_position";
 
@@ -341,6 +339,23 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private final DynamicTheme       dynamicTheme    = new DynamicDarkToolbarTheme();
   private final DynamicLanguage    dynamicLanguage = new DynamicLanguage();
 
+  public static @NonNull Intent buildIntent(@NonNull Context context,
+                                            @NonNull RecipientId recipientId,
+                                            long threadId,
+                                            int distributionType,
+                                            long lastSeen,
+                                            int startingPosition)
+  {
+    Intent intent = new Intent(context, ConversationActivity.class);
+    intent.putExtra(ConversationActivity.RECIPIENT_EXTRA, recipientId);
+    intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, threadId);
+    intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, distributionType);
+    intent.putExtra(ConversationActivity.LAST_SEEN_EXTRA, lastSeen);
+    intent.putExtra(ConversationActivity.STARTING_POSITION_EXTRA, startingPosition);
+
+    return intent;
+  }
+
   @Override
   protected void onPreCreate() {
     dynamicTheme.onCreate(this);
@@ -355,7 +370,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     if (recipientId == null) {
       Log.w(TAG, "[onCreate] Missing recipientId!");
-      startActivity(new Intent(this, ConversationListActivity.class));
+      // TODO [greyson] Navigation
+      startActivity(new Intent(this, MainActivity.class));
       finish();
       return;
     }
@@ -427,7 +443,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     if (recipientId == null) {
       Log.w(TAG, "[onNewIntent] Missing recipientId!");
-      startActivity(new Intent(this, ConversationListActivity.class));
+      // TODO [greyson] Navigation
+      startActivity(new Intent(this, MainActivity.class));
       finish();
       return;
     }
@@ -470,8 +487,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     MessageNotifier.setVisibleThread(threadId);
     markThreadAsRead();
-
-    Log.i(TAG, "onResume() Finished: " + (System.currentTimeMillis() - getIntent().getLongExtra(TIMING_EXTRA, 0)));
   }
 
   @Override
@@ -802,7 +817,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     case R.id.menu_conversation_settings:     handleConversationSettings();                      return true;
     case R.id.menu_expiring_messages_off:
     case R.id.menu_expiring_messages:         handleSelectMessageExpiration();                   return true;
-    case android.R.id.home:                   handleReturnToConversationList();                  return true;
+    case android.R.id.home:                   onBackPressed();                                   return true;
     }
 
     return false;
@@ -831,13 +846,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   //////// Event Handlers
-
-  private void handleReturnToConversationList() {
-    Intent intent = new Intent(this, (archived ? ConversationListArchiveActivity.class : ConversationListActivity.class));
-    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-    startActivity(intent);
-    finish();
-  }
 
   private void handleSelectMessageExpiration() {
     if (isPushGroupConversation() && !isActiveGroup()) {

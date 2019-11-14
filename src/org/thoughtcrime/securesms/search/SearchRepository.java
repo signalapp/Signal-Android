@@ -1,11 +1,12 @@
 package org.thoughtcrime.securesms.search;
 
-import android.Manifest;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.MergeCursor;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import android.text.TextUtils;
 
 import com.annimon.stream.Stream;
@@ -14,22 +15,29 @@ import com.annimon.stream.Stream;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactRepository;
 import org.thoughtcrime.securesms.database.CursorList;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.SearchDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.search.model.MessageResult;
-import org.thoughtcrime.securesms.search.model.SearchResult;
+import org.thoughtcrime.securesms.conversationlist.model.MessageResult;
+import org.thoughtcrime.securesms.conversationlist.model.SearchResult;
 import org.thoughtcrime.securesms.util.Stopwatch;
+import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Future;
 
 /**
  * Manages data retrieval for search.
@@ -60,21 +68,17 @@ public class SearchRepository {
   private final ContactRepository contactRepository;
   private final ThreadDatabase    threadDatabase;
   private final ContactAccessor   contactAccessor;
-  private final Executor          executor;
+  private final Executor          serialExecutor;
+  private final ExecutorService   parallelExecutor;
 
-  public SearchRepository(@NonNull Context context,
-                          @NonNull SearchDatabase searchDatabase,
-                          @NonNull ThreadDatabase threadDatabase,
-                          @NonNull ContactRepository contactRepository,
-                          @NonNull ContactAccessor contactAccessor,
-                          @NonNull Executor executor)
-  {
-    this.context           = context.getApplicationContext();
-    this.searchDatabase    = searchDatabase;
-    this.threadDatabase    = threadDatabase;
-    this.contactRepository = contactRepository;
-    this.contactAccessor   = contactAccessor;
-    this.executor          = executor;
+  public SearchRepository() {
+    this.context           = ApplicationDependencies.getApplication().getApplicationContext();
+    this.searchDatabase    = DatabaseFactory.getSearchDatabase(context);
+    this.threadDatabase    = DatabaseFactory.getThreadDatabase(context);
+    this.contactRepository = new ContactRepository(context);
+    this.contactAccessor   = ContactAccessor.getInstance();
+    this.serialExecutor    = SignalExecutors.SERIAL;
+    this.parallelExecutor  = SignalExecutors.BOUNDED;
   }
 
   public void query(@NonNull String query, @NonNull Callback<SearchResult> callback) {
@@ -83,73 +87,99 @@ public class SearchRepository {
       return;
     }
 
-    executor.execute(() -> {
-      Stopwatch timer = new Stopwatch("FtsQuery");
+    serialExecutor.execute(() -> {
 
       String cleanQuery = sanitizeQuery(query);
-      timer.split("clean");
 
-      CursorList<Recipient> contacts = queryContacts(cleanQuery);
-      timer.split("contacts");
+      Future<List<Recipient>>     contacts      = parallelExecutor.submit(() -> queryContacts(cleanQuery));
+      Future<List<ThreadRecord>>  conversations = parallelExecutor.submit(() -> queryConversations(cleanQuery));
+      Future<List<MessageResult>> messages      = parallelExecutor.submit(() -> queryMessages(cleanQuery));
 
-      CursorList<ThreadRecord> conversations = queryConversations(cleanQuery);
-      timer.split("conversations");
+      try {
+        long         startTime = System.currentTimeMillis();
+        SearchResult result    = new SearchResult(cleanQuery, contacts.get(), conversations.get(), messages.get());
 
-      CursorList<MessageResult> messages = queryMessages(cleanQuery);
-      timer.split("messages");
+        Log.d(TAG, "Total time: " + (System.currentTimeMillis() - startTime) + " ms");
 
-      timer.stop(TAG);
-
-      callback.onResult(new SearchResult(cleanQuery, contacts, conversations, messages));
+        callback.onResult(result);
+      } catch (ExecutionException | InterruptedException e) {
+        Log.w(TAG, e);
+        callback.onResult(SearchResult.EMPTY);
+      }
     });
   }
 
-  public void query(@NonNull String query, long threadId, @NonNull Callback<CursorList<MessageResult>> callback) {
+  public void query(@NonNull String query, long threadId, @NonNull Callback<List<MessageResult>> callback) {
     if (TextUtils.isEmpty(query)) {
       callback.onResult(CursorList.emptyList());
       return;
     }
 
-    executor.execute(() -> {
+    serialExecutor.execute(() -> {
       long startTime = System.currentTimeMillis();
-      CursorList<MessageResult> messages = queryMessages(sanitizeQuery(query), threadId);
+      List<MessageResult> messages = queryMessages(sanitizeQuery(query), threadId);
       Log.d(TAG, "[ConversationQuery] " + (System.currentTimeMillis() - startTime) + " ms");
 
       callback.onResult(messages);
     });
   }
 
-  private CursorList<Recipient> queryContacts(String query) {
-    if (!Permissions.hasAny(context, Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS)) {
-      return CursorList.emptyList();
+  private List<Recipient> queryContacts(String query) {
+    Cursor contacts = null;
+
+    try {
+      Cursor textSecureContacts = contactRepository.querySignalContacts(query);
+      Cursor systemContacts     = contactRepository.queryNonSignalContacts(query);
+
+      contacts = new MergeCursor(new Cursor[]{ textSecureContacts, systemContacts });
+
+      return readToList(contacts, new RecipientModelBuilder(), 250);
+    } finally {
+      if (contacts != null) {
+        contacts.close();
+      }
     }
-
-    Cursor      textSecureContacts = contactRepository.querySignalContacts(query);
-    Cursor      systemContacts     = contactRepository.queryNonSignalContacts(query);
-    MergeCursor contacts           = new MergeCursor(new Cursor[]{ textSecureContacts, systemContacts });
-
-    return new CursorList<>(contacts, new RecipientModelBuilder());
   }
 
-  private CursorList<ThreadRecord> queryConversations(@NonNull String query) {
+  private @NonNull List<ThreadRecord> queryConversations(@NonNull String query) {
     List<String>      numbers      = contactAccessor.getNumbersForThreadSearchFilter(context, query);
     List<RecipientId> recipientIds = Stream.of(numbers).map(number -> Recipient.external(context, number)).map(Recipient::getId).toList();
 
-    Cursor conversations = threadDatabase.getFilteredConversationList(recipientIds);
-    return conversations != null ? new CursorList<>(conversations, new ThreadModelBuilder(threadDatabase))
-                                 : CursorList.emptyList();
+    try (Cursor cursor = threadDatabase.getFilteredConversationList(recipientIds)) {
+      return readToList(cursor, new ThreadModelBuilder(threadDatabase));
+    }
   }
 
-  private CursorList<MessageResult> queryMessages(@NonNull String query) {
-    Cursor messages = searchDatabase.queryMessages(query);
-    return messages != null ? new CursorList<>(messages, new MessageModelBuilder(context))
-                            : CursorList.emptyList();
+  private @NonNull List<MessageResult> queryMessages(@NonNull String query) {
+    try (Cursor cursor = searchDatabase.queryMessages(query)) {
+      return readToList(cursor, new MessageModelBuilder(context));
+    }
   }
 
-  private CursorList<MessageResult> queryMessages(@NonNull String query, long threadId) {
-    Cursor messages = searchDatabase.queryMessages(query, threadId);
-    return messages != null ? new CursorList<>(messages, new MessageModelBuilder(context))
-                            : CursorList.emptyList();
+  private @NonNull List<MessageResult> queryMessages(@NonNull String query, long threadId) {
+    try (Cursor cursor = searchDatabase.queryMessages(query, threadId)) {
+      return readToList(cursor, new MessageModelBuilder(context));
+    }
+  }
+
+  private @NonNull <T> List<T> readToList(@Nullable Cursor cursor, @NonNull CursorList.ModelBuilder<T> builder) {
+    return readToList(cursor, builder, -1);
+  }
+
+  private @NonNull <T> List<T> readToList(@Nullable Cursor cursor, @NonNull CursorList.ModelBuilder<T> builder, int limit) {
+    if (cursor == null) {
+      return Collections.emptyList();
+    }
+
+    int     i    = 0;
+    List<T> list = new ArrayList<>(cursor.getCount());
+
+    while (cursor.moveToNext() && (limit < 0 || i < limit)) {
+      list.add(builder.build(cursor));
+      i++;
+    }
+
+    return list;
   }
 
   /**

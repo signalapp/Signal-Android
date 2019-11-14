@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.search;
+package org.thoughtcrime.securesms.conversationlist;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -8,20 +8,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import org.thoughtcrime.securesms.ConversationListItem;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.search.model.MessageResult;
-import org.thoughtcrime.securesms.search.model.SearchResult;
+import org.thoughtcrime.securesms.conversationlist.model.MessageResult;
+import org.thoughtcrime.securesms.conversationlist.model.SearchResult;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 
 import java.util.Collections;
 import java.util.Locale;
 
-class SearchListAdapter extends    RecyclerView.Adapter<SearchListAdapter.SearchResultViewHolder>
-                        implements StickyHeaderDecoration.StickyHeaderAdapter<SearchListAdapter.HeaderViewHolder>
+class ConversationListSearchAdapter extends    RecyclerView.Adapter<ConversationListSearchAdapter.SearchResultViewHolder>
+                        implements StickyHeaderDecoration.StickyHeaderAdapter<ConversationListSearchAdapter.HeaderViewHolder>
 {
   private static final int TYPE_CONVERSATIONS = 1;
   private static final int TYPE_CONTACTS      = 2;
@@ -34,9 +33,9 @@ class SearchListAdapter extends    RecyclerView.Adapter<SearchListAdapter.Search
   @NonNull
   private SearchResult searchResult = SearchResult.EMPTY;
 
-  SearchListAdapter(@NonNull GlideRequests glideRequests,
-                    @NonNull EventListener eventListener,
-                    @NonNull Locale        locale)
+  ConversationListSearchAdapter(@NonNull GlideRequests glideRequests,
+                                @NonNull EventListener eventListener,
+                                @NonNull Locale        locale)
   {
     this.glideRequests = glideRequests;
     this.eventListener = eventListener;

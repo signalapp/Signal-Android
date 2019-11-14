@@ -46,6 +46,7 @@ public class ApplicationDependencies {
   }
 
   public static @NonNull Application getApplication() {
+    assertInitialization();
     return application;
   }
 

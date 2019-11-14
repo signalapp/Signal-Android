@@ -187,7 +187,8 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
   }
 
   private Intent getConversationListIntent() {
-    return new Intent(this, ConversationListActivity.class);
+    // TODO [greyson] Navigation
+    return new Intent(this, MainActivity.class);
   }
 
   private void initializeClearKeyReceiver() {

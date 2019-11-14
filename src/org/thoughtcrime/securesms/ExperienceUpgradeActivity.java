@@ -189,7 +189,8 @@ public class ExperienceUpgradeActivity extends BaseActionBarActivity implements 
     TextSecurePreferences.setLastExperienceVersionCode(this, latestVersion);
     if (seenUpgrade.isPresent() && seenUpgrade.get().nextIntent != null) {
       Intent intent     = new Intent(this, seenUpgrade.get().nextIntent);
-      Intent nextIntent = new Intent(this, ConversationListActivity.class);
+      // TODO [greyson] Navigation
+      Intent nextIntent = new Intent(this, MainActivity.class);
       intent.putExtra("next_intent", nextIntent);
       startActivity(intent);
     } else {

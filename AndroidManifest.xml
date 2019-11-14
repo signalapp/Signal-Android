@@ -122,11 +122,11 @@
     <activity android:name=".InviteActivity"
               android:theme="@style/TextSecure.HighlightTheme"
               android:windowSoftInputMode="stateHidden"
-              android:parentActivityName=".ConversationListActivity"
+              android:parentActivityName=".MainActivity"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize">
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
-            android:value="org.thoughtcrime.securesms.ConversationListActivity" />
+            android:value="org.thoughtcrime.securesms.MainActivity" />
     </activity>
 
     <activity android:name=".PromptMmsActivity"
@@ -189,16 +189,8 @@
         </intent-filter>
     </activity>
 
-
-    <activity android:name=".ConversationListActivity"
-              android:label="@string/app_name"
-              android:launchMode="singleTask"
-              android:theme="@style/TextSecure.LightNoActionBar"
-              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-              android:exported="true" />
-
     <activity-alias android:name=".RoutingActivity"
-                    android:targetActivity=".ConversationListActivity"
+                    android:targetActivity=".MainActivity"
                     android:exported="true">
 
         <intent-filter>
@@ -214,24 +206,14 @@
 
     </activity-alias>
 
-    <activity android:name=".ConversationListArchiveActivity"
-              android:label="@string/AndroidManifest_archived_conversations"
-              android:launchMode="singleTask"
-              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-              android:parentActivityName=".ConversationListActivity">
-        <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.thoughtcrime.securesms.ConversationListActivity" />
-    </activity>
-
     <activity android:name=".conversation.ConversationActivity"
               android:windowSoftInputMode="stateUnchanged"
               android:launchMode="singleTask"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-              android:parentActivityName=".ConversationListActivity">
+              android:parentActivityName=".MainActivity">
         <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="org.thoughtcrime.securesms.ConversationListActivity" />
+                android:value="org.thoughtcrime.securesms.MainActivity" />
     </activity>
 
     <activity android:name=".longmessage.LongMessageActivity" />
@@ -467,6 +449,10 @@
         android:name=".usernames.ProfileEditActivityV2"
         android:theme="@style/TextSecure.LightNoActionBar"
         android:windowSoftInputMode="adjustResize"/>
+
+    <activity android:name=".MainActivity"
+              android:theme="@style/TextSecure.LightNoActionBar"
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize" />
 
     <service android:enabled="true" android:name="org.thoughtcrime.securesms.service.WebRtcCallService"/>
     <service android:enabled="true" android:name=".service.ApplicationMigrationService"/>
