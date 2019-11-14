@@ -32,6 +32,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.SwitchPreferenceCompat;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 
@@ -45,11 +46,11 @@ public class RegistrationLockDialog {
     if (!RegistrationLockReminders.needsReminder(context))    return;
     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) return;
 
-    AlertDialog dialog      = new AlertDialog.Builder(context, R.style.RationaleDialog)
-                                             .setView(R.layout.registration_lock_reminder_view)
-                                             .setCancelable(true)
-                                             .setOnCancelListener(d -> RegistrationLockReminders.scheduleReminder(context, false))
-                                             .create();
+    AlertDialog dialog = new AlertDialog.Builder(context, ThemeUtil.isDarkTheme(context) ? R.style.RationaleDialogDark : R.style.RationaleDialogLight)
+                                        .setView(R.layout.registration_lock_reminder_view)
+                                        .setCancelable(true)
+                                        .setOnCancelListener(d -> RegistrationLockReminders.scheduleReminder(context, false))
+                                        .create();
 
     WindowManager  windowManager = ServiceUtil.getWindowManager(context);
     Display        display       = windowManager.getDefaultDisplay();
