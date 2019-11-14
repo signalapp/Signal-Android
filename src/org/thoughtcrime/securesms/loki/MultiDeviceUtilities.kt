@@ -2,10 +2,11 @@
 package org.thoughtcrime.securesms.loki
 
 import android.content.Context
-import android.os.Handler
-import nl.komponents.kovenant.*
+import nl.komponents.kovenant.Promise
+import nl.komponents.kovenant.all
 import nl.komponents.kovenant.functional.bind
 import nl.komponents.kovenant.functional.map
+import nl.komponents.kovenant.toFailVoid
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.database.Address

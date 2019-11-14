@@ -4,7 +4,6 @@ import android.content.Context;
 
 import org.thoughtcrime.securesms.crypto.SecurityEvent;
 import org.thoughtcrime.securesms.loki.FriendRequestHandler;
-import org.thoughtcrime.securesms.loki.LokiMessageSyncEvent;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;

@@ -2,21 +2,17 @@ package org.thoughtcrime.securesms.loki
 
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.thoughtcrime.securesms.dependencies.InjectableType
 import org.thoughtcrime.securesms.jobmanager.Data
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobs.BaseJob
 import org.thoughtcrime.securesms.logging.Log
 import org.whispersystems.libsignal.util.guava.Optional
-import org.whispersystems.signalservice.api.SignalServiceMessageSender
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair
-import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import java.io.IOException
 import java.util.concurrent.TimeUnit
-import javax.inject.Inject
 
 class PushBackgroundMessageSendJob private constructor(
         parameters: Parameters,

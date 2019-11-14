@@ -3050,18 +3050,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     Address contact = DatabaseFactory.getThreadDatabase(this).getRecipientForThreadId(threadId).getAddress();
     String contactPubKey = contact.toString();
-    Context context = this;
-    AsyncTask.execute(() -> {
-      try {
-        MessageSender.sendBackgroundMessageToAllDevices(this, contactPubKey);
-        MessageSender.syncContact(this, contact);
-        DatabaseFactory.getLokiThreadDatabase(context).setFriendRequestStatus(threadId, LokiThreadFriendRequestStatus.FRIENDS);
-        lokiMessageDatabase.setFriendRequestStatus(friendRequest.id, LokiMessageFriendRequestStatus.REQUEST_ACCEPTED);
-        Util.runOnMain(this::updateInputPanel);
-      } catch (Exception e) {
-        Log.d("Loki", "Failed to send background message to: " + contactPubKey + ".");
-      }
-    });
+    DatabaseFactory.getLokiThreadDatabase(this).setFriendRequestStatus(threadId, LokiThreadFriendRequestStatus.FRIENDS);
+    lokiMessageDatabase.setFriendRequestStatus(friendRequest.id, LokiMessageFriendRequestStatus.REQUEST_ACCEPTED);
+    MessageSender.sendBackgroundMessageToAllDevices(this, contactPubKey);
+    MessageSender.syncContact(this, contact);
+    updateInputPanel();
   }
 
   @Override
@@ -3077,7 +3070,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   public boolean isNoteToSelf() {
-    return TextSecurePreferences.getLocalNumber(this).equalsIgnoreCase(recipient.getAddress().serialize());
+    return TextSecurePreferences.getLocalNumber(this).equals(recipient.getAddress().serialize());
   }
   // endregion
 }

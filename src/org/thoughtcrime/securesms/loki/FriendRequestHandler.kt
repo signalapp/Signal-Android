@@ -5,7 +5,6 @@ import nl.komponents.kovenant.ui.successUi
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.whispersystems.signalservice.loki.messaging.LokiMessageFriendRequestStatus
 import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus
-import java.lang.IllegalStateException
 
 object FriendRequestHandler {
   enum class ActionType { Sending, Sent, Failed }

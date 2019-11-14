@@ -660,7 +660,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
           // Check if we have the contact as a friend and that we're not trying to sync our own device
           String pubKey = deviceContact.getNumber();
           Address address = Address.fromSerialized(pubKey);
-          if (!address.isPhone() || address.toPhoneString().equalsIgnoreCase(TextSecurePreferences.getLocalNumber(context))) { continue; }
+          if (!address.isPhone() || address.toPhoneString().equals(TextSecurePreferences.getLocalNumber(context))) { continue; }
 
           /*
           If we're not friends with the contact we received or our friend request expired then we should send them a friend request

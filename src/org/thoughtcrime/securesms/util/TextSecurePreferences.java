@@ -1183,7 +1183,7 @@ public class TextSecurePreferences {
   }
 
   public static void setMasterHexEncodedPublicKey(Context context, String masterHexEncodedPublicKey) {
-    setStringPreference(context, "master_hex_encoded_public_key", masterHexEncodedPublicKey);
+    setStringPreference(context, "master_hex_encoded_public_key", masterHexEncodedPublicKey.toLowerCase());
   }
   // endregion
 }
