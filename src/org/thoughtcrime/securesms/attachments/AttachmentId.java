@@ -32,7 +32,7 @@ public class AttachmentId {
   }
 
   public @NonNull String toString() {
-    return "(row id: " + rowId + ", unique ID: " + uniqueId + ")";
+    return "AttachmentId::(" + rowId + ", " + uniqueId + ")";
   }
 
   public boolean isValid() {
