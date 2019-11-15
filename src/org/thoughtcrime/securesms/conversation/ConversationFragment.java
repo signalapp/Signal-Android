@@ -563,53 +563,6 @@ public class ConversationFragment extends Fragment
                 return null;
               });
             }
-//            for (MessageRecord messageRecord : messageRecords) {
-//              boolean isThreadDeleted;
-//
-//              if (publicChat != null) {
-//                final SettableFuture<?>[] future = { new SettableFuture<Unit>() };
-//
-//                LokiPublicChatAPI publicChatAPI = ApplicationContext.getInstance(getContext()).getLokiPublicChatAPI();
-//                boolean isSentByUser = messageRecord.isOutgoing();
-//                Long serverID = DatabaseFactory.getLokiMessageDatabase(getContext()).getServerID(messageRecord.id);
-//
-//                if (publicChatAPI != null && serverID != null) {
-//                  publicChatAPI
-//                  .deleteMessage(serverID, publicChat.getChannel(), publicChat.getServer(), isSentByUser)
-//                  .success(l -> {
-//                    @SuppressWarnings("unchecked") SettableFuture<Unit> f = (SettableFuture<Unit>) future[0];
-//                    f.set(Unit.INSTANCE);
-//                    return Unit.INSTANCE;
-//                  }).fail(e -> {
-//                    @SuppressWarnings("unchecked") SettableFuture<Unit> f = (SettableFuture<Unit>) future[0];
-//                    f.setException(e);
-//                    return Unit.INSTANCE;
-//                  });
-//                } else {
-//                  @SuppressWarnings("unchecked") SettableFuture<Unit> f = (SettableFuture<Unit>) future[0];
-//                  f.setException(new Exception("Message server ID is null."));
-//                }
-//
-//                try {
-//                  @SuppressWarnings("unchecked") SettableFuture<Unit> f = (SettableFuture<Unit>)future[0];
-//                  f.get();
-//                } catch (Exception exception) {
-//                  Log.d("Loki", "Couldn't delete message due to error: " + exception.toString() + ".");
-//                  return null;
-//                }
-//              }
-//
-//              if (messageRecord.isMms()) {
-//                isThreadDeleted = DatabaseFactory.getMmsDatabase(getActivity()).delete(messageRecord.getId());
-//              } else {
-//                isThreadDeleted = DatabaseFactory.getSmsDatabase(getActivity()).deleteMessage(messageRecord.getId());
-//              }
-//
-//              if (isThreadDeleted) {
-//                threadId = -1;
-//                listener.setThreadId(threadId);
-//              }
-//            }
 
             return null;
           }
