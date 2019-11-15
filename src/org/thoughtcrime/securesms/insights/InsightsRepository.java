@@ -16,11 +16,11 @@ import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
-import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
+import org.thoughtcrime.securesms.util.Stopwatch;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
@@ -39,12 +39,9 @@ public class InsightsRepository implements InsightsDashboardViewModel.Repository
   @Override
   public void getInsightsData(@NonNull Consumer<InsightsData> insightsDataConsumer) {
     SimpleTask.run(() -> {
-      RecipientDatabase recipientDatabase      = DatabaseFactory.getRecipientDatabase(context);
-      List<RecipientId> unregisteredRecipients = recipientDatabase.getNotRegisteredForInsights();
-      List<RecipientId> registeredRecipients   = recipientDatabase.getRegisteredForInsights();
-      MmsSmsDatabase    mmsSmsDatabase         = DatabaseFactory.getMmsSmsDatabase(context);
-      int               insecure               = mmsSmsDatabase.getInsecureMessageCountForRecipients(unregisteredRecipients);
-      int               secure                 = mmsSmsDatabase.getSecureMessageCountForRecipients(registeredRecipients);
+      MmsSmsDatabase mmsSmsDatabase = DatabaseFactory.getMmsSmsDatabase(context);
+      int            insecure       = mmsSmsDatabase.getInsecureMessageCountForInsights();
+      int            secure         = mmsSmsDatabase.getSecureMessageCountForInsights();
 
       if (insecure + secure == 0) {
         return new InsightsData(false, 0);

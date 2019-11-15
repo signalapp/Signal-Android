@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.database;
 
-import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -37,6 +36,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 public class RecipientDatabase extends Database {
 
@@ -205,8 +205,9 @@ public class RecipientDatabase extends Database {
       TABLE_NAME + "." + GROUP_ID + " IS NULL AND " +
       TABLE_NAME + "." + REGISTERED + " = " + RegisteredState.NOT_REGISTERED.id + " AND " +
       TABLE_NAME + "." + SEEN_INVITE_REMINDER + " < " + InsightsBannerTier.TIER_TWO.id + " AND " +
-      ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.HAS_SENT +
-      " ORDER BY " + ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.DATE + " DESC";
+      ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.HAS_SENT + " AND " +
+      ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.DATE + " > ?" +
+      " ORDER BY " + ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.DATE + " DESC LIMIT 50";
 
   public RecipientDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
     super(context, databaseHelper);
@@ -618,33 +619,9 @@ public class RecipientDatabase extends Database {
   public @NonNull List<RecipientId> getUninvitedRecipientsForInsights() {
     SQLiteDatabase    db      = databaseHelper.getReadableDatabase();
     List<RecipientId> results = new LinkedList<>();
+    final String[]    args    = new String[]{String.valueOf(System.currentTimeMillis() - TimeUnit.DAYS.toMillis(31))};
 
-    try (Cursor cursor = db.rawQuery(INSIGHTS_INVITEE_LIST, null)) {
-      while (cursor != null && cursor.moveToNext()) {
-        results.add(RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(ID))));
-      }
-    }
-
-    return results;
-  }
-
-  public @NonNull List<RecipientId> getNotRegisteredForInsights() {
-    return getRecipientsForInsights(REGISTERED + " = ?", new String[]{String.valueOf(RegisteredState.NOT_REGISTERED.id)});
-  }
-
-  public @NonNull List<RecipientId> getRegisteredForInsights() {
-    final String   selfId = Recipient.self().getId().serialize();
-    final String   query  = REGISTERED + " = ? AND " + ID + " != ?";
-    final String[] args   = new String[]{String.valueOf(RegisteredState.REGISTERED.id), selfId};
-
-    return getRecipientsForInsights(query, args);
-  }
-
-  private @NonNull List<RecipientId> getRecipientsForInsights(@NonNull String query, @NonNull String[] args) {
-    SQLiteDatabase    db      = databaseHelper.getReadableDatabase();
-    List<RecipientId> results = new LinkedList<>();
-
-    try (Cursor cursor = db.query(TABLE_NAME, ID_PROJECTION, query + " AND " + GROUP_ID + " IS NULL", args, null, null, null)) {
+    try (Cursor cursor = db.rawQuery(INSIGHTS_INVITEE_LIST, args)) {
       while (cursor != null && cursor.moveToNext()) {
         results.add(RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(ID))));
       }

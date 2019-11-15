@@ -182,16 +182,18 @@ public final class InsightsDashboardDialogFragment extends DialogFragment {
     progressContainer.setVisibility(View.VISIBLE);
     insecureRecipients.setVisibility(View.VISIBLE);
     encryptedMessages.setText(R.string.InsightsDashboardFragment__encrypted_messages);
-    tagline.setText(getString(R.string.InsightsDashboardFragment__tagline, 100 - insecurePercent));
+    tagline.setText(getString(R.string.InsightsDashboardFragment__signal_protocol_automatically_protected, 100 - insecurePercent, InsightsConstants.PERIOD_IN_DAYS));
 
     if (insecurePercent == 0) {
       lottieAnimationView.setVisibility(View.VISIBLE);
-      title.setText(R.string.InsightsDashboardFragment__100_title);
-      description.setText(R.string.InsightsDashboardFragment__100_description);
+      title.setVisibility(View.GONE);
+      description.setVisibility(View.GONE);
     } else {
       lottieAnimationView.setVisibility(View.GONE);
       title.setText(R.string.InsightsDashboardFragment__boost_your_signal);
       description.setText(R.string.InsightsDashboardFragment__invite_your_contacts);
+      title.setVisibility(View.VISIBLE);
+      description.setVisibility(View.VISIBLE);
     }
   }
 
@@ -199,8 +201,8 @@ public final class InsightsDashboardDialogFragment extends DialogFragment {
     startAConversation.setVisibility(View.VISIBLE);
     progressContainer.setVisibility(View.INVISIBLE);
     insecureRecipients.setVisibility(View.GONE);
-    encryptedMessages.setText(R.string.InsightsDashboardFragment__no_signal_yet);
-    tagline.setText(R.string.InsightsDashboardFragment__youre_just_getting_started);
+    encryptedMessages.setText(R.string.InsightsDashboardFragment__not_enough_data);
+    tagline.setText(getString(R.string.InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on, InsightsConstants.PERIOD_IN_DAYS));
   }
 
   private void animateNotEnoughData() {

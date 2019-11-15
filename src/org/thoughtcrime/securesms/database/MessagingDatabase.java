@@ -7,18 +7,16 @@ import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 
-import com.annimon.stream.Stream;
-
 import net.sqlcipher.database.SQLiteDatabase;
 
 import org.thoughtcrime.securesms.database.documents.Document;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatchList;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
+import org.thoughtcrime.securesms.insights.InsightsConstants;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.JsonUtils;
-import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.IdentityKey;
 
 import java.io.IOException;
@@ -49,7 +47,7 @@ public abstract class MessagingDatabase extends Database implements MmsSmsColumn
     SQLiteDatabase db         = databaseHelper.getReadableDatabase();
     String[]       projection = new String[]{"COUNT(*)"};
     String         query      = THREAD_ID + " = ? AND " + getOutgoingInsecureMessageClause() + " AND " + getDateSentColumnName() + " > ?";
-    String[]       args       = new String[]{String.valueOf(threadId), String.valueOf(System.currentTimeMillis() - TimeUnit.DAYS.toMillis(7))};
+    String[]       args       = new String[]{String.valueOf(threadId), String.valueOf(System.currentTimeMillis() - InsightsConstants.PERIOD_IN_MILLIS)};
 
     try (Cursor cursor = db.query(getTableName(), projection, query, args, null, null, null, null)) {
       if (cursor != null && cursor.moveToFirst()) {
@@ -60,28 +58,20 @@ public abstract class MessagingDatabase extends Database implements MmsSmsColumn
     }
   }
 
-  final int getInsecureMessageCountForRecipients(List<RecipientId> recipients) {
-    return getMessageCountForRecipientsAndType(recipients, getOutgoingInsecureMessageClause());
+  final int getInsecureMessageCountForInsights() {
+    return getMessageCountForRecipientsAndType(getOutgoingInsecureMessageClause());
   }
 
-  final int getSecureMessageCountForRecipients(List<RecipientId> recipients) {
-    return getMessageCountForRecipientsAndType(recipients, getOutgoingSecureMessageClause());
+  final int getSecureMessageCountForInsights() {
+    return getMessageCountForRecipientsAndType(getOutgoingSecureMessageClause());
   }
 
-  private int getMessageCountForRecipientsAndType(List<RecipientId> recipients, String typeClause) {
-    if (recipients.size() == 0) return 0;
+  private int getMessageCountForRecipientsAndType(String typeClause) {
 
     SQLiteDatabase db           = databaseHelper.getReadableDatabase();
-    String         placeholders = Util.join(Stream.of(recipients).map(r -> "?").toList(), ",");
     String[]       projection   = new String[] {"COUNT(*)"};
-    String         query        = RECIPIENT_ID + " IN ( " + placeholders + " ) AND " + typeClause + " AND " + getDateSentColumnName() + " > ?";
-    String[]       args         = new String[recipients.size() + 1];
-
-    for (int i = 0; i < recipients.size(); i++) {
-      args[i] = recipients.get(i).serialize();
-    }
-
-    args[args.length - 1] = String.valueOf(System.currentTimeMillis() - TimeUnit.DAYS.toMillis(7));
+    String         query        = typeClause + " AND " + getDateSentColumnName() + " > ?";
+    String[]       args         = new String[]{String.valueOf(System.currentTimeMillis() - InsightsConstants.PERIOD_IN_MILLIS)};
 
     try (Cursor cursor = db.query(getTableName(), projection, query, args, null, null, null, null)) {
       if (cursor != null && cursor.moveToFirst()) {

@@ -42,6 +42,7 @@ import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencyProvider;
 import org.thoughtcrime.securesms.gcm.FcmJobService;
+import org.thoughtcrime.securesms.insights.InsightsOptOut;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.JobMigrator;
 import org.thoughtcrime.securesms.jobmanager.impl.JsonDataSerializer;
@@ -239,6 +240,7 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
       if (!SQLCipherOpenHelper.databaseFileExists(this)) {
         Log.i(TAG, "First ever app launch!");
 
+        InsightsOptOut.userRequestedOptOut(this);
         TextSecurePreferences.setAppMigrationVersion(this, ApplicationMigrations.CURRENT_VERSION);
         TextSecurePreferences.setJobManagerVersion(this, JobManager.CURRENT_VERSION);
       }
