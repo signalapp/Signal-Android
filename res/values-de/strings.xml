@@ -367,7 +367,7 @@
   <string name="InviteActivity_share">Teilen</string>
   <string name="InviteActivity_choose_contacts">Kontakte auswählen</string>
   <string name="InviteActivity_cancel">Abbrechen</string>
-  <string name="InviteActivity_sending">Am Senden …</string>
+  <string name="InviteActivity_sending">Wird gesendet …</string>
   <string name="InviteActivity_heart_content_description">Herz</string>
   <string name="InviteActivity_invitations_sent">Einladungen versendet!</string>
   <string name="InviteActivity_invite_to_signal">Zu Signal einladen</string>
@@ -956,7 +956,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">ANZEIGEN</string>
   <string name="message_recipients_list_item__resend">ERNEUT SENDEN</string>
-  <string name="message_recipients_list_item__resending">Am erneuten Senden …</string>
+  <string name="message_recipients_list_item__resending">Wird erneut gesendet …</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s ist der Gruppe beigetreten</item>
@@ -1008,7 +1008,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Falls du die Sicherheit deiner Verschlüsselung mit %s verifizieren möchtest, vergleiche bitte die oben dargestellte Nummer mit der Nummer auf dem Gerät deines Kontakts. Alternativ kannst du den Code deines Kontakts einscannen oder ihn deinen eigenen Code einscannen lassen. <a href="https://signal.org/redirect/safety-numbers">Mehr erfahren</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Zum Scannen antippen</string>
-  <string name="verify_display_fragment__loading">Am Laden …</string>
+  <string name="verify_display_fragment__loading">Wird geladen …</string>
   <string name="verify_display_fragment__verified">Verifiziert</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Sicherheitsnummer teilen</string>
@@ -1294,19 +1294,18 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="Insights__percent"> %</string>
   <string name="Insights__title">Einblicke</string>
   <string name="InsightsDashboardFragment__title">Einblicke</string>
-  <string name="InsightsDashboardFragment__tagline">%1$d%% deiner ausgehenden Nachrichten der letzten 7 Tage waren mit dem Signal Protocol Ende-zu-Ende-verschlüsselt.</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__tagline">%1$d%% deiner ausgehenden Nachrichten der letzten 7 Tage waren mit dem Signal Protocol Ende-zu-Ende-verschlüsselt.</string> -->
   <string name="InsightsDashboardFragment__boost_your_signal">Verstärke dein Signal</string>
-  <string name="InsightsDashboardFragment__100_title">Das Signal ist stark in dir</string>
-  <string name="InsightsDashboardFragment__no_signal_yet">Kein Signal (bisher)</string>
-  <string name="InsightsDashboardFragment__youre_just_getting_started">Du machst gerade deine ersten Schritte. Einblicke werden angezeigt, sobald du einige Nachrichten versendest.</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__100_title">Das Signal ist stark in dir</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__no_signal_yet">Kein Signal (bisher)</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__youre_just_getting_started">Du machst gerade deine ersten Schritte. Einblicke werden angezeigt, sobald du einige Nachrichten versendest.</string> -->
   <string name="InsightsDashboardFragment__start_a_conversation">Beginne eine Unterhaltung</string>
-  <string name="InsightsDashboardFragment__100_description">Signals fortschrittliche Datenschutztechnologie hat alle deine kürzlich versendeten Nachrichten automatisch geschützt.</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__100_description">Signals fortschrittliche Datenschutztechnologie hat alle deine kürzlich versendeten Nachrichten automatisch geschützt.</string> -->
   <string name="InsightsDashboardFragment__invite_your_contacts">Kommuniziere von jetzt an sicher und ermögliche neue Funktionen, die über die Einschränkungen unverschlüsselter SMS hinausgehen, indem du mehr Kontakte dazu einlädst, Signal zu verwenden.</string>
-  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Diese Statistik wurde lokal auf deinem Gerät erstellt und kann nur durch dich eingesehen werden. Sie wird niemals an jemand anderes übertragen.</string>
+  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Diese Statistik wurde lokal auf deinem Gerät erstellt und kann nur durch dich eingesehen werden. Sie wird niemals an jemand anderen übertragen.</string>
   <string name="InsightsDashboardFragment__encrypted_messages">Verschlüsselte Nachrichten</string>
   <string name="InsightsDashboardFragment__cancel">Abbrechen</string>
   <string name="InsightsDashboardFragment__send">Senden</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__not_using_signal_yet">Verwendet Signal noch nicht</string> -->
   <string name="InsightsModalFragment__title">Einführung von Einblicken</string>
   <string name="InsightsModalFragment__description">Finde heraus, wie viele deiner ausgehenden Nachrichten geschützt versendet wurden, und lade dann neue Kontakte ein, um deinen Signal-Prozentwert zu erhöhen.</string>
   <string name="InsightsModalFragment__view_insights">Einblicke anzeigen</string>
@@ -1318,8 +1317,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="InsightsReminder__invite">Einladen</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Übertragungssymbol</string>
-  <string name="ConversationListFragment_loading">Am Laden …</string>
-  <string name="CallNotificationBuilder_connecting">Am Verbinden …</string>
+  <string name="ConversationListFragment_loading">Wird geladen …</string>
+  <string name="CallNotificationBuilder_connecting">Verbindung wird hergestellt …</string>
   <string name="Permissions_permission_required">Berechtigung erforderlich</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal benötigt die Berechtigung »SMS« für das Senden von SMS, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »SMS«.</string>
   <string name="Permissions_continue">Weiter</string>
@@ -1344,7 +1343,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="RegistrationActivity_restore">Wiederherstellen</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Datensicherungen neuerer Signal-Versionen können nicht importiert werden</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">Falsche Sicherungspassphrase</string>
-  <string name="RegistrationActivity_checking">Am Überprüfen …</string>
+  <string name="RegistrationActivity_checking">Wird überprüft …</string>
   <string name="RegistrationActivity_d_messages_so_far">%d Nachrichten bisher …</string>
   <string name="RegistrationActivity_restore_from_backup">Aus Sicherung wiederherstellen?</string>
   <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Stelle deine Nachrichten und Medieninhalte aus einer lokalen Datensicherung wieder her. Falls du sie jetzt nicht wiederherstellst, wirst du dies später nicht mehr nachholen können.</string>

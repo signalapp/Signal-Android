@@ -1345,6 +1345,7 @@
   <string name="reminder_header_share_text">Kuo daugiau draugų naudoja Signal, tuo geresnė ji tampa.</string>
   <string name="reminder_header_service_outage_text">Signal patiria techninius nesklandumus. Mes sunkiai dirbame, kad kaip įmanoma greičiau atkurtume paslaugą.</string>
   <string name="reminder_header_the_latest_signal_features_wont_work">Naujausios Signal ypatybės neveiks šioje Android versijoje. Atnaujinkite šį įrenginį, norėdami ateityje gauti Signal atnaujinimus.</string>
+  <string name="reminder_header_progress">%1$d%%</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Įrašyti</string>
   <string name="media_preview__forward_title">Persiųsti</string>
@@ -1361,9 +1362,22 @@
   <string name="trimmer__deleting_old_messages">Ištrinamos senos žinutės…</string>
   <string name="trimmer__old_messages_successfully_deleted">Senos žinutės sėkmingai ištrintos</string>
   <!--Insights-->
+  <string name="Insights__percent">%</string>
+  <string name="Insights__title">Įžvalgos</string>
+  <string name="InsightsDashboardFragment__title">Įžvalgos</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__tagline">%1$d%% jūsų per paskutinias 7 dienas išsiųstų žinučių buvo šifruotos ištisiniu pavidalu naudojant Signal protokolą.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__youre_just_getting_started">Jūs tik pradedate. Įžvalgos bus rodomos po to, kai išsiųsite keletą žinučių.</string> -->
+  <string name="InsightsDashboardFragment__start_a_conversation">Pradėti pokalbį</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__100_description">Signal išplėstinės privatumą saugančios technologijos automatiškai apsaugojo visas jūsų paskiausias išsiųstas žinutes.</string> -->
+  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Ši statistika buvo sugeneruota jūsų įrenginyje ir ją galite matyti tik jūs. Ji niekada nėra niekur persiunčiama.</string>
+  <string name="InsightsDashboardFragment__encrypted_messages">Šifruotos žinutės</string>
   <string name="InsightsDashboardFragment__cancel">Atsisakyti</string>
   <string name="InsightsDashboardFragment__send">Siųsti</string>
+  <string name="InsightsModalFragment__title">Pristatome įžvalgas</string>
+  <string name="InsightsModalFragment__view_insights">Rodyti įžvalgas</string>
   <string name="FirstInviteReminder__title">Pakviesti į Signal</string>
+  <string name="FirstInviteReminder__description">Jūs galėtumėte %1$d%% padidinti siunčiamų šifruotų žinučių skaičių</string>
+  <string name="InsightsReminder__view_insights">Rodyti įžvalgas</string>
   <string name="InsightsReminder__invite">Pakviesti</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Perdavimo piktograma</string>

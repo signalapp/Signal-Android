@@ -1300,7 +1300,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="Insights__percent">%</string>
   <string name="Insights__title">Innsikt</string>
   <string name="InsightsDashboardFragment__title">Innsikt</string>
-  <string name="InsightsDashboardFragment__youre_just_getting_started">Du er bare så vidt i gang. Innsikt vises etter at du har sendt noen få meldinger.</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__youre_just_getting_started">Du er bare så vidt i gang. Innsikt vises etter at du har sendt noen få meldinger.</string> -->
   <string name="InsightsDashboardFragment__start_a_conversation">Start en samtale</string>
   <string name="InsightsDashboardFragment__encrypted_messages">Krypterte meldinger</string>
   <string name="InsightsDashboardFragment__cancel">Avbryt</string>

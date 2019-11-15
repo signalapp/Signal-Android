@@ -1244,6 +1244,7 @@
   <string name="reminder_header_share_text">ユーザが増やせば増やすほど、Signalはより便利になります</string>
   <string name="reminder_header_service_outage_text">Signalは技術的な問題を抱えています。私たちは、これをできるだけ早く解決するよう対応しています。</string>
   <string name="reminder_header_the_latest_signal_features_wont_work">Signalの最新機能は、このバージョンのAndroidでは対応しなくなります。OSのアップデートをしてください。</string>
+  <string name="reminder_header_progress">%1$d%%</string>
   <!--media_preview-->
   <string name="media_preview__save_title">保存</string>
   <string name="media_preview__forward_title">転送</string>
@@ -1260,6 +1261,7 @@
   <string name="trimmer__deleting_old_messages">古いメッセージを削除しています…</string>
   <string name="trimmer__old_messages_successfully_deleted">古いメッセージを削除しました</string>
   <!--Insights-->
+  <string name="Insights__percent">%</string>
   <string name="InsightsDashboardFragment__cancel">キャンセル</string>
   <string name="InsightsDashboardFragment__send">送信</string>
   <string name="FirstInviteReminder__title">Signalに招待する</string>

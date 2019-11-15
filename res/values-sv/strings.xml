@@ -1299,7 +1299,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="Insights__percent">%</string>
   <string name="Insights__title">Statistik</string>
   <string name="InsightsDashboardFragment__title">Statistik</string>
-  <string name="InsightsDashboardFragment__youre_just_getting_started">Du har precis kommit igång. Statistik kommer att visas efter att du har skickat några meddelanden.</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__youre_just_getting_started">Du har precis kommit igång. Statistik kommer att visas efter att du har skickat några meddelanden.</string> -->
   <string name="InsightsDashboardFragment__start_a_conversation">Starta en konversation</string>
   <string name="InsightsDashboardFragment__encrypted_messages">Krypterade meddelanden</string>
   <string name="InsightsDashboardFragment__cancel">Avbryt</string>

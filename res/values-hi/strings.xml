@@ -216,7 +216,7 @@
   </plurals>
   <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
     <item quantity="one">स्टोरेज में अनुलग्नक सहेजा जा रहा है</item>
-    <item quantity="other">स्टोरेज में %1$d अनुलग्नक सहेज रहा है</item>
+    <item quantity="other">स्टोरेज में %1$d अटैचमेंट सेव हो रहा हैं</item>
   </plurals>
   <string name="ConversationFragment_pending">रूका हुआ</string>
   <string name="ConversationFragment_push">डेटा (Signal)</string>
@@ -327,7 +327,7 @@
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">आप इस सुविधा को कभी भी अपनी Signal सेटिंग से शुरु या बंद कर सकते हैं ( प्राईवसी और लिंक भेजने के पूर्वदर्शन) |</string>
   <string name="ExperienceUpgradeActivity_got_it">समझ गया </string>
   <!--GcmBroadcastReceiver-->
-  <string name="GcmBroadcastReceiver_retrieving_a_message">संदेश मंगाया जा रहा है़…</string>
+  <string name="GcmBroadcastReceiver_retrieving_a_message">मेसेज मंगाया जा रहा है़…</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">स्थायी Signal संचार विफलता</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal Google Play सेवाओं के साथ पंजीकरण करने में असमर्थ था। Signal संदेश और कॉल अक्षम कर दिए गए हैं, कृपया सेटिंग &gt; उन्नत में पुनः पंजीकरण करने का प्रयास करें।</string>
@@ -350,7 +350,7 @@
   <string name="GroupCreateActivity_creating_group">%1$sबनाया जा रहा है… </string>
   <string name="GroupCreateActivity_updating_group">%1$s अद्यतन किया जा रहा है…</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">%1$s नहीं जोड़ सका क्योंकि वे Signal उपयोगकर्ता नहीं हैं।</string>
-  <string name="GroupCreateActivity_loading_group_details">समूह विवरण लोड किया जा रहा है</string>
+  <string name="GroupCreateActivity_loading_group_details">समूह माहिती लोड किया जा रहा है</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">आप पहले से ही समूह में हैं</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">इस समूह के साथ अपना प्रोफाइल नाम और फोटो साझा करें?</string>
@@ -1290,7 +1290,7 @@
   <!--redphone_audio_popup_menu-->
   <!--Trimmer-->
   <string name="trimmer__deleting">हटाना</string>
-  <string name="trimmer__deleting_old_messages">पुराने संदेशों को हटा रहा है</string>
+  <string name="trimmer__deleting_old_messages">पुराने मेसेज को हटा रहा है</string>
   <string name="trimmer__old_messages_successfully_deleted">पुराने संदेश सफलतापूर्वक हटाए गए</string>
   <!--Insights-->
   <string name="InsightsDashboardFragment__cancel">रद्द करें</string>
@@ -1326,7 +1326,7 @@
   <string name="RegistrationActivity_backup_failure_downgrade">Signal के नये वर्ज़न से बैकअप लाना संभव नहीं है</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">गलत बैकअप पासफ्रेज</string>
   <string name="RegistrationActivity_checking">जांच की जा रही है</string>
-  <string name="RegistrationActivity_d_messages_so_far">अब तक %d संदेश …</string>
+  <string name="RegistrationActivity_d_messages_so_far">अब तक %d मेसेज…</string>
   <string name="RegistrationActivity_restore_from_backup">बैकअप से बहाल करना?</string>
   <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">स्थानीय संदेशों से अपने संदेशों और मीडिया को पुनर्स्थापित करें। अगर आप अभी पुनर्स्थापित नहीं करते हैं, तो आप बाद में पुनर्स्थापित नहीं कर पाएंगे।</string>
   <string name="RegistrationActivity_backup_size_s">बैकअप माप: %s</string>

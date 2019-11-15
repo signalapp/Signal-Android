@@ -1309,7 +1309,6 @@
   <string name="InsightsDashboardFragment__encrypted_messages">Krüpteeritud sõnumid</string>
   <string name="InsightsDashboardFragment__cancel">Loobu</string>
   <string name="InsightsDashboardFragment__send">Saada</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__not_using_signal_yet">Ei kasuta veel Signalit</string> -->
   <string name="InsightsModalFragment__title">Tutvustame Pilguheitu</string>
   <string name="InsightsModalFragment__view_insights">Vaata Pilguheitu</string>
   <string name="FirstInviteReminder__title">Kutsu Signalisse</string>

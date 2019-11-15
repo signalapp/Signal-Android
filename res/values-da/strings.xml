@@ -1306,14 +1306,13 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="Insights__title">Indblik</string>
   <string name="InsightsDashboardFragment__title">Indblik</string>
   <string name="InsightsDashboardFragment__boost_your_signal">Boost din Signal</string>
-  <string name="InsightsDashboardFragment__100_title">Din Signal er stærk</string>
-  <string name="InsightsDashboardFragment__no_signal_yet">Ingen Signal (endnu)</string>
-  <string name="InsightsDashboardFragment__youre_just_getting_started">Du er lige ved at komme i gang. Indblik vises når du har sendt et par meddelelser</string>
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__100_title">Din Signal er stærk</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__no_signal_yet">Ingen Signal (endnu)</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__youre_just_getting_started">Du er lige ved at komme i gang. Indblik vises når du har sendt et par meddelelser</string> -->
   <string name="InsightsDashboardFragment__start_a_conversation">Start en samtale</string>
   <string name="InsightsDashboardFragment__encrypted_messages">Krypterede beskeder</string>
   <string name="InsightsDashboardFragment__cancel">Annuller</string>
   <string name="InsightsDashboardFragment__send">Send</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__not_using_signal_yet">Bruger ikke Signal endnu</string> -->
   <string name="InsightsModalFragment__title">Vi introducerer Indblik</string>
   <string name="InsightsModalFragment__view_insights">Vis Indblik</string>
   <string name="FirstInviteReminder__title">Invitér til Signal</string>
