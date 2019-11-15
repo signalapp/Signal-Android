@@ -891,7 +891,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     return threadId;
   }
 
-  private long handleSynchronizeSentMediaMessage(@NonNull SentTranscriptMessage message)
+  public long handleSynchronizeSentMediaMessage(@NonNull SentTranscriptMessage message)
       throws MmsException
   {
     MmsDatabase                 database        = DatabaseFactory.getMmsDatabase(context);
@@ -927,6 +927,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
     try {
       long messageId = database.insertMessageOutbox(mediaMessage, threadId, false, null);
+      if (message.messageServerID >= 0) { DatabaseFactory.getLokiMessageDatabase(context).setServerID(messageId, message.messageServerID); }
 
       if (recipients.getAddress().isGroup()) {
         GroupReceiptDatabase receiptDatabase = DatabaseFactory.getGroupReceiptDatabase(context);
@@ -1222,7 +1223,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     }
   }
 
-  private long handleSynchronizeSentTextMessage(@NonNull SentTranscriptMessage message)
+  public long handleSynchronizeSentTextMessage(@NonNull SentTranscriptMessage message)
       throws MmsException
   {
 
@@ -1245,6 +1246,8 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       outgoingMediaMessage = new OutgoingSecureMediaMessage(outgoingMediaMessage);
 
       messageId = DatabaseFactory.getMmsDatabase(context).insertMessageOutbox(outgoingMediaMessage, threadId, false, null);
+      if (message.messageServerID >= 0) { DatabaseFactory.getLokiMessageDatabase(context).setServerID(messageId, message.messageServerID); }
+
       database  = DatabaseFactory.getMmsDatabase(context);
 
       GroupReceiptDatabase receiptDatabase = DatabaseFactory.getGroupReceiptDatabase(context);
