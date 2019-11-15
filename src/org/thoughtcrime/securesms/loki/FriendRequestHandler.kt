@@ -29,7 +29,6 @@ object FriendRequestHandler {
       DatabaseFactory.getLokiThreadDatabase(context).setFriendRequestStatus(threadId, threadFriendStatus)
     }
 
-
     // Update message status
     if (messageId >= 0) {
       val messageDatabase = DatabaseFactory.getLokiMessageDatabase(context)

@@ -14,12 +14,12 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class PushMessageSyncSendJob private constructor(
-        parameters: Parameters,
-        private val messageID: Long,
-        private val recipient: Address,
-        private val timestamp: Long,
-        private val message: ByteArray,
-        private val ttl: Int
+    parameters: Parameters,
+    private val messageID: Long,
+    private val recipient: Address,
+    private val timestamp: Long,
+    private val message: ByteArray,
+    private val ttl: Int
 ) : BaseJob(parameters), InjectableType {
 
   companion object {

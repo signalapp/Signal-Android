@@ -146,7 +146,6 @@ class LokiPublicChatPoller(private val context: Context, private val group: Loki
                 PushDecryptJob(context).handleTextMessage(serviceContent, serviceDataMessage, Optional.absent(), Optional.of(message.serverID))
             }
         }
-
         fun processOutgoingMessage(message: LokiPublicChatMessage) {
             val messageServerID = message.serverID ?: return
             val isDuplicate = DatabaseFactory.getLokiMessageDatabase(context).getMessageID(messageServerID) != null
@@ -162,7 +161,6 @@ class LokiPublicChatPoller(private val context: Context, private val group: Loki
                 PushDecryptJob(context).handleSynchronizeSentTextMessage(transcript)
             }
         }
-
         api.getMessages(group.channel, group.server).successBackground { messages ->
             if (messages.isNotEmpty()) {
                 val ourDevices = LokiStorageAPI.shared.getAllDevicePublicKeys(userHexEncodedPublicKey).get(setOf())

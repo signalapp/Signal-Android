@@ -126,7 +126,7 @@ import static nl.komponents.kovenant.android.KovenantAndroid.stopKovenant;
 public class ApplicationContext extends MultiDexApplication implements DependencyInjector, DefaultLifecycleObserver, LokiP2PAPIDelegate {
 
   private static final String TAG = ApplicationContext.class.getSimpleName();
-  private final static int OK_HTTP_CACHE_SIZE = 10 * 1024 * 1024; // 10MB
+  private final static int OK_HTTP_CACHE_SIZE = 10 * 1024 * 1024; // 10 MB
 
   private ExpiringMessageManager  expiringMessageManager;
   private TypingStatusRepository  typingStatusRepository;

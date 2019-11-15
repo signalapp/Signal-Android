@@ -15,10 +15,10 @@ import java.io.IOException
 import java.util.concurrent.TimeUnit
 
 class PushBackgroundMessageSendJob private constructor(
-        parameters: Parameters,
-        private val recipient: String,
-        private val messageBody: String?,
-        private val friendRequest: Boolean
+    parameters: Parameters,
+    private val recipient: String,
+    private val messageBody: String?,
+    private val friendRequest: Boolean
 ) : BaseJob(parameters) {
   companion object {
     const val KEY = "PushBackgroundMessageSendJob"
