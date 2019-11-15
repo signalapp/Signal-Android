@@ -303,7 +303,8 @@ public abstract class PushSendJob extends SendJob {
   }
 
   protected SignalServiceSyncMessage buildSelfSendSyncMessage(@NonNull Context context, @NonNull SignalServiceDataMessage message, Optional<UnidentifiedAccessPair> syncAccess) {
-    String                localNumber = TextSecurePreferences.getLocalNumber(context);
+    String                primary     = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
+    String                localNumber = primary != null ? primary : TextSecurePreferences.getLocalNumber(context);
     SentTranscriptMessage transcript  = new SentTranscriptMessage(localNumber,
                                                                   message.getTimestamp(),
                                                                   message,

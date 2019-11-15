@@ -4,6 +4,7 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
+import android.os.AsyncTask
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -22,7 +23,6 @@ import org.thoughtcrime.securesms.util.Hex
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.curve25519.Curve25519
 import org.whispersystems.libsignal.util.KeyHelper
-import org.whispersystems.signalservice.loki.api.LokiStorageAPI
 import org.whispersystems.signalservice.loki.api.PairingAuthorisation
 import org.whispersystems.signalservice.loki.crypto.MnemonicCodec
 import org.whispersystems.signalservice.loki.utilities.Analytics
@@ -55,8 +55,7 @@ class SeedActivity : BaseActionBarActivity(), DeviceLinkingDialogDelegate {
         copyButton.setOnClickListener { copy() }
         toggleRegisterModeButton.setOnClickListener { mode = Mode.Register }
         toggleRestoreModeButton.setOnClickListener { mode = Mode.Restore }
-        // TODO: Enable this again later
-//        toggleLinkModeButton.setOnClickListener { mode = Mode.Link }
+        toggleLinkModeButton.setOnClickListener { mode = Mode.Link }
         mainButton.setOnClickListener { handleMainButtonTapped() }
         Analytics.shared.track("Seed Screen Viewed")
     }
@@ -205,8 +204,10 @@ class SeedActivity : BaseActionBarActivity(), DeviceLinkingDialogDelegate {
             application.setUpP2PAPI()
             application.setUpStorageAPIIfNeeded()
             DeviceLinkingDialog.show(this, DeviceLinkingView.Mode.Slave, this)
-            retryIfNeeded(8) {
-                sendPairingAuthorisationMessage(this@SeedActivity, authorisation.primaryDevicePublicKey, authorisation).get()
+            AsyncTask.execute {
+                retryIfNeeded(8) {
+                    sendPairingAuthorisationMessage(this@SeedActivity, authorisation.primaryDevicePublicKey, authorisation)
+                }
             }
         } else {
             startActivity(Intent(this, DisplayNameActivity::class.java))
@@ -227,25 +228,9 @@ class SeedActivity : BaseActionBarActivity(), DeviceLinkingDialogDelegate {
         resetForRegistration()
     }
 
-    override fun sendPairingAuthorizedMessage(pairingAuthorisation: PairingAuthorisation) {
-        val userPrivateKey = IdentityKeyUtil.getIdentityKeyPair(this).privateKey.serialize()
-        val signedPairingAuthorisation = pairingAuthorisation.sign(PairingAuthorisation.Type.GRANT, userPrivateKey)
-        if (signedPairingAuthorisation == null || signedPairingAuthorisation.type != PairingAuthorisation.Type.GRANT) {
-            Log.d("Loki", "Failed to sign pairing authorization.")
-            return
-        }
-        retryIfNeeded(8) {
-            sendPairingAuthorisationMessage(this, pairingAuthorisation.secondaryDevicePublicKey, signedPairingAuthorisation).get()
-        }.fail {
-            Log.d("Loki", "Failed to send pairing authorization message to ${pairingAuthorisation.secondaryDevicePublicKey}.")
-        }
-        DatabaseFactory.getLokiAPIDatabase(this).insertOrUpdatePairingAuthorisation(signedPairingAuthorisation)
-        LokiStorageAPI.shared.updateUserDeviceMappings()
-    }
-
     private fun resetForRegistration() {
         IdentityKeyUtil.delete(this, IdentityKeyUtil.lokiSeedKey)
-        TextSecurePreferences.removeLocalRegistrationId(this)
+        DatabaseFactory.getLokiPreKeyBundleDatabase(this).resetAllPreKeyBundleInfo()
         TextSecurePreferences.removeLocalNumber(this)
         TextSecurePreferences.setHasSeenWelcomeScreen(this, false)
         TextSecurePreferences.setPromptedPushRegistration(this, false)

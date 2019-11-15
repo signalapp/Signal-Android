@@ -27,6 +27,7 @@ import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
+import org.whispersystems.signalservice.loki.api.LokiStorageAPI;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -84,14 +85,17 @@ public class AttachmentUploadJob extends BaseJob implements InjectableType {
     if (databaseAttachment == null) {
       throw new IllegalStateException("Cannot find the specified attachment.");
     }
+    
+    // Only upload attachment if necessary
+    if (databaseAttachment.getUrl().isEmpty()) {
+      MediaConstraints mediaConstraints = MediaConstraints.getPushMediaConstraints();
+      Attachment scaledAttachment = scaleAndStripExif(database, mediaConstraints, databaseAttachment);
+      SignalServiceAttachment localAttachment = getAttachmentFor(scaledAttachment);
+      SignalServiceAttachmentPointer remoteAttachment = messageSender.uploadAttachment(localAttachment.asStream(), databaseAttachment.isSticker(), new SignalServiceAddress(destination.serialize()));
+      Attachment attachment = PointerAttachment.forPointer(Optional.of(remoteAttachment), null, databaseAttachment.getFastPreflightId()).get();
 
-    MediaConstraints               mediaConstraints = MediaConstraints.getPushMediaConstraints();
-    Attachment                     scaledAttachment = scaleAndStripExif(database, mediaConstraints, databaseAttachment);
-    SignalServiceAttachment        localAttachment  = getAttachmentFor(scaledAttachment);
-    SignalServiceAttachmentPointer remoteAttachment = messageSender.uploadAttachment(localAttachment.asStream(), databaseAttachment.isSticker(), new SignalServiceAddress(destination.serialize()));
-    Attachment                     attachment       = PointerAttachment.forPointer(Optional.of(remoteAttachment), null, databaseAttachment.getFastPreflightId()).get();
-
-    database.updateAttachmentAfterUpload(databaseAttachment.getAttachmentId(), attachment);
+      database.updateAttachmentAfterUpload(databaseAttachment.getAttachmentId(), attachment);
+    }
   }
 
   @Override
