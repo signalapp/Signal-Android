@@ -304,6 +304,7 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
         add("Moto G4");
         add("TA-1053");
         add("Mi A1");
+        add("Mi A2");
         add("E5823"); // Sony z5 compact
         add("Redmi Note 5");
         add("FP2"); // Fairphone FP2
