@@ -1580,8 +1580,9 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   }
 
   private Optional<InsertResult> insertPlaceholder(@NonNull String sender, int senderDevice, long timestamp) {
+    Recipient primaryDevice = getPrimaryDeviceRecipient(sender);
     SmsDatabase         database    = DatabaseFactory.getSmsDatabase(context);
-    IncomingTextMessage textMessage = new IncomingTextMessage(Address.fromSerialized(sender),
+    IncomingTextMessage textMessage = new IncomingTextMessage(primaryDevice.getAddress(),
                                                               senderDevice, timestamp, "",
                                                               Optional.absent(), 0, false);
 
