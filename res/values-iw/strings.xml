@@ -1359,9 +1359,6 @@
   <string name="Insights__percent">%</string>
   <string name="Insights__title">תובנות</string>
   <string name="InsightsDashboardFragment__title">תובנות</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">המרץ את Signal שלך</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__100_title">Signal שלך חזק</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__no_signal_yet">אין Signal (עדין)</string> -->
   <string name="InsightsDashboardFragment__start_a_conversation">התחל שיחה</string>
   <string name="InsightsDashboardFragment__encrypted_messages">הודעות מוצפנות</string>
   <string name="InsightsDashboardFragment__cancel">בטל</string>

@@ -1284,6 +1284,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="reminder_header_share_text">Ne kadar çok arkadaşın Signal kullanırsa, o kadar iyi hale gelir.</string>
   <string name="reminder_header_service_outage_text">Signal teknik sorunlar yaşıyor. Hizmeti olabildiğince çabuk düzeltmek için sıkı çalışıyoruz.</string>
   <string name="reminder_header_the_latest_signal_features_wont_work">Signal\'in son özellikleri bu Android sürümünde çalışmayacak. Gelecekteki Signal güncellemelerini alabilmek için lütfen bu cihazı yükseltin.</string>
+  <string name="reminder_header_progress">%%%1$d</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Kaydet</string>
   <string name="media_preview__forward_title">Yönlendir</string>
@@ -1300,9 +1301,21 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="trimmer__deleting_old_messages">Eski iletiler siliniyor…</string>
   <string name="trimmer__old_messages_successfully_deleted">Eski iletiler başarıyla silindi</string>
   <!--Insights-->
+  <string name="Insights__percent">%</string>
+  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protokolü geçtiğimiz %2$d gündeki mesajlarınızın %%%1$d kadarını otomatik olarak korudu. Signal kullanıcıları arasındaki sohbetler her zaman uçtan uca şifrelidir.</string>
+  <string name="InsightsDashboardFragment__boost_your_signal">Signal\'i güçlendir</string>
+  <string name="InsightsDashboardFragment__not_enough_data">Yetersiz veri</string>
+  <string name="InsightsDashboardFragment__start_a_conversation">Sohbet başlat</string>
+  <string name="InsightsDashboardFragment__invite_your_contacts">Kişilerinizi Signal\'e davet ederek şifresiz SMS iletilerinin sınırlarını aşan yeni özelliklerle, güvenli konuşmaya başlayın.</string>
+  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Bu istatistikler yalnızca cihazınızda oluşturulup sizin tarafınızdan görüntülenebilir. Asla hiçbir yere aktarılmaz.</string>
+  <string name="InsightsDashboardFragment__encrypted_messages">Şifreli iletiler</string>
   <string name="InsightsDashboardFragment__cancel">İptal</string>
   <string name="InsightsDashboardFragment__send">Gönder</string>
+  <string name="InsightsModalFragment__description">Mesajlarınızın ne kadarının güvenle gönderildiğini öğrenin ve Signal yüzdenizi arttırmak için yeni kişileri davet edin.</string>
   <string name="FirstInviteReminder__title">Signal\'e davet et</string>
+  <string name="FirstInviteReminder__description">Gönderilen şifreli iletilerinizi %%%1$d oranında arttırabilirsiniz</string>
+  <string name="SecondInviteReminder__title">Signal\'inizi güçlendirin</string>
+  <string name="SecondInviteReminder__description">%1$s kişisini davet et</string>
   <string name="InsightsReminder__invite">Davet et</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ulaştırma simgesi</string>

@@ -1305,10 +1305,6 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="Insights__percent">%</string>
   <string name="Insights__title">Indblik</string>
   <string name="InsightsDashboardFragment__title">Indblik</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Boost din Signal</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__100_title">Din Signal er stærk</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__no_signal_yet">Ingen Signal (endnu)</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__youre_just_getting_started">Du er lige ved at komme i gang. Indblik vises når du har sendt et par meddelelser</string> -->
   <string name="InsightsDashboardFragment__start_a_conversation">Start en samtale</string>
   <string name="InsightsDashboardFragment__encrypted_messages">Krypterede beskeder</string>
   <string name="InsightsDashboardFragment__cancel">Annuller</string>

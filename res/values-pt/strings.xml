@@ -242,7 +242,7 @@
     <item quantity="other">Isto irá eliminar permanentemente todas as %1$d conversas selecionadas.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">A eliminar</string>
-  <string name="ConversationListFragment_deleting_selected_conversations">A eliminar conversas seleccionadas…</string>
+  <string name="ConversationListFragment_deleting_selected_conversations">A eliminar conversas selecionadas…</string>
   <plurals name="ConversationListFragment_conversations_archived">
     <item quantity="one">Conversa arquivada</item>
     <item quantity="other">%d conversas arquivadas</item>
@@ -1281,6 +1281,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="reminder_header_share_text">Quanto mais amigos utilizarem o Signal, melhor este se torna.</string>
   <string name="reminder_header_service_outage_text">O Signal está a experienciar problemas técnicos. Estamos a trabalhar arduamente para re-estabelecer o serviço o mais rapidamente possível.</string>
   <string name="reminder_header_the_latest_signal_features_wont_work">As últimas funcionalidades do Signal não funcionarão nesta versão do Android. Por favor atualize este dispositivo para poder receber futuramente atualizações do Signal.</string>
+  <string name="reminder_header_progress">%1$d%%</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Gravar</string>
   <string name="media_preview__forward_title">Reencaminhar</string>
@@ -1297,9 +1298,27 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="trimmer__deleting_old_messages">A eliminar mensagens antigas…</string>
   <string name="trimmer__old_messages_successfully_deleted">Mensagens antigas eliminadas com sucesso</string>
   <!--Insights-->
+  <string name="Insights__percent">%</string>
+  <string name="Insights__title">Insights</string>
+  <string name="InsightsDashboardFragment__title">Insights</string>
+  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">O protocolo do Signal protegeu automaticamente %1$d%% das suas mensagens de saída através dos últimos %2$d dias. As conversas entre os utilizadores do Signal têm sempre uma encriptação do tipo end-to-end.</string>
+  <string name="InsightsDashboardFragment__boost_your_signal">Melhoria Signal</string>
+  <string name="InsightsDashboardFragment__not_enough_data">Sem dados suficientes</string>
+  <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">A sua percentagem do Insights é calculada com base nas mensagens de saída que não desapareceram ou foram eliminadas nos últimos %1$d dias.</string>
+  <string name="InsightsDashboardFragment__start_a_conversation">Iniciar uma conversa</string>
+  <string name="InsightsDashboardFragment__invite_your_contacts">Comece a comunicar de forma segura e ative os novos recursos que vão para além das limitações de mensagens de SMS desencriptadas ao convidar mais contactos a juntarem-se ao Signal.</string>
+  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Estas estatísticas foram geradas localmente no seu dispositivo e só podem ser vistas por si. Elas nunca são transmitidas para nenhum lado.</string>
+  <string name="InsightsDashboardFragment__encrypted_messages">Mensagens encriptadas</string>
   <string name="InsightsDashboardFragment__cancel">Cancelar</string>
   <string name="InsightsDashboardFragment__send">Enviar</string>
-  <string name="FirstInviteReminder__title">Convite para o Signal</string>
+  <string name="InsightsModalFragment__title">Introdução ao Insights</string>
+  <string name="InsightsModalFragment__description">Descubra quantas das suas mensagens de saída são enviadas de forma segura, depois convide rapidamente novos contactos para aumentar a sua percentagem do Signal.</string>
+  <string name="InsightsModalFragment__view_insights">Ver Insights</string>
+  <string name="FirstInviteReminder__title">Convidar para o Signal</string>
+  <string name="FirstInviteReminder__description">Você pode aumentar o número de mensagens encriptadas que envia em %1$d%%</string>
+  <string name="SecondInviteReminder__title">Potencie o seu Signal</string>
+  <string name="SecondInviteReminder__description">Convidar %1$s</string>
+  <string name="InsightsReminder__view_insights">Ver Insights</string>
   <string name="InsightsReminder__invite">Convidar</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ícone de transporte</string>

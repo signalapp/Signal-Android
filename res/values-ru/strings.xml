@@ -1358,13 +1358,11 @@
   <string name="Insights__percent">%</string>
   <string name="Insights__title">Выводы</string>
   <string name="InsightsDashboardFragment__title">Выводы</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__tagline">%1$d%% от ваших исходящих сообщений за последние 7 дней были защищены сквозным шифрованием с использованием Signal Protocol.</string> -->
-  <string name="InsightsDashboardFragment__boost_your_signal">Улучшите свой Signal</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__100_title">Ваш Signal сильный</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__no_signal_yet">Нет Signal (пока)</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__youre_just_getting_started">Вы только начинаете. Выводы будут показаны, когда вы отправите несколько сообщений.</string> -->
+  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol автоматически защитил %1$d%% от ваших исходящих сообщений за последние %2$d дней. Разговоры между пользователями Signal всегда защищены сквозным шифрованием.</string>
+  <string name="InsightsDashboardFragment__boost_your_signal">Улучшение Signal</string>
+  <string name="InsightsDashboardFragment__not_enough_data">Недостаточно данных</string>
+  <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Ваш процент в «Выводах» считается на основе исходящих сообщений, которые не исчезли и не были удалены, за последние %1$d дней.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Начните разговор</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__100_description">Передовая технология сохранения конфиденциальности Signal автоматически защитила все из ваших недавних исходящих сообщений.</string> -->
   <string name="InsightsDashboardFragment__invite_your_contacts">Начните общаться безопасно и включите новые функции, которые выходят за пределы ограничений незащищённых SMS, приглашая больше контактов присоединиться к Signal.</string>
   <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Эта статистика была сгенерирована локально на вашем устройстве и видна только вам. Она никогда никуда не передаётся.</string>
   <string name="InsightsDashboardFragment__encrypted_messages">Зашифрованных сообщений</string>

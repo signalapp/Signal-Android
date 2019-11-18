@@ -77,6 +77,7 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Ezin izan da irudia gorde.</string>
   <!--CameraXFragment-->
+  <string name="CameraXFragment_tap_for_photo_hold_for_video">Ukitu laburra argazkia ateratzeko, ukitu luzea bideoa grabatzeko</string>
   <string name="CameraXFragment_capture_description">Argazkia</string>
   <string name="CameraXFragment_change_camera_description">Aldatu kamera</string>
   <string name="CameraXFragment_open_gallery_description">Ireki galeria</string>
@@ -174,6 +175,9 @@
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Argazkiak eta bideoak grabatzeko, eman baimena Signali kamera erabiltzeko.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signalek Kamera baimena behar du argazkiak eta bideoak egiteko, baina ukatu egin diozu. Joan aplikazioaren ezarpenetara, aukeratu \"Baimenak\" eta aktibatu \"Kamera\".</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signalek Kamera baimena behar du argazkiak eta bideoak egiteko</string>
+  <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">Gaitu mikrofonorako baimena soinua duten bideoak grabatu ahal izateko.</string>
+  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Signalek bideoak grabatu ahal izateko mikrofonorako baimenak behar ditu, baina ukatu egin dira. Mesedez, joan zaitez aplikazioaren ezarpenetara, aukeratu  \"Baimenak\" eta gaitu \"Mikrofonoa\" eta \"Kamara\".</string>
+  <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Signalek mikrofonorako baimena behar du bideoak grabatu ahal izateko.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s%2$s</string>
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signalek ezin ditu SMS/MMSak bidali zure defektuzko SMS aplikazioa ez delako. Androiden ezarpenetara joan eta hau aldatu nahi duzu?</string>
   <string name="ConversationActivity_yes">Bai</string>
@@ -647,6 +651,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="ThreadRecord_media_message">Multimedia mezua</string>
   <string name="ThreadRecord_sticker">Eranskailua</string>
   <string name="ThreadRecord_disappearing_photo">Argazkia desagertuta</string>
+  <string name="ThreadRecord_disappearing_video">Desagertzen den bideoa</string>
   <string name="ThreadRecord_s_is_on_signal">%sSignal-en dago!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Mezuen desagerpena ezgaituta dago</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Desagertzen diren mezuen debora %s-tan ezarrita</string>
@@ -723,6 +728,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="MessageNotifier_media_message">Multimedia mezua</string>
   <string name="MessageNotifier_sticker">Eranskailua</string>
   <string name="MessageNotifier_disappearing_photo">Argazkia desagertuta</string>
+  <string name="MessageNotifier_disappearing_video">Desagertzen den bideoa</string>
   <string name="MessageNotifier_reply">Erantzun</string>
   <string name="MessageNotifier_signal_message">Signal mezua</string>
   <string name="MessageNotifier_unsecured_sms">SMS ez segurua</string>
@@ -1070,6 +1076,10 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den zifratu gabeko babeskopi
   <string name="arrays__high">Altua</string>
   <string name="arrays__max">Maximoa</string>
   <!--plurals.xml-->
+  <plurals name="hours_ago">
+    <item quantity="one">%dh</item>
+    <item quantity="other">%dh</item>
+  </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">SMS eta MMS</string>
   <string name="preferences__pref_all_sms_title">Jaso SMS guztiak</string>
@@ -1145,7 +1155,7 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den zifratu gabeko babeskopi
   <string name="preferences__signal_messages_and_calls">Signal mezu eta deiak</string>
   <string name="preferences__free_private_messages_and_calls">Mezu eta dei pribatu doanak Signal erabiltzaileri.</string>
   <string name="preferences__submit_debug_log">Arazketaren log-a bidali</string>
-  <string name="preferences__support_wifi_calling">\'\"WiFi Calling\' modu bateragarria</string>
+  <string name="preferences__support_wifi_calling">\'WiFi Calling\' bateragarritasunerako modua</string>
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Aktibatu zure gailuak WiFi bidezko SMS/MMS banaketa erabiltzen badu (bakarrik aktibatu \'WiFi Calling\' aktibatuta badago zure gailuan).</string>
   <string name="preferences__incognito_keyboard">Ezkutuko teklatua</string>
   <string name="preferences__read_receipts">Irakurketa oharrak</string>
@@ -1277,6 +1287,7 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den zifratu gabeko babeskopi
   <string name="reminder_header_share_text">Zenbat eta Signalen adiskide gehiago izan, hobe.</string>
   <string name="reminder_header_service_outage_text">Signal arazo teknikoak izaten ari da. Gogor ari gara lanean zerbitzua ahal bezain laster berriro martxan jartzeko.</string>
   <string name="reminder_header_the_latest_signal_features_wont_work">Signalen azkenengo ezaugarriek ez dute funtzionatuko Android bertsio honetan. Mesedez, eguneratu gailua Signalen egunerapenak jasotzeko.</string>
+  <string name="reminder_header_progress">%1$d%%</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Gorde</string>
   <string name="media_preview__forward_title">Birbidali</string>
@@ -1293,9 +1304,27 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den zifratu gabeko babeskopi
   <string name="trimmer__deleting_old_messages">Mezu zaharrak ezabatzen…</string>
   <string name="trimmer__old_messages_successfully_deleted">Mezu zaharrak ondo ezabatu dira</string>
   <!--Insights-->
+  <string name="Insights__percent">%</string>
+  <string name="Insights__title">Estatistikak</string>
+  <string name="InsightsDashboardFragment__title">Estatistikak</string>
+  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal protokoloak azkenengo %2$d egunetan bidali duzun mezuen %1$d%% babestu du. Signalen erabiltzaileen arteko solasaldiak beti muturretik-muturrera enkriptatuta daude.</string>
+  <string name="InsightsDashboardFragment__boost_your_signal">Signal bizkortu</string>
+  <string name="InsightsDashboardFragment__not_enough_data">Ez dago datu nahikorik</string>
+  <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Zure estatistiken ehunekoaren kalkulua azkenengo %1$d egunetan bidali diren mezuetan oinarritzen da; desagertu ez diren edo ezabatu ez diren mezuak bakarrik hartzen dira kontuan.</string>
+  <string name="InsightsDashboardFragment__start_a_conversation">Solasaldi bat hasieratu</string>
+  <string name="InsightsDashboardFragment__invite_your_contacts">Modu seguruan komunikatzen hasi eta ezaugarri berriak gaitu; ezaugarri hauek enkriptatu gabeko SMSen mugak gainditzen dute kontatu gehiago Signalera gonbidatzeko aukera emanez.</string>
+  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Estatistika hauek zure gailuan sortu dira modu lokalean eta bakarrik zuk ikus ditzakezu. Ez dira inoiz inora bidaltzen.</string>
+  <string name="InsightsDashboardFragment__encrypted_messages">Enkriptatutako mezuak</string>
   <string name="InsightsDashboardFragment__cancel">Utzi</string>
   <string name="InsightsDashboardFragment__send">Bidali</string>
+  <string name="InsightsModalFragment__title">Estatistiken Aurkezpena</string>
+  <string name="InsightsModalFragment__description">Ikusi bidali dituzun mezuetatik zenbat bidali diren modu seguruan eta, orduan, arin gonbidatu kontaktu berriak zure Signal ehunekoa handitzeko.</string>
+  <string name="InsightsModalFragment__view_insights">Estatistikak Ikusi</string>
   <string name="FirstInviteReminder__title">Gonbidatu Signal erabiltzera</string>
+  <string name="FirstInviteReminder__description">Enkriptatuta bidaltzen dituzun mezu kopurua handitu zenezake %%%1$d</string>
+  <string name="SecondInviteReminder__title">Zure Signal Bizkortu</string>
+  <string name="SecondInviteReminder__description">%1$s gonbidatu</string>
+  <string name="InsightsReminder__view_insights">Estatistikak Ikusi</string>
   <string name="InsightsReminder__invite">Gonbidatu</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Garraio ikonoa</string>
@@ -1346,6 +1375,8 @@ Inportatu \'SMSBackup and Restorekin\' bateragarria den zifratu gabeko babeskopi
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Sartu %s(e)ra bidalitako egiaztapen-kodea.</string>
   <string name="RegistrationActivity_wrong_number">Zenbaki okerra</string>
   <string name="RegistrationActivity_call_me_instead_available_in">Dei iezadazu \n (Hemen topatuko nauzu: %1$02d:%2$02d)</string>
+  <string name="RegistrationActivity_contact_signal_support">Harremanetan jarri Signalen Laguntza Taldearekin</string>
+  <string name="RegistrationActivity_code_support_subject">Signalen Errejistratzea - Androiderako Egiaztatze Kodea</string>
   <string name="BackupUtil_never">Inoiz ez</string>
   <string name="BackupUtil_unknown">Ezezaguna</string>
   <string name="preferences_app_protection__screen_lock">Blokeo-pantaila</string>

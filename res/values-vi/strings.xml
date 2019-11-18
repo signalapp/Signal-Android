@@ -1268,15 +1268,8 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--Insights-->
   <string name="Insights__title">Phân tích</string>
   <string name="InsightsDashboardFragment__title">Phân tích</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__tagline">%1$d%% trong tổng số tin nhắn gửi đi trong 7 ngày của bạn đã được mã hóa đầu cuối bởi Giao thức Signal.</string> -->
-  <string name="InsightsDashboardFragment__boost_your_signal">Tăng tỉ lệ Signal</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__100_title">Tỉ lệ Signal cao</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__no_signal_yet">Chưa có Signal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__youre_just_getting_started">Bạn mới chỉ đang bắt đầu. Dữ liệu phân tích sẽ hiển thị sau khi bạn gửi vài tin nhắn.</string> -->
   <string name="InsightsDashboardFragment__start_a_conversation">Bắt đầu cuộc trò chuyện</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__100_description">Công nghệ tiên tiến của Signal tự động bảo mật tất cả tin nhắn gửi đi gần đây của bạn.</string> -->
   <string name="InsightsDashboardFragment__invite_your_contacts">Hãy trò chuyện riêng tư và kích hoạt những tính năng mới vượt trên giới hạn của SMS lỗi thời bằng cách mời liên hệ của bạn sử dụng Signal.</string>
-  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Số liệu này được tạo trên thiết bị của bạn và chỉ được truy cập bởi bạn. Nó không được gửi đi bất cứ đâu.</string>
   <string name="InsightsDashboardFragment__encrypted_messages">Tin nhắn mã hóa</string>
   <string name="InsightsDashboardFragment__cancel">Hủy</string>
   <string name="InsightsDashboardFragment__send">Gửi</string>

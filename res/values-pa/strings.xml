@@ -1299,14 +1299,7 @@
   <string name="Insights__percent">%</string>
   <string name="Insights__title">ਇਨਸਾਈਟਸ</string>
   <string name="InsightsDashboardFragment__title">ਇਨਸਾਈਟਸ</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__tagline">ਪਿਛਲੇ 7 ਦਿਨਾਂ ਵਿੱਚ ਤੁਹਾਡੇ ਬਾਹਰ ਜਾਣ ਵਾਲੇ %1$d %% ਸੰਦੇਸ਼ਾਂ ਨੂੰ Signal ਪ੍ਰੋਟੋਕੋਲ ਨਾਲ ਐਂਡ-ਟੂ-ਐਂਡ ਐਨਕ੍ਰਿਪਟ ਕੀਤਾ ਗਿਆ ਸੀ.</string> -->
-  <string name="InsightsDashboardFragment__boost_your_signal">ਆਪਣੇ Signal ਨੂੰ ਉਤਸ਼ਾਹਤ ਕਰੋ</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__100_title">ਤੁਹਾਡਾ Signal ਮਜ਼ਬੂਤ ​​ਹੈ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__no_signal_yet">ਕੋਈ Signal ਨਹੀਂ (ਅਜੇ)</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__youre_just_getting_started">ਤੁਸੀਂ ਹੁਣੇ ਸ਼ੁਰੂਆਤ ਕਰ ਰਹੇ ਹੋ. ਤੁਹਾਡੇ ਕੁਝ ਸੁਨੇਹੇ ਭੇਜਣ ਤੋਂ ਬਾਅਦ ਇਨਸਾਈਟਸ ਪ੍ਰਦਰਸ਼ਤ ਕੀਤੇ ਜਾਣਗੇ.</string> -->
   <string name="InsightsDashboardFragment__start_a_conversation">ਗੱਲਬਾਤ ਸ਼ੁਰੂ ਕਰੋ</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__100_description">Signal ਦੀ ਅਤਿ ਆਧੁਨਿਕ ਗੋਪਨੀਯਤਾ-ਸੁਰੱਖਿਅਤ ਕਰਨ ਵਾਲੀ ਟੈਕਨੋਲੋਜੀ ਨੇ ਤੁਹਾਡੇ ਸਾਰੇ ਹਾਲ ਦੇ ਬਾਹਰ ਜਾਣ ਵਾਲੇ ਸੰਦੇਸ਼ਾਂ ਨੂੰ ਸਵੈਚਲਿਤ ਰੂਪ ਨਾਲ ਸੁਰੱਖਿਅਤ ਕੀਤਾ.</string> -->
-  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">ਇਹ ਸਟੈਟ ਸਥਾਨਕ ਤੌਰ \'ਤੇ ਤੁਹਾਡੀ ਡਿਵਾਈਸ\' ਤੇ ਤਿਆਰ ਕੀਤੀ ਗਈ ਸੀ ਅਤੇ ਸਿਰਫ ਤੁਸੀਂ ਦੇਖ ਸਕਦੇ ਹੋ. ਇਹ ਕਦੇ ਵੀ ਕਿਤੇ ਪ੍ਰਸਾਰਿਤ ਨਹੀਂ ਹੁੰਦਾ.</string>
   <string name="InsightsDashboardFragment__encrypted_messages">ਇਨਕ੍ਰਿਪਟਡ ਸੁਨੇਹੇ</string>
   <string name="InsightsDashboardFragment__cancel">ਰੱਦ ਕਰੋ</string>
   <string name="InsightsDashboardFragment__send">ਭੇਜੋ</string>
@@ -1370,6 +1363,7 @@
   <string name="RegistrationActivity_call_me_instead_available_in">ਇਸ ਦੀ ਬਜਾਏ ਮੈਨੂੰ ਕਾਲ ਕਰੋ \n ( ਵਿੱਚ ਉਪਲੱਬਧ %1$02d:%2$02d)</string>
   <string name="RegistrationActivity_contact_signal_support">ਸੰਪਰਕ Signal ਸਹਾਇਤਾ</string>
   <string name="RegistrationActivity_code_support_subject">Signal ਰਜਿਸਟ੍ਰੇਸ਼ਨ - ਐਂਡਰਾਇਡ ਲਈ ਪੁਸ਼ਟੀਕਰਣ ਕੋਡ</string>
+  <string name="RegistrationActivity_code_support_body">ਵਿਸ਼ਾ: Signal ਰਜਿਸਟ੍ਰੇਸ਼ਨ - ਐਂਡਰਾਇਡ ਲਈ ਪੁਸ਼ਟੀਕਰਣ ਕੋਡ \ n ਡਿਵਾਈਸ ਜਾਣਕਾਰੀ: %1$s\nਐਂਡਰਾਇਡ ਵਰਜ਼ਨ: %2$s\nਸਿਗਨਲ ਸੰਸਕਰਣ: %3$s \nਲੋਕੇਲ: %4$s</string>
   <string name="BackupUtil_never">ਕਦੇ ਨਹੀਂ</string>
   <string name="BackupUtil_unknown">ਅਣਜਾਣ</string>
   <string name="preferences_app_protection__screen_lock">ਸਕ੍ਰੀਨ ਲੌਕ</string>

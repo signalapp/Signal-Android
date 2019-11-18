@@ -1306,9 +1306,21 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="trimmer__old_messages_successfully_deleted">A régi üzenetek törlése sikerült</string>
   <!--Insights-->
   <string name="Insights__percent">%</string>
+  <string name="Insights__title">Statisztikák</string>
+  <string name="InsightsDashboardFragment__title">Statisztikák</string>
+  <string name="InsightsDashboardFragment__not_enough_data">Nincs elegendő adat</string>
+  <string name="InsightsDashboardFragment__start_a_conversation">Új beszélgetés indítása…</string>
+  <string name="InsightsDashboardFragment__invite_your_contacts">Kezdj neki a biztonságos kommunikációnak, és hívj meg minél több kontaktot a Signal-ra annak érdekében, hogy hozzáférhess a legújabb funkciókhoz, amelyek túlmutatnak a titkosítatlan SMS üzeneteken!</string>
+  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Ezek a statisztikák a saját eszközödön készültek és csak számodra láthatóak. Soha nem lettek továbbítva sehova.</string>
+  <string name="InsightsDashboardFragment__encrypted_messages">Titkosított üzenetek</string>
   <string name="InsightsDashboardFragment__cancel">Mégse</string>
   <string name="InsightsDashboardFragment__send">Küldés</string>
+  <string name="InsightsModalFragment__title">A statisztikák bemutatása</string>
+  <string name="InsightsModalFragment__description">Tudd meg, hogy hány kimenő üzeneted volt titkosítva, majd hívd meg minél több ismerősödet, hogy megnöveld Signal-százalékodat.</string>
+  <string name="InsightsModalFragment__view_insights">Statisztikák megtekintése</string>
   <string name="FirstInviteReminder__title">Meghívás a Signal-ba</string>
+  <string name="SecondInviteReminder__description">%1$s meghívása</string>
+  <string name="InsightsReminder__view_insights">Statisztikák megtekintése</string>
   <string name="InsightsReminder__invite">Meghívás</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Átvitel ikon</string>

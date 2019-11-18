@@ -617,9 +617,9 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">Det här meddelandet kunde inte behandlas eftersom det skickades från en nyare version av Signal. Du kan be din kontakt att skicka det här meddelandet igen när du har uppdaterat.</string>
   <string name="SmsMessageRecord_error_handling_incoming_message">Fel med att hantera inkommande meddelande</string>
   <!--StickerManagementActivity-->
-  <string name="StickerManagementActivity_stickers">Stickers</string>
+  <string name="StickerManagementActivity_stickers">Klistermärken</string>
   <!--StickerManagementAdapter-->
-  <string name="StickerManagementAdapter_installed_stickers">Installera klistermärken</string>
+  <string name="StickerManagementAdapter_installed_stickers">Installerade klistermärken</string>
   <string name="StickerManagementAdapter_stickers_you_received">Klistermärken du mottagit</string>
   <string name="StickerManagementAdapter_signal_artist_series">Signal Artist Serier</string>
   <string name="StickerManagementAdapter_no_stickers_installed">Inga klistermärken installerade</string>
@@ -733,7 +733,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="NotificationChannel_messages">Standard</string>
   <string name="NotificationChannel_calls">Samtal</string>
   <string name="NotificationChannel_failures">Misslyckanden</string>
-  <string name="NotificationChannel_backups">Säkerhetskopia</string>
+  <string name="NotificationChannel_backups">Säkerhetskopior</string>
   <string name="NotificationChannel_locked_status">Låsstatus</string>
   <string name="NotificationChannel_app_updates">Appuppdateringar</string>
   <string name="NotificationChannel_other">Övrigt</string>
@@ -1278,7 +1278,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="reminder_header_share_title">Bjud in dina vänner!</string>
   <string name="reminder_header_share_text">Ju fler av dina vänner som använder Signal, desto bättre blir det.</string>
   <string name="reminder_header_service_outage_text">Signal upplever tekniska problem. Vi arbetar för fullt för att återställa tjänsten så snabbt som möjligt.</string>
-  <string name="reminder_header_the_latest_signal_features_wont_work">De senaste Signal-funktionerna fungerar inte på den här versionen av Android. Uppgradera denna enhet för att få framtida Signal uppdateringar.</string>
+  <string name="reminder_header_the_latest_signal_features_wont_work">De senaste Signal-funktionerna fungerar inte på den här versionen av Android. Uppgradera denna enhet för att få framtida Signal-uppdateringar.</string>
   <string name="reminder_header_progress">%1$d %%</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Spara</string>
@@ -1299,16 +1299,24 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="Insights__percent">%</string>
   <string name="Insights__title">Statistik</string>
   <string name="InsightsDashboardFragment__title">Statistik</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__youre_just_getting_started">Du har precis kommit igång. Statistik kommer att visas efter att du har skickat några meddelanden.</string> -->
+  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal-protokollet skyddade automatiskt %1$d%% av dina utgående meddelanden under de senaste %2$d dagarna. Konversationer mellan Signal-användare är alltid end-to-end-krypterade.</string>
+  <string name="InsightsDashboardFragment__boost_your_signal">Signal-boost</string>
+  <string name="InsightsDashboardFragment__not_enough_data">Inte tillräckligt med data</string>
+  <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Din statistikprocentsats beräknas utifrån utgående meddelanden inom det förflutna %1$d dagarna som inte har försvunnit eller tagits bort.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Starta en konversation</string>
+  <string name="InsightsDashboardFragment__invite_your_contacts">Börja kommunicera säkert och aktivera nya funktioner som går utöver begränsningarna för okrypterade SMS-meddelanden genom att bjuda in fler kontakter för att gå med Signal.</string>
+  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Denna statistik genererades lokalt på din enhet och kan bara ses av dig. De överförs aldrig någonstans.</string>
   <string name="InsightsDashboardFragment__encrypted_messages">Krypterade meddelanden</string>
   <string name="InsightsDashboardFragment__cancel">Avbryt</string>
   <string name="InsightsDashboardFragment__send">Skicka</string>
   <string name="InsightsModalFragment__title">Introducerar Statistik</string>
-  <string name="InsightsModalFragment__view_insights">Visa Statistik</string>
+  <string name="InsightsModalFragment__description">Ta reda på hur många av dina utgående meddelanden skickades säkert, sedan bjud snabbt in nya kontakter för att öka din Signal-procentsats.</string>
+  <string name="InsightsModalFragment__view_insights">Visa statistik</string>
   <string name="FirstInviteReminder__title">Bjud in till Signal</string>
+  <string name="FirstInviteReminder__description">Du kan öka antalet krypterade meddelanden du skickar med %1$d%%</string>
+  <string name="SecondInviteReminder__title">Boosta Signal</string>
   <string name="SecondInviteReminder__description">Bjud in %1$s</string>
-  <string name="InsightsReminder__view_insights">Visa Statistik</string>
+  <string name="InsightsReminder__view_insights">Visa statistik</string>
   <string name="InsightsReminder__invite">Bjud in</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transportikon</string>
@@ -1326,8 +1334,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Lås upp för att avsluta uppdateringen</string>
   <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Lås upp Signal för att fullborda uppdateringen</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Lösenord för säkerhetskopering</string>
-  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Säkerhetskopieringar sparas till extern lagring och krypteras med lösenordet nedanför. Du måste ange lösenordet för att återställa säkerhetskopian.</string>
-  <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Jag har skrivit ner lösenordet. Utan det kommer jag inte kunna återställa säkerhetskopian.</string>
+  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Säkerhetskopior sparas till extern lagring och krypteras med lösenordet nedanför. Du måste ange lösenordet för att återställa en säkerhetskopia.</string>
+  <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Jag har skrivit ner lösenordet. Utan det kommer jag inte kunna återställa en säkerhetskopia.</string>
   <string name="registration_activity__restore_backup">Återställ säkerhetskopia</string>
   <string name="registration_activity__skip">Hoppa över</string>
   <string name="registration_activity__register">Registrera</string>
@@ -1370,7 +1378,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="AppProtectionPreferenceFragment_none">Inga</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">PIN-koden för registreringslåset är inte samma som den SMS-kod du precis fick. Ange PIN-koden du tidigare ställde in i appen.</string>
   <string name="registration_activity__registration_lock_pin">PIN-kod för registreringslås</string>
-  <string name="registration_activity__forgot_pin">Glömt PIN?</string>
+  <string name="registration_activity__forgot_pin">Glömt PIN-kod?</string>
   <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">PIN-koden kan bestå av fyra eller fler siffror. Om du glömmer din PIN-kod kan du bli utelåst från ditt konto i upp till sju dagar.</string>
   <string name="registration_lock_dialog_view__enter_pin">Ange PIN-kod</string>
   <string name="registration_lock_dialog_view__confirm_pin">Bekräfta PIN-kod</string>

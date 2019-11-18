@@ -1365,11 +1365,8 @@
   <string name="Insights__percent">%</string>
   <string name="Insights__title">Įžvalgos</string>
   <string name="InsightsDashboardFragment__title">Įžvalgos</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__tagline">%1$d%% jūsų per paskutinias 7 dienas išsiųstų žinučių buvo šifruotos ištisiniu pavidalu naudojant Signal protokolą.</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__youre_just_getting_started">Jūs tik pradedate. Įžvalgos bus rodomos po to, kai išsiųsite keletą žinučių.</string> -->
+  <string name="InsightsDashboardFragment__not_enough_data">Trūksta duomenų</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Pradėti pokalbį</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__100_description">Signal išplėstinės privatumą saugančios technologijos automatiškai apsaugojo visas jūsų paskiausias išsiųstas žinutes.</string> -->
-  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Ši statistika buvo sugeneruota jūsų įrenginyje ir ją galite matyti tik jūs. Ji niekada nėra niekur persiunčiama.</string>
   <string name="InsightsDashboardFragment__encrypted_messages">Šifruotos žinutės</string>
   <string name="InsightsDashboardFragment__cancel">Atsisakyti</string>
   <string name="InsightsDashboardFragment__send">Siųsti</string>

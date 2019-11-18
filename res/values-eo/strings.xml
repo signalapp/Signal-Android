@@ -103,7 +103,7 @@
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Vi eble volas kontroli vian sekurigan numeron kun ĉi tiu kontakto.</string>
   <string name="ConfirmIdentityDialog_accept">Akcepti</string>
   <!--ContactsCursorLoader-->
-  <string name="ContactsCursorLoader_recent_chats">Freŝaj interparoloj</string>
+  <string name="ContactsCursorLoader_recent_chats">Lastaj interparoloj</string>
   <string name="ContactsCursorLoader_contacts">Kontaktaro</string>
   <string name="ContactsCursorLoader_groups">Grupoj</string>
   <!--ContactsDatabase-->
@@ -445,7 +445,7 @@
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Ĉiuj aŭvidaĵoj</string>
   <!--MessageRecord-->
-  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Vi ricevis mesaĝon ĉifrita per malnova Signal-a versio, kiu ne plu estas subtenata. Bonvolu peti la sendinton ĝisdatigi al la plej freŝa versio, kaj resendi la mesaĝon.</string>
+  <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Vi ricevis mesaĝon ĉifrita per malnova Signal-a versio, kiu ne plu estas subtenata. Bonvolu peti la sendinton ĝisdatigi al la plej nova versio, kaj resendi la mesaĝon.</string>
   <string name="MessageRecord_left_group">Vi forlasis la grupon.</string>
   <string name="MessageRecord_you_updated_group">Vi ĝisdatigis la grupon.</string>
   <string name="MessageRecord_you_called">Vi telefonis</string>
@@ -1041,7 +1041,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="AndroidManifest__verify_safety_number">Kontroli sekurigan numeron</string>
   <string name="AndroidManifest__log_submit">Sendi sencimigan protokolon</string>
   <string name="AndroidManifest__media_preview">Aŭdvida antaŭrigardo</string>
-  <string name="AndroidManifest__message_details">Mesaĝaj detaloj</string>
+  <string name="AndroidManifest__message_details">Detaloj de la mesaĝo</string>
   <string name="AndroidManifest__linked_devices">Ligitaj aparatoj</string>
   <string name="AndroidManifest__invite_friends">Inviti amikojn</string>
   <string name="AndroidManifest_archived_conversations">Enarĥivigitaj interparoloj</string>
@@ -1186,7 +1186,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="preferences_notifications__priority">Prioritato</string>
   <string name="preferences_communication__category_sealed_sender">Sigelita sendinto</string>
   <string name="preferences_communication__sealed_sender_display_indicators">Montri indikilojn</string>
-  <string name="preferences_communication__sealed_sender_display_indicators_description">Montri stato-piktogramon, kiam vi elektas eron „Detaloj de mesaĝo“ ĉe mesaĝoj, kiu liveriĝis uzante funkcion „sigelita sendinto“.</string>
+  <string name="preferences_communication__sealed_sender_display_indicators_description">Montri stato-piktogramon, kiam vi elektas eron „Detaloj de la mesaĝo“ ĉe mesaĝoj, kiu liveriĝis uzante funkcion „sigelita sendinto“.</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Permesi de iu ajn</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Ebligi la funkcion „sigelita sendinto“ por envenaj mesaĝoj el ne-kontaktoj kaj personoj, kun kiuj vi ne kunhavigis vian profilon.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Scii pli</string>
@@ -1200,7 +1200,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--conversation_callable_secure-->
   <string name="conversation_callable_secure__menu_call">Signal-alvoko</string>
   <!--conversation_context-->
-  <string name="conversation_context__menu_message_details">Detaloj de mesaĝo</string>
+  <string name="conversation_context__menu_message_details">Detaloj de la mesaĝo</string>
   <string name="conversation_context__menu_copy_text">Kopii tekston</string>
   <string name="conversation_context__menu_delete_message">Forviŝi mesaĝon</string>
   <string name="conversation_context__menu_forward_message">Plusendi mesaĝon</string>
@@ -1266,12 +1266,12 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Via Signal-versio estas neĝisdata</string>
   <plurals name="reminder_header_outdated_build_details">
-    <item quantity="one">Via Signal-versio senvalidiĝos post %d tago. Tuŝetu por ĝisdatigi al plej freŝa versio.</item>
-    <item quantity="other">Via Signal-versio senvalidiĝos post %d tagoj. Tuŝetu por ĝisdatigi al plej freŝa versio.</item>
+    <item quantity="one">Via Signal-versio senvalidiĝos post %d tago. Tuŝetu por ĝisdatigi al plej nova versio.</item>
+    <item quantity="other">Via Signal-versio senvalidiĝos post %d tagoj. Tuŝetu por ĝisdatigi al plej nova versio.</item>
   </plurals>
-  <string name="reminder_header_outdated_build_details_today">Via Signal-versio senvalidiĝos hodiaŭ. Tuŝetu por ĝisdatigi al plej freŝa versio.</string>
+  <string name="reminder_header_outdated_build_details_today">Via Signal-versio senvalidiĝos hodiaŭ. Tuŝetu por ĝisdatigi al plej nova versio.</string>
   <string name="reminder_header_expired_build">Via Signal-versio senvalidiĝis!</string>
-  <string name="reminder_header_expired_build_details">Mesaĝoj ne plu sendiĝos sukcese. Tuŝetu por ĝisdatigi al plej freŝa versio.</string>
+  <string name="reminder_header_expired_build_details">Mesaĝoj ne plu sendiĝos sukcese. Tuŝetu por ĝisdatigi al plej nova versio.</string>
   <string name="reminder_header_sms_default_title">Uzi kiel defaŭltan SMS-aplikaĵon</string>
   <string name="reminder_header_sms_default_text">Tuŝetu, por ke Signal estu via defaŭlta SMS-aplikaĵo.</string>
   <string name="reminder_header_sms_import_title">Importi SMS-ojn el la sistemo</string>
@@ -1283,7 +1283,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="reminder_header_share_title">Invitu viajn amikojn!</string>
   <string name="reminder_header_share_text">Ju pli da amikoj uzas Signal-on, des pli bona ĝi estas.</string>
   <string name="reminder_header_service_outage_text">Signal havas kelkajn teĥnikajn problemojn. Ni laboras diligente por revenigi la servon kiel eble plej rapide.</string>
-  <string name="reminder_header_the_latest_signal_features_wont_work">La plej freŝaj trajtoj de Signal ne funkcias ĉe tiu versio de Android. Bv. ĝisdatigi vian aparaton por ricevi venontajn Signal-ĝisdatigojn.</string>
+  <string name="reminder_header_the_latest_signal_features_wont_work">La plej novaj trajtoj de Signal ne funkcias ĉe tiu versio de Android. Bv. ĝisdatigi vian aparaton por ricevi venontajn Signal-ĝisdatigojn.</string>
   <string name="reminder_header_progress">%1$d %%</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Konservi</string>
@@ -1304,15 +1304,13 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="Insights__percent">%</string>
   <string name="Insights__title">Superrigardo</string>
   <string name="InsightsDashboardFragment__title">Superrigardo</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__tagline">%1$d %% el viaj elirintaj mesaĝoj en la lastaj 7 tagoj estis tutvoje ĉifritaj per Signal-protokolo.</string> -->
-  <string name="InsightsDashboardFragment__boost_your_signal">Plibonigu vian Signal-on</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__100_title">Via Signal estas forta</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__no_signal_yet">Neniu Signal-uzo (momente)</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__youre_just_getting_started">Vi ĵus komenciĝis. „Superrigardo“ montriĝos, post kiam vi sendos kelkajn mesaĝojn.</string> -->
+  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">La protokolo de Signal aŭtomate protektis %1$d %% el viaj elirintaj mesaĝoj dum la lastaj %2$d tagoj. Interparoloj inter Signal-uzantoj estas ĉiam tutvoje ĉifritaj.</string>
+  <string name="InsightsDashboardFragment__boost_your_signal">Pligrandigu vian Signal-uzon</string>
+  <string name="InsightsDashboardFragment__not_enough_data">Ne sufiĉe da datumoj</string>
+  <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Via elcento en „Superrigardo“ kalkuliĝas per la elirintaj mesaĝoj, dum la lastaj %1$d tagoj, kiuj ne malaperis aŭ forviŝiĝis.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Krei novan interparolon</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__100_description">La teĥnikoj por protekti la privatecon de Signal ŝirmis ĉiujn viajn lastajn elirantajn mesaĝojn.</string> -->
   <string name="InsightsDashboardFragment__invite_your_contacts">Ekkomunikiĝu sekure pere de novaj funkcioj, kiuj transiras la limojn de nesekuraj SMS-mesaĝoj, invitante pli da kontaktoj uzi Signal-on.</string>
-  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Tiu statistikaĵo generiĝis ĉiaparate kaj videblas nur de vi. Ĝi neniam transiras aliloken.</string>
+  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Tiuj statistikaĵoj generiĝis ĉi-aparate kaj videblas nur de vi. Ili neniam transiras aliloken.</string>
   <string name="InsightsDashboardFragment__encrypted_messages">Ĉifritaj mesaĝoj</string>
   <string name="InsightsDashboardFragment__cancel">Nuligi</string>
   <string name="InsightsDashboardFragment__send">Sendi</string>

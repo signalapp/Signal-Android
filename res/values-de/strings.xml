@@ -75,7 +75,7 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Eingehender Anruf</string>
   <!--CameraActivity-->
-  <string name="CameraActivity_image_save_failure">Speichern des Bildes gescheitert.</string>
+  <string name="CameraActivity_image_save_failure">Bild konnte nicht gespeichert werden.</string>
   <!--CameraXFragment-->
   <string name="CameraXFragment_tap_for_photo_hold_for_video">Für Foto antippen, für Video halten</string>
   <string name="CameraXFragment_capture_description">Aufnehmen</string>
@@ -565,7 +565,7 @@
     <item quantity="other">Du bist jetzt %d Schritte davon entfernt, ein Diagnoseprotokoll zu übermitteln.</item>
   </plurals>
   <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Wir müssen prüfen, ob du ein Mensch bist.</string>
-  <string name="RegistrationActivity_failed_to_verify_the_captcha">Verifikation des Captchas gescheitert</string>
+  <string name="RegistrationActivity_failed_to_verify_the_captcha">Captcha konnte nicht verifiziert werden</string>
   <string name="RegistrationActivity_next">Weiter</string>
   <string name="RegistrationActivity_continue">Weiter</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Nimm Privatsphäre mit dir.\nSei du selbst in jeder Nachricht.</string>
@@ -581,7 +581,7 @@
   <string name="RevealableMessageView_viewed">Angesehen</string>
   <string name="RevealableMessageView_outgoing_media">Medieninhalte</string>
   <!--ScribbleActivity-->
-  <string name="ScribbleActivity_save_failure">Speichern von Bildänderungen gescheitert</string>
+  <string name="ScribbleActivity_save_failure">Bildänderungen konnten nicht gespeichert werden</string>
   <!--Search-->
   <string name="SearchFragment_no_results">Keine Ergebnisse für »%s« gefunden</string>
   <string name="SearchFragment_header_conversations">Unterhaltungen</string>
@@ -709,7 +709,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="MessageNotifier_locked_message">Gesperrte Nachricht</string>
   <string name="MessageNotifier_media_message_with_text">Nachricht mit Medieninhalten: %s</string>
   <string name="MessageNotifier_message_delivery_failed">Nachrichtenübermittlung gescheitert.</string>
-  <string name="MessageNotifier_failed_to_deliver_message">Nachrichtenübermittlung gescheitert.</string>
+  <string name="MessageNotifier_failed_to_deliver_message">Nachricht konnte nicht übermittelt werden.</string>
   <string name="MessageNotifier_error_delivering_message">Fehler beim Zustellen der Nachricht</string>
   <string name="MessageNotifier_mark_all_as_read">Alle gelesen</string>
   <string name="MessageNotifier_mark_read">Gelesen</string>
@@ -1294,15 +1294,13 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="Insights__percent"> %</string>
   <string name="Insights__title">Einblicke</string>
   <string name="InsightsDashboardFragment__title">Einblicke</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__tagline">%1$d%% deiner ausgehenden Nachrichten der letzten 7 Tage waren mit dem Signal Protocol Ende-zu-Ende-verschlüsselt.</string> -->
-  <string name="InsightsDashboardFragment__boost_your_signal">Verstärke dein Signal</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__100_title">Das Signal ist stark in dir</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__no_signal_yet">Kein Signal (bisher)</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__youre_just_getting_started">Du machst gerade deine ersten Schritte. Einblicke werden angezeigt, sobald du einige Nachrichten versendest.</string> -->
+  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol hat automatisch %1$d%% deiner ausgehenden Nachrichten der letzten %2$d Tage geschützt. Unterhaltungen zwischen Signal-Benutzern werden immer Ende-zu-Ende-verschlüsselt.</string>
+  <string name="InsightsDashboardFragment__boost_your_signal">Signal-Boost</string>
+  <string name="InsightsDashboardFragment__not_enough_data">Zu wenige Daten</string>
+  <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Dein »Einblicke«-Prozentwert wird berechnet anhand aller ausgehender Nachrichten der letzten %1$d Tage, die nicht verschwunden sind oder gelöscht wurden.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Beginne eine Unterhaltung</string>
-  <!-- Removed by excludeNonTranslatables <string name="InsightsDashboardFragment__100_description">Signals fortschrittliche Datenschutztechnologie hat alle deine kürzlich versendeten Nachrichten automatisch geschützt.</string> -->
-  <string name="InsightsDashboardFragment__invite_your_contacts">Kommuniziere von jetzt an sicher und ermögliche neue Funktionen, die über die Einschränkungen unverschlüsselter SMS hinausgehen, indem du mehr Kontakte dazu einlädst, Signal zu verwenden.</string>
-  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Diese Statistik wurde lokal auf deinem Gerät erstellt und kann nur durch dich eingesehen werden. Sie wird niemals an jemand anderen übertragen.</string>
+  <string name="InsightsDashboardFragment__invite_your_contacts">Kommuniziere von jetzt an sicher, indem du mehr Kontakte dazu einlädst, Signal zu verwenden. Dies ermöglicht neue Funktionen, die über die Einschränkungen unverschlüsselter SMS hinausgehen.</string>
+  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Diese Statistiken wurde lokal auf deinem Gerät erstellt und kann nur durch dich eingesehen werden. Sie wird niemals an jemand anderen übertragen.</string>
   <string name="InsightsDashboardFragment__encrypted_messages">Verschlüsselte Nachrichten</string>
   <string name="InsightsDashboardFragment__cancel">Abbrechen</string>
   <string name="InsightsDashboardFragment__send">Senden</string>
