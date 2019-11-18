@@ -55,8 +55,6 @@ import android.widget.Toast;
 import android.widget.ViewSwitcher;
 
 import com.annimon.stream.Stream;
-import com.annimon.stream.operator.LongArray;
-import com.google.common.primitives.Longs;
 
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.MessageDetailsActivity;
@@ -103,7 +101,6 @@ import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.internal.util.concurrent.SettableFuture;
 import org.whispersystems.signalservice.loki.api.LokiPublicChat;
 import org.whispersystems.signalservice.loki.api.LokiPublicChatAPI;
 
@@ -115,10 +112,8 @@ import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
-import java.util.Objects;
 import java.util.Set;
 
-import kotlin.Unit;
 import network.loki.messenger.R;
 
 @SuppressLint("StaticFieldLeak")
@@ -412,13 +407,15 @@ public class ConversationFragment extends Fragment
       LokiPublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(getContext()).getPublicChat(threadId);
       boolean isPublicChat = publicChat != null;
       int selectedMessageCount = messageRecords.size();
-      boolean isSentByUser = ((MessageRecord)messageRecords.toArray()[0]).isOutgoing();
-      menu.findItem(R.id.menu_context_copy_public_key).setVisible(isPublicChat && selectedMessageCount == 1 && !isSentByUser);
+      boolean areAllSentByUser = true;
+      for (MessageRecord message : messageRecords) {
+        if (!message.isOutgoing()) { areAllSentByUser = false; }
+      }
+      menu.findItem(R.id.menu_context_copy_public_key).setVisible(isPublicChat && selectedMessageCount == 1 && !areAllSentByUser);
       menu.findItem(R.id.menu_context_reply).setVisible(isPublicChat && selectedMessageCount == 1);
       String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(getContext());
       boolean userCanModerate = isPublicChat && LokiPublicChatAPI.Companion.isUserModerator(userHexEncodedPublicKey, publicChat.getChannel(), publicChat.getServer());
-//      boolean isDeleteOptionVisible = isPublicChat && selectedMessageCount == 1 && (isSentByUser || userCanModerate);
-      boolean isDeleteOptionVisible = isPublicChat && (isSentByUser || userCanModerate);
+      boolean isDeleteOptionVisible = isPublicChat && (areAllSentByUser || userCanModerate);
       menu.findItem(R.id.menu_context_delete_message).setVisible(isDeleteOptionVisible);
     } else {
       menu.findItem(R.id.menu_context_copy_public_key).setVisible(false);
@@ -534,8 +531,7 @@ public class ConversationFragment extends Fragment
               Long serverID = DatabaseFactory.getLokiMessageDatabase(getContext()).getServerID(messageRecord.id);
               if (serverID != null) {
                 serverIDs.add(serverID);
-              }
-              else {
+              } else {
                 ignoredMessages.add(messageRecord.getId());
               }
             }
@@ -551,8 +547,7 @@ public class ConversationFragment extends Fragment
                     } else {
                       DatabaseFactory.getSmsDatabase(getActivity()).deleteMessage(messageRecord.getId());
                     }
-                  }
-                  else if (!ignoredMessages.contains(serverID)) {
+                  } else if (!ignoredMessages.contains(serverID)) {
                     failedMessages.add(messageRecord.getId());
                     Log.d("Loki", "Failed to delete message: " + messageRecord.getId() + ".");
                   }
@@ -563,7 +558,6 @@ public class ConversationFragment extends Fragment
                 return null;
               });
             }
-
             return null;
           }
         }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, messageRecords.toArray(new MessageRecord[messageRecords.size()]));
