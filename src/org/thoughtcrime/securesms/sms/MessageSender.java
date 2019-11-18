@@ -17,9 +17,7 @@
 package org.thoughtcrime.securesms.sms;
 
 import android.content.Context;
-import android.os.AsyncTask;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.attachments.Attachment;
@@ -58,13 +56,9 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.libsignal.state.PreKeyBundle;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
-import org.whispersystems.signalservice.api.SignalServiceMessageSender;
-import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.push.ContactTokenDetails;
-import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.loki.api.LokiStorageAPI;
 import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus;
 import org.whispersystems.signalservice.loki.utilities.PromiseUtil;
@@ -75,8 +69,6 @@ import java.util.List;
 import java.util.Map;
 
 import kotlin.Unit;
-import nl.komponents.kovenant.Kovenant;
-import nl.komponents.kovenant.Promise;
 
 public class MessageSender {
 
@@ -118,7 +110,7 @@ public class MessageSender {
           if (friendRequestStatus == LokiThreadFriendRequestStatus.FRIENDS || friendRequestStatus == LokiThreadFriendRequestStatus.REQUEST_RECEIVED) {
             sendBackgroundMessage(context, device);
           } else if (friendRequestStatus == LokiThreadFriendRequestStatus.NONE || friendRequestStatus == LokiThreadFriendRequestStatus.REQUEST_EXPIRED) {
-            sendBackgroundFriendRequest(context, device, "Accept this friend request to enable messages to be synced across devices");
+            sendBackgroundFriendRequest(context, device, "Please accept to enable messages to be synced across devices");
           }
         }
       });
@@ -338,7 +330,7 @@ public class MessageSender {
             // Send friend requests to non friends. If the user is friends with any
             // of the devices then send out a default friend request message.
             boolean isFriendsWithAny = (friendCount > 0);
-            String defaultFriendRequestMessage = isFriendsWithAny ? "Accept this friend request to enable messages to be synced across devices" : null;
+            String defaultFriendRequestMessage = isFriendsWithAny ? "Please accept to enable messages to be synced across devices" : null;
             if (type == MessageType.MEDIA) {
               jobs.add(new PushMediaSendJob(messageId, messageIDToUse, address, true, defaultFriendRequestMessage, false));
             } else {

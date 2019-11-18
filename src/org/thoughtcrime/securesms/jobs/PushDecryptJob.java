@@ -670,7 +670,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
           long threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
           LokiThreadFriendRequestStatus status = DatabaseFactory.getLokiThreadDatabase(context).getFriendRequestStatus(threadId);
           if (status == LokiThreadFriendRequestStatus.NONE || status == LokiThreadFriendRequestStatus.REQUEST_EXPIRED) {
-            MessageSender.sendBackgroundFriendRequest(context, pubKey, "Accept this friend request to enable messages to be synced across devices");
+            MessageSender.sendBackgroundFriendRequest(context, pubKey, "Please accept to enable messages to be synced across devices");
             Log.d("Loki", "Sent friend request to " + pubKey);
           } else if (status == LokiThreadFriendRequestStatus.REQUEST_RECEIVED) {
             // Accept the incoming friend request
