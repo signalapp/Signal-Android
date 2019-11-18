@@ -109,7 +109,7 @@ public class AvatarImageView extends AppCompatImageView {
 
   public void update(String hexEncodedPublicKey) {
     Address address = Address.fromSerialized(hexEncodedPublicKey);
-    if (!address.equals(recipient.getAddress())) {
+    if (recipient == null || !address.equals(recipient.getAddress())) {
       this.recipient = Recipient.from(getContext(), address, false);
       updateImage();
     }
