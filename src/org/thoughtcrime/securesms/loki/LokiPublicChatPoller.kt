@@ -22,7 +22,6 @@ import org.whispersystems.signalservice.loki.api.LokiPublicChat
 import org.whispersystems.signalservice.loki.api.LokiPublicChatAPI
 import org.whispersystems.signalservice.loki.api.LokiPublicChatMessage
 import org.whispersystems.signalservice.loki.api.LokiStorageAPI
-import org.whispersystems.signalservice.loki.utilities.get
 import org.whispersystems.signalservice.loki.utilities.successBackground
 import java.util.*
 
@@ -81,7 +80,7 @@ class LokiPublicChatPoller(private val context: Context, private val group: Loki
         private val pollForNewMessagesInterval: Long = 4 * 1000
         private val pollForDeletedMessagesInterval: Long = 20 * 1000
         private val pollForModeratorsInterval: Long = 10 * 60 * 1000
-        private val pollForDisplayNamesInterval: Long = 1 * 60 * 1000
+        private val pollForDisplayNamesInterval: Long = 60 * 1000
     }
     // endregion
 
@@ -181,17 +180,16 @@ class LokiPublicChatPoller(private val context: Context, private val group: Loki
                 PushDecryptJob(context).handleSynchronizeSentTextMessage(transcript)
             }
         }
-
-        var ourDevices = setOf<String>()
+        var userDevices = setOf<String>()
         var uniqueDevices = setOf<String>()
         LokiStorageAPI.shared.getAllDevicePublicKeys(userHexEncodedPublicKey).bind { devices ->
-            ourDevices = devices
+            userDevices = devices
             api.getMessages(group.channel, group.server)
         }.bind { messages ->
             if (messages.isNotEmpty()) {
                 // We need to fetch device mappings for all the devices we don't have
                 uniqueDevices = messages.map { it.hexEncodedPublicKey }.toSet()
-                val devicesToUpdate = uniqueDevices.filter { !ourDevices.contains(it) && LokiStorageAPI.shared.hasCacheExpired(it) }
+                val devicesToUpdate = uniqueDevices.filter { !userDevices.contains(it) && LokiStorageAPI.shared.hasCacheExpired(it) }
                 if (devicesToUpdate.isNotEmpty()) {
                     return@bind LokiStorageAPI.shared.getDeviceMappings(devicesToUpdate.toSet()).then { messages }
                 }
@@ -205,14 +203,13 @@ class LokiPublicChatPoller(private val context: Context, private val group: Loki
                 val primaryDevice = LokiStorageAPI.shared.getPrimaryDevicePublicKey(it).get()
                 primaryDevice
             }.toSet()
-
             // Fetch the display names of the primary devices
             displayNameUpdatees = displayNameUpdatees.union(newDisplayNameUpdatees)
         }.success { messages ->
             // Process messages in the background
             messages.forEach { message ->
                 AsyncTask.execute {
-                    if (ourDevices.contains(message.hexEncodedPublicKey)) {
+                    if (userDevices.contains(message.hexEncodedPublicKey)) {
                         processOutgoingMessage(message)
                     } else {
                         processIncomingMessage(message)
@@ -226,18 +223,15 @@ class LokiPublicChatPoller(private val context: Context, private val group: Loki
 
     private fun pollForDisplayNames() {
         if (displayNameUpdatees.isEmpty()) { return }
-
-        val devices = displayNameUpdatees
+        val hexEncodedPublicKeys = displayNameUpdatees
         displayNameUpdatees = setOf()
-
-        api.getDisplayNames(devices, group.server).successBackground { mapping ->
+        api.getDisplayNames(hexEncodedPublicKeys, group.server).successBackground { mapping ->
             for (pair in mapping.entries) {
                 val senderDisplayName = "${pair.value} (...${pair.key.takeLast(8)})"
                 DatabaseFactory.getLokiUserDatabase(context).setServerDisplayName(group.id, pair.key, senderDisplayName)
             }
         }.fail {
-            // Retry next time
-            displayNameUpdatees = displayNameUpdatees.union(devices)
+            displayNameUpdatees = displayNameUpdatees.union(hexEncodedPublicKeys)
         }
     }
 
