@@ -1,8 +1,12 @@
 package org.thoughtcrime.securesms.loki
 
 import android.content.Context
+import android.os.AsyncTask
 import android.os.Handler
 import android.util.Log
+import nl.komponents.kovenant.Promise
+import nl.komponents.kovenant.functional.bind
+import nl.komponents.kovenant.then
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.jobs.PushDecryptJob
@@ -178,46 +182,42 @@ class LokiPublicChatPoller(private val context: Context, private val group: Loki
             }
         }
 
-        api.getMessages(group.channel, group.server).successBackground { messages ->
+        var ourDevices = setOf<String>()
+        var uniqueDevices = setOf<String>()
+        LokiStorageAPI.shared.getAllDevicePublicKeys(userHexEncodedPublicKey).bind { devices ->
+            ourDevices = devices
+            api.getMessages(group.channel, group.server)
+        }.bind { messages ->
             if (messages.isNotEmpty()) {
-                val ourDevices = LokiStorageAPI.shared.getAllDevicePublicKeys(userHexEncodedPublicKey).get(setOf())
-                val uniqueDevices = messages.map { it.hexEncodedPublicKey }.toSet()
-                val devicesToUpdate = uniqueDevices.filter { !ourDevices.contains(it) && LokiStorageAPI.shared.hasCacheExpired(it) }
-
-                fun proceed() {
-                    // Get the set of primary device pubKeys FROM the secondary devices in uniqueDevices
-                    val newDisplayNameUpdatees = uniqueDevices.mapNotNull {
-                        // This will return null if current device is primary
-                        // So if it's non-null then we know the device is a secondary device
-                        val primaryDevice = LokiStorageAPI.shared.getPrimaryDevicePublicKey(it).get()
-                        primaryDevice
-                    }.toSet()
-
-                    // Fetch the display names of the primary devices
-                    displayNameUpdatees = displayNameUpdatees.union(newDisplayNameUpdatees)
-
-                    // Process messages in the background
-                    messages.forEach { message ->
-                        if (ourDevices.contains(message.hexEncodedPublicKey)) {
-                            processOutgoingMessage(message)
-                        } else {
-                            processIncomingMessage(message)
-                        }
-                    }
-                }
-
                 // We need to fetch device mappings for all the devices we don't have
-                if (devicesToUpdate.isEmpty()) {
-                    proceed()
-                } else {
-                    // Fetch the device mappings first
-                    try {
-                        LokiStorageAPI.shared.getDeviceMappings(devicesToUpdate.toSet()).get()
-                    } finally {
-                        proceed()
+                uniqueDevices = messages.map { it.hexEncodedPublicKey }.toSet()
+                val devicesToUpdate = uniqueDevices.filter { !ourDevices.contains(it) && LokiStorageAPI.shared.hasCacheExpired(it) }
+                if (devicesToUpdate.isNotEmpty()) {
+                    return@bind LokiStorageAPI.shared.getDeviceMappings(devicesToUpdate.toSet()).then { messages }
+                }
+            }
+            Promise.of(messages)
+        }.successBackground {
+            // Get the set of primary device pubKeys FROM the secondary devices in uniqueDevices
+            val newDisplayNameUpdatees = uniqueDevices.mapNotNull {
+                // This will return null if current device is primary
+                // So if it's non-null then we know the device is a secondary device
+                val primaryDevice = LokiStorageAPI.shared.getPrimaryDevicePublicKey(it).get()
+                primaryDevice
+            }.toSet()
+
+            // Fetch the display names of the primary devices
+            displayNameUpdatees = displayNameUpdatees.union(newDisplayNameUpdatees)
+        }.success { messages ->
+            // Process messages in the background
+            messages.forEach { message ->
+                AsyncTask.execute {
+                    if (ourDevices.contains(message.hexEncodedPublicKey)) {
+                        processOutgoingMessage(message)
+                    } else {
+                        processIncomingMessage(message)
                     }
                 }
-
             }
         }.fail {
             Log.d("Loki", "Failed to get messages for group chat with ID: ${group.channel} on server: ${group.server}.")
