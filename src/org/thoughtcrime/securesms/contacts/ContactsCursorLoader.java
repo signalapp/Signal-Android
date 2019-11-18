@@ -187,6 +187,8 @@ public class ContactsCursorLoader extends CursorLoader {
     ContactsDatabase contactsDatabase = DatabaseFactory.getContactsDatabase(getContext());
     List<Cursor>     cursorList       = new ArrayList<>(2);
 
+    return cursorList;
+    /*
     if (!Permissions.hasAny(getContext(), Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS)) {
       return cursorList;
     }
@@ -201,6 +203,7 @@ public class ContactsCursorLoader extends CursorLoader {
       cursorList.add(filterNonPushContacts(contactsDatabase.querySystemContacts(filter)));
     }
     return cursorList;
+     */
   }
 
   private Cursor getGroupsCursor() {

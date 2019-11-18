@@ -1265,7 +1265,7 @@ public class ClassicOpenHelper extends SQLiteOpenHelper {
       db.execSQL("ALTER TABLE recipient_preferences ADD COLUMN system_contact_photo TEXT DEFAULT NULL");
       db.execSQL("ALTER TABLE recipient_preferences ADD COLUMN system_phone_label TEXT DEFAULT NULL");
       db.execSQL("ALTER TABLE recipient_preferences ADD COLUMN system_contact_uri TEXT DEFAULT NULL");
-
+      /*
       if (Permissions.hasAny(context, Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS)) {
         try (Cursor cursor = db.query("recipient_preferences", null, null, null, null, null, null)) {
           while (cursor != null && cursor.moveToNext()) {
@@ -1295,6 +1295,7 @@ public class ClassicOpenHelper extends SQLiteOpenHelper {
           }
         }
       }
+       */
     }
 
     db.setTransactionSuccessful();

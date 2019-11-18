@@ -144,6 +144,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
   private void initializeSearchListener() {
     searchAction.setOnClickListener(v -> {
+      /* Loki - We don't need contact permissions
       Permissions.with(this)
                  .request(Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS)
                  .ifNecessary()
@@ -151,6 +152,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
                                                            searchAction.getY() + (searchAction.getHeight() / 2)))
                  .withPermanentDenialDialog(getString(R.string.ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied))
                  .execute();
+       */
     });
 
     searchToolbar.setListener(new SearchToolbar.SearchListener() {
