@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.loki
 
 import android.content.Context
-import android.os.AsyncTask
 import android.os.Handler
 import android.util.Log
 import nl.komponents.kovenant.Promise
@@ -11,7 +10,6 @@ import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.jobs.PushDecryptJob
 import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.libsignal.util.guava.Optional
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer
 import org.whispersystems.signalservice.api.messages.SignalServiceContent
@@ -160,12 +158,10 @@ class LokiPublicChatPoller(private val context: Context, private val group: Loki
             val senderPublicKey = primaryDevice ?: message.hexEncodedPublicKey
             val serviceDataMessage = getDataMessage(message)
             val serviceContent = SignalServiceContent(serviceDataMessage, senderPublicKey, SignalServiceAddress.DEFAULT_DEVICE_ID, message.timestamp, false)
-            Util.runOnMain {
-                if (serviceDataMessage.quote.isPresent || (serviceDataMessage.attachments.isPresent && serviceDataMessage.attachments.get().size > 0) || serviceDataMessage.previews.isPresent) {
-                    PushDecryptJob(context).handleMediaMessage(serviceContent, serviceDataMessage, Optional.absent(), Optional.of(message.serverID))
-                } else {
-                    PushDecryptJob(context).handleTextMessage(serviceContent, serviceDataMessage, Optional.absent(), Optional.of(message.serverID))
-                }
+            if (serviceDataMessage.quote.isPresent || (serviceDataMessage.attachments.isPresent && serviceDataMessage.attachments.get().size > 0) || serviceDataMessage.previews.isPresent) {
+                PushDecryptJob(context).handleMediaMessage(serviceContent, serviceDataMessage, Optional.absent(), Optional.of(message.serverID))
+            } else {
+                PushDecryptJob(context).handleTextMessage(serviceContent, serviceDataMessage, Optional.absent(), Optional.of(message.serverID))
             }
         }
         fun processOutgoingMessage(message: LokiPublicChatMessage) {
@@ -177,12 +173,10 @@ class LokiPublicChatPoller(private val context: Context, private val group: Loki
             val dataMessage = getDataMessage(message)
             val transcript = SentTranscriptMessage(localNumber, dataMessage.timestamp, dataMessage, dataMessage.expiresInSeconds.toLong(), Collections.singletonMap(localNumber, false))
             transcript.messageServerID = messageServerID
-            Util.runOnMain {
-                if (dataMessage.quote.isPresent || (dataMessage.attachments.isPresent && dataMessage.attachments.get().size > 0) || dataMessage.previews.isPresent) {
-                    PushDecryptJob(context).handleSynchronizeSentMediaMessage(transcript)
-                } else {
-                    PushDecryptJob(context).handleSynchronizeSentTextMessage(transcript)
-                }
+            if (dataMessage.quote.isPresent || (dataMessage.attachments.isPresent && dataMessage.attachments.get().size > 0) || dataMessage.previews.isPresent) {
+                PushDecryptJob(context).handleSynchronizeSentMediaMessage(transcript)
+            } else {
+                PushDecryptJob(context).handleSynchronizeSentTextMessage(transcript)
             }
         }
         var userDevices = setOf<String>()
@@ -213,12 +207,10 @@ class LokiPublicChatPoller(private val context: Context, private val group: Loki
         }.success { messages ->
             // Process messages in the background
             messages.forEach { message ->
-                AsyncTask.execute {
-                    if (userDevices.contains(message.hexEncodedPublicKey)) {
-                        processOutgoingMessage(message)
-                    } else {
-                        processIncomingMessage(message)
-                    }
+                if (userDevices.contains(message.hexEncodedPublicKey)) {
+                    processOutgoingMessage(message)
+                } else {
+                    processIncomingMessage(message)
                 }
             }
         }.fail {
