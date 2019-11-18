@@ -1116,7 +1116,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     storageAPI.updateUserDeviceMappings();
     // Update display names
     if (content.senderDisplayName.isPresent() && content.senderDisplayName.get().length() > 0) {
-        setDisplayName(envelope.getSource(), content.senderDisplayName.get());
+        TextSecurePreferences.setProfileName(context, content.senderDisplayName.get());
     }
 
     // Contact sync
