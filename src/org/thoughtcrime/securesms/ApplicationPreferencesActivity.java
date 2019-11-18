@@ -42,6 +42,7 @@ import android.widget.Toast;
 
 import org.jetbrains.annotations.NotNull;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.loki.DeviceLinkingDialog;
 import org.thoughtcrime.securesms.loki.DeviceLinkingDialogDelegate;
 import org.thoughtcrime.securesms.loki.DeviceLinkingView;
@@ -192,9 +193,19 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
         .setOnPreferenceClickListener(new CategoryClickListener(getContext(), PREFERENCE_CATEGORY_QR_CODE));
 
       Preference linkDevicePreference = this.findPreference(PREFERENCE_CATEGORY_LINK_DEVICE);
-      // Hide if this is a slave device
-      linkDevicePreference.setVisible(isMasterDevice);
       linkDevicePreference.setOnPreferenceClickListener(new CategoryClickListener(getContext(), PREFERENCE_CATEGORY_LINK_DEVICE));
+
+      // Disable if we hit the cap of 1 linked device
+      if (isMasterDevice) {
+        Context context = getContext();
+        String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context);
+        boolean isDeviceLinkingEnabled = DatabaseFactory.getLokiAPIDatabase(context).getPairingAuthorisations(userHexEncodedPublicKey).size() <= 1;
+        linkDevicePreference.setEnabled(isDeviceLinkingEnabled);
+        linkDevicePreference.getIcon().setAlpha(isDeviceLinkingEnabled ? 255 : 124);
+      } else {
+        // Hide if this is a slave device
+        linkDevicePreference.setVisible(false);
+      }
 
       Preference seedPreference = this.findPreference(PREFERENCE_CATEGORY_SEED);
       // Hide if this is a slave device
