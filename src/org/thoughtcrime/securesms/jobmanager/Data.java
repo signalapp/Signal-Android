@@ -24,6 +24,7 @@ public class Data {
   @JsonProperty private final Map<String, double[]>  doubleArrays;
   @JsonProperty private final Map<String, Boolean>   booleans;
   @JsonProperty private final Map<String, boolean[]> booleanArrays;
+  @JsonProperty private final Map<String, byte[]>    byteArrays;
 
   public Data(@JsonProperty("strings")       @NonNull Map<String, String>    strings,
               @JsonProperty("stringArrays")  @NonNull Map<String, String[]>  stringArrays,
@@ -36,7 +37,8 @@ public class Data {
               @JsonProperty("doubles")       @NonNull Map<String, Double>    doubles,
               @JsonProperty("doubleArrays")  @NonNull Map<String, double[]>  doubleArrays,
               @JsonProperty("booleans")      @NonNull Map<String, Boolean>   booleans,
-              @JsonProperty("booleanArrays") @NonNull Map<String, boolean[]> booleanArrays)
+              @JsonProperty("booleanArrays") @NonNull Map<String, boolean[]> booleanArrays,
+              @JsonProperty("byteArrays")    @NonNull Map<String, byte[]>    byteArrays)
   {
     this.strings       = strings;
     this.stringArrays  = stringArrays;
@@ -50,6 +52,7 @@ public class Data {
     this.doubleArrays  = doubleArrays;
     this.booleans      = booleans;
     this.booleanArrays = booleanArrays;
+    this.byteArrays    = byteArrays;
   }
 
   public boolean hasString(@NonNull String key) {
@@ -201,6 +204,14 @@ public class Data {
     return booleanArrays.get(key);
   }
 
+  public boolean hasByteArray(@NonNull String key) {
+    return byteArrays.containsKey(key);
+  }
+
+  public byte[] getByteArray(@NonNull String key) {
+    throwIfAbsent(byteArrays, key);
+    return byteArrays.get(key);
+  }
 
   private void throwIfAbsent(@NonNull Map map, @NonNull String key) {
     if (!map.containsKey(key)) {
@@ -223,6 +234,7 @@ public class Data {
     private final Map<String, double[]>  doubleArrays  = new HashMap<>();
     private final Map<String, Boolean>   booleans      = new HashMap<>();
     private final Map<String, boolean[]> booleanArrays = new HashMap<>();
+    private final Map<String, byte[]>    byteArrays    = new HashMap<>();
 
     public Builder putString(@NonNull String key, @Nullable String value) {
       strings.put(key, value);
@@ -284,6 +296,11 @@ public class Data {
       return this;
     }
 
+    public Builder putByteArray(@NonNull String key, @NonNull byte[] value) {
+      byteArrays.put(key, value);
+      return this;
+    }
+
     public Data build() {
       return new Data(strings,
                       stringArrays,
@@ -296,7 +313,8 @@ public class Data {
                       doubles,
                       doubleArrays,
                       booleans,
-                      booleanArrays);
+                      booleanArrays,
+                      byteArrays);
     }
   }
 

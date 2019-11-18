@@ -68,8 +68,9 @@ class NewConversationActivity : PassphraseRequiredActionBarActivity(), ScanListe
     fun startNewConversationIfPossible(hexEncodedPublicKey: String) {
         if (!PublicKeyValidation.isValid(hexEncodedPublicKey)) { return Toast.makeText(this, R.string.fragment_new_conversation_invalid_public_key_message, Toast.LENGTH_SHORT).show() }
         val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this)
-        if (hexEncodedPublicKey == userHexEncodedPublicKey) { return Toast.makeText(this, R.string.fragment_new_conversation_note_to_self_not_supported_message, Toast.LENGTH_SHORT).show() }
-        val contact = Recipient.from(this, Address.fromSerialized(hexEncodedPublicKey), true)
+        // If we try to contact our master device then redirect to note to self
+        val contactPublicKey = if (TextSecurePreferences.getMasterHexEncodedPublicKey(this) == hexEncodedPublicKey) userHexEncodedPublicKey else hexEncodedPublicKey
+        val contact = Recipient.from(this, Address.fromSerialized(contactPublicKey), true)
         val intent = Intent(this, ConversationActivity::class.java)
         intent.putExtra(ConversationActivity.ADDRESS_EXTRA, contact.address)
         intent.putExtra(ConversationActivity.TEXT_EXTRA, getIntent().getStringExtra(ConversationActivity.TEXT_EXTRA))

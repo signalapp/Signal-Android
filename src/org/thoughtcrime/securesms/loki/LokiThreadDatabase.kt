@@ -41,6 +41,8 @@ class LokiThreadDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
     }
 
     fun getFriendRequestStatus(threadID: Long): LokiThreadFriendRequestStatus {
+        if (threadID < 0) { return LokiThreadFriendRequestStatus.NONE }
+
         val database = databaseHelper.readableDatabase
         val result = database.get(friendRequestTableName, "${Companion.threadID} = ?", arrayOf( threadID.toString() )) { cursor ->
             cursor.getInt(friendRequestStatus)
@@ -53,6 +55,8 @@ class LokiThreadDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
     }
 
     override fun setFriendRequestStatus(threadID: Long, friendRequestStatus: LokiThreadFriendRequestStatus) {
+        if (threadID < 0) { return }
+
         val database = databaseHelper.writableDatabase
         val contentValues = ContentValues(2)
         contentValues.put(Companion.threadID, threadID)

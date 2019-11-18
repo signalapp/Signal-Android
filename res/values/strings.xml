@@ -1572,6 +1572,7 @@
     <!-- Conversation list activity -->
     <string name="activity_conversation_list_empty_state_message">Looks like you don\'t have any conversations yet. Get started by messaging a friend.</string>
     <!-- Settings activity -->
+    <string name="activity_settings_secondary_device_tag">Secondary device</string>
     <string name="activity_settings_public_key_copied_message">Copied to clipboard</string>
     <string name="activity_settings_share_public_key_button_title">Share Public Key</string>
     <string name="activity_settings_show_qr_code_button_title">Show QR Code</string>

@@ -107,8 +107,9 @@ public class AvatarImageView extends AppCompatImageView {
     if (w == 0 || h == 0 || recipient == null) { return; }
 
     Drawable image;
+    Context context = this.getContext();
     if (recipient.isGroupRecipient()) {
-      Context context = this.getContext();
+
 
       String name = Optional.fromNullable(recipient.getName()).or(Optional.fromNullable(TextSecurePreferences.getProfileName(context))).or("");
       MaterialColor fallbackColor = recipient.getColor();
@@ -119,7 +120,12 @@ public class AvatarImageView extends AppCompatImageView {
 
       image = new GeneratedContactPhoto(name, R.drawable.ic_profile_default).asDrawable(context, fallbackColor.toAvatarColor(context));
     } else {
-      image = new JazzIdenticonDrawable(w, h, recipient.getAddress().serialize().toLowerCase());
+      // Default to primary device image
+      String ourPublicKey = TextSecurePreferences.getLocalNumber(context);
+      String ourPrimaryDevice = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
+      String recipientAddress = recipient.getAddress().serialize();
+      String profileAddress = (ourPrimaryDevice != null && ourPublicKey.equals(recipientAddress)) ? ourPrimaryDevice : recipientAddress;
+      image = new JazzIdenticonDrawable(w, h, profileAddress.toLowerCase());
     }
     setImageDrawable(image);
   }

@@ -47,8 +47,9 @@ import org.thoughtcrime.securesms.jobs.StickerPackDownloadJob;
 import org.thoughtcrime.securesms.jobs.TypingSendJob;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.loki.PushMessageSyncSendJob;
 import org.thoughtcrime.securesms.preferences.AppProtectionPreferenceFragment;
-import org.thoughtcrime.securesms.push.SecurityEventListener;
+import org.thoughtcrime.securesms.push.MessageSenderEventListener;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.service.IncomingMessageObserver;
 import org.thoughtcrime.securesms.service.WebRtcCallService;
@@ -112,7 +113,8 @@ import network.loki.messenger.BuildConfig;
                                      StickerPackDownloadJob.class,
                                      MultiDeviceStickerPackOperationJob.class,
                                      MultiDeviceStickerPackSyncJob.class,
-                                     LinkPreviewRepository.class})
+                                     LinkPreviewRepository.class,
+                                     PushMessageSyncSendJob.class})
 
 public class SignalCommunicationModule {
 
@@ -151,7 +153,7 @@ public class SignalCommunicationModule {
                                                           TextSecurePreferences.isMultiDevice(context),
                                                           Optional.fromNullable(IncomingMessageObserver.getPipe()),
                                                           Optional.fromNullable(IncomingMessageObserver.getUnidentifiedPipe()),
-                                                          Optional.of(new SecurityEventListener(context)),
+                                                          Optional.of(new MessageSenderEventListener(context)),
                                                           TextSecurePreferences.getLocalNumber(context),
                                                           DatabaseFactory.getLokiAPIDatabase(context),
                                                           DatabaseFactory.getLokiThreadDatabase(context),

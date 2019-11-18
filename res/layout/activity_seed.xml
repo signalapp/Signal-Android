@@ -123,8 +123,7 @@
             android:layout_height="50dp"
             android:background="@color/transparent"
             android:textColor="@color/signal_primary"
-            android:text="Link Device (Coming Soon)"
-            android:alpha="0.24"
+            android:text="Link Device"
             android:elevation="0dp"
             android:stateListAnimator="@null" />
 

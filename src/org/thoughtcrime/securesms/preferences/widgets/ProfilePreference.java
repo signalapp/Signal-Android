@@ -30,6 +30,7 @@ public class ProfilePreference extends Preference {
   private ImageView avatarView;
   private TextView  profileNameView;
   private TextView  profileNumberView;
+  private TextView  profileTagView;
 
   @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
   public ProfilePreference(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
@@ -64,6 +65,7 @@ public class ProfilePreference extends Preference {
     avatarView        = (ImageView)viewHolder.findViewById(R.id.avatar);
     profileNameView   = (TextView)viewHolder.findViewById(R.id.profile_name);
     profileNumberView = (TextView)viewHolder.findViewById(R.id.number);
+    profileTagView    = (TextView)viewHolder.findViewById(R.id.tag);
 
     refresh();
   }
@@ -72,13 +74,15 @@ public class ProfilePreference extends Preference {
     if (profileNumberView == null) return;
 
     String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(getContext());
-    final Address localAddress = Address.fromSerialized(userHexEncodedPublicKey);
+    String primaryDevicePublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(getContext());
+    String publicKey = primaryDevicePublicKey != null ? primaryDevicePublicKey : userHexEncodedPublicKey;
+    final Address localAddress = Address.fromSerialized(publicKey);
     final String  profileName  = TextSecurePreferences.getProfileName(getContext());
 
     Context context = getContext();
     containerView.setOnLongClickListener(v -> {
       ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
-      ClipData clip = ClipData.newPlainText("Public Key", userHexEncodedPublicKey);
+      ClipData clip = ClipData.newPlainText("Public Key", publicKey);
       clipboard.setPrimaryClip(clip);
       Toast.makeText(context, R.string.activity_settings_public_key_copied_message, Toast.LENGTH_SHORT).show();
       return true;
@@ -100,7 +104,7 @@ public class ProfilePreference extends Preference {
         int height = avatarView.getHeight();
         if (width == 0 || height == 0) return true;
         avatarView.getViewTreeObserver().removeOnPreDrawListener(this);
-        JazzIdenticonDrawable identicon = new JazzIdenticonDrawable(width, height, userHexEncodedPublicKey.toLowerCase());
+        JazzIdenticonDrawable identicon = new JazzIdenticonDrawable(width, height, publicKey.toLowerCase());
         avatarView.setImageDrawable(identicon);
         return true;
       }
@@ -120,7 +124,9 @@ public class ProfilePreference extends Preference {
     }
 
     profileNameView.setVisibility(TextUtils.isEmpty(profileName) ? View.GONE : View.VISIBLE);
-
     profileNumberView.setText(localAddress.toPhoneString());
+
+    profileTagView.setVisibility(primaryDevicePublicKey == null ? View.GONE : View.VISIBLE);
+    profileTagView.setText(R.string.activity_settings_secondary_device_tag);
   }
 }
