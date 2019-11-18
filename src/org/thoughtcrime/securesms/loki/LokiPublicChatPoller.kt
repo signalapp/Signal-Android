@@ -204,7 +204,7 @@ class LokiPublicChatPoller(private val context: Context, private val group: Loki
             }.toSet()
             // Fetch the display names of the primary devices
             displayNameUpdatees = displayNameUpdatees.union(newDisplayNameUpdatees)
-        }.success { messages ->
+        }.successBackground { messages ->
             // Process messages in the background
             messages.forEach { message ->
                 if (userDevices.contains(message.hexEncodedPublicKey)) {
