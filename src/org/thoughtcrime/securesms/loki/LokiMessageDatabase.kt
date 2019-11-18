@@ -12,11 +12,14 @@ import org.whispersystems.signalservice.loki.messaging.LokiMessageFriendRequestS
 class LokiMessageDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), LokiMessageDatabaseProtocol {
 
     companion object {
-        private val tableName = "loki_message_friend_request_database"
+        private val messageFriendRequestTableName = "loki_message_friend_request_database"
+        private val messageThreadMappingTableName = "loki_message_thread_mapping_database"
         private val messageID = "message_id"
         private val serverID = "server_id"
         private val friendRequestStatus = "friend_request_status"
-        @JvmStatic val createTableCommand = "CREATE TABLE $tableName ($messageID INTEGER PRIMARY KEY, $serverID INTEGER DEFAULT 0, $friendRequestStatus INTEGER DEFAULT 0);"
+        private val threadID = "thread_id"
+        @JvmStatic val createMessageFriendRequestTableCommand = "CREATE TABLE $messageFriendRequestTableName ($messageID INTEGER PRIMARY KEY, $serverID INTEGER DEFAULT 0, $friendRequestStatus INTEGER DEFAULT 0);"
+        @JvmStatic val createMessageToThreadMappingTableCommand = "CREATE TABLE $messageThreadMappingTableName ($messageID INTEGER PRIMARY KEY, $threadID INTEGER);"
     }
 
     override fun getQuoteServerID(quoteID: Long, quoteeHexEncodedPublicKey: String): Long? {
@@ -26,14 +29,14 @@ class LokiMessageDatabase(context: Context, helper: SQLCipherOpenHelper) : Datab
 
     fun getServerID(messageID: Long): Long? {
         val database = databaseHelper.readableDatabase
-        return database.get(tableName, "${Companion.messageID} = ?", arrayOf( messageID.toString() )) { cursor ->
+        return database.get(messageFriendRequestTableName, "${Companion.messageID} = ?", arrayOf( messageID.toString() )) { cursor ->
             cursor.getInt(Companion.serverID)
         }?.toLong()
     }
 
     fun getMessageID(serverID: Long): Long? {
         val database = databaseHelper.readableDatabase
-        return database.get(tableName, "${Companion.serverID} = ?", arrayOf( serverID.toString() )) { cursor ->
+        return database.get(messageFriendRequestTableName, "${Companion.serverID} = ?", arrayOf( serverID.toString() )) { cursor ->
             cursor.getInt(messageID)
         }?.toLong()
     }
@@ -43,12 +46,27 @@ class LokiMessageDatabase(context: Context, helper: SQLCipherOpenHelper) : Datab
         val contentValues = ContentValues(2)
         contentValues.put(Companion.messageID, messageID)
         contentValues.put(Companion.serverID, serverID)
-        database.insertOrUpdate(tableName, contentValues, "${Companion.messageID} = ?", arrayOf( messageID.toString() ))
+        database.insertOrUpdate(messageFriendRequestTableName, contentValues, "${Companion.messageID} = ?", arrayOf( messageID.toString() ))
+    }
+
+    fun getOriginalThreadID(messageID: Long): Long {
+        val database = databaseHelper.readableDatabase
+        return database.get(messageThreadMappingTableName, "${Companion.messageID} = ?", arrayOf( messageID.toString() )) { cursor ->
+            cursor.getInt(Companion.threadID)
+        }?.toLong() ?: -1L
+    }
+
+    fun setOriginalThreadID(messageID: Long, threadID: Long) {
+        val database = databaseHelper.writableDatabase
+        val contentValues = ContentValues(2)
+        contentValues.put(Companion.messageID, messageID)
+        contentValues.put(Companion.threadID, threadID)
+        database.insertOrUpdate(messageThreadMappingTableName, contentValues, "${Companion.messageID} = ?", arrayOf( messageID.toString() ))
     }
 
     fun getFriendRequestStatus(messageID: Long): LokiMessageFriendRequestStatus {
         val database = databaseHelper.readableDatabase
-        val result = database.get(tableName, "${Companion.messageID} = ?", arrayOf( messageID.toString() )) { cursor ->
+        val result = database.get(messageFriendRequestTableName, "${Companion.messageID} = ?", arrayOf( messageID.toString() )) { cursor ->
             cursor.getInt(friendRequestStatus)
         }
         return if (result != null) {
@@ -63,7 +81,7 @@ class LokiMessageDatabase(context: Context, helper: SQLCipherOpenHelper) : Datab
         val contentValues = ContentValues(2)
         contentValues.put(Companion.messageID, messageID)
         contentValues.put(Companion.friendRequestStatus, friendRequestStatus.rawValue)
-        database.insertOrUpdate(tableName, contentValues, "${Companion.messageID} = ?", arrayOf( messageID.toString() ))
+        database.insertOrUpdate(messageFriendRequestTableName, contentValues, "${Companion.messageID} = ?", arrayOf( messageID.toString() ))
         val threadID = DatabaseFactory.getSmsDatabase(context).getThreadIdForMessage(messageID)
         notifyConversationListeners(threadID)
     }

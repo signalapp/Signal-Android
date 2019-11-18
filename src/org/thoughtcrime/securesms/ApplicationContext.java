@@ -87,6 +87,7 @@ import org.whispersystems.libsignal.logging.SignalProtocolLoggerProvider;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 import org.whispersystems.signalservice.loki.api.LokiAPIDatabaseProtocol;
+import org.whispersystems.signalservice.loki.api.LokiDotNetAPI;
 import org.whispersystems.signalservice.loki.api.LokiPublicChat;
 import org.whispersystems.signalservice.loki.api.LokiPublicChatAPI;
 import org.whispersystems.signalservice.loki.api.LokiLongPoller;
@@ -109,6 +110,7 @@ import io.fabric.sdk.android.Fabric;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
 import network.loki.messenger.BuildConfig;
+import okhttp3.Cache;
 
 import static nl.komponents.kovenant.android.KovenantAndroid.startKovenant;
 import static nl.komponents.kovenant.android.KovenantAndroid.stopKovenant;
@@ -124,6 +126,7 @@ import static nl.komponents.kovenant.android.KovenantAndroid.stopKovenant;
 public class ApplicationContext extends MultiDexApplication implements DependencyInjector, DefaultLifecycleObserver, LokiP2PAPIDelegate {
 
   private static final String TAG = ApplicationContext.class.getSimpleName();
+  private final static int OK_HTTP_CACHE_SIZE = 10 * 1024 * 1024; // 10 MB
 
   private ExpiringMessageManager  expiringMessageManager;
   private TypingStatusRepository  typingStatusRepository;
@@ -188,6 +191,12 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     };
     // Loki - Set up public chat manager
     lokiPublicChatManager = new LokiPublicChatManager(this);
+    // Loki - Set the cache
+    LokiDotNetAPI.setCache(new Cache(this.getCacheDir(), OK_HTTP_CACHE_SIZE));
+    // Loki - Update device mappings
+    if (setUpStorageAPIIfNeeded()) {
+      LokiStorageAPI.Companion.getShared().updateUserDeviceMappings();
+    }
   }
 
   @Override
@@ -199,7 +208,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     // Loki - Start long polling if needed
     startLongPollingIfNeeded();
     lokiPublicChatManager.startPollersIfNeeded();
-    setUpStorageAPIIfNeeded();
   }
 
   @Override
@@ -450,14 +458,16 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   }
 
   // region Loki
-  public void setUpStorageAPIIfNeeded() {
+  public boolean setUpStorageAPIIfNeeded() {
     String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this);
     if (userHexEncodedPublicKey != null && IdentityKeyUtil.hasIdentityKey(this)) {
       boolean isDebugMode = BuildConfig.DEBUG;
       byte[] userPrivateKey = IdentityKeyUtil.getIdentityKeyPair(this).getPrivateKey().serialize();
       LokiAPIDatabaseProtocol database = DatabaseFactory.getLokiAPIDatabase(this);
       LokiStorageAPI.Companion.configure(isDebugMode, userHexEncodedPublicKey, userPrivateKey, database);
+      return true;
     }
+    return false;
   }
 
   public void setUpP2PAPI() {

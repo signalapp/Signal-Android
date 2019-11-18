@@ -41,6 +41,7 @@ import android.widget.Toast;
 import org.thoughtcrime.securesms.components.RatingManager;
 import org.thoughtcrime.securesms.components.SearchToolbar;
 import org.thoughtcrime.securesms.conversation.ConversationActivity;
+import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
@@ -58,6 +59,7 @@ import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
+import org.whispersystems.signalservice.loki.api.LokiStorageAPI;
 
 import java.util.List;
 
@@ -142,6 +144,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
   private void initializeSearchListener() {
     searchAction.setOnClickListener(v -> {
+      /* Loki - We don't need contact permissions
       Permissions.with(this)
                  .request(Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS)
                  .ifNecessary()
@@ -149,6 +152,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
                                                            searchAction.getY() + (searchAction.getHeight() / 2)))
                  .withPermanentDenialDialog(getString(R.string.ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied))
                  .execute();
+       */
     });
 
     searchToolbar.setListener(new SearchToolbar.SearchListener() {
@@ -193,6 +197,13 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
         outline.setOval(0, 0, view.getWidth(), view.getHeight());
       }
     });
+
+    // Display the correct identicon if we're a secondary device
+    String currentUser = TextSecurePreferences.getLocalNumber(this);
+    String recipientAddress = recipient.getAddress().serialize();
+    String primaryAddress = TextSecurePreferences.getMasterHexEncodedPublicKey(this);
+    String profileAddress = (recipientAddress.equalsIgnoreCase(currentUser) && primaryAddress != null) ? primaryAddress : recipientAddress;
+
     profilePictureImageView.setClipToOutline(true);
     profilePictureImageView.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
 
@@ -202,7 +213,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
         int height = profilePictureImageView.getHeight();
         if (width == 0 || height == 0) return true;
         profilePictureImageView.getViewTreeObserver().removeOnPreDrawListener(this);
-        JazzIdenticonDrawable identicon = new JazzIdenticonDrawable(width, height, recipient.getAddress().serialize().toLowerCase());
+        JazzIdenticonDrawable identicon = new JazzIdenticonDrawable(width, height, profileAddress.toLowerCase());
         profilePictureImageView.setImageDrawable(identicon);
         return true;
       }

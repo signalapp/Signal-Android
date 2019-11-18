@@ -104,32 +104,22 @@ public class AvatarImageView extends AppCompatImageView {
   @Override
   protected void onSizeChanged(int w, int h, int oldw, int oldh) {
     super.onSizeChanged(w, h, oldw, oldh);
-    if (w == 0 || h == 0 || recipient == null) { return; }
-
-    Drawable image;
-    if (recipient.isGroupRecipient()) {
-      Context context = this.getContext();
-
-      String name = Optional.fromNullable(recipient.getName()).or(Optional.fromNullable(TextSecurePreferences.getProfileName(context))).or("");
-      MaterialColor fallbackColor = recipient.getColor();
-
-      if (fallbackColor == ContactColors.UNKNOWN_COLOR && !TextUtils.isEmpty(name)) {
-        fallbackColor = ContactColors.generateFor(name);
-      }
-
-      image = new GeneratedContactPhoto(name, R.drawable.ic_profile_default).asDrawable(context, fallbackColor.toAvatarColor(context));
-    } else {
-      image = new JazzIdenticonDrawable(w, h, recipient.getAddress().serialize().toLowerCase());
-    }
-    setImageDrawable(image);
+    updateImage(w, h);
   }
 
   public void update(String hexEncodedPublicKey) {
-    this.recipient = Recipient.from(getContext(), Address.fromSerialized(hexEncodedPublicKey), false);
+    Address address = Address.fromSerialized(hexEncodedPublicKey);
+    if (!address.equals(recipient.getAddress())) {
+      this.recipient = Recipient.from(getContext(), address, false);
+      updateImage();
+    }
   }
 
   public void setAvatar(@NonNull GlideRequests requestManager, @Nullable Recipient recipient, boolean quickContactEnabled) {
-    this.recipient = recipient;
+    if (this.recipient == null || !this.recipient.equals(recipient)) {
+      this.recipient = recipient;
+      updateImage();
+    }
     /*
     if (recipient != null) {
       requestManager.load(recipient.getContactPhoto())
@@ -162,6 +152,34 @@ public class AvatarImageView extends AppCompatImageView {
     } else {
       super.setOnClickListener(listener);
     }
+  }
+
+  private void updateImage() { updateImage(getWidth(), getHeight()); }
+
+  private void updateImage(int w, int h) {
+    if (w == 0 || h == 0 || recipient == null) { return; }
+
+    Drawable image;
+    Context context = this.getContext();
+
+    if (recipient.isGroupRecipient()) {
+      String name = Optional.fromNullable(recipient.getName()).or(Optional.fromNullable(TextSecurePreferences.getProfileName(context))).or("");
+      MaterialColor fallbackColor = recipient.getColor();
+
+      if (fallbackColor == ContactColors.UNKNOWN_COLOR && !TextUtils.isEmpty(name)) {
+        fallbackColor = ContactColors.generateFor(name);
+      }
+
+      image = new GeneratedContactPhoto(name, R.drawable.ic_profile_default).asDrawable(context, fallbackColor.toAvatarColor(context));
+    } else {
+      // Default to primary device image
+      String ourPublicKey = TextSecurePreferences.getLocalNumber(context);
+      String ourPrimaryDevice = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
+      String recipientAddress = recipient.getAddress().serialize();
+      String profileAddress = (ourPrimaryDevice != null && ourPublicKey.equals(recipientAddress)) ? ourPrimaryDevice : recipientAddress;
+      image = new JazzIdenticonDrawable(w, h, profileAddress.toLowerCase());
+    }
+    setImageDrawable(image);
   }
 
 }

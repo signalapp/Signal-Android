@@ -3,28 +3,26 @@ package org.thoughtcrime.securesms.loki
 import android.content.Context
 import android.os.Handler
 import android.util.Log
+import nl.komponents.kovenant.Promise
+import nl.komponents.kovenant.functional.bind
+import nl.komponents.kovenant.then
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
-import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.thoughtcrime.securesms.database.ThreadDatabase
 import org.thoughtcrime.securesms.jobs.PushDecryptJob
-import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository
-import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil
-import org.thoughtcrime.securesms.mms.OutgoingMediaMessage
-import org.thoughtcrime.securesms.mms.QuoteModel
-import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.util.GroupUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.libsignal.util.guava.Optional
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer
 import org.whispersystems.signalservice.api.messages.SignalServiceContent
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage
 import org.whispersystems.signalservice.api.messages.SignalServiceGroup
+import org.whispersystems.signalservice.api.messages.multidevice.SentTranscriptMessage
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.loki.api.LokiPublicChat
 import org.whispersystems.signalservice.loki.api.LokiPublicChatAPI
 import org.whispersystems.signalservice.loki.api.LokiPublicChatMessage
+import org.whispersystems.signalservice.loki.api.LokiStorageAPI
+import org.whispersystems.signalservice.loki.utilities.successBackground
+import java.util.*
 
 class LokiPublicChatPoller(private val context: Context, private val group: LokiPublicChat) {
     private val handler = Handler()
@@ -32,6 +30,7 @@ class LokiPublicChatPoller(private val context: Context, private val group: Loki
 
     // region Convenience
     private val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context)
+    private var displayNameUpdatees = setOf<String>()
 
     private val api: LokiPublicChatAPI
         get() = {
@@ -66,6 +65,13 @@ class LokiPublicChatPoller(private val context: Context, private val group: Loki
             handler.postDelayed(this, pollForModeratorsInterval)
         }
     }
+
+    private val pollForDisplayNamesTask = object : Runnable {
+        override fun run() {
+            pollForDisplayNames()
+            handler.postDelayed(this, pollForDisplayNamesInterval)
+        }
+    }
     // endregion
 
     // region Settings
@@ -73,6 +79,7 @@ class LokiPublicChatPoller(private val context: Context, private val group: Loki
         private val pollForNewMessagesInterval: Long = 4 * 1000
         private val pollForDeletedMessagesInterval: Long = 20 * 1000
         private val pollForModeratorsInterval: Long = 10 * 60 * 1000
+        private val pollForDisplayNamesInterval: Long = 60 * 1000
     }
     // endregion
 
@@ -82,6 +89,7 @@ class LokiPublicChatPoller(private val context: Context, private val group: Loki
         pollForNewMessagesTask.run()
         pollForDeletedMessagesTask.run()
         pollForModeratorsTask.run()
+        pollForDisplayNamesTask.run()
         hasStarted = true
     }
 
@@ -89,23 +97,23 @@ class LokiPublicChatPoller(private val context: Context, private val group: Loki
         handler.removeCallbacks(pollForNewMessagesTask)
         handler.removeCallbacks(pollForDeletedMessagesTask)
         handler.removeCallbacks(pollForModeratorsTask)
+        handler.removeCallbacks(pollForDisplayNamesTask)
         hasStarted = false
     }
     // endregion
 
     // region Polling
-    private fun pollForNewMessages() {
-        fun processIncomingMessage(message: LokiPublicChatMessage) {
-            val id = group.id.toByteArray()
-            val serviceGroup = SignalServiceGroup(SignalServiceGroup.Type.UPDATE, id, null, null, null)
-            val quote = if (message.quote != null) {
-                SignalServiceDataMessage.Quote(message.quote!!.quotedMessageTimestamp, SignalServiceAddress(message.quote!!.quoteeHexEncodedPublicKey), message.quote!!.quotedMessageBody, listOf())
-            } else {
-                null
-            }
-            val attachments = message.attachments.mapNotNull { attachment ->
-                if (attachment.kind != LokiPublicChatMessage.Attachment.Kind.Attachment) { return@mapNotNull null }
-                SignalServiceAttachmentPointer(
+    private fun getDataMessage(message: LokiPublicChatMessage): SignalServiceDataMessage {
+        val id = group.id.toByteArray()
+        val serviceGroup = SignalServiceGroup(SignalServiceGroup.Type.UPDATE, id, null, null, null)
+        val quote = if (message.quote != null) {
+            SignalServiceDataMessage.Quote(message.quote!!.quotedMessageTimestamp, SignalServiceAddress(message.quote!!.quoteeHexEncodedPublicKey), message.quote!!.quotedMessageBody, listOf())
+        } else {
+            null
+        }
+        val attachments = message.attachments.mapNotNull { attachment ->
+            if (attachment.kind != LokiPublicChatMessage.Attachment.Kind.Attachment) { return@mapNotNull null }
+            SignalServiceAttachmentPointer(
                     attachment.serverID,
                     attachment.contentType,
                     ByteArray(0),
@@ -117,30 +125,40 @@ class LokiPublicChatPoller(private val context: Context, private val group: Loki
                     false,
                     Optional.fromNullable(attachment.caption),
                     attachment.url)
+        }
+        val linkPreview = message.attachments.firstOrNull { it.kind == LokiPublicChatMessage.Attachment.Kind.LinkPreview }
+        val signalLinkPreviews = mutableListOf<SignalServiceDataMessage.Preview>()
+        if (linkPreview != null) {
+            val attachment = SignalServiceAttachmentPointer(
+                    linkPreview.serverID,
+                    linkPreview.contentType,
+                    ByteArray(0),
+                    Optional.of(linkPreview.size),
+                    Optional.absent(),
+                    linkPreview.width, linkPreview.height,
+                    Optional.absent(),
+                    Optional.of(linkPreview.fileName),
+                    false,
+                    Optional.fromNullable(linkPreview.caption),
+                    linkPreview.url)
+            signalLinkPreviews.add(SignalServiceDataMessage.Preview(linkPreview.linkPreviewURL!!, linkPreview.linkPreviewTitle!!, Optional.of(attachment)))
+        }
+        val body = if (message.body == message.timestamp.toString()) "" else message.body // Workaround for the fact that the back-end doesn't accept messages without a body
+        return SignalServiceDataMessage(message.timestamp, serviceGroup, attachments, body, false, 0, false, null, false, quote, null, signalLinkPreviews, null)
+    }
+
+    private fun pollForNewMessages() {
+        fun processIncomingMessage(message: LokiPublicChatMessage) {
+            // If the sender of the current message is not a secondary device, we need to set the display name in the database
+            val primaryDevice = LokiStorageAPI.shared.getPrimaryDevicePublicKey(message.hexEncodedPublicKey).get()
+            if (primaryDevice == null) {
+                val senderDisplayName = "${message.displayName} (...${message.hexEncodedPublicKey.takeLast(8)})"
+                DatabaseFactory.getLokiUserDatabase(context).setServerDisplayName(group.id, message.hexEncodedPublicKey, senderDisplayName)
             }
-            val linkPreview = message.attachments.firstOrNull { it.kind == LokiPublicChatMessage.Attachment.Kind.LinkPreview }
-            val signalLinkPreviews = mutableListOf<SignalServiceDataMessage.Preview>()
-            if (linkPreview != null) {
-                val attachment = SignalServiceAttachmentPointer(
-                        linkPreview.serverID,
-                        linkPreview.contentType,
-                        ByteArray(0),
-                        Optional.of(linkPreview.size),
-                        Optional.absent(),
-                        linkPreview.width, linkPreview.height,
-                        Optional.absent(),
-                        Optional.of(linkPreview.fileName),
-                        false,
-                        Optional.fromNullable(linkPreview.caption),
-                        linkPreview.url)
-                signalLinkPreviews.add(SignalServiceDataMessage.Preview(linkPreview.linkPreviewURL!!, linkPreview.linkPreviewTitle!!, Optional.of(attachment)))
-            }
-            val body = if (message.body == message.timestamp.toString()) "" else message.body // Workaround for the fact that the back-end doesn't accept messages without a body
-            val serviceDataMessage = SignalServiceDataMessage(message.timestamp, serviceGroup, attachments, body, false, 0, false, null, false, quote, null, signalLinkPreviews, null)
-            val serviceContent = SignalServiceContent(serviceDataMessage, message.hexEncodedPublicKey, SignalServiceAddress.DEFAULT_DEVICE_ID, message.timestamp, false)
-            val senderDisplayName = "${message.displayName} (...${message.hexEncodedPublicKey.takeLast(8)})"
-            DatabaseFactory.getLokiUserDatabase(context).setServerDisplayName(group.id, message.hexEncodedPublicKey, senderDisplayName)
-            if (quote != null || attachments.count() > 0 || linkPreview != null) {
+            val senderPublicKey = primaryDevice ?: message.hexEncodedPublicKey
+            val serviceDataMessage = getDataMessage(message)
+            val serviceContent = SignalServiceContent(serviceDataMessage, senderPublicKey, SignalServiceAddress.DEFAULT_DEVICE_ID, message.timestamp, false)
+            if (serviceDataMessage.quote.isPresent || (serviceDataMessage.attachments.isPresent && serviceDataMessage.attachments.get().size > 0) || serviceDataMessage.previews.isPresent) {
                 PushDecryptJob(context).handleMediaMessage(serviceContent, serviceDataMessage, Optional.absent(), Optional.of(message.serverID))
             } else {
                 PushDecryptJob(context).handleTextMessage(serviceContent, serviceDataMessage, Optional.absent(), Optional.of(message.serverID))
@@ -148,65 +166,69 @@ class LokiPublicChatPoller(private val context: Context, private val group: Loki
         }
         fun processOutgoingMessage(message: LokiPublicChatMessage) {
             val messageServerID = message.serverID ?: return
-            val lokiMessageDatabase = DatabaseFactory.getLokiMessageDatabase(context)
-            val isDuplicate = lokiMessageDatabase.getMessageID(messageServerID) != null
+            val isDuplicate = DatabaseFactory.getLokiMessageDatabase(context).getMessageID(messageServerID) != null
             if (isDuplicate) { return }
             if (message.body.isEmpty() && message.attachments.isEmpty() && message.quote == null) { return }
-            val id = group.id.toByteArray()
-            val mmsDatabase = DatabaseFactory.getMmsDatabase(context)
-            val recipient = Recipient.from(context, Address.fromSerialized(GroupUtil.getEncodedId(id, false)), false)
-            val quote: QuoteModel?
-            if (message.quote != null) {
-                quote = QuoteModel(message.quote!!.quotedMessageTimestamp, Address.fromSerialized(message.quote!!.quoteeHexEncodedPublicKey), message.quote!!.quotedMessageBody, false, listOf())
+            val localNumber = TextSecurePreferences.getLocalNumber(context)
+            val dataMessage = getDataMessage(message)
+            val transcript = SentTranscriptMessage(localNumber, dataMessage.timestamp, dataMessage, dataMessage.expiresInSeconds.toLong(), Collections.singletonMap(localNumber, false))
+            transcript.messageServerID = messageServerID
+            if (dataMessage.quote.isPresent || (dataMessage.attachments.isPresent && dataMessage.attachments.get().size > 0) || dataMessage.previews.isPresent) {
+                PushDecryptJob(context).handleSynchronizeSentMediaMessage(transcript)
             } else {
-                quote = null
-            }
-            // TODO: Handle attachments correctly for our previous messages
-            val body = if (message.body == message.timestamp.toString()) "" else message.body // Workaround for the fact that the back-end doesn't accept messages without a body
-            val signalMessage = OutgoingMediaMessage(recipient, body, listOf(), message.timestamp, 0, 0,
-               ThreadDatabase.DistributionTypes.DEFAULT, quote, listOf(), listOf(), listOf(), listOf())
-            val threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient)
-            fun finalize() {
-                val messageID = mmsDatabase.insertMessageOutbox(signalMessage, threadID, false, null)
-                mmsDatabase.markAsSent(messageID, true)
-                mmsDatabase.markUnidentified(messageID, false)
-                lokiMessageDatabase.setServerID(messageID, messageServerID)
-            }
-            val urls = LinkPreviewUtil.findWhitelistedUrls(message.body)
-            val urlCount = urls.size
-            if (urlCount != 0) {
-                val lpr = LinkPreviewRepository(context)
-                var count = 0
-                urls.forEach { url ->
-                    lpr.getLinkPreview(context, url.url) { lp ->
-                        Util.runOnMain {
-                            count += 1
-                            if (lp.isPresent) { signalMessage.linkPreviews.add(lp.get()) }
-                            if (count == urlCount) {
-                                try {
-                                    finalize()
-                                } catch (e: Exception) {
-                                    // TODO: Handle
-                                }
-
-                            }
-                        }
-                    }
-                }
-            } else {
-                finalize()
+                PushDecryptJob(context).handleSynchronizeSentTextMessage(transcript)
             }
         }
-        api.getMessages(group.channel, group.server).success { messages ->
+        var userDevices = setOf<String>()
+        var uniqueDevices = setOf<String>()
+        LokiStorageAPI.shared.getAllDevicePublicKeys(userHexEncodedPublicKey).bind { devices ->
+            userDevices = devices
+            api.getMessages(group.channel, group.server)
+        }.bind { messages ->
+            if (messages.isNotEmpty()) {
+                // We need to fetch device mappings for all the devices we don't have
+                uniqueDevices = messages.map { it.hexEncodedPublicKey }.toSet()
+                val devicesToUpdate = uniqueDevices.filter { !userDevices.contains(it) && LokiStorageAPI.shared.hasCacheExpired(it) }
+                if (devicesToUpdate.isNotEmpty()) {
+                    return@bind LokiStorageAPI.shared.getDeviceMappings(devicesToUpdate.toSet()).then { messages }
+                }
+            }
+            Promise.of(messages)
+        }.successBackground {
+            // Get the set of primary device pubKeys FROM the secondary devices in uniqueDevices
+            val newDisplayNameUpdatees = uniqueDevices.mapNotNull {
+                // This will return null if current device is primary
+                // So if it's non-null then we know the device is a secondary device
+                val primaryDevice = LokiStorageAPI.shared.getPrimaryDevicePublicKey(it).get()
+                primaryDevice
+            }.toSet()
+            // Fetch the display names of the primary devices
+            displayNameUpdatees = displayNameUpdatees.union(newDisplayNameUpdatees)
+        }.success { messages ->
+            // Process messages in the background
             messages.forEach { message ->
-                if (message.hexEncodedPublicKey != userHexEncodedPublicKey) {
-                    processIncomingMessage(message)
-                } else {
+                if (userDevices.contains(message.hexEncodedPublicKey)) {
                     processOutgoingMessage(message)
+                } else {
+                    processIncomingMessage(message)
                 }
             }
         }.fail {
             Log.d("Loki", "Failed to get messages for group chat with ID: ${group.channel} on server: ${group.server}.")
+        }
+    }
+
+    private fun pollForDisplayNames() {
+        if (displayNameUpdatees.isEmpty()) { return }
+        val hexEncodedPublicKeys = displayNameUpdatees
+        displayNameUpdatees = setOf()
+        api.getDisplayNames(hexEncodedPublicKeys, group.server).successBackground { mapping ->
+            for (pair in mapping.entries) {
+                val senderDisplayName = "${pair.value} (...${pair.key.takeLast(8)})"
+                DatabaseFactory.getLokiUserDatabase(context).setServerDisplayName(group.id, pair.key, senderDisplayName)
+            }
+        }.fail {
+            displayNameUpdatees = displayNameUpdatees.union(hexEncodedPublicKeys)
         }
     }
 

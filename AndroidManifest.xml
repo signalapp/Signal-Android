@@ -11,9 +11,11 @@
 
     <uses-feature android:name="android.hardware.camera" android:required="false" />
     <uses-feature android:name="android.hardware.bluetooth" android:required="false" />
+    <!-- Loki - Enable again once we have location sharing
     <uses-feature android:name="android.hardware.location" android:required="false"/>
     <uses-feature android:name="android.hardware.location.network" android:required="false"/>
     <uses-feature android:name="android.hardware.location.gps" android:required="false"/>
+    -->
     <uses-feature android:name="android.hardware.microphone" android:required="false"/>
     <uses-feature android:name="android.hardware.wifi" android:required="false"/>
     <uses-feature android:name="android.hardware.portrait" android:required="false"/>
@@ -26,10 +28,12 @@
     <uses-permission android:name="android.permission.WRITE_PROFILE"/>
     <uses-permission android:name="android.permission.BROADCAST_WAP_PUSH"
                      tools:ignore="ProtectedPermissions"/>
+
+    <!-- Loki - We don't need these at all
     <uses-permission android:name="android.permission.READ_CONTACTS"/>
     <uses-permission android:name="android.permission.WRITE_CONTACTS"/>
 
-    <!-- <uses-permission android:name="android.permission.RECEIVE_SMS"/>
+     <uses-permission android:name="android.permission.RECEIVE_SMS"/>
     <uses-permission android:name="android.permission.RECEIVE_MMS"/>
     <uses-permission android:name="android.permission.READ_SMS"/>
     <uses-permission android:name="android.permission.SEND_SMS"/>
@@ -40,12 +44,14 @@
 
     <uses-permission android:name="android.permission.CAMERA" />
 
+    <!-- Loki - Enable again once we have location sharing
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    -->
 
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-    <uses-permission android:name="android.permission.READ_CALL_STATE"/>
+    <!-- <uses-permission android:name="android.permission.READ_CALL_STATE"/> -->
 
     <!-- For sending/receiving events -->
     <uses-permission android:name="android.permission.WRITE_CALENDAR"/>

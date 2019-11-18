@@ -61,7 +61,7 @@ public class Address implements Parcelable, Comparable<Address> {
 
   private Address(@NonNull String address, Boolean isPublicChat) {
     if (address == null) throw new AssertionError(address);
-    this.address = address;
+    this.address = address.toLowerCase();
     this.isPublicChat = isPublicChat;
   }
 

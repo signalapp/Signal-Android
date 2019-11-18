@@ -26,6 +26,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Build.VERSION;
 import android.os.Bundle;
@@ -39,9 +40,13 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.preference.Preference;
 import android.widget.Toast;
 
+import org.jetbrains.annotations.NotNull;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.loki.DeviceLinkingDialog;
+import org.thoughtcrime.securesms.loki.DeviceLinkingDialogDelegate;
 import org.thoughtcrime.securesms.loki.DeviceLinkingView;
+import org.thoughtcrime.securesms.loki.MultiDeviceUtilities;
 import org.thoughtcrime.securesms.loki.QRCodeDialog;
 import org.thoughtcrime.securesms.preferences.AppProtectionPreferenceFragment;
 import org.thoughtcrime.securesms.preferences.ChatsPreferenceFragment;
@@ -52,6 +57,7 @@ import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.signalservice.loki.api.PairingAuthorisation;
 import org.whispersystems.signalservice.loki.crypto.MnemonicCodec;
 import org.whispersystems.signalservice.loki.utilities.Analytics;
 import org.whispersystems.signalservice.loki.utilities.SerializationKt;
@@ -160,23 +166,21 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
       boolean isMasterDevice = (masterHexEncodedPublicKey == null);
 
       Preference profilePreference = this.findPreference(PREFERENCE_CATEGORY_PROFILE);
-      // Hide if this is a slave device
-      profilePreference.setVisible(isMasterDevice);
-      profilePreference.setOnPreferenceClickListener(new ProfileClickListener());
+      if (isMasterDevice) { profilePreference.setOnPreferenceClickListener(new ProfileClickListener()); }
       /*
       this.findPreference(PREFERENCE_CATEGORY_SMS_MMS)
         .setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_SMS_MMS));
        */
       this.findPreference(PREFERENCE_CATEGORY_NOTIFICATIONS)
-        .setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_NOTIFICATIONS));
+        .setOnPreferenceClickListener(new CategoryClickListener(getContext(), PREFERENCE_CATEGORY_NOTIFICATIONS));
       this.findPreference(PREFERENCE_CATEGORY_APP_PROTECTION)
-        .setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_APP_PROTECTION));
+        .setOnPreferenceClickListener(new CategoryClickListener(getContext(), PREFERENCE_CATEGORY_APP_PROTECTION));
       /*
       this.findPreference(PREFERENCE_CATEGORY_APPEARANCE)
         .setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_APPEARANCE));
        */
       this.findPreference(PREFERENCE_CATEGORY_CHATS)
-        .setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_CHATS));
+        .setOnPreferenceClickListener(new CategoryClickListener(getContext(), PREFERENCE_CATEGORY_CHATS));
       /*
       this.findPreference(PREFERENCE_CATEGORY_DEVICES)
         .setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_DEVICES));
@@ -184,21 +188,29 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
         .setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_ADVANCED));
        */
       this.findPreference(PREFERENCE_CATEGORY_PUBLIC_KEY)
-        .setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_PUBLIC_KEY));
+        .setOnPreferenceClickListener(new CategoryClickListener(getContext(), PREFERENCE_CATEGORY_PUBLIC_KEY));
       this.findPreference(PREFERENCE_CATEGORY_QR_CODE)
-        .setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_QR_CODE));
+        .setOnPreferenceClickListener(new CategoryClickListener(getContext(), PREFERENCE_CATEGORY_QR_CODE));
 
-      // TODO: Enable this again later
-      /*
       Preference linkDevicePreference = this.findPreference(PREFERENCE_CATEGORY_LINK_DEVICE);
-      // Hide if this is a slave device
-      linkDevicePreference.setVisible(isMasterDevice);
-      linkDevicePreference.setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_LINK_DEVICE));
-       */
+      linkDevicePreference.setOnPreferenceClickListener(new CategoryClickListener(getContext(), PREFERENCE_CATEGORY_LINK_DEVICE));
+
+      // Disable if we hit the cap of 1 linked device
+      if (isMasterDevice) {
+        Context context = getContext();
+        String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context);
+        boolean isDeviceLinkingEnabled = DatabaseFactory.getLokiAPIDatabase(context).getPairingAuthorisations(userHexEncodedPublicKey).size() <= 1;
+        linkDevicePreference.setEnabled(isDeviceLinkingEnabled);
+        linkDevicePreference.getIcon().setAlpha(isDeviceLinkingEnabled ? 255 : 124);
+      } else {
+        // Hide if this is a slave device
+        linkDevicePreference.setVisible(false);
+      }
+
       Preference seedPreference = this.findPreference(PREFERENCE_CATEGORY_SEED);
       // Hide if this is a slave device
       seedPreference.setVisible(isMasterDevice);
-      seedPreference.setOnPreferenceClickListener(new CategoryClickListener((PREFERENCE_CATEGORY_SEED)));
+      seedPreference.setOnPreferenceClickListener(new CategoryClickListener(getContext(), (PREFERENCE_CATEGORY_SEED)));
 
       if (VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
         tintIcons(getActivity());
@@ -291,10 +303,12 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
       this.findPreference(PREFERENCE_CATEGORY_SEED).setIcon(seed);
     }
 
-    private class CategoryClickListener implements Preference.OnPreferenceClickListener {
+    private class CategoryClickListener implements Preference.OnPreferenceClickListener, DeviceLinkingDialogDelegate {
       private String category;
+      private Context context;
 
-      CategoryClickListener(String category) {
+      CategoryClickListener(Context context,String category) {
+        this.context = context;
         this.category = category;
       }
 
@@ -347,7 +361,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
           QRCodeDialog.INSTANCE.show(getContext());
           break;
         case PREFERENCE_CATEGORY_LINK_DEVICE:
-          DeviceLinkingDialog.Companion.show(getContext(), DeviceLinkingView.Mode.Master, null);
+          DeviceLinkingDialog.Companion.show(getContext(), DeviceLinkingView.Mode.Master, this);
           break;
         case PREFERENCE_CATEGORY_SEED:
           Analytics.Companion.getShared().track("Seed Modal Shown");
@@ -390,6 +404,12 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
 
         return true;
       }
+
+      @Override public void sendPairingAuthorizedMessage(@NotNull PairingAuthorisation pairingAuthorisation) {
+        AsyncTask.execute(() -> MultiDeviceUtilities.signAndSendPairingAuthorisationMessage(context, pairingAuthorisation));
+      }
+      @Override public void handleDeviceLinkAuthorized(@NotNull PairingAuthorisation pairingAuthorisation) {}
+      @Override public void handleDeviceLinkingDialogDismissed() {}
     }
 
     private class ProfileClickListener implements Preference.OnPreferenceClickListener {

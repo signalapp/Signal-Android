@@ -380,9 +380,11 @@ public class WebRtcCallService extends Service implements InjectableType,
         try {
           boolean isSystemContact = false;
 
+          /*
           if (Permissions.hasAny(WebRtcCallService.this, Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS)) {
             isSystemContact = ContactAccessor.getInstance().isSystemContact(WebRtcCallService.this, recipient.getAddress().serialize());
           }
+          */
 
           boolean isAlwaysTurn = TextSecurePreferences.isTurnOnly(WebRtcCallService.this);
 

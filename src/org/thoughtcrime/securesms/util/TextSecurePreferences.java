@@ -640,7 +640,7 @@ public class TextSecurePreferences {
   }
 
   public static void setLocalNumber(Context context, String localNumber) {
-    setStringPreference(context, LOCAL_NUMBER_PREF, localNumber);
+    setStringPreference(context, LOCAL_NUMBER_PREF, localNumber.toLowerCase());
   }
 
   public static void removeLocalNumber(Context context) {
@@ -1183,7 +1183,7 @@ public class TextSecurePreferences {
   }
 
   public static void setMasterHexEncodedPublicKey(Context context, String masterHexEncodedPublicKey) {
-    setStringPreference(context, "master_hex_encoded_publicKey", masterHexEncodedPublicKey);
+    setStringPreference(context, "master_hex_encoded_public_key", masterHexEncodedPublicKey.toLowerCase());
   }
   // endregion
 }

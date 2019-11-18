@@ -101,7 +101,6 @@ import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.internal.util.concurrent.SettableFuture;
 import org.whispersystems.signalservice.loki.api.LokiPublicChat;
 import org.whispersystems.signalservice.loki.api.LokiPublicChatAPI;
 
@@ -115,7 +114,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
-import kotlin.Unit;
 import network.loki.messenger.R;
 
 @SuppressLint("StaticFieldLeak")
@@ -409,12 +407,15 @@ public class ConversationFragment extends Fragment
       LokiPublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(getContext()).getPublicChat(threadId);
       boolean isPublicChat = publicChat != null;
       int selectedMessageCount = messageRecords.size();
-      boolean isSentByUser = ((MessageRecord)messageRecords.toArray()[0]).isOutgoing();
-      menu.findItem(R.id.menu_context_copy_public_key).setVisible(isPublicChat && selectedMessageCount == 1 && !isSentByUser);
+      boolean areAllSentByUser = true;
+      for (MessageRecord message : messageRecords) {
+        if (!message.isOutgoing()) { areAllSentByUser = false; }
+      }
+      menu.findItem(R.id.menu_context_copy_public_key).setVisible(isPublicChat && selectedMessageCount == 1 && !areAllSentByUser);
       menu.findItem(R.id.menu_context_reply).setVisible(isPublicChat && selectedMessageCount == 1);
       String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(getContext());
       boolean userCanModerate = isPublicChat && LokiPublicChatAPI.Companion.isUserModerator(userHexEncodedPublicKey, publicChat.getChannel(), publicChat.getServer());
-      boolean isDeleteOptionVisible = isPublicChat && selectedMessageCount == 1 && (isSentByUser || userCanModerate);
+      boolean isDeleteOptionVisible = isPublicChat && (areAllSentByUser || userCanModerate);
       menu.findItem(R.id.menu_context_delete_message).setVisible(isDeleteOptionVisible);
     } else {
       menu.findItem(R.id.menu_context_copy_public_key).setVisible(false);
@@ -520,54 +521,43 @@ public class ConversationFragment extends Fragment
         {
           @Override
           protected Void doInBackground(MessageRecord... messageRecords) {
+            ArrayList<Long> serverIDs = new ArrayList<>();
+            ArrayList<Long> ignoredMessages = new ArrayList<>();
+            ArrayList<Long> failedMessages = new ArrayList<>();
+            boolean isSentByUser = true;
+            LokiPublicChatAPI publicChatAPI = ApplicationContext.getInstance(getContext()).getLokiPublicChatAPI();
             for (MessageRecord messageRecord : messageRecords) {
-              boolean isThreadDeleted;
-
-              if (publicChat != null) {
-                final SettableFuture<?>[] future = { new SettableFuture<Unit>() };
-
-                LokiPublicChatAPI publicChatAPI = ApplicationContext.getInstance(getContext()).getLokiPublicChatAPI();
-                boolean isSentByUser = messageRecord.isOutgoing();
-                Long serverID = DatabaseFactory.getLokiMessageDatabase(getContext()).getServerID(messageRecord.id);
-
-                if (publicChatAPI != null && serverID != null) {
-                  publicChatAPI
-                  .deleteMessage(serverID, publicChat.getChannel(), publicChat.getServer(), isSentByUser)
-                  .success(l -> {
-                    @SuppressWarnings("unchecked") SettableFuture<Unit> f = (SettableFuture<Unit>) future[0];
-                    f.set(Unit.INSTANCE);
-                    return Unit.INSTANCE;
-                  }).fail(e -> {
-                    @SuppressWarnings("unchecked") SettableFuture<Unit> f = (SettableFuture<Unit>) future[0];
-                    f.setException(e);
-                    return Unit.INSTANCE;
-                  });
-                } else {
-                  @SuppressWarnings("unchecked") SettableFuture<Unit> f = (SettableFuture<Unit>) future[0];
-                  f.setException(new Exception("Message server ID is null."));
-                }
-
-                try {
-                  @SuppressWarnings("unchecked") SettableFuture<Unit> f = (SettableFuture<Unit>)future[0];
-                  f.get();
-                } catch (Exception exception) {
-                  Log.d("Loki", "Couldn't delete message due to error: " + exception.toString() + ".");
-                  return null;
-                }
-              }
-
-              if (messageRecord.isMms()) {
-                isThreadDeleted = DatabaseFactory.getMmsDatabase(getActivity()).delete(messageRecord.getId());
+              isSentByUser = isSentByUser && messageRecord.isOutgoing();
+              Long serverID = DatabaseFactory.getLokiMessageDatabase(getContext()).getServerID(messageRecord.id);
+              if (serverID != null) {
+                serverIDs.add(serverID);
               } else {
-                isThreadDeleted = DatabaseFactory.getSmsDatabase(getActivity()).deleteMessage(messageRecord.getId());
-              }
-
-              if (isThreadDeleted) {
-                threadId = -1;
-                listener.setThreadId(threadId);
+                ignoredMessages.add(messageRecord.getId());
               }
             }
-
+            if (publicChat != null && publicChatAPI != null) {
+              publicChatAPI
+              .deleteMessages(serverIDs, publicChat.getChannel(), publicChat.getServer(), isSentByUser)
+              .success(l -> {
+                for (MessageRecord messageRecord : messageRecords) {
+                  Long serverID = DatabaseFactory.getLokiMessageDatabase(getContext()).getServerID(messageRecord.id);
+                  if (l.contains(serverID)) {
+                    if (messageRecord.isMms()) {
+                      DatabaseFactory.getMmsDatabase(getActivity()).delete(messageRecord.getId());
+                    } else {
+                      DatabaseFactory.getSmsDatabase(getActivity()).deleteMessage(messageRecord.getId());
+                    }
+                  } else if (!ignoredMessages.contains(serverID)) {
+                    failedMessages.add(messageRecord.getId());
+                    Log.d("Loki", "Failed to delete message: " + messageRecord.getId() + ".");
+                  }
+                }
+                return null;
+              }). fail(e -> {
+                Log.d("Loki", "Couldn't delete message due to error: " + e.toString() + ".");
+                return null;
+              });
+            }
             return null;
           }
         }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, messageRecords.toArray(new MessageRecord[messageRecords.size()]));

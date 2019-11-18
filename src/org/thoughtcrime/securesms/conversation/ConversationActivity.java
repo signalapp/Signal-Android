@@ -38,7 +38,6 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.Vibrator;
 import android.provider.Browser;
 import android.provider.ContactsContract;
@@ -158,9 +157,11 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.FriendRequestViewDelegate;
 import org.thoughtcrime.securesms.loki.LokiAPIUtilities;
 import org.thoughtcrime.securesms.loki.LokiThreadDatabase;
+import org.thoughtcrime.securesms.loki.LokiMessageDatabase;
 import org.thoughtcrime.securesms.loki.LokiThreadDatabaseDelegate;
 import org.thoughtcrime.securesms.loki.LokiUserDatabase;
 import org.thoughtcrime.securesms.loki.MentionCandidateSelectionView;
+import org.thoughtcrime.securesms.loki.MultiDeviceUtilities;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mediasend.MediaSendActivity;
 import org.thoughtcrime.securesms.mms.AttachmentManager;
@@ -225,10 +226,8 @@ import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
 import org.thoughtcrime.securesms.util.views.Stub;
 import org.whispersystems.libsignal.InvalidMessageException;
 import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.api.SignalServiceMessageSender;
-import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
-import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.loki.api.LokiAPI;
+import org.whispersystems.signalservice.loki.api.LokiStorageAPI;
 import org.whispersystems.signalservice.loki.messaging.LokiMessageFriendRequestStatus;
 import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus;
 import org.whispersystems.signalservice.loki.messaging.Mention;
@@ -249,6 +248,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import kotlin.Unit;
 import network.loki.messenger.R;
 
+import static nl.komponents.kovenant.KovenantApi.task;
 import static org.thoughtcrime.securesms.TransportOption.Type;
 import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 import static org.whispersystems.libsignal.SessionCipher.SESSION_LOCK;
@@ -353,6 +353,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private ArrayList<Mention> mentions = new ArrayList<>();
   private String oldText = "";
 
+  // Multi Device
+  private   boolean isFriendsWithAnyDevice = false;
 
   @Override
   protected void onPreCreate() {
@@ -719,7 +721,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     if (isSingleConversation() && getRecipient().getContactUri() == null) {
       inflater.inflate(R.menu.conversation_add_to_contacts, menu);
     }
-     */
+
 
     if (recipient != null && recipient.isLocalNumber()) {
       if (isSecureText) menu.findItem(R.id.menu_call_secure).setVisible(false);
@@ -731,6 +733,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         muteItem.setVisible(false);
       }
     }
+     */
 
     searchViewItem = menu.findItem(R.id.menu_search);
 
@@ -2183,21 +2186,74 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   @Override
   public void handleThreadFriendRequestStatusChanged(long threadID) {
-    if (threadID != this.threadId) { return; }
-    new Handler(getMainLooper()).post(this::updateInputPanel);
+      if (threadID != this.threadId) {
+        Recipient threadRecipient = DatabaseFactory.getThreadDatabase(this).getRecipientForThreadId(threadID);
+        if (threadRecipient != null && !threadRecipient.isGroupRecipient()) {
+          LokiStorageAPI.shared.getAllDevicePublicKeys(threadRecipient.getAddress().serialize()).success(devices -> {
+            // We should update our input if this thread is a part of the other threads device
+            if (devices.contains(recipient.getAddress().serialize())) {
+              this.updateInputPanel();
+            }
+            return Unit.INSTANCE;
+          });
+        }
+        return;
+      }
+
+      this.updateInputPanel();
   }
 
   private void updateInputPanel() {
-    boolean hasPendingFriendRequest = !recipient.isGroupRecipient() && DatabaseFactory.getLokiThreadDatabase(this).hasPendingFriendRequest(threadId);
-    updateToggleButtonState();
-    inputPanel.setEnabled(!hasPendingFriendRequest);
-    int hintID = hasPendingFriendRequest ? R.string.activity_conversation_pending_friend_request_hint : R.string.activity_conversation_default_hint;
-    inputPanel.setHint(getResources().getString(hintID));
-    if (!hasPendingFriendRequest) {
-      inputPanel.composeText.requestFocus();
-      InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-      inputMethodManager.showSoftInput(inputPanel.composeText, 0);
+    /*
+      isFriendsWithAnyDevice caches whether we are friends with any of the other users device.
+
+      This stops the case where the input panel disables and enables rapidly.
+        - This can occur when we are not friends with the current thread BUT multi-device tells us that we are friends with another one of their devices.
+     */
+    if (recipient.isGroupRecipient() || isNoteToSelf() || isFriendsWithAnyDevice) {
+      setInputPanelEnabled(true);
+      return;
     }
+
+    // It could take a while before our promise resolves, so we assume the best case
+    LokiThreadFriendRequestStatus friendRequestStatus = DatabaseFactory.getLokiThreadDatabase(this).getFriendRequestStatus(threadId);
+    boolean isPending = friendRequestStatus == LokiThreadFriendRequestStatus.REQUEST_SENDING || friendRequestStatus == LokiThreadFriendRequestStatus.REQUEST_SENT || friendRequestStatus == LokiThreadFriendRequestStatus.REQUEST_RECEIVED;
+    setInputPanelEnabled(!isPending);
+
+    // We should always have the input panel enabled if we are friends with the current user
+    isFriendsWithAnyDevice = friendRequestStatus == LokiThreadFriendRequestStatus.FRIENDS;
+
+    // Multi-device input logic
+    if (!isFriendsWithAnyDevice) {
+      // We should enable the input if we don't have any pending friend requests OR we are friends with a linked device
+      MultiDeviceUtilities.hasPendingFriendRequestWithAnyLinkedDevice(this, recipient).success(hasPendingRequests -> {
+        if (!hasPendingRequests) {
+          setInputPanelEnabled(true);
+        } else {
+          MultiDeviceUtilities.isFriendsWithAnyLinkedDevice(this, recipient).success(isFriends -> {
+            // If we are friend with any of the other devices then we want to make sure the input panel is always enabled for the duration of this conversation
+            isFriendsWithAnyDevice = isFriends;
+            setInputPanelEnabled(isFriends);
+            return Unit.INSTANCE;
+          });
+        }
+        return Unit.INSTANCE;
+      });
+    }
+  }
+
+  private void setInputPanelEnabled(boolean enabled) {
+    Util.runOnMain(() -> {
+      updateToggleButtonState();
+      int hintID = enabled ? R.string.activity_conversation_default_hint : R.string.activity_conversation_pending_friend_request_hint;
+      inputPanel.setHint(getResources().getString(hintID));
+      inputPanel.setEnabled(enabled);
+      if (enabled) {
+        inputPanel.composeText.requestFocus();
+        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        inputMethodManager.showSoftInput(inputPanel.composeText, 0);
+      }
+    });
   }
 
   private void sendMessage() {
@@ -2401,9 +2457,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void updateToggleButtonState() {
-    // Don't allow attachments if we're not friends
-    LokiThreadFriendRequestStatus friendRequestStatus = DatabaseFactory.getLokiThreadDatabase(this).getFriendRequestStatus(threadId);
-    if (!recipient.isGroupRecipient() && friendRequestStatus != LokiThreadFriendRequestStatus.FRIENDS) {
+    // Don't allow attachments if we're not friends with any device
+    if (!isNoteToSelf() && !recipient.isGroupRecipient() && !isFriendsWithAnyDevice) {
       buttonToggle.display(sendButton);
       quickAttachmentToggle.hide();
       inlineAttachmentToggle.hide();
@@ -2988,27 +3043,34 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   // region Loki
   @Override
   public void acceptFriendRequest(@NotNull MessageRecord friendRequest) {
-    String contactID = DatabaseFactory.getThreadDatabase(this).getRecipientForThreadId(this.threadId).getAddress().toString();
-    SignalServiceMessageSender messageSender = ApplicationContext.getInstance(this).communicationModule.provideSignalMessageSender();
-    SignalServiceAddress address = new SignalServiceAddress(contactID);
-    SignalServiceDataMessage message = new SignalServiceDataMessage(System.currentTimeMillis(), "");
-    Context context = this;
-    AsyncTask.execute(() -> {
-      try {
-        messageSender.sendMessage(0, address, Optional.absent(), message); // The message ID doesn't matter
-        DatabaseFactory.getLokiThreadDatabase(context).setFriendRequestStatus(this.threadId, LokiThreadFriendRequestStatus.FRIENDS);
-        DatabaseFactory.getLokiMessageDatabase(context).setFriendRequestStatus(friendRequest.id, LokiMessageFriendRequestStatus.REQUEST_ACCEPTED);
-      } catch (Exception e) {
-        Log.d("Loki", "Failed to send background message to: " + contactID + ".");
-      }
-    });
+    // Send the accept to the original friend request thread id
+    LokiMessageDatabase lokiMessageDatabase = DatabaseFactory.getLokiMessageDatabase(this);
+    long originalThreadID = lokiMessageDatabase.getOriginalThreadID(friendRequest.id);
+    long threadId = originalThreadID < 0 ? this.threadId : originalThreadID;
+
+    Address contact = DatabaseFactory.getThreadDatabase(this).getRecipientForThreadId(threadId).getAddress();
+    String contactPubKey = contact.toString();
+    DatabaseFactory.getLokiThreadDatabase(this).setFriendRequestStatus(threadId, LokiThreadFriendRequestStatus.FRIENDS);
+    lokiMessageDatabase.setFriendRequestStatus(friendRequest.id, LokiMessageFriendRequestStatus.REQUEST_ACCEPTED);
+    MessageSender.sendBackgroundMessageToAllDevices(this, contactPubKey);
+    MessageSender.syncContact(this, contact);
+    updateInputPanel();
   }
 
   @Override
   public void rejectFriendRequest(@NotNull MessageRecord friendRequest) {
-    DatabaseFactory.getLokiThreadDatabase(this).setFriendRequestStatus(this.threadId, LokiThreadFriendRequestStatus.NONE);
-    String contactID = DatabaseFactory.getThreadDatabase(this).getRecipientForThreadId(this.threadId).getAddress().toString();
+    LokiMessageDatabase lokiMessageDatabase = DatabaseFactory.getLokiMessageDatabase(this);
+    long originalThreadID = lokiMessageDatabase.getOriginalThreadID(friendRequest.id);
+    long threadId = originalThreadID < 0 ? this.threadId : originalThreadID;
+
+    DatabaseFactory.getLokiThreadDatabase(this).setFriendRequestStatus(threadId, LokiThreadFriendRequestStatus.NONE);
+    String contactID = DatabaseFactory.getThreadDatabase(this).getRecipientForThreadId(threadId).getAddress().toString();
     DatabaseFactory.getLokiPreKeyBundleDatabase(this).removePreKeyBundle(contactID);
+    updateInputPanel();
+  }
+
+  public boolean isNoteToSelf() {
+    return TextSecurePreferences.getLocalNumber(this).equals(recipient.getAddress().serialize());
   }
   // endregion
 }
