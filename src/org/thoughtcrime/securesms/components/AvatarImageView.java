@@ -155,14 +155,14 @@ public class AvatarImageView extends AppCompatImageView {
   }
 
   private void updateImage() { updateImage(getWidth(), getHeight()); }
+
   private void updateImage(int w, int h) {
     if (w == 0 || h == 0 || recipient == null) { return; }
 
     Drawable image;
     Context context = this.getContext();
+
     if (recipient.isGroupRecipient()) {
-
-
       String name = Optional.fromNullable(recipient.getName()).or(Optional.fromNullable(TextSecurePreferences.getProfileName(context))).or("");
       MaterialColor fallbackColor = recipient.getColor();
 
