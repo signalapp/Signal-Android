@@ -36,12 +36,15 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
+import android.support.v4.util.ArraySet;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.preference.Preference;
 import android.widget.Toast;
 
 import org.jetbrains.annotations.NotNull;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
+import org.thoughtcrime.securesms.database.Database;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.loki.DeviceLinkingDialog;
 import org.thoughtcrime.securesms.loki.DeviceLinkingDialogDelegate;
 import org.thoughtcrime.securesms.loki.DeviceLinkingView;
@@ -56,12 +59,14 @@ import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.signalservice.loki.api.LokiStorageAPI;
 import org.whispersystems.signalservice.loki.api.PairingAuthorisation;
 import org.whispersystems.signalservice.loki.crypto.MnemonicCodec;
 import org.whispersystems.signalservice.loki.utilities.Analytics;
 import org.whispersystems.signalservice.loki.utilities.SerializationKt;
 
 import java.io.File;
+import java.util.Set;
 
 import network.loki.messenger.R;
 
@@ -192,9 +197,19 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
         .setOnPreferenceClickListener(new CategoryClickListener(getContext(), PREFERENCE_CATEGORY_QR_CODE));
 
       Preference linkDevicePreference = this.findPreference(PREFERENCE_CATEGORY_LINK_DEVICE);
-      // Hide if this is a slave device
-      linkDevicePreference.setVisible(isMasterDevice);
       linkDevicePreference.setOnPreferenceClickListener(new CategoryClickListener(getContext(), PREFERENCE_CATEGORY_LINK_DEVICE));
+
+      // Disable if we hit the cap of 1 linked device
+      if (isMasterDevice) {
+        Context context = getContext();
+        String ourNumber = TextSecurePreferences.getLocalNumber(context);
+        boolean shouldEnableDeviceLinking = DatabaseFactory.getLokiAPIDatabase(context).getPairingAuthorisations(ourNumber).size() <= 1;
+        linkDevicePreference.setEnabled(shouldEnableDeviceLinking);
+        linkDevicePreference.getIcon().setAlpha(shouldEnableDeviceLinking ? 255 : 124);
+      } else {
+        // Hide if this is a slave device
+        linkDevicePreference.setVisible(false);
+      }
 
       Preference seedPreference = this.findPreference(PREFERENCE_CATEGORY_SEED);
       // Hide if this is a slave device
