@@ -11,6 +11,7 @@ import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.jobs.PushDecryptJob
 import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.libsignal.util.guava.Optional
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer
 import org.whispersystems.signalservice.api.messages.SignalServiceContent
@@ -159,10 +160,12 @@ class LokiPublicChatPoller(private val context: Context, private val group: Loki
             val senderPublicKey = primaryDevice ?: message.hexEncodedPublicKey
             val serviceDataMessage = getDataMessage(message)
             val serviceContent = SignalServiceContent(serviceDataMessage, senderPublicKey, SignalServiceAddress.DEFAULT_DEVICE_ID, message.timestamp, false)
-            if (serviceDataMessage.quote.isPresent || (serviceDataMessage.attachments.isPresent && serviceDataMessage.attachments.get().size > 0)  || serviceDataMessage.previews.isPresent) {
-                PushDecryptJob(context).handleMediaMessage(serviceContent, serviceDataMessage, Optional.absent(), Optional.of(message.serverID))
-            } else {
-                PushDecryptJob(context).handleTextMessage(serviceContent, serviceDataMessage, Optional.absent(), Optional.of(message.serverID))
+            Util.runOnMain {
+                if (serviceDataMessage.quote.isPresent || (serviceDataMessage.attachments.isPresent && serviceDataMessage.attachments.get().size > 0) || serviceDataMessage.previews.isPresent) {
+                    PushDecryptJob(context).handleMediaMessage(serviceContent, serviceDataMessage, Optional.absent(), Optional.of(message.serverID))
+                } else {
+                    PushDecryptJob(context).handleTextMessage(serviceContent, serviceDataMessage, Optional.absent(), Optional.of(message.serverID))
+                }
             }
         }
         fun processOutgoingMessage(message: LokiPublicChatMessage) {
@@ -174,10 +177,12 @@ class LokiPublicChatPoller(private val context: Context, private val group: Loki
             val dataMessage = getDataMessage(message)
             val transcript = SentTranscriptMessage(localNumber, dataMessage.timestamp, dataMessage, dataMessage.expiresInSeconds.toLong(), Collections.singletonMap(localNumber, false))
             transcript.messageServerID = messageServerID
-            if (dataMessage.quote.isPresent || (dataMessage.attachments.isPresent && dataMessage.attachments.get().size > 0)  || dataMessage.previews.isPresent) {
-                PushDecryptJob(context).handleSynchronizeSentMediaMessage(transcript)
-            } else {
-                PushDecryptJob(context).handleSynchronizeSentTextMessage(transcript)
+            Util.runOnMain {
+                if (dataMessage.quote.isPresent || (dataMessage.attachments.isPresent && dataMessage.attachments.get().size > 0) || dataMessage.previews.isPresent) {
+                    PushDecryptJob(context).handleSynchronizeSentMediaMessage(transcript)
+                } else {
+                    PushDecryptJob(context).handleSynchronizeSentTextMessage(transcript)
+                }
             }
         }
         var userDevices = setOf<String>()
