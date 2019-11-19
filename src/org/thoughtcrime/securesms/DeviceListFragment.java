@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ListFragment;
@@ -17,25 +16,21 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.melnykov.fab.FloatingActionButton;
 
 import org.thoughtcrime.securesms.database.loaders.DeviceListLoader;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.devicelist.Device;
-import org.thoughtcrime.securesms.jobs.RefreshUnidentifiedDeliveryAbilityJob;
-import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.loki.MnemonicUtilities;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ViewUtil;
-import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
-import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 
-import java.io.IOException;
+import java.io.File;
 import java.util.List;
 import java.util.Locale;
 
-import javax.inject.Inject;
+import org.whispersystems.libsignal.util.guava.Function;
 
 import network.loki.messenger.R;
 
@@ -46,14 +41,13 @@ public class DeviceListFragment extends ListFragment
 
   private static final String TAG = DeviceListFragment.class.getSimpleName();
 
-  @Inject
-  SignalServiceAccountManager accountManager;
-
+  private File                   languageFileDirectory;
   private Locale                 locale;
   private View                   empty;
   private View                   progressContainer;
   private FloatingActionButton   addDeviceButton;
   private Button.OnClickListener addDeviceButtonListener;
+  private Function<String, Void> handleDisconnectDevice;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -82,6 +76,7 @@ public class DeviceListFragment extends ListFragment
   @Override
   public void onActivityCreated(Bundle bundle) {
     super.onActivityCreated(bundle);
+    this.languageFileDirectory = MnemonicUtilities.getLanguageFileDirectory(getContext());
     getLoaderManager().initLoader(0, null, this);
     getListView().setOnItemClickListener(this);
   }
@@ -90,12 +85,20 @@ public class DeviceListFragment extends ListFragment
     this.addDeviceButtonListener = listener;
   }
 
+  public void setHandleDisconnectDevice(Function<String, Void> handler) {
+    this.handleDisconnectDevice = handler;
+  }
+
+  public void setAddDeviceButtonVisible(boolean visible) {
+    addDeviceButton.setVisibility(visible ? View.VISIBLE : View.INVISIBLE);
+  }
+
   @Override
   public @NonNull Loader<List<Device>> onCreateLoader(int id, Bundle args) {
     empty.setVisibility(View.GONE);
     progressContainer.setVisibility(View.VISIBLE);
 
-    return new DeviceListLoader(getActivity(), accountManager);
+    return new DeviceListLoader(getActivity(), languageFileDirectory);
   }
 
   @Override
@@ -125,7 +128,7 @@ public class DeviceListFragment extends ListFragment
   @Override
   public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
     final String deviceName = ((DeviceListItem)view).getDeviceName();
-    final long   deviceId   = ((DeviceListItem)view).getDeviceId();
+    final String   deviceId   = ((DeviceListItem)view).getDeviceId();
 
     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
     builder.setTitle(getActivity().getString(R.string.DeviceListActivity_unlink_s, deviceName));
@@ -134,10 +137,14 @@ public class DeviceListFragment extends ListFragment
     builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
       @Override
       public void onClick(DialogInterface dialog, int which) {
-        handleDisconnectDevice(deviceId);
+        if (handleDisconnectDevice != null) { handleDisconnectDevice.apply(deviceId); }
       }
     });
     builder.show();
+  }
+
+  public void refresh() {
+    getLoaderManager().restartLoader(0, null, DeviceListFragment.this);
   }
 
   private void handleLoaderFailed() {
@@ -165,34 +172,6 @@ public class DeviceListFragment extends ListFragment
     });
 
     builder.show();
-  }
-
-  private void handleDisconnectDevice(final long deviceId) {
-    new ProgressDialogAsyncTask<Void, Void, Void>(getActivity(),
-                                                  R.string.DeviceListActivity_unlinking_device_no_ellipsis,
-                                                  R.string.DeviceListActivity_unlinking_device)
-    {
-      @Override
-      protected Void doInBackground(Void... params) {
-        try {
-          accountManager.removeDevice(deviceId);
-
-          ApplicationContext.getInstance(getContext())
-                            .getJobManager()
-                            .add(new RefreshUnidentifiedDeliveryAbilityJob());
-        } catch (IOException e) {
-          Log.w(TAG, e);
-          Toast.makeText(getActivity(), R.string.DeviceListActivity_network_failed, Toast.LENGTH_LONG).show();
-        }
-        return null;
-      }
-
-      @Override
-      protected void onPostExecute(Void result) {
-        super.onPostExecute(result);
-        getLoaderManager().restartLoader(0, null, DeviceListFragment.this);
-      }
-    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
   }
 
   @Override

@@ -12,9 +12,11 @@
               android:singleLine="true"
               android:ellipsize="marquee"
               android:layout_marginTop="8dp"
+              android:layout_marginBottom="8dp"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content" />
 
+    <!--
     <TextView android:id="@+id/created"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
@@ -29,5 +31,5 @@
               android:textColor="?attr/conversation_list_item_subject_color"
               android:fontFamily="sans-serif-light"
               android:layout_marginBottom="8dp" />
-
+     -->
 </org.thoughtcrime.securesms.DeviceListItem>

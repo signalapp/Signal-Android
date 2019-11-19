@@ -189,6 +189,11 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         val database = databaseHelper.readableDatabase
         database.delete(pairingAuthorisationCache, "$primaryDevicePublicKey = ? OR $secondaryDevicePublicKey = ?", arrayOf( hexEncodedPublicKey, hexEncodedPublicKey ))
     }
+
+    fun removePairingAuthorisation(primaryDevicePublicKey: String, secondaryDevicePublicKey: String) {
+        val database = databaseHelper.readableDatabase
+        database.delete(pairingAuthorisationCache, "${Companion.primaryDevicePublicKey} = ? OR ${Companion.secondaryDevicePublicKey} = ?", arrayOf( primaryDevicePublicKey, secondaryDevicePublicKey ))
+    }
 }
 
 // region Convenience

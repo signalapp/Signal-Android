@@ -46,6 +46,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.loki.DeviceLinkingDialog;
 import org.thoughtcrime.securesms.loki.DeviceLinkingDialogDelegate;
 import org.thoughtcrime.securesms.loki.DeviceLinkingView;
+import org.thoughtcrime.securesms.loki.LinkedDevicesActivity;
 import org.thoughtcrime.securesms.loki.MultiDeviceUtilities;
 import org.thoughtcrime.securesms.loki.QRCodeDialog;
 import org.thoughtcrime.securesms.preferences.AppProtectionPreferenceFragment;
@@ -89,7 +90,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
   // private static final String PREFERENCE_CATEGORY_ADVANCED       = "preference_category_advanced";
   private static final String PREFERENCE_CATEGORY_PUBLIC_KEY     = "preference_category_public_key";
   private static final String PREFERENCE_CATEGORY_QR_CODE        = "preference_category_qr_code";
-  private static final String PREFERENCE_CATEGORY_LINK_DEVICE    = "preference_category_link_device";
+  private static final String PREFERENCE_CATEGORY_LINKED_DEVICES = "preference_category_linked_devices";
   private static final String PREFERENCE_CATEGORY_SEED           = "preference_category_seed";
 
   private final DynamicTheme    dynamicTheme    = new DynamicTheme();
@@ -192,20 +193,9 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
       this.findPreference(PREFERENCE_CATEGORY_QR_CODE)
         .setOnPreferenceClickListener(new CategoryClickListener(getContext(), PREFERENCE_CATEGORY_QR_CODE));
 
-      Preference linkDevicePreference = this.findPreference(PREFERENCE_CATEGORY_LINK_DEVICE);
-      linkDevicePreference.setOnPreferenceClickListener(new CategoryClickListener(getContext(), PREFERENCE_CATEGORY_LINK_DEVICE));
-
-      // Disable if we hit the cap of 1 linked device
-      if (isMasterDevice) {
-        Context context = getContext();
-        String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context);
-        boolean isDeviceLinkingEnabled = DatabaseFactory.getLokiAPIDatabase(context).getPairingAuthorisations(userHexEncodedPublicKey).size() <= 1;
-        linkDevicePreference.setEnabled(isDeviceLinkingEnabled);
-        linkDevicePreference.getIcon().setAlpha(isDeviceLinkingEnabled ? 255 : 124);
-      } else {
-        // Hide if this is a slave device
-        linkDevicePreference.setVisible(false);
-      }
+      Preference linkDevicesPreference = this.findPreference(PREFERENCE_CATEGORY_LINKED_DEVICES);
+      linkDevicesPreference.setVisible(isMasterDevice);
+      linkDevicesPreference.setOnPreferenceClickListener(new CategoryClickListener(getContext(), PREFERENCE_CATEGORY_LINKED_DEVICES));
 
       Preference seedPreference = this.findPreference(PREFERENCE_CATEGORY_SEED);
       // Hide if this is a slave device
@@ -299,7 +289,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
       // this.findPreference(PREFERENCE_CATEGORY_ADVANCED).setIcon(advanced);
       this.findPreference(PREFERENCE_CATEGORY_PUBLIC_KEY).setIcon(publicKey);
       this.findPreference(PREFERENCE_CATEGORY_QR_CODE).setIcon(qrCode);
-      this.findPreference(PREFERENCE_CATEGORY_LINK_DEVICE).setIcon(linkDevice);
+      this.findPreference(PREFERENCE_CATEGORY_LINKED_DEVICES).setIcon(linkDevice);
       this.findPreference(PREFERENCE_CATEGORY_SEED).setIcon(seed);
     }
 
@@ -360,7 +350,9 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
         case PREFERENCE_CATEGORY_QR_CODE:
           QRCodeDialog.INSTANCE.show(getContext());
           break;
-        case PREFERENCE_CATEGORY_LINK_DEVICE:
+        case PREFERENCE_CATEGORY_LINKED_DEVICES:
+          Intent intent = new Intent(getActivity(), LinkedDevicesActivity.class);
+          startActivity(intent);
           DeviceLinkingDialog.Companion.show(getContext(), DeviceLinkingView.Mode.Master, this);
           break;
         case PREFERENCE_CATEGORY_SEED:

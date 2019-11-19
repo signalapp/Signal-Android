@@ -299,6 +299,7 @@
     <string name="DeviceListActivity_unlinking_device">Unlinking device...</string>
     <string name="DeviceListActivity_unlinking_device_no_ellipsis">Unlinking device</string>
     <string name="DeviceListActivity_network_failed">Network failed!</string>
+    <string name="DeviceListActivity_unlinked_device">Successfully unlinked device</string>
 
     <!-- DeviceListItem -->
     <string name="DeviceListItem_unnamed_device">Unnamed device</string>
@@ -1576,7 +1577,7 @@
     <string name="activity_settings_public_key_copied_message">Copied to clipboard</string>
     <string name="activity_settings_share_public_key_button_title">Share Public Key</string>
     <string name="activity_settings_show_qr_code_button_title">Show QR Code</string>
-    <string name="activity_settings_link_device_button_title">Link Device</string>
+    <string name="activity_settings_linked_devices_button_title">Linked Device</string>
     <string name="activity_settings_show_seed_button_title">Show Seed</string>
     <string name="activity_settings_seed_dialog_title">Your Seed</string>
     <string name="activity_settings_seed_dialog_copy_button_title">Copy</string>

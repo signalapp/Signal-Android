@@ -15,7 +15,7 @@ import network.loki.messenger.R;
 
 public class DeviceListItem extends LinearLayout {
 
-  private long     deviceId;
+  private String   deviceId;
   private TextView name;
   private TextView created;
   private TextView lastActive;
@@ -32,14 +32,15 @@ public class DeviceListItem extends LinearLayout {
   public void onFinishInflate() {
     super.onFinishInflate();
     this.name       = (TextView) findViewById(R.id.name);
-    this.created    = (TextView) findViewById(R.id.created);
-    this.lastActive = (TextView) findViewById(R.id.active);
+    // this.created    = (TextView) findViewById(R.id.created);
+    // this.lastActive = (TextView) findViewById(R.id.active);
   }
 
   public void set(Device deviceInfo, Locale locale) {
     if (TextUtils.isEmpty(deviceInfo.getName())) this.name.setText(R.string.DeviceListItem_unnamed_device);
     else                                         this.name.setText(deviceInfo.getName());
 
+    /*
     this.created.setText(getContext().getString(R.string.DeviceListItem_linked_s,
                                                 DateUtils.getDayPrecisionTimeSpanString(getContext(),
                                                                                         locale,
@@ -49,11 +50,12 @@ public class DeviceListItem extends LinearLayout {
                                                    DateUtils.getDayPrecisionTimeSpanString(getContext(),
                                                                                            locale,
                                                                                            deviceInfo.getLastSeen())));
+     */
 
     this.deviceId = deviceInfo.getId();
   }
 
-  public long getDeviceId() {
+  public String getDeviceId() {
     return deviceId;
   }
 

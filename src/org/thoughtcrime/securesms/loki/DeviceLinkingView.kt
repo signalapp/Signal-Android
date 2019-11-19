@@ -32,29 +32,8 @@ class DeviceLinkingView private constructor(context: Context, attrs: AttributeSe
     private constructor(context: Context) : this(context, null)
 
     init {
-        setUpLanguageFileDirectory()
+        languageFileDirectory = MnemonicUtilities.getLanguageFileDirectory(context)
         setUpViewHierarchy()
-    }
-
-    private fun setUpLanguageFileDirectory() {
-        val languages = listOf( "english", "japanese", "portuguese", "spanish" )
-        val directory = File(context.applicationInfo.dataDir)
-        for (language in languages) {
-            val fileName = "$language.txt"
-            if (directory.list().contains(fileName)) { continue }
-            val inputStream = context.assets.open("mnemonic/$fileName")
-            val file = File(directory, fileName)
-            val outputStream = FileOutputStream(file)
-            val buffer = ByteArray(1024)
-            while (true) {
-                val count = inputStream.read(buffer)
-                if (count < 0) { break }
-                outputStream.write(buffer, 0, count)
-            }
-            inputStream.close()
-            outputStream.close()
-        }
-        languageFileDirectory = directory
     }
 
     private fun setUpViewHierarchy() {
@@ -72,8 +51,8 @@ class DeviceLinkingView private constructor(context: Context, attrs: AttributeSe
         explanationTextView.text = resources.getString(explanationID)
         mnemonicTextView.visibility = if (mode == Mode.Master) View.GONE else View.VISIBLE
         if (mode == Mode.Slave) {
-            val hexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context).removing05PrefixIfNeeded()
-            mnemonicTextView.text = MnemonicCodec(languageFileDirectory).encode(hexEncodedPublicKey).split(" ").slice(0 until 3).joinToString(" ")
+            val hexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context)
+            mnemonicTextView.text = MnemonicUtilities.getFirst3Words(MnemonicCodec(languageFileDirectory), hexEncodedPublicKey)
         }
         authorizeButton.visibility = View.GONE
         authorizeButton.setOnClickListener { authorizePairing() }
