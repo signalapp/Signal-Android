@@ -2845,10 +2845,14 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         }
         int lastCharacterIndex = text.length() - 1;
         char lastCharacter = text.charAt(lastCharacterIndex);
+        char secondLastChar = ' ';
+        if (lastCharacterIndex > 0) {
+          secondLastChar = text.charAt(lastCharacterIndex - 1);
+        }
         String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(ConversationActivity.this);
         LokiThreadDatabase threadDatabase = DatabaseFactory.getLokiThreadDatabase(ConversationActivity.this);
         LokiUserDatabase userDatabase = DatabaseFactory.getLokiUserDatabase(ConversationActivity.this);
-        if (lastCharacter == '@') {
+        if (lastCharacter == '@' && Character.isWhitespace(secondLastChar)) {
           List<Mention> mentionCandidates = LokiAPI.Companion.getMentionCandidates("", threadId, userHexEncodedPublicKey, threadDatabase, userDatabase);
           currentMentionStartIndex = lastCharacterIndex;
           mentionCandidateSelectionView.show(mentionCandidates, threadId);
