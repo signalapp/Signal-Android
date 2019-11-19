@@ -19,12 +19,13 @@ import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.Util;
 
 public class ProfilePreference extends Preference {
 
   private ImageView avatarView;
   private TextView  profileNameView;
-  private TextView  profileNumberView;
+  private TextView profileSubtextView;
 
   @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
   public ProfilePreference(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
@@ -54,15 +55,15 @@ public class ProfilePreference extends Preference {
   @Override
   public void onBindViewHolder(PreferenceViewHolder viewHolder) {
     super.onBindViewHolder(viewHolder);
-    avatarView        = (ImageView)viewHolder.findViewById(R.id.avatar);
-    profileNameView   = (TextView)viewHolder.findViewById(R.id.profile_name);
-    profileNumberView = (TextView)viewHolder.findViewById(R.id.number);
+    avatarView         = (ImageView)viewHolder.findViewById(R.id.avatar);
+    profileNameView    = (TextView)viewHolder.findViewById(R.id.profile_name);
+    profileSubtextView = (TextView)viewHolder.findViewById(R.id.number);
 
     refresh();
   }
 
   public void refresh() {
-    if (profileNumberView == null) return;
+    if (profileSubtextView == null) return;
 
     final Recipient self        = Recipient.self();
     final String    profileName = TextSecurePreferences.getProfileName(getContext());
@@ -78,6 +79,6 @@ public class ProfilePreference extends Preference {
       profileNameView.setText(profileName);
     }
 
-    profileNumberView.setText(self.requireE164());
+    profileSubtextView.setText(self.getUsername().or(self.getE164()).orNull());
   }
 }

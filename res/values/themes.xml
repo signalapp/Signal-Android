@@ -326,6 +326,9 @@
         <item name="linked_devices_icon">@drawable/ic_linked_devices_24</item>
         <item name="advanced_icon">@drawable/ic_advanced_24</item>
         <item name="safety_number_icon">@drawable/ic_safety_number_outline_24</item>
+        <item name="message_request_dialog_button_background">@drawable/message_request_button_background_light</item>
+        <item name="message_request_text_color_primary">@color/core_grey_90</item>
+        <item name="message_request_text_color_secondary">@color/core_grey_60</item>
 
         <item name="conversation_icon_attach_audio">@drawable/ic_audio_light</item>
         <item name="conversation_icon_attach_video">@drawable/ic_video_light</item>
@@ -549,6 +552,9 @@
         <item name="linked_devices_icon">@drawable/ic_linked_devices_24</item>
         <item name="advanced_icon">@drawable/ic_advanced_24</item>
         <item name="safety_number_icon">@drawable/ic_safety_number_solid_24</item>
+        <item name="message_request_dialog_button_background">@drawable/message_request_button_background_dark</item>
+        <item name="message_request_text_color_primary">@color/core_grey_05</item>
+        <item name="message_request_text_color_secondary">@color/core_grey_25</item>
 
         <item name="conversation_icon_attach_audio">@drawable/ic_audio_dark</item>
         <item name="conversation_icon_attach_video">@drawable/ic_video_dark</item>

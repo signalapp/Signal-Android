@@ -356,18 +356,18 @@ public class Recipient {
   public @NonNull String getDisplayName(@NonNull Context context) {
     return Util.getFirstNonEmpty(getName(context),
                                  getProfileName(),
-                                 getUsername(),
+                                 getUsername().orNull(),
                                  e164,
                                  email,
                                  context.getString(R.string.Recipient_unknown));
   }
 
-  private @NonNull String getUsername() {
+  public @NonNull Optional<String> getUsername() {
     if (FeatureFlags.USERNAMES) {
       // TODO [greyson] Replace with actual username
-      return "@caycepollard";
+      return Optional.of("@caycepollard");
     }
-    return "";
+    return Optional.absent();
   }
 
   public @NonNull MaterialColor getColor() {

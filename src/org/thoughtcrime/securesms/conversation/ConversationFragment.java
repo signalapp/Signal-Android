@@ -94,6 +94,7 @@ import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.revealable.ViewOnceMessageActivity;
 import org.thoughtcrime.securesms.revealable.ViewOnceUtil;
 import org.thoughtcrime.securesms.sms.MessageSender;
@@ -101,6 +102,7 @@ import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
 import org.thoughtcrime.securesms.stickers.StickerPackPreviewActivity;
 import org.thoughtcrime.securesms.util.CommunicationActions;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -686,10 +688,18 @@ public class ConversationFragment extends Fragment
       setLastSeen(loader.getLastSeen());
     }
 
-    if (!loader.hasSent() && !recipient.get().isSystemContact() && !recipient.get().isGroup() && recipient.get().getRegistered() == RecipientDatabase.RegisteredState.REGISTERED) {
-      adapter.setHeaderView(unknownSenderView);
+    if (FeatureFlags.MESSAGE_REQUESTS) {
+      if (!loader.hasSent() && !recipient.get().isSystemContact() && !recipient.get().isProfileSharing() && !recipient.get().isBlocked() && recipient.get().isRegistered()) {
+        listener.onMessageRequest();
+      } else {
+        clearHeaderIfNotTyping(adapter);
+      }
     } else {
-      clearHeaderIfNotTyping(adapter);
+      if (!loader.hasSent() && !recipient.get().isSystemContact() && !recipient.get().isGroup() && recipient.get().getRegistered() == RecipientDatabase.RegisteredState.REGISTERED) {
+        adapter.setHeaderView(unknownSenderView);
+      } else {
+        clearHeaderIfNotTyping(adapter);
+      }
     }
 
     if (loader.hasOffset()) {
@@ -859,6 +869,7 @@ public class ConversationFragment extends Fragment
     void handleReplyMessage(MessageRecord messageRecord);
     void onMessageActionToolbarOpened();
     void onForwardClicked();
+    void onMessageRequest();
   }
 
   private class ConversationScrollListener extends OnScrollListener {

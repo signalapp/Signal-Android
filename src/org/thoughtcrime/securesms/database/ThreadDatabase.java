@@ -22,6 +22,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.MergeCursor;
 import android.net.Uri;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -279,14 +280,20 @@ public class ThreadDatabase extends Database {
 
     notifyConversationListListeners();
 
-    return new LinkedList<MarkedMessageInfo>() {{
-      addAll(smsRecords);
-      addAll(mmsRecords);
-    }};
+    return Util.concatenatedList(smsRecords, mmsRecords);
   }
 
   public boolean hasCalledSince(@NonNull Recipient recipient, long timestamp) {
     return DatabaseFactory.getMmsSmsDatabase(context).hasReceivedAnyCallsSince(getThreadIdFor(recipient), timestamp);
+  }
+
+  public List<MarkedMessageInfo> setEntireThreadRead(long threadId) {
+    setRead(threadId, false);
+
+    final List<MarkedMessageInfo> smsRecords = DatabaseFactory.getSmsDatabase(context).setEntireThreadRead(threadId);
+    final List<MarkedMessageInfo> mmsRecords = DatabaseFactory.getMmsDatabase(context).setEntireThreadRead(threadId);
+
+    return Util.concatenatedList(smsRecords, mmsRecords);
   }
 
   public List<MarkedMessageInfo> setRead(long threadId, boolean lastSeen) {
@@ -299,6 +306,7 @@ public class ThreadDatabase extends Database {
     }
 
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
+
     db.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {threadId+""});
 
     final List<MarkedMessageInfo> smsRecords = DatabaseFactory.getSmsDatabase(context).setMessagesRead(threadId);
@@ -306,10 +314,7 @@ public class ThreadDatabase extends Database {
 
     notifyConversationListListeners();
 
-    return new LinkedList<MarkedMessageInfo>() {{
-      addAll(smsRecords);
-      addAll(mmsRecords);
-    }};
+    return Util.concatenatedList(smsRecords, mmsRecords);
   }
 
   public void incrementUnread(long threadId, int amount) {

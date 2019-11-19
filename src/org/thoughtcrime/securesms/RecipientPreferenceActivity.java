@@ -34,9 +34,7 @@ import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
-import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobs.RotateProfileKeyJob;
 import org.thoughtcrime.securesms.logging.Log;
 
 import android.telephony.PhoneNumberUtils;
@@ -48,7 +46,6 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
@@ -62,11 +59,9 @@ import org.thoughtcrime.securesms.database.IdentityDatabase.IdentityRecord;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase.VibrateState;
 import org.thoughtcrime.securesms.database.loaders.ThreadMediaLoader;
-import org.thoughtcrime.securesms.jobs.MultiDeviceBlockedUpdateJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
-import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.preferences.CorrectedPreferenceFragment;
@@ -83,12 +78,12 @@ import org.thoughtcrime.securesms.util.DynamicDarkToolbarTheme;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.FeatureFlags;
-import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
+import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.concurrent.ExecutionException;
@@ -750,38 +745,13 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       }
 
       private void setBlocked(@NonNull final Context context, final Recipient recipient, final boolean blocked) {
-        new AsyncTask<Void, Void, Void>() {
-          @Override
-          protected Void doInBackground(Void... params) {
-            DatabaseFactory.getRecipientDatabase(context)
-                           .setBlocked(recipient.getId(), blocked);
-
-            if (recipient.isGroup() && DatabaseFactory.getGroupDatabase(context).isActive(recipient.requireGroupId())) {
-              long                                threadId     = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
-              Optional<OutgoingGroupMediaMessage> leaveMessage = GroupUtil.createGroupLeaveMessage(context, recipient);
-
-              if (threadId != -1 && leaveMessage.isPresent()) {
-                MessageSender.send(context, leaveMessage.get(), threadId, false, null);
-
-                GroupDatabase groupDatabase = DatabaseFactory.getGroupDatabase(context);
-                String        groupId       = recipient.requireGroupId();
-                groupDatabase.setActive(groupId, false);
-                groupDatabase.remove(groupId, Recipient.self().getId());
-              } else {
-                Log.w(TAG, "Failed to leave group. Can't block.");
-                Toast.makeText(context, R.string.RecipientPreferenceActivity_error_leaving_group, Toast.LENGTH_LONG).show();
-              }
-            }
-
-            if (blocked && (recipient.resolve().isSystemContact() || recipient.resolve().isProfileSharing())) {
-              ApplicationDependencies.getJobManager().add(new RotateProfileKeyJob());
-            }
-
-            ApplicationDependencies.getJobManager().add(new MultiDeviceBlockedUpdateJob());
-
-            return null;
+        SignalExecutors.BOUNDED.execute(() -> {
+          if (blocked) {
+            RecipientUtil.block(context, recipient);
+          } else {
+            RecipientUtil.unblock(context, recipient);
           }
-        }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        });
       }
     }
 

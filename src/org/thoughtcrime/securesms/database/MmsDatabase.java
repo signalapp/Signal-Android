@@ -467,6 +467,11 @@ public class MmsDatabase extends MessagingDatabase {
     return setMessagesRead(THREAD_ID + " = ? AND " + READ + " = 0", new String[] {String.valueOf(threadId)});
   }
 
+
+  public List<MarkedMessageInfo> setEntireThreadRead(long threadId) {
+    return setMessagesRead(THREAD_ID + " = ?", new String[] {String.valueOf(threadId)});
+  }
+
   public List<MarkedMessageInfo> setAllMessagesRead() {
     return setMessagesRead(READ + " = 0", null);
   }

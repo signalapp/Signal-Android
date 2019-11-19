@@ -406,6 +406,10 @@ public class SmsDatabase extends MessagingDatabase {
     return expiring;
   }
 
+  public List<MarkedMessageInfo> setEntireThreadRead(long threadId) {
+    return setMessagesRead(THREAD_ID + " = ?", new String[] {String.valueOf(threadId)});
+  }
+
   public List<MarkedMessageInfo> setMessagesRead(long threadId) {
     return setMessagesRead(THREAD_ID + " = ? AND " + READ + " = 0", new String[] {String.valueOf(threadId)});
   }

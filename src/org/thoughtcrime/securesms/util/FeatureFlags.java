@@ -16,4 +16,7 @@ public class FeatureFlags {
 
   /** New Profile Display */
   public static final boolean PROFILE_DISPLAY = UUIDS;
+
+  /** MessageRequest stuff */
+  public static final boolean MESSAGE_REQUESTS = UUIDS;
 }

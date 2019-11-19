@@ -562,4 +562,14 @@ public class Util {
     }
     return handler;
   }
+
+  public static <T> List<T> concatenatedList(List<T> first, List<T> second) {
+    final List<T> concat = new ArrayList<>(first.size() + second.size());
+
+    concat.addAll(first);
+    concat.addAll(second);
+
+    return concat;
+  }
+
 }

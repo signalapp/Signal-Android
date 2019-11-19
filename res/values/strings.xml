@@ -1661,6 +1661,18 @@
     <string name="RegistrationLockDialog_reminder">Reminder:</string>
     <string name="recipient_preferences__about">About</string>
     <string name="Recipient_unknown">Unknown</string>
+    <string name="MessageRequestBottomView_accept">Accept</string>
+    <string name="MessageRequestBottomView_delete">Delete</string>
+    <string name="MessageRequestBottomView_block">Block</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let">Do you want to receive messages from %1$s?</string>
+    <string name="MessageRequestProfileView_member_of_one_group">Member of %1$s</string>
+    <string name="MessageRequestProfileView_member_of_two_groups">Member of %1$s and %2$s</string>
+    <string name="MessageRequestProfileView_member_of_many_groups">Member of %1$s, %2$s, and %3$s</string>
+    <string name="MessageRequestProfileView_members">%1$d members</string>
+    <plurals name="MessageRequestProfileView_member_of_others">
+        <item quantity="one">%d other</item>
+        <item quantity="other">%d others</item>
+    </plurals>
     <!-- EOF -->
 
 </resources>

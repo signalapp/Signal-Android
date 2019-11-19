@@ -383,4 +383,19 @@
         <attr name="arcSweepAngle" format="float"   />
         <attr name="arcProgress" format="float"   />
     </declare-styleable>
+
+    <style name="Signal.MessageRequest.Button" parent="Button.Borderless">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:background">?message_request_dialog_button_background</item>
+    </style>
+
+    <style name="Signal.MessageRequest.Button.Deny">
+        <item name="android:textColor">@color/core_red</item>
+    </style>
+
+    <style name="Signal.MessageRequest.Button.Accept">
+        <item name="android:textColor">@color/core_blue</item>
+    </style>
 </resources>
