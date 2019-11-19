@@ -409,8 +409,23 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
           // ========
           // accountManager.setProfileAvatar(profileKey, avatar);
           // ========
+
+          //TODO: there is no need to upload the avatar again if there is no change
           AvatarHelper.setAvatar(CreateProfileActivity.this, Address.fromSerialized(TextSecurePreferences.getLocalNumber(context)), avatarBytes);
           TextSecurePreferences.setProfileAvatarId(CreateProfileActivity.this, new SecureRandom().nextInt());
+          
+          //Loki - Upload the profile photo here
+          if (avatar != null) {
+            Log.d("Loki", "Start uploading profile photo");
+            LokiStorageAPI storageAPI = LokiStorageAPI.shared;
+            Triple<Long, String, byte[]> result = storageAPI.uploadProfilePhoto(storageAPI.getServer(), avatarBytes);
+            String url = result.component2();
+            Log.d("Loki", "Upload profile photo success, the url is " + url);
+            TextSecurePreferences.setProfileAvatarUrl(CreateProfileActivity.this, url);
+          }
+          else {
+            TextSecurePreferences.setProfileAvatarUrl(CreateProfileActivity.this, null);
+          }
         } catch (IOException e) {
           Log.w(TAG, e);
           return false;

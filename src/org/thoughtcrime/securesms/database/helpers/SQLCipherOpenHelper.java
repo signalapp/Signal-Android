@@ -136,6 +136,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     db.execSQL(LokiThreadDatabase.getCreatePublicChatTableCommand());
     db.execSQL(LokiUserDatabase.getCreateDisplayNameTableCommand());
     db.execSQL(LokiUserDatabase.getCreateServerDisplayNameTableCommand());
+    db.execSQL(LokiUserDatabase.getCreateProfileAvatarUrlTableCommand());
 
     executeStatements(db, SmsDatabase.CREATE_INDEXS);
     executeStatements(db, MmsDatabase.CREATE_INDEXS);

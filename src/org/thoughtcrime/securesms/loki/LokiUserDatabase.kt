@@ -16,6 +16,7 @@ class LokiUserDatabase(context: Context, helper: SQLCipherOpenHelper) : Database
     companion object {
         // Shared
         private val displayName = "display_name"
+        private val profileAvatarUrl = "profile_avatar_url"
         // Display name cache
         private val displayNameTable = "loki_user_display_name_database"
         private val hexEncodedPublicKey = "hex_encoded_public_key"
@@ -24,6 +25,9 @@ class LokiUserDatabase(context: Context, helper: SQLCipherOpenHelper) : Database
         private val serverDisplayNameTable = "loki_user_server_display_name_database"
         private val serverID = "server_id"
         @JvmStatic val createServerDisplayNameTableCommand = "CREATE TABLE $serverDisplayNameTable ($hexEncodedPublicKey TEXT, $serverID TEXT, $displayName TEXT, PRIMARY KEY ($hexEncodedPublicKey, $serverID));"
+        // Profile Avatar URL cache
+        private val profileAvatarUrlTable = "loki_user_profile_avatar_url_database"
+        @JvmStatic val createProfileAvatarUrlTableCommand = "CREATE TABLE $profileAvatarUrlTable ($hexEncodedPublicKey TEXT PRIMARY KEY, $profileAvatarUrl TEXT);"
     }
 
     override fun getDisplayName(hexEncodedPublicKey: String): String? {
@@ -66,4 +70,27 @@ class LokiUserDatabase(context: Context, helper: SQLCipherOpenHelper) : Database
             Log.d("Loki", "Couldn't save server display name due to exception: $e.")
         }
     }
+
+    override fun getProfileAvatarUrl(hexEncodedPublicKey: String): String? {
+        if (hexEncodedPublicKey == TextSecurePreferences.getLocalNumber(context)) {
+            return TextSecurePreferences.getProfileAvatarUrl(context)
+        } else {
+            val database = databaseHelper.readableDatabase
+            return database.get(profileAvatarUrlTable, "${Companion.hexEncodedPublicKey} = ?", arrayOf( hexEncodedPublicKey )) { cursor ->
+                cursor.getString(cursor.getColumnIndexOrThrow(profileAvatarUrl))
+            }
+        }
+    }
+
+    //TODO figure out what to do with Recipient
+    /*
+    fun setProfileAvatarUrl(hexEncodedPublicKey: String, profileAvatarUrl: String) {
+        val database = databaseHelper.writableDatabase
+        val row = ContentValues(2)
+        row.put(Companion.hexEncodedPublicKey, hexEncodedPublicKey)
+        row.put(Companion.profileAvatarUrl, profileAvatarUrl)
+        database.insertOrUpdate(profileAvatarUrlTable, row, "${Companion.hexEncodedPublicKey} = ?", arrayOf( hexEncodedPublicKey ))
+        Recipient.from(context, Address.fromSerialized(hexEncodedPublicKey), false).notifyListeners()
+    }
+     */
 }
