@@ -195,7 +195,7 @@ dependencies {
     }
 }
 
-def canonicalVersionCode = 20
+def canonicalVersionCode = 21
 def canonicalVersionName = "1.5.0"
 
 def postFixSize = 10
