@@ -75,8 +75,4 @@ class LinkedDevicesActivity : PassphraseRequiredActionBarActivity(), DeviceLinki
       Util.runOnMain { this.deviceListFragment.refresh() }
     }
   }
-
-  override fun setDeviceDisplayName(hexEncodedPublicKey: String, displayName: String) {
-    DatabaseFactory.getLokiUserDatabase(this).setDisplayName(hexEncodedPublicKey, displayName)
-  }
 }

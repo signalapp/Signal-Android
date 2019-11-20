@@ -45,18 +45,6 @@
         android:textAlignment="center"
         android:text="word word word" />
 
-    <org.thoughtcrime.securesms.components.LabeledEditText
-        android:id="@+id/deviceNameText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:inputType="text"
-        android:singleLine="true"
-        app:labeledEditText_label="@string/view_device_linking_device_name_edit_text_description"
-        app:labeledEditText_background="?attr/colorBackgroundFloating"
-        />
-
     <LinearLayout
         android:id="@+id/buttonContainer"
         android:layout_width="match_parent"

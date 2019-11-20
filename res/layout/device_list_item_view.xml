@@ -2,40 +2,30 @@
 <org.thoughtcrime.securesms.DeviceListItem xmlns:android="http://schemas.android.com/apk/res/android"
                                            android:orientation="vertical"
                                            android:layout_width="match_parent"
-                                           android:layout_height="match_parent"
-                                           android:layout_marginStart="16dp"
-                                           android:layout_marginEnd="16dp">
-
-    <LinearLayout
-        android:layout_width="match_parent"
+                                           android:layout_height="wrap_content"
+                                           android:paddingBottom="8dp">
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingBottom="8dp"
-        >
+        android:layout_marginTop="8dp"
+        android:ellipsize="marquee"
+        android:singleLine="true"
+        android:text="Name"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="?attr/conversation_list_item_contact_color"
+        android:textSize="18sp" />
 
-        <TextView
-            android:id="@+id/name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:ellipsize="marquee"
-            android:singleLine="true"
-            android:text="Name"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="?attr/conversation_list_item_contact_color"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/shortId"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:ellipsize="marquee"
-            android:singleLine="true"
-            android:text="shortId"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#A2A2A2"
-            android:textSize="14sp" />
-    </LinearLayout>
+    <TextView
+        android:id="@+id/shortId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:ellipsize="marquee"
+        android:singleLine="true"
+        android:text="shortId"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#A2A2A2"
+        android:textSize="14sp" />
 
 </org.thoughtcrime.securesms.DeviceListItem>

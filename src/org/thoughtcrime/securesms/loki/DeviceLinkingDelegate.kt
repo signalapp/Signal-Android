@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.loki
 
 import org.whispersystems.signalservice.loki.api.PairingAuthorisation
 
+// Loki - TODO: Remove this yucky delegate pattern for device linking dialog once we have the redesign
 interface DeviceLinkingDelegate {
     companion object {
         fun combine(vararg delegates: DeviceLinkingDelegate?): DeviceLinkingDelegate {
@@ -18,10 +19,6 @@ interface DeviceLinkingDelegate {
                 override fun sendPairingAuthorizedMessage(pairingAuthorisation: PairingAuthorisation) {
                     for (delegate in validDelegates) { delegate.sendPairingAuthorizedMessage(pairingAuthorisation) }
                 }
-
-                override fun setDeviceDisplayName(hexEncodedPublicKey: String, displayName: String) {
-                    for (delegate in validDelegates) { delegate.setDeviceDisplayName(hexEncodedPublicKey, displayName) }
-                }
             }
         }
     }
@@ -29,5 +26,4 @@ interface DeviceLinkingDelegate {
     fun handleDeviceLinkAuthorized(pairingAuthorisation: PairingAuthorisation) {}
     fun handleDeviceLinkingDialogDismissed() {}
     fun sendPairingAuthorizedMessage(pairingAuthorisation: PairingAuthorisation) {}
-    fun setDeviceDisplayName(hexEncodedPublicKey: String, displayName: String) {}
 }

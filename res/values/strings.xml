@@ -1635,7 +1635,6 @@
     <string name="view_device_linking_explanation_3">Your device has been linked successfully</string>
     <string name="view_device_linking_authorize_button_title">Authorize</string>
     <string name="view_device_linking_cancel_button_title">Cancel</string>
-    <string name="view_device_linking_device_name_edit_text_description">Device Name (Optional)</string>
     <!-- Scan QR code fragment -->
     <string name="fragment_scan_qr_code_title">Scan QR Code</string>
     <string name="fragment_scan_qr_code_explanation">Scan the QR code of the person you\'d like to securely message. They can find their QR code by going into Loki Messenger\'s in-app settings and clicking \"Show QR Code\".</string>

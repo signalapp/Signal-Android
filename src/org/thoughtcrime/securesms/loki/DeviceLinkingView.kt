@@ -56,30 +56,6 @@ class DeviceLinkingView private constructor(context: Context, attrs: AttributeSe
         authorizeButton.visibility = View.GONE
         authorizeButton.setOnClickListener { authorizePairing() }
         cancelButton.setOnClickListener { cancel() }
-
-        deviceNameText.visibility = View.GONE
-        deviceNameText.input.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
-            override fun afterTextChanged(s: Editable?) {
-                val string = s?.toString() ?: ""
-                when {
-                    string.trim().length > 30 -> {
-                        deviceNameText.input.error = "Too Long"
-                        enableAuthorizeButton(false)
-                    }
-                    else -> {
-                        deviceNameText.input.error = null
-                        enableAuthorizeButton(true)
-                    }
-                }
-            }
-        })
-    }
-
-    private fun enableAuthorizeButton(enabled: Boolean) {
-        authorizeButton.isEnabled = enabled
-        authorizeButton.alpha = if (enabled) 1f else 0.5f
     }
     // endregion
 
@@ -96,8 +72,6 @@ class DeviceLinkingView private constructor(context: Context, attrs: AttributeSe
         mnemonicTextView.visibility = View.VISIBLE
         mnemonicTextView.text = MnemonicUtilities.getFirst3Words(MnemonicCodec(languageFileDirectory), pairingAuthorisation.secondaryDevicePublicKey)
         authorizeButton.visibility = View.VISIBLE
-        deviceNameText.visibility = View.VISIBLE
-        enableAuthorizeButton(true)
     }
 
     fun onDeviceLinkAuthorized(pairingAuthorisation: PairingAuthorisation) {
@@ -129,7 +103,6 @@ class DeviceLinkingView private constructor(context: Context, attrs: AttributeSe
         if (mode != Mode.Master || pairingAuthorisation == null) { return; }
         delegate.sendPairingAuthorizedMessage(pairingAuthorisation)
         delegate.handleDeviceLinkAuthorized(pairingAuthorisation)
-        delegate.setDeviceDisplayName(pairingAuthorisation.secondaryDevicePublicKey, deviceNameText.text.toString().trim())
         dismiss?.invoke()
     }
 
