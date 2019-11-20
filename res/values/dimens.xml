@@ -115,4 +115,10 @@
 
     <dimen name="recording_voice_lock_target">-150dp</dimen>
 
+    <dimen name="default_margin">16dp</dimen>
+    <dimen name="drawable_padding">24dp</dimen>
+    <dimen name="text_size">16sp</dimen>
+    <dimen name="normal_padding">16dp</dimen>
+    <dimen name="action_item_height">56dp</dimen>
+
 </resources>

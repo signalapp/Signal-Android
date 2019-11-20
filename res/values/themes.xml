@@ -133,6 +133,7 @@
         <item name="android:windowBackground">@color/loki_darkest_gray</item>
         <item name="alertDialogTheme">@style/AppCompatAlertDialogStyleLight</item>
         <item name="android:alertDialogTheme">@style/AppCompatDialogStyleLight</item>
+        <item name="bottomSheetDialogTheme">@style/Theme.MaterialComponents.Light.BottomSheetDialog</item>
         <!--<item name="android:windowContentOverlay">@drawable/compat_actionbar_shadow_background</item>-->
 
         <item name="attachment_type_selector_background">@color/white</item>
@@ -317,6 +318,7 @@
         <item name="android:windowBackground">@color/loki_darkest_gray</item>
         <item name="alertDialogTheme">@style/AppCompatAlertDialogStyleDark</item>
         <item name="android:alertDialogTheme">@style/AppCompatDialogStyleDark</item>
+        <item name="bottomSheetDialogTheme">@style/Theme.MaterialComponents.BottomSheetDialog</item>
 
         <item name="attachment_type_selector_background">@color/gray95</item>
         <item name="attachment_document_icon_small">@drawable/ic_document_small_dark</item>

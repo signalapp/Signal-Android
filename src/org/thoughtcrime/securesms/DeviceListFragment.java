@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.loaders.DeviceListLoader;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.devicelist.Device;
+import org.thoughtcrime.securesms.loki.DeviceListBottomSheetFragment;
 import org.thoughtcrime.securesms.loki.MnemonicUtilities;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ViewUtil;
@@ -128,6 +129,9 @@ public class DeviceListFragment extends ListFragment
     final String deviceName = ((DeviceListItem)view).getDeviceName();
     final String   deviceId   = ((DeviceListItem)view).getDeviceId();
 
+    DeviceListBottomSheetFragment fragment = new DeviceListBottomSheetFragment();
+    fragment.show(getFragmentManager(), fragment.getTag());
+    /*
     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
     builder.setTitle(getActivity().getString(R.string.DeviceListActivity_unlink_s, deviceName));
     builder.setMessage(R.string.DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive);
@@ -139,6 +143,8 @@ public class DeviceListFragment extends ListFragment
       }
     });
     builder.show();
+
+     */
   }
 
   public void refresh() {
