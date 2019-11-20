@@ -176,6 +176,14 @@ message DataMessage {
     optional AttachmentPointer data      = 4;
   }
 
+  message Reaction {
+    optional string emoji               = 1;
+    optional bool   remove              = 2;
+    optional string targetAuthorE164    = 3;
+    optional string targetAuthorUuid    = 4;
+    optional uint64 targetSentTimestamp = 5;
+  }
+
   enum ProtocolVersion {
     option allow_alias = true;
 
@@ -183,7 +191,8 @@ message DataMessage {
     MESSAGE_TIMERS  = 1;
     VIEW_ONCE       = 2;
     VIEW_ONCE_VIDEO = 3;
-    CURRENT         = 3;
+    REACTIONS       = 4;
+    CURRENT         = 4;
   }
 
   optional string             body                    = 1;
@@ -199,6 +208,7 @@ message DataMessage {
   optional Sticker            sticker                 = 11;
   optional uint32             requiredProtocolVersion = 12;
   optional bool               isViewOnce              = 14;
+  optional Reaction           reaction                = 16;
 }
 
 message NullMessage {

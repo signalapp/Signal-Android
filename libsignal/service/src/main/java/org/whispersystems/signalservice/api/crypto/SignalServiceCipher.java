@@ -45,6 +45,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPoin
 import org.whispersystems.signalservice.api.messages.SignalServiceContent;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage.Preview;
+import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage.Reaction;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage.Sticker;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroup;
@@ -308,6 +309,7 @@ public class SignalServiceCipher {
     List<SharedContact>            sharedContacts   = createSharedContacts(content);
     List<Preview>                  previews         = createPreviews(content);
     Sticker                        sticker          = createSticker(content);
+    Reaction                       reaction         = createReaction(content);
 
     if (content.getRequiredProtocolVersion() > DataMessage.ProtocolVersion.CURRENT.getNumber()) {
       throw new UnsupportedDataMessageException(DataMessage.ProtocolVersion.CURRENT.getNumber(),
@@ -340,7 +342,8 @@ public class SignalServiceCipher {
                                         sharedContacts,
                                         previews,
                                         sticker,
-                                        content.getIsViewOnce());
+                                        content.getIsViewOnce(),
+                                        reaction);
   }
 
   private SignalServiceSyncMessage createSynchronizeMessage(Metadata metadata, SyncMessage content)
@@ -616,6 +619,23 @@ public class SignalServiceCipher {
                        sticker.getPackKey().toByteArray(),
                        sticker.getStickerId(),
                        createAttachmentPointer(sticker.getData()));
+  }
+
+  private Reaction createReaction(DataMessage content) {
+    if (!content.hasReaction()                                                                        ||
+        !content.getReaction().hasEmoji()                                                             ||
+        !(content.getReaction().hasTargetAuthorE164() || content.getReaction().hasTargetAuthorUuid()) ||
+        !content.getReaction().hasTargetSentTimestamp())
+    {
+      return null;
+    }
+
+    DataMessage.Reaction reaction = content.getReaction();
+
+    return new Reaction(reaction.getEmoji(),
+                        reaction.getRemove(),
+                        new SignalServiceAddress(UuidUtil.parseOrNull(reaction.getTargetAuthorUuid()), reaction.getTargetAuthorE164()),
+                        reaction.getTargetSentTimestamp());
   }
 
   private List<SharedContact> createSharedContacts(DataMessage content) {

@@ -32,6 +32,7 @@ public class SignalServiceDataMessage {
   private final Optional<List<Preview>>                 previews;
   private final Optional<Sticker>                       sticker;
   private final boolean                                 viewOnce;
+  private final Optional<Reaction>                      reaction;
 
   /**
    * Construct a SignalServiceDataMessage with a body and no attachments.
@@ -105,7 +106,7 @@ public class SignalServiceDataMessage {
    * @param expiresInSeconds The number of seconds in which a message should disappear after having been seen.
    */
   public SignalServiceDataMessage(long timestamp, SignalServiceGroup group, List<SignalServiceAttachment> attachments, String body, int expiresInSeconds) {
-    this(timestamp, group, attachments, body, false, expiresInSeconds, false, null, false, null, null, null, null, false);
+    this(timestamp, group, attachments, body, false, expiresInSeconds, false, null, false, null, null, null, null, false, null);
   }
 
   /**
@@ -123,7 +124,7 @@ public class SignalServiceDataMessage {
                                   String body, boolean endSession, int expiresInSeconds,
                                   boolean expirationUpdate, byte[] profileKey, boolean profileKeyUpdate,
                                   Quote quote, List<SharedContact> sharedContacts, List<Preview> previews,
-                                  Sticker sticker, boolean viewOnce)
+                                  Sticker sticker, boolean viewOnce, Reaction reaction)
   {
     this.timestamp             = timestamp;
     this.body                  = Optional.fromNullable(body);
@@ -136,6 +137,7 @@ public class SignalServiceDataMessage {
     this.quote                 = Optional.fromNullable(quote);
     this.sticker               = Optional.fromNullable(sticker);
     this.viewOnce              = viewOnce;
+    this.reaction              = Optional.fromNullable(reaction);
 
     if (attachments != null && !attachments.isEmpty()) {
       this.attachments = Optional.of(attachments);
@@ -232,6 +234,10 @@ public class SignalServiceDataMessage {
     return viewOnce;
   }
 
+  public Optional<Reaction> getReaction() {
+    return reaction;
+  }
+
   public static class Builder {
 
     private List<SignalServiceAttachment> attachments    = new LinkedList<>();
@@ -249,6 +255,7 @@ public class SignalServiceDataMessage {
     private Quote              quote;
     private Sticker            sticker;
     private boolean            viewOnce;
+    private Reaction           reaction;
 
     private Builder() {}
 
@@ -340,12 +347,17 @@ public class SignalServiceDataMessage {
       return this;
     }
 
+    public Builder withReaction(Reaction reaction) {
+      this.reaction = reaction;
+      return this;
+    }
+
     public SignalServiceDataMessage build() {
       if (timestamp == 0) timestamp = System.currentTimeMillis();
       return new SignalServiceDataMessage(timestamp, group, attachments, body, endSession,
                                           expiresInSeconds, expirationUpdate, profileKey,
                                           profileKeyUpdate, quote, sharedContacts, previews,
-                                          sticker, viewOnce);
+                                          sticker, viewOnce, reaction);
     }
   }
 
@@ -454,6 +466,36 @@ public class SignalServiceDataMessage {
 
     public SignalServiceAttachment getAttachment() {
       return attachment;
+    }
+  }
+
+  public static class Reaction {
+    private final String               emoji;
+    private final boolean              remove;
+    private final SignalServiceAddress targetAuthor;
+    private final long                 targetSentTimestamp;
+
+    public Reaction(String emoji, boolean remove, SignalServiceAddress targetAuthor, long targetSentTimestamp) {
+      this.emoji               = emoji;
+      this.remove              = remove;
+      this.targetAuthor        = targetAuthor;
+      this.targetSentTimestamp = targetSentTimestamp;
+    }
+
+    public String getEmoji() {
+      return emoji;
+    }
+
+    public boolean isRemove() {
+      return remove;
+    }
+
+    public SignalServiceAddress getTargetAuthor() {
+      return targetAuthor;
+    }
+
+    public long getTargetSentTimestamp() {
+      return targetSentTimestamp;
     }
   }
 }

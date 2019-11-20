@@ -543,6 +543,24 @@ public class SignalServiceMessageSender {
       builder.setRequiredProtocolVersion(Math.max(DataMessage.ProtocolVersion.VIEW_ONCE_VIDEO_VALUE, builder.getRequiredProtocolVersion()));
     }
 
+    if (message.getReaction().isPresent()) {
+      DataMessage.Reaction.Builder reactionBuilder = DataMessage.Reaction.newBuilder()
+                                                                         .setEmoji(message.getReaction().get().getEmoji())
+                                                                         .setRemove(message.getReaction().get().isRemove())
+                                                                         .setTargetSentTimestamp(message.getReaction().get().getTargetSentTimestamp());
+
+      if (message.getReaction().get().getTargetAuthor().getNumber().isPresent()) {
+        reactionBuilder.setTargetAuthorE164(message.getReaction().get().getTargetAuthor().getNumber().get());
+      }
+
+      if (message.getReaction().get().getTargetAuthor().getUuid().isPresent()) {
+        reactionBuilder.setTargetAuthorUuid(message.getReaction().get().getTargetAuthor().getUuid().get().toString());
+      }
+
+      builder.setReaction(reactionBuilder.build());
+      builder.setRequiredProtocolVersion(Math.max(DataMessage.ProtocolVersion.REACTIONS_VALUE, builder.getRequiredProtocolVersion()));
+    }
+
     builder.setTimestamp(message.getTimestamp());
 
     return container.setDataMessage(builder).build().toByteArray();
