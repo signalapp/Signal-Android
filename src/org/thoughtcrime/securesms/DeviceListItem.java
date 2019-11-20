@@ -50,4 +50,8 @@ public class DeviceListItem extends LinearLayout {
     return name.getText().toString();
   }
 
+  public boolean hasDeviceName() {
+    return shortId.getVisibility() == VISIBLE;
+  }
+
 }

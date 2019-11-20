@@ -11,7 +11,7 @@
         android:id="@+id/editDisplayNameText"
         style="@style/ActionItem"
         android:drawableStart="@drawable/ic_edit_white_24dp"
-        android:text="@string/fragment_device_list_edit_display_name_title"/>
+        android:text="@string/fragment_device_list_edit_device_name_title"/>
 
     <TextView
         android:id="@+id/unlinkDeviceText"

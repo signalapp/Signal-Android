@@ -300,6 +300,7 @@
     <string name="DeviceListActivity_unlinking_device_no_ellipsis">Unlinking device</string>
     <string name="DeviceListActivity_network_failed">Network failed!</string>
     <string name="DeviceListActivity_unlinked_device">Successfully unlinked device</string>
+    <string name="DeviceListActivity_edit_device_name">Edit device name</string>
 
     <!-- DeviceListItem -->
     <string name="DeviceListItem_unnamed_device">Unnamed device</string>
@@ -1644,7 +1645,7 @@
     <!-- Conversation list activity -->
     <string name="activity_conversation_list_add_public_chat_button_title">Add Public Chat</string>
     <!-- Device list bottom sheet fragment -->
-    <string name="fragment_device_list_edit_display_name_title">Edit display name</string>
+    <string name="fragment_device_list_edit_device_name_title">Edit device name</string>
     <string name="fragment_device_list_unlink_device_title">Unlink device</string>
 
 </resources>

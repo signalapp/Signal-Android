@@ -52,6 +52,11 @@ class LinkedDevicesActivity : PassphraseRequiredActionBarActivity(), DeviceLinki
       Toast.makeText(this, R.string.DeviceListActivity_unlinked_device, Toast.LENGTH_LONG).show()
       return@setHandleDisconnectDevice null
     }
+    this.deviceListFragment.setHandleDeviceNameChange { pair ->
+      DatabaseFactory.getLokiUserDatabase(this).setDisplayName(pair.first, pair.second)
+      this.deviceListFragment.refresh()
+      return@setHandleDeviceNameChange null
+    }
     initFragment(android.R.id.content, deviceListFragment, dynamicLanguage.currentLocale)
   }
 

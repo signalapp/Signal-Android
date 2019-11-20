@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import com.melnykov.fab.FloatingActionButton;
@@ -34,6 +35,8 @@ import java.util.Locale;
 
 import org.whispersystems.libsignal.util.guava.Function;
 
+import kotlin.Pair;
+import kotlin.Unit;
 import network.loki.messenger.R;
 
 public class DeviceListFragment extends ListFragment
@@ -50,6 +53,7 @@ public class DeviceListFragment extends ListFragment
   private FloatingActionButton   addDeviceButton;
   private Button.OnClickListener addDeviceButtonListener;
   private Function<String, Void> handleDisconnectDevice;
+  private Function<Pair<String, String>, Void> handleDeviceNameChange;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -92,6 +96,10 @@ public class DeviceListFragment extends ListFragment
     this.handleDisconnectDevice = handler;
   }
 
+  public void setHandleDeviceNameChange(Function<Pair<String, String>, Void> handler) {
+    this.handleDeviceNameChange = handler;
+  }
+
   @Override
   public @NonNull Loader<List<Device>> onCreateLoader(int id, Bundle args) {
     empty.setVisibility(View.GONE);
@@ -126,25 +134,44 @@ public class DeviceListFragment extends ListFragment
 
   @Override
   public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+    final boolean hasDeviceName = ((DeviceListItem)view).hasDeviceName(); // Tells us whether the name is set to shortId or the device name
     final String deviceName = ((DeviceListItem)view).getDeviceName();
-    final String   deviceId   = ((DeviceListItem)view).getDeviceId();
+    final String deviceId   = ((DeviceListItem)view).getDeviceId();
 
-    DeviceListBottomSheetFragment fragment = new DeviceListBottomSheetFragment();
-    fragment.show(getFragmentManager(), fragment.getTag());
-    /*
-    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-    builder.setTitle(getActivity().getString(R.string.DeviceListActivity_unlink_s, deviceName));
-    builder.setMessage(R.string.DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive);
-    builder.setNegativeButton(android.R.string.cancel, null);
-    builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-      @Override
-      public void onClick(DialogInterface dialog, int which) {
-        if (handleDisconnectDevice != null) { handleDisconnectDevice.apply(deviceId); }
-      }
+    DeviceListBottomSheetFragment bottomSheet = new DeviceListBottomSheetFragment();
+    bottomSheet.setOnEditTapped(() -> {
+      bottomSheet.dismiss();
+      EditText deviceNameText = new EditText(getContext());
+      deviceNameText.setText(hasDeviceName ? deviceName : "");
+      AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+      builder.setTitle(R.string.DeviceListActivity_edit_device_name);
+      builder.setView(deviceNameText);
+      builder.setNegativeButton(android.R.string.cancel, null);
+      builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+          if (handleDeviceNameChange != null) { handleDeviceNameChange.apply(new Pair<>(deviceId, deviceNameText.getText().toString().trim())); }
+        }
+      });
+      builder.show();
+      return Unit.INSTANCE;
     });
-    builder.show();
-
-     */
+    bottomSheet.setOnUnlinkTapped(() -> {
+      bottomSheet.dismiss();
+      AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+      builder.setTitle(getActivity().getString(R.string.DeviceListActivity_unlink_s, deviceName));
+      builder.setMessage(R.string.DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive);
+      builder.setNegativeButton(android.R.string.cancel, null);
+      builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+          if (handleDisconnectDevice != null) { handleDisconnectDevice.apply(deviceId); }
+        }
+      });
+      builder.show();
+      return Unit.INSTANCE;
+    });
+    bottomSheet.show(getFragmentManager(), bottomSheet.getTag());
   }
 
   public void refresh() {
