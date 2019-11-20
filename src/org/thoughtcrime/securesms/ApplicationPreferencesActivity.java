@@ -173,15 +173,15 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
         .setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_SMS_MMS));
        */
       this.findPreference(PREFERENCE_CATEGORY_NOTIFICATIONS)
-        .setOnPreferenceClickListener(new CategoryClickListener(getContext(), PREFERENCE_CATEGORY_NOTIFICATIONS));
+        .setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_NOTIFICATIONS));
       this.findPreference(PREFERENCE_CATEGORY_APP_PROTECTION)
-        .setOnPreferenceClickListener(new CategoryClickListener(getContext(), PREFERENCE_CATEGORY_APP_PROTECTION));
+        .setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_APP_PROTECTION));
       /*
       this.findPreference(PREFERENCE_CATEGORY_APPEARANCE)
         .setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_APPEARANCE));
        */
       this.findPreference(PREFERENCE_CATEGORY_CHATS)
-        .setOnPreferenceClickListener(new CategoryClickListener(getContext(), PREFERENCE_CATEGORY_CHATS));
+        .setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_CHATS));
       /*
       this.findPreference(PREFERENCE_CATEGORY_DEVICES)
         .setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_DEVICES));
@@ -189,18 +189,18 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
         .setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_ADVANCED));
        */
       this.findPreference(PREFERENCE_CATEGORY_PUBLIC_KEY)
-        .setOnPreferenceClickListener(new CategoryClickListener(getContext(), PREFERENCE_CATEGORY_PUBLIC_KEY));
+        .setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_PUBLIC_KEY));
       this.findPreference(PREFERENCE_CATEGORY_QR_CODE)
-        .setOnPreferenceClickListener(new CategoryClickListener(getContext(), PREFERENCE_CATEGORY_QR_CODE));
+        .setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_QR_CODE));
 
       Preference linkDevicesPreference = this.findPreference(PREFERENCE_CATEGORY_LINKED_DEVICES);
       linkDevicesPreference.setVisible(isMasterDevice);
-      linkDevicesPreference.setOnPreferenceClickListener(new CategoryClickListener(getContext(), PREFERENCE_CATEGORY_LINKED_DEVICES));
+      linkDevicesPreference.setOnPreferenceClickListener(new CategoryClickListener(PREFERENCE_CATEGORY_LINKED_DEVICES));
 
       Preference seedPreference = this.findPreference(PREFERENCE_CATEGORY_SEED);
       // Hide if this is a slave device
       seedPreference.setVisible(isMasterDevice);
-      seedPreference.setOnPreferenceClickListener(new CategoryClickListener(getContext(), (PREFERENCE_CATEGORY_SEED)));
+      seedPreference.setOnPreferenceClickListener(new CategoryClickListener((PREFERENCE_CATEGORY_SEED)));
 
       if (VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
         tintIcons(getActivity());
@@ -293,12 +293,10 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
       this.findPreference(PREFERENCE_CATEGORY_SEED).setIcon(seed);
     }
 
-    private class CategoryClickListener implements Preference.OnPreferenceClickListener, DeviceLinkingDialogDelegate {
+    private class CategoryClickListener implements Preference.OnPreferenceClickListener {
       private String category;
-      private Context context;
 
-      CategoryClickListener(Context context,String category) {
-        this.context = context;
+      CategoryClickListener(String category) {
         this.category = category;
       }
 
@@ -395,12 +393,6 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
 
         return true;
       }
-
-      @Override public void sendPairingAuthorizedMessage(@NotNull PairingAuthorisation pairingAuthorisation) {
-        AsyncTask.execute(() -> MultiDeviceUtilities.signAndSendPairingAuthorisationMessage(context, pairingAuthorisation));
-      }
-      @Override public void handleDeviceLinkAuthorized(@NotNull PairingAuthorisation pairingAuthorisation) {}
-      @Override public void handleDeviceLinkingDialogDismissed() {}
     }
 
     private class ProfileClickListener implements Preference.OnPreferenceClickListener {
