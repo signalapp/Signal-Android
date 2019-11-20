@@ -115,7 +115,7 @@ dependencies {
     implementation 'org.conscrypt:conscrypt-android:2.0.0'
     implementation 'org.signal:aesgcmprovider:0.0.3'
 
-    implementation 'org.whispersystems:signal-service-android:2.15.3'
+    implementation project(':libsignal-service')
 
     implementation 'org.signal:ringrtc-android:0.2.0'
 
@@ -452,10 +452,4 @@ def getLastCommitTimestamp() {
 
         return os.toString() + "000"
     }
-}
-
-task qa {
-  group 'Verification'
-  description 'Quality Assurance. Run before pushing.'
-  dependsOn 'testPlayReleaseUnitTest', 'lintPlayRelease', 'assemblePlayDebug'
 }

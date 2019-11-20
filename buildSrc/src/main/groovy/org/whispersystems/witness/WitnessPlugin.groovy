@@ -63,6 +63,7 @@ class WitnessPlugin implements Plugin<Project> {
             stringBuilder.append '    verify = [\n'
 
             allArtifacts(project)
+                    .findAll { dep -> !dep.id.componentIdentifier.displayName.startsWith('project :') }
                     .collect { dep -> "['$dep.moduleVersion.id.group:$dep.name:$dep.moduleVersion.id.version',\n         '${calculateSha256(dep.file)}']" }
                     .sort()
                     .each {
@@ -72,7 +73,7 @@ class WitnessPlugin implements Plugin<Project> {
             stringBuilder.append "    ]\n"
             stringBuilder.append "}\n"
 
-            new File("witness-verifications.gradle").write(stringBuilder.toString())
+            project.file("witness-verifications.gradle").write(stringBuilder.toString())
         }
     }
 
