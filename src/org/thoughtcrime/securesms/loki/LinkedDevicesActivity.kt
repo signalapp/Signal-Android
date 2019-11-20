@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.loki
 
+import android.os.AsyncTask
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
@@ -10,10 +11,11 @@ import network.loki.messenger.R
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.loki.api.LokiStorageAPI
 import org.whispersystems.signalservice.loki.api.PairingAuthorisation
 
-class LinkedDevicesActivity : PassphraseRequiredActionBarActivity(), DeviceLinkingDialogDelegate {
+class LinkedDevicesActivity : PassphraseRequiredActionBarActivity(), DeviceLinkingDelegate {
 
   companion object {
     private val TAG = DeviceActivity::class.java.simpleName
@@ -68,7 +70,13 @@ class LinkedDevicesActivity : PassphraseRequiredActionBarActivity(), DeviceLinki
   }
 
   override fun sendPairingAuthorizedMessage(pairingAuthorisation: PairingAuthorisation) {
-    signAndSendPairingAuthorisationMessage(this, pairingAuthorisation)
-    this.deviceListFragment.refresh()
+    AsyncTask.execute {
+      signAndSendPairingAuthorisationMessage(this, pairingAuthorisation)
+      Util.runOnMain { this.deviceListFragment.refresh() }
+    }
+  }
+
+  override fun setDeviceDisplayName(hexEncodedPublicKey: String, displayName: String) {
+    DatabaseFactory.getLokiUserDatabase(this).setDisplayName(hexEncodedPublicKey, displayName)
   }
 }

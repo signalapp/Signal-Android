@@ -4,6 +4,8 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.PorterDuff
 import android.os.Handler
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
@@ -12,12 +14,10 @@ import network.loki.messenger.R
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.loki.api.PairingAuthorisation
 import org.whispersystems.signalservice.loki.crypto.MnemonicCodec
-import org.whispersystems.signalservice.loki.utilities.removing05PrefixIfNeeded
 import java.io.File
-import java.io.FileOutputStream
 
-class DeviceLinkingView private constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int, private val mode: Mode, private var delegate: DeviceLinkingViewDelegate) : LinearLayout(context, attrs, defStyleAttr) {
-    private lateinit var languageFileDirectory: File
+class DeviceLinkingView private constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int, private val mode: Mode, private var delegate: DeviceLinkingDelegate) : LinearLayout(context, attrs, defStyleAttr) {
+    private val languageFileDirectory: File = MnemonicUtilities.getLanguageFileDirectory(context)
     var dismiss: (() -> Unit)? = null
     var pairingAuthorisation: PairingAuthorisation? = null
         private set
@@ -27,12 +27,11 @@ class DeviceLinkingView private constructor(context: Context, attrs: AttributeSe
     // endregion
 
     // region Lifecycle
-    constructor(context: Context, mode: Mode, delegate: DeviceLinkingViewDelegate) : this(context, null, 0, mode, delegate)
-    private constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0, Mode.Master, object : DeviceLinkingViewDelegate { }) // Just pass in a dummy mode
+    constructor(context: Context, mode: Mode, delegate: DeviceLinkingDelegate) : this(context, null, 0, mode, delegate)
+    private constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0, Mode.Master, object : DeviceLinkingDelegate { }) // Just pass in a dummy mode
     private constructor(context: Context) : this(context, null)
 
     init {
-        languageFileDirectory = MnemonicUtilities.getLanguageFileDirectory(context)
         setUpViewHierarchy()
     }
 
@@ -57,6 +56,30 @@ class DeviceLinkingView private constructor(context: Context, attrs: AttributeSe
         authorizeButton.visibility = View.GONE
         authorizeButton.setOnClickListener { authorizePairing() }
         cancelButton.setOnClickListener { cancel() }
+
+        deviceNameText.visibility = View.GONE
+        deviceNameText.input.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
+            override fun afterTextChanged(s: Editable?) {
+                val string = s?.toString() ?: ""
+                when {
+                    string.trim().length > 30 -> {
+                        deviceNameText.input.error = "Too Long"
+                        enableAuthorizeButton(false)
+                    }
+                    else -> {
+                        deviceNameText.input.error = null
+                        enableAuthorizeButton(true)
+                    }
+                }
+            }
+        })
+    }
+
+    private fun enableAuthorizeButton(enabled: Boolean) {
+        authorizeButton.isEnabled = enabled
+        authorizeButton.alpha = if (enabled) 1f else 0.5f
     }
     // endregion
 
@@ -71,9 +94,10 @@ class DeviceLinkingView private constructor(context: Context, attrs: AttributeSe
         titleTextView.text = resources.getString(R.string.view_device_linking_title_3)
         explanationTextView.text = resources.getString(R.string.view_device_linking_explanation_2)
         mnemonicTextView.visibility = View.VISIBLE
-        val hexEncodedPublicKey = pairingAuthorisation.secondaryDevicePublicKey.removing05PrefixIfNeeded()
-        mnemonicTextView.text = MnemonicCodec(languageFileDirectory).encode(hexEncodedPublicKey).split(" ").slice(0 until 3).joinToString(" ")
+        mnemonicTextView.text = MnemonicUtilities.getFirst3Words(MnemonicCodec(languageFileDirectory), pairingAuthorisation.secondaryDevicePublicKey)
         authorizeButton.visibility = View.VISIBLE
+        deviceNameText.visibility = View.VISIBLE
+        enableAuthorizeButton(true)
     }
 
     fun onDeviceLinkAuthorized(pairingAuthorisation: PairingAuthorisation) {
@@ -105,6 +129,7 @@ class DeviceLinkingView private constructor(context: Context, attrs: AttributeSe
         if (mode != Mode.Master || pairingAuthorisation == null) { return; }
         delegate.sendPairingAuthorizedMessage(pairingAuthorisation)
         delegate.handleDeviceLinkAuthorized(pairingAuthorisation)
+        delegate.setDeviceDisplayName(pairingAuthorisation.secondaryDevicePublicKey, deviceNameText.text.toString().trim())
         dismiss?.invoke()
     }
 

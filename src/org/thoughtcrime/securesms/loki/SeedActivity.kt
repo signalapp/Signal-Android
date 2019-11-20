@@ -32,7 +32,7 @@ import org.whispersystems.signalservice.loki.utilities.retryIfNeeded
 import java.io.File
 import java.io.FileOutputStream
 
-class SeedActivity : BaseActionBarActivity(), DeviceLinkingDialogDelegate {
+class SeedActivity : BaseActionBarActivity(), DeviceLinkingDelegate {
     private lateinit var languageFileDirectory: File
     private var mode = Mode.Register
         set(newValue) { field = newValue; updateUI() }
