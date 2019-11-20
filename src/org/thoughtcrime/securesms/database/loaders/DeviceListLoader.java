@@ -7,8 +7,10 @@ import android.text.TextUtils;
 import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
+import org.thoughtcrime.securesms.database.Database;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.devicelist.Device;
+import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.MnemonicUtilities;
 import org.thoughtcrime.securesms.util.AsyncLoader;
@@ -66,8 +68,9 @@ public class DeviceListLoader extends AsyncLoader<List<Device>> {
   }
 
   private Device mapToDevice(@NonNull String hexEncodedPublicKey) {
-    long now = System.currentTimeMillis();
-    return new Device(hexEncodedPublicKey, MnemonicUtilities.getFirst3Words(mnemonicCodec, hexEncodedPublicKey), now, now);
+    String shortId = MnemonicUtilities.getFirst3Words(mnemonicCodec, hexEncodedPublicKey);
+    String name = DatabaseFactory.getLokiUserDatabase(getContext()).getDisplayName(hexEncodedPublicKey);
+    return new Device(hexEncodedPublicKey, shortId, name);
   }
 
   private static class DeviceComparator implements Comparator<Device> {
