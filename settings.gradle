@@ -1,0 +1,7 @@
+include ':app'
+
+project(':app').name = 'Signal-Android'
+
+project(':').buildFileName = 'main.gradle'
+
+rootProject.name='Signal'

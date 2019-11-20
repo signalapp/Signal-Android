@@ -274,26 +274,26 @@ android {
         debug {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'),
-                          'proguard-firebase-messaging.pro',
-                          'proguard-google-play-services.pro',
-                          'proguard-jackson.pro',
-                          'proguard-sqlite.pro',
-                          'proguard-appcompat-v7.pro',
-                          'proguard-square-okhttp.pro',
-                          'proguard-square-okio.pro',
-                          'proguard-spongycastle.pro',
-                          'proguard-rounded-image-view.pro',
-                          'proguard-glide.pro',
-                          'proguard-shortcutbadger.pro',
-                          'proguard-retrofit.pro',
-                          'proguard-webrtc.pro',
-                          'proguard-klinker.pro',
-                          'proguard-retrolambda.pro',
-                          'proguard-okhttp.pro',
-                          'proguard-ez-vcard.pro',
-                          'proguard.cfg'
-            testProguardFiles 'proguard-automation.pro',
-                          'proguard.cfg'
+                    'proguard/proguard-firebase-messaging.pro',
+                    'proguard/proguard-google-play-services.pro',
+                    'proguard/proguard-jackson.pro',
+                    'proguard/proguard-sqlite.pro',
+                    'proguard/proguard-appcompat-v7.pro',
+                    'proguard/proguard-square-okhttp.pro',
+                    'proguard/proguard-square-okio.pro',
+                    'proguard/proguard-spongycastle.pro',
+                    'proguard/proguard-rounded-image-view.pro',
+                    'proguard/proguard-glide.pro',
+                    'proguard/proguard-shortcutbadger.pro',
+                    'proguard/proguard-retrofit.pro',
+                    'proguard/proguard-webrtc.pro',
+                    'proguard/proguard-klinker.pro',
+                    'proguard/proguard-retrolambda.pro',
+                    'proguard/proguard-okhttp.pro',
+                    'proguard/proguard-ez-vcard.pro',
+                    'proguard/proguard.cfg'
+            testProguardFiles 'proguard/proguard-automation.pro',
+                    'proguard/proguard.cfg'
         }
         staging {
             initWith debug
@@ -340,28 +340,28 @@ android {
 
     sourceSets {
         main {
-            manifest.srcFile 'AndroidManifest.xml'
-            java.srcDirs = ['src']
-            resources.srcDirs = ['src']
-            aidl.srcDirs = ['src']
-            renderscript.srcDirs = ['src']
-            res.srcDirs = ['res']
-            assets.srcDirs = ['assets']
-            jniLibs.srcDirs = ['libs']
-            proto.srcDir 'protobuf'
+            manifest.srcFile '../AndroidManifest.xml'
+            java.srcDirs = ['../src']
+            resources.srcDirs = ['../src']
+            aidl.srcDirs = ['../src']
+            renderscript.srcDirs = ['../src']
+            res.srcDirs = ['../res']
+            assets.srcDirs = ['../assets']
+            jniLibs.srcDirs = ['../libs']
+            proto.srcDir '../protobuf'
         }
         androidTest {
-            java.srcDirs = ['test/androidTest/java']
+            java.srcDirs = ['../test/androidTest/java']
         }
         test {
-            java.srcDirs = ['test/unitTest/java']
-            resources.srcDirs = ['test/unitTest/resources']
+            java.srcDirs = ['../test/unitTest/java']
+            resources.srcDirs = ['../test/unitTest/resources']
         }
         staging {
-            res.srcDirs = ['staging/res']
+            res.srcDirs = ['../staging/res']
         }
 
-        website.manifest.srcFile 'website/AndroidManifest.xml'
+        website.manifest.srcFile '../website/AndroidManifest.xml'
     }
 
     lintOptions {
@@ -457,9 +457,5 @@ def getLastCommitTimestamp() {
 task qa {
   group 'Verification'
   description 'Quality Assurance. Run before pushing.'
-  dependsOn ':testPlayReleaseUnitTest', ':lintPlayRelease', ':assemblePlayDebug'
-}
-
-wrapper {
-    distributionType = Wrapper.DistributionType.ALL
+  dependsOn 'testPlayReleaseUnitTest', 'lintPlayRelease', 'assemblePlayDebug'
 }
