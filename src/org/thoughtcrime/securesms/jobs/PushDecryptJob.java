@@ -311,13 +311,17 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       // Loki - Store the sender display name if needed
       Optional<String> rawSenderDisplayName = content.senderDisplayName;
       if (rawSenderDisplayName.isPresent() && rawSenderDisplayName.get().length() > 0) {
-        setDisplayName(envelope.getSource(), rawSenderDisplayName.get());
-
-        // If we got a name from our primary device then we also set that
+        // If we got a name from our primary device then we set our profile name to match it
         String ourPrimaryDevice = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
         if (ourPrimaryDevice != null && envelope.getSource().equals(ourPrimaryDevice)) {
           TextSecurePreferences.setProfileName(context, rawSenderDisplayName.get());
         }
+
+        // If we receive a message from our device then don't set the display name in the database (as we probably have a alias set for them)
+        MultiDeviceUtilities.isOneOfOurDevices(context, Address.fromSerialized(content.getSender())).success(isOneOfOurDevice -> {
+          if (!isOneOfOurDevice) { setDisplayName(envelope.getSource(), rawSenderDisplayName.get()); }
+          return Unit.INSTANCE;
+        });
       }
 
       // TODO: Deleting the display name
