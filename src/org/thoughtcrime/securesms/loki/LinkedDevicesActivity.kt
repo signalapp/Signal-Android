@@ -11,8 +11,9 @@ import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.loki.api.LokiStorageAPI
+import org.whispersystems.signalservice.loki.api.PairingAuthorisation
 
-class LinkedDevicesActivity : PassphraseRequiredActionBarActivity() {
+class LinkedDevicesActivity : PassphraseRequiredActionBarActivity(), DeviceLinkingDialogDelegate {
 
   companion object {
     private val TAG = DeviceActivity::class.java.simpleName
@@ -33,7 +34,7 @@ class LinkedDevicesActivity : PassphraseRequiredActionBarActivity() {
     supportActionBar?.setTitle(R.string.AndroidManifest__linked_devices)
     this.deviceListFragment = DeviceListFragment()
     this.deviceListFragment.setAddDeviceButtonListener {
-      // TODO: Hook up add device
+      DeviceLinkingDialog.show(this, DeviceLinkingView.Mode.Master, this)
     }
     this.deviceListFragment.setHandleDisconnectDevice { devicePublicKey ->
       // Purge the device pairing from our database
@@ -45,19 +46,11 @@ class LinkedDevicesActivity : PassphraseRequiredActionBarActivity() {
       // Send a background message to let the device know that it has been revoked
       MessageSender.sendBackgroundMessage(this, devicePublicKey)
       // Refresh the list
-      refresh()
+      this.deviceListFragment.refresh()
       Toast.makeText(this, R.string.DeviceListActivity_unlinked_device, Toast.LENGTH_LONG).show()
       return@setHandleDisconnectDevice null
     }
     initFragment(android.R.id.content, deviceListFragment, dynamicLanguage.currentLocale)
-    refresh()
-  }
-
-  private fun refresh() {
-    val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this)
-    val isDeviceLinkingEnabled = DatabaseFactory.getLokiAPIDatabase(this).getPairingAuthorisations(userHexEncodedPublicKey).isEmpty()
-    this.deviceListFragment.setAddDeviceButtonVisible(isDeviceLinkingEnabled)
-    this.deviceListFragment.refresh()
   }
 
   public override fun onResume() {
@@ -72,5 +65,10 @@ class LinkedDevicesActivity : PassphraseRequiredActionBarActivity() {
       return true
     }
     return false
+  }
+
+  override fun sendPairingAuthorizedMessage(pairingAuthorisation: PairingAuthorisation) {
+    signAndSendPairingAuthorisationMessage(this, pairingAuthorisation)
+    this.deviceListFragment.refresh()
   }
 }

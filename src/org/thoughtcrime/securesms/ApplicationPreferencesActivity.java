@@ -353,7 +353,6 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
         case PREFERENCE_CATEGORY_LINKED_DEVICES:
           Intent intent = new Intent(getActivity(), LinkedDevicesActivity.class);
           startActivity(intent);
-          DeviceLinkingDialog.Companion.show(getContext(), DeviceLinkingView.Mode.Master, this);
           break;
         case PREFERENCE_CATEGORY_SEED:
           Analytics.Companion.getShared().track("Seed Modal Shown");

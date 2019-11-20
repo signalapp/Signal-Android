@@ -19,6 +19,7 @@ import android.widget.ListView;
 
 import com.melnykov.fab.FloatingActionButton;
 
+import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.loaders.DeviceListLoader;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.devicelist.Device;
@@ -69,6 +70,7 @@ public class DeviceListFragment extends ListFragment
     this.progressContainer = view.findViewById(R.id.progress_container);
     this.addDeviceButton   = ViewUtil.findById(view, R.id.add_device);
     this.addDeviceButton.setOnClickListener(this);
+    updateAddDeviceButtonVisibility();
 
     return view;
   }
@@ -87,10 +89,6 @@ public class DeviceListFragment extends ListFragment
 
   public void setHandleDisconnectDevice(Function<String, Void> handler) {
     this.handleDisconnectDevice = handler;
-  }
-
-  public void setAddDeviceButtonVisible(boolean visible) {
-    addDeviceButton.setVisibility(visible ? View.VISIBLE : View.INVISIBLE);
   }
 
   @Override
@@ -144,7 +142,16 @@ public class DeviceListFragment extends ListFragment
   }
 
   public void refresh() {
+    updateAddDeviceButtonVisibility();
     getLoaderManager().restartLoader(0, null, DeviceListFragment.this);
+  }
+
+  private void updateAddDeviceButtonVisibility() {
+    if (addDeviceButton != null) {
+      String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(getContext());
+      boolean isDeviceLinkingEnabled = DatabaseFactory.getLokiAPIDatabase(getContext()).getPairingAuthorisations(userHexEncodedPublicKey).isEmpty();
+      addDeviceButton.setVisibility(isDeviceLinkingEnabled ? View.VISIBLE : View.INVISIBLE);
+    }
   }
 
   private void handleLoaderFailed() {
