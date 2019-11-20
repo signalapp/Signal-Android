@@ -20,7 +20,9 @@ import android.widget.Toast;
 
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.loki.JazzIdenticonDrawable;
+import org.thoughtcrime.securesms.loki.MnemonicUtilities;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.signalservice.loki.crypto.MnemonicCodec;
 
 import network.loki.messenger.R;
 
@@ -31,6 +33,7 @@ public class ProfilePreference extends Preference {
   private TextView  profileNameView;
   private TextView  profileNumberView;
   private TextView  profileTagView;
+  private String    ourDeviceWords;
 
   @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
   public ProfilePreference(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
@@ -127,6 +130,12 @@ public class ProfilePreference extends Preference {
     profileNumberView.setText(localAddress.toPhoneString());
 
     profileTagView.setVisibility(primaryDevicePublicKey == null ? View.GONE : View.VISIBLE);
-    profileTagView.setText(R.string.activity_settings_secondary_device_tag);
+    if (primaryDevicePublicKey != null && ourDeviceWords == null) {
+      MnemonicCodec codec = new MnemonicCodec(MnemonicUtilities.getLanguageFileDirectory(context));
+      ourDeviceWords = MnemonicUtilities.getFirst3Words(codec, userHexEncodedPublicKey);
+    }
+
+    String tag = context.getResources().getString(R.string.activity_settings_linked_device_tag);
+    profileTagView.setText(String.format(tag, ourDeviceWords != null ? ourDeviceWords : "-"));
   }
 }
