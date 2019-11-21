@@ -40,11 +40,6 @@ public class UnidentifiedAccessUtil {
   public static Optional<UnidentifiedAccessPair> getAccessFor(@NonNull Context context,
                                                               @NonNull Recipient recipient)
   {
-    if (!TextSecurePreferences.isUnidentifiedDeliveryEnabled(context)) {
-      Log.i(TAG, "Unidentified delivery is disabled. [other]");
-      return Optional.absent();
-    }
-
     try {
       byte[] theirUnidentifiedAccessKey       = getTargetUnidentifiedAccessKey(recipient);
       byte[] ourUnidentifiedAccessKey         = getSelfUnidentifiedAccessKey(context);
@@ -79,11 +74,6 @@ public class UnidentifiedAccessUtil {
   }
 
   public static Optional<UnidentifiedAccessPair> getAccessForSync(@NonNull Context context) {
-    if (!TextSecurePreferences.isUnidentifiedDeliveryEnabled(context)) {
-      Log.i(TAG, "Unidentified delivery is disabled. [self]");
-      return Optional.absent();
-    }
-
     try {
       byte[] ourUnidentifiedAccessKey         = getSelfUnidentifiedAccessKey(context);
       byte[] ourUnidentifiedAccessCertificate = Recipient.self().isUuidSupported() ? TextSecurePreferences.getUnidentifiedAccessCertificate(context)

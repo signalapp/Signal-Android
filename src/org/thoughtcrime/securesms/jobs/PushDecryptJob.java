@@ -632,7 +632,6 @@ public class PushDecryptJob extends BaseJob {
   {
     if (message.isContactsRequest()) {
       ApplicationDependencies.getJobManager().add(new MultiDeviceContactUpdateJob(true));
-      ApplicationDependencies.getJobManager().add(new RefreshUnidentifiedDeliveryAbilityJob());
     }
 
     if (message.isGroupsRequest()) {

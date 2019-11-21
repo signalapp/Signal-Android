@@ -67,7 +67,6 @@ public final class JobManagerFactories {
       put(RefreshAttributesJob.KEY,                  new RefreshAttributesJob.Factory());
       put(RefreshOwnProfileJob.KEY,                  new RefreshOwnProfileJob.Factory());
       put(RefreshPreKeysJob.KEY,                     new RefreshPreKeysJob.Factory());
-      put(RefreshUnidentifiedDeliveryAbilityJob.KEY, new RefreshUnidentifiedDeliveryAbilityJob.Factory());
       put(RequestGroupInfoJob.KEY,                   new RequestGroupInfoJob.Factory());
       put(RetrieveProfileAvatarJob.KEY,              new RetrieveProfileAvatarJob.Factory());
       put(RetrieveProfileJob.KEY,                    new RetrieveProfileJob.Factory());
@@ -99,6 +98,7 @@ public final class JobManagerFactories {
       put("PushContentReceiveJob",                   new FailingJob.Factory());
       put("AttachmentUploadJob",                     new FailingJob.Factory());
       put("MmsSendJob",                              new FailingJob.Factory());
+      put("RefreshUnidentifiedDeliveryAbilityJob",   new FailingJob.Factory());
     }};
   }
 
