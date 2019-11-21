@@ -24,6 +24,7 @@ import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.loki.api.LokiStorageAPI
 import org.whispersystems.signalservice.loki.api.PairingAuthorisation
 import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus
+import org.whispersystems.signalservice.loki.utilities.Analytics
 import org.whispersystems.signalservice.loki.utilities.recover
 import org.whispersystems.signalservice.loki.utilities.retryIfNeeded
 import java.util.*
@@ -40,6 +41,7 @@ fun checkForRevocation(context: Context) {
     DatabaseFactory.getLokiAPIDatabase(context).removePairingAuthorisations(ourDevice)
     LokiStorageAPI.shared.updateUserDeviceMappings()
   }.successUi {
+    Analytics.shared.track("Secondary Device Unlinked")
     TextSecurePreferences.setNeedsRevocationCheck(context, false)
     ApplicationContext.getInstance(context).clearData()
   }.fail { error ->

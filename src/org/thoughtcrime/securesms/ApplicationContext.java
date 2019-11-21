@@ -607,12 +607,12 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     if (TextSecurePreferences.resetDatabase(this)) {
       boolean wasUnlinked = TextSecurePreferences.databaseResetFromUnpair(this);
       TextSecurePreferences.clearAll(this);
+      TextSecurePreferences.setDatabaseResetFromUnpair(this, wasUnlinked); // Loki - Re-set the preference so we can use it in the starting screen to determine whether device was unlinked or not
       MasterSecretUtil.clear(this);
       if (this.deleteDatabase("signal.db")) {
         Log.d("Loki", "Deleted database");
       }
-      // Loki - Re-set the preference so we can use it in the starting screen to determine whether device was unlinked or not
-      TextSecurePreferences.setDatabaseResetFromUnpair(this, wasUnlinked);
+
     }
   }
 

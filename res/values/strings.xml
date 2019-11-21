@@ -1647,5 +1647,8 @@
     <!-- Device list bottom sheet fragment -->
     <string name="fragment_device_list_edit_device_name_title">Edit device name</string>
     <string name="fragment_device_list_unlink_device_title">Unlink device</string>
+    <!-- Device unlink dialog -->
+    <string name="dialog_device_unlink_title">Device unlinked</string>
+    <string name="dialog_device_unlink_message">This device has been successfully unlinked.</string>
 
 </resources>

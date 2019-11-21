@@ -335,6 +335,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
           // Make sure we got the request from our primary device
           String ourPrimaryDevice = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
           if (ourPrimaryDevice != null && ourPrimaryDevice.equals(content.getSender())) {
+            TextSecurePreferences.setDatabaseResetFromUnpair(context, true);
             MultiDeviceUtilities.checkForRevocation(context);
           }
         } else {
