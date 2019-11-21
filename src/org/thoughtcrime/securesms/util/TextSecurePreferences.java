@@ -1185,5 +1185,13 @@ public class TextSecurePreferences {
   public static void setMasterHexEncodedPublicKey(Context context, String masterHexEncodedPublicKey) {
     setStringPreference(context, "master_hex_encoded_public_key", masterHexEncodedPublicKey.toLowerCase());
   }
+
+  public static void setResetDatabase(Context context, boolean resetDatabase) {
+    PreferenceManager.getDefaultSharedPreferences(context).edit().putBoolean("database_reset", resetDatabase).commit();
+  }
+
+  public static boolean resetDatabase(Context context) {
+    return getBooleanPreference(context, "database_reset", false);
+  }
   // endregion
 }

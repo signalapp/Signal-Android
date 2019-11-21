@@ -198,6 +198,10 @@ public class MasterSecretUtil {
     return preferences.getBoolean("passphrase_initialized", false);
   }
 
+  public static void clear(Context context) {
+    context.getSharedPreferences(PREFERENCES_NAME, 0).edit().clear().commit();
+  }
+
   private static void save(Context context, String key, int value) {
     if (!context.getSharedPreferences(PREFERENCES_NAME, 0)
                 .edit()

@@ -20,10 +20,14 @@ import android.annotation.SuppressLint;
 import android.arch.lifecycle.DefaultLifecycleObserver;
 import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.ProcessLifecycleOwner;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
 import android.database.ContentObserver;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.multidex.MultiDexApplication;
@@ -38,6 +42,7 @@ import org.signal.aesgcmprovider.AesGcmProvider;
 import org.thoughtcrime.securesms.components.TypingStatusRepository;
 import org.thoughtcrime.securesms.components.TypingStatusSender;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
+import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.database.DatabaseContentProviders;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.dependencies.AxolotlStorageModule;
@@ -154,8 +159,9 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   @Override
   public void onCreate() {
     super.onCreate();
-    startKovenant();
     Log.i(TAG, "onCreate()");
+    checkNeedsDatabaseReset();
+    startKovenant();
     initializeSecurityProvider();
     initializeLogging();
     initializeCrashHandling();
@@ -588,4 +594,27 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     if (lokiMessengerUpdatesFeedPoller != null) lokiMessengerUpdatesFeedPoller.startIfNeeded();
   }
   // endregion
+
+  public void checkNeedsDatabaseReset() {
+    if (TextSecurePreferences.resetDatabase(this)) {
+      PreferenceManager.getDefaultSharedPreferences(this).edit().clear().commit();
+      MasterSecretUtil.clear(this);
+      if (this.deleteDatabase("signal.db")) {
+        Log.d("Loki", "Deleted database");
+      }
+    }
+  }
+
+  public void clearData() {
+    TextSecurePreferences.setResetDatabase(this, true);
+    new Handler().postDelayed(this::restartApplication, 200);
+  }
+
+  public void restartApplication() {
+    Intent intent = new Intent(this, ConversationListActivity.class);
+    ComponentName componentName = intent.getComponent();
+    Intent mainIntent = Intent.makeRestartActivityTask(componentName);
+    this.startActivity(mainIntent);
+    Runtime.getRuntime().exit(0);
+  }
 }
