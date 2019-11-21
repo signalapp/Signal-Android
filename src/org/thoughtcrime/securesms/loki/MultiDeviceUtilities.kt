@@ -8,6 +8,7 @@ import nl.komponents.kovenant.functional.bind
 import nl.komponents.kovenant.functional.map
 import nl.komponents.kovenant.then
 import nl.komponents.kovenant.toFailVoid
+import nl.komponents.kovenant.ui.successUi
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.database.Address
@@ -35,13 +36,15 @@ fun checkForRevocation(context: Context) {
   LokiStorageAPI.shared.fetchDeviceMappings(primaryDevice).bind { mappings ->
     val ourMapping = mappings.find { it.secondaryDevicePublicKey == ourDevice }
     if (ourMapping != null) throw Error("Device has not been revoked")
-    // remove pairing auths for our device
+    // remove pairing authorisations for our device
     DatabaseFactory.getLokiAPIDatabase(context).removePairingAuthorisations(ourDevice)
     LokiStorageAPI.shared.updateUserDeviceMappings()
-  }.success {
-    // TODO: Revoke here
+  }.successUi {
+    TextSecurePreferences.setNeedsRevocationCheck(context, false)
+    ApplicationContext.getInstance(context).clearData()
   }.fail { error ->
-    Log.d("Loki", "Revocation check failed: $error")
+    TextSecurePreferences.setNeedsRevocationCheck(context, true)
+    Log.d("Loki", "Revocation check failed: ${error.message ?: error}")
   }
 }
 

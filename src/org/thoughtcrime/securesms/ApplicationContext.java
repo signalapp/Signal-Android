@@ -70,6 +70,7 @@ import org.thoughtcrime.securesms.loki.LokiAPIDatabase;
 import org.thoughtcrime.securesms.loki.LokiPublicChatManager;
 import org.thoughtcrime.securesms.loki.LokiRSSFeedPoller;
 import org.thoughtcrime.securesms.loki.LokiUserDatabase;
+import org.thoughtcrime.securesms.loki.MultiDeviceUtilities;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.providers.BlobProvider;
@@ -202,6 +203,9 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     // Loki - Update device mappings
     if (setUpStorageAPIIfNeeded()) {
       LokiStorageAPI.Companion.getShared().updateUserDeviceMappings();
+      if (TextSecurePreferences.needsRevocationCheck(this)) {
+        checkNeedsRevocation();
+      }
     }
   }
 
@@ -595,13 +599,20 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   }
   // endregion
 
+  public void checkNeedsRevocation() {
+    MultiDeviceUtilities.checkForRevocation(this);
+  }
+
   public void checkNeedsDatabaseReset() {
     if (TextSecurePreferences.resetDatabase(this)) {
-      PreferenceManager.getDefaultSharedPreferences(this).edit().clear().commit();
+      boolean wasUnlinked = TextSecurePreferences.databaseResetFromUnpair(this);
+      TextSecurePreferences.clearAll(this);
       MasterSecretUtil.clear(this);
       if (this.deleteDatabase("signal.db")) {
         Log.d("Loki", "Deleted database");
       }
+      // Loki - Re-set the preference so we can use it in the starting screen to determine whether device was unlinked or not
+      TextSecurePreferences.setDatabaseResetFromUnpair(this, wasUnlinked);
     }
   }
 

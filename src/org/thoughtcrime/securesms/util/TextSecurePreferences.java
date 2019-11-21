@@ -1187,11 +1187,33 @@ public class TextSecurePreferences {
   }
 
   public static void setResetDatabase(Context context, boolean resetDatabase) {
+    // We do it this way so that it gets persisted in storage straight away
     PreferenceManager.getDefaultSharedPreferences(context).edit().putBoolean("database_reset", resetDatabase).commit();
   }
 
   public static boolean resetDatabase(Context context) {
     return getBooleanPreference(context, "database_reset", false);
   }
+
+  public static void setDatabaseResetFromUnpair(Context context, boolean value) {
+    // We do it this way so that it gets persisted in storage straight away
+    PreferenceManager.getDefaultSharedPreferences(context).edit().putBoolean("database_reset_unpair", value).commit();
+  }
+
+  public static boolean databaseResetFromUnpair(Context context) {
+    return getBooleanPreference(context, "database_reset_unpair", false);
+  }
+
+  public static void setNeedsRevocationCheck(Context context, boolean needsCheck) {
+    setBooleanPreference(context, "needs_revocation", needsCheck);
+  }
+
+  public static boolean needsRevocationCheck(Context context) {
+    return getBooleanPreference(context, "needs_revocation", false);
+  }
   // endregion
+
+  public static void clearAll(Context context) {
+    PreferenceManager.getDefaultSharedPreferences(context).edit().clear().commit();
+  }
 }

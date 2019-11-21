@@ -331,7 +331,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         SignalServiceDataMessage message        = content.getDataMessage().get();
         boolean                  isMediaMessage = message.getAttachments().isPresent() || message.getQuote().isPresent() || message.getSharedContacts().isPresent() || message.getPreviews().isPresent() || message.getSticker().isPresent();
 
-        if (message.isUnpairingRequest()) {
+        if (!envelope.isFriendRequest() && message.isUnpairingRequest()) {
           // Make sure we got the request from our primary device
           String ourPrimaryDevice = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
           if (ourPrimaryDevice != null && ourPrimaryDevice.equals(content.getSender())) {
