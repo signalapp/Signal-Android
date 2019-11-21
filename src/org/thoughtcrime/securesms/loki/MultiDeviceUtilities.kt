@@ -6,6 +6,7 @@ import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.all
 import nl.komponents.kovenant.functional.bind
 import nl.komponents.kovenant.functional.map
+import nl.komponents.kovenant.then
 import nl.komponents.kovenant.toFailVoid
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
@@ -26,6 +27,23 @@ import org.whispersystems.signalservice.loki.utilities.recover
 import org.whispersystems.signalservice.loki.utilities.retryIfNeeded
 import java.util.*
 import kotlin.concurrent.schedule
+
+fun checkForRevocation(context: Context) {
+  val primaryDevice = TextSecurePreferences.getMasterHexEncodedPublicKey(context) ?: return
+  val ourDevice = TextSecurePreferences.getLocalNumber(context)
+
+  LokiStorageAPI.shared.fetchDeviceMappings(primaryDevice).bind { mappings ->
+    val ourMapping = mappings.find { it.secondaryDevicePublicKey == ourDevice }
+    if (ourMapping != null) throw Error("Device has not been revoked")
+    // remove pairing auths for our device
+    DatabaseFactory.getLokiAPIDatabase(context).removePairingAuthorisations(ourDevice)
+    LokiStorageAPI.shared.updateUserDeviceMappings()
+  }.success {
+    // TODO: Revoke here
+  }.fail { error ->
+    Log.d("Loki", "Revocation check failed: $error")
+  }
+}
 
 fun getAllDeviceFriendRequestStatuses(context: Context, hexEncodedPublicKey: String): Promise<Map<String, LokiThreadFriendRequestStatus>, Exception> {
   val lokiThreadDatabase = DatabaseFactory.getLokiThreadDatabase(context)

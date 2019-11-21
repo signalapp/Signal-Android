@@ -8,6 +8,7 @@ import org.thoughtcrime.securesms.*
 import org.thoughtcrime.securesms.util.DynamicTheme
 import org.thoughtcrime.securesms.util.DynamicLanguage
 import network.loki.messenger.R
+import nl.komponents.kovenant.then
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.util.TextSecurePreferences
@@ -44,9 +45,10 @@ class LinkedDevicesActivity : PassphraseRequiredActionBarActivity(), DeviceLinki
       val database = DatabaseFactory.getLokiAPIDatabase(this)
       database.removePairingAuthorisation(ourPublicKey, devicePublicKey)
       // Update mapping on the file server
-      LokiStorageAPI.shared.updateUserDeviceMappings()
-      // Send a background message to let the device know that it has been revoked
-      MessageSender.sendBackgroundMessage(this, devicePublicKey)
+      LokiStorageAPI.shared.updateUserDeviceMappings().success {
+        // Send an unpair request to let the device know that it has been revoked
+        MessageSender.sendUnpairRequest(this, devicePublicKey)
+      }
       // Refresh the list
       this.deviceListFragment.refresh()
       Toast.makeText(this, R.string.DeviceListActivity_unlinked_device, Toast.LENGTH_LONG).show()

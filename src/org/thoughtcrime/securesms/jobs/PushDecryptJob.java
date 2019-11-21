@@ -331,27 +331,38 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         SignalServiceDataMessage message        = content.getDataMessage().get();
         boolean                  isMediaMessage = message.getAttachments().isPresent() || message.getQuote().isPresent() || message.getSharedContacts().isPresent() || message.getPreviews().isPresent() || message.getSticker().isPresent();
 
-        if      (message.isEndSession())        handleEndSessionMessage(content, smsMessageId);
-        else if (message.isGroupUpdate())       handleGroupMessage(content, message, smsMessageId);
-        else if (message.isExpirationUpdate())  handleExpirationUpdate(content, message, smsMessageId);
-        else if (isMediaMessage)                handleMediaMessage(content, message, smsMessageId, Optional.absent());
-        else if (message.getBody().isPresent()) handleTextMessage(content, message, smsMessageId, Optional.absent());
+        if (message.isUnpairingRequest()) {
+          // Make sure we got the request from our primary device
+          String ourPrimaryDevice = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
+          if (ourPrimaryDevice != null && ourPrimaryDevice.equals(content.getSender())) {
+            MultiDeviceUtilities.checkForRevocation(context);
+          }
+        } else {
+          if (message.isEndSession()) handleEndSessionMessage(content, smsMessageId);
+          else if (message.isGroupUpdate()) handleGroupMessage(content, message, smsMessageId);
+          else if (message.isExpirationUpdate())
+            handleExpirationUpdate(content, message, smsMessageId);
+          else if (isMediaMessage)
+            handleMediaMessage(content, message, smsMessageId, Optional.absent());
+          else if (message.getBody().isPresent())
+            handleTextMessage(content, message, smsMessageId, Optional.absent());
 
-        if (message.getGroupInfo().isPresent() && groupDatabase.isUnknownGroup(GroupUtil.getEncodedId(message.getGroupInfo().get().getGroupId(), false))) {
-          handleUnknownGroupMessage(content, message.getGroupInfo().get());
+          if (message.getGroupInfo().isPresent() && groupDatabase.isUnknownGroup(GroupUtil.getEncodedId(message.getGroupInfo().get().getGroupId(), false))) {
+            handleUnknownGroupMessage(content, message.getGroupInfo().get());
+          }
+
+          if (message.getProfileKey().isPresent() && message.getProfileKey().get().length == 32) {
+            handleProfileKey(content, message);
+          }
+
+          // Loki - This doesn't get invoked for group chats
+          if (content.isNeedsReceipt()) {
+            handleNeedsDeliveryReceipt(content, message);
+          }
+
+          // Loki - Handle friend request logic if needed
+          updateFriendRequestStatusIfNeeded(envelope, content, message);
         }
-
-        if (message.getProfileKey().isPresent() && message.getProfileKey().get().length == 32) {
-          handleProfileKey(content, message);
-        }
-
-        // Loki - This doesn't get invoked for group chats
-        if (content.isNeedsReceipt()) {
-          handleNeedsDeliveryReceipt(content, message);
-        }
-
-        // Loki - Handle friend request logic if needed
-        updateFriendRequestStatusIfNeeded(envelope, content, message);
       } else if (content.getSyncMessage().isPresent()) {
         TextSecurePreferences.setMultiDevice(context, true);
 
