@@ -145,6 +145,10 @@ public class PushGroupSendJob extends PushSendJob {
       return;
     }
 
+    if (!message.getRecipient().isPushGroup()) {
+      throw new MmsException("Message recipient isn't a group!");
+    }
+
     try {
       log(TAG, "Sending message: " + messageId);
 
