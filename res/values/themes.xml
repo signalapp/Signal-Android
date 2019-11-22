@@ -65,19 +65,19 @@
         <item name="media_overview_document_secondary">@color/core_grey_25</item>
     </style>
 
-    <style name="TextSecure.HighlightTheme" parent="TextSecure.BaseHighlightTheme">
+    <style name="Signal.Light.NoActionBar.Invite" parent="Base.Signal.Light.NoActionBar.Invite">
         <!-- Empty for override -->
     </style>
 
-    <style name="TextSecure.BaseHighlightTheme" parent="@style/TextSecure.LightNoActionBar.DarkToolbar">
-        <item name="actionBarStyle">@style/TextSecure.HighlightActionBar</item>
-        <item name="android:actionBarStyle">@style/TextSecure.HighlightActionBar</item>
-        <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Dark</item>
-        <item name="android:windowBackground">@color/signal_primary</item>
-        <item name="android:windowContentOverlay">@null</item>
-        <item name="homeAsUpIndicator">@drawable/ic_arrow_left_conversation_24</item>
-        <item name="android:homeAsUpIndicator">@drawable/ic_arrow_left_conversation_24</item>
-        <item name="colorButtonNormal">@color/white</item>
+    <style name="Base.Signal.Light.NoActionBar.Invite" parent="@style/TextSecure.LightNoActionBar">
+        <item name="contact_filter_toolbar_icon_tint">?conversation_subtitle_color</item>
+    </style>
+
+    <style name="Signal.NoActionBar.Invite" parent="Base.Signal.NoActionBar.Invite">
+        <!-- Empty for override -->
+    </style>
+
+    <style name="Base.Signal.NoActionBar.Invite" parent="@style/TextSecure.DarkNoActionBar">
         <item name="contact_filter_toolbar_icon_tint">?conversation_subtitle_color</item>
     </style>
 
@@ -359,7 +359,8 @@
 
         <item name="search_toolbar_background">@color/white</item>
         <item name="search_background">@color/white</item>
-        <item name="invite_background">@color/signal_primary</item>
+        <item name="invite_edit_text_background">@drawable/invite_edit_text_background_light</item>
+        <item name="invite_share_icon">@drawable/ic_share_outline_24</item>
 
         <item name="shared_contact_details_header_background">@color/grey_100</item>
         <item name="shared_contact_details_titlebar">@color/grey_400</item>
@@ -384,6 +385,9 @@
 
         <item name="search_view_style">@style/Signal.SearchView</item>
         <item name="search_view_style_dark">@style/Signal.SearchView.Dark</item>
+
+        <item name="invite_edit_text_background">@drawable/invite_edit_text_background_dark</item>
+        <item name="invite_share_icon">@drawable/ic_share_solid_24</item>
 
         <item name="title_text_color_primary">@color/core_grey_05</item>
         <item name="title_text_color_secondary">@color/core_grey_25</item>
@@ -584,7 +588,6 @@
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.Fix</item>
         <item name="search_toolbar_background">@color/core_grey_95</item>
         <item name="search_background">@color/black</item>
-        <item name="invite_background">@color/black</item>
 
         <item name="shared_contact_details_header_background">@color/grey_800</item>
         <item name="shared_contact_details_titlebar">@color/grey_900</item>

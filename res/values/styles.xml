@@ -69,7 +69,6 @@
 
     <style name="TextSecure.HighlightActionBar" parent="@style/TextSecure.DarkActionBar.Conversation">
         <item name="background">@color/signal_primary</item>
-        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
         <item name="elevation">0dp</item>
     </style>
 

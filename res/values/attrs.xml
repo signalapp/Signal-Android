@@ -142,7 +142,8 @@
     <attr name="import_export_item_background_shadow_color" format="reference|color" />
     <attr name="import_export_item_card_background" format="reference" />
 
-    <attr name="invite_background" format="color"/>
+    <attr name="invite_edit_text_background" format="reference" />
+    <attr name="invite_share_icon" format="reference" />
 
     <attr name="linkpreview_background_color" format="color" />
     <attr name="linkpreview_primary_text_color" format="color" />

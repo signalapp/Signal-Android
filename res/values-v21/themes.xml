@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="TextSecure.HighlightTheme" parent="TextSecure.BaseHighlightTheme">
-        <item name="android:statusBarColor">@color/signal_primary</item>
-    </style>
-
     <style name="TextSecure.LightTheme" parent="TextSecure.BaseLightTheme">
         <item name="android:statusBarColor">@color/core_grey_60</item>
     </style>

@@ -102,6 +102,8 @@
     <dimen name="insights_modal_percent_text_size">28sp</dimen>
     <dimen name="insights_modal_percent_sign_text_size">20sp</dimen>
 
+    <dimen name="invite_edit_text_min_height">84dp</dimen>
+
     <!-- RedPhone -->
 
     <!-- Height of the main row of in-call buttons. -->

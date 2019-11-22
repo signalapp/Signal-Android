@@ -120,7 +120,7 @@
               android:launchMode="singleTask"/>
 
     <activity android:name=".InviteActivity"
-              android:theme="@style/TextSecure.HighlightTheme"
+              android:theme="@style/Signal.Light.NoActionBar.Invite"
               android:windowSoftInputMode="stateHidden"
               android:parentActivityName=".MainActivity"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize">

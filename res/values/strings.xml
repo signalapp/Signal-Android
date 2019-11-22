@@ -434,6 +434,9 @@
     <!-- InviteActivity -->
     <string name="InviteActivity_share">Share</string>
     <string name="InviteActivity_choose_contacts">Choose contacts</string>
+    <string name="InviteActivity_share_with_contacts">Share with contacts</string>
+    <string name="InviteActivity_choose_how_to_share">Choose how to share</string>
+
     <string name="InviteActivity_cancel">Cancel</string>
     <string name="InviteActivity_sending">Sending…</string>
     <string name="InviteActivity_heart_content_description">Heart</string>

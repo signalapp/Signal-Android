@@ -45,6 +45,10 @@
         <item name="android:textColor">@color/core_white</item>
     </style>
 
+    <style name="TextAppearance.Signal.Title2" parent="@style/TextAppearance.AppCompat.Title">
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <style name="TextAppearance.Signal.Headline.Insights" parent="">
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">28sp</item>
