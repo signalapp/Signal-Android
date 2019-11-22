@@ -252,7 +252,6 @@ class SeedActivity : BaseActionBarActivity(), DeviceLinkingDelegate, ScanListene
 
     private fun resetForRegistration() {
         IdentityKeyUtil.delete(this, IdentityKeyUtil.lokiSeedKey)
-        DatabaseFactory.getLokiPreKeyBundleDatabase(this).resetAllPreKeyBundleInfo()
         TextSecurePreferences.removeLocalNumber(this)
         TextSecurePreferences.setHasSeenWelcomeScreen(this, false)
         TextSecurePreferences.setPromptedPushRegistration(this, false)

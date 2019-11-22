@@ -14,7 +14,6 @@ import android.util.Pair;
 
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
-import com.google.android.gms.common.util.IOUtils;
 
 import org.signal.libsignal.metadata.InvalidMetadataMessageException;
 import org.signal.libsignal.metadata.InvalidMetadataVersionException;
@@ -139,7 +138,6 @@ import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestSt
 import org.whispersystems.signalservice.loki.messaging.LokiThreadSessionResetStatus;
 import org.whispersystems.signalservice.loki.utilities.PromiseUtil;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.security.MessageDigest;
 import java.security.SecureRandom;
@@ -152,6 +150,7 @@ import javax.inject.Inject;
 
 import kotlin.Unit;
 import network.loki.messenger.R;
+import nl.komponents.kovenant.Promise;
 
 public class PushDecryptJob extends BaseJob implements InjectableType {
 
@@ -288,21 +287,14 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       // Loki - Handle friend request acceptance if needed
       acceptFriendRequestIfNeeded(envelope, content);
 
-      // Loki - Store pre key bundle if needed
+      // Loki - Store pre key bundle
+      // We shouldn't store it if it's a pairing message
+      if (!content.getPairingAuthorisation().isPresent()) {
+        storePreKeyBundleIfNeeded(envelope, content);
+      }
+
       if (content.lokiServiceMessage.isPresent()) {
         LokiServiceMessage lokiMessage = content.lokiServiceMessage.get();
-        if (lokiMessage.getPreKeyBundleMessage() != null) {
-          int registrationID = TextSecurePreferences.getLocalRegistrationId(context);
-          LokiPreKeyBundleDatabase lokiPreKeyBundleDatabase = DatabaseFactory.getLokiPreKeyBundleDatabase(context);
-
-          // Only store the pre key bundle if we don't have one in our database
-          if (registrationID > 0 && !lokiPreKeyBundleDatabase.hasPreKeyBundle(envelope.getSource())) {
-            Log.d("Loki", "Received a pre key bundle from: " + envelope.getSource() + ".");
-            PreKeyBundle preKeyBundle = lokiMessage.getPreKeyBundleMessage().getPreKeyBundle(registrationID);
-            lokiPreKeyBundleDatabase.setPreKeyBundle(envelope.getSource(), preKeyBundle);
-          }
-        }
-
         if (lokiMessage.getAddressMessage() != null) {
           // TODO: Loki - Handle address message
         }
@@ -1085,16 +1077,18 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   private void handlePairingMessage(@NonNull PairingAuthorisation authorisation, @NonNull SignalServiceEnvelope envelope, @NonNull SignalServiceContent content) {
     String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context);
     if (authorisation.getType() == PairingAuthorisation.Type.REQUEST) {
-      handlePairingRequestMessage(authorisation);
+      handlePairingRequestMessage(authorisation, envelope, content);
     } else if (authorisation.getSecondaryDevicePublicKey().equals(userHexEncodedPublicKey)) {
       handlePairingAuthorisationMessage(authorisation, envelope, content);
     }
   }
 
-  private void handlePairingRequestMessage(@NonNull PairingAuthorisation authorisation) {
+  private void handlePairingRequestMessage(@NonNull PairingAuthorisation authorisation, @NonNull SignalServiceEnvelope envelope, @NonNull SignalServiceContent content) {
     boolean isValid = isValidPairingMessage(authorisation);
     DeviceLinkingSession linkingSession = DeviceLinkingSession.Companion.getShared();
     if (isValid && linkingSession.isListeningForLinkingRequests()) {
+      // Loki - If we successfully received a request then we should store the PreKeyBundle
+      storePreKeyBundleIfNeeded(envelope, content);
       linkingSession.processLinkingRequest(authorisation);
     }
   }
@@ -1117,6 +1111,8 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     }
     if (authorisation.getType() != PairingAuthorisation.Type.GRANT) { return; }
     Log.d("Loki", "Received pairing authorisation message from: " + authorisation.getPrimaryDevicePublicKey() + ".");
+    // Save PreKeyBundle if for whatever reason we got one
+    storePreKeyBundleIfNeeded(envelope, content);
     // Process
     DeviceLinkingSession.Companion.getShared().processLinkingAuthorization(authorisation);
     // Store the primary device's public key
@@ -1154,6 +1150,23 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     }
   }
 
+  private void storePreKeyBundleIfNeeded(@NonNull SignalServiceEnvelope envelope, @NonNull SignalServiceContent content) {
+    if (content.lokiServiceMessage.isPresent()) {
+      LokiServiceMessage lokiMessage = content.lokiServiceMessage.get();
+      if (lokiMessage.getPreKeyBundleMessage() != null) {
+        int registrationID = TextSecurePreferences.getLocalRegistrationId(context);
+        LokiPreKeyBundleDatabase lokiPreKeyBundleDatabase = DatabaseFactory.getLokiPreKeyBundleDatabase(context);
+
+        // Store the latest PreKeyBundle
+        if (registrationID > 0) {
+          Log.d("Loki", "Received a pre key bundle from: " + envelope.getSource() + ".");
+          PreKeyBundle preKeyBundle = lokiMessage.getPreKeyBundleMessage().getPreKeyBundle(registrationID);
+          lokiPreKeyBundleDatabase.setPreKeyBundle(envelope.getSource(), preKeyBundle);
+        }
+      }
+    }
+  }
+
   private void acceptFriendRequestIfNeeded(@NonNull SignalServiceEnvelope envelope, @NonNull SignalServiceContent content) {
     // If we get anything other than a friend request, we can assume that we have a session with the other user
     if (envelope.isFriendRequest() || isGroupChatMessage(content)) { return; }
@@ -1188,7 +1201,8 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   private void updateFriendRequestStatusIfNeeded(@NonNull SignalServiceEnvelope envelope, @NonNull SignalServiceContent content, @NonNull SignalServiceDataMessage message) {
     if (!envelope.isFriendRequest() || message.isGroupUpdate()) { return; }
     // This handles the case where another user sends us a regular message without authorisation
-    boolean shouldBecomeFriends = PromiseUtil.get(MultiDeviceUtilities.shouldAutomaticallyBecomeFriendsWithDevice(content.getSender(), context), false);
+    Promise<Boolean, Exception> promise = PromiseUtil.timeout(MultiDeviceUtilities.shouldAutomaticallyBecomeFriendsWithDevice(content.getSender(), context), 8000);
+    boolean shouldBecomeFriends = PromiseUtil.get(promise, false);
     if (shouldBecomeFriends) {
       // Become friends AND update the message they sent
       becomeFriendsWithContact(content.getSender(), true);
@@ -1647,7 +1661,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
    */
   private Recipient getPrimaryDeviceRecipient(String pubKey) {
     try {
-      String primaryDevice = LokiStorageAPI.shared.getPrimaryDevicePublicKey(pubKey).get();
+      String primaryDevice = PromiseUtil.timeout(LokiStorageAPI.shared.getPrimaryDevicePublicKey(pubKey), 5000).get();
       String publicKey = (primaryDevice != null) ? primaryDevice : pubKey;
       // If the public key matches our primary device then we need to forward the message to ourselves (Note to self)
       String ourPrimaryDevice = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
@@ -1712,7 +1726,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     } else if (content.getSyncMessage().isPresent()) {
       try {
         // We should ignore a sync message if the sender is not one of our devices
-        boolean isOurDevice = MultiDeviceUtilities.isOneOfOurDevices(context, sender.getAddress()).get();
+        boolean isOurDevice = PromiseUtil.timeout(MultiDeviceUtilities.isOneOfOurDevices(context, sender.getAddress()), 5000).get();
         if (!isOurDevice) {
           Log.w(TAG, "Got a sync message from a device that is not ours!.");
         }
