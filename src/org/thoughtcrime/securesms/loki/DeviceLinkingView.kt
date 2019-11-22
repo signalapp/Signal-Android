@@ -4,13 +4,17 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.PorterDuff
 import android.os.Handler
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.AttributeSet
+import android.util.DisplayMetrics
 import android.view.View
 import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.view_device_linking.view.*
+import kotlinx.android.synthetic.main.view_device_linking.view.cancelButton
+import kotlinx.android.synthetic.main.view_device_linking.view.explanationTextView
+import kotlinx.android.synthetic.main.view_device_linking.view.titleTextView
 import network.loki.messenger.R
+import org.thoughtcrime.securesms.qr.QrCode
+import org.thoughtcrime.securesms.util.ServiceUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.loki.api.PairingAuthorisation
 import org.whispersystems.signalservice.loki.crypto.MnemonicCodec
@@ -55,6 +59,19 @@ class DeviceLinkingView private constructor(context: Context, attrs: AttributeSe
         }
         authorizeButton.visibility = View.GONE
         authorizeButton.setOnClickListener { authorizePairing() }
+
+        // QR Code
+        spinner.visibility = if (mode == Mode.Master) View.GONE else View.VISIBLE
+        qrCodeImageView.visibility = if (mode == Mode.Master) View.VISIBLE else View.GONE
+        if (mode == Mode.Master) {
+            val hexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context)
+            val displayMetrics = DisplayMetrics()
+            ServiceUtil.getWindowManager(context).defaultDisplay.getMetrics(displayMetrics)
+            val size = displayMetrics.widthPixels - 2 * toPx(96, resources)
+            val qrCode = QrCode.create(hexEncodedPublicKey, size)
+            qrCodeImageView.setImageBitmap(qrCode)
+        }
+
         cancelButton.setOnClickListener { cancel() }
     }
     // endregion
@@ -64,6 +81,7 @@ class DeviceLinkingView private constructor(context: Context, attrs: AttributeSe
         if (mode != Mode.Master || pairingAuthorisation.type != PairingAuthorisation.Type.REQUEST || this.pairingAuthorisation != null) { return }
         this.pairingAuthorisation = pairingAuthorisation
         spinner.visibility = View.GONE
+        qrCodeImageView.visibility = View.GONE
         val titleTextViewLayoutParams = titleTextView.layoutParams as LayoutParams
         titleTextViewLayoutParams.topMargin = toPx(16, resources)
         titleTextView.layoutParams = titleTextViewLayoutParams
