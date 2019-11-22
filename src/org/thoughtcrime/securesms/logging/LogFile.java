@@ -43,7 +43,7 @@ class LogFile {
       this.outputStream = new BufferedOutputStream(new FileOutputStream(file, true));
 
       try {
-        this.cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+        this.cipher =  Cipher.getInstance("AES/CBC/PKCS5Padding");
       } catch (NoSuchAlgorithmException | NoSuchPaddingException e) {
         throw new AssertionError(e);
       }
@@ -94,7 +94,7 @@ class LogFile {
       this.inputStream = new BufferedInputStream(new FileInputStream(file));
 
       try {
-        this.cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+        this.cipher =  Cipher.getInstance("AES/GCM/NoPadding");
       } catch (NoSuchAlgorithmException | NoSuchPaddingException e) {
         throw new AssertionError(e);
       }
