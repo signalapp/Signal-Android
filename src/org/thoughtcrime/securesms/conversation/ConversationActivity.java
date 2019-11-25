@@ -225,11 +225,14 @@ import org.thoughtcrime.securesms.util.concurrent.AssertedSuccessListener;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
+import org.thoughtcrime.securesms.util.task.InitializeSecurityAsyncTask;
+import org.thoughtcrime.securesms.util.task.SaveDraftAsyncTask;
 import org.thoughtcrime.securesms.util.views.Stub;
 import org.whispersystems.libsignal.InvalidMessageException;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.IOException;
+import java.lang.ref.WeakReference;
 import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Date;
@@ -1217,7 +1220,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }).show();
   }
 
-  private void handleSecurityChange(boolean isSecureText, boolean isDefaultSms) {
+  public void handleSecurityChange(boolean isSecureText, boolean isDefaultSms) {
     Log.i(TAG, "handleSecurityChange(" + isSecureText + ", " + isDefaultSms + ")");
     if (isSecurityInitialized && isSecureText == this.isSecureText && isDefaultSms == this.isDefaultSms) {
       return;
@@ -1374,54 +1377,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     handleSecurityChange(currentSecureText || isPushGroupConversation(), currentIsDefaultSms);
 
-    new AsyncTask<Recipient, Void, boolean[]>() {
-      @Override
-      protected boolean[] doInBackground(Recipient... params) {
-        Context           context         = ConversationActivity.this;
-        Recipient         recipient       = params[0].resolve();
-        Log.i(TAG, "Resolving registered state...");
-        RegisteredState registeredState;
-
-        if (recipient.isPushGroup()) {
-          Log.i(TAG, "Push group recipient...");
-          registeredState = RegisteredState.REGISTERED;
-        } else {
-          Log.i(TAG, "Checking through resolved recipient");
-          registeredState = recipient.resolve().getRegistered();
-        }
-
-        Log.i(TAG, "Resolved registered state: " + registeredState);
-        boolean           signalEnabled   = TextSecurePreferences.isPushRegistered(context);
-
-        if (registeredState == RegisteredState.UNKNOWN) {
-          try {
-            Log.i(TAG, "Refreshing directory for user: " + recipient.getId().serialize());
-            registeredState = DirectoryHelper.refreshDirectoryFor(context, recipient, false);
-          } catch (IOException e) {
-            Log.w(TAG, e);
-          }
-        }
-
-        Log.i(TAG, "Returning registered state...");
-        return new boolean[] {registeredState == RegisteredState.REGISTERED && signalEnabled,
-                              Util.isDefaultSmsProvider(context)};
-      }
-
-      @Override
-      protected void onPostExecute(boolean[] result) {
-        if (result[0] != currentSecureText || result[1] != currentIsDefaultSms) {
-          Log.i(TAG, "onPostExecute() handleSecurityChange: " + result[0] + " , " + result[1]);
-          handleSecurityChange(result[0], result[1]);
-        }
-        future.set(true);
-        onSecurityUpdated();
-      }
-    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, recipient.get());
+    InitializeSecurityAsyncTask task = new InitializeSecurityAsyncTask(threadId, currentSecureText, currentIsDefaultSms, future, new WeakReference<>(ConversationActivity.this), new WeakReference<>(this), TAG);
+    task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, recipient.get());
 
     return future;
   }
 
-  private void onSecurityUpdated() {
+  public void onSecurityUpdated() {
     Log.i(TAG, "onSecurityUpdated()");
     updateReminders();
     updateDefaultSubscriptionId(recipient.get().getDefaultSubscriptionId());
@@ -1914,33 +1876,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     final long         thisThreadId         = this.threadId;
     final int          thisDistributionType = this.distributionType;
 
-    new AsyncTask<Long, Void, Long>() {
-      @Override
-      protected Long doInBackground(Long... params) {
-        ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(ConversationActivity.this);
-        DraftDatabase  draftDatabase  = DatabaseFactory.getDraftDatabase(ConversationActivity.this);
-        long           threadId       = params[0];
-
-        if (drafts.size() > 0) {
-          if (threadId == -1) threadId = threadDatabase.getThreadIdFor(getRecipient(), thisDistributionType);
-
-          draftDatabase.insertDrafts(threadId, drafts);
-          threadDatabase.updateSnippet(threadId, drafts.getSnippet(ConversationActivity.this),
-                                       drafts.getUriSnippet(),
-                                       System.currentTimeMillis(), Types.BASE_DRAFT_TYPE, true);
-        } else if (threadId > 0) {
-          threadDatabase.update(threadId, false);
-        }
-
-        return threadId;
-      }
-
-      @Override
-      protected void onPostExecute(Long result) {
-        future.set(result);
-      }
-
-    }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, thisThreadId);
+    SaveDraftAsyncTask task = new SaveDraftAsyncTask(new WeakReference<>(ConversationActivity.this), new WeakReference<>(this), getRecipient(), thisDistributionType, drafts, future);
+    task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, thisThreadId);
 
     return future;
   }
