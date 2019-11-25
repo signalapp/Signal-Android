@@ -39,7 +39,6 @@ import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.jobs.MultiDeviceProfileKeyUpdateJob;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.permissions.Permissions;
@@ -58,7 +57,9 @@ import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.crypto.ProfileCipher;
 import org.whispersystems.signalservice.api.util.StreamDetails;
+import org.whispersystems.signalservice.loki.api.LokiDotNetAPI;
 import org.whispersystems.signalservice.loki.api.LokiPublicChatAPI;
+import org.whispersystems.signalservice.loki.api.LokiStorageAPI;
 import org.whispersystems.signalservice.loki.utilities.Analytics;
 
 import java.io.ByteArrayInputStream;
@@ -72,6 +73,7 @@ import java.util.regex.Pattern;
 
 import javax.inject.Inject;
 
+import kotlin.Triple;
 import network.loki.messenger.R;
 
 @SuppressLint("StaticFieldLeak")
@@ -393,19 +395,8 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
           }
         }
 
-        // Loki - Original code
-        // ========
-//        try {
-//          accountManager.setProfileName(profileKey, name);
-//          TextSecurePreferences.setProfileName(context, name);
-//        } catch (IOException e) {
-//          Log.w(TAG, e);
-//          return false;
-//        }
-        // ========
-
         try {
-          // Loki - Original code
+          // Loki - Original profile photo code
           // ========
           // accountManager.setProfileAvatar(profileKey, avatar);
           // ========
@@ -413,26 +404,23 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
           //TODO: there is no need to upload the avatar again if there is no change
           AvatarHelper.setAvatar(CreateProfileActivity.this, Address.fromSerialized(TextSecurePreferences.getLocalNumber(context)), avatarBytes);
           TextSecurePreferences.setProfileAvatarId(CreateProfileActivity.this, new SecureRandom().nextInt());
-          
+
           //Loki - Upload the profile photo here
           if (avatar != null) {
             Log.d("Loki", "Start uploading profile photo");
             LokiStorageAPI storageAPI = LokiStorageAPI.shared;
-            Triple<Long, String, byte[]> result = storageAPI.uploadProfilePhoto(storageAPI.getServer(), avatarBytes);
-            String url = result.component2();
-            Log.d("Loki", "Upload profile photo success, the url is " + url);
-            TextSecurePreferences.setProfileAvatarUrl(CreateProfileActivity.this, url);
-          }
-          else {
+            LokiDotNetAPI.UploadResult result = storageAPI.uploadProfilePhoto(storageAPI.getServer(), avatarBytes);
+            Log.d("Loki", "Profile photo uploaded, the url is " + result.getUrl());
+            TextSecurePreferences.setProfileAvatarUrl(CreateProfileActivity.this, result.getUrl());
+          } else {
             TextSecurePreferences.setProfileAvatarUrl(CreateProfileActivity.this, null);
           }
-        } catch (IOException e) {
-          Log.w(TAG, e);
+        } catch (Exception e) {
+          Log.d("Loki", "Failed to upload profile photo: " + e);
           return false;
         }
 
-        ApplicationContext.getInstance(context).getJobManager().add(new MultiDeviceProfileKeyUpdateJob());
-
+        // ApplicationContext.getInstance(context).getJobManager().add(new MultiDeviceProfileKeyUpdateJob());
         return true;
       }
 
