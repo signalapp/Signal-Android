@@ -49,4 +49,9 @@ public class RecipientUtil {
 
     return new SignalServiceAddress(Optional.fromNullable(recipient.getUuid().orNull()), Optional.fromNullable(recipient.resolve().getE164().orNull()));
   }
+
+  public static boolean isBlockable(@NonNull Recipient recipient) {
+    Recipient resolved = recipient.resolve();
+    return resolved.isPushGroup() || resolved.hasServiceIdentifier();
+  }
 }
