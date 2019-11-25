@@ -187,6 +187,22 @@ public class Recipient {
   }
 
   /**
+   * A safety wrapper around {@link #external(Context, String)} for when you know you're using an
+   * identifier for a system contact, and therefore always want to prevent interpreting it as a
+   * UUID. This will crash if given a UUID.
+   *
+   * (This may seem strange, but apparently some devices are returning valid UUIDs for contacts)
+   */
+  @WorkerThread
+  public static @NonNull Recipient externalContact(@NonNull Context context, @NonNull String identifier) {
+    if (UuidUtil.isUuid(identifier)) {
+      throw new UuidRecipientError();
+    } else {
+      return external(context, identifier);
+    }
+  }
+
+  /**
    * Returns a fully-populated {@link Recipient} based off of a string identifier, creating one in
    * the database if necessary. The identifier may be a uuid, phone number, email,
    * or serialized groupId.

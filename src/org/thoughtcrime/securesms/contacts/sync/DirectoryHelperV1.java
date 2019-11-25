@@ -14,6 +14,7 @@ import android.provider.ContactsContract;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
 import com.annimon.stream.Collectors;
@@ -42,6 +43,7 @@ import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.push.ContactTokenDetails;
+import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.io.IOException;
 import java.util.Calendar;
@@ -140,8 +142,8 @@ class DirectoryHelperV1 {
           while (cursor != null && cursor.moveToNext()) {
             String number = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.NUMBER));
 
-            if (!TextUtils.isEmpty(number)) {
-              RecipientId recipientId     = Recipient.external(context, number).getId();
+            if (isValidContactNumber(number)) {
+              RecipientId recipientId     = Recipient.externalContact(context, number).getId();
               String      displayName     = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
               String      contactPhotoUri = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.PHOTO_URI));
               String      contactLabel    = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.CommonDataKinds.Phone.LABEL));
@@ -303,6 +305,9 @@ class DirectoryHelperV1 {
     });
   }
 
+  private static boolean isValidContactNumber(@Nullable String number) {
+    return !TextUtils.isEmpty(number) && !UuidUtil.isUuid(number);
+  }
 
   private static class DirectoryResult {
 
