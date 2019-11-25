@@ -317,7 +317,11 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         });
       }
 
-      // TODO: Deleting the display name
+      // Loki - Store profile avatar
+      if (content.senderProfileAvatarUrl.isPresent()) {
+        handleProfileAvatar(content, content.senderProfileAvatarUrl.get());
+      }
+
       if (content.getPairingAuthorisation().isPresent()) {
         handlePairingMessage(content.getPairingAuthorisation().get(), envelope, content);
       } else if (content.getDataMessage().isPresent()) {
@@ -1080,6 +1084,11 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       return false;
     }
     return authorisation.verify();
+  }
+
+  private void handleProfileAvatar(SignalServiceContent content, String url) {
+    Recipient primaryDevice = getPrimaryDeviceRecipient(content.getSender());
+    ApplicationContext.getInstance(context).getJobManager().add(new RetrieveProfileAvatarJob(primaryDevice, url));
   }
 
   private void handlePairingMessage(@NonNull PairingAuthorisation authorisation, @NonNull SignalServiceEnvelope envelope, @NonNull SignalServiceContent content) {

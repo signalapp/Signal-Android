@@ -409,7 +409,7 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
           if (avatar != null) {
             Log.d("Loki", "Start uploading profile photo");
             LokiStorageAPI storageAPI = LokiStorageAPI.shared;
-            LokiDotNetAPI.UploadResult result = storageAPI.uploadProfilePhoto(storageAPI.getServer(), avatarBytes);
+            LokiDotNetAPI.UploadResult result = storageAPI.uploadProfilePhoto(storageAPI.getServer(), profileKey, avatar);
             Log.d("Loki", "Profile photo uploaded, the url is " + result.getUrl());
             TextSecurePreferences.setProfileAvatarUrl(CreateProfileActivity.this, result.getUrl());
           } else {
