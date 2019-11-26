@@ -43,6 +43,11 @@ public final class DoNotDisturbUtil {
 
   @RequiresApi(23)
   private static boolean handlePriority(@NonNull Context context, @NonNull NotificationManager notificationManager, @NonNull Recipient recipient) {
+    if (Build.VERSION.SDK_INT < 28 && !notificationManager.isNotificationPolicyAccessGranted()) {
+      Log.w(TAG, "Notification Policy is not granted");
+      return true;
+    }
+
     final NotificationManager.Policy policy                = notificationManager.getNotificationPolicy();
     final boolean                    areCallsPrioritized   = (policy.priorityCategories & NotificationManager.Policy.PRIORITY_CATEGORY_CALLS) != 0;
     final boolean                    isRepeatCallerEnabled = (policy.priorityCategories & NotificationManager.Policy.PRIORITY_CATEGORY_REPEAT_CALLERS) != 0;
