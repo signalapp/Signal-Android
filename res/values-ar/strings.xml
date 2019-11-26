@@ -1031,7 +1031,7 @@
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">من اجل إرسال وسائط متعددة ورسائل إلى مجموعات أضغط على \"تم\" وأكمل الإعدادات المطلوبة. يمكن العثور على إعدادات رسائل الوسائط المتعددة الخاصة بمشغل شبكة الجوال الخاصة بك بالبحث عن \"أسم المشغل APN\". سوف تحتاج إلى القيام بهذه الخطوة مرة واحدة.</string>
   <!--profile_create_activity-->
   <string name="profile_create_activity__set_later">إعرض لاحقا</string>
-  <string name="profile_create_activity__finish">تَتِمّة</string>
+  <string name="profile_create_activity__finish">إتمام</string>
   <string name="profile_create_activity__who_can_see_this_information">من بإمكانه الإطلاع على هذه المعلومة ؟</string>
   <string name="profile_create_activity__your_name">إسمك</string>
   <!--recipient_preferences_activity-->
