@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
@@ -43,7 +44,7 @@ public final class AvatarSelection {
     CropImage.activity(inputFile)
              .setGuidelines(CropImageView.Guidelines.ON)
              .setAspectRatio(1, 1)
-             .setCropShape(CropImageView.CropShape.OVAL)
+             .setCropShape(Build.VERSION.SDK_INT >= Build.VERSION_CODES.P ? CropImageView.CropShape.RECTANGLE : CropImageView.CropShape.OVAL)
              .setOutputUri(outputFile)
              .setAllowRotation(true)
              .setAllowFlipping(true)

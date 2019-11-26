@@ -44,10 +44,12 @@ import org.thoughtcrime.securesms.database.RecipientDatabase.RegisteredState;
 import org.thoughtcrime.securesms.database.RecipientDatabase.UnidentifiedAccessMode;
 import org.thoughtcrime.securesms.database.RecipientDatabase.VibrateState;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.loki.JazzIdenticonContactPhoto;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.recipients.RecipientProvider.RecipientDetails;
 import org.thoughtcrime.securesms.util.FutureTaskListener;
 import org.thoughtcrime.securesms.util.ListenableFutureTask;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 
@@ -455,11 +457,15 @@ public class Recipient implements RecipientModifiedListener {
   }
 
   public synchronized @NonNull FallbackContactPhoto getFallbackContactPhoto() {
-    if      (isLocalNumber)            return new ResourceContactPhoto(R.drawable.ic_note_to_self);
     if      (isResolving())            return new TransparentContactPhoto();
-    else if (isGroupRecipient())       return new ResourceContactPhoto(R.drawable.ic_group_white_24dp, R.drawable.ic_group_large);
-    else if (!TextUtils.isEmpty(name)) return new GeneratedContactPhoto(name, R.drawable.ic_profile_default);
-    else                               return new ResourceContactPhoto(R.drawable.ic_profile_default, R.drawable.ic_person_large);
+    else if (isGroupRecipient())       return new GeneratedContactPhoto(name, R.drawable.ic_profile_default);
+    else {
+      String currentUser = TextSecurePreferences.getLocalNumber(context);
+      String recipientAddress = address.serialize();
+      String primaryAddress = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
+      String profileAddress = (recipientAddress.equalsIgnoreCase(currentUser) && primaryAddress != null) ? primaryAddress : recipientAddress;
+      return new JazzIdenticonContactPhoto(profileAddress);
+    }
   }
 
   public synchronized @Nullable ContactPhoto getContactPhoto() {

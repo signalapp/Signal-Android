@@ -5,6 +5,7 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.graphics.Outline;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.preference.Preference;
@@ -13,14 +14,17 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewOutlineProvider;
-import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
+import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
 import org.thoughtcrime.securesms.database.Address;
-import org.thoughtcrime.securesms.loki.JazzIdenticonDrawable;
 import org.thoughtcrime.securesms.loki.MnemonicUtilities;
+import org.thoughtcrime.securesms.mms.GlideApp;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.loki.crypto.MnemonicCodec;
 
@@ -99,28 +103,16 @@ public class ProfilePreference extends Preference {
       }
     });
     avatarView.setClipToOutline(true);
-    avatarView.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
 
-      @Override
-      public boolean onPreDraw() {
-        int width = avatarView.getWidth();
-        int height = avatarView.getHeight();
-        if (width == 0 || height == 0) return true;
-        avatarView.getViewTreeObserver().removeOnPreDrawListener(this);
-        JazzIdenticonDrawable identicon = new JazzIdenticonDrawable(width, height, publicKey.toLowerCase());
-        avatarView.setImageDrawable(identicon);
-        return true;
-      }
-    });
-
-    /*
+    Drawable fallback = Recipient.from(context, localAddress, false).getFallbackContactPhotoDrawable(context, false);
     GlideApp.with(getContext().getApplicationContext())
             .load(new ProfileContactPhoto(localAddress, String.valueOf(TextSecurePreferences.getProfileAvatarId(getContext()))))
-            .error(new ResourceContactPhoto(R.drawable.ic_camera_alt_white_24dp).asDrawable(getContext(), getContext().getResources().getColor(R.color.grey_400)))
+            .fallback(fallback)
+            .error(fallback)
             .circleCrop()
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .into(avatarView);
-     */
+
 
     if (!TextUtils.isEmpty(profileName)) {
       profileNameView.setText(profileName);

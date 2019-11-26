@@ -22,6 +22,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Outline;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -38,8 +39,11 @@ import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
 import org.thoughtcrime.securesms.components.RatingManager;
 import org.thoughtcrime.securesms.components.SearchToolbar;
+import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
 import org.thoughtcrime.securesms.conversation.ConversationActivity;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.database.Address;
@@ -48,6 +52,7 @@ import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.lock.RegistrationLockDialog;
 import org.thoughtcrime.securesms.loki.AddPublicChatActivity;
 import org.thoughtcrime.securesms.loki.JazzIdenticonDrawable;
+import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.permissions.Permissions;
@@ -197,45 +202,25 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
         outline.setOval(0, 0, view.getWidth(), view.getHeight());
       }
     });
+    profilePictureImageView.setClipToOutline(true);
 
     // Display the correct identicon if we're a secondary device
     String currentUser = TextSecurePreferences.getLocalNumber(this);
     String recipientAddress = recipient.getAddress().serialize();
     String primaryAddress = TextSecurePreferences.getMasterHexEncodedPublicKey(this);
     String profileAddress = (recipientAddress.equalsIgnoreCase(currentUser) && primaryAddress != null) ? primaryAddress : recipientAddress;
+    Recipient primaryRecipient = Recipient.from(this, Address.fromSerialized(profileAddress), false);
 
-    profilePictureImageView.setClipToOutline(true);
-    profilePictureImageView.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
-
-      @Override
-      public boolean onPreDraw() {
-        int width = profilePictureImageView.getWidth();
-        int height = profilePictureImageView.getHeight();
-        if (width == 0 || height == 0) return true;
-        profilePictureImageView.getViewTreeObserver().removeOnPreDrawListener(this);
-        JazzIdenticonDrawable identicon = new JazzIdenticonDrawable(width, height, profileAddress.toLowerCase());
-        profilePictureImageView.setImageDrawable(identicon);
-        return true;
-      }
-    });
-
-    /*
-    String        name          = Optional.fromNullable(recipient.getName()).or(Optional.fromNullable(TextSecurePreferences.getProfileName(this))).or("");
-    MaterialColor fallbackColor = recipient.getColor();
-
-    if (fallbackColor == ContactColors.UNKNOWN_COLOR && !TextUtils.isEmpty(name)) {
-      fallbackColor = ContactColors.generateFor(name);
-    }
-
-    Drawable fallback = new GeneratedContactPhoto(name, R.drawable.ic_profile_default).asDrawable(this, fallbackColor.toAvatarColor(this));
+    Drawable fallback = primaryRecipient.getFallbackContactPhotoDrawable(this, false);
 
     GlideApp.with(this)
-            .load(new ProfileContactPhoto(recipient.getAddress(), String.valueOf(TextSecurePreferences.getProfileAvatarId(this))))
+            .load(new ProfileContactPhoto(primaryRecipient.getAddress(), String.valueOf(TextSecurePreferences.getProfileAvatarId(this))))
+            .fallback(fallback)
             .error(fallback)
-            .circleCrop()
             .diskCacheStrategy(DiskCacheStrategy.ALL)
-            .into(icon);
-     */
+            .circleCrop()
+            .into(profilePictureImageView);
+
 
     profilePictureImageView.setOnClickListener(v -> handleDisplaySettings());
   }
