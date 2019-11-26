@@ -317,11 +317,6 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         });
       }
 
-      // Loki - Store profile avatar
-      if (content.senderProfileAvatarUrl.isPresent()) {
-        handleProfileAvatar(content, content.senderProfileAvatarUrl.get());
-      }
-
       if (content.getPairingAuthorisation().isPresent()) {
         handlePairingMessage(content.getPairingAuthorisation().get(), envelope, content);
       } else if (content.getDataMessage().isPresent()) {
@@ -1417,13 +1412,13 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
                                 @NonNull SignalServiceDataMessage message)
   {
     RecipientDatabase database      = DatabaseFactory.getRecipientDatabase(context);
-    Address           sourceAddress = Address.fromSerialized(content.getSender());
-    Recipient         recipient     = Recipient.from(context, sourceAddress, false);
+    Recipient         recipient     = getPrimaryDeviceRecipient(content.getSender());
 
     if (recipient.getProfileKey() == null || !MessageDigest.isEqual(recipient.getProfileKey(), message.getProfileKey().get())) {
       database.setProfileKey(recipient, message.getProfileKey().get());
       database.setUnidentifiedAccessMode(recipient, RecipientDatabase.UnidentifiedAccessMode.UNKNOWN);
-      ApplicationContext.getInstance(context).getJobManager().add(new RetrieveProfileJob(recipient));
+      String url = content.senderProfileAvatarUrl.or("");
+      ApplicationContext.getInstance(context).getJobManager().add(new RetrieveProfileAvatarJob(recipient, url));
     }
   }
 

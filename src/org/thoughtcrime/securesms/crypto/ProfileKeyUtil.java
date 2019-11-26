@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.crypto;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -31,8 +32,24 @@ public class ProfileKeyUtil {
     }
   }
 
+  public static synchronized @NonNull byte[] getProfileKeyFromEncodedString(String encodedProfileKey) {
+    try {
+      return Base64.decode(encodedProfileKey);
+    } catch (IOException e) {
+      throw new AssertionError(e);
+    }
+  }
+
   public static synchronized @NonNull byte[] rotateProfileKey(@NonNull Context context) {
     TextSecurePreferences.setProfileKey(context, null);
     return getProfileKey(context);
+  }
+
+  public static synchronized @NonNull String generateEncodedProfileKey(@NonNull Context context) {
+    return Util.getSecret(32);
+  }
+
+  public static synchronized void setEncodedProfileKey(@NonNull Context context, @Nullable String key) {
+    TextSecurePreferences.setProfileKey(context, key);
   }
 }

@@ -39,6 +39,7 @@ import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
+import org.thoughtcrime.securesms.jobs.MultiDeviceProfileKeyUpdateJob;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.permissions.Permissions;
@@ -382,7 +383,6 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
       @Override
       protected Boolean doInBackground(Void... params) {
         Context context    = CreateProfileActivity.this;
-        byte[]  profileKey = ProfileKeyUtil.getProfileKey(CreateProfileActivity.this);
 
         Analytics.Companion.getShared().track("Display Name Updated");
 
@@ -401,9 +401,9 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
           // accountManager.setProfileAvatar(profileKey, avatar);
           // ========
 
-          //TODO: there is no need to upload the avatar again if there is no change
-          AvatarHelper.setAvatar(CreateProfileActivity.this, Address.fromSerialized(TextSecurePreferences.getLocalNumber(context)), avatarBytes);
-          TextSecurePreferences.setProfileAvatarId(CreateProfileActivity.this, new SecureRandom().nextInt());
+          // Try upload photo with a new profile key
+          String newProfileKey = ProfileKeyUtil.generateEncodedProfileKey(context);
+          byte[] profileKey = ProfileKeyUtil.getProfileKeyFromEncodedString(newProfileKey);
 
           //Loki - Upload the profile photo here
           if (avatar != null) {
@@ -411,16 +411,23 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
             LokiStorageAPI storageAPI = LokiStorageAPI.shared;
             LokiDotNetAPI.UploadResult result = storageAPI.uploadProfilePhoto(storageAPI.getServer(), profileKey, avatar);
             Log.d("Loki", "Profile photo uploaded, the url is " + result.getUrl());
-            TextSecurePreferences.setProfileAvatarUrl(CreateProfileActivity.this, result.getUrl());
+            TextSecurePreferences.setProfileAvatarUrl(context, result.getUrl());
           } else {
-            TextSecurePreferences.setProfileAvatarUrl(CreateProfileActivity.this, null);
+            TextSecurePreferences.setProfileAvatarUrl(context, null);
           }
+
+          AvatarHelper.setAvatar(context, Address.fromSerialized(TextSecurePreferences.getLocalNumber(context)), avatarBytes);
+          TextSecurePreferences.setProfileAvatarId(context, new SecureRandom().nextInt());
+
+          // Upload was successful with this new profile key, we should set it so the other users know to re-fetch profiles
+          ProfileKeyUtil.setEncodedProfileKey(context, newProfileKey);
+          // TODO: Update profile key in public chats here
         } catch (Exception e) {
           Log.d("Loki", "Failed to upload profile photo: " + e);
           return false;
         }
 
-        // ApplicationContext.getInstance(context).getJobManager().add(new MultiDeviceProfileKeyUpdateJob());
+        ApplicationContext.getInstance(context).getJobManager().add(new MultiDeviceProfileKeyUpdateJob());
         return true;
       }
 
