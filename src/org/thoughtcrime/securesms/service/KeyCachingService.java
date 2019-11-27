@@ -79,7 +79,7 @@ public class KeyCachingService extends Service {
   public KeyCachingService() {}
 
   public static synchronized boolean isLocked(Context context) {
-    return getMasterSecret(context) == null;
+    return masterSecret == null && (!TextSecurePreferences.isPasswordDisabled(context) || TextSecurePreferences.isScreenLockEnabled(context));
   }
 
   public static synchronized @Nullable MasterSecret getMasterSecret(Context context) {
