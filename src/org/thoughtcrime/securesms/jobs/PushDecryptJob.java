@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -867,18 +868,23 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       database.endTransaction();
     }
 
-    // Loki - Store message server ID
-    updateGroupChatMessageServerID(messageServerIDOrNull, insertResult);
-
-    // Loki - Update mapping of message to original thread id
     if (insertResult.isPresent()) {
       MessageNotifier.updateNotification(context, insertResult.get().getThreadId());
-
-      ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);
-      LokiMessageDatabase lokiMessageDatabase = DatabaseFactory.getLokiMessageDatabase(context);
-      long originalThreadId = threadDatabase.getThreadIdFor(originalRecipient);
-      lokiMessageDatabase.setOriginalThreadID(insertResult.get().getMessageId(), originalThreadId);
     }
+
+    // Loki - Run db updates in the background, we should look into fixing this in the future
+    AsyncTask.execute(() -> {
+      // Loki - Store message server ID
+      updateGroupChatMessageServerID(messageServerIDOrNull, insertResult);
+
+      // Loki - Update mapping of message to original thread id
+      if (insertResult.isPresent()) {
+        ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);
+        LokiMessageDatabase lokiMessageDatabase = DatabaseFactory.getLokiMessageDatabase(context);
+        long originalThreadId = threadDatabase.getThreadIdFor(originalRecipient);
+        lokiMessageDatabase.setOriginalThreadID(insertResult.get().getMessageId(), originalThreadId);
+      }
+    });
   }
 
   private long handleSynchronizeSentExpirationUpdate(@NonNull SentTranscriptMessage message) throws MmsException {
@@ -1022,35 +1028,37 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       // Insert the message into the database
       Optional<InsertResult> insertResult = database.insertMessageInbox(textMessage);
 
-      Long messageId = null;
       if (insertResult.isPresent()) {
         threadId = insertResult.get().getThreadId();
-        messageId = insertResult.get().getMessageId();
       }
 
       if (smsMessageId.isPresent()) database.deleteMessage(smsMessageId.get());
-
-      // Loki - Cache the user hex encoded public key (for mentions)
-      if (threadId != null) {
-        LokiAPIUtilities.INSTANCE.populateUserHexEncodedPublicKeyCacheIfNeeded(threadId, context);
-        LokiAPI.Companion.cache(textMessage.getSender().serialize(), threadId);
-      }
-
-      // Loki - Store message server ID
-      updateGroupChatMessageServerID(messageServerIDOrNull, insertResult);
-
-      // Loki - Update mapping of message to original thread id
-      if (messageId != null) {
-        ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);
-        LokiMessageDatabase lokiMessageDatabase = DatabaseFactory.getLokiMessageDatabase(context);
-        long originalThreadId = threadDatabase.getThreadIdFor(originalRecipient);
-        lokiMessageDatabase.setOriginalThreadID(messageId, originalThreadId);
-      }
 
       boolean isGroupMessage = message.getGroupInfo().isPresent();
       if (threadId != null && !isGroupMessage) {
         MessageNotifier.updateNotification(context, threadId);
       }
+
+      // Loki - Run db updates in background, we should look into fixing this in the future
+      AsyncTask.execute(() -> {
+        if (insertResult.isPresent()) {
+          InsertResult result = insertResult.get();
+          // Loki - Cache the user hex encoded public key (for mentions)
+          LokiAPIUtilities.INSTANCE.populateUserHexEncodedPublicKeyCacheIfNeeded(result.getThreadId(), context);
+          LokiAPI.Companion.cache(textMessage.getSender().serialize(), result.getThreadId());
+
+          // Loki - Store message server ID
+          updateGroupChatMessageServerID(messageServerIDOrNull, insertResult);
+
+          // Loki - Update mapping of message to original thread id
+          if (result.getMessageId() > -1) {
+            ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);
+            LokiMessageDatabase lokiMessageDatabase = DatabaseFactory.getLokiMessageDatabase(context);
+            long originalThreadId = threadDatabase.getThreadIdFor(originalRecipient);
+            lokiMessageDatabase.setOriginalThreadID(result.getMessageId(), originalThreadId);
+          }
+        }
+      });
     }
   }
 
