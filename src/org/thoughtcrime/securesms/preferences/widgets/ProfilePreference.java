@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
+import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.loki.MnemonicUtilities;
@@ -80,13 +81,14 @@ public class ProfilePreference extends Preference {
   public void refresh() {
     if (profileNumberView == null) return;
 
-    String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(getContext());
-    String primaryDevicePublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(getContext());
+    Context context = getContext();
+    String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context);
+    String primaryDevicePublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
     String publicKey = primaryDevicePublicKey != null ? primaryDevicePublicKey : userHexEncodedPublicKey;
     final Address localAddress = Address.fromSerialized(publicKey);
-    final String  profileName  = TextSecurePreferences.getProfileName(getContext());
+    final Recipient recipient = Recipient.from(context, localAddress, false);
+    final String  profileName  = TextSecurePreferences.getProfileName(context);
 
-    Context context = getContext();
     containerView.setOnLongClickListener(v -> {
       ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
       ClipData clip = ClipData.newPlainText("Public Key", publicKey);
@@ -104,9 +106,9 @@ public class ProfilePreference extends Preference {
     });
     avatarView.setClipToOutline(true);
 
-    Drawable fallback = Recipient.from(context, localAddress, false).getFallbackContactPhotoDrawable(context, false);
+    Drawable fallback = recipient.getFallbackContactPhotoDrawable(context, false);
     GlideApp.with(getContext().getApplicationContext())
-            .load(new ProfileContactPhoto(localAddress, String.valueOf(TextSecurePreferences.getProfileAvatarId(getContext()))))
+            .load(recipient.getContactPhoto())
             .fallback(fallback)
             .error(fallback)
             .circleCrop()

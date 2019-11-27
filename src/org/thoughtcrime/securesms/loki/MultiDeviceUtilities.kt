@@ -11,6 +11,8 @@ import nl.komponents.kovenant.toFailVoid
 import nl.komponents.kovenant.ui.successUi
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
+import org.thoughtcrime.securesms.crypto.PreKeyUtil
+import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
 import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.logging.Log
@@ -114,12 +116,16 @@ fun shouldAutomaticallyBecomeFriendsWithDevice(publicKey: String, context: Conte
 fun sendPairingAuthorisationMessage(context: Context, contactHexEncodedPublicKey: String, authorisation: PairingAuthorisation): Promise<Unit, Exception> {
   val messageSender = ApplicationContext.getInstance(context).communicationModule.provideSignalMessageSender()
   val address = SignalServiceAddress(contactHexEncodedPublicKey)
-  val message = SignalServiceDataMessage.newBuilder().withBody(null).withPairingAuthorisation(authorisation)
+  val message = SignalServiceDataMessage.newBuilder().withPairingAuthorisation(authorisation)
   // A REQUEST should always act as a friend request. A GRANT should always be replying back as a normal message.
   if (authorisation.type == PairingAuthorisation.Type.REQUEST) {
     val preKeyBundle = DatabaseFactory.getLokiPreKeyBundleDatabase(context).generatePreKeyBundle(address.number)
     message.asFriendRequest(true).withPreKeyBundle(preKeyBundle)
+  } else {
+    // Send over our profile key so that our linked device can get our profile picture
+    message.withProfileKey(ProfileKeyUtil.getProfileKey(context))
   }
+
   return try {
     Log.d("Loki", "Sending authorisation message to: $contactHexEncodedPublicKey.")
     val result = messageSender.sendMessage(0, address, Optional.absent<UnidentifiedAccessPair>(), message.build())

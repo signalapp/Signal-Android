@@ -26,6 +26,7 @@ import android.text.TextUtils;
 
 import com.annimon.stream.function.Consumer;
 
+import org.greenrobot.eventbus.EventBus;
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
@@ -45,6 +46,7 @@ import org.thoughtcrime.securesms.database.RecipientDatabase.UnidentifiedAccessM
 import org.thoughtcrime.securesms.database.RecipientDatabase.VibrateState;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.JazzIdenticonContactPhoto;
+import org.thoughtcrime.securesms.loki.RecipientAvatarModifiedEvent;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.recipients.RecipientProvider.RecipientDetails;
 import org.thoughtcrime.securesms.util.FutureTaskListener;
@@ -394,6 +396,7 @@ public class Recipient implements RecipientModifiedListener {
     }
 
     notifyListeners();
+    EventBus.getDefault().post(new RecipientAvatarModifiedEvent(this));
   }
 
   public synchronized boolean isProfileSharing() {
@@ -469,7 +472,7 @@ public class Recipient implements RecipientModifiedListener {
   }
 
   public synchronized @Nullable ContactPhoto getContactPhoto() {
-    if      (isLocalNumber)                               return null;
+    if      (isLocalNumber)                               return new ProfileContactPhoto(address, String.valueOf(TextSecurePreferences.getProfileAvatarId(context)));
     else if (isGroupRecipient() && groupAvatarId != null) return new GroupRecordContactPhoto(address, groupAvatarId);
     else if (systemContactPhoto != null)                  return new SystemContactPhoto(address, systemContactPhoto, 0);
     else if (profileAvatar != null)                       return new ProfileContactPhoto(address, profileAvatar);

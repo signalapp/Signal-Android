@@ -41,6 +41,9 @@ import android.widget.Toast;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.thoughtcrime.securesms.components.RatingManager;
 import org.thoughtcrime.securesms.components.SearchToolbar;
 import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
@@ -52,6 +55,7 @@ import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.lock.RegistrationLockDialog;
 import org.thoughtcrime.securesms.loki.AddPublicChatActivity;
 import org.thoughtcrime.securesms.loki.JazzIdenticonDrawable;
+import org.thoughtcrime.securesms.loki.RecipientAvatarModifiedEvent;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
@@ -135,6 +139,18 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
   }
 
   @Override
+  public void onStart() {
+    super.onStart();
+    EventBus.getDefault().register(this);
+  }
+
+  @Override
+  public void onStop() {
+    EventBus.getDefault().unregister(this);
+    super.onStop();
+  }
+
+  @Override
   public boolean onPrepareOptionsMenu(Menu menu) {
     MenuInflater inflater = this.getMenuInflater();
     menu.clear();
@@ -214,7 +230,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     Drawable fallback = primaryRecipient.getFallbackContactPhotoDrawable(this, false);
 
     GlideApp.with(this)
-            .load(new ProfileContactPhoto(primaryRecipient.getAddress(), String.valueOf(TextSecurePreferences.getProfileAvatarId(this))))
+            .load(primaryRecipient.getContactPhoto())
             .fallback(fallback)
             .error(fallback)
             .diskCacheStrategy(DiskCacheStrategy.ALL)
@@ -320,5 +336,15 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
 
   private void addNewPublicChat() {
     startActivity(new Intent(this, AddPublicChatActivity.class));
+  }
+
+  @Subscribe(threadMode = ThreadMode.MAIN)
+  public void onAvatarModified(RecipientAvatarModifiedEvent event) {
+    Recipient recipient = event.getRecipient();
+    String ourMasterHexEncodedPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(this);
+    boolean isOurMasterDevice = ourMasterHexEncodedPublicKey != null && ourMasterHexEncodedPublicKey.equals(recipient.getAddress().serialize());
+    if (recipient.isLocalNumber() || isOurMasterDevice) {
+      initializeProfileIcon(recipient);
+    }
   }
 }

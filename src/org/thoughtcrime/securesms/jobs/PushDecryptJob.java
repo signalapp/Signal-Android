@@ -724,6 +724,8 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         handleUnknownGroupMessage(content, message.getMessage().getGroupInfo().get());
       }
 
+      String ourMasterDevice = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
+      boolean isSenderMasterDevice = ourMasterDevice != null && ourMasterDevice.equals(content.getSender());
       if (message.getMessage().getProfileKey().isPresent()) {
         Recipient recipient = null;
 
@@ -734,6 +736,16 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         if (recipient != null && !recipient.isSystemContact() && !recipient.isProfileSharing()) {
           DatabaseFactory.getRecipientDatabase(context).setProfileSharing(recipient, true);
         }
+
+        // Loki - If we received a sync message from our master device then we need to extract the avatar url
+        if (isSenderMasterDevice) {
+          handleProfileKey(content, message.getMessage());
+        }
+      }
+
+      // Loki - Update display name from master device
+      if (isSenderMasterDevice && content.senderDisplayName.isPresent() && content.senderDisplayName.get().length() > 0) {
+        TextSecurePreferences.setProfileName(context, content.senderDisplayName.get());
       }
 
       if (threadId != null) {
@@ -1142,7 +1154,10 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     if (content.senderDisplayName.isPresent() && content.senderDisplayName.get().length() > 0) {
         TextSecurePreferences.setProfileName(context, content.senderDisplayName.get());
     }
-
+    // Profile avatar updates
+    if (content.getDataMessage().isPresent()) {
+      handleProfileKey(content, content.getDataMessage().get());
+    }
     // Contact sync
     if (content.getSyncMessage().isPresent() && content.getSyncMessage().get().getContacts().isPresent()) {
       handleSynchronizeContactMessage(content.getSyncMessage().get().getContacts().get());
@@ -1413,8 +1428,14 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   private void handleProfileKey(@NonNull SignalServiceContent content,
                                 @NonNull SignalServiceDataMessage message)
   {
+    if (!message.getProfileKey().isPresent()) { return; }
+
+    /*
+    If we get a profile key then we don't need to map it to the primary device.
+    For now a profile key is mapped one-to-one to avoid secondary devices setting the incorrect avatar for a primary device.
+     */
     RecipientDatabase database      = DatabaseFactory.getRecipientDatabase(context);
-    Recipient         recipient     = getPrimaryDeviceRecipient(content.getSender());
+    Recipient         recipient     = Recipient.from(context, Address.fromSerialized(content.getSender()), false);
 
     if (recipient.getProfileKey() == null || !MessageDigest.isEqual(recipient.getProfileKey(), message.getProfileKey().get())) {
       database.setProfileKey(recipient, message.getProfileKey().get());
