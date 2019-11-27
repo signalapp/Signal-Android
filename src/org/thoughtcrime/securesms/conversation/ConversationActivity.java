@@ -2376,11 +2376,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                  new AsyncTask<Void, Void, Long>() {
                    @Override
                    protected Long doInBackground(Void... param) {
-                     /* Loki - Don't enable profile sharing if we initiate conversation
                      if (initiating) {
                        DatabaseFactory.getRecipientDatabase(context).setProfileSharing(recipient, true);
                      }
-                      */
 
                      return MessageSender.send(context, outgoingMessage, threadId, forceSms, () -> fragment.releaseOutgoingMessage(id));
                    }
@@ -2433,11 +2431,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                  new AsyncTask<OutgoingTextMessage, Void, Long>() {
                    @Override
                    protected Long doInBackground(OutgoingTextMessage... messages) {
-                     /* Loki - Don't enable profile sharing if we initiate conversation
                      if (initiatingConversation) {
                        DatabaseFactory.getRecipientDatabase(context).setProfileSharing(recipient, true);
                      }
-                     */
 
                      return MessageSender.send(context, messages[0], threadId, forceSms, () -> fragment.releaseOutgoingMessage(id));
                    }
