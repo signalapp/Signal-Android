@@ -1200,6 +1200,8 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     if (syncContact) {
       MessageSender.syncContact(context, contactID.getAddress());
     }
+    // Allow profile sharing with contact
+    DatabaseFactory.getRecipientDatabase(context).setProfileSharing(contactID, true);
     // Update the last message if needed
     LokiStorageAPI.shared.getPrimaryDevicePublicKey(pubKey).success(primaryDevice -> {
       Util.runOnMain(() -> {
