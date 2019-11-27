@@ -108,12 +108,6 @@ public class AvatarImageView extends AppCompatImageView {
     super.setOnClickListener(listener);
   }
 
-  @Override
-  protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-    super.onSizeChanged(w, h, oldw, oldh);
-    if (recipientContactPhoto != null) { updateAvatar(recipientContactPhoto.recipient); }
-  }
-
   public void update(String hexEncodedPublicKey) {
     Address address = Address.fromSerialized(hexEncodedPublicKey);
     Recipient recipient = Recipient.from(getContext(), address, false);
@@ -144,7 +138,6 @@ public class AvatarImageView extends AppCompatImageView {
           setImageDrawable(fallbackContactPhotoDrawable);
         }
       }
-       setAvatarClickHandler(recipient, quickContactEnabled);
     } else {
       recipientContactPhoto = null;
       requestManager.clear(this);
