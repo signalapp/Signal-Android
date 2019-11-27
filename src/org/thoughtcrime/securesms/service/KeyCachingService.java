@@ -76,6 +76,10 @@ public class KeyCachingService extends Service {
 
   private static MasterSecret masterSecret;
 
+  // Loki - Caching
+  private static MasterSecret cachedSecret;
+  private static long cacheTime = 0;
+
   public KeyCachingService() {}
 
   public static synchronized boolean isLocked(Context context) {
@@ -85,7 +89,13 @@ public class KeyCachingService extends Service {
   public static synchronized @Nullable MasterSecret getMasterSecret(Context context) {
     if (masterSecret == null && (TextSecurePreferences.isPasswordDisabled(context) && !TextSecurePreferences.isScreenLockEnabled(context))) {
       try {
-        return MasterSecretUtil.getMasterSecret(context, MasterSecretUtil.UNENCRYPTED_PASSPHRASE);
+        // Loki - Cache the secret.
+        // Don't know if this will affect any other signal code :( but it makes it so we're not wasting time re-fetching the same secret from the database
+        if (cachedSecret == null || cacheTime < System.currentTimeMillis()) {
+          cachedSecret =  MasterSecretUtil.getMasterSecret(context, MasterSecretUtil.UNENCRYPTED_PASSPHRASE);
+          cacheTime = System.currentTimeMillis() + TimeUnit.MINUTES.toMillis(5);
+        }
+        return cachedSecret;
       } catch (InvalidPassphraseException e) {
         Log.w("KeyCachingService", e);
       }
