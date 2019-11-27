@@ -265,6 +265,9 @@
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">You can swipe to the right on any message to quickly reply</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">You can swipe to the left on any message to quickly reply</string>
 
+    <string name="ConversationFragment_no_quote">You can not forward a disappearing message!</string>
+    <string name="ConversationFragment_no_forward">You can not forward a disappearing message!</string>
+
     <!-- ConversationListActivity -->
     <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">There is no browser installed on your device.</string>
 

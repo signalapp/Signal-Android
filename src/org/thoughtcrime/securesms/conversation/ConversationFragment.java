@@ -551,6 +551,10 @@ public class ConversationFragment extends Fragment
 
   private void handleForwardMessage(MessageRecord message) {
     listener.onForwardClicked();
+    if(message.getExpiresIn()>0) {
+      Toast.makeText(getContext(), R.string.ConversationFragment_no_forward, Toast.LENGTH_LONG).show();
+      return;
+    }
 
     SimpleTask.run(getLifecycle(), () -> {
       Intent composeIntent = new Intent(getActivity(), ShareActivity.class);
@@ -625,6 +629,10 @@ public class ConversationFragment extends Fragment
   }
 
   private void handleReplyMessage(final MessageRecord message) {
+    if(message.getExpiresIn()>0) {
+      Toast.makeText(getContext(), R.string.ConversationFragment_no_quote, Toast.LENGTH_LONG).show();
+      return;
+    }
     listener.handleReplyMessage(message);
   }
 
