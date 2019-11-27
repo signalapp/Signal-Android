@@ -33,6 +33,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -41,6 +42,9 @@ import java.util.concurrent.ExecutionException;
 public class SingleRecipientNotificationBuilder extends AbstractNotificationBuilder {
 
   private static final String TAG = SingleRecipientNotificationBuilder.class.getSimpleName();
+
+  private static final int BIG_PICTURE_DIMEN = 500;
+  private static final int LARGE_ICON_DIMEN  = 250;
 
   private final List<CharSequence> messageBodies = new LinkedList<>();
 
@@ -216,10 +220,17 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
   @Override
   public Notification build() {
     if (privacy.isDisplayMessage()) {
-      if (messageBodies.size() == 1 && hasBigPictureSlide(slideDeck)) {
+      Optional<Uri> largeIconUri  = getLargeIconUri(slideDeck);
+      Optional<Uri> bigPictureUri = getBigPictureUri(slideDeck);
+
+      if (messageBodies.size() == 1 && largeIconUri.isPresent()) {
+        setLargeIcon(getNotificationPicture(largeIconUri.get(), LARGE_ICON_DIMEN));
+      }
+
+      if (messageBodies.size() == 1 && bigPictureUri.isPresent()) {
         setStyle(new NotificationCompat.BigPictureStyle()
-                     .bigPicture(getBigPicture(slideDeck))
-                     .setSummaryText(getBigText(messageBodies)));
+                                       .bigPicture(getNotificationPicture(bigPictureUri.get(), BIG_PICTURE_DIMEN))
+                                       .setSummaryText(getBigText(messageBodies)));
       } else {
         setStyle(new NotificationCompat.BigTextStyle().bigText(getBigText(messageBodies)));
       }
@@ -239,34 +250,44 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
     }
   }
 
-  private boolean hasBigPictureSlide(@Nullable SlideDeck slideDeck) {
+  private static Optional<Uri> getLargeIconUri(@Nullable SlideDeck slideDeck) {
     if (slideDeck == null) {
-      return false;
+      return Optional.absent();
+    }
+
+    Slide thumbnailSlide = Optional.fromNullable(slideDeck.getThumbnailSlide()).or(Optional.fromNullable(slideDeck.getStickerSlide())).orNull();
+    return getThumbnailUri(thumbnailSlide);
+  }
+
+  private static Optional<Uri> getBigPictureUri(@Nullable SlideDeck slideDeck) {
+    if (slideDeck == null) {
+      return Optional.absent();
     }
 
     Slide thumbnailSlide = slideDeck.getThumbnailSlide();
-
-    return thumbnailSlide != null         &&
-           thumbnailSlide.hasImage()      &&
-           !thumbnailSlide.isInProgress() &&
-           thumbnailSlide.getThumbnailUri() != null;
+    return getThumbnailUri(thumbnailSlide);
   }
 
-  private Bitmap getBigPicture(@NonNull SlideDeck slideDeck)
+  private static Optional<Uri> getThumbnailUri(@Nullable Slide slide) {
+    if (slide != null && !slide.isInProgress() && slide.getThumbnailUri() != null) {
+      return Optional.of(slide.getThumbnailUri());
+    } else {
+      return Optional.absent();
+    }
+  }
+
+  private Bitmap getNotificationPicture(@NonNull Uri uri, int dimension)
   {
     try {
-      @SuppressWarnings("ConstantConditions")
-      Uri uri = slideDeck.getThumbnailSlide().getThumbnailUri();
-
       return GlideApp.with(context.getApplicationContext())
                      .asBitmap()
                      .load(new DecryptableStreamUriLoader.DecryptableUri(uri))
                      .diskCacheStrategy(DiskCacheStrategy.NONE)
-                     .submit(500, 500)
+                     .submit(dimension, dimension)
                      .get();
     } catch (InterruptedException | ExecutionException e) {
       Log.w(TAG, e);
-      return Bitmap.createBitmap(500, 500, Bitmap.Config.RGB_565);
+      return Bitmap.createBitmap(dimension, dimension, Bitmap.Config.RGB_565);
     }
   }
 
