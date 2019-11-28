@@ -125,7 +125,9 @@ public class AvatarImageView extends AppCompatImageView {
         requestManager.clear(this);
         recipientContactPhoto = photo;
 
-        Drawable fallbackContactPhotoDrawable = photo.recipient.getFallbackContactPhotoDrawable(getContext(), inverted);
+        Drawable fallbackContactPhotoDrawable = recipient.isLocalNumber()
+                ? new ResourceContactPhoto(R.drawable.ic_note_to_self).asDrawable(getContext(), recipient.getColor().toAvatarColor(getContext()), inverted)
+                : photo.recipient.getFallbackContactPhotoDrawable(getContext(), inverted);
 
         if (photo.contactPhoto != null) {
           requestManager.load(photo.contactPhoto)
