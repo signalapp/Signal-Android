@@ -83,6 +83,7 @@ public class AndroidAutoReplyReceiver extends BroadcastReceiver {
           }
 
           List<MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(context).setRead(replyThreadId, true);
+          MessageNotifier.updateThreadRead(replyThreadId);
 
           MessageNotifier.updateNotification(context);
           MarkReadReceiver.process(context, messageIds);

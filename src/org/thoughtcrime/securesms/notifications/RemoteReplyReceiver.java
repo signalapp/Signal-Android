@@ -95,6 +95,7 @@ public class RemoteReplyReceiver extends BroadcastReceiver {
           }
 
           List<MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(context).setRead(threadId, true);
+          MessageNotifier.updateThreadRead(threadId);
 
           MessageNotifier.updateNotification(context);
           MarkReadReceiver.process(context, messageIds);
