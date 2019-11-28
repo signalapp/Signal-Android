@@ -67,6 +67,7 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.security.SecureRandom;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
@@ -100,6 +101,7 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
   private View                   reveal;
 
   private Intent nextIntent;
+  private byte[] originalAvatarBytes;
   private byte[] avatarBytes;
   private File   captureFile;
 
@@ -305,6 +307,7 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
         @Override
         protected void onPostExecute(byte[] result) {
           if (result != null) {
+            originalAvatarBytes = result;
             avatarBytes = result;
             GlideApp.with(CreateProfileActivity.this)
                     .load(result)
@@ -318,6 +321,7 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
         @Override
         public void onSuccess(byte[] result) {
           if (result != null) {
+            originalAvatarBytes = result;
             avatarBytes = result;
             GlideApp.with(CreateProfileActivity.this)
                     .load(result)
@@ -396,38 +400,41 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
           }
         }
 
-        try {
-          // Loki - Original profile photo code
-          // ========
-          // accountManager.setProfileAvatar(profileKey, avatar);
-          // ========
+        // Loki - Only update avatar if there was a change
+        if (!Arrays.equals(originalAvatarBytes, avatarBytes)) {
+          try {
+            // Loki - Original profile photo code
+            // ========
+            // accountManager.setProfileAvatar(profileKey, avatar);
+            // ========
 
-          // Try upload photo with a new profile key
-          String newProfileKey = ProfileKeyUtil.generateEncodedProfileKey(context);
-          byte[] profileKey = ProfileKeyUtil.getProfileKeyFromEncodedString(newProfileKey);
+            // Try upload photo with a new profile key
+            String newProfileKey = ProfileKeyUtil.generateEncodedProfileKey(context);
+            byte[] profileKey = ProfileKeyUtil.getProfileKeyFromEncodedString(newProfileKey);
 
-          //Loki - Upload the profile photo here
-          if (avatar != null) {
-            Log.d("Loki", "Start uploading profile photo");
-            LokiStorageAPI storageAPI = LokiStorageAPI.shared;
-            LokiDotNetAPI.UploadResult result = storageAPI.uploadProfilePhoto(storageAPI.getServer(), profileKey, avatar);
-            Log.d("Loki", "Profile photo uploaded, the url is " + result.getUrl());
-            TextSecurePreferences.setProfileAvatarUrl(context, result.getUrl());
-          } else {
-            TextSecurePreferences.setProfileAvatarUrl(context, null);
+            //Loki - Upload the profile photo here
+            if (avatar != null) {
+              Log.d("Loki", "Start uploading profile photo");
+              LokiStorageAPI storageAPI = LokiStorageAPI.shared;
+              LokiDotNetAPI.UploadResult result = storageAPI.uploadProfilePhoto(storageAPI.getServer(), profileKey, avatar);
+              Log.d("Loki", "Profile photo uploaded, the url is " + result.getUrl());
+              TextSecurePreferences.setProfileAvatarUrl(context, result.getUrl());
+            } else {
+              TextSecurePreferences.setProfileAvatarUrl(context, null);
+            }
+
+            AvatarHelper.setAvatar(context, Address.fromSerialized(TextSecurePreferences.getLocalNumber(context)), avatarBytes);
+            TextSecurePreferences.setProfileAvatarId(context, new SecureRandom().nextInt());
+
+            // Upload was successful with this new profile key, we should set it so the other users know to re-fetch profiles
+            ProfileKeyUtil.setEncodedProfileKey(context, newProfileKey);
+
+            // Update profile key on the public chat server
+            ApplicationContext.getInstance(context).updatePublicChatProfileAvatarIfNeeded();
+          } catch (Exception e) {
+            Log.d("Loki", "Failed to upload profile photo: " + e);
+            return false;
           }
-
-          AvatarHelper.setAvatar(context, Address.fromSerialized(TextSecurePreferences.getLocalNumber(context)), avatarBytes);
-          TextSecurePreferences.setProfileAvatarId(context, new SecureRandom().nextInt());
-
-          // Upload was successful with this new profile key, we should set it so the other users know to re-fetch profiles
-          ProfileKeyUtil.setEncodedProfileKey(context, newProfileKey);
-
-          // Update profile key on the public chat server
-          ApplicationContext.getInstance(context).updatePublicChatProfileAvatarIfNeeded();
-        } catch (Exception e) {
-          Log.d("Loki", "Failed to upload profile photo: " + e);
-          return false;
         }
 
         // ApplicationContext.getInstance(context).getJobManager().add(new MultiDeviceProfileKeyUpdateJob());
