@@ -221,10 +221,8 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
     profilePictureImageView.setClipToOutline(true);
 
     // Display the correct identicon if we're a secondary device
-    String currentUser = TextSecurePreferences.getLocalNumber(this);
-    String recipientAddress = recipient.getAddress().serialize();
     String primaryAddress = TextSecurePreferences.getMasterHexEncodedPublicKey(this);
-    String profileAddress = (recipientAddress.equalsIgnoreCase(currentUser) && primaryAddress != null) ? primaryAddress : recipientAddress;
+    String profileAddress = (recipient.isLocalNumber() && primaryAddress != null) ? primaryAddress : recipient.getAddress().serialize();
     Recipient primaryRecipient = Recipient.from(this, Address.fromSerialized(profileAddress), false);
 
     Drawable fallback = primaryRecipient.getFallbackContactPhotoDrawable(this, false);
@@ -341,9 +339,7 @@ public class ConversationListActivity extends PassphraseRequiredActionBarActivit
   @Subscribe(threadMode = ThreadMode.MAIN)
   public void onAvatarModified(RecipientAvatarModifiedEvent event) {
     Recipient recipient = event.getRecipient();
-    String ourMasterHexEncodedPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(this);
-    boolean isOurMasterDevice = ourMasterHexEncodedPublicKey != null && ourMasterHexEncodedPublicKey.equals(recipient.getAddress().serialize());
-    if (recipient.isLocalNumber() || isOurMasterDevice) {
+    if (recipient.isLocalNumber() || recipient.isOurMasterDevice()) {
       initializeProfileIcon(recipient);
     }
   }

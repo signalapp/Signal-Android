@@ -279,6 +279,11 @@ public class Recipient implements RecipientModifiedListener {
     return isLocalNumber;
   }
 
+  public boolean isOurMasterDevice() {
+    String ourMasterDevice = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
+    return ourMasterDevice != null && ourMasterDevice.equals(getAddress().serialize());
+  }
+
   public synchronized @Nullable Uri getContactUri() {
     return this.contactUri;
   }
