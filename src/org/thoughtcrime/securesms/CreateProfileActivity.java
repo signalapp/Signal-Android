@@ -67,6 +67,7 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.security.SecureRandom;
+import java.util.Collections;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
 import java.util.regex.Matcher;
@@ -421,7 +422,9 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
 
           // Upload was successful with this new profile key, we should set it so the other users know to re-fetch profiles
           ProfileKeyUtil.setEncodedProfileKey(context, newProfileKey);
-          // TODO: Update profile key in public chats here
+
+          // Update profile key on the public chat server
+          ApplicationContext.getInstance(context).updatePublicChatProfileAvatarIfNeeded();
         } catch (Exception e) {
           Log.d("Loki", "Failed to upload profile photo: " + e);
           return false;

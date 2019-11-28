@@ -120,24 +120,26 @@ public class AvatarImageView extends AppCompatImageView {
 
   public void setAvatar(@NonNull GlideRequests requestManager, @Nullable Recipient recipient, boolean quickContactEnabled) {
     if (recipient != null) {
-      RecipientContactPhoto photo = new RecipientContactPhoto(recipient);
-      if (!photo.equals(recipientContactPhoto)) {
-        requestManager.clear(this);
-        recipientContactPhoto = photo;
+      if (recipient.isLocalNumber()) {
+        setImageDrawable(new ResourceContactPhoto(R.drawable.ic_note_to_self).asDrawable(getContext(), recipient.getColor().toAvatarColor(getContext()), inverted));
+      } else {
+        RecipientContactPhoto photo = new RecipientContactPhoto(recipient);
+        if (!photo.equals(recipientContactPhoto)) {
+          requestManager.clear(this);
+          recipientContactPhoto = photo;
 
-        Drawable fallbackContactPhotoDrawable = recipient.isLocalNumber()
-                ? new ResourceContactPhoto(R.drawable.ic_note_to_self).asDrawable(getContext(), recipient.getColor().toAvatarColor(getContext()), inverted)
-                : photo.recipient.getFallbackContactPhotoDrawable(getContext(), inverted);
+          Drawable fallbackContactPhotoDrawable = photo.recipient.getFallbackContactPhotoDrawable(getContext(), inverted);
 
-        if (photo.contactPhoto != null) {
-          requestManager.load(photo.contactPhoto)
-                  .fallback(fallbackContactPhotoDrawable)
-                  .error(fallbackContactPhotoDrawable)
-                  .diskCacheStrategy(DiskCacheStrategy.ALL)
-                  .circleCrop()
-                  .into(this);
-        } else {
-          setImageDrawable(fallbackContactPhotoDrawable);
+          if (photo.contactPhoto != null) {
+            requestManager.load(photo.contactPhoto)
+                    .fallback(fallbackContactPhotoDrawable)
+                    .error(fallbackContactPhotoDrawable)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .circleCrop()
+                    .into(this);
+          } else {
+            setImageDrawable(fallbackContactPhotoDrawable);
+          }
         }
       }
     } else {

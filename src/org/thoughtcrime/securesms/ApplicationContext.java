@@ -43,6 +43,8 @@ import org.thoughtcrime.securesms.components.TypingStatusRepository;
 import org.thoughtcrime.securesms.components.TypingStatusSender;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
+import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
+import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseContentProviders;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.dependencies.AxolotlStorageModule;
@@ -75,6 +77,7 @@ import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.DirectoryRefreshListener;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.service.IncomingMessageObserver;
@@ -207,6 +210,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         checkNeedsRevocation();
       }
     }
+    updatePublicChatProfileAvatarIfNeeded();
   }
 
   @Override
@@ -596,6 +600,26 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     createRSSFeedPollersIfNeeded();
     if (lokiNewsFeedPoller != null) lokiNewsFeedPoller.startIfNeeded();
     if (lokiMessengerUpdatesFeedPoller != null) lokiMessengerUpdatesFeedPoller.startIfNeeded();
+  }
+
+  public void updatePublicChatProfileAvatarIfNeeded() {
+    AsyncTask.execute(() -> {
+      LokiPublicChatAPI publicChatAPI = getLokiPublicChatAPI();
+      if (publicChatAPI != null) {
+        byte[] profileKey = ProfileKeyUtil.getProfileKey(this);
+        String url = TextSecurePreferences.getProfileAvatarUrl(this);
+        String ourMasterDevice = TextSecurePreferences.getMasterHexEncodedPublicKey(this);
+        if (ourMasterDevice != null) {
+          Recipient masterDevice = Recipient.from(this, Address.fromSerialized(ourMasterDevice), false).resolve();
+          profileKey = masterDevice.getProfileKey();
+          url = masterDevice.getProfileAvatar();
+        }
+        Set<String> servers = DatabaseFactory.getLokiThreadDatabase(this).getAllPublicChatServers();
+        for (String server : servers) {
+          publicChatAPI.setProfileAvatar(server, profileKey, url);
+        }
+      }
+    });
   }
   // endregion
 

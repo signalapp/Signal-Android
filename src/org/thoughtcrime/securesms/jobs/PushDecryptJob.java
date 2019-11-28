@@ -130,6 +130,7 @@ import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.loki.api.DeviceLinkingSession;
 import org.whispersystems.signalservice.loki.api.LokiAPI;
+import org.whispersystems.signalservice.loki.api.LokiPublicChatAPI;
 import org.whispersystems.signalservice.loki.api.LokiStorageAPI;
 import org.whispersystems.signalservice.loki.api.PairingAuthorisation;
 import org.whispersystems.signalservice.loki.crypto.LokiServiceCipher;
@@ -146,6 +147,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import javax.inject.Inject;
 
@@ -1442,6 +1444,11 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       database.setUnidentifiedAccessMode(recipient, RecipientDatabase.UnidentifiedAccessMode.UNKNOWN);
       String url = content.senderProfileAvatarUrl.or("");
       ApplicationContext.getInstance(context).getJobManager().add(new RetrieveProfileAvatarJob(recipient, url));
+
+      // Loki - If the recipient is our master device then we need to go and update our avatar mappings on the public chats
+      if (recipient.isOurMasterDevice()) {
+        ApplicationContext.getInstance(context).updatePublicChatProfileAvatarIfNeeded();
+      }
     }
   }
 
