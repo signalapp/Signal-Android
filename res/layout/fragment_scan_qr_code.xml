@@ -24,13 +24,14 @@
             android:layout_height="match_parent"/>
 
         <TextView
+            android:id="@+id/descriptionTextView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:padding="32dp"
             android:gravity="center"
             android:background="@color/loki_darkest_gray"
-            android:text="@string/fragment_scan_qr_code_explanation"
+            android:text="@string/fragment_scan_qr_code_explanation_new_conversation"
             android:textColor="?android:textColorPrimary" />
 
     </LinearLayout>

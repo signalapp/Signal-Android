@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.loki
 import android.content.res.Configuration
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,8 +15,15 @@ import org.thoughtcrime.securesms.qr.ScanningThread
 
 class ScanQRCodeFragment : Fragment() {
     private val scanningThread = ScanningThread()
+    private var viewCreated = false
     var scanListener: ScanListener? = null
         set(value) { field = value; scanningThread.setScanListener(scanListener) }
+    var mode: Mode = Mode.NewConversation
+        set(value) { field = value; updateDescription(); }
+
+    // region Types
+    enum class Mode { NewConversation, LinkDevice }
+    // endregion
 
     override fun onCreateView(layoutInflater: LayoutInflater, viewGroup: ViewGroup?, bundle: Bundle?): View? {
         return layoutInflater.inflate(R.layout.fragment_scan_qr_code, viewGroup, false)
@@ -23,10 +31,12 @@ class ScanQRCodeFragment : Fragment() {
 
     override fun onViewCreated(view: View, bundle: Bundle?) {
         super.onViewCreated(view, bundle)
+        viewCreated = true
         when (resources.configuration.orientation) {
             Configuration.ORIENTATION_LANDSCAPE -> overlayView.orientation = LinearLayout.HORIZONTAL
             else -> overlayView.orientation = LinearLayout.VERTICAL
         }
+        updateDescription()
     }
 
     override fun onResume() {
@@ -35,8 +45,10 @@ class ScanQRCodeFragment : Fragment() {
         this.cameraView.onResume()
         this.cameraView.setPreviewCallback(scanningThread)
         this.scanningThread.start()
-        val activity = activity as NewConversationActivity
-        activity.supportActionBar!!.setTitle(R.string.fragment_scan_qr_code_title)
+        if (activity is AppCompatActivity) {
+            val activity = activity as AppCompatActivity
+            activity.supportActionBar?.setTitle(R.string.fragment_scan_qr_code_title)
+        }
     }
 
     override fun onPause() {
@@ -54,5 +66,14 @@ class ScanQRCodeFragment : Fragment() {
         }
         cameraView.onResume()
         cameraView.setPreviewCallback(scanningThread)
+    }
+
+    fun updateDescription() {
+        if (!viewCreated) { return }
+        val text = when (mode) {
+            Mode.NewConversation -> R.string.fragment_scan_qr_code_explanation_new_conversation
+            Mode.LinkDevice -> R.string.fragment_scan_qr_code_explanation_link_device
+        }
+        descriptionTextView.setText(text)
     }
 }

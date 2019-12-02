@@ -49,7 +49,7 @@ public class RetrieveProfileAvatarJob extends BaseJob implements InjectableType 
                            .setQueue("RetrieveProfileAvatarJob" + recipient.getAddress().serialize())
                            .addConstraint(NetworkConstraint.KEY)
                            .setLifespan(TimeUnit.HOURS.toMillis(1))
-                           .setMaxInstances(1)
+                           .setMaxAttempts(2)
                            .build(),
         recipient,
         profileAvatar);
@@ -99,8 +99,8 @@ public class RetrieveProfileAvatarJob extends BaseJob implements InjectableType 
     File downloadDestination = File.createTempFile("avatar", "jpg", context.getCacheDir());
 
     try {
-      InputStream avatarStream       = receiver.retrieveProfileAvatar(profileAvatar, downloadDestination, profileKey, MAX_PROFILE_SIZE_BYTES);
-      File        decryptDestination = File.createTempFile("avatar", "jpg", context.getCacheDir());
+      InputStream avatarStream = receiver.retrieveProfileAvatar(profileAvatar, downloadDestination, profileKey, MAX_PROFILE_SIZE_BYTES);
+      File decryptDestination = File.createTempFile("avatar", "jpg", context.getCacheDir());
 
       Util.copy(avatarStream, new FileOutputStream(decryptDestination));
       decryptDestination.renameTo(AvatarHelper.getAvatarFile(context, recipient.getAddress()));

@@ -20,10 +20,13 @@ import android.annotation.SuppressLint;
 import android.arch.lifecycle.DefaultLifecycleObserver;
 import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.ProcessLifecycleOwner;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
 import android.database.ContentObserver;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.multidex.MultiDexApplication;
@@ -38,6 +41,9 @@ import org.signal.aesgcmprovider.AesGcmProvider;
 import org.thoughtcrime.securesms.components.TypingStatusRepository;
 import org.thoughtcrime.securesms.components.TypingStatusSender;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
+import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
+import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
+import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseContentProviders;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.dependencies.AxolotlStorageModule;
@@ -65,10 +71,12 @@ import org.thoughtcrime.securesms.loki.LokiAPIDatabase;
 import org.thoughtcrime.securesms.loki.LokiPublicChatManager;
 import org.thoughtcrime.securesms.loki.LokiRSSFeedPoller;
 import org.thoughtcrime.securesms.loki.LokiUserDatabase;
+import org.thoughtcrime.securesms.loki.MultiDeviceUtilities;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.DirectoryRefreshListener;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.service.IncomingMessageObserver;
@@ -88,11 +96,11 @@ import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 import org.whispersystems.signalservice.loki.api.LokiAPIDatabaseProtocol;
 import org.whispersystems.signalservice.loki.api.LokiDotNetAPI;
-import org.whispersystems.signalservice.loki.api.LokiPublicChat;
-import org.whispersystems.signalservice.loki.api.LokiPublicChatAPI;
 import org.whispersystems.signalservice.loki.api.LokiLongPoller;
 import org.whispersystems.signalservice.loki.api.LokiP2PAPI;
 import org.whispersystems.signalservice.loki.api.LokiP2PAPIDelegate;
+import org.whispersystems.signalservice.loki.api.LokiPublicChat;
+import org.whispersystems.signalservice.loki.api.LokiPublicChatAPI;
 import org.whispersystems.signalservice.loki.api.LokiRSSFeed;
 import org.whispersystems.signalservice.loki.api.LokiStorageAPI;
 import org.whispersystems.signalservice.loki.utilities.Analytics;
@@ -154,8 +162,9 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   @Override
   public void onCreate() {
     super.onCreate();
-    startKovenant();
     Log.i(TAG, "onCreate()");
+    checkNeedsDatabaseReset();
+    startKovenant();
     initializeSecurityProvider();
     initializeLogging();
     initializeCrashHandling();
@@ -196,7 +205,11 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     // Loki - Update device mappings
     if (setUpStorageAPIIfNeeded()) {
       LokiStorageAPI.Companion.getShared().updateUserDeviceMappings();
+      if (TextSecurePreferences.needsRevocationCheck(this)) {
+        checkNeedsRevocation();
+      }
     }
+    updatePublicChatProfileAvatarIfNeeded();
   }
 
   @Override
@@ -587,5 +600,54 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     if (lokiNewsFeedPoller != null) lokiNewsFeedPoller.startIfNeeded();
     if (lokiMessengerUpdatesFeedPoller != null) lokiMessengerUpdatesFeedPoller.startIfNeeded();
   }
+
+  public void updatePublicChatProfileAvatarIfNeeded() {
+    AsyncTask.execute(() -> {
+      LokiPublicChatAPI publicChatAPI = getLokiPublicChatAPI();
+      if (publicChatAPI != null) {
+        byte[] profileKey = ProfileKeyUtil.getProfileKey(this);
+        String url = TextSecurePreferences.getProfileAvatarUrl(this);
+        String ourMasterDevice = TextSecurePreferences.getMasterHexEncodedPublicKey(this);
+        if (ourMasterDevice != null) {
+          Recipient masterDevice = Recipient.from(this, Address.fromSerialized(ourMasterDevice), false).resolve();
+          profileKey = masterDevice.getProfileKey();
+          url = masterDevice.getProfileAvatar();
+        }
+        Set<String> servers = DatabaseFactory.getLokiThreadDatabase(this).getAllPublicChatServers();
+        for (String server : servers) {
+          publicChatAPI.setProfilePicture(server, profileKey, url);
+        }
+      }
+    });
+  }
   // endregion
+
+  public void checkNeedsRevocation() {
+    MultiDeviceUtilities.checkForRevocation(this);
+  }
+
+  public void checkNeedsDatabaseReset() {
+    if (TextSecurePreferences.resetDatabase(this)) {
+      boolean wasUnlinked = TextSecurePreferences.databaseResetFromUnpair(this);
+      TextSecurePreferences.clearAll(this);
+      TextSecurePreferences.setDatabaseResetFromUnpair(this, wasUnlinked); // Loki - Re-set the preference so we can use it in the starting screen to determine whether device was unlinked or not
+      MasterSecretUtil.clear(this);
+      if (this.deleteDatabase("signal.db")) {
+        Log.d("Loki", "Deleted database");
+      }
+    }
+  }
+
+  public void clearData() {
+    TextSecurePreferences.setResetDatabase(this, true);
+    new Handler().postDelayed(this::restartApplication, 200);
+  }
+
+  public void restartApplication() {
+    Intent intent = new Intent(this, ConversationListActivity.class);
+    ComponentName componentName = intent.getComponent();
+    Intent mainIntent = Intent.makeRestartActivityTask(componentName);
+    this.startActivity(mainIntent);
+    Runtime.getRuntime().exit(0);
+  }
 }

@@ -17,6 +17,7 @@
 package org.thoughtcrime.securesms.sms;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 
 import org.thoughtcrime.securesms.ApplicationContext;
@@ -44,6 +45,7 @@ import org.thoughtcrime.securesms.jobs.SmsSendJob;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.loki.BackgroundMessage;
 import org.thoughtcrime.securesms.loki.FriendRequestHandler;
 import org.thoughtcrime.securesms.loki.GeneralUtilitiesKt;
 import org.thoughtcrime.securesms.loki.MultiDeviceUtilities;
@@ -58,7 +60,11 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
+import org.whispersystems.signalservice.api.SignalServiceMessageSender;
+import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
+import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.push.ContactTokenDetails;
+import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.loki.api.LokiStorageAPI;
 import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus;
 import org.whispersystems.signalservice.loki.utilities.PromiseUtil;
@@ -123,11 +129,15 @@ public class MessageSender {
   // We don't call the message sender here directly and instead we just opt to create a specific job for the send
   // This is because calling message sender directly would cause the application to freeze in some cases as it was blocking the thread when waiting for a response from the send
   public static void sendBackgroundMessage(Context context, String contactHexEncodedPublicKey) {
-    ApplicationContext.getInstance(context).getJobManager().add(new PushBackgroundMessageSendJob(contactHexEncodedPublicKey));
+    ApplicationContext.getInstance(context).getJobManager().add(new PushBackgroundMessageSendJob(BackgroundMessage.create(contactHexEncodedPublicKey)));
   }
 
   public static void sendBackgroundFriendRequest(Context context, String contactHexEncodedPublicKey, String messageBody) {
-    ApplicationContext.getInstance(context).getJobManager().add(new PushBackgroundMessageSendJob(contactHexEncodedPublicKey, messageBody, true));
+    ApplicationContext.getInstance(context).getJobManager().add(new PushBackgroundMessageSendJob(BackgroundMessage.createFriendRequest(contactHexEncodedPublicKey, messageBody)));
+  }
+
+  public static void sendUnpairRequest(Context context, String contactHexEncodedPublicKey) {
+    ApplicationContext.getInstance(context).getJobManager().add(new PushBackgroundMessageSendJob(BackgroundMessage.createUnpairingRequest(contactHexEncodedPublicKey)));
   }
   // endregion
 

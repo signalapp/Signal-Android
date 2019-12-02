@@ -8,13 +8,12 @@ import org.whispersystems.signalservice.loki.api.DeviceLinkingSession
 import org.whispersystems.signalservice.loki.api.DeviceLinkingSessionListener
 import org.whispersystems.signalservice.loki.api.PairingAuthorisation
 
-class DeviceLinkingDialog private constructor(private val context: Context, private val mode: DeviceLinkingView.Mode, private val delegate: DeviceLinkingDialogDelegate?) : DeviceLinkingViewDelegate, DeviceLinkingSessionListener {
+class DeviceLinkingDialog private constructor(private val context: Context, private val mode: DeviceLinkingView.Mode, private val delegate: DeviceLinkingDelegate?) : DeviceLinkingDelegate, DeviceLinkingSessionListener {
     private lateinit var view: DeviceLinkingView
     private lateinit var dialog: AlertDialog
 
     companion object {
-
-        fun show(context: Context, mode: DeviceLinkingView.Mode, delegate: DeviceLinkingDialogDelegate?): DeviceLinkingDialog {
+        fun show(context: Context, mode: DeviceLinkingView.Mode, delegate: DeviceLinkingDelegate?): DeviceLinkingDialog {
             val dialog = DeviceLinkingDialog(context, mode, delegate)
             dialog.show()
             return dialog
@@ -22,8 +21,10 @@ class DeviceLinkingDialog private constructor(private val context: Context, priv
     }
 
     private fun show() {
-        view = DeviceLinkingView(context, mode, this)
+        val delegate = DeviceLinkingDelegate.combine(this, this.delegate)
+        view = DeviceLinkingView(context, mode, delegate)
         dialog = AlertDialog.Builder(context).setView(view).show()
+        dialog.setCanceledOnTouchOutside(false)
         view.dismiss = { dismiss() }
         DeviceLinkingSession.shared.startListeningForLinkingRequests()
         DeviceLinkingSession.shared.addListener(this)
@@ -35,20 +36,11 @@ class DeviceLinkingDialog private constructor(private val context: Context, priv
         dialog.dismiss()
     }
 
-    override fun handleDeviceLinkAuthorized(pairingAuthorisation: PairingAuthorisation) {
-        delegate?.handleDeviceLinkAuthorized(pairingAuthorisation)
-    }
-
     override fun handleDeviceLinkingDialogDismissed() {
         if (mode == DeviceLinkingView.Mode.Master && view.pairingAuthorisation != null) {
             val authorisation = view.pairingAuthorisation!!
             DatabaseFactory.getLokiPreKeyBundleDatabase(context).removePreKeyBundle(authorisation.secondaryDevicePublicKey)
         }
-        delegate?.handleDeviceLinkingDialogDismissed()
-    }
-
-    override fun sendPairingAuthorizedMessage(pairingAuthorisation: PairingAuthorisation) {
-        delegate?.sendPairingAuthorizedMessage(pairingAuthorisation)
     }
 
     override fun requestUserAuthorization(authorisation: PairingAuthorisation) {

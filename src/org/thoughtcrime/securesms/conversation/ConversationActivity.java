@@ -3052,12 +3052,14 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     long originalThreadID = lokiMessageDatabase.getOriginalThreadID(friendRequest.id);
     long threadId = originalThreadID < 0 ? this.threadId : originalThreadID;
 
-    Address contact = DatabaseFactory.getThreadDatabase(this).getRecipientForThreadId(threadId).getAddress();
-    String contactPubKey = contact.toString();
+    Recipient contact = DatabaseFactory.getThreadDatabase(this).getRecipientForThreadId(threadId);
+    Address address = contact.getAddress();
+    String contactPubKey = address.serialize();
     DatabaseFactory.getLokiThreadDatabase(this).setFriendRequestStatus(threadId, LokiThreadFriendRequestStatus.FRIENDS);
     lokiMessageDatabase.setFriendRequestStatus(friendRequest.id, LokiMessageFriendRequestStatus.REQUEST_ACCEPTED);
+    DatabaseFactory.getRecipientDatabase(this).setProfileSharing(contact, true);
     MessageSender.sendBackgroundMessageToAllDevices(this, contactPubKey);
-    MessageSender.syncContact(this, contact);
+    MessageSender.syncContact(this, address);
     updateInputPanel();
   }
 

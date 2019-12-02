@@ -6,9 +6,14 @@ import android.util.Log
 import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.functional.bind
 import nl.komponents.kovenant.then
+import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
+import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
+import org.thoughtcrime.securesms.database.RecipientDatabase
 import org.thoughtcrime.securesms.jobs.PushDecryptJob
+import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob
+import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.libsignal.util.guava.Optional
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer
@@ -21,7 +26,9 @@ import org.whispersystems.signalservice.loki.api.LokiPublicChat
 import org.whispersystems.signalservice.loki.api.LokiPublicChatAPI
 import org.whispersystems.signalservice.loki.api.LokiPublicChatMessage
 import org.whispersystems.signalservice.loki.api.LokiStorageAPI
+import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus
 import org.whispersystems.signalservice.loki.utilities.successBackground
+import java.security.MessageDigest
 import java.util.*
 
 class LokiPublicChatPoller(private val context: Context, private val group: LokiPublicChat) {
@@ -155,6 +162,7 @@ class LokiPublicChatPoller(private val context: Context, private val group: Loki
                 val senderDisplayName = "${message.displayName} (...${message.hexEncodedPublicKey.takeLast(8)})"
                 DatabaseFactory.getLokiUserDatabase(context).setServerDisplayName(group.id, message.hexEncodedPublicKey, senderDisplayName)
             }
+
             val senderPublicKey = primaryDevice ?: message.hexEncodedPublicKey
             val serviceDataMessage = getDataMessage(message)
             val serviceContent = SignalServiceContent(serviceDataMessage, senderPublicKey, SignalServiceAddress.DEFAULT_DEVICE_ID, message.timestamp, false)
@@ -162,6 +170,25 @@ class LokiPublicChatPoller(private val context: Context, private val group: Loki
                 PushDecryptJob(context).handleMediaMessage(serviceContent, serviceDataMessage, Optional.absent(), Optional.of(message.serverID))
             } else {
                 PushDecryptJob(context).handleTextMessage(serviceContent, serviceDataMessage, Optional.absent(), Optional.of(message.serverID))
+            }
+
+            // Update profile avatar if needed
+            val senderRecipient = Recipient.from(context, Address.fromSerialized(senderPublicKey), false)
+            if (message.avatar != null && message.avatar!!.url.isNotEmpty()) {
+                val profileKey = message.avatar!!.profileKey
+                val url = message.avatar!!.url
+                if (senderRecipient.profileKey == null || !MessageDigest.isEqual(senderRecipient.profileKey, profileKey)) {
+                    val database = DatabaseFactory.getRecipientDatabase(context)
+                    database.setProfileKey(senderRecipient, profileKey)
+                    ApplicationContext.getInstance(context).jobManager.add(RetrieveProfileAvatarJob(senderRecipient, url))
+                }
+            } else if (senderRecipient.profileAvatar.orEmpty().isNotEmpty()) {
+                // Unset the avatar if we had an avatar before and we're not friends with the person
+                val threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(senderRecipient)
+                val friendRequestStatus = DatabaseFactory.getLokiThreadDatabase(context).getFriendRequestStatus(threadId)
+                if (friendRequestStatus != LokiThreadFriendRequestStatus.FRIENDS) {
+                    ApplicationContext.getInstance(context).jobManager.add(RetrieveProfileAvatarJob(senderRecipient, ""))
+                }
             }
         }
         fun processOutgoingMessage(message: LokiPublicChatMessage) {
@@ -177,6 +204,19 @@ class LokiPublicChatPoller(private val context: Context, private val group: Loki
                 PushDecryptJob(context).handleSynchronizeSentMediaMessage(transcript)
             } else {
                 PushDecryptJob(context).handleSynchronizeSentTextMessage(transcript)
+            }
+
+            // Loki - If we got a message from our master device then make sure our mappings stay in sync
+            val recipient = Recipient.from(context, Address.fromSerialized(message.hexEncodedPublicKey), false)
+            if (recipient.isOurMasterDevice && message.avatar != null) {
+                val profileKey = message.avatar!!.profileKey
+                val url = message.avatar!!.url
+                if (recipient.profileKey == null || !MessageDigest.isEqual(recipient.profileKey, profileKey)) {
+                    val database = DatabaseFactory.getRecipientDatabase(context)
+                    database.setProfileKey(recipient, profileKey)
+                    database.setProfileAvatar(recipient, url)
+                    ApplicationContext.getInstance(context).updatePublicChatProfileAvatarIfNeeded()
+                }
             }
         }
         var userDevices = setOf<String>()

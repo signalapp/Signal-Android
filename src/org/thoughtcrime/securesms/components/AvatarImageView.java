@@ -11,22 +11,23 @@ import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatImageView;
-import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewOutlineProvider;
 
-import org.thoughtcrime.securesms.color.MaterialColor;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
 import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
-import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto;
+import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
+import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
 import org.thoughtcrime.securesms.database.Address;
-import org.thoughtcrime.securesms.loki.JazzIdenticonDrawable;
+import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientExporter;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ThemeUtil;
-import org.whispersystems.libsignal.util.guava.Optional;
+
+import java.util.Objects;
 
 import network.loki.messenger.R;
 
@@ -52,7 +53,9 @@ public class AvatarImageView extends AppCompatImageView {
   private boolean         inverted;
   private Paint           outlinePaint;
   private OnClickListener listener;
-  private Recipient       recipient;
+
+  private @Nullable RecipientContactPhoto recipientContactPhoto;
+  private @NonNull  Drawable              unknownRecipientDrawable;
 
   public AvatarImageView(Context context) {
     super(context);
@@ -75,23 +78,27 @@ public class AvatarImageView extends AppCompatImageView {
 
     outlinePaint = ThemeUtil.isDarkTheme(getContext()) ? DARK_THEME_OUTLINE_PAINT : LIGHT_THEME_OUTLINE_PAINT;
     setOutlineProvider(new ViewOutlineProvider() {
-
       @Override
       public void getOutline(View view, Outline outline) {
           outline.setOval(0, 0, view.getWidth(), view.getHeight());
       }
     });
     setClipToOutline(true);
+
+    unknownRecipientDrawable = new ResourceContactPhoto(R.drawable.ic_profile_default).asDrawable(getContext(), ContactColors.UNKNOWN_COLOR.toConversationColor(getContext()), inverted);
   }
 
   @Override
-  protected void dispatchDraw(Canvas canvas) {
-    super.dispatchDraw(canvas);
+  protected void onDraw(Canvas canvas) {
+    super.onDraw(canvas);
 
-    float cx     = canvas.getWidth()  / 2;
-    float cy     = canvas.getHeight() / 2;
-    float radius = (canvas.getWidth() / 2) - (outlinePaint.getStrokeWidth() / 2);
-    
+    float width  = getWidth()  - getPaddingRight()  - getPaddingLeft();
+    float height = getHeight() - getPaddingBottom() - getPaddingTop();
+    float cx     = width  / 2f;
+    float cy     = height / 2f;
+    float radius = Math.min(cx, cy) - (outlinePaint.getStrokeWidth() / 2f);
+
+    canvas.translate(getPaddingLeft(), getPaddingTop());
     canvas.drawCircle(cx, cy, radius, outlinePaint);
   }
 
@@ -101,39 +108,46 @@ public class AvatarImageView extends AppCompatImageView {
     super.setOnClickListener(listener);
   }
 
-  @Override
-  protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-    super.onSizeChanged(w, h, oldw, oldh);
-    updateImage(w, h);
-  }
-
   public void update(String hexEncodedPublicKey) {
     Address address = Address.fromSerialized(hexEncodedPublicKey);
-    if (recipient == null || !address.equals(recipient.getAddress())) {
-      this.recipient = Recipient.from(getContext(), address, false);
-      updateImage();
-    }
+    Recipient recipient = Recipient.from(getContext(), address, false);
+    updateAvatar(recipient);
+  }
+
+  private void updateAvatar(Recipient recipient) {
+    setAvatar(GlideApp.with(getContext()), recipient, false);
   }
 
   public void setAvatar(@NonNull GlideRequests requestManager, @Nullable Recipient recipient, boolean quickContactEnabled) {
-    if (this.recipient == null || !this.recipient.equals(recipient)) {
-      this.recipient = recipient;
-      updateImage();
-    }
-    /*
     if (recipient != null) {
-      requestManager.load(recipient.getContactPhoto())
-                    .fallback(recipient.getFallbackContactPhotoDrawable(getContext(), inverted))
-                    .error(recipient.getFallbackContactPhotoDrawable(getContext(), inverted))
+      if (recipient.isLocalNumber()) {
+        setImageDrawable(new ResourceContactPhoto(R.drawable.ic_note_to_self).asDrawable(getContext(), recipient.getColor().toAvatarColor(getContext()), inverted));
+      } else {
+        RecipientContactPhoto photo = new RecipientContactPhoto(recipient);
+        if (!photo.equals(recipientContactPhoto)) {
+          requestManager.clear(this);
+          recipientContactPhoto = photo;
+
+          Drawable fallbackContactPhotoDrawable = photo.recipient.getFallbackContactPhotoDrawable(getContext(), inverted);
+
+          if (photo.contactPhoto != null) {
+            requestManager.load(photo.contactPhoto)
+                    .fallback(fallbackContactPhotoDrawable)
+                    .error(fallbackContactPhotoDrawable)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .circleCrop()
                     .into(this);
-      setAvatarClickHandler(recipient, quickContactEnabled);
+          } else {
+            setImageDrawable(fallbackContactPhotoDrawable);
+          }
+        }
+      }
     } else {
-      setImageDrawable(new ResourceContactPhoto(R.drawable.ic_profile_default).asDrawable(getContext(), ContactColors.UNKNOWN_COLOR.toConversationColor(getContext()), inverted));
+      recipientContactPhoto = null;
+      requestManager.clear(this);
+      setImageDrawable(unknownRecipientDrawable);
       super.setOnClickListener(listener);
     }
-     */
   }
 
   public void clear(@NonNull GlideRequests glideRequests) {
@@ -154,32 +168,25 @@ public class AvatarImageView extends AppCompatImageView {
     }
   }
 
-  private void updateImage() { updateImage(getWidth(), getHeight()); }
+  private static class RecipientContactPhoto {
 
-  private void updateImage(int w, int h) {
-    if (w == 0 || h == 0 || recipient == null) { return; }
+    private final @NonNull  Recipient    recipient;
+    private final @Nullable ContactPhoto contactPhoto;
+    private final           boolean      ready;
 
-    Drawable image;
-    Context context = this.getContext();
-
-    if (recipient.isGroupRecipient()) {
-      String name = Optional.fromNullable(recipient.getName()).or(Optional.fromNullable(TextSecurePreferences.getProfileName(context))).or("");
-      MaterialColor fallbackColor = recipient.getColor();
-
-      if (fallbackColor == ContactColors.UNKNOWN_COLOR && !TextUtils.isEmpty(name)) {
-        fallbackColor = ContactColors.generateFor(name);
-      }
-
-      image = new GeneratedContactPhoto(name, R.drawable.ic_profile_default).asDrawable(context, fallbackColor.toAvatarColor(context));
-    } else {
-      // Default to primary device image
-      String ourPublicKey = TextSecurePreferences.getLocalNumber(context);
-      String ourPrimaryDevice = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
-      String recipientAddress = recipient.getAddress().serialize();
-      String profileAddress = (ourPrimaryDevice != null && ourPublicKey.equals(recipientAddress)) ? ourPrimaryDevice : recipientAddress;
-      image = new JazzIdenticonDrawable(w, h, profileAddress.toLowerCase());
+    RecipientContactPhoto(@NonNull Recipient recipient) {
+      this.recipient    = recipient;
+      this.ready        = !recipient.isResolving();
+      this.contactPhoto = recipient.getContactPhoto();
     }
-    setImageDrawable(image);
-  }
 
+    public boolean equals(@Nullable RecipientContactPhoto other) {
+      if (other == null) return false;
+
+      return other.recipient.equals(recipient) &&
+              other.recipient.getColor().equals(recipient.getColor()) &&
+              other.ready == ready &&
+              Objects.equals(other.contactPhoto, contactPhoto);
+    }
+  }
 }

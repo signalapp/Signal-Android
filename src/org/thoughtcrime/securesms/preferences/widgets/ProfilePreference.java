@@ -5,6 +5,7 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.graphics.Outline;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.preference.Preference;
@@ -13,14 +14,20 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewOutlineProvider;
-import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
+import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
+import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
 import org.thoughtcrime.securesms.database.Address;
-import org.thoughtcrime.securesms.loki.JazzIdenticonDrawable;
+import org.thoughtcrime.securesms.loki.MnemonicUtilities;
+import org.thoughtcrime.securesms.mms.GlideApp;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.signalservice.loki.crypto.MnemonicCodec;
 
 import network.loki.messenger.R;
 
@@ -31,6 +38,7 @@ public class ProfilePreference extends Preference {
   private TextView  profileNameView;
   private TextView  profileNumberView;
   private TextView  profileTagView;
+  private String    ourDeviceWords;
 
   @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
   public ProfilePreference(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
@@ -73,13 +81,14 @@ public class ProfilePreference extends Preference {
   public void refresh() {
     if (profileNumberView == null) return;
 
-    String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(getContext());
-    String primaryDevicePublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(getContext());
+    Context context = getContext();
+    String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context);
+    String primaryDevicePublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
     String publicKey = primaryDevicePublicKey != null ? primaryDevicePublicKey : userHexEncodedPublicKey;
     final Address localAddress = Address.fromSerialized(publicKey);
-    final String  profileName  = TextSecurePreferences.getProfileName(getContext());
+    final Recipient recipient = Recipient.from(context, localAddress, false);
+    final String  profileName  = TextSecurePreferences.getProfileName(context);
 
-    Context context = getContext();
     containerView.setOnLongClickListener(v -> {
       ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
       ClipData clip = ClipData.newPlainText("Public Key", publicKey);
@@ -96,28 +105,16 @@ public class ProfilePreference extends Preference {
       }
     });
     avatarView.setClipToOutline(true);
-    avatarView.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
 
-      @Override
-      public boolean onPreDraw() {
-        int width = avatarView.getWidth();
-        int height = avatarView.getHeight();
-        if (width == 0 || height == 0) return true;
-        avatarView.getViewTreeObserver().removeOnPreDrawListener(this);
-        JazzIdenticonDrawable identicon = new JazzIdenticonDrawable(width, height, publicKey.toLowerCase());
-        avatarView.setImageDrawable(identicon);
-        return true;
-      }
-    });
-
-    /*
+    Drawable fallback = recipient.getFallbackContactPhotoDrawable(context, false);
     GlideApp.with(getContext().getApplicationContext())
-            .load(new ProfileContactPhoto(localAddress, String.valueOf(TextSecurePreferences.getProfileAvatarId(getContext()))))
-            .error(new ResourceContactPhoto(R.drawable.ic_camera_alt_white_24dp).asDrawable(getContext(), getContext().getResources().getColor(R.color.grey_400)))
+            .load(recipient.getContactPhoto())
+            .fallback(fallback)
+            .error(fallback)
             .circleCrop()
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .into(avatarView);
-     */
+
 
     if (!TextUtils.isEmpty(profileName)) {
       profileNameView.setText(profileName);
@@ -127,6 +124,12 @@ public class ProfilePreference extends Preference {
     profileNumberView.setText(localAddress.toPhoneString());
 
     profileTagView.setVisibility(primaryDevicePublicKey == null ? View.GONE : View.VISIBLE);
-    profileTagView.setText(R.string.activity_settings_secondary_device_tag);
+    if (primaryDevicePublicKey != null && ourDeviceWords == null) {
+      MnemonicCodec codec = new MnemonicCodec(MnemonicUtilities.getLanguageFileDirectory(context));
+      ourDeviceWords = MnemonicUtilities.getFirst3Words(codec, userHexEncodedPublicKey);
+    }
+
+    String tag = context.getResources().getString(R.string.activity_settings_linked_device_tag);
+    profileTagView.setText(String.format(tag, ourDeviceWords != null ? ourDeviceWords : "-"));
   }
 }

@@ -97,6 +97,17 @@
             app:labeledEditText_label="@string/activity_key_pair_public_key_edit_text_label"/>
 
         <Button
+            android:id="@+id/scanQRButton"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/transparent"
+            android:elevation="0dp"
+            android:stateListAnimator="@null"
+            android:text="@string/fragment_scan_qr_code_title"
+            android:textColor="@color/signal_primary"
+            android:visibility="gone" />
+
+        <Button
             android:id="@+id/toggleRestoreModeButton"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -123,7 +134,7 @@
             android:layout_height="50dp"
             android:background="@color/transparent"
             android:textColor="@color/signal_primary"
-            android:text="Link Device"
+            android:text="@string/activity_key_pair_toggle_mode_button_title_3"
             android:elevation="0dp"
             android:stateListAnimator="@null" />
 

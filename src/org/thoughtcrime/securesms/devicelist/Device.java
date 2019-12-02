@@ -2,31 +2,19 @@ package org.thoughtcrime.securesms.devicelist;
 
 public class Device {
 
-  private final long   id;
+  private final String id;
+  private final String shortId;
   private final String name;
-  private final long   created;
-  private final long   lastSeen;
 
-  public Device(long id, String name, long created, long lastSeen) {
-    this.id       = id;
-    this.name     = name;
-    this.created  = created;
-    this.lastSeen = lastSeen;
+  public Device(String id, String shortId, String name) {
+    this.id = id;
+    this.shortId = shortId;
+    this.name = name;
   }
 
-  public long getId() {
+  public String getId() {
     return id;
   }
-
-  public String getName() {
-    return name;
-  }
-
-  public long getCreated() {
-    return created;
-  }
-
-  public long getLastSeen() {
-    return lastSeen;
-  }
+  public String getShortId() { return shortId; }
+  public String getName() { return name; }
 }

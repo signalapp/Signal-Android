@@ -121,6 +121,7 @@ public class TextSecurePreferences {
   private static final String PROFILE_KEY_PREF                 = "pref_profile_key";
   private static final String PROFILE_NAME_PREF                = "pref_profile_name";
   private static final String PROFILE_AVATAR_ID_PREF           = "pref_profile_avatar_id";
+  private static final String PROFILE_AVATAR_URL_PREF          = "pref_profile_avatar_url";
   public  static final String READ_RECEIPTS_PREF               = "pref_read_receipts";
   public  static final String INCOGNITO_KEYBORAD_PREF          = "pref_incognito_keyboard";
   private static final String UNAUTHORIZED_RECEIVED            = "pref_unauthorized_received";
@@ -399,6 +400,14 @@ public class TextSecurePreferences {
 
   public static int getProfileAvatarId(Context context) {
     return getIntegerPreference(context, PROFILE_AVATAR_ID_PREF, 0);
+  }
+
+  public static void setProfileAvatarUrl(Context context, String url) {
+    setStringPreference(context, PROFILE_AVATAR_URL_PREF, url);
+  }
+
+  public static String getProfileAvatarUrl(Context context) {
+    return getStringPreference(context, PROFILE_AVATAR_URL_PREF, null);
   }
 
   public static int getNotificationPriority(Context context) {
@@ -1185,5 +1194,35 @@ public class TextSecurePreferences {
   public static void setMasterHexEncodedPublicKey(Context context, String masterHexEncodedPublicKey) {
     setStringPreference(context, "master_hex_encoded_public_key", masterHexEncodedPublicKey.toLowerCase());
   }
+
+  public static void setResetDatabase(Context context, boolean resetDatabase) {
+    // We do it this way so that it gets persisted in storage straight away
+    PreferenceManager.getDefaultSharedPreferences(context).edit().putBoolean("database_reset", resetDatabase).commit();
+  }
+
+  public static boolean resetDatabase(Context context) {
+    return getBooleanPreference(context, "database_reset", false);
+  }
+
+  public static void setDatabaseResetFromUnpair(Context context, boolean value) {
+    // We do it this way so that it gets persisted in storage straight away
+    PreferenceManager.getDefaultSharedPreferences(context).edit().putBoolean("database_reset_unpair", value).commit();
+  }
+
+  public static boolean databaseResetFromUnpair(Context context) {
+    return getBooleanPreference(context, "database_reset_unpair", false);
+  }
+
+  public static void setNeedsRevocationCheck(Context context, boolean needsCheck) {
+    setBooleanPreference(context, "needs_revocation", needsCheck);
+  }
+
+  public static boolean needsRevocationCheck(Context context) {
+    return getBooleanPreference(context, "needs_revocation", false);
+  }
   // endregion
+
+  public static void clearAll(Context context) {
+    PreferenceManager.getDefaultSharedPreferences(context).edit().clear().commit();
+  }
 }

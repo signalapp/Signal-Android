@@ -1,6 +1,8 @@
 package org.thoughtcrime.securesms.registration;
 
 import android.Manifest;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -8,6 +10,7 @@ import android.support.annotation.NonNull;
 import org.thoughtcrime.securesms.BaseActionBarActivity;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.util.CommunicationActions;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.loki.utilities.Analytics;
 
 import network.loki.messenger.R;
@@ -21,6 +24,24 @@ public class WelcomeActivity extends BaseActionBarActivity {
     findViewById(R.id.welcome_terms_button).setOnClickListener(v -> onTermsClicked());
     findViewById(R.id.welcome_continue_button).setOnClickListener(v -> onContinueClicked());
     Analytics.Companion.getShared().track("Landing Screen Viewed");
+  }
+
+  @Override
+  protected void onResume() {
+    super.onResume();
+    if (TextSecurePreferences.databaseResetFromUnpair(this)) {
+      AlertDialog.Builder builder = new AlertDialog.Builder(this);
+      builder.setTitle(R.string.dialog_device_unlink_title);
+      builder.setMessage(R.string.dialog_device_unlink_message);
+      builder.setPositiveButton(R.string.ok, null);
+      builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+        @Override
+        public void onDismiss(DialogInterface dialog) {
+          TextSecurePreferences.setDatabaseResetFromUnpair(getBaseContext(), false);
+        }
+      });
+      builder.show();
+    }
   }
 
   @Override

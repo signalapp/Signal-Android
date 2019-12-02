@@ -25,22 +25,26 @@ public abstract class PushReceivedJob extends BaseJob {
 
   public void processEnvelope(@NonNull SignalServiceEnvelope envelope) {
     synchronized (RECEIVE_LOCK) {
-      if (envelope.hasSource()) {
-        Address   source    = Address.fromExternal(context, envelope.getSource());
-        Recipient recipient = Recipient.from(context, source, false);
+      try {
+        if (envelope.hasSource()) {
+          Address source = Address.fromExternal(context, envelope.getSource());
+          Recipient recipient = Recipient.from(context, source, false);
 
-        if (!isActiveNumber(recipient)) {
-          DatabaseFactory.getRecipientDatabase(context).setRegistered(recipient, RecipientDatabase.RegisteredState.REGISTERED);
-          ApplicationContext.getInstance(context).getJobManager().add(new DirectoryRefreshJob(recipient, false));
+          if (!isActiveNumber(recipient)) {
+            DatabaseFactory.getRecipientDatabase(context).setRegistered(recipient, RecipientDatabase.RegisteredState.REGISTERED);
+            ApplicationContext.getInstance(context).getJobManager().add(new DirectoryRefreshJob(recipient, false));
+          }
         }
-      }
 
-      if (envelope.isReceipt()) {
-        handleReceipt(envelope);
-      } else if (envelope.isPreKeySignalMessage() || envelope.isSignalMessage() || envelope.isUnidentifiedSender() || envelope.isFriendRequest()) {
-        handleMessage(envelope);
-      } else {
-        Log.w(TAG, "Received envelope of unknown type: " + envelope.getType());
+        if (envelope.isReceipt()) {
+          handleReceipt(envelope);
+        } else if (envelope.isPreKeySignalMessage() || envelope.isSignalMessage() || envelope.isUnidentifiedSender() || envelope.isFriendRequest()) {
+          handleMessage(envelope);
+        } else {
+          Log.w(TAG, "Received envelope of unknown type: " + envelope.getType());
+        }
+      } catch (Exception e) {
+        Log.d("Loki", "Failed to process envelope: " + e);
       }
     }
   }

@@ -15,10 +15,9 @@ import network.loki.messenger.R;
 
 public class DeviceListItem extends LinearLayout {
 
-  private long     deviceId;
+  private String   deviceId;
   private TextView name;
-  private TextView created;
-  private TextView lastActive;
+  private TextView shortId;
 
   public DeviceListItem(Context context) {
     super(context);
@@ -31,34 +30,28 @@ public class DeviceListItem extends LinearLayout {
   @Override
   public void onFinishInflate() {
     super.onFinishInflate();
-    this.name       = (TextView) findViewById(R.id.name);
-    this.created    = (TextView) findViewById(R.id.created);
-    this.lastActive = (TextView) findViewById(R.id.active);
+    this.name = (TextView) findViewById(R.id.name);
+    this.shortId = (TextView) findViewById(R.id.shortId);
   }
 
   public void set(Device deviceInfo, Locale locale) {
-    if (TextUtils.isEmpty(deviceInfo.getName())) this.name.setText(R.string.DeviceListItem_unnamed_device);
-    else                                         this.name.setText(deviceInfo.getName());
-
-    this.created.setText(getContext().getString(R.string.DeviceListItem_linked_s,
-                                                DateUtils.getDayPrecisionTimeSpanString(getContext(),
-                                                                                        locale,
-                                                                                        deviceInfo.getCreated())));
-
-    this.lastActive.setText(getContext().getString(R.string.DeviceListItem_last_active_s,
-                                                   DateUtils.getDayPrecisionTimeSpanString(getContext(),
-                                                                                           locale,
-                                                                                           deviceInfo.getLastSeen())));
-
     this.deviceId = deviceInfo.getId();
+    boolean hasName = !TextUtils.isEmpty(deviceInfo.getName());
+    this.name.setText(hasName ? deviceInfo.getName() : deviceInfo.getShortId());
+    this.shortId.setText(deviceInfo.getShortId());
+    this.shortId.setVisibility(hasName ? VISIBLE : GONE);
   }
 
-  public long getDeviceId() {
+  public String getDeviceId() {
     return deviceId;
   }
 
   public String getDeviceName() {
     return name.getText().toString();
+  }
+
+  public boolean hasDeviceName() {
+    return shortId.getVisibility() == VISIBLE;
   }
 
 }

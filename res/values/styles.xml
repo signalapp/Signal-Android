@@ -242,4 +242,15 @@
         <item name="colorControlActivated">@color/white</item>
     </style>
 
+    <style name="ActionItem">
+        <item name="android:textSize">@dimen/text_size</item>
+        <item name="android:drawablePadding">@dimen/drawable_padding</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/action_item_height</item>
+        <item name="android:padding">@dimen/normal_padding</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:selectable">true</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+    </style>
+
 </resources>

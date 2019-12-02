@@ -16,6 +16,7 @@ class LokiUserDatabase(context: Context, helper: SQLCipherOpenHelper) : Database
     companion object {
         // Shared
         private val displayName = "display_name"
+        private val profileAvatarUrl = "profile_avatar_url"
         // Display name cache
         private val displayNameTable = "loki_user_display_name_database"
         private val hexEncodedPublicKey = "hex_encoded_public_key"
@@ -64,6 +65,14 @@ class LokiUserDatabase(context: Context, helper: SQLCipherOpenHelper) : Database
             Recipient.from(context, Address.fromSerialized(hexEncodedPublicKey), false).notifyListeners()
         } catch (e: Exception) {
             Log.d("Loki", "Couldn't save server display name due to exception: $e.")
+        }
+    }
+
+    override fun getProfileAvatarUrl(hexEncodedPublicKey: String): String? {
+        return if (hexEncodedPublicKey == TextSecurePreferences.getLocalNumber(context)) {
+            TextSecurePreferences.getProfileAvatarUrl(context)
+        } else {
+            Recipient.from(context, Address.fromSerialized(hexEncodedPublicKey), false).resolve().profileAvatar
         }
     }
 }

@@ -1,11 +1,13 @@
 package org.thoughtcrime.securesms.loki
 
+import android.Manifest
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.os.AsyncTask
 import android.os.Bundle
+import android.support.v4.app.FragmentManager
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
@@ -19,6 +21,8 @@ import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.IdentityDatabase
 import org.thoughtcrime.securesms.logging.Log
+import org.thoughtcrime.securesms.permissions.Permissions
+import org.thoughtcrime.securesms.qr.ScanListener
 import org.thoughtcrime.securesms.util.Hex
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.curve25519.Curve25519
@@ -32,7 +36,7 @@ import org.whispersystems.signalservice.loki.utilities.retryIfNeeded
 import java.io.File
 import java.io.FileOutputStream
 
-class SeedActivity : BaseActionBarActivity(), DeviceLinkingDialogDelegate {
+class SeedActivity : BaseActionBarActivity(), DeviceLinkingDelegate, ScanListener {
     private lateinit var languageFileDirectory: File
     private var mode = Mode.Register
         set(newValue) { field = newValue; updateUI() }
@@ -57,6 +61,23 @@ class SeedActivity : BaseActionBarActivity(), DeviceLinkingDialogDelegate {
         toggleRestoreModeButton.setOnClickListener { mode = Mode.Restore }
         toggleLinkModeButton.setOnClickListener { mode = Mode.Link }
         mainButton.setOnClickListener { handleMainButtonTapped() }
+        scanQRButton.setOnClickListener {
+            Permissions.with(this)
+                    .request(Manifest.permission.CAMERA)
+                    .ifNecessary()
+                    .withPermanentDenialDialog(getString(R.string.fragment_scan_qr_code_camera_permission_dialog_message))
+                    .onAllGranted {
+                        val fragment = ScanQRCodeFragment()
+                        fragment.mode = ScanQRCodeFragment.Mode.LinkDevice
+                        fragment.scanListener = this
+                        supportFragmentManager.beginTransaction().replace(android.R.id.content, fragment).addToBackStack("QR").commitAllowingStateLoss()
+                        publicKeyEditText.clearFocus()
+                        val inputMethodManager = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+                        inputMethodManager.hideSoftInputFromWindow(publicKeyEditText.windowToken, 0)
+                    }
+                    .onAnyDenied { Toast.makeText(this, R.string.fragment_scan_qr_code_camera_permission_dialog_message, Toast.LENGTH_SHORT).show() }
+                    .execute()
+        }
         Analytics.shared.track("Seed Screen Viewed")
     }
     // endregion
@@ -106,6 +127,7 @@ class SeedActivity : BaseActionBarActivity(), DeviceLinkingDialogDelegate {
         mnemonicEditText.visibility = restoreModeVisibility
         linkExplanationTextView.visibility = linkModeVisibility
         publicKeyEditText.visibility = linkModeVisibility
+        scanQRButton.visibility = linkModeVisibility
         toggleRegisterModeButton.visibility = if (mode != Mode.Register) View.VISIBLE else View.GONE
         toggleRestoreModeButton.visibility = if (mode != Mode.Restore) View.VISIBLE else View.GONE
         toggleLinkModeButton.visibility = if (mode != Mode.Link) View.VISIBLE else View.GONE
@@ -230,10 +252,19 @@ class SeedActivity : BaseActionBarActivity(), DeviceLinkingDialogDelegate {
 
     private fun resetForRegistration() {
         IdentityKeyUtil.delete(this, IdentityKeyUtil.lokiSeedKey)
-        DatabaseFactory.getLokiPreKeyBundleDatabase(this).resetAllPreKeyBundleInfo()
         TextSecurePreferences.removeLocalNumber(this)
         TextSecurePreferences.setHasSeenWelcomeScreen(this, false)
         TextSecurePreferences.setPromptedPushRegistration(this, false)
+    }
+    // endregion
+    override fun onQrDataFound(data: String?) {
+        runOnUiThread {
+            if (data != null && PublicKeyValidation.isValid(data.trim())) {
+                publicKeyEditText.setText(data.trim())
+                supportFragmentManager.popBackStackImmediate("QR", FragmentManager.POP_BACK_STACK_INCLUSIVE)
+                handleMainButtonTapped()
+            }
+        }
     }
     // endregion
 }
