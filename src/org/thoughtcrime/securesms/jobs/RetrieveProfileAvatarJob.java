@@ -49,7 +49,6 @@ public class RetrieveProfileAvatarJob extends BaseJob implements InjectableType 
                            .setQueue("RetrieveProfileAvatarJob" + recipient.getAddress().serialize())
                            .addConstraint(NetworkConstraint.KEY)
                            .setLifespan(TimeUnit.HOURS.toMillis(1))
-                           .setMaxInstances(1)
                            .setMaxAttempts(2)
                            .build(),
         recipient,
