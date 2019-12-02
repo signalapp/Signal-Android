@@ -7,6 +7,7 @@ import java.io.File
 import java.io.FileOutputStream
 
 object MnemonicUtilities {
+
   @JvmStatic
   public fun getLanguageFileDirectory(context: Context): File {
     val languages = listOf( "english", "japanese", "portuguese", "spanish" )

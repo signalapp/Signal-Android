@@ -100,7 +100,6 @@
         android:supportsRtl="true"
         android:theme="@style/TextSecure.DarkTheme"
         tools:replace="android:allowBackup">
-        <activity android:name="org.thoughtcrime.securesms.loki.LinkedDevicesActivity"></activity>
 
         <meta-data
             android:name="io.fabric.ApiKey"
@@ -125,6 +124,7 @@
             android:name="firebase_messaging_auto_init_enabled"
             android:value="false" />
 
+        <activity android:name="org.thoughtcrime.securesms.loki.LinkedDevicesActivity" />
         <activity
             android:name="org.thoughtcrime.securesms.WebRtcCallActivity"
             android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|screenSize|fontScale"

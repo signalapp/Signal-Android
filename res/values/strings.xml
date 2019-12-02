@@ -293,7 +293,7 @@
 
     <!-- DeviceListActivity -->
     <string name="DeviceListActivity_unlink_s">Unlink \'%s\'?</string>
-    <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">By unlinking this device, it will no longer be able to send or receive messages.</string>
+    <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">This device will no longer be able to send or receive messages.</string>
     <string name="DeviceListActivity_network_connection_failed">Network connection failed</string>
     <string name="DeviceListActivity_try_again">Try again</string>
     <string name="DeviceListActivity_unlinking_device">Unlinking device...</string>
@@ -948,7 +948,7 @@
     <string name="device_link_fragment__link_device">Link device</string>
 
     <!-- device_list_fragment -->
-    <string name="device_list_fragment__no_devices_linked">No devices linked</string>
+    <string name="device_list_fragment__no_devices_linked">You don\'t have any linked devices yet</string>
     <string name="device_list_fragment__link_new_device">Link new device</string>
 
     <!-- experience_upgrade_activity -->
@@ -1159,7 +1159,7 @@
     <string name="AndroidManifest__log_submit">Submit debug log</string>
     <string name="AndroidManifest__media_preview">Media preview</string>
     <string name="AndroidManifest__message_details">Message details</string>
-    <string name="AndroidManifest__linked_devices">Linked devices</string>
+    <string name="AndroidManifest__linked_devices">Linked Devices</string>
     <string name="AndroidManifest__invite_friends">Invite friends</string>
     <string name="AndroidManifest_archived_conversations">Archived conversations</string>
     <string name="AndroidManifest_remove_photo">Remove photo</string>
@@ -1578,7 +1578,7 @@
     <string name="activity_settings_public_key_copied_message">Copied to clipboard</string>
     <string name="activity_settings_share_public_key_button_title">Share Public Key</string>
     <string name="activity_settings_show_qr_code_button_title">Show QR Code</string>
-    <string name="activity_settings_linked_devices_button_title">Linked Device</string>
+    <string name="activity_settings_linked_devices_button_title">Linked Devices</string>
     <string name="activity_settings_show_seed_button_title">Show Seed</string>
     <string name="activity_settings_seed_dialog_title">Your Seed</string>
     <string name="activity_settings_seed_dialog_copy_button_title">Copy</string>
@@ -1639,7 +1639,7 @@
     <!-- Scan QR code fragment -->
     <string name="fragment_scan_qr_code_title">Scan QR Code</string>
     <string name="fragment_scan_qr_code_explanation_new_conversation">Scan the QR code of the person you\'d like to securely message. They can find their QR code by going into Loki Messenger\'s in-app settings and clicking \"Show QR Code\".</string>
-    <string name="fragment_scan_qr_code_explanation_link_device">Scan the QR code of the device you would like to link.</string>
+    <string name="fragment_scan_qr_code_explanation_link_device">Link to an existing device by going into its in-app settings and clicking \"Link Device\".</string>
     <string name="fragment_scan_qr_code_camera_permission_dialog_message">Loki Messenger needs camera access to scan QR codes.</string>
     <!-- Conversation activity -->
     <string name="activity_conversation_copy_public_key_button_title">Copy public key</string>
@@ -1650,6 +1650,6 @@
     <string name="fragment_device_list_unlink_device_title">Unlink device</string>
     <!-- Device unlink dialog -->
     <string name="dialog_device_unlink_title">Device unlinked</string>
-    <string name="dialog_device_unlink_message">This device has been successfully unlinked.</string>
+    <string name="dialog_device_unlink_message">This device has been successfully unlinked</string>
 
 </resources>
