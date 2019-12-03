@@ -52,6 +52,7 @@ public class MmsSmsDatabase extends Database {
                                               MmsDatabase.MESSAGE_TYPE, MmsDatabase.MESSAGE_BOX,
                                               SmsDatabase.STATUS,
                                               MmsSmsColumns.UNIDENTIFIED,
+                                              MmsSmsColumns.REACTIONS,
                                               MmsDatabase.PART_COUNT,
                                               MmsDatabase.CONTENT_LOCATION, MmsDatabase.TRANSACTION_ID,
                                               MmsDatabase.MESSAGE_SIZE, MmsDatabase.EXPIRY,
@@ -73,7 +74,11 @@ public class MmsSmsDatabase extends Database {
                                               MmsDatabase.QUOTE_ATTACHMENT,
                                               MmsDatabase.SHARED_CONTACTS,
                                               MmsDatabase.LINK_PREVIEWS,
-                                              MmsDatabase.VIEW_ONCE};
+                                              MmsDatabase.VIEW_ONCE,
+                                              MmsSmsColumns.READ,
+                                              MmsSmsColumns.REACTIONS,
+                                              MmsSmsColumns.REACTIONS_UNREAD,
+                                              MmsSmsColumns.REACTIONS_LAST_SEEN};
 
   public MmsSmsDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
     super(context, databaseHelper);
@@ -133,7 +138,7 @@ public class MmsSmsDatabase extends Database {
 
   public Cursor getUnread() {
     String order           = MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " ASC";
-    String selection       = MmsSmsColumns.READ + " = 0 AND " + MmsSmsColumns.NOTIFIED + " = 0";
+    String selection       = MmsSmsColumns.NOTIFIED + " = 0 AND (" + MmsSmsColumns.READ + " = 0 OR " + MmsSmsColumns.REACTIONS_UNREAD + ")";
 
     return queryTables(PROJECTION, selection, order, null);
   }
@@ -146,6 +151,18 @@ public class MmsSmsDatabase extends Database {
       return cursor != null ? cursor.getCount() : 0;
     } finally {
       if (cursor != null) cursor.close();;
+    }
+  }
+
+  public boolean checkMessageExists(@NonNull MessageRecord messageRecord) {
+    if (messageRecord.isMms()) {
+      try (Cursor mms = DatabaseFactory.getMmsDatabase(context).getMessage(messageRecord.getId())) {
+        return mms != null && mms.getCount() > 0;
+      }
+    } else {
+      try (Cursor sms = DatabaseFactory.getSmsDatabase(context).getMessageCursor(messageRecord.getId())) {
+        return sms != null && sms.getCount() > 0;
+      }
     }
   }
 
@@ -299,7 +316,10 @@ public class MmsSmsDatabase extends Database {
                               MmsDatabase.QUOTE_ATTACHMENT,
                               MmsDatabase.SHARED_CONTACTS,
                               MmsDatabase.LINK_PREVIEWS,
-                              MmsDatabase.VIEW_ONCE};
+                              MmsDatabase.VIEW_ONCE,
+                              MmsDatabase.REACTIONS,
+                              MmsSmsColumns.REACTIONS_UNREAD,
+                              MmsSmsColumns.REACTIONS_LAST_SEEN};
 
     String[] smsProjection = {SmsDatabase.DATE_SENT + " AS " + MmsSmsColumns.NORMALIZED_DATE_SENT,
                               SmsDatabase.DATE_RECEIVED + " AS " + MmsSmsColumns.NORMALIZED_DATE_RECEIVED,
@@ -326,7 +346,10 @@ public class MmsSmsDatabase extends Database {
                               MmsDatabase.QUOTE_ATTACHMENT,
                               MmsDatabase.SHARED_CONTACTS,
                               MmsDatabase.LINK_PREVIEWS,
-                              MmsDatabase.VIEW_ONCE};
+                              MmsDatabase.VIEW_ONCE,
+                              MmsDatabase.REACTIONS,
+                              MmsSmsColumns.REACTIONS_UNREAD,
+                              MmsSmsColumns.REACTIONS_LAST_SEEN};
 
     SQLiteQueryBuilder mmsQueryBuilder = new SQLiteQueryBuilder();
     SQLiteQueryBuilder smsQueryBuilder = new SQLiteQueryBuilder();
@@ -398,6 +421,9 @@ public class MmsSmsDatabase extends Database {
     mmsColumnsPresent.add(MmsDatabase.SHARED_CONTACTS);
     mmsColumnsPresent.add(MmsDatabase.LINK_PREVIEWS);
     mmsColumnsPresent.add(MmsDatabase.VIEW_ONCE);
+    mmsColumnsPresent.add(MmsDatabase.REACTIONS);
+    mmsColumnsPresent.add(MmsDatabase.REACTIONS_UNREAD);
+    mmsColumnsPresent.add(MmsDatabase.REACTIONS_LAST_SEEN);
 
     Set<String> smsColumnsPresent = new HashSet<>();
     smsColumnsPresent.add(MmsSmsColumns.ID);
@@ -419,6 +445,9 @@ public class MmsSmsDatabase extends Database {
     smsColumnsPresent.add(SmsDatabase.DATE_RECEIVED);
     smsColumnsPresent.add(SmsDatabase.STATUS);
     smsColumnsPresent.add(SmsDatabase.UNIDENTIFIED);
+    smsColumnsPresent.add(SmsDatabase.REACTIONS);
+    smsColumnsPresent.add(SmsDatabase.REACTIONS_UNREAD);
+    smsColumnsPresent.add(SmsDatabase.REACTIONS_LAST_SEEN);
 
     @SuppressWarnings("deprecation")
     String mmsSubQuery = mmsQueryBuilder.buildUnionSubQuery(TRANSPORT, mmsProjection, mmsColumnsPresent, 4, MMS_TRANSPORT, selection, null, MmsDatabase.TABLE_NAME + "." + MmsDatabase.ID, null);

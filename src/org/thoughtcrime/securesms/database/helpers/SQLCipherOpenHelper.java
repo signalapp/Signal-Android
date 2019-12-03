@@ -51,7 +51,6 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.io.File;
 import java.util.List;
-import java.util.UUID;
 
 public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
@@ -93,8 +92,10 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int ATTACHMENT_CLEAR_HASHES_2        = 34;
   private static final int UUIDS                            = 35;
   private static final int USERNAMES                        = 36;
+  private static final int REACTIONS                        = 37;
 
-  private static final int    DATABASE_VERSION = 36;
+  private static final int    DATABASE_VERSION = 37;
+
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -624,6 +625,17 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
       if (oldVersion < USERNAMES) {
         db.execSQL("ALTER TABLE recipient ADD COLUMN username TEXT DEFAULT NULL");
         db.execSQL("CREATE UNIQUE INDEX IF NOT EXISTS recipient_username_index ON recipient (username)");
+      }
+
+      if (oldVersion < REACTIONS) {
+        db.execSQL("ALTER TABLE sms ADD COLUMN reactions BLOB DEFAULT NULL");
+        db.execSQL("ALTER TABLE mms ADD COLUMN reactions BLOB DEFAULT NULL");
+
+        db.execSQL("ALTER TABLE sms ADD COLUMN reactions_unread INTEGER DEFAULT 0");
+        db.execSQL("ALTER TABLE mms ADD COLUMN reactions_unread INTEGER DEFAULT 0");
+
+        db.execSQL("ALTER TABLE sms ADD COLUMN reactions_last_seen INTEGER DEFAULT -1");
+        db.execSQL("ALTER TABLE mms ADD COLUMN reactions_last_seen INTEGER DEFAULT -1");
       }
 
       db.setTransactionSuccessful();

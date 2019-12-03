@@ -92,6 +92,12 @@
     <attr name="emoji_category_emoticons" format="reference"/>
     <attr name="emoji_variation_selector_background" format="reference|color" />
 
+    <attr name="reactions_sent_background" format="reference" />
+    <attr name="reactions_recv_background" format="reference" />
+    <attr name="reactions_overlay_old_background" format="reference" />
+    <attr name="reactions_overlay_scrubber_background" format="reference" />
+    <attr name="reactions_bottom_dialog_fragment_emoji_selected" format="reference" />
+
     <attr name="camera_button_style" />
 
     <attr name="quick_camera_icon" format="reference"/>
@@ -172,6 +178,7 @@
     <attr name="menu_forward_icon" format="reference" />
     <attr name="menu_save_icon" format="reference" />
     <attr name="menu_reply_icon" format="reference" />
+    <attr name="menu_multi_select_icon" format="reference" />
 
     <attr name="message_icon" format="reference" />
     <attr name="notifications_icon" format="reference" />

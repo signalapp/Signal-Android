@@ -1,0 +1,24 @@
+/**
+ * Copyright (C) 2014-2016 Open Whisper Systems
+ *
+ * Licensed according to the LICENSE file in this repository.
+ */
+
+syntax = "proto3";
+
+package signal;
+
+option java_package         = "org.thoughtcrime.securesms.database.model";
+option java_outer_classname = "DatabaseProtos";
+
+
+message ReactionList {
+    message Reaction {
+        string emoji        = 1;
+        uint64 author       = 2;
+        uint64 sentTime     = 3;
+        uint64 receivedTime = 4;
+    }
+
+    repeated Reaction reactions = 1;
+}

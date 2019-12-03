@@ -33,6 +33,7 @@ final class ConversationSwipeAnimationHelper {
     float progress = dx / TRIGGER_DX;
 
     updateBodyBubbleTransition(conversationItem.bodyBubble, dx, sign);
+    updateReactionsTransition(conversationItem.reactionsContainer, dx, sign);
     updateReplyIconTransition(conversationItem.reply, dx, progress, sign);
     updateContactPhotoHolderTransition(conversationItem.contactPhotoHolder, progress, sign);
   }
@@ -43,6 +44,10 @@ final class ConversationSwipeAnimationHelper {
 
   private static void updateBodyBubbleTransition(@NonNull View bodyBubble, float dx, float sign) {
     bodyBubble.setTranslationX(BUBBLE_INTERPOLATOR.getInterpolation(dx) * sign);
+  }
+
+  private static void updateReactionsTransition(@NonNull View reactionsContainer, float dx, float sign) {
+    reactionsContainer.setTranslationX(BUBBLE_INTERPOLATOR.getInterpolation(dx) * sign);
   }
 
   private static void updateReplyIconTransition(@NonNull View replyIcon, float dx, float progress, float sign) {

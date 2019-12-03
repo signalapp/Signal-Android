@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.util;
 import android.graphics.Typeface;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.text.style.AbsoluteSizeSpan;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.StyleSpan;
@@ -22,6 +23,12 @@ public class SpanUtil {
   public static CharSequence small(CharSequence sequence) {
     SpannableString spannable = new SpannableString(sequence);
     spannable.setSpan(new RelativeSizeSpan(0.9f), 0, sequence.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+    return spannable;
+  }
+
+  public static CharSequence ofSize(CharSequence sequence, int size) {
+    SpannableString spannable = new SpannableString(sequence);
+    spannable.setSpan(new AbsoluteSizeSpan(size, true), 0, sequence.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
     return spannable;
   }
 

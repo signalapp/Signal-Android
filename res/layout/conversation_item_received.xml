@@ -27,7 +27,7 @@
             android:id="@+id/reply_icon"
             android:layout_width="@dimen/conversation_item_reply_size"
             android:layout_height="@dimen/conversation_item_reply_size"
-            android:src="@drawable/ic_reply_white_24dp"
+            app:srcCompat="?menu_reply_icon"
             android:tint="?compose_icon_tint"
             android:alpha="0"
             android:layout_alignTop="@id/body_bubble"
@@ -230,6 +230,42 @@
             android:layout_alignParentEnd="true"
             android:orientation="vertical"
             android:gravity="center_vertical"/>
+
+        <org.thoughtcrime.securesms.components.MaxHeightFrameLayout
+            android:id="@+id/reactions_bubbles_container"
+            android:layout_width="wrap_content"
+            android:layout_height="0dip"
+            android:layout_alignTop="@id/body_bubble"
+            android:layout_alignBottom="@id/body_bubble"
+            android:layout_marginStart="@dimen/reactions_bubble_margin"
+            android:layout_toEndOf="@id/body_bubble"
+            android:visibility="gone"
+            app:mhfl_maxHeight="@dimen/reactions_bubble_container_max_height"
+            tools:visibility="visible">
+
+            <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+                android:id="@+id/reactions_bubbles_secondary"
+                android:layout_width="@dimen/reactions_bubble_size"
+                android:layout_height="@dimen/reactions_bubble_size"
+                android:layout_gravity="bottom"
+                android:background="?attr/reactions_recv_background"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:textSize="@dimen/reactions_bubble_text_size"
+                tools:ignore="SpUsage" />
+
+            <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+                android:id="@+id/reactions_bubbles_primary"
+                android:layout_width="@dimen/reactions_bubble_size"
+                android:layout_height="@dimen/reactions_bubble_size"
+                android:layout_gravity="top"
+                android:background="?attr/reactions_recv_background"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:textSize="@dimen/reactions_bubble_text_size"
+                tools:ignore="SpUsage" />
+
+        </org.thoughtcrime.securesms.components.MaxHeightFrameLayout>
 
     </RelativeLayout>
 </org.thoughtcrime.securesms.conversation.ConversationItem>

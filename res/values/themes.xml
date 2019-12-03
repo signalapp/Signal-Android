@@ -162,6 +162,8 @@
         <item name="title_text_color_primary">@color/core_grey_90</item>
         <item name="title_text_color_secondary">@color/core_grey_60</item>
 
+        <item name="bottomSheetDialogTheme">@style/Theme.Design.Light.BottomSheetDialog</item>
+
         <item name="actionBarStyle">@style/TextSecure.LightActionBar</item>
         <item name="actionBarTabBarStyle">@style/TextSecure.LightActionBar.TabBar</item>
         <item name="actionModeBackground">@color/core_grey_50</item>
@@ -257,6 +259,12 @@
         <item name="emoji_category_emoticons">@drawable/ic_emoji_emoticon_light_20</item>
         <item name="emoji_variation_selector_background">@drawable/emoji_variation_selector_background_light</item>
 
+        <item name="reactions_recv_background">@drawable/reactions_recv_background_light</item>
+        <item name="reactions_sent_background">@drawable/reactions_send_background_light</item>
+        <item name="reactions_overlay_old_background">@drawable/reactions_old_background_dark</item>
+        <item name="reactions_overlay_scrubber_background">@drawable/conversation_reaction_overlay_background_dark</item>
+        <item name="reactions_bottom_dialog_fragment_emoji_selected">@drawable/reactions_bottom_sheet_dialog_fragment_emoji_item_selected_light</item>
+
         <item name="conversation_item_bubble_background">@color/core_grey_05</item>
         <item name="conversation_item_sent_text_primary_color">@color/core_grey_90</item>
         <item name="conversation_item_sent_text_secondary_color">@color/core_grey_60</item>
@@ -307,16 +315,17 @@
         <item name="menu_unlock_icon">@drawable/ic_unlocked_white_24dp</item>
         <item name="menu_lock_icon">@drawable/ic_lock_white_24dp</item>
         <item name="menu_lock_icon_small">@drawable/ic_lock_white_18dp</item>
-        <item name="menu_trash_icon">@drawable/ic_delete_white_24dp</item>
+        <item name="menu_trash_icon">@drawable/ic_trash_outline_24</item>
         <item name="menu_selectall_icon">@drawable/ic_select_all_white_24dp</item>
         <item name="menu_split_icon">@drawable/ic_call_split_white_24dp</item>
         <item name="menu_accept_icon">@drawable/ic_check_24</item>
         <item name="menu_refresh_directory">@drawable/ic_refresh_white_24dp</item>
-        <item name="menu_copy_icon">@drawable/ic_content_copy_white_24dp</item>
+        <item name="menu_copy_icon">@drawable/ic_copy_outline_24</item>
         <item name="menu_info_icon">@drawable/ic_info_outline_white_24dp</item>
-        <item name="menu_forward_icon">@drawable/ic_forward_white_24dp</item>
-        <item name="menu_save_icon">@drawable/ic_download_filled_white_24</item>
-        <item name="menu_reply_icon">@drawable/ic_reply_white_24dp</item>
+        <item name="menu_forward_icon">@drawable/ic_forward_outline_24</item>
+        <item name="menu_save_icon">@drawable/ic_save_24</item>
+        <item name="menu_reply_icon">@drawable/ic_reply_outline_24</item>
+        <item name="menu_multi_select_icon">@drawable/ic_select_24</item>
 
         <item name="message_icon">@drawable/ic_message_outline_tinted_24</item>
         <item name="notifications_icon">@drawable/ic_bell_outline_24</item>
@@ -391,6 +400,8 @@
 
         <item name="title_text_color_primary">@color/core_grey_05</item>
         <item name="title_text_color_secondary">@color/core_grey_25</item>
+
+        <item name="bottomSheetDialogTheme">@style/Theme.Design.BottomSheetDialog</item>
 
         <item name="actionBarStyle">@style/TextSecure.DarkActionBar</item>
         <item name="actionBarTabBarStyle">@style/TextSecure.DarkActionBar.TabBar</item>
@@ -500,6 +511,13 @@
         <item name="conversation_title_color">@color/transparent_white_90</item>
         <item name="conversation_subtitle_color">@color/transparent_white_80</item>
 
+        <item name="reactions_recv_background">@drawable/reactions_recv_background_dark</item>
+        <item name="reactions_sent_background">@drawable/reactions_send_background_dark</item>
+        <item name="reactions_overlay_old_background">@drawable/reactions_old_background_dark</item>
+        <item name="reactions_overlay_scrubber_background">@drawable/conversation_reaction_overlay_background_dark</item>
+        <item name="reactions_bottom_dialog_fragment_emoji_selected">@drawable/reactions_bottom_sheet_dialog_fragment_emoji_item_selected_dark</item>
+
+
         <item name="emoji_tab_strip_background">@color/core_grey_85</item>
         <item name="emoji_tab_indicator">@color/core_grey_65</item>
         <item name="emoji_tab_underline">@color/core_grey_75</item>
@@ -537,16 +555,17 @@
         <item name="menu_unlock_icon">@drawable/ic_unlocked_white_24dp</item>
         <item name="menu_lock_icon">@drawable/ic_lock_white_24dp</item>
         <item name="menu_lock_icon_small">@drawable/ic_lock_white_18dp</item>
-        <item name="menu_trash_icon">@drawable/ic_delete_white_24dp</item>
+        <item name="menu_trash_icon">@drawable/ic_trash_solid_24</item>
         <item name="menu_selectall_icon">@drawable/ic_select_all_white_24dp</item>
         <item name="menu_split_icon">@drawable/ic_call_split_white_24dp</item>
         <item name="menu_accept_icon">@drawable/ic_check_24</item>
         <item name="menu_refresh_directory">@drawable/ic_refresh_white_24dp</item>
-        <item name="menu_copy_icon">@drawable/ic_content_copy_white_24dp</item>
-        <item name="menu_info_icon">@drawable/ic_info_outline_white_24dp</item>
-        <item name="menu_forward_icon">@drawable/ic_forward_white_24dp</item>
-        <item name="menu_save_icon">@drawable/ic_download_filled_white_24</item>
-        <item name="menu_reply_icon">@drawable/ic_reply_white_24dp</item>
+        <item name="menu_copy_icon">@drawable/ic_copy_solid_24</item>
+        <item name="menu_info_icon">@drawable/ic_info_solid_24</item>
+        <item name="menu_forward_icon">@drawable/ic_forward_solid_24</item>
+        <item name="menu_save_icon">@drawable/ic_save_24</item>
+        <item name="menu_reply_icon">@drawable/ic_reply_solid_24</item>
+        <item name="menu_multi_select_icon">@drawable/ic_select_24</item>
 
         <item name="message_icon">@drawable/ic_message_solid_tinted_24</item>
         <item name="notifications_icon">@drawable/ic_bell_solid_24</item>

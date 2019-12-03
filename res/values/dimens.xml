@@ -46,6 +46,12 @@
     <dimen name="media_bubble_max_height">320dp</dimen>
     <dimen name="media_bubble_sticker_dimens">128dp</dimen>
 
+    <dimen name="reactions_bubble_margin">-37dp</dimen>
+    <dimen name="reactions_bubble_size">32dp</dimen>
+    <dimen name="reactions_bubble_text_size">16dp</dimen>
+    <dimen name="reactions_bubble_margin_max">28dp</dimen>
+    <dimen name="reactions_bubble_container_max_height">60dp</dimen>
+
     <dimen name="media_picker_folder_width">175dp</dimen>
     <dimen name="media_picker_item_width">85dp</dimen>
     <dimen name="media_picker_rail_padding_affordance">130dp</dimen>
@@ -63,6 +69,11 @@
     <dimen name="conversation_group_left_gutter">52dp</dimen>
     <dimen name="conversation_vertical_message_spacing_default">8dp</dimen>
     <dimen name="conversation_vertical_message_spacing_collapse">1dp</dimen>
+
+    <dimen name="conversation_reaction_picker_emoji_text_size">28dp</dimen>
+
+    <dimen name="reaction_scrubber_anim_start_translation_y">25dp</dimen>
+    <dimen name="reaction_scrubber_anim_end_translation_y">0dp</dimen>
 
     <dimen name="conversation_item_reply_size">20dp</dimen>
     <dimen name="conversation_item_avatar_size">28dp</dimen>
@@ -128,5 +139,13 @@
     <dimen name="selection_item_header_width">48dp</dimen>
 
     <dimen name="contact_selection_item_height">@dimen/selection_item_header_height</dimen>
+
+    <dimen name="conversation_reaction_scrubber_height">136dp</dimen>
+    <dimen name="conversation_reaction_scrubber_distance">40dp</dimen>
+    <dimen name="conversation_reaction_touch_deadzone_size">60dp</dimen>
+    <dimen name="conversation_reaction_scrub_deadzone_distance_from_touch_top">136dp</dimen>
+    <dimen name="conversation_reaction_scrub_deadzone_distance_from_touch_bottom">40dp</dimen>
+    <dimen name="conversation_reaction_scrub_vertical_translation">20dp</dimen>
+    <dimen name="conversation_reaction_scrub_horizontal_margin">16dp</dimen>
 
 </resources>

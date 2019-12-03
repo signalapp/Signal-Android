@@ -20,6 +20,9 @@ public interface MmsSmsColumns {
   public static final String EXPIRE_STARTED           = "expire_started";
   public static final String NOTIFIED                 = "notified";
   public static final String UNIDENTIFIED             = "unidentified";
+  public static final String REACTIONS                = "reactions";
+  public static final String REACTIONS_UNREAD         = "reactions_unread";
+  public static final String REACTIONS_LAST_SEEN      = "reactions_last_seen";
 
   public static class Types {
     protected static final long TOTAL_MASK = 0xFFFFFFFF;

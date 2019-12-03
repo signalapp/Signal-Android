@@ -53,6 +53,7 @@ public abstract class MessageRecord extends DisplayRecord {
   private final long                      expiresIn;
   private final long                      expireStarted;
   private final boolean                   unidentified;
+  private final List<ReactionRecord>      reactions;
 
   MessageRecord(long id, String body, Recipient conversationRecipient,
                 Recipient individualRecipient, int recipientDeviceId,
@@ -61,7 +62,8 @@ public abstract class MessageRecord extends DisplayRecord {
                 List<IdentityKeyMismatch> mismatches,
                 List<NetworkFailure> networkFailures,
                 int subscriptionId, long expiresIn, long expireStarted,
-                int readReceiptCount, boolean unidentified)
+                int readReceiptCount, boolean unidentified,
+                @NonNull List<ReactionRecord> reactions)
   {
     super(body, conversationRecipient, dateSent, dateReceived,
           threadId, deliveryStatus, deliveryReceiptCount, type, readReceiptCount);
@@ -74,6 +76,7 @@ public abstract class MessageRecord extends DisplayRecord {
     this.expiresIn           = expiresIn;
     this.expireStarted       = expireStarted;
     this.unidentified        = unidentified;
+    this.reactions           = reactions;
   }
 
   public abstract boolean isMms();
@@ -248,5 +251,9 @@ public abstract class MessageRecord extends DisplayRecord {
 
   public boolean isViewOnce() {
     return false;
+  }
+
+  public @NonNull List<ReactionRecord> getReactions() {
+    return reactions;
   }
 }

@@ -3,7 +3,7 @@
       xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/media_preview__forward"
           android:title="@string/media_preview__forward_title"
-          android:icon="@drawable/ic_forward_white_24dp"
+          android:icon="?menu_forward_icon"
           app:showAsAction="always"/>
     <item android:id="@+id/save"
           android:title="@string/media_preview__save_title"
@@ -15,6 +15,6 @@
           app:showAsAction="ifRoom"/>
     <item android:id="@+id/delete"
           android:title="@string/delete"
-          android:icon="@drawable/ic_delete_white_24dp"
+          android:icon="?menu_trash_icon"
           app:showAsAction="ifRoom"/>
 </menu>

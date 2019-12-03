@@ -55,5 +55,4 @@
             android:alpha="0.9"
             android:contentDescription="@string/conversation_fragment__scroll_to_the_bottom_content_description"
             android:src="@drawable/ic_scroll_down"/>
-
 </FrameLayout>

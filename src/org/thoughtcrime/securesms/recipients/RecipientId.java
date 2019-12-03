@@ -70,6 +70,10 @@ public class RecipientId implements Parcelable, Comparable<RecipientId> {
     return String.valueOf(id);
   }
 
+  public long toLong() {
+    return id;
+  }
+
   public @NonNull String toQueueKey() {
     return "RecipientId::" + id;
   }

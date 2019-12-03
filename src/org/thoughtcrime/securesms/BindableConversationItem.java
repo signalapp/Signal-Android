@@ -7,6 +7,7 @@ import android.view.View;
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
+import org.thoughtcrime.securesms.database.model.ReactionRecord;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -43,5 +44,6 @@ public interface BindableConversationItem extends Unbindable {
     void onAddToContactsClicked(@NonNull Contact contact);
     void onMessageSharedContactClicked(@NonNull List<Recipient> choices);
     void onInviteSharedContactClicked(@NonNull List<Recipient> choices);
+    void onReactionClicked(long messageId, boolean isMms);
   }
 }

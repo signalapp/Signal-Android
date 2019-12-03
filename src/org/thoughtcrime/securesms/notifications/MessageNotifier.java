@@ -37,6 +37,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.core.text.HtmlCompat;
+
+import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 
 import org.thoughtcrime.securesms.ApplicationContext;
@@ -46,11 +49,13 @@ import org.thoughtcrime.securesms.contactshare.ContactUtil;
 import org.thoughtcrime.securesms.conversation.ConversationActivity;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
+import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
+import org.thoughtcrime.securesms.database.model.ReactionRecord;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
@@ -66,9 +71,11 @@ import org.thoughtcrime.securesms.webrtc.CallNotificationBuilder;
 import org.whispersystems.signalservice.internal.util.Util;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Set;
+import java.util.TreeSet;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -90,6 +97,7 @@ public class MessageNotifier {
 
   public static final  String EXTRA_REMOTE_REPLY = "extra_remote_reply";
 
+  private static final String EMOJI_REPLACEMENT_STRING  = "__EMOJI__";
   private static final  int   SUMMARY_NOTIFICATION_ID   = 1338;
   private static final int    PENDING_MESSAGES_ID       = 1111;
   private static final String NOTIFICATION_GROUP        = "messages";
@@ -455,34 +463,73 @@ public class MessageNotifier {
       Recipient    threadRecipients      = null;
       SlideDeck    slideDeck             = null;
       long         timestamp             = record.getTimestamp();
-
+      boolean      isUnreadMessage       = cursor.getInt(cursor.getColumnIndexOrThrow(MmsSmsColumns.READ)) == 0;
+      boolean      hasUnreadReactions    = cursor.getInt(cursor.getColumnIndexOrThrow(MmsSmsColumns.REACTIONS_UNREAD)) == 1;
+      long         lastReactionRead      = cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsColumns.REACTIONS_LAST_SEEN));
 
       if (threadId != -1) {
         threadRecipients = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(threadId);
       }
 
-      if (KeyCachingService.isLocked(context)) {
-        body = SpanUtil.italic(context.getString(R.string.MessageNotifier_locked_message));
-      } else if (record.isMms() && !((MmsMessageRecord) record).getSharedContacts().isEmpty()) {
-        Contact contact = ((MmsMessageRecord) record).getSharedContacts().get(0);
-        body = ContactUtil.getStringSummary(context, contact);
-      } else if (record.isMms() && ((MmsMessageRecord) record).getSlideDeck().getStickerSlide() != null) {
-        body = SpanUtil.italic(context.getString(R.string.MessageNotifier_sticker));
-        slideDeck = ((MmsMessageRecord) record).getSlideDeck();
-      } else if (record.isMms() && ((MmsMessageRecord) record).isViewOnce()) {
-        body = SpanUtil.italic(context.getString(getViewOnceDescription((MmsMessageRecord) record)));
-      } else if (record.isMms() && TextUtils.isEmpty(body) && !((MmsMessageRecord) record).getSlideDeck().getSlides().isEmpty()) {
-        body = SpanUtil.italic(context.getString(R.string.MessageNotifier_media_message));
-        slideDeck = ((MediaMmsMessageRecord)record).getSlideDeck();
-      } else if (record.isMms() && !record.isMmsNotification() && !((MmsMessageRecord) record).getSlideDeck().getSlides().isEmpty()) {
-        String message      = context.getString(R.string.MessageNotifier_media_message_with_text, body);
-        int    italicLength = message.length() - body.length();
-        body = SpanUtil.italic(message, italicLength);
-        slideDeck = ((MediaMmsMessageRecord)record).getSlideDeck();
+      if (isUnreadMessage) {
+        if (KeyCachingService.isLocked(context)) {
+          body = SpanUtil.italic(context.getString(R.string.MessageNotifier_locked_message));
+        } else if (record.isMms() && !((MmsMessageRecord) record).getSharedContacts().isEmpty()) {
+          Contact contact = ((MmsMessageRecord) record).getSharedContacts().get(0);
+          body = ContactUtil.getStringSummary(context, contact);
+        } else if (record.isMms() && ((MmsMessageRecord) record).getSlideDeck().getStickerSlide() != null) {
+          body = SpanUtil.italic(context.getString(R.string.MessageNotifier_sticker));
+          slideDeck = ((MmsMessageRecord) record).getSlideDeck();
+        } else if (record.isMms() && ((MmsMessageRecord) record).isViewOnce()) {
+          body = SpanUtil.italic(context.getString(getViewOnceDescription((MmsMessageRecord) record)));
+        } else if (record.isMms() && TextUtils.isEmpty(body) && !((MmsMessageRecord) record).getSlideDeck().getSlides().isEmpty()) {
+          body = SpanUtil.italic(context.getString(R.string.MessageNotifier_media_message));
+          slideDeck = ((MediaMmsMessageRecord) record).getSlideDeck();
+        } else if (record.isMms() && !record.isMmsNotification() && !((MmsMessageRecord) record).getSlideDeck().getSlides().isEmpty()) {
+          String message = context.getString(R.string.MessageNotifier_media_message_with_text, body);
+          int italicLength = message.length() - body.length();
+          body = SpanUtil.italic(message, italicLength);
+          slideDeck = ((MediaMmsMessageRecord) record).getSlideDeck();
+        }
+
+        if (threadRecipients == null || !threadRecipients.isMuted()) {
+          notificationState.addNotification(new NotificationItem(id, mms, recipient, conversationRecipient, threadRecipients, threadId, body, timestamp, slideDeck));
+        }
       }
 
-      if (threadRecipients == null || !threadRecipients.isMuted()) {
-        notificationState.addNotification(new NotificationItem(id, mms, recipient, conversationRecipient, threadRecipients, threadId, body, timestamp, slideDeck));
+      if (hasUnreadReactions) {
+        for (ReactionRecord reaction : record.getReactions()) {
+          Recipient reactionSender = Recipient.resolved(reaction.getAuthor());
+          if (reactionSender.equals(Recipient.self()) || !record.isOutgoing() || reaction.getDateReceived() <= lastReactionRead) {
+            continue;
+          }
+
+          if (KeyCachingService.isLocked(context)) {
+            body = SpanUtil.italic(context.getString(R.string.MessageNotifier_locked_message));
+          } else {
+            String   text  = SpanUtil.italic(context.getString(R.string.MessageNotifier_reacted_to_your_message, EMOJI_REPLACEMENT_STRING)).toString();
+            String[] parts = text.split(EMOJI_REPLACEMENT_STRING);
+
+            SpannableStringBuilder builder = new SpannableStringBuilder();
+            for (int i = 0; i < parts.length; i++) {
+              builder.append(SpanUtil.italic(parts[i]));
+
+              if (i != parts.length -1) {
+                builder.append(reaction.getEmoji());
+              }
+            }
+
+            if (text.endsWith(EMOJI_REPLACEMENT_STRING)) {
+              builder.append(reaction.getEmoji());
+            }
+
+            body = builder;
+          }
+
+          if (threadRecipients == null || !threadRecipients.isMuted()) {
+            notificationState.addNotification(new NotificationItem(id, mms, reactionSender, conversationRecipient, threadRecipients, threadId, body, reaction.getDateReceived(), null));
+          }
+        }
       }
     }
 

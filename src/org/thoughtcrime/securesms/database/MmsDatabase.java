@@ -49,6 +49,7 @@ import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.NotificationMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.Quote;
+import org.thoughtcrime.securesms.database.model.ReactionRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.TrimThreadJob;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
@@ -112,26 +113,60 @@ public class MmsDatabase extends MessagingDatabase {
 
   public  static final String VIEW_ONCE       = "reveal_duration";
 
-  public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ID + " INTEGER PRIMARY KEY, "                          +
-    THREAD_ID + " INTEGER, " + DATE_SENT + " INTEGER, " + DATE_RECEIVED + " INTEGER, " + MESSAGE_BOX + " INTEGER, " +
-    READ + " INTEGER DEFAULT 0, " + "m_id" + " TEXT, " + "sub" + " TEXT, "                +
-    "sub_cs" + " INTEGER, " + BODY + " TEXT, " + PART_COUNT + " INTEGER, "               +
-    "ct_t" + " TEXT, " + CONTENT_LOCATION + " TEXT, " + RECIPIENT_ID + " INTEGER, "               +
-    ADDRESS_DEVICE_ID + " INTEGER, "                                                            +
-    EXPIRY + " INTEGER, " + "m_cls" + " TEXT, " + MESSAGE_TYPE + " INTEGER, "             +
-    "v" + " INTEGER, " + MESSAGE_SIZE + " INTEGER, " + "pri" + " INTEGER, "          +
-    "rr" + " INTEGER, " + "rpt_a" + " INTEGER, " + "resp_st" + " INTEGER, " +
-    STATUS + " INTEGER, " + TRANSACTION_ID + " TEXT, " + "retr_st" + " INTEGER, "         +
-    "retr_txt" + " TEXT, " + "retr_txt_cs" + " INTEGER, " + "read_status" + " INTEGER, "    +
-    "ct_cls" + " INTEGER, " + "resp_txt" + " TEXT, " + "d_tm" + " INTEGER, "     +
-    DELIVERY_RECEIPT_COUNT + " INTEGER DEFAULT 0, " + MISMATCHED_IDENTITIES + " TEXT DEFAULT NULL, "     +
-    NETWORK_FAILURE + " TEXT DEFAULT NULL," + "d_rpt" + " INTEGER, " +
-    SUBSCRIPTION_ID + " INTEGER DEFAULT -1, " + EXPIRES_IN + " INTEGER DEFAULT 0, " +
-    EXPIRE_STARTED + " INTEGER DEFAULT 0, " + NOTIFIED + " INTEGER DEFAULT 0, " +
-    READ_RECEIPT_COUNT + " INTEGER DEFAULT 0, " + QUOTE_ID + " INTEGER DEFAULT 0, " +
-    QUOTE_AUTHOR + " TEXT, " + QUOTE_BODY + " TEXT, " + QUOTE_ATTACHMENT + " INTEGER DEFAULT -1, " +
-    QUOTE_MISSING + " INTEGER DEFAULT 0, " + SHARED_CONTACTS + " TEXT, " + UNIDENTIFIED + " INTEGER DEFAULT 0, " +
-    LINK_PREVIEWS + " TEXT, " + VIEW_ONCE + " INTEGER DEFAULT 0);";
+  public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ID                     + " INTEGER PRIMARY KEY, " +
+                                                                                  THREAD_ID              + " INTEGER, " +
+                                                                                  DATE_SENT              + " INTEGER, " +
+                                                                                  DATE_RECEIVED          + " INTEGER, " +
+                                                                                  MESSAGE_BOX            + " INTEGER, " +
+                                                                                  READ                   + " INTEGER DEFAULT 0, " +
+                                                                                  "m_id"                 + " TEXT, " +
+                                                                                  "sub"                  + " TEXT, " +
+                                                                                  "sub_cs"               + " INTEGER, " +
+                                                                                  BODY                   + " TEXT, " +
+                                                                                  PART_COUNT             + " INTEGER, " +
+                                                                                  "ct_t"                 + " TEXT, " +
+                                                                                  CONTENT_LOCATION       + " TEXT, " +
+                                                                                  RECIPIENT_ID           + " INTEGER, " +
+                                                                                  ADDRESS_DEVICE_ID      + " INTEGER, " +
+                                                                                  EXPIRY                 + " INTEGER, " +
+                                                                                  "m_cls"                + " TEXT, " +
+                                                                                  MESSAGE_TYPE           + " INTEGER, " +
+                                                                                  "v"                    + " INTEGER, " +
+                                                                                  MESSAGE_SIZE           + " INTEGER, " +
+                                                                                  "pri"                  + " INTEGER, " +
+                                                                                  "rr"                   + " INTEGER, " +
+                                                                                  "rpt_a"                + " INTEGER, " +
+                                                                                  "resp_st"              + " INTEGER, " +
+                                                                                  STATUS                 + " INTEGER, " +
+                                                                                  TRANSACTION_ID         + " TEXT, " +
+                                                                                  "retr_st"              + " INTEGER, " +
+                                                                                  "retr_txt"             + " TEXT, " +
+                                                                                  "retr_txt_cs"          + " INTEGER, " +
+                                                                                  "read_status"          + " INTEGER, " +
+                                                                                  "ct_cls"               + " INTEGER, " +
+                                                                                  "resp_txt"             + " TEXT, " +
+                                                                                  "d_tm"                 + " INTEGER, " +
+                                                                                  DELIVERY_RECEIPT_COUNT + " INTEGER DEFAULT 0, " +
+                                                                                  MISMATCHED_IDENTITIES  + " TEXT DEFAULT NULL, " +
+                                                                                  NETWORK_FAILURE        + " TEXT DEFAULT NULL," +
+                                                                                  "d_rpt"                + " INTEGER, " +
+                                                                                  SUBSCRIPTION_ID        + " INTEGER DEFAULT -1, " +
+                                                                                  EXPIRES_IN             + " INTEGER DEFAULT 0, " +
+                                                                                  EXPIRE_STARTED         + " INTEGER DEFAULT 0, " +
+                                                                                  NOTIFIED               + " INTEGER DEFAULT 0, " +
+                                                                                  READ_RECEIPT_COUNT     + " INTEGER DEFAULT 0, " +
+                                                                                  QUOTE_ID               + " INTEGER DEFAULT 0, " +
+                                                                                  QUOTE_AUTHOR           + " TEXT, " +
+                                                                                  QUOTE_BODY             + " TEXT, " +
+                                                                                  QUOTE_ATTACHMENT       + " INTEGER DEFAULT -1, " +
+                                                                                  QUOTE_MISSING          + " INTEGER DEFAULT 0, " +
+                                                                                  SHARED_CONTACTS        + " TEXT, " +
+                                                                                  UNIDENTIFIED           + " INTEGER DEFAULT 0, " +
+                                                                                  LINK_PREVIEWS          + " TEXT, " +
+                                                                                  VIEW_ONCE              + " INTEGER DEFAULT 0, " +
+                                                                                  REACTIONS              + " BLOB DEFAULT NULL, " +
+                                                                                  REACTIONS_UNREAD       + " INTEGER DEFAULT 0, " +
+                                                                                  REACTIONS_LAST_SEEN    + " INTEGER DEFAULT -1);";
 
   public static final String[] CREATE_INDEXS = {
     "CREATE INDEX IF NOT EXISTS mms_thread_id_index ON " + TABLE_NAME + " (" + THREAD_ID + ");",
@@ -152,7 +187,7 @@ public class MmsDatabase extends MessagingDatabase {
       BODY, PART_COUNT, RECIPIENT_ID, ADDRESS_DEVICE_ID,
       DELIVERY_RECEIPT_COUNT, READ_RECEIPT_COUNT, MISMATCHED_IDENTITIES, NETWORK_FAILURE, SUBSCRIPTION_ID,
       EXPIRES_IN, EXPIRE_STARTED, NOTIFIED, QUOTE_ID, QUOTE_AUTHOR, QUOTE_BODY, QUOTE_ATTACHMENT, QUOTE_MISSING,
-      SHARED_CONTACTS, LINK_PREVIEWS, UNIDENTIFIED, VIEW_ONCE,
+      SHARED_CONTACTS, LINK_PREVIEWS, UNIDENTIFIED, VIEW_ONCE, REACTIONS, REACTIONS_UNREAD, REACTIONS_LAST_SEEN,
       "json_group_array(json_object(" +
           "'" + AttachmentDatabase.ROW_ID + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.ROW_ID + ", " +
           "'" + AttachmentDatabase.UNIQUE_ID + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.UNIQUE_ID + ", " +
@@ -332,6 +367,18 @@ public class MmsDatabase extends MessagingDatabase {
     Cursor cursor = rawQuery(RAW_ID_WHERE, new String[] {messageId + ""});
     setNotifyConverationListeners(cursor, getThreadIdForMessage(messageId));
     return cursor;
+  }
+
+  public MessageRecord getMessageRecord(long messageId) throws NoSuchMessageException {
+    try (Cursor cursor = rawQuery(RAW_ID_WHERE, new String[] {messageId + ""})) {
+      MessageRecord record = new Reader(cursor).getNext();
+
+      if (record == null) {
+        throw new NoSuchMessageException("No message for ID: " + messageId);
+      }
+
+      return record;
+    }
   }
 
   public Reader getExpireStartedMessages() {
@@ -1414,7 +1461,7 @@ public class MmsDatabase extends MessagingDatabase {
                                                      message.getOutgoingQuote().isOriginalMissing(),
                                                      new SlideDeck(context, message.getOutgoingQuote().getAttachments())) :
                                            null,
-                                       message.getSharedContacts(), message.getLinkPreviews(), false);
+                                       message.getSharedContacts(), message.getLinkPreviews(), false, Collections.emptyList());
     }
   }
 
@@ -1486,24 +1533,25 @@ public class MmsDatabase extends MessagingDatabase {
     }
 
     private MediaMmsMessageRecord getMediaMmsMessageRecord(Cursor cursor) {
-      long               id                   = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.ID));
-      long               dateSent             = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.NORMALIZED_DATE_SENT));
-      long               dateReceived         = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.NORMALIZED_DATE_RECEIVED));
-      long               box                  = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.MESSAGE_BOX));
-      long               threadId             = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.THREAD_ID));
-      long               recipientId          = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.RECIPIENT_ID));
-      int                addressDeviceId      = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.ADDRESS_DEVICE_ID));
-      int                deliveryReceiptCount = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.DELIVERY_RECEIPT_COUNT));
-      int                readReceiptCount     = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.READ_RECEIPT_COUNT));
-      String             body                 = cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.BODY));
-      int                partCount            = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.PART_COUNT));
-      String             mismatchDocument     = cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.MISMATCHED_IDENTITIES));
-      String             networkDocument      = cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.NETWORK_FAILURE));
-      int                subscriptionId       = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.SUBSCRIPTION_ID));
-      long               expiresIn            = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.EXPIRES_IN));
-      long               expireStarted        = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.EXPIRE_STARTED));
-      boolean            unidentified         = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.UNIDENTIFIED)) == 1;
-      boolean            isViewOnce           = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.VIEW_ONCE)) == 1;
+      long                 id                   = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.ID                      ));
+      long                 dateSent             = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.NORMALIZED_DATE_SENT    ));
+      long                 dateReceived         = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.NORMALIZED_DATE_RECEIVED));
+      long                 box                  = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.MESSAGE_BOX             ));
+      long                 threadId             = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.THREAD_ID               ));
+      long                 recipientId          = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.RECIPIENT_ID            ));
+      int                  addressDeviceId      = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.ADDRESS_DEVICE_ID     ));
+      int                  deliveryReceiptCount = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.DELIVERY_RECEIPT_COUNT));
+      int                  readReceiptCount     = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.READ_RECEIPT_COUNT    ));
+      String               body                 = cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.BODY                 ));
+      int                  partCount            = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.PART_COUNT            ));
+      String               mismatchDocument     = cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.MISMATCHED_IDENTITIES));
+      String               networkDocument      = cursor.getString(cursor.getColumnIndexOrThrow(MmsDatabase.NETWORK_FAILURE      ));
+      int                  subscriptionId       = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.SUBSCRIPTION_ID       ));
+      long                 expiresIn            = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.EXPIRES_IN              ));
+      long                 expireStarted        = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.EXPIRE_STARTED          ));
+      boolean              unidentified         = cursor.getInt(cursor.getColumnIndexOrThrow(MmsDatabase.UNIDENTIFIED)) == 1;
+      boolean              isViewOnce           = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.VIEW_ONCE))   == 1;
+      List<ReactionRecord> reactions            = parseReactions(cursor);
 
       if (!TextSecurePreferences.isReadReceiptsEnabled(context)) {
         readReceiptCount = 0;
@@ -1524,7 +1572,7 @@ public class MmsDatabase extends MessagingDatabase {
                                        addressDeviceId, dateSent, dateReceived, deliveryReceiptCount,
                                        threadId, body, slideDeck, partCount, box, mismatches,
                                        networkFailures, subscriptionId, expiresIn, expireStarted,
-                                       isViewOnce, readReceiptCount, quote, contacts, previews, unidentified);
+                                       isViewOnce, readReceiptCount, quote, contacts, previews, unidentified, reactions);
     }
 
     private List<IdentityKeyMismatch> getMismatchedIdentities(String document) {

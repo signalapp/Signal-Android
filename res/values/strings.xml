@@ -894,6 +894,7 @@
     <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Open Signal to check for recent notifications.</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">Contact</string>
+    <string name="MessageNotifier_reacted_to_your_message">Reacted to your message: %1$s</string>
 
     <!-- Notification Channels -->
     <string name="NotificationChannel_messages">Default</string>
@@ -1466,6 +1467,9 @@
     <string name="conversation_context__menu_forward_message">Forward message</string>
     <string name="conversation_context__menu_resend_message">Resend message</string>
     <string name="conversation_context__menu_reply_to_message">Reply to message</string>
+
+    <!-- conversation_context_reacction -->
+    <string name="conversation_context__reaction_multi_select">Select multiple</string>
 
     <!-- conversation_context_image -->
     <string name="conversation_context_image__save_attachment">Save attachment</string>

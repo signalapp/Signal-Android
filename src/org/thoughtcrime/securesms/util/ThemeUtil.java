@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Color;
 import androidx.annotation.AttrRes;
+import androidx.annotation.DimenRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StyleRes;
@@ -57,6 +58,17 @@ public class ThemeUtil {
   public static LayoutInflater getThemedInflater(@NonNull Context context, @NonNull LayoutInflater inflater, @StyleRes int theme) {
     Context contextThemeWrapper = new ContextThemeWrapper(context, theme);
     return inflater.cloneInContext(contextThemeWrapper);
+  }
+
+  public static float getThemedDimen(@NonNull Context context, @AttrRes int attr) {
+    TypedValue typedValue = new TypedValue();
+    Resources.Theme theme = context.getTheme();
+
+    if (theme.resolveAttribute(attr, typedValue, true)) {
+      return typedValue.getDimension(context.getResources().getDisplayMetrics());
+    }
+
+    return 0;
   }
 
   private static String getAttribute(Context context, int attribute, String defaultValue) {

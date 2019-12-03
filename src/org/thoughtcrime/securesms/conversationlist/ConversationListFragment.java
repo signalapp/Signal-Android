@@ -116,6 +116,7 @@ import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.KeyCachingService;
+import org.thoughtcrime.securesms.util.AvatarUtil;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
@@ -339,23 +340,9 @@ public class ConversationListFragment extends MainFragment implements LoaderMana
   }
 
   private void initializeProfileIcon(@NonNull Recipient recipient) {
-    ImageView     icon          = requireView().findViewById(R.id.toolbar_icon);
-    String        name          = Optional.fromNullable(recipient.getDisplayName(requireContext())).or(Optional.fromNullable(TextSecurePreferences.getProfileName(requireContext()))).or("");
-    MaterialColor fallbackColor = recipient.getColor();
+    ImageView icon = requireView().findViewById(R.id.toolbar_icon);
 
-    if (fallbackColor == ContactColors.UNKNOWN_COLOR && !TextUtils.isEmpty(name)) {
-      fallbackColor = ContactColors.generateFor(name);
-    }
-
-    Drawable fallback = new GeneratedContactPhoto(name, R.drawable.ic_profile_outline_40).asDrawable(requireContext(), fallbackColor.toAvatarColor(requireContext()));
-
-    GlideApp.with(this)
-            .load(new ProfileContactPhoto(recipient.getId(), String.valueOf(TextSecurePreferences.getProfileAvatarId(requireContext()))))
-            .error(fallback)
-            .circleCrop()
-            .diskCacheStrategy(DiskCacheStrategy.ALL)
-            .into(icon);
-
+    AvatarUtil.loadIconIntoImageView(recipient, icon);
     icon.setOnClickListener(v -> getNavigator().goToAppSettings());
   }
 

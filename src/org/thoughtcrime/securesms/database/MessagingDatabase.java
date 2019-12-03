@@ -7,23 +7,29 @@ import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 
+import com.annimon.stream.Stream;
+import com.google.protobuf.InvalidProtocolBufferException;
+
 import net.sqlcipher.database.SQLiteDatabase;
 
 import org.thoughtcrime.securesms.database.documents.Document;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatchList;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
+import org.thoughtcrime.securesms.database.model.DatabaseProtos.ReactionList;
+import org.thoughtcrime.securesms.database.model.ReactionRecord;
 import org.thoughtcrime.securesms.insights.InsightsConstants;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.JsonUtils;
 import org.whispersystems.libsignal.IdentityKey;
+import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public abstract class MessagingDatabase extends Database implements MmsSmsColumns {
 
@@ -90,6 +96,91 @@ public abstract class MessagingDatabase extends Database implements MmsSmsColumn
     return "(" + getTypeField() + " & " + Types.BASE_TYPE_MASK + ") = " + Types.BASE_SENT_TYPE + " AND (" + getTypeField() + " & " + (Types.SECURE_MESSAGE_BIT | Types.PUSH_MESSAGE_BIT) + ")";
   }
 
+  public void setReactionsSeen(long threadId) {
+    SQLiteDatabase db          = databaseHelper.getWritableDatabase();
+    ContentValues  values      = new ContentValues();
+    String         whereClause = THREAD_ID + " = ?";
+    String[]       whereArgs   = new String[]{String.valueOf(threadId)};
+
+    values.put(REACTIONS_UNREAD, 0);
+    values.put(REACTIONS_LAST_SEEN, System.currentTimeMillis());
+
+    db.update(getTableName(), values, whereClause, whereArgs);
+  }
+
+  public void setAllReactionsSeen() {
+    SQLiteDatabase db          = databaseHelper.getWritableDatabase();
+    ContentValues  values      = new ContentValues();
+
+    values.put(REACTIONS_UNREAD, 0);
+    values.put(REACTIONS_LAST_SEEN, System.currentTimeMillis());
+
+    db.update(getTableName(), values, null, null);
+  }
+
+  public void addReaction(long messageId, @NonNull ReactionRecord reaction) {
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+
+    db.beginTransaction();
+
+    try {
+      ReactionList          reactions   = getReactions(db, messageId).or(ReactionList.getDefaultInstance());
+      ReactionList.Reaction newReaction = ReactionList.Reaction.newBuilder()
+                                                               .setEmoji(reaction.getEmoji())
+                                                               .setAuthor(reaction.getAuthor().toLong())
+                                                               .setSentTime(reaction.getDateSent())
+                                                               .setReceivedTime(reaction.getDateReceived())
+                                                               .build();
+
+      ReactionList updatedList = pruneByAuthor(reactions, reaction.getAuthor()).toBuilder()
+                                                                               .addReactions(newReaction)
+                                                                               .build();
+
+      setReactions(db, messageId, updatedList);
+
+      db.setTransactionSuccessful();
+    } finally {
+      db.endTransaction();
+    }
+
+    notifyConversationListeners(getThreadId(db, messageId));
+  }
+
+  public void deleteReaction(long messageId, @NonNull RecipientId author) {
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+
+    db.beginTransaction();
+
+    try {
+      ReactionList reactions   = getReactions(db, messageId).or(ReactionList.getDefaultInstance());
+      ReactionList updatedList = pruneByAuthor(reactions, author);
+
+      setReactions(db, messageId, updatedList);
+
+      db.setTransactionSuccessful();
+    } finally {
+      db.endTransaction();
+    }
+
+    notifyConversationListeners(getThreadId(db, messageId));
+  }
+
+  public boolean hasReaction(long messageId, @NonNull ReactionRecord reactionRecord) {
+    SQLiteDatabase db = databaseHelper.getReadableDatabase();
+
+    ReactionList reactions = getReactions(db, messageId).or(ReactionList.getDefaultInstance());
+
+    for (ReactionList.Reaction reaction : reactions.getReactionsList()) {
+      if (reactionRecord.getAuthor().toLong() == reaction.getAuthor() &&
+          reactionRecord.getEmoji().equals(reaction.getEmoji()))
+      {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
   public void addMismatchedIdentity(long messageId, @NonNull RecipientId recipientId, IdentityKey identityKey) {
     try {
       addToDocument(messageId, MISMATCHED_IDENTITIES,
@@ -107,6 +198,28 @@ public abstract class MessagingDatabase extends Database implements MmsSmsColumn
                          IdentityKeyMismatchList.class);
     } catch (IOException e) {
       Log.w(TAG, e);
+    }
+  }
+
+  protected List<ReactionRecord> parseReactions(@NonNull Cursor cursor) {
+    byte[] raw = cursor.getBlob(cursor.getColumnIndexOrThrow(REACTIONS));
+
+    if (raw != null) {
+      try {
+        return Stream.of(ReactionList.parseFrom(raw).getReactionsList())
+                     .map(r -> {
+                       return new ReactionRecord(r.getEmoji(),
+                                                 RecipientId.from(r.getAuthor()),
+                                                 r.getSentTime(),
+                                                 r.getReceivedTime());
+                     })
+                     .toList();
+      } catch (InvalidProtocolBufferException e) {
+        Log.w(TAG, "[parseReactions] Failed to parse reaction list!", e);
+        return Collections.emptyList();
+      }
+    } else {
+      return Collections.emptyList();
     }
   }
 
@@ -203,6 +316,62 @@ public abstract class MessagingDatabase extends Database implements MmsSmsColumn
       if (cursor != null)
         cursor.close();
     }
+  }
+
+  private static @NonNull ReactionList pruneByAuthor(@NonNull ReactionList reactionList, @NonNull RecipientId recipientId) {
+    List<ReactionList.Reaction> pruned = Stream.of(reactionList.getReactionsList())
+                                               .filterNot(r -> r.getAuthor() == recipientId.toLong())
+                                               .toList();
+
+    return reactionList.toBuilder()
+                       .clearReactions()
+                       .addAllReactions(pruned)
+                       .build();
+  }
+
+  private @NonNull Optional<ReactionList> getReactions(SQLiteDatabase db, long messageId) {
+    String[] projection = new String[]{ REACTIONS };
+    String   query      = ID + " = ?";
+    String[] args       = new String[]{String.valueOf(messageId)};
+
+    try (Cursor cursor = db.query(getTableName(), projection, query, args, null, null, null)) {
+      if (cursor != null && cursor.moveToFirst()) {
+        byte[] raw = cursor.getBlob(cursor.getColumnIndexOrThrow(REACTIONS));
+
+        if (raw != null) {
+          return Optional.of(ReactionList.parseFrom(raw));
+        }
+      }
+    } catch (InvalidProtocolBufferException e) {
+      Log.w(TAG, "[getRecipients] Failed to parse reaction list!", e);
+    }
+
+    return Optional.absent();
+  }
+
+  private void setReactions(@NonNull SQLiteDatabase db, long messageId, @NonNull ReactionList reactionList) {
+    ContentValues values = new ContentValues(1);
+    values.put(REACTIONS, reactionList.getReactionsList().isEmpty() ? null : reactionList.toByteArray());
+    values.put(REACTIONS_UNREAD, reactionList.getReactionsCount() != 0 ? 1 : 0);
+
+    String   query = ID + " = ?";
+    String[] args  = new String[] { String.valueOf(messageId) };
+
+    db.update(getTableName(), values, query, args);
+  }
+
+  private long getThreadId(@NonNull SQLiteDatabase db, long messageId) {
+    String[] projection = new String[]{ THREAD_ID };
+    String   query      = ID + " = ?";
+    String[] args       = new String[]{ String.valueOf(messageId) };
+
+    try (Cursor cursor = db.query(getTableName(), projection, query, args, null, null, null)) {
+      if (cursor != null && cursor.moveToFirst()) {
+        return cursor.getLong(cursor.getColumnIndexOrThrow(THREAD_ID));
+      }
+    }
+
+    return -1;
   }
 
   public static class SyncMessageId {

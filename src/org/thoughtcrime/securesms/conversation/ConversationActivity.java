@@ -49,6 +49,7 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
@@ -145,6 +146,7 @@ import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.identity.IdentityRecordList;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
+import org.thoughtcrime.securesms.database.model.ReactionRecord;
 import org.thoughtcrime.securesms.database.model.StickerRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.ReminderUpdateEvent;
@@ -311,6 +313,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private   ConversationSearchBottomBar searchNav;
   private   MenuItem                    searchViewItem;
   private   FrameLayout                 messageRequestOverlay;
+  private   ConversationReactionOverlay reactionOverlay;
 
   private   AttachmentTypeSelector attachmentTypeSelector;
   private   AttachmentManager      attachmentManager;
@@ -522,6 +525,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     saveDraft();
     if (securityUpdateReceiver != null)  unregisterReceiver(securityUpdateReceiver);
     super.onDestroy();
+  }
+
+  @Override
+  public boolean dispatchTouchEvent(MotionEvent ev) {
+    return reactionOverlay.applyTouchEvent(ev) || super.dispatchTouchEvent(ev);
   }
 
   @Override
@@ -1581,6 +1589,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     inputPanel             = ViewUtil.findById(this, R.id.bottom_panel);
     searchNav              = ViewUtil.findById(this, R.id.conversation_search_nav);
     messageRequestOverlay  = ViewUtil.findById(this, R.id.fragment_overlay_container);
+    reactionOverlay        = ViewUtil.findById(this, R.id.conversation_reaction_scrubber);
 
     ImageButton quickCameraToggle      = ViewUtil.findById(this, R.id.quick_camera_toggle);
     ImageButton inlineAttachmentButton = ViewUtil.findById(this, R.id.inline_attachment_button);
@@ -1636,6 +1645,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     searchNav.setEventListener(this);
 
     inlineAttachmentButton.setOnClickListener(v -> handleAddAttachment());
+
+    reactionOverlay.setOnReactionSelectedListener(this::onReactionSelected);
   }
 
   protected void initializeActionBar() {
@@ -1746,6 +1757,24 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                   EventBus.getDefault().removeStickyEvent(StickerPackInstallEvent.class);
                 })
                 .show(TooltipPopup.POSITION_ABOVE);
+  }
+
+
+  private void onReactionSelected(MessageRecord messageRecord, String emoji) {
+    final Context context = getApplicationContext();
+
+    SignalExecutors.BOUNDED.execute(() -> {
+      ReactionRecord oldRecord = Stream.of(messageRecord.getReactions())
+                                       .filter(record -> record.getAuthor().equals(Recipient.self().getId()))
+                                       .findFirst()
+                                       .orElse(null);
+
+      if (oldRecord != null && oldRecord.getEmoji().equals(emoji)) {
+        MessageSender.sendReactionRemoval(context, messageRecord.getId(), messageRecord.isMms(), oldRecord);
+      } else {
+        MessageSender.sendNewReaction(context, messageRecord.getId(), messageRecord.isMms(), emoji);
+      }
+    });
   }
 
   @Override
@@ -2751,6 +2780,33 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
           finish();
       }
     });
+  }
+
+  public void handleReaction(@NonNull View maskTarget,
+                             @NonNull MessageRecord messageRecord,
+                             @NonNull Toolbar.OnMenuItemClickListener toolbarListener,
+                             @NonNull ConversationReactionOverlay.OnHideListener onHideListener)
+  {
+    reactionOverlay.setOnToolbarItemClickedListener(toolbarListener);
+    reactionOverlay.setOnHideListener(onHideListener);
+    reactionOverlay.show(this, maskTarget, messageRecord);
+  }
+
+  @Override
+  public void onCursorChanged() {
+    if (!reactionOverlay.isShowing()) {
+      return;
+    }
+
+    SimpleTask.run(() -> {
+          //noinspection CodeBlock2Expr
+          return DatabaseFactory.getMmsSmsDatabase(this)
+                                .checkMessageExists(reactionOverlay.getMessageRecord());
+        }, messageExists -> {
+          if (!messageExists) {
+            reactionOverlay.hide();
+          }
+        });
   }
 
   @Override

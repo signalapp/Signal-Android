@@ -59,6 +59,7 @@ import org.thoughtcrime.securesms.database.StickerDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
+import org.thoughtcrime.securesms.database.model.ReactionRecord;
 import org.thoughtcrime.securesms.database.model.StickerRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupMessageProcessor;
@@ -241,12 +242,13 @@ public class PushDecryptJob extends BaseJob {
         SignalServiceDataMessage message        = content.getDataMessage().get();
         boolean                  isMediaMessage = message.getAttachments().isPresent() || message.getQuote().isPresent() || message.getSharedContacts().isPresent() || message.getPreviews().isPresent() || message.getSticker().isPresent();
 
-        if      (isInvalidMessage(message))     handleInvalidMessage(content.getSender(), content.getSenderDevice(), message.getGroupInfo(), content.getTimestamp(), smsMessageId);
-        else if (message.isEndSession())        handleEndSessionMessage(content, smsMessageId);
-        else if (message.isGroupUpdate())       handleGroupMessage(content, message, smsMessageId);
-        else if (message.isExpirationUpdate())  handleExpirationUpdate(content, message, smsMessageId);
-        else if (isMediaMessage)                handleMediaMessage(content, message, smsMessageId);
-        else if (message.getBody().isPresent()) handleTextMessage(content, message, smsMessageId);
+        if      (isInvalidMessage(message))         handleInvalidMessage(content.getSender(), content.getSenderDevice(), message.getGroupInfo(), content.getTimestamp(), smsMessageId);
+        else if (message.isEndSession())            handleEndSessionMessage(content, smsMessageId);
+        else if (message.isGroupUpdate())           handleGroupMessage(content, message, smsMessageId);
+        else if (message.isExpirationUpdate())      handleExpirationUpdate(content, message, smsMessageId);
+        else if (message.getReaction().isPresent()) handleReaction(content, message);
+        else if (isMediaMessage)                    handleMediaMessage(content, message, smsMessageId);
+        else if (message.getBody().isPresent())     handleTextMessage(content, message, smsMessageId);
 
         if (message.getGroupInfo().isPresent() && groupDatabase.isUnknownGroup(GroupUtil.getEncodedId(message.getGroupInfo().get().getGroupId(), false))) {
           handleUnknownGroupMessage(content, message.getGroupInfo().get());
@@ -525,6 +527,30 @@ public class PushDecryptJob extends BaseJob {
     }
   }
 
+  private void handleReaction(@NonNull SignalServiceContent content, @NonNull SignalServiceDataMessage message) {
+    SignalServiceDataMessage.Reaction reaction = message.getReaction().get();
+
+    Recipient     targetAuthor  = Recipient.externalPush(context, reaction.getTargetAuthor());
+    MessageRecord targetMessage = DatabaseFactory.getMmsSmsDatabase(context).getMessageFor(reaction.getTargetSentTimestamp(), targetAuthor.getId());
+
+    if (targetMessage != null) {
+      Recipient         reactionAuthor = Recipient.externalPush(context, content.getSender());
+      MessagingDatabase db             = targetMessage.isMms() ? DatabaseFactory.getMmsDatabase(context) : DatabaseFactory.getSmsDatabase(context);
+
+      if (reaction.isRemove()) {
+        db.deleteReaction(targetMessage.getId(), reactionAuthor.getId());
+        MessageNotifier.updateNotification(context);
+      } else {
+        ReactionRecord reactionRecord = new ReactionRecord(reaction.getEmoji(), reactionAuthor.getId(), message.getTimestamp(), System.currentTimeMillis());
+        db.addReaction(targetMessage.getId(), reactionRecord);
+        MessageNotifier.updateNotification(context, targetMessage.getThreadId(), false);
+      }
+
+    } else {
+      Log.w(TAG, "[handleReaction] Could not find matching message! timestamp: " + reaction.getTargetSentTimestamp() + "  author: " + targetAuthor.getId());
+    }
+  }
+
   private void handleSynchronizeVerifiedMessage(@NonNull VerifiedMessage verifiedMessage) {
     IdentityUtil.processVerifiedMessage(context, verifiedMessage);
   }
@@ -599,6 +625,10 @@ public class PushDecryptJob extends BaseJob {
         threadId = GroupMessageProcessor.process(context, content, message.getMessage(), true);
       } else if (message.getMessage().isExpirationUpdate()) {
         threadId = handleSynchronizeSentExpirationUpdate(message);
+      } else if (message.getMessage().getReaction().isPresent()) {
+        handleReaction(content, message.getMessage());
+        threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(getSyncMessageDestination(message));
+        threadId = threadId != -1 ? threadId : null;
       } else if (message.getMessage().getAttachments().isPresent() || message.getMessage().getQuote().isPresent() || message.getMessage().getPreviews().isPresent() || message.getMessage().getSticker().isPresent()) {
         threadId = handleSynchronizeSentMediaMessage(message);
       } else {

@@ -278,6 +278,9 @@ public class ThreadDatabase extends Database {
     final List<MarkedMessageInfo> smsRecords = DatabaseFactory.getSmsDatabase(context).setAllMessagesRead();
     final List<MarkedMessageInfo> mmsRecords = DatabaseFactory.getMmsDatabase(context).setAllMessagesRead();
 
+    DatabaseFactory.getSmsDatabase(context).setAllReactionsSeen();
+    DatabaseFactory.getMmsDatabase(context).setAllReactionsSeen();
+
     notifyConversationListListeners();
 
     return Util.concatenatedList(smsRecords, mmsRecords);
@@ -311,6 +314,9 @@ public class ThreadDatabase extends Database {
 
     final List<MarkedMessageInfo> smsRecords = DatabaseFactory.getSmsDatabase(context).setMessagesRead(threadId);
     final List<MarkedMessageInfo> mmsRecords = DatabaseFactory.getMmsDatabase(context).setMessagesRead(threadId);
+
+    DatabaseFactory.getSmsDatabase(context).setReactionsSeen(threadId);
+    DatabaseFactory.getMmsDatabase(context).setReactionsSeen(threadId);
 
     notifyConversationListListeners();
 
