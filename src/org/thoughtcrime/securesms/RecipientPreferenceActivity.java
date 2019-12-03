@@ -412,7 +412,9 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
         if (privacyCategory    != null) privacyCategory.setVisible(false);
         if (divider            != null) divider.setVisible(false);
         if (callCategory       != null) callCategory.setVisible(false);
-      } else if (recipient.isGroup()) {
+      }
+
+      if (recipient.isGroup()) {
         if (colorPreference    != null) colorPreference.setVisible(false);
         if (identityPreference != null) identityPreference.setVisible(false);
         if (callCategory       != null) callCategory.setVisible(false);
