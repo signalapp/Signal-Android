@@ -51,9 +51,12 @@ public final class AudioView extends FrameLayout implements AudioSlidePlayer.Lis
   @NonNull private final View                progressAndPlay;
   @NonNull private final LottieAnimationView playPauseButton;
   @NonNull private final ImageView           downloadButton;
-  @NonNull private final ProgressWheel       downloadProgress;
+  @NonNull private final ProgressWheel       circleProgress;
   @NonNull private final SeekBar             seekBar;
-  @NonNull private final TextView            timestamp;
+           private final boolean             smallView;
+           private final boolean             autoRewind;
+
+  @Nullable private final TextView timestamp;
 
   @Nullable private SlideClickListener downloadListener;
   @Nullable private AudioSlidePlayer   audioSlidePlayer;
@@ -71,27 +74,35 @@ public final class AudioView extends FrameLayout implements AudioSlidePlayer.Lis
 
   public AudioView(Context context, AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
-    inflate(context, R.layout.audio_view, this);
+    TypedArray typedArray = null;
+    try {
+      typedArray = context.getTheme().obtainStyledAttributes(attrs, R.styleable.AudioView, 0, 0);
 
-    this.container         = findViewById(R.id.audio_widget_container);
-    this.controlToggle     = findViewById(R.id.control_toggle);
-    this.playPauseButton   = findViewById(R.id.play);
-    this.progressAndPlay   = findViewById(R.id.progress_and_play);
-    this.downloadButton    = findViewById(R.id.download);
-    this.downloadProgress  = findViewById(R.id.download_progress);
-    this.seekBar           = findViewById(R.id.seek);
-    this.timestamp         = findViewById(R.id.timestamp);
+      smallView  = typedArray.getBoolean(R.styleable.AudioView_small, false);
+      autoRewind = typedArray.getBoolean(R.styleable.AudioView_autoRewind, false);
 
-    lottieDirection = REVERSE;
-    this.playPauseButton.setOnClickListener(new PlayPauseClickedListener());
-    this.seekBar.setOnSeekBarChangeListener(new SeekBarModifiedListener());
+      inflate(context, smallView ? R.layout.audio_view_small : R.layout.audio_view, this);
 
-    if (attrs != null) {
-      TypedArray typedArray = context.getTheme().obtainStyledAttributes(attrs, R.styleable.AudioView, 0, 0);
+      this.container       = findViewById(R.id.audio_widget_container);
+      this.controlToggle   = findViewById(R.id.control_toggle);
+      this.playPauseButton = findViewById(R.id.play);
+      this.progressAndPlay = findViewById(R.id.progress_and_play);
+      this.downloadButton  = findViewById(R.id.download);
+      this.circleProgress  = findViewById(R.id.circle_progress);
+      this.seekBar         = findViewById(R.id.seek);
+      this.timestamp       = findViewById(R.id.timestamp);
+
+      lottieDirection = REVERSE;
+      this.playPauseButton.setOnClickListener(new PlayPauseClickedListener());
+      this.seekBar.setOnSeekBarChangeListener(new SeekBarModifiedListener());
+
       setTint(typedArray.getColor(R.styleable.AudioView_foregroundTintColor, Color.WHITE),
               typedArray.getColor(R.styleable.AudioView_backgroundTintColor, Color.WHITE));
       container.setBackgroundColor(typedArray.getColor(R.styleable.AudioView_widgetBackground, Color.TRANSPARENT));
-      typedArray.recycle();
+    } finally {
+      if (typedArray != null) {
+        typedArray.recycle();
+      }
     }
   }
 
@@ -115,14 +126,14 @@ public final class AudioView extends FrameLayout implements AudioSlidePlayer.Lis
       controlToggle.displayQuick(downloadButton);
       seekBar.setEnabled(false);
       downloadButton.setOnClickListener(new DownloadClickedListener(audio));
-      if (downloadProgress.isSpinning()) downloadProgress.stopSpinning();
+      if (circleProgress.isSpinning()) circleProgress.stopSpinning();
     } else if (showControls && audio.getTransferState() == AttachmentDatabase.TRANSFER_PROGRESS_STARTED) {
       controlToggle.displayQuick(progressAndPlay);
       seekBar.setEnabled(false);
-      downloadProgress.spin();
+      circleProgress.spin();
     } else {
       seekBar.setEnabled(true);
-      if (downloadProgress.isSpinning()) downloadProgress.stopSpinning();
+      if (circleProgress.isSpinning()) circleProgress.stopSpinning();
       showPlayButton();
       lottieDirection = REVERSE;
       playPauseButton.cancelAnimation();
@@ -153,9 +164,9 @@ public final class AudioView extends FrameLayout implements AudioSlidePlayer.Lis
     isPlaying = false;
     togglePauseToPlay();
 
-    if (seekBar.getProgress() + 5 >= seekBar.getMax()) {
+    if (autoRewind || seekBar.getProgress() + 5 >= seekBar.getMax()) {
       backwardsCounter = 4;
-      onProgress(0.0, 0);
+      rewind();
     }
   }
 
@@ -187,16 +198,26 @@ public final class AudioView extends FrameLayout implements AudioSlidePlayer.Lis
 
   @Override
   public void onProgress(double progress, long millis) {
-    int seekProgress = (int)Math.floor(progress * this.seekBar.getMax());
+    int seekProgress = (int) Math.floor(progress * seekBar.getMax());
 
     if (seekProgress > seekBar.getProgress() || backwardsCounter > 3) {
       backwardsCounter = 0;
-      this.seekBar.setProgress(seekProgress);
-      this.timestamp.setText(String.format(Locale.getDefault(), "%02d:%02d",
-                                           TimeUnit.MILLISECONDS.toMinutes(millis),
-                                           TimeUnit.MILLISECONDS.toSeconds(millis)));
+      seekBar.setProgress(seekProgress);
+      updateProgress((float) progress, millis);
     } else {
       backwardsCounter++;
+    }
+  }
+
+  private void updateProgress(float progress, long millis) {
+    if (timestamp != null) {
+      timestamp.setText(String.format(Locale.getDefault(), "%02d:%02d",
+                                      TimeUnit.MILLISECONDS.toMinutes(millis),
+                                      TimeUnit.MILLISECONDS.toSeconds(millis)));
+    }
+
+    if (smallView) {
+      circleProgress.setInstantProgress(seekBar.getProgress() == 0 ? 1 : progress);
     }
   }
 
@@ -206,9 +227,11 @@ public final class AudioView extends FrameLayout implements AudioSlidePlayer.Lis
                                           new LottieValueCallback<>(new SimpleColorFilter(foregroundTint)));
 
     this.downloadButton.setColorFilter(foregroundTint, PorterDuff.Mode.SRC_IN);
-    this.downloadProgress.setBarColor(foregroundTint);
+    this.circleProgress.setBarColor(foregroundTint);
 
-    this.timestamp.setTextColor(foregroundTint);
+    if (this.timestamp != null) {
+      this.timestamp.setTextColor(foregroundTint);
+    }
     this.seekBar.getProgressDrawable().setColorFilter(foregroundTint, PorterDuff.Mode.SRC_IN);
     this.seekBar.getThumb().setColorFilter(foregroundTint, PorterDuff.Mode.SRC_IN);
   }
@@ -247,10 +270,20 @@ public final class AudioView extends FrameLayout implements AudioSlidePlayer.Lis
   }
 
   private void showPlayButton() {
-    downloadProgress.setInstantProgress(1);
-    downloadProgress.setVisibility(VISIBLE);
+    if (!smallView || seekBar.getProgress() == 0) {
+      circleProgress.setInstantProgress(1);
+    }
+    circleProgress.setVisibility(VISIBLE);
     playPauseButton.setVisibility(VISIBLE);
     controlToggle.displayQuick(progressAndPlay);
+  }
+
+  public void stopPlaybackAndReset() {
+    if (this.audioSlidePlayer != null && isPlaying) {
+      this.audioSlidePlayer.stop();
+      togglePauseToPlay();
+    }
+    rewind();
   }
 
   private class PlayPauseClickedListener implements View.OnClickListener {
@@ -272,9 +305,17 @@ public final class AudioView extends FrameLayout implements AudioSlidePlayer.Lis
         if (audioSlidePlayer != null) {
           togglePauseToPlay();
           audioSlidePlayer.stop();
+          if (autoRewind) {
+            rewind();
+          }
         }
       }
     }
+  }
+
+  private void rewind() {
+    seekBar.setProgress(0);
+    updateProgress(0, 0);
   }
 
   private class DownloadClickedListener implements View.OnClickListener {
@@ -327,7 +368,7 @@ public final class AudioView extends FrameLayout implements AudioSlidePlayer.Lis
   @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
   public void onEventAsync(final PartProgressEvent event) {
     if (audioSlidePlayer != null && event.attachment.equals(audioSlidePlayer.getAudioSlide().asAttachment())) {
-      downloadProgress.setInstantProgress(((float) event.progress) / event.total);
+      circleProgress.setInstantProgress(((float) event.progress) / event.total);
     }
   }
 

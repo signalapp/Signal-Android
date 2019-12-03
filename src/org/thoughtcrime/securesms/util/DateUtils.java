@@ -17,9 +17,9 @@
 package org.thoughtcrime.securesms.util;
 
 import android.content.Context;
+import android.text.format.DateFormat;
 
 import androidx.annotation.NonNull;
-import android.text.format.DateFormat;
 
 import org.thoughtcrime.securesms.R;
 
@@ -128,8 +128,12 @@ public class DateUtils extends android.text.format.DateUtils {
     } else if (isYesterday(timestamp)) {
       return context.getString(R.string.DateUtils_yesterday);
     } else {
-      return getFormattedDateTime(timestamp, "EEE, MMM d, yyyy", locale);
+      return formatDate(locale, timestamp);
     }
+  }
+
+  public static String formatDate(@NonNull Locale locale, long timestamp) {
+    return getFormattedDateTime(timestamp, "EEE, MMM d, yyyy", locale);
   }
 
   public static boolean isSameDay(long t1, long t2) {

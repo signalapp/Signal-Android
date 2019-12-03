@@ -23,10 +23,13 @@
         <item name="contact_selection_header_text">@color/textsecure_primary_dark</item>
 
         <item name="media_overview_toolbar_background">@color/white</item>
+        <item name="media_overview_toolbar_secondary_background">@color/core_grey_02</item>
         <item name="media_overview_toolbar_foreground">@color/core_grey_70</item>
         <item name="media_overview_header_foreground">@color/core_grey_50</item>
         <item name="media_overview_document_primary">@color/core_grey_90</item>
         <item name="media_overview_document_secondary">@color/core_grey_60</item>
+        <item name="media_overview_grid_view_icon">@drawable/ic_grid_outline_20</item>
+        <item name="media_overview_list_view_icon">@drawable/ic_list_outline_20</item>
     </style>
 
     <style name="TextSecure.DarkNoActionBar" parent="@style/TextSecure.BaseDarkNoActionBar">
@@ -59,10 +62,13 @@
         <item name="contact_selection_header_text">#66eeeeee</item>
 
         <item name="media_overview_toolbar_background">@color/black</item>
+        <item name="media_overview_toolbar_secondary_background">@color/core_grey_80</item>
         <item name="media_overview_toolbar_foreground">@color/white</item>
         <item name="media_overview_header_foreground">@color/core_grey_10</item>
         <item name="media_overview_document_primary">@color/core_grey_05</item>
         <item name="media_overview_document_secondary">@color/core_grey_25</item>
+        <item name="media_overview_grid_view_icon">@drawable/ic_grid_solid_20</item>
+        <item name="media_overview_list_view_icon">@drawable/ic_list_solid_20</item>
     </style>
 
     <style name="Signal.Light.NoActionBar.Invite" parent="Base.Signal.Light.NoActionBar.Invite">
@@ -332,6 +338,7 @@
         <item name="privacy_icon">@drawable/ic_lock_outline_24</item>
         <item name="appearance_icon">@drawable/ic_appearance_outline_24</item>
         <item name="chats_and_media_icon">@drawable/ic_photo_outline_24</item>
+        <item name="data_and_storage_icon">@drawable/ic_archive_outline_24dp</item>
         <item name="linked_devices_icon">@drawable/ic_linked_devices_24</item>
         <item name="advanced_icon">@drawable/ic_advanced_24</item>
         <item name="safety_number_icon">@drawable/ic_safety_number_outline_24</item>
@@ -572,6 +579,7 @@
         <item name="privacy_icon">@drawable/ic_lock_solid_24</item>
         <item name="appearance_icon">@drawable/ic_appearance_solid_24</item>
         <item name="chats_and_media_icon">@drawable/ic_photo_solid_24</item>
+        <item name="data_and_storage_icon">@drawable/ic_archive_solid_24dp</item>
         <item name="linked_devices_icon">@drawable/ic_linked_devices_24</item>
         <item name="advanced_icon">@drawable/ic_advanced_24</item>
         <item name="safety_number_icon">@drawable/ic_safety_number_solid_24</item>

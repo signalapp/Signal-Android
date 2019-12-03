@@ -19,20 +19,21 @@ package org.thoughtcrime.securesms.database;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.DataSetObserver;
+import android.view.View;
+import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.ViewHolder;
-import android.view.View;
-import android.view.ViewGroup;
 
 /**
  * RecyclerView.Adapter that manages a Cursor, comparable to the CursorAdapter usable in ListView/GridView.
  */
 public abstract class CursorRecyclerViewAdapter<VH extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-  private final Context context;
+  private final @NonNull Context context;
   private final DataSetObserver observer = new AdapterDataSetObserver();
 
   @VisibleForTesting static final int  HEADER_TYPE = Integer.MIN_VALUE;
@@ -40,7 +41,7 @@ public abstract class CursorRecyclerViewAdapter<VH extends RecyclerView.ViewHold
   @VisibleForTesting static final long HEADER_ID   = Long.MIN_VALUE;
   @VisibleForTesting static final long FOOTER_ID   = Long.MIN_VALUE + 1;
 
-  private           Cursor  cursor;
+  private @Nullable Cursor  cursor;
   private           boolean valid;
   private @Nullable View    header;
   private @Nullable View    footer;
@@ -51,7 +52,7 @@ public abstract class CursorRecyclerViewAdapter<VH extends RecyclerView.ViewHold
     }
   }
 
-  protected CursorRecyclerViewAdapter(Context context, Cursor cursor) {
+  protected CursorRecyclerViewAdapter(@NonNull Context context, @Nullable Cursor cursor) {
     this.context = context;
     this.cursor = cursor;
     if (cursor != null) {

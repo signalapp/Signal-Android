@@ -334,10 +334,9 @@
               android:launchMode="singleTask"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
-    <activity android:name=".MediaOverviewActivity"
+    <activity android:name=".mediaoverview.MediaOverviewActivity"
               android:theme="@style/TextSecure.LightNoActionBar"
               android:windowSoftInputMode="stateHidden"
-              android:launchMode="singleTask"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".DummyActivity"

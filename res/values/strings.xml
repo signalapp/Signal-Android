@@ -88,6 +88,9 @@
     <string name="BucketedThreadMedia_Yesterday">Yesterday</string>
     <string name="BucketedThreadMedia_This_week">This week</string>
     <string name="BucketedThreadMedia_This_month">This month</string>
+    <string name="BucketedThreadMedia_Large">Large</string>
+    <string name="BucketedThreadMedia_Medium">Medium</string>
+    <string name="BucketedThreadMedia_Small">Small</string>
 
     <!-- CallScreen -->
     <string name="CallScreen_Incoming_call">Incoming call</string>
@@ -351,6 +354,10 @@
 
     <!-- DocumentView -->
     <string name="DocumentView_unknown_file">Unknown file</string>
+    <string name="DocumentView_unnamed_file">Unnamed file</string>
+    <string name="DocumentView_audio_file">Audio file</string>
+    <string name="DocumentView_image_file">Image file</string>
+    <string name="DocumentView_video_file">Video file</string>
 
     <!-- DozeReminder -->
     <string name="DozeReminder_optimize_for_missing_play_services">Optimize for missing Play Services</string>
@@ -480,18 +487,28 @@
     <!-- MediaOverviewActivity -->
     <string name="MediaOverviewActivity_Media">Media</string>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
-        <item quantity="one">Delete selected message?</item>
-        <item quantity="other">Delete selected messages?</item>
+        <item quantity="one">Delete selected item?</item>
+        <item quantity="other">Delete selected items?</item>
     </plurals>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-        <item quantity="one">This will permanently delete the selected message.</item>
-        <item quantity="other">This will permanently delete all %1$d selected messages.</item>
+        <item quantity="one">This will permanently delete the selected file. Any message text associated with this item will also be deleted.</item>
+        <item quantity="other">This will permanently delete all %1$d selected files. Any message text associated with these items will also be deleted.</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">Deleting</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">Deleting messages…</string>
-    <string name="MediaOverviewActivity_Documents">Documents</string>
+    <string name="MediaOverviewActivity_Files">Files</string>
     <string name="MediaOverviewActivity_Select_all">Select all</string>
     <string name="MediaOverviewActivity_collecting_attachments">Collecting attachments…</string>
+    <string name="MediaOverviewActivity_Audio">Audio</string>
+    <string name="MediaOverviewActivity_All">All</string>
+    <string name="MediaOverviewActivity_Sort_by">Sort by</string>
+    <string name="MediaOverviewActivity_Newest">Newest</string>
+    <string name="MediaOverviewActivity_Oldest">Oldest</string>
+    <string name="MediaOverviewActivity_Storage_used">Storage used</string>
+    <string name="MediaOverviewActivity_All_storage_use">All storage use</string>
+    <string name="MediaOverviewActivity_Grid_view_description">Grid view</string>
+    <string name="MediaOverviewActivity_List_view_description">List view</string>
+    <string name="MediaOverviewActivity_Selected_description">Selected</string>
 
     <!--- NotificationBarManager -->
     <string name="NotificationBarManager_signal_call_in_progress">Signal call in progress</string>
@@ -872,6 +889,7 @@
     <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Unable to save to external storage without permissions</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_title">Delete message?</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_message">This will permanently delete this message.</string>
+    <string name="MediaPreviewActivity_s_to_s">%1$s to %2$s</string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d new messages in %2$d conversations</string>
@@ -929,6 +947,10 @@
     <!-- SingleRecipientNotificationBuilder -->
     <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
     <string name="SingleRecipientNotificationBuilder_new_message">New message</string>
+
+    <!-- ThumbnailView -->
+    <string name="ThumbnailView_Play_video_description">Play video</string>
+    <string name="ThumbnailView_Has_a_caption_description">Has a caption</string>
 
     <!-- TransferControlView -->
     <plurals name="TransferControlView_n_items">
@@ -1393,6 +1415,7 @@
     <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Automatically delete older messages once a conversation exceeds a specified length</string>
     <string name="preferences__delete_old_messages">Delete old messages</string>
     <string name="preferences__chats">Chats and media</string>
+    <string name="preferences__storage">Storage</string>
     <string name="preferences__conversation_length_limit">Conversation length limit</string>
     <string name="preferences__trim_all_conversations_now">Trim all conversations now</string>
     <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Scan through all conversations and enforce conversation length limits</string>
@@ -1421,6 +1444,12 @@
     <string name="preferences_chats__when_roaming">When roaming</string>
     <string name="preferences_chats__media_auto_download">Media auto-download</string>
     <string name="preferences_chats__message_trimming">Message trimming</string>
+    <string name="preferences_storage__storage_usage">Storage usage</string>
+    <string name="preferences_storage__photos">Photos</string>
+    <string name="preferences_storage__videos">Videos</string>
+    <string name="preferences_storage__files">Files</string>
+    <string name="preferences_storage__audio">Audio</string>
+    <string name="preferences_storage__review_storage">Review storage</string>
     <string name="preferences_advanced__use_system_emoji">Use system emoji</string>
     <string name="preferences_advanced__disable_signal_built_in_emoji_support">Disable Signal\'s built-in emoji support</string>
     <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Relay all calls through the Signal server to avoid revealing your IP address to your contact. Enabling will reduce call quality.</string>
@@ -1575,9 +1604,6 @@
     <string name="media_preview__save_title">Save</string>
     <string name="media_preview__forward_title">Forward</string>
     <string name="media_preview__all_media_title">All media</string>
-
-    <!-- media_overview -->
-    <string name="media_overview_documents_fragment__no_documents_found">No documents</string>
 
     <!-- media_preview_activity -->
     <string name="media_preview_activity__media_content_description">Media preview</string>

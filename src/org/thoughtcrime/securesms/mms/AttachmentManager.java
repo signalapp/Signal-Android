@@ -43,7 +43,6 @@ import org.thoughtcrime.securesms.MediaPreviewActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.TransportOption;
 import org.thoughtcrime.securesms.attachments.Attachment;
-import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.blurhash.BlurHash;
 import org.thoughtcrime.securesms.components.AudioView;
 import org.thoughtcrime.securesms.components.DocumentView;
@@ -497,7 +496,6 @@ public class AttachmentManager {
       intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
       intent.putExtra(MediaPreviewActivity.SIZE_EXTRA, slide.asAttachment().getSize());
       intent.putExtra(MediaPreviewActivity.CAPTION_EXTRA, slide.getCaption().orNull());
-      intent.putExtra(MediaPreviewActivity.OUTGOING_EXTRA, true);
       intent.setDataAndType(slide.getUri(), slide.getContentType());
 
       context.startActivity(intent);

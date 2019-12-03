@@ -3,18 +3,21 @@ package org.thoughtcrime.securesms.database;
 import android.content.Context;
 import android.database.ContentObserver;
 import android.database.Cursor;
+
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import net.sqlcipher.database.SQLiteDatabase;
 
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.util.MediaUtil;
 
 import java.util.List;
 
 public class MediaDatabase extends Database {
+
+    public static final int ALL_THREADS = -1;
 
     private static final String BASE_MEDIA_QUERY = "SELECT " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.ROW_ID + " AS " + AttachmentDatabase.ROW_ID + ", "
         + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.CONTENT_TYPE + ", "
@@ -44,19 +47,28 @@ public class MediaDatabase extends Database {
         + MmsDatabase.TABLE_NAME + "." + MmsDatabase.MESSAGE_BOX + ", "
         + MmsDatabase.TABLE_NAME + "." + MmsDatabase.DATE_SENT + ", "
         + MmsDatabase.TABLE_NAME + "." + MmsDatabase.DATE_RECEIVED + ", "
+        + MmsDatabase.TABLE_NAME + "." + MmsDatabase.THREAD_ID + ", "
         + MmsDatabase.TABLE_NAME + "." + MmsDatabase.RECIPIENT_ID + " "
         + "FROM " + AttachmentDatabase.TABLE_NAME + " LEFT JOIN " + MmsDatabase.TABLE_NAME
         + " ON " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.MMS_ID + " = " + MmsDatabase.TABLE_NAME + "." + MmsDatabase.ID + " "
         + "WHERE " + AttachmentDatabase.MMS_ID + " IN (SELECT " + MmsSmsColumns.ID
         + " FROM " + MmsDatabase.TABLE_NAME
-        + " WHERE " + MmsDatabase.THREAD_ID + " = ?) AND (%s) AND "
+        + " WHERE " + MmsDatabase.THREAD_ID + " __EQUALITY__ ?) AND (%s) AND "
         + MmsDatabase.VIEW_ONCE + " = 0 AND "
         + AttachmentDatabase.DATA + " IS NOT NULL AND "
         + AttachmentDatabase.QUOTE + " = 0 AND "
-        + AttachmentDatabase.STICKER_PACK_ID + " IS NULL "
-        + "ORDER BY " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.ROW_ID + " DESC";
+        + AttachmentDatabase.STICKER_PACK_ID + " IS NULL ";
+
+   private static final String UNIQUE_MEDIA_QUERY = "SELECT "
+        + "MAX(" + AttachmentDatabase.SIZE + ") as " + AttachmentDatabase.SIZE + ", "
+        + AttachmentDatabase.CONTENT_TYPE + " "
+        + "FROM " + AttachmentDatabase.TABLE_NAME + " "
+        + "WHERE " + AttachmentDatabase.STICKER_PACK_ID + " IS NULL "
+        + "GROUP BY " + AttachmentDatabase.DATA;
 
   private static final String GALLERY_MEDIA_QUERY  = String.format(BASE_MEDIA_QUERY, AttachmentDatabase.CONTENT_TYPE + " LIKE 'image/%' OR " + AttachmentDatabase.CONTENT_TYPE + " LIKE 'video/%'");
+  private static final String AUDIO_MEDIA_QUERY    = String.format(BASE_MEDIA_QUERY, AttachmentDatabase.CONTENT_TYPE + " LIKE 'audio/%'");
+  private static final String ALL_MEDIA_QUERY      = String.format(BASE_MEDIA_QUERY, AttachmentDatabase.CONTENT_TYPE + " NOT LIKE 'text/x-signal-plain'");
   private static final String DOCUMENT_MEDIA_QUERY = String.format(BASE_MEDIA_QUERY, AttachmentDatabase.CONTENT_TYPE + " NOT LIKE 'image/%' AND " +
                                                                                      AttachmentDatabase.CONTENT_TYPE + " NOT LIKE 'video/%' AND " +
                                                                                      AttachmentDatabase.CONTENT_TYPE + " NOT LIKE 'audio/%' AND " +
@@ -66,11 +78,44 @@ public class MediaDatabase extends Database {
     super(context, databaseHelper);
   }
 
-  public Cursor getGalleryMediaForThread(long threadId) {
+  public @NonNull Cursor getGalleryMediaForThread(long threadId, @NonNull Sorting sorting) {
     SQLiteDatabase database = databaseHelper.getReadableDatabase();
-    Cursor cursor = database.rawQuery(GALLERY_MEDIA_QUERY, new String[]{threadId+""});
+    String         query    = sorting.applyToQuery(applyEqualityOperator(threadId, GALLERY_MEDIA_QUERY));
+    String[]       args     = {threadId + ""};
+    Cursor         cursor   = database.rawQuery(query, args);
     setNotifyConverationListeners(cursor, threadId);
     return cursor;
+  }
+
+  public @NonNull Cursor getDocumentMediaForThread(long threadId, @NonNull Sorting sorting) {
+    SQLiteDatabase database = databaseHelper.getReadableDatabase();
+    String         query    = sorting.applyToQuery(applyEqualityOperator(threadId, DOCUMENT_MEDIA_QUERY));
+    String[]       args     = {threadId + ""};
+    Cursor         cursor   = database.rawQuery(query, args);
+    setNotifyConverationListeners(cursor, threadId);
+    return cursor;
+  }
+
+  public @NonNull Cursor getAudioMediaForThread(long threadId, @NonNull Sorting sorting) {
+    SQLiteDatabase database = databaseHelper.getReadableDatabase();
+    String         query    = sorting.applyToQuery(applyEqualityOperator(threadId, AUDIO_MEDIA_QUERY));
+    String[]       args     = {threadId + ""};
+    Cursor         cursor   = database.rawQuery(query, args);
+    setNotifyConverationListeners(cursor, threadId);
+    return cursor;
+  }
+
+  public @NonNull Cursor getAllMediaForThread(long threadId, @NonNull Sorting sorting) {
+    SQLiteDatabase database = databaseHelper.getReadableDatabase();
+    String         query    = sorting.applyToQuery(applyEqualityOperator(threadId, ALL_MEDIA_QUERY));
+    String[]       args     = {threadId + ""};
+    Cursor         cursor   = database.rawQuery(query, args);
+    setNotifyConverationListeners(cursor, threadId);
+    return cursor;
+  }
+
+  private static String applyEqualityOperator(long threadId, String query) {
+    return query.replace("__EQUALITY__", threadId == ALL_THREADS ? "!=" : "=");
   }
 
   public void subscribeToMediaChanges(@NonNull ContentObserver observer) {
@@ -81,23 +126,55 @@ public class MediaDatabase extends Database {
     context.getContentResolver().unregisterContentObserver(observer);
   }
 
-  public Cursor getDocumentMediaForThread(long threadId) {
-    SQLiteDatabase database = databaseHelper.getReadableDatabase();
-    Cursor cursor = database.rawQuery(DOCUMENT_MEDIA_QUERY, new String[]{threadId+""});
-    setNotifyConverationListeners(cursor, threadId);
-    return cursor;
+  public StorageBreakdown getStorageBreakdown() {
+    StorageBreakdown storageBreakdown = new StorageBreakdown();
+    SQLiteDatabase   database         = databaseHelper.getReadableDatabase();
+
+    try (Cursor cursor = database.rawQuery(UNIQUE_MEDIA_QUERY, new String[0])) {
+      int sizeColumn        = cursor.getColumnIndexOrThrow(AttachmentDatabase.SIZE);
+      int contentTypeColumn = cursor.getColumnIndexOrThrow(AttachmentDatabase.CONTENT_TYPE);
+
+      while (cursor.moveToNext()) {
+        int    size = cursor.getInt(sizeColumn);
+        String type = cursor.getString(contentTypeColumn);
+
+        switch (MediaUtil.getSlideTypeFromContentType(type)) {
+          case GIF:
+          case IMAGE:
+          case MMS:
+            storageBreakdown.photoSize += size;
+            break;
+          case VIDEO:
+            storageBreakdown.videoSize += size;
+            break;
+          case AUDIO:
+            storageBreakdown.audioSize += size;
+            break;
+          case LONG_TEXT:
+          case DOCUMENT:
+            storageBreakdown.documentSize += size;
+            break;
+          default:
+            break;
+        }
+      }
+    }
+
+    return storageBreakdown;
   }
 
   public static class MediaRecord {
 
     private final DatabaseAttachment attachment;
     private final RecipientId        recipientId;
+    private final long               threadId;
     private final long               date;
     private final boolean            outgoing;
 
-    private MediaRecord(DatabaseAttachment attachment, @NonNull RecipientId recipientId, long date, boolean outgoing) {
+    private MediaRecord(DatabaseAttachment attachment, @NonNull RecipientId recipientId, long threadId, long date, boolean outgoing) {
       this.attachment  = attachment;
       this.recipientId = recipientId;
+      this.threadId    = threadId;
       this.date        = date;
       this.outgoing    = outgoing;
     }
@@ -106,6 +183,7 @@ public class MediaDatabase extends Database {
       AttachmentDatabase       attachmentDatabase = DatabaseFactory.getAttachmentDatabase(context);
       List<DatabaseAttachment> attachments        = attachmentDatabase.getAttachment(cursor);
       RecipientId              recipientId        = RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.RECIPIENT_ID)));
+      long                     threadId           = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.THREAD_ID));
       boolean                  outgoing           = MessagingDatabase.Types.isOutgoingMessageType(cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.MESSAGE_BOX)));
 
       long date;
@@ -116,7 +194,7 @@ public class MediaDatabase extends Database {
         date = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.DATE_RECEIVED));
       }
 
-      return new MediaRecord(attachments != null && attachments.size() > 0 ? attachments.get(0) : null, recipientId, date, outgoing);
+      return new MediaRecord(attachments != null && attachments.size() > 0 ? attachments.get(0) : null, recipientId, threadId, date, outgoing);
     }
 
     public DatabaseAttachment getAttachment() {
@@ -131,6 +209,10 @@ public class MediaDatabase extends Database {
       return recipientId;
     }
 
+    public long getThreadId() {
+      return threadId;
+    }
+
     public long getDate() {
       return date;
     }
@@ -138,8 +220,48 @@ public class MediaDatabase extends Database {
     public boolean isOutgoing() {
       return outgoing;
     }
-
   }
 
+  public enum Sorting {
+    Newest (AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.ROW_ID + " DESC"),
+    Oldest (AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.ROW_ID + " ASC" ),
+    Largest(AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.SIZE   + " DESC");
 
+    private final String postFix;
+
+    Sorting(@NonNull String order) {
+      postFix = " ORDER BY " + order;
+    }
+
+    private String applyToQuery(@NonNull String query) {
+      return query + postFix;
+    }
+
+    public boolean isRelatedToFileSize() {
+      return this == Largest;
+    }
+  }
+
+  public final static class StorageBreakdown {
+    private long photoSize;
+    private long videoSize;
+    private long audioSize;
+    private long documentSize;
+
+    public long getPhotoSize() {
+      return photoSize;
+    }
+
+    public long getVideoSize() {
+      return videoSize;
+    }
+
+    public long getAudioSize() {
+      return audioSize;
+    }
+
+    public long getDocumentSize() {
+      return documentSize;
+    }
+  }
 }

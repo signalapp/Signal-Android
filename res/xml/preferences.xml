@@ -25,6 +25,10 @@
                 android:title="@string/preferences__chats"
                 android:icon="?attr/chats_and_media_icon"/>
 
+    <Preference android:key="preference_category_storage"
+                android:title="@string/preferences__storage"
+                android:icon="?attr/data_and_storage_icon"/>
+
     <Preference android:key="preference_category_devices"
                 android:title="@string/preferences__linked_devices"
                 android:icon="?attr/linked_devices_icon"/>

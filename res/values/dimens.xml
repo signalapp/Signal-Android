@@ -148,4 +148,6 @@
     <dimen name="conversation_reaction_scrub_vertical_translation">20dp</dimen>
     <dimen name="conversation_reaction_scrub_horizontal_margin">16dp</dimen>
 
+    <dimen name="storage_legend_circle_size">8dp</dimen>
+
 </resources>

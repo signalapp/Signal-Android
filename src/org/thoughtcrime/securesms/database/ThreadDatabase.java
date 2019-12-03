@@ -532,47 +532,50 @@ public class ThreadDatabase extends Database {
     }
   }
 
-  public long getThreadIdFor(Recipient recipient) {
+  public long getThreadIdFor(@NonNull Recipient recipient) {
     return getThreadIdFor(recipient, DistributionTypes.DEFAULT);
   }
 
-  public long getThreadIdFor(Recipient recipient, int distributionType) {
-    SQLiteDatabase db            = databaseHelper.getReadableDatabase();
-    String         where         = RECIPIENT_ID + " = ?";
-    String[]       recipientsArg = new String[]{recipient.getId().serialize()};
-    Cursor         cursor        = null;
-
-    try {
-      cursor = db.query(TABLE_NAME, new String[]{ID}, where, recipientsArg, null, null, null);
-
-      if (cursor != null && cursor.moveToFirst()) {
-        return cursor.getLong(cursor.getColumnIndexOrThrow(ID));
-      } else {
-        return createThreadForRecipient(recipient.getId(), recipient.isGroup(), distributionType);
-      }
-    } finally {
-      if (cursor != null)
-        cursor.close();
+  public long getThreadIdFor(@NonNull Recipient recipient, int distributionType) {
+    Long threadId = getThreadIdFor(recipient.getId());
+    if (threadId != null) {
+      return threadId;
+    } else {
+      return createThreadForRecipient(recipient.getId(), recipient.isGroup(), distributionType);
     }
   }
 
-  public @Nullable Recipient getRecipientForThreadId(long threadId) {
-    SQLiteDatabase db = databaseHelper.getReadableDatabase();
-    Cursor cursor     = null;
+  public Long getThreadIdFor(@NonNull RecipientId recipientId) {
+    SQLiteDatabase db            = databaseHelper.getReadableDatabase();
+    String         where         = RECIPIENT_ID + " = ?";
+    String[]       recipientsArg = new String[]{recipientId.serialize()};
 
-    try {
-      cursor = db.query(TABLE_NAME, null, ID + " = ?", new String[] {threadId+""}, null, null, null);
+    try (Cursor cursor = db.query(TABLE_NAME, new String[]{ ID }, where, recipientsArg, null, null, null)) {
+      if (cursor != null && cursor.moveToFirst()) {
+        return cursor.getLong(cursor.getColumnIndexOrThrow(ID));
+      } else {
+        return null;
+      }
+    }
+  }
+
+  public @Nullable RecipientId getRecipientIdForThreadId(long threadId) {
+    SQLiteDatabase db = databaseHelper.getReadableDatabase();
+
+    try (Cursor cursor = db.query(TABLE_NAME, null, ID + " = ?", new String[]{ threadId + "" }, null, null, null)) {
 
       if (cursor != null && cursor.moveToFirst()) {
-        RecipientId id = RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(RECIPIENT_ID)));
-        return Recipient.resolved(id);
+        return RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(RECIPIENT_ID)));
       }
-    } finally {
-      if (cursor != null)
-        cursor.close();
     }
 
     return null;
+  }
+
+  public @Nullable Recipient getRecipientForThreadId(long threadId) {
+    RecipientId id = getRecipientIdForThreadId(threadId);
+    if (id == null) return null;
+    return Recipient.resolved(id);
   }
 
   public void setHasSent(long threadId, boolean hasSent) {

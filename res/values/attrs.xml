@@ -185,6 +185,7 @@
     <attr name="privacy_icon" format="reference" />
     <attr name="appearance_icon" format="reference" />
     <attr name="chats_and_media_icon" format="reference" />
+    <attr name="data_and_storage_icon" format="reference" />
     <attr name="linked_devices_icon" format="reference" />
     <attr name="advanced_icon" format="reference" />
     <attr name="safety_number_icon" format="reference" />
@@ -212,9 +213,12 @@
 
     <attr name="media_overview_toolbar_background" format="color"/>
     <attr name="media_overview_toolbar_foreground" format="color"/>
+    <attr name="media_overview_toolbar_secondary_background" format="color"/>
     <attr name="media_overview_header_foreground" format="color"/>
     <attr name="media_overview_document_primary" format="color"/>
     <attr name="media_overview_document_secondary" format="color"/>
+    <attr name="media_overview_grid_view_icon" format="reference"/>
+    <attr name="media_overview_list_view_icon" format="reference"/>
 
     <attr name="shared_contact_details_header_background" format="color"/>
     <attr name="shared_contact_details_titlebar" format="color"/>
@@ -275,6 +279,8 @@
         <attr name="widgetBackground" format="color"/>
         <attr name="foregroundTintColor" format="color" />
         <attr name="backgroundTintColor" format="color" />
+        <attr name="small" format="boolean" />
+        <attr name="autoRewind" format="boolean" />
     </declare-styleable>
 
     <declare-styleable name="CircleColorImageView">

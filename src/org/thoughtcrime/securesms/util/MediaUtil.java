@@ -9,12 +9,13 @@ import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.WorkerThread;
 import android.text.TextUtils;
 import android.util.Pair;
 import android.webkit.MimeTypeMap;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.WorkerThread;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.gif.GifDrawable;
@@ -56,31 +57,42 @@ public class MediaUtil {
   public static final String VCARD             = "text/x-vcard";
   public static final String LONG_TEXT         = "text/x-signal-plain";
 
-
-  public static Slide getSlideForAttachment(Context context, Attachment attachment) {
-    Slide slide = null;
-    if (attachment.isSticker()) {
-      slide = new StickerSlide(context, attachment);
-    } else if (isGif(attachment.getContentType())) {
-      slide = new GifSlide(context, attachment);
-    } else if (isImageType(attachment.getContentType())) {
-      slide = new ImageSlide(context, attachment);
-    } else if (isVideoType(attachment.getContentType())) {
-      slide = new VideoSlide(context, attachment);
-    } else if (isAudioType(attachment.getContentType())) {
-      slide = new AudioSlide(context, attachment);
-    } else if (isMms(attachment.getContentType())) {
-      slide = new MmsSlide(context, attachment);
-    } else if (isLongTextType(attachment.getContentType())) {
-      slide = new TextSlide(context, attachment);
-    } else if (attachment.getContentType() != null) {
-      slide = new DocumentSlide(context, attachment);
+  public static SlideType getSlideTypeFromContentType(@NonNull String contentType) {
+    if (isGif(contentType)) {
+      return SlideType.GIF;
+    } else if (isImageType(contentType)) {
+      return SlideType.IMAGE;
+    } else if (isVideoType(contentType)) {
+      return SlideType.VIDEO;
+    } else if (isAudioType(contentType)) {
+      return SlideType.AUDIO;
+    } else if (isMms(contentType)) {
+      return SlideType.MMS;
+    } else if (isLongTextType(contentType)) {
+      return SlideType.LONG_TEXT;
+    } else {
+      return SlideType.DOCUMENT;
     }
-
-    return slide;
   }
 
-  public static @Nullable String getMimeType(Context context, Uri uri) {
+  public static @NonNull Slide getSlideForAttachment(Context context, Attachment attachment) {
+    if (attachment.isSticker()) {
+      return new StickerSlide(context, attachment);
+    }
+
+    switch (getSlideTypeFromContentType(attachment.getContentType())) {
+      case GIF       : return new GifSlide(context, attachment);
+      case IMAGE     : return new ImageSlide(context, attachment);
+      case VIDEO     : return new VideoSlide(context, attachment);
+      case AUDIO     : return new AudioSlide(context, attachment);
+      case MMS       : return new MmsSlide(context, attachment);
+      case LONG_TEXT : return new TextSlide(context, attachment);
+      case DOCUMENT  : return new DocumentSlide(context, attachment);
+      default        : throw new AssertionError();
+    }
+  }
+
+  public static @Nullable String getMimeType(@NonNull Context context, @Nullable Uri uri) {
     if (uri == null) return null;
 
     if (PartAuthority.isLocalUri(uri)) {
@@ -94,6 +106,11 @@ public class MediaUtil {
     }
 
     return getCorrectedMimeType(type);
+  }
+
+  public static @Nullable String getExtension(@NonNull Context context, @Nullable Uri uri) {
+    return MimeTypeMap.getSingleton()
+                      .getExtensionFromMimeType(getMimeType(context, uri));
   }
 
   public static @Nullable String getCorrectedMimeType(@Nullable String mimeType) {
@@ -347,5 +364,15 @@ public class MediaUtil {
   private static boolean isSupportedVideoUriScheme(@Nullable String scheme) {
     return ContentResolver.SCHEME_CONTENT.equals(scheme) ||
            ContentResolver.SCHEME_FILE.equals(scheme);
+  }
+
+  public enum SlideType {
+    GIF,
+    IMAGE,
+    VIDEO,
+    AUDIO,
+    MMS,
+    LONG_TEXT,
+    DOCUMENT
   }
 }
