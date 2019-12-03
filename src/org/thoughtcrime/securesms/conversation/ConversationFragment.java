@@ -146,7 +146,6 @@ public class ConversationFragment extends Fragment
   private int                         previousOffset;
   private int                         activeOffset;
   private boolean                     firstLoad;
-  private long                        loaderStartTime;
   private ActionMode                  actionMode;
   private Locale                      locale;
   private RecyclerView                list;
@@ -654,7 +653,6 @@ public class ConversationFragment extends Fragment
   @Override
   public @NonNull Loader<Cursor> onCreateLoader(int id, Bundle args) {
     Log.i(TAG, "onCreateLoader");
-    loaderStartTime = System.currentTimeMillis();
 
     int limit  = args.getInt(KEY_LIMIT, PARTIAL_CONVERSATION_LIMIT);
     int offset = 0;
@@ -668,9 +666,7 @@ public class ConversationFragment extends Fragment
 
   @Override
   public void onLoadFinished(@NonNull Loader<Cursor> cursorLoader, Cursor cursor) {
-    long loadTime = System.currentTimeMillis() - loaderStartTime;
     int  count    = cursor.getCount();
-    Log.i(TAG, "onLoadFinished - took " + loadTime + " ms to load a cursor of size " + count);
     ConversationLoader loader = (ConversationLoader)cursorLoader;
 
     ConversationAdapter adapter = getListAdapter();

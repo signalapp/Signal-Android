@@ -364,8 +364,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   @Override
   protected void onCreate(Bundle state, boolean ready) {
-    Log.i(TAG, "onCreate()");
-
     RecipientId recipientId = getIntent().getParcelableExtra(RECIPIENT_EXTRA);
 
     if (recipientId == null) {
