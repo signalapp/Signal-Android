@@ -288,8 +288,8 @@ dependencyVerification {
         ['com.googlecode.ez-vcard:ez-vcard:0.9.11',
          '7e24ad50b222d2f70ac91bdccfa3c0f6200b078d797cb784837f75e77bb4210f'],
 
-        ['com.googlecode.libphonenumber:libphonenumber:8.10.7',
-         'dbf4bf566d17a60044c19e282a619684e4b4abb0f9f9f24f843c55d19826ab5e'],
+        ['com.googlecode.libphonenumber:libphonenumber:8.11.0',
+         '833ec343e55a6910daca392af76f8e09caaab9c4e3f41ded83f4746e7ef389c7'],
 
         ['com.jpardogo.materialtabstrip:library:1.0.9',
          'c6ef812fba4f74be7dc4a905faa4c2908cba261a94c13d4f96d5e67e4aad4aaa'],

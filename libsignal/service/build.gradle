@@ -28,7 +28,7 @@ repositories {
 
 dependencies {
     implementation 'com.google.protobuf:protobuf-javalite:3.10.0'
-    api 'com.googlecode.libphonenumber:libphonenumber:8.10.7'
+    api 'com.googlecode.libphonenumber:libphonenumber:8.11.0'
     api 'com.fasterxml.jackson.core:jackson-databind:2.9.9.2'
 
     api "org.signal:signal-metadata-java:${lib_signal_metadata_version}"
