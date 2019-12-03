@@ -615,7 +615,9 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         }
         Set<String> servers = DatabaseFactory.getLokiThreadDatabase(this).getAllPublicChatServers();
         for (String server : servers) {
-          publicChatAPI.setProfilePicture(server, profileKey, url);
+          if (profileKey != null) {
+            publicChatAPI.setProfilePicture(server, profileKey, url);
+          }
         }
       }
     });
