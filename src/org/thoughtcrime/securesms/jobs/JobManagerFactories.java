@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.jobs;
 
 import android.app.Application;
+
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.jobmanager.Constraint;
@@ -23,6 +24,7 @@ import org.thoughtcrime.securesms.migrations.DatabaseMigrationJob;
 import org.thoughtcrime.securesms.migrations.LegacyMigrationJob;
 import org.thoughtcrime.securesms.migrations.MigrationCompleteJob;
 import org.thoughtcrime.securesms.migrations.RecipientSearchMigrationJob;
+import org.thoughtcrime.securesms.migrations.RegistrationPinV2MigrationJob;
 import org.thoughtcrime.securesms.migrations.UuidMigrationJob;
 
 import java.util.Arrays;
@@ -93,6 +95,7 @@ public final class JobManagerFactories {
       put(RecipientSearchMigrationJob.KEY,           new RecipientSearchMigrationJob.Factory());
       put(UuidMigrationJob.KEY,                      new UuidMigrationJob.Factory());
       put(CachedAttachmentsMigrationJob.KEY,         new CachedAttachmentsMigrationJob.Factory());
+      put(RegistrationPinV2MigrationJob.KEY,         new RegistrationPinV2MigrationJob.Factory());
 
       // Dead jobs
       put("PushContentReceiveJob",                   new FailingJob.Factory());

@@ -2,14 +2,12 @@ package org.thoughtcrime.securesms.jobs;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.ApplicationContext;
+import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
-
-import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.push.exceptions.NetworkFailureException;
@@ -47,12 +45,23 @@ public class RefreshAttributesJob extends BaseJob {
   public void onRun() throws IOException {
     int     registrationId              = TextSecurePreferences.getLocalRegistrationId(context);
     boolean fetchesMessages             = TextSecurePreferences.isFcmDisabled(context);
-    String  pin                         = TextSecurePreferences.getRegistrationLockPin(context);
     byte[]  unidentifiedAccessKey       = UnidentifiedAccessUtil.getSelfUnidentifiedAccessKey(context);
     boolean universalUnidentifiedAccess = TextSecurePreferences.isUniversalUnidentifiedAccess(context);
+    String  pin                         = null;
+    String  registrationLockToken       = null;
+
+    if (TextSecurePreferences.isRegistrationLockEnabled(context)) {
+      if (TextSecurePreferences.hasOldRegistrationLockPin(context)) {
+        //noinspection deprecation Ok to read here as they have not migrated
+        pin = TextSecurePreferences.getDeprecatedRegistrationLockPin(context);
+      } else {
+        registrationLockToken = TextSecurePreferences.getRegistrationLockToken(context);
+      }
+    }
 
     SignalServiceAccountManager signalAccountManager = ApplicationDependencies.getSignalServiceAccountManager();
-    signalAccountManager.setAccountAttributes(null, registrationId, fetchesMessages, pin,
+    signalAccountManager.setAccountAttributes(null, registrationId, fetchesMessages,
+                                              pin, registrationLockToken,
                                               unidentifiedAccessKey, universalUnidentifiedAccess);
   }
 

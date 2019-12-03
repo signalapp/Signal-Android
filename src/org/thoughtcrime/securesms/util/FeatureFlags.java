@@ -19,4 +19,7 @@ public class FeatureFlags {
 
   /** Creating usernames, sending messages by username. Requires {@link #UUIDS}. */
   public static final boolean USERNAMES = false;
+
+  /** Set or migrate PIN to KBS */
+  public static final boolean KBS = false;
 }

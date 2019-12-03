@@ -687,6 +687,8 @@
     <string name="RegistrationActivity_failed_to_verify_the_captcha">Failed to verify the CAPTCHA</string>
     <string name="RegistrationActivity_next">Next</string>
     <string name="RegistrationActivity_continue">Continue</string>
+    <string name="RegistrationActivity_continue_d_attempts_left">Continue (%d attempts left)</string>
+    <string name="RegistrationActivity_continue_last_attempt">Continue (last attempt!)</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Take privacy with you.\nBe yourself in every message.</string>
     <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Enter your phone number to get started</string>
     <string name="RegistrationActivity_you_will_receive_a_verification_code">You will receive a verification code. Carrier rates may apply.</string>
@@ -1695,6 +1697,8 @@
     <string name="RegistrationLockDialog_error_connecting_to_the_service">Error connecting to the service</string>
     <string name="RegistrationLockDialog_disable_registration_lock_pin">Disable Registration Lock PIN?</string>
     <string name="RegistrationLockDialog_disable">Disable</string>
+    <string name="RegistrationActivity_pin_incorrect">PIN Incorrect</string>
+    <string name="RegistrationActivity_you_have_d_tries_remaining">You have %d tries remaining</string>
     <string name="preferences_chats__backups">Backups</string>
     <string name="prompt_passphrase_activity__signal_is_locked">Signal is locked</string>
     <string name="prompt_passphrase_activity__tap_to_unlock">TAP TO UNLOCK</string>

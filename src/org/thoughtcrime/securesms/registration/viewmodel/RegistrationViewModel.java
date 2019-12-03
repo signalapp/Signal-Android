@@ -4,22 +4,38 @@ import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.SavedStateHandle;
+import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 
+import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.registration.service.RegistrationService;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
+import org.whispersystems.libsignal.util.Pair;
+import org.whispersystems.signalservice.internal.contacts.entities.TokenResponse;
+import org.whispersystems.signalservice.internal.util.JsonUtil;
+
+import java.io.IOException;
 
 public final class RegistrationViewModel extends ViewModel {
+
+  private static final String TAG = Log.tag(RegistrationViewModel.class);
 
   private final String                                       secret;
   private final MutableLiveData<NumberViewState>             number;
   private final MutableLiveData<String>                      textCodeEntered;
   private final MutableLiveData<String>                      captchaToken;
   private final MutableLiveData<String>                      fcmToken;
+  private final MutableLiveData<String>                      basicStorageCredentials;
   private final MutableLiveData<Boolean>                     restoreFlowShown;
   private final MutableLiveData<Integer>                     successfulCodeRequestAttempts;
   private final MutableLiveData<LocalCodeRequestRateLimiter> requestLimiter;
+  private final MutableLiveData<String>                      keyBackupcurrentTokenJson;
+  private final LiveData<TokenResponse>                      keyBackupcurrentToken;
+  private final LiveData<Pair<TokenResponse, String>>        tokenResponseCredentialsPair;
 
   public RegistrationViewModel(@NonNull SavedStateHandle savedStateHandle) {
     secret = loadValue(savedStateHandle, "REGISTRATION_SECRET", Util.getSecret(18));
@@ -28,9 +44,24 @@ public final class RegistrationViewModel extends ViewModel {
     textCodeEntered               = savedStateHandle.getLiveData("TEXT_CODE_ENTERED", "");
     captchaToken                  = savedStateHandle.getLiveData("CAPTCHA");
     fcmToken                      = savedStateHandle.getLiveData("FCM_TOKEN");
+    basicStorageCredentials       = savedStateHandle.getLiveData("BASIC_STORAGE_CREDENTIALS");
     restoreFlowShown              = savedStateHandle.getLiveData("RESTORE_FLOW_SHOWN", false);
     successfulCodeRequestAttempts = savedStateHandle.getLiveData("SUCCESSFUL_CODE_REQUEST_ATTEMPTS", 0);
     requestLimiter                = savedStateHandle.getLiveData("REQUEST_RATE_LIMITER", new LocalCodeRequestRateLimiter(60_000));
+    keyBackupcurrentTokenJson     = savedStateHandle.getLiveData("KBS_TOKEN");
+
+    keyBackupcurrentToken = Transformations.map(keyBackupcurrentTokenJson, json ->
+    {
+      if (json == null) return null;
+      try {
+        return JsonUtil.fromJson(json, TokenResponse.class);
+      } catch (IOException e) {
+        Log.w(TAG, e);
+        return null;
+      }
+    });
+
+    tokenResponseCredentialsPair = new LiveDataPair<>(keyBackupcurrentToken, basicStorageCredentials);
   }
 
   private static <T> T loadValue(@NonNull SavedStateHandle savedStateHandle, @NonNull String key, @NonNull T initialValue) {
@@ -138,4 +169,59 @@ public final class RegistrationViewModel extends ViewModel {
   public void updateLimiter() {
     requestLimiter.setValue(requestLimiter.getValue());
   }
+
+  public void setStorageCredentials(@Nullable String storageCredentials) {
+    basicStorageCredentials.setValue(storageCredentials);
+  }
+
+  public @Nullable String getBasicStorageCredentials() {
+    return basicStorageCredentials.getValue();
+  }
+
+  public @Nullable TokenResponse getKeyBackupCurrentToken() {
+    return keyBackupcurrentToken.getValue();
+  }
+
+  public void setKeyBackupCurrentToken(TokenResponse tokenResponse) {
+    keyBackupcurrentTokenJson.setValue(tokenResponse == null ? null : JsonUtil.toJson(tokenResponse));
+  }
+
+  public LiveData<Pair<TokenResponse, String>> getTokenResponseCredentialsPair() {
+    return tokenResponseCredentialsPair;
+  }
+
+  public void onRegistrationLockFragmentCreate() {
+    SimpleTask.run(() -> {
+      RegistrationService registrationService = RegistrationService.getInstance(getNumber().getE164Number(), getRegistrationSecret());
+      try {
+        return registrationService.getToken(getBasicStorageCredentials());
+      } catch (IOException e) {
+        Log.w(TAG, e);
+        return null;
+      }
+    }, this::setKeyBackupCurrentToken);
+  }
+
+  public static class LiveDataPair<A, B> extends MediatorLiveData<Pair<A, B>> {
+    private A a;
+    private B b;
+
+    public LiveDataPair(LiveData<A> ld1, LiveData<B> ld2) {
+        setValue(new Pair<>(a, b));
+
+        addSource(ld1, (a) -> {
+             if(a != null) {
+                this.a = a;
+             }
+             setValue(new Pair<>(a, b));
+        });
+
+        addSource(ld2, (b) -> {
+            if(b != null) {
+                this.b = b;
+            }
+            setValue(new Pair<>(a, b));
+        });
+    }
+}
 }

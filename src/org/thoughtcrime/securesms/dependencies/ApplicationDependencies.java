@@ -4,13 +4,17 @@ import android.app.Application;
 
 import androidx.annotation.NonNull;
 
+import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.IncomingMessageProcessor;
 import org.thoughtcrime.securesms.gcm.MessageRetriever;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.recipients.LiveRecipientCache;
 import org.thoughtcrime.securesms.service.IncomingMessageObserver;
+import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.IasKeyStore;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.signalservice.api.KeyBackupService;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
@@ -58,6 +62,14 @@ public class ApplicationDependencies {
     }
 
     return accountManager;
+  }
+
+  public static synchronized @NonNull KeyBackupService getKeyBackupService() {
+    if (!FeatureFlags.KBS) throw new AssertionError();
+    return getSignalServiceAccountManager().getKeyBackupService(IasKeyStore.getIasKeyStore(application),
+                                                                BuildConfig.KEY_BACKUP_ENCLAVE_NAME,
+                                                                BuildConfig.KEY_BACKUP_MRENCLAVE,
+                                                                10);
   }
 
   public static synchronized @NonNull SignalServiceMessageSender getSignalServiceMessageSender() {

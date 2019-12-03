@@ -9,8 +9,6 @@ package org.whispersystems.signalservice.api;
 
 import com.google.protobuf.ByteString;
 
-import org.whispersystems.curve25519.Curve25519;
-import org.whispersystems.curve25519.Curve25519KeyPair;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.IdentityKeyPair;
 import org.whispersystems.libsignal.InvalidKeyException;
@@ -18,7 +16,6 @@ import org.whispersystems.libsignal.ecc.ECPublicKey;
 import org.whispersystems.libsignal.logging.Log;
 import org.whispersystems.libsignal.state.PreKeyRecord;
 import org.whispersystems.libsignal.state.SignedPreKeyRecord;
-import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.crypto.InvalidCiphertextException;
 import org.whispersystems.signalservice.api.crypto.ProfileCipher;
@@ -33,23 +30,19 @@ import org.whispersystems.signalservice.internal.configuration.SignalServiceConf
 import org.whispersystems.signalservice.internal.contacts.crypto.ContactDiscoveryCipher;
 import org.whispersystems.signalservice.internal.contacts.crypto.Quote;
 import org.whispersystems.signalservice.internal.contacts.crypto.RemoteAttestation;
-import org.whispersystems.signalservice.internal.contacts.crypto.RemoteAttestationKeys;
 import org.whispersystems.signalservice.internal.contacts.crypto.UnauthenticatedQuoteException;
 import org.whispersystems.signalservice.internal.contacts.crypto.UnauthenticatedResponseException;
 import org.whispersystems.signalservice.internal.contacts.entities.DiscoveryRequest;
 import org.whispersystems.signalservice.internal.contacts.entities.DiscoveryResponse;
-import org.whispersystems.signalservice.internal.contacts.entities.RemoteAttestationRequest;
-import org.whispersystems.signalservice.internal.contacts.entities.RemoteAttestationResponse;
 import org.whispersystems.signalservice.internal.crypto.ProvisioningCipher;
 import org.whispersystems.signalservice.internal.push.ProfileAvatarData;
 import org.whispersystems.signalservice.internal.push.PushServiceSocket;
+import org.whispersystems.signalservice.internal.push.RemoteAttestationUtil;
 import org.whispersystems.signalservice.internal.push.http.ProfileCipherOutputStreamFactory;
 import org.whispersystems.signalservice.internal.util.StaticCredentialsProvider;
 import org.whispersystems.signalservice.internal.util.Util;
 import org.whispersystems.util.Base64;
 
-import java.io.ByteArrayInputStream;
-import java.io.DataInputStream;
 import java.io.IOException;
 import java.security.KeyStore;
 import java.security.MessageDigest;
@@ -117,16 +110,32 @@ public class SignalServiceAccountManager {
     return this.pushServiceSocket.getSenderCertificateLegacy();
   }
 
-  public void setPin(Optional<String> pin) throws IOException {
-    if (pin.isPresent()) {
-      this.pushServiceSocket.setPin(pin.get());
-    } else {
-      this.pushServiceSocket.removePin();
-    }
+  /**
+   * @deprecated Remove this method once KBS is live.
+   */
+  @Deprecated
+  public void setPin(String pin) throws IOException {
+    this.pushServiceSocket.setPin(pin);
+  }
+
+  /**
+   * V1 Pin setting has been replaced by KeyBackupService.
+   * Now you can only remove the old pin but there is no need to remove the old pin if setting a KBS Pin.
+   */
+  public void removeV1Pin() throws IOException {
+    this.pushServiceSocket.removePin();
   }
 
   public UUID getOwnUuid() throws IOException {
     return this.pushServiceSocket.getOwnUuid();
+  }
+
+  public KeyBackupService getKeyBackupService(KeyStore iasKeyStore,
+                                              String enclaveName,
+                                              String mrenclave,
+                                              int tries)
+  {
+    return new KeyBackupService(iasKeyStore, enclaveName, mrenclave, pushServiceSocket, tries);
   }
 
   /**
@@ -193,16 +202,20 @@ public class SignalServiceAccountManager {
    *                                     This value should remain consistent across registrations for the
    *                                     same install, but probabilistically differ across registrations
    *                                     for separate installs.
+   * @param pin Deprecated, only supply the pin if you did not find a registrationLock on KBS.
+   * @param registrationLock Only supply if found on KBS.
    * @return The UUID of the user that was registered.
    * @throws IOException
    */
-  public UUID verifyAccountWithCode(String verificationCode, String signalingKey, int signalProtocolRegistrationId, boolean fetchesMessages, String pin,
-                                      byte[] unidentifiedAccessKey, boolean unrestrictedUnidentifiedAccess)
+  public UUID verifyAccountWithCode(String verificationCode, String signalingKey, int signalProtocolRegistrationId, boolean fetchesMessages,
+                                    String pin, String registrationLock,
+                                    byte[] unidentifiedAccessKey, boolean unrestrictedUnidentifiedAccess)
       throws IOException
   {
     return this.pushServiceSocket.verifyAccountCode(verificationCode, signalingKey,
                                                     signalProtocolRegistrationId,
-                                                    fetchesMessages, pin,
+                                                    fetchesMessages,
+                                                    pin, registrationLock,
                                                     unidentifiedAccessKey,
                                                     unrestrictedUnidentifiedAccess);
   }
@@ -215,14 +228,18 @@ public class SignalServiceAccountManager {
    *                                     This value should remain consistent across registrations for the same
    *                                     install, but probabilistically differ across registrations for
    *                                     separate installs.
+   * @param pin Only supply if pin has not yet been migrated to KBS.
+   * @param registrationLock Only supply if found on KBS.
    *
    * @throws IOException
    */
-  public void setAccountAttributes(String signalingKey, int signalProtocolRegistrationId, boolean fetchesMessages, String pin,
+  public void setAccountAttributes(String signalingKey, int signalProtocolRegistrationId, boolean fetchesMessages,
+                                   String pin, String registrationLock,
                                    byte[] unidentifiedAccessKey, boolean unrestrictedUnidentifiedAccess)
       throws IOException
   {
-    this.pushServiceSocket.setAccountAttributes(signalingKey, signalProtocolRegistrationId, fetchesMessages, pin,
+    this.pushServiceSocket.setAccountAttributes(signalingKey, signalProtocolRegistrationId, fetchesMessages,
+                                                pin, registrationLock,
                                                 unidentifiedAccessKey, unrestrictedUnidentifiedAccess);
   }
 
@@ -306,35 +323,21 @@ public class SignalServiceAccountManager {
     return activeTokens;
   }
 
-  public List<String> getRegisteredUsers(KeyStore iasKeyStore, Set<String> e164numbers, String mrenclave)
+  public List<String> getRegisteredUsers(KeyStore iasKeyStore, Set<String> e164numbers, String enclaveId)
       throws IOException, Quote.InvalidQuoteFormatException, UnauthenticatedQuoteException, SignatureException, UnauthenticatedResponseException
   {
     try {
-      String            authorization = this.pushServiceSocket.getContactDiscoveryAuthorization();
-      Curve25519        curve         = Curve25519.getInstance(Curve25519.BEST);
-      Curve25519KeyPair keyPair       = curve.generateKeyPair();
-
-      ContactDiscoveryCipher                        cipher              = new ContactDiscoveryCipher();
-      RemoteAttestationRequest                      attestationRequest  = new RemoteAttestationRequest(keyPair.getPublicKey());
-      Pair<RemoteAttestationResponse, List<String>> attestationResponse = this.pushServiceSocket.getContactDiscoveryRemoteAttestation(authorization, attestationRequest, mrenclave);
-
-      RemoteAttestationKeys keys      = new RemoteAttestationKeys(keyPair, attestationResponse.first().getServerEphemeralPublic(), attestationResponse.first().getServerStaticPublic());
-      Quote                 quote     = new Quote(attestationResponse.first().getQuote());
-      byte[]                requestId = cipher.getRequestId(keys, attestationResponse.first());
-
-      cipher.verifyServerQuote(quote, attestationResponse.first().getServerStaticPublic(), mrenclave);
-      cipher.verifyIasSignature(iasKeyStore, attestationResponse.first().getCertificates(), attestationResponse.first().getSignatureBody(), attestationResponse.first().getSignature(), quote);
-
-      RemoteAttestation remoteAttestation = new RemoteAttestation(requestId, keys);
-      List<String>      addressBook       = new LinkedList<>();
+      String                 authorization     = pushServiceSocket.getContactDiscoveryAuthorization();
+      RemoteAttestation      remoteAttestation = RemoteAttestationUtil.getAndVerifyRemoteAttestation(pushServiceSocket, PushServiceSocket.ClientSet.ContactDiscovery, iasKeyStore, enclaveId, enclaveId, authorization);
+      List<String>           addressBook       = new LinkedList<>();
 
       for (String e164number : e164numbers) {
         addressBook.add(e164number.substring(1));
       }
 
-      DiscoveryRequest  request  = cipher.createDiscoveryRequest(addressBook, remoteAttestation);
-      DiscoveryResponse response = this.pushServiceSocket.getContactDiscoveryRegisteredUsers(authorization, request, attestationResponse.second(), mrenclave);
-      byte[]            data     = cipher.getDiscoveryResponseData(response, remoteAttestation);
+      DiscoveryRequest  request  = ContactDiscoveryCipher.createDiscoveryRequest(addressBook, remoteAttestation);
+      DiscoveryResponse response = pushServiceSocket.getContactDiscoveryRegisteredUsers(authorization, request, remoteAttestation.getCookies(), enclaveId);
+      byte[]            data     = ContactDiscoveryCipher.getDiscoveryResponseData(response, remoteAttestation);
 
       Iterator<String> addressBookIterator = addressBook.iterator();
       List<String>     results             = new LinkedList<>();

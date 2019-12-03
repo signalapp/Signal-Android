@@ -10,7 +10,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.Collection;
@@ -71,13 +70,9 @@ public class Util {
   }
 
   public static byte[] getSecretBytes(int size) {
-    try {
-      byte[] secret = new byte[size];
-      SecureRandom.getInstance("SHA1PRNG").nextBytes(secret);
-      return secret;
-    } catch (NoSuchAlgorithmException e) {
-      throw new AssertionError(e);
-    }
+    byte[] secret = new byte[size];
+    new SecureRandom().nextBytes(secret);
+    return secret;
   }
 
   public static byte[] getRandomLengthBytes(int maxSize) {

@@ -3,14 +3,16 @@ package org.whispersystems.signalservice.internal.push;
 
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 
-public class LockedException extends NonSuccessfulResponseCodeException {
+public final class LockedException extends NonSuccessfulResponseCodeException {
 
-  private int  length;
-  private long timeRemaining;
+  private final int    length;
+  private final long   timeRemaining;
+  private final String basicStorageCredentials;
 
-  LockedException(int length, long timeRemaining) {
-    this.length        = length;
-    this.timeRemaining = timeRemaining;
+  LockedException(int length, long timeRemaining, String basicStorageCredentials) {
+    this.length                  = length;
+    this.timeRemaining           = timeRemaining;
+    this.basicStorageCredentials = basicStorageCredentials;
   }
 
   public int getLength() {
@@ -19,5 +21,9 @@ public class LockedException extends NonSuccessfulResponseCodeException {
 
   public long getTimeRemaining() {
     return timeRemaining;
+  }
+
+  public String getBasicStorageCredentials() {
+    return basicStorageCredentials;
   }
 }

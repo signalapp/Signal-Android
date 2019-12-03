@@ -1,0 +1,75 @@
+/**
+ * Copyright (C) 2019 Open Whisper Systems
+ *
+ * Licensed according to the LICENSE file in this repository.
+ */
+syntax = "proto2";
+
+package textsecure;
+
+option java_package         = "org.whispersystems.signalservice.internal.keybackup.protos";
+option java_multiple_files  = true;
+
+message Request {
+  optional BackupRequest  backup  = 1;
+  optional RestoreRequest restore = 2;
+  optional DeleteRequest  delete  = 3;
+}
+
+message Response {
+  optional BackupResponse  backup  = 1;
+  optional RestoreResponse restore = 2;
+  optional DeleteResponse  delete  = 3;
+}
+
+message BackupRequest {
+  optional bytes  service_id = 1;
+  optional bytes  backup_id  = 2;
+  optional bytes  token      = 3;
+  optional uint64 valid_from = 4;
+  optional bytes  data       = 5;
+  optional bytes  pin        = 6;
+  optional uint32 tries      = 7;
+}
+
+message BackupResponse {
+  enum Status {
+    OK             = 1;
+    ALREADY_EXISTS = 2;
+    NOT_YET_VALID  = 3;
+  }
+
+  optional Status status = 1;
+  optional bytes  token  = 2;
+}
+
+message RestoreRequest {
+  optional bytes  service_id = 1;
+  optional bytes  backup_id  = 2;
+  optional bytes  token      = 3;
+  optional uint64 valid_from = 4;
+  optional bytes  pin        = 5;
+}
+
+message RestoreResponse {
+  enum Status {
+    OK             = 1;
+    TOKEN_MISMATCH = 2;
+    NOT_YET_VALID  = 3;
+    MISSING        = 4;
+    PIN_MISMATCH   = 5;
+  }
+
+  optional Status status = 1;
+  optional bytes  token  = 2;
+  optional bytes  data   = 3;
+  optional uint32 tries  = 4;
+}
+
+message DeleteRequest {
+  optional bytes service_id = 1;
+  optional bytes backup_id  = 2;
+}
+
+message DeleteResponse {
+}

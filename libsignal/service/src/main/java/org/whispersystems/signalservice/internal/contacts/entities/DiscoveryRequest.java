@@ -47,7 +47,7 @@ public class DiscoveryRequest {
     this.requestId    = requestId;
     this.iv           = iv;
     this.data         = data;
-    this. mac         = mac;
+    this.mac          = mac;
   }
 
   public byte[] getRequestId() {

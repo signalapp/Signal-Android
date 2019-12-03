@@ -31,10 +31,14 @@ public class SigningCertificate {
   {
     try {
       CertificateFactory          certificateFactory     = CertificateFactory.getInstance("X.509");
-      Collection<X509Certificate> certificatesCollection = (Collection<X509Certificate>) certificateFactory.generateCertificates(new ByteArrayInputStream(URLDecoder.decode(certificateChain).getBytes()));
+      Collection<X509Certificate> certificatesCollection = (Collection<X509Certificate>) certificateFactory.generateCertificates(new ByteArrayInputStream(certificateChain.getBytes()));
       List<X509Certificate>       certificates           = new LinkedList<>(certificatesCollection);
       PKIXParameters              pkixParameters         = new PKIXParameters(trustStore);
       CertPathValidator           validator              = CertPathValidator.getInstance("PKIX");
+
+      if (certificates.isEmpty()) {
+        throw new CertificateException("No certificates available! Badly-formatted cert chain?");
+      }
 
       this.path = certificateFactory.generateCertPath(certificates);
 
