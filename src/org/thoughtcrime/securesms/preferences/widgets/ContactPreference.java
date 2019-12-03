@@ -16,6 +16,7 @@ public class ContactPreference extends Preference {
   private ImageView messageButton;
   private ImageView callButton;
   private ImageView secureCallButton;
+  private ImageView secureVideoButton;
 
   private Listener listener;
   private boolean secure;
@@ -48,9 +49,10 @@ public class ContactPreference extends Preference {
   public void onBindViewHolder(PreferenceViewHolder view) {
     super.onBindViewHolder(view);
 
-    this.messageButton    = (ImageView) view.findViewById(R.id.message);
-    this.callButton       = (ImageView) view.findViewById(R.id.call);
-    this.secureCallButton = (ImageView) view.findViewById(R.id.secure_call);
+    this.messageButton     = (ImageView) view.findViewById(R.id.message);
+    this.callButton        = (ImageView) view.findViewById(R.id.call);
+    this.secureCallButton  = (ImageView) view.findViewById(R.id.secure_call);
+    this.secureVideoButton = (ImageView) view.findViewById(R.id.secure_video);
 
     if (listener != null) setListener(listener);
     setSecure(secure);
@@ -59,8 +61,9 @@ public class ContactPreference extends Preference {
   public void setSecure(boolean secure) {
     this.secure = secure;
 
-    if (secureCallButton != null) secureCallButton.setVisibility(secure ? View.VISIBLE : View.GONE);
-    if (callButton != null)       callButton.setVisibility(secure ? View.GONE : View.VISIBLE);
+    if (secureCallButton != null)  secureCallButton.setVisibility(secure ? View.VISIBLE : View.GONE);
+    if (secureVideoButton != null) secureVideoButton.setVisibility(secure ? View.VISIBLE : View.GONE);
+    if (callButton != null)        callButton.setVisibility(secure ? View.GONE : View.VISIBLE);
 
     int color;
 
@@ -70,22 +73,25 @@ public class ContactPreference extends Preference {
       color = getContext().getResources().getColor(R.color.grey_600);
     }
 
-    if (messageButton != null)    messageButton.setColorFilter(color, PorterDuff.Mode.SRC_IN);
-    if (secureCallButton != null) secureCallButton.setColorFilter(color, PorterDuff.Mode.SRC_IN);
-    if (callButton != null)       callButton.setColorFilter(color, PorterDuff.Mode.SRC_IN);
+    if (messageButton != null)     messageButton.setColorFilter(color, PorterDuff.Mode.SRC_IN);
+    if (secureCallButton != null)  secureCallButton.setColorFilter(color, PorterDuff.Mode.SRC_IN);
+    if (secureVideoButton != null) secureVideoButton.setColorFilter(color, PorterDuff.Mode.SRC_IN);
+    if (callButton != null)        callButton.setColorFilter(color, PorterDuff.Mode.SRC_IN);
   }
 
   public void setListener(Listener listener) {
     this.listener = listener;
 
-    if (this.messageButton != null)    this.messageButton.setOnClickListener(v -> listener.onMessageClicked());
-    if (this.secureCallButton != null) this.secureCallButton.setOnClickListener(v -> listener.onSecureCallClicked());
-    if (this.callButton != null)       this.callButton.setOnClickListener(v -> listener.onInSecureCallClicked());
+    if (this.messageButton != null)     this.messageButton.setOnClickListener(v -> listener.onMessageClicked());
+    if (this.secureCallButton != null)  this.secureCallButton.setOnClickListener(v -> listener.onSecureCallClicked());
+    if (this.secureVideoButton != null) this.secureVideoButton.setOnClickListener(v -> listener.onSecureVideoClicked());
+    if (this.callButton != null)        this.callButton.setOnClickListener(v -> listener.onInSecureCallClicked());
   }
 
   public interface Listener {
     public void onMessageClicked();
     public void onSecureCallClicked();
+    public void onSecureVideoClicked();
     public void onInSecureCallClicked();
   }
 

@@ -40,6 +40,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -67,6 +68,7 @@ public class WebRtcCallScreen extends FrameLayout implements RecipientForeverObs
   private SurfaceViewRenderer  localRenderer;
   private PercentFrameLayout   localRenderLayout;
   private PercentFrameLayout   remoteRenderLayout;
+  private PercentFrameLayout   localLargeRenderLayout;
   private TextView             name;
   private TextView             phoneNumber;
   private TextView             label;
@@ -83,9 +85,8 @@ public class WebRtcCallScreen extends FrameLayout implements RecipientForeverObs
 
   private WebRtcAnswerDeclineButton incomingCallButton;
 
-  private LiveRecipient recipient;
-  private boolean       minimized;
-
+  private LiveRecipient      recipient;
+  private boolean            minimized;
 
   public WebRtcCallScreen(Context context) {
     super(context);
@@ -110,8 +111,9 @@ public class WebRtcCallScreen extends FrameLayout implements RecipientForeverObs
     endCallButton.show();
   }
 
-  public void setActiveCall(@NonNull Recipient personInfo, @NonNull String message) {
+  public void setActiveCall(@NonNull Recipient personInfo, @NonNull String message, @NonNull SurfaceViewRenderer localRenderer) {
     setCard(personInfo, message);
+    setRinging(localRenderer);
     incomingCallButton.stopRingingAnimation();
     incomingCallButton.setVisibility(View.GONE);
     endCallButton.show();
@@ -194,22 +196,22 @@ public class WebRtcCallScreen extends FrameLayout implements RecipientForeverObs
     this.controls.setControlsEnabled(enabled);
   }
 
-  public void setLocalVideoState(@NonNull CameraState cameraState) {
+  public void setLocalVideoState(@NonNull CameraState cameraState, @NonNull SurfaceViewRenderer localRenderer) {
     this.controls.setVideoAvailable(cameraState.getCameraCount() > 0);
     this.controls.setVideoEnabled(cameraState.isEnabled());
     this.controls.setCameraFlipAvailable(cameraState.getCameraCount() > 1);
     this.controls.setCameraFlipClickable(cameraState.getActiveDirection() != CameraState.Direction.PENDING);
     this.controls.setCameraFlipButtonEnabled(cameraState.getActiveDirection() == CameraState.Direction.BACK);
 
-    if (this.localRenderer != null) {
-      this.localRenderer.setMirror(cameraState.getActiveDirection() == CameraState.Direction.FRONT);
+    localRenderer.setMirror(cameraState.getActiveDirection() == CameraState.Direction.FRONT);
+
+    if (localRenderLayout.getChildCount() != 0) {
+      displayLocalRendererInSmallLayout(!cameraState.isEnabled());
+    } else {
+      displayLocalRendererInLargeLayout(!cameraState.isEnabled());
     }
 
-    if (this.localRenderLayout.isHidden() == cameraState.isEnabled()) {
-      this.localRenderLayout.setHidden(!cameraState.isEnabled());
-      this.localRenderLayout.requestLayout();
-      this.localRenderer.setVisibility(cameraState.isEnabled() ? VISIBLE : INVISIBLE);
-    }
+    localRenderer.setVisibility(cameraState.isEnabled() ? VISIBLE : INVISIBLE);
   }
 
   public void setRemoteVideoEnabled(boolean enabled) {
@@ -233,6 +235,42 @@ public class WebRtcCallScreen extends FrameLayout implements RecipientForeverObs
     return controls.isVideoEnabled();
   }
 
+  private void displayLocalRendererInLargeLayout(boolean hide) {
+    if (localLargeRenderLayout.getChildCount() == 0) {
+      localRenderLayout.removeAllViews();
+      localLargeRenderLayout.addView(localRenderer);
+    }
+
+    localRenderLayout.setHidden(true);
+    localRenderLayout.requestLayout();
+
+    localLargeRenderLayout.setHidden(hide);
+    localLargeRenderLayout.requestLayout();
+
+    if (hide) {
+      photo.setVisibility(View.VISIBLE);
+    } else {
+      photo.setVisibility(View.INVISIBLE);
+    }
+  }
+
+  private void displayLocalRendererInSmallLayout(boolean hide) {
+    if (localRenderLayout.getChildCount() == 0) {
+      localLargeRenderLayout.removeAllViews();
+      localRenderLayout.addView(localRenderer);
+    }
+
+    localLargeRenderLayout.setHidden(true);
+    localLargeRenderLayout.requestLayout();
+
+    localRenderLayout.setHidden(hide);
+    localRenderLayout.requestLayout();
+
+    if (remoteRenderLayout.isHidden()) {
+      photo.setVisibility(View.VISIBLE);
+    }
+  }
+
   private void initialize() {
     LayoutInflater inflater = (LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     inflater.inflate(R.layout.webrtc_call_screen, this, true);
@@ -241,6 +279,7 @@ public class WebRtcCallScreen extends FrameLayout implements RecipientForeverObs
     this.photo                        = findViewById(R.id.photo);
     this.localRenderLayout            = findViewById(R.id.local_render_layout);
     this.remoteRenderLayout           = findViewById(R.id.remote_render_layout);
+    this.localLargeRenderLayout       = findViewById(R.id.local_large_render_layout);
     this.phoneNumber                  = findViewById(R.id.phoneNumber);
     this.name                         = findViewById(R.id.name);
     this.label                        = findViewById(R.id.label);
@@ -266,10 +305,28 @@ public class WebRtcCallScreen extends FrameLayout implements RecipientForeverObs
     });
   }
 
-  private void setConnected(SurfaceViewRenderer localRenderer,
-                            SurfaceViewRenderer remoteRenderer)
-  {
-    if (localRenderLayout.getChildCount() == 0 && remoteRenderLayout.getChildCount() == 0) {
+  private void setRinging(SurfaceViewRenderer localRenderer) {
+    if (localLargeRenderLayout.getChildCount() == 0) {
+      if (localRenderer.getParent() != null) {
+        ((ViewGroup)localRenderer.getParent()).removeView(localRenderer);
+      }
+
+      localLargeRenderLayout.setPosition(0, 0, 100, 100);
+
+      localRenderer.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                                                                 ViewGroup.LayoutParams.MATCH_PARENT));
+
+      localRenderer.setMirror(true);
+      localRenderer.setZOrderMediaOverlay(true);
+
+      localLargeRenderLayout.addView(localRenderer);
+
+      this.localRenderer = localRenderer;
+    }
+  }
+
+  private void setConnected(SurfaceViewRenderer localRenderer, SurfaceViewRenderer remoteRenderer) {
+    if (localRenderLayout.getChildCount() == 0) {
       if (localRenderer.getParent() != null) {
         ((ViewGroup)localRenderer.getParent()).removeView(localRenderer);
       }

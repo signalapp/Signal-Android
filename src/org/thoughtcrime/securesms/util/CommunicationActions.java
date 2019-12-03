@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.TaskStackBuilder;
 import android.text.TextUtils;
 import android.widget.Toast;
@@ -27,29 +28,34 @@ public class CommunicationActions {
     if (TelephonyUtil.isAnyPstnLineBusy(activity)) {
       Toast.makeText(activity,
                      R.string.CommunicationActions_a_cellular_call_is_already_in_progress,
-                     Toast.LENGTH_SHORT
-                    ).show();
+                     Toast.LENGTH_SHORT)
+           .show();
       return;
     }
 
-    Permissions.with(activity)
-        .request(Manifest.permission.RECORD_AUDIO, Manifest.permission.CAMERA)
-        .ifNecessary()
-        .withRationaleDialog(activity.getString(R.string.ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera, recipient.toShortString(activity)),
-                             R.drawable.ic_mic_solid_24,
-                             R.drawable.ic_videocam_white_48dp)
-        .withPermanentDenialDialog(activity.getString(R.string.ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s, recipient.toShortString(activity)))
-        .onAllGranted(() -> {
-          Intent intent = new Intent(activity, WebRtcCallService.class);
-          intent.setAction(WebRtcCallService.ACTION_OUTGOING_CALL);
-          intent.putExtra(WebRtcCallService.EXTRA_REMOTE_RECIPIENT, recipient.getId());
-          activity.startService(intent);
+    new AlertDialog.Builder(activity)
+                   .setMessage(R.string.CommunicationActions_start_voice_call)
+                   .setPositiveButton(R.string.CommunicationActions_call, (d, w) -> startCallInternal(activity, recipient, false))
+                   .setNegativeButton(R.string.CommunicationActions_cancel, (d, w) -> d.dismiss())
+                   .setCancelable(true)
+                   .show();
+  }
 
-          Intent activityIntent = new Intent(activity, WebRtcCallActivity.class);
-          activityIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-          activity.startActivity(activityIntent);
-        })
-        .execute();
+  public static void startVideoCall(@NonNull Activity activity, @NonNull Recipient recipient) {
+    if (TelephonyUtil.isAnyPstnLineBusy(activity)) {
+      Toast.makeText(activity,
+                     R.string.CommunicationActions_a_cellular_call_is_already_in_progress,
+                     Toast.LENGTH_SHORT)
+           .show();
+      return;
+    }
+
+    new AlertDialog.Builder(activity)
+                   .setMessage(R.string.CommunicationActions_start_video_call)
+                   .setPositiveButton(R.string.CommunicationActions_call, (d, w) -> startCallInternal(activity, recipient, true))
+                   .setNegativeButton(R.string.CommunicationActions_cancel, (d, w) -> d.dismiss())
+                   .setCancelable(true)
+                   .show();
   }
 
   public static void startConversation(@NonNull Context context, @NonNull Recipient recipient, @Nullable String text) {
@@ -102,5 +108,32 @@ public class CommunicationActions {
     } catch (ActivityNotFoundException e) {
       Toast.makeText(context, R.string.CommunicationActions_no_browser_found, Toast.LENGTH_SHORT).show();
     }
+  }
+
+
+  private static void startCallInternal(@NonNull Activity activity, @NonNull Recipient recipient, boolean isVideo) {
+    Permissions.with(activity)
+               .request(Manifest.permission.RECORD_AUDIO, Manifest.permission.CAMERA)
+               .ifNecessary()
+               .withRationaleDialog(activity.getString(R.string.ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera, recipient.getDisplayName(activity)),
+                                    R.drawable.ic_mic_solid_24,
+                                    R.drawable.ic_video_solid_24_tinted)
+               .withPermanentDenialDialog(activity.getString(R.string.ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s, recipient.getDisplayName(activity)))
+               .onAllGranted(() -> {
+                 Intent intent = new Intent(activity, WebRtcCallService.class);
+                 intent.setAction(WebRtcCallService.ACTION_OUTGOING_CALL);
+                 intent.putExtra(WebRtcCallService.EXTRA_REMOTE_RECIPIENT, recipient.getId());
+                 activity.startService(intent);
+
+                 Intent activityIntent = new Intent(activity, WebRtcCallActivity.class);
+                 activityIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                 if (isVideo) {
+                   activityIntent.putExtra(WebRtcCallActivity.EXTRA_ENABLE_VIDEO_IF_AVAILABLE, true);
+                 }
+
+                 activity.startActivity(activityIntent);
+               })
+               .execute();
   }
 }

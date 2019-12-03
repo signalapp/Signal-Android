@@ -770,6 +770,11 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       }
 
       @Override
+      public void onSecureVideoClicked() {
+        CommunicationActions.startVideoCall(getActivity(), recipient.get());
+      }
+
+      @Override
       public void onInSecureCallClicked() {
         try {
           Intent dialIntent = new Intent(Intent.ACTION_DIAL,

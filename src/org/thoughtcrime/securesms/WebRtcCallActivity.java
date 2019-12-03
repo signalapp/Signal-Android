@@ -49,6 +49,7 @@ import org.thoughtcrime.securesms.service.WebRtcCallService;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ViewUtil;
+import org.webrtc.SurfaceViewRenderer;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.SignalProtocolAddress;
 
@@ -65,7 +66,10 @@ public class WebRtcCallActivity extends Activity {
   public static final String DENY_ACTION     = WebRtcCallActivity.class.getCanonicalName() + ".DENY_ACTION";
   public static final String END_CALL_ACTION = WebRtcCallActivity.class.getCanonicalName() + ".END_CALL_ACTION";
 
-  private WebRtcCallScreen           callScreen;
+  public static final String EXTRA_ENABLE_VIDEO_IF_AVAILABLE = WebRtcCallActivity.class.getCanonicalName() + ".ENABLE_VIDEO_IF_AVAILABLE";
+
+  private WebRtcCallScreen callScreen;
+  private boolean          enableVideoIfAvailable;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -82,6 +86,9 @@ public class WebRtcCallActivity extends Activity {
     initializeResources();
 
     processIntent(getIntent());
+
+    enableVideoIfAvailable = getIntent().getBooleanExtra(EXTRA_ENABLE_VIDEO_IF_AVAILABLE, false);
+    getIntent().removeExtra(EXTRA_ENABLE_VIDEO_IF_AVAILABLE);
   }
 
 
@@ -173,10 +180,10 @@ public class WebRtcCallActivity extends Activity {
                  .request(Manifest.permission.RECORD_AUDIO, Manifest.permission.CAMERA)
                  .ifNecessary()
                  .withRationaleDialog(getString(R.string.WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone, event.getRecipient().toShortString(this)),
-                                      R.drawable.ic_mic_solid_24, R.drawable.ic_videocam_white_48dp)
+                                      R.drawable.ic_mic_solid_24, R.drawable.ic_video_solid_24_tinted)
                  .withPermanentDenialDialog(getString(R.string.WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls))
                  .onAllGranted(() -> {
-                   callScreen.setActiveCall(event.getRecipient(), getString(R.string.RedPhone_answering));
+                   callScreen.setActiveCall(event.getRecipient(), getString(R.string.RedPhone_answering), event.getLocalRenderer());
 
                    Intent intent = new Intent(this, WebRtcCallService.class);
                    intent.setAction(WebRtcCallService.ACTION_ANSWER_CALL);
@@ -195,7 +202,7 @@ public class WebRtcCallActivity extends Activity {
       intent.setAction(WebRtcCallService.ACTION_DENY_CALL);
       startService(intent);
 
-      callScreen.setActiveCall(event.getRecipient(), getString(R.string.RedPhone_ending_call));
+      callScreen.setActiveCall(event.getRecipient(), getString(R.string.RedPhone_ending_call), event.getLocalRenderer());
       delayedFinish();
     }
   }
@@ -212,24 +219,24 @@ public class WebRtcCallActivity extends Activity {
   }
 
   private void handleOutgoingCall(@NonNull WebRtcViewModel event) {
-    callScreen.setActiveCall(event.getRecipient(), getString(R.string.RedPhone_dialing));
+    callScreen.setActiveCall(event.getRecipient(), getString(R.string.RedPhone_dialing), event.getLocalRenderer());
   }
 
-  private void handleTerminate(@NonNull Recipient recipient /*, int terminationType */) {
+  private void handleTerminate(@NonNull Recipient recipient, @NonNull SurfaceViewRenderer localRenderer /*, int terminationType */) {
     Log.i(TAG, "handleTerminate called");
 
-    callScreen.setActiveCall(recipient, getString(R.string.RedPhone_ending_call));
+    callScreen.setActiveCall(recipient, getString(R.string.RedPhone_ending_call), localRenderer);
     EventBus.getDefault().removeStickyEvent(WebRtcViewModel.class);
 
     delayedFinish();
   }
 
   private void handleCallRinging(@NonNull WebRtcViewModel event) {
-    callScreen.setActiveCall(event.getRecipient(), getString(R.string.RedPhone_ringing));
+    callScreen.setActiveCall(event.getRecipient(), getString(R.string.RedPhone_ringing), event.getLocalRenderer());
   }
 
   private void handleCallBusy(@NonNull WebRtcViewModel event) {
-    callScreen.setActiveCall(event.getRecipient(), getString(R.string.RedPhone_busy));
+    callScreen.setActiveCall(event.getRecipient(), getString(R.string.RedPhone_busy), event.getLocalRenderer());
 
     delayedFinish(BUSY_SIGNAL_DELAY_FINISH);
   }
@@ -240,12 +247,12 @@ public class WebRtcCallActivity extends Activity {
   }
 
   private void handleRecipientUnavailable(@NonNull WebRtcViewModel event) {
-    callScreen.setActiveCall(event.getRecipient(), getString(R.string.RedPhone_recipient_unavailable));
+    callScreen.setActiveCall(event.getRecipient(), getString(R.string.RedPhone_recipient_unavailable), event.getLocalRenderer());
     delayedFinish();
   }
 
   private void handleServerFailure(@NonNull WebRtcViewModel event) {
-    callScreen.setActiveCall(event.getRecipient(), getString(R.string.RedPhone_network_failed));
+    callScreen.setActiveCall(event.getRecipient(), getString(R.string.RedPhone_network_failed), event.getLocalRenderer());
     delayedFinish();
   }
 
@@ -259,13 +266,13 @@ public class WebRtcCallActivity extends Activity {
     dialog.setPositiveButton(R.string.RedPhone_got_it, new OnClickListener() {
       @Override
       public void onClick(DialogInterface dialog, int which) {
-        WebRtcCallActivity.this.handleTerminate(event.getRecipient());
+        WebRtcCallActivity.this.handleTerminate(event.getRecipient(), event.getLocalRenderer());
       }
     });
     dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
       @Override
       public void onCancel(DialogInterface dialog) {
-        WebRtcCallActivity.this.handleTerminate(event.getRecipient());
+        WebRtcCallActivity.this.handleTerminate(event.getRecipient(), event.getLocalRenderer());
       }
     });
     dialog.show();
@@ -294,7 +301,7 @@ public class WebRtcCallActivity extends Activity {
     callScreen.setCancelIdentityButton(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        handleTerminate(recipient);
+        handleTerminate(recipient, event.getLocalRenderer());
       }
     });
   }
@@ -316,22 +323,27 @@ public class WebRtcCallActivity extends Activity {
     Log.i(TAG, "Got message from service: " + event);
 
     switch (event.getState()) {
-      case CALL_CONNECTED:          handleCallConnected(event);            break;
-      case NETWORK_FAILURE:         handleServerFailure(event);            break;
-      case CALL_RINGING:            handleCallRinging(event);              break;
-      case CALL_DISCONNECTED:       handleTerminate(event.getRecipient()); break;
-      case NO_SUCH_USER:            handleNoSuchUser(event);               break;
-      case RECIPIENT_UNAVAILABLE:   handleRecipientUnavailable(event);     break;
-      case CALL_INCOMING:           handleIncomingCall(event);             break;
-      case CALL_OUTGOING:           handleOutgoingCall(event);             break;
-      case CALL_BUSY:               handleCallBusy(event);                 break;
-      case UNTRUSTED_IDENTITY:      handleUntrustedIdentity(event);        break;
+      case CALL_CONNECTED:          handleCallConnected(event);                                      break;
+      case NETWORK_FAILURE:         handleServerFailure(event);                                      break;
+      case CALL_RINGING:            handleCallRinging(event);                                        break;
+      case CALL_DISCONNECTED:       handleTerminate(event.getRecipient(), event.getLocalRenderer()); break;
+      case NO_SUCH_USER:            handleNoSuchUser(event);                                         break;
+      case RECIPIENT_UNAVAILABLE:   handleRecipientUnavailable(event);                               break;
+      case CALL_INCOMING:           handleIncomingCall(event);                                       break;
+      case CALL_OUTGOING:           handleOutgoingCall(event);                                       break;
+      case CALL_BUSY:               handleCallBusy(event);                                           break;
+      case UNTRUSTED_IDENTITY:      handleUntrustedIdentity(event);                                  break;
     }
 
     callScreen.setRemoteVideoEnabled(event.isRemoteVideoEnabled());
     callScreen.updateAudioState(event.isBluetoothAvailable(), event.isMicrophoneEnabled());
     callScreen.setControlsEnabled(event.getState() != WebRtcViewModel.State.CALL_INCOMING);
-    callScreen.setLocalVideoState(event.getLocalCameraState());
+    callScreen.setLocalVideoState(event.getLocalCameraState(), event.getLocalRenderer());
+
+    if (event.getLocalCameraState().getCameraCount() > 0 && enableVideoIfAvailable) {
+      enableVideoIfAvailable = false;
+      handleSetMuteVideo(false);
+    }
   }
 
   private class HangupButtonListener implements WebRtcCallScreen.HangupButtonListener {

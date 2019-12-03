@@ -18,7 +18,9 @@ import com.annimon.stream.Stream;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.mms.GlideRequests;
+import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
@@ -38,6 +40,8 @@ public class ConversationTitleView extends RelativeLayout {
   private ImageView       verified;
   private View            subtitleContainer;
   private View            verifiedSubtitle;
+  private View            expirationBadgeContainer;
+  private TextView        expirationBadgeTime;
 
   public ConversationTitleView(Context context) {
     this(context, null);
@@ -45,23 +49,35 @@ public class ConversationTitleView extends RelativeLayout {
 
   public ConversationTitleView(Context context, AttributeSet attrs) {
     super(context, attrs);
-
   }
 
   @Override
   public void onFinishInflate() {
     super.onFinishInflate();
 
-    this.content           = ViewUtil.findById(this, R.id.content);
-    this.title             = ViewUtil.findById(this, R.id.title);
-    this.subtitle          = ViewUtil.findById(this, R.id.subtitle);
-    this.verified          = ViewUtil.findById(this, R.id.verified_indicator);
-    this.subtitleContainer = ViewUtil.findById(this, R.id.subtitle_container);
-    this.verifiedSubtitle  = ViewUtil.findById(this, R.id.verified_subtitle);
-    this.avatar            = ViewUtil.findById(this, R.id.contact_photo_image);
+    this.content                  = ViewUtil.findById(this, R.id.content);
+    this.title                    = ViewUtil.findById(this, R.id.title);
+    this.subtitle                 = ViewUtil.findById(this, R.id.subtitle);
+    this.verified                 = ViewUtil.findById(this, R.id.verified_indicator);
+    this.subtitleContainer        = ViewUtil.findById(this, R.id.subtitle_container);
+    this.verifiedSubtitle         = ViewUtil.findById(this, R.id.verified_subtitle);
+    this.avatar                   = ViewUtil.findById(this, R.id.contact_photo_image);
+    this.expirationBadgeContainer = ViewUtil.findById(this, R.id.expiration_badge_container);
+    this.expirationBadgeTime      = ViewUtil.findById(this, R.id.expiration_badge);
 
     ViewUtil.setTextViewGravityStart(this.title, getContext());
     ViewUtil.setTextViewGravityStart(this.subtitle, getContext());
+  }
+
+  public void showExpiring(@NonNull LiveRecipient recipient) {
+    expirationBadgeTime.setText(ExpirationUtil.getExpirationAbbreviatedDisplayValue(getContext(), recipient.get().getExpireMessages()));
+    expirationBadgeContainer.setVisibility(View.VISIBLE);
+    updateSubtitleVisibility();
+  }
+
+  public void clearExpiring() {
+    expirationBadgeContainer.setVisibility(View.GONE);
+    updateSubtitleVisibility();
   }
 
   public void setTitle(@NonNull GlideRequests glideRequests, @Nullable Recipient recipient) {
@@ -106,7 +122,7 @@ public class ConversationTitleView extends RelativeLayout {
   private void setComposeTitle() {
     this.title.setText(R.string.ConversationActivity_compose_message);
     this.subtitle.setText(null);
-    this.subtitle.setVisibility(View.GONE);
+    updateSubtitleVisibility();
   }
 
   private void setRecipientTitle(Recipient recipient) {
@@ -128,11 +144,11 @@ public class ConversationTitleView extends RelativeLayout {
 
     if (TextUtils.isEmpty(recipient.getProfileName())) {
       this.subtitle.setText(null);
-      this.subtitle.setVisibility(View.GONE);
     } else {
       this.subtitle.setText("~" + recipient.getProfileName());
-      this.subtitle.setVisibility(View.VISIBLE);
     }
+
+    updateSubtitleVisibility();
   }
 
   private void setContactRecipientTitle(Recipient recipient) {
@@ -140,11 +156,11 @@ public class ConversationTitleView extends RelativeLayout {
 
     if (TextUtils.isEmpty(recipient.getCustomLabel())) {
       this.subtitle.setText(null);
-      this.subtitle.setVisibility(View.GONE);
     } else {
       this.subtitle.setText(recipient.getCustomLabel());
-      this.subtitle.setVisibility(View.VISIBLE);
     }
+
+    updateSubtitleVisibility();
   }
 
   private void setGroupRecipientTitle(Recipient recipient) {
@@ -161,7 +177,7 @@ public class ConversationTitleView extends RelativeLayout {
                                 .map(r -> r.toShortString(getContext()))
                                 .collect(Collectors.joining(", ")));
 
-    this.subtitle.setVisibility(View.VISIBLE);
+    updateSubtitleVisibility();
   }
 
   private void setSelfTitle() {
@@ -173,10 +189,15 @@ public class ConversationTitleView extends RelativeLayout {
     final String displayName = recipient.getDisplayName(getContext());
     this.title.setText(displayName);
     this.subtitle.setText(null);
-    this.subtitle.setVisibility(View.GONE);
+    updateVerifiedSubtitleVisibility();
   }
 
   private void updateVerifiedSubtitleVisibility() {
     verifiedSubtitle.setVisibility(subtitle.getVisibility() != VISIBLE && verified.getVisibility() == VISIBLE ? VISIBLE : GONE);
+  }
+
+  private void updateSubtitleVisibility() {
+    subtitle.setVisibility(expirationBadgeContainer.getVisibility() != VISIBLE && !TextUtils.isEmpty(subtitle.getText()) ? VISIBLE : GONE);
+    updateVerifiedSubtitleVisibility();
   }
 }

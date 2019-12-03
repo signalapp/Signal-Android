@@ -683,15 +683,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     if (isSecureText) {
       if (recipient.get().getExpireMessages() > 0) {
         inflater.inflate(R.menu.conversation_expiring_on, menu);
-
-        final MenuItem item       = menu.findItem(R.id.menu_expiring_messages);
-        final View     actionView = MenuItemCompat.getActionView(item);
-        final TextView badgeView  = actionView.findViewById(R.id.expiration_badge);
-
-        badgeView.setText(ExpirationUtil.getExpirationAbbreviatedDisplayValue(this, recipient.get().getExpireMessages()));
-        actionView.setOnClickListener(v -> onOptionsItemSelected(item));
+        titleView.showExpiring(recipient);
       } else {
         inflater.inflate(R.menu.conversation_expiring_off, menu);
+        titleView.clearExpiring();
       }
     }
 
@@ -729,8 +724,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
 
     if (recipient != null && recipient.get().isLocalNumber()) {
-      if (isSecureText) menu.findItem(R.id.menu_call_secure).setVisible(false);
-      else              menu.findItem(R.id.menu_call_insecure).setVisible(false);
+      if (isSecureText) {
+        menu.findItem(R.id.menu_call_secure).setVisible(false);
+        menu.findItem(R.id.menu_video_secure).setVisible(false);
+      } else {
+        menu.findItem(R.id.menu_call_insecure).setVisible(false);
+      }
 
       MenuItem muteItem = menu.findItem(R.id.menu_mute_notifications);
 
@@ -798,6 +797,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     super.onOptionsItemSelected(item);
     switch (item.getItemId()) {
     case R.id.menu_call_secure:               handleDial(getRecipient(), true);                  return true;
+    case R.id.menu_video_secure:              handleVideo(getRecipient());                       return true;
     case R.id.menu_call_insecure:             handleDial(getRecipient(), false);                 return true;
     case R.id.menu_view_media:                handleViewMedia();                                 return true;
     case R.id.menu_add_shortcut:              handleAddShortcut();                               return true;
@@ -1133,6 +1133,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                                 getString(R.string.ConversationActivity_this_device_does_not_appear_to_support_dial_actions));
       }
     }
+  }
+
+  private void handleVideo(final Recipient recipient) {
+    if (recipient == null) return;
+
+    CommunicationActions.startVideoCall(this, recipient);
   }
 
   private void handleDisplayGroupRecipients() {

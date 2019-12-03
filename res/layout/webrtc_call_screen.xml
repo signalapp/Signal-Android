@@ -26,6 +26,12 @@
         android:layout_height="match_parent"
         tools:visibility="invisible" />
 
+    <org.thoughtcrime.securesms.components.webrtc.PercentFrameLayout
+        android:id="@+id/local_large_render_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:visibility="invisible" />
+
     <!-- "Call info" block #1, for the foreground call. -->
     <RelativeLayout
         android:id="@+id/call_info_1"
