@@ -194,9 +194,10 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       () -> DatabaseFactory.getThreadDatabase(this).getThreadIdFor(recipientId),
       (threadId) -> {
         if (threadId == null) {
-          throw new AssertionError();
+          Log.i(TAG, "No thread id for recipient.");
+        } else {
+          this.threadPhotoRailLabel.setOnClickListener(v -> startActivity(MediaOverviewActivity.forThread(this, threadId)));
         }
-        this.threadPhotoRailLabel.setOnClickListener(v -> startActivity(MediaOverviewActivity.forThread(this, threadId)));
       }
     );
 
