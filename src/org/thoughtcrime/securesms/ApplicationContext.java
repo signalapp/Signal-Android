@@ -278,10 +278,12 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   public @Nullable LokiPublicChatAPI getLokiPublicChatAPI() {
     if (lokiPublicChatAPI == null && IdentityKeyUtil.hasIdentityKey(this)) {
       String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this);
-      byte[] userPrivateKey = IdentityKeyUtil.getIdentityKeyPair(this).getPrivateKey().serialize();
-      LokiAPIDatabase apiDatabase = DatabaseFactory.getLokiAPIDatabase(this);
-      LokiUserDatabase userDatabase = DatabaseFactory.getLokiUserDatabase(this);
-      lokiPublicChatAPI = new LokiPublicChatAPI(userHexEncodedPublicKey, userPrivateKey, apiDatabase, userDatabase);
+      if (userHexEncodedPublicKey != null) {
+        byte[] userPrivateKey = IdentityKeyUtil.getIdentityKeyPair(this).getPrivateKey().serialize();
+        LokiAPIDatabase apiDatabase = DatabaseFactory.getLokiAPIDatabase(this);
+        LokiUserDatabase userDatabase = DatabaseFactory.getLokiUserDatabase(this);
+        lokiPublicChatAPI = new LokiPublicChatAPI(userHexEncodedPublicKey, userPrivateKey, apiDatabase, userDatabase);
+      }
     }
     return lokiPublicChatAPI;
   }
