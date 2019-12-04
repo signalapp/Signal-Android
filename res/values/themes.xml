@@ -332,6 +332,7 @@
         <item name="menu_save_icon">@drawable/ic_save_24</item>
         <item name="menu_reply_icon">@drawable/ic_reply_outline_24</item>
         <item name="menu_multi_select_icon">@drawable/ic_select_24</item>
+        <item name="menu_archive_icon">@drawable/ic_archive_white_24dp</item>
 
         <item name="message_icon">@drawable/ic_message_outline_tinted_24</item>
         <item name="notifications_icon">@drawable/ic_bell_outline_24</item>
@@ -573,6 +574,7 @@
         <item name="menu_save_icon">@drawable/ic_save_24</item>
         <item name="menu_reply_icon">@drawable/ic_reply_solid_24</item>
         <item name="menu_multi_select_icon">@drawable/ic_select_24</item>
+        <item name="menu_archive_icon">@drawable/ic_archive_white_24dp</item>
 
         <item name="message_icon">@drawable/ic_message_solid_tinted_24</item>
         <item name="notifications_icon">@drawable/ic_bell_solid_24</item>
