@@ -42,6 +42,7 @@ import org.thoughtcrime.securesms.crypto.storage.SignalProtocolStoreImpl;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
+import org.thoughtcrime.securesms.database.Database;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.GroupReceiptDatabase;
@@ -532,21 +533,24 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     }
 
     if (threadId != null) {
+      resetSession(content.getSender(), threadId);
+      MessageNotifier.updateNotification(context, threadId);
+    }
+  }
+
+  private void resetSession(String hexEncodedPublicKey, long threadId) {
       TextSecureSessionStore sessionStore = new TextSecureSessionStore(context);
       LokiThreadDatabase lokiThreadDatabase = DatabaseFactory.getLokiThreadDatabase(context);
 
-      Log.d("Loki", "Received a session reset request from: " + content.getSender() + "; archiving the session.");
+      Log.d("Loki", "Received a session reset request from: " + hexEncodedPublicKey + "; archiving the session.");
 
-      sessionStore.archiveAllSessions(content.getSender());
+      sessionStore.archiveAllSessions(hexEncodedPublicKey);
       lokiThreadDatabase.setSessionResetStatus(threadId, LokiThreadSessionResetStatus.REQUEST_RECEIVED);
 
-      Log.d("Loki", "Sending a ping back to " + content.getSender() + ".");
-      String contactID = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(threadId).getAddress().toString();
-      MessageSender.sendBackgroundMessage(context, contactID);
+      Log.d("Loki", "Sending a ping back to " + hexEncodedPublicKey + ".");
+      MessageSender.sendBackgroundMessage(context, hexEncodedPublicKey);
 
       SecurityEvent.broadcastSecurityUpdateEvent(context);
-      MessageNotifier.updateNotification(context, threadId);
-    }
   }
 
   private long handleSynchronizeSentEndSessionMessage(@NonNull SentTranscriptMessage message)
@@ -1185,12 +1189,23 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       if (lokiMessage.getPreKeyBundleMessage() != null) {
         int registrationID = TextSecurePreferences.getLocalRegistrationId(context);
         LokiPreKeyBundleDatabase lokiPreKeyBundleDatabase = DatabaseFactory.getLokiPreKeyBundleDatabase(context);
+        ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);
+        LokiThreadDatabase lokiThreadDatabase = DatabaseFactory.getLokiThreadDatabase(context);
 
         // Store the latest PreKeyBundle
         if (registrationID > 0) {
-          Log.d("Loki", "Received a pre key bundle from: " + envelope.getSource() + ".");
+          Log.d("Loki", "Received a pre key bundle from: " + content.getSender() + ".");
           PreKeyBundle preKeyBundle = lokiMessage.getPreKeyBundleMessage().getPreKeyBundle(registrationID);
-          lokiPreKeyBundleDatabase.setPreKeyBundle(envelope.getSource(), preKeyBundle);
+          lokiPreKeyBundleDatabase.setPreKeyBundle(content.getSender(), preKeyBundle);
+
+          // If we got a friend request and we were friends with this user then we need to reset our session
+          if (envelope.isFriendRequest()) {
+            Recipient sender = Recipient.from(context, Address.fromSerialized(content.getSender()), false);
+            long threadID = threadDatabase.getThreadIdIfExistsFor(sender);
+            if (lokiThreadDatabase.getFriendRequestStatus(threadID) == LokiThreadFriendRequestStatus.FRIENDS) {
+              resetSession(content.getSender(), threadID);
+            }
+          }
         }
       }
     }
