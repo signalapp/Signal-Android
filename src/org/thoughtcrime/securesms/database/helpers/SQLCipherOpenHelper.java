@@ -167,6 +167,14 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   }
 
   @Override
+  public void onConfigure(SQLiteDatabase db) {
+    super.onConfigure(db);
+    //Loki: Enable Write Ahead Logging Mode, increase the cache size
+    db.enableWriteAheadLogging();
+    db.execSQL("PRAGMA cache_size = 10000");
+  }
+
+  @Override
   public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
     Log.i(TAG, "Upgrading database: " + oldVersion + ", " + newVersion);
 

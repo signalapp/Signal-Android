@@ -246,6 +246,8 @@ class LokiPublicChatPoller(private val context: Context, private val group: Loki
             displayNameUpdatees = displayNameUpdatees.union(newDisplayNameUpdatees)
         }.successBackground { messages ->
             // Process messages in the background
+            val key = group.displayName.replace(Regex("\\s*"), "")
+            TextSecurePreferences.setNewMessagesNumber(this.context, key, TextSecurePreferences.getNewMessagesNumber(this.context, key) + messages.size)
             messages.forEach { message ->
                 if (userDevices.contains(message.hexEncodedPublicKey)) {
                     processOutgoingMessage(message)
