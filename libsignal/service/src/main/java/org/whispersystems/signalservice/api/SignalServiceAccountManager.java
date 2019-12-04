@@ -26,7 +26,6 @@ import org.whispersystems.signalservice.api.push.ContactTokenDetails;
 import org.whispersystems.signalservice.api.push.SignedPreKeyEntity;
 import org.whispersystems.signalservice.api.push.exceptions.NotFoundException;
 import org.whispersystems.signalservice.api.storage.SignalStorageCipher;
-import org.whispersystems.signalservice.api.storage.SignalContactRecord;
 import org.whispersystems.signalservice.api.storage.SignalStorageModels;
 import org.whispersystems.signalservice.api.storage.SignalStorageRecord;
 import org.whispersystems.signalservice.api.storage.SignalStorageManifest;
@@ -84,10 +83,9 @@ public class SignalServiceAccountManager {
 
   private static final String TAG = SignalServiceAccountManager.class.getSimpleName();
 
-  private final PushServiceSocket pushServiceSocket;
-  private final UUID              userUuid;
-  private final String            userE164;
-  private final String            userAgent;
+  private final PushServiceSocket   pushServiceSocket;
+  private final CredentialsProvider credentials;
+  private final String              userAgent;
 
   /**
    * Construct a SignalServiceAccountManager.
@@ -110,8 +108,7 @@ public class SignalServiceAccountManager {
                                      String userAgent)
   {
     this.pushServiceSocket = new PushServiceSocket(configuration, credentialsProvider, userAgent);
-    this.userUuid          = credentialsProvider.getUuid();
-    this.userE164          = credentialsProvider.getE164();
+    this.credentials       = credentialsProvider;
     this.userAgent         = userAgent;
   }
 
@@ -523,12 +520,20 @@ public class SignalServiceAccountManager {
                                                        .setIdentityKeyPrivate(ByteString.copyFrom(identityKeyPair.getPrivateKey().serialize()))
                                                        .setProvisioningCode(code)
                                                        .setProvisioningVersion(ProvisioningVersion.CURRENT_VALUE);
-    if (userE164 != null) {
-      message.setNumber(userE164);
+
+    String e164 = credentials.getE164();
+    UUID   uuid = credentials.getUuid();
+
+    if (e164 != null) {
+      message.setNumber(e164);
+    } else {
+      throw new AssertionError("Missing phone number!");
     }
 
-    if (userUuid != null) {
-      message.setUuid(userUuid.toString());
+    if (uuid != null) {
+      message.setUuid(uuid.toString());
+    } else {
+      Log.w(TAG, "[addDevice] Missing UUID.");
     }
 
     if (profileKey.isPresent()) {
