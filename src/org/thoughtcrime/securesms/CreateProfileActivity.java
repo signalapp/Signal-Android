@@ -39,7 +39,6 @@ import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
-import org.thoughtcrime.securesms.jobs.MultiDeviceProfileKeyUpdateJob;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.permissions.Permissions;
@@ -68,7 +67,6 @@ import java.io.File;
 import java.io.IOException;
 import java.security.SecureRandom;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
 import java.util.regex.Matcher;
@@ -76,7 +74,6 @@ import java.util.regex.Pattern;
 
 import javax.inject.Inject;
 
-import kotlin.Triple;
 import network.loki.messenger.R;
 
 @SuppressLint("StaticFieldLeak")
@@ -416,7 +413,7 @@ public class CreateProfileActivity extends BaseActionBarActivity implements Inje
             if (avatar != null) {
               Log.d("Loki", "Start uploading profile photo");
               LokiStorageAPI storageAPI = LokiStorageAPI.shared;
-              LokiDotNetAPI.UploadResult result = storageAPI.uploadProfilePhoto(storageAPI.getServer(), profileKey, avatar);
+              LokiDotNetAPI.UploadResult result = storageAPI.uploadProfilePicture(storageAPI.getServer(), profileKey, avatar);
               Log.d("Loki", "Profile photo uploaded, the url is " + result.getUrl());
               TextSecurePreferences.setProfileAvatarUrl(context, result.getUrl());
             } else {

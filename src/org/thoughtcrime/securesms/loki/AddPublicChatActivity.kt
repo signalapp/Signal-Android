@@ -12,6 +12,7 @@ import nl.komponents.kovenant.ui.successUi
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.BaseActionBarActivity
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
+import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
 import org.thoughtcrime.securesms.util.DynamicTheme
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 
@@ -58,6 +59,9 @@ class AddPublicChatActivity : PassphraseRequiredActionBarActivity() {
         application.lokiPublicChatManager.addChat(url, channel).successUi {
             lokiPublicChatAPI.getMessages(channel, url)
             lokiPublicChatAPI.setDisplayName(displayName, url)
+            val profileKey: ByteArray = ProfileKeyUtil.getProfileKey(this)
+            val profileUrl: String? = TextSecurePreferences.getProfileAvatarUrl(this)
+            lokiPublicChatAPI.setProfilePicture(url, profileKey, profileUrl)
             finish()
         }.failUi {
             updateUI(false)

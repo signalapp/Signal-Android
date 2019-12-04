@@ -27,7 +27,6 @@ import android.database.ContentObserver;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Handler;
-import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.multidex.MultiDexApplication;
@@ -97,11 +96,11 @@ import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 import org.whispersystems.signalservice.loki.api.LokiAPIDatabaseProtocol;
 import org.whispersystems.signalservice.loki.api.LokiDotNetAPI;
-import org.whispersystems.signalservice.loki.api.LokiPublicChat;
-import org.whispersystems.signalservice.loki.api.LokiPublicChatAPI;
 import org.whispersystems.signalservice.loki.api.LokiLongPoller;
 import org.whispersystems.signalservice.loki.api.LokiP2PAPI;
 import org.whispersystems.signalservice.loki.api.LokiP2PAPIDelegate;
+import org.whispersystems.signalservice.loki.api.LokiPublicChat;
+import org.whispersystems.signalservice.loki.api.LokiPublicChatAPI;
 import org.whispersystems.signalservice.loki.api.LokiRSSFeed;
 import org.whispersystems.signalservice.loki.api.LokiStorageAPI;
 import org.whispersystems.signalservice.loki.utilities.Analytics;
@@ -616,7 +615,9 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         }
         Set<String> servers = DatabaseFactory.getLokiThreadDatabase(this).getAllPublicChatServers();
         for (String server : servers) {
-          publicChatAPI.setProfileAvatar(server, profileKey, url);
+          if (profileKey != null) {
+            publicChatAPI.setProfilePicture(server, profileKey, url);
+          }
         }
       }
     });
@@ -636,7 +637,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
       if (this.deleteDatabase("signal.db")) {
         Log.d("Loki", "Deleted database");
       }
-
     }
   }
 

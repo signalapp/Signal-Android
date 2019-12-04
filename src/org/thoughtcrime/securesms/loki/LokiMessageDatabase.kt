@@ -20,7 +20,7 @@ class LokiMessageDatabase(context: Context, helper: SQLCipherOpenHelper) : Datab
         private val friendRequestStatus = "friend_request_status"
         private val threadID = "thread_id"
         @JvmStatic val createMessageFriendRequestTableCommand = "CREATE TABLE $messageFriendRequestTableName ($messageID INTEGER PRIMARY KEY, $serverID INTEGER DEFAULT 0, $friendRequestStatus INTEGER DEFAULT 0);"
-        @JvmStatic val createMessageToThreadMappingTableCommand = "CREATE TABLE $messageThreadMappingTableName ($messageID INTEGER PRIMARY KEY, $threadID INTEGER);"
+        @JvmStatic val createMessageToThreadMappingTableCommand = "CREATE TABLE IF NOT EXISTS $messageThreadMappingTableName ($messageID INTEGER PRIMARY KEY, $threadID INTEGER);"
     }
 
     override fun getQuoteServerID(quoteID: Long, quoteeHexEncodedPublicKey: String): Long? {

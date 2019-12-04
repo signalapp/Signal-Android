@@ -16,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.melnykov.fab.FloatingActionButton;
@@ -28,16 +29,17 @@ import org.thoughtcrime.securesms.loki.DeviceListBottomSheetFragment;
 import org.thoughtcrime.securesms.loki.MnemonicUtilities;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ViewUtil;
+import org.whispersystems.libsignal.util.guava.Function;
 
 import java.io.File;
 import java.util.List;
 import java.util.Locale;
 
-import org.whispersystems.libsignal.util.guava.Function;
-
 import kotlin.Pair;
 import kotlin.Unit;
 import network.loki.messenger.R;
+
+import static org.thoughtcrime.securesms.loki.GeneralUtilitiesKt.toPx;
 
 public class DeviceListFragment extends ListFragment
     implements LoaderManager.LoaderCallbacks<List<Device>>,
@@ -71,9 +73,9 @@ public class DeviceListFragment extends ListFragment
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle bundle) {
     View view = inflater.inflate(R.layout.device_list_fragment, container, false);
 
-    this.empty             = view.findViewById(R.id.empty);
-    this.progressContainer = view.findViewById(R.id.progress_container);
-    this.addDeviceButton   = ViewUtil.findById(view, R.id.add_device);
+    this.empty             = view.findViewById(R.id.emptyStateTextView);
+    this.progressContainer = view.findViewById(R.id.activityIndicator);
+    this.addDeviceButton   = ViewUtil.findById(view, R.id.addDeviceButton);
     this.addDeviceButton.setOnClickListener(this);
     updateAddDeviceButtonVisibility();
 
@@ -141,16 +143,22 @@ public class DeviceListFragment extends ListFragment
     DeviceListBottomSheetFragment bottomSheet = new DeviceListBottomSheetFragment();
     bottomSheet.setOnEditTapped(() -> {
       bottomSheet.dismiss();
-      EditText deviceNameText = new EditText(getContext());
-      deviceNameText.setText(hasDeviceName ? deviceName : "");
+      EditText deviceNameEditText = new EditText(getContext());
+      LinearLayout deviceNameEditTextContainer = new LinearLayout(getContext());
+      LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+      layoutParams.setMarginStart(toPx(18, getResources()));
+      layoutParams.setMarginEnd(toPx(18, getResources()));
+      deviceNameEditText.setLayoutParams(layoutParams);
+      deviceNameEditTextContainer.addView(deviceNameEditText);
+      deviceNameEditText.setText(hasDeviceName ? deviceName : "");
       AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
       builder.setTitle(R.string.DeviceListActivity_edit_device_name);
-      builder.setView(deviceNameText);
+      builder.setView(deviceNameEditTextContainer);
       builder.setNegativeButton(android.R.string.cancel, null);
       builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
         @Override
         public void onClick(DialogInterface dialog, int which) {
-          if (handleDeviceNameChange != null) { handleDeviceNameChange.apply(new Pair<>(deviceId, deviceNameText.getText().toString().trim())); }
+          if (handleDeviceNameChange != null) { handleDeviceNameChange.apply(new Pair<>(deviceId, deviceNameEditText.getText().toString().trim())); }
         }
       });
       builder.show();
