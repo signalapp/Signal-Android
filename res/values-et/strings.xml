@@ -72,6 +72,8 @@
   <string name="BucketedThreadMedia_Yesterday">Eile</string>
   <string name="BucketedThreadMedia_This_week">See nädal</string>
   <string name="BucketedThreadMedia_This_month">See kuu</string>
+  <string name="BucketedThreadMedia_Large">Suur</string>
+  <string name="BucketedThreadMedia_Small">Väike</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Sissetulev kõne</string>
   <!--CameraActivity-->
@@ -98,6 +100,8 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Veebibrauserit ei leitud.</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Mobiilsidekõne on juba käimas.</string>
+  <string name="CommunicationActions_cancel">Loobu</string>
+  <string name="CommunicationActions_call">Helista</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Sinu turvanumber kontaktiga %1$s on muutunud. See võib tähendada, et keegi proovib sinu vestlusesse sekkuda või et %2$s lihtsalt taasinstallis Signali.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Sa võid tahta kinnitada oma turvanumbrit selle kontaktiga.</string>
@@ -106,6 +110,8 @@
   <string name="ContactsCursorLoader_recent_chats">Hiljutised vestlused</string>
   <string name="ContactsCursorLoader_contacts">Kontaktid</string>
   <string name="ContactsCursorLoader_groups">Grupid</string>
+  <string name="ContactsCursorLoader_phone_number_search">Telefoninumbri otsing</string>
+  <string name="ContactsCursorLoader_username_search">Kasutajanime otsing</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Sõnum %s</string>
   <string name="ContactsDatabase_signal_call_s">Signali kõne %s</string>
@@ -398,19 +404,11 @@
   <string name="MmsDownloader_error_reading_mms_settings">Võrgupakkuja MMS-seadete lugemisel esines viga</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Meedia</string>
-  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
-    <item quantity="one">Kustutad valitud sõnumi?</item>
-    <item quantity="other">Kustutad valitud sõnumid?</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-    <item quantity="one">See kustutab valitud sõnumi püsivalt.</item>
-    <item quantity="other">See kustutab püsivalt %1$d valitud sõnumit.</item>
-  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Kustutan</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Sõnumite kustutamine…</string>
-  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">Dokumendid</string> -->
   <string name="MediaOverviewActivity_Select_all">Vali kõik</string>
   <string name="MediaOverviewActivity_collecting_attachments">Manuste kogumine…</string>
+  <string name="MediaOverviewActivity_Audio">Audio</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signali kõne käib</string>
   <string name="NotificationBarManager__establishing_signal_call">Alustan Signali kõnet</string>
@@ -507,6 +505,11 @@
   <string name="PlacePickerActivity_accept_address">Kinnita aadress</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Google Play Services versioon, mis sul on installitud, ei toimi korrektselt. Palun taasinstalli Google Play Services ja proovi uuesti.</string>
+  <!--ProfileEditNameFragment-->
+  <string name="ProfileEditNameFragment_save">Salvesta</string>
+  <!--ProfileEditOverviewFragment-->
+  <string name="ProfileEditOverviewFragment_profile">Profiil</string>
+  <string name="ProfileEditOverviewFragment_username">Kasutajanimi</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Hinda seda rakendust</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Kui sa naudid selle rakenduse kasutamist, palun võta aega ja hinda seda, et meid aidata.</string>
@@ -675,6 +678,10 @@
   <!--UnverifiedSendDialog-->
   <string name="UnverifiedSendDialog_send_message">Saadad sõnumi?</string>
   <string name="UnverifiedSendDialog_send">Saada</string>
+  <!--UsernameEditFragment-->
+  <string name="UsernameEditFragment_username">Kasutajanimi</string>
+  <string name="UsernameEditFragment_submit">Postita</string>
+  <string name="UsernameEditFragment_delete">Kustuta</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Sinu kontakt kasutab vana Signali versiooni. Palun palu neil uuendada, enne kui kinnitad oma turvanumbrit.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Sinu kontakt kasutab uuemat Signali versiooni ühildumatu QR-koodi vorminguga. Võrdlemiseks palun uuenda.</string>
@@ -745,6 +752,7 @@
   <string name="NotificationChannel_other">Muu</string>
   <string name="NotificationChannel_group_messages">Sõnumid</string>
   <string name="NotificationChannel_missing_display_name">Tundmatu</string>
+  <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Kiirvastus pole saadaval, kui Signal on lukustatud!</string>
   <string name="QuickResponseService_problem_sending_message">Sõnumi saatmisel esines probleem!</string>
@@ -759,6 +767,7 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Uus sõnum</string>
+  <!--ThumbnailView-->
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">
     <item quantity="one">%d üksus</item>
@@ -824,6 +833,7 @@
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal vajab kontaktide kuvamiseks neile ligipääsu, kuid see on püsivalt keelatud. Palun ava rakenduse sätete menüü, vali \"Õigused\" ja luba \"Kontaktid\".</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Kontaktide laadimisel tekkis tõrge. Kontrolli võrguühendust.</string>
+  <string name="ContactSelectionListFragment_okay">Sobib</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Blokeeritud kontakte pole</string>
   <!--contact_selection_list_fragment-->
@@ -1167,6 +1177,7 @@
   <string name="preferences_chats__when_roaming">Kui oled välismaal</string>
   <string name="preferences_chats__media_auto_download">Meedia automaatne allalaadimine</string>
   <string name="preferences_chats__message_trimming">Sõnumi piiramine</string>
+  <string name="preferences_storage__audio">Audio</string>
   <string name="preferences_advanced__use_system_emoji">Kasuta süsteemi emojisid</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Keela Signalisse sisseehitatud emoji-tugi</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Vahenda kõik kõned Signali serveri kaudu, et vältida oma IP-aadressi levitamist oma kontaktile. Lubamine vähendab kõnekvaliteeti.</string>
@@ -1207,6 +1218,7 @@
   <string name="conversation_context__menu_forward_message">Edasta sõnum</string>
   <string name="conversation_context__menu_resend_message">Saada sõnum uuesti</string>
   <string name="conversation_context__menu_reply_to_message">Vasta sõnumile</string>
+  <!--conversation_context_reacction-->
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Salvesta manus</string>
   <!--conversation_expiring_off-->
@@ -1290,8 +1302,6 @@
   <string name="media_preview__save_title">Salvesta</string>
   <string name="media_preview__forward_title">Edasta</string>
   <string name="media_preview__all_media_title">Kogu meedia</string>
-  <!--media_overview-->
-  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">Dokumente pole</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Meedia eelvaade</string>
   <!--new_conversation_activity-->
@@ -1411,5 +1421,8 @@
   <string name="RegistrationLockDialog_reminder">Meeldetuletus:</string>
   <string name="recipient_preferences__about">Teave</string>
   <string name="Recipient_unknown">Tundmatu</string>
+  <string name="MessageRequestBottomView_accept">Nõustun</string>
+  <string name="MessageRequestBottomView_delete">Kustuta</string>
+  <string name="MessageRequestBottomView_block">Blokeeri</string>
   <!--EOF-->
 </resources>

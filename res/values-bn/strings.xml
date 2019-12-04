@@ -72,6 +72,8 @@
   <string name="BucketedThreadMedia_Yesterday">গতকাল</string>
   <string name="BucketedThreadMedia_This_week">এই সপ্তাহ</string>
   <string name="BucketedThreadMedia_This_month">এই মাস</string>
+  <string name="BucketedThreadMedia_Large">বড়</string>
+  <string name="BucketedThreadMedia_Small">ছোট</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">আগত কল</string>
   <!--CameraActivity-->
@@ -98,6 +100,8 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">কোন ওয়েব ব্রাউজার পাওয়া যায়নি।</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">একটি সেলুলার কল ইতিমধ্যে চলছে।</string>
+  <string name="CommunicationActions_cancel">বাতিল</string>
+  <string name="CommunicationActions_call">কল</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">%1$s এর সাথে আপনার নিরাপত্তা নাম্বার পরিবর্তিত হয়েছে। এর মানে এটা হতে পারে যে কেউ আপনার যোগাযোগে বাধা দেওয়ার চেষ্টা করছে কিংবা %2$s পুনরায় Signal ইনস্টল করেছে।</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">আপনি হয়ত এই পরিচিতির সাথে আপনার নিরাপত্তা নাম্বার যাচাই করতে চাইবেন।</string>
@@ -106,6 +110,8 @@
   <string name="ContactsCursorLoader_recent_chats">সাম্প্রতিক আলাপসমূহ</string>
   <string name="ContactsCursorLoader_contacts">পরিচিতিসমূহ</string>
   <string name="ContactsCursorLoader_groups">গ্রুপসমূহ</string>
+  <string name="ContactsCursorLoader_phone_number_search">ফোন নাম্বার অনুসন্ধান</string>
+  <string name="ContactsCursorLoader_username_search">ব্যবহারকারীর নাম অনুসন্ধান</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">%sটি বার্তা</string>
   <string name="ContactsDatabase_signal_call_s">%sটি Signal কল</string>
@@ -398,19 +404,11 @@
   <string name="MmsDownloader_error_reading_mms_settings">ওয়্যারলেস সরবরাহকারীর এমএমএস সেটিংস পড়তে ত্রুটি</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">মিডিয়া</string>
-  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
-    <item quantity="one">নির্বাচিত বার্তাগুলো মুছে ফেলুন?</item>
-    <item quantity="other">নির্বাচিত বার্তাগুলো মুছে ফেলুন?</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-    <item quantity="one">এটা নির্বাচিত টি বার্তার সবকয়টি চিরতরে মুছে ফেলবে।</item>
-    <item quantity="other">এটা নির্বাচিত %1$d টি বার্তার সবকয়টি চিরতরে মুছে ফেলবে।</item>
-  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">মোছা হচ্ছে…</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">বার্তা সমূহ মোছা হচ্ছে…</string>
-  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">নথিপত্র</string> -->
   <string name="MediaOverviewActivity_Select_all">সবগুলো নির্বাচন করুন</string>
   <string name="MediaOverviewActivity_collecting_attachments">সংযুক্তি সমুহ সংগ্রহ করা হচ্ছে…</string>
+  <string name="MediaOverviewActivity_Audio">শব্দ</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal কল চলমান </string>
   <string name="NotificationBarManager__establishing_signal_call">Signal কল স্থাপন করা হচ্ছে</string>
@@ -506,6 +504,11 @@
   <string name="PlacePickerActivity_accept_address">ঠিকানাটি মানছি</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">আপনার ইনস্টল করা গুগল প্লে পরিষেবাদির সংস্করণটি সঠিকভাবে কাজ করছে না। গুগল প্লে পরিষেবাগুলি পুনরায় ইনস্টল করুন এবং আবার চেষ্টা করুন।</string>
+  <!--ProfileEditNameFragment-->
+  <string name="ProfileEditNameFragment_save">সংরক্ষন</string>
+  <!--ProfileEditOverviewFragment-->
+  <string name="ProfileEditOverviewFragment_profile">প্রোফাইল</string>
+  <string name="ProfileEditOverviewFragment_username">ব্যবহারকারীর নাম</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">এই এপটিকে রেটিং দিন</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">আপনি যদি এই অ্যাপ ব্যবহার করে উপভোগ করেন, তবে দয়া করে এটি রেটিং দিতে কিছুক্ষণ সময় দিয়ে আমাদের সহায়তা করুন।</string>
@@ -669,6 +672,10 @@
   <!--UnverifiedSendDialog-->
   <string name="UnverifiedSendDialog_send_message">বার্তা পাঠান?</string>
   <string name="UnverifiedSendDialog_send">পাঠান</string>
+  <!--UsernameEditFragment-->
+  <string name="UsernameEditFragment_username">ব্যবহারকারীর নাম</string>
+  <string name="UsernameEditFragment_submit">সাবমিট</string>
+  <string name="UsernameEditFragment_delete">মুছে দিন</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">আপনার পরিচিতি Signal এর একটি পুরানো সংস্করণ চলাচ্ছেন। আপনার নিরাপত্তা নাম্বার যাচাই করার আগে দয়া করে তাকে আপডেট করতে বলুন।</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">আপনার পরিচিতি একটি অসঙ্গত QR কোড ফর্ম্যাট সহ সিগন্যালের একটি নতুন সংস্করণ চলাচ্ছেন। তুলনা করার জন্য আপডেট করুন।</string>
@@ -739,6 +746,7 @@
   <string name="NotificationChannel_other">অন্যান্য</string>
   <string name="NotificationChannel_group_messages">বার্তা সমূহ</string>
   <string name="NotificationChannel_missing_display_name">অজানা</string>
+  <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal লক্ করা থাকলে দ্রুত প্রত্যুত্তর দেওয়া সম্ভব নয়!</string>
   <string name="QuickResponseService_problem_sending_message">বার্তা প্রেরণে সমস্যা!</string>
@@ -753,6 +761,7 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">নতুন বার্তা</string>
+  <!--ThumbnailView-->
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">
     <item quantity="one">%d টি বস্তু</item>
@@ -818,6 +827,7 @@
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">আপনার পরিচিতিসমূহ দেখানোর জন্য Signal এর পরিচিতি পাঠের অনুমতি প্রয়োজন তবে এটি স্থায়ীভাবে অস্বীকার করা হয়েছে। দয়া করে অ্যাপ্লিকেশন সেটিংসে যান এবং \"অনুমতিগুলি\" নির্বাচন করুন এবং \"পরিচিতি\" সক্ষম করুন।</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">পরিচিতি পুনরুদ্ধারে ত্রুটি, আপনার নেটওয়ার্ক সংযোগটি পরীক্ষা করুন</string>
+  <string name="ContactSelectionListFragment_okay">ঠিক আছে</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">কোনও অবরুদ্ধ পরিচিতি নেই</string>
   <!--contact_selection_list_fragment-->
@@ -1161,6 +1171,7 @@
   <string name="preferences_chats__when_roaming">রোমিং করার সময়</string>
   <string name="preferences_chats__media_auto_download">মিডিয়া অটো-ডাউনলোড</string>
   <string name="preferences_chats__message_trimming">বার্তা ছাঁটাই</string>
+  <string name="preferences_storage__audio">শব্দ</string>
   <string name="preferences_advanced__use_system_emoji">সিস্টেম ইমোজি ব্যবহার করুন</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Signal এর অন্তর্নির্মিত ইমোজি সমর্থন অক্ষম করুন</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">আপনার যোগাযোগের আইপি ঠিকানাটি প্রকাশ না করার জন্য Signal সার্ভারের মাধ্যমে কল সমূহ রিলে করুন। সক্ষম করা কল এর মান হ্রাস পাবে|</string>
@@ -1201,6 +1212,7 @@
   <string name="conversation_context__menu_forward_message">বার্তা ফরোয়ার্ড করুন</string>
   <string name="conversation_context__menu_resend_message">বার্তা পুনরায় পাঠান</string>
   <string name="conversation_context__menu_reply_to_message">বার্তার জবাব দিন</string>
+  <!--conversation_context_reacction-->
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">সংযুক্তি সংরক্ষন করুন</string>
   <!--conversation_expiring_off-->
@@ -1283,8 +1295,6 @@
   <string name="media_preview__save_title">সংরক্ষণ</string>
   <string name="media_preview__forward_title">ফরওয়ার্ড</string>
   <string name="media_preview__all_media_title">সমস্ত মিডিয়া</string>
-  <!--media_overview-->
-  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">কোনও নথিপত্র নেই</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">মিডিয়া প্রাকদর্শন</string>
   <!--new_conversation_activity-->
@@ -1394,5 +1404,8 @@
   <string name="RegistrationLockDialog_reminder">অনুস্মারক:</string>
   <string name="recipient_preferences__about">সম্বন্ধে</string>
   <string name="Recipient_unknown">অজানা</string>
+  <string name="MessageRequestBottomView_accept">মানছি</string>
+  <string name="MessageRequestBottomView_delete">মুছে দিন</string>
+  <string name="MessageRequestBottomView_block">অবরূদ্ধ</string>
   <!--EOF-->
 </resources>

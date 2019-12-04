@@ -72,6 +72,8 @@
   <string name="BucketedThreadMedia_Yesterday">eilen</string>
   <string name="BucketedThreadMedia_This_week">tällä viikolla</string>
   <string name="BucketedThreadMedia_This_month">tässä kuussa</string>
+  <string name="BucketedThreadMedia_Large">Suuri</string>
+  <string name="BucketedThreadMedia_Small">Pieni</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Saapuva puhelu</string>
   <!--CameraActivity-->
@@ -98,6 +100,8 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Verkkoselainta ei löytynyt.</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Matkapuhelu on jo käynnissä.</string>
+  <string name="CommunicationActions_cancel">Peruuta</string>
+  <string name="CommunicationActions_call">Soita</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Turvanumerosi yhteystiedon %1$s kanssa on vaihtunut. Tämä voi tarkoittaa joko sitä, että joku yrittää kaapata viestiliikennettänne, tai sitä, että %2$s on vain yksinkertaisesti asentanut Signalin uudelleen.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Saatat haluta varmentaa turvanumerosi tämän yhteystiedon kanssa.</string>
@@ -106,6 +110,8 @@
   <string name="ContactsCursorLoader_recent_chats">Viimeisimmät keskustelut</string>
   <string name="ContactsCursorLoader_contacts">Yhteystiedot</string>
   <string name="ContactsCursorLoader_groups">Ryhmät</string>
+  <string name="ContactsCursorLoader_phone_number_search">Puhelinnumerohaku</string>
+  <string name="ContactsCursorLoader_username_search">Käyttäjätunnushaku</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Viesti %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal-puhelu %s</string>
@@ -398,19 +404,11 @@
   <string name="MmsDownloader_error_reading_mms_settings">Virhe luettaessa operaattorin MMS-asetuksia</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Media</string>
-  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
-    <item quantity="one">Poistetaanko valittu viesti?</item>
-    <item quantity="other">Poistetaanko valitut viestit?</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-    <item quantity="one">Tämä poistaa pysyvästi valitun viestin.</item>
-    <item quantity="other">Tämä poistaa pysyvästi kaikki %1$d valittua viestiä.</item>
-  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Poistetaan</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Viestejä poistetaan…</string>
-  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">Dokumentit</string> -->
   <string name="MediaOverviewActivity_Select_all">Valitse kaikki</string>
   <string name="MediaOverviewActivity_collecting_attachments">Kerätään liitetiedostoja…</string>
+  <string name="MediaOverviewActivity_Audio">Äänitiedosto</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal-puhelu käynnissä</string>
   <string name="NotificationBarManager__establishing_signal_call">Muodostetaan Signal-puhelua</string>
@@ -506,6 +504,11 @@
   <string name="PlacePickerActivity_accept_address">Hyväksy osoite</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Käyttämäsi versio Google Play Servicestä ei toimi kunnolla. Asenna Google Play Services uudelleen ja yritä uudestaan.</string>
+  <!--ProfileEditNameFragment-->
+  <string name="ProfileEditNameFragment_save">Tallenna</string>
+  <!--ProfileEditOverviewFragment-->
+  <string name="ProfileEditOverviewFragment_profile">Profiili</string>
+  <string name="ProfileEditOverviewFragment_username">Käyttäjätunnus</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Arvostele tämä sovellus</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Jos pidät Signalista, voit auttaa meitä arvostelemalla sen.</string>
@@ -669,6 +672,10 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--UnverifiedSendDialog-->
   <string name="UnverifiedSendDialog_send_message">Lähetä viesti?</string>
   <string name="UnverifiedSendDialog_send">Lähetä</string>
+  <!--UsernameEditFragment-->
+  <string name="UsernameEditFragment_username">Käyttäjätunnus</string>
+  <string name="UsernameEditFragment_submit">Lähetä</string>
+  <string name="UsernameEditFragment_delete">Poista</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Yhteystietosi käyttää vanhaa versiota Signalista. Pyydä häntä päivittämään, jotta voit varmentaa turvanumeron.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Yhteystietosi käyttää uudempaa versiota Signalista, jonka QR-koodi ei toimi oman versiosi kanssa. Päivitä Signalisi uusimpaan versioon.</string>
@@ -739,6 +746,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="NotificationChannel_other">Muu</string>
   <string name="NotificationChannel_group_messages">Viestit</string>
   <string name="NotificationChannel_missing_display_name">Tuntematon</string>
+  <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Pikavastaus ei toimi, kun Signal on lukittu!</string>
   <string name="QuickResponseService_problem_sending_message">Ongelma viestin lähettämisessä!</string>
@@ -753,6 +761,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Uusi viesti</string>
+  <!--ThumbnailView-->
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">
     <item quantity="one">%d kappale</item>
@@ -818,6 +827,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal tarvitsee lupaa käyttää laitteesi yhteystietoja voidakseen näyttää yhteystietosi, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Yhteystiedot\".</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Yhteystietojen haussa tapahtui virhe. Tarkista verkkoyhteytesi.</string>
+  <string name="ContactSelectionListFragment_okay">Selvä</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Ei estettyjä yhteystietoja</string>
   <!--contact_selection_list_fragment-->
@@ -1133,6 +1143,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Poista vanhimpia viestejä automaattisesti, kun keskustelu ylittää määritetyn pituusrajan</string>
   <string name="preferences__delete_old_messages">Vanhojen viestien poisto</string>
   <string name="preferences__chats">Keskustelut ja liitetiedostot</string>
+  <string name="preferences__storage">Tallennustila</string>
   <string name="preferences__conversation_length_limit">Keskustelun pituusraja</string>
   <string name="preferences__trim_all_conversations_now">Karsi kaikki keskustelut nyt</string>
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Käy läpi kaikki keskustelut ja pakota niihin pituusrajat</string>
@@ -1161,6 +1172,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="preferences_chats__when_roaming">Roaming-tilassa</string>
   <string name="preferences_chats__media_auto_download">Liitetiedostojen automaattinen lataus</string>
   <string name="preferences_chats__message_trimming">Keskustelujen karsiminen</string>
+  <string name="preferences_storage__audio">Äänitiedosto</string>
   <string name="preferences_advanced__use_system_emoji">Käytä järjestelmän hymiöitä</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Ota Signalin oletushymiöt pois käytöstä</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Välitä kaikki puhelut Signal-palvelimen kautta välttääksesi IP-osoitteesi paljastumista yhteystiedollesi. Tämä toiminto heikentää puhelun laatua.</string>
@@ -1201,6 +1213,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="conversation_context__menu_forward_message">Välitä viesti</string>
   <string name="conversation_context__menu_resend_message">Lähetä viesti uudelleen</string>
   <string name="conversation_context__menu_reply_to_message">Vastaa viestiin</string>
+  <!--conversation_context_reacction-->
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Tallenna liite</string>
   <!--conversation_expiring_off-->
@@ -1284,8 +1297,6 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="media_preview__save_title">Tallenna</string>
   <string name="media_preview__forward_title">Välitä</string>
   <string name="media_preview__all_media_title">Kaikki mediatiedostot</string>
-  <!--media_overview-->
-  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">Ei tiedostoja</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Liitteen esikatselu</string>
   <!--new_conversation_activity-->
@@ -1413,5 +1424,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="RegistrationLockDialog_reminder">Muistutus:</string>
   <string name="recipient_preferences__about">Tiedot</string>
   <string name="Recipient_unknown">Tuntematon</string>
+  <string name="MessageRequestBottomView_accept">Hyväksy</string>
+  <string name="MessageRequestBottomView_delete">Poista</string>
+  <string name="MessageRequestBottomView_block">Estä</string>
   <!--EOF-->
 </resources>

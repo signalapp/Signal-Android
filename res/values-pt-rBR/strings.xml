@@ -72,6 +72,8 @@
   <string name="BucketedThreadMedia_Yesterday">Ontem</string>
   <string name="BucketedThreadMedia_This_week">Esta semana</string>
   <string name="BucketedThreadMedia_This_month">Este mês</string>
+  <string name="BucketedThreadMedia_Large">Grande</string>
+  <string name="BucketedThreadMedia_Small">Pequeno</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Recebendo chamada</string>
   <!--CameraActivity-->
@@ -98,6 +100,8 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Nenhum navegador encontrado.</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Uma chamada já está em andamento.</string>
+  <string name="CommunicationActions_cancel">Cancelar</string>
+  <string name="CommunicationActions_call">Ligar</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Seu número de segurança com %1$s mudou. Isso pode significar que alguém está tentando interceptar a sua comunicação ou que %2$s simplesmente reinstalou o Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Talvez você queira verificar seu número de segurança com esse contato.</string>
@@ -398,19 +402,11 @@
   <string name="MmsDownloader_error_reading_mms_settings">Erro ao ler configuracoes de MMS do provedor sem fio </string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Mídia</string>
-  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
-    <item quantity="one">Excluir mensagem selecionada?</item>
-    <item quantity="other">Excluir mensagens selecionadas?</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-    <item quantity="one">Isto irá excluir permanentemente a mensagem selecionada.</item>
-    <item quantity="other">Isto irá excluir permanentemente todas as %1$d mensagens selecionadas.</item>
-  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Excluindo</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Excluindo mensagens…</string>
-  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">Documentos</string> -->
   <string name="MediaOverviewActivity_Select_all">Marcar todos</string>
   <string name="MediaOverviewActivity_collecting_attachments">Coletando anexos…</string>
+  <string name="MediaOverviewActivity_Audio">Áudio</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Chamada Signal em andamento</string>
   <string name="NotificationBarManager__establishing_signal_call">Estabelecendo uma ligação via Signal</string>
@@ -507,6 +503,10 @@
   <string name="PlacePickerActivity_accept_address">Aceitar endereço</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">A versão instalada do Serviços Google Play não está funcionando corretamente. Favor reinstalar o Serviços Google Play e tentar novamente.</string>
+  <!--ProfileEditNameFragment-->
+  <string name="ProfileEditNameFragment_save">Salvar</string>
+  <!--ProfileEditOverviewFragment-->
+  <string name="ProfileEditOverviewFragment_profile">Perfil</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Avaliar este aplicativo</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Se você gosta de usar este aplicativo, por favor tire uns segundos para nos ajudar com sua avaliação.</string>
@@ -675,6 +675,9 @@
   <!--UnverifiedSendDialog-->
   <string name="UnverifiedSendDialog_send_message">Enviar mensagem?</string>
   <string name="UnverifiedSendDialog_send">Enviar</string>
+  <!--UsernameEditFragment-->
+  <string name="UsernameEditFragment_submit">Enviar</string>
+  <string name="UsernameEditFragment_delete">Excluir</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Seu contato está usando uma versão antiga do Signal. Peça a ele para atualizá-la antes de verificar o seu número de segurança.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Seu contato está usando uma versão mais nova do Signal com um formato de código QR incompatível. Atualize para poder comparar.</string>
@@ -745,6 +748,7 @@
   <string name="NotificationChannel_other">Outro</string>
   <string name="NotificationChannel_group_messages">Mensagens</string>
   <string name="NotificationChannel_missing_display_name">Desconhecida</string>
+  <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Resposta rápida não disponível quando o Signal está trancado!</string>
   <string name="QuickResponseService_problem_sending_message">Problema ao enviar mensagem!</string>
@@ -759,6 +763,7 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nova mensagem</string>
+  <!--ThumbnailView-->
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">
     <item quantity="one">%d Item</item>
@@ -1139,6 +1144,7 @@
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Apagar mensagens antigas automaticamente quando uma conversa exceder um limite especificado</string>
   <string name="preferences__delete_old_messages">Excluir mensagens antigas</string>
   <string name="preferences__chats">Chats e mídia</string>
+  <string name="preferences__storage">Armazenamento</string>
   <string name="preferences__conversation_length_limit">Tamanho máximo de conversa</string>
   <string name="preferences__trim_all_conversations_now">Limitar o tamanho de todas as conversas agora</string>
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Escanear todas as conversas e aplicar os limites de comprimento de conversa</string>
@@ -1167,6 +1173,7 @@
   <string name="preferences_chats__when_roaming">Quando em roaming</string>
   <string name="preferences_chats__media_auto_download">Download automático de mídia</string>
   <string name="preferences_chats__message_trimming">Aparar mensagem</string>
+  <string name="preferences_storage__audio">Áudio</string>
   <string name="preferences_advanced__use_system_emoji">Usar emoji do sistema</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Desabilitar o suporte a emoji embutido no Signal</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Encaminhar todas as chamadas através do servidor Signal para evitar revelar seu endereço IP para seu contato. Habilitar reduzirá a qualidade da chamada.</string>
@@ -1207,6 +1214,7 @@
   <string name="conversation_context__menu_forward_message">Reencaminhar mensagem</string>
   <string name="conversation_context__menu_resend_message">Reenviar mensagem</string>
   <string name="conversation_context__menu_reply_to_message">Responder à mensagem</string>
+  <!--conversation_context_reacction-->
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Guardar anexo</string>
   <!--conversation_expiring_off-->
@@ -1290,8 +1298,6 @@
   <string name="media_preview__save_title">Salvar</string>
   <string name="media_preview__forward_title">Avançar</string>
   <string name="media_preview__all_media_title">Todas as mídias</string>
-  <!--media_overview-->
-  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">Nenhum documento</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Pré-visualização de mídia</string>
   <!--new_conversation_activity-->
@@ -1401,5 +1407,8 @@
   <string name="RegistrationLockDialog_reminder">Lembrete:</string>
   <string name="recipient_preferences__about">Sobre</string>
   <string name="Recipient_unknown">Desconhecida</string>
+  <string name="MessageRequestBottomView_accept">Aceitar</string>
+  <string name="MessageRequestBottomView_delete">Excluir</string>
+  <string name="MessageRequestBottomView_block">Bloquear</string>
   <!--EOF-->
 </resources>

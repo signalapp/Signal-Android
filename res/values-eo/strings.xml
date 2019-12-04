@@ -72,6 +72,9 @@
   <string name="BucketedThreadMedia_Yesterday">Hieraŭ</string>
   <string name="BucketedThreadMedia_This_week">Ĉi tiu semajno</string>
   <string name="BucketedThreadMedia_This_month">Ĉi tiu monato</string>
+  <string name="BucketedThreadMedia_Large">Granda</string>
+  <string name="BucketedThreadMedia_Medium">Meza</string>
+  <string name="BucketedThreadMedia_Small">Eta</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Envena alvoko</string>
   <!--CameraActivity-->
@@ -98,6 +101,10 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Neniu retumilo trovita.</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Ĉela alvoko jam estas okazanta.</string>
+  <string name="CommunicationActions_start_video_call">Ĉu eki vid-alvokon?</string>
+  <string name="CommunicationActions_start_voice_call">Ĉu eki voĉ-alvokon?</string>
+  <string name="CommunicationActions_cancel">Nuligi</string>
+  <string name="CommunicationActions_call">Alvoko</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Via sekuriga numero kun %1$s ŝanĝiĝis. Tio povas aŭ signifi, ke iu provas interkapti viajn komunikojn, aŭ ke %2$s simple reinstalis Signal-on.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Vi eble volas kontroli vian sekurigan numeron kun ĉi tiu kontakto.</string>
@@ -106,6 +113,8 @@
   <string name="ContactsCursorLoader_recent_chats">Lastaj interparoloj</string>
   <string name="ContactsCursorLoader_contacts">Kontaktaro</string>
   <string name="ContactsCursorLoader_groups">Grupoj</string>
+  <string name="ContactsCursorLoader_phone_number_search">Serĉo de telefonnumero</string>
+  <string name="ContactsCursorLoader_username_search">Serĉo de uzantnomo</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Mesaĝi al %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal-e telefoni %s</string>
@@ -207,7 +216,7 @@
   </plurals>
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
     <item quantity="one">Eraro konservante kunsendaĵon al konservejo!</item>
-    <item quantity="other">Eraro konservante kunsendaĵojn al konservejo!</item>
+    <item quantity="other">Eraro dum skribo de kunsendaĵoj al konservejo!</item>
   </plurals>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Ne povas skribi al konservejo!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
@@ -297,6 +306,10 @@
   <string name="DeviceListItem_today">Hodiaŭ</string>
   <!--DocumentView-->
   <string name="DocumentView_unknown_file">Nekonata dosiero</string>
+  <string name="DocumentView_unnamed_file">Sennoma dosiero</string>
+  <string name="DocumentView_audio_file">Sondosiero</string>
+  <string name="DocumentView_image_file">Bildodosiero</string>
+  <string name="DocumentView_video_file">Videdosiero</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimumigi por mankantaj „Play Services“</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Tiu aparato ne subtenas „Play Services“. Tuŝetu por malebligi baterian optimumigon, kiu alie malhelpus al Signal ricevi mesaĝojn dum neaktiva.</string>
@@ -366,6 +379,8 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Kunhavigi</string>
   <string name="InviteActivity_choose_contacts">Elektu kontaktojn</string>
+  <string name="InviteActivity_share_with_contacts">Kunhavigi kun kontaktoj</string>
+  <string name="InviteActivity_choose_how_to_share">Elekti kiel plusendi</string>
   <string name="InviteActivity_cancel">Nuligi</string>
   <string name="InviteActivity_sending">Sendo…</string>
   <string name="InviteActivity_heart_content_description">Koro</string>
@@ -399,21 +414,31 @@
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Aŭdvidaĵo</string>
   <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
-    <item quantity="one">Ĉu forigi elektitan mesaĝon?</item>
-    <item quantity="other">Ĉu forigi elektitajn mesaĝojn?</item>
+    <item quantity="one">Ĉu forviŝi elektitan eron?</item>
+    <item quantity="other">Ĉu forviŝi elektitajn erojn?</item>
   </plurals>
   <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-    <item quantity="one">Tio porĉiame forigos la elektitan mesaĝon.</item>
-    <item quantity="other">Tio porĉiame forigos ĉiujn %1$d elektitajn mesaĝojn.</item>
+    <item quantity="one">Tio porĉiame forigos la elektitan dosieron. Teksto de mesaĝo asociita kun tiu dosiero ankaŭ foriĝos.</item>
+    <item quantity="other">Tio porĉiame forigos ĉiujn %1$d elektitajn dosierojn. Teksto de mesaĝo asociita kun tiuj dosieroj ankaŭ foriĝos.</item>
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Forviŝado</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Forviŝado de mesaĝoj…</string>
-  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">Dokumentoj</string> -->
+  <string name="MediaOverviewActivity_Files">Dosieroj</string>
   <string name="MediaOverviewActivity_Select_all">Elekti ĉiujn</string>
   <string name="MediaOverviewActivity_collecting_attachments">Kolekto de kunsendaĵoj…</string>
+  <string name="MediaOverviewActivity_Audio">Sonaĵo</string>
+  <string name="MediaOverviewActivity_All">Ĉiuj</string>
+  <string name="MediaOverviewActivity_Sort_by">Ordigi laŭ</string>
+  <string name="MediaOverviewActivity_Newest">Plej novaj</string>
+  <string name="MediaOverviewActivity_Oldest">Plej malnovaj</string>
+  <string name="MediaOverviewActivity_Storage_used">Uzata spaco</string>
+  <string name="MediaOverviewActivity_All_storage_use">Ĉiu uzata spaco</string>
+  <string name="MediaOverviewActivity_Grid_view_description">Krada vido</string>
+  <string name="MediaOverviewActivity_List_view_description">Lista vido</string>
+  <string name="MediaOverviewActivity_Selected_description">Elektita</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal-alvoko fariĝanta</string>
-  <string name="NotificationBarManager__establishing_signal_call">Starigante Signal-alvokon</string>
+  <string name="NotificationBarManager__establishing_signal_call">Starigo de Signal-alvoko</string>
   <string name="NotificationBarManager__incoming_signal_call">Envena Signal-alvoko</string>
   <string name="NotificationBarManager__deny_call">Rifuzi alvokon</string>
   <string name="NotificationBarManager__answer_call">Respondi alvokon</string>
@@ -507,6 +532,17 @@
   <string name="PlacePickerActivity_accept_address">Akcepti la adreson</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">La instalita versio de la Google-servoj „Play“ ne bone funkcias. Bv. re-instali „Google Play Services“, kaj provi denove.</string>
+  <!--ProfileEditNameFragment-->
+  <string name="ProfileEditNameFragment_profile_name">Profila nomo</string>
+  <string name="ProfileEditNameFragment_your_profile_name_can_be_seen_by_your_contacts">Via profila nomo videblas de viaj kontaktoj kaj aliaj uzantoj aŭ grupoj, kiam vi komencas interparolon aŭ akceptas peton por interparoli.</string>
+  <string name="ProfileEditNameFragment_save">Konservi</string>
+  <!--ProfileEditOverviewFragment-->
+  <string name="ProfileEditOverviewFragment_profile">Profilo</string>
+  <string name="ProfileEditOverviewFragment_profile_name">Profila nomo</string>
+  <string name="ProfileEditOverviewFragment_username">Uzantnomo</string>
+  <string name="ProfileEditOverviewFragment_create_a_profile_name">Krei profilnomon</string>
+  <string name="ProfileEditOverviewFragment_create_a_username">Krei uzantnomon</string>
+  <string name="ProfileEditOverviewFragment_your_signal_profile_can_be_seen_by">Via Signal-profilo videblas de viaj kontaktoj kaj aliaj uzantoj aŭ grupoj, kiam vi komencas interparolon aŭ akceptas peton por interparoli. <a href="https://support.signal.org/hc/articles/360007459591-Signal-Profiles">Tuŝetu tie por scii pli</a>.</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Pritaksi tiun aplikaĵon</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Se vi ŝatas uzi tiun aplikaĵon, bv. helpi nin per via pritakso.</string>
@@ -576,6 +612,8 @@
   <string name="RegistrationActivity_failed_to_verify_the_captcha">Ne eblis kontroli la defio-responsan teston („CAPTCHA“)</string>
   <string name="RegistrationActivity_next">Sekva</string>
   <string name="RegistrationActivity_continue">Daŭrigi</string>
+  <string name="RegistrationActivity_continue_d_attempts_left">Plui (restas %d provoj)</string>
+  <string name="RegistrationActivity_continue_last_attempt">Plui (lasta provo!)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Kunprenu privatecon.\nEstu vi mem en ĉiu mesaĝo.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Entajpu vian telefonnumeron unue</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Vi ricevos konfirman kodon per SMS. Eble via sendrata provizanto pagigos al vi la SMS-on.</string>
@@ -674,6 +712,20 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--UnverifiedSendDialog-->
   <string name="UnverifiedSendDialog_send_message">Ĉu sendi mesaĝon?</string>
   <string name="UnverifiedSendDialog_send">Sendi</string>
+  <!--UsernameEditFragment-->
+  <string name="UsernameEditFragment_username">Uzantnomo</string>
+  <string name="UsernameEditFragment_submit">Sendi</string>
+  <string name="UsernameEditFragment_delete">Forigi</string>
+  <string name="UsernameEditFragment_successfully_set_username">Uzantnomo sukcese difinita.</string>
+  <string name="UsernameEditFragment_successfully_removed_username">Uzantnomo sukcese forigita.</string>
+  <string name="UsernameEditFragment_encountered_a_network_error">Okazis reta eraro.</string>
+  <string name="UsernameEditFragment_this_username_is_taken">Tiu uzantnomo jam uziĝas.</string>
+  <string name="UsernameEditFragment_this_username_is_available">La uzantnomo disponeblas.</string>
+  <string name="UsernameEditFragment_usernames_can_only_include">Uzantnomo povas enteni nur literojn a-z A-Z, ciferojn 0-9 kaj substrekoj.</string>
+  <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Uzantnomo ne povas komenciĝi per cifero</string>
+  <string name="UsernameEditFragment_username_is_invalid">Uzantnomo ne validas.</string>
+  <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Uzantnomoj estu inter %1$d kaj %2$d signoj.</string>
+  <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Aliaj Signal-uzantoj povas sendi mesaĝopetojn al via unika uzantnomo sen scio de via telefonnumero. Elekto de uzantnomo estas nedeviga.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Via kontakto uzas malnovan Signal-an version. Bonvolu peti la sendinton ĝisdatigi, antaŭ ol kontroli vian sekurigan numeron.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Via kontakto uzas pli novan Signal-an version, kiu uzas nekongruan rapidrespondan (QR) kodon. Bonvolu ĝisdatigi por kompari ilin.</string>
@@ -713,6 +765,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Ne eblas konservi en la ekstera konservejo sen permesoj</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Ĉu forviŝi mesaĝon?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Tio daŭre forviŝos ĉi tiun mesaĝon.</string>
+  <string name="MediaPreviewActivity_s_to_s">%1$s al %2$s</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d novaj mesaĝoj en %2$d interparoloj</string>
   <string name="MessageNotifier_most_recent_from_s">Plej lasta de: %1$s</string>
@@ -744,6 +797,9 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="NotificationChannel_other">Alia</string>
   <string name="NotificationChannel_group_messages">Mesaĝoj</string>
   <string name="NotificationChannel_missing_display_name">Nekonata</string>
+  <!--ProfileEditNameFragment-->
+  <string name="ProfileEditNameFragment_successfully_set_profile_name">Profilnomo sukcese difinita.</string>
+  <string name="ProfileEditNameFragment_encountered_a_network_error">Okazis reta eraro.</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Rapida respondo ne eblas, kiam Signal estas ŝlosita!</string>
   <string name="QuickResponseService_problem_sending_message">Problemo dum sendo de mesaĝo!</string>
@@ -758,6 +814,9 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nova mesaĝo</string>
+  <!--ThumbnailView-->
+  <string name="ThumbnailView_Play_video_description">Ludi videaĵon</string>
+  <string name="ThumbnailView_Has_a_caption_description">Havas priskribon</string>
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">
     <item quantity="one">%d elemento</item>
@@ -823,6 +882,9 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal bezonas kontaktaro-permeson por montri viajn kontaktojn, sed ĝi estis porĉiame malakceptita. Bonvolu daŭrigi al la aplikaĵaj agordoj, elekti „Permesoj“, kaj ŝalti „Kontaktaro“.</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Eraro dum ricevo de kontaktoj; bv. kontroli vian retkonekton</string>
+  <string name="ContactSelectionListFragment_username_not_found">Uzantnomo ne trovita</string>
+  <string name="ContactSelectionListFragment_s_is_not_a_signal_user">„%1$s“ ne estas Signal-uzanto. Kontrolu la uzantnomon kaj reprovu.</string>
+  <string name="ContactSelectionListFragment_okay">Bone</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Neniu blokata kontakto</string>
   <!--contact_selection_list_fragment-->
@@ -1138,6 +1200,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Aŭtomate forigi malnovajn mesaĝojn, kiam interparolo transpasas indikitan nombron</string>
   <string name="preferences__delete_old_messages">Forigi malnovajn mesaĝojn</string>
   <string name="preferences__chats">Interparoloj kaj aŭdvidaĵoj</string>
+  <string name="preferences__storage">Konservejo</string>
   <string name="preferences__conversation_length_limit">Maksimumo de mesaĝoj en interparolo</string>
   <string name="preferences__trim_all_conversations_now">Mallongigi ĉiujn interparolojn nun</string>
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Trairi ĉiujn interparolojn por efektivigi la maksimuman nombron de mesaĝoj</string>
@@ -1166,6 +1229,11 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="preferences_chats__when_roaming">Dum retmigrado</string>
   <string name="preferences_chats__media_auto_download">Aŭdvidaĵa aŭtomata elŝuto</string>
   <string name="preferences_chats__message_trimming">Tondeto de mesaĝoj</string>
+  <string name="preferences_storage__storage_usage">Uzo de la konservejo</string>
+  <string name="preferences_storage__photos">Fotoj</string>
+  <string name="preferences_storage__videos">Videaĵoj</string>
+  <string name="preferences_storage__files">Dosieroj</string>
+  <string name="preferences_storage__audio">Sonaĵo</string>
   <string name="preferences_advanced__use_system_emoji">Uzi sisteman emoĝiaron</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Malebligi emoĝiaron de Signal</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Trapasigi ĉiujn alvokojn tra la Signal-servilo por eviti sciigi vian IP-adreson al via kontakto. Tio malaltigos la alvokan kvaliton.</string>
@@ -1206,6 +1274,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="conversation_context__menu_forward_message">Plusendi mesaĝon</string>
   <string name="conversation_context__menu_resend_message">Resendi mesaĝon</string>
   <string name="conversation_context__menu_reply_to_message">Respondi mesaĝon</string>
+  <!--conversation_context_reacction-->
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Konservi kunsendaĵon</string>
   <!--conversation_expiring_off-->
@@ -1289,8 +1358,6 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="media_preview__save_title">Konservi</string>
   <string name="media_preview__forward_title">Plusendi</string>
   <string name="media_preview__all_media_title">Ĉiuj aŭvidaĵoj</string>
-  <!--media_overview-->
-  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">Neniu dokumento</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Aŭdvida antaŭrigardo</string>
   <!--new_conversation_activity-->
@@ -1418,5 +1485,8 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="RegistrationLockDialog_reminder">Memorigo:</string>
   <string name="recipient_preferences__about">Pri</string>
   <string name="Recipient_unknown">Nekonata</string>
+  <string name="MessageRequestBottomView_accept">Akcepti</string>
+  <string name="MessageRequestBottomView_delete">Forigi</string>
+  <string name="MessageRequestBottomView_block">Bloki</string>
   <!--EOF-->
 </resources>

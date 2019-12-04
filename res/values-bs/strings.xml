@@ -75,6 +75,8 @@
   <string name="BucketedThreadMedia_Yesterday">Jučer</string>
   <string name="BucketedThreadMedia_This_week">Ove sedmice</string>
   <string name="BucketedThreadMedia_This_month">Ovog mjeseca</string>
+  <string name="BucketedThreadMedia_Large">Velika</string>
+  <string name="BucketedThreadMedia_Small">Mala</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Dolazni poziv</string>
   <!--CameraActivity-->
@@ -101,6 +103,8 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Nije pronađen internet-preglednik.</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Telefonski poziv već je u toku.</string>
+  <string name="CommunicationActions_cancel">Otkaži</string>
+  <string name="CommunicationActions_call">Poziv</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Promijenjen je Vaš sigurnosni broj %1$s. To može značiti da neko pokušava presresti Vašu komunikaciju ili da je %2$s iznova instalirao/la Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Trebali biste provjeriti Vaš sigurnosni broj s ovom osobom.</string>
@@ -414,21 +418,11 @@
   <string name="MmsDownloader_error_reading_mms_settings">Greška prilikom čitanja operaterovih MMS postavki</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Slike</string>
-  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
-    <item quantity="one">Izbrisati odabranu poruku?</item>
-    <item quantity="few">Izbrisati odabrane poruke?</item>
-    <item quantity="other">Izbrisati odabrane poruke?</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-    <item quantity="one">Ovo će bespovratno izbrisati odabranu poruku.</item>
-    <item quantity="few">Ovo će bespovratno izbrisati %1$d odabrane poruke.</item>
-    <item quantity="other">Ovo će bespovratno izbrisati svih %1$d odabranih poruka.</item>
-  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Brisanje</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Brišem poruke…</string>
-  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">Dokumenti</string> -->
   <string name="MediaOverviewActivity_Select_all">Odaberi sve</string>
   <string name="MediaOverviewActivity_collecting_attachments">Sabirem priloge…</string>
+  <string name="MediaOverviewActivity_Audio">Zvuk</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal poziv u toku</string>
   <string name="NotificationBarManager__establishing_signal_call">Uspostavljam Signal poziv</string>
@@ -525,6 +519,10 @@
   <string name="PlacePickerActivity_accept_address">Prihvati adresu</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Google Play Services koje ste instalirali ne rade kako treba. Molimo iznova instalirajte Google Play Services i pokušajte ponovo.</string>
+  <!--ProfileEditNameFragment-->
+  <string name="ProfileEditNameFragment_save">Pohrani</string>
+  <!--ProfileEditOverviewFragment-->
+  <string name="ProfileEditOverviewFragment_profile">Profil</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Ocijenite ovu aplikaciju</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Ako sa zadovoljstvom koristite ovu aplikaciju, molimo izdvojite trenutak da nam pomognete tako što ćete je ocijeniti.</string>
@@ -694,6 +692,9 @@
   <!--UnverifiedSendDialog-->
   <string name="UnverifiedSendDialog_send_message">Poslati poruku?</string>
   <string name="UnverifiedSendDialog_send">Šalji</string>
+  <!--UsernameEditFragment-->
+  <string name="UsernameEditFragment_submit">Šalji</string>
+  <string name="UsernameEditFragment_delete">Izbriši</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Ova osoba koristi stariju verziju Signala. Molimo tražite da instalira novu verziju prije verifikacije sigurnosnog broja.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Ova osoba koristi noviju verziju Signala, sa nekompatibilnim QR kōdom. Molimo nadogradite Signal da uporedite.</string>
@@ -764,6 +765,7 @@
   <string name="NotificationChannel_other">Ostalo</string>
   <string name="NotificationChannel_group_messages">Poruke</string>
   <string name="NotificationChannel_missing_display_name">Nepoznato</string>
+  <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Brzi odgovori nisu dostupni kada je Signal zaključan!</string>
   <string name="QuickResponseService_problem_sending_message">Problem prilikom slanja poruke!</string>
@@ -778,6 +780,7 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nova poruka</string>
+  <!--ThumbnailView-->
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">
     <item quantity="one">%d stavka</item>
@@ -1195,6 +1198,7 @@
   <string name="preferences_chats__when_roaming">Prilikom roaminga</string>
   <string name="preferences_chats__media_auto_download">Automatsko preuzimanje datoteka</string>
   <string name="preferences_chats__message_trimming">Skraćivanje poruke</string>
+  <string name="preferences_storage__audio">Zvuk</string>
   <string name="preferences_advanced__use_system_emoji">Koristi sistemske emoji sličice</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Onemogući Signalovu ugrađenu podršku za emoji sličice</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Preusmjeri sve pozive na Signal server kako bi Vaša IP adresa bila skrivena od sagovornika. Aktiviranjem ove opcije smanjit će se kvalitet poziva.</string>
@@ -1235,6 +1239,7 @@
   <string name="conversation_context__menu_forward_message">Proslijedi poruku</string>
   <string name="conversation_context__menu_resend_message">Ponovo pošalji poruku</string>
   <string name="conversation_context__menu_reply_to_message">Odgovori na poruku</string>
+  <!--conversation_context_reacction-->
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Pohrani prilog</string>
   <!--conversation_expiring_off-->
@@ -1318,8 +1323,6 @@
   <string name="media_preview__save_title">Pohrani</string>
   <string name="media_preview__forward_title">Naprijed</string>
   <string name="media_preview__all_media_title">Svi prilozi</string>
-  <!--media_overview-->
-  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">Nema dokumenata</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Prikaz datoteke</string>
   <!--new_conversation_activity-->
@@ -1429,5 +1432,8 @@
   <string name="RegistrationLockDialog_reminder">Podsjetnik:</string>
   <string name="recipient_preferences__about">O kontaktu</string>
   <string name="Recipient_unknown">Nepoznato</string>
+  <string name="MessageRequestBottomView_accept">Prihvati</string>
+  <string name="MessageRequestBottomView_delete">Izbriši</string>
+  <string name="MessageRequestBottomView_block">Blokiraj</string>
   <!--EOF-->
 </resources>

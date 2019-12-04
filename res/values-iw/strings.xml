@@ -78,6 +78,8 @@
   <string name="BucketedThreadMedia_Yesterday">אתמול</string>
   <string name="BucketedThreadMedia_This_week">השבוע</string>
   <string name="BucketedThreadMedia_This_month">החודש</string>
+  <string name="BucketedThreadMedia_Large">גדול</string>
+  <string name="BucketedThreadMedia_Small">קטן</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">שיחה נכנסת</string>
   <!--CameraActivity-->
@@ -104,6 +106,8 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">לא נמצא דפדפן.</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">שיחה סלולרית נמצאת כבר בתהליך.</string>
+  <string name="CommunicationActions_cancel">בטל</string>
+  <string name="CommunicationActions_call">חייג</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">מספר הביטחון שלך עם %1$s השתנה. ייתכן שזה אומר שמישהו מנסה ליירט את התקשורת שלכם או שפשוט %2$s התקין מחדש את Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">ייתכן שתרצה לוודא את מספר הביטחון שלך עם איש קשר זה.</string>
@@ -112,6 +116,8 @@
   <string name="ContactsCursorLoader_recent_chats">התכתבויות אחרונות</string>
   <string name="ContactsCursorLoader_contacts">אנשי קשר</string>
   <string name="ContactsCursorLoader_groups">קבוצות</string>
+  <string name="ContactsCursorLoader_phone_number_search">חיפוש מספר טלפון</string>
+  <string name="ContactsCursorLoader_username_search">חיפוש שם משתמש</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">שלח הודעה אל %s</string>
   <string name="ContactsDatabase_signal_call_s">שיחת Signal אל %s</string>
@@ -430,23 +436,11 @@
   <string name="MmsDownloader_error_reading_mms_settings">שגיאה בקריאת הגדרות MMS של ספק התקשורת האלחוטית</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">מדיה</string>
-  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
-    <item quantity="one">למחוק הודעה נבחרת?</item>
-    <item quantity="two">למחוק הודעות נבחרות?</item>
-    <item quantity="many">למחוק הודעות נבחרות?</item>
-    <item quantity="other">למחוק הודעות נבחרות?</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-    <item quantity="one">זה ימחק לצמיתות את ההודעה הנבחרת.</item>
-    <item quantity="two">זה ימחק לצמיתות את כל %1$d ההודעות הנבחרות.</item>
-    <item quantity="many">זה ימחק לצמיתות את כל %1$d ההודעות הנבחרות.</item>
-    <item quantity="other">זה ימחק לצמיתות את כל %1$d ההודעות הנבחרות.</item>
-  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">מוחק</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">מוחק הודעות…</string>
-  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">מסמכים</string> -->
   <string name="MediaOverviewActivity_Select_all">בחר הכל</string>
   <string name="MediaOverviewActivity_collecting_attachments">אוסף צרופות…</string>
+  <string name="MediaOverviewActivity_Audio">שמע</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">שיחת Signal בתהליך</string>
   <string name="NotificationBarManager__establishing_signal_call">מקים שיחת Signal</string>
@@ -544,6 +538,11 @@
   <string name="PlacePickerActivity_accept_address">קבל כתובת</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">הגרסה של שירותי Google Play המותקנת אינה מתפקדת כראוי. אנא התקן מחדש את שירותי Google Play ונסה שוב.</string>
+  <!--ProfileEditNameFragment-->
+  <string name="ProfileEditNameFragment_save">שמור</string>
+  <!--ProfileEditOverviewFragment-->
+  <string name="ProfileEditOverviewFragment_profile">פרופיל</string>
+  <string name="ProfileEditOverviewFragment_username">שם משתמש</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">דרג יישום זה</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">אם אתה נהנה להשתמש ביישום זה, אנא הקדש רגע כדי לעזור לנו לדרג אותו.</string>
@@ -709,6 +708,10 @@
   <!--UnverifiedSendDialog-->
   <string name="UnverifiedSendDialog_send_message">לשלוח הודעה?</string>
   <string name="UnverifiedSendDialog_send">שלח</string>
+  <!--UsernameEditFragment-->
+  <string name="UsernameEditFragment_username">שם משתמש</string>
+  <string name="UsernameEditFragment_submit">הגש</string>
+  <string name="UsernameEditFragment_delete">מחק</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">איש הקשר שלך מריץ גרסה ישנה של Signal. אנא בקש ממנו לעדכן לפני וידוא מספר הביטחון שלך.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">איש הקשר שלך מריץ גרסה חדשה יותר של Signal עם תסדיר בלתי־תואם של קוד QR. אנא עדכן כדי להשוות.</string>
@@ -779,6 +782,7 @@
   <string name="NotificationChannel_other">אחר</string>
   <string name="NotificationChannel_group_messages">הודעות</string>
   <string name="NotificationChannel_missing_display_name">לא ידוע</string>
+  <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">תגובה מהירה אינה זמינה כאשר Signal נעול!</string>
   <string name="QuickResponseService_problem_sending_message">בעיה בשליחת הודעה!</string>
@@ -793,6 +797,7 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">הודעה חדשה</string>
+  <!--ThumbnailView-->
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">
     <item quantity="one">פריט %d</item>
@@ -860,6 +865,7 @@
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal דורש את הרשאת אנשי הקשר על מנת להציג את אנשי הקשר שלך, אבל היא נדחתה לצמיתות. אנא המשך אל תפריט הגדרות היישום, בחר \"הרשאות\" ואפשר את \"אנשי קשר\".</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">שגיאה באחזור אנשי קשר, בדוק את חיבור הרשת שלך</string>
+  <string name="ContactSelectionListFragment_okay">בסדר</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">אין אנשי קשר חסומים</string>
   <!--contact_selection_list_fragment-->
@@ -1191,6 +1197,7 @@
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">מחק באופן אוטומטי הודעות ישנות יותר ברגע ששיחה חורגת מאורך שצוין</string>
   <string name="preferences__delete_old_messages">מחק הודעות ישנות</string>
   <string name="preferences__chats">התכתבויות ומדיה</string>
+  <string name="preferences__storage">אחסון</string>
   <string name="preferences__conversation_length_limit">הגבלת אורך שיחה</string>
   <string name="preferences__trim_all_conversations_now">קצץ את כל השיחות כעת</string>
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">סרוק את כל השיחות ואכוף מגבלות אורך שיחה</string>
@@ -1219,6 +1226,7 @@
   <string name="preferences_chats__when_roaming">בזמן נדידה</string>
   <string name="preferences_chats__media_auto_download">הורדה אוטומטית של מדיה</string>
   <string name="preferences_chats__message_trimming">קיצוץ הודעה</string>
+  <string name="preferences_storage__audio">שמע</string>
   <string name="preferences_advanced__use_system_emoji">השתמש באימוג\'י של מערכת</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">השבת תמיכת אימוג\'י מובנית של Signal</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">שדר את כל השיחות דרך שרת Signal כדי להימנע מחשיפת כתובת ה־IP שלך לאיש הקשר שלך. אפשור יפחית איכות שיחה.</string>
@@ -1259,6 +1267,7 @@
   <string name="conversation_context__menu_forward_message">העבר הלאה הודעה</string>
   <string name="conversation_context__menu_resend_message">שלח מחדש הודעה</string>
   <string name="conversation_context__menu_reply_to_message">הגב אל הודעה</string>
+  <!--conversation_context_reacction-->
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">שמור צרופה</string>
   <!--conversation_expiring_off-->
@@ -1344,8 +1353,6 @@
   <string name="media_preview__save_title">שמור</string>
   <string name="media_preview__forward_title">העבר הלאה</string>
   <string name="media_preview__all_media_title">כל המדיה</string>
-  <!--media_overview-->
-  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">אין מסמכים</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">קדם־תצוגה של מדיה</string>
   <!--new_conversation_activity-->
@@ -1473,5 +1480,8 @@
   <string name="RegistrationLockDialog_reminder">תזכורת:</string>
   <string name="recipient_preferences__about">אודות</string>
   <string name="Recipient_unknown">לא ידוע</string>
+  <string name="MessageRequestBottomView_accept">קבל</string>
+  <string name="MessageRequestBottomView_delete">מחק</string>
+  <string name="MessageRequestBottomView_block">חסום</string>
   <!--EOF-->
 </resources>

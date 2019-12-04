@@ -69,6 +69,8 @@
   <string name="BucketedThreadMedia_Yesterday">ម្សិលមិញ</string>
   <string name="BucketedThreadMedia_This_week">សប្តាហ៍នេះ</string>
   <string name="BucketedThreadMedia_This_month">ខែនេះ</string>
+  <string name="BucketedThreadMedia_Large">ធំ</string>
+  <string name="BucketedThreadMedia_Small">តូច</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">ការហៅចូល</string>
   <!--CameraActivity-->
@@ -95,6 +97,8 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">ទំព័រវែបសាយរកមិនឃើញ.</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">ការហៅតាមទិន្នន័យទូរស័ព្ទ កំពុងដំណើរការ។</string>
+  <string name="CommunicationActions_cancel">បោះបង់</string>
+  <string name="CommunicationActions_call">ហៅចេញ</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">លេខសុវត្ថិភាពរបស់អ្នក%1$s បានផ្លាស់ប្តូរ។ នេះមានន័យថា មាននរណាម្នាក់ព្យាយាមជ្រាតចូលការទំនាក់ទំនងរបស់អ្នក ឬក៏ %2$s ប្រើដំឡើង Signalឡើងវិញ។</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">អ្នកគួតែផ្ទៀងផ្ទាត់លេខសុវត្ថិភាពរបស់អ្នកជាមួយលេខទំនាក់ទំនងនេះ។</string>
@@ -103,6 +107,8 @@
   <string name="ContactsCursorLoader_recent_chats">ការសន្ទនាថ្មីៗ</string>
   <string name="ContactsCursorLoader_contacts">បញ្ជីទំនាក់ទំនង</string>
   <string name="ContactsCursorLoader_groups">ក្រុម</string>
+  <string name="ContactsCursorLoader_phone_number_search">ស្វែងរកលេខទូរស័ព្ទ</string>
+  <string name="ContactsCursorLoader_username_search">ស្វែងរកឈ្មោះអ្នកប្រើប្រាស់</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">សារ %s</string>
   <string name="ContactsDatabase_signal_call_s">ការហៅចេញរបស់Signal  %s</string>
@@ -382,17 +388,11 @@
   <string name="MmsDownloader_error_reading_mms_settings">មានបញ្ហាអាននៅក្នុងការកំណត់របស់ក្រុមហ៊ុន​ MMS</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">ព័ត៌មាន</string>
-  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
-    <item quantity="other">លុបសារដែលបានជ្រើសរើស?</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-    <item quantity="other">វានឹងលុបសារ %1$d ដែលបានជ្រើសរើសទាំងអស់ជារៀងរហូត។</item>
-  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">កំពុងលុប</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">កំពុងលុបសារ…</string>
-  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">ឯកសារ</string> -->
   <string name="MediaOverviewActivity_Select_all">ជ្រើសរើសទាំងអស់</string>
   <string name="MediaOverviewActivity_collecting_attachments">កំពុងប្រមូលឯកសារភ្ជាប់…</string>
+  <string name="MediaOverviewActivity_Audio">សំឡេង</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">ការហៅចេញSignal កំពុងដំណើរការ</string>
   <string name="NotificationBarManager__establishing_signal_call">ការហៅចេញ តាមSignal</string>
@@ -487,6 +487,11 @@
   <string name="PlacePickerActivity_accept_address">ទទួលយកអសយដ្ឋាន</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">កំណែ Google Play Services ដែលបានដំឡើងមិនត្រឹមត្រូវទេ។ សូមដំឡើង Google Play Services សារជាថ្មី និងព្យាយាមម្តងទៀត។</string>
+  <!--ProfileEditNameFragment-->
+  <string name="ProfileEditNameFragment_save">រក្សាទុក</string>
+  <!--ProfileEditOverviewFragment-->
+  <string name="ProfileEditOverviewFragment_profile">ប្រវត្តិរូប</string>
+  <string name="ProfileEditOverviewFragment_username">ឈ្មោះអ្នកប្រើប្រាស់</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">ដាក់ពិន្ទុកម្មវិធីនេះ</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">បើអ្នកចូលចិត្តប្រើប្រាស់កម្មវិធីនេះ សូមចំណាយពេលបន្តិច ដើម្បីជួយដាក់ពិន្ទុផង។</string>
@@ -649,6 +654,10 @@
   <!--UnverifiedSendDialog-->
   <string name="UnverifiedSendDialog_send_message">ផ្ញើសារ?</string>
   <string name="UnverifiedSendDialog_send">ផ្ញើ</string>
+  <!--UsernameEditFragment-->
+  <string name="UsernameEditFragment_username">ឈ្មោះអ្នកប្រើប្រាស់</string>
+  <string name="UsernameEditFragment_submit">បញ្ជូន</string>
+  <string name="UsernameEditFragment_delete">លុប</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">លេខទំនាក់ទំនងអ្នក កំពុងប្រើប្រាស់នៅលើSignal ជំនាន់ចាស់។ សូមប្រាប់គេឲ្យធ្វើបច្ចុប្បន្នភាពកម្មវិធី មុនពេលផ្ទៀងផ្ទាត់លេខសុវត្ថិភាព។ </string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">លេខទំនាក់ទំនងអ្នក កំពុងប្រើប្រាស់ Signalកំណែថ្មីជាង ជាមួយទម្រង់QRកូដ ដែលមិនត្រូវគ្នា។ សូមធ្វើបច្ចុប្បន្នភាព ដើម្បីប្រៀបធៀប។ </string>
@@ -719,6 +728,7 @@
   <string name="NotificationChannel_other">ផ្សេងៗ</string>
   <string name="NotificationChannel_group_messages">សារ</string>
   <string name="NotificationChannel_missing_display_name">មិនស្គាល់</string>
+  <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">មិនមានការឆ្លើយតបភ្លាមៗ នៅពេល Signal ត្រូវបានចាក់សោរ!</string>
   <string name="QuickResponseService_problem_sending_message">សារដែលបានបញ្ជូនមានបញ្ហា!</string>
@@ -733,6 +743,7 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal"> Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">សារថ្មី</string>
+  <!--ThumbnailView-->
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">
     <item quantity="other">%d ធាតុ</item>
@@ -797,6 +808,7 @@
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signalត្រូវការសិទ្ធិប្រើប្រាស់បញ្ជី​ទំនាក់ទំនង ដើម្បីបង្ហាញបញ្ជីទំនាក់ទំនងរបស់អ្នក ប៉ុន្តែវាត្រូវបានបដិសេធរហូត។  សូមបន្តទៅ ការកំណត់ ជ្រើសរើស \"អនុញ្ញាត\" និងបើក \"បញ្ជីទំនាក់ទំនង\"។</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">មានបញ្ហាក្នុងការទាញយកបញ្ជីទំនាក់ទំនង, សូមពិនិត្យការតភ្ជាប់បណ្តាញរបស់អ្នក</string>
+  <string name="ContactSelectionListFragment_okay">យល់ព្រម</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">ពុំមានលេខដែលបានបិទ</string>
   <!--contact_selection_list_fragment-->
@@ -1132,6 +1144,7 @@
   <string name="preferences_chats__when_roaming">នៅពេលរ៉ូមីង</string>
   <string name="preferences_chats__media_auto_download">ឯកសារទាញយកដោយស្វ័យប្រវត្តិ</string>
   <string name="preferences_chats__message_trimming">តម្រឹមសារ</string>
+  <string name="preferences_storage__audio">សំឡេង</string>
   <string name="preferences_advanced__use_system_emoji">ប្រើរូបអារម្មណ៍emoji នៅក្នុងប្រព័ន្ធ</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">បិទមិនប្រើរូបអារម្មណ៍emoji របស់ Signal</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">បញ្ជូនការហៅទាំងអស់តាមរយៈម៉ាស៊ីនមេ Signal ដើម្បីជៀសវាងការបង្ហាញអាសយដ្ឋាន អាយភី របស់អ្នក ទៅកាន់លេខទំនាក់ទំនងរបស់អ្នក។ ការអនុញ្ញាតនេះនឹងកាត់បន្ថយគុណភាពការហៅ។</string>
@@ -1172,6 +1185,7 @@
   <string name="conversation_context__menu_forward_message">បញ្ជូនសារបន្ត</string>
   <string name="conversation_context__menu_resend_message">ផ្ញើសារឡើងវិញ</string>
   <string name="conversation_context__menu_reply_to_message">ឆ្លើយតបសារ</string>
+  <!--conversation_context_reacction-->
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">រក្សាឯកសារភ្ជាប់</string>
   <!--conversation_expiring_off-->
@@ -1253,8 +1267,6 @@
   <string name="media_preview__save_title">រក្សាទុក</string>
   <string name="media_preview__forward_title">បញ្ជូនបន្ត</string>
   <string name="media_preview__all_media_title">ព័ត៌មានទាំងអស់</string>
-  <!--media_overview-->
-  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">គ្មានឯកសារ</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">មើលព័ត៌មានជាមុន</string>
   <!--new_conversation_activity-->
@@ -1364,5 +1376,8 @@
   <string name="RegistrationLockDialog_reminder">ក្រើនរំលឹក៖</string>
   <string name="recipient_preferences__about">អំពី</string>
   <string name="Recipient_unknown">មិនស្គាល់</string>
+  <string name="MessageRequestBottomView_accept">យល់ព្រម</string>
+  <string name="MessageRequestBottomView_delete">លុប</string>
+  <string name="MessageRequestBottomView_block">រារាំង</string>
   <!--EOF-->
 </resources>

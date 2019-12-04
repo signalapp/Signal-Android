@@ -75,6 +75,8 @@
   <string name="BucketedThreadMedia_Yesterday">Вчора</string>
   <string name="BucketedThreadMedia_This_week">Цього тижня</string>
   <string name="BucketedThreadMedia_This_month">Цього місяця</string>
+  <string name="BucketedThreadMedia_Large">Великий</string>
+  <string name="BucketedThreadMedia_Small">Малий</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Вхідний виклик</string>
   <!--CameraActivity-->
@@ -87,6 +89,8 @@
   <string name="ClearProfileActivity_remove_profile_photo">Видалити фото профіля?</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Браузера не знайдено</string>
+  <string name="CommunicationActions_cancel">Скасувати</string>
+  <string name="CommunicationActions_call">Виклик</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Ваш номер безпеки із %1$s змінився. Це може означати або те, що хтось намагається перехопити вашу розмову, або те, що %2$s просто перевстановив Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Можливо, ви хочете перевірити ваш номер безпеки із цим контактом.</string>
@@ -395,23 +399,11 @@
   <string name="MmsDownloader_error_reading_mms_settings">Помилка читання налаштувань MMS провайдера</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Медіа</string>
-  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
-    <item quantity="one">Видалити обране повідомлення?</item>
-    <item quantity="few">Видалити обрані повідомлення?</item>
-    <item quantity="many">Видалити обрані повідомлення?</item>
-    <item quantity="other">Видалити обрані повідомлення?</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-    <item quantity="one">Це назавжди видалить обране повідомлення.</item>
-    <item quantity="few">Це назавжди видалить усі %1$d обраних повідомлень.</item>
-    <item quantity="many">Це назавжди видалить усі %1$d обраних повідомленнь</item>
-    <item quantity="other">Це назавжди видалить усі %1$d обраних повідомлень.</item>
-  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Видалення</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Видалення повідомлень…</string>
-  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">Документи</string> -->
   <string name="MediaOverviewActivity_Select_all">Обрати все</string>
   <string name="MediaOverviewActivity_collecting_attachments">Збираю вкладення…</string>
+  <string name="MediaOverviewActivity_Audio">Аудіо</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Відбувається виклик Signal</string>
   <string name="NotificationBarManager__establishing_signal_call">Встановлення виклику Signal</string>
@@ -493,6 +485,10 @@
   <!--PlacePickerActivity-->
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Встановлена версія сервісів Google Play працює некоректно. Перевстановіть сервіси Google Play та спробуйте знову.</string>
+  <!--ProfileEditNameFragment-->
+  <string name="ProfileEditNameFragment_save">Зберегти</string>
+  <!--ProfileEditOverviewFragment-->
+  <string name="ProfileEditOverviewFragment_profile">Профіль</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Оцінити Signal</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Якщо вам сподобався Signal, будь-ласка, оцініть його.</string>
@@ -639,6 +635,9 @@
   <!--UnverifiedSendDialog-->
   <string name="UnverifiedSendDialog_send_message">Надіслати повідомлення?</string>
   <string name="UnverifiedSendDialog_send">Надіслати</string>
+  <!--UsernameEditFragment-->
+  <string name="UsernameEditFragment_submit">Надіслати</string>
+  <string name="UsernameEditFragment_delete">Видалити</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Ваш контакт працює на давнішій версії Signal. Будь ласка, попросіть його/її оновитися перед перевіркою вашого номера безпеки.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Ваш контакт працює на новішій версії Signal із несумісним форматом QR-коду. Будь ласка, оновіться, щоб порівняти.</string>
@@ -704,6 +703,7 @@
   <string name="NotificationChannel_other">Інший</string>
   <string name="NotificationChannel_group_messages">Повідомлення</string>
   <string name="NotificationChannel_missing_display_name">Невідомо</string>
+  <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Швидка відповідь неможлива, коли Signal заблоковано!</string>
   <string name="QuickResponseService_problem_sending_message">Проблема під час надсилання повідомлення!</string>
@@ -716,6 +716,7 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Нове повідомлення</string>
+  <!--ThumbnailView-->
   <!--TransferControlView-->
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">Цей пристрій більше не зареєстровано</string>
@@ -1087,6 +1088,7 @@
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Автоматично видаляти старі повідомлення, коли довжина розмови перевищує задану</string>
   <string name="preferences__delete_old_messages">Видаляти старі повідомлення</string>
   <string name="preferences__chats">Чати та медіа</string>
+  <string name="preferences__storage">Сховище</string>
   <string name="preferences__conversation_length_limit">Обмеження довжини розмови</string>
   <string name="preferences__trim_all_conversations_now">Обрізати усі розмови зараз</string>
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Переглянути всі розмови і привести їх довжину у відповідність із заданою</string>
@@ -1112,6 +1114,7 @@
   <string name="preferences_chats__when_roaming">Під час роумінгу</string>
   <string name="preferences_chats__media_auto_download">Автозавантаження медіа</string>
   <string name="preferences_chats__message_trimming">Обрізка повідомлень</string>
+  <string name="preferences_storage__audio">Аудіо</string>
   <string name="preferences_advanced__use_system_emoji">Використовувати системні emoji</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Вимкнути вбудовану в Signal підтримку emoji</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Ретранслювати всі дзвінки через сервер Signal щоб уникнути розкриття вашого IP-адреси контакту. Включення знизить якість дзвінка.</string>
@@ -1149,6 +1152,7 @@
   <string name="conversation_context__menu_forward_message">Переслати повідомлення</string>
   <string name="conversation_context__menu_resend_message">Переслати повідомлення</string>
   <string name="conversation_context__menu_reply_to_message">Відповісти на повідомлення</string>
+  <!--conversation_context_reacction-->
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Зберегти вкладення</string>
   <!--conversation_expiring_off-->
@@ -1232,8 +1236,6 @@
   <string name="media_preview__forward_title">Переслати</string>
   <string name="media_preview__all_media_title">Всі медіа-файли
 Всі зображення</string>
-  <!--media_overview-->
-  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">Немає документів</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Попередній перегляд медіа</string>
   <!--new_conversation_activity-->
@@ -1340,5 +1342,8 @@
   <string name="RegistrationLockDialog_reminder">Нагадування:</string>
   <string name="recipient_preferences__about">Про додаток</string>
   <string name="Recipient_unknown">Невідомо</string>
+  <string name="MessageRequestBottomView_accept">Прийняти</string>
+  <string name="MessageRequestBottomView_delete">Видалити</string>
+  <string name="MessageRequestBottomView_block">Заблокувати</string>
   <!--EOF-->
 </resources>

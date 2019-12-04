@@ -84,6 +84,8 @@
   <string name="BucketedThreadMedia_Yesterday">البارحة</string>
   <string name="BucketedThreadMedia_This_week">هذا الأسبوع</string>
   <string name="BucketedThreadMedia_This_month">هذا الشهر</string>
+  <string name="BucketedThreadMedia_Large">كبيرة</string>
+  <string name="BucketedThreadMedia_Small">صغيرة</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">مكالمة واردة</string>
   <!--CameraActivity-->
@@ -110,6 +112,8 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">لم يتم العثور على متصفح للإنترنت.</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">هناك مكالمة هاتفية تجري بالفعل</string>
+  <string name="CommunicationActions_cancel">إلغاء</string>
+  <string name="CommunicationActions_call">اتصل</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">تم تغيير بيان سلامة المحادثة مع %1$s ، وهذا يعني إما محاولة أحداً اعتراض المحادثة أو ببساطة قيام %2$s بإعادة التسجيل في Signal مرة أخرى.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">لربما ترغب بالتحقق من بيان سلامة المحادثة مع هذا المتصل.</string>
@@ -460,19 +464,11 @@
   <string name="MmsDownloader_error_reading_mms_settings">خطأ في قراءة إعدادات مزود خدمة رسالة الوسائط المتعددة اللاسلكي</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">الوسائط</string>
-  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
-    <item quantity="zero">حذف المحادثات المختارة؟</item>
-    <item quantity="one">حذف المحادثات المختارة؟</item>
-    <item quantity="two">حذف المحادثات المختارة؟</item>
-    <item quantity="few">حذف المحادثات المختارة؟</item>
-    <item quantity="many">حذف الرسائل المختارة؟</item>
-    <item quantity="other">حذف الرسائل المختارة؟</item>
-  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">جارٍ الحذف</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">حذف الرسائل جارٍ…</string>
-  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">الوثائق</string> -->
   <string name="MediaOverviewActivity_Select_all">أختر الكل</string>
   <string name="MediaOverviewActivity_collecting_attachments">جارٍ جمع المرفقات…</string>
+  <string name="MediaOverviewActivity_Audio">صوت</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">مكالمة Signal</string>
   <string name="NotificationBarManager__establishing_signal_call">بدء مكالمة Signal</string>
@@ -571,6 +567,10 @@
   <string name="PlacePickerActivity_accept_address">قبول العنوان</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">تطبيق Google Play Service الذي قمت بتثبيته لا يعمل بشكل صحيح. رجاء إعادة تثبيته والمحاولة مرة أخرى.</string>
+  <!--ProfileEditNameFragment-->
+  <string name="ProfileEditNameFragment_save">حفظ</string>
+  <!--ProfileEditOverviewFragment-->
+  <string name="ProfileEditOverviewFragment_profile">الملف الشخصي</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">تقييم التطبيق</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">إذا كنت مستمتع باستخدام التطبيق رجاء مساعدتنا بتقييمه</string>
@@ -724,6 +724,9 @@
   <!--UnverifiedSendDialog-->
   <string name="UnverifiedSendDialog_send_message">هل تود إرسال الرسالة ؟</string>
   <string name="UnverifiedSendDialog_send">إرسل</string>
+  <!--UsernameEditFragment-->
+  <string name="UsernameEditFragment_submit">قدَم</string>
+  <string name="UsernameEditFragment_delete">أحذف  </string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">متصلك يستعمل نسخة قديمة من تطبيق سيقنال. من فضلك اطلب منه تحديث التطبيق ليتسنى لك التحقق من رقم الأمان.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">إن متصلك هذا يستعمل نسخة تطبيق سيقنـال أحدث ورمز QR فيها لا يتوافق مع نسختك.
@@ -792,6 +795,7 @@
   <string name="NotificationChannel_other">أخرى</string>
   <string name="NotificationChannel_group_messages">الرسائل</string>
   <string name="NotificationChannel_missing_display_name">مجهول</string>
+  <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">الردود السريعة غير متاحة عند قفل Signal!</string>
   <string name="QuickResponseService_problem_sending_message">مشكلة في الإرسال!</string>
@@ -806,6 +810,7 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">رسالة جديدة</string>
+  <!--ThumbnailView-->
   <!--TransferControlView-->
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">إنّ الجهاز لم يعد مسجلا</string>
@@ -1193,6 +1198,7 @@
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">حذف الرسائل القديمة بالمحادثة عند تجاوز أقصى طول محدد.</string>
   <string name="preferences__delete_old_messages">احذف الرسائل القديمة</string>
   <string name="preferences__chats">المحادثات والوسائط</string>
+  <string name="preferences__storage">التخزين</string>
   <string name="preferences__conversation_length_limit">حد طول المحادثة</string>
   <string name="preferences__trim_all_conversations_now">تقليم كل المحادثات الآن</string>
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">فحص وتقليم كل المحادثات وفق الحد الأقصى</string>
@@ -1219,6 +1225,7 @@
   <string name="preferences_chats__when_roaming">عند استخدام التجوال</string>
   <string name="preferences_chats__media_auto_download">تنزلي تلقائي للوسائط</string>
   <string name="preferences_chats__message_trimming">تقليم الرسالة</string>
+  <string name="preferences_storage__audio">صوت</string>
   <string name="preferences_advanced__use_system_emoji">استخدام الرموز التعبيرية بالنظام</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">تعطيل الرموز التعبيرية المدمجة في Signal</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">تمرير جميع المكالمات عبر خادم Signal لتجنب الإفصاح عن الرقم التعريفي الخاص بك إلى جهة الاتصال. تفعيل الخاصية سوف يقلل من جودة المكالمة.</string>
@@ -1256,6 +1263,7 @@
   <string name="conversation_context__menu_forward_message">إعادة الإرسال</string>
   <string name="conversation_context__menu_resend_message">إعادة الإرسال</string>
   <string name="conversation_context__menu_reply_to_message">الرَدّ على الرسالة</string>
+  <!--conversation_context_reacction-->
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">حفظ المرفق</string>
   <!--conversation_expiring_off-->
@@ -1341,8 +1349,6 @@
   <string name="media_preview__save_title">أحفظ</string>
   <string name="media_preview__forward_title">إعادة توجيه</string>
   <string name="media_preview__all_media_title">جميع الوسائط</string>
-  <!--media_overview-->
-  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">لا توجد ملفات</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">معاينة الوسائط</string>
   <!--new_conversation_activity-->
@@ -1449,5 +1455,8 @@
   <string name="RegistrationLockDialog_reminder">تذكير :</string>
   <string name="recipient_preferences__about">حول</string>
   <string name="Recipient_unknown">مجهول</string>
+  <string name="MessageRequestBottomView_accept">موافقة</string>
+  <string name="MessageRequestBottomView_delete">أحذف  </string>
+  <string name="MessageRequestBottomView_block">حظر</string>
   <!--EOF-->
 </resources>

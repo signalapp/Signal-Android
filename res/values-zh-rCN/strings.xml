@@ -69,6 +69,8 @@
   <string name="BucketedThreadMedia_Yesterday">昨天</string>
   <string name="BucketedThreadMedia_This_week">本周</string>
   <string name="BucketedThreadMedia_This_month">本月</string>
+  <string name="BucketedThreadMedia_Large">大尺寸</string>
+  <string name="BucketedThreadMedia_Small">小尺寸</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">来电呼叫</string>
   <!--CameraActivity-->
@@ -95,6 +97,8 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">未能找到网页浏览器。</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">一个基站通话已在处理中。</string>
+  <string name="CommunicationActions_cancel">取消</string>
+  <string name="CommunicationActions_call">拨号</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">%1$s 的安全代码发生了改变。这可能是因为有人正在尝试截获你们的通讯，或者 %2$s 只是重新安装了 Signal 。</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">您可能希望验证这个联系人的安全码。</string>
@@ -103,6 +107,8 @@
   <string name="ContactsCursorLoader_recent_chats">最近对话</string>
   <string name="ContactsCursorLoader_contacts">联系人</string>
   <string name="ContactsCursorLoader_groups">群组</string>
+  <string name="ContactsCursorLoader_phone_number_search">号码搜索</string>
+  <string name="ContactsCursorLoader_username_search">用户名搜索</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">信息 %s</string>
   <string name="ContactsDatabase_signal_call_s"> Signal 呼叫 %s</string>
@@ -382,17 +388,11 @@
   <string name="MmsDownloader_error_reading_mms_settings">读取运营商的彩信设定时出错</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">媒体文件</string>
-  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
-    <item quantity="other">删除已选择消息？</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-    <item quantity="other">我们将会永久删除%1$d条已选择消息。</item>
-  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">删除中</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">正在删除信息…</string>
-  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">文档</string> -->
   <string name="MediaOverviewActivity_Select_all">选择全部</string>
   <string name="MediaOverviewActivity_collecting_attachments">正在收集附件…</string>
+  <string name="MediaOverviewActivity_Audio">音频</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">正在处理 Signal 呼叫</string>
   <string name="NotificationBarManager__establishing_signal_call">正在建立 Signal 呼叫</string>
@@ -487,6 +487,11 @@
   <string name="PlacePickerActivity_accept_address">接受地址</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">您当前所安装的 Google Play 服务没有正常的工作。请尝试重新安装 Google Play 服务然后重试。</string>
+  <!--ProfileEditNameFragment-->
+  <string name="ProfileEditNameFragment_save">保存</string>
+  <!--ProfileEditOverviewFragment-->
+  <string name="ProfileEditOverviewFragment_profile">资料</string>
+  <string name="ProfileEditOverviewFragment_username">用户名</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">对此应用评分</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">如果您喜欢使用此应用，请使用片刻时间对其进行打分。</string>
@@ -649,6 +654,10 @@
   <!--UnverifiedSendDialog-->
   <string name="UnverifiedSendDialog_send_message">发送信息？</string>
   <string name="UnverifiedSendDialog_send">发送</string>
+  <!--UsernameEditFragment-->
+  <string name="UsernameEditFragment_username">用户名</string>
+  <string name="UsernameEditFragment_submit">提交</string>
+  <string name="UsernameEditFragment_delete">删除</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">您的联系人使用的是旧版本的 Signal，在请求对方验证安全码前，请先让对方升级 Signal 客户端。</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">您的联系人使用的是新版本的 Signal，程序无法识别这个联系人的二维码。请升级您的 Signal 。</string>
@@ -719,6 +728,7 @@
   <string name="NotificationChannel_other">其他</string>
   <string name="NotificationChannel_group_messages">信息</string>
   <string name="NotificationChannel_missing_display_name">未知</string>
+  <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">当 Signal 处于锁定状态时，快速回复不可用！</string>
   <string name="QuickResponseService_problem_sending_message">发送信息时遇到问题！</string>
@@ -733,6 +743,7 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">新信息</string>
+  <!--ThumbnailView-->
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">
     <item quantity="other">%d项目</item>
@@ -797,6 +808,7 @@
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal 需要\"通讯录\"权限才能显示联系人信息，但是该权限已被永久禁用。请转到系统的应用设置菜单，找到权限设置，选择 Signal 应用，并启用\"通讯录\"权限。</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">无法获取通讯录数据，请检查您的网络连接</string>
+  <string name="ContactSelectionListFragment_okay">好的</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">没有屏蔽的联系人</string>
   <!--contact_selection_list_fragment-->
@@ -1106,6 +1118,7 @@
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">对话超过指定数量时自动删除旧的信息</string>
   <string name="preferences__delete_old_messages">删除旧信息</string>
   <string name="preferences__chats">聊天与媒体</string>
+  <string name="preferences__storage">存储</string>
   <string name="preferences__conversation_length_limit">对话数量限制</string>
   <string name="preferences__trim_all_conversations_now">立刻整理所有的会话</string>
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">查找并处理所有超过限制的对话</string>
@@ -1134,6 +1147,7 @@
   <string name="preferences_chats__when_roaming">当漫游时</string>
   <string name="preferences_chats__media_auto_download">媒体自动下载</string>
   <string name="preferences_chats__message_trimming">信息整理</string>
+  <string name="preferences_storage__audio">音频</string>
   <string name="preferences_advanced__use_system_emoji">使用系统表情符号</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">禁用 Signal 内置的表情支持</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">使所有呼叫通过 Signal 服务器中转，这样可以避免你的联系人知道你的 IP 地址。但启用此功能会降低通话质量。</string>
@@ -1174,6 +1188,7 @@
   <string name="conversation_context__menu_forward_message">转发</string>
   <string name="conversation_context__menu_resend_message">重新发送信息</string>
   <string name="conversation_context__menu_reply_to_message">回复该消息</string>
+  <!--conversation_context_reacction-->
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">保存附件</string>
   <!--conversation_expiring_off-->
@@ -1257,8 +1272,6 @@
   <string name="media_preview__save_title">保存</string>
   <string name="media_preview__forward_title">转发</string>
   <string name="media_preview__all_media_title">所有媒体</string>
-  <!--media_overview-->
-  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">无文档</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">媒体预览</string>
   <!--new_conversation_activity-->
@@ -1369,5 +1382,8 @@
   <string name="RegistrationLockDialog_reminder">提醒：</string>
   <string name="recipient_preferences__about">关于</string>
   <string name="Recipient_unknown">未知</string>
+  <string name="MessageRequestBottomView_accept">接受</string>
+  <string name="MessageRequestBottomView_delete">删除</string>
+  <string name="MessageRequestBottomView_block">屏蔽</string>
   <!--EOF-->
 </resources>

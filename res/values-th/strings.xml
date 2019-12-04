@@ -65,6 +65,8 @@
   <string name="BucketedThreadMedia_Yesterday">เมื่อวานนี้</string>
   <string name="BucketedThreadMedia_This_week">สัปดาห์นี้</string>
   <string name="BucketedThreadMedia_This_month">เดือนนี้</string>
+  <string name="BucketedThreadMedia_Large">ใหญ่</string>
+  <string name="BucketedThreadMedia_Small">เล็ก</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">สายเรียกเข้า</string>
   <!--CameraActivity-->
@@ -75,6 +77,8 @@
   <string name="ClearProfileActivity_remove">เอาออก</string>
   <string name="ClearProfileActivity_remove_profile_photo">ลบรูปโปรไฟล์หรือไม่</string>
   <!--CommunicationActions-->
+  <string name="CommunicationActions_cancel">ยกเลิก</string>
+  <string name="CommunicationActions_call">โทร</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">มีการเปลี่ยนแปลงรหัสความปลอดภัยระหว่างคุณกับ %1$s นี่อาจหมายความว่า มีใครพยายามดักการสื่อสารของคุณ หรือไม่ก็แค่ %2$s ได้ติดตั้งแอป Signal ใหม่</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">คุณอาจต้องการยืนยันรหัสความปลอดภัยระหว่างคุณกับผู้ติดต่อรายนี้</string>
@@ -329,17 +333,11 @@
   <string name="MmsDownloader_error_reading_mms_settings">เกิดข้อผิดพลาดระหว่างอ่านการตั้งค่า MMS ของผู้ให้บริการไร้สาย</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">สื่อ</string>
-  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
-    <item quantity="other">ลบข้อความที่เลือกหรือไม่</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-    <item quantity="other">นี่จะลบ %1$d ข้อความที่ถูกเลือกทั้งหมด อย่างถาวร</item>
-  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">กำลังลบ</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">กำลังลบข้อความ…</string>
-  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">เอกสาร</string> -->
   <string name="MediaOverviewActivity_Select_all">เลือกทั้งหมด</string>
   <string name="MediaOverviewActivity_collecting_attachments">รวบรวมสิ่งแนบ…</string>
+  <string name="MediaOverviewActivity_Audio">เสียง</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">กำลังใช้สาย Signal อยู่</string>
   <string name="NotificationBarManager__establishing_signal_call">กำลังเริ่มสาย Signal</string>
@@ -418,6 +416,10 @@
   <!--PlacePickerActivity-->
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">เวอร์ชันของ Google Play Services ที่คุณมีอยู่ทำงานไม่ถูกต้อง โปรดติดตั้ง Google Play Services ใหม่และลองอีกครั้ง</string>
+  <!--ProfileEditNameFragment-->
+  <string name="ProfileEditNameFragment_save">บันทึก</string>
+  <!--ProfileEditOverviewFragment-->
+  <string name="ProfileEditOverviewFragment_profile">โปรไฟล์</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">ให้คะแนนแอปนี้</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">ถ้าคุณชอบแอปนี้ โปรดสละเวลาให้คะแนนพวกเราสักนิด</string>
@@ -553,6 +555,9 @@
   <!--UnverifiedSendDialog-->
   <string name="UnverifiedSendDialog_send_message">ส่งข้อความหรือไม่</string>
   <string name="UnverifiedSendDialog_send">ส่ง</string>
+  <!--UsernameEditFragment-->
+  <string name="UsernameEditFragment_submit">ส่ง</string>
+  <string name="UsernameEditFragment_delete">ลบ</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">ผู้ติดต่อของคุณใช้ Signal เวอร์ชันเก่า กรุณาขอให้เขาทำการอัพเดตก่อนที่จะยืนยันรหัสความปลอดภัยของคุณ</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">ผู้ติดต่อของคุณใช้ Signal เวอร์ชันใหม่กว่า และมีรูปแบบรหัส QR ที่เข้ากันไม่ได้กับของคุณ กรุณาอัพเดตเพื่อการเปรียบเทียบ</string>
@@ -618,6 +623,7 @@
   <string name="NotificationChannel_other">ที่อื่น</string>
   <string name="NotificationChannel_group_messages">ข้อความ</string>
   <string name="NotificationChannel_missing_display_name">ไม่ทราบ</string>
+  <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">การตอบด่วนใช้ไม่ได้ถ้า Signal ถูกล็อกอยู่</string>
   <string name="QuickResponseService_problem_sending_message">เกิดปัญหาในการส่งข้อความ</string>
@@ -631,6 +637,7 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">ข้อความใหม่</string>
+  <!--ThumbnailView-->
   <!--TransferControlView-->
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">อุปกรณ์นี้ไม่ได้ลงทะเบียนอีกต่อไป</string>
@@ -1002,6 +1009,7 @@
   <string name="preferences_chats__when_roaming">เมื่อใช้งานข้ามแดน</string>
   <string name="preferences_chats__media_auto_download">ดาวน์โหลดสื่ออัตโนมัติ</string>
   <string name="preferences_chats__message_trimming">ตัดข้อความให้สั้นลง</string>
+  <string name="preferences_storage__audio">เสียง</string>
   <string name="preferences_advanced__use_system_emoji">ใช้อีโมจิของระบบ</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">ปิดใช้งานการรองรับอีโมจิของ Signal เอง</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">ส่งต่อสายทั้งหมดผ่านเซิร์ฟเวอร์ Signal เพื่อหลีกเลี่ยงการเปิดเผยที่อยู่ IP ของคนที่คุณติดต่อด้วย การเปิดใช้งานจะลดคุณภาพของการโทร</string>
@@ -1036,6 +1044,7 @@
   <string name="conversation_context__menu_forward_message">ส่งต่อข้อความ</string>
   <string name="conversation_context__menu_resend_message">ส่งข้อความอีกครั้ง</string>
   <string name="conversation_context__menu_reply_to_message">ตอบกลับข้อความ</string>
+  <!--conversation_context_reacction-->
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">บันทึกไฟล์แนบ</string>
   <!--conversation_expiring_off-->
@@ -1114,8 +1123,6 @@
   <string name="media_preview__save_title">บันทึก</string>
   <string name="media_preview__forward_title">ส่งต่อ</string>
   <string name="media_preview__all_media_title">สื่อทั้งหมด</string>
-  <!--media_overview-->
-  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">ไม่มีเอกสาร</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">ดูตัวอย่างสื่อ</string>
   <!--new_conversation_activity-->
@@ -1219,5 +1226,8 @@
   <string name="RegistrationLockDialog_reminder">เตือนความจำ:</string>
   <string name="recipient_preferences__about">เกี่ยวกับ</string>
   <string name="Recipient_unknown">ไม่ทราบ</string>
+  <string name="MessageRequestBottomView_accept">ยอมรับ</string>
+  <string name="MessageRequestBottomView_delete">ลบ</string>
+  <string name="MessageRequestBottomView_block">บล็อก</string>
   <!--EOF-->
 </resources>

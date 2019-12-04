@@ -78,6 +78,8 @@
   <string name="BucketedThreadMedia_Yesterday">Včeraj</string>
   <string name="BucketedThreadMedia_This_week">Ta teden</string>
   <string name="BucketedThreadMedia_This_month">Ta mesec</string>
+  <string name="BucketedThreadMedia_Large">Velike</string>
+  <string name="BucketedThreadMedia_Small">Majhne</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Dohodni klic</string>
   <!--CameraActivity-->
@@ -104,6 +106,8 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Spletnega brskalnika ni bilo mogoče najti.</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Telefonski klic je že v teku.</string>
+  <string name="CommunicationActions_cancel">Prekliči</string>
+  <string name="CommunicationActions_call">Kliči</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Varnostno število z uporabnikom %1$s je bilo spremenjeno. To lahko pomeni, da poskuša nekdo prestrezati vajino komunikacijo ali pa je %2$s zgolj ponovno namestil aplikacijo Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Morda bi želeli preveriti vajino skupno varnostno število.</string>
@@ -430,23 +434,11 @@
   <string name="MmsDownloader_error_reading_mms_settings">Napaka pri branju nastavitev MMS brezžičnega ponudnika</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Multimedija</string>
-  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
-    <item quantity="one">Izbrišem izbrano sporočilo?</item>
-    <item quantity="two">Izbrišem izbrani sporočili?</item>
-    <item quantity="few">Izbrišem izbrana sporočila?</item>
-    <item quantity="other">Izbrišem izbrana sporočila?</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-    <item quantity="one">Izbrano sporočilo bo nepovratno izbrisano.</item>
-    <item quantity="two">%1$dizbrani sporočili bosta nepovratno izbrisani.</item>
-    <item quantity="few">Vsa %1$d izbrana sporočila bodo nepovratno izbrisana.</item>
-    <item quantity="other">Vseh %1$d izbranih sporočil bo nepovratno izbrisanih.</item>
-  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Brišem</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Izbris sporočil …</string>
-  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">Dokumenti</string> -->
   <string name="MediaOverviewActivity_Select_all">Označi vse</string>
   <string name="MediaOverviewActivity_collecting_attachments">Nabiranje prilog …</string>
+  <string name="MediaOverviewActivity_Audio">Zvok</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Klic Signal poteka</string>
   <string name="NotificationBarManager__establishing_signal_call">Vzpostavljam klic Signal</string>
@@ -544,6 +536,10 @@
   <string name="PlacePickerActivity_accept_address">Sprejmi naslov</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Različica programa Google Play Services, ki jo imate nameščeno, ne deluje, kot bi morala. Prosimo, ponovno namestite Google Play Services in poskusite znova.</string>
+  <!--ProfileEditNameFragment-->
+  <string name="ProfileEditNameFragment_save">Shrani</string>
+  <!--ProfileEditOverviewFragment-->
+  <string name="ProfileEditOverviewFragment_profile">Profil</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Oceni to aplikacijo</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Če se vam zdi aplikacija Signal koristna in uporabna, vas prosimo, da si vzamete nekaj trenutkov in jo ocenite.</string>
@@ -706,6 +702,9 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--UnverifiedSendDialog-->
   <string name="UnverifiedSendDialog_send_message">Pošljem sporočilo?</string>
   <string name="UnverifiedSendDialog_send">Pošlji</string>
+  <!--UsernameEditFragment-->
+  <string name="UsernameEditFragment_submit">Oddaj</string>
+  <string name="UsernameEditFragment_delete">Izbriši</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Vaš partner uporablja zastarelo različico aplikacije Signal. Za pregled in potrditev varnostnega števila jo bo moral nadgraditi.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Vaš partner uporablja novejšo različico aplikacije Signal z nekompatibilnimi kodami QR. Prosimo, nadgradite svojo aplikacijo.</string>
@@ -776,6 +775,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="NotificationChannel_other">Drugo</string>
   <string name="NotificationChannel_group_messages">Sporočila</string>
   <string name="NotificationChannel_missing_display_name">Neznano</string>
+  <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Hitri odziv ni mogoč, kadar je aplikacija Signal zaklenjena!</string>
   <string name="QuickResponseService_problem_sending_message">Težava pri pošiljanju sporočila</string>
@@ -790,6 +790,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Novo sporočilo</string>
+  <!--ThumbnailView-->
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">
     <item quantity="one">%d predmet</item>
@@ -1188,6 +1189,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Samodejen izbris starih sporočil, ko pogovor preseže določeno dolžino</string>
   <string name="preferences__delete_old_messages">Samodejen izbris</string>
   <string name="preferences__chats">Pogovori in večpredstavnost</string>
+  <string name="preferences__storage">Shranjevanje</string>
   <string name="preferences__conversation_length_limit">Omejitev dolžine pogovorov</string>
   <string name="preferences__trim_all_conversations_now">Obreži vse pogovore zdaj</string>
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Uveljavitev omejitve dolžine vseh pogovorov</string>
@@ -1216,6 +1218,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="preferences_chats__when_roaming">Med gostovanjem</string>
   <string name="preferences_chats__media_auto_download">Samodejen prenos priponk</string>
   <string name="preferences_chats__message_trimming">Izbris starih sporočil</string>
+  <string name="preferences_storage__audio">Zvok</string>
   <string name="preferences_advanced__use_system_emoji">Sistemski znaki emoji</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Izklop privzetih znakov emoji aplikacije Signal</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Vsi klici bodo posredovani preko strežnika Signal. S tem boste klicani strani onemogočili, da bi izvedela vaš naslov IP. Kvaliteta klica bo zaradi tega slabša.</string>
@@ -1256,6 +1259,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="conversation_context__menu_forward_message">Posreduj sporočilo</string>
   <string name="conversation_context__menu_resend_message">Ponovno pošlji sporočilo</string>
   <string name="conversation_context__menu_reply_to_message">Odgovor na sporočilo</string>
+  <!--conversation_context_reacction-->
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Shrani priponko</string>
   <!--conversation_expiring_off-->
@@ -1341,8 +1345,6 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="media_preview__save_title">Shrani</string>
   <string name="media_preview__forward_title">Posreduj</string>
   <string name="media_preview__all_media_title">Vsa večpredstavnostna sporočila</string>
-  <!--media_overview-->
-  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">Brez dokumentov</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Ogled medija</string>
   <!--new_conversation_activity-->
@@ -1470,5 +1472,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="RegistrationLockDialog_reminder">Opomnik:</string>
   <string name="recipient_preferences__about">Več</string>
   <string name="Recipient_unknown">Neznano</string>
+  <string name="MessageRequestBottomView_accept">Sprejmi</string>
+  <string name="MessageRequestBottomView_delete">Izbriši</string>
+  <string name="MessageRequestBottomView_block">Blokiraj</string>
   <!--EOF-->
 </resources>

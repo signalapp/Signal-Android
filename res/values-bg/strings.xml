@@ -69,6 +69,8 @@
   <string name="BucketedThreadMedia_Yesterday">Вчера</string>
   <string name="BucketedThreadMedia_This_week">Тази седмица</string>
   <string name="BucketedThreadMedia_This_month">Този месец</string>
+  <string name="BucketedThreadMedia_Large">Голям</string>
+  <string name="BucketedThreadMedia_Small">Малък</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Входящо обаждане</string>
   <!--CameraActivity-->
@@ -82,6 +84,8 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Не е открит уеб браузър.</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Обаждането вече е в прогрес.</string>
+  <string name="CommunicationActions_cancel">Отказ</string>
+  <string name="CommunicationActions_call">Обаждане</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Числата Ви за сигурност с %1$s са променени. Това означава, че или някой се опитва да прехване комуникацията Ви, или че %2$s е преинсталирал Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Може да желаете да проверите числата за сигурност с този контакт.</string>
@@ -375,19 +379,11 @@
   <string name="MmsDownloader_error_reading_mms_settings">Грешка при четенето на MMS настройките на доставчика</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Медия</string>
-  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
-    <item quantity="one">Изтриване на избраното съобщение?</item>
-    <item quantity="other">Изтриване на избраните съобщения?</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-    <item quantity="one">Това ще изтрие невъзвращаемо избраното съобщение.</item>
-    <item quantity="other">Това ще изтрие невъзвращаемо всичките %1$d избрани съобщения.</item>
-  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Изтриване</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Изтриване на съобщения…</string>
-  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">Документи</string> -->
   <string name="MediaOverviewActivity_Select_all">Избери всичко</string>
   <string name="MediaOverviewActivity_collecting_attachments">Събиране на прикачени файлове…</string>
+  <string name="MediaOverviewActivity_Audio">Аудио</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Протича Signal разговор</string>
   <string name="NotificationBarManager__establishing_signal_call">Установяване на Signal разговор</string>
@@ -476,6 +472,10 @@
   <!--PlacePickerActivity-->
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Версията на Google Play Services, която сте инсталирали не функционира правилно. Моля, преинсталирайте Google Play Services и опитайте пак.</string>
+  <!--ProfileEditNameFragment-->
+  <string name="ProfileEditNameFragment_save">Запази</string>
+  <!--ProfileEditOverviewFragment-->
+  <string name="ProfileEditOverviewFragment_profile">Профил</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Оцени тази програма</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Ако харесваш тази програма, отдели една секунда и ни помогни като ѝ дадеш оценка.</string>
@@ -633,6 +633,9 @@
   <!--UnverifiedSendDialog-->
   <string name="UnverifiedSendDialog_send_message">Изпращане на съобщение?</string>
   <string name="UnverifiedSendDialog_send">Изпращане</string>
+  <!--UsernameEditFragment-->
+  <string name="UsernameEditFragment_submit">Изпрати</string>
+  <string name="UsernameEditFragment_delete">Изтрий</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Вашият контакт използва стара версия на Signal. Помолете го да я обнови, преди да сравните числата за сигурност.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Вашият контакт използва по-нова версия на Signal с несъвместим QR формат. Моля, обновете версията си, за да можете да сравните.</string>
@@ -701,6 +704,7 @@
   <string name="NotificationChannel_other">Друг</string>
   <string name="NotificationChannel_group_messages">Съобщения</string>
   <string name="NotificationChannel_missing_display_name">Непознат</string>
+  <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Бърз отговор не е възможен, когато Signal е заключен!</string>
   <string name="QuickResponseService_problem_sending_message">Проблем при изпрашане на съобщение!</string>
@@ -715,6 +719,7 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Ново съобщение</string>
+  <!--ThumbnailView-->
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">
     <item quantity="one">%d нещо</item>
@@ -1109,6 +1114,7 @@
   <string name="preferences_chats__when_roaming">Когато се използва роуминг</string>
   <string name="preferences_chats__media_auto_download">Автоматично изтегляне на мултимедия</string>
   <string name="preferences_chats__message_trimming">Съкращаване на съобщенията</string>
+  <string name="preferences_storage__audio">Аудио</string>
   <string name="preferences_advanced__use_system_emoji">Използване на вградените emoji-та</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Деактивирай вградена в Signal подръжка на emoji-та</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Прехвърляне на всички обаждания през Signal сървърва, за да се прикрие IP адресът Ви от контатктът Ви. Активирането ще намали качеството на връзката.</string>
@@ -1149,6 +1155,7 @@
   <string name="conversation_context__menu_forward_message">Препрати съобщението</string>
   <string name="conversation_context__menu_resend_message">Повторно изпращане</string>
   <string name="conversation_context__menu_reply_to_message">Отговор на съобщение</string>
+  <!--conversation_context_reacction-->
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Запази прикачения файл</string>
   <!--conversation_expiring_off-->
@@ -1229,8 +1236,6 @@
   <string name="media_preview__save_title">Запази</string>
   <string name="media_preview__forward_title">Препращане</string>
   <string name="media_preview__all_media_title">Всички прикачени файлове</string>
-  <!--media_overview-->
-  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">Няма документи</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Преглед на медията</string>
   <!--new_conversation_activity-->
@@ -1337,5 +1342,8 @@
   <string name="RegistrationLockDialog_reminder">Напомняне:</string>
   <string name="recipient_preferences__about">Относно</string>
   <string name="Recipient_unknown">Непознат</string>
+  <string name="MessageRequestBottomView_accept">Приемам</string>
+  <string name="MessageRequestBottomView_delete">Изтрий</string>
+  <string name="MessageRequestBottomView_block">Блокиране</string>
   <!--EOF-->
 </resources>

@@ -69,6 +69,9 @@
   <string name="BucketedThreadMedia_Yesterday">昨天</string>
   <string name="BucketedThreadMedia_This_week">本週</string>
   <string name="BucketedThreadMedia_This_month">本月</string>
+  <string name="BucketedThreadMedia_Large">大的</string>
+  <string name="BucketedThreadMedia_Medium">中</string>
+  <string name="BucketedThreadMedia_Small">小的</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">來電</string>
   <!--CameraActivity-->
@@ -95,6 +98,10 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">找不到網路瀏覽器。</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">手機通話正在進行中。</string>
+  <string name="CommunicationActions_start_video_call">開始影像通話</string>
+  <string name="CommunicationActions_start_voice_call">開始語音通話嗎？</string>
+  <string name="CommunicationActions_cancel">取消</string>
+  <string name="CommunicationActions_call">撥打</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">%1$s 的安全碼產生變動。這有可能是有不明人士試圖攔截您的通訊／對話內容，或是因為 %2$s 重新安裝 Signal。</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">您可能希望驗證這名聯絡人的安全碼。</string>
@@ -103,6 +110,8 @@
   <string name="ContactsCursorLoader_recent_chats">最近的聊天</string>
   <string name="ContactsCursorLoader_contacts">聯絡人</string>
   <string name="ContactsCursorLoader_groups">群組</string>
+  <string name="ContactsCursorLoader_phone_number_search">搜尋電話號碼</string>
+  <string name="ContactsCursorLoader_username_search">搜尋使用者名稱</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">%s 則訊息</string>
   <string name="ContactsDatabase_signal_call_s">Signal 通話 %s</string>
@@ -283,6 +292,10 @@
   <string name="DeviceListItem_today">今天</string>
   <!--DocumentView-->
   <string name="DocumentView_unknown_file">未知的檔案</string>
+  <string name="DocumentView_unnamed_file">無名稱的檔案</string>
+  <string name="DocumentView_audio_file">聲音檔案</string>
+  <string name="DocumentView_image_file">照片檔案</string>
+  <string name="DocumentView_video_file">影片檔案</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">為缺少的 Play 服務優化</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">這個裝置不支援 Play 服務。輕觸關閉，因為系統電池效能最佳化會防止 Signal 在閒置時取得訊息。</string>
@@ -352,6 +365,8 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">分享</string>
   <string name="InviteActivity_choose_contacts">選擇聯絡人</string>
+  <string name="InviteActivity_share_with_contacts">與聯絡人分享</string>
+  <string name="InviteActivity_choose_how_to_share">選擇要如何分享</string>
   <string name="InviteActivity_cancel">取消</string>
   <string name="InviteActivity_sending">傳送中…</string>
   <string name="InviteActivity_heart_content_description">心</string>
@@ -383,16 +398,26 @@
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">媒體</string>
   <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
-    <item quantity="other">刪除選取的訊息?</item>
+    <item quantity="other">刪除選擇的項目嗎？</item>
   </plurals>
   <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-    <item quantity="other">這將永久刪除所有 1%1$d 選取的訊息。</item>
+    <item quantity="other">這將永久刪除所有%1$d所選擇的檔案。與這些項目相關的任何訊息文字也將被刪除。</item>
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">正在刪除</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">刪除訊息中…    </string>
-  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">文件</string> -->
+  <string name="MediaOverviewActivity_Files">檔案</string>
   <string name="MediaOverviewActivity_Select_all">全選</string>
   <string name="MediaOverviewActivity_collecting_attachments">搜集附件中…</string>
+  <string name="MediaOverviewActivity_Audio">音訊</string>
+  <string name="MediaOverviewActivity_All">全部</string>
+  <string name="MediaOverviewActivity_Sort_by">排列方式</string>
+  <string name="MediaOverviewActivity_Newest">最新的</string>
+  <string name="MediaOverviewActivity_Oldest">最舊的</string>
+  <string name="MediaOverviewActivity_Storage_used">已使用的儲存空間</string>
+  <string name="MediaOverviewActivity_All_storage_use">所有儲存空間使用</string>
+  <string name="MediaOverviewActivity_Grid_view_description">網格檢視</string>
+  <string name="MediaOverviewActivity_List_view_description">清單檢視</string>
+  <string name="MediaOverviewActivity_Selected_description">已選擇的</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal 通話進行中</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal 通話連線中</string>
@@ -487,6 +512,17 @@
   <string name="PlacePickerActivity_accept_address">接受地址</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">您目前安裝的 Google Play 服務版本無法正常運作。請重新安裝 Google Play 服務然後重試。</string>
+  <!--ProfileEditNameFragment-->
+  <string name="ProfileEditNameFragment_profile_name">個人資料名稱</string>
+  <string name="ProfileEditNameFragment_your_profile_name_can_be_seen_by_your_contacts">當你發起對話或接受對話要求時，你的聯絡人以及其他使用者或群組可以看到你的個人資料名稱。</string>
+  <string name="ProfileEditNameFragment_save">儲存</string>
+  <!--ProfileEditOverviewFragment-->
+  <string name="ProfileEditOverviewFragment_profile">個人資訊</string>
+  <string name="ProfileEditOverviewFragment_profile_name">個人資料名稱</string>
+  <string name="ProfileEditOverviewFragment_username">使用者名稱</string>
+  <string name="ProfileEditOverviewFragment_create_a_profile_name">創立一個個人資料名稱</string>
+  <string name="ProfileEditOverviewFragment_create_a_username">創立一個使用者名稱</string>
+  <string name="ProfileEditOverviewFragment_your_signal_profile_can_be_seen_by">當你發起對話或接受對話要求時，你的聯絡人以及其他使用者或群組可以看到你的 Signal 個人資料。<a href="https://support.signal.org/hc/en-us/articles/360007459591-Signal-Profiles"> 點擊此處了解更多資訊</a>。</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">評分這個應用程式</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">如果您喜歡使用此應用程式，請使用片刻時間幫我們對其進行評分。</string>
@@ -651,6 +687,10 @@
   <!--UnverifiedSendDialog-->
   <string name="UnverifiedSendDialog_send_message">傳送訊息？</string>
   <string name="UnverifiedSendDialog_send">傳送</string>
+  <!--UsernameEditFragment-->
+  <string name="UsernameEditFragment_username">使用者名稱</string>
+  <string name="UsernameEditFragment_submit">上傳</string>
+  <string name="UsernameEditFragment_delete">刪除</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">您的聯絡人使用的是舊版本的 Signal。在驗證您的安全碼前請尋求對方先進行更新。</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">您的聯絡人使用的是新版本的 Signal，程式無法識別這個聯絡人的二維碼。
@@ -722,6 +762,7 @@
   <string name="NotificationChannel_other">其他</string>
   <string name="NotificationChannel_group_messages">訊息</string>
   <string name="NotificationChannel_missing_display_name">未知</string>
+  <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">當 Signal 鎖定時無法使用快速回覆！</string>
   <string name="QuickResponseService_problem_sending_message">傳送訊息出現問題！</string>
@@ -736,6 +777,7 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">新訊息</string>
+  <!--ThumbnailView-->
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">
     <item quantity="other">%d 項目</item>
@@ -800,6 +842,7 @@
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal 需要聯絡人的權限以顯示聯絡人資訊，但是現在被設定為永久拒絕存取。請到應用程式設定中，選取「權限」，並啟用「聯絡人」的權限。</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">取回聯絡人名單錯誤，請檢查網路連線</string>
+  <string name="ContactSelectionListFragment_okay">Okay</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">無已封鎖的聯絡人</string>
   <!--contact_selection_list_fragment-->
@@ -1107,6 +1150,7 @@
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">當對話群組超過一定長度時自動刪除舊的訊息</string>
   <string name="preferences__delete_old_messages">刪除舊的訊息</string>
   <string name="preferences__chats">聊天與媒體</string>
+  <string name="preferences__storage">儲存</string>
   <string name="preferences__conversation_length_limit">對話群組長度上限</string>
   <string name="preferences__trim_all_conversations_now">現在開始精簡所有的對話群組</string>
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">這會掃描目前所有的對話群組，並且強制刪除超過長度上限的部分。</string>
@@ -1135,6 +1179,8 @@
   <string name="preferences_chats__when_roaming">當漫遊時</string>
   <string name="preferences_chats__media_auto_download">媒體自動下載</string>
   <string name="preferences_chats__message_trimming">訊息整理</string>
+  <string name="preferences_storage__files">檔案</string>
+  <string name="preferences_storage__audio">音訊</string>
   <string name="preferences_advanced__use_system_emoji">使用系統表情符號</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">停用 Signal 內建的表情支援</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">透過 Signal 伺服器轉發通話，來避免透露你的 IP 位址給你的聯絡人。啟用時，會降低通話品質。</string>
@@ -1175,6 +1221,7 @@
   <string name="conversation_context__menu_forward_message">轉寄訊息</string>
   <string name="conversation_context__menu_resend_message">重送訊息</string>
   <string name="conversation_context__menu_reply_to_message">回覆訊息</string>
+  <!--conversation_context_reacction-->
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">儲存附件檔案</string>
   <!--conversation_expiring_off-->
@@ -1257,8 +1304,6 @@
   <string name="media_preview__save_title">儲存</string>
   <string name="media_preview__forward_title">轉寄</string>
   <string name="media_preview__all_media_title">所有的媒體</string>
-  <!--media_overview-->
-  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">沒有文件</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">媒體預覽</string>
   <!--new_conversation_activity-->
@@ -1386,5 +1431,8 @@
   <string name="RegistrationLockDialog_reminder">提醒：</string>
   <string name="recipient_preferences__about">關於</string>
   <string name="Recipient_unknown">未知</string>
+  <string name="MessageRequestBottomView_accept">接受</string>
+  <string name="MessageRequestBottomView_delete">刪除</string>
+  <string name="MessageRequestBottomView_block">封鎖</string>
   <!--EOF-->
 </resources>

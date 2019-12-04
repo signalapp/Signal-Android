@@ -69,6 +69,8 @@
   <string name="BucketedThreadMedia_Yesterday">Hôm qua</string>
   <string name="BucketedThreadMedia_This_week">Tuần này</string>
   <string name="BucketedThreadMedia_This_month">Tháng này</string>
+  <string name="BucketedThreadMedia_Large">Lớn</string>
+  <string name="BucketedThreadMedia_Small">Nhỏ</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Cuộc gọi đến</string>
   <!--CameraActivity-->
@@ -95,6 +97,8 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Không tìm thấy trình duyệt.</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Một cuộc gọi di động đã được tiến hành.</string>
+  <string name="CommunicationActions_cancel">Hủy</string>
+  <string name="CommunicationActions_call">Gọi</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Mã số an toàn với %1$s đã thay đổi. Điều này có thể là do ai đó đang tìm cách can thiệp vào cuộc trò chuyện, hoặc %2$s vừa cài lại Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Bạn có thể sẽ muốn xác minh mã số an toàn với liên hệ này.</string>
@@ -103,6 +107,8 @@
   <string name="ContactsCursorLoader_recent_chats">Trò chuyện gần đây</string>
   <string name="ContactsCursorLoader_contacts">Danh bạ</string>
   <string name="ContactsCursorLoader_groups">Nhóm</string>
+  <string name="ContactsCursorLoader_phone_number_search">Tìm kiếm số điện thoại</string>
+  <string name="ContactsCursorLoader_username_search">Tìm kiếm tên người dùng</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Tin nhắn %s</string>
   <string name="ContactsDatabase_signal_call_s">Cuộc gọi Signal %s</string>
@@ -382,17 +388,11 @@
   <string name="MmsDownloader_error_reading_mms_settings">Lỗi xem cài đặt nhà cung cấp MMS không dây</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Đa phương tiện</string>
-  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
-    <item quantity="other">Xóa các tin nhắn đã chọn?</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-    <item quantity="other">Thao tác này sẽ xóa vĩnh viễn %1$d tin nhắn đã chọn.</item>
-  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Đang xóa</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Đang xóa tin nhắn…</string>
-  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">Tài liệu</string> -->
   <string name="MediaOverviewActivity_Select_all">Chọn tất cả</string>
   <string name="MediaOverviewActivity_collecting_attachments">Đang thu thập tệp đính kèm…</string>
+  <string name="MediaOverviewActivity_Audio">Âm thanh</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Đang tiến hành cuộc gọi Signal </string>
   <string name="NotificationBarManager__establishing_signal_call">Đang thiết lập cuộc gọi Signal</string>
@@ -488,6 +488,11 @@
   <string name="PlacePickerActivity_accept_address">Chấp nhận địa chỉ</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Phiên bản của Dịch vụ Google Play bạn sử dụng không hoạt động đúng. Vui lòng cài lại Dịch vụ Google Play và thử lại.</string>
+  <!--ProfileEditNameFragment-->
+  <string name="ProfileEditNameFragment_save">Lưu</string>
+  <!--ProfileEditOverviewFragment-->
+  <string name="ProfileEditOverviewFragment_profile">Hồ sơ</string>
+  <string name="ProfileEditOverviewFragment_username">Tên người dùng</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Đánh giá ứng dụng này</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Nếu bạn thích ứng dụng này, hãy dành chút thời gian đánh giá nó.</string>
@@ -649,6 +654,10 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--UnverifiedSendDialog-->
   <string name="UnverifiedSendDialog_send_message">Gửi tin nhắn?</string>
   <string name="UnverifiedSendDialog_send">Gửi</string>
+  <!--UsernameEditFragment-->
+  <string name="UsernameEditFragment_username">Tên người dùng</string>
+  <string name="UsernameEditFragment_submit">Gửi</string>
+  <string name="UsernameEditFragment_delete">Xóa</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Đối tác của bạn đang sử dụng phiên bản Signal cũ. Hãy nhắc họ cập nhật trước khi xác minh mã số an toàn.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Đối tác của bạn đang sử dụng phiên bản Signal mới hơn với định dạng mã QR khác. Hãy cập nhật Signal để so sánh.</string>
@@ -719,6 +728,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="NotificationChannel_other">Khác</string>
   <string name="NotificationChannel_group_messages">Tin nhắn</string>
   <string name="NotificationChannel_missing_display_name">Vô danh</string>
+  <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Trả lời nhanh không khả dụng khi Signal bị khoá!</string>
   <string name="QuickResponseService_problem_sending_message">Có vấn đề khi gửi tin nhắn!</string>
@@ -733,6 +743,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Tin nhắn mới</string>
+  <!--ThumbnailView-->
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">
     <item quantity="other">%d mục</item>
@@ -797,6 +808,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal cần quyền truy cập Danh bạ để hiển thị thông tin liên lạc nhưng đã bị từ chối vĩnh viễn. Vui lòng mở cài đặt ứng dụng, chọn \"Quyền\" và bật \"Danh bạ\".</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Lỗi nhận liên hệ, vui lòng kiểm tra kết nối mạng</string>
+  <string name="ContactSelectionListFragment_okay">OK</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Không có liên hệ bị chặn</string>
   <!--contact_selection_list_fragment-->
@@ -1104,6 +1116,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Tự động xóa các tin nhắn cũ khi cuộc trò chuyện vượt quá độ dài ấn định</string>
   <string name="preferences__delete_old_messages">Xóa tin nhắn cũ</string>
   <string name="preferences__chats">Trò chuyện và đa phương tiện</string>
+  <string name="preferences__storage">Lưu trữ</string>
   <string name="preferences__conversation_length_limit">Giới hạn độ dài cuộc trò chuyện</string>
   <string name="preferences__trim_all_conversations_now">Lập tức rút ngắn tất cả các cuộc trò chuyện</string>
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Quét tất cả các cuộc trò chuyện và áp dụng giới hạn độ dài trò chuyện</string>
@@ -1132,6 +1145,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="preferences_chats__when_roaming">Khi chuyển vùng quốc tế</string>
   <string name="preferences_chats__media_auto_download">Tự động tải đa phương tiện</string>
   <string name="preferences_chats__message_trimming">Thu gọn tin nhắn</string>
+  <string name="preferences_storage__audio">Âm thanh</string>
   <string name="preferences_advanced__use_system_emoji">Sử dụng biểu tượng cảm xúc hệ thống</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Tắt hỗ trợ biểu tượng cảm xúc của Signal</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Chuyển tiếp tất cả cuộc gọi qua máy chủ Signal để tránh lộ địa chỉ IP với đối tác. Bật tính năng này sẽ giảm chất lượng cuộc gọi.</string>
@@ -1172,6 +1186,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="conversation_context__menu_forward_message">Chuyển tiếp tin nhắn</string>
   <string name="conversation_context__menu_resend_message">Gửi lại tin nhắn</string>
   <string name="conversation_context__menu_reply_to_message">Trả lời tin nhắn</string>
+  <!--conversation_context_reacction-->
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Lưu tệp đính kèm</string>
   <!--conversation_expiring_off-->
@@ -1254,8 +1269,6 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="media_preview__save_title">Lưu</string>
   <string name="media_preview__forward_title">Chuyển tiếp</string>
   <string name="media_preview__all_media_title">Tất cả tập tin đa phương tiện</string>
-  <!--media_overview-->
-  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">Không có tài liệu</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Xem trước tệp đa phương tiện</string>
   <!--new_conversation_activity-->
@@ -1382,5 +1395,8 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="RegistrationLockDialog_reminder">Nhắc nhở:</string>
   <string name="recipient_preferences__about">Thông tin</string>
   <string name="Recipient_unknown">Vô danh</string>
+  <string name="MessageRequestBottomView_accept">Chấp nhận</string>
+  <string name="MessageRequestBottomView_delete">Xóa</string>
+  <string name="MessageRequestBottomView_block">Chặn</string>
   <!--EOF-->
 </resources>

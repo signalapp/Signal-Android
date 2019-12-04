@@ -72,6 +72,8 @@
   <string name="BucketedThreadMedia_Yesterday">ਕੱਲ </string>
   <string name="BucketedThreadMedia_This_week">ਇਸ ਹਫਤੇ </string>
   <string name="BucketedThreadMedia_This_month">ਇਸ ਮਹੀਨੇ </string>
+  <string name="BucketedThreadMedia_Large">ਵੱਡਾ</string>
+  <string name="BucketedThreadMedia_Small">ਛੋਟਾ</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">ਆਉਣ ਵਾਲੀ ਕਾਲ </string>
   <!--CameraActivity-->
@@ -98,6 +100,8 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">ਕੋਈ ਵੈੱਬ ਬਰਾਊਜ਼ਰ ਨਹੀਂ ਲੱਭਿਆ </string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">ਸੈਲਿਊਲਰ ਕਾਲ ਪਹਿਲਾਂ ਹੀ ਪ੍ਰਗਤੀ ਵਿੱਚ ਹੈ</string>
+  <string name="CommunicationActions_cancel">ਰੱਦ ਕਰੋ</string>
+  <string name="CommunicationActions_call">ਕਾਲ</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">ਤੁਹਾਡਾ ਹਿਫ਼ਾਜ਼ਤੀ ਨੰਬਰ  %1$s ਬਦਲ ਗਿਆ ਹੈ | ਇਸ ਦਾ ਮਤਲਬ ਹੈ ਕੇ ਜਾ ਤਾਂ ਤੁਹਾਡੀ ਗੱਲਬਾਤ ਨੂੰ ਕੋਈ ਸੁਨ ਰਿਹਾ ਹੈ ਜਾ ਫੇਰ ਤੁਸੀਂ %2$s Signal ਨੂੰ ਦੋਬਾਰਾ ਇੰਸਟਾਲ ਕੀਤਾ ਹੈ </string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">ਤੁਸੀਂ ਇਸ ਸੰਪਰਕ ਨਾਲ ਆਪਣਾ ਸੁਰੱਖਿਆ ਨੰਬਰ ਪ੍ਰਮਾਣਿਤ ਕਰ ਸਕਦੇ ਹੋ</string>
@@ -398,19 +402,11 @@
   <string name="MmsDownloader_error_reading_mms_settings">ਵਾਇਰਲੈਸ ਪ੍ਰਦਾਤਾ ਐੱਮ ਐੱਮ ਐੱਸ ਸੈਟਿੰਗਜ਼ ਨੂੰ ਪੜ੍ਹਨ ਵਿੱਚ ਗਲਤੀ</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">ਮੀਡੀਆ</string>
-  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
-    <item quantity="one">ਚੁਣੇ ਹੋਏ ਸੁਨੇਹਿਆਂ ਨੂੰ ਮਿਟਾਓ ?</item>
-    <item quantity="other">ਚੁਣੇ ਹੋਏ ਸੁਨੇਹਿਆਂ ਨੂੰ  ਮਿਟਾਓ ?</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-    <item quantity="one"> ਚੁਣੇ ਹੋਏ ਸੁਨੇਹੇ ਹਮੇਸ਼ਾ ਲਈ ਮਿੱਟਾ ਦਿੱਤੇ ਜਾਣਗੇ </item>
-    <item quantity="other">%1$d ਚੁਣੇ ਹੋਏ ਸੁਨੇਹੇ ਹਮੇਸ਼ਾ ਲਈ ਮਿੱਟਾ ਦਿੱਤੇ ਜਾਣਗੇ </item>
-  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">ਮਿਟਾਇਆ ਜਾ ਰਿਹਾ ਹੈ</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">ਸੁਨੇਹਿਆਂ ਨੂੰ ਮਿਟਾਇਆ ਜਾ ਰਿਹਾ ਹੈ</string>
-  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">ਦਸਤਾਵੇਜ਼</string> -->
   <string name="MediaOverviewActivity_Select_all">ਸਾਰਿਆ ਨੂੰ ਚੁਣੋ</string>
   <string name="MediaOverviewActivity_collecting_attachments">ਅਟੈਚਮੈਂਟ ਇਕੱਠੇ ਕਰਨੇ …</string>
+  <string name="MediaOverviewActivity_Audio">ਆਡੀਓ</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal ਕਾਲ ਪ੍ਰਗਤੀ ਵਿੱਚ ਹੈ</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal ਕਾਲ ਸਥਾਪਤ ਕਰ ਰਿਹਾ ਹੈ</string>
@@ -506,6 +502,9 @@
   <string name="PlacePickerActivity_accept_address">ਪਤਾ ਸਵੀਕਾਰ ਕਰੋ</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">ਤੁਹਾਡੇ ਵੱਲੋਂ ਸਥਾਪਿਤ ਕੀਤੇ Google Play ਸੇਵਾਵਾਂ ਦਾ ਵਰਜਨ ਸਹੀ ਢੰਗ ਨਾਲ ਕੰਮ ਨਹੀਂ ਕਰ ਰਿਹਾ ਹੈ. ਕਿਰਪਾ ਕਰਕੇ Google Play ਸੇਵਾਵਾਂ ਮੁੜ ਸਥਾਪਿਤ ਕਰੋ ਅਤੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ.</string>
+  <!--ProfileEditNameFragment-->
+  <string name="ProfileEditNameFragment_save">ਰੱਖੋ </string>
+  <!--ProfileEditOverviewFragment-->
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">ਇਸ ਐਪ ਨੂੰ ਦਰਜਾ ਦਿਓ</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">ਜੇ ਤੁਸੀਂ ਇਸ ਐਪ ਦਾ ਉਪਯੋਗ ਕਰਕੇ ਆਨੰਦ ਮਾਣਦੇ ਹੋ, ਕਿਰਪਾ ਕਰਕੇ ਇਸ ਨੂੰ ਦਰਜਾ ਦੇ ਕੇ ਸਾਡੀ ਮਦਦ ਕਰਨ ਲਈ ਕੁਝ ਸਮਾਂ ਕੱਢੋ</string>
@@ -669,6 +668,9 @@
   <!--UnverifiedSendDialog-->
   <string name="UnverifiedSendDialog_send_message">ਸੁਨੇਹਾ ਭੇਜੋ?</string>
   <string name="UnverifiedSendDialog_send">ਭੇਜੋ</string>
+  <!--UsernameEditFragment-->
+  <string name="UsernameEditFragment_submit">ਜਮ੍ਹਾਂ ਕਰੋ</string>
+  <string name="UsernameEditFragment_delete">ਮਿਟਾਓ </string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">ਤੁਹਾਡਾ ਸੰਪਰਕ Signal ਦੇ ਪੁਰਾਣੇ ਸੰਸਕਰਣ ਨੂੰ ਚਲਾ ਰਿਹਾ ਹੈ ਆਪਣੇ ਸੁਰੱਖਿਆ ਨੰਬਰ ਦੀ ਜਾਂਚ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਕਿਰਪਾ ਕਰਕੇ ਉਨ੍ਹਾਂ ਨੂੰ ਅਪਡੇਟ ਕਰਨ ਲਈ ਕਹੋ</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">ਤੁਹਾਡਾ ਸੰਪਰਕ ਇੱਕ ਅਸੰਗਤ QR ਕੋਡ ਫਾਰਮੇਟ ਦੇ ਨਾਲ Signal ਦੇ ਨਵੇਂ ਵਰਜਨ ਨੂੰ ਚਲਾ ਰਿਹਾ ਹੈ. ਕਿਰਪਾ ਕਰਕੇ ਤੁਲਨਾ ਕਰਨ ਲਈ ਅਪਡੇਟ ਕਰੋ.</string>
@@ -739,6 +741,7 @@
   <string name="NotificationChannel_other">ਹੋਰ</string>
   <string name="NotificationChannel_group_messages">ਸੁਨੇਹੇ </string>
   <string name="NotificationChannel_missing_display_name">ਅਣਜਾਣ</string>
+  <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal ਲਾਕ ਹੋਣ ਕਰਕੇ ਤੇਜ਼ ਜਵਾਬ ਅਣਉਪਲਬਧ!</string>
   <string name="QuickResponseService_problem_sending_message">ਸੁਨੇਹਾ ਭੇਜਣ ਵਿੱਚ ਸਮੱਸਿਆ!</string>
@@ -753,6 +756,7 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">ਨਵਾਂ ਸੰਦੇਸ਼ </string>
+  <!--ThumbnailView-->
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">
     <item quantity="one">%d ਚੀਜਾਂ </item>
@@ -818,6 +822,7 @@
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal ਨੂੰ ਸੰਪਰਕ ਜਾਣਕਾਰੀ  ਦਿਖਾਉਣ ਲਈ ਸੰਪਰਕਾਂ ਦੀ ਇਜਾਜ਼ਤ ਦੀ ਲੋੜ ਹੈ, ਜੋ ਇਸ ਕੋਲ ਨਹੀਂ ਹਨ | ਕਿਰਪਾ ਕਰਕੇ ਐਪ ਸੈਟਿੰਗ ਮੇਨੂ  ਤੇ ਜਾਓ, \"ਅਨੁਮਤੀਆਂ\" ਚੁਣੋ ਅਤੇ \"ਸੰਪਰਕ\" ਸਮਰੱਥ ਕਰੋ.</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">ਸੰਪਰਕਾਂ ਨੂੰ ਮੁੜ ਪ੍ਰਾਪਤ ਕਰਨ ਵਿੱਚ ਤਰੁੱਟੀ, ਆਪਣੇ ਨੈਟਵਰਕ ਕਨੈਕਸ਼ਨ ਦੀ ਜਾਂਚ ਕਰੋ</string>
+  <string name="ContactSelectionListFragment_okay">ਠੀਕ ਹੈ</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">ਕੋਈ ਬਲੌਕ ਕੀਤੇ ਸੰਪਰਕ ਨਹੀਂ</string>
   <!--contact_selection_list_fragment-->
@@ -1161,6 +1166,7 @@
   <string name="preferences_chats__when_roaming">ਰੋਮਿੰਗ ਸਮੇਂ</string>
   <string name="preferences_chats__media_auto_download">ਮੀਡੀਆ ਆਟੋ-ਡਾਊਨਲੋਡ</string>
   <string name="preferences_chats__message_trimming">ਸੁਨੇਹਾ ਟ੍ਰਰੀਮਿੰਗ </string>
+  <string name="preferences_storage__audio">ਆਡੀਓ</string>
   <string name="preferences_advanced__use_system_emoji">ਸਿਸਟਮ ਇਮੋਜੀ ਵਰਤੋ</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Signal ਦੇ ਬਿਲਟ-ਇਨ ਇਮੋਜੀ ਸਹਾਇਤਾ ਨੂੰ ਅਸਮਰੱਥ ਬਣਾਓ</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">ਆਪਣੇ ਸੰਪਰਕ ਨੂੰ ਤੁਹਾਡੇ IP ਦਾ ਪਤਾ ਲੱਗਣ ਤੋਂ ਬਚਾਉਣ ਲਈ Signal ਸਰਵਰ ਰਾਹੀਂ ਸਾਰੀਆਂ ਕਾਲਾਂ ਨੂੰ ਰੀਲੇਅ ਕਰੋ. ਯੋਗ ਕਰਨ ਨਾਲ ਕਾਲ ਦੀ ਗੁਣਵੱਤਾ ਘਟੇਗੀ</string>
@@ -1201,6 +1207,7 @@
   <string name="conversation_context__menu_forward_message">ਸੰਦੇਸ਼ ਅੱਗੇ ਭੇਜੋ </string>
   <string name="conversation_context__menu_resend_message">ਸੁਨੇਹਾ ਦੁਬਾਰਾ ਭੇਜੋ</string>
   <string name="conversation_context__menu_reply_to_message">ਸੁਨੇਹੇ ਨੂੰ ਜਵਾਬ ਦਿਓ</string>
+  <!--conversation_context_reacction-->
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">ਅਟੈਚਮੈਂਟਸ ਦਰਜ ਕਰੋ</string>
   <!--conversation_expiring_off-->
@@ -1284,8 +1291,6 @@
   <string name="media_preview__save_title">ਰੱਖੋ </string>
   <string name="media_preview__forward_title">ਅੱਗੇ ਭੇਜੋ </string>
   <string name="media_preview__all_media_title">ਸਾਰੇ ਮੀਡੀਆ</string>
-  <!--media_overview-->
-  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">ਕੋਈ ਦਸਤਾਵੇਜ਼ ਨਹੀਂ</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">ਮੀਡੀਆ ਪ੍ਰੀਵਿਊ</string>
   <!--new_conversation_activity-->
@@ -1407,5 +1412,8 @@
   <string name="RegistrationLockDialog_reminder">ਰੀਮਾਈਂਡਰ:</string>
   <string name="recipient_preferences__about">ਇਸ ਬਾਰੇ</string>
   <string name="Recipient_unknown">ਅਣਜਾਣ</string>
+  <string name="MessageRequestBottomView_accept">ਸਵੀਕਾਰ ਕਰੋ</string>
+  <string name="MessageRequestBottomView_delete">ਮਿਟਾਓ </string>
+  <string name="MessageRequestBottomView_block">ਬਲਾਕ</string>
   <!--EOF-->
 </resources>

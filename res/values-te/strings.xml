@@ -72,6 +72,8 @@
   <string name="BucketedThreadMedia_Yesterday">నిన్న</string>
   <string name="BucketedThreadMedia_This_week">ఈ వారం</string>
   <string name="BucketedThreadMedia_This_month">ఈ నెల</string>
+  <string name="BucketedThreadMedia_Large">పెద్ద</string>
+  <string name="BucketedThreadMedia_Small">చిన్న</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">క్రొత్తగా వచ్చిన కాల్</string>
   <!--CameraActivity-->
@@ -98,6 +100,8 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">వెబ్ బ్రౌజర్ కనుగొనబడలేదు.</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">సెల్యులార్ కాల్ ఇప్పటికే పురోగతిలో ఉంది.</string>
+  <string name="CommunicationActions_cancel">రద్దు</string>
+  <string name="CommunicationActions_call">కాల్</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">మీ భద్రత అంకె %1$s మర్చబడింధి.ధీని అర్ధం ఎమిటీ అంటె మీ సంభాషనని ఎవరొ అడ్డూకుంటునారు ,లేదా %2$s కేవలం Signal తిరిగి పునఃస్థాపన జరుగుతుంధి.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">ఈ పరిచయంతో మీ భద్రత సంఖ్య ధ్రువీకరించాలనుకోవొచ్చు.</string>
@@ -106,6 +110,8 @@
   <string name="ContactsCursorLoader_recent_chats">ఇటీవలి చాట్లు</string>
   <string name="ContactsCursorLoader_contacts">కాంటాక్ట్స్</string>
   <string name="ContactsCursorLoader_groups">సమూహాలు</string>
+  <string name="ContactsCursorLoader_phone_number_search">ఫోన్ నంబర్ శోధన</string>
+  <string name="ContactsCursorLoader_username_search">వినియోగదారు పేరు శోధన</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">%sకి సందేశం పంపు</string>
   <string name="ContactsDatabase_signal_call_s">Signal కాల్ %s</string>
@@ -404,19 +410,11 @@
   <string name="MmsDownloader_error_reading_mms_settings">వైర్లెస్ ప్రొవైడర్ ఎంఎంఎస్ సెట్టింగులను చదువుటలో దోషం</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">మీడియా</string>
-  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
-    <item quantity="one">ఎంపిక చేసిన సందేశాలను తొలగించాలా?</item>
-    <item quantity="other">ఎంచుకున్న సందేశాలు తొలగించాలా?</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-    <item quantity="one">ఇది అన్ని% 1 $ d ఎంచుకున్న సందేశాలను శాశ్వతంగా తొలగిస్తుంది.</item>
-    <item quantity="other">ఇది అన్ని%1$d ఎంచుకున్న సందేశాలను శాశ్వతంగా తొలగిస్తుంది.</item>
-  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">తొలగిపోతున్నాయ్</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">సందేశాలను తొలగిస్తోంది …</string>
-  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">పత్రాలు</string> -->
   <string name="MediaOverviewActivity_Select_all">అన్నీ ఎంచుకో</string>
   <string name="MediaOverviewActivity_collecting_attachments">జోడింపులను సేకరిస్తోంది …</string>
+  <string name="MediaOverviewActivity_Audio">ఆడియో</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">పురోగతి లో Signal కాల్</string>
   <string name="NotificationBarManager__establishing_signal_call">స్థాపించబడుతున్న Signal కాల్</string>
@@ -512,6 +510,11 @@
   <string name="PlacePickerActivity_accept_address">చిరునామాను అంగీకరించండి</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">గూగుల్ ఫ్లే సేవలు ఒక్క వివరణం సరిగ్గ పని చెయ్యటంలేదు. దయచేసి  గూగుల్ ఫ్లే సేవలను మరల నెలకొల్పండి.</string>
+  <!--ProfileEditNameFragment-->
+  <string name="ProfileEditNameFragment_save">భద్రపరుచు</string>
+  <!--ProfileEditOverviewFragment-->
+  <string name="ProfileEditOverviewFragment_profile">రూపం</string>
+  <string name="ProfileEditOverviewFragment_username">వినియోగదారుడు </string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">ఈ అప్లికేషన్ ని రేట్ చెయ్యండి</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">ఈ కార్యక్షేత్రం నచ్చినచొ,దయచేసి కొంత సమయము వెచ్చించి దినిని విలువ కట్టండి.</string>
@@ -675,6 +678,10 @@
   <!--UnverifiedSendDialog-->
   <string name="UnverifiedSendDialog_send_message">సందేశం పంపాల?</string>
   <string name="UnverifiedSendDialog_send">పంపుము</string>
+  <!--UsernameEditFragment-->
+  <string name="UsernameEditFragment_username">వినియోగదారుడు </string>
+  <string name="UsernameEditFragment_submit">సమర్పించండి</string>
+  <string name="UsernameEditFragment_delete">తొలగించండి</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">మీ పరిచయం Signal యొక్క ఒక పాత వెర్షన్ను పై నడుస్థుంది. మీ భద్రత సంఖ్య ధ్రువీకరించే ముందుగా అప్డేట్ కోరండి.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">మీ పరిచయం అననుకూల QR కోడ్ ఫార్మాట్ Signal యొక్క కొత్త సంస్కరణను అమలు చేస్తోంది. దయచేసి పోల్చడానికి అప్డేట్ చెయండీ.</string>
@@ -745,6 +752,7 @@
   <string name="NotificationChannel_other">ఇతర</string>
   <string name="NotificationChannel_group_messages">సందేశాలు</string>
   <string name="NotificationChannel_missing_display_name">తెలియని</string>
+  <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal బంధించినపుడు తక్షణ స్పందన అందుబాటులొ లేదు!</string>
   <string name="QuickResponseService_problem_sending_message">సందేశాన్ని పంపడంలొ సమస్య!</string>
@@ -759,6 +767,7 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">కొత్త సందేశం</string>
+  <!--ThumbnailView-->
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">
     <item quantity="one">%d అంశం</item>
@@ -824,6 +833,7 @@
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">మీ పరిచయాలను ప్రదర్శించడానికి Signal కాంటాక్ట్స్ అనుమతి అవసరం, కానీ ఇది శాశ్వతంగా తిరస్కరించబడింది. దయచేసి అనువర్తన సెట్టింగ్ల మెనుకి కొనసాగండి, \"అనుమతులు\" ఎంచుకోండి మరియు \"పరిచయాలు\" ప్రారంభించండి.</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">పరిచయాలను తిరిగి పొందడంలో లోపం, మీ నెట్వర్క్ కనెక్షన్ను తనిఖీ చేయండి</string>
+  <string name="ContactSelectionListFragment_okay">సరే</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">నిరోధించిన పరిచయాలు లేవు</string>
   <!--contact_selection_list_fragment-->
@@ -1167,6 +1177,7 @@
   <string name="preferences_chats__when_roaming">రోమింగ్లో ఉన్నప్పుడు</string>
   <string name="preferences_chats__media_auto_download">ప్రసార మాధ్యమం దానంతట అదే దిగుమతి</string>
   <string name="preferences_chats__message_trimming">సందేశం కత్తిరించి సరి చేయుట </string>
+  <string name="preferences_storage__audio">ఆడియో</string>
   <string name="preferences_advanced__use_system_emoji">యంత్రము యొక్క  ఎమొజిలను  ఉపయొగించు</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Signal యొక్క అంతర్నిర్మిత ఎమోజి మద్దతును నిలిపివేయి  </string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">మీ పరిచయం మీ IP చిరునామా బహిర్గతం నివారించేందుకు Signal సర్వర్ ద్వారా అన్ని కాల్స్ ప్రసారం. సమర్ధించే కాల్ నాణ్యత తగ్గిస్తుంది.</string>
@@ -1207,6 +1218,7 @@
   <string name="conversation_context__menu_forward_message">సందేశాన్ని బదలాయించు</string>
   <string name="conversation_context__menu_resend_message">సందేశాన్ని తిరిగి పంపు</string>
   <string name="conversation_context__menu_reply_to_message">సందేశానికి ప్రత్యుత్తరం ఇవ్వండి</string>
+  <!--conversation_context_reacction-->
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">జత పరిచినది దాచి పెట్టు </string>
   <!--conversation_expiring_off-->
@@ -1290,8 +1302,6 @@
   <string name="media_preview__save_title">భద్రపరుచు</string>
   <string name="media_preview__forward_title">బదలాయించు</string>
   <string name="media_preview__all_media_title">అన్ని మీడియా</string>
-  <!--media_overview-->
-  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">పత్రాలు లేవు</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">మీడియా పూర్వప్రదర్శన</string>
   <!--new_conversation_activity-->
@@ -1419,5 +1429,8 @@
   <string name="RegistrationLockDialog_reminder">రిమైండర్:</string>
   <string name="recipient_preferences__about">గురించి</string>
   <string name="Recipient_unknown">తెలియని</string>
+  <string name="MessageRequestBottomView_accept">అంగీకరించండి</string>
+  <string name="MessageRequestBottomView_delete">తొలగించండి</string>
+  <string name="MessageRequestBottomView_block">నిరోధించు</string>
   <!--EOF-->
 </resources>

@@ -72,6 +72,8 @@
   <string name="BucketedThreadMedia_Yesterday">I går</string>
   <string name="BucketedThreadMedia_This_week">Denne uken</string>
   <string name="BucketedThreadMedia_This_month">Denne måneden</string>
+  <string name="BucketedThreadMedia_Large">Stor</string>
+  <string name="BucketedThreadMedia_Small">Liten</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Innkommende anrop</string>
   <!--CameraActivity-->
@@ -98,6 +100,8 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Ingen nettleser funnet.</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">En mobilanrop er allerede i gang.</string>
+  <string name="CommunicationActions_cancel">Avbryt</string>
+  <string name="CommunicationActions_call">Ring</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Sikkerhetsnummeret ditt med %1$s er endret. Dette kan enten bety at noen prøver å fange opp kommunikasjonen din, eller at %2$s har installert Signal på nytt.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Du bør kontrollere sikkerhetsnumrene dine mot denne kontakten.</string>
@@ -106,6 +110,8 @@
   <string name="ContactsCursorLoader_recent_chats">Nylige samtaler</string>
   <string name="ContactsCursorLoader_contacts">Kontakter</string>
   <string name="ContactsCursorLoader_groups">Grupper</string>
+  <string name="ContactsCursorLoader_phone_number_search">Telefonnummer søk</string>
+  <string name="ContactsCursorLoader_username_search">Brukernavn søk</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Melding %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal-anrop %s</string>
@@ -398,19 +404,11 @@
   <string name="MmsDownloader_error_reading_mms_settings">Feil under lesing av oppsett for MMS-leverandør</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Medier</string>
-  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
-    <item quantity="one">Vil du slette valgt melding?</item>
-    <item quantity="other">Vil du slette valgte meldinger?</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-    <item quantity="one">Markert melding blir slettet for godt.</item>
-    <item quantity="other">Alle %1$d markerte meldinger blir slettet for godt.</item>
-  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Sletter</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Sletter meldinger …</string>
-  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">Dokumenter</string> -->
   <string name="MediaOverviewActivity_Select_all">Velg alle</string>
   <string name="MediaOverviewActivity_collecting_attachments">Henter vedlegg …</string>
+  <string name="MediaOverviewActivity_Audio">Lyd</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal-samtale pågår</string>
   <string name="NotificationBarManager__establishing_signal_call">Setter opp Signal-anrop</string>
@@ -507,6 +505,11 @@
   <string name="PlacePickerActivity_accept_address">Godta adresse</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Versjonen av Google Play Tjenester som er installert på denne enheten fungerer ikke skikkelig. Installer Google Play Tjenester på nytt og prøv igjen.</string>
+  <!--ProfileEditNameFragment-->
+  <string name="ProfileEditNameFragment_save">Lagre</string>
+  <!--ProfileEditOverviewFragment-->
+  <string name="ProfileEditOverviewFragment_profile">Profil</string>
+  <string name="ProfileEditOverviewFragment_username">Brukernavn</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Vurder dette programmet</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Hvis du liker dette programmet, vil vi gjerne at du hjelper oss ved å gi din vurdering.</string>
@@ -670,6 +673,10 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--UnverifiedSendDialog-->
   <string name="UnverifiedSendDialog_send_message">Send melding?</string>
   <string name="UnverifiedSendDialog_send">Send</string>
+  <!--UsernameEditFragment-->
+  <string name="UsernameEditFragment_username">Brukernavn</string>
+  <string name="UsernameEditFragment_submit">Send inn</string>
+  <string name="UsernameEditFragment_delete">Slett</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Kontakten kjører en gammel versjon av Signal. Be vedkommende om å oppdatere og deretter bekrefte sikkerhetsnummeret ditt.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Kontakten kjører en nyere versjon av Signal og bruker et QR-kodeformat som ikke kan brukes med din versjon. Oppdater Signal for å sammenligne.</string>
@@ -740,6 +747,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="NotificationChannel_other">Annet</string>
   <string name="NotificationChannel_group_messages">Meldinger</string>
   <string name="NotificationChannel_missing_display_name">Ukjent</string>
+  <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Hurtigsvar er utilgjengelig når Signal er låst.</string>
   <string name="QuickResponseService_problem_sending_message">Det oppstod et problem under sending av melding.</string>
@@ -754,6 +762,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Ny melding</string>
+  <!--ThumbnailView-->
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">
     <item quantity="one">%d Del</item>
@@ -819,6 +828,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal krever tillatelse fra systemet for å kunne vise kontakter, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Kontakter».</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Klarte ikke å hente kontakter. Kontroller nettforbindelse</string>
+  <string name="ContactSelectionListFragment_okay">Greit</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Ingen blokkerte kontakter</string>
   <!--contact_selection_list_fragment-->
@@ -1163,6 +1173,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences_chats__when_roaming">I fremmednett</string>
   <string name="preferences_chats__media_auto_download">Automatisk nedlasting av medier</string>
   <string name="preferences_chats__message_trimming">Automatisk sletting</string>
+  <string name="preferences_storage__audio">Lyd</string>
   <string name="preferences_advanced__use_system_emoji">Bruk systemets emoji</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Slå av innebygd emoji-støtte i Signal</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Videresend alle samtaler gjennom Signal serveren for å unngå å avsløre IP-adressen din til kontakten din. Aktivering vill redusere samtalekvaliteten.</string>
@@ -1203,6 +1214,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="conversation_context__menu_forward_message">Videresend melding</string>
   <string name="conversation_context__menu_resend_message">Send melding på nytt</string>
   <string name="conversation_context__menu_reply_to_message">Svar på melding</string>
+  <!--conversation_context_reacction-->
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Lagre vedlegg</string>
   <!--conversation_expiring_off-->
@@ -1286,8 +1298,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="media_preview__save_title">Lagre</string>
   <string name="media_preview__forward_title">Videresend</string>
   <string name="media_preview__all_media_title">Alle medier</string>
-  <!--media_overview-->
-  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">Ingen dokumenter</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Forhåndsvisning av medier</string>
   <!--new_conversation_activity-->
@@ -1413,5 +1423,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="RegistrationLockDialog_reminder">Påminnelse:</string>
   <string name="recipient_preferences__about">Om</string>
   <string name="Recipient_unknown">Ukjent</string>
+  <string name="MessageRequestBottomView_accept">Godta</string>
+  <string name="MessageRequestBottomView_delete">Slett</string>
+  <string name="MessageRequestBottomView_block">Blokker</string>
   <!--EOF-->
 </resources>

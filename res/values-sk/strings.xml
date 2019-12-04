@@ -78,6 +78,8 @@
   <string name="BucketedThreadMedia_Yesterday">Včera</string>
   <string name="BucketedThreadMedia_This_week">Tento týždeň</string>
   <string name="BucketedThreadMedia_This_month">Tento mesiac</string>
+  <string name="BucketedThreadMedia_Large">Veľká</string>
+  <string name="BucketedThreadMedia_Small">Malá</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Prichádzajúce volanie</string>
   <!--CameraActivity-->
@@ -103,6 +105,8 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Nenašiel sa žiadny webový prehliadač.</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Už prebieha telefónový hovor.</string>
+  <string name="CommunicationActions_cancel">Zrušiť</string>
+  <string name="CommunicationActions_call">Zavolať</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Vaše bezpečnostné číslo s %1$s sa zmenilo. Môže to znamenať, že sa niekto snaží preniknúť do vašej komunikácie alebo jednoducho, že %2$s si preinštaloval/a Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Mali by ste overiť vaše bezpečnostné číslo s týmto kontaktom.</string>
@@ -424,23 +428,11 @@
   <string name="MmsDownloader_error_reading_mms_settings">Chyba pri načítaní MMS nastavení poskytovateľa</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Médiá</string>
-  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
-    <item quantity="one">Vymazať zvolenú správu?</item>
-    <item quantity="few">Vymazať zvolené správy?</item>
-    <item quantity="many">Vymazať zvolené správy?</item>
-    <item quantity="other">Vymazať zvolené správy?</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-    <item quantity="one">Týmto natrvalo odstánite vybranú správu.</item>
-    <item quantity="few">Týmto natrvalo odstánite %1$d vybrané správy.</item>
-    <item quantity="many">Týmto natrvalo odstánite všetkých %1$d vybraných správ.</item>
-    <item quantity="other">Týmto natrvalo odstánite všetkých %1$d vybraných správ.</item>
-  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Mazanie</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Mažú sa správy…</string>
-  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">Dokumenty</string> -->
   <string name="MediaOverviewActivity_Select_all">Označiť všetko</string>
   <string name="MediaOverviewActivity_collecting_attachments">Ukladám prílohy…</string>
+  <string name="MediaOverviewActivity_Audio">Zvuk</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Prebieha Signal hovor</string>
   <string name="NotificationBarManager__establishing_signal_call">Príprava na Signal hovor</string>
@@ -538,6 +530,10 @@
   <string name="PlacePickerActivity_accept_address">Prijať adresu</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Verzia aplikácie Google Play Services ktorú máte nainštalovanú nefunguje správne. Prosím preinštalujte Google Play Services a skúste znova.</string>
+  <!--ProfileEditNameFragment-->
+  <string name="ProfileEditNameFragment_save">Uložiť</string>
+  <!--ProfileEditOverviewFragment-->
+  <string name="ProfileEditOverviewFragment_profile">Profil</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Ohodnotiť túto aplikáciu</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Ak sa vám táto aplikácia páči, nájdite si chvíľu a pomôžte nám tým, že ju ohodnotíte.</string>
@@ -705,6 +701,9 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--UnverifiedSendDialog-->
   <string name="UnverifiedSendDialog_send_message">Odoslať správu?</string>
   <string name="UnverifiedSendDialog_send">Odoslať</string>
+  <!--UsernameEditFragment-->
+  <string name="UsernameEditFragment_submit">Potvrdiť</string>
+  <string name="UsernameEditFragment_delete">Vymazať</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Váš kontakt používa starú verziu Signalu. Pred overením bezpečnostného čísla ich požiadajte o aktualizáciu aplikácie.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Váš kontakt používa novšiu verziu Signalu, nekompatibilnú s formátom QR kódu. Prosím aktualizujte pre porovnanie.</string>
@@ -774,6 +773,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="NotificationChannel_other">Iné</string>
   <string name="NotificationChannel_group_messages">Správy</string>
   <string name="NotificationChannel_missing_display_name">Neznáma</string>
+  <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Rýchla odpoveď nie je dostupná, keď je Signal zamknutý!</string>
   <string name="QuickResponseService_problem_sending_message">Problém pri odosielaní správy!</string>
@@ -788,6 +788,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nová správa</string>
+  <!--ThumbnailView-->
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">
     <item quantity="one">%d položka</item>
@@ -855,6 +856,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal potrebuje prístup ku kontaktom aby mohol zobraziť Vaše kontakty, ale prístup bol natrvalo zakázaný. Prosím v nastaveniach aplikácií zvoľte \"Oprávnenia\", a povoľte \"Kontakty\".</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Nepodarilo sa načítať kontakty. Skontrolujte svoje sieťové pripojenie</string>
+  <string name="ContactSelectionListFragment_okay">OK</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Žiadne blokované kontakty</string>
   <!--contact_selection_list_fragment-->
@@ -1179,6 +1181,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Automaticky odstrániť staršie správy keď konverzácia presiahne určenú dĺžku</string>
   <string name="preferences__delete_old_messages">Vymazať staré správy</string>
   <string name="preferences__chats">Chat a médiá</string>
+  <string name="preferences__storage">Úložisko</string>
   <string name="preferences__conversation_length_limit">Obmedzenie dĺžky konverzácie</string>
   <string name="preferences__trim_all_conversations_now">Premazať všetky konverzácie teraz</string>
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Skenovať všetky konverzácie a uplatniť limity dĺžky konverzácie</string>
@@ -1207,6 +1210,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="preferences_chats__when_roaming">Pri roamingu</string>
   <string name="preferences_chats__media_auto_download">Automatické preberanie médií</string>
   <string name="preferences_chats__message_trimming">Premazávanie správ</string>
+  <string name="preferences_storage__audio">Zvuk</string>
   <string name="preferences_advanced__use_system_emoji">Použiť systémové emoji</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Vypnúť emoji zabudované v Signale</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Smerovať všetky hovory cez server Signal pre zabránenie odhaleniu vašej IP adresy kontaktu. Zapnutie zníži kvalitu hovoru.</string>
@@ -1247,6 +1251,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="conversation_context__menu_forward_message">Preposlať správu</string>
   <string name="conversation_context__menu_resend_message">Odoslať správu znovu</string>
   <string name="conversation_context__menu_reply_to_message">Odpovedať na správu</string>
+  <!--conversation_context_reacction-->
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Uložiť prílohu </string>
   <!--conversation_expiring_off-->
@@ -1331,8 +1336,6 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="media_preview__save_title">Uložiť</string>
   <string name="media_preview__forward_title">Preposlať</string>
   <string name="media_preview__all_media_title">Všetky médiá</string>
-  <!--media_overview-->
-  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">Žiadne dokumenty</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Náhľad média</string>
   <!--new_conversation_activity-->
@@ -1439,5 +1442,8 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="RegistrationLockDialog_reminder">Pripomienka:</string>
   <string name="recipient_preferences__about">Informácie</string>
   <string name="Recipient_unknown">Neznáme</string>
+  <string name="MessageRequestBottomView_accept">Potvrdiť</string>
+  <string name="MessageRequestBottomView_delete">Vymazať</string>
+  <string name="MessageRequestBottomView_block">Blokovať</string>
   <!--EOF-->
 </resources>

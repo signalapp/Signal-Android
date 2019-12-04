@@ -69,6 +69,8 @@
   <string name="BucketedThreadMedia_Yesterday">昨日</string>
   <string name="BucketedThreadMedia_This_week">今週</string>
   <string name="BucketedThreadMedia_This_month">今月</string>
+  <string name="BucketedThreadMedia_Large">大きい</string>
+  <string name="BucketedThreadMedia_Small">小さい</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">着信</string>
   <!--CameraActivity-->
@@ -95,6 +97,8 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">ウェブブラウザが見つかりません。</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">電話を使用中です</string>
+  <string name="CommunicationActions_cancel">キャンセル</string>
+  <string name="CommunicationActions_call">通話</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">%1$sとの安全番号が変更されました。通信が傍受されている可能性がありますが，%2$sがSignalを再インストールしただけかも知れません。</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">この連絡先との安全番号を確認しておいた方がいいかも知れません。</string>
@@ -103,6 +107,8 @@
   <string name="ContactsCursorLoader_recent_chats">最近のチャット</string>
   <string name="ContactsCursorLoader_contacts">連絡先</string>
   <string name="ContactsCursorLoader_groups">グループ</string>
+  <string name="ContactsCursorLoader_phone_number_search">電話番号検索</string>
+  <string name="ContactsCursorLoader_username_search">ユーザー名検索</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">%sにメッセージを送る</string>
   <string name="ContactsDatabase_signal_call_s">Signal通話%s</string>
@@ -382,17 +388,11 @@
   <string name="MmsDownloader_error_reading_mms_settings">無線プロバイダのMMS設定の読み込みでエラー</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">メディア</string>
-  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
-    <item quantity="other">選択したメッセージを削除しますか？</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-    <item quantity="other">選択した%1$d件のメッセージを完全に削除します。</item>
-  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">削除中</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">メッセージを削除中…</string>
-  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">ドキュメント</string> -->
   <string name="MediaOverviewActivity_Select_all">すべて選択</string>
   <string name="MediaOverviewActivity_collecting_attachments">添付ファイルを集めています…</string>
+  <string name="MediaOverviewActivity_Audio">音声</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal通話中</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal通話を準備しています</string>
@@ -487,6 +487,11 @@
   <string name="PlacePickerActivity_accept_address">アドレスを受け入れる</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">インストールされているGoogle Play開発者サービスのバージョンは正しく動作していません。Google Play開発者サービスを再インストールして再挑戦してみてください。</string>
+  <!--ProfileEditNameFragment-->
+  <string name="ProfileEditNameFragment_save">保存</string>
+  <!--ProfileEditOverviewFragment-->
+  <string name="ProfileEditOverviewFragment_profile">プロフィール</string>
+  <string name="ProfileEditOverviewFragment_username">ユーザー名</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">アプリを評価</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">このアプリのユーザーの方には評価アンケートへの協力をお願いいたします。</string>
@@ -644,6 +649,10 @@
   <!--UnverifiedSendDialog-->
   <string name="UnverifiedSendDialog_send_message">送信しますか？</string>
   <string name="UnverifiedSendDialog_send">送信</string>
+  <!--UsernameEditFragment-->
+  <string name="UsernameEditFragment_username">ユーザー名</string>
+  <string name="UsernameEditFragment_submit">送信</string>
+  <string name="UsernameEditFragment_delete">削除</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">連絡先の相手は古いSignalを使っています。Signalをアップデートしてから安全番号の検証を行うようお願いしてください。</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">相手がより新しいバージョンのSignalを使ってるため，QRコードの形式が異なります。Signalをアップデートしてから改めて比較してください。</string>
@@ -714,6 +723,7 @@
   <string name="NotificationChannel_other">その他</string>
   <string name="NotificationChannel_group_messages">メッセージ</string>
   <string name="NotificationChannel_missing_display_name">不明</string>
+  <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signalのロック中はクイック・レスポンスは使えません</string>
   <string name="QuickResponseService_problem_sending_message">メッセージ送信で問題発生</string>
@@ -728,6 +738,7 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">新着メッセージ</string>
+  <!--ThumbnailView-->
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">
     <item quantity="other">%d個</item>
@@ -792,6 +803,7 @@
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signalで連絡先を表示するには、連絡先へのアクセスを許可する必要がありますが、無効になっています。アプリ設定メニューから、アプリの権限を選び、連絡先へのアクセス許可を有効にしてください。</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">連絡先の取得でエラーが起きました。インターネットにつながっているかを確かめてください。</string>
+  <string name="ContactSelectionListFragment_okay">OK</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">ブロックしている連絡先はありません</string>
   <!--contact_selection_list_fragment-->
@@ -1099,6 +1111,7 @@
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">会話が指定した長さを超えると古いメッセージを自動で消去する</string>
   <string name="preferences__delete_old_messages">古いメッセージの削除</string>
   <string name="preferences__chats">チャットとメディア</string>
+  <string name="preferences__storage">ストレージ</string>
   <string name="preferences__conversation_length_limit">会話の最大の長さ</string>
   <string name="preferences__trim_all_conversations_now">全会話で古いメッセージを削減する</string>
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">すべての会話で長さが一定値以下になるよう整理する</string>
@@ -1127,6 +1140,7 @@
   <string name="preferences_chats__when_roaming">ローミング時</string>
   <string name="preferences_chats__media_auto_download">メディアの自動ダウンロード</string>
   <string name="preferences_chats__message_trimming">メッセージの削減</string>
+  <string name="preferences_storage__audio">音声</string>
   <string name="preferences_advanced__use_system_emoji">システムの絵文字を使う</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Signal独自の絵文字機能を無効にする</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">すべての通話をSignalサーバに中継して、相手にIP アドレスを知られることを防ぎます。ただし、通話の品質は下がります。</string>
@@ -1167,6 +1181,7 @@
   <string name="conversation_context__menu_forward_message">メッセージの転送</string>
   <string name="conversation_context__menu_resend_message">メッセージを再送信</string>
   <string name="conversation_context__menu_reply_to_message">メッセージに返信</string>
+  <!--conversation_context_reacction-->
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">添付ファイルを保存</string>
   <!--conversation_expiring_off-->
@@ -1249,8 +1264,6 @@
   <string name="media_preview__save_title">保存</string>
   <string name="media_preview__forward_title">転送</string>
   <string name="media_preview__all_media_title">すべてのメディア</string>
-  <!--media_overview-->
-  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">ドキュメントが見つかりません</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">メディアのプレビュー</string>
   <!--new_conversation_activity-->
@@ -1372,5 +1385,8 @@
   <string name="RegistrationLockDialog_reminder">備忘:</string>
   <string name="recipient_preferences__about">Signalについて</string>
   <string name="Recipient_unknown">不明</string>
+  <string name="MessageRequestBottomView_accept">承認</string>
+  <string name="MessageRequestBottomView_delete">削除</string>
+  <string name="MessageRequestBottomView_block">ブロックする</string>
   <!--EOF-->
 </resources>

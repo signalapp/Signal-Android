@@ -72,6 +72,9 @@
   <string name="BucketedThreadMedia_Yesterday">Gestern</string>
   <string name="BucketedThreadMedia_This_week">Diese Woche</string>
   <string name="BucketedThreadMedia_This_month">Diesen Monat</string>
+  <string name="BucketedThreadMedia_Large">Groß</string>
+  <string name="BucketedThreadMedia_Medium">Mittel</string>
+  <string name="BucketedThreadMedia_Small">Klein</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Eingehender Anruf</string>
   <!--CameraActivity-->
@@ -98,6 +101,10 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Kein Webbrowser gefunden.</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Derzeit läuft bereits ein Mobilfunkanruf.</string>
+  <string name="CommunicationActions_start_video_call">Videoanruf starten?</string>
+  <string name="CommunicationActions_start_voice_call">Sprachanruf starten?</string>
+  <string name="CommunicationActions_cancel">Abbrechen</string>
+  <string name="CommunicationActions_call">Anrufen</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Deine gemeinsame Sicherheitsnummer mit %1$s hat sich geändert. Dies könnte bedeuten, dass jemand versucht, eure Kommunikation abzuhören. Oder %2$s hat Signal einfach erneut installiert.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Vielleicht möchtest du deine Sicherheitsnummer mit diesem Kontakt verifizieren.</string>
@@ -106,6 +113,8 @@
   <string name="ContactsCursorLoader_recent_chats">Kürzliche Unterhaltungen</string>
   <string name="ContactsCursorLoader_contacts">Kontakte</string>
   <string name="ContactsCursorLoader_groups">Gruppen</string>
+  <string name="ContactsCursorLoader_phone_number_search">Rufnummernsuche</string>
+  <string name="ContactsCursorLoader_username_search">Benutzernamensuche</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Nachricht %s</string>
   <string name="ContactsDatabase_signal_call_s">Signal-Anruf %s</string>
@@ -297,6 +306,10 @@
   <string name="DeviceListItem_today">Heute</string>
   <!--DocumentView-->
   <string name="DocumentView_unknown_file">Unbekannte Datei</string>
+  <string name="DocumentView_unnamed_file">Unbenannte Datei</string>
+  <string name="DocumentView_audio_file">Audiodatei</string>
+  <string name="DocumentView_image_file">Bilddatei</string>
+  <string name="DocumentView_video_file">Videodatei</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Für fehlende Google-Play-Dienste optimieren</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Dieses Gerät unterstützt keine Google-Play-Dienste. Antippen, um Akkuoptimierungsdienste des Systems zu deaktivieren, die Signal bei Inaktivität daran hindern, Nachrichten zu empfangen.</string>
@@ -366,6 +379,7 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Teilen</string>
   <string name="InviteActivity_choose_contacts">Kontakte auswählen</string>
+  <string name="InviteActivity_share_with_contacts">Mit Kontakten teilen</string>
   <string name="InviteActivity_cancel">Abbrechen</string>
   <string name="InviteActivity_sending">Wird gesendet …</string>
   <string name="InviteActivity_heart_content_description">Herz</string>
@@ -399,18 +413,23 @@
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Medieninhalte</string>
   <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
-    <item quantity="one">Ausgewählte Nachricht löschen?</item>
-    <item quantity="other">Ausgewählte Nachrichten löschen?</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-    <item quantity="one">Dies wird die ausgewählte Nachricht unwiderruflich löschen.</item>
-    <item quantity="other">Dies wird alle %1$d ausgewählten Nachrichten unwiderruflich löschen.</item>
+    <item quantity="one">Ausgewähltes Element löschen?</item>
+    <item quantity="other">Ausgewählte Elemente löschen?</item>
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Löschen</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Nachrichten werden gelöscht …</string>
-  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">Dokumente</string> -->
+  <string name="MediaOverviewActivity_Files">Dateien</string>
   <string name="MediaOverviewActivity_Select_all">Alle auswählen</string>
   <string name="MediaOverviewActivity_collecting_attachments">Anhänge werden gesammelt …</string>
+  <string name="MediaOverviewActivity_Audio">Audio</string>
+  <string name="MediaOverviewActivity_All">Alle</string>
+  <string name="MediaOverviewActivity_Sort_by">Sortieren nach</string>
+  <string name="MediaOverviewActivity_Newest">Neueste</string>
+  <string name="MediaOverviewActivity_Oldest">Älteste</string>
+  <string name="MediaOverviewActivity_Storage_used">Belegter Speicher</string>
+  <string name="MediaOverviewActivity_Grid_view_description">Rasteransicht</string>
+  <string name="MediaOverviewActivity_List_view_description">Listenansicht</string>
+  <string name="MediaOverviewActivity_Selected_description">Ausgewählt</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal-Anruf läuft</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal-Anruf wird hergestellt</string>
@@ -505,6 +524,15 @@
   <string name="PlacePickerActivity_accept_address">Adresse übernehmen</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Die derzeit installierte Version der Google-Play-Dienste funktioniert nicht korrekt. Bitte installiere die Google-Play-Dienste neu und versuche es noch einmal.</string>
+  <!--ProfileEditNameFragment-->
+  <string name="ProfileEditNameFragment_profile_name">Profilname</string>
+  <string name="ProfileEditNameFragment_save">Speichern</string>
+  <!--ProfileEditOverviewFragment-->
+  <string name="ProfileEditOverviewFragment_profile">Profil</string>
+  <string name="ProfileEditOverviewFragment_profile_name">Profilname</string>
+  <string name="ProfileEditOverviewFragment_username">Benutzername</string>
+  <string name="ProfileEditOverviewFragment_create_a_profile_name">Erstelle einen Profilnamen</string>
+  <string name="ProfileEditOverviewFragment_create_a_username">Erstelle einen Benutzernamen</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Bewerte diese App</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Hilf uns durch deine Bewertung, falls dir die App gefällt.</string>
@@ -568,6 +596,8 @@
   <string name="RegistrationActivity_failed_to_verify_the_captcha">Captcha konnte nicht verifiziert werden</string>
   <string name="RegistrationActivity_next">Weiter</string>
   <string name="RegistrationActivity_continue">Weiter</string>
+  <string name="RegistrationActivity_continue_d_attempts_left">Fortfahren (%d verbleibende Versuche)</string>
+  <string name="RegistrationActivity_continue_last_attempt">Fortfahren (letzter Versuch!)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Nimm Privatsphäre mit dir.\nSei du selbst in jeder Nachricht.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Gib deine Rufnummer ein, um zu beginnen</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Du wirst einen Verifikationscode erhalten. Dabei können Mobilfunkgebühren anfallen.</string>
@@ -664,6 +694,19 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--UnverifiedSendDialog-->
   <string name="UnverifiedSendDialog_send_message">Nachricht senden?</string>
   <string name="UnverifiedSendDialog_send">Senden</string>
+  <!--UsernameEditFragment-->
+  <string name="UsernameEditFragment_username">Benutzername</string>
+  <string name="UsernameEditFragment_submit">Übermitteln</string>
+  <string name="UsernameEditFragment_delete">Löschen</string>
+  <string name="UsernameEditFragment_successfully_set_username">Benutzername erfolgreich festgelegt.</string>
+  <string name="UsernameEditFragment_successfully_removed_username">Benutzername erfolgreich entfernt.</string>
+  <string name="UsernameEditFragment_encountered_a_network_error">Ein Netzfehler ist aufgetreten</string>
+  <string name="UsernameEditFragment_this_username_is_taken">Dieser Benutzername ist vergeben.</string>
+  <string name="UsernameEditFragment_this_username_is_available">Dieser Benutzername ist verfügbar.</string>
+  <string name="UsernameEditFragment_usernames_can_only_include">Benutzernamen dürfen nur a-Z, 0-9 und Unterstriche beinhalten.</string>
+  <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Benutzernamen dürfen nicht mit einer Zahl beginnen.</string>
+  <string name="UsernameEditFragment_username_is_invalid">Benutzername ist ungültig.</string>
+  <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Benutzernamen dürfen aus %1$d bis %2$d Zeichen bestehen.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Dein Kontakt verwendet eine alte Signal-Version. Bitte ihn Signal zu aktualisieren, bevor ihr eure Sicherheitsnummer verifiziert.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Dein Kontakt verwendet eine neuere Signal-Version mit einem inkompatiblen QR-Code-Format. Zum Vergleichen bitte aktualisieren.</string>
@@ -703,6 +746,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Speichern in den Gerätespeicher ohne Berechtigungen nicht möglich.</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Nachricht löschen?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Dies wird diese Nachricht unwiderruflich löschen.</string>
+  <string name="MediaPreviewActivity_s_to_s">%1$s bis %2$s</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d neue Nachrichten in %2$d Unterhaltungen</string>
   <string name="MessageNotifier_most_recent_from_s">Neueste von: %1$s</string>
@@ -724,6 +768,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Öffne Signal, um nach neuen Benachrichtigungen zu sehen.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Kontakt</string>
+  <string name="MessageNotifier_reacted_to_your_message">%1$s hat auf deine Nachricht reagiert</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Standard</string>
   <string name="NotificationChannel_calls">Anrufe</string>
@@ -734,6 +779,9 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="NotificationChannel_other">Sonstige</string>
   <string name="NotificationChannel_group_messages">Nachrichten</string>
   <string name="NotificationChannel_missing_display_name">Unbekannt</string>
+  <!--ProfileEditNameFragment-->
+  <string name="ProfileEditNameFragment_successfully_set_profile_name">Profilname erfolgreich festgelegt.</string>
+  <string name="ProfileEditNameFragment_encountered_a_network_error">Ein Netzfehler ist aufgetreten</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Schnellantwort nicht verfügbar, solange Signal gesperrt ist!</string>
   <string name="QuickResponseService_problem_sending_message">Problem beim Senden der Nachricht!</string>
@@ -748,6 +796,9 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Neue Nachricht</string>
+  <!--ThumbnailView-->
+  <string name="ThumbnailView_Play_video_description">Video abspielen</string>
+  <string name="ThumbnailView_Has_a_caption_description">Hat eine Beschriftung</string>
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">
     <item quantity="one">%d Element</item>
@@ -813,6 +864,9 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal benötigt die Berechtigung »Kontakte« für die Anzeige deiner Kontakte, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Kontakte«.</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Kontakte konnten nicht abgerufen werden. Überprüfe bitte deine Netzverbindung.</string>
+  <string name="ContactSelectionListFragment_username_not_found">Benutzername nicht gefunden</string>
+  <string name="ContactSelectionListFragment_s_is_not_a_signal_user">»%1$s« ist kein Signal-Nutzer. Bitte überprüfe den Benutzernamen und versuche es erneut.</string>
+  <string name="ContactSelectionListFragment_okay">Okay</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Keine blockierten Kontakte</string>
   <!--contact_selection_list_fragment-->
@@ -1128,6 +1182,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Alte Nachrichten automatisch löschen, sobald eine Unterhaltung die angegebene Länge überschreitet</string>
   <string name="preferences__delete_old_messages">Alte Nachrichten löschen</string>
   <string name="preferences__chats">Unterhaltungen und Medieninhalte</string>
+  <string name="preferences__storage">Speicher</string>
   <string name="preferences__conversation_length_limit">Höchstzahl an Nachrichten</string>
   <string name="preferences__trim_all_conversations_now">Alle Unterhaltungen jetzt kürzen</string>
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Alle Unterhaltungen prüfen und deren Längenbegrenzung sicherstellen</string>
@@ -1156,6 +1211,12 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences_chats__when_roaming">Bei Roaming</string>
   <string name="preferences_chats__media_auto_download">Autom. Herunterladen von Medieninhalten</string>
   <string name="preferences_chats__message_trimming">Kürzen von Unterhaltungen</string>
+  <string name="preferences_storage__storage_usage">Speicherbelegung</string>
+  <string name="preferences_storage__photos">Fotos</string>
+  <string name="preferences_storage__videos">Videos</string>
+  <string name="preferences_storage__files">Dateien</string>
+  <string name="preferences_storage__audio">Audio</string>
+  <string name="preferences_storage__review_storage">Speicher überprüfen</string>
   <string name="preferences_advanced__use_system_emoji">System-Emojis verwenden</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Integrierte Emojis deaktivieren und stattdessen System-Emojis verwenden</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Alle Anrufe über den Signal-Server leiten, um die eigene IP-Adresse gegenüber Kontakten nicht offenzulegen. Bei Aktivierung wird sich die Anrufqualität verringern</string>
@@ -1189,6 +1250,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="conversation_callable_insecure__menu_call">Anruf</string>
   <!--conversation_callable_secure-->
   <string name="conversation_callable_secure__menu_call">Signal-Anruf</string>
+  <string name="conversation_callable_secure__menu_video">Signal-Videoanruf</string>
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">Nachrichtendetails</string>
   <string name="conversation_context__menu_copy_text">Text kopieren</string>
@@ -1196,6 +1258,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="conversation_context__menu_forward_message">Nachricht weiterleiten</string>
   <string name="conversation_context__menu_resend_message">Nachricht erneut senden</string>
   <string name="conversation_context__menu_reply_to_message">Auf Nachricht antworten</string>
+  <!--conversation_context_reacction-->
+  <string name="conversation_context__reaction_multi_select">Mehrere auswählen</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Anhang speichern</string>
   <!--conversation_expiring_off-->
@@ -1279,8 +1343,6 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="media_preview__save_title">Speichern</string>
   <string name="media_preview__forward_title">Weiterleiten</string>
   <string name="media_preview__all_media_title">Alle Medieninhalte</string>
-  <!--media_overview-->
-  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">Keine Dokumente</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Medieninhaltevorschau</string>
   <!--new_conversation_activity-->
@@ -1291,7 +1353,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="trimmer__deleting_old_messages">Alte Nachrichten werden gelöscht …</string>
   <string name="trimmer__old_messages_successfully_deleted">Alte Nachrichten wurden erfolgreich gelöscht</string>
   <!--Insights-->
-  <string name="Insights__percent">%</string>
+  <string name="Insights__percent"> %</string>
   <string name="Insights__title">Einblicke</string>
   <string name="InsightsDashboardFragment__title">Einblicke</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol hat automatisch %1$d %% deiner ausgehenden Nachrichten der letzten %2$d Tage geschützt. Unterhaltungen zwischen Signal-Benutzern werden immer Ende-zu-Ende-verschlüsselt.</string>
@@ -1402,11 +1464,25 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="RegistrationLockDialog_error_connecting_to_the_service">Fehler beim Verbinden mit Dienst</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">Registrierungssperre deaktivieren?</string>
   <string name="RegistrationLockDialog_disable">Deaktivieren</string>
+  <string name="RegistrationActivity_pin_incorrect">PIN falsch</string>
+  <string name="RegistrationActivity_you_have_d_tries_remaining">Du hast %d verbleibende Versuche</string>
   <string name="preferences_chats__backups">Datensicherungen</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal ist gesperrt</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">ZUM ENTSPERREN ANTIPPEN</string>
   <string name="RegistrationLockDialog_reminder">Erinnerung:</string>
   <string name="recipient_preferences__about">Über</string>
   <string name="Recipient_unknown">Unbekannt</string>
+  <string name="MessageRequestBottomView_accept">Zustimmen</string>
+  <string name="MessageRequestBottomView_delete">Löschen</string>
+  <string name="MessageRequestBottomView_block">Blockieren</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let">Möchtest du Nachrichten von %1$s empfangen?</string>
+  <string name="MessageRequestProfileView_member_of_one_group">Mitglied von %1$s</string>
+  <string name="MessageRequestProfileView_member_of_two_groups">Mitglied von %1$s und %2$s</string>
+  <string name="MessageRequestProfileView_member_of_many_groups">Mitglied von %1$s, %2$s und %3$s</string>
+  <string name="MessageRequestProfileView_members">%1$d Mitglieder</string>
+  <plurals name="MessageRequestProfileView_member_of_others">
+    <item quantity="one">%d anderer</item>
+    <item quantity="other">%d andere</item>
+  </plurals>
   <!--EOF-->
 </resources>

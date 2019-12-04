@@ -69,6 +69,8 @@
   <string name="BucketedThreadMedia_Yesterday">Kemarin</string>
   <string name="BucketedThreadMedia_This_week">Minggu Ini</string>
   <string name="BucketedThreadMedia_This_month">Bulan ini</string>
+  <string name="BucketedThreadMedia_Large">Besar</string>
+  <string name="BucketedThreadMedia_Small">Kecil</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Panggilan masuk</string>
   <!--CameraActivity-->
@@ -95,6 +97,8 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Peramban web tidak ditemukan.</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Panggilan melalui jaringan seluler sedang berlangsung.</string>
+  <string name="CommunicationActions_cancel">Batal</string>
+  <string name="CommunicationActions_call">Panggil</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Nomor keamanan Anda dengan %1$s telah berubah. Ini bisa disebabkan seseorang mencoba mencegat komunikasi Anda, atau disebabkan %2$s telah memasang ulang Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Sebaiknya Anda verifikasi nomor keamanan kontak ini.</string>
@@ -103,6 +107,8 @@
   <string name="ContactsCursorLoader_recent_chats">Obrolan terbaru</string>
   <string name="ContactsCursorLoader_contacts">Kontak</string>
   <string name="ContactsCursorLoader_groups">Grup</string>
+  <string name="ContactsCursorLoader_phone_number_search">Pencarian nomor telepon</string>
+  <string name="ContactsCursorLoader_username_search">Pencarian nama pengguna</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Pesan %s</string>
   <string name="ContactsDatabase_signal_call_s">Panggilan Signal %s</string>
@@ -382,17 +388,11 @@
   <string name="MmsDownloader_error_reading_mms_settings">Gagal saat membaca pengaturan MMS penyedia nirkabel</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Media</string>
-  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
-    <item quantity="other">Hapus pesan yang dipilih?</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-    <item quantity="other">Aksi ini akan menghapus semua %1$d pesan terpilih secara permanen.</item>
-  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Menghapus</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Menghapus pesan-pesan …</string>
-  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">Dokumen</string> -->
   <string name="MediaOverviewActivity_Select_all">Pilih semua</string>
   <string name="MediaOverviewActivity_collecting_attachments">Mengumpulkan lampiran…</string>
+  <string name="MediaOverviewActivity_Audio">Audio</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Panggilan Signal berlangsung</string>
   <string name="NotificationBarManager__establishing_signal_call">Menyiapkan panggilan Signal</string>
@@ -488,6 +488,11 @@
   <string name="PlacePickerActivity_accept_address">Terima alamat</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Versi dari Google Play Services yang Anda pasang tidak berfungsi dengan benar. Mohon pasang ulang Google Play Services dan coba lagi.</string>
+  <!--ProfileEditNameFragment-->
+  <string name="ProfileEditNameFragment_save">Simpan</string>
+  <!--ProfileEditOverviewFragment-->
+  <string name="ProfileEditOverviewFragment_profile">Profil</string>
+  <string name="ProfileEditOverviewFragment_username">Nama Pengguna</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Nilai aplikasi ini</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Jika Anda suka menggunakan aplikasi ini, luangkan waktu sejenak untuk membantu kami dengan memberikan nilai pada aplikasi.</string>
@@ -655,6 +660,10 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--UnverifiedSendDialog-->
   <string name="UnverifiedSendDialog_send_message">Kirim pesan?</string>
   <string name="UnverifiedSendDialog_send">Kirim</string>
+  <!--UsernameEditFragment-->
+  <string name="UsernameEditFragment_username">Nama Pengguna</string>
+  <string name="UsernameEditFragment_submit">Kirimkan</string>
+  <string name="UsernameEditFragment_delete">Hapus</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Kontak Anda menjalankan versi lama Signal. Mintalah mereka untuk memperbarui sebelum memverifikasi nomor keamanan Anda.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Kontak Anda menjalankan versi Signal yang lebih baru dengan format kode QR yang tidak kompatibel. Silahkan perbarui untuk membandingkan.</string>
@@ -725,6 +734,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="NotificationChannel_other">Lainnya</string>
   <string name="NotificationChannel_group_messages">Pesan</string>
   <string name="NotificationChannel_missing_display_name">Tidak dikenal</string>
+  <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Tanggapan cepat tidak tersedia ketika Signal sedang dikunci!</string>
   <string name="QuickResponseService_problem_sending_message">Terjadi masalah saat mengirim pesan!</string>
@@ -739,6 +749,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Pesan baru</string>
+  <!--ThumbnailView-->
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">
     <item quantity="other">%d Item</item>
@@ -803,6 +814,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal memerlukan izin Kontak untuk menampilkan daftar kontak Anda, tetapi saat ini izin ditolak secara permanen. Mohon lanjutkan ke pengaturan aplikasi, pilih \"Izin\" dan aktifkan \"Kontak\". </string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Kesalahan saat mengambil kontak, periksa koneksi jaringan Anda</string>
+  <string name="ContactSelectionListFragment_okay">Oke</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Tidak ada kontak yang diblokir</string>
   <!--contact_selection_list_fragment-->
@@ -1110,6 +1122,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Otomatis menghapus pesan lama saat melebihi batas percakapan tertentu</string>
   <string name="preferences__delete_old_messages">Hapus pesan lama</string>
   <string name="preferences__chats">Obrolan dan media</string>
+  <string name="preferences__storage">Penyimpanan</string>
   <string name="preferences__conversation_length_limit">Batas panjang percakapan</string>
   <string name="preferences__trim_all_conversations_now">Pangkas seluruh percakapan</string>
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Pindai seluruh rangkaian percakapan dan terapkan batas panjang percakapan</string>
@@ -1138,6 +1151,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="preferences_chats__when_roaming">Ketika roaming</string>
   <string name="preferences_chats__media_auto_download">Otomatis unduh media</string>
   <string name="preferences_chats__message_trimming">Penyingkatan pesan</string>
+  <string name="preferences_storage__audio">Audio</string>
   <string name="preferences_advanced__use_system_emoji">Gunakan emoji sistem</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Nonaktifkan dukungan emoji Signal bawaan</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Sampaikan semua panggilan melalui peladen Signal untuk menghindari pengungkapan alamat IP Anda ke kontak Anda. Mengaktifkannya akan mengurangi kualitas panggilan.</string>
@@ -1178,6 +1192,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="conversation_context__menu_forward_message">Teruskan pesan</string>
   <string name="conversation_context__menu_resend_message">Kirim ulang pesan</string>
   <string name="conversation_context__menu_reply_to_message">Balas pesan</string>
+  <!--conversation_context_reacction-->
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Simpan lampiran</string>
   <!--conversation_expiring_off-->
@@ -1259,8 +1274,6 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="media_preview__save_title">Simpan</string>
   <string name="media_preview__forward_title">Teruskan</string>
   <string name="media_preview__all_media_title">Semua media</string>
-  <!--media_overview-->
-  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">Tidak ada dokumen</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Pratinjau media</string>
   <!--new_conversation_activity-->
@@ -1370,5 +1383,8 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="RegistrationLockDialog_reminder">Pengingat:</string>
   <string name="recipient_preferences__about">Tentang</string>
   <string name="Recipient_unknown">Tidak dikenal</string>
+  <string name="MessageRequestBottomView_accept">Terima</string>
+  <string name="MessageRequestBottomView_delete">Hapus</string>
+  <string name="MessageRequestBottomView_block">Blokir</string>
   <!--EOF-->
 </resources>

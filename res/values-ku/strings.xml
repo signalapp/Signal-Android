@@ -69,6 +69,8 @@
   <string name="BucketedThreadMedia_Yesterday">Doh</string>
   <string name="BucketedThreadMedia_This_week">Ev hefte</string>
   <string name="BucketedThreadMedia_This_month">Ev meh</string>
+  <string name="BucketedThreadMedia_Large">Mezin</string>
+  <string name="BucketedThreadMedia_Small">Biçûk</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Banga tê</string>
   <!--CameraActivity-->
@@ -81,6 +83,8 @@
   <string name="ClearProfileActivity_remove_profile_photo">Bila wêneyê profîlê were rakirin?</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Web gerok nehate dîtin.</string>
+  <string name="CommunicationActions_cancel">Betal</string>
+  <string name="CommunicationActions_call">Lêgerîn</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Hejmara %1$s we ya ewlehiyê hate guhartin. Belkî kesek dixwaze rêya we bibire, an belkî %2$s tenê Signalê xwe dîsa saz kir.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Tu dikari bixwaze hejmara xwe ya ewlehiyê bi vî kesî re piştrast bike.</string>
@@ -362,19 +366,11 @@
   <string name="MmsDownloader_error_reading_mms_settings">Di xwendina sazkariyên MMSê yên dabînkerê xizmeta bêtêlê de çewtî çêbû</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Medya</string>
-  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
-    <item quantity="one">Peyama bijartî rakin?</item>
-    <item quantity="other">Peyamên bijartî jê bibin?</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-    <item quantity="one">Dê vê peyama bijartî were jêbirin.</item>
-    <item quantity="other">Dê bi vê rêyê hemû %1$d peyamên bijartî ji binî bên jêbirin.</item>
-  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Jêbirin</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Peyam tên jêbirin…</string>
-  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">Pelge</string> -->
   <string name="MediaOverviewActivity_Select_all">Gişan bibijêre</string>
   <string name="MediaOverviewActivity_collecting_attachments">…Servehî tên berhevkirin</string>
+  <string name="MediaOverviewActivity_Audio">Deng</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Banga Signalê tê pêkanîn</string>
   <string name="NotificationBarManager__establishing_signal_call">Banga Signalê tê amadekirin</string>
@@ -454,6 +450,9 @@
   <!--PlacePickerActivity-->
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Guhertoya Google Play Servicesê ya di amûra te da sazkirî baş naxebite. Ji kerema xwe dîsa saz bike û biceribîne.</string>
+  <!--ProfileEditNameFragment-->
+  <string name="ProfileEditNameFragment_save">Tomar bike</string>
+  <!--ProfileEditOverviewFragment-->
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Puan bide vê sepanê</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Ku ji bikaranîna vê sepanê dilxweş î, ji kerema xwe bo alîkariyê puan bide me.</string>
@@ -590,6 +589,9 @@
   <!--UnverifiedSendDialog-->
   <string name="UnverifiedSendDialog_send_message">Peyam bişîne?</string>
   <string name="UnverifiedSendDialog_send">Bişîne</string>
+  <!--UsernameEditFragment-->
+  <string name="UsernameEditFragment_submit">Bişîne</string>
+  <string name="UsernameEditFragment_delete">Jê bibe</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Têkilîdêrên te guhertoya Signalê ya kevn bi kar dihênin. Ji wan re bibêje, berê rastandina hejmara ewlehiyê, bila Signalê hildemînin,</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Têkilîdêrên te guhertoyeke nûtir ya Signalê ya bi dirûva QR kodê re ne lihev, bi kar dihînin. Ji bo danberhevê ji kerema xwe hildemîne.</string>
@@ -655,6 +657,7 @@
   <string name="NotificationChannel_other">Din</string>
   <string name="NotificationChannel_group_messages">Peyam</string>
   <string name="NotificationChannel_missing_display_name">Nenas</string>
+  <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Dema Signal kilîdkirî be zû bersiv nabe!</string>
   <string name="QuickResponseService_problem_sending_message">Pirsgirêka şandina peyamê!</string>
@@ -669,6 +672,7 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Peyama nû</string>
+  <!--ThumbnailView-->
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">
     <item quantity="one">%dhêman</item>
@@ -1058,6 +1062,7 @@
   <string name="preferences_chats__when_roaming">Dema gerrê</string>
   <string name="preferences_chats__media_auto_download">Xwebixwe-daxistina medyayê</string>
   <string name="preferences_chats__message_trimming">Qusandina peyamê</string>
+  <string name="preferences_storage__audio">Deng</string>
   <string name="preferences_advanced__use_system_emoji">Emojiya pergalê bi kar bîne</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Piştgiriya emojiyê a daxilî ya Signalê neçalak bike </string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Hemû lêgerîn bi riya rajekara Signalê neql bikin da ku ji berdengên te re navnîşana IPya te xuya neke. Çalakkirin wê qalîteya lêgerînê kêm bike.</string>
@@ -1098,6 +1103,7 @@
   <string name="conversation_context__menu_forward_message">Peyamê bişîne yekî din</string>
   <string name="conversation_context__menu_resend_message">Peyam dîsa bişîne</string>
   <string name="conversation_context__menu_reply_to_message">Bersiv bide peyamê</string>
+  <!--conversation_context_reacction-->
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Servehiyê tomar bike</string>
   <!--conversation_expiring_off-->
@@ -1177,8 +1183,6 @@
   <string name="media_preview__save_title">Tomarkirin</string>
   <string name="media_preview__forward_title">Pêşveşandin</string>
   <string name="media_preview__all_media_title">Hemû medya</string>
-  <!--media_overview-->
-  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">Pelge nîn in</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Pêşdîtina medyayê</string>
   <!--new_conversation_activity-->
@@ -1284,5 +1288,8 @@
   <string name="RegistrationLockDialog_reminder">Bi bîr anîn:</string>
   <string name="recipient_preferences__about">Derbar</string>
   <string name="Recipient_unknown">Nenas</string>
+  <string name="MessageRequestBottomView_accept">Temam</string>
+  <string name="MessageRequestBottomView_delete">Jê bibe</string>
+  <string name="MessageRequestBottomView_block">Asteng bike</string>
   <!--EOF-->
 </resources>

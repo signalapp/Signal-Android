@@ -72,6 +72,8 @@
   <string name="BucketedThreadMedia_Yesterday">நேற்று</string>
   <string name="BucketedThreadMedia_This_week">இந்த வாரம்</string>
   <string name="BucketedThreadMedia_This_month">இந்த மாதம்</string>
+  <string name="BucketedThreadMedia_Large">பெரிய</string>
+  <string name="BucketedThreadMedia_Small">சிறிய</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">உள்வரும் அழைப்பு</string>
   <!--CameraActivity-->
@@ -98,6 +100,8 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">இணைய உலாவி இல்லை.</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">ஒரு செல்லுலார் அழைப்பு ஏற்கனவே செயல்பாட்டில் உள்ளது.</string>
+  <string name="CommunicationActions_cancel">ரத்து</string>
+  <string name="CommunicationActions_call">அழைப்பு</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">%1$s உடன் உங்கள் பாதுகாப்பு எண் மாற்றப்பட்டுள்ளது. உங்கள் தகவல்தொடர்புகளை யாராவது இடைமறிக்க முயற்சிக்கிறார்கள் அல்லது %2$s கள் வெறுமனே Signal லை மீண்டும் நிறுவியிருக்கலாம் என்று இது குறிக்கலாம்.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">இந்த தொடர்புடன் உங்கள் பாதுகாப்பு எண்ணைச் நீங்கள் சரிபார்க்க முடியும்</string>
@@ -106,6 +110,8 @@
   <string name="ContactsCursorLoader_recent_chats">சமீபத்திய உரையாடல்கள்</string>
   <string name="ContactsCursorLoader_contacts">தொடர்புகள்</string>
   <string name="ContactsCursorLoader_groups">குழுக்கள்</string>
+  <string name="ContactsCursorLoader_phone_number_search">தொலைபேசி எண் தேடல்</string>
+  <string name="ContactsCursorLoader_username_search">பயனர்பெயர் தேடல்</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">செய்தி %s</string>
   <string name="ContactsDatabase_signal_call_s"> Signal அழைப்பு %s</string>
@@ -398,19 +404,11 @@
   <string name="MmsDownloader_error_reading_mms_settings">வயர்லெஸ் வழங்குநர் எம்எம்எஸ் அமைப்புகளைப் படிப்பதில் பிழை</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">ஊடகம்</string>
-  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
-    <item quantity="one">தேர்ந்தெடுக்கப்பட்ட செய்தியை நீக்கவா?</item>
-    <item quantity="other">தேர்ந்தெடுக்கப்பட்ட செய்திகளை நீக்கவா?</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-    <item quantity="one">இது தேர்ந்தெடுக்கப்பட்ட செய்தியை நிரந்தரமாக நீக்கும்.</item>
-    <item quantity="other">இது தேர்ந்தெடுக்கப்பட்ட அனைத்து %1$d செய்திகளையும் நிரந்தரமாக நீக்கும்.</item>
-  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">நீக்கப்படுகிறது</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">செய்திகள் நீக்கப்படுகிறது…</string>
-  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">ஆவணங்கள்</string> -->
   <string name="MediaOverviewActivity_Select_all">அனைத்தையும்  தேர்வுசெய்</string>
   <string name="MediaOverviewActivity_collecting_attachments">இணைப்பு சேமிக்கபடுகிறது</string>
+  <string name="MediaOverviewActivity_Audio">ஒலி</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal அழைப்புப் போய்க்கொண்டிருக்கிறது</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal அழைப்பு நிறுவுப்படுகிறது</string>
@@ -507,6 +505,11 @@
   <string name="PlacePickerActivity_accept_address">முகவரியை ஒப்புக்கொள்</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">நீங்கள் நிறுவிய Google Play சேவைகளின் பதிப்பு சரியாக செயல்படவில்லை. Google Play சேவைகளை மீண்டும் நிறுவி மீண்டும் முயற்சிக்கவும்.</string>
+  <!--ProfileEditNameFragment-->
+  <string name="ProfileEditNameFragment_save">சேமி</string>
+  <!--ProfileEditOverviewFragment-->
+  <string name="ProfileEditOverviewFragment_profile">விவரம்</string>
+  <string name="ProfileEditOverviewFragment_username">பயனர்பெயர்</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">இச் செயலியை மதிப்புரை செய்க</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">இச் செயலியின்  பயன்பாட்டை விரும்பினால் தயை கூர்ந்து  எங்கள் செயலியை   மதிப்புரை செய்க    </string>
@@ -672,6 +675,10 @@
   <!--UnverifiedSendDialog-->
   <string name="UnverifiedSendDialog_send_message">செய்தி அனுப்ப?</string>
   <string name="UnverifiedSendDialog_send">அனுப்புக</string>
+  <!--UsernameEditFragment-->
+  <string name="UsernameEditFragment_username">பயனர்பெயர்</string>
+  <string name="UsernameEditFragment_submit">சமர்ப்பி</string>
+  <string name="UsernameEditFragment_delete">அழி</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">உங்கள் தொடர்பு Signal பழைய பதிப்பை இயக்குகிறது. உங்கள் பாதுகாப்பு எண்ணைச் சரிபார்க்கும் முன் புதுப்பிக்குமாறு அவர்களிடம் கேளுங்கள்.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">உங்கள் தொடர்பு, பொருந்தாத QR குறியீடு வடிவத்துடன் Signal புதிய பதிப்பை இயக்குகிறது. ஒப்பீடு செய்ய  புதுப்பிக்கவும்.</string>
@@ -742,6 +749,7 @@
   <string name="NotificationChannel_other">மற்றவை</string>
   <string name="NotificationChannel_group_messages">செய்திகள்</string>
   <string name="NotificationChannel_missing_display_name">முன் தெரிந்திராத</string>
+  <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal பூட்டப்பட்டிருக்கும் போது விரைவான பதில் கிடைக்காது!</string>
   <string name="QuickResponseService_problem_sending_message">செய்தி அனுப்புவதில் பிரச்சணை!</string>
@@ -756,6 +764,7 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">புதிய செய்தி</string>
+  <!--ThumbnailView-->
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">
     <item quantity="one">%d பொருள்</item>
@@ -821,6 +830,7 @@
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">உங்கள் தொடர்புகளைக் காண்பிக்க Signal கு தொடர்புகளின் அனுமதி தேவைப்படுகிறது, ஆனால் அது நிரந்தரமாக மறுக்கப்பட்டது. பயன்பாடு அமைப்புகள் மெனுவில் தொடரவும், \"அனுமதிகள்\" என்பதைத் தேர்ந்தெடுத்து, \"தொடர்புகளை\" இயக்கவும்.</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">தொடர்புகளை மீட்டெடுப்பதில் பிழை, உங்கள் பிணைய இணைப்பைச் சரிபார்க்கவும்</string>
+  <string name="ContactSelectionListFragment_okay">சரி</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">தடுக்கப்பட்ட தொடர்புகள் இல்லை</string>
   <!--contact_selection_list_fragment-->
@@ -1166,6 +1176,7 @@
   <string name="preferences_chats__when_roaming">ரோமிங் செய்யும் போது</string>
   <string name="preferences_chats__media_auto_download">மீடியா தானாக பதிவிறக்கம்</string>
   <string name="preferences_chats__message_trimming">செய்தி ஒழுங்கமைத்தல்</string>
+  <string name="preferences_storage__audio">ஒலி</string>
   <string name="preferences_advanced__use_system_emoji">கணினி ஈமோஜியைப் பயன்படுத்தவும்</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Signal  உள்ளமைக்கப்பட்ட ஈமோஜி ஆதரவை முடக்கு</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">உங்கள் ஐபி முகவரியை உங்கள் தொடர்புக்கு வெளிப்படுத்தாமல் இருக்க Signal சேவையகம் மூலம் அனைத்து அழைப்புகளையும் ரிலே செய்யவும். இயக்குவது அழைப்பு தரத்தை குறைக்கும்.</string>
@@ -1206,6 +1217,7 @@
   <string name="conversation_context__menu_forward_message">செய்தியை முன்னோக்கியனுப்பு</string>
   <string name="conversation_context__menu_resend_message">செய்தியை மீண்டும் அனுப்பு</string>
   <string name="conversation_context__menu_reply_to_message">செய்திக்கு பதில்</string>
+  <!--conversation_context_reacction-->
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">இணைப்பைச் சேமி</string>
   <!--conversation_expiring_off-->
@@ -1288,8 +1300,6 @@
   <string name="media_preview__save_title">சேமி</string>
   <string name="media_preview__forward_title">முன்னோக்கி</string>
   <string name="media_preview__all_media_title">அனைத்து ஊடகங்களும்</string>
-  <!--media_overview-->
-  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">ஆவணங்கள் இல்லை</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">மீடியா முன்னோட்டம்</string>
   <!--new_conversation_activity-->
@@ -1404,5 +1414,8 @@
   <string name="RegistrationLockDialog_reminder">நினைவூட்டல்:</string>
   <string name="recipient_preferences__about">அறிமுகம்</string>
   <string name="Recipient_unknown">தெரியாத</string>
+  <string name="MessageRequestBottomView_accept">ஒப்புக்கொள்</string>
+  <string name="MessageRequestBottomView_delete">அழி</string>
+  <string name="MessageRequestBottomView_block">தடு </string>
   <!--EOF-->
 </resources>

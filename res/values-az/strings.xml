@@ -69,6 +69,8 @@
   <string name="BucketedThreadMedia_Yesterday">Dünən</string>
   <string name="BucketedThreadMedia_This_week">Bu həftə</string>
   <string name="BucketedThreadMedia_This_month">Bu ay</string>
+  <string name="BucketedThreadMedia_Large">Böyük</string>
+  <string name="BucketedThreadMedia_Small">Kiçik</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Gələn zəng</string>
   <!--CameraActivity-->
@@ -81,6 +83,8 @@
   <string name="ClearProfileActivity_remove_profile_photo">Profil şəklini silirsən?</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Veb brauzer tapılmadı.</string>
+  <string name="CommunicationActions_cancel">Ləğv et</string>
+  <string name="CommunicationActions_call">Zəng</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Tərkibində %1$s olan təhlükəsizlik rəqəmin dəyişdi. Kimsə sənin ünsiyyətinə müdaxilə etmək istəyir, yaxud da %2$sSignal-ı yenidən quraşdırdı.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Bu əlaqə ilə təhlükəsizlik rəqəmini təsdiqləmək arzun ola bilər.</string>
@@ -373,19 +377,11 @@
   <string name="MmsDownloader_error_reading_mms_settings">Telsiz provayder MMS parametrlərinin oxunmasında xəta</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Media</string>
-  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
-    <item quantity="one">Seçilmiş mesajı silirsən?</item>
-    <item quantity="other">Seçilmiş mesajları silirsən?</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-    <item quantity="one">Bu addımla seçilmiş mesaj həmişəlik silinəcək.</item>
-    <item quantity="other">Bu addımla seçilmiş %1$d mesaj həmişəlik silinəcək.</item>
-  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Silinir</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Mesajların silinməsi…</string>
-  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">Sənədlər</string> -->
   <string name="MediaOverviewActivity_Select_all">Hamısını seç</string>
   <string name="MediaOverviewActivity_collecting_attachments">Faylların toplanması…</string>
+  <string name="MediaOverviewActivity_Audio">Səs</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal zəngi baş verməkdədir</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal zəngi hazırlanır</string>
@@ -474,6 +470,10 @@
   <!--PlacePickerActivity-->
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Quraşdırdığın Google Play Servis versiyası düzgün işləmir. Zəhmət olmasa Google Play Servisini yenidən quraşdır və sına.</string>
+  <!--ProfileEditNameFragment-->
+  <string name="ProfileEditNameFragment_save">Yaddaşa yaz</string>
+  <!--ProfileEditOverviewFragment-->
+  <string name="ProfileEditOverviewFragment_profile">Profil</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Bu aplikasıyanı qiymətləndir</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Aplikasiyanı istifadə etməkdən zövq alırsansa, lütfən bizi qiymətləndirmək üçün bir neçə saniyəni istifadə et.</string>
@@ -631,6 +631,9 @@
   <!--UnverifiedSendDialog-->
   <string name="UnverifiedSendDialog_send_message">Mesaj göndərirsən?</string>
   <string name="UnverifiedSendDialog_send">Göndər</string>
+  <!--UsernameEditFragment-->
+  <string name="UsernameEditFragment_submit">Təqdim et</string>
+  <string name="UsernameEditFragment_delete">Sil</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Sənin əlaqən Signal-ın köhnə versiyasını istifadə edir. Sənin təhlükəsizlik rəqəmini təsdiq etməmişdən əvvəl proqramı yeniləməsini xahiş et.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Sənin əlaqən uyğun olmayan QR şifrə ilə Signal-ın yeni versiyasını istifadə edir. Müqayisə etmək üçün zəhmət olmasa yenilə.</string>
@@ -697,6 +700,7 @@
   <string name="NotificationChannel_other">Digər</string>
   <string name="NotificationChannel_group_messages">Mesajlar</string>
   <string name="NotificationChannel_missing_display_name">Naməlum</string>
+  <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal kilidli olarkən sürətli cavamlar mümkün deyil!</string>
   <string name="QuickResponseService_problem_sending_message">Mesajın göndərilməsində problem var!</string>
@@ -711,6 +715,7 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Yeni ismarış</string>
+  <!--ThumbnailView-->
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">
     <item quantity="one">%d Bənd</item>
@@ -1104,6 +1109,7 @@
   <string name="preferences_chats__when_roaming">Rominq zamanı</string>
   <string name="preferences_chats__media_auto_download">Medianın avtomatik yüklənməsi</string>
   <string name="preferences_chats__message_trimming">Mesajların təmizlənməsi</string>
+  <string name="preferences_storage__audio">Səs</string>
   <string name="preferences_advanced__use_system_emoji">Sistem smaylikini istifadə et</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Signal-ın daxili smaylik dəstəyini deaktiv et</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Bütün zəngləri Signal serveri üzərindən yayımla ki, əlaqən IP ünvanının müəyyən edilməsinin qarşısı alınmış olsun. Aktiv etsən, zəngin keyfiyyəti aşağı düşəcək.</string>
@@ -1144,6 +1150,7 @@
   <string name="conversation_context__menu_forward_message">Mesajı yönləndir</string>
   <string name="conversation_context__menu_resend_message">Mesajı yenidən göndər</string>
   <string name="conversation_context__menu_reply_to_message">Mesajı cavabla</string>
+  <!--conversation_context_reacction-->
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Faylı yadda saxla</string>
   <!--conversation_expiring_off-->
@@ -1224,8 +1231,6 @@
   <string name="media_preview__save_title">Yaddaşa yaz</string>
   <string name="media_preview__forward_title">Yönləndir</string>
   <string name="media_preview__all_media_title">Bütün media</string>
-  <!--media_overview-->
-  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">Sənəd yoxdur</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Mediaya ilkin baxış</string>
   <!--new_conversation_activity-->
@@ -1332,5 +1337,8 @@
   <string name="RegistrationLockDialog_reminder">Xatırlatma:</string>
   <string name="recipient_preferences__about">Haqqında</string>
   <string name="Recipient_unknown">Naməlum</string>
+  <string name="MessageRequestBottomView_accept">Qəbul et</string>
+  <string name="MessageRequestBottomView_delete">Sil</string>
+  <string name="MessageRequestBottomView_block">Kilidlə</string>
   <!--EOF-->
 </resources>

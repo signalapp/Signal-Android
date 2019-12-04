@@ -68,6 +68,8 @@
   <string name="BucketedThreadMedia_Yesterday">Kayna</string>
   <string name="BucketedThreadMedia_This_week">Kay hunkay</string>
   <string name="BucketedThreadMedia_This_month">Kay killa</string>
+  <string name="BucketedThreadMedia_Large">Hatun</string>
+  <string name="BucketedThreadMedia_Small">Uchilla</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Kayachiy yaykumukun</string>
   <!--CameraActivity-->
@@ -78,6 +80,8 @@
   <string name="ClearProfileActivity_remove">Anchuchina</string>
   <string name="ClearProfileActivity_remove_profile_photo">Ñawi shuyuta anchuchinayanchu</string>
   <!--CommunicationActions-->
+  <string name="CommunicationActions_cancel">Shayachina</string>
+  <string name="CommunicationActions_call">Kayachina</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Kikinpa yupay wakaychik %1$s mushukyarishkami. Kayka willakunmi shukkuna yaykunkapak munakukta %2$s, mana kashpaka Signal aplicaciontami kutin churashkanki.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Kikinpa yupay wakaychikta kay yupaymashiwan kutin rikunayanchu.</string>
@@ -343,18 +347,10 @@
   <string name="MmsDownloader_error_reading_mms_settings">Internetpa MMS configuracionta mana killkakatita usharinchu</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Uyayrikuchikkuna</string>
-  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
-    <item quantity="one">Akllashka chaskita pichanayanchu</item>
-    <item quantity="other">Akllashka chaskikunata pichanayanchu</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-    <item quantity="one">Kay akllashka chaskita pichankapachami.</item>
-    <item quantity="other">Kay akllashka %1$d chaskikunata picharinkapachami.</item>
-  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Pichakun</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Chaskikunata pichakun…</string>
-  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">Pankakuna</string> -->
   <string name="MediaOverviewActivity_Select_all">Tukuyta akllana</string>
+  <string name="MediaOverviewActivity_Audio">Uyariy</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Kay pachapi Signal kayachikun</string>
   <string name="NotificationBarManager__establishing_signal_call">Signalpi kayachita rurarikun</string>
@@ -430,6 +426,9 @@
   <!--PlacePickerActivity-->
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Kunan Google Play Services tiyakuka mana alli katikunchu. Google Play Servicesta kutinlla churamupay.</string>
+  <!--ProfileEditNameFragment-->
+  <string name="ProfileEditNameFragment_save">Allichina</string>
+  <!--ProfileEditOverviewFragment-->
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Kay aplicacionka imashinatak kan</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Kay aplicacionta allikachishpaka, kay pachapi imashina kakta willachishpa yanapapay.</string>
@@ -562,6 +561,9 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <!--UnverifiedSendDialog-->
   <string name="UnverifiedSendDialog_send_message">Chaskita kachanayanchu</string>
   <string name="UnverifiedSendDialog_send">Kachana</string>
+  <!--UsernameEditFragment-->
+  <string name="UsernameEditFragment_submit">Kachana</string>
+  <string name="UsernameEditFragment_delete">Pichana</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Kikinpa yupaymashi manara mushukyachin Signalta, Utiyashpa mushukyachichun mañapay manara kikinta pakalla yupayta mañakpillata.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Kikinpa yupaymashi shuk mana alli Signal QR unanchawan kakun. Mañanchi mushukyachichun chimpapurankapak.</string>
@@ -627,6 +629,7 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <string name="NotificationChannel_other">Shuk yupaykuna </string>
   <string name="NotificationChannel_group_messages">Chaskikuna </string>
   <string name="NotificationChannel_missing_display_name">Mana riksishka</string>
+  <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal  pakashka kakpika ñapash kutichitaka mana usharinchu</string>
   <string name="QuickResponseService_problem_sending_message">Chaskita kachakushpa shuk llakimi rikurirka</string>
@@ -640,6 +643,7 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Mushuk chaski</string>
+  <!--ThumbnailView-->
   <!--TransferControlView-->
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">Antahillayka ña mana allichishkachu kan</string>
@@ -1022,6 +1026,7 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <string name="preferences_chats__when_roaming">Roamingta hapichishka kashpa</string>
   <string name="preferences_chats__media_auto_download">Paymanta uriyakuchina uyayrikuchita</string>
   <string name="preferences_chats__message_trimming">Chaskimanta pitishka</string>
+  <string name="preferences_storage__audio">Uyariy</string>
   <string name="preferences_advanced__use_system_emoji">Anta llikapa ñawikukunata rikuchipay</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Signalpa ñawikukunapa yanapayta anchuchipay</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Tukuy  kayachiykunata Signal servidorpi kutichichun ruray,  kikinpa yupaymashi kayachikta mana maymanta kakta yachachun. Kayta shinakpika kachachikuy uyarika pishiyarinkami.</string>
@@ -1056,6 +1061,7 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <string name="conversation_context__menu_forward_message">Chaskita kutin kachana</string>
   <string name="conversation_context__menu_resend_message">Chaskita kutin kachana</string>
   <string name="conversation_context__menu_reply_to_message">Chaskita kutichina</string>
+  <!--conversation_context_reacction-->
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Allichina kimichishkata</string>
   <!--conversation_expiring_off-->
@@ -1136,8 +1142,6 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <string name="media_preview__save_title">Allichina</string>
   <string name="media_preview__forward_title">Ñawpaman katipay</string>
   <string name="media_preview__all_media_title">Tukuylla uyayrikuchik</string>
-  <!--media_overview-->
-  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">Kilkashka pankakuna illanmi</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Multimediata uchillapi rikunayanchu</string>
   <!--new_conversation_activity-->
@@ -1241,5 +1245,8 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <string name="RegistrationLockDialog_reminder">Yuyarinkapak:</string>
   <string name="recipient_preferences__about">Willay</string>
   <string name="Recipient_unknown">Mana riksishka</string>
+  <string name="MessageRequestBottomView_accept">Arinina</string>
+  <string name="MessageRequestBottomView_delete">Pichana</string>
+  <string name="MessageRequestBottomView_block">Pakana</string>
   <!--EOF-->
 </resources>

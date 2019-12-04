@@ -72,6 +72,8 @@
   <string name="BucketedThreadMedia_Yesterday">Ieri</string>
   <string name="BucketedThreadMedia_This_week">Questa settimana</string>
   <string name="BucketedThreadMedia_This_month">Questo mese</string>
+  <string name="BucketedThreadMedia_Large">Grande</string>
+  <string name="BucketedThreadMedia_Small">Piccolo</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Chiamata in arrivo</string>
   <!--CameraActivity-->
@@ -98,6 +100,10 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Nessun browser web trovato.</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">C\'è già una chiamata telefonica in corso.</string>
+  <string name="CommunicationActions_start_video_call">Iniziare una videochiamata?</string>
+  <string name="CommunicationActions_start_voice_call">Iniziare una chiamata vocale?</string>
+  <string name="CommunicationActions_cancel">Annulla</string>
+  <string name="CommunicationActions_call">Chiama</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Il codice di sicurezza con %1$s è cambiato. Questo può voler dire che qualcuno sta cercando d\'intercettare la tua comunicazione, oppure che %2$s ha semplicemente reinstallato Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Dovresti verificare il tuo codice di sicurezza con questo contatto.</string>
@@ -106,6 +112,8 @@
   <string name="ContactsCursorLoader_recent_chats">Chat recenti</string>
   <string name="ContactsCursorLoader_contacts">Contatti</string>
   <string name="ContactsCursorLoader_groups">Gruppi</string>
+  <string name="ContactsCursorLoader_phone_number_search">Ricerca numero di telefono</string>
+  <string name="ContactsCursorLoader_username_search">Ricerca nome utente</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Messaggio %s</string>
   <string name="ContactsDatabase_signal_call_s">Chiamata Signal %s</string>
@@ -297,6 +305,10 @@
   <string name="DeviceListItem_today">Oggi</string>
   <!--DocumentView-->
   <string name="DocumentView_unknown_file">File sconosciuto</string>
+  <string name="DocumentView_unnamed_file">File senza nome</string>
+  <string name="DocumentView_audio_file">File audio</string>
+  <string name="DocumentView_image_file">File immagine</string>
+  <string name="DocumentView_video_file">File video</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Ottimizza per la mancanza di Google Play Services</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Questo dispositivo non supporta Google Play Services. Premi per disabilitare l\'ottimizzazione di sistema del consumo della batteria che impedisce a Signal di ricevere messaggi quando è inattivo</string>
@@ -367,6 +379,8 @@ I suoi messaggi e le chiamate sono state disabilitate, si prega di provare e ri-
   <!--InviteActivity-->
   <string name="InviteActivity_share">Condividi</string>
   <string name="InviteActivity_choose_contacts">Scegli contatti</string>
+  <string name="InviteActivity_share_with_contacts">Condividi con i contatti</string>
+  <string name="InviteActivity_choose_how_to_share">Scegli come condividere</string>
   <string name="InviteActivity_cancel">Annulla</string>
   <string name="InviteActivity_sending">Invio in corso…</string>
   <string name="InviteActivity_heart_content_description">Cuore</string>
@@ -400,18 +414,22 @@ I suoi messaggi e le chiamate sono state disabilitate, si prega di provare e ri-
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Media</string>
   <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
-    <item quantity="one">Eliminare il messaggio selezionato?</item>
-    <item quantity="other">Eliminare i messaggi selezionati?</item>
+    <item quantity="one">Eliminare l\'elemento selezionato?</item>
+    <item quantity="other">Eliminare gli elementi selezionati?</item>
   </plurals>
   <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-    <item quantity="one">Il messaggio selezionato verrà eliminato definitivamente.</item>
-    <item quantity="other">Tutti i %1$d messaggi selezionati verranno eliminati definitivamente.</item>
+    <item quantity="one">Questo eliminerà definitivamente il file selezionato. Sarà eliminato anche ogni messaggio testuale associato a questo elemento.</item>
+    <item quantity="other">Questo eliminerà definitivamente tutti i %1$d file selezionati. Sarà eliminato anche ogni messaggio testuale associato a questi elementi.</item>
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Cancellazione</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Eliminazione messaggi…</string>
-  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">Documenti</string> -->
+  <string name="MediaOverviewActivity_Files">File</string>
   <string name="MediaOverviewActivity_Select_all">Seleziona tutto</string>
   <string name="MediaOverviewActivity_collecting_attachments">Recupero allegati…</string>
+  <string name="MediaOverviewActivity_Audio">Audio</string>
+  <string name="MediaOverviewActivity_All">Tutti</string>
+  <string name="MediaOverviewActivity_Sort_by">Ordina per</string>
+  <string name="MediaOverviewActivity_Storage_used">Spazio utilizzato</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Chiamata con Signal in corso</string>
   <string name="NotificationBarManager__establishing_signal_call">Preparazione chiamata Signal</string>
@@ -507,6 +525,15 @@ I suoi messaggi e le chiamate sono state disabilitate, si prega di provare e ri-
   <string name="PlacePickerActivity_accept_address">Accetta indirizzo</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">La versione di Google Play Services installata non funziona correttamente. Reinstallalo e riprova.</string>
+  <!--ProfileEditNameFragment-->
+  <string name="ProfileEditNameFragment_profile_name">Nome profilo</string>
+  <string name="ProfileEditNameFragment_save">Salva</string>
+  <!--ProfileEditOverviewFragment-->
+  <string name="ProfileEditOverviewFragment_profile">Profilo</string>
+  <string name="ProfileEditOverviewFragment_profile_name">Nome profilo</string>
+  <string name="ProfileEditOverviewFragment_username">Nome utente</string>
+  <string name="ProfileEditOverviewFragment_create_a_profile_name">Crea un nome profilo</string>
+  <string name="ProfileEditOverviewFragment_create_a_username">Crea un nome utente</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Vota questa app!</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Se quest\'applicazione ti piace, ti preghiamo di aiutarci votandola.</string>
@@ -672,6 +699,13 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <!--UnverifiedSendDialog-->
   <string name="UnverifiedSendDialog_send_message">Inviare messaggio?</string>
   <string name="UnverifiedSendDialog_send">Invia</string>
+  <!--UsernameEditFragment-->
+  <string name="UsernameEditFragment_username">Nome utente</string>
+  <string name="UsernameEditFragment_submit">Invia</string>
+  <string name="UsernameEditFragment_delete">Elimina</string>
+  <string name="UsernameEditFragment_this_username_is_available">Questo nome utente è disponibile.</string>
+  <string name="UsernameEditFragment_usernames_can_only_include">I nomi utente possono contenere solo a-z, 0-9, e trattini bassi.</string>
+  <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">I nomi utente non possono iniziare con un numero.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Il tuo contatto sta usando una vecchia versione di Signal. Chiedigli cortesemente di aggiornarla prima di verificare il codice di sicurezza.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Il tuo contatto sta eseguendo una versione più aggiornata di Signal con un formato di codice QR non compatibile. Per effettuare il confronto aggiorna la tua versione.</string>
@@ -711,6 +745,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Impossibile salvare sulla memoria senza l\'autorizzazione</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Eliminare il messaggio?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Questo messaggio verrà eliminato definitivamente.</string>
+  <string name="MediaPreviewActivity_s_to_s">%1$s a %2$s</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nuovi messaggi in %2$d conversazioni</string>
   <string name="MessageNotifier_most_recent_from_s">Il più recente da: %1$s</string>
@@ -742,6 +777,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="NotificationChannel_other">Altro</string>
   <string name="NotificationChannel_group_messages">Messaggi</string>
   <string name="NotificationChannel_missing_display_name">Sconosciuto</string>
+  <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Risposta veloce non disponibile quando Signal è bloccato!</string>
   <string name="QuickResponseService_problem_sending_message">Problema nell\'invio del messaggio!</string>
@@ -756,6 +792,9 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nuovo messaggio</string>
+  <!--ThumbnailView-->
+  <string name="ThumbnailView_Play_video_description">Riproduci video</string>
+  <string name="ThumbnailView_Has_a_caption_description">Ha una didascalia</string>
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">
     <item quantity="one">%d elemento</item>
@@ -821,6 +860,8 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal richiede l\'autorizzazione alla lettura dei contatti per mostrarteli, ma è stata negata in modo permanente. Si prega di continuare con il menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Contatti\".</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Errore di rilevamento dei contatti, controlla la connessione di rete</string>
+  <string name="ContactSelectionListFragment_username_not_found">Nome utente non trovato</string>
+  <string name="ContactSelectionListFragment_okay">Ok</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Nessun contatto bloccato</string>
   <!--contact_selection_list_fragment-->
@@ -1136,6 +1177,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Elimina automaticamente i messaggi più vecchi quando una conversazione supera una certa lunghezza.</string>
   <string name="preferences__delete_old_messages">Elimina i messaggi vecchi</string>
   <string name="preferences__chats">Chat e download</string>
+  <string name="preferences__storage">Stoccaggio</string>
   <string name="preferences__conversation_length_limit">Limite di lunghezza conversazione</string>
   <string name="preferences__trim_all_conversations_now">Riduci immediatamente tutte le conversazioni</string>
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Analizza tutte le conversazioni e applica il limite di lunghezza.</string>
@@ -1164,6 +1206,10 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="preferences_chats__when_roaming">In roaming</string>
   <string name="preferences_chats__media_auto_download">Download automatico file</string>
   <string name="preferences_chats__message_trimming">Cancellazione messaggi</string>
+  <string name="preferences_storage__photos">Foto</string>
+  <string name="preferences_storage__videos">Video</string>
+  <string name="preferences_storage__files">File</string>
+  <string name="preferences_storage__audio">Audio</string>
   <string name="preferences_advanced__use_system_emoji">Usa le emoji di sistema</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Disattiva le emoji di Signal</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Ritrasmetti le chiamate attraverso i server di Signal per non rivelare il tuo indirizzo IP ai tuoi contatti. Abilitandolo verrà ridotta la qualità della chiamata.</string>
@@ -1197,6 +1243,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="conversation_callable_insecure__menu_call">Chiama</string>
   <!--conversation_callable_secure-->
   <string name="conversation_callable_secure__menu_call">Chiamata Signal</string>
+  <string name="conversation_callable_secure__menu_video">Videochiamata Signal</string>
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">Dettagli messaggio</string>
   <string name="conversation_context__menu_copy_text">Copia testo</string>
@@ -1204,6 +1251,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="conversation_context__menu_forward_message">Inoltra messaggio</string>
   <string name="conversation_context__menu_resend_message">Rinvia il messaggio</string>
   <string name="conversation_context__menu_reply_to_message">Rispondi al messaggio</string>
+  <!--conversation_context_reacction-->
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Salva allegato</string>
   <!--conversation_expiring_off-->
@@ -1287,8 +1335,6 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="media_preview__save_title">Salva</string>
   <string name="media_preview__forward_title">Inoltra</string>
   <string name="media_preview__all_media_title">Tutti i file multimediali</string>
-  <!--media_overview-->
-  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">Nessun documento</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Anteprima contenuto multimediale</string>
   <!--new_conversation_activity-->
@@ -1410,11 +1456,22 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="RegistrationLockDialog_error_connecting_to_the_service">Errore durante la connessione al servizio</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">Disabilitare PIN di blocco registrazione?</string>
   <string name="RegistrationLockDialog_disable">Disabilita</string>
+  <string name="RegistrationActivity_pin_incorrect">PIN errato</string>
+  <string name="RegistrationActivity_you_have_d_tries_remaining">Hai %d tentativi rimanenti</string>
   <string name="preferences_chats__backups">Backup</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal è bloccato</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">TOCCA PER SBLOCCARE</string>
   <string name="RegistrationLockDialog_reminder">Promemoria:</string>
   <string name="recipient_preferences__about">A riguardo</string>
   <string name="Recipient_unknown">Sconosciuto</string>
+  <string name="MessageRequestBottomView_accept">Accetta</string>
+  <string name="MessageRequestBottomView_delete">Elimina</string>
+  <string name="MessageRequestBottomView_block">Blocco</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let">Vuoi ricevere messaggi da %1$s?</string>
+  <string name="MessageRequestProfileView_members">%1$d membri</string>
+  <plurals name="MessageRequestProfileView_member_of_others">
+    <item quantity="one">%d altro</item>
+    <item quantity="other">altri %d</item>
+  </plurals>
   <!--EOF-->
 </resources>
