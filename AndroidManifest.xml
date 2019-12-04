@@ -452,6 +452,7 @@
 
     <activity android:name=".MainActivity"
               android:theme="@style/TextSecure.LightNoActionBar"
+              android:launchMode="singleTask"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize" />
 
     <service android:enabled="true" android:name="org.thoughtcrime.securesms.service.WebRtcCallService"/>
