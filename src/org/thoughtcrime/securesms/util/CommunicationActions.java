@@ -11,6 +11,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.TaskStackBuilder;
+
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.ResultReceiver;
 import android.text.TextUtils;
 import android.widget.Toast;
 
@@ -21,6 +26,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.WebRtcCallService;
+import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 
 public class CommunicationActions {
 
@@ -33,12 +39,21 @@ public class CommunicationActions {
       return;
     }
 
-    new AlertDialog.Builder(activity)
-                   .setMessage(R.string.CommunicationActions_start_voice_call)
-                   .setPositiveButton(R.string.CommunicationActions_call, (d, w) -> startCallInternal(activity, recipient, false))
-                   .setNegativeButton(R.string.CommunicationActions_cancel, (d, w) -> d.dismiss())
-                   .setCancelable(true)
-                   .show();
+    WebRtcCallService.isCallActive(activity, new ResultReceiver(new Handler(Looper.getMainLooper())) {
+      @Override
+      protected void onReceiveResult(int resultCode, Bundle resultData) {
+        if (resultCode == 1) {
+          startCallInternal(activity, recipient, false);
+        } else {
+          new AlertDialog.Builder(activity)
+                         .setMessage(R.string.CommunicationActions_start_voice_call)
+                         .setPositiveButton(R.string.CommunicationActions_call, (d, w) -> startCallInternal(activity, recipient, false))
+                         .setNegativeButton(R.string.CommunicationActions_cancel, (d, w) -> d.dismiss())
+                         .setCancelable(true)
+                         .show();
+        }
+      }
+    });
   }
 
   public static void startVideoCall(@NonNull Activity activity, @NonNull Recipient recipient) {
@@ -50,12 +65,21 @@ public class CommunicationActions {
       return;
     }
 
-    new AlertDialog.Builder(activity)
-                   .setMessage(R.string.CommunicationActions_start_video_call)
-                   .setPositiveButton(R.string.CommunicationActions_call, (d, w) -> startCallInternal(activity, recipient, true))
-                   .setNegativeButton(R.string.CommunicationActions_cancel, (d, w) -> d.dismiss())
-                   .setCancelable(true)
-                   .show();
+    WebRtcCallService.isCallActive(activity, new ResultReceiver(new Handler(Looper.getMainLooper())) {
+      @Override
+      protected void onReceiveResult(int resultCode, Bundle resultData) {
+        if (resultCode == 1) {
+          startCallInternal(activity, recipient, false);
+        } else {
+          new AlertDialog.Builder(activity)
+                         .setMessage(R.string.CommunicationActions_start_video_call)
+                         .setPositiveButton(R.string.CommunicationActions_call, (d, w) -> startCallInternal(activity, recipient, true))
+                         .setNegativeButton(R.string.CommunicationActions_cancel, (d, w) -> d.dismiss())
+                         .setCancelable(true)
+                         .show();
+        }
+      }
+    });
   }
 
   public static void startConversation(@NonNull Context context, @NonNull Recipient recipient, @Nullable String text) {
