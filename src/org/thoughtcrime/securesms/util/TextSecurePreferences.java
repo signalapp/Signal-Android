@@ -185,14 +185,6 @@ public class TextSecurePreferences {
 
   private static final String MEDIA_KEYBOARD_MODE = "pref_media_keyboard_mode";
 
-  public static void setNewMessagesNumber(@NonNull Context context, String key, int value) {
-    setIntegerPrefrence(context, key, value);
-  }
-
-  public static int getNewMessagesNumber(@NonNull Context context, String key) {
-    return getIntegerPreference(context, key, 0);
-  }
-
   public static boolean isScreenLockEnabled(@NonNull Context context) {
     return getBooleanPreference(context, SCREEN_LOCK, false);
   }

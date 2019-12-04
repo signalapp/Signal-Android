@@ -10,7 +10,6 @@ import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.thoughtcrime.securesms.database.RecipientDatabase
 import org.thoughtcrime.securesms.jobs.PushDecryptJob
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -246,8 +245,6 @@ class LokiPublicChatPoller(private val context: Context, private val group: Loki
             displayNameUpdatees = displayNameUpdatees.union(newDisplayNameUpdatees)
         }.successBackground { messages ->
             // Process messages in the background
-            val key = group.displayName.replace(Regex("\\s*"), "")
-            TextSecurePreferences.setNewMessagesNumber(this.context, key, TextSecurePreferences.getNewMessagesNumber(this.context, key) + messages.size)
             messages.forEach { message ->
                 if (userDevices.contains(message.hexEncodedPublicKey)) {
                     processOutgoingMessage(message)

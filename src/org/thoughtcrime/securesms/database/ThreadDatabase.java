@@ -62,8 +62,6 @@ public class ThreadDatabase extends Database {
   private static final String TAG = ThreadDatabase.class.getSimpleName();
 
   private Map<Long, Address> addressCache = new HashMap<>();
-  private Map<Long, List<ContentValues>> messageCache = new HashMap<>();
-  private Map<Long, String> recipientCache = new HashMap<>();
 
   public  static final String TABLE_NAME             = "thread";
   public  static final String ID                     = "_id";
@@ -157,31 +155,9 @@ public class ThreadDatabase extends Database {
       contentValues.put(ARCHIVED, 0);
     }
 
-    if (!messageCache.containsKey(threadId)) {
-      messageCache.put(threadId, new ArrayList<>());
-    }
-    messageCache.get(threadId).add(contentValues);
-
-    if (!recipientCache.containsKey(threadId)) {
-      recipientCache.put(threadId, getRecipientForThreadId(threadId).getName().replaceAll("\\s*", ""));
-    }
-    String key = recipientCache.get(threadId);
-    int newMessagesNumber = TextSecurePreferences.getNewMessagesNumber(this.context, key);
-    if (newMessagesNumber == 0 || newMessagesNumber == messageCache.get(threadId).size()) {
-      SQLiteDatabase db = databaseHelper.getWritableDatabase();
-      db.beginTransactionNonExclusive();
-      try {
-        for (ContentValues contentValue : messageCache.get(threadId)) {
-          db.update(TABLE_NAME, contentValue, ID + " = ?", new String[] {threadId + ""});
-        }
-        TextSecurePreferences.setNewMessagesNumber(this.context, key, TextSecurePreferences.getNewMessagesNumber(this.context, key) - newMessagesNumber);
-        messageCache.get(threadId).clear();
-        db.setTransactionSuccessful();
-        notifyConversationListListeners();
-      } finally {
-        db.endTransaction();
-      }
-    }
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+    db.update(TABLE_NAME, contentValues, ID + " = ?", new String[] {threadId + ""});
+    notifyConversationListListeners();
   }
 
 
@@ -207,6 +183,7 @@ public class ThreadDatabase extends Database {
   private void deleteThread(long threadId) {
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
     db.delete(TABLE_NAME, ID_WHERE, new String[] {threadId + ""});
+    addressCache.remove(threadId);
     notifyConversationListListeners();
   }
 
@@ -221,12 +198,16 @@ public class ThreadDatabase extends Database {
     where = where.substring(0, where.length() - 4);
 
     db.delete(TABLE_NAME, where, null);
+    for (long threadId: threadIds) {
+      addressCache.remove(threadId);
+    }
     notifyConversationListListeners();
   }
 
   private void deleteAllThreads() {
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
     db.delete(TABLE_NAME, null, null);
+    addressCache.clear();
     notifyConversationListListeners();
   }
 
@@ -559,8 +540,6 @@ public class ThreadDatabase extends Database {
 
   public @Nullable Recipient getRecipientForThreadId(long threadId) {
     // Loki - Cache the address.
-    // Don't know if this will affect any other signal code
-    // Don't know if it is necessary to add some cache time
     if (addressCache.containsKey(threadId) && addressCache.get(threadId) != null) {
       return Recipient.from(context, addressCache.get(threadId), false);
     }

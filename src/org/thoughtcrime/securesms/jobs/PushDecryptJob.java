@@ -1712,7 +1712,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       }
       return Recipient.from(context, Address.fromSerialized(publicKey), false);
     } catch (Exception e) {
-      Log.d("Loki", "Failed to get primary device public key for message. " + e.getMessage());
+      Log.d("Loki", "Failed to get primary device public key for " + pubKey + ". " + e.getMessage());
       return Recipient.from(context, Address.fromSerialized(pubKey), false);
     }
   }
