@@ -64,19 +64,27 @@ public class ConversationSearchViewModel extends AndroidViewModel {
   }
 
   void onMoveUp() {
+    if (result.getValue() == null) {
+      return;
+    }
+
     debouncer.clear();
 
-    CursorList<MessageResult> messages = (CursorList<MessageResult>) result.getValue().getResults();
-    int                       position = Math.min(result.getValue().getPosition() + 1, messages.size() - 1);
+    List<MessageResult> messages = result.getValue().getResults();
+    int                 position = Math.min(result.getValue().getPosition() + 1, messages.size() - 1);
 
     result.setValue(new SearchResult(messages, position));
   }
 
   void onMoveDown() {
+    if (result.getValue() == null) {
+      return;
+    }
+
     debouncer.clear();
 
-    CursorList<MessageResult> messages = (CursorList<MessageResult>) result.getValue().getResults();
-    int                       position = Math.max(result.getValue().getPosition() - 1, 0);
+    List<MessageResult> messages = result.getValue().getResults();
+    int                 position = Math.max(result.getValue().getPosition() - 1, 0);
 
     result.setValue(new SearchResult(messages, position));
   }
