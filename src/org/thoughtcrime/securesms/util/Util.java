@@ -539,9 +539,9 @@ public class Util {
     if (sizeBytes <= 0) return "0";
 
     String[] units       = new String[]{"B", "kB", "MB", "GB", "TB"};
-    int      digitGroups = (int) (Math.log10(sizeBytes) / Math.log10(1024));
+    int      digitGroups = (int) (Math.log10(sizeBytes) / 3);
 
-    return new DecimalFormat("#,##0.#").format(sizeBytes/Math.pow(1024, digitGroups)) + " " + units[digitGroups];
+    return new DecimalFormat("#,##0.#").format(sizeBytes/Math.pow(1000, digitGroups)) + " " + units[digitGroups];
   }
 
   public static void sleep(long millis) {
