@@ -168,8 +168,10 @@ public class Recipient {
       } else if (!recipient.isRegistered()) {
         db.markRegistered(recipient.getId());
 
-        Log.i(TAG, "No UUID! Scheduling a fetch.");
-        ApplicationDependencies.getJobManager().add(new DirectoryRefreshJob(recipient, false));
+        if (FeatureFlags.UUIDS) {
+          Log.i(TAG, "No UUID! Scheduling a fetch.");
+          ApplicationDependencies.getJobManager().add(new DirectoryRefreshJob(recipient, false));
+        }
       }
 
       return resolved(recipient.getId());
@@ -192,8 +194,10 @@ public class Recipient {
       if (!recipient.isRegistered()) {
         db.markRegistered(recipient.getId());
 
-        Log.i(TAG, "No UUID! Scheduling a fetch.");
-        ApplicationDependencies.getJobManager().add(new DirectoryRefreshJob(recipient, false));
+        if (FeatureFlags.UUIDS) {
+          Log.i(TAG, "No UUID! Scheduling a fetch.");
+          ApplicationDependencies.getJobManager().add(new DirectoryRefreshJob(recipient, false));
+        }
       }
 
       return resolved(recipient.getId());
