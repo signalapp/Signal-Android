@@ -65,7 +65,7 @@ public class SignalServiceAddress {
     } else if (e164.isPresent()) {
       return e164.get();
     } else {
-      return null;
+      throw new AssertionError("Given the checks in the constructor, this should not be possible.");
     }
   }
 
