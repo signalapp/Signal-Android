@@ -408,7 +408,7 @@
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Excluindo</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Excluindo mensagens…</string>
-  <string name="MediaOverviewActivity_Documents">Documentos</string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">Documentos</string> -->
   <string name="MediaOverviewActivity_Select_all">Marcar todos</string>
   <string name="MediaOverviewActivity_collecting_attachments">Coletando anexos…</string>
   <!--- NotificationBarManager-->
@@ -1291,7 +1291,7 @@
   <string name="media_preview__forward_title">Avançar</string>
   <string name="media_preview__all_media_title">Todas as mídias</string>
   <!--media_overview-->
-  <string name="media_overview_documents_fragment__no_documents_found">Nenhum documento</string>
+  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">Nenhum documento</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Pré-visualização de mídia</string>
   <!--new_conversation_activity-->

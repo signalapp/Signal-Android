@@ -408,7 +408,7 @@
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Eliminar</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Borrando mensajes …</string>
-  <string name="MediaOverviewActivity_Documents">Documentos</string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">Documentos</string> -->
   <string name="MediaOverviewActivity_Select_all">Seleccionar todo</string>
   <string name="MediaOverviewActivity_collecting_attachments">Recopilando adjuntos …</string>
   <!--- NotificationBarManager-->
@@ -1292,7 +1292,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="media_preview__forward_title">Avanzar</string>
   <string name="media_preview__all_media_title">Archivos multimedia</string>
   <!--media_overview-->
-  <string name="media_overview_documents_fragment__no_documents_found">No hay documentos</string>
+  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">No hay documentos</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Previsualizar multimedia</string>
   <!--new_conversation_activity-->

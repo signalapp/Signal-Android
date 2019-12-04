@@ -372,7 +372,7 @@
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Jêbirin</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Peyam tên jêbirin…</string>
-  <string name="MediaOverviewActivity_Documents">Pelge</string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">Pelge</string> -->
   <string name="MediaOverviewActivity_Select_all">Gişan bibijêre</string>
   <string name="MediaOverviewActivity_collecting_attachments">…Servehî tên berhevkirin</string>
   <!--- NotificationBarManager-->
@@ -1178,7 +1178,7 @@
   <string name="media_preview__forward_title">Pêşveşandin</string>
   <string name="media_preview__all_media_title">Hemû medya</string>
   <!--media_overview-->
-  <string name="media_overview_documents_fragment__no_documents_found">Pelge nîn in</string>
+  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">Pelge nîn in</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Pêşdîtina medyayê</string>
   <!--new_conversation_activity-->

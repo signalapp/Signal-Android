@@ -409,7 +409,7 @@
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Sletter</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Sletter beskeder…</string>
-  <string name="MediaOverviewActivity_Documents">Dokumenter</string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">Dokumenter</string> -->
   <string name="MediaOverviewActivity_Select_all">Vælg alle</string>
   <string name="MediaOverviewActivity_collecting_attachments">Samler vedhæftninger…</string>
   <!--- NotificationBarManager-->
@@ -1291,7 +1291,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="media_preview__forward_title">Videresend</string>
   <string name="media_preview__all_media_title">Delte mediefiler</string>
   <!--media_overview-->
-  <string name="media_overview_documents_fragment__no_documents_found">Ingen dokumenter</string>
+  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">Ingen dokumenter</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Medie eksempelvisning</string>
   <!--new_conversation_activity-->
@@ -1305,11 +1305,18 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="Insights__percent">%</string>
   <string name="Insights__title">Indblik</string>
   <string name="InsightsDashboardFragment__title">Indblik</string>
+  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal protokol beskyttede automatisk %1$d%% af dine sendte beskeder, over de seneste %2$d dage. Samtaler mellem Signal brugere er altid end-to-end krypterede</string>
+  <string name="InsightsDashboardFragment__boost_your_signal">Signal boost</string>
+  <string name="InsightsDashboardFragment__not_enough_data">Ikke tilstrækkelig data</string>
+  <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Procentværdien for din indsigt er beregnet ud fra antallet af sendte beskeder, der de seneste %1$d dage ikke er udløbet eller blevet slettet</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Start en samtale</string>
+  <string name="InsightsDashboardFragment__invite_your_contacts">Start sikker kommunikation og aktiver nye funktionaliteter, som går videre end usikre SMS beskeder, ved at invitere flere kontakter til at bruge Signal</string>
+  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Disse statistikker blev genereret lokalt på din enhed, og kan kun ses af dig. De bliver ikke delt videre</string>
   <string name="InsightsDashboardFragment__encrypted_messages">Krypterede beskeder</string>
   <string name="InsightsDashboardFragment__cancel">Annuller</string>
   <string name="InsightsDashboardFragment__send">Send</string>
   <string name="InsightsModalFragment__title">Vi introducerer Indblik</string>
+  <string name="InsightsModalFragment__description">Find ud af hvor mange af dine sendte beskeder der blev sendt sikkert, og inviter derefter hurtigt nye kontakter, så du kan forøge dit antal i Signal</string>
   <string name="InsightsModalFragment__view_insights">Vis Indblik</string>
   <string name="FirstInviteReminder__title">Invitér til Signal</string>
   <string name="FirstInviteReminder__description">Du kan forøge antallet af krypterede beskeder du sendte til %1$d%%</string>

@@ -420,7 +420,7 @@
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Dzēš</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Dzēš ziņas…</string>
-  <string name="MediaOverviewActivity_Documents">Dokumenti</string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">Dokumenti</string> -->
   <string name="MediaOverviewActivity_Select_all">Izvēlēties visu</string>
   <string name="MediaOverviewActivity_collecting_attachments">Apkopo pielikumus…</string>
   <!--- NotificationBarManager-->
@@ -1297,7 +1297,7 @@ Saņemts atslēgas apmaiņas ziņojums par nederīgu protokola versiju. </string
   <string name="media_preview__forward_title">Uz priekšu</string>
   <string name="media_preview__all_media_title">Visa multivide</string>
   <!--media_overview-->
-  <string name="media_overview_documents_fragment__no_documents_found">Nav dokumentu</string>
+  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">Nav dokumentu</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Multivides priekšskatījums</string>
   <!--new_conversation_activity-->

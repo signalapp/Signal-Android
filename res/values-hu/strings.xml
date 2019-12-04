@@ -409,7 +409,7 @@
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Törlés</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Üzenetek törlése…</string>
-  <string name="MediaOverviewActivity_Documents">Dokumentumok</string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">Dokumentumok</string> -->
   <string name="MediaOverviewActivity_Select_all">Összes kiválasztása</string>
   <string name="MediaOverviewActivity_collecting_attachments">Mellékletek összegyűjtése…</string>
   <!--- NotificationBarManager-->
@@ -1294,7 +1294,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="media_preview__forward_title">Továbbítás</string>
   <string name="media_preview__all_media_title">Összes médiafájl</string>
   <!--media_overview-->
-  <string name="media_overview_documents_fragment__no_documents_found">Nincs dokumentum</string>
+  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">Nincs dokumentum</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Média előnézet</string>
   <!--new_conversation_activity-->
@@ -1308,7 +1308,9 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="Insights__percent">%</string>
   <string name="Insights__title">Statisztikák</string>
   <string name="InsightsDashboardFragment__title">Statisztikák</string>
+  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">A Signal protokoll automatikusan védelem alá helyezte kimenő üzeneteid %1$d%%-t az elmúlt %2$d nap során. A Signal felhasználók közti üzenetek minden esetben végpontok közti titkosítással vannak ellátva. </string>
   <string name="InsightsDashboardFragment__not_enough_data">Nincs elegendő adat</string>
+  <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">A százalékot az elmúlt %1$d nap során küldött nem törölt és nem eltűnő üzeneteid alapján kalkuláltuk.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Új beszélgetés indítása…</string>
   <string name="InsightsDashboardFragment__invite_your_contacts">Kezdj neki a biztonságos kommunikációnak, és hívj meg minél több kontaktot a Signal-ra annak érdekében, hogy hozzáférhess a legújabb funkciókhoz, amelyek túlmutatnak a titkosítatlan SMS üzeneteken!</string>
   <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Ezek a statisztikák a saját eszközödön készültek és csak számodra láthatóak. Soha nem lettek továbbítva sehova.</string>
@@ -1319,6 +1321,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="InsightsModalFragment__description">Tudd meg, hogy hány kimenő üzeneted volt titkosítva, majd hívd meg minél több ismerősödet, hogy megnöveld Signal-százalékodat.</string>
   <string name="InsightsModalFragment__view_insights">Statisztikák megtekintése</string>
   <string name="FirstInviteReminder__title">Meghívás a Signal-ba</string>
+  <string name="FirstInviteReminder__description">A titkosítva küldött üzeneteid számát %1$d%%-al növelhetnéd</string>
   <string name="SecondInviteReminder__description">%1$s meghívása</string>
   <string name="InsightsReminder__view_insights">Statisztikák megtekintése</string>
   <string name="InsightsReminder__invite">Meghívás</string>

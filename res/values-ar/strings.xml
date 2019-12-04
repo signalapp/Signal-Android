@@ -3,14 +3,14 @@
   <string name="yes">نعم</string>
   <string name="no">لا</string>
   <string name="delete">حذف</string>
-  <string name="please_wait">رجاء الانتظار…</string>
+  <string name="please_wait">يُرجى الانتظار…</string>
   <string name="save">حفظ</string>
-  <string name="note_to_self">ملاحظة لنفسي</string>
+  <string name="note_to_self">المذكرة الشخصيّة</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">رسالة جديدة</string>
   <!--AlbumThumbnailView-->
   <!--ApplicationMigrationActivity-->
-  <string name="ApplicationMigrationActivity__signal_is_updating">يُحدّث سغنال…</string>
+  <string name="ApplicationMigrationActivity__signal_is_updating">سغنال قيد التحديث…</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">حاليا: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">لم تقم بتحديد عبارة سرية بعد!</string>
@@ -36,7 +36,7 @@
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">تفعيل Signal وإشعارات الرسائل بشكل دائم</string>
   <string name="ApplicationPreferencesActivity_disable">تعطيل</string>
   <string name="ApplicationPreferencesActivity_unregistering">جارٍ إلغاء التسجيل</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">جارٍ إلغاء التسجيل من رسائل ومكالمات Signal…</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">جارٍ إلغاء التسجيل من رسائل ومكالمات سغنال…</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">تعطيل رسائل ومكالمات Signal؟</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">سوف يتم تعطيل رسائل ومكالمات Signal بإلغاء تسجيلك من الخدمة. سوف يتعين عليك إعادة تسجيل رقم هاتفك لمعاودة استخدام الخدمتين في المستقبل.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">خطأ في الاتصال بالخادم!</string>
@@ -68,10 +68,10 @@
   <string name="DraftDatabase_Draft_quote_snippet">(رَدّ)</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">لم يتم العثور على تطبيق لاختيار ملف.</string>
-  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">يحتاج Signal إلى إذن سعة التخزين من أجل إضافة الصور والمرفقات ولكن تم إيقاف الإذن على نحو دائم، رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"سعة التخزين\".</string>
-  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">يحتاج Signal إلى إذن جهات الاتصال من أجل إرفاق بيانات جهة اتصال ولكن تم إيقاف الإذن على نحو دائم، رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"جهات الاتصال\".</string>
-  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">يحتاج Signal إلى إذن الموقع من أجل إرفاق الموقع الجغرافي ولكن تم إيقاف الإذن على نحو دائم، رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"الموقع\".</string>
-  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">يحتاج Signal إلى إذن الكاميرا من أجل التقاط صور ولكن تم إيقاف الإذن على نحو دائم، رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"الكاميرا\".</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">يحتاج سغنال إلى إذن سعة التخزين من أجل إضافة الصور والمرفقات، ولكن تم إيقاف الإذن على نحو دائم. رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"سعة التخزين\".</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">يحتاج سغنال إلى إذن جهات الاتصال من أجل إرفاق بيانات جهة اتصال ولكن تم إيقاف الإذن على نحو دائم. رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"جهات الاتصال\".</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">يحتاج سغنال إلى إذن الموقع من أجل إرفاق الموقع الجغرافي ولكن تم إيقاف الإذن على نحو دائم. رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"الموقع\".</string>
+  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">يحتاج سغنال إلى إذن الكاميرا من أجل التقاط صور ولكن تم إيقاف الإذن على نحو دائم. رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"الكاميرا\".</string>
   <!--AttachmentUploadJob-->
   <string name="AttachmentUploadJob_uploading_media">جاري رفع الميديا…</string>
   <string name="AttachmentUploadJob_compressing_video_start">جاري ضغط الفيديو…</string>
@@ -180,17 +180,17 @@
   <string name="ConversationActivity_unable_to_record_audio">تعذر تسجيل الصوت!</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">لا يوجد تطبيق على الجهاز لمعالجة هذا الرابط.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">لإرسال رسالة صوتية, برجاء السماح لSignal بالوصول إلي المايكروفون</string>
-  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">يحتاج Signal إلى إذن الميكروفون من أجل الرسائل الصوتية ولكن تم إيقاف الإذن على نحو دائم، رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"الميكروفون\".</string>
+  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">يحتاج سغنال إلى إذن الميكروفون من أجل الرسائل الصوتية ولكن تم إيقاف الإذن على نحو دائم. رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"الميكروفون\".</string>
   <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">للإتصال ب%s, Signal يحتاج الوصول إلي المايكروفون و الكاميرا الخاصين بكم.</string>
-  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">يحتاج Signal إلى أذونات الميكروفون والكاميرا من أجل الاتصال بـ%s ولكن تم إيقافهم على نحو دائم، رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"الميكروفون\" و\"الكاميرا\"</string>
-  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">لإلتقاط صور و فيديوهات, برجاء السماح لSignal بالوصول إلي الكاميرا.</string>
-  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">يحتاج Signal إلى إذن الكاميرا من أجل التقاط صور وفيديو  ولكن تم إيقاف الإذن على نحو دائم، رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"الكاميرا\".</string>
+  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">يحتاج سغنال إلى أذونات الميكروفون والكاميرا من أجل الاتصال بـ%s ولكن تم إيقافهم على نحو دائم. رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"الميكروفون\" و\"الكاميرا\".</string>
+  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">لإلتقاط الصور و الفيديوهات, الرجاء السماح ل سغنال بالوصول إلي الكاميرا.</string>
+  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">يحتاج سغنال إلى إذن الكاميرا من أجل التقاط صور وفيديو  ولكن تم إيقاف الإذن على نحو دائم. رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"الكاميرا\".</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">يحتاج Signal إلي إذن الكاميرا لالتقاط صور أو تسجيل فيديو</string>
   <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">فعّل الإذن للميكروفون لالتقاط الصوت والفيديو.</string>
-  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">يحتاج Signal إلى أذونات الميكروفون لتسجيل الفيديو, لكن قد تم ايقافهم. الرجاء الذهاب إلى إعدادات التطبيق ثم اختيار \"الأذونات\" ثم تفعيل \"الميكروفون\" و \"الكاميرا\".</string>
-  <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">يحتاج Signal الى أذونات الميكروفون لتسجيل الفيديو. </string>
+  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">يحتاج سغنال إلى أذونات الميكروفون لتسجيل الفيديو, لكن قد تم ايقافهم. الرجاء الذهاب إلى إعدادات التطبيق ثم اختيار \"الأذونات\" ثم تفعيل \"الميكروفون\" و \"الكاميرا\".</string>
+  <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">يحتاج سغنال الى أذونات الميكروفون لتسجيل الفيديو. </string>
   <string name="ConversationActivity_quoted_contact_message">%1$s%2$s</string>
-  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">لا يستنطيع Signal إرسال الرسال النصية SMS أو رسائل الوسائط MMS لأنه ليس التطبيق الافتراضي للرسائل لديك. هل تريد تغيير ذلك في إعدادات الأندرويد؟</string>
+  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">لا يستنطيع سغنال إرسال الرسائل النصية SMS أو رسائل الوسائط MMS لأنه ليس التطبيق الافتراضي للرسائل لديك. هل تريد تغيير ذلك في إعدادات الأندرويد؟</string>
   <string name="ConversationActivity_yes">نعم</string>
   <string name="ConversationActivity_no">لا</string>
   <string name="ConversationActivity_search_position">%1$dمن%2$d</string>
@@ -392,7 +392,7 @@
   <string name="GiphyFragmentPagerAdapter_stickers">لصاقات</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">مجموعة جديدة</string>
-  <string name="GroupCreateActivity_actionbar_edit_title">تدقيق المجموعة</string>
+  <string name="GroupCreateActivity_actionbar_edit_title">اعدادات المجموعة</string>
   <string name="GroupCreateActivity_group_name_hint">أسم المجموعة</string>
   <string name="GroupCreateActivity_actionbar_mms_title">مجموعة وسائط متعددة جديدة</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">قمت باختيار شخص لا يدعم مجوعات Signal وبالتالي ستكون مجموعة وسائط متعددة.</string>
@@ -470,7 +470,7 @@
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">جارٍ الحذف</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">حذف الرسائل جارٍ…</string>
-  <string name="MediaOverviewActivity_Documents">الوثائق</string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">الوثائق</string> -->
   <string name="MediaOverviewActivity_Select_all">أختر الكل</string>
   <string name="MediaOverviewActivity_collecting_attachments">جارٍ جمع المرفقات…</string>
   <!--- NotificationBarManager-->
@@ -498,6 +498,14 @@
   <string name="MediaSendActivity_message">رسالة</string>
   <string name="MediaSendActivity_select_recipients">اختر المتلقّيين والمتلقّيات</string>
   <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal بحاجة إلى النفاذ إلى قائمة مراسليك و ذلك قصد عرضها.</string>
+  <plurals name="MediaSendActivity_cant_share_more_than_n_items">
+    <item quantity="zero">لا يمكنك ارسال أكثر من %dعناصر. </item>
+    <item quantity="one">لا يمكنك ارسال أكثر من عنصر %d.</item>
+    <item quantity="two">لا يمكنك ارسال أكثر من عنصرين %d. </item>
+    <item quantity="few">لا يمكنك ارسال أكثر من %d عناصر. </item>
+    <item quantity="many">لا يمكنك ارسال أكثر من %d عناصر. </item>
+    <item quantity="other">لا يمكنك ارسال أكثر من %d عناصر. </item>
+  </plurals>
   <string name="MediaSendActivity_select_recipients_description">اختر المتلقّيين والمتلقّيات</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">جميع الوسائط</string>
@@ -623,9 +631,13 @@
   <string name="RegistrationActivity_next">التالي
 </string>
   <string name="RegistrationActivity_continue">استمر</string>
+  <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">حافظ على خصوصيتك اينما كنت.
+كن على طبيعتك في كل رسالة.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">أدخل رقم هاتفك للبدء</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">ستستلم رمز تفعيل. قد تطبَّق تكلفة الرسائل المحلية.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">أدخل الرمز الذي أرسلناه إلى%s</string>
+  <string name="RegistrationActivity_phone_number_description">رقم الهاتف</string>
+  <string name="RegistrationActivity_country_code_description">رمز البلد</string>
   <string name="RegistrationActivity_call">اتصل</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_photo">صورة</string>
@@ -748,7 +760,7 @@
   <string name="MediaPreviewActivity_you">أنت</string>
   <string name="MediaPreviewActivity_unssuported_media_type">غير مدعوم.</string>
   <string name="MediaPreviewActivity_draft">مسودة:</string>
-  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">يحتاج Signal إلى إذن سعة التخزين من أجل استخدام الذاكرة الخارجية ولكن تم إيقاف الإذن على نحو دائم، رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"سعة التخزين\".</string>
+  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">يحتاج سغنال إلى إذن سعة التخزين من أجل استخدام الذاكرة الخارجية ولكن تم إيقاف الإذن على نحو دائم. رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"سعة التخزين\".</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">لا يمكن الحفظ إلى الذاكرة الخارجية بدون أذونات</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">أَتريد حذف الرسالة ؟</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">سوف يقوم هذا بحذف الرسالة كُليًا.</string>
@@ -802,7 +814,7 @@
   <string name="VideoPlayer_error_playing_video">خطأ في تشغيل الفيديو</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">للإجابة على مكالمة %s يجب السماح لSignal إستخدام مايكروفون جهازك.</string>
-  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">يحتاج Signal إلى أذونات الميكروفون والكاميرا من أجل المكالمات ولكن تم إيقافهم على نحو دائم، رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"الميكروفون\" و\"الكاميرا\".</string>
+  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">يحتاج سغنال إلى أذونات الميكروفون والكاميرا من أجل المكالمات ولكن تم إيقافهم على نحو دائم. رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"الميكروفون\" و\"الكاميرا\".</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">تم تغيير بيان سلامة المحادثة مع %1$s، وهذا يعني إما محاولة أحداً اعتراض المحادثة أو ببساطة قيام %2$s بإعادة التسجيل في Signal مرة أخرى.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">لربما ترغب بالتحقق من رقم الأمان مع هذا المتصل.</string>
@@ -853,7 +865,7 @@
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">صورة جهة الاتصال</string>
   <!--ContactSelectionListFragment-->
-  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">يحتاج Signal إلى أذن جهات الاتصال من أجل عرض جهات الاتصال الخاص بك ولكن تم إيقاف الإذن على نحو دائم، رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"جهات الاتصال\"</string>
+  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">يحتاج سغنال إلى أذن جهات الاتصال من أجل عرض جهات الاتصال الخاص بك ولكن تم إيقاف الإذن على نحو دائم. رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"جهات الاتصال\".</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">خطأ في جلب قائمة المراسلين، يُرجى التحقق مِن اتصالك بالشبكة</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">لا توجد جهات اتصال محظورة </string>
@@ -990,7 +1002,7 @@
   <string name="log_submit_activity__success">تم بنجاح!</string>
   <string name="log_submit_activity__copied_to_clipboard">نسخ إلى الحافظة</string>
   <string name="log_submit_activity__choose_email_app">اختر تطبيق البريد الإلكتروني</string>
-  <string name="log_submit_activity__please_review_this_log_from_my_app">الرجاء مراجعة هذا السجل من تطبيقي: %1$s</string>
+  <string name="log_submit_activity__please_review_this_log_from_my_app">الرجاء مراجعة هذا السجلّ من تطبيقي: %1$s</string>
   <string name="log_submit_activity__network_failure">فشل في الشبكة. الرجاء المحاولة مرة أخرى.</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">هل تود استيراد الرسائل النصية الموجودة إلى قاعدة بيانات Signal المشفرة؟</string>
@@ -1277,7 +1289,7 @@
   <string name="conversation_unmuted__mute_notifications">كتم الإشعارات</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">إضافات</string>
-  <string name="conversation__menu_edit_group">تدقيق المجموعة</string>
+  <string name="conversation__menu_edit_group">اعدادات المجموعة</string>
   <string name="conversation__menu_leave_group">أترك المجموعة</string>
   <string name="conversation__menu_view_all_media">جميع الوسائط</string>
   <string name="conversation__menu_conversation_settings">إعدادات المحادثة</string>
@@ -1330,7 +1342,7 @@
   <string name="media_preview__forward_title">إعادة توجيه</string>
   <string name="media_preview__all_media_title">جميع الوسائط</string>
   <!--media_overview-->
-  <string name="media_overview_documents_fragment__no_documents_found">لا توجد ملفات</string>
+  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">لا توجد ملفات</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">معاينة الوسائط</string>
   <!--new_conversation_activity-->
@@ -1341,6 +1353,7 @@
   <string name="trimmer__deleting_old_messages">جار حذف الرسائل القديمة…</string>
   <string name="trimmer__old_messages_successfully_deleted">تم حذف الرسائل القديمة بنجاح</string>
   <!--Insights-->
+  <string name="InsightsDashboardFragment__encrypted_messages">رسائل المشفّرة</string>
   <string name="InsightsDashboardFragment__cancel">إلغاء</string>
   <string name="InsightsDashboardFragment__send">أرسل</string>
   <string name="FirstInviteReminder__title">ادعُ إلى Signal</string>
@@ -1350,10 +1363,10 @@
   <string name="ConversationListFragment_loading">قيد التحميل…</string>
   <string name="CallNotificationBuilder_connecting">جار الربط…</string>
   <string name="Permissions_permission_required">منح إحدى الأذونات مطلوب</string>
-  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">يحتاج Signal إلى إذن الرسائل القصيرة من أجل إرسال SMS ولكن تم إيقاف الإذن على نحو دائم، رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"الرسائل القصيرة SMS\".</string>
+  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">يحتاج سغنال إلى إذن الرسائل القصيرة من أجل إرسال SMS ولكن تم إيقاف الإذن على نحو دائم. رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"الرسائل القصيرة SMS\".</string>
   <string name="Permissions_continue">استمر</string>
   <string name="Permissions_not_now">ليس الآن</string>
-  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">يحتاج Signal إلى أذن جهات الاتصال من أجل البحث في جهات الاتصال الخاص بك ولكن تم إيقاف الإذن على نحو دائم، رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"جهات الاتصال\"</string>
+  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">يحتاج سغنال إلى أذن جهات الاتصال من أجل البحث في جهات الاتصال الخاص بك ولكن تم إيقاف الإذن على نحو دائم. رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"جهات الاتصال\".</string>
   <string name="conversation_activity__enable_signal_messages">تشغيل رسائل Signal</string>
   <string name="SQLCipherMigrationHelper_migrating_signal_database">جارٍ نقل قاعدة بيانات Signal</string>
   <string name="PushDecryptJob_new_locked_message">رسالة مُقفلة جديدة</string>
@@ -1369,12 +1382,12 @@
   <string name="preferences_chats__chat_backups">النُسخ الإحتياطية للمحادثات</string>
   <string name="preferences_chats__backup_chats_to_external_storage">حفظ نسخة احتياطية من المحادثات إلى سعة التخزين</string>
   <string name="preferences_chats__create_backup">إنشاء نسخة إحتياطية</string>
-  <string name="RegistrationActivity_enter_backup_passphrase">إدخال العبارة السرية الخاصة بالنسخة الإحتياطية</string>
+  <string name="RegistrationActivity_enter_backup_passphrase">ادخل العبارة السرية الخاصة بالنسخة الإحتياطية</string>
   <string name="RegistrationActivity_restore">استعادة</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">العبارة السرية غير صحيحة</string>
   <string name="RegistrationActivity_checking">عملية التحقق جارية …</string>
   <string name="RegistrationActivity_d_messages_so_far">%dرسالة إلى الآن…</string>
-  <string name="RegistrationActivity_restore_from_backup">الإسترجاع مِن نسخة احتياطية ؟</string>
+  <string name="RegistrationActivity_restore_from_backup">الإسترجاع مِن نسخة احتياطية؟</string>
   <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">استيراد المحادثات والوسائط من سعة التخزين. لن يمكنك الاستيراد لاحقا.</string>
   <string name="RegistrationActivity_backup_size_s">حجم النسخة الإحتياطية : %s</string>
   <string name="RegistrationActivity_backup_timestamp_s">تاريخ النسخة الاحتياطية: %s</string>
@@ -1385,7 +1398,7 @@
   <string name="BackupDialog_disable_and_delete_all_local_backups">أتريد تعطيل و حذف كافة النُّسخ الإحتياطية المحلية ؟</string>
   <string name="BackupDialog_delete_backups_statement">حذف النسخ الإحتياطية</string>
   <string name="BackupDialog_copied_to_clipboard">نسخ إلى الحافظة</string>
-  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">يحتاج Signal إلى إذن سعة التخزين من أجل استخدام الذاكرة الخارجية لإنشاء نسخة احتياطية ولكن تم إيقاف الإذن على نحو دائم، رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"سعة التخزين\".</string>
+  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">يحتاج سغنال إلى إذن سعة التخزين من أجل استخدام الذاكرة الخارجية لإنشاء نسخة احتياطية ولكن تم إيقاف الإذن على نحو دائم. رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"سعة التخزين\".</string>
   <string name="ChatsPreferenceFragment_last_backup_s">آخِر نسخة إحتياطية : %s</string>
   <string name="ChatsPreferenceFragment_in_progress">جارٍ</string>
   <string name="LocalBackupJob_creating_backup">جارٍ إنشاء نسخة احتياطية…</string>
@@ -1416,7 +1429,7 @@
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">لقد قمت بمحاولة عديدة لإدخال الرقم التعريفي الشخصي. رجاء المحاولة مرة أخرى بعد يوم.</string>
   <string name="RegistrationActivity_error_connecting_to_service">عطل في الاتصال بالخدمة</string>
   <string name="RegistrationActivity_oh_no">أوه لا !</string>
-  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">إمكانية التسجيل بهذا الرقم على Signal سيكون متاح بدون الرقم التعريفي الشخصية بعد مرور سبعة أيام منذ آخر نشاط للرقم على Signal. تبقى أمامك %dيوم.</string>
+  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">إمكانية التسجيل بهذا الرقم على سغنال سيكون متاحًا بدون الرقم التعريفي الشخصي بعد مرور 7 أيام على آخر نشاط للرقم على البرنامج. تبقى أمامك %dيوم.</string>
   <string name="RegistrationActivity_registration_lock_pin">الرقم التعريفي الشخصية لحماية التسجيل</string>
   <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">يوجد رقم تعريفي شخصي لحماية التسجيل مصاحب لهذا الرقم. رجاء إدخاله.</string>
   <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">تم تفعيل رقم تعريفي شخصي لحماية التسجيل بهذا الهاتف. سوف يقوم Signal بشكل دوري بطلب تأكيد الرقم التعريفي لمساعدتك في تذكرة.</string>
@@ -1425,7 +1438,7 @@
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">الرقم التعريفي الشخصي لحماية التسجيل تحمي رقم هاتفك من محاولات غير مصرحة  للتسجيل في الخدمة. يمكن إلغاء هذه الخاصية في أي وقت عبر إعدادات الخصوصية في تطبيق Signal.</string>
   <string name="RegistrationLockDialog_registration_lock">الرقم التعريفي الشخصي لحماية التسجيل</string>
   <string name="RegistrationLockDialog_enable">تشغيل</string>
-  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">الرقم التعريفي الشخصي لحماية التسجيل يجب أن يتكون من أربعة أعداد على الأقل.</string>
+  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">الرقم التعريفي الشخصي لحماية التسجيل يجب أن يتكون من 4 أعداد على الأقل.</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">الأرقام التي أدخلتها غير متطابقة.</string>
   <string name="RegistrationLockDialog_error_connecting_to_the_service">حدث خطأ أثناء محاولة الربط بالخدمة</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">إلغاء الرقم التعريفي الشخصي لحماية التسجيل؟</string>

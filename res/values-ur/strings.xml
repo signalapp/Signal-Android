@@ -409,7 +409,7 @@
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">حذف ہو رہا ہے</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">پیغامات حذف ہو رہے ہیں۔۔۔</string>
-  <string name="MediaOverviewActivity_Documents">دستاویزات</string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">دستاویزات</string> -->
   <string name="MediaOverviewActivity_Select_all">تمام منتخب کریں</string>
   <string name="MediaOverviewActivity_collecting_attachments">منسلک چیزیں جمح کر رہے ہیں۔۔۔</string>
   <!--- NotificationBarManager-->
@@ -1282,7 +1282,7 @@
   <string name="media_preview__forward_title">آگے</string>
   <string name="media_preview__all_media_title">تمام میڈیا</string>
   <!--media_overview-->
-  <string name="media_overview_documents_fragment__no_documents_found">دستاویزات نہیں ہیں</string>
+  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">دستاویزات نہیں ہیں</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">میڈیا کا جائزہ لینا</string>
   <!--new_conversation_activity-->

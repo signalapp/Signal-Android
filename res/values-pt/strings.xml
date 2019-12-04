@@ -408,7 +408,7 @@
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">A eliminar</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">A eliminar mensagens…</string>
-  <string name="MediaOverviewActivity_Documents">Documentos</string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">Documentos</string> -->
   <string name="MediaOverviewActivity_Select_all">Seleccionar tudo</string>
   <string name="MediaOverviewActivity_collecting_attachments">A recolher anexos…</string>
   <!--- NotificationBarManager-->
@@ -1287,7 +1287,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="media_preview__forward_title">Reencaminhar</string>
   <string name="media_preview__all_media_title">Toda a multimédia</string>
   <!--media_overview-->
-  <string name="media_overview_documents_fragment__no_documents_found">Sem documentos</string>
+  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">Sem documentos</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Pré-visualização de multimédia</string>
   <!--new_conversation_activity-->

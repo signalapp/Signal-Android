@@ -353,7 +353,7 @@
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Pichakun</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Chaskikunata pichakun…</string>
-  <string name="MediaOverviewActivity_Documents">Pankakuna</string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">Pankakuna</string> -->
   <string name="MediaOverviewActivity_Select_all">Tukuyta akllana</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Kay pachapi Signal kayachikun</string>
@@ -1137,7 +1137,7 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <string name="media_preview__forward_title">Ñawpaman katipay</string>
   <string name="media_preview__all_media_title">Tukuylla uyayrikuchik</string>
   <!--media_overview-->
-  <string name="media_overview_documents_fragment__no_documents_found">Kilkashka pankakuna illanmi</string>
+  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">Kilkashka pankakuna illanmi</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Multimediata uchillapi rikunayanchu</string>
   <!--new_conversation_activity-->

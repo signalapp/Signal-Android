@@ -390,7 +390,7 @@
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">删除中</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">正在删除信息…</string>
-  <string name="MediaOverviewActivity_Documents">文档</string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">文档</string> -->
   <string name="MediaOverviewActivity_Select_all">选择全部</string>
   <string name="MediaOverviewActivity_collecting_attachments">正在收集附件…</string>
   <!--- NotificationBarManager-->
@@ -1252,12 +1252,13 @@
   <string name="reminder_header_share_text">当更多的朋友使用 Signal ，它将变得更好。</string>
   <string name="reminder_header_service_outage_text">Signal遇到了一些技术问题。我们会尽快恢复服务。</string>
   <string name="reminder_header_the_latest_signal_features_wont_work">最新的Signal功能不支持此Android版本。请升级此设备以接收将来的Signal的更新。</string>
+  <string name="reminder_header_progress">%1$d%%</string>
   <!--media_preview-->
   <string name="media_preview__save_title">保存</string>
   <string name="media_preview__forward_title">转发</string>
   <string name="media_preview__all_media_title">所有媒体</string>
   <!--media_overview-->
-  <string name="media_overview_documents_fragment__no_documents_found">无文档</string>
+  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">无文档</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">媒体预览</string>
   <!--new_conversation_activity-->

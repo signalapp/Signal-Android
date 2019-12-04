@@ -444,7 +444,7 @@
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Usuwanie</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Usuwanie wiadomości…</string>
-  <string name="MediaOverviewActivity_Documents">Dokumenty</string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">Dokumenty</string> -->
   <string name="MediaOverviewActivity_Select_all">Zaznacz wszystko</string>
   <string name="MediaOverviewActivity_collecting_attachments">Zbieranie załączników…</string>
   <!--- NotificationBarManager-->
@@ -659,6 +659,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <!--StickerManagementAdapter-->
   <string name="StickerManagementAdapter_installed_stickers">Zainstalowane naklejki</string>
   <string name="StickerManagementAdapter_stickers_you_received">Naklejki, które odebrano</string>
+  <string name="StickerManagementAdapter_signal_artist_series">Seria Artystów Signal</string>
   <string name="StickerManagementAdapter_no_stickers_installed">Brak zainstalowanych naklejek</string>
   <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Tutaj pojawią się naklejki z wiadomości przychodzących</string>
   <string name="StickerManagementAdapter_untitled">Bez tytułu</string>
@@ -1342,7 +1343,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="media_preview__forward_title">Przekaż dalej</string>
   <string name="media_preview__all_media_title">Wszystkie multimedia</string>
   <!--media_overview-->
-  <string name="media_overview_documents_fragment__no_documents_found">Brak dokumentów</string>
+  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">Brak dokumentów</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Podgląd plików multimedialnych</string>
   <!--new_conversation_activity-->

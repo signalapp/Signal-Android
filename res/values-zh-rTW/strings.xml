@@ -390,7 +390,7 @@
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">正在刪除</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">刪除訊息中…    </string>
-  <string name="MediaOverviewActivity_Documents">文件</string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">文件</string> -->
   <string name="MediaOverviewActivity_Select_all">全選</string>
   <string name="MediaOverviewActivity_collecting_attachments">搜集附件中…</string>
   <!--- NotificationBarManager-->
@@ -1258,7 +1258,7 @@
   <string name="media_preview__forward_title">轉寄</string>
   <string name="media_preview__all_media_title">所有的媒體</string>
   <!--media_overview-->
-  <string name="media_overview_documents_fragment__no_documents_found">沒有文件</string>
+  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">沒有文件</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">媒體預覽</string>
   <!--new_conversation_activity-->

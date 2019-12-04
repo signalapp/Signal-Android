@@ -444,7 +444,7 @@
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Brišem</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Izbris sporočil …</string>
-  <string name="MediaOverviewActivity_Documents">Dokumenti</string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">Dokumenti</string> -->
   <string name="MediaOverviewActivity_Select_all">Označi vse</string>
   <string name="MediaOverviewActivity_collecting_attachments">Nabiranje prilog …</string>
   <!--- NotificationBarManager-->
@@ -1342,7 +1342,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="media_preview__forward_title">Posreduj</string>
   <string name="media_preview__all_media_title">Vsa večpredstavnostna sporočila</string>
   <!--media_overview-->
-  <string name="media_overview_documents_fragment__no_documents_found">Brez dokumentov</string>
+  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">Brez dokumentov</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Ogled medija</string>
   <!--new_conversation_activity-->

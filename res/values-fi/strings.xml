@@ -408,7 +408,7 @@
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Poistetaan</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Viestejä poistetaan…</string>
-  <string name="MediaOverviewActivity_Documents">Dokumentit</string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">Dokumentit</string> -->
   <string name="MediaOverviewActivity_Select_all">Valitse kaikki</string>
   <string name="MediaOverviewActivity_collecting_attachments">Kerätään liitetiedostoja…</string>
   <!--- NotificationBarManager-->
@@ -1285,7 +1285,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="media_preview__forward_title">Välitä</string>
   <string name="media_preview__all_media_title">Kaikki mediatiedostot</string>
   <!--media_overview-->
-  <string name="media_overview_documents_fragment__no_documents_found">Ei tiedostoja</string>
+  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">Ei tiedostoja</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Liitteen esikatselu</string>
   <!--new_conversation_activity-->

@@ -337,7 +337,7 @@
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">กำลังลบ</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">กำลังลบข้อความ…</string>
-  <string name="MediaOverviewActivity_Documents">เอกสาร</string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">เอกสาร</string> -->
   <string name="MediaOverviewActivity_Select_all">เลือกทั้งหมด</string>
   <string name="MediaOverviewActivity_collecting_attachments">รวบรวมสิ่งแนบ…</string>
   <!--- NotificationBarManager-->
@@ -1115,7 +1115,7 @@
   <string name="media_preview__forward_title">ส่งต่อ</string>
   <string name="media_preview__all_media_title">สื่อทั้งหมด</string>
   <!--media_overview-->
-  <string name="media_overview_documents_fragment__no_documents_found">ไม่มีเอกสาร</string>
+  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">ไม่มีเอกสาร</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">ดูตัวอย่างสื่อ</string>
   <!--new_conversation_activity-->

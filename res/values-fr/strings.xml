@@ -77,6 +77,7 @@
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Échec d’enregistrement de l’image.</string>
   <!--CameraXFragment-->
+  <string name="CameraXFragment_tap_for_photo_hold_for_video">Tapez pour une photo, maintenez pour une vidéo</string>
   <string name="CameraXFragment_capture_description">Prendre</string>
   <string name="CameraXFragment_change_camera_description">Changer de caméra</string>
   <string name="CameraXFragment_open_gallery_description">Ouvrir la galerie</string>
@@ -402,7 +403,7 @@
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Suppression</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Suppression des messages…</string>
-  <string name="MediaOverviewActivity_Documents">Documents</string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">Documents</string> -->
   <string name="MediaOverviewActivity_Select_all">Tout sélectionner</string>
   <string name="MediaOverviewActivity_collecting_attachments">Récupération des pièces jointes…</string>
   <!--- NotificationBarManager-->
@@ -572,6 +573,8 @@ votre numéro de téléphone</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Saisissez votre numéro de téléphone pour commencer</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Vous recevrez un code de vérification. Les frais de l’opérateur peuvent s’appliquer.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Saisir le code envoyé au %s</string>
+  <string name="RegistrationActivity_phone_number_description">Numéro de téléphone</string>
+  <string name="RegistrationActivity_country_code_description">Indicatif de pays</string>
   <string name="RegistrationActivity_call">Appeler</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_photo">Photo</string>
@@ -1059,6 +1062,10 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="arrays__high">Élevée</string>
   <string name="arrays__max">Maximale</string>
   <!--plurals.xml-->
+  <plurals name="hours_ago">
+    <item quantity="one">%d h</item>
+    <item quantity="other">%d h</item>
+  </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">Textos et messages multimédias</string>
   <string name="preferences__pref_all_sms_title">Recevoir tous les textos</string>
@@ -1266,12 +1273,13 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="reminder_header_share_text">Plus vous avez d’amis sur Signal, plus Signal devient intéressant.</string>
   <string name="reminder_header_service_outage_text">Signal éprouve des difficultés techniques. Nous mettons tout en œuvre pour restaurer le service aussi rapidement que possible.</string>
   <string name="reminder_header_the_latest_signal_features_wont_work">Les dernières fonctions de Signal ne sont pas compatibles avec cette version d’Android. Veuillez mettre cet appareil à niveau afin de recevoir les mises à jour ultérieures de Signal.</string>
+  <string name="reminder_header_progress">%1$d%%</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Enregistrer</string>
   <string name="media_preview__forward_title">Transférer</string>
   <string name="media_preview__all_media_title">Tous les médias</string>
   <!--media_overview-->
-  <string name="media_overview_documents_fragment__no_documents_found">Aucun document</string>
+  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">Aucun document</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Aperçu du média</string>
   <!--new_conversation_activity-->
@@ -1282,6 +1290,8 @@ Vous avez reçu un message d’échange de clés pour une version de protocole i
   <string name="trimmer__deleting_old_messages">Suppression des anciens messages…</string>
   <string name="trimmer__old_messages_successfully_deleted">Les anciens messages ont été supprimés avec succès</string>
   <!--Insights-->
+  <string name="Insights__percent"> %</string>
+  <string name="InsightsDashboardFragment__not_enough_data">Pas assez de données</string>
   <string name="InsightsDashboardFragment__cancel">Annuler</string>
   <string name="InsightsDashboardFragment__send">Envoyer</string>
   <string name="FirstInviteReminder__title">Inviter à Signal</string>

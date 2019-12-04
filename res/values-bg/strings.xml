@@ -385,7 +385,7 @@
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Изтриване</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Изтриване на съобщения…</string>
-  <string name="MediaOverviewActivity_Documents">Документи</string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">Документи</string> -->
   <string name="MediaOverviewActivity_Select_all">Избери всичко</string>
   <string name="MediaOverviewActivity_collecting_attachments">Събиране на прикачени файлове…</string>
   <!--- NotificationBarManager-->
@@ -1230,7 +1230,7 @@
   <string name="media_preview__forward_title">Препращане</string>
   <string name="media_preview__all_media_title">Всички прикачени файлове</string>
   <!--media_overview-->
-  <string name="media_overview_documents_fragment__no_documents_found">Няма документи</string>
+  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">Няма документи</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Преглед на медията</string>
   <!--new_conversation_activity-->

@@ -363,7 +363,7 @@
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Inafutwa</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Kufuta meseji</string>
-  <string name="MediaOverviewActivity_Documents">nyaraka</string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">nyaraka</string> -->
   <string name="MediaOverviewActivity_Select_all">Chagua vyote</string>
   <string name="MediaOverviewActivity_collecting_attachments">kukusanya viambatisho</string>
   <!--- NotificationBarManager-->
@@ -1163,7 +1163,7 @@ nambari yako ya simu</string>
   <string name="media_preview__forward_title">Mbele</string>
   <string name="media_preview__all_media_title">Vyombo vyote vya habari</string>
   <!--media_overview-->
-  <string name="media_overview_documents_fragment__no_documents_found">Hakuna nyaraka</string>
+  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">Hakuna nyaraka</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Uhakiki wa vyombo vya habari</string>
   <!--new_conversation_activity-->

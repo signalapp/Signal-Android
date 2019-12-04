@@ -444,7 +444,7 @@
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">מוחק</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">מוחק הודעות…</string>
-  <string name="MediaOverviewActivity_Documents">מסמכים</string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">מסמכים</string> -->
   <string name="MediaOverviewActivity_Select_all">בחר הכל</string>
   <string name="MediaOverviewActivity_collecting_attachments">אוסף צרופות…</string>
   <!--- NotificationBarManager-->
@@ -1345,7 +1345,7 @@
   <string name="media_preview__forward_title">העבר הלאה</string>
   <string name="media_preview__all_media_title">כל המדיה</string>
   <!--media_overview-->
-  <string name="media_overview_documents_fragment__no_documents_found">אין מסמכים</string>
+  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">אין מסמכים</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">קדם־תצוגה של מדיה</string>
   <!--new_conversation_activity-->
@@ -1359,15 +1359,23 @@
   <string name="Insights__percent">%</string>
   <string name="Insights__title">תובנות</string>
   <string name="InsightsDashboardFragment__title">תובנות</string>
+  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">פרוטוקול Signal הגן באופן אוטומטי על %1$d%% מההודעות היוצאות שלך במהלך %2$d הימים האחרונים. שיחות בין משתמשי Signal תמיד מוצפנות מקצה־אל־קצה.</string>
+  <string name="InsightsDashboardFragment__boost_your_signal">תמריץ Signal</string>
+  <string name="InsightsDashboardFragment__not_enough_data">אין מספיק נתונים</string>
+  <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">אחוז התובנות שלך מחושב על סמך הודעות יוצאות בטווח %1$d הימים האחרונים שלא נעלמו או לא נמחקו.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">התחל שיחה</string>
+  <string name="InsightsDashboardFragment__invite_your_contacts">התחל לתקשר באופן מאובטח ולאפשר מאפיינים חדשים שעוברים מעבר לגבולות של מסרונים בלתי מוצפנים על ידי הזמנת אנשי קשר נוספים להצטרף אל Signal.</string>
+  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">סטטיסטיקה זו נוצרה באופן מקומי על המכשיר שלך ויכולה להיראות רק על ידך. היא אף פעם לא מועברת אל מקום כלשהו.</string>
   <string name="InsightsDashboardFragment__encrypted_messages">הודעות מוצפנות</string>
   <string name="InsightsDashboardFragment__cancel">בטל</string>
   <string name="InsightsDashboardFragment__send">שלח</string>
   <string name="InsightsModalFragment__title">מציגים את תובנות</string>
+  <string name="InsightsModalFragment__description">גלה כמה מההודעות היוצאות שלך נשלחו באופן מאובטח, לאחר מכן הזמן בזריזות אנשי קשר חדשים כדי להמריץ את אחוז Signal שלך.</string>
   <string name="InsightsModalFragment__view_insights">הצג תובנות</string>
   <string name="FirstInviteReminder__title">הזמן אל Signal</string>
   <string name="FirstInviteReminder__description">אתה יכול להגדיל את מספר ההודעות המוצפנות שאתה שולח ב־%1$d%%</string>
   <string name="SecondInviteReminder__title">המרץ את Signal שלך</string>
+  <string name="SecondInviteReminder__description">הזמן את %1$s</string>
   <string name="InsightsReminder__view_insights">הצג תובנות</string>
   <string name="InsightsReminder__invite">הזמן</string>
   <!--transport_selection_list_item-->

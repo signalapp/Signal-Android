@@ -408,7 +408,7 @@
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Borrando</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Borrando mensaxes…</string>
-  <string name="MediaOverviewActivity_Documents">Documentos</string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">Documentos</string> -->
   <string name="MediaOverviewActivity_Select_all">Seleccionar todo</string>
   <string name="MediaOverviewActivity_collecting_attachments">Recompilando anexos…</string>
   <!--- NotificationBarManager-->
@@ -1285,12 +1285,13 @@
   <string name="reminder_header_share_text">Cantas máis amizades usen Signal, mellor vai ser a cousa.</string>
   <string name="reminder_header_service_outage_text">Signal está experimentando problemas técnicos. Estamos a traballar arreo para restaurar o servizo o máis axiña posible.</string>
   <string name="reminder_header_the_latest_signal_features_wont_work">As últimas funcionalidades de Signal non son compatibles con esta versión de Android. Actualiza o dispositivo para recibir futuras actualizacións de Signal.</string>
+  <string name="reminder_header_progress">%1$d%%</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Gardar</string>
   <string name="media_preview__forward_title">Reenviar</string>
   <string name="media_preview__all_media_title">Ficheiros multimedia</string>
   <!--media_overview-->
-  <string name="media_overview_documents_fragment__no_documents_found">Sen documentos</string>
+  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">Sen documentos</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Previsualización multimedia</string>
   <!--new_conversation_activity-->
@@ -1301,9 +1302,15 @@
   <string name="trimmer__deleting_old_messages">Borrando as mensaxes antigas…</string>
   <string name="trimmer__old_messages_successfully_deleted">Mensaxes antigas borradas satisfactoriamente</string>
   <!--Insights-->
+  <string name="Insights__percent">%</string>
+  <string name="InsightsDashboardFragment__not_enough_data">Non hai suficientes datos</string>
+  <string name="InsightsDashboardFragment__start_a_conversation">Iniciar unha conversa</string>
+  <string name="InsightsDashboardFragment__encrypted_messages">Mensaxes cifradas</string>
   <string name="InsightsDashboardFragment__cancel">Cancelar</string>
   <string name="InsightsDashboardFragment__send">Enviar</string>
+  <string name="InsightsModalFragment__description">Descubre  cantas das túas mensaxes saíntes se enviaron de forma segura. Despois, convida dun xeito rápido a novos contactos para aumentar a túa porcentaxe en Signal.</string>
   <string name="FirstInviteReminder__title">Convidar a Signal</string>
+  <string name="SecondInviteReminder__description">Convidar a %1$s</string>
   <string name="InsightsReminder__invite">Convidar</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icona do tráfico</string>

@@ -408,7 +408,7 @@
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Se suprimeix</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Se suprimeixen missatges…</string>
-  <string name="MediaOverviewActivity_Documents">Documents</string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">Documents</string> -->
   <string name="MediaOverviewActivity_Select_all">Selecciona-ho tot</string>
   <string name="MediaOverviewActivity_collecting_attachments">Es recopilen els adjunts…</string>
   <!--- NotificationBarManager-->
@@ -1285,7 +1285,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="media_preview__forward_title">Reenvia</string>
   <string name="media_preview__all_media_title">Tot el contingut</string>
   <!--media_overview-->
-  <string name="media_overview_documents_fragment__no_documents_found">Cap document</string>
+  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">Cap document</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Previsualització multimèdia</string>
   <!--new_conversation_activity-->
@@ -1299,8 +1299,13 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="Insights__percent">%</string>
   <string name="Insights__title">Interior</string>
   <string name="InsightsDashboardFragment__title">Interior</string>
+  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">El Protocol de Signal ha protegit automàticament %1$d%% dels missatges de sortida durant els darrers %2$d dies. Les converses entre usuaris del Signal sempre estan encriptades de punt a punt.</string>
+  <string name="InsightsDashboardFragment__boost_your_signal">Impuls de Signal</string>
+  <string name="InsightsDashboardFragment__not_enough_data">Dades insuficients</string>
+  <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">El percentatge d’Interior es calcula a partir dels missatges de sortida dels darrers %1$d dies que no han desaparegut ni s’han suprimit.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Inicieu una conversa</string>
   <string name="InsightsDashboardFragment__invite_your_contacts">Comenceu a comunicar-vos de manera segura i activeu funcions noves que vagin més enllà de les limitacions dels missatges d\'SMS no encriptats convidant més contactes a unir-se al Signal.</string>
+  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Aquestes estadístiques es van generar localment al dispositiu i només vosaltres les podreu veure. Mai es transmeten enlloc.</string>
   <string name="InsightsDashboardFragment__encrypted_messages">Missatges encriptats</string>
   <string name="InsightsDashboardFragment__cancel">Cancel·la</string>
   <string name="InsightsDashboardFragment__send">Envia</string>

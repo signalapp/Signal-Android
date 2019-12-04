@@ -414,7 +414,7 @@
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">తొలగిపోతున్నాయ్</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">సందేశాలను తొలగిస్తోంది …</string>
-  <string name="MediaOverviewActivity_Documents">పత్రాలు</string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">పత్రాలు</string> -->
   <string name="MediaOverviewActivity_Select_all">అన్నీ ఎంచుకో</string>
   <string name="MediaOverviewActivity_collecting_attachments">జోడింపులను సేకరిస్తోంది …</string>
   <!--- NotificationBarManager-->
@@ -1285,12 +1285,13 @@
   <string name="reminder_header_share_text"> ఎక్కువ మంది స్నేహితులు Signal ఉపయోగిస్తె అది   మరింత మెరుగుపడుతుంది</string>
   <string name="reminder_header_service_outage_text">Signal సాంకేతిక సమస్యలను ఎదుర్కొంటోంది. వీలైనంత త్వరగా సేవని పునరుద్ధరించడానికి మేము కృషి చేస్తున్నాము.</string>
   <string name="reminder_header_the_latest_signal_features_wont_work">Android యొక్క ఈ సంస్కరణలో తాజా Signal లక్షణాలు పనిచేయవు. భవిష్యత్ Signal నవీకరణలను స్వీకరించడానికి దయచేసి ఈ పరికరాన్ని అభివృద్ధి చేయండి.</string>
+  <string name="reminder_header_progress">%1$d%%</string>
   <!--media_preview-->
   <string name="media_preview__save_title">భద్రపరుచు</string>
   <string name="media_preview__forward_title">బదలాయించు</string>
   <string name="media_preview__all_media_title">అన్ని మీడియా</string>
   <!--media_overview-->
-  <string name="media_overview_documents_fragment__no_documents_found">పత్రాలు లేవు</string>
+  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">పత్రాలు లేవు</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">మీడియా పూర్వప్రదర్శన</string>
   <!--new_conversation_activity-->
@@ -1301,9 +1302,27 @@
   <string name="trimmer__deleting_old_messages">పాత సందేశాలను తొలగిస్తోంది …</string>
   <string name="trimmer__old_messages_successfully_deleted">పాత సందేశాలు విజయవంతంగా తొలగించబడ్డాయి </string>
   <!--Insights-->
+  <string name="Insights__percent">%</string>
+  <string name="Insights__title">అంతర్దృష్టి</string>
+  <string name="InsightsDashboardFragment__title">అంతర్దృష్టి</string>
+  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">గత %2$d రోజులలో మీ అవుట్గోయింగ్ సందేశాలలో %1$d%% ను Signal ప్రోటోకాల్ స్వయంచాలకంగా రక్షించింది. Signal వినియోగదారుల మధ్య సంభాషణలు ఎల్లప్పుడూ ఎండ్-టు-ఎండ్ గుప్తీకరించబడతాయి.</string>
+  <string name="InsightsDashboardFragment__boost_your_signal">Signal బూస్ట్</string>
+  <string name="InsightsDashboardFragment__not_enough_data">తగినంత డేటా లేదు</string>
+  <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">మీ అంతర్దృష్టుల శాతం గత %1$d రోజులలో కనిపించని లేదా తొలగించబడని సందేశాల ఆధారంగా లెక్కించబడుతుంది.</string>
+  <string name="InsightsDashboardFragment__start_a_conversation">సంభాషణను ప్రారంభించండి</string>
+  <string name="InsightsDashboardFragment__invite_your_contacts">సురక్షితంగా కమ్యూనికేట్ చేయడం ప్రారంభించండి మరియు Signal లో చేరడానికి మరిన్ని పరిచయాలను ఆహ్వానించడం ద్వారా గుప్తీకరించని SMS సందేశాల పరిమితికి మించిన క్రొత్త లక్షణాలను ప్రారంభించండి.</string>
+  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">ఈ గణాంకాలు మీ పరికరంలో స్థానికంగా సృష్టించబడ్డాయి మరియు మీరు మాత్రమే చూడగలరు. అవి ఎక్కడా ప్రసారం చేయబడవు.</string>
+  <string name="InsightsDashboardFragment__encrypted_messages">గుప్తీకరించిన సందేశాలు</string>
   <string name="InsightsDashboardFragment__cancel">రద్దు</string>
   <string name="InsightsDashboardFragment__send">పంపు</string>
+  <string name="InsightsModalFragment__title">అంతర్దృష్టులను పరిచయం చేస్తోంది</string>
+  <string name="InsightsModalFragment__description">మీ అవుట్గోయింగ్ సందేశాలు ఎన్ని సురక్షితంగా పంపించాయో తెలుసుకోండి, ఆపై మీ Signal శాతాన్ని పెంచడానికి కొత్త పరిచయాలను త్వరగా ఆహ్వానించండి.</string>
+  <string name="InsightsModalFragment__view_insights">అంతర్దృష్టి వీక్షించండి </string>
   <string name="FirstInviteReminder__title">Signal కు ఆహ్వానించండి</string>
+  <string name="FirstInviteReminder__description">మీరు %1$d%% ద్వారా పంపిన గుప్తీకరించిన సందేశాల సంఖ్యను పెంచవచ్చు</string>
+  <string name="SecondInviteReminder__title">మీ Signal పెంచండి</string>
+  <string name="SecondInviteReminder__description">ఆహ్వానించండి %1$s</string>
+  <string name="InsightsReminder__view_insights">అంతర్దృష్టి వీక్షించండి </string>
   <string name="InsightsReminder__invite">ఆహ్వానించండి</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">రవాణా చిహ్నం</string>

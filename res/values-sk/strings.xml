@@ -438,7 +438,7 @@
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Mazanie</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Mažú sa správy…</string>
-  <string name="MediaOverviewActivity_Documents">Dokumenty</string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">Dokumenty</string> -->
   <string name="MediaOverviewActivity_Select_all">Označiť všetko</string>
   <string name="MediaOverviewActivity_collecting_attachments">Ukladám prílohy…</string>
   <!--- NotificationBarManager-->
@@ -1332,7 +1332,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="media_preview__forward_title">Preposlať</string>
   <string name="media_preview__all_media_title">Všetky médiá</string>
   <!--media_overview-->
-  <string name="media_overview_documents_fragment__no_documents_found">Žiadne dokumenty</string>
+  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">Žiadne dokumenty</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Náhľad média</string>
   <!--new_conversation_activity-->

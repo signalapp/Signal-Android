@@ -409,7 +409,7 @@ I suoi messaggi e le chiamate sono state disabilitate, si prega di provare e ri-
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Cancellazione</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Eliminazione messaggi…</string>
-  <string name="MediaOverviewActivity_Documents">Documenti</string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">Documenti</string> -->
   <string name="MediaOverviewActivity_Select_all">Seleziona tutto</string>
   <string name="MediaOverviewActivity_collecting_attachments">Recupero allegati…</string>
   <!--- NotificationBarManager-->
@@ -1288,7 +1288,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="media_preview__forward_title">Inoltra</string>
   <string name="media_preview__all_media_title">Tutti i file multimediali</string>
   <!--media_overview-->
-  <string name="media_overview_documents_fragment__no_documents_found">Nessun documento</string>
+  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">Nessun documento</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Anteprima contenuto multimediale</string>
   <!--new_conversation_activity-->

@@ -176,6 +176,7 @@
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal krever tillatelse fra systemet for å kunne ta bilder eller filme, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Kamera».</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Du må gi Signal «Kamera»-tillatelse på systemet for å kunne filme og ta bilder.</string>
   <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">Aktiver mikrofonens tillatelse til å ta opp videoer med lyd.</string>
+  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Signal trenger mikrofontillatelser for å spille inn videoer, men de har blitt nektet. Vennligst fortsett til appinnstillingene, velg \"Tillatelser\" og aktiver \"Mikrofon\" og \"Kamera\".</string>
   <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Signal trenger mikrofontillatelser for å spille inn videoer.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal kan ikke sende SMS/MMS-meldinger fordi det ikke er din standard SMS-app. Vil du endre dette i Android-innstillingene dine?</string>
@@ -407,7 +408,7 @@
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Sletter</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Sletter meldinger …</string>
-  <string name="MediaOverviewActivity_Documents">Dokumenter</string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">Dokumenter</string> -->
   <string name="MediaOverviewActivity_Select_all">Velg alle</string>
   <string name="MediaOverviewActivity_collecting_attachments">Henter vedlegg …</string>
   <!--- NotificationBarManager-->
@@ -1286,7 +1287,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="media_preview__forward_title">Videresend</string>
   <string name="media_preview__all_media_title">Alle medier</string>
   <!--media_overview-->
-  <string name="media_overview_documents_fragment__no_documents_found">Ingen dokumenter</string>
+  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">Ingen dokumenter</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Forhåndsvisning av medier</string>
   <!--new_conversation_activity-->
@@ -1300,13 +1301,21 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="Insights__percent">%</string>
   <string name="Insights__title">Innsikt</string>
   <string name="InsightsDashboardFragment__title">Innsikt</string>
+  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal-protokoll automatisk beskyttet %1$d%% av utgående meldinger over de siste %2$d dagene. Samtaler mellom Signal-brukere er alltid kryptert fra ende til ende.</string>
+  <string name="InsightsDashboardFragment__boost_your_signal">Signal økning</string>
+  <string name="InsightsDashboardFragment__not_enough_data">Ikke nok data</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Start en samtale</string>
+  <string name="InsightsDashboardFragment__invite_your_contacts">Begynn å kommunisere sikkert og aktiver nye funksjoner som går utover begrensningene for ikke-krypterte SMS-meldinger ved å invitere flere kontakter til å bli med i Signal.</string>
+  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Denne statistikken ble lokalt generert på enheten din og kan bare sees av deg. De blir aldri overført hvor som helst.</string>
   <string name="InsightsDashboardFragment__encrypted_messages">Krypterte meldinger</string>
   <string name="InsightsDashboardFragment__cancel">Avbryt</string>
   <string name="InsightsDashboardFragment__send">Send</string>
   <string name="InsightsModalFragment__title">Vi presenterer Innsikt</string>
+  <string name="InsightsModalFragment__description">Finn ut hvor mange av utgående meldinger som ble sendt sikkert, og inviter raskt nye kontakter for å øke Signal-prosenten.</string>
   <string name="InsightsModalFragment__view_insights">Se Innsikt</string>
   <string name="FirstInviteReminder__title">Inviter til Signal</string>
+  <string name="FirstInviteReminder__description">Du kan øke antallet krypterte meldinger du sender av %1$d%%</string>
+  <string name="SecondInviteReminder__title">Styrk ditt Signal</string>
   <string name="SecondInviteReminder__description">Inviter %1$s</string>
   <string name="InsightsReminder__view_insights">Se Innsikt</string>
   <string name="InsightsReminder__invite">Inviter</string>

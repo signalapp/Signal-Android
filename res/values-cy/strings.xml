@@ -446,7 +446,7 @@ Send neges heb ei ddiogelu?</string>
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Wrthi\'n dileu</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Dileu negeseuon…</string>
-  <string name="MediaOverviewActivity_Documents">Dogfennau</string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">Dogfennau</string> -->
   <string name="MediaOverviewActivity_Select_all">Dewis popeth</string>
   <string name="MediaOverviewActivity_collecting_attachments">Casglu atodiadau…</string>
   <!--- NotificationBarManager-->
@@ -1347,7 +1347,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="media_preview__forward_title">Ymlaen</string>
   <string name="media_preview__all_media_title">Pob cyfrwng</string>
   <!--media_overview-->
-  <string name="media_overview_documents_fragment__no_documents_found">Dim dogfennau</string>
+  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">Dim dogfennau</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Rhagolwg cyfrwng</string>
   <!--new_conversation_activity-->

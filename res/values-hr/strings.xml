@@ -413,7 +413,7 @@
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Brisanje</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Brisanje poruka…</string>
-  <string name="MediaOverviewActivity_Documents">Dokumenti</string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">Dokumenti</string> -->
   <string name="MediaOverviewActivity_Select_all">Odaberi sve</string>
   <string name="MediaOverviewActivity_collecting_attachments">Prikupljanje privitaka…</string>
   <!--- NotificationBarManager-->
@@ -1282,7 +1282,7 @@ Uvezi nekriptiranu kopiju. Kompatibilno s \'SMSBackup And Restore\'.</string>
   <string name="media_preview__forward_title">Naprijed</string>
   <string name="media_preview__all_media_title">Svi mediji</string>
   <!--media_overview-->
-  <string name="media_overview_documents_fragment__no_documents_found">Nema dokumenata</string>
+  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">Nema dokumenata</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Prikaz medija</string>
   <!--new_conversation_activity-->

@@ -408,7 +408,7 @@
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">মোছা হচ্ছে…</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">বার্তা সমূহ মোছা হচ্ছে…</string>
-  <string name="MediaOverviewActivity_Documents">নথিপত্র</string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">নথিপত্র</string> -->
   <string name="MediaOverviewActivity_Select_all">সবগুলো নির্বাচন করুন</string>
   <string name="MediaOverviewActivity_collecting_attachments">সংযুক্তি সমুহ সংগ্রহ করা হচ্ছে…</string>
   <!--- NotificationBarManager-->
@@ -1284,7 +1284,7 @@
   <string name="media_preview__forward_title">ফরওয়ার্ড</string>
   <string name="media_preview__all_media_title">সমস্ত মিডিয়া</string>
   <!--media_overview-->
-  <string name="media_overview_documents_fragment__no_documents_found">কোনও নথিপত্র নেই</string>
+  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">কোনও নথিপত্র নেই</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">মিডিয়া প্রাকদর্শন</string>
   <!--new_conversation_activity-->

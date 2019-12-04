@@ -260,7 +260,7 @@
   <string name="CustomDefaultPreference_none">Không</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Bây giờ</string>
-  <string name="DateUtils_minutes_ago">%dphút</string>
+  <string name="DateUtils_minutes_ago">%d phút</string>
   <string name="DateUtils_today">Hôm nay</string>
   <string name="DateUtils_yesterday">Hôm qua</string>
   <!--DeliveryStatus-->
@@ -390,7 +390,7 @@
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Đang xóa</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Đang xóa tin nhắn…</string>
-  <string name="MediaOverviewActivity_Documents">Tài liệu</string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">Tài liệu</string> -->
   <string name="MediaOverviewActivity_Select_all">Chọn tất cả</string>
   <string name="MediaOverviewActivity_collecting_attachments">Đang thu thập tệp đính kèm…</string>
   <!--- NotificationBarManager-->
@@ -1255,7 +1255,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="media_preview__forward_title">Chuyển tiếp</string>
   <string name="media_preview__all_media_title">Tất cả tập tin đa phương tiện</string>
   <!--media_overview-->
-  <string name="media_overview_documents_fragment__no_documents_found">Không có tài liệu</string>
+  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">Không có tài liệu</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Xem trước tệp đa phương tiện</string>
   <!--new_conversation_activity-->
@@ -1268,8 +1268,13 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--Insights-->
   <string name="Insights__title">Phân tích</string>
   <string name="InsightsDashboardFragment__title">Phân tích</string>
+  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Giao thức Signal đã tự động bảo vệ %1$d%% số tin nhắn bạn gửi đi trong %2$d ngày trước. Cuộc trò chuyện giữa những người dùng Signal luôn được mã hóa đầu cuối.</string>
+  <string name="InsightsDashboardFragment__boost_your_signal">Tăng tỉ lệ Signal</string>
+  <string name="InsightsDashboardFragment__not_enough_data">Không đủ dữ liệu</string>
+  <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Dữ liệu Phân tích của bạn được tính dựa vào số tin nhắn gửi đi trong %1$d ngày trước mà không bị xóa hay tự hủy.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Bắt đầu cuộc trò chuyện</string>
   <string name="InsightsDashboardFragment__invite_your_contacts">Hãy trò chuyện riêng tư và kích hoạt những tính năng mới vượt trên giới hạn của SMS lỗi thời bằng cách mời liên hệ của bạn sử dụng Signal.</string>
+  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Những số liệu này được tạo trên thiết bị của bạn và chỉ được truy cập bởi bạn. Nó không được gửi đi bất cứ đâu.</string>
   <string name="InsightsDashboardFragment__encrypted_messages">Tin nhắn mã hóa</string>
   <string name="InsightsDashboardFragment__cancel">Hủy</string>
   <string name="InsightsDashboardFragment__send">Gửi</string>

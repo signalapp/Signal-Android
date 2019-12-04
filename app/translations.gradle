@@ -70,7 +70,7 @@ task excludeNonTranslatables {
     group 'Translate'
     description 'Remove strings that are marked "translatable"="false" or are ExtraTranslations.'
     doLast {
-        def englishFile = file('res/values/strings.xml')
+        def englishFile = file('../res/values/strings.xml')
 
         def english = new XmlParser().parse(englishFile)
         def nonTranslatable = english

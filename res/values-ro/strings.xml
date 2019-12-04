@@ -426,7 +426,7 @@
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Se șterge</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Se șterg mesajele…</string>
-  <string name="MediaOverviewActivity_Documents">Documente</string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">Documente</string> -->
   <string name="MediaOverviewActivity_Select_all">Selectează tot</string>
   <string name="MediaOverviewActivity_collecting_attachments">Se colectează atașamentele…</string>
   <!--- NotificationBarManager-->
@@ -1311,12 +1311,13 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="reminder_header_share_text">Cu cât mai mulți prieteni utilizează Signal, cu atât devine mai bun.</string>
   <string name="reminder_header_service_outage_text">Signal întâmpină dificultăți tehnice. Muncim din greu pentru a restabili serviciul cât mai repede posibil.</string>
   <string name="reminder_header_the_latest_signal_features_wont_work">Ultimele funcționalități Signal nu vor mai rula pe această versiune de Android. Vă rugăm să actualizați acest dispozitiv pentru a putea primi în viitor actualizări de Signal.</string>
+  <string name="reminder_header_progress">%1$d%%</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Salvează</string>
   <string name="media_preview__forward_title">Redirecționează</string>
   <string name="media_preview__all_media_title">Toate fișierele media</string>
   <!--media_overview-->
-  <string name="media_overview_documents_fragment__no_documents_found">Nu aveți documente</string>
+  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">Nu aveți documente</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Previzualizare media</string>
   <!--new_conversation_activity-->
@@ -1327,9 +1328,27 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="trimmer__deleting_old_messages">Se șterg mesajele vechi…</string>
   <string name="trimmer__old_messages_successfully_deleted">Mesajele vechi au fost șterse cu succes</string>
   <!--Insights-->
+  <string name="Insights__percent">%</string>
+  <string name="Insights__title">Insights</string>
+  <string name="InsightsDashboardFragment__title">Insights</string>
+  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Protocolul Signal a protejat automat %1$d%% din mesajele dvs. expediate în ultimele %2$d zile. Conversațiile dintre utilizatorii de Signal sunt întotdeauna criptate integral.</string>
+  <string name="InsightsDashboardFragment__boost_your_signal">Creșterea Signal</string>
+  <string name="InsightsDashboardFragment__not_enough_data">Date insuficiente</string>
+  <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Procentul dvs. Insights este calculat pe baza mesajelor expediate în ultimele %1$d zile care nu au dispărut sau au fost șterse.</string>
+  <string name="InsightsDashboardFragment__start_a_conversation">Începeți o conversație</string>
+  <string name="InsightsDashboardFragment__invite_your_contacts">Începeți să comunicați în siguranță și să activați funcții noi care depășesc limitările mesajelor SMS necriptate, invitând mai multe persoane de contact să se alăture la Signal.</string>
+  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Aceste statistici au fost generate local pe dispozitivul dvs. și pot fi văzute doar de dvs. Nu se transmit niciodată nicăieri.</string>
+  <string name="InsightsDashboardFragment__encrypted_messages">Mesaje criptate</string>
   <string name="InsightsDashboardFragment__cancel">Anulați</string>
   <string name="InsightsDashboardFragment__send">Trimiteți</string>
+  <string name="InsightsModalFragment__title">Vă prezentăm Insight-uri</string>
+  <string name="InsightsModalFragment__description">Aflați cât de multe dintre mesajele dvs. expediate au fost trimise în siguranță, apoi invitați rapid noi contacte pentru a crește procentul de Signal.</string>
+  <string name="InsightsModalFragment__view_insights">Vizualizați Insights</string>
   <string name="FirstInviteReminder__title">Invitați la Signal</string>
+  <string name="FirstInviteReminder__description">Puteți crește numărul de mesaje criptate pe care le trimiteți cu %1$d%%</string>
+  <string name="SecondInviteReminder__title">Îmbunătățește-ți Signal-ul</string>
+  <string name="SecondInviteReminder__description">Invitați pe %1$s</string>
+  <string name="InsightsReminder__view_insights">Vizualizați Insights</string>
   <string name="InsightsReminder__invite">Invită</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Pictogramă transport</string>

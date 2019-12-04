@@ -25,7 +25,7 @@
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">Wissen</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Wachtwoord uitschakelen?</string>
-  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Dit zal Signal- en berichtmeldingen ontgrendelen en ontgrendeld houden.</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Dit zal Signal en berichtmeldingen ontgrendelen en ontgrendeld houden.</string>
   <string name="ApplicationPreferencesActivity_disable">Uitschakelen</string>
   <string name="ApplicationPreferencesActivity_unregistering">Aan het uitschrijven</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Je telefoonnummer wordt afgemeld voor Signal-berichten en -oproepen…</string>
@@ -123,7 +123,7 @@
   <string name="ContactShareEditActivity_invalid_contact">Het geselecteerde contact was ongeldig</string>
   <!--ConversationItem-->
   <string name="ConversationItem_error_not_delivered">Verzenden is mislukt, tik voor details</string>
-  <string name="ConversationItem_received_key_exchange_message_tap_to_process">Sleuteluitwisselingsbericht ontvangen, tik om te verwerken.</string>
+  <string name="ConversationItem_received_key_exchange_message_tap_to_process">Sleuteluitwisselingsbericht ontvangen, tik hier om het te verwerken.</string>
   <string name="ConversationItem_group_action_left">%1$s heeft de groep verlaten.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">Verzenden is mislukt, tik om onbeveiligd te verzenden</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Terugvallen naar onversleutelde sms?</string>
@@ -287,8 +287,8 @@
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">Door dit apparaat te ontkoppelen kan het niet langer berichten verzenden en ontvangen.</string>
   <string name="DeviceListActivity_network_connection_failed">Netwerkfout</string>
   <string name="DeviceListActivity_try_again">Opnieuw proberen</string>
-  <string name="DeviceListActivity_unlinking_device">Apparaat ontkoppelen…</string>
-  <string name="DeviceListActivity_unlinking_device_no_ellipsis">Apparaat ontkoppelen</string>
+  <string name="DeviceListActivity_unlinking_device">Apparaat aan het ontkoppelen…</string>
+  <string name="DeviceListActivity_unlinking_device_no_ellipsis">Apparaat aan het ontkoppelen</string>
   <string name="DeviceListActivity_network_failed">Netwerkfout!</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">Naamloos apparaat</string>
@@ -299,7 +299,7 @@
   <string name="DocumentView_unknown_file">Onbekend bestand</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimaliseren voor ontbrekende Google Play Services</string>
-  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Dit apparaat biedt geen ondersteuning voor Google Play Services. Tik om de optimalisaties m.b.t. stroomverbruik uit te schakelen, die Signal momenteel verhinderen om berichten te ontvangen op de achtergrond.</string>
+  <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Dit apparaat biedt geen ondersteuning voor Google Play Services. Tik hier om de optimalisaties m.b.t. stroomverbruik uit te schakelen, die Signal momenteel verhinderen om berichten te ontvangen op de achtergrond.</string>
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Doorsturen naar</string>
   <!--ExperienceUpgradeActivity-->
@@ -409,7 +409,7 @@ weergaven.</string>
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Aan het verwijderen</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Berichten aan het wissen…</string>
-  <string name="MediaOverviewActivity_Documents">Documenten</string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">Documenten</string> -->
   <string name="MediaOverviewActivity_Select_all">Alles selecteren</string>
   <string name="MediaOverviewActivity_collecting_attachments">Bijlagen aan het verzamelen…</string>
   <!--- NotificationBarManager-->
@@ -534,7 +534,7 @@ weergaven.</string>
   <!--RecipientProvider-->
   <string name="RecipientProvider_unnamed_group">Onbekende groep</string>
   <!--RedPhone-->
-  <string name="RedPhone_answering">Beantwoorden</string>
+  <string name="RedPhone_answering">Wordt beantwoord</string>
   <string name="RedPhone_ending_call">Oproep aan het beëindigen</string>
   <string name="RedPhone_dialing">Verbinding aan het maken</string>
   <string name="RedPhone_ringing">Gaat over</string>
@@ -618,7 +618,7 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
         Sleuteluitwisselingsbericht ontvangen voor een verkeerde protocolversie.
     </string>
-  <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Er is een bericht met een nieuw veiligheidsnummer ontvangen. Tik om te verwerken en te tonen.</string>
+  <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Er is een bericht met een nieuw veiligheidsnummer ontvangen. Tik hier om het te verwerken en weer te geven.</string>
   <string name="SmsMessageRecord_secure_session_reset">Je hebt de beveiligde sessie opnieuw ingesteld.</string>
   <string name="SmsMessageRecord_secure_session_reset_s">%s heeft de beveiligde sessie opnieuw ingesteld.</string>
   <string name="SmsMessageRecord_duplicate_message">Gedupliceerd bericht.</string>
@@ -663,7 +663,7 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <string name="ThreadRecord_message_could_not_be_processed">Bericht kon niet worden verwerkt</string>
   <!--UpdateApkReadyListener-->
   <string name="UpdateApkReadyListener_Signal_update">Nieuwe versie van Signal</string>
-  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Er is een nieuwe versie van Signal beschikbaar, tik om bij te werken</string>
+  <string name="UpdateApkReadyListener_a_new_version_of_signal_is_available_tap_to_update">Er is een nieuwe versie van Signal beschikbaar. Tik hier om bij te werken</string>
   <!--UnknownSenderView-->
   <string name="UnknownSenderView_block_s">%s blokkeren?</string>
   <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Geblokkeerde contactpersonen zullen je nog steeds kunnen bellen en zullen nog steeds berichten naar je kunnen sturen, maar die oproepen en berichten zullen nooit aankomen.</string>
@@ -768,7 +768,7 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   </plurals>
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">Apparaat niet langer geregistreerd</string>
-  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Dit komt waarschijnlijk doordat je je telefoonnummer met Signal op een ander apparaat hebt geregistreerd. Tik om opnieuw te registreren.</string>
+  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Dit komt waarschijnlijk doordat je je telefoonnummer met Signal op een ander apparaat hebt geregistreerd. Tik hier om opnieuw te registreren.</string>
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">Fout bij afspelen van video</string>
   <!--WebRtcCallActivity-->
@@ -982,7 +982,7 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <string name="prompt_passphrase_activity__unlock">Ontgrendelen</string>
   <!--prompt_mms_activity-->
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal heeft mms-instellingen nodig om mediaberichten te kunnen versturen via je telefoonprovider. Je apparaat maakt deze informatie niet beschikbaar. Dit komt vaker voor bij gelockte apparaten en andere beperkende configuraties.</string>
-  <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Om media- en groepsberichten te verzenden tik je op ‘Oké’ en voer je de gevraagde gegevens in. De mms-instellingen voor je provider kunnen meestal gevonden worden door online te zoeken naar ‘naam-van-je-provider APN’. Dit hoef je maar één keer te doen.</string>
+  <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Om media- en groepsberichten te verzenden tik je op ‘Oké’ en voer je de gevraagde gegevens in. De mms-instellingen voor je provider kunnen meestal gevonden worden door on-line te zoeken naar ‘naam-van-je-provider APN’. Dit hoef je maar één keer te doen.</string>
   <!--profile_create_activity-->
   <string name="profile_create_activity__set_later">Later instellen</string>
   <string name="profile_create_activity__finish">KLAAR</string>
@@ -1089,7 +1089,7 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <string name="preferences__pref_enter_sends_title">Enter-toets verzendt</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">Gebruik de Enter-toets voor verzenden van tekstberichten</string>
   <string name="preferences__send_link_previews">Voorbeeldweergaven verzenden</string>
-  <string name="preferences__previews_are_supported_for">Voorbeelden worden ondersteund voor koppelingen naar Imgur, Instagram, Pinterest, Reddit en YouTube.</string>
+  <string name="preferences__previews_are_supported_for">Verzend ook een voorbeeldafbeelding als er een koppeling naar Imgur, Instagram, Pinterest, Reddit of YouTube in je bericht staat.</string>
   <string name="preferences__choose_identity">Identiteit kiezen</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Kies je contactgegevens uit de lijst met contactpersonen.</string>
   <string name="preferences__change_passphrase">Wachtwoord wijzigen</string>
@@ -1097,7 +1097,7 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <string name="preferences__enable_passphrase">Schermvergrendeling met wachtwoord inschakelen</string>
   <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Vergrendel scherm en meldingen met een wachtwoord</string>
   <string name="preferences__screen_security">Schermafdrukken blokkeren</string>
-  <string name="preferences__disable_screen_security_to_allow_screen_shots">Blokkeer het maken van schermafdrukken zowel in de app als in de lijst van recent gebruikte apps</string>
+  <string name="preferences__disable_screen_security_to_allow_screen_shots">Beschermd je gesprekken tegen schermopnames door andere apps, zowel als Signal geopend is als in de lijst van recent gebruikte apps</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Signal automatisch vergrendelen na een bepaalde periode van inactiviteit</string>
   <string name="preferences__inactivity_timeout_passphrase">Vergrendeling bij inactiviteit</string>
   <string name="preferences__inactivity_timeout_interval">Inactiviteitsduur voor vergrendeling</string>
@@ -1159,10 +1159,10 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Schakel dit in als je gebruik wilt maken van sms/mms over wifi (schakel dit alleen in als ook ‘Bellen via wifi’ is ingeschakeld op je apparaat)</string>
   <string name="preferences__incognito_keyboard">Incognito toetsenbord</string>
   <string name="preferences__read_receipts">Leesbevestigingen</string>
-  <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Als je leesbevestigingen zijn uitgeschakeld zullen anderen niet kunnen zien of je hun bericht hebt gelezen, maar je zult leesbevestigingen van anderen ook niet kunnen zien.</string>
+  <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Als leesbevestigingen zijn uitgeschakeld zullen anderen niet kunnen zien of je hun bericht hebt gelezen, maar je zult ook leesbevestigingen van anderen ook niet kunnen zien.</string>
   <string name="preferences__typing_indicators">Typindicatoren</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Als typindicatoren zijn uitgeschakeld, kunnen anderen niet zien of je aan het typen bent, maar je kunt ook niet zien wanneer anderen aan het typen zijn.</string>
-  <string name="preferences__request_keyboard_to_disable_personalized_learning">Schakel gepersonaliseerd leren van toetsenbord uit</string>
+  <string name="preferences__request_keyboard_to_disable_personalized_learning">Voorkom gepersonaliseerd leren door het toetsenbord</string>
   <string name="preferences_app_protection__blocked_contacts">Geblokkeerde contactpersonen</string>
   <string name="preferences_chats__when_using_mobile_data">Wanneer mobielegegevensoverdracht gebruikt wordt</string>
   <string name="preferences_chats__when_using_wifi">Wanneer wifi gebruikt wordt</string>
@@ -1188,7 +1188,7 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <string name="preferences_events__contact_joined_signal">Contactpersoon gebruikt nu Signal</string>
   <string name="preferences_notifications__priority">Belangrijkheid</string>
   <string name="preferences_communication__category_sealed_sender">Verzegelde afzender</string>
-  <string name="preferences_communication__sealed_sender_display_indicators">Toon of verzegelde afzender is gebruikt</string>
+  <string name="preferences_communication__sealed_sender_display_indicators">‘Verzegelde afzender’-pictorgram</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">Laat een statusicoon zien als je tikt op ‘Berichtdetails’ bij berichten die zijn afgeleverd met een verzegelde afzender.</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Van iedereen toestaan</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Schakel verzegelde afzender in voor berichten afkomstig van niet-contactpersonen en mensen voor wie je je profiel niet zichtbaar hebt gemaakt. Dit verhoogt de kans dat je ongewenste berichten ontvangt.</string>
@@ -1269,16 +1269,16 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <!--reminder_header-->
   <string name="reminder_header_outdated_build">Je versie van Signal is verouderd</string>
   <plurals name="reminder_header_outdated_build_details">
-    <item quantity="one">Deze versie van Signal zal over %d dag verlopen. Tik om bij te werken naar de meest recente versie.</item>
-    <item quantity="other">Deze versie van Signal zal over %d dagen verlopen. Tik om bij te werken naar de meest recente versie.</item>
+    <item quantity="one">Deze versie van Signal zal over %d dag verlopen. Tik hier om bij te werken naar de meest recente versie.</item>
+    <item quantity="other">Deze versie van Signal zal over %d dagen verlopen. Tik hier om bij te werken naar de meest recente versie.</item>
   </plurals>
-  <string name="reminder_header_outdated_build_details_today">Deze versie van Signal zal vandaag verlopen. Tik om bij te werken naar de meest recente versie.</string>
+  <string name="reminder_header_outdated_build_details_today">Deze versie van Signal zal vandaag verlopen. Tik hier om bij te werken naar de meest recente versie.</string>
   <string name="reminder_header_expired_build">Deze versie van Signal is verlopen!</string>
-  <string name="reminder_header_expired_build_details">Berichten zullen niet langer verzonden worden. Tik om bij te werken naar de meest recente versie.</string>
-  <string name="reminder_header_sms_default_title">Gebruiken als standaard sms-app</string>
-  <string name="reminder_header_sms_default_text">Tik om van Signal je standaard sms-app te maken.</string>
+  <string name="reminder_header_expired_build_details">Berichten kunnen niet langer verzonden worden. Tik hier om bij te werken naar de meest recente versie.</string>
+  <string name="reminder_header_sms_default_title">Als standaard sms-app gebruiken</string>
+  <string name="reminder_header_sms_default_text">Tik hier om van Signal je standaard sms-app te maken.</string>
   <string name="reminder_header_sms_import_title">Sms uit systeem importeren</string>
-  <string name="reminder_header_sms_import_text">Tik om de sms-berichten uit je telefoon te kopiëren naar de versleutelde databank van Signal.</string>
+  <string name="reminder_header_sms_import_text">Tik hier om de sms-berichten uit je telefoon te kopiëren naar de versleutelde databank van Signal.</string>
   <string name="reminder_header_push_title">Signal-berichten en -oproepen inschakelen</string>
   <string name="reminder_header_push_text">Verbeter je communicatie-ervaring.</string>
   <string name="reminder_header_invite_title">Uitnodigen voor Signal</string>
@@ -1293,7 +1293,7 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <string name="media_preview__forward_title">Doorsturen</string>
   <string name="media_preview__all_media_title">Alle media</string>
   <!--media_overview-->
-  <string name="media_overview_documents_fragment__no_documents_found">Geen documenten</string>
+  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">Geen documenten</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Mediavoorbeeld</string>
   <!--new_conversation_activity-->
@@ -1307,13 +1307,14 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <string name="Insights__percent">%</string>
   <string name="Insights__title">Inzichten</string>
   <string name="InsightsDashboardFragment__title">Inzichten</string>
-  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">%1$d%% van je verzonden berichten over de afgelopen %2$d werden automatisch beschermd door het Signal Protocol. Gesprekken tussen Signal-gebruikers zijn altijd eind-tot-eind-versleuteld.</string>
+  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">%1$d%% van je verzonden berichten over de afgelopen %2$d werden automatisch beschermd door het Signal-protocol. Gesprekken tussen Signal-gebruikers zijn altijd eind-tot-eind-versleuteld.</string>
   <string name="InsightsDashboardFragment__boost_your_signal">Je kunt meer gesprekken beveiligd voeren</string>
   <string name="InsightsDashboardFragment__not_enough_data">Niet genoeg gegevens</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Je inzichten-percentage wordt berekend op basis van berichten welke je hebt verzonden in de afgelopen %1$d dagen welke zichzelf niet hebben gewist en niet door jou zijn gewist.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Begin een gesprek</string>
   <string name="InsightsDashboardFragment__invite_your_contacts">Communiceer voortaan beveiligd en maak nieuwe functies mogelijk welke verder gaan dan de limitaties van onversleutelde sms-berichten, door meer contactpersonen uit te nodigen om Signal te gebruiken.</string>
-  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Deze statistiek is lokaal gegenereerd op jouw apparaat en kan alleen door jou gezien worden. Ze wordt nooit verzonden.</string>
+  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Deze statistiek is lokaal gegenereerd op jouw apparaat en kan alleen door jou gezien worden.
+Ze wordt nooit verzonden.</string>
   <string name="InsightsDashboardFragment__encrypted_messages">Versleutelde berichten</string>
   <string name="InsightsDashboardFragment__cancel">Annuleren</string>
   <string name="InsightsDashboardFragment__send">Verzend</string>

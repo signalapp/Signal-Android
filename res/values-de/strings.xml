@@ -408,7 +408,7 @@
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Löschen</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Nachrichten werden gelöscht …</string>
-  <string name="MediaOverviewActivity_Documents">Dokumente</string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">Dokumente</string> -->
   <string name="MediaOverviewActivity_Select_all">Alle auswählen</string>
   <string name="MediaOverviewActivity_collecting_attachments">Anhänge werden gesammelt …</string>
   <!--- NotificationBarManager-->
@@ -1274,13 +1274,13 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="reminder_header_share_text">Je mehr Freunde Signal nutzen, desto besser das Erlebnis.</string>
   <string name="reminder_header_service_outage_text">Signal hat derzeit technische Schwierigkeiten. Wir arbeiten hart daran, den Betrieb so schnell wie möglich wiederherzustellen.</string>
   <string name="reminder_header_the_latest_signal_features_wont_work">Signals neueste Features werden mit dieser Android-Version nicht funktionieren. Bitte bringe dein Gerät auf den neusten Stand, um zukünftige Signal-Aktualisierungen zu erhalten.</string>
-  <string name="reminder_header_progress">%1$d%%</string>
+  <string name="reminder_header_progress">%1$d %%</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Speichern</string>
   <string name="media_preview__forward_title">Weiterleiten</string>
   <string name="media_preview__all_media_title">Alle Medieninhalte</string>
   <!--media_overview-->
-  <string name="media_overview_documents_fragment__no_documents_found">Keine Dokumente</string>
+  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">Keine Dokumente</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Medieninhaltevorschau</string>
   <!--new_conversation_activity-->
@@ -1291,16 +1291,16 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="trimmer__deleting_old_messages">Alte Nachrichten werden gelöscht …</string>
   <string name="trimmer__old_messages_successfully_deleted">Alte Nachrichten wurden erfolgreich gelöscht</string>
   <!--Insights-->
-  <string name="Insights__percent"> %</string>
+  <string name="Insights__percent">%</string>
   <string name="Insights__title">Einblicke</string>
   <string name="InsightsDashboardFragment__title">Einblicke</string>
-  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol hat automatisch %1$d%% deiner ausgehenden Nachrichten der letzten %2$d Tage geschützt. Unterhaltungen zwischen Signal-Benutzern werden immer Ende-zu-Ende-verschlüsselt.</string>
+  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol hat automatisch %1$d %% deiner ausgehenden Nachrichten der letzten %2$d Tage geschützt. Unterhaltungen zwischen Signal-Benutzern werden immer Ende-zu-Ende-verschlüsselt.</string>
   <string name="InsightsDashboardFragment__boost_your_signal">Signal-Boost</string>
   <string name="InsightsDashboardFragment__not_enough_data">Zu wenige Daten</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Dein »Einblicke«-Prozentwert wird berechnet anhand aller ausgehender Nachrichten der letzten %1$d Tage, die nicht verschwunden sind oder gelöscht wurden.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Beginne eine Unterhaltung</string>
   <string name="InsightsDashboardFragment__invite_your_contacts">Kommuniziere von jetzt an sicher, indem du mehr Kontakte dazu einlädst, Signal zu verwenden. Dies ermöglicht neue Funktionen, die über die Einschränkungen unverschlüsselter SMS hinausgehen.</string>
-  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Diese Statistiken wurde lokal auf deinem Gerät erstellt und kann nur durch dich eingesehen werden. Sie wird niemals an jemand anderen übertragen.</string>
+  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Diese Statistik wurde lokal auf deinem Gerät erstellt und kann nur durch dich eingesehen werden. Sie wird niemals an jemand anderen übertragen.</string>
   <string name="InsightsDashboardFragment__encrypted_messages">Verschlüsselte Nachrichten</string>
   <string name="InsightsDashboardFragment__cancel">Abbrechen</string>
   <string name="InsightsDashboardFragment__send">Senden</string>
@@ -1308,7 +1308,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="InsightsModalFragment__description">Finde heraus, wie viele deiner ausgehenden Nachrichten geschützt versendet wurden, und lade dann neue Kontakte ein, um deinen Signal-Prozentwert zu erhöhen.</string>
   <string name="InsightsModalFragment__view_insights">Einblicke anzeigen</string>
   <string name="FirstInviteReminder__title">Zu Signal einladen</string>
-  <string name="FirstInviteReminder__description">Du könntest die Anzahl deiner verschlüsselt versendeten Nachrichten um %1$d%% erhöhen</string>
+  <string name="FirstInviteReminder__description">Du könntest die Anzahl deiner verschlüsselt versendeten Nachrichten um %1$d %% erhöhen</string>
   <string name="SecondInviteReminder__title">Verstärke dein Signal</string>
   <string name="SecondInviteReminder__description">%1$s einladen</string>
   <string name="InsightsReminder__view_insights">Einblicke anzeigen</string>

@@ -408,7 +408,7 @@
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">ਮਿਟਾਇਆ ਜਾ ਰਿਹਾ ਹੈ</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">ਸੁਨੇਹਿਆਂ ਨੂੰ ਮਿਟਾਇਆ ਜਾ ਰਿਹਾ ਹੈ</string>
-  <string name="MediaOverviewActivity_Documents">ਦਸਤਾਵੇਜ਼</string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">ਦਸਤਾਵੇਜ਼</string> -->
   <string name="MediaOverviewActivity_Select_all">ਸਾਰਿਆ ਨੂੰ ਚੁਣੋ</string>
   <string name="MediaOverviewActivity_collecting_attachments">ਅਟੈਚਮੈਂਟ ਇਕੱਠੇ ਕਰਨੇ …</string>
   <!--- NotificationBarManager-->
@@ -1285,7 +1285,7 @@
   <string name="media_preview__forward_title">ਅੱਗੇ ਭੇਜੋ </string>
   <string name="media_preview__all_media_title">ਸਾਰੇ ਮੀਡੀਆ</string>
   <!--media_overview-->
-  <string name="media_overview_documents_fragment__no_documents_found">ਕੋਈ ਦਸਤਾਵੇਜ਼ ਨਹੀਂ</string>
+  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">ਕੋਈ ਦਸਤਾਵੇਜ਼ ਨਹੀਂ</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">ਮੀਡੀਆ ਪ੍ਰੀਵਿਊ</string>
   <!--new_conversation_activity-->

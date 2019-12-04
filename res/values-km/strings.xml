@@ -390,7 +390,7 @@
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">កំពុងលុប</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">កំពុងលុបសារ…</string>
-  <string name="MediaOverviewActivity_Documents">ឯកសារ</string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">ឯកសារ</string> -->
   <string name="MediaOverviewActivity_Select_all">ជ្រើសរើសទាំងអស់</string>
   <string name="MediaOverviewActivity_collecting_attachments">កំពុងប្រមូលឯកសារភ្ជាប់…</string>
   <!--- NotificationBarManager-->
@@ -1254,7 +1254,7 @@
   <string name="media_preview__forward_title">បញ្ជូនបន្ត</string>
   <string name="media_preview__all_media_title">ព័ត៌មានទាំងអស់</string>
   <!--media_overview-->
-  <string name="media_overview_documents_fragment__no_documents_found">គ្មានឯកសារ</string>
+  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">គ្មានឯកសារ</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">មើលព័ត៌មានជាមុន</string>
   <!--new_conversation_activity-->

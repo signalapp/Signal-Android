@@ -408,7 +408,7 @@
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Forviŝado</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Forviŝado de mesaĝoj…</string>
-  <string name="MediaOverviewActivity_Documents">Dokumentoj</string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">Dokumentoj</string> -->
   <string name="MediaOverviewActivity_Select_all">Elekti ĉiujn</string>
   <string name="MediaOverviewActivity_collecting_attachments">Kolekto de kunsendaĵoj…</string>
   <!--- NotificationBarManager-->
@@ -1290,7 +1290,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="media_preview__forward_title">Plusendi</string>
   <string name="media_preview__all_media_title">Ĉiuj aŭvidaĵoj</string>
   <!--media_overview-->
-  <string name="media_overview_documents_fragment__no_documents_found">Neniu dokumento</string>
+  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">Neniu dokumento</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Aŭdvida antaŭrigardo</string>
   <!--new_conversation_activity-->
@@ -1309,7 +1309,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="InsightsDashboardFragment__not_enough_data">Ne sufiĉe da datumoj</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Via elcento en „Superrigardo“ kalkuliĝas per la elirintaj mesaĝoj, dum la lastaj %1$d tagoj, kiuj ne malaperis aŭ forviŝiĝis.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Krei novan interparolon</string>
-  <string name="InsightsDashboardFragment__invite_your_contacts">Ekkomunikiĝu sekure pere de novaj funkcioj, kiuj transiras la limojn de nesekuraj SMS-mesaĝoj, invitante pli da kontaktoj uzi Signal-on.</string>
+  <string name="InsightsDashboardFragment__invite_your_contacts">Ekkomunikiĝu sekure, invitante pli da kontaktoj uzi Signal-on.</string>
   <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Tiuj statistikaĵoj generiĝis ĉi-aparate kaj videblas nur de vi. Ili neniam transiras aliloken.</string>
   <string name="InsightsDashboardFragment__encrypted_messages">Ĉifritaj mesaĝoj</string>
   <string name="InsightsDashboardFragment__cancel">Nuligi</string>

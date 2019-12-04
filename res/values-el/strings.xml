@@ -395,7 +395,7 @@
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Γίνεται διαγραφή</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Διαγραφή μηνυμάτων…</string>
-  <string name="MediaOverviewActivity_Documents">Αρχεία</string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">Αρχεία</string> -->
   <string name="MediaOverviewActivity_Select_all">Επιλογή όλων</string>
   <string name="MediaOverviewActivity_collecting_attachments">Τα συνημμένα συλλέγονται…</string>
   <!--- NotificationBarManager-->
@@ -1254,7 +1254,7 @@
   <string name="media_preview__forward_title">Προώθηση</string>
   <string name="media_preview__all_media_title">Όλα τα πολυμέσα</string>
   <!--media_overview-->
-  <string name="media_overview_documents_fragment__no_documents_found">Δεν υπάρχουν έγγραφα</string>
+  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">Δεν υπάρχουν έγγραφα</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Προεπισκόπιση</string>
   <!--new_conversation_activity-->

@@ -409,7 +409,7 @@
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Видалення</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Видалення повідомлень…</string>
-  <string name="MediaOverviewActivity_Documents">Документи</string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">Документи</string> -->
   <string name="MediaOverviewActivity_Select_all">Обрати все</string>
   <string name="MediaOverviewActivity_collecting_attachments">Збираю вкладення…</string>
   <!--- NotificationBarManager-->
@@ -1233,7 +1233,7 @@
   <string name="media_preview__all_media_title">Всі медіа-файли
 Всі зображення</string>
   <!--media_overview-->
-  <string name="media_overview_documents_fragment__no_documents_found">Немає документів</string>
+  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">Немає документів</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Попередній перегляд медіа</string>
   <!--new_conversation_activity-->

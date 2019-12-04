@@ -367,7 +367,7 @@
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">이전 메시지 삭제</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">메시지를 삭제 중…</string>
-  <string name="MediaOverviewActivity_Documents">문서들</string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">문서들</string> -->
   <string name="MediaOverviewActivity_Select_all">모두 선택</string>
   <string name="MediaOverviewActivity_collecting_attachments">첨부파일 저장 준비 중…</string>
   <!--- NotificationBarManager-->
@@ -1196,7 +1196,7 @@
   <string name="media_preview__forward_title">전달</string>
   <string name="media_preview__all_media_title">모든 미디어</string>
   <!--media_overview-->
-  <string name="media_overview_documents_fragment__no_documents_found">문서 없음</string>
+  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">문서 없음</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">미디어 미리보기</string>
   <!--new_conversation_activity-->

@@ -390,7 +390,7 @@
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Menghapus</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Menghapus pesan-pesan …</string>
-  <string name="MediaOverviewActivity_Documents">Dokumen</string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">Dokumen</string> -->
   <string name="MediaOverviewActivity_Select_all">Pilih semua</string>
   <string name="MediaOverviewActivity_collecting_attachments">Mengumpulkan lampiran…</string>
   <!--- NotificationBarManager-->
@@ -1260,7 +1260,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="media_preview__forward_title">Teruskan</string>
   <string name="media_preview__all_media_title">Semua media</string>
   <!--media_overview-->
-  <string name="media_overview_documents_fragment__no_documents_found">Tidak ada dokumen</string>
+  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">Tidak ada dokumen</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Pratinjau media</string>
   <!--new_conversation_activity-->

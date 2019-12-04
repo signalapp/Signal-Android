@@ -10,7 +10,7 @@
   <string name="AbstractNotificationBuilder_new_message">新着メッセージ</string>
   <!--AlbumThumbnailView-->
   <!--ApplicationMigrationActivity-->
-  <string name="ApplicationMigrationActivity__signal_is_updating">Signalをアップデート中</string>
+  <string name="ApplicationMigrationActivity__signal_is_updating">Signalをアップデート中…</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">現在： %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">パスワードが登録されていません。</string>
@@ -390,7 +390,7 @@
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">削除中</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">メッセージを削除中…</string>
-  <string name="MediaOverviewActivity_Documents">ドキュメント</string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">ドキュメント</string> -->
   <string name="MediaOverviewActivity_Select_all">すべて選択</string>
   <string name="MediaOverviewActivity_collecting_attachments">添付ファイルを集めています…</string>
   <!--- NotificationBarManager-->
@@ -902,9 +902,9 @@
   <string name="log_submit_activity__button_got_it">分かりました</string>
   <string name="log_submit_activity__button_compose_email">メール作成</string>
   <string name="log_submit_activity__this_log_will_be_posted_online">このログはコントリビュータに公開されますが、送信する前に内容を確認したり編集することができます。</string>
-  <string name="log_submit_activity__loading_logs">ログを読み込み中</string>
-  <string name="log_submit_activity__uploading_logs">ログをアップロード中</string>
-  <string name="log_submit_activity__success">成功しました。</string>
+  <string name="log_submit_activity__loading_logs">ログを読み込み中…</string>
+  <string name="log_submit_activity__uploading_logs">ログをアップロード中…</string>
+  <string name="log_submit_activity__success">成功しました！</string>
   <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">このURLをコピーしてバグレポートやサポートメールに貼り付けてください:\n\n<b>%1$s</b>\n</string>
   <string name="log_submit_activity__copied_to_clipboard">クリップボードにコピーしました</string>
   <string name="log_submit_activity__choose_email_app">メールアプリを選んで下さい</string>
@@ -1250,7 +1250,7 @@
   <string name="media_preview__forward_title">転送</string>
   <string name="media_preview__all_media_title">すべてのメディア</string>
   <!--media_overview-->
-  <string name="media_overview_documents_fragment__no_documents_found">ドキュメントが見つかりません</string>
+  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">ドキュメントが見つかりません</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">メディアのプレビュー</string>
   <!--new_conversation_activity-->
@@ -1262,9 +1262,20 @@
   <string name="trimmer__old_messages_successfully_deleted">古いメッセージを削除しました</string>
   <!--Insights-->
   <string name="Insights__percent">%</string>
+  <string name="Insights__title">統計</string>
+  <string name="InsightsDashboardFragment__title">統計</string>
+  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocolは過去%2$d日間の送信メッセージを%1$d%%自動的に保護しました。Signalユーザー間の会話は常にエンドツーエンドで暗号化されます。</string>
+  <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">統計のパーセンテージは過去%1$d日間に消えたり削除されたりしていない送信メッセージに基づいて算出されます。</string>
+  <string name="InsightsDashboardFragment__start_a_conversation">会話を始める</string>
+  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">これらの統計は、あなたの端末上でローカルに生成されたもので、見ることができるのはあなただけです。どこにも送信されません。</string>
+  <string name="InsightsDashboardFragment__encrypted_messages">暗号化されたメッセージ</string>
   <string name="InsightsDashboardFragment__cancel">キャンセル</string>
   <string name="InsightsDashboardFragment__send">送信</string>
+  <string name="InsightsModalFragment__title">統計のご紹介</string>
+  <string name="InsightsModalFragment__view_insights">統計を見る</string>
   <string name="FirstInviteReminder__title">Signalに招待する</string>
+  <string name="FirstInviteReminder__description">送信する暗号化されたメッセージの数を%1$d%%増やすことができます</string>
+  <string name="InsightsReminder__view_insights">統計を見る</string>
   <string name="InsightsReminder__invite">招待する</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">転送アイコン</string>

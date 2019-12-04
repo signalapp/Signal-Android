@@ -408,7 +408,7 @@
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Slettar</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Slettar meldingar …</string>
-  <string name="MediaOverviewActivity_Documents">Dokument</string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">Dokument</string> -->
   <string name="MediaOverviewActivity_Select_all">Vel alle</string>
   <string name="MediaOverviewActivity_collecting_attachments">Hentar vedlegg …</string>
   <!--- NotificationBarManager-->
@@ -1285,12 +1285,13 @@ Du er à jour!</string>
   <string name="reminder_header_share_text">Jo fleire vennar som brukar Signal, desto betre vert det.</string>
   <string name="reminder_header_service_outage_text">Signal har for tida tekniske problem. Me jobbar hardt med å få tilbake tenesta så fort som mogleg.</string>
   <string name="reminder_header_the_latest_signal_features_wont_work">Dei nyaste Signal-funksjonane fungerer ikkje i denne utgåva av Android. Oppgrader eininga for å få oppdateringar av Signal.</string>
+  <string name="reminder_header_progress">%1$d%%</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Lagra</string>
   <string name="media_preview__forward_title">Vidaresend</string>
   <string name="media_preview__all_media_title">All media</string>
   <!--media_overview-->
-  <string name="media_overview_documents_fragment__no_documents_found">Ingen dokument</string>
+  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">Ingen dokument</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Førehandsvising av media</string>
   <!--new_conversation_activity-->
@@ -1301,9 +1302,27 @@ Du er à jour!</string>
   <string name="trimmer__deleting_old_messages">Slettar gamle meldingar …</string>
   <string name="trimmer__old_messages_successfully_deleted">Gamle meldingar vart sletta</string>
   <!--Insights-->
+  <string name="Insights__percent">%</string>
+  <string name="Insights__title">Oversikt</string>
+  <string name="InsightsDashboardFragment__title">Oversikt</string>
+  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal-protokollen beskytta automatisk %1$d%% av dei utgåande meldingane dine dei siste %2$d dagane. Samtaler mellom Signal-brukarar er alltid kryptert ende-til-ende.</string>
+  <string name="InsightsDashboardFragment__boost_your_signal">Signal-auke</string>
+  <string name="InsightsDashboardFragment__not_enough_data">Ikkje nok data</string>
+  <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Prosentane i oversikta er rekna ut frå utgåande meldingar dei siste %1$d dagane som ikkje har forsvunne eller blitt sletta.</string>
+  <string name="InsightsDashboardFragment__start_a_conversation">Start ei samtale</string>
+  <string name="InsightsDashboardFragment__invite_your_contacts">Start å kommunisera trygt og skru på nye funksjonar som går forbi begrensningane til ukrypterte SMS-meldingar, ved å invitera fleire kontaktar til Signal.</string>
+  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Denne statistikken blei generert på di eining, det er berre du som kan sjå han. Den blir aldri sendt nokon stad.</string>
+  <string name="InsightsDashboardFragment__encrypted_messages">Krypterte meldingar</string>
   <string name="InsightsDashboardFragment__cancel">Avbryt</string>
   <string name="InsightsDashboardFragment__send">Send</string>
+  <string name="InsightsModalFragment__title">Her kjem Oversikt</string>
+  <string name="InsightsModalFragment__description">Finn ut kor mange av dine utgåande meldingar som blei sendt trygt, og inviter enkelt nye kontaktar for å auka Signal-prosenten din.</string>
+  <string name="InsightsModalFragment__view_insights">Vis Oversikt</string>
   <string name="FirstInviteReminder__title">Inviter til Signal</string>
+  <string name="FirstInviteReminder__description">Du kan auka kor mange krypterte meldingar du sender med %1$d%%</string>
+  <string name="SecondInviteReminder__title">Auk ditt Signal</string>
+  <string name="SecondInviteReminder__description">Inviter %1$s</string>
+  <string name="InsightsReminder__view_insights">Vis Oversikt</string>
   <string name="InsightsReminder__invite">Inviter</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transport-ikon</string>

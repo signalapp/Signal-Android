@@ -408,7 +408,7 @@
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Raderar</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Tar bort meddelanden…</string>
-  <string name="MediaOverviewActivity_Documents">Dokument</string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">Dokument</string> -->
   <string name="MediaOverviewActivity_Select_all">Markera alla</string>
   <string name="MediaOverviewActivity_collecting_attachments">Samlar bilagor…</string>
   <!--- NotificationBarManager-->
@@ -1285,7 +1285,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="media_preview__forward_title">Vidarebefordra</string>
   <string name="media_preview__all_media_title">All media</string>
   <!--media_overview-->
-  <string name="media_overview_documents_fragment__no_documents_found">Inga dokument</string>
+  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">Inga dokument</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Mediaförhandsgranskning</string>
   <!--new_conversation_activity-->

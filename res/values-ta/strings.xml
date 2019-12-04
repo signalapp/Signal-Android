@@ -408,7 +408,7 @@
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">நீக்கப்படுகிறது</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">செய்திகள் நீக்கப்படுகிறது…</string>
-  <string name="MediaOverviewActivity_Documents">ஆவணங்கள்</string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">ஆவணங்கள்</string> -->
   <string name="MediaOverviewActivity_Select_all">அனைத்தையும்  தேர்வுசெய்</string>
   <string name="MediaOverviewActivity_collecting_attachments">இணைப்பு சேமிக்கபடுகிறது</string>
   <!--- NotificationBarManager-->
@@ -1289,7 +1289,7 @@
   <string name="media_preview__forward_title">முன்னோக்கி</string>
   <string name="media_preview__all_media_title">அனைத்து ஊடகங்களும்</string>
   <!--media_overview-->
-  <string name="media_overview_documents_fragment__no_documents_found">ஆவணங்கள் இல்லை</string>
+  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">ஆவணங்கள் இல்லை</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">மீடியா முன்னோட்டம்</string>
   <!--new_conversation_activity-->
@@ -1300,6 +1300,11 @@
   <string name="trimmer__deleting_old_messages">பழையசெய்திகள் நீக்கப்படுகிறது…</string>
   <string name="trimmer__old_messages_successfully_deleted">பழையசெய்திகள் நீக்கப்பட்டது</string>
   <!--Insights-->
+  <string name="Insights__title">நுண்ணறிவு</string>
+  <string name="InsightsDashboardFragment__title">நுண்ணறிவு</string>
+  <string name="InsightsDashboardFragment__not_enough_data">போதிய தரவு இல்லை</string>
+  <string name="InsightsDashboardFragment__start_a_conversation">புதிய உரையாடலை தொடங்கு</string>
+  <string name="InsightsDashboardFragment__encrypted_messages">மறையாக்கப்பட்ட செய்திகள்</string>
   <string name="InsightsDashboardFragment__cancel">ரத்து</string>
   <string name="InsightsDashboardFragment__send">அனுப்புக</string>
   <string name="FirstInviteReminder__title">Signal க்கு அழைக்கவும்</string>

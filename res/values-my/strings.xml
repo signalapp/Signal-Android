@@ -359,7 +359,7 @@
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">ဖျက်နေဆဲ</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">စာများဖျက်နေသည်</string>
-  <string name="MediaOverviewActivity_Documents">စာရွက်စာတမ်းများ</string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">စာရွက်စာတမ်းများ</string> -->
   <string name="MediaOverviewActivity_Select_all">အားလုံးကို ရွေးပါ</string>
   <string name="MediaOverviewActivity_collecting_attachments">ပူးတွဲဖိုင်များကို စုစည်းနေသည် </string>
   <!--- NotificationBarManager-->
@@ -1112,7 +1112,7 @@
   <string name="media_preview__forward_title">ထပ်ဆင့် ပေးပို့ပါ။</string>
   <string name="media_preview__all_media_title">ရုပ်/သံ/ပုံ စာများအားလုံး</string>
   <!--media_overview-->
-  <string name="media_overview_documents_fragment__no_documents_found">စာရွက်စာတမ်းများ မရှိပါ။ </string>
+  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">စာရွက်စာတမ်းများ မရှိပါ။ </string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description"> ရုပ်/သံ/ပုံပါ စာများကို အစမ်းကြည့်ခြင်း</string>
   <!--new_conversation_activity-->
