@@ -538,7 +538,7 @@ public class Util {
   public static String getPrettyFileSize(long sizeBytes) {
     if (sizeBytes <= 0) return "0";
 
-    String[] units       = new String[]{"B", "kB", "MB", "GB", "TB"};
+    String[] units       = new String[]{"B", "KiB", "MiB", "GiB", "TiB"};
     int      digitGroups = (int) (Math.log10(sizeBytes) / Math.log10(1024));
 
     return new DecimalFormat("#,##0.#").format(sizeBytes/Math.pow(1024, digitGroups)) + " " + units[digitGroups];
