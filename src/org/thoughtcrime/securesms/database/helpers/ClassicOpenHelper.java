@@ -789,7 +789,7 @@ public class ClassicOpenHelper extends SQLiteOpenHelper {
       db.execSQL("UPDATE part SET pending_push = '2' WHERE pending_push = '1'");
     }
 
-    if (oldVersion < NO_MORE_CANONICAL_ADDRESS_DATABASE && !TextUtils.isEmpty(TextSecurePreferences.getLocalNumber(context))) {
+    if (oldVersion < NO_MORE_CANONICAL_ADDRESS_DATABASE && isValidNumber(TextSecurePreferences.getLocalNumber(context))) {
       SQLiteOpenHelper canonicalAddressDatabaseHelper = new SQLiteOpenHelper(context, "canonical_address.db", null, 1) {
         @Override
         public void onCreate(SQLiteDatabase db) {
@@ -1186,7 +1186,7 @@ public class ClassicOpenHelper extends SQLiteOpenHelper {
     if (oldVersion < INTERNAL_DIRECTORY) {
       db.execSQL("ALTER TABLE recipient_preferences ADD COLUMN registered INTEGER DEFAULT 0");
 
-      if (!TextUtils.isEmpty(TextSecurePreferences.getLocalNumber(context))) {
+      if (isValidNumber(TextSecurePreferences.getLocalNumber(context))) {
         OldDirectoryDatabaseHelper directoryDatabaseHelper = new OldDirectoryDatabaseHelper(context);
         SQLiteDatabase             directoryDatabase       = directoryDatabaseHelper.getWritableDatabase();
 
@@ -1373,6 +1373,19 @@ public class ClassicOpenHelper extends SQLiteOpenHelper {
 
     public PostCanonicalAddressNetworkFailureDocument(String address) {
       this.address = address;
+    }
+  }
+
+  private static boolean isValidNumber(@Nullable String number) {
+    if (TextUtils.isEmpty(number)) {
+      return false;
+    }
+
+    try {
+      PhoneNumberUtil.getInstance().parse(number, null);
+      return true;
+    } catch (NumberParseException e) {
+      return false;
     }
   }
 
