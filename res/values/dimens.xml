@@ -70,10 +70,9 @@
     <dimen name="conversation_vertical_message_spacing_default">8dp</dimen>
     <dimen name="conversation_vertical_message_spacing_collapse">1dp</dimen>
 
-    <dimen name="conversation_reaction_picker_emoji_text_size">28dp</dimen>
-
     <dimen name="reaction_scrubber_anim_start_translation_y">25dp</dimen>
     <dimen name="reaction_scrubber_anim_end_translation_y">0dp</dimen>
+    <dimen name="reaction_scrubber_width">320dp</dimen>
 
     <dimen name="conversation_item_reply_size">20dp</dimen>
     <dimen name="conversation_item_avatar_size">28dp</dimen>

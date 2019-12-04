@@ -689,4 +689,12 @@
         <item name="android:windowLightNavigationBar" tools:ignore="NewApi">false</item>
     </style>
 
+    <style name="Theme.Design.Light.BottomSheetDialog.Fixed">
+        <item name="android:windowIsFloating">false</item>
+    </style>
+
+    <style name="Theme.Design.BottomSheetDialog.Fixed">
+        <item name="android:windowIsFloating">false</item>
+    </style>
+
 </resources>

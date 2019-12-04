@@ -35,4 +35,15 @@
         <item name="android:navigationBarColor">@color/media_preview_bar_background</item>
     </style>
 
+    <style name="Theme.Design.Light.BottomSheetDialog.Fixed">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:statusBarColor">@color/transparent</item>
+    </style>
+
+    <style name="Theme.Design.BottomSheetDialog.Fixed">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:statusBarColor">@color/core_grey_95</item>
+        <item name="android:navigationBarColor">@color/transparent</item>
+    </style>
+
 </resources>

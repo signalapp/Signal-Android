@@ -7,7 +7,10 @@ import android.content.Context;
 import android.graphics.PointF;
 import android.graphics.Rect;
 import android.os.Build;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.util.AttributeSet;
+import android.view.HapticFeedbackConstants;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
@@ -36,6 +39,8 @@ import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.ReactionRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.MessageRecordUtil;
+import org.thoughtcrime.securesms.util.ServiceUtil;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
@@ -77,6 +82,7 @@ public final class ConversationReactionOverlay extends RelativeLayout {
   private float distanceFromTouchDownPointToBottomOfScrubberDeadZone;
   private int   scrubberDistanceFromTouchDown;
   private int   scrubberHeight;
+  private int   scrubberWidth;
   private int   halfActionBarHeight;
   private int   selectedVerticalTranslation;
   private int   scrubberHorizontalMargin;
@@ -111,11 +117,8 @@ public final class ConversationReactionOverlay extends RelativeLayout {
     toolbar.setNavigationOnClickListener(view -> hide());
 
     emojiViews = Stream.of(ReactionEmoji.values())
-        .map(e -> {
-          EmojiTextView view = findViewById(e.viewId);
-          view.setText(e.emoji);
-          return view;
-        }).toArray(View[]::new);
+                       .map(e -> findViewById(e.viewId))
+                       .toArray(View[]::new);
 
     distanceFromTouchDownPointToTopOfScrubberDeadZone    = getResources().getDimensionPixelSize(R.dimen.conversation_reaction_scrub_deadzone_distance_from_touch_top);
     distanceFromTouchDownPointToBottomOfScrubberDeadZone = getResources().getDimensionPixelSize(R.dimen.conversation_reaction_scrub_deadzone_distance_from_touch_bottom);
@@ -124,6 +127,7 @@ public final class ConversationReactionOverlay extends RelativeLayout {
     statusBarHeight               = ViewUtil.getStatusBarHeight(this);
     scrubberDistanceFromTouchDown = getResources().getDimensionPixelOffset(R.dimen.conversation_reaction_scrubber_distance);
     scrubberHeight                = getResources().getDimensionPixelOffset(R.dimen.conversation_reaction_scrubber_height);
+    scrubberWidth                 = getResources().getDimensionPixelOffset(R.dimen.reaction_scrubber_width);
     halfActionBarHeight           = (int) ThemeUtil.getThemedDimen(getContext(), R.attr.actionBarSize) / 2;
     selectedVerticalTranslation   = getResources().getDimensionPixelOffset(R.dimen.conversation_reaction_scrub_vertical_translation);
     scrubberHorizontalMargin      = getResources().getDimensionPixelOffset(R.dimen.conversation_reaction_scrub_horizontal_margin);
@@ -149,7 +153,7 @@ public final class ConversationReactionOverlay extends RelativeLayout {
     final float scrubberTranslationY = Math.max(-scrubberDistanceFromTouchDown + halfActionBarHeight,
                                                 lastSeenDownPoint.y - scrubberHeight - scrubberDistanceFromTouchDown);
 
-    final float halfWidth            = foregroundView.getWidth() / 2f + scrubberHorizontalMargin;
+    final float halfWidth            = scrubberWidth / 2f + scrubberHorizontalMargin;
     final float screenWidth          = getResources().getDisplayMetrics().widthPixels;
     final float scrubberTranslationX = Util.clamp(lastSeenDownPoint.x - halfWidth,
                                                   scrubberHorizontalMargin,
@@ -202,6 +206,19 @@ public final class ConversationReactionOverlay extends RelativeLayout {
     return messageRecord;
   }
 
+  @Override
+  protected void onLayout(boolean changed, int l, int t, int r, int b) {
+    super.onLayout(changed, l, t, r, b);
+
+    backgroundView.getGlobalVisibleRect(emojiStripViewBounds);
+    emojiViews[0].getGlobalVisibleRect(emojiViewGlobalRect);
+    emojiStripViewBounds.left = emojiViewGlobalRect.left;
+    emojiViews[emojiViews.length - 1].getGlobalVisibleRect(emojiViewGlobalRect);
+    emojiStripViewBounds.right = emojiViewGlobalRect.right;
+
+    segmentSize = emojiStripViewBounds.width() / (float) emojiViews.length;
+  }
+
   public boolean applyTouchEvent(@NonNull MotionEvent motionEvent) {
     if (!isShowing()) {
       if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
@@ -215,14 +232,6 @@ public final class ConversationReactionOverlay extends RelativeLayout {
     }
 
     if (overlayState == OverlayState.UNINITAILIZED) {
-      backgroundView.getGlobalVisibleRect(emojiStripViewBounds);
-      emojiViews[0].getGlobalVisibleRect(emojiViewGlobalRect);
-      emojiStripViewBounds.left = emojiViewGlobalRect.left;
-      emojiViews[emojiViews.length - 1].getGlobalVisibleRect(emojiViewGlobalRect);
-      emojiStripViewBounds.right = emojiViewGlobalRect.right;
-
-      segmentSize = emojiStripViewBounds.width() / (float) emojiViews.length;
-
       downIsOurs = false;
 
       deadzoneTouchPoint.set(motionEvent.getRawX(), motionEvent.getRawY());
@@ -345,6 +354,7 @@ public final class ConversationReactionOverlay extends RelativeLayout {
   }
 
   private void growView(@NonNull View view) {
+    view.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
     view.animate()
         .scaleY(1.5f)
         .scaleX(1.5f)
@@ -486,7 +496,7 @@ public final class ConversationReactionOverlay extends RelativeLayout {
     hideAnimatorSet.addListener(new AnimationCompleteListener() {
       @Override
       public void onAnimationEnd(Animator animation) {
-        setVisibility(View.INVISIBLE);
+        setVisibility(View.GONE);
       }
     });
 

@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.util.ThemeUtil;
 
 public final class ReactionsBottomSheetDialogFragment extends BottomSheetDialogFragment {
 
@@ -39,6 +40,18 @@ public final class ReactionsBottomSheetDialogFragment extends BottomSheetDialogF
     fragment.setArguments(args);
 
     return fragment;
+  }
+
+  @Override
+  public void onCreate(@Nullable Bundle savedInstanceState) {
+
+    if (ThemeUtil.isDarkTheme(requireContext())) {
+      setStyle(DialogFragment.STYLE_NORMAL, R.style.Theme_Design_BottomSheetDialog_Fixed);
+    } else {
+      setStyle(DialogFragment.STYLE_NORMAL, R.style.Theme_Design_Light_BottomSheetDialog_Fixed);
+    }
+
+    super.onCreate(savedInstanceState);
   }
 
   @Override
