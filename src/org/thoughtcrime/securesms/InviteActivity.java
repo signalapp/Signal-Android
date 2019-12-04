@@ -22,9 +22,12 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 
+import com.annimon.stream.Stream;
+
 import org.thoughtcrime.securesms.components.ContactFilterToolbar;
 import org.thoughtcrime.securesms.components.ContactFilterToolbar.OnFilterChangedListener;
 import org.thoughtcrime.securesms.contacts.ContactsCursorLoader.DisplayMode;
+import org.thoughtcrime.securesms.contacts.SelectedContact;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -132,7 +135,7 @@ public class InviteActivity extends PassphraseRequiredActionBarActivity implemen
     new SendSmsInvitesAsyncTask(this, inviteText.getText().toString())
         .executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,
                            contactsFragment.getSelectedContacts()
-                                           .toArray(new String[contactsFragment.getSelectedContacts().size()]));
+                                           .toArray(new SelectedContact[contactsFragment.getSelectedContacts().size()]));
   }
 
   private void updateSmsButtonText() {
@@ -239,7 +242,7 @@ public class InviteActivity extends PassphraseRequiredActionBarActivity implemen
   }
 
   @SuppressLint("StaticFieldLeak")
-  private class SendSmsInvitesAsyncTask extends ProgressDialogAsyncTask<String,Void,Void> {
+  private class SendSmsInvitesAsyncTask extends ProgressDialogAsyncTask<SelectedContact,Void,Void> {
     private final String message;
 
     SendSmsInvitesAsyncTask(Context context, String message) {
@@ -248,13 +251,14 @@ public class InviteActivity extends PassphraseRequiredActionBarActivity implemen
     }
 
     @Override
-    protected Void doInBackground(String... numbers) {
+    protected Void doInBackground(SelectedContact... contacts) {
       final Context context = getContext();
       if (context == null) return null;
 
-      for (String number : numbers) {
-        Recipient recipient      = Recipient.external(context, number);
-        int       subscriptionId = recipient.getDefaultSubscriptionId().or(-1);
+      for (SelectedContact contact : contacts) {
+        RecipientId recipientId    = contact.getOrCreateRecipientId(context);
+        Recipient   recipient      = Recipient.resolved(recipientId);
+        int         subscriptionId = recipient.getDefaultSubscriptionId().or(-1);
 
         MessageSender.send(context, new OutgoingTextMessage(recipient, message, subscriptionId), -1L, true, null);
 
