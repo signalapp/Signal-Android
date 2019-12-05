@@ -293,18 +293,7 @@ public class SignalServiceCipher {
     } else if (e164Address != null && store.containsSession(e164Address)) {
       return e164Address;
     } else {
-      // TODO [greyson][uuid] We should switch to preferring the UUID once we allow UUID-only recipients
-      String preferred;
-
-      if (address.getNumber().isPresent()) {
-        preferred = address.getNumber().get();
-      } else if (address.getUuid().isPresent()) {
-        preferred = address.getUuid().get().toString();
-      } else {
-        throw new AssertionError("Given the constrains of creating a SignalServiceAddress, this should not be possible.");
-      }
-
-      return new SignalProtocolAddress(preferred, sourceDevice);
+      return new SignalProtocolAddress(address.getLegacyIdentifier(), sourceDevice);
     }
   }
 
