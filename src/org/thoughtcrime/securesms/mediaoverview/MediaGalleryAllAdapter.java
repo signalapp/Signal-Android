@@ -27,6 +27,8 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.annimon.stream.Collectors;
+import com.annimon.stream.Stream;
 import com.codewaves.stickyheadergrid.StickyHeaderGridAdapter;
 
 import org.thoughtcrime.securesms.R;
@@ -185,6 +187,12 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
 
   public int getSelectedMediaCount() {
     return selected.size();
+  }
+
+  public long getSelectedMediaTotalFileSize() {
+    //noinspection ConstantConditions attacment cannot be null if selected
+    return Stream.of(selected.values())
+                 .collect(Collectors.summingLong(a -> a.getAttachment().getSize()));
   }
 
   @NonNull
