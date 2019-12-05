@@ -24,6 +24,7 @@ import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.recipients.LiveRecipientCache;
 import org.thoughtcrime.securesms.service.IncomingMessageObserver;
 import org.thoughtcrime.securesms.util.AlarmSleepTimer;
+import org.thoughtcrime.securesms.util.FrameRateTracker;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
@@ -111,6 +112,11 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
                                                                .setJobStorage(new FastJobStorage(DatabaseFactory.getJobDatabase(context)))
                                                                .setJobMigrator(new JobMigrator(TextSecurePreferences.getJobManagerVersion(context), JobManager.CURRENT_VERSION, JobManagerFactories.getJobMigrations(context)))
                                                                .build());
+  }
+
+  @Override
+  public @NonNull FrameRateTracker provideFrameRateTracker() {
+    return new FrameRateTracker(context);
   }
 
   private static class DynamicCredentialsProvider implements CredentialsProvider {
