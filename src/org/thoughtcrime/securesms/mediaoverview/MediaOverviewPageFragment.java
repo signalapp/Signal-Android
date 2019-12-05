@@ -312,7 +312,7 @@ public final class MediaOverviewPageFragment extends Fragment
     @Override
     public boolean onCreateActionMode(ActionMode mode, Menu menu) {
       mode.getMenuInflater().inflate(R.menu.media_overview_context, menu);
-      refreshActionModeTitle();
+      mode.setTitle(getActionModeTitle());
 
       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
         Window window = requireActivity().getWindow();
