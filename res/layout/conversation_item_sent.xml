@@ -200,27 +200,21 @@
             app:mhfl_maxHeight="@dimen/reactions_bubble_container_max_height"
             tools:visibility="visible">
 
-            <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+            <org.thoughtcrime.securesms.components.emoji.EmojiImageView
                 android:id="@+id/reactions_bubbles_secondary"
                 android:layout_width="@dimen/reactions_bubble_size"
                 android:layout_height="@dimen/reactions_bubble_size"
                 android:layout_gravity="bottom"
-                android:background="?attr/reactions_recv_background"
-                android:gravity="center"
-                android:includeFontPadding="false"
-                android:textSize="@dimen/reactions_bubble_text_size"
-                tools:ignore="SpUsage" />
+                android:padding="6dp"
+                android:background="?attr/reactions_recv_background" />
 
-            <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+            <org.thoughtcrime.securesms.components.emoji.EmojiImageView
                 android:id="@+id/reactions_bubbles_primary"
                 android:layout_width="@dimen/reactions_bubble_size"
                 android:layout_height="@dimen/reactions_bubble_size"
                 android:layout_gravity="top"
-                android:background="?attr/reactions_recv_background"
-                android:gravity="center"
-                android:includeFontPadding="false"
-                android:textSize="@dimen/reactions_bubble_text_size"
-                tools:ignore="SpUsage" />
+                android:padding="6dp"
+                android:background="?attr/reactions_recv_background" />
 
         </org.thoughtcrime.securesms.components.MaxHeightFrameLayout>
 
