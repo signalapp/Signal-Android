@@ -659,36 +659,41 @@ public class RecipientDatabase extends Database {
   public void setMessageRingtone(@NonNull RecipientId id, @Nullable Uri notification) {
     ContentValues values = new ContentValues();
     values.put(MESSAGE_RINGTONE, notification == null ? null : notification.toString());
-    update(id, values);
-    Recipient.live(id).refresh();
+    if (update(id, values)) {
+      Recipient.live(id).refresh();
+    }
   }
 
   public void setCallRingtone(@NonNull RecipientId id, @Nullable Uri ringtone) {
     ContentValues values = new ContentValues();
     values.put(CALL_RINGTONE, ringtone == null ? null : ringtone.toString());
-    update(id, values);
-    Recipient.live(id).refresh();
+    if (update(id, values)) {
+      Recipient.live(id).refresh();
+    }
   }
 
   public void setMessageVibrate(@NonNull RecipientId id, @NonNull VibrateState enabled) {
     ContentValues values = new ContentValues();
     values.put(MESSAGE_VIBRATE, enabled.getId());
-    update(id, values);
-    Recipient.live(id).refresh();
+    if (update(id, values)) {
+      Recipient.live(id).refresh();
+    }
   }
 
   public void setCallVibrate(@NonNull RecipientId id, @NonNull VibrateState enabled) {
     ContentValues values = new ContentValues();
     values.put(CALL_VIBRATE, enabled.getId());
-    update(id, values);
-    Recipient.live(id).refresh();
+    if (update(id, values)) {
+      Recipient.live(id).refresh();
+    }
   }
 
   public void setMuted(@NonNull RecipientId id, long until) {
     ContentValues values = new ContentValues();
     values.put(MUTE_UNTIL, until);
-    update(id, values);
-    Recipient.live(id).refresh();
+    if (update(id, values)) {
+      Recipient.live(id).refresh();
+    }
   }
 
   public void setSeenFirstInviteReminder(@NonNull RecipientId id) {
