@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 
@@ -166,6 +167,10 @@ public final class LiveRecipient {
     }
 
     set(recipient);
+  }
+
+  public @NonNull LiveData<Recipient> getLiveData() {
+    return liveData;
   }
 
   private @NonNull Recipient fetchRecipientFromDisk(RecipientId id) {

@@ -24,6 +24,7 @@ import androidx.annotation.NonNull;
 import org.thoughtcrime.securesms.R;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
@@ -134,6 +135,10 @@ public class DateUtils extends android.text.format.DateUtils {
 
   public static String formatDate(@NonNull Locale locale, long timestamp) {
     return getFormattedDateTime(timestamp, "EEE, MMM d, yyyy", locale);
+  }
+
+  public static String formatDateWithoutDayOfWeek(@NonNull Locale locale, long timestamp) {
+    return getFormattedDateTime(timestamp, "MMM d yyyy", locale);
   }
 
   public static boolean isSameDay(long t1, long t2) {

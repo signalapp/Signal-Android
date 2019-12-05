@@ -17,12 +17,14 @@
 package org.thoughtcrime.securesms.mediaoverview;
 
 import android.content.Context;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.codewaves.stickyheadergrid.StickyHeaderGridAdapter;
@@ -37,9 +39,14 @@ import org.thoughtcrime.securesms.database.loaders.GroupedThreadMediaLoader.Grou
 import org.thoughtcrime.securesms.mms.AudioSlide;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.Slide;
+import org.thoughtcrime.securesms.recipients.LiveRecipient;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.livedata.LiveDataPair;
+import org.whispersystems.libsignal.util.Pair;
+import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -50,6 +57,7 @@ import java.util.Map;
 final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
 
   private final Context                        context;
+  private final boolean                        showThread;
   private final GlideRequests                  glideRequests;
   private final ItemClickListener              itemClickListener;
   private final Map<AttachmentId, MediaRecord> selected          = new HashMap<>();
@@ -63,9 +71,15 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
   private static final int GALLERY_DETAIL  = 3;
   private static final int DOCUMENT_DETAIL = 4;
 
-  public void pause(RecyclerView.ViewHolder holder) {
+  void pause(RecyclerView.ViewHolder holder) {
     if (holder instanceof AudioDetailViewHolder) {
       ((AudioDetailViewHolder) holder).pause();
+    }
+  }
+
+  void detach(RecyclerView.ViewHolder holder) {
+    if (holder instanceof SelectableViewHolder) {
+      ((SelectableViewHolder) holder).onDetached();
     }
   }
 
@@ -82,13 +96,15 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
                          @NonNull GlideRequests glideRequests,
                          GroupedThreadMedia media,
                          ItemClickListener clickListener,
-                         boolean showFileSizes)
+                         boolean showFileSizes,
+                         boolean showThread)
   {
     this.context           = context;
     this.glideRequests     = glideRequests;
     this.media             = media;
     this.itemClickListener = clickListener;
     this.showFileSizes     = showFileSizes;
+    this.showThread        = showThread;
   }
 
   public void setMedia(GroupedThreadMedia media) {
@@ -143,7 +159,7 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
   public void onViewDetachedFromWindow(@NonNull ViewHolder holder) {
     super.onViewDetachedFromWindow(holder);
     if (holder instanceof SelectableViewHolder) {
-      ((SelectableViewHolder) holder).detached();
+      ((SelectableViewHolder) holder).onDetached();
     }
   }
 
@@ -182,8 +198,10 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
   }
 
   void selectAllMedia() {
-    for (int section = 0; section < media.getSectionCount(); section++) {
-      for (int item = 0; item < media.getSectionItemCount(section); item++) {
+    int sectionCount = media.getSectionCount();
+    for (int section = 0; section < sectionCount; section++) {
+      int sectionItemCount = media.getSectionItemCount(section);
+      for (int item = 0; item < sectionItemCount; item++) {
         MediaRecord mediaRecord = media.get(section, item);
         selected.put(mediaRecord.getAttachment().getAttachmentId(), mediaRecord);
       }
@@ -203,6 +221,7 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
 
     private final View                      selectedIndicator;
     private       MediaDatabase.MediaRecord mediaRecord;
+    private       boolean                   bound;
 
     SelectableViewHolder(@NonNull View itemView) {
       super(itemView);
@@ -210,8 +229,16 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
     }
 
     public void bind(@NonNull Context context, @NonNull MediaDatabase.MediaRecord mediaRecord, @NonNull Slide slide) {
+      if (bound) {
+        unbind();
+      }
       this.mediaRecord = mediaRecord;
       updateSelectedView();
+      bound = true;
+    }
+
+    void unbind() {
+      bound = false;
     }
 
     private void updateSelectedView() {
@@ -226,7 +253,10 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
       return true;
     }
 
-    void detached() {
+    void onDetached() {
+      if (bound) {
+        unbind();
+      }
     }
   }
 
@@ -259,16 +289,22 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
     }
 
     @Override
-    void detached() {
+    void unbind() {
       thumbnailView.clear(glideRequests);
+      super.unbind();
     }
   }
 
-  private class DetailViewHolder extends SelectableViewHolder {
+  private abstract class DetailViewHolder extends SelectableViewHolder implements Observer<Pair<Recipient, Recipient>> {
 
-    protected final View     itemView;
-    private   final TextView line1;
-    private   final TextView line2;
+    protected final View                               itemView;
+    private   final TextView                           line1;
+    private   final TextView                           line2;
+    private         LiveDataPair<Recipient, Recipient> liveDataPair;
+    private         Optional<String>                   fileName;
+    private         String                             fileTypeDescription;
+    private         Handler                            handler;
+    private         Runnable                           selectForMarque;
 
     DetailViewHolder(@NonNull View itemView) {
       super(itemView);
@@ -281,27 +317,82 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
     public void bind(@NonNull Context context, @NonNull MediaDatabase.MediaRecord mediaRecord, @NonNull Slide slide) {
       super.bind(context, mediaRecord, slide);
 
-      line1.setText(getLine1(context, slide));
-      line2.setText(getLine2(mediaRecord, slide));
-      line1.setVisibility(View.VISIBLE);
-      line2.setVisibility(View.VISIBLE);
+      fileName            = slide.getFileName();
+      fileTypeDescription = getFileTypeDescription(context, slide);
+
+      line1.setText(fileName.or(fileTypeDescription));
+      line2.setText(getLine2(context, mediaRecord, slide));
       itemView.setOnClickListener(view -> itemClickListener.onMediaClicked(mediaRecord));
       itemView.setOnLongClickListener(view -> onLongClick());
+      selectForMarque = () -> line1.setSelected(true);
+      handler = new Handler();
+      handler.postDelayed(selectForMarque, 2500);
+
+      LiveRecipient from = mediaRecord.isOutgoing() ? Recipient.self().live() : Recipient.live(mediaRecord.getRecipientId());
+      LiveRecipient to   = Recipient.live(mediaRecord.getThreadRecipientId());
+
+      liveDataPair = new LiveDataPair<>(from.getLiveData(), to.getLiveData(), Recipient.UNKNOWN, Recipient.UNKNOWN);
+      liveDataPair.observeForever(this);
     }
 
-    private String getLine1(@NonNull Context context, @NonNull Slide slide) {
-      return slide.getFileName()
-                  .or(slide.getCaption())
-                  .or(() -> describeUnnamedFile(context, slide));
+    @Override
+    void unbind() {
+      liveDataPair.removeObserver(this);
+      handler.removeCallbacks(selectForMarque);
+      line1.setSelected(false);
+      super.unbind();
     }
 
-    private String getLine2(@NonNull MediaDatabase.MediaRecord mediaRecord, @NonNull Slide slide) {
-      String date = DateUtils.formatDate(Locale.getDefault(), mediaRecord.getDate());
-      return Util.getPrettyFileSize(slide.getFileSize()) + " " + date;
+    private String getLine2(@NonNull Context context, @NonNull MediaDatabase.MediaRecord mediaRecord, @NonNull Slide slide) {
+      return context.getString(R.string.MediaOverviewActivity_detail_line_3_part,
+                               Util.getPrettyFileSize(slide.getFileSize()),
+                               getFileTypeDescription(context, slide),
+                               DateUtils.formatDateWithoutDayOfWeek(Locale.getDefault(), mediaRecord.getDate()));
     }
 
-    protected String describeUnnamedFile(@NonNull Context context, @NonNull Slide slide) {
-      return context.getString(R.string.DocumentView_unnamed_file);
+    protected String getFileTypeDescription(@NonNull Context context, @NonNull Slide slide){
+      return context.getString(R.string.MediaOverviewActivity_file);
+    }
+
+    @Override
+    public void onChanged(Pair<Recipient, Recipient> fromToPair) {
+      line1.setText(describe(fromToPair.first(), fromToPair.second()));
+    }
+
+    private String describe(@NonNull Recipient from, @NonNull Recipient thread) {
+      if (from == Recipient.UNKNOWN && thread == Recipient.UNKNOWN) {
+        return fileName.or(fileTypeDescription);
+      }
+
+      String sentFromToString = getSentFromToString(from, thread);
+
+      if (fileName.isPresent()) {
+        return context.getString(R.string.MediaOverviewActivity_detail_line_2_part,
+                                 fileName.get(),
+                                 sentFromToString);
+      } else {
+        return sentFromToString;
+      }
+    }
+
+    private String getSentFromToString(@NonNull Recipient from, @NonNull Recipient thread) {
+      if (from.isLocalNumber() && from == thread) {
+        return context.getString(R.string.note_to_self);
+      }
+
+      if (showThread && (from.isLocalNumber() || thread.isGroup())) {
+        if (from.isLocalNumber()) {
+          return context.getString(R.string.MediaOverviewActivity_sent_by_you_to_s, thread.toShortString(context));
+        } else {
+          return context.getString(R.string.MediaOverviewActivity_sent_by_s_to_s, from.toShortString(context), thread.toShortString(context));
+        }
+      } else {
+        if (from.isLocalNumber()) {
+          return context.getString(R.string.MediaOverviewActivity_sent_by_you);
+        } else {
+          return context.getString(R.string.MediaOverviewActivity_sent_by_s, from.toShortString(context));
+        }
+      }
     }
   }
 
@@ -345,13 +436,14 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
     }
 
     @Override
-    void detached() {
+    void unbind() {
       audioView.stopPlaybackAndReset();
+      super.unbind();
     }
 
     @Override
-    protected String describeUnnamedFile(@NonNull Context context, @NonNull Slide slide) {
-      return context.getString(R.string.DocumentView_audio_file);
+    protected String getFileTypeDescription(@NonNull Context context, @NonNull Slide slide) {
+      return context.getString(R.string.MediaOverviewActivity_audio);
     }
 
     public void pause() {
@@ -377,15 +469,16 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
     }
 
     @Override
-    protected String describeUnnamedFile(@NonNull Context context, @NonNull Slide slide) {
-      if (slide.hasVideo()) return context.getString(R.string.DocumentView_video_file);
-      if (slide.hasImage()) return context.getString(R.string.DocumentView_image_file);
-      return super.describeUnnamedFile(context, slide);
+    protected String getFileTypeDescription(@NonNull Context context, @NonNull Slide slide) {
+      if (slide.hasVideo()) return context.getString(R.string.MediaOverviewActivity_video);
+      if (slide.hasImage()) return context.getString(R.string.MediaOverviewActivity_image);
+      return super.getFileTypeDescription(context, slide);
     }
 
     @Override
-    void detached() {
+    void unbind() {
       thumbnailView.clear(glideRequests);
+      super.unbind();
     }
   }
 

@@ -13,34 +13,28 @@
 
     <TextView
         android:id="@+id/line1"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ellipsize="end"
-        android:gravity="center"
-        android:maxLines="1"
+        android:ellipsize="marquee"
         android:paddingStart="6dp"
         android:paddingEnd="6dp"
+        android:singleLine="true"
         android:textSize="14sp"
-        android:visibility="gone"
         app:layout_constraintStart_toEndOf="@+id/image_container"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Sent voice note, 02:35"
-        tools:visibility="visible" />
+        tools:text="Sent voice note, 02:35" />
 
     <TextView
         android:id="@+id/line2"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ellipsize="end"
-        android:gravity="center"
-        android:maxLines="1"
+        android:ellipsize="marquee"
         android:paddingStart="6dp"
         android:paddingEnd="6dp"
+        android:singleLine="true"
         android:textSize="14sp"
-        android:visibility="gone"
         app:layout_constraintStart_toEndOf="@+id/image_container"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="2.7 MB, 11.06.19 at 5:25 AM"
-        tools:visibility="visible" />
+        tools:text="2.7 MB, 11.06.19 at 5:25 AM" />
 
 </LinearLayout>

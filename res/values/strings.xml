@@ -353,11 +353,7 @@
     <string name="DeviceListItem_today">Today</string>
 
     <!-- DocumentView -->
-    <string name="DocumentView_unknown_file">Unknown file</string>
     <string name="DocumentView_unnamed_file">Unnamed file</string>
-    <string name="DocumentView_audio_file">Audio file</string>
-    <string name="DocumentView_image_file">Image file</string>
-    <string name="DocumentView_video_file">Video file</string>
 
     <!-- DozeReminder -->
     <string name="DozeReminder_optimize_for_missing_play_services">Optimize for missing Play Services</string>
@@ -486,6 +482,9 @@
 
     <!-- MediaOverviewActivity -->
     <string name="MediaOverviewActivity_Media">Media</string>
+    <string name="MediaOverviewActivity_Files">Files</string>
+    <string name="MediaOverviewActivity_Audio">Audio</string>
+    <string name="MediaOverviewActivity_All">All</string>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
         <item quantity="one">Delete selected item?</item>
         <item quantity="other">Delete selected items?</item>
@@ -496,11 +495,8 @@
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">Deleting</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">Deleting messages…</string>
-    <string name="MediaOverviewActivity_Files">Files</string>
     <string name="MediaOverviewActivity_Select_all">Select all</string>
     <string name="MediaOverviewActivity_collecting_attachments">Collecting attachments…</string>
-    <string name="MediaOverviewActivity_Audio">Audio</string>
-    <string name="MediaOverviewActivity_All">All</string>
     <string name="MediaOverviewActivity_Sort_by">Sort by</string>
     <string name="MediaOverviewActivity_Newest">Newest</string>
     <string name="MediaOverviewActivity_Oldest">Oldest</string>
@@ -509,6 +505,18 @@
     <string name="MediaOverviewActivity_Grid_view_description">Grid view</string>
     <string name="MediaOverviewActivity_List_view_description">List view</string>
     <string name="MediaOverviewActivity_Selected_description">Selected</string>
+
+    <string name="MediaOverviewActivity_file">File</string>
+    <string name="MediaOverviewActivity_audio">Audio</string>
+    <string name="MediaOverviewActivity_video">Video</string>
+    <string name="MediaOverviewActivity_image">Image</string>
+    <string name="MediaOverviewActivity_detail_line_2_part" translatable="false">%1$s &#183; %2$s</string>
+    <string name="MediaOverviewActivity_detail_line_3_part" translatable="false">%1$s &#183; %2$s &#183; %3$s</string>
+
+    <string name="MediaOverviewActivity_sent_by_s">Sent by %1$s</string>
+    <string name="MediaOverviewActivity_sent_by_you">Sent by you</string>
+    <string name="MediaOverviewActivity_sent_by_s_to_s">Sent by %1$s to %2$s</string>
+    <string name="MediaOverviewActivity_sent_by_you_to_s">Sent by you to %1$s</string>
 
     <!--- NotificationBarManager -->
     <string name="NotificationBarManager_signal_call_in_progress">Signal call in progress</string>

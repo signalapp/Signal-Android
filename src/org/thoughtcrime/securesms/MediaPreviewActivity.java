@@ -52,7 +52,6 @@ import androidx.viewpager.widget.ViewPager;
 import org.thoughtcrime.securesms.animation.DepthPageTransformer;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.components.viewpager.ExtendedOnPageChangedListener;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MediaDatabase;
 import org.thoughtcrime.securesms.database.MediaDatabase.MediaRecord;
 import org.thoughtcrime.securesms.database.loaders.PagingMediaLoader;
@@ -722,13 +721,12 @@ public final class MediaPreviewActivity extends PassphraseRequiredActionBarActiv
 
       MediaRecord mediaRecord       = MediaRecord.from(context, cursor);
       RecipientId recipientId       = mediaRecord.getRecipientId();
-      RecipientId threadRecipientId = DatabaseFactory.getThreadDatabase(context)
-                                                     .getRecipientIdForThreadId(mediaRecord.getThreadId());
+      RecipientId threadRecipientId = mediaRecord.getThreadRecipientId();
 
       if (mediaRecord.getAttachment().getDataUri() == null) throw new AssertionError();
 
       return new MediaItem(Recipient.live(recipientId).get(),
-                           threadRecipientId != null ? Recipient.live(threadRecipientId).get() : null,
+                           Recipient.live(threadRecipientId).get(),
                            mediaRecord.getAttachment(),
                            mediaRecord.getAttachment().getDataUri(),
                            mediaRecord.getContentType(),

@@ -5,6 +5,7 @@ import android.database.ContentObserver;
 import android.database.Cursor;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import net.sqlcipher.database.SQLiteDatabase;
 
@@ -17,7 +18,8 @@ import java.util.List;
 
 public class MediaDatabase extends Database {
 
-    public static final int ALL_THREADS = -1;
+    public  static final int    ALL_THREADS         = -1;
+    private static final String THREAD_RECIPIENT_ID = "THREAD_RECIPIENT_ID";
 
     private static final String BASE_MEDIA_QUERY = "SELECT " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.ROW_ID + " AS " + AttachmentDatabase.ROW_ID + ", "
         + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.CONTENT_TYPE + ", "
@@ -48,9 +50,12 @@ public class MediaDatabase extends Database {
         + MmsDatabase.TABLE_NAME + "." + MmsDatabase.DATE_SENT + ", "
         + MmsDatabase.TABLE_NAME + "." + MmsDatabase.DATE_RECEIVED + ", "
         + MmsDatabase.TABLE_NAME + "." + MmsDatabase.THREAD_ID + ", "
-        + MmsDatabase.TABLE_NAME + "." + MmsDatabase.RECIPIENT_ID + " "
+        + MmsDatabase.TABLE_NAME + "." + MmsDatabase.RECIPIENT_ID + ", "
+        + ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.RECIPIENT_ID + " as " + THREAD_RECIPIENT_ID + " "
         + "FROM " + AttachmentDatabase.TABLE_NAME + " LEFT JOIN " + MmsDatabase.TABLE_NAME
         + " ON " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.MMS_ID + " = " + MmsDatabase.TABLE_NAME + "." + MmsDatabase.ID + " "
+        + "LEFT JOIN " + ThreadDatabase.TABLE_NAME
+        + " ON " + ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.ID + " = " + MmsDatabase.TABLE_NAME + "." + MmsDatabase.THREAD_ID + " "
         + "WHERE " + AttachmentDatabase.MMS_ID + " IN (SELECT " + MmsSmsColumns.ID
         + " FROM " + MmsDatabase.TABLE_NAME
         + " WHERE " + MmsDatabase.THREAD_ID + " __EQUALITY__ ?) AND (%s) AND "
@@ -167,16 +172,24 @@ public class MediaDatabase extends Database {
 
     private final DatabaseAttachment attachment;
     private final RecipientId        recipientId;
+    private final RecipientId        threadRecipientId;
     private final long               threadId;
     private final long               date;
     private final boolean            outgoing;
 
-    private MediaRecord(DatabaseAttachment attachment, @NonNull RecipientId recipientId, long threadId, long date, boolean outgoing) {
-      this.attachment  = attachment;
-      this.recipientId = recipientId;
-      this.threadId    = threadId;
-      this.date        = date;
-      this.outgoing    = outgoing;
+    private MediaRecord(@Nullable DatabaseAttachment attachment,
+                        @NonNull RecipientId recipientId,
+                        @NonNull RecipientId threadRecipientId,
+                        long threadId,
+                        long date,
+                        boolean outgoing)
+    {
+      this.attachment        = attachment;
+      this.recipientId       = recipientId;
+      this.threadRecipientId = threadRecipientId;
+      this.threadId          = threadId;
+      this.date              = date;
+      this.outgoing          = outgoing;
     }
 
     public static MediaRecord from(@NonNull Context context, @NonNull Cursor cursor) {
@@ -194,10 +207,17 @@ public class MediaDatabase extends Database {
         date = cursor.getLong(cursor.getColumnIndexOrThrow(MmsDatabase.DATE_RECEIVED));
       }
 
-      return new MediaRecord(attachments != null && attachments.size() > 0 ? attachments.get(0) : null, recipientId, threadId, date, outgoing);
+      RecipientId threadRecipient = RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(THREAD_RECIPIENT_ID)));
+
+      return new MediaRecord(attachments != null && attachments.size() > 0 ? attachments.get(0) : null,
+                             recipientId,
+                             threadRecipient,
+                             threadId,
+                             date,
+                             outgoing);
     }
 
-    public DatabaseAttachment getAttachment() {
+    public @Nullable DatabaseAttachment getAttachment() {
       return attachment;
     }
 
@@ -207,6 +227,10 @@ public class MediaDatabase extends Database {
 
     public @NonNull RecipientId getRecipientId() {
       return recipientId;
+    }
+
+    public @NonNull RecipientId getThreadRecipientId() {
+      return threadRecipientId;
     }
 
     public long getThreadId() {

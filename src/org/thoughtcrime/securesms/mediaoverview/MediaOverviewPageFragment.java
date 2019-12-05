@@ -103,7 +103,8 @@ public final class MediaOverviewPageFragment extends Fragment
                                               GlideApp.with(this),
                                               new GroupedThreadMediaLoader.EmptyGroupedThreadMedia(),
                                               this,
-                                              sorting.isRelatedToFileSize());
+                                              sorting.isRelatedToFileSize(),
+                                              threadId == MediaDatabase.ALL_THREADS);
     this.recyclerView.setAdapter(adapter);
     this.recyclerView.setLayoutManager(gridManager);
     this.recyclerView.setHasFixedSize(true);
@@ -182,7 +183,16 @@ public final class MediaOverviewPageFragment extends Fragment
     int childCount = recyclerView.getChildCount();
     for (int i = 0; i < childCount; i++) {
       adapter.pause(recyclerView.getChildViewHolder(recyclerView.getChildAt(i)));
-   }
+    }
+  }
+
+  @Override
+  public void onDestroy() {
+    super.onDestroy();
+    int childCount = recyclerView.getChildCount();
+    for (int i = 0; i < childCount; i++) {
+      adapter.detach(recyclerView.getChildViewHolder(recyclerView.getChildAt(i)));
+    }
   }
 
   private void handleMediaMultiSelectClick(@NonNull MediaDatabase.MediaRecord mediaRecord) {

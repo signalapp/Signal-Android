@@ -4,7 +4,6 @@ import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.SavedStateHandle;
 import androidx.lifecycle.Transformations;
@@ -14,6 +13,7 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.registration.service.RegistrationService;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
+import org.thoughtcrime.securesms.util.livedata.LiveDataPair;
 import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.signalservice.internal.contacts.entities.TokenResponse;
 import org.whispersystems.signalservice.internal.util.JsonUtil;
@@ -201,27 +201,4 @@ public final class RegistrationViewModel extends ViewModel {
       }
     }, this::setKeyBackupCurrentToken);
   }
-
-  public static class LiveDataPair<A, B> extends MediatorLiveData<Pair<A, B>> {
-    private A a;
-    private B b;
-
-    public LiveDataPair(LiveData<A> ld1, LiveData<B> ld2) {
-        setValue(new Pair<>(a, b));
-
-        addSource(ld1, (a) -> {
-             if(a != null) {
-                this.a = a;
-             }
-             setValue(new Pair<>(a, b));
-        });
-
-        addSource(ld2, (b) -> {
-            if(b != null) {
-                this.b = b;
-            }
-            setValue(new Pair<>(a, b));
-        });
-    }
-}
 }
