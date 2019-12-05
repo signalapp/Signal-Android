@@ -1228,6 +1228,14 @@ public class TextSecurePreferences {
   public static long getRestorationTime(Context context) {
     return getLongPreference(context, "restoration_time", 0);
   }
+
+  public static void setShowingSessionRestorePrompt(Context context, String sender, boolean showingPrompt) {
+    setBooleanPreference(context, sender + "_showing_session_reset", showingPrompt);
+  }
+
+  public static boolean isShowingSessionRestorePrompt(Context context, String sender) {
+    return getBooleanPreference(context, sender + "_showing_session_reset", false);
+  }
   // endregion
 
   public static void clearAll(Context context) {

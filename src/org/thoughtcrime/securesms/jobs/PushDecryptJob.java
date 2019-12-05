@@ -42,7 +42,6 @@ import org.thoughtcrime.securesms.crypto.storage.SignalProtocolStoreImpl;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
-import org.thoughtcrime.securesms.database.Database;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.GroupReceiptDatabase;
@@ -131,7 +130,6 @@ import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.loki.api.DeviceLinkingSession;
 import org.whispersystems.signalservice.loki.api.LokiAPI;
-import org.whispersystems.signalservice.loki.api.LokiPublicChatAPI;
 import org.whispersystems.signalservice.loki.api.LokiStorageAPI;
 import org.whispersystems.signalservice.loki.api.PairingAuthorisation;
 import org.whispersystems.signalservice.loki.crypto.LokiServiceCipher;
@@ -148,7 +146,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 import javax.inject.Inject;
 
@@ -1404,11 +1401,14 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     SmsDatabase smsDatabase = DatabaseFactory.getSmsDatabase(context);
 
     if (!smsMessageId.isPresent()) {
-      Optional<InsertResult> insertResult = insertPlaceholder(sender, senderDevice, timestamp);
+      if (!TextSecurePreferences.isShowingSessionRestorePrompt(context, sender)) {
+        Optional<InsertResult> insertResult = insertPlaceholder(sender, senderDevice, timestamp);
 
-      if (insertResult.isPresent()) {
-        smsDatabase.markAsNoSession(insertResult.get().getMessageId());
-        MessageNotifier.updateNotification(context, insertResult.get().getThreadId());
+        if (insertResult.isPresent()) {
+          smsDatabase.markAsNoSession(insertResult.get().getMessageId());
+          TextSecurePreferences.setShowingSessionRestorePrompt(context, sender, true);
+          //MessageNotifier.updateNotification(context, insertResult.get().getThreadId());
+        }
       }
     } else {
       smsDatabase.markAsNoSession(smsMessageId.get());

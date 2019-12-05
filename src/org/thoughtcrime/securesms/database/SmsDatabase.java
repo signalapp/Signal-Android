@@ -47,6 +47,7 @@ import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.IOException;
 import java.security.SecureRandom;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -249,6 +250,10 @@ public class SmsDatabase extends MessagingDatabase {
 
   public void markAsNoSession(long id) {
     updateTypeBitmask(id, Types.ENCRYPTION_MASK, Types.ENCRYPTION_REMOTE_NO_SESSION_BIT);
+  }
+
+  public void markAsLokiSessionRestoreSent(long id) {
+    updateTypeBitmask(id, Types.ENCRYPTION_MASK, Types.ENCRYPTION_LOKI_SESSION_RESTORE_SENT_BIT);
   }
 
   public void markAsLegacyVersion(long id) {
@@ -725,6 +730,21 @@ public class SmsDatabase extends MessagingDatabase {
 
     if (record == null) throw new NoSuchMessageException("No message for ID: " + messageId);
     else                return record;
+  }
+
+  public List<SmsMessageRecord> getMessages(long threadId) {
+    SQLiteDatabase db     = databaseHelper.getReadableDatabase();
+    Cursor         cursor = db.query(TABLE_NAME, MESSAGE_PROJECTION, THREAD_ID + " = ?", new String[]{ threadId + "" }, null, null, null);
+    Reader         reader = new Reader(cursor);
+    List<SmsMessageRecord> records = new ArrayList<>();
+    SmsMessageRecord record = reader.getNext();
+    while (record != null) {
+      records.add(record);
+      record = reader.getNext();
+    }
+
+    reader.close();
+    return records;
   }
 
   public Cursor getMessageCursor(long messageId) {

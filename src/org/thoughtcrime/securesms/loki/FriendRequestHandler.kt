@@ -56,6 +56,8 @@ object FriendRequestHandler {
   @JvmStatic
   fun updateLastFriendRequestMessage(context: Context, threadId: Long, status: LokiMessageFriendRequestStatus) {
     if (threadId < 0) { return }
+    val recipient = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(threadId) ?: return
+    if (!recipient.address.isPhone) { return }
 
     val messages = DatabaseFactory.getSmsDatabase(context).getAllMessageIDs(threadId)
     val lokiMessageDatabase = DatabaseFactory.getLokiMessageDatabase(context)
