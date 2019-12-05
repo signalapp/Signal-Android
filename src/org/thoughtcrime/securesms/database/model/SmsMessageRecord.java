@@ -82,6 +82,7 @@ public class SmsMessageRecord extends MessageRecord {
 
   @Override
   public SpannableString getDisplayBody(@NonNull Context context) {
+    Recipient recipient = getRecipient();
     if (SmsDatabase.Types.isFailedDecryptType(type)) {
       return emphasisAdded(context.getString(R.string.MessageDisplayHelper_bad_encrypted_message));
     } else if (isCorruptedKeyExchange()) {
@@ -98,8 +99,14 @@ public class SmsMessageRecord extends MessageRecord {
       return emphasisAdded(context.getString(R.string.ConversationItem_received_key_exchange_message_tap_to_process));
     } else if (SmsDatabase.Types.isDuplicateMessageType(type)) {
       return emphasisAdded(context.getString(R.string.SmsMessageRecord_duplicate_message));
-    } else if (SmsDatabase.Types.isNoRemoteSessionType(type)) {
-      return emphasisAdded(context.getString(R.string.MessageDisplayHelper_message_encrypted_for_non_existing_session));
+    } else if (isLokiSessionRestoreSent()) {
+      return emphasisAdded(context.getString(R.string.MessageRecord_session_restore_sent, recipient.toShortString()));
+    } else if (isNoRemoteSession()) {
+      if (recipient.isGroupRecipient()) {
+        return emphasisAdded(context.getString(R.string.MessageDisplayHelper_message_encrypted_for_non_existing_session));
+      } else {
+        return emphasisAdded(context.getString(R.string.MessageRecord_session_restore_required, recipient.toShortString()));
+      }
     } else if (isEndSession() && isOutgoing()) {
       return emphasisAdded(context.getString(R.string.SmsMessageRecord_secure_session_reset));
     } else if (isEndSession()) {

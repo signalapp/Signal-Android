@@ -154,6 +154,7 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.loki.ConversationUpdateItemViewDelegate;
 import org.thoughtcrime.securesms.loki.FriendRequestViewDelegate;
 import org.thoughtcrime.securesms.loki.LokiAPIUtilities;
 import org.thoughtcrime.securesms.loki.LokiThreadDatabase;
@@ -272,7 +273,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                ConversationSearchBottomBar.EventListener,
                StickerKeyboardProvider.StickerEventListener,
                LokiThreadDatabaseDelegate,
-               FriendRequestViewDelegate
+               FriendRequestViewDelegate,
+               ConversationUpdateItemViewDelegate
 {
   private static final String TAG = ConversationActivity.class.getSimpleName();
 
@@ -376,6 +378,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     fragment = initFragment(R.id.fragment_content, new ConversationFragment(), dynamicLanguage.getCurrentLocale());
     fragment.friendRequestViewDelegate = this;
+    fragment.conversationUpdateItemViewDelegate = this;
 
     initializeReceivers();
     initializeActionBar();
@@ -3079,4 +3082,14 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     return TextSecurePreferences.getLocalNumber(this).equals(recipient.getAddress().serialize());
   }
   // endregion
+
+  @Override
+  public void updateItemButtonPressed(@NonNull MessageRecord messageRecord) {
+    // Loki - User clicked restore session
+    if (messageRecord.isNoRemoteSession() && !messageRecord.isLokiSessionRestoreSent()) {
+      // TODO: Send a message with `SESSION_RESTORE` flag
+      DatabaseFactory.getSmsDatabase(this).markAsLokiSessionRestoreSent(messageRecord.id);
+      TextSecurePreferences.setShowingSessionRestorePrompt(this, messageRecord.getIndividualRecipient().getAddress().serialize(), false);
+    }
+  }
 }

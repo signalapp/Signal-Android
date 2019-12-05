@@ -53,7 +53,7 @@
             style="@style/Signal.Text.Preview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:autoLink="all"
+            android:autoLink="none"
             android:gravity="center"
             android:linksClickable="true"
             android:textColor="?attr/conversation_item_update_text_color"
@@ -73,6 +73,15 @@
             android:textAllCaps="true"
             android:textColor="?conversation_item_update_text_color"
             tools:text="30 min ago" />
+
+        <Button
+            android:id="@+id/conversation_update_button"
+            style="@style/Button.Borderless"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Button"
+            android:visibility="gone" />
 
     </LinearLayout>
 

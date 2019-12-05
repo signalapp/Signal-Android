@@ -735,6 +735,9 @@
     <!-- MessageDisplayHelper -->
     <string name="MessageDisplayHelper_bad_encrypted_message">Bad encrypted message</string>
     <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Message encrypted for non-existing session</string>
+    <string name="MessageRecord_session_restore_required">Could not decrypt an incoming message. Would you like to start a new session with %s?</string>
+    <string name="MessageRecord_session_restore_sent">You have sent a session restore request to %s</string>
+    <string name="MessageRecord_session_restore_button_title">Restore session</string>
 
     <!-- MmsMessageRecord -->
     <string name="MmsMessageRecord_bad_encrypted_mms_message">Bad encrypted MMS message</string>

@@ -79,6 +79,7 @@ import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.loki.ConversationUpdateItemViewDelegate;
 import org.thoughtcrime.securesms.loki.FriendRequestViewDelegate;
 import org.thoughtcrime.securesms.longmessage.LongMessageActivity;
 import org.thoughtcrime.securesms.mediasend.Media;
@@ -152,6 +153,7 @@ public class ConversationFragment extends Fragment
   private View                        scrollToBottomButton;
   private TextView                    scrollDateHeader;
   public FriendRequestViewDelegate    friendRequestViewDelegate; // Loki
+  public ConversationUpdateItemViewDelegate conversationUpdateItemViewDelegate;
 
   @Override
   public void onCreate(Bundle icicle) {
@@ -360,7 +362,8 @@ public class ConversationFragment extends Fragment
       if (messageRecord.isGroupAction() || messageRecord.isCallLog() ||
           messageRecord.isJoined() || messageRecord.isExpirationTimerUpdate() ||
           messageRecord.isEndSession() || messageRecord.isIdentityUpdate() ||
-          messageRecord.isIdentityVerified() || messageRecord.isIdentityDefault())
+          messageRecord.isIdentityVerified() || messageRecord.isIdentityDefault() ||
+          messageRecord.isNoRemoteSession() || messageRecord.isLokiSessionRestoreSent())
       {
         actionMessage = true;
       }
@@ -705,6 +708,7 @@ public class ConversationFragment extends Fragment
       return;
     }
     adapter.friendRequestViewDelegate = this.friendRequestViewDelegate;
+    adapter.conversationUpdateItemViewDelegate = this.conversationUpdateItemViewDelegate;
 
     if (cursor.getCount() >= PARTIAL_CONVERSATION_LIMIT && loader.hasLimit()) {
       adapter.setFooterView(topLoadMoreView);
