@@ -92,30 +92,44 @@ public class TextSecureIdentityKeyStore implements IdentityKeyStore {
   @Override
   public boolean isTrustedIdentity(SignalProtocolAddress address, IdentityKey identityKey, Direction direction) {
     synchronized (LOCK) {
-      IdentityDatabase identityDatabase = DatabaseFactory.getIdentityDatabase(context);
-      RecipientId      ourRecipientId   = Recipient.self().getId();
-      RecipientId      theirRecipientId = Recipient.external(context, address.getName()).getId();
+      if (DatabaseFactory.getRecipientDatabase(context).containsPhoneOrUuid(address.getName())) {
+        IdentityDatabase identityDatabase = DatabaseFactory.getIdentityDatabase(context);
+        RecipientId      ourRecipientId   = Recipient.self().getId();
+        RecipientId      theirRecipientId = Recipient.external(context, address.getName()).getId();
 
-      if (ourRecipientId.equals(theirRecipientId)) {
-        return identityKey.equals(IdentityKeyUtil.getIdentityKey(context));
-      }
+        if (ourRecipientId.equals(theirRecipientId)) {
+          return identityKey.equals(IdentityKeyUtil.getIdentityKey(context));
+        }
 
-      switch (direction) {
-        case SENDING:   return isTrustedForSending(identityKey, identityDatabase.getIdentity(theirRecipientId));
-        case RECEIVING: return true;
-        default:        throw new AssertionError("Unknown direction: " + direction);
+        switch (direction) {
+          case SENDING:   return isTrustedForSending(identityKey, identityDatabase.getIdentity(theirRecipientId));
+          case RECEIVING: return true;
+          default:        throw new AssertionError("Unknown direction: " + direction);
+        }
+      } else {
+        Log.w(TAG, "Tried to check if identity is trusted for " + address.getName() + ", but no matching recipient existed!");
+        switch (direction) {
+          case SENDING:   return false;
+          case RECEIVING: return true;
+          default:        throw new AssertionError("Unknown direction: " + direction);
+        }
       }
     }
   }
 
   @Override
   public IdentityKey getIdentity(SignalProtocolAddress address) {
-    RecipientId              recipientId = Recipient.external(context, address.getName()).getId();
-    Optional<IdentityRecord> record      = DatabaseFactory.getIdentityDatabase(context).getIdentity(recipientId);
+    if (DatabaseFactory.getRecipientDatabase(context).containsPhoneOrUuid(address.getName())) {
+      RecipientId              recipientId = Recipient.external(context, address.getName()).getId();
+      Optional<IdentityRecord> record      = DatabaseFactory.getIdentityDatabase(context).getIdentity(recipientId);
 
-    if (record.isPresent()) {
-      return record.get().getIdentityKey();
+      if (record.isPresent()) {
+        return record.get().getIdentityKey();
+      } else {
+        return null;
+      }
     } else {
+      Log.w(TAG, "Tried to get identity for " + address.getName() + ", but no matching recipient existed!");
       return null;
     }
   }

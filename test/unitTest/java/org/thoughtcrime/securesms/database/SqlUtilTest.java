@@ -15,7 +15,7 @@ import static org.junit.Assert.assertEquals;
 
 @RunWith(RobolectricTestRunner.class)
 @Config(manifest = Config.NONE, application = Application.class)
-public class SqliteUtilTest {
+public class SqlUtilTest {
 
   @Test
   public void buildTrueUpdateQuery_simple() {
