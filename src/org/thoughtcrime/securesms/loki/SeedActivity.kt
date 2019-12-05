@@ -206,6 +206,9 @@ class SeedActivity : BaseActionBarActivity(), DeviceLinkingDelegate, ScanListene
         DatabaseFactory.getIdentityDatabase(this).saveIdentity(Address.fromSerialized(userHexEncodedPublicKey), keyPair.publicKey,
             IdentityDatabase.VerifiedStatus.VERIFIED, true, System.currentTimeMillis(), true)
         TextSecurePreferences.setLocalNumber(this, userHexEncodedPublicKey)
+        if (mode == Mode.Restore) {
+            TextSecurePreferences.setRestorationTime(this, System.currentTimeMillis())
+        }
         when (mode) {
             Mode.Register -> Analytics.shared.track("Seed Created")
             Mode.Restore -> Analytics.shared.track("Seed Restored")

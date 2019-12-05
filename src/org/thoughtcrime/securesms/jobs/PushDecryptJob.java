@@ -281,6 +281,12 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         cipher.validateBackgroundMessage(envelope, envelope.getContent());
       }
 
+      // Loki - Ignore any friend requests that we got before restoration
+      if (envelope.isFriendRequest() && envelope.getTimestamp() < TextSecurePreferences.getRestorationTime(context)) {
+        Log.i(TAG, "Ignoring friend request that was received before restoration");
+        return;
+      }
+
       SignalServiceContent content = cipher.decrypt(envelope);
 
       if (shouldIgnore(content)) {
