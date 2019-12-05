@@ -99,6 +99,14 @@ public class IncomingLollipopMmsConnection extends LollipopMmsConnection impleme
         }
       }
 
+      if (TextUtils.isEmpty(configOverrides.getString(SmsManager.MMS_CONFIG_USER_AGENT))) {
+        configOverrides.remove(SmsManager.MMS_CONFIG_USER_AGENT);
+      }
+
+      if (TextUtils.isEmpty(configOverrides.getString(SmsManager.MMS_CONFIG_UA_PROF_URL))) {
+        configOverrides.remove(SmsManager.MMS_CONFIG_UA_PROF_URL);
+      }
+      
       smsManager.downloadMultimediaMessage(getContext(),
                                            contentLocation,
                                            pointer.getUri(),
