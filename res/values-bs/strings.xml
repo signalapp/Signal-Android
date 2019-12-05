@@ -314,7 +314,6 @@
   <string name="DeviceListItem_last_active_s">Zadnji aktivan %s</string>
   <string name="DeviceListItem_today">Danas</string>
   <!--DocumentView-->
-  <string name="DocumentView_unknown_file">Nepoznata datoteka</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimizuj za nepostojanje Play Services</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Ovaj uređaj ne podržava Play Services. Pritisnite ovdje kako biste onemogućili sistemske optimizacije korištenja baterije koje sprečavaju Signal da prima poruke dok je aplikacija zatvorena.</string>
@@ -418,11 +417,15 @@
   <string name="MmsDownloader_error_reading_mms_settings">Greška prilikom čitanja operaterovih MMS postavki</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Slike</string>
+  <string name="MediaOverviewActivity_Audio">Zvuk</string>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Brisanje</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Brišem poruke…</string>
   <string name="MediaOverviewActivity_Select_all">Odaberi sve</string>
   <string name="MediaOverviewActivity_collecting_attachments">Sabirem priloge…</string>
-  <string name="MediaOverviewActivity_Audio">Zvuk</string>
+  <string name="MediaOverviewActivity_file">Datoteka</string>
+  <string name="MediaOverviewActivity_audio">Zvuk</string>
+  <string name="MediaOverviewActivity_video">Video</string>
+  <string name="MediaOverviewActivity_image">Slika</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal poziv u toku</string>
   <string name="NotificationBarManager__establishing_signal_call">Uspostavljam Signal poziv</string>

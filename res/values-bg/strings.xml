@@ -277,7 +277,6 @@
   <string name="DeviceListItem_last_active_s">Последна активност %s</string>
   <string name="DeviceListItem_today">Днес</string>
   <!--DocumentView-->
-  <string name="DocumentView_unknown_file">Непознат файл</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Оптимизиране за липсващи Play услуги</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Това устройство не поддържа Play услуги. Натиснете, за да изключите оптимизациите на батерият, за да преустановите опитите на Signal да изтегля съобщения, когато не е активен.</string>
@@ -379,11 +378,15 @@
   <string name="MmsDownloader_error_reading_mms_settings">Грешка при четенето на MMS настройките на доставчика</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Медия</string>
+  <string name="MediaOverviewActivity_Audio">Аудио</string>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Изтриване</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Изтриване на съобщения…</string>
   <string name="MediaOverviewActivity_Select_all">Избери всичко</string>
   <string name="MediaOverviewActivity_collecting_attachments">Събиране на прикачени файлове…</string>
-  <string name="MediaOverviewActivity_Audio">Аудио</string>
+  <string name="MediaOverviewActivity_file">Файл</string>
+  <string name="MediaOverviewActivity_audio">Аудио</string>
+  <string name="MediaOverviewActivity_video">Видео</string>
+  <string name="MediaOverviewActivity_image">Изображение</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Протича Signal разговор</string>
   <string name="NotificationBarManager__establishing_signal_call">Установяване на Signal разговор</string>

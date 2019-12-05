@@ -305,11 +305,7 @@
   <string name="DeviceListItem_last_active_s">Laste aktiva %s</string>
   <string name="DeviceListItem_today">Hodiaŭ</string>
   <!--DocumentView-->
-  <string name="DocumentView_unknown_file">Nekonata dosiero</string>
   <string name="DocumentView_unnamed_file">Sennoma dosiero</string>
-  <string name="DocumentView_audio_file">Sondosiero</string>
-  <string name="DocumentView_image_file">Bildodosiero</string>
-  <string name="DocumentView_video_file">Videdosiero</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimumigi por mankantaj „Play Services“</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Tiu aparato ne subtenas „Play Services“. Tuŝetu por malebligi baterian optimumigon, kiu alie malhelpus al Signal ricevi mesaĝojn dum neaktiva.</string>
@@ -413,6 +409,9 @@
   <string name="MmsDownloader_error_reading_mms_settings">Eraro dum legado de la MMS-agordoj el sen-drata provizanto</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Aŭdvidaĵo</string>
+  <string name="MediaOverviewActivity_Files">Dosieroj</string>
+  <string name="MediaOverviewActivity_Audio">Sonaĵo</string>
+  <string name="MediaOverviewActivity_All">Ĉiuj</string>
   <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
     <item quantity="one">Ĉu forviŝi elektitan eron?</item>
     <item quantity="other">Ĉu forviŝi elektitajn erojn?</item>
@@ -423,11 +422,8 @@
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Forviŝado</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Forviŝado de mesaĝoj…</string>
-  <string name="MediaOverviewActivity_Files">Dosieroj</string>
   <string name="MediaOverviewActivity_Select_all">Elekti ĉiujn</string>
   <string name="MediaOverviewActivity_collecting_attachments">Kolekto de kunsendaĵoj…</string>
-  <string name="MediaOverviewActivity_Audio">Sonaĵo</string>
-  <string name="MediaOverviewActivity_All">Ĉiuj</string>
   <string name="MediaOverviewActivity_Sort_by">Ordigi laŭ</string>
   <string name="MediaOverviewActivity_Newest">Plej novaj</string>
   <string name="MediaOverviewActivity_Oldest">Plej malnovaj</string>
@@ -436,6 +432,14 @@
   <string name="MediaOverviewActivity_Grid_view_description">Krada vido</string>
   <string name="MediaOverviewActivity_List_view_description">Lista vido</string>
   <string name="MediaOverviewActivity_Selected_description">Elektita</string>
+  <string name="MediaOverviewActivity_file">Dosiero</string>
+  <string name="MediaOverviewActivity_audio">Sonaĵo</string>
+  <string name="MediaOverviewActivity_video">Videaĵo</string>
+  <string name="MediaOverviewActivity_image">Bildo</string>
+  <string name="MediaOverviewActivity_sent_by_s">Sendita de %1$s</string>
+  <string name="MediaOverviewActivity_sent_by_you">Sendita de vi</string>
+  <string name="MediaOverviewActivity_sent_by_s_to_s">Sendita de %1$s al %2$s</string>
+  <string name="MediaOverviewActivity_sent_by_you_to_s">Sendita de vi al %1$s</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal-alvoko fariĝanta</string>
   <string name="NotificationBarManager__establishing_signal_call">Starigo de Signal-alvoko</string>

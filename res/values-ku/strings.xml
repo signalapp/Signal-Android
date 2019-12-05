@@ -272,7 +272,6 @@
   <string name="DeviceListItem_last_active_s">Çalakbûna dawî %s</string>
   <string name="DeviceListItem_today">Îro</string>
   <!--DocumentView-->
-  <string name="DocumentView_unknown_file">Pelgeya nenas</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Ji bo kêmasiya Play Servicesê, baştirîn bike</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Ev amûr piştgiriya Play Services nake.  Dema Signal neçalak be ji bo optîmîzasyonên beterya pergalê stendina peyaman asteng neke bitepîne.</string>
@@ -366,11 +365,15 @@
   <string name="MmsDownloader_error_reading_mms_settings">Di xwendina sazkariyên MMSê yên dabînkerê xizmeta bêtêlê de çewtî çêbû</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Medya</string>
+  <string name="MediaOverviewActivity_Audio">Deng</string>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Jêbirin</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Peyam tên jêbirin…</string>
   <string name="MediaOverviewActivity_Select_all">Gişan bibijêre</string>
   <string name="MediaOverviewActivity_collecting_attachments">…Servehî tên berhevkirin</string>
-  <string name="MediaOverviewActivity_Audio">Deng</string>
+  <string name="MediaOverviewActivity_file">Pelge</string>
+  <string name="MediaOverviewActivity_audio">Deng</string>
+  <string name="MediaOverviewActivity_video">Vîdyo</string>
+  <string name="MediaOverviewActivity_image">Wêne</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Banga Signalê tê pêkanîn</string>
   <string name="NotificationBarManager__establishing_signal_call">Banga Signalê tê amadekirin</string>

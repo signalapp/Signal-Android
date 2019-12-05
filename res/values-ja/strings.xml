@@ -288,7 +288,6 @@
   <string name="DeviceListItem_last_active_s">最後の活動%s</string>
   <string name="DeviceListItem_today">今日</string>
   <!--DocumentView-->
-  <string name="DocumentView_unknown_file">不明なファイル</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">欠けているGoogle Play開発者サービスに最適化する</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">この端末はGoogle Play開発者サービスをサポートしていません。タップしてバッテリー最適化機能を切ってください。</string>
@@ -388,12 +387,16 @@
   <string name="MmsDownloader_error_reading_mms_settings">無線プロバイダのMMS設定の読み込みでエラー</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">メディア</string>
+  <string name="MediaOverviewActivity_Files">ファイル</string>
+  <string name="MediaOverviewActivity_Audio">音声</string>
   <string name="MediaOverviewActivity_Media_delete_progress_title">削除中</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">メッセージを削除中…</string>
-  <string name="MediaOverviewActivity_Files">ファイル</string>
   <string name="MediaOverviewActivity_Select_all">すべて選択</string>
   <string name="MediaOverviewActivity_collecting_attachments">添付ファイルを集めています…</string>
-  <string name="MediaOverviewActivity_Audio">音声</string>
+  <string name="MediaOverviewActivity_file">ファイル</string>
+  <string name="MediaOverviewActivity_audio">音声</string>
+  <string name="MediaOverviewActivity_video">動画</string>
+  <string name="MediaOverviewActivity_image">画像</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal通話中</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal通話を準備しています</string>

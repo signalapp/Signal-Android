@@ -297,7 +297,6 @@
   <string name="DeviceListItem_last_active_s">Dernière activité %s</string>
   <string name="DeviceListItem_today">Aujourd’hui</string>
   <!--DocumentView-->
-  <string name="DocumentView_unknown_file">Fichier inconnu</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimiser pour palier l’absence des Services Play</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Cet appareil ne prend pas en charge les Services Google Play. Touchez pour désactiver les optimisations système de la pile qui empêchent à Signal de récupérer les messages lors d’inactivité.</string>
@@ -399,11 +398,15 @@
   <string name="MmsDownloader_error_reading_mms_settings">Erreur de lecture des paramètres de message multimédia du fournisseur sans fil</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Médias</string>
+  <string name="MediaOverviewActivity_Audio">Son</string>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Suppression</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Suppression des messages…</string>
   <string name="MediaOverviewActivity_Select_all">Tout sélectionner</string>
   <string name="MediaOverviewActivity_collecting_attachments">Récupération des pièces jointes…</string>
-  <string name="MediaOverviewActivity_Audio">Son</string>
+  <string name="MediaOverviewActivity_file">Fichier</string>
+  <string name="MediaOverviewActivity_audio">Son</string>
+  <string name="MediaOverviewActivity_video">Vidéo</string>
+  <string name="MediaOverviewActivity_image">Image</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Appel Signal en cours</string>
   <string name="NotificationBarManager__establishing_signal_call">Établissement de l’appel Signal</string>

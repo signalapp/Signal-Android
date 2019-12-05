@@ -305,11 +305,7 @@
   <string name="DeviceListItem_last_active_s">Darrera activitat: %s</string>
   <string name="DeviceListItem_today">Avui</string>
   <!--DocumentView-->
-  <string name="DocumentView_unknown_file">Fitxer desconegut</string>
   <string name="DocumentView_unnamed_file">Fitxer sense nom</string>
-  <string name="DocumentView_audio_file">Fitxer d\'àudio</string>
-  <string name="DocumentView_image_file">Fitxer d\'imatge</string>
-  <string name="DocumentView_video_file">Fitxer de vídeo</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimitza per a la no presència dels Play Services</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">El dispositiu no és compatible amb Play Services. Toqueu per inhabilitar les optimitzacions de la bateria que impedeixen que el Signal rebi missatges quan estigui inactiu.</string>
@@ -413,6 +409,9 @@
   <string name="MmsDownloader_error_reading_mms_settings">S\'ha produït un error en llegir la configuració d\'MMS de l\'operador</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Multimèdia</string>
+  <string name="MediaOverviewActivity_Files">Fitxers</string>
+  <string name="MediaOverviewActivity_Audio">Àudio</string>
+  <string name="MediaOverviewActivity_All">Tot</string>
   <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
     <item quantity="one">Voleu suprimir l\'element seleccionat?</item>
     <item quantity="other">Voleu suprimir els elements seleccionats?</item>
@@ -423,11 +422,8 @@
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Se suprimeix</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Se suprimeixen missatges…</string>
-  <string name="MediaOverviewActivity_Files">Fitxers</string>
   <string name="MediaOverviewActivity_Select_all">Selecciona-ho tot</string>
   <string name="MediaOverviewActivity_collecting_attachments">Es recopilen els adjunts…</string>
-  <string name="MediaOverviewActivity_Audio">Àudio</string>
-  <string name="MediaOverviewActivity_All">Tot</string>
   <string name="MediaOverviewActivity_Sort_by">Ordena per</string>
   <string name="MediaOverviewActivity_Newest">El més nou</string>
   <string name="MediaOverviewActivity_Oldest">El més antic</string>
@@ -436,6 +432,14 @@
   <string name="MediaOverviewActivity_Grid_view_description">Vista de graella</string>
   <string name="MediaOverviewActivity_List_view_description">Vista de llista</string>
   <string name="MediaOverviewActivity_Selected_description">Seleccionat</string>
+  <string name="MediaOverviewActivity_file">Fitxer</string>
+  <string name="MediaOverviewActivity_audio">Àudio</string>
+  <string name="MediaOverviewActivity_video">Vídeo</string>
+  <string name="MediaOverviewActivity_image">Imatge</string>
+  <string name="MediaOverviewActivity_sent_by_s">Enviat per %1$s</string>
+  <string name="MediaOverviewActivity_sent_by_you">Ho heu enviat</string>
+  <string name="MediaOverviewActivity_sent_by_s_to_s">Enviat per %1$s a %2$s</string>
+  <string name="MediaOverviewActivity_sent_by_you_to_s">Ho heu enviat a %1$s</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Trucada del Signal en curs</string>
   <string name="NotificationBarManager__establishing_signal_call">S\'estableix la trucada del Signal</string>
@@ -601,8 +605,8 @@ especificat (%s) no és vàlid.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">No es pot connectar al servei. Si us plau, comproveu la connexió de xarxa i torneu-ho a provar.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Per verificar fàcilment el número de telèfon, el Signal pot detectar automàticament el codi de verificació si permeteu que vegi els missatges d\'SMS.</string>
   <plurals name="RegistrationActivity_debug_log_hint">
-    <item quantity="one">Ara us queda %d pas per transmetre un informe de depuració.</item>
-    <item quantity="other">Ara us queden %d passos per transmetre un informe de depuració.</item>
+    <item quantity="one">Ara us queda %d pas per enviar un informe de depuració.</item>
+    <item quantity="other">Ara us queden %d passos per enviar un informe de depuració.</item>
   </plurals>
   <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Hem de verificar que sou una persona.</string>
   <string name="RegistrationActivity_failed_to_verify_the_captcha">Ha fallat verificar el CAPTCHA</string>
@@ -709,7 +713,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="UnverifiedSendDialog_send">Envia</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">Nom d\'usuari</string>
-  <string name="UsernameEditFragment_submit">Tramet</string>
+  <string name="UsernameEditFragment_submit">Envia</string>
   <string name="UsernameEditFragment_delete">Suprimeix</string>
   <string name="UsernameEditFragment_successfully_set_username">El nom d\'usuari s\'ha establert correctament.</string>
   <string name="UsernameEditFragment_successfully_removed_username">El nom d\'usuari s\'ha suprimit correctament.</string>
@@ -1097,7 +1101,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="AndroidManifest__select_contacts">Seleccioneu els contactes</string>
   <string name="AndroidManifest__change_passphrase">Canvia la contrasenya</string>
   <string name="AndroidManifest__verify_safety_number">Verifica el número de seguretat</string>
-  <string name="AndroidManifest__log_submit">Envia el registre de depuració</string>
+  <string name="AndroidManifest__log_submit">Envia un registre de depuració</string>
   <string name="AndroidManifest__media_preview">Previsualització multimèdia</string>
   <string name="AndroidManifest__message_details">Detalls del missatge</string>
   <string name="AndroidManifest__linked_devices">Dispositius enllaçats</string>

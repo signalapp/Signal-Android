@@ -305,11 +305,7 @@
   <string name="DeviceListItem_last_active_s">Zuletzt aktiv: %s</string>
   <string name="DeviceListItem_today">Heute</string>
   <!--DocumentView-->
-  <string name="DocumentView_unknown_file">Unbekannte Datei</string>
   <string name="DocumentView_unnamed_file">Unbenannte Datei</string>
-  <string name="DocumentView_audio_file">Audiodatei</string>
-  <string name="DocumentView_image_file">Bilddatei</string>
-  <string name="DocumentView_video_file">Videodatei</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Für fehlende Google-Play-Dienste optimieren</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Dieses Gerät unterstützt keine Google-Play-Dienste. Antippen, um Akkuoptimierungsdienste des Systems zu deaktivieren, die Signal bei Inaktivität daran hindern, Nachrichten zu empfangen.</string>
@@ -380,7 +376,7 @@
   <string name="InviteActivity_share">Teilen</string>
   <string name="InviteActivity_choose_contacts">Kontakte auswählen</string>
   <string name="InviteActivity_share_with_contacts">Mit Kontakten teilen</string>
-  <string name="InviteActivity_choose_how_to_share">Wähle den Einladungsweg</string>
+  <string name="InviteActivity_choose_how_to_share">Wähle, wie du teilen möchtest</string>
   <string name="InviteActivity_cancel">Abbrechen</string>
   <string name="InviteActivity_sending">Wird gesendet …</string>
   <string name="InviteActivity_heart_content_description">Herz</string>
@@ -412,7 +408,10 @@
   <!--MmsDownloader-->
   <string name="MmsDownloader_error_reading_mms_settings">MMS-Einstellungen des Mobilfunkanbieters konnten nicht gelesen werden</string>
   <!--MediaOverviewActivity-->
-  <string name="MediaOverviewActivity_Media">Medieninhalte</string>
+  <string name="MediaOverviewActivity_Media">Medien</string>
+  <string name="MediaOverviewActivity_Files">Dateien</string>
+  <string name="MediaOverviewActivity_Audio">Audio</string>
+  <string name="MediaOverviewActivity_All">Alle</string>
   <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
     <item quantity="one">Ausgewähltes Element löschen?</item>
     <item quantity="other">Ausgewählte Elemente löschen?</item>
@@ -423,19 +422,24 @@
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Löschen</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Nachrichten werden gelöscht …</string>
-  <string name="MediaOverviewActivity_Files">Dateien</string>
   <string name="MediaOverviewActivity_Select_all">Alle auswählen</string>
   <string name="MediaOverviewActivity_collecting_attachments">Anhänge werden gesammelt …</string>
-  <string name="MediaOverviewActivity_Audio">Audio</string>
-  <string name="MediaOverviewActivity_All">Alle</string>
   <string name="MediaOverviewActivity_Sort_by">Sortieren nach</string>
   <string name="MediaOverviewActivity_Newest">Neueste</string>
   <string name="MediaOverviewActivity_Oldest">Älteste</string>
-  <string name="MediaOverviewActivity_Storage_used">Verwendeter Speicher</string>
-  <string name="MediaOverviewActivity_All_storage_use">Sämtliche Speicherverwendung</string>
+  <string name="MediaOverviewActivity_Storage_used">Belegter Speicher</string>
+  <string name="MediaOverviewActivity_All_storage_use">Speicherbelegung</string>
   <string name="MediaOverviewActivity_Grid_view_description">Rasteransicht</string>
   <string name="MediaOverviewActivity_List_view_description">Listenansicht</string>
   <string name="MediaOverviewActivity_Selected_description">Ausgewählt</string>
+  <string name="MediaOverviewActivity_file">Datei</string>
+  <string name="MediaOverviewActivity_audio">Audio</string>
+  <string name="MediaOverviewActivity_video">Video</string>
+  <string name="MediaOverviewActivity_image">Bild</string>
+  <string name="MediaOverviewActivity_sent_by_s">Von %1$s gesendet</string>
+  <string name="MediaOverviewActivity_sent_by_you">Von dir gesendet</string>
+  <string name="MediaOverviewActivity_sent_by_s_to_s">Von %1$s an %2$s gesendet</string>
+  <string name="MediaOverviewActivity_sent_by_you_to_s">Von dir an %1$s gesendet</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal-Anruf läuft</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal-Anruf wird hergestellt</string>
@@ -1220,8 +1224,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences_chats__when_roaming">Bei Roaming</string>
   <string name="preferences_chats__media_auto_download">Autom. Herunterladen von Medieninhalten</string>
   <string name="preferences_chats__message_trimming">Kürzen von Unterhaltungen</string>
-  <string name="preferences_storage__storage_usage">Speicherverwendung</string>
-  <string name="preferences_storage__photos">Fotos</string>
+  <string name="preferences_storage__storage_usage">Speicherbelegung</string>
+  <string name="preferences_storage__photos">Bilder</string>
   <string name="preferences_storage__videos">Videos</string>
   <string name="preferences_storage__files">Dateien</string>
   <string name="preferences_storage__audio">Audio</string>

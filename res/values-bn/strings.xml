@@ -302,7 +302,6 @@
   <string name="DeviceListItem_last_active_s">শেষ সক্রিয় %s</string>
   <string name="DeviceListItem_today">আজ</string>
   <!--DocumentView-->
-  <string name="DocumentView_unknown_file">অজানা ফাইল</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">অনুপস্থিত প্লে সার্ভিসের জন্য অনুকুল করা</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">এই ডিভাইস প্লে সার্ভিস সমর্থন করে না। সিস্টেম ব্যাটারি অপ্টিমাইজেশন অক্ষম করতে আলতো চাপুন, যা নিষ্ক্রিয় অবস্থায় বার্তা পুনরুদ্ধার থেকে Signal -কে বাধা দেয়।</string>
@@ -404,11 +403,15 @@
   <string name="MmsDownloader_error_reading_mms_settings">ওয়্যারলেস সরবরাহকারীর এমএমএস সেটিংস পড়তে ত্রুটি</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">মিডিয়া</string>
+  <string name="MediaOverviewActivity_Audio">শব্দ</string>
   <string name="MediaOverviewActivity_Media_delete_progress_title">মোছা হচ্ছে…</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">বার্তা সমূহ মোছা হচ্ছে…</string>
   <string name="MediaOverviewActivity_Select_all">সবগুলো নির্বাচন করুন</string>
   <string name="MediaOverviewActivity_collecting_attachments">সংযুক্তি সমুহ সংগ্রহ করা হচ্ছে…</string>
-  <string name="MediaOverviewActivity_Audio">শব্দ</string>
+  <string name="MediaOverviewActivity_file">ফাইল</string>
+  <string name="MediaOverviewActivity_audio">শব্দ</string>
+  <string name="MediaOverviewActivity_video">ভিডিও</string>
+  <string name="MediaOverviewActivity_image">ছবি</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal কল চলমান </string>
   <string name="NotificationBarManager__establishing_signal_call">Signal কল স্থাপন করা হচ্ছে</string>

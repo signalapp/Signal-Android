@@ -288,7 +288,6 @@
   <string name="DeviceListItem_last_active_s">សកម្មភាពចុងក្រោយ​ %s</string>
   <string name="DeviceListItem_today">ថ្ងៃនេះ</string>
   <!--DocumentView-->
-  <string name="DocumentView_unknown_file">ឯកសារមិនស្គាល់</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">បង្កើនប្រសិទ្ធភាពសម្រាប់ការបាត់ Play Services</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">ឧបករណ៍នេះ មិនគាំទ្រ Play Services។ ចុច ដើម្បីបិទការបង្កើនប្រសិទ្ធិភាពប្រព័ន្ធថ្ម ដែលរារាំង Signal ពីទាញយកសារនានា នៅពេលឧបករណ៍ទុកចោល។</string>
@@ -388,11 +387,15 @@
   <string name="MmsDownloader_error_reading_mms_settings">មានបញ្ហាអាននៅក្នុងការកំណត់របស់ក្រុមហ៊ុន​ MMS</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">ព័ត៌មាន</string>
+  <string name="MediaOverviewActivity_Audio">សំឡេង</string>
   <string name="MediaOverviewActivity_Media_delete_progress_title">កំពុងលុប</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">កំពុងលុបសារ…</string>
   <string name="MediaOverviewActivity_Select_all">ជ្រើសរើសទាំងអស់</string>
   <string name="MediaOverviewActivity_collecting_attachments">កំពុងប្រមូលឯកសារភ្ជាប់…</string>
-  <string name="MediaOverviewActivity_Audio">សំឡេង</string>
+  <string name="MediaOverviewActivity_file">ឯកសារ</string>
+  <string name="MediaOverviewActivity_audio">សំឡេង</string>
+  <string name="MediaOverviewActivity_video">វីដេអូ</string>
+  <string name="MediaOverviewActivity_image">រូបភាព</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">ការហៅចេញSignal កំពុងដំណើរការ</string>
   <string name="NotificationBarManager__establishing_signal_call">ការហៅចេញ តាមSignal</string>

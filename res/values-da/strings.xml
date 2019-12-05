@@ -301,7 +301,6 @@
   <string name="DeviceListItem_last_active_s">Sidste aktive %s</string>
   <string name="DeviceListItem_today">I dag</string>
   <!--DocumentView-->
-  <string name="DocumentView_unknown_file">Ukendt fil</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimér for manglende Play Services</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Enheden understøtter ikke Play Services. Tap for at slå batterioptimering fra, som forhindrer Signal i at modtage beskeder i baggrunden</string>
@@ -403,11 +402,15 @@
   <string name="MmsDownloader_error_reading_mms_settings">Kunne ikke læse indstillinger for trådløs MMS udbyder</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Medie</string>
+  <string name="MediaOverviewActivity_Audio">Lyd</string>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Sletter</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Sletter beskeder…</string>
   <string name="MediaOverviewActivity_Select_all">Vælg alle</string>
   <string name="MediaOverviewActivity_collecting_attachments">Samler vedhæftninger…</string>
-  <string name="MediaOverviewActivity_Audio">Lyd</string>
+  <string name="MediaOverviewActivity_file">Fil</string>
+  <string name="MediaOverviewActivity_audio">Lyd</string>
+  <string name="MediaOverviewActivity_video">Video</string>
+  <string name="MediaOverviewActivity_image">Billede</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal opkald i gang</string>
   <string name="NotificationBarManager__establishing_signal_call">Foretager Signalopkald</string>

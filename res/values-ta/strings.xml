@@ -302,7 +302,6 @@
   <string name="DeviceListItem_last_active_s">கடைசியாக செயலில் %s</string>
   <string name="DeviceListItem_today">இன்று</string>
   <!--DocumentView-->
-  <string name="DocumentView_unknown_file">தெரியாத கோப்பு</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">காணாமல் போன விளையாட்டு சேவைகளை மேம்படுத்தவும்</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">இந்த சாதனம் Play சேவைகளை ஆதரிக்காது. செயலற்ற நிலையில் செய்திகளை மீட்டெடுப்பதில் இருந்து Signal லைத் தடுக்கும் கணினி பேட்டரி மேம்படுத்தல்களை முடக்க தட்டவும்.</string>
@@ -404,11 +403,15 @@
   <string name="MmsDownloader_error_reading_mms_settings">வயர்லெஸ் வழங்குநர் எம்எம்எஸ் அமைப்புகளைப் படிப்பதில் பிழை</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">ஊடகம்</string>
+  <string name="MediaOverviewActivity_Audio">ஒலி</string>
   <string name="MediaOverviewActivity_Media_delete_progress_title">நீக்கப்படுகிறது</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">செய்திகள் நீக்கப்படுகிறது…</string>
   <string name="MediaOverviewActivity_Select_all">அனைத்தையும்  தேர்வுசெய்</string>
   <string name="MediaOverviewActivity_collecting_attachments">இணைப்பு சேமிக்கபடுகிறது</string>
-  <string name="MediaOverviewActivity_Audio">ஒலி</string>
+  <string name="MediaOverviewActivity_file">கோப்பு</string>
+  <string name="MediaOverviewActivity_audio">ஒலி</string>
+  <string name="MediaOverviewActivity_video">காணொளி</string>
+  <string name="MediaOverviewActivity_image">படம் </string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal அழைப்புப் போய்க்கொண்டிருக்கிறது</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal அழைப்பு நிறுவுப்படுகிறது</string>

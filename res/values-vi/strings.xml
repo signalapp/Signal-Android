@@ -288,7 +288,6 @@
   <string name="DeviceListItem_last_active_s">Hoạt động gần đây nhất %s</string>
   <string name="DeviceListItem_today">Hôm nay</string>
   <!--DocumentView-->
-  <string name="DocumentView_unknown_file">Tệp tin không xác định</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Tối ưu hóa khi không có dịch vụ Google Play</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Thiết bị này không hỗ trợ dịch vụ Google Play. Nhấn để tắt tính năng tối ưu hóa pin khiến Signal không thể nhận tin nhắn duới nền.</string>
@@ -388,11 +387,15 @@
   <string name="MmsDownloader_error_reading_mms_settings">Lỗi xem cài đặt nhà cung cấp MMS không dây</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Đa phương tiện</string>
+  <string name="MediaOverviewActivity_Audio">Âm thanh</string>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Đang xóa</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Đang xóa tin nhắn…</string>
   <string name="MediaOverviewActivity_Select_all">Chọn tất cả</string>
   <string name="MediaOverviewActivity_collecting_attachments">Đang thu thập tệp đính kèm…</string>
-  <string name="MediaOverviewActivity_Audio">Âm thanh</string>
+  <string name="MediaOverviewActivity_file">Tệp</string>
+  <string name="MediaOverviewActivity_audio">Âm thanh</string>
+  <string name="MediaOverviewActivity_video">Video</string>
+  <string name="MediaOverviewActivity_image">Hình ảnh</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Đang tiến hành cuộc gọi Signal </string>
   <string name="NotificationBarManager__establishing_signal_call">Đang thiết lập cuộc gọi Signal</string>

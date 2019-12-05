@@ -302,7 +302,6 @@
   <string name="DeviceListItem_last_active_s">Son görülme %s</string>
   <string name="DeviceListItem_today">Bugün</string>
   <!--DocumentView-->
-  <string name="DocumentView_unknown_file">Bilinmeyen dosya</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Eksik Google Play Hizmetleri için optimize et</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Bu cihaz Play Hizmetlerini desteklemiyor. Signal etkin değilken ileti almasını engelleyebilecek pil iyileştirmelerini devre dışı bırakmak için dokunun.</string>
@@ -404,11 +403,15 @@
   <string name="MmsDownloader_error_reading_mms_settings">Kablosuz MMS sağlayıcısı ayarları okunurken hata</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">İçerik</string>
+  <string name="MediaOverviewActivity_Audio">Ses</string>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Siliniyor</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">İletiler siliniyor…</string>
   <string name="MediaOverviewActivity_Select_all">Hepsini seç</string>
   <string name="MediaOverviewActivity_collecting_attachments">Eklentiler toplanıyor…</string>
-  <string name="MediaOverviewActivity_Audio">Ses</string>
+  <string name="MediaOverviewActivity_file">Dosya</string>
+  <string name="MediaOverviewActivity_audio">Ses</string>
+  <string name="MediaOverviewActivity_video">Video</string>
+  <string name="MediaOverviewActivity_image">Görüntü</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal araması sürüyor</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal araması kuruluyor</string>

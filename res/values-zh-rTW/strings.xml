@@ -291,11 +291,7 @@
   <string name="DeviceListItem_last_active_s">最後活躍 %s</string>
   <string name="DeviceListItem_today">今天</string>
   <!--DocumentView-->
-  <string name="DocumentView_unknown_file">未知的檔案</string>
   <string name="DocumentView_unnamed_file">無名稱的檔案</string>
-  <string name="DocumentView_audio_file">聲音檔案</string>
-  <string name="DocumentView_image_file">照片檔案</string>
-  <string name="DocumentView_video_file">影片檔案</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">為缺少的 Play 服務優化</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">這個裝置不支援 Play 服務。輕觸關閉，因為系統電池效能最佳化會防止 Signal 在閒置時取得訊息。</string>
@@ -397,6 +393,9 @@
   <string name="MmsDownloader_error_reading_mms_settings">讀取無線供應商的 MMS 設定時發生錯誤</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">媒體</string>
+  <string name="MediaOverviewActivity_Files">檔案</string>
+  <string name="MediaOverviewActivity_Audio">音訊</string>
+  <string name="MediaOverviewActivity_All">全部</string>
   <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
     <item quantity="other">刪除選擇的項目嗎？</item>
   </plurals>
@@ -405,11 +404,8 @@
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">正在刪除</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">刪除訊息中…    </string>
-  <string name="MediaOverviewActivity_Files">檔案</string>
   <string name="MediaOverviewActivity_Select_all">全選</string>
   <string name="MediaOverviewActivity_collecting_attachments">搜集附件中…</string>
-  <string name="MediaOverviewActivity_Audio">音訊</string>
-  <string name="MediaOverviewActivity_All">全部</string>
   <string name="MediaOverviewActivity_Sort_by">排列方式</string>
   <string name="MediaOverviewActivity_Newest">最新的</string>
   <string name="MediaOverviewActivity_Oldest">最舊的</string>
@@ -418,6 +414,10 @@
   <string name="MediaOverviewActivity_Grid_view_description">網格檢視</string>
   <string name="MediaOverviewActivity_List_view_description">清單檢視</string>
   <string name="MediaOverviewActivity_Selected_description">已選擇的</string>
+  <string name="MediaOverviewActivity_file">檔案</string>
+  <string name="MediaOverviewActivity_audio">音訊</string>
+  <string name="MediaOverviewActivity_video">影片</string>
+  <string name="MediaOverviewActivity_image">圖片</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal 通話進行中</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal 通話連線中</string>

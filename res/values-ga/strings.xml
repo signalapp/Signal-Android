@@ -275,7 +275,7 @@
   <string name="DeviceListItem_last_active_s">Gníomhach an uair dheiridh %s</string>
   <string name="DeviceListItem_today">Inniu</string>
   <!--DocumentView-->
-  <string name="DocumentView_unknown_file">Comhad anaithnid</string>
+  <!-- Removed by excludeNonTranslatables <string name="DocumentView_unknown_file">Comhad anaithnid</string> -->
   <!--DozeReminder-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Comhroinn le</string>

@@ -306,11 +306,7 @@
   <string name="DeviceListItem_last_active_s">Utoljára aktív %s</string>
   <string name="DeviceListItem_today">Ma</string>
   <!--DocumentView-->
-  <string name="DocumentView_unknown_file">Ismeretlen fájl</string>
   <string name="DocumentView_unnamed_file">Névtelen fájl</string>
-  <string name="DocumentView_audio_file">Hangfájl</string>
-  <string name="DocumentView_image_file">Képfájl</string>
-  <string name="DocumentView_video_file">Videófájl</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimalizálás hiányzó Play Szolgáltatásokra</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Ez a készülék nem támogatja a Play Szolgáltatásokat. Koppints a rendszer akkumulátor-optimalizációinak letiltásához, ami megakadályozza a Signal-t abban, hogy inaktív állapotban is letöltse az üzeneteket.</string>
@@ -414,6 +410,9 @@
   <string name="MmsDownloader_error_reading_mms_settings">Hiba történt a mobilszolgáltató MMS beállításainak olvasása során</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Média</string>
+  <string name="MediaOverviewActivity_Files">Fájlok</string>
+  <string name="MediaOverviewActivity_Audio">Hang</string>
+  <string name="MediaOverviewActivity_All">Összes</string>
   <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
     <item quantity="one">Törlöd a kijelölt elemet?</item>
     <item quantity="other">Törlöd a kijelölt elemeket?</item>
@@ -424,11 +423,8 @@
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Törlés</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Üzenetek törlése…</string>
-  <string name="MediaOverviewActivity_Files">Fájlok</string>
   <string name="MediaOverviewActivity_Select_all">Összes kiválasztása</string>
   <string name="MediaOverviewActivity_collecting_attachments">Mellékletek összegyűjtése…</string>
-  <string name="MediaOverviewActivity_Audio">Hang</string>
-  <string name="MediaOverviewActivity_All">Összes</string>
   <string name="MediaOverviewActivity_Sort_by">Rendezés</string>
   <string name="MediaOverviewActivity_Newest">Legújabb</string>
   <string name="MediaOverviewActivity_Oldest">Legrégebbi</string>
@@ -437,6 +433,14 @@
   <string name="MediaOverviewActivity_Grid_view_description">Rácsos nézet</string>
   <string name="MediaOverviewActivity_List_view_description">Listanézet</string>
   <string name="MediaOverviewActivity_Selected_description">Kiválasztott</string>
+  <string name="MediaOverviewActivity_file">Fájl</string>
+  <string name="MediaOverviewActivity_audio">Hang</string>
+  <string name="MediaOverviewActivity_video">Videó</string>
+  <string name="MediaOverviewActivity_image">Kép</string>
+  <string name="MediaOverviewActivity_sent_by_s">Küldte: %1$s</string>
+  <string name="MediaOverviewActivity_sent_by_you">Te küldted</string>
+  <string name="MediaOverviewActivity_sent_by_s_to_s">Küldte: %1$s, címzett: %2$s</string>
+  <string name="MediaOverviewActivity_sent_by_you_to_s">Te küldted %1$s részére</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal hívás folyamatban</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal hívás létesítése</string>

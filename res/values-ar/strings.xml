@@ -355,7 +355,6 @@
   <string name="DeviceListItem_last_active_s">آخر مرة %s</string>
   <string name="DeviceListItem_today">اليوم</string>
   <!--DocumentView-->
-  <string name="DocumentView_unknown_file">ملف مجهول</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">التحسين في حالة غياب خدمات Play Services</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">الهاتف لا يدعم خدمات Play. أنقر لإلغاء نظام تحسين البطارية التي تمنع Signal من استقبال الرسائل عند عدم النشاط.</string>
@@ -464,11 +463,15 @@
   <string name="MmsDownloader_error_reading_mms_settings">خطأ في قراءة إعدادات مزود خدمة رسالة الوسائط المتعددة اللاسلكي</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">الوسائط</string>
+  <string name="MediaOverviewActivity_Audio">صوت</string>
   <string name="MediaOverviewActivity_Media_delete_progress_title">جارٍ الحذف</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">حذف الرسائل جارٍ…</string>
   <string name="MediaOverviewActivity_Select_all">أختر الكل</string>
   <string name="MediaOverviewActivity_collecting_attachments">جارٍ جمع المرفقات…</string>
-  <string name="MediaOverviewActivity_Audio">صوت</string>
+  <string name="MediaOverviewActivity_file">ملف</string>
+  <string name="MediaOverviewActivity_audio">صوت</string>
+  <string name="MediaOverviewActivity_video">فيديو</string>
+  <string name="MediaOverviewActivity_image">صورة</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">مكالمة Signal</string>
   <string name="NotificationBarManager__establishing_signal_call">بدء مكالمة Signal</string>

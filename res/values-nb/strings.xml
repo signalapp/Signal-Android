@@ -305,10 +305,6 @@
   <string name="DeviceListItem_last_active_s">Sist aktiv %s</string>
   <string name="DeviceListItem_today">I dag</string>
   <!--DocumentView-->
-  <string name="DocumentView_unknown_file">Ukjent fil</string>
-  <string name="DocumentView_audio_file">Lydfil</string>
-  <string name="DocumentView_image_file">Bildefil</string>
-  <string name="DocumentView_video_file">Videofil</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimaliser for manglende Play Tjenester</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Denne enheten støtter ikke Play-tjenester. Trykk én gang for å slå av batterioptimalisering som kan hindre Signal i å motta meldinger når det kjører i bakgrunnen.</string>
@@ -412,14 +408,18 @@
   <string name="MmsDownloader_error_reading_mms_settings">Feil under lesing av oppsett for MMS-leverandør</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Medier</string>
-  <string name="MediaOverviewActivity_Media_delete_progress_title">Sletter</string>
-  <string name="MediaOverviewActivity_Media_delete_progress_message">Sletter meldinger …</string>
   <string name="MediaOverviewActivity_Files">Filer</string>
-  <string name="MediaOverviewActivity_Select_all">Velg alle</string>
-  <string name="MediaOverviewActivity_collecting_attachments">Henter vedlegg …</string>
   <string name="MediaOverviewActivity_Audio">Lyd</string>
   <string name="MediaOverviewActivity_All">Alle</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_title">Sletter</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">Sletter meldinger …</string>
+  <string name="MediaOverviewActivity_Select_all">Velg alle</string>
+  <string name="MediaOverviewActivity_collecting_attachments">Henter vedlegg …</string>
   <string name="MediaOverviewActivity_Sort_by">Sorter etter</string>
+  <string name="MediaOverviewActivity_file">Fil</string>
+  <string name="MediaOverviewActivity_audio">Lyd</string>
+  <string name="MediaOverviewActivity_video">Video</string>
+  <string name="MediaOverviewActivity_image">Bilde</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal-samtale pågår</string>
   <string name="NotificationBarManager__establishing_signal_call">Setter opp Signal-anrop</string>

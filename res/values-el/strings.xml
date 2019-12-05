@@ -289,7 +289,6 @@
   <string name="DeviceListItem_last_active_s">Τελευταία ενεργή: %s</string>
   <string name="DeviceListItem_today">Σήμερα</string>
   <!--DocumentView-->
-  <string name="DocumentView_unknown_file">Άγνωστο αρχείο</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Βελτιστοποίηση για τις υπηρεσίες Play που λείπουν</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Αυτή η συσκευή δεν υποστηρίζει τις υπηρεσίες Play. Πατήστε για απενεργοποίηση των βελτιστοποιήσεων μπαταρίας του συστήματος που εμποδίζουν το Signal από το να λαμβάνει μηνύματα όταν είναι ανενεργό.</string>
@@ -391,11 +390,15 @@
   <string name="MmsDownloader_error_reading_mms_settings">Πρόβλημα κατά την ανάκτηση ρυθμίσεων από τον πάροχο για τα MMS </string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Πολυμέσα</string>
+  <string name="MediaOverviewActivity_Audio">Ήχος</string>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Γίνεται διαγραφή</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Διαγραφή μηνυμάτων…</string>
   <string name="MediaOverviewActivity_Select_all">Επιλογή όλων</string>
   <string name="MediaOverviewActivity_collecting_attachments">Τα συνημμένα συλλέγονται…</string>
-  <string name="MediaOverviewActivity_Audio">Ήχος</string>
+  <string name="MediaOverviewActivity_file">Αρχείο</string>
+  <string name="MediaOverviewActivity_audio">Ήχος</string>
+  <string name="MediaOverviewActivity_video">Βίντεο</string>
+  <string name="MediaOverviewActivity_image">Εικόνα</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Κλήση Signal εν εξελίξει</string>
   <string name="NotificationBarManager__establishing_signal_call">Γίνεται κλήση Signal</string>

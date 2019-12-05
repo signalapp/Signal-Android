@@ -305,11 +305,7 @@
   <string name="DeviceListItem_last_active_s">Ultima attività %s</string>
   <string name="DeviceListItem_today">Oggi</string>
   <!--DocumentView-->
-  <string name="DocumentView_unknown_file">File sconosciuto</string>
   <string name="DocumentView_unnamed_file">File senza nome</string>
-  <string name="DocumentView_audio_file">File audio</string>
-  <string name="DocumentView_image_file">File immagine</string>
-  <string name="DocumentView_video_file">File video</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Ottimizza per la mancanza di Google Play Services</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Questo dispositivo non supporta Google Play Services. Premi per disabilitare l\'ottimizzazione di sistema del consumo della batteria che impedisce a Signal di ricevere messaggi quando è inattivo</string>
@@ -414,6 +410,9 @@ I suoi messaggi e le chiamate sono state disabilitate, si prega di provare e ri-
   <string name="MmsDownloader_error_reading_mms_settings">Errore nel leggere le impostazioni MMS per il tuo provider</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Media</string>
+  <string name="MediaOverviewActivity_Files">File</string>
+  <string name="MediaOverviewActivity_Audio">Audio</string>
+  <string name="MediaOverviewActivity_All">Tutti</string>
   <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
     <item quantity="one">Eliminare l\'elemento selezionato?</item>
     <item quantity="other">Eliminare gli elementi selezionati?</item>
@@ -424,11 +423,8 @@ I suoi messaggi e le chiamate sono state disabilitate, si prega di provare e ri-
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Cancellazione</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Eliminazione messaggi…</string>
-  <string name="MediaOverviewActivity_Files">File</string>
   <string name="MediaOverviewActivity_Select_all">Seleziona tutto</string>
   <string name="MediaOverviewActivity_collecting_attachments">Recupero allegati…</string>
-  <string name="MediaOverviewActivity_Audio">Audio</string>
-  <string name="MediaOverviewActivity_All">Tutti</string>
   <string name="MediaOverviewActivity_Sort_by">Ordina per</string>
   <string name="MediaOverviewActivity_Newest">Più nuovi</string>
   <string name="MediaOverviewActivity_Oldest">Più vecchi</string>
@@ -437,6 +433,14 @@ I suoi messaggi e le chiamate sono state disabilitate, si prega di provare e ri-
   <string name="MediaOverviewActivity_Grid_view_description">Visualizzazione griglia</string>
   <string name="MediaOverviewActivity_List_view_description">Visualizzazione elenco</string>
   <string name="MediaOverviewActivity_Selected_description">Selezionato</string>
+  <string name="MediaOverviewActivity_file">File</string>
+  <string name="MediaOverviewActivity_audio">Audio</string>
+  <string name="MediaOverviewActivity_video">Video</string>
+  <string name="MediaOverviewActivity_image">Immagine</string>
+  <string name="MediaOverviewActivity_sent_by_s">Inviato da %1$s</string>
+  <string name="MediaOverviewActivity_sent_by_you">Inviato da te</string>
+  <string name="MediaOverviewActivity_sent_by_s_to_s">Inviato da %1$s a %2$s</string>
+  <string name="MediaOverviewActivity_sent_by_you_to_s">Inviato da te a %1$s</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Chiamata con Signal in corso</string>
   <string name="NotificationBarManager__establishing_signal_call">Preparazione chiamata Signal</string>
@@ -1491,7 +1495,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="Recipient_unknown">Sconosciuto</string>
   <string name="MessageRequestBottomView_accept">Accetta</string>
   <string name="MessageRequestBottomView_delete">Elimina</string>
-  <string name="MessageRequestBottomView_block">Blocco</string>
+  <string name="MessageRequestBottomView_block">Blocca</string>
   <string name="MessageRequestBottomView_do_you_want_to_let">Vuoi ricevere messaggi da %1$s?</string>
   <string name="MessageRequestProfileView_member_of_one_group">Membro di %1$s</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Membro di %1$s e %2$s</string>

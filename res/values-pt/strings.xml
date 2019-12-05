@@ -302,7 +302,6 @@
   <string name="DeviceListItem_last_active_s">Ativo pela última vez %s</string>
   <string name="DeviceListItem_today">Hoje</string>
   <!--DocumentView-->
-  <string name="DocumentView_unknown_file">Ficheiro desconhecido</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Otimizar para os \"Play Services\" em falta.</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Este dispositivo não suporta os Play Services. Toque para desativar o sistema de otimização de bateria que impede o Signal de recolher mensagens enquanto inativo.</string>
@@ -404,11 +403,15 @@
   <string name="MmsDownloader_error_reading_mms_settings">Erro ao ler as configurações do operador MMS</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Multimédia</string>
+  <string name="MediaOverviewActivity_Audio">Áudio</string>
   <string name="MediaOverviewActivity_Media_delete_progress_title">A eliminar</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">A eliminar mensagens…</string>
   <string name="MediaOverviewActivity_Select_all">Seleccionar tudo</string>
   <string name="MediaOverviewActivity_collecting_attachments">A recolher anexos…</string>
-  <string name="MediaOverviewActivity_Audio">Áudio</string>
+  <string name="MediaOverviewActivity_file">Ficheiro</string>
+  <string name="MediaOverviewActivity_audio">Áudio</string>
+  <string name="MediaOverviewActivity_video">Vídeo</string>
+  <string name="MediaOverviewActivity_image">Imagem</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Chamada do Signal em curso</string>
   <string name="NotificationBarManager__establishing_signal_call">A estabelecer chamada do Signal</string>

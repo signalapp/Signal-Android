@@ -333,11 +333,7 @@
   <string name="DeviceListItem_last_active_s">היה פעיל לאחרונה %s</string>
   <string name="DeviceListItem_today">היום</string>
   <!--DocumentView-->
-  <string name="DocumentView_unknown_file">קובץ בלתי ידוע</string>
   <string name="DocumentView_unnamed_file">קובץ חסר שם</string>
-  <string name="DocumentView_audio_file">קובץ שמע</string>
-  <string name="DocumentView_image_file">קובץ תמונה</string>
-  <string name="DocumentView_video_file">קובץ סרטון</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">מִטּוּב עבור שירותי Play חסרים</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">מכשיר זה אינו תומך בשירותי Play. הקש כדי להשבית מיטובי סוללה של מערכת שמונעים מ-Signal לאחזר הודעות בעת אי־פעילות.</string>
@@ -445,6 +441,9 @@
   <string name="MmsDownloader_error_reading_mms_settings">שגיאה בקריאת הגדרות MMS של ספק התקשורת האלחוטית</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">מדיה</string>
+  <string name="MediaOverviewActivity_Files">קבצים</string>
+  <string name="MediaOverviewActivity_Audio">שמע</string>
+  <string name="MediaOverviewActivity_All">הכל</string>
   <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
     <item quantity="one">למחוק פריט נבחר?</item>
     <item quantity="two">למחוק פריטים נבחרים?</item>
@@ -459,11 +458,8 @@
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">מוחק</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">מוחק הודעות…</string>
-  <string name="MediaOverviewActivity_Files">קבצים</string>
   <string name="MediaOverviewActivity_Select_all">בחר הכל</string>
   <string name="MediaOverviewActivity_collecting_attachments">אוסף צרופות…</string>
-  <string name="MediaOverviewActivity_Audio">שמע</string>
-  <string name="MediaOverviewActivity_All">הכל</string>
   <string name="MediaOverviewActivity_Sort_by">מיין לפי</string>
   <string name="MediaOverviewActivity_Newest">החדש ביותר</string>
   <string name="MediaOverviewActivity_Oldest">הישן ביותר</string>
@@ -471,6 +467,10 @@
   <string name="MediaOverviewActivity_All_storage_use">כל השימוש באחסון</string>
   <string name="MediaOverviewActivity_Grid_view_description">תצוגת סורג</string>
   <string name="MediaOverviewActivity_List_view_description">תצוגת רשימה</string>
+  <string name="MediaOverviewActivity_file">קובץ</string>
+  <string name="MediaOverviewActivity_audio">שמע</string>
+  <string name="MediaOverviewActivity_video">סרטון</string>
+  <string name="MediaOverviewActivity_image">תמונה</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">שיחת Signal בתהליך</string>
   <string name="NotificationBarManager__establishing_signal_call">מקים שיחת Signal</string>

@@ -302,7 +302,6 @@
   <string name="DeviceListItem_last_active_s">Senast aktiv %s</string>
   <string name="DeviceListItem_today">Idag</string>
   <!--DocumentView-->
-  <string name="DocumentView_unknown_file">Okänd fil</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimera för avsaknad av Play-tjänster</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Denna enhet stödjer inte Play-tjänster. Tryck för att slå av systemets batterioptimeringar som förhindrar Signal från att ta emot meddelanden medan den är inaktiv.</string>
@@ -404,11 +403,15 @@
   <string name="MmsDownloader_error_reading_mms_settings">Fel vid läsningen av trådlös leverantör MMS-inställningar</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Media</string>
+  <string name="MediaOverviewActivity_Audio">Ljud</string>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Raderar</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Tar bort meddelanden…</string>
   <string name="MediaOverviewActivity_Select_all">Markera alla</string>
   <string name="MediaOverviewActivity_collecting_attachments">Samlar bilagor…</string>
-  <string name="MediaOverviewActivity_Audio">Ljud</string>
+  <string name="MediaOverviewActivity_file">Fil</string>
+  <string name="MediaOverviewActivity_audio">Ljud</string>
+  <string name="MediaOverviewActivity_video">Video</string>
+  <string name="MediaOverviewActivity_image">Bild</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal-samtal pågår</string>
   <string name="NotificationBarManager__establishing_signal_call">Upprättar Signal-samtal</string>

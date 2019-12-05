@@ -247,7 +247,6 @@
   <string name="DeviceListItem_last_active_s">ใช้งานล่าสุด %s</string>
   <string name="DeviceListItem_today">วันนี้</string>
   <!--DocumentView-->
-  <string name="DocumentView_unknown_file">ไฟล์ที่ไม่รู้จัก</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">ปรับปรุงการทำงานให้รับกับการไม่มี Play Services</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">อุปกรณ์นี้ไม่รองรับ Play Services แตะเพื่อปิดใช้งานการปรับประสิทธิภาพแบตเตอรีซึ่งจะทำให้ Signal ไม่สามารถรับข้อความได้ในขณะที่ไม่ได้เปิดแอปบนหน้าจอ</string>
@@ -333,11 +332,15 @@
   <string name="MmsDownloader_error_reading_mms_settings">เกิดข้อผิดพลาดระหว่างอ่านการตั้งค่า MMS ของผู้ให้บริการไร้สาย</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">สื่อ</string>
+  <string name="MediaOverviewActivity_Audio">เสียง</string>
   <string name="MediaOverviewActivity_Media_delete_progress_title">กำลังลบ</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">กำลังลบข้อความ…</string>
   <string name="MediaOverviewActivity_Select_all">เลือกทั้งหมด</string>
   <string name="MediaOverviewActivity_collecting_attachments">รวบรวมสิ่งแนบ…</string>
-  <string name="MediaOverviewActivity_Audio">เสียง</string>
+  <string name="MediaOverviewActivity_file">ไฟล์</string>
+  <string name="MediaOverviewActivity_audio">เสียง</string>
+  <string name="MediaOverviewActivity_video">วิดีโอ</string>
+  <string name="MediaOverviewActivity_image">ภาพ</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">กำลังใช้สาย Signal อยู่</string>
   <string name="NotificationBarManager__establishing_signal_call">กำลังเริ่มสาย Signal</string>

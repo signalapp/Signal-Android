@@ -332,7 +332,6 @@
   <string name="DeviceListItem_last_active_s">Paskutinį kartą aktyvus %s</string>
   <string name="DeviceListItem_today">Šiandien</string>
   <!--DocumentView-->
-  <string name="DocumentView_unknown_file">Nežinomas failas</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimizuoti trūkstamoms „Play“ paslaugoms</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Šis įrenginys nepalaiko „Play“ paslaugų. Bakstelėkite, norėdami išjungti sistemos baterijos optimizavimus, kurie neleidžia Signal gauti žinučių tol, kol įrenginys yra neaktyvus.</string>
@@ -439,11 +438,15 @@
   <string name="MmsDownloader_error_reading_mms_settings">Klaida, skaitant belaidžio tiekėjo MMS nustatymus</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Medija</string>
+  <string name="MediaOverviewActivity_Audio">Garso įrašai</string>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Ištrinama</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Ištrinamos žinutės…</string>
   <string name="MediaOverviewActivity_Select_all">Žymėti visus</string>
   <string name="MediaOverviewActivity_collecting_attachments">Renkami priedai…</string>
-  <string name="MediaOverviewActivity_Audio">Garso įrašai</string>
+  <string name="MediaOverviewActivity_file">Failas</string>
+  <string name="MediaOverviewActivity_audio">Garso įrašai</string>
+  <string name="MediaOverviewActivity_video">Vaizdo įrašai</string>
+  <string name="MediaOverviewActivity_image">Paveikslas</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal skambutis yra eigoje</string>
   <string name="NotificationBarManager__establishing_signal_call">Užmezgiamas Signal skambutis</string>

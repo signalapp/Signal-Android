@@ -305,11 +305,7 @@
   <string name="DeviceListItem_last_active_s">Laatst actief %s</string>
   <string name="DeviceListItem_today">Vandaag</string>
   <!--DocumentView-->
-  <string name="DocumentView_unknown_file">Onbekend bestand</string>
   <string name="DocumentView_unnamed_file">Onbenoemd bestand</string>
-  <string name="DocumentView_audio_file">Audiobestand</string>
-  <string name="DocumentView_image_file">Afbeeldingsbestand</string>
-  <string name="DocumentView_video_file">Videobestand</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimaliseren voor ontbrekende Google Play Services</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Dit apparaat biedt geen ondersteuning voor Google Play Services. Tik hier om de optimalisaties m.b.t. stroomverbruik uit te schakelen, die Signal momenteel verhinderen om berichten te ontvangen op de achtergrond.</string>
@@ -380,8 +376,8 @@ weergaven.</string>
   <!--InviteActivity-->
   <string name="InviteActivity_share">Delen</string>
   <string name="InviteActivity_choose_contacts">Kies contactpersonen</string>
-  <string name="InviteActivity_share_with_contacts">Doorsturen naar contactpersonen</string>
-  <string name="InviteActivity_choose_how_to_share">Kies hoe je wilt doorsturen</string>
+  <string name="InviteActivity_share_with_contacts">Contactpersonen kiezen (sms)</string>
+  <string name="InviteActivity_choose_how_to_share">Kies met welke app je wilt verzenden</string>
   <string name="InviteActivity_cancel">Annuleren</string>
   <string name="InviteActivity_sending">Bezig met verzenden…</string>
   <string name="InviteActivity_heart_content_description">Hartje</string>
@@ -396,7 +392,7 @@ weergaven.</string>
     <item quantity="other">%d sms-uitnodigingen verzenden?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Laten we Signal gebruiken om een gesprek te voeren: %1$s</string>
-  <string name="InviteActivity_no_app_to_share_to">Het lijkt erop dat je geen apps hebt om naar door te sturen.</string>
+  <string name="InviteActivity_no_app_to_share_to">Het lijkt erop dat je geen apps hebt waarmee je een uitnodiging kan verzenden.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Vrienden laten vrienden niet onversleuteld chatten.</string>
   <!--Job-->
   <string name="Job_working_in_the_background">Bezig op de achtergrond…</string>
@@ -414,6 +410,9 @@ weergaven.</string>
   <string name="MmsDownloader_error_reading_mms_settings">Fout bij het lezen van de mms-instellingen van de provider</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Media</string>
+  <string name="MediaOverviewActivity_Files">Documenten</string>
+  <string name="MediaOverviewActivity_Audio">Audio</string>
+  <string name="MediaOverviewActivity_All">Alles</string>
   <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
     <item quantity="one">Geselecteerd item wissen?</item>
     <item quantity="other">Geselecteerd items wissen?</item>
@@ -424,19 +423,24 @@ weergaven.</string>
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Aan het verwijderen</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Berichten aan het wissen…</string>
-  <string name="MediaOverviewActivity_Files">Documenten</string>
   <string name="MediaOverviewActivity_Select_all">Alles selecteren</string>
   <string name="MediaOverviewActivity_collecting_attachments">Bijlagen aan het verzamelen…</string>
-  <string name="MediaOverviewActivity_Audio">Audio</string>
-  <string name="MediaOverviewActivity_All">Alles</string>
   <string name="MediaOverviewActivity_Sort_by">Sorteren op</string>
   <string name="MediaOverviewActivity_Newest">Nieuwste bovenaan</string>
   <string name="MediaOverviewActivity_Oldest">Oudste bovenaan</string>
-  <string name="MediaOverviewActivity_Storage_used">Gebruikte opslagruimte</string>
+  <string name="MediaOverviewActivity_Storage_used">Hoeveelheid opslagruimte</string>
   <string name="MediaOverviewActivity_All_storage_use">Al het opslaggebruik</string>
   <string name="MediaOverviewActivity_Grid_view_description">Rasterweergave</string>
   <string name="MediaOverviewActivity_List_view_description">Lijstweergave</string>
   <string name="MediaOverviewActivity_Selected_description">Geselecteerd</string>
+  <string name="MediaOverviewActivity_file">Bestand</string>
+  <string name="MediaOverviewActivity_audio">Audio</string>
+  <string name="MediaOverviewActivity_video">Video</string>
+  <string name="MediaOverviewActivity_image">Afbeelding</string>
+  <string name="MediaOverviewActivity_sent_by_s">Door %1$s verzonden</string>
+  <string name="MediaOverviewActivity_sent_by_you">Door jou verzonden</string>
+  <string name="MediaOverviewActivity_sent_by_s_to_s">Door %1$s naar %2$s verzonden</string>
+  <string name="MediaOverviewActivity_sent_by_you_to_s">Door jou naar %1$s verzonden</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal-oproep aan de gang</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal-oproep aan het opzetten</string>
@@ -735,7 +739,7 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">De gescande QR-code is geen goed geformatteerd veiligheidsnummer-verificatiecode. Probeer de code opnieuw te scannen.</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">Veiligheidsnummer doorsturen via…</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">Ons Signal-veiligheidsnummer:</string>
-  <string name="VerifyIdentityActivity_no_app_to_share_to">Het lijkt erop dat je geen apps hebt om naar te delen.</string>
+  <string name="VerifyIdentityActivity_no_app_to_share_to">Het lijkt erop dat je geen apps waarmee je dit kunt delen.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Geen veiligheidsnummer gevonden op het klembord</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal heeft toegang tot de camera nodig om een QR-code te scannen, maar deze is pertinent geweigerd. Ga naar de instellingen voor deze app, selecteer ‘Machtigingen’ en schakel ‘Camera’ in.</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Kan QR-code niet scannen zonder toegang tot camera</string>
@@ -893,7 +897,7 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <string name="blocked_contacts_fragment__no_blocked_contacts">Geen geblokkeerde contactpersonen</string>
   <!--contact_selection_list_fragment-->
   <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Signal heeft toegang nodig tot je contacten om contactpersonen te kunnen weergeven.</string>
-  <string name="contact_selection_list_fragment__show_contacts">Contactpersonen tonen</string>
+  <string name="contact_selection_list_fragment__show_contacts">Contactpersonen weergeven</string>
   <!--conversation_activity-->
   <string name="conversation_activity__type_message_push">Signal-bericht</string>
   <string name="conversation_activity__type_message_sms_insecure">Onbeveiligde sms</string>
@@ -1252,7 +1256,7 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <string name="preferences_notifications__show">Laat zien</string>
   <string name="preferences_notifications__calls">Oproepen</string>
   <string name="preferences_notifications__ringtone">Beltoon</string>
-  <string name="preferences_chats__show_invitation_prompts">Uitnodigingsvoorstel tonen</string>
+  <string name="preferences_chats__show_invitation_prompts">Uitnodigingsvoorstel weergeven</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Toon boven sms-gesprekken met gesprekspartners die niet op Signal zitten een suggestie om je gesprekspartner uit te nodigen op Signal.</string>
   <string name="preferences_chats__message_text_size">Tekstgrootte voor berichten</string>
   <string name="preferences_events__contact_joined_signal">Contactpersoon gebruikt nu Signal</string>

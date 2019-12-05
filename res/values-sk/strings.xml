@@ -322,7 +322,6 @@
   <string name="DeviceListItem_last_active_s">Naposledy aktívne: %s</string>
   <string name="DeviceListItem_today">Dnes</string>
   <!--DocumentView-->
-  <string name="DocumentView_unknown_file">Neznámy súbor</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimalizovať pre chýbajúce služby Google Play</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Toto zariadenie nepodporuje služby Google Play. Ťuknite pre vypnutie systémovej optimalizácie batérie, ktorá zabraňuje Signalu prijímať správy v neaktívnom stave.</string>
@@ -428,11 +427,15 @@
   <string name="MmsDownloader_error_reading_mms_settings">Chyba pri načítaní MMS nastavení poskytovateľa</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Médiá</string>
+  <string name="MediaOverviewActivity_Audio">Zvuk</string>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Mazanie</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Mažú sa správy…</string>
   <string name="MediaOverviewActivity_Select_all">Označiť všetko</string>
   <string name="MediaOverviewActivity_collecting_attachments">Ukladám prílohy…</string>
-  <string name="MediaOverviewActivity_Audio">Zvuk</string>
+  <string name="MediaOverviewActivity_file">Súbor</string>
+  <string name="MediaOverviewActivity_audio">Zvuk</string>
+  <string name="MediaOverviewActivity_video">Video</string>
+  <string name="MediaOverviewActivity_image">Obrázok</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Prebieha Signal hovor</string>
   <string name="NotificationBarManager__establishing_signal_call">Príprava na Signal hovor</string>

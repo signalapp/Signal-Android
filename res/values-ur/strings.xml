@@ -303,7 +303,6 @@
   <string name="DeviceListItem_last_active_s">آخری سرگرمی %s</string>
   <string name="DeviceListItem_today">آج</string>
   <!--DocumentView-->
-  <string name="DocumentView_unknown_file">نامعلوم فائل</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">غائب پلے سروسز بہتر بنائیں</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">یہ ڈیوائس پلے سروسز کا تعاون نہیں کرتی ہے۔ سسٹم کی بیٹری کی اصلاح کو غیر فعال کرنے کیلئے ٹیپ کریں جو Signal کو غیر فعال ہونے پر پیغامات کی بازیافت سے روکتی ہیں۔</string>
@@ -405,11 +404,15 @@
   <string name="MmsDownloader_error_reading_mms_settings">وائر لیس فراہم کنندہ ایم ایم ایس کی ترتیبات کو پڑھنے میں غلطی</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">میڈیا</string>
+  <string name="MediaOverviewActivity_Audio">آڈیو</string>
   <string name="MediaOverviewActivity_Media_delete_progress_title">حذف ہو رہا ہے</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">پیغامات حذف ہو رہے ہیں۔۔۔</string>
   <string name="MediaOverviewActivity_Select_all">تمام منتخب کریں</string>
   <string name="MediaOverviewActivity_collecting_attachments">منسلک چیزیں جمح کر رہے ہیں۔۔۔</string>
-  <string name="MediaOverviewActivity_Audio">آڈیو</string>
+  <string name="MediaOverviewActivity_file">فائل</string>
+  <string name="MediaOverviewActivity_audio">آڈیو</string>
+  <string name="MediaOverviewActivity_video">وڈیو</string>
+  <string name="MediaOverviewActivity_image">تصویر</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">signal کال پروگریس میں ہے</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal کال قائم ہو رہی ہے</string>

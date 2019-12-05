@@ -308,7 +308,6 @@
   <string name="DeviceListItem_last_active_s">Pēdējo reizi aktīvs %s</string>
   <string name="DeviceListItem_today">Šodien</string>
   <!--DocumentView-->
-  <string name="DocumentView_unknown_file">Nezināms fails</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimizē priekš trūkstošajiem Google Play Services</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Šī ierīce neatbalsta Play Services, Pieskaries, lai atspējotu systēmas baterijas optimizāciju, kas traucē Signal saņemt ziņas, kad tas ir neaktīvs.</string>
@@ -412,11 +411,15 @@
   <string name="MmsDownloader_error_reading_mms_settings">Neizdevās nolasīt mobilo pakalpojumu sniedzēja MMS uzstādījumus</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Multivide</string>
+  <string name="MediaOverviewActivity_Audio">Audio</string>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Dzēš</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Dzēš ziņas…</string>
   <string name="MediaOverviewActivity_Select_all">Izvēlēties visu</string>
   <string name="MediaOverviewActivity_collecting_attachments">Apkopo pielikumus…</string>
-  <string name="MediaOverviewActivity_Audio">Audio</string>
+  <string name="MediaOverviewActivity_file">Fails</string>
+  <string name="MediaOverviewActivity_audio">Audio</string>
+  <string name="MediaOverviewActivity_video">Video</string>
+  <string name="MediaOverviewActivity_image">Atēls</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Notiek Signal zvans </string>
   <string name="NotificationBarManager__establishing_signal_call">Signal zvana izveide</string>
