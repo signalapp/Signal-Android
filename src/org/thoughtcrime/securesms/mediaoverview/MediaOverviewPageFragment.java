@@ -253,10 +253,10 @@ public final class MediaOverviewPageFragment extends Fragment
 
   @Override
   public void onMediaLongClicked(MediaDatabase.MediaRecord mediaRecord) {
-    if (actionMode == null) {
-      ((MediaGalleryAllAdapter) recyclerView.getAdapter()).toggleSelection(mediaRecord);
-      recyclerView.getAdapter().notifyDataSetChanged();
+    ((MediaGalleryAllAdapter) recyclerView.getAdapter()).toggleSelection(mediaRecord);
+    recyclerView.getAdapter().notifyDataSetChanged();
 
+    if (actionMode == null) {
       enterMultiSelect();
     }
   }

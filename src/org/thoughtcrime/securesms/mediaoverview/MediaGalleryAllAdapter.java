@@ -283,7 +283,6 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
       }
 
       thumbnailView.setImageResource(glideRequests, slide, false, false);
-
       thumbnailView.setOnClickListener(view -> itemClickListener.onMediaClicked(mediaRecord));
       thumbnailView.setOnLongClickListener(view -> onLongClick());
     }
@@ -466,6 +465,7 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
 
       thumbnailView.setImageResource(glideRequests, slide, false, false);
       thumbnailView.setOnClickListener(view -> itemClickListener.onMediaClicked(mediaRecord));
+      thumbnailView.setOnLongClickListener(view -> onLongClick());
     }
 
     @Override
