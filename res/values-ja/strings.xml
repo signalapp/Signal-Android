@@ -390,6 +390,7 @@
   <string name="MediaOverviewActivity_Media">メディア</string>
   <string name="MediaOverviewActivity_Media_delete_progress_title">削除中</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">メッセージを削除中…</string>
+  <string name="MediaOverviewActivity_Files">ファイル</string>
   <string name="MediaOverviewActivity_Select_all">すべて選択</string>
   <string name="MediaOverviewActivity_collecting_attachments">添付ファイルを集めています…</string>
   <string name="MediaOverviewActivity_Audio">音声</string>
@@ -1140,6 +1141,10 @@
   <string name="preferences_chats__when_roaming">ローミング時</string>
   <string name="preferences_chats__media_auto_download">メディアの自動ダウンロード</string>
   <string name="preferences_chats__message_trimming">メッセージの削減</string>
+  <string name="preferences_storage__storage_usage">ストレージ使用量</string>
+  <string name="preferences_storage__photos">写真</string>
+  <string name="preferences_storage__videos">動画</string>
+  <string name="preferences_storage__files">ファイル</string>
   <string name="preferences_storage__audio">音声</string>
   <string name="preferences_advanced__use_system_emoji">システムの絵文字を使う</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Signal独自の絵文字機能を無効にする</string>

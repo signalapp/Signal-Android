@@ -308,9 +308,9 @@
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure 已命名為 Signal。</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">從現在起 TextSecure 與 RedPhone 將會是同一個應用程式：Signal。輕觸以開始探索。</string>
   <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">向安全的視訊通話打聲招呼，說聲嗨。</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">現在 Signal 支援了安全的視訊通話。就如同開始 Signal 通話一樣，輕觸視訊按鈕，接著揮手打聲招呼。</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">現在 Signal 支援安全的視訊通話。</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">現在 Signal 支援安全的視訊通話。輕觸探索。</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">現在 Signal 支援了安全的視訊電話。就如同開始 Signal 通話一樣，輕觸視訊按鈕，接著揮手打聲招呼。</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">現在 Signal 支援安全的視訊電話。</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">現在 Signal 支援安全的視訊電話。輕觸探索。</string>
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">準備好你的特寫了嗎？</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">現在，你可以分享你的頭像照片及名字給在 Signal 中的朋友</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal 個人資訊就在這裡</string>
@@ -589,6 +589,8 @@
   <string name="RegistrationActivity_failed_to_verify_the_captcha">驗證CAPTCHA 失敗</string>
   <string name="RegistrationActivity_next">下一步</string>
   <string name="RegistrationActivity_continue">繼續</string>
+  <string name="RegistrationActivity_continue_d_attempts_left">繼續(只剩%d次嘗試次數)</string>
+  <string name="RegistrationActivity_continue_last_attempt">繼續(最後一次嘗試! )</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">保護你的隱私權。\n在每個訊息中做你自己。</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">輸入你的電話號碼即可開始使用。</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">你將收到驗證碼。各電信公司的收費費率可能有所不同。</string>
@@ -691,6 +693,16 @@
   <string name="UsernameEditFragment_username">使用者名稱</string>
   <string name="UsernameEditFragment_submit">上傳</string>
   <string name="UsernameEditFragment_delete">刪除</string>
+  <string name="UsernameEditFragment_successfully_set_username">成功設定使用者名稱。</string>
+  <string name="UsernameEditFragment_successfully_removed_username">成功移除使用者名稱。</string>
+  <string name="UsernameEditFragment_encountered_a_network_error">網路連接錯誤。</string>
+  <string name="UsernameEditFragment_this_username_is_taken">這個使用者名稱已經被使用。</string>
+  <string name="UsernameEditFragment_this_username_is_available">這個使用者名稱可以被使用。</string>
+  <string name="UsernameEditFragment_usernames_can_only_include">使用這名稱可以是 a-Z、0-9、及下底線。</string>
+  <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">使用者名稱不可以以數字開頭。</string>
+  <string name="UsernameEditFragment_username_is_invalid">使用者名稱無效。</string>
+  <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">使用者名稱必須是藉在%1$d及%2$d之間的字母。</string>
+  <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">其他Signal 使用者可以將訊息要求傳送到你的唯一使用者名稱，而無需知道你的電話號碼。 選擇一個使用者名稱是可自選的。</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">您的聯絡人使用的是舊版本的 Signal。在驗證您的安全碼前請尋求對方先進行更新。</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">您的聯絡人使用的是新版本的 Signal，程式無法識別這個聯絡人的二維碼。
@@ -731,6 +743,7 @@
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">因為沒有儲存的權限，無法儲存到外部儲存空間</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">刪除訊息？</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">這將永久刪除此訊息。</string>
+  <string name="MediaPreviewActivity_s_to_s">%1$s到%2$s</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d 則新訊息在 %2$d 的對話中</string>
   <string name="MessageNotifier_most_recent_from_s">最新來自：%1$s</string>
@@ -752,6 +765,7 @@
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">開啟 Signal 以查驗最近的通知。</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">聯絡人</string>
+  <string name="MessageNotifier_reacted_to_your_message">已傳送到你的訊息:%1$s</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">預設</string>
   <string name="NotificationChannel_calls">通話</string>
@@ -763,6 +777,8 @@
   <string name="NotificationChannel_group_messages">訊息</string>
   <string name="NotificationChannel_missing_display_name">未知</string>
   <!--ProfileEditNameFragment-->
+  <string name="ProfileEditNameFragment_successfully_set_profile_name">成功設定你的個人資料名稱。</string>
+  <string name="ProfileEditNameFragment_encountered_a_network_error">網路連接錯誤</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">當 Signal 鎖定時無法使用快速回覆！</string>
   <string name="QuickResponseService_problem_sending_message">傳送訊息出現問題！</string>
@@ -778,6 +794,8 @@
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">新訊息</string>
   <!--ThumbnailView-->
+  <string name="ThumbnailView_Play_video_description">播放影片</string>
+  <string name="ThumbnailView_Has_a_caption_description">有一個標題</string>
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">
     <item quantity="other">%d 項目</item>
@@ -842,6 +860,8 @@
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal 需要聯絡人的權限以顯示聯絡人資訊，但是現在被設定為永久拒絕存取。請到應用程式設定中，選取「權限」，並啟用「聯絡人」的權限。</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">取回聯絡人名單錯誤，請檢查網路連線</string>
+  <string name="ContactSelectionListFragment_username_not_found">找不到使用者名稱</string>
+  <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\"不是 Signal 使用者。請檢查使用者名稱並再試一次。</string>
   <string name="ContactSelectionListFragment_okay">Okay</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">無已封鎖的聯絡人</string>
@@ -1179,8 +1199,12 @@
   <string name="preferences_chats__when_roaming">當漫遊時</string>
   <string name="preferences_chats__media_auto_download">媒體自動下載</string>
   <string name="preferences_chats__message_trimming">訊息整理</string>
+  <string name="preferences_storage__storage_usage">已使用的儲存容量</string>
+  <string name="preferences_storage__photos">照片</string>
+  <string name="preferences_storage__videos">影片</string>
   <string name="preferences_storage__files">檔案</string>
   <string name="preferences_storage__audio">音訊</string>
+  <string name="preferences_storage__review_storage">檢視儲存空間</string>
   <string name="preferences_advanced__use_system_emoji">使用系統表情符號</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">停用 Signal 內建的表情支援</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">透過 Signal 伺服器轉發通話，來避免透露你的 IP 位址給你的聯絡人。啟用時，會降低通話品質。</string>
@@ -1214,6 +1238,7 @@
   <string name="conversation_callable_insecure__menu_call">撥出</string>
   <!--conversation_callable_secure-->
   <string name="conversation_callable_secure__menu_call">Signal 通話</string>
+  <string name="conversation_callable_secure__menu_video">Signal 視訊電話</string>
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">訊息細節</string>
   <string name="conversation_context__menu_copy_text">複製文字</string>
@@ -1222,6 +1247,7 @@
   <string name="conversation_context__menu_resend_message">重送訊息</string>
   <string name="conversation_context__menu_reply_to_message">回覆訊息</string>
   <!--conversation_context_reacction-->
+  <string name="conversation_context__reaction_multi_select">選擇多個</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">儲存附件檔案</string>
   <!--conversation_expiring_off-->
@@ -1425,6 +1451,8 @@
   <string name="RegistrationLockDialog_error_connecting_to_the_service">連線到服務錯誤</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">關閉註冊鎖定 PIN 碼？</string>
   <string name="RegistrationLockDialog_disable">停用</string>
+  <string name="RegistrationActivity_pin_incorrect">PIN 碼錯誤</string>
+  <string name="RegistrationActivity_you_have_d_tries_remaining">你只剩下%d次的嘗試</string>
   <string name="preferences_chats__backups">備份</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal 已被鎖定</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">觸碰來解鎖</string>
@@ -1434,5 +1462,13 @@
   <string name="MessageRequestBottomView_accept">接受</string>
   <string name="MessageRequestBottomView_delete">刪除</string>
   <string name="MessageRequestBottomView_block">封鎖</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let">你要接收從%1$s傳來的訊息嗎？</string>
+  <string name="MessageRequestProfileView_member_of_one_group">%1$s的成員</string>
+  <string name="MessageRequestProfileView_member_of_two_groups">%1$s及%2$s的成員</string>
+  <string name="MessageRequestProfileView_member_of_many_groups">%1$s、%2$s、及%3$s的成員</string>
+  <string name="MessageRequestProfileView_members">%1$d成員</string>
+  <plurals name="MessageRequestProfileView_member_of_others">
+    <item quantity="other">%d其他</item>
+  </plurals>
   <!--EOF-->
 </resources>

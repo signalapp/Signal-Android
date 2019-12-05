@@ -106,6 +106,8 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Nerasta jokios saityno naršyklės.</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Mobilusis skambutis jau vyksta.</string>
+  <string name="CommunicationActions_start_video_call">Pradėti vaizdo skambutį?</string>
+  <string name="CommunicationActions_start_voice_call">Pradėti balso skambutį?</string>
   <string name="CommunicationActions_cancel">Atsisakyti</string>
   <string name="CommunicationActions_call">Skambinti</string>
   <!--ConfirmIdentityDialog-->
@@ -400,6 +402,7 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Bendrinti</string>
   <string name="InviteActivity_choose_contacts">Pasirinkti adresatus</string>
+  <string name="InviteActivity_share_with_contacts">Bendrinti su adresatais</string>
   <string name="InviteActivity_cancel">Atsisakyti</string>
   <string name="InviteActivity_sending">Siunčiama…</string>
   <string name="InviteActivity_heart_content_description">Širdis</string>
@@ -540,9 +543,11 @@
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Jūsų turima įdiegta „Google Play“ paslaugų versija nefunkcionuoja tinkamai. Prašome iš naujo įdiegti „Google Play“ paslaugas ir bandyti dar kartą.</string>
   <!--ProfileEditNameFragment-->
+  <string name="ProfileEditNameFragment_profile_name">Profilio pavadinimas</string>
   <string name="ProfileEditNameFragment_save">Įrašyti</string>
   <!--ProfileEditOverviewFragment-->
   <string name="ProfileEditOverviewFragment_profile">Profilis</string>
+  <string name="ProfileEditOverviewFragment_profile_name">Profilio pavadinimas</string>
   <string name="ProfileEditOverviewFragment_username">Naudotojo vardas</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Įvertinkite šią programėlę</string>
@@ -718,6 +723,8 @@
   <string name="UsernameEditFragment_username">Naudotojo vardas</string>
   <string name="UsernameEditFragment_submit">Pateikti</string>
   <string name="UsernameEditFragment_delete">Ištrinti</string>
+  <string name="UsernameEditFragment_this_username_is_taken">Šis naudotojo vardas yra užimtas.</string>
+  <string name="UsernameEditFragment_this_username_is_available">Šis naudotojo vardas yra prieinamas.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Jūsų adresatas naudoja seną Signal versiją. Prieš patvirtindami savo saugumo numerį, paprašykite, kad jis atnaujintų programėlę.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Jūsų adresatas naudoja naujesnę Signal versiją su nesuderinamu QR kodo formatu. Norėdami palyginti, atsinaujinkite programėlę.</string>
@@ -871,6 +878,7 @@
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Norint rodyti jūsų adresatus, Signal reikia adresatų leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymų meniu, pasirinkite \"Leidimai\" ir įjunkite \"Adresatus\".</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Klaida gaunant adresatus, patikrinkite tinklo ryšį</string>
+  <string name="ContactSelectionListFragment_username_not_found">Naudotojo vardas nerastas</string>
   <string name="ContactSelectionListFragment_okay">Gerai</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Nėra užblokuotų adresatų</string>
@@ -1471,6 +1479,7 @@
   <string name="RegistrationLockDialog_error_connecting_to_the_service">Klaida, jungiantis prie paslaugos</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">Išjungti Registracijos užrakto PIN?</string>
   <string name="RegistrationLockDialog_disable">Išjungti</string>
+  <string name="RegistrationActivity_pin_incorrect">Neteisingas PIN kodas</string>
   <string name="preferences_chats__backups">Atsarginės kopijos</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal yra užrakinta</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">BAKSTELĖKITE, NORĖDAMI ATRAKINTI</string>

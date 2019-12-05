@@ -787,6 +787,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Malfermu Signal-on por vidi, ĉu estas sciigoj.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Kontakto</string>
+  <string name="MessageNotifier_reacted_to_your_message">Reagis pri via mesaĝo: %1$s</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Defaŭlta</string>
   <string name="NotificationChannel_calls">Alvokoj</string>
@@ -1234,6 +1235,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="preferences_storage__videos">Videaĵoj</string>
   <string name="preferences_storage__files">Dosieroj</string>
   <string name="preferences_storage__audio">Sonaĵo</string>
+  <string name="preferences_storage__review_storage">Kontroli la konservejon</string>
   <string name="preferences_advanced__use_system_emoji">Uzi sisteman emoĝiaron</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Malebligi emoĝiaron de Signal</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Trapasigi ĉiujn alvokojn tra la Signal-servilo por eviti sciigi vian IP-adreson al via kontakto. Tio malaltigos la alvokan kvaliton.</string>
@@ -1267,6 +1269,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="conversation_callable_insecure__menu_call">Alvoko</string>
   <!--conversation_callable_secure-->
   <string name="conversation_callable_secure__menu_call">Signal-alvoko</string>
+  <string name="conversation_callable_secure__menu_video">Signal-vidalvoko</string>
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">Detaloj de la mesaĝo</string>
   <string name="conversation_context__menu_copy_text">Kopii tekston</string>
@@ -1275,6 +1278,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="conversation_context__menu_resend_message">Resendi mesaĝon</string>
   <string name="conversation_context__menu_reply_to_message">Respondi mesaĝon</string>
   <!--conversation_context_reacction-->
+  <string name="conversation_context__reaction_multi_select">Elekti plurajn</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Konservi kunsendaĵon</string>
   <!--conversation_expiring_off-->
@@ -1479,6 +1483,8 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="RegistrationLockDialog_error_connecting_to_the_service">Eraro dum konekto al servo</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">Ĉu malŝalti la PIN de bloko de registriĝo?</string>
   <string name="RegistrationLockDialog_disable">Malŝalti</string>
+  <string name="RegistrationActivity_pin_incorrect">Neĝusta PIN</string>
+  <string name="RegistrationActivity_you_have_d_tries_remaining">Restas %d provoj al vi</string>
   <string name="preferences_chats__backups">Savkopioj</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal estas ŝlosita</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">TUŜETU POR MALŜLOSI</string>
@@ -1488,5 +1494,14 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="MessageRequestBottomView_accept">Akcepti</string>
   <string name="MessageRequestBottomView_delete">Forigi</string>
   <string name="MessageRequestBottomView_block">Bloki</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let">Ĉu vi volas ricevi mesaĝojn el %1$s?</string>
+  <string name="MessageRequestProfileView_member_of_one_group">Ano de %1$s</string>
+  <string name="MessageRequestProfileView_member_of_two_groups">Ano de %1$s kaj %2$s </string>
+  <string name="MessageRequestProfileView_member_of_many_groups">Ano de %1$s, %2$s kaj %3$s</string>
+  <string name="MessageRequestProfileView_members">%1$d anoj</string>
+  <plurals name="MessageRequestProfileView_member_of_others">
+    <item quantity="one">%d alia</item>
+    <item quantity="other">%d aliaj</item>
+  </plurals>
   <!--EOF-->
 </resources>

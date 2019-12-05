@@ -73,6 +73,7 @@
   <string name="BucketedThreadMedia_This_week">Denne uken</string>
   <string name="BucketedThreadMedia_This_month">Denne måneden</string>
   <string name="BucketedThreadMedia_Large">Stor</string>
+  <string name="BucketedThreadMedia_Medium">Medium</string>
   <string name="BucketedThreadMedia_Small">Liten</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Innkommende anrop</string>
@@ -100,6 +101,8 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Ingen nettleser funnet.</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">En mobilanrop er allerede i gang.</string>
+  <string name="CommunicationActions_start_video_call">Vil du starte videosamtale?</string>
+  <string name="CommunicationActions_start_voice_call">Vil du starte taleanrop?</string>
   <string name="CommunicationActions_cancel">Avbryt</string>
   <string name="CommunicationActions_call">Ring</string>
   <!--ConfirmIdentityDialog-->
@@ -303,6 +306,9 @@
   <string name="DeviceListItem_today">I dag</string>
   <!--DocumentView-->
   <string name="DocumentView_unknown_file">Ukjent fil</string>
+  <string name="DocumentView_audio_file">Lydfil</string>
+  <string name="DocumentView_image_file">Bildefil</string>
+  <string name="DocumentView_video_file">Videofil</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimaliser for manglende Play Tjenester</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Denne enheten støtter ikke Play-tjenester. Trykk én gang for å slå av batterioptimalisering som kan hindre Signal i å motta meldinger når det kjører i bakgrunnen.</string>
@@ -372,6 +378,8 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Del</string>
   <string name="InviteActivity_choose_contacts">Velg kontakter</string>
+  <string name="InviteActivity_share_with_contacts">Del med kontakter</string>
+  <string name="InviteActivity_choose_how_to_share">Velg hvordan du vil dele</string>
   <string name="InviteActivity_cancel">Avbryt</string>
   <string name="InviteActivity_sending">Sender…</string>
   <string name="InviteActivity_heart_content_description">Hjerte</string>
@@ -406,9 +414,12 @@
   <string name="MediaOverviewActivity_Media">Medier</string>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Sletter</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Sletter meldinger …</string>
+  <string name="MediaOverviewActivity_Files">Filer</string>
   <string name="MediaOverviewActivity_Select_all">Velg alle</string>
   <string name="MediaOverviewActivity_collecting_attachments">Henter vedlegg …</string>
   <string name="MediaOverviewActivity_Audio">Lyd</string>
+  <string name="MediaOverviewActivity_All">Alle</string>
+  <string name="MediaOverviewActivity_Sort_by">Sorter etter</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal-samtale pågår</string>
   <string name="NotificationBarManager__establishing_signal_call">Setter opp Signal-anrop</string>
@@ -506,10 +517,13 @@
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Versjonen av Google Play Tjenester som er installert på denne enheten fungerer ikke skikkelig. Installer Google Play Tjenester på nytt og prøv igjen.</string>
   <!--ProfileEditNameFragment-->
+  <string name="ProfileEditNameFragment_profile_name">Profil navn</string>
   <string name="ProfileEditNameFragment_save">Lagre</string>
   <!--ProfileEditOverviewFragment-->
   <string name="ProfileEditOverviewFragment_profile">Profil</string>
+  <string name="ProfileEditOverviewFragment_profile_name">Profil navn</string>
   <string name="ProfileEditOverviewFragment_username">Brukernavn</string>
+  <string name="ProfileEditOverviewFragment_create_a_username">Opprett et brukernavn</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Vurder dette programmet</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Hvis du liker dette programmet, vil vi gjerne at du hjelper oss ved å gi din vurdering.</string>
@@ -677,6 +691,10 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="UsernameEditFragment_username">Brukernavn</string>
   <string name="UsernameEditFragment_submit">Send inn</string>
   <string name="UsernameEditFragment_delete">Slett</string>
+  <string name="UsernameEditFragment_this_username_is_taken">Dette brukernavnet er tatt.</string>
+  <string name="UsernameEditFragment_this_username_is_available">Dette brukernavnet er tilgjengelig.</string>
+  <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Brukernavn kan ikke begynne med et tall.</string>
+  <string name="UsernameEditFragment_username_is_invalid">Brukernavnet er ugyldig.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Kontakten kjører en gammel versjon av Signal. Be vedkommende om å oppdatere og deretter bekrefte sikkerhetsnummeret ditt.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Kontakten kjører en nyere versjon av Signal og bruker et QR-kodeformat som ikke kan brukes med din versjon. Oppdater Signal for å sammenligne.</string>
@@ -716,6 +734,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Du kan ikke lagre på ekstern lagringsenhet uten å slå på tillatelse i systemet først</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Vil du slette denne meldinga?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Meldinga blir slettet for godt.</string>
+  <string name="MediaPreviewActivity_s_to_s">%1$s til %2$s</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nye meldinger i %2$d samtaler</string>
   <string name="MessageNotifier_most_recent_from_s">Nyeste fra: %1$s</string>
@@ -828,6 +847,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal krever tillatelse fra systemet for å kunne vise kontakter, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Kontakter».</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Klarte ikke å hente kontakter. Kontroller nettforbindelse</string>
+  <string name="ContactSelectionListFragment_username_not_found">Brukernavn ikke funnet</string>
   <string name="ContactSelectionListFragment_okay">Greit</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Ingen blokkerte kontakter</string>
@@ -1173,6 +1193,9 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences_chats__when_roaming">I fremmednett</string>
   <string name="preferences_chats__media_auto_download">Automatisk nedlasting av medier</string>
   <string name="preferences_chats__message_trimming">Automatisk sletting</string>
+  <string name="preferences_storage__photos">Bilder</string>
+  <string name="preferences_storage__videos">Videoer</string>
+  <string name="preferences_storage__files">Filer</string>
   <string name="preferences_storage__audio">Lyd</string>
   <string name="preferences_advanced__use_system_emoji">Bruk systemets emoji</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Slå av innebygd emoji-støtte i Signal</string>

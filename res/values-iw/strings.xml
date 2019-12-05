@@ -79,6 +79,7 @@
   <string name="BucketedThreadMedia_This_week">השבוע</string>
   <string name="BucketedThreadMedia_This_month">החודש</string>
   <string name="BucketedThreadMedia_Large">גדול</string>
+  <string name="BucketedThreadMedia_Medium">בינוני</string>
   <string name="BucketedThreadMedia_Small">קטן</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">שיחה נכנסת</string>
@@ -106,6 +107,8 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">לא נמצא דפדפן.</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">שיחה סלולרית נמצאת כבר בתהליך.</string>
+  <string name="CommunicationActions_start_video_call">להתחיל שיחת וידיאו?</string>
+  <string name="CommunicationActions_start_voice_call">להתחיל שיחה קולית?</string>
   <string name="CommunicationActions_cancel">בטל</string>
   <string name="CommunicationActions_call">חייג</string>
   <!--ConfirmIdentityDialog-->
@@ -331,6 +334,10 @@
   <string name="DeviceListItem_today">היום</string>
   <!--DocumentView-->
   <string name="DocumentView_unknown_file">קובץ בלתי ידוע</string>
+  <string name="DocumentView_unnamed_file">קובץ חסר שם</string>
+  <string name="DocumentView_audio_file">קובץ שמע</string>
+  <string name="DocumentView_image_file">קובץ תמונה</string>
+  <string name="DocumentView_video_file">קובץ סרטון</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">מִטּוּב עבור שירותי Play חסרים</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">מכשיר זה אינו תומך בשירותי Play. הקש כדי להשבית מיטובי סוללה של מערכת שמונעים מ-Signal לאחזר הודעות בעת אי־פעילות.</string>
@@ -400,6 +407,8 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">שתף</string>
   <string name="InviteActivity_choose_contacts">בחר אנשי קשר</string>
+  <string name="InviteActivity_share_with_contacts">שתף עם אנשי קשר</string>
+  <string name="InviteActivity_choose_how_to_share">בחר כיצד לשתף</string>
   <string name="InviteActivity_cancel">בטל</string>
   <string name="InviteActivity_sending">שולח…</string>
   <string name="InviteActivity_heart_content_description">לב</string>
@@ -436,11 +445,32 @@
   <string name="MmsDownloader_error_reading_mms_settings">שגיאה בקריאת הגדרות MMS של ספק התקשורת האלחוטית</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">מדיה</string>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+    <item quantity="one">למחוק פריט נבחר?</item>
+    <item quantity="two">למחוק פריטים נבחרים?</item>
+    <item quantity="many">למחוק פריטים נבחרים?</item>
+    <item quantity="other">למחוק פריטים נבחרים?</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+    <item quantity="one">זה ימחק לצמיתות את הקובץ הנבחר. מלל הודעה כלשהו שמשויך עם פריט זה גם כן יימחק.</item>
+    <item quantity="two">זה ימחק לצמיתות את כל %1$d הקבצים הנבחרים. מלל הודעה כלשהו שמשויך עם פריטים אלו גם כן יימחק.</item>
+    <item quantity="many">זה ימחק לצמיתות את כל %1$d הקבצים הנבחרים. מלל הודעה כלשהו שמשויך עם פריטים אלו גם כן יימחק.</item>
+    <item quantity="other">זה ימחק לצמיתות את כל %1$d הקבצים הנבחרים. מלל הודעה כלשהו שמשויך עם פריטים אלו גם כן יימחק.</item>
+  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">מוחק</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">מוחק הודעות…</string>
+  <string name="MediaOverviewActivity_Files">קבצים</string>
   <string name="MediaOverviewActivity_Select_all">בחר הכל</string>
   <string name="MediaOverviewActivity_collecting_attachments">אוסף צרופות…</string>
   <string name="MediaOverviewActivity_Audio">שמע</string>
+  <string name="MediaOverviewActivity_All">הכל</string>
+  <string name="MediaOverviewActivity_Sort_by">מיין לפי</string>
+  <string name="MediaOverviewActivity_Newest">החדש ביותר</string>
+  <string name="MediaOverviewActivity_Oldest">הישן ביותר</string>
+  <string name="MediaOverviewActivity_Storage_used">אחסון בשימוש</string>
+  <string name="MediaOverviewActivity_All_storage_use">כל השימוש באחסון</string>
+  <string name="MediaOverviewActivity_Grid_view_description">תצוגת סורג</string>
+  <string name="MediaOverviewActivity_List_view_description">תצוגת רשימה</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">שיחת Signal בתהליך</string>
   <string name="NotificationBarManager__establishing_signal_call">מקים שיחת Signal</string>
@@ -539,10 +569,16 @@
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">הגרסה של שירותי Google Play המותקנת אינה מתפקדת כראוי. אנא התקן מחדש את שירותי Google Play ונסה שוב.</string>
   <!--ProfileEditNameFragment-->
+  <string name="ProfileEditNameFragment_profile_name">שם פרופיל</string>
+  <string name="ProfileEditNameFragment_your_profile_name_can_be_seen_by_your_contacts">שם הפרופיל שלך יכול להיראות ע״י אנשי הקשר שלך וע״י משתמשים אחרים או קבוצות אחרות כאשר אתה יוזם שיחה או מקבל בקשת שיחה.</string>
   <string name="ProfileEditNameFragment_save">שמור</string>
   <!--ProfileEditOverviewFragment-->
   <string name="ProfileEditOverviewFragment_profile">פרופיל</string>
+  <string name="ProfileEditOverviewFragment_profile_name">שם פרופיל</string>
   <string name="ProfileEditOverviewFragment_username">שם משתמש</string>
+  <string name="ProfileEditOverviewFragment_create_a_profile_name">צור שם פרופיל</string>
+  <string name="ProfileEditOverviewFragment_create_a_username">צור שם משתמש</string>
+  <string name="ProfileEditOverviewFragment_your_signal_profile_can_be_seen_by">פרופיל Signal שלך יכול להיראות ע״י אנשי הקשר שלך וע״י משתמשים אחרים או קבוצות אחרות כאשר אתה יוזם שיחה או מקבל בקשת שיחה. <a href="https://support.signal.org/hc/en-us/articles/360007459591-Signal-Profiles">הקש כאן כדי ללמוד עוד</a>.</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">דרג יישום זה</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">אם אתה נהנה להשתמש ביישום זה, אנא הקדש רגע כדי לעזור לנו לדרג אותו.</string>
@@ -611,6 +647,8 @@
   <string name="RegistrationActivity_failed_to_verify_the_captcha">נכשל בוידוא CAPTCHA</string>
   <string name="RegistrationActivity_next">הבא</string>
   <string name="RegistrationActivity_continue">המשך</string>
+  <string name="RegistrationActivity_continue_d_attempts_left">המשך (%d ניסיונות נותרו)</string>
+  <string name="RegistrationActivity_continue_last_attempt">המשך (ניסיון אחרון!)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">קח פרטיות איתך.\nהייה עצמך בכל הודעה.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">הכנס את מספר הטלפון שלך כדי להתחיל</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">תקבל קוד וידוא. חיובי מפעיל עשויים לחול.</string>
@@ -712,6 +750,15 @@
   <string name="UsernameEditFragment_username">שם משתמש</string>
   <string name="UsernameEditFragment_submit">הגש</string>
   <string name="UsernameEditFragment_delete">מחק</string>
+  <string name="UsernameEditFragment_successfully_set_username">שם משתמש נקבע בהצלחה.</string>
+  <string name="UsernameEditFragment_successfully_removed_username">שם משתמש הוסר בהצלחה.</string>
+  <string name="UsernameEditFragment_this_username_is_taken">שם משתמש זה תפוס.</string>
+  <string name="UsernameEditFragment_this_username_is_available">שם משתמש זה זמין.</string>
+  <string name="UsernameEditFragment_usernames_can_only_include">שמות משתמש יכולים להכיל רק a-Z, 0-9 וקווים תחתונים.</string>
+  <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">שמות משתמש אינם יכולים להתחיל במספר.</string>
+  <string name="UsernameEditFragment_username_is_invalid">שם משתמש בלתי תקף.</string>
+  <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">שמות משתמש חייבים להיות בין %1$d לבין %2$d תווים.</string>
+  <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">משתמשי Signal אחרים יכולים לשלוח בקשות התכתבות אל שם המשתמש הייחודי שלך בלי לדעת את מספר הטלפון שלך. בחירת שם משתמש היא רשותית.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">איש הקשר שלך מריץ גרסה ישנה של Signal. אנא בקש ממנו לעדכן לפני וידוא מספר הביטחון שלך.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">איש הקשר שלך מריץ גרסה חדשה יותר של Signal עם תסדיר בלתי־תואם של קוד QR. אנא עדכן כדי להשוות.</string>
@@ -751,6 +798,7 @@
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">לא היה ניתן לשמור באחסון חיצוני ללא הרשאות</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">למחוק הודעה?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">זה ימחק לצמיתות הודעה זו.</string>
+  <string name="MediaPreviewActivity_s_to_s">%1$s אל %2$s</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d הודעות חדשות ב־%2$d שיחות</string>
   <string name="MessageNotifier_most_recent_from_s">האחרון מאת: %1$s</string>
@@ -772,6 +820,7 @@
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">פתח את Signal כדי לבדוק התראות אחרונות.</string>
   <string name="MessageNotifier_contact_message">%1$s%2$s</string>
   <string name="MessageNotifier_unknown_contact_message">איש קשר</string>
+  <string name="MessageNotifier_reacted_to_your_message">השיב אל ההודעה שלך: %1$s</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">ברירת מחדל</string>
   <string name="NotificationChannel_calls">שיחות</string>
@@ -783,6 +832,7 @@
   <string name="NotificationChannel_group_messages">הודעות</string>
   <string name="NotificationChannel_missing_display_name">לא ידוע</string>
   <!--ProfileEditNameFragment-->
+  <string name="ProfileEditNameFragment_successfully_set_profile_name">שם פרופיל נקבע בהצלחה.</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">תגובה מהירה אינה זמינה כאשר Signal נעול!</string>
   <string name="QuickResponseService_problem_sending_message">בעיה בשליחת הודעה!</string>
@@ -798,6 +848,8 @@
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">הודעה חדשה</string>
   <!--ThumbnailView-->
+  <string name="ThumbnailView_Play_video_description">נגן סרטון</string>
+  <string name="ThumbnailView_Has_a_caption_description">יש כיתוב</string>
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">
     <item quantity="one">פריט %d</item>
@@ -865,6 +917,8 @@
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal דורש את הרשאת אנשי הקשר על מנת להציג את אנשי הקשר שלך, אבל היא נדחתה לצמיתות. אנא המשך אל תפריט הגדרות היישום, בחר \"הרשאות\" ואפשר את \"אנשי קשר\".</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">שגיאה באחזור אנשי קשר, בדוק את חיבור הרשת שלך</string>
+  <string name="ContactSelectionListFragment_username_not_found">שם משתמש לא נמצא</string>
+  <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" הוא לא משתמש Signal. אנא בדוק את שם המשתמש ונסה שוב.</string>
   <string name="ContactSelectionListFragment_okay">בסדר</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">אין אנשי קשר חסומים</string>
@@ -1226,7 +1280,12 @@
   <string name="preferences_chats__when_roaming">בזמן נדידה</string>
   <string name="preferences_chats__media_auto_download">הורדה אוטומטית של מדיה</string>
   <string name="preferences_chats__message_trimming">קיצוץ הודעה</string>
+  <string name="preferences_storage__storage_usage">שימוש באחסון</string>
+  <string name="preferences_storage__photos">תצלומים</string>
+  <string name="preferences_storage__videos">סרטונים</string>
+  <string name="preferences_storage__files">קבצים</string>
   <string name="preferences_storage__audio">שמע</string>
+  <string name="preferences_storage__review_storage">סקור אחסון</string>
   <string name="preferences_advanced__use_system_emoji">השתמש באימוג\'י של מערכת</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">השבת תמיכת אימוג\'י מובנית של Signal</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">שדר את כל השיחות דרך שרת Signal כדי להימנע מחשיפת כתובת ה־IP שלך לאיש הקשר שלך. אפשור יפחית איכות שיחה.</string>
@@ -1260,6 +1319,7 @@
   <string name="conversation_callable_insecure__menu_call">התקשר</string>
   <!--conversation_callable_secure-->
   <string name="conversation_callable_secure__menu_call">שיחת Signal</string>
+  <string name="conversation_callable_secure__menu_video">שיחת וידיאו של Signal</string>
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">פרטי הודעה</string>
   <string name="conversation_context__menu_copy_text">העתק טקסט</string>
@@ -1268,6 +1328,7 @@
   <string name="conversation_context__menu_resend_message">שלח מחדש הודעה</string>
   <string name="conversation_context__menu_reply_to_message">הגב אל הודעה</string>
   <!--conversation_context_reacction-->
+  <string name="conversation_context__reaction_multi_select">בחר רבים</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">שמור צרופה</string>
   <!--conversation_expiring_off-->
@@ -1474,6 +1535,8 @@
   <string name="RegistrationLockDialog_error_connecting_to_the_service">שגיאה בהתחברות אל השירות</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">להשבית PIN נעילת הרשמה?</string>
   <string name="RegistrationLockDialog_disable">הַשְׁבֵּת</string>
+  <string name="RegistrationActivity_pin_incorrect">PIN שגוי</string>
+  <string name="RegistrationActivity_you_have_d_tries_remaining">יש לך %d ניסיונות נותרים</string>
   <string name="preferences_chats__backups">גיבויים</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal נעול</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">הקש כדי לבטל נעילה</string>
@@ -1483,5 +1546,16 @@
   <string name="MessageRequestBottomView_accept">קבל</string>
   <string name="MessageRequestBottomView_delete">מחק</string>
   <string name="MessageRequestBottomView_block">חסום</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let">האם אתה רוצה לקבל הודעות מאת %1$s?</string>
+  <string name="MessageRequestProfileView_member_of_one_group">חבר קבוצה של %1$s</string>
+  <string name="MessageRequestProfileView_member_of_two_groups">חבר קבוצה של %1$s ושל %2$s</string>
+  <string name="MessageRequestProfileView_member_of_many_groups">חבר קבוצה של %1$s, %2$s ושל %3$s</string>
+  <string name="MessageRequestProfileView_members">%1$d חברי קבוצה</string>
+  <plurals name="MessageRequestProfileView_member_of_others">
+    <item quantity="one">אחר %d</item>
+    <item quantity="two">%d אחרים</item>
+    <item quantity="many">%d אחרים</item>
+    <item quantity="other">%d אחרים</item>
+  </plurals>
   <!--EOF-->
 </resources>

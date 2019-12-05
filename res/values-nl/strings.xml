@@ -1223,13 +1223,13 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Schakel dit in als je gebruik wilt maken van sms/mms over wifi (schakel dit alleen in als ook ‘Bellen via wifi’ is ingeschakeld op je apparaat)</string>
   <string name="preferences__incognito_keyboard">Incognito toetsenbord</string>
   <string name="preferences__read_receipts">Leesbevestigingen</string>
-  <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Als leesbevestigingen zijn uitgeschakeld zullen anderen niet kunnen zien of je hun bericht hebt gelezen, maar je zult ook leesbevestigingen van anderen ook niet kunnen zien.</string>
+  <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Als leesbevestigingen zijn uitgeschakeld zullen anderen niet kunnen zien of je hun bericht hebt gelezen, maar je zult leesbevestigingen van anderen ook niet kunnen zien.</string>
   <string name="preferences__typing_indicators">Typindicatoren</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Als typindicatoren zijn uitgeschakeld, kunnen anderen niet zien of je aan het typen bent, maar je kunt ook niet zien wanneer anderen aan het typen zijn.</string>
   <string name="preferences__request_keyboard_to_disable_personalized_learning">Voorkom gepersonaliseerd leren door het toetsenbord</string>
   <string name="preferences_app_protection__blocked_contacts">Geblokkeerde contactpersonen</string>
-  <string name="preferences_chats__when_using_mobile_data">Wanneer mobielegegevensoverdracht gebruikt wordt</string>
-  <string name="preferences_chats__when_using_wifi">Wanneer wifi gebruikt wordt</string>
+  <string name="preferences_chats__when_using_mobile_data">Bij mobielegegevensoverdracht</string>
+  <string name="preferences_chats__when_using_wifi">Bij wifi-verbinding</string>
   <string name="preferences_chats__when_roaming">Bij roaming</string>
   <string name="preferences_chats__media_auto_download">Media automatisch downloaden</string>
   <string name="preferences_chats__message_trimming">Beperk bewaartermijn</string>

@@ -380,6 +380,7 @@
   <string name="InviteActivity_share">Teilen</string>
   <string name="InviteActivity_choose_contacts">Kontakte auswählen</string>
   <string name="InviteActivity_share_with_contacts">Mit Kontakten teilen</string>
+  <string name="InviteActivity_choose_how_to_share">Wähle den Einladungsweg</string>
   <string name="InviteActivity_cancel">Abbrechen</string>
   <string name="InviteActivity_sending">Wird gesendet …</string>
   <string name="InviteActivity_heart_content_description">Herz</string>
@@ -416,6 +417,10 @@
     <item quantity="one">Ausgewähltes Element löschen?</item>
     <item quantity="other">Ausgewählte Elemente löschen?</item>
   </plurals>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+    <item quantity="one">Dies wird die ausgewählte Datei unwiderruflich löschen. Jeglicher diesem Element zugehöriger Nachrichtentext wird ebenfalls gelöscht.</item>
+    <item quantity="other">Dies wird unwiderruflich alle %1$d ausgewählten Dateien löschen. Jegliche diesen Elementen zugehörigen Nachrichtentexte werden ebenfalls gelöscht.</item>
+  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Löschen</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Nachrichten werden gelöscht …</string>
   <string name="MediaOverviewActivity_Files">Dateien</string>
@@ -426,7 +431,8 @@
   <string name="MediaOverviewActivity_Sort_by">Sortieren nach</string>
   <string name="MediaOverviewActivity_Newest">Neueste</string>
   <string name="MediaOverviewActivity_Oldest">Älteste</string>
-  <string name="MediaOverviewActivity_Storage_used">Belegter Speicher</string>
+  <string name="MediaOverviewActivity_Storage_used">Verwendeter Speicher</string>
+  <string name="MediaOverviewActivity_All_storage_use">Sämtliche Speicherverwendung</string>
   <string name="MediaOverviewActivity_Grid_view_description">Rasteransicht</string>
   <string name="MediaOverviewActivity_List_view_description">Listenansicht</string>
   <string name="MediaOverviewActivity_Selected_description">Ausgewählt</string>
@@ -526,6 +532,7 @@
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Die derzeit installierte Version der Google-Play-Dienste funktioniert nicht korrekt. Bitte installiere die Google-Play-Dienste neu und versuche es noch einmal.</string>
   <!--ProfileEditNameFragment-->
   <string name="ProfileEditNameFragment_profile_name">Profilname</string>
+  <string name="ProfileEditNameFragment_your_profile_name_can_be_seen_by_your_contacts">Dein Profilname kann von deinen Kontakten und anderen Nutzern oder Gruppen gesehen werden, wenn du eine Unterhaltung beginnst oder einer Unterhaltungsanfrage zustimmst.</string>
   <string name="ProfileEditNameFragment_save">Speichern</string>
   <!--ProfileEditOverviewFragment-->
   <string name="ProfileEditOverviewFragment_profile">Profil</string>
@@ -533,6 +540,7 @@
   <string name="ProfileEditOverviewFragment_username">Benutzername</string>
   <string name="ProfileEditOverviewFragment_create_a_profile_name">Erstelle einen Profilnamen</string>
   <string name="ProfileEditOverviewFragment_create_a_username">Erstelle einen Benutzernamen</string>
+  <string name="ProfileEditOverviewFragment_your_signal_profile_can_be_seen_by">Dein Signal-Profil kann von deinen Kontakten und anderen Nutzern oder Gruppen gesehen werden, wenn du eine Unterhaltung beginnst oder einer Unterhaltungsanfrage zustimmst. <a href="https://support.signal.org/hc/en-us/articles/360007459591-Signal-Profiles">Hier antippen für mehr Informationen</a>.</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Bewerte diese App</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Hilf uns durch deine Bewertung, falls dir die App gefällt.</string>
@@ -707,6 +715,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Benutzernamen dürfen nicht mit einer Zahl beginnen.</string>
   <string name="UsernameEditFragment_username_is_invalid">Benutzername ist ungültig.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Benutzernamen dürfen aus %1$d bis %2$d Zeichen bestehen.</string>
+  <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Andere Signal-Nutzer können Unterhaltungsanfragen an deinen einzigartigen Benutzernamen senden, ohne deine Rufnummer zu kennen. Die Wahl eines Benutzernamens ist optional.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Dein Kontakt verwendet eine alte Signal-Version. Bitte ihn Signal zu aktualisieren, bevor ihr eure Sicherheitsnummer verifiziert.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Dein Kontakt verwendet eine neuere Signal-Version mit einem inkompatiblen QR-Code-Format. Zum Vergleichen bitte aktualisieren.</string>
@@ -1211,7 +1220,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences_chats__when_roaming">Bei Roaming</string>
   <string name="preferences_chats__media_auto_download">Autom. Herunterladen von Medieninhalten</string>
   <string name="preferences_chats__message_trimming">Kürzen von Unterhaltungen</string>
-  <string name="preferences_storage__storage_usage">Speicherbelegung</string>
+  <string name="preferences_storage__storage_usage">Speicherverwendung</string>
   <string name="preferences_storage__photos">Fotos</string>
   <string name="preferences_storage__videos">Videos</string>
   <string name="preferences_storage__files">Dateien</string>

@@ -73,6 +73,7 @@
   <string name="BucketedThreadMedia_This_week">Questa settimana</string>
   <string name="BucketedThreadMedia_This_month">Questo mese</string>
   <string name="BucketedThreadMedia_Large">Grande</string>
+  <string name="BucketedThreadMedia_Medium">Medio</string>
   <string name="BucketedThreadMedia_Small">Piccolo</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Chiamata in arrivo</string>
@@ -429,7 +430,13 @@ I suoi messaggi e le chiamate sono state disabilitate, si prega di provare e ri-
   <string name="MediaOverviewActivity_Audio">Audio</string>
   <string name="MediaOverviewActivity_All">Tutti</string>
   <string name="MediaOverviewActivity_Sort_by">Ordina per</string>
-  <string name="MediaOverviewActivity_Storage_used">Spazio utilizzato</string>
+  <string name="MediaOverviewActivity_Newest">Più nuovi</string>
+  <string name="MediaOverviewActivity_Oldest">Più vecchi</string>
+  <string name="MediaOverviewActivity_Storage_used">Memoria utilizzata</string>
+  <string name="MediaOverviewActivity_All_storage_use">Tutta la memoria usata</string>
+  <string name="MediaOverviewActivity_Grid_view_description">Visualizzazione griglia</string>
+  <string name="MediaOverviewActivity_List_view_description">Visualizzazione elenco</string>
+  <string name="MediaOverviewActivity_Selected_description">Selezionato</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Chiamata con Signal in corso</string>
   <string name="NotificationBarManager__establishing_signal_call">Preparazione chiamata Signal</string>
@@ -527,6 +534,7 @@ I suoi messaggi e le chiamate sono state disabilitate, si prega di provare e ri-
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">La versione di Google Play Services installata non funziona correttamente. Reinstallalo e riprova.</string>
   <!--ProfileEditNameFragment-->
   <string name="ProfileEditNameFragment_profile_name">Nome profilo</string>
+  <string name="ProfileEditNameFragment_your_profile_name_can_be_seen_by_your_contacts">Il tuo nome profilo può essere visto dai tuoi contatti o da altri utenti o gruppi quando inizi una conversazione o accetti una richiesta di conversazione.</string>
   <string name="ProfileEditNameFragment_save">Salva</string>
   <!--ProfileEditOverviewFragment-->
   <string name="ProfileEditOverviewFragment_profile">Profilo</string>
@@ -534,6 +542,7 @@ I suoi messaggi e le chiamate sono state disabilitate, si prega di provare e ri-
   <string name="ProfileEditOverviewFragment_username">Nome utente</string>
   <string name="ProfileEditOverviewFragment_create_a_profile_name">Crea un nome profilo</string>
   <string name="ProfileEditOverviewFragment_create_a_username">Crea un nome utente</string>
+  <string name="ProfileEditOverviewFragment_your_signal_profile_can_be_seen_by">Il tuo profilo Signal può essere visto dai tuoi contatti o da altri utenti o gruppi quando inizi una conversazione o accetti una richiesta di conversazione. <a href="https://support.signal.org/hc/en-us/articles/360007459591-Signal-Profiles">Tocca qui per saperne di più</a>.</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Vota questa app!</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Se quest\'applicazione ti piace, ti preghiamo di aiutarci votandola.</string>
@@ -600,6 +609,8 @@ proprio numero di telefono</string>
   <string name="RegistrationActivity_failed_to_verify_the_captcha">Verifica del CAPTCHA fallita</string>
   <string name="RegistrationActivity_next">Avanti</string>
   <string name="RegistrationActivity_continue">Continua</string>
+  <string name="RegistrationActivity_continue_d_attempts_left">Continua (%d tentativi rimanenti)</string>
+  <string name="RegistrationActivity_continue_last_attempt">Continua (ultimo tentativo)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Porta la privacy con te.
 Sii te stesso in ogni messaggio.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Inserisci il tuo numero di telefono per iniziare</string>
@@ -703,9 +714,16 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="UsernameEditFragment_username">Nome utente</string>
   <string name="UsernameEditFragment_submit">Invia</string>
   <string name="UsernameEditFragment_delete">Elimina</string>
+  <string name="UsernameEditFragment_successfully_set_username">Nome utente impostato con successo.</string>
+  <string name="UsernameEditFragment_successfully_removed_username">Nome utente rimosso con successo.</string>
+  <string name="UsernameEditFragment_encountered_a_network_error">Si è verificato un errore di rete.</string>
+  <string name="UsernameEditFragment_this_username_is_taken">Questo nome utente è preso.</string>
   <string name="UsernameEditFragment_this_username_is_available">Questo nome utente è disponibile.</string>
   <string name="UsernameEditFragment_usernames_can_only_include">I nomi utente possono contenere solo a-z, 0-9, e trattini bassi.</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">I nomi utente non possono iniziare con un numero.</string>
+  <string name="UsernameEditFragment_username_is_invalid">Il nome utente non è valido.</string>
+  <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">I nomi utente devono contenere da %1$d a %2$d caratteri.</string>
+  <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Gli altri utenti Signal possono inviare richieste di messaggio al tuo nome utente univoco senza conoscere il tuo numero di telefono. Scegliere un nome utente è facoltativo.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Il tuo contatto sta usando una vecchia versione di Signal. Chiedigli cortesemente di aggiornarla prima di verificare il codice di sicurezza.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Il tuo contatto sta eseguendo una versione più aggiornata di Signal con un formato di codice QR non compatibile. Per effettuare il confronto aggiorna la tua versione.</string>
@@ -767,6 +785,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Apri Signal per controllare le notifiche recenti.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Contatto</string>
+  <string name="MessageNotifier_reacted_to_your_message">Reagito al tuo messaggio: %1$s</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Predefinito</string>
   <string name="NotificationChannel_calls">Chiamate</string>
@@ -778,6 +797,8 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="NotificationChannel_group_messages">Messaggi</string>
   <string name="NotificationChannel_missing_display_name">Sconosciuto</string>
   <!--ProfileEditNameFragment-->
+  <string name="ProfileEditNameFragment_successfully_set_profile_name">Nome profilo impostato con successo.</string>
+  <string name="ProfileEditNameFragment_encountered_a_network_error">Si è verificato un errore di rete.</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Risposta veloce non disponibile quando Signal è bloccato!</string>
   <string name="QuickResponseService_problem_sending_message">Problema nell\'invio del messaggio!</string>
@@ -861,6 +882,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal richiede l\'autorizzazione alla lettura dei contatti per mostrarteli, ma è stata negata in modo permanente. Si prega di continuare con il menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Contatti\".</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Errore di rilevamento dei contatti, controlla la connessione di rete</string>
   <string name="ContactSelectionListFragment_username_not_found">Nome utente non trovato</string>
+  <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" non è un utente Signal. Controlla il nome utente e riprova.</string>
   <string name="ContactSelectionListFragment_okay">Ok</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Nessun contatto bloccato</string>
@@ -1177,7 +1199,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Elimina automaticamente i messaggi più vecchi quando una conversazione supera una certa lunghezza.</string>
   <string name="preferences__delete_old_messages">Elimina i messaggi vecchi</string>
   <string name="preferences__chats">Chat e download</string>
-  <string name="preferences__storage">Stoccaggio</string>
+  <string name="preferences__storage">Memoria</string>
   <string name="preferences__conversation_length_limit">Limite di lunghezza conversazione</string>
   <string name="preferences__trim_all_conversations_now">Riduci immediatamente tutte le conversazioni</string>
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Analizza tutte le conversazioni e applica il limite di lunghezza.</string>
@@ -1206,10 +1228,12 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="preferences_chats__when_roaming">In roaming</string>
   <string name="preferences_chats__media_auto_download">Download automatico file</string>
   <string name="preferences_chats__message_trimming">Cancellazione messaggi</string>
+  <string name="preferences_storage__storage_usage">Utilizzo memoria</string>
   <string name="preferences_storage__photos">Foto</string>
   <string name="preferences_storage__videos">Video</string>
   <string name="preferences_storage__files">File</string>
   <string name="preferences_storage__audio">Audio</string>
+  <string name="preferences_storage__review_storage">Esamina memoria</string>
   <string name="preferences_advanced__use_system_emoji">Usa le emoji di sistema</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Disattiva le emoji di Signal</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Ritrasmetti le chiamate attraverso i server di Signal per non rivelare il tuo indirizzo IP ai tuoi contatti. Abilitandolo verrà ridotta la qualità della chiamata.</string>
@@ -1252,6 +1276,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="conversation_context__menu_resend_message">Rinvia il messaggio</string>
   <string name="conversation_context__menu_reply_to_message">Rispondi al messaggio</string>
   <!--conversation_context_reacction-->
+  <string name="conversation_context__reaction_multi_select">Seleziona molteplici</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Salva allegato</string>
   <!--conversation_expiring_off-->
@@ -1468,6 +1493,9 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="MessageRequestBottomView_delete">Elimina</string>
   <string name="MessageRequestBottomView_block">Blocco</string>
   <string name="MessageRequestBottomView_do_you_want_to_let">Vuoi ricevere messaggi da %1$s?</string>
+  <string name="MessageRequestProfileView_member_of_one_group">Membro di %1$s</string>
+  <string name="MessageRequestProfileView_member_of_two_groups">Membro di %1$s e %2$s</string>
+  <string name="MessageRequestProfileView_member_of_many_groups">Membro di %1$s, %2$s, e %3$s</string>
   <string name="MessageRequestProfileView_members">%1$d membri</string>
   <plurals name="MessageRequestProfileView_member_of_others">
     <item quantity="one">%d altro</item>

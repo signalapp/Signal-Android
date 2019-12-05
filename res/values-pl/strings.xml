@@ -335,6 +335,9 @@
   <!--DocumentView-->
   <string name="DocumentView_unknown_file">Nieznany plik</string>
   <string name="DocumentView_unnamed_file">Plik bez nazwy</string>
+  <string name="DocumentView_audio_file">Plik audio</string>
+  <string name="DocumentView_image_file">Plik obrazu</string>
+  <string name="DocumentView_video_file">Plik wideo</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optymalizacja dla brakujących Usług Play</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Urządzenie nie wspiera Usług Play. Dotknij, aby wyłączyć systemową optymalizację baterii uniemożliwiającą odbieranie wiadomości w czasie braku aktywności.</string>
@@ -404,6 +407,8 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Udostępnij</string>
   <string name="InviteActivity_choose_contacts">Wybierz kontakty</string>
+  <string name="InviteActivity_share_with_contacts">Podziel się ze znajomymi</string>
+  <string name="InviteActivity_choose_how_to_share">Wybierz sposób udostępnienia</string>
   <string name="InviteActivity_cancel">Anuluj</string>
   <string name="InviteActivity_sending">Wysyłanie…</string>
   <string name="InviteActivity_heart_content_description">Serce</string>
@@ -445,6 +450,12 @@
     <item quantity="few">Usunąć zaznaczone elementy?</item>
     <item quantity="many">Usunąć zaznaczone elementy?</item>
     <item quantity="other">Usunąć zaznaczone elementy?</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+    <item quantity="one">To spowoduje trwałe usunięcie wybranego pliku. Wszystkie wiadomości powiązane z tymi plikami również zostaną usunięte.</item>
+    <item quantity="few">To spowoduje trwałe usunięcie %1$d wybranych plików. Wszystkie wiadomości powiązane z tymi plikami również zostaną usunięte.</item>
+    <item quantity="many">To spowoduje trwałe usunięcie %1$d wybranych plików. Wszystkie wiadomości powiązane z tymi plikami również zostaną usunięte.</item>
+    <item quantity="other">To spowoduje trwałe usunięcie %1$d wybranych plików. Wszystkie wiadomości powiązane z tymi plikami również zostaną usunięte.</item>
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Usuwanie</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Usuwanie wiadomości…</string>
@@ -560,6 +571,7 @@
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Wersja Google Play Services którą masz zainstalowaną nie funkcjonuje poprawnie. Proszę przeinstaluj tę aplikację ponownie i spróbuj ponownie.</string>
   <!--ProfileEditNameFragment-->
   <string name="ProfileEditNameFragment_profile_name">Nazwa profilu</string>
+  <string name="ProfileEditNameFragment_your_profile_name_can_be_seen_by_your_contacts">Twoja nazwa profilu będzie widoczna dla Twoich kontaktów oraz innych użytkowników lub grup, gdy zapoczątkujesz konwersacje lub zaakceptujesz prośbę o udostępnienie.</string>
   <string name="ProfileEditNameFragment_save">Zapisz</string>
   <!--ProfileEditOverviewFragment-->
   <string name="ProfileEditOverviewFragment_profile">Profil</string>
@@ -567,6 +579,7 @@
   <string name="ProfileEditOverviewFragment_username">Nazwa użytkownika</string>
   <string name="ProfileEditOverviewFragment_create_a_profile_name">Utwórz nazwę profilu</string>
   <string name="ProfileEditOverviewFragment_create_a_username">Utwórz nazwę użytkownika</string>
+  <string name="ProfileEditOverviewFragment_your_signal_profile_can_be_seen_by">Twój profil Signal będzie widoczny dla Twoich kontaktów oraz innych użytkowników lub grup, gdy zapoczątkujesz konwersacje lub zaakceptujesz prośbę o udostępnienie. <a href="https://support.signal.org/hc/en-us/articles/360007459591-Signal-Profiles">Dotknij tutaj, aby dowiedzieć się więcej</a>.</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Oceń tę aplikację</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Jeśli lubisz używać tę aplikację, to prosimy, pomóż nam i oceń ją.</string>
@@ -745,6 +758,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Nazwy użytkowników nie mogą zaczynać się od cyfry.</string>
   <string name="UsernameEditFragment_username_is_invalid">Nazwa użytkownika jest niepoprawna.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Nazwy użytkowników muszą mieć od %1$d do %2$d znaków.</string>
+  <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Inni użytkownicy Signal mogą wysyłać prośby o kontakt na Twoją unikalną nazwę użytkownika bez znajomości numeru telefonu. Wybór nazwy użytkownika jest opcjonalny.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Twój kontakt używa starej wersji Signal. Poproś go o aktualizację przed weryfikacją twojego bezpiecznego numeru.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Twój kontakt używa nowszej wersji Signal z niekompatybilnym formatem kodu QR. Zaktualizuj, by porównać.</string>
@@ -784,6 +798,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Nie można zapisać do pamięci zewnętrznej bez odpowiedniego pozwolenia</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Usunąć wiadomość?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Spowoduje to trwałe usunięcie tej wiadomości.</string>
+  <string name="MediaPreviewActivity_s_to_s">%1$s do %2$s</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nowych wiadomości w %2$d rozmowach</string>
   <string name="MessageNotifier_most_recent_from_s">Najnowsza z: %1$s</string>
@@ -1237,7 +1252,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Automatycznie usuń starsze wiadomości po przekroczeniu określonej długości konwersacji</string>
   <string name="preferences__delete_old_messages">Usuń stare wiadomości</string>
   <string name="preferences__chats">Rozmowy i multimedia</string>
-  <string name="preferences__storage">Przechowywanie</string>
+  <string name="preferences__storage">Pamięć</string>
   <string name="preferences__conversation_length_limit">Limit długości konwersacji</string>
   <string name="preferences__trim_all_conversations_now">Przytnij wszystkie konwersacje teraz</string>
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Przeskanuj wszystkie konwersacje i przytnij to określonej długości</string>
@@ -1271,6 +1286,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="preferences_storage__videos">Wideo</string>
   <string name="preferences_storage__files">Pliki</string>
   <string name="preferences_storage__audio">Dźwięk</string>
+  <string name="preferences_storage__review_storage">Przejrzyj pamięć</string>
   <string name="preferences_advanced__use_system_emoji">Używaj emoji systemu</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Wyłącz wbudowane wspomaganie emoji Signal</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Przekazuj połączenia za pomocą serwerów Signal, aby uniknąć ujawnienia adresu IP Twoim kontaktom. Pogorszy to jakość połączenia.</string>
@@ -1313,6 +1329,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="conversation_context__menu_resend_message">Wyślij ponownie wiadomość</string>
   <string name="conversation_context__menu_reply_to_message">Odpowiedz na wiadomość</string>
   <!--conversation_context_reacction-->
+  <string name="conversation_context__reaction_multi_select">Wybierz wiele</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Zapisz załącznik</string>
   <!--conversation_expiring_off-->
@@ -1520,6 +1537,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">Wyłączyć PIN blokady rejestracji?</string>
   <string name="RegistrationLockDialog_disable">Wyłącz</string>
   <string name="RegistrationActivity_pin_incorrect">Nieprawidłowy kod PIN</string>
+  <string name="RegistrationActivity_you_have_d_tries_remaining">Pozostało ci %d prób(y)</string>
   <string name="preferences_chats__backups">Kopie zapasowe</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal jest zablokowany</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">DOTKNIJ, ABY ODBLOKOWAĆ</string>
@@ -1534,5 +1552,11 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Członek %1$s i %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Członek %1$s, %2$s i %3$s</string>
   <string name="MessageRequestProfileView_members">%1$d użytkowników</string>
+  <plurals name="MessageRequestProfileView_member_of_others">
+    <item quantity="one">%d inna</item>
+    <item quantity="few">%d inne</item>
+    <item quantity="many">%d innych</item>
+    <item quantity="other">%d inne</item>
+  </plurals>
   <!--EOF-->
 </resources>
