@@ -64,8 +64,17 @@ public final class ScrubberTest {
     { "A group id __textsecure_group__!abcdefg0987654321 surrounded with text",
       "A group id __...group...21 surrounded with text" },
 
-    { "All patterns in a row __textsecure_group__!abcdefg1234567890 +1234567890123456 abc@def.com with text after",
-      "All patterns in a row __...group...90 +*************456 a...@... with text after"
+    { "a37cb654-c9e0-4c1e-93df-3d11ca3c97f4",
+      "********-****-****-****-**********f4" },
+
+    { "A UUID a37cb654-c9e0-4c1e-93df-3d11ca3c97f4 surrounded with text",
+      "A UUID ********-****-****-****-**********f4 surrounded with text" },
+
+    { "JOB::a37cb654-c9e0-4c1e-93df-3d11ca3c97f4",
+      "JOB::a37cb654-c9e0-4c1e-93df-3d11ca3c97f4" },
+
+    { "All patterns in a row __textsecure_group__!abcdefg1234567890 +1234567890123456 abc@def.com a37cb654-c9e0-4c1e-93df-3d11ca3c97f4 with text after",
+      "All patterns in a row __...group...90 +*************456 a...@... ********-****-****-****-**********f4 with text after"
     }
 
     });

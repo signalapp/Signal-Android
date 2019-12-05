@@ -106,7 +106,7 @@ public class RetrieveProfileJob extends BaseJob {
     SignalServiceProfile profile = ProfileUtil.retrieveProfile(context, recipient);
 
     if (recipient.getProfileKey() == null) {
-      Log.i(TAG, "No profile key for available for " + recipient.getId());
+      Log.i(TAG, "No profile key available for " + recipient.getId());
     } else {
       Log.i(TAG, "Profile key available for " + recipient.getId());
     }
@@ -192,7 +192,12 @@ public class RetrieveProfileJob extends BaseJob {
       String plaintextProfileName = ProfileUtil.decryptName(profileKey, profileName);
 
       if (!Util.equals(plaintextProfileName, recipient.getProfileName())) {
+        Log.i(TAG, "Profile name updated. Writing new value.");
         DatabaseFactory.getRecipientDatabase(context).setProfileName(recipient.getId(), plaintextProfileName);
+      }
+
+      if (TextUtils.isEmpty(plaintextProfileName)) {
+        Log.i(TAG, "No profile name set.");
       }
     } catch (InvalidCiphertextException | IOException e) {
       Log.w(TAG, e);
