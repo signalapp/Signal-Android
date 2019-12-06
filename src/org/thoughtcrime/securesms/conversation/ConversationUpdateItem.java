@@ -9,7 +9,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -22,7 +21,6 @@ import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase.IdentityRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.loki.ConversationUpdateItemViewDelegate;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
@@ -49,12 +47,9 @@ public class ConversationUpdateItem extends LinearLayout
   private TextView      title;
   private TextView      body;
   private TextView      date;
-  private Button        button;
   private Recipient     sender;
   private MessageRecord messageRecord;
   private Locale        locale;
-
-  public ConversationUpdateItemViewDelegate delegate;
 
   public ConversationUpdateItem(Context context) {
     super(context);
@@ -72,12 +67,6 @@ public class ConversationUpdateItem extends LinearLayout
     this.title = findViewById(R.id.conversation_update_title);
     this.body  = findViewById(R.id.conversation_update_body);
     this.date  = findViewById(R.id.conversation_update_date);
-    this.button = findViewById(R.id.conversation_update_button);
-    this.button.setOnClickListener(view -> {
-      if (delegate != null && messageRecord != null) {
-        delegate.updateItemButtonPressed(messageRecord);
-      }
-    });
 
     this.setOnClickListener(new InternalClickListener(null));
   }
@@ -123,8 +112,7 @@ public class ConversationUpdateItem extends LinearLayout
     else if (messageRecord.isIdentityUpdate())        setIdentityRecord(messageRecord);
     else if (messageRecord.isIdentityVerified() ||
              messageRecord.isIdentityDefault())       setIdentityVerifyUpdate(messageRecord);
-    else if (messageRecord.isNoRemoteSession() ||
-            messageRecord.isLokiSessionRestoreSent()) setTextMessageRecord(messageRecord);
+    else if (messageRecord.isLokiSessionRestoreSent()) setTextMessageRecord(messageRecord);
     else                                              throw new AssertionError("Neither group nor log nor joined.");
 
     if (batchSelected.contains(messageRecord)) setSelected(true);
@@ -217,12 +205,6 @@ public class ConversationUpdateItem extends LinearLayout
 
   private  void setTextMessageRecord(MessageRecord messageRecord) {
     body.setText(messageRecord.getDisplayBody(getContext()));
-    if (messageRecord.isNoRemoteSession() && !messageRecord.isLokiSessionRestoreSent()) {
-      button.setVisibility(VISIBLE);
-      button.setText(R.string.MessageRecord_session_restore_button_title);
-    } else {
-      button.setVisibility(GONE);
-    }
 
     icon.setVisibility(GONE);
     title.setVisibility(GONE);

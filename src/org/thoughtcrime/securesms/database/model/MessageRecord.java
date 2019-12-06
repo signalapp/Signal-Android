@@ -180,7 +180,7 @@ public abstract class MessageRecord extends DisplayRecord {
 
   public boolean isUpdate() {
     return isGroupAction() || isJoined() || isExpirationTimerUpdate() || isCallLog() ||
-           isEndSession()  || isIdentityUpdate() || isIdentityVerified() || isIdentityDefault() || isNoRemoteSession() || isLokiSessionRestoreSent();
+           isEndSession()  || isIdentityUpdate() || isIdentityVerified() || isIdentityDefault() || isLokiSessionRestoreSent();
   }
 
   public boolean isMediaPending() {

@@ -103,11 +103,7 @@ public abstract class DisplayRecord {
     return SmsDatabase.Types.isKeyExchangeType(type);
   }
 
-  public boolean isEndSession() {
-    return SmsDatabase.Types.isEndSessionType(type);
-  }
-
-  public boolean isNoRemoteSession() { return SmsDatabase.Types.isNoRemoteSessionType(type); }
+  public boolean isEndSession() { return SmsDatabase.Types.isEndSessionType(type); }
 
   public boolean isLokiSessionRestoreSent() { return SmsDatabase.Types.isLokiSessionRestoreSentType(type); }
 

@@ -8,6 +8,7 @@ import org.thoughtcrime.securesms.database.Database
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.internal.util.JsonUtil
 import org.whispersystems.signalservice.loki.api.LokiPublicChat
 import org.whispersystems.signalservice.loki.messaging.LokiThreadDatabaseProtocol
@@ -140,4 +141,23 @@ class LokiThreadDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
     override fun removePublicChat(threadID: Long) {
         databaseHelper.writableDatabase.delete(publicChatTableName, "${Companion.threadID} = ?", arrayOf( threadID.toString() ))
     }
+
+    // region Session Restore
+    fun addSessionRestoreDevice(threadID: Long, hexEncodedPublicKey: String) {
+        val devices = getSessionRestoreDevices(threadID).toMutableSet()
+        if (devices.add(hexEncodedPublicKey)) {
+            TextSecurePreferences.setStringPreference(context, "session_restore_devices_$threadID", devices.joinToString(","))
+            delegate?.handleSessionRestoreDevicesChanged(threadID)
+        }
+    }
+
+    fun getSessionRestoreDevices(threadID: Long): Set<String> {
+        return TextSecurePreferences.getStringPreference(context, "session_restore_devices_$threadID", "").split(",").toSet()
+    }
+
+    fun removeAllSessionRestoreDevices(threadID: Long) {
+        TextSecurePreferences.setStringPreference(context, "session_restore_devices_$threadID", "")
+        delegate?.handleSessionRestoreDevicesChanged(threadID)
+    }
+    // endregion
 }

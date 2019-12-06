@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/session_restore_banner"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/core_grey_60"
+    android:focusable="true"
+    android:nextFocusDown="@+id/cancel"
+    android:orientation="vertical"
+    android:paddingStart="8dp"
+    android:paddingTop="24dp"
+    android:paddingEnd="8dp"
+    android:paddingBottom="8dp"
+    android:visibility="gone"
+    tools:visibility="visible">
+
+    <TextView
+        android:id="@+id/restoreTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="4dp"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        tools:text="@string/session_restore_banner_title" />
+
+    <TextView
+        android:id="@+id/restoreText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="sans-serif-light"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        tools:text="@string/session_restore_banner_message" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:gravity="right"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/dismissButton"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:text="@string/session_restore_banner_dismiss_button_title" />
+
+        <android.support.v4.widget.Space
+            android:layout_width="8dp"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/restoreButton"
+            style="@style/Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:text="@string/session_restore_banner_restore_button_title" />
+    </LinearLayout>
+
+</LinearLayout>

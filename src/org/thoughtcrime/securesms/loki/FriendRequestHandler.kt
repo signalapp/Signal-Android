@@ -29,12 +29,7 @@ object FriendRequestHandler {
       DatabaseFactory.getLokiThreadDatabase(context).setFriendRequestStatus(threadId, threadFriendStatus)
       // If we sent a friend request then we need to hide the session restore prompt
       if (type == ActionType.Sent) {
-        val smsDatabase = DatabaseFactory.getSmsDatabase(context)
-        smsDatabase.getMessages(threadId)
-                .filter { it.isNoRemoteSession && !it.isLokiSessionRestoreSent }
-                .forEach {
-                  smsDatabase.markAsLokiSessionRestoreSent(it.id)
-                }
+        // TODO: Hide prompt
       }
     }
 

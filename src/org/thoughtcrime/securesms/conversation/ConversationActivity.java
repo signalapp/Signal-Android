@@ -139,6 +139,7 @@ import org.thoughtcrime.securesms.database.MessagingDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.MmsSmsColumns.Types;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RegisteredState;
+import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.identity.IdentityRecordList;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
@@ -154,7 +155,6 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.loki.ConversationUpdateItemViewDelegate;
 import org.thoughtcrime.securesms.loki.FriendRequestViewDelegate;
 import org.thoughtcrime.securesms.loki.LokiAPIUtilities;
 import org.thoughtcrime.securesms.loki.LokiThreadDatabase;
@@ -163,6 +163,7 @@ import org.thoughtcrime.securesms.loki.LokiThreadDatabaseDelegate;
 import org.thoughtcrime.securesms.loki.LokiUserDatabase;
 import org.thoughtcrime.securesms.loki.MentionCandidateSelectionView;
 import org.thoughtcrime.securesms.loki.MultiDeviceUtilities;
+import org.thoughtcrime.securesms.loki.SessionRestoreBannerView;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mediasend.MediaSendActivity;
 import org.thoughtcrime.securesms.mms.AttachmentManager;
@@ -242,6 +243,7 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -249,7 +251,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 import kotlin.Unit;
 import network.loki.messenger.R;
 
-import static nl.komponents.kovenant.KovenantApi.task;
 import static org.thoughtcrime.securesms.TransportOption.Type;
 import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 import static org.whispersystems.libsignal.SessionCipher.SESSION_LOCK;
@@ -273,8 +274,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
                ConversationSearchBottomBar.EventListener,
                StickerKeyboardProvider.StickerEventListener,
                LokiThreadDatabaseDelegate,
-               FriendRequestViewDelegate,
-               ConversationUpdateItemViewDelegate
+               FriendRequestViewDelegate
 {
   private static final String TAG = ConversationActivity.class.getSimpleName();
 
@@ -358,6 +358,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   // Multi Device
   private   boolean isFriendsWithAnyDevice = false;
 
+  // Restoration
+  protected Stub<SessionRestoreBannerView> sessionRestoreBannerView;
+
   @Override
   protected void onPreCreate() {
     dynamicTheme.onCreate(this);
@@ -378,7 +381,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     fragment = initFragment(R.id.fragment_content, new ConversationFragment(), dynamicLanguage.getCurrentLocale());
     fragment.friendRequestViewDelegate = this;
-    fragment.conversationUpdateItemViewDelegate = this;
 
     initializeReceivers();
     initializeActionBar();
@@ -1492,6 +1494,16 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
   }
 
+  protected void updateSessionRestoreBanner() {
+    Set<String> devices = DatabaseFactory.getLokiThreadDatabase(this).getSessionRestoreDevices(threadId);
+    SessionRestoreBannerView view = sessionRestoreBannerView.get();
+    if (devices.size() > 0) {
+      view.show();
+    } else {
+      view.hide();
+    }
+  }
+
   private void updateDefaultSubscriptionId(Optional<Integer> defaultSubscriptionId) {
     Log.i(TAG, "updateDefaultSubscriptionId(" + defaultSubscriptionId.orNull() + ")");
     sendButton.setDefaultSubscriptionId(defaultSubscriptionId);
@@ -1588,6 +1600,18 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     inputPanel             = ViewUtil.findById(this, R.id.bottom_panel);
     searchNav              = ViewUtil.findById(this, R.id.conversation_search_nav);
     mentionCandidateSelectionView = ViewUtil.findById(this, R.id.userSelectionView);
+    sessionRestoreBannerView      = ViewUtil.findStubById(this, R.id.session_restore_banner_stub);
+    sessionRestoreBannerView.get().setRecipient(recipient);
+    sessionRestoreBannerView.get().setOnRestore(() -> {
+      this.restoreSession();
+      return Unit.INSTANCE;
+    });
+    sessionRestoreBannerView.get().setOnDismiss(() -> {
+      // TODO: Maybe silence for x minutes?
+      // TODO: Remove devices?
+      sessionRestoreBannerView.get().hide();
+      return Unit.INSTANCE;
+    });
 
     ImageButton quickCameraToggle      = ViewUtil.findById(this, R.id.quick_camera_toggle);
     ImageButton inlineAttachmentButton = ViewUtil.findById(this, R.id.inline_attachment_button);
@@ -2204,6 +2228,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       }
 
       this.updateInputPanel();
+  }
+
+  @Override
+  public void handleSessionRestoreDevicesChanged(long threadId) {
+    if (threadId == this.threadId) {
+      updateSessionRestoreBanner();
+    }
   }
 
   private void updateInputPanel() {
@@ -3083,14 +3114,19 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
   // endregion
 
-  @Override
-  public void updateItemButtonPressed(@NonNull MessageRecord messageRecord) {
+  public void restoreSession() {
     // Loki - User clicked restore session
-    Recipient recipient = messageRecord.getRecipient();
-    if (!recipient.isGroupRecipient() && messageRecord.isNoRemoteSession() && !messageRecord.isLokiSessionRestoreSent()) {
-      MessageSender.sendRestoreSessionMessage(this, recipient.getAddress().serialize());
-      DatabaseFactory.getSmsDatabase(this).markAsLokiSessionRestoreSent(messageRecord.id);
-      TextSecurePreferences.setShowingSessionRestorePrompt(this, messageRecord.getIndividualRecipient().getAddress().serialize(), false);
+    if (!recipient.isGroupRecipient()) {
+      LokiThreadDatabase lokiThreadDatabase = DatabaseFactory.getLokiThreadDatabase(this);
+      SmsDatabase database    = DatabaseFactory.getSmsDatabase(this);
+      Set<String> devices = lokiThreadDatabase.getSessionRestoreDevices(threadId);
+      for (String device : devices) { MessageSender.sendRestoreSessionMessage(this, device); }
+      long messageId = database.insertMessageOutbox(threadId, new OutgoingTextMessage(recipient,"", 0, 0), false, System.currentTimeMillis(), null);
+      if (messageId > -1) {
+        database.markAsLokiSessionRestoreSent(messageId);
+      }
+      lokiThreadDatabase.removeAllSessionRestoreDevices(threadId);
+      updateSessionRestoreBanner();
     }
   }
 }

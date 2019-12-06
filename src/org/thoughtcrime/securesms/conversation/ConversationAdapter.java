@@ -41,7 +41,6 @@ import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.loki.ConversationUpdateItemViewDelegate;
 import org.thoughtcrime.securesms.loki.FriendRequestViewDelegate;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.SlideDeck;
@@ -109,7 +108,6 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
   private String        searchQuery;
 
   public FriendRequestViewDelegate friendRequestViewDelegate; // Loki
-  public ConversationUpdateItemViewDelegate conversationUpdateItemViewDelegate;
 
   protected static class ViewHolder extends RecyclerView.ViewHolder {
     public <V extends View & BindableConversationItem> ViewHolder(final @NonNull V itemView) {
@@ -206,9 +204,8 @@ public class ConversationAdapter <V extends View & BindableConversationItem>
     BindableConversationItem conversationItem = viewHolder.getView();
     if (conversationItem instanceof ConversationItem) {
       ((ConversationItem)conversationItem).friendRequestViewDelegate = this.friendRequestViewDelegate;
-    } else if (conversationItem instanceof ConversationUpdateItem) {
-      ((ConversationUpdateItem)conversationItem).delegate = this.conversationUpdateItemViewDelegate;
     }
+
     conversationItem.bind(messageRecord,
                           Optional.fromNullable(previousRecord),
                           Optional.fromNullable(nextRecord),
