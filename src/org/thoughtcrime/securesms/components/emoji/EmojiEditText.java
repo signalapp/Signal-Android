@@ -35,8 +35,12 @@ public class EmojiEditText extends AppCompatEditText {
     final int          start = getSelectionStart();
     final int          end   = getSelectionEnd();
 
-    getText().replace(Math.min(start, end), Math.max(start, end), emoji);
-    setSelection(start + emoji.length());
+    String beforeReplacing = getText().toString();
+    String afterReplacing = getText().replace(Math.min(start, end), Math.max(start, end), emoji).toString();
+    boolean messageHasChanged = !beforeReplacing.equals(afterReplacing);
+    if (messageHasChanged) {
+      setSelection(start + emoji.length());
+    }
   }
 
   @Override
