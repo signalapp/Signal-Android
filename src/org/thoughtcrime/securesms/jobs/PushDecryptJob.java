@@ -58,6 +58,7 @@ import org.thoughtcrime.securesms.database.StickerDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
+import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.StickerRecord;
 import org.thoughtcrime.securesms.dependencies.InjectableType;
 import org.thoughtcrime.securesms.groups.GroupMessageProcessor;
@@ -275,11 +276,9 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       LokiServiceCipher        cipher                   = new LokiServiceCipher(localAddress, axolotlStore, lokiThreadDatabase, lokiPreKeyRecordDatabase, UnidentifiedAccessUtil.getCertificateValidator());
 
       // Loki - Handle session reset logic
-      /*
       if (!envelope.isFriendRequest() && cipher.getSessionStatus(envelope) == null && envelope.isPreKeySignalMessage()) {
         cipher.validateBackgroundMessage(envelope, envelope.getContent());
       }
-       */
 
       // Loki - Ignore any friend requests that we got before restoration
       if (envelope.isFriendRequest() && envelope.getTimestamp() < TextSecurePreferences.getRestorationTime(context)) {
@@ -1385,17 +1384,39 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     }
   }
 
+  private SmsMessageRecord getLastMessage(String sender) {
+    try {
+      SmsDatabase smsDatabase = DatabaseFactory.getSmsDatabase(context);
+      Recipient recipient = Recipient.from(context, Address.fromSerialized(sender), false);
+      long threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(recipient);
+      if (threadID < 0) {
+        return null;
+      }
+      int messageCount = smsDatabase.getMessageCountForThread(threadID);
+      if (messageCount <= 0) {
+        return null;
+      }
+      long lastMessageID = smsDatabase.getIDForMessageAtIndex(threadID, messageCount - 1);
+      return smsDatabase.getMessage(lastMessageID);
+    } catch (Exception e) {
+      return null;
+    }
+  }
+
   private void handleCorruptMessage(@NonNull String sender, int senderDevice, long timestamp,
                                     @NonNull Optional<Long> smsMessageId)
   {
     SmsDatabase smsDatabase = DatabaseFactory.getSmsDatabase(context);
 
     if (!smsMessageId.isPresent()) {
-      Optional<InsertResult> insertResult = insertPlaceholder(sender, senderDevice, timestamp);
+      SmsMessageRecord lastMessage = getLastMessage(sender);
+      if (lastMessage == null || !SmsDatabase.Types.isFailedDecryptType(lastMessage.getType())) {
+        Optional<InsertResult> insertResult = insertPlaceholder(sender, senderDevice, timestamp);
 
-      if (insertResult.isPresent()) {
-        smsDatabase.markAsDecryptFailed(insertResult.get().getMessageId());
-        // MessageNotifier.updateNotification(context, insertResult.get().getThreadId());
+        if (insertResult.isPresent()) {
+          smsDatabase.markAsDecryptFailed(insertResult.get().getMessageId());
+          MessageNotifier.updateNotification(context, insertResult.get().getThreadId());
+        }
       }
     } else {
       smsDatabase.markAsDecryptFailed(smsMessageId.get());
@@ -1409,11 +1430,14 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     SmsDatabase smsDatabase = DatabaseFactory.getSmsDatabase(context);
 
     if (!smsMessageId.isPresent()) {
-      Optional<InsertResult> insertResult = insertPlaceholder(sender, senderDevice, timestamp);
+      SmsMessageRecord lastMessage = getLastMessage(sender);
+      if (lastMessage == null || !SmsDatabase.Types.isNoRemoteSessionType(lastMessage.getType())) {
+        Optional<InsertResult> insertResult = insertPlaceholder(sender, senderDevice, timestamp);
 
-      if (insertResult.isPresent()) {
-        smsDatabase.markAsNoSession(insertResult.get().getMessageId());
-        // MessageNotifier.updateNotification(context, insertResult.get().getThreadId());
+        if (insertResult.isPresent()) {
+          smsDatabase.markAsNoSession(insertResult.get().getMessageId());
+          MessageNotifier.updateNotification(context, insertResult.get().getThreadId());
+        }
       }
     } else {
       smsDatabase.markAsNoSession(smsMessageId.get());

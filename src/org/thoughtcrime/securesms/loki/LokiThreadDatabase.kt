@@ -14,6 +14,7 @@ import org.whispersystems.signalservice.loki.api.LokiPublicChat
 import org.whispersystems.signalservice.loki.messaging.LokiThreadDatabaseProtocol
 import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus
 import org.whispersystems.signalservice.loki.messaging.LokiThreadSessionResetStatus
+import org.whispersystems.signalservice.loki.utilities.PublicKeyValidation
 
 class LokiThreadDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(context, helper), LokiThreadDatabaseProtocol {
     var delegate: LokiThreadDatabaseDelegate? = null
@@ -152,7 +153,10 @@ class LokiThreadDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
     }
 
     fun getSessionRestoreDevices(threadID: Long): Set<String> {
-        return TextSecurePreferences.getStringPreference(context, "session_restore_devices_$threadID", "").split(",").toSet()
+        return TextSecurePreferences.getStringPreference(context, "session_restore_devices_$threadID", "")
+                .split(",")
+                .filter { PublicKeyValidation.isValid(it) }
+                .toSet()
     }
 
     fun removeAllSessionRestoreDevices(threadID: Long) {

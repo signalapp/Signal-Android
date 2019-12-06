@@ -359,7 +359,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private   boolean isFriendsWithAnyDevice = false;
 
   // Restoration
-  protected Stub<SessionRestoreBannerView> sessionRestoreBannerView;
+  protected SessionRestoreBannerView sessionRestoreBannerView;
 
   @Override
   protected void onPreCreate() {
@@ -426,6 +426,17 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
           }
         });
       }
+    });
+
+    sessionRestoreBannerView.setOnRestore(() -> {
+      this.restoreSession();
+      return Unit.INSTANCE;
+    });
+    sessionRestoreBannerView.setOnDismiss(() -> {
+      // TODO: Maybe silence for x minutes?
+      DatabaseFactory.getLokiThreadDatabase(ConversationActivity.this).removeAllSessionRestoreDevices(threadId);
+      updateSessionRestoreBanner();
+      return Unit.INSTANCE;
     });
 
     LokiAPIUtilities.INSTANCE.populateUserHexEncodedPublicKeyCacheIfNeeded(threadId, this);
@@ -495,6 +506,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     DatabaseFactory.getLokiThreadDatabase(this).setDelegate(this);
     updateInputPanel();
+
+    updateSessionRestoreBanner();
 
     Log.i(TAG, "onResume() Finished: " + (System.currentTimeMillis() - getIntent().getLongExtra(TIMING_EXTRA, 0)));
   }
@@ -1496,11 +1509,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   protected void updateSessionRestoreBanner() {
     Set<String> devices = DatabaseFactory.getLokiThreadDatabase(this).getSessionRestoreDevices(threadId);
-    SessionRestoreBannerView view = sessionRestoreBannerView.get();
     if (devices.size() > 0) {
-      view.show();
+      sessionRestoreBannerView.update(recipient);
+      sessionRestoreBannerView.show();
     } else {
-      view.hide();
+      sessionRestoreBannerView.hide();
     }
   }
 
@@ -1600,18 +1613,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     inputPanel             = ViewUtil.findById(this, R.id.bottom_panel);
     searchNav              = ViewUtil.findById(this, R.id.conversation_search_nav);
     mentionCandidateSelectionView = ViewUtil.findById(this, R.id.userSelectionView);
-    sessionRestoreBannerView      = ViewUtil.findStubById(this, R.id.session_restore_banner_stub);
-    sessionRestoreBannerView.get().setRecipient(recipient);
-    sessionRestoreBannerView.get().setOnRestore(() -> {
-      this.restoreSession();
-      return Unit.INSTANCE;
-    });
-    sessionRestoreBannerView.get().setOnDismiss(() -> {
-      // TODO: Maybe silence for x minutes?
-      // TODO: Remove devices?
-      sessionRestoreBannerView.get().hide();
-      return Unit.INSTANCE;
-    });
+    sessionRestoreBannerView      = ViewUtil.findById(this, R.id.sessionRestoreBannerView);
 
     ImageButton quickCameraToggle      = ViewUtil.findById(this, R.id.quick_camera_toggle);
     ImageButton inlineAttachmentButton = ViewUtil.findById(this, R.id.inline_attachment_button);
@@ -2233,7 +2235,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   @Override
   public void handleSessionRestoreDevicesChanged(long threadId) {
     if (threadId == this.threadId) {
-      updateSessionRestoreBanner();
+      runOnUiThread(this::updateSessionRestoreBanner);
     }
   }
 

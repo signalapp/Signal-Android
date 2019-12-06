@@ -51,12 +51,10 @@
                 android:inflatedId="@+id/unverified_banner"
                 android:layout="@layout/conversation_activity_unverified_banner_stub" />
 
-            <ViewStub
-                android:id="@+id/session_restore_banner_stub"
+            <org.thoughtcrime.securesms.loki.SessionRestoreBannerView
+                android:id="@+id/sessionRestoreBannerView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inflatedId="@+id/session_restore_banner"
-                android:layout="@layout/conversation_activity_unverified_banner_stub" />
+                android:layout_height="wrap_content" />
 
             <ViewStub
                 android:id="@+id/reminder_stub"
