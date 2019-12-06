@@ -21,6 +21,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -94,6 +95,8 @@ public final class MediaOverviewActivity extends PassphraseRequiredActionBarActi
     initializeToolbar();
 
     boolean allThreads = threadId == MediaDatabase.ALL_THREADS;
+
+    fillTabLayoutIfFits(tabLayout);
 
     tabLayout.setupWithViewPager(viewPager);
     viewPager.setAdapter(new MediaOverviewPagerAdapter(getSupportFragmentManager()));
@@ -226,6 +229,25 @@ public final class MediaOverviewActivity extends PassphraseRequiredActionBarActi
         })
       .create()
       .show();
+  }
+
+  private static void fillTabLayoutIfFits(@NonNull TabLayout tabLayout) {
+    tabLayout.addOnLayoutChangeListener((v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
+      int totalWidth = 0;
+      int maxWidth   = 0;
+      ViewGroup tabs = (ViewGroup) tabLayout.getChildAt(0);
+
+      for (int i = 0; i < tabLayout.getTabCount(); i++) {
+        int tabWidth = tabs.getChildAt(i).getWidth();
+        totalWidth += tabWidth;
+        maxWidth = Math.max(maxWidth, tabWidth);
+      }
+
+      int viewWidth = right - left;
+      if (totalWidth < viewWidth) {
+        tabLayout.setTabMode(TabLayout.MODE_FIXED);
+      }
+    });
   }
 
   private class MediaOverviewPagerAdapter extends FragmentStatePagerAdapter {
