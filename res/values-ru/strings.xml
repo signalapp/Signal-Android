@@ -468,6 +468,18 @@
   <string name="MediaOverviewActivity_Grid_view_description">Вид: сетка</string>
   <string name="MediaOverviewActivity_List_view_description">Вид: список</string>
   <string name="MediaOverviewActivity_Selected_description">Выбрано</string>
+  <plurals name="MediaOverviewActivity_d_items_s">
+    <item quantity="one">%1$d элемент %2$s</item>
+    <item quantity="few">%1$d элемента %2$s</item>
+    <item quantity="many">%1$d элементов %2$s</item>
+    <item quantity="other">%1$d элементов %2$s</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_d_items">
+    <item quantity="one">%1$d элемент</item>
+    <item quantity="few">%1$d элемента</item>
+    <item quantity="many">%1$d элементов</item>
+    <item quantity="other">%1$d элементов</item>
+  </plurals>
   <string name="MediaOverviewActivity_file">Файл</string>
   <string name="MediaOverviewActivity_audio">Аудио</string>
   <string name="MediaOverviewActivity_video">Видео</string>

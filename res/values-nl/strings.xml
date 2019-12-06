@@ -107,7 +107,7 @@
   <string name="CommunicationActions_call">Bel</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Je veiligheidsnummer met %1$s is veranderd. Dit kan betekenen dat iemand je communicatie probeert te onderscheppen, of gewoon dat %2$s Signal opnieuw heeft geïnstalleerd.</string>
-  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Je wilt misschien jouw veiligheidsnummer bij deze contactpersoon verifiëren.</string>
+  <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Je wilt misschien je veiligheidsnummer bij deze contactpersoon verifiëren.</string>
   <string name="ConfirmIdentityDialog_accept">Aanvaarden</string>
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Recente gesprekken</string>
@@ -732,7 +732,7 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Gebruikersnamen mogen niet met een getal beginnen.</string>
   <string name="UsernameEditFragment_username_is_invalid">Gebruikersnaam is ongeldig.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Gebruikersnamen moeten uit minimaal %1$d en maximaal %2$d karakters bestaan.</string>
-  <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Via jouw unieke gebruikersnaam kunnen andere Signal-gebruikers je een verzoek sturen om berichten aan je te mogen zenden zonder je telefoonnummer te weten. Een gebruikersnaam instellen is optioneel.</string>
+  <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Via je unieke gebruikersnaam kunnen andere Signal-gebruikers je een verzoek sturen om berichten aan je te mogen zenden zonder je telefoonnummer te weten. Een gebruikersnaam instellen is optioneel.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Deze contactpersoon gebruikt een oude versie van Signal. Vraag hem om eerst Signal bij te werken, alvorens je het veiligheidsnummer verifieert.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Deze contactpersoon gebruikt een nieuwere versie van Signal met een incompatibel QR-codeformaat. Werk Signal bij om te vergelijken.</string>
@@ -1245,7 +1245,7 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <string name="preferences_storage__review_storage">Alle bestanden bekijken</string>
   <string name="preferences_advanced__use_system_emoji">Gebruik systeem-emoji</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Schakel de ingebouwde emoji-ondersteuning van Signal uit.</string>
-  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Breng oproepen tot stand via de Signal-server om te voorkomen dat je gesprekspartner jouw IP-adres kan achterhalen. Dit leidt wel tot een verminderde geluidskwaliteit.</string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Breng oproepen tot stand via de Signal-server om te voorkomen dat je gesprekspartner je IP-adres kan achterhalen. Dit leidt wel tot een verminderde geluidskwaliteit.</string>
   <string name="preferences_advanced__always_relay_calls">Alle oproepen doorsturen</string>
   <string name="preferences_app_protection__app_access">Toegang tot app</string>
   <string name="preferences_app_protection__communication">Communicatie</string>
