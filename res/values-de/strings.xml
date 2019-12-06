@@ -428,7 +428,7 @@
   <string name="MediaOverviewActivity_Newest">Neueste</string>
   <string name="MediaOverviewActivity_Oldest">Älteste</string>
   <string name="MediaOverviewActivity_Storage_used">Belegter Speicher</string>
-  <string name="MediaOverviewActivity_All_storage_use">Speicherbelegung</string>
+  <string name="MediaOverviewActivity_All_storage_use">Speicherinhalte</string>
   <string name="MediaOverviewActivity_Grid_view_description">Rasteransicht</string>
   <string name="MediaOverviewActivity_List_view_description">Listenansicht</string>
   <string name="MediaOverviewActivity_Selected_description">Ausgewählt</string>
@@ -759,7 +759,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Speichern in den Gerätespeicher ohne Berechtigungen nicht möglich.</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Nachricht löschen?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Dies wird diese Nachricht unwiderruflich löschen.</string>
-  <string name="MediaPreviewActivity_s_to_s">%1$s bis %2$s</string>
+  <string name="MediaPreviewActivity_s_to_s">%1$s an %2$s</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d neue Nachrichten in %2$d Unterhaltungen</string>
   <string name="MessageNotifier_most_recent_from_s">Neueste von: %1$s</string>
@@ -1229,7 +1229,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="preferences_storage__videos">Videos</string>
   <string name="preferences_storage__files">Dateien</string>
   <string name="preferences_storage__audio">Audio</string>
-  <string name="preferences_storage__review_storage">Speicher überprüfen</string>
+  <string name="preferences_storage__review_storage">Speicherinhalte überprüfen</string>
   <string name="preferences_advanced__use_system_emoji">System-Emojis verwenden</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Integrierte Emojis deaktivieren und stattdessen System-Emojis verwenden</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Alle Anrufe über den Signal-Server leiten, um die eigene IP-Adresse gegenüber Kontakten nicht offenzulegen. Bei Aktivierung wird sich die Anrufqualität verringern</string>

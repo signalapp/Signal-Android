@@ -438,6 +438,7 @@
   <string name="MmsDownloader_error_reading_mms_settings">Klaida, skaitant belaidžio tiekėjo MMS nustatymus</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Medija</string>
+  <string name="MediaOverviewActivity_Files">Failai</string>
   <string name="MediaOverviewActivity_Audio">Garso įrašai</string>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Ištrinama</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Ištrinamos žinutės…</string>
@@ -726,8 +727,11 @@
   <string name="UsernameEditFragment_username">Naudotojo vardas</string>
   <string name="UsernameEditFragment_submit">Pateikti</string>
   <string name="UsernameEditFragment_delete">Ištrinti</string>
+  <string name="UsernameEditFragment_encountered_a_network_error">Susidurta su tinklo klaida.</string>
   <string name="UsernameEditFragment_this_username_is_taken">Šis naudotojo vardas yra užimtas.</string>
   <string name="UsernameEditFragment_this_username_is_available">Šis naudotojo vardas yra prieinamas.</string>
+  <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Naudotojo vardai negali prasidėti skaitmenimi.</string>
+  <string name="UsernameEditFragment_username_is_invalid">Naudotojo vardas yra neteisingas.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Jūsų adresatas naudoja seną Signal versiją. Prieš patvirtindami savo saugumo numerį, paprašykite, kad jis atnaujintų programėlę.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Jūsų adresatas naudoja naujesnę Signal versiją su nesuderinamu QR kodo formatu. Norėdami palyginti, atsinaujinkite programėlę.</string>
@@ -799,6 +803,7 @@
   <string name="NotificationChannel_group_messages">Žinutės</string>
   <string name="NotificationChannel_missing_display_name">Nežinoma</string>
   <!--ProfileEditNameFragment-->
+  <string name="ProfileEditNameFragment_encountered_a_network_error">Susidurta su tinklo klaida.</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Spartusis atsakymas neprieinamas, kai Signal yra užrakinta!</string>
   <string name="QuickResponseService_problem_sending_message">Problemos siunčiant žinutę!</string>
@@ -814,6 +819,7 @@
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nauja žinutė</string>
   <!--ThumbnailView-->
+  <string name="ThumbnailView_Play_video_description">Atkurti vaizdo įrašą</string>
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">
     <item quantity="one">%d elementas</item>
@@ -882,6 +888,7 @@
   <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Norint rodyti jūsų adresatus, Signal reikia adresatų leidimo, tačiau jis buvo visam laikui uždraustas. Pereikite į programėlės nustatymų meniu, pasirinkite \"Leidimai\" ir įjunkite \"Adresatus\".</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Klaida gaunant adresatus, patikrinkite tinklo ryšį</string>
   <string name="ContactSelectionListFragment_username_not_found">Naudotojo vardas nerastas</string>
+  <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" nėra Signal naudotojas. Patikrinkite naudotojo vardą ir bandykite dar kartą.</string>
   <string name="ContactSelectionListFragment_okay">Gerai</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Nėra užblokuotų adresatų</string>
@@ -1242,6 +1249,9 @@
   <string name="preferences_chats__when_roaming">Naudojant tarptinklinį ryšį</string>
   <string name="preferences_chats__media_auto_download">Automatinis medijos atsisiuntimas</string>
   <string name="preferences_chats__message_trimming">Žinučių apkirpimas</string>
+  <string name="preferences_storage__photos">Nuotraukos</string>
+  <string name="preferences_storage__videos">Vaizdo įrašai</string>
+  <string name="preferences_storage__files">Failai</string>
   <string name="preferences_storage__audio">Garso įrašai</string>
   <string name="preferences_advanced__use_system_emoji">Naudoti sistemos jaustukus</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Išjungti Signal įtaisytą jaustukų palaikymą</string>
@@ -1276,6 +1286,7 @@
   <string name="conversation_callable_insecure__menu_call">Skambinti</string>
   <!--conversation_callable_secure-->
   <string name="conversation_callable_secure__menu_call">Signal skambutis</string>
+  <string name="conversation_callable_secure__menu_video">Signal vaizdo skambutis</string>
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">Žinutės informacija</string>
   <string name="conversation_context__menu_copy_text">Kopijuoti tekstą</string>
@@ -1492,5 +1503,6 @@
   <string name="MessageRequestBottomView_accept">Priimti</string>
   <string name="MessageRequestBottomView_delete">Ištrinti</string>
   <string name="MessageRequestBottomView_block">Užblokuoti</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let">Ar norite gauti žinutes nuo %1$s?</string>
   <!--EOF-->
 </resources>

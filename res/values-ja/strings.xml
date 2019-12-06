@@ -70,6 +70,7 @@
   <string name="BucketedThreadMedia_This_week">今週</string>
   <string name="BucketedThreadMedia_This_month">今月</string>
   <string name="BucketedThreadMedia_Large">大きい</string>
+  <string name="BucketedThreadMedia_Medium">中</string>
   <string name="BucketedThreadMedia_Small">小さい</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">着信</string>
@@ -389,10 +390,21 @@
   <string name="MediaOverviewActivity_Media">メディア</string>
   <string name="MediaOverviewActivity_Files">ファイル</string>
   <string name="MediaOverviewActivity_Audio">音声</string>
+  <string name="MediaOverviewActivity_All">すべて</string>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+    <item quantity="other">選択したアイテムを削除しますか？</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+    <item quantity="other">選択した%1$d個のファイルが完全に削除されます。これらのアイテムに関連付けられているメッセージテキストも削除されます。</item>
+  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">削除中</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">メッセージを削除中…</string>
   <string name="MediaOverviewActivity_Select_all">すべて選択</string>
   <string name="MediaOverviewActivity_collecting_attachments">添付ファイルを集めています…</string>
+  <string name="MediaOverviewActivity_Sort_by">並べ替え</string>
+  <string name="MediaOverviewActivity_Newest">新しい順</string>
+  <string name="MediaOverviewActivity_Oldest">古い順</string>
+  <string name="MediaOverviewActivity_Storage_used">サイズ</string>
   <string name="MediaOverviewActivity_file">ファイル</string>
   <string name="MediaOverviewActivity_audio">音声</string>
   <string name="MediaOverviewActivity_video">動画</string>
@@ -1149,6 +1161,7 @@
   <string name="preferences_storage__videos">動画</string>
   <string name="preferences_storage__files">ファイル</string>
   <string name="preferences_storage__audio">音声</string>
+  <string name="preferences_storage__review_storage">ストレージを確認する</string>
   <string name="preferences_advanced__use_system_emoji">システムの絵文字を使う</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Signal独自の絵文字機能を無効にする</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">すべての通話をSignalサーバに中継して、相手にIP アドレスを知られることを防ぎます。ただし、通話の品質は下がります。</string>

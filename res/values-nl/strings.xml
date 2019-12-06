@@ -72,7 +72,7 @@
   <string name="BucketedThreadMedia_Yesterday">Gisteren</string>
   <string name="BucketedThreadMedia_This_week">Deze week</string>
   <string name="BucketedThreadMedia_This_month">Deze maand</string>
-  <string name="BucketedThreadMedia_Large">Grote bestandsgrootte</string>
+  <string name="BucketedThreadMedia_Large">Grote bestanden</string>
   <string name="BucketedThreadMedia_Medium">Middelgrote bestanden</string>
   <string name="BucketedThreadMedia_Small">Kleine bestanden</string>
   <!--CallScreen-->
@@ -141,7 +141,7 @@
   <string name="ConversationItem_unable_to_open_media">Geen app gevonden waarmee dit bestand geopend kan openen.</string>
   <string name="ConversationItem_copied_text">%s gekopieerd</string>
   <string name="ConversationItem_from_s">van %s</string>
-  <string name="ConversationItem_to_s">naar %s</string>
+  <string name="ConversationItem_to_s">via %s</string>
   <string name="ConversationItem_read_more">  Lees meer</string>
   <string name="ConversationItem_download_more">  Download meer</string>
   <string name="ConversationItem_pending">  In afwachting</string>
@@ -377,7 +377,7 @@ weergaven.</string>
   <string name="InviteActivity_share">Delen</string>
   <string name="InviteActivity_choose_contacts">Kies contactpersonen</string>
   <string name="InviteActivity_share_with_contacts">Contactpersonen kiezen (sms)</string>
-  <string name="InviteActivity_choose_how_to_share">Kies met welke app je wilt verzenden</string>
+  <string name="InviteActivity_choose_how_to_share">Verzenden via andere app</string>
   <string name="InviteActivity_cancel">Annuleren</string>
   <string name="InviteActivity_sending">Bezig met verzenden…</string>
   <string name="InviteActivity_heart_content_description">Hartje</string>
@@ -429,7 +429,7 @@ weergaven.</string>
   <string name="MediaOverviewActivity_Newest">Nieuwste bovenaan</string>
   <string name="MediaOverviewActivity_Oldest">Oudste bovenaan</string>
   <string name="MediaOverviewActivity_Storage_used">Hoeveelheid opslagruimte</string>
-  <string name="MediaOverviewActivity_All_storage_use">Al het opslaggebruik</string>
+  <string name="MediaOverviewActivity_All_storage_use">Alle opgeslagen bestanden</string>
   <string name="MediaOverviewActivity_Grid_view_description">Rasterweergave</string>
   <string name="MediaOverviewActivity_List_view_description">Lijstweergave</string>
   <string name="MediaOverviewActivity_Selected_description">Geselecteerd</string>
@@ -721,7 +721,7 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <string name="UnverifiedSendDialog_send">Verzenden</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">Gebruikersnaam</string>
-  <string name="UsernameEditFragment_submit">Indienen</string>
+  <string name="UsernameEditFragment_submit">Aanvragen</string>
   <string name="UsernameEditFragment_delete">Wis</string>
   <string name="UsernameEditFragment_successfully_set_username">Gebruikersnaam succesvol ingesteld.</string>
   <string name="UsernameEditFragment_successfully_removed_username">Gebruikersnaam succesvol verwijderd.</string>
@@ -731,8 +731,8 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <string name="UsernameEditFragment_usernames_can_only_include">Gebruikersnamen mogen alleen de karakters a-Z, 0-9 en onderstreep gebruiken.</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Gebruikersnamen mogen niet met een getal beginnen.</string>
   <string name="UsernameEditFragment_username_is_invalid">Gebruikersnaam is ongeldig.</string>
-  <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Gebruikersnamen moeten minimaal %1$d en maximaal %2$d karakters bevatten.</string>
-  <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Andere Signal-gebruikers kunnen je een verzoek sturen naar jouw unieke gebruikersnaam, om berichten aan je te mogen zenden. Ze hoeven je telefoonnummer niet te weten. Een gebruikersnaam instellen is optioneel.</string>
+  <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Gebruikersnamen moeten uit minimaal %1$d en maximaal %2$d karakters bestaan.</string>
+  <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Via jouw unieke gebruikersnaam kunnen andere Signal-gebruikers je een verzoek sturen om berichten aan je te mogen zenden zonder je telefoonnummer te weten. Een gebruikersnaam instellen is optioneel.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Deze contactpersoon gebruikt een oude versie van Signal. Vraag hem om eerst Signal bij te werken, alvorens je het veiligheidsnummer verifieert.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Deze contactpersoon gebruikt een nieuwere versie van Signal met een incompatibel QR-codeformaat. Werk Signal bij om te vergelijken.</string>
@@ -765,14 +765,14 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <string name="KeyCachingService_passphrase_cached">Signal is ontgrendeld</string>
   <string name="KeyCachingService_lock">Vergrendel Signal</string>
   <!--MediaPreviewActivity-->
-  <string name="MediaPreviewActivity_you">Jij</string>
+  <string name="MediaPreviewActivity_you">jou</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Niet-ondersteund mediatype</string>
   <string name="MediaPreviewActivity_draft">Concept</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal heeft toegang tot externe opslagruimte nodig om iets op te slaan op de externe opslag, maar deze toegang is pertinent geweigerd. Ga naar de instellingen voor deze app, selecteer ‘Machtigingen’ en schakel ‘Opslagruimte’ in.</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Kan niet opslaan naar externe opslag zonder machtiging</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Bericht wissen?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Dit bericht zal onherroepelijk gewist worden, maar alleen voor jezelf.</string>
-  <string name="MediaPreviewActivity_s_to_s">%1$s tot en met %2$s</string>
+  <string name="MediaPreviewActivity_s_to_s">%1$s naar %2$s</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nieuwe berichten in %2$d gesprekken</string>
   <string name="MessageNotifier_most_recent_from_s">Meest recente van: %1$s</string>
@@ -1242,7 +1242,7 @@ Signal heeft ook toegang nodig tot de media op je apparaat, om bestanden bij te 
   <string name="preferences_storage__videos">Videos</string>
   <string name="preferences_storage__files">Documenten</string>
   <string name="preferences_storage__audio">Audio</string>
-  <string name="preferences_storage__review_storage">Opslag overzicht</string>
+  <string name="preferences_storage__review_storage">Alle bestanden bekijken</string>
   <string name="preferences_advanced__use_system_emoji">Gebruik systeem-emoji</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Schakel de ingebouwde emoji-ondersteuning van Signal uit.</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Breng oproepen tot stand via de Signal-server om te voorkomen dat je gesprekspartner jouw IP-adres kan achterhalen. Dit leidt wel tot een verminderde geluidskwaliteit.</string>

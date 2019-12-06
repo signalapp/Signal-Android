@@ -445,7 +445,7 @@
   <string name="MediaOverviewActivity_Sort_by">Sortează după</string>
   <string name="MediaOverviewActivity_Newest">Noi</string>
   <string name="MediaOverviewActivity_Oldest">Vechi</string>
-  <string name="MediaOverviewActivity_Storage_used">Utilizare stocare</string>
+  <string name="MediaOverviewActivity_Storage_used">Utilizare spațiu stocare</string>
   <string name="MediaOverviewActivity_All_storage_use">Toată utilizarea stocării</string>
   <string name="MediaOverviewActivity_Grid_view_description">Vizualizare grilă</string>
   <string name="MediaOverviewActivity_List_view_description">Vizualizare listă</string>
@@ -454,6 +454,10 @@
   <string name="MediaOverviewActivity_audio">Audio</string>
   <string name="MediaOverviewActivity_video">Video</string>
   <string name="MediaOverviewActivity_image">Imagine</string>
+  <string name="MediaOverviewActivity_sent_by_s">Trimis de %1$s</string>
+  <string name="MediaOverviewActivity_sent_by_you">Trimis de dvs.</string>
+  <string name="MediaOverviewActivity_sent_by_s_to_s">Trimis de %1$s către %2$s</string>
+  <string name="MediaOverviewActivity_sent_by_you_to_s">Trimis de dvs. către %1$s</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Apel Signal în curs</string>
   <string name="NotificationBarManager__establishing_signal_call">Se realizează un apel Signal</string>
@@ -1086,7 +1090,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="recipient_preferences__chat_settings">Setări conversaţie</string>
   <string name="recipient_preferences__privacy">Confidenţialitate</string>
   <string name="recipient_preferences__call_settings">Setări apel</string>
-  <string name="recipient_preferences__ringtone">Sunet de apel</string>
+  <string name="recipient_preferences__ringtone">Ton de apel</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Apel Signal</string>
   <!--registration_activity-->
@@ -1256,9 +1260,9 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences_chats__when_roaming">Când se utilizează roaming-ul </string>
   <string name="preferences_chats__media_auto_download">Descărcare automată Media</string>
   <string name="preferences_chats__message_trimming">Scurtarea mesajelor</string>
-  <string name="preferences_storage__storage_usage">Utilizare stocare</string>
+  <string name="preferences_storage__storage_usage">Utilizare spațiu stocare</string>
   <string name="preferences_storage__photos">Poze</string>
-  <string name="preferences_storage__videos">Video-uri</string>
+  <string name="preferences_storage__videos">Video</string>
   <string name="preferences_storage__files">Fișiere</string>
   <string name="preferences_storage__audio">Audio</string>
   <string name="preferences_storage__review_storage">Examinați stocarea</string>
@@ -1274,7 +1278,7 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="preferences_notifications__in_chat_sounds">Sunete în conversație</string>
   <string name="preferences_notifications__show">Afișează</string>
   <string name="preferences_notifications__calls">Apeluri</string>
-  <string name="preferences_notifications__ringtone">Sunet de apel</string>
+  <string name="preferences_notifications__ringtone">Ton de apel</string>
   <string name="preferences_chats__show_invitation_prompts">Afișează solicitări invitații</string>
   <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Arată solicitări invitații pentru contactele fără Signal</string>
   <string name="preferences_chats__message_text_size">Mărime font mesaje</string>
@@ -1400,26 +1404,26 @@ Am primit mesajul conform căruia schimbul de chei a avut loc pentru o versiune 
   <string name="trimmer__old_messages_successfully_deleted">Mesajele vechi au fost șterse cu succes</string>
   <!--Insights-->
   <string name="Insights__percent">%</string>
-  <string name="Insights__title">Insights</string>
-  <string name="InsightsDashboardFragment__title">Insights</string>
+  <string name="Insights__title">Statistici</string>
+  <string name="InsightsDashboardFragment__title">Statistici</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Protocolul Signal a protejat automat %1$d%% din mesajele dvs. expediate în ultimele %2$d zile. Conversațiile dintre utilizatorii de Signal sunt întotdeauna criptate integral.</string>
   <string name="InsightsDashboardFragment__boost_your_signal">Creșterea Signal</string>
   <string name="InsightsDashboardFragment__not_enough_data">Date insuficiente</string>
-  <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Procentul dvs. Insights este calculat pe baza mesajelor expediate în ultimele %1$d zile care nu au dispărut sau au fost șterse.</string>
+  <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Statisticile sunt calculate pe baza mesajelor expediate în ultimele %1$d zile care nu au dispărut sau au fost șterse.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Începeți o conversație</string>
   <string name="InsightsDashboardFragment__invite_your_contacts">Începeți să comunicați în siguranță și să activați funcții noi care depășesc limitările mesajelor SMS necriptate, invitând mai multe persoane de contact să se alăture la Signal.</string>
   <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Aceste statistici au fost generate local pe dispozitivul dvs. și pot fi văzute doar de dvs. Nu se transmit niciodată nicăieri.</string>
   <string name="InsightsDashboardFragment__encrypted_messages">Mesaje criptate</string>
   <string name="InsightsDashboardFragment__cancel">Anulați</string>
   <string name="InsightsDashboardFragment__send">Trimiteți</string>
-  <string name="InsightsModalFragment__title">Vă prezentăm Insight-uri</string>
+  <string name="InsightsModalFragment__title">Vă prezentăm \'Statistici\'</string>
   <string name="InsightsModalFragment__description">Aflați cât de multe dintre mesajele dvs. expediate au fost trimise în siguranță, apoi invitați rapid noi contacte pentru a crește procentul de Signal.</string>
-  <string name="InsightsModalFragment__view_insights">Vizualizați Insights</string>
+  <string name="InsightsModalFragment__view_insights">Vizualizați Statistici</string>
   <string name="FirstInviteReminder__title">Invitați la Signal</string>
   <string name="FirstInviteReminder__description">Puteți crește numărul de mesaje criptate pe care le trimiteți cu %1$d%%</string>
   <string name="SecondInviteReminder__title">Îmbunătățește-ți Signal-ul</string>
   <string name="SecondInviteReminder__description">Invitați pe %1$s</string>
-  <string name="InsightsReminder__view_insights">Vizualizați Insights</string>
+  <string name="InsightsReminder__view_insights">Vizualizați Statistici</string>
   <string name="InsightsReminder__invite">Invită</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Pictogramă transport</string>

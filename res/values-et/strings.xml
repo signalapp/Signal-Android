@@ -73,6 +73,7 @@
   <string name="BucketedThreadMedia_This_week">See nädal</string>
   <string name="BucketedThreadMedia_This_month">See kuu</string>
   <string name="BucketedThreadMedia_Large">Suur</string>
+  <string name="BucketedThreadMedia_Medium">Meedia</string>
   <string name="BucketedThreadMedia_Small">Väike</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Sissetulev kõne</string>
@@ -100,6 +101,8 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Veebibrauserit ei leitud.</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Mobiilsidekõne on juba käimas.</string>
+  <string name="CommunicationActions_start_video_call">Alustad videokõnet?</string>
+  <string name="CommunicationActions_start_voice_call">Alustad häälkõnet?</string>
   <string name="CommunicationActions_cancel">Loobu</string>
   <string name="CommunicationActions_call">Helista</string>
   <!--ConfirmIdentityDialog-->
@@ -302,6 +305,7 @@
   <string name="DeviceListItem_last_active_s">%s viimati aktiivne</string>
   <string name="DeviceListItem_today">Täna</string>
   <!--DocumentView-->
+  <string name="DocumentView_unnamed_file">Nimetu fail</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimeeri puuduvate Play teenuste jaoks</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">See seade ei toeta Play teenuseid. Koputa, et keelata süsteemi aku optimeerimine, kuna see ei lase Signalil sõnumeid hankida, kui seade on ebaaktiivne.</string>
@@ -371,6 +375,8 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Jaga</string>
   <string name="InviteActivity_choose_contacts">Vali kontaktid</string>
+  <string name="InviteActivity_share_with_contacts">Jaga kontaktidega</string>
+  <string name="InviteActivity_choose_how_to_share">Vali, kuidas jagada</string>
   <string name="InviteActivity_cancel">Tühista</string>
   <string name="InviteActivity_sending">Saatmine…</string>
   <string name="InviteActivity_heart_content_description">Süda</string>
@@ -403,15 +409,37 @@
   <string name="MmsDownloader_error_reading_mms_settings">Võrgupakkuja MMS-seadete lugemisel esines viga</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Meedia</string>
+  <string name="MediaOverviewActivity_Files">Failid</string>
   <string name="MediaOverviewActivity_Audio">Audio</string>
+  <string name="MediaOverviewActivity_All">Kõik</string>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+    <item quantity="one">Kustutatud valitud üksuse?</item>
+    <item quantity="other">Kustutad valitud üksused?</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+    <item quantity="one">See kustutab valitud faili püsivalt. Mistahes seonduv sõnumitekst kustutatakse samuti.</item>
+    <item quantity="other">See kustutab püsivalt kõik %1$d valitud faili. Mistahes seonduv sõnumitekst kustutatakse samuti.</item>
+  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Kustutan</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Sõnumite kustutamine…</string>
   <string name="MediaOverviewActivity_Select_all">Vali kõik</string>
   <string name="MediaOverviewActivity_collecting_attachments">Manuste kogumine…</string>
+  <string name="MediaOverviewActivity_Sort_by">Sorteeri</string>
+  <string name="MediaOverviewActivity_Newest">Uusima järgi</string>
+  <string name="MediaOverviewActivity_Oldest">Vanima järgi</string>
+  <string name="MediaOverviewActivity_Storage_used">Mäluruumi kasutatud</string>
+  <string name="MediaOverviewActivity_All_storage_use">Kogu mäluruumi kasutus</string>
+  <string name="MediaOverviewActivity_Grid_view_description">Ruudustikvaade</string>
+  <string name="MediaOverviewActivity_List_view_description">Nimekirjavaade</string>
+  <string name="MediaOverviewActivity_Selected_description">Valitud</string>
   <string name="MediaOverviewActivity_file">Fail</string>
   <string name="MediaOverviewActivity_audio">Audio</string>
   <string name="MediaOverviewActivity_video">Video</string>
   <string name="MediaOverviewActivity_image">Pilt</string>
+  <string name="MediaOverviewActivity_sent_by_s">Saadetud %1$s poolt</string>
+  <string name="MediaOverviewActivity_sent_by_you">Saadetud sinu poolt</string>
+  <string name="MediaOverviewActivity_sent_by_s_to_s">Saadetud %1$s poolt kontaktile %2$s</string>
+  <string name="MediaOverviewActivity_sent_by_you_to_s">Saadetud sinu poolt kontaktile %1$s</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signali kõne käib</string>
   <string name="NotificationBarManager__establishing_signal_call">Alustan Signali kõnet</string>
@@ -492,7 +520,7 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal vajab kaamera luba, et skanneerida QR-koodi, ent see on püsivalt keelatud. Palun jätka rakenduse seadetes, vali \"Load\" ja luba \"Kaamera\".</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">QR-koodi ei saa skanneerida ilma kaamera loata</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">Hävinevad sõnumid</string>
+  <string name="ExpirationDialog_disappearing_messages">Haihtuvad sõnumid</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">Sinu sõnumid ei aegu.</string>
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Selles vestluses saadetud ja vastuvõetud sõnumid haihtuvad peale %s pärast nägemist.</string>
   <!--PassphrasePromptActivity-->
@@ -509,10 +537,17 @@
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Google Play Services versioon, mis sul on installitud, ei toimi korrektselt. Palun taasinstalli Google Play Services ja proovi uuesti.</string>
   <!--ProfileEditNameFragment-->
+  <string name="ProfileEditNameFragment_profile_name">Profiilinimi</string>
+  <string name="ProfileEditNameFragment_your_profile_name_can_be_seen_by_your_contacts">Sinu profiilinime näevad sinu kontaktid ning teised kasutajad või grupid, kui lood vestluse või võtad vastu vestluskutse.</string>
   <string name="ProfileEditNameFragment_save">Salvesta</string>
   <!--ProfileEditOverviewFragment-->
   <string name="ProfileEditOverviewFragment_profile">Profiil</string>
+  <string name="ProfileEditOverviewFragment_profile_name">Profiilinimi</string>
   <string name="ProfileEditOverviewFragment_username">Kasutajanimi</string>
+  <string name="ProfileEditOverviewFragment_create_a_profile_name">Loo profiilinimi</string>
+  <string name="ProfileEditOverviewFragment_create_a_username">Loo kasutajanimi</string>
+  <string name="ProfileEditOverviewFragment_your_signal_profile_can_be_seen_by">Sinu Signali profiili näevad sinu kontaktid ning teised kasutajad või grupid, kui lood vestluse või võtad vastu vestluskutse.
+<a href="https://support.signal.org/hc/en-us/articles/360007459591-Signal-Profiles">Rohkema lugemiseks koputa siia</a>.</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Hinda seda rakendust</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Kui sa naudid selle rakenduse kasutamist, palun võta aega ja hinda seda, et meid aidata.</string>
@@ -582,6 +617,8 @@
   <string name="RegistrationActivity_failed_to_verify_the_captcha">CAPTCHA kinnitamine ebaõnnestus</string>
   <string name="RegistrationActivity_next">Edasi</string>
   <string name="RegistrationActivity_continue">Jätka</string>
+  <string name="RegistrationActivity_continue_d_attempts_left">Jätka (%d katset jäänud)</string>
+  <string name="RegistrationActivity_continue_last_attempt">Jätka (viimane katse!)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Võta privaatsus endaga kaasa.\nJää iga sõnumiga iseendaks.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Sisesta alustamiseks oma telefoninumber</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Sa saad kinnituskoodi. Rakenduda võivad operaatoritasud.</string>
@@ -659,7 +696,7 @@
   <string name="ThreadRecord_disappearing_video">Haihtuv video</string>
   <string name="ThreadRecord_s_is_on_signal">%s on Signalis!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Haihtuvad sõnumid keelatud</string>
-  <string name="ThreadRecord_disappearing_message_time_updated_to_s">Hävineva sõnumi ajaks on seatud %s</string>
+  <string name="ThreadRecord_disappearing_message_time_updated_to_s">Haihtuva sõnumi ajaks on seatud %s</string>
   <string name="ThreadRecord_safety_number_changed">Turvanumber muudetud</string>
   <string name="ThreadRecord_your_safety_number_with_s_has_changed">Sinu turvanumber kontaktiga %s on muutunud.</string>
   <string name="ThreadRecord_you_marked_verified">Sa märkisid kinnitatuks</string>
@@ -685,6 +722,16 @@
   <string name="UsernameEditFragment_username">Kasutajanimi</string>
   <string name="UsernameEditFragment_submit">Postita</string>
   <string name="UsernameEditFragment_delete">Kustuta</string>
+  <string name="UsernameEditFragment_successfully_set_username">Kasutajanimi edukalt määratud.</string>
+  <string name="UsernameEditFragment_successfully_removed_username">Kasutajanimi edukalt eemaldatud.</string>
+  <string name="UsernameEditFragment_encountered_a_network_error">Esines võrgu viga.</string>
+  <string name="UsernameEditFragment_this_username_is_taken">See kasutajanimi on võetud.</string>
+  <string name="UsernameEditFragment_this_username_is_available">See kasutajanimi on saadaval.</string>
+  <string name="UsernameEditFragment_usernames_can_only_include">Kasutajanimed saavad sisaldada ainult a-Z, 0-9 ja _</string>
+  <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Kasutajanimed ei tohi alata numbriga.</string>
+  <string name="UsernameEditFragment_username_is_invalid">Kasutajanimi on sobimatu.</string>
+  <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Kasutajanimede pikkus peab olema %1$d ja %2$d tähemärgi vahel.</string>
+  <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Teised Signali kasutajad saavad saata vestluskutseid sinu unikaalsele kasutajanimele, ilma et teavad sinu telefoninumbrit. Kasutajanime valimine on valikuline.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Sinu kontakt kasutab vana Signali versiooni. Palun palu neil uuendada, enne kui kinnitad oma turvanumbrit.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Sinu kontakt kasutab uuemat Signali versiooni ühildumatu QR-koodi vorminguga. Võrdlemiseks palun uuenda.</string>
@@ -724,6 +771,7 @@
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Õiguste puudumise tõttu pole võimalik välisele andmekandjale salvestada.</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Kustutad sõnumi?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">See kustutab püsivalt valitud sõnumi.</string>
+  <string name="MediaPreviewActivity_s_to_s">%1$s saajale %2$s</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d uut sõnumit %2$d vestluses</string>
   <string name="MessageNotifier_most_recent_from_s">Viimatine kontaktilt %1$s</string>
@@ -745,6 +793,7 @@
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Ava Signal et kontrollida viimaseid teateid.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Kontakt</string>
+  <string name="MessageNotifier_reacted_to_your_message">Reageeris sinu sõnumile: %1$s</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Vaikimisi</string>
   <string name="NotificationChannel_calls">Kõned</string>
@@ -756,6 +805,8 @@
   <string name="NotificationChannel_group_messages">Sõnumid</string>
   <string name="NotificationChannel_missing_display_name">Tundmatu</string>
   <!--ProfileEditNameFragment-->
+  <string name="ProfileEditNameFragment_successfully_set_profile_name">Profiilinimi edukalt määratud.</string>
+  <string name="ProfileEditNameFragment_encountered_a_network_error">Esines võrgu viga.</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Kiirvastus pole saadaval, kui Signal on lukustatud!</string>
   <string name="QuickResponseService_problem_sending_message">Sõnumi saatmisel esines probleem!</string>
@@ -771,6 +822,8 @@
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Uus sõnum</string>
   <!--ThumbnailView-->
+  <string name="ThumbnailView_Play_video_description">Esita videot</string>
+  <string name="ThumbnailView_Has_a_caption_description">Omab tiitreid</string>
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">
     <item quantity="one">%d üksus</item>
@@ -836,6 +889,8 @@
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal vajab kontaktide kuvamiseks neile ligipääsu, kuid see on püsivalt keelatud. Palun ava rakenduse sätete menüü, vali \"Õigused\" ja luba \"Kontaktid\".</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Kontaktide laadimisel tekkis tõrge. Kontrolli võrguühendust.</string>
+  <string name="ContactSelectionListFragment_username_not_found">Kasutajanime ei leitud</string>
+  <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" ei ole Signali kasutaja. Palun kontrolli kasutajanime ja proovi uuesti.</string>
   <string name="ContactSelectionListFragment_okay">Sobib</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Blokeeritud kontakte pole</string>
@@ -1152,6 +1207,7 @@
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Kustuta automaatselt vanad sõnumid, kui vestlus ületab määratud pikkuse</string>
   <string name="preferences__delete_old_messages">Kustuta vanad sõnumid</string>
   <string name="preferences__chats">Vestlused ja meedia</string>
+  <string name="preferences__storage">Mäluruum</string>
   <string name="preferences__conversation_length_limit">Vestluse pikkuse limiit</string>
   <string name="preferences__trim_all_conversations_now">Piira kõik vestlused nüüd</string>
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Skaneeri kõiki vestlusi ja jõusta vestluspikkuse limiite</string>
@@ -1180,7 +1236,12 @@
   <string name="preferences_chats__when_roaming">Kui oled välismaal</string>
   <string name="preferences_chats__media_auto_download">Meedia automaatne allalaadimine</string>
   <string name="preferences_chats__message_trimming">Sõnumi piiramine</string>
+  <string name="preferences_storage__storage_usage">Mäluruumi kasutus</string>
+  <string name="preferences_storage__photos">Fotod</string>
+  <string name="preferences_storage__videos">Videod</string>
+  <string name="preferences_storage__files">Failid</string>
   <string name="preferences_storage__audio">Audio</string>
+  <string name="preferences_storage__review_storage">Vaata mäluruum üle</string>
   <string name="preferences_advanced__use_system_emoji">Kasuta süsteemi emojisid</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Keela Signalisse sisseehitatud emoji-tugi</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Vahenda kõik kõned Signali serveri kaudu, et vältida oma IP-aadressi levitamist oma kontaktile. Lubamine vähendab kõnekvaliteeti.</string>
@@ -1214,6 +1275,7 @@
   <string name="conversation_callable_insecure__menu_call">Kõne</string>
   <!--conversation_callable_secure-->
   <string name="conversation_callable_secure__menu_call">Signali kõne</string>
+  <string name="conversation_callable_secure__menu_video">Signali videokõne</string>
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">Sõnumi andmed</string>
   <string name="conversation_context__menu_copy_text">Kopeeri tekst</string>
@@ -1222,10 +1284,11 @@
   <string name="conversation_context__menu_resend_message">Saada sõnum uuesti</string>
   <string name="conversation_context__menu_reply_to_message">Vasta sõnumile</string>
   <!--conversation_context_reacction-->
+  <string name="conversation_context__reaction_multi_select">Vali mitu</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Salvesta manus</string>
   <!--conversation_expiring_off-->
-  <string name="conversation_expiring_off__disappearing_messages">Hävinevad sõnumid</string>
+  <string name="conversation_expiring_off__disappearing_messages">Haihtuvad sõnumid</string>
   <!--conversation_expiring_on-->
   <string name="menu_conversation_expiring_on__messages_expiring">Sõnumite aegumine</string>
   <!--conversation_insecure-->
@@ -1318,14 +1381,22 @@
   <string name="Insights__percent">%</string>
   <string name="Insights__title">Pilguheit</string>
   <string name="InsightsDashboardFragment__title">Pilguheit</string>
+  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signali protokoll kaitses automaatselt %1$d%% väljuvat sõnumit %2$d päeva jooksul. Vestlused Signali kasutajate vahel on alati otspunktkrüpteeritud.</string>
+  <string name="InsightsDashboardFragment__boost_your_signal">Signali võimendamine</string>
+  <string name="InsightsDashboardFragment__not_enough_data">Pole piisavalt andmeid</string>
+  <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Sinu Pilguheidu protsent on arvutatud väljuvate sõnumite põhjal %1$d päeva jooksul, mis ei ole haihtunud ega kustutatud.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Alusta vestlust</string>
+  <string name="InsightsDashboardFragment__invite_your_contacts">Alusta turvalist suhtlemist ning luba uued funktsioonid, mis võimaldavad krüpteerimata SMS-sõnumitest rohkemat, kutsudes rohkem kontakte Signaliga liituma. </string>
+  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">See statistika on antud seadmes kohalikult genereeritud ning ainult sina näed seda. Seda ei saadeta mitte kunagi mitte kuhugi.</string>
   <string name="InsightsDashboardFragment__encrypted_messages">Krüpteeritud sõnumid</string>
   <string name="InsightsDashboardFragment__cancel">Loobu</string>
   <string name="InsightsDashboardFragment__send">Saada</string>
   <string name="InsightsModalFragment__title">Tutvustame Pilguheitu</string>
+  <string name="InsightsModalFragment__description">Leia, mitu sinu väljuvat sõnumit saadeti turvaliselt, seejärel kutsu kiirelt uusi kontakte, et võimendada oma Signali-protsenti.</string>
   <string name="InsightsModalFragment__view_insights">Vaata Pilguheitu</string>
   <string name="FirstInviteReminder__title">Kutsu Signalisse</string>
   <string name="FirstInviteReminder__description">Sa võiksid täiendada krüpteeritud sõnumite saatmise arvu %1$d%%</string>
+  <string name="SecondInviteReminder__title">Võimenda oma Signali</string>
   <string name="SecondInviteReminder__description">Kutsu %1$s</string>
   <string name="InsightsReminder__view_insights">Vaata Pilguheitu</string>
   <string name="InsightsReminder__invite">Kutsu</string>
@@ -1418,6 +1489,8 @@
   <string name="RegistrationLockDialog_error_connecting_to_the_service">Teenusega ühendamisel esines viga</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">Keelad registreerimisluku PINi?</string>
   <string name="RegistrationLockDialog_disable">Keela</string>
+  <string name="RegistrationActivity_pin_incorrect">Sobimatu PIN</string>
+  <string name="RegistrationActivity_you_have_d_tries_remaining">Sul on %d katset jäänud</string>
   <string name="preferences_chats__backups">Varundused</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal on lukus</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">KOPUTA AVAMISEKS</string>
@@ -1427,5 +1500,14 @@
   <string name="MessageRequestBottomView_accept">Nõustun</string>
   <string name="MessageRequestBottomView_delete">Kustuta</string>
   <string name="MessageRequestBottomView_block">Blokeeri</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let">Kas soovid kontaktilt %1$s sõnumeid vastu võtta?</string>
+  <string name="MessageRequestProfileView_member_of_one_group">%1$s liige</string>
+  <string name="MessageRequestProfileView_member_of_two_groups">%1$s ja %2$s liige </string>
+  <string name="MessageRequestProfileView_member_of_many_groups">%1$s, %2$s ja %3$s liige</string>
+  <string name="MessageRequestProfileView_members">%1$d liiget</string>
+  <plurals name="MessageRequestProfileView_member_of_others">
+    <item quantity="one">%d teine</item>
+    <item quantity="other">%d teist </item>
+  </plurals>
   <!--EOF-->
 </resources>

@@ -467,10 +467,15 @@
   <string name="MediaOverviewActivity_All_storage_use">כל השימוש באחסון</string>
   <string name="MediaOverviewActivity_Grid_view_description">תצוגת סורג</string>
   <string name="MediaOverviewActivity_List_view_description">תצוגת רשימה</string>
+  <string name="MediaOverviewActivity_Selected_description">נבחר</string>
   <string name="MediaOverviewActivity_file">קובץ</string>
   <string name="MediaOverviewActivity_audio">שמע</string>
   <string name="MediaOverviewActivity_video">סרטון</string>
   <string name="MediaOverviewActivity_image">תמונה</string>
+  <string name="MediaOverviewActivity_sent_by_s">נשלח על ידי %1$s</string>
+  <string name="MediaOverviewActivity_sent_by_you">נשלח על ידך</string>
+  <string name="MediaOverviewActivity_sent_by_s_to_s">נשלח על ידי %1$s אל %2$s</string>
+  <string name="MediaOverviewActivity_sent_by_you_to_s">נשלח על ידך אל %1$s</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">שיחת Signal בתהליך</string>
   <string name="NotificationBarManager__establishing_signal_call">מקים שיחת Signal</string>
@@ -752,6 +757,7 @@
   <string name="UsernameEditFragment_delete">מחק</string>
   <string name="UsernameEditFragment_successfully_set_username">שם משתמש נקבע בהצלחה.</string>
   <string name="UsernameEditFragment_successfully_removed_username">שם משתמש הוסר בהצלחה.</string>
+  <string name="UsernameEditFragment_encountered_a_network_error">היישום נתקל בשגיאת רשת.</string>
   <string name="UsernameEditFragment_this_username_is_taken">שם משתמש זה תפוס.</string>
   <string name="UsernameEditFragment_this_username_is_available">שם משתמש זה זמין.</string>
   <string name="UsernameEditFragment_usernames_can_only_include">שמות משתמש יכולים להכיל רק a-Z, 0-9 וקווים תחתונים.</string>
@@ -833,6 +839,7 @@
   <string name="NotificationChannel_missing_display_name">לא ידוע</string>
   <!--ProfileEditNameFragment-->
   <string name="ProfileEditNameFragment_successfully_set_profile_name">שם פרופיל נקבע בהצלחה.</string>
+  <string name="ProfileEditNameFragment_encountered_a_network_error">היישום נתקל בשגיאת רשת.</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">תגובה מהירה אינה זמינה כאשר Signal נעול!</string>
   <string name="QuickResponseService_problem_sending_message">בעיה בשליחת הודעה!</string>
