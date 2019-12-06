@@ -422,7 +422,7 @@
     <string name="GroupCreateActivity_actionbar_edit_title">Edit group</string>
     <string name="GroupCreateActivity_group_name_hint">Group name</string>
     <string name="GroupCreateActivity_actionbar_mms_title">New MMS group</string>
-    <string name="GroupCreateActivity_contacts_dont_support_push">You have selected one or more contacts that don\'t support Signal groups, so you will only be able to send and receive insecure MMS messages in this group. If you want to exchange secure Signal messages, you must remove any contact who doesn't support Signal groups.</string>
+    <string name="GroupCreateActivity_contacts_dont_support_push">You have selected one or more contacts that don\'t support Signal groups, so you will only be able to send and receive insecure MMS messages in this group. If you want to exchange secure Signal messages, you must remove any contact who doesn\'t support Signal groups.</string>
     <string name="GroupCreateActivity_youre_not_registered_for_signal">You\'re not registered for Signal messages and calls, so Signal groups are disabled. Please try registering in Settings &gt; Advanced.</string>
     <string name="GroupCreateActivity_contacts_no_members">You need at least one person in your group!</string>
     <string name="GroupCreateActivity_contacts_invalid_number">One of the members of your group has a number that can\'t be read correctly. Please fix or remove that contact and try again.</string>
@@ -718,7 +718,7 @@
     <string name="RegistrationActivity_no_browser">Unable to open this link. No web browser found.</string>
     <string name="RegistrationActivity_more_information">More information</string>
     <string name="RegistrationActivity_less_information">Less information</string>
-    <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal requires permission to view your contacts, in order to send messages and initiate calls to your contacts. Signal also requires permission to access media on your device in order to add files as attachments. Finally, Signal requires permission to view your call status, so Signal calls won't interfere with other calls.</string>
+    <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal requires permission to view your contacts, in order to send messages and initiate calls to your contacts. Signal also requires permission to access media on your device in order to add files as attachments. Finally, Signal requires permission to view your call status, so Signal calls won\'t interfere with other calls.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Unable to connect to service. Please check network connection and try again.</string>
     <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">To easily verify your phone number, Signal can automatically detect your verification code if you allow Signal to view SMS messages.</string>
     <plurals name="RegistrationActivity_debug_log_hint">
@@ -1727,7 +1727,7 @@
     <string name="RegistrationActivity_checking">Checking…</string>
     <string name="RegistrationActivity_d_messages_so_far">%d messages so far…</string>
     <string name="RegistrationActivity_restore_from_backup">Restore from backup file?</string>
-    <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">You now have the opportunity to restore messages and media from a backup file. Beware: Restoring from a backup file can only be done during the installation process of Signal. You can not restore from a backup file once you've started using Signal, so if you wish to restore from a backup file you must do so now.</string>
+    <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">You now have the opportunity to restore messages and media from a backup file. Beware: Restoring from a backup file can only be done during the installation process of Signal. You can not restore from a backup file once you\'ve started using Signal, so if you wish to restore from a backup file you must do so now.</string>
     <string name="RegistrationActivity_backup_size_s">Backup size: %s</string>
     <string name="RegistrationActivity_backup_timestamp_s">Backup timestamp: %s</string>
     <string name="BackupDialog_enable_local_backups">Let Signal create backups?</string>
