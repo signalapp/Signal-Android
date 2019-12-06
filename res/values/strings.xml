@@ -504,6 +504,7 @@
         <item quantity="one">This will permanently delete the selected media, but only for yourself. Any message text associated with this item will also be deleted.</item>
         <item quantity="other">This will permanently delete the %1$d selected media, but only for yourself. Any message text associated with these items will also be deleted.</item>
     </plurals>
+    <string name="MediaOverviewActivity_Media_delete_progress_title">Deleting</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">Deleting media messages…</string>
     <string name="MediaOverviewActivity_Select_all">Select all</string>
     <string name="MediaOverviewActivity_collecting_attachments">Collecting attachments…</string>
