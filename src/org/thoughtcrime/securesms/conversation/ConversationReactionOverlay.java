@@ -76,7 +76,6 @@ public final class ConversationReactionOverlay extends RelativeLayout {
   private MaskView         maskView;
   private Toolbar          toolbar;
 
-  private int   statusBarHeight;
   private float touchDownDeadZoneSize;
   private float distanceFromTouchDownPointToTopOfScrubberDeadZone;
   private float distanceFromTouchDownPointToBottomOfScrubberDeadZone;
@@ -87,6 +86,7 @@ public final class ConversationReactionOverlay extends RelativeLayout {
   private int   selectedVerticalTranslation;
   private int   scrubberHorizontalMargin;
   private int   animationEmojiStartDelayFactor;
+  private int   statusBarHeight;
 
   private OnReactionSelectedListener       onReactionSelectedListener;
   private Toolbar.OnMenuItemClickListener  onToolbarItemClickedListener;
@@ -124,7 +124,6 @@ public final class ConversationReactionOverlay extends RelativeLayout {
     distanceFromTouchDownPointToBottomOfScrubberDeadZone = getResources().getDimensionPixelSize(R.dimen.conversation_reaction_scrub_deadzone_distance_from_touch_bottom);
 
     touchDownDeadZoneSize         = getResources().getDimensionPixelSize(R.dimen.conversation_reaction_touch_deadzone_size);
-    statusBarHeight               = ViewUtil.getStatusBarHeight(this);
     scrubberDistanceFromTouchDown = getResources().getDimensionPixelOffset(R.dimen.conversation_reaction_scrubber_distance);
     scrubberHeight                = getResources().getDimensionPixelOffset(R.dimen.conversation_reaction_scrubber_height);
     scrubberWidth                 = getResources().getDimensionPixelOffset(R.dimen.reaction_scrubber_width);
@@ -150,8 +149,15 @@ public final class ConversationReactionOverlay extends RelativeLayout {
     setupToolbarMenuItems();
     setupSelectedEmojiBackground();
 
+    if (Build.VERSION.SDK_INT >= 21) {
+      View statusBarBackground = activity.findViewById(android.R.id.statusBarBackground);
+      statusBarHeight = statusBarBackground == null ? 0 : statusBarBackground.getHeight();
+    } else {
+      statusBarHeight = ViewUtil.getStatusBarHeight(this);
+    }
+
     final float scrubberTranslationY = Math.max(-scrubberDistanceFromTouchDown + halfActionBarHeight,
-                                                lastSeenDownPoint.y - scrubberHeight - scrubberDistanceFromTouchDown);
+                                                lastSeenDownPoint.y - scrubberHeight - scrubberDistanceFromTouchDown - statusBarHeight);
 
     final float halfWidth            = scrubberWidth / 2f + scrubberHorizontalMargin;
     final float screenWidth          = getResources().getDisplayMetrics().widthPixels;
@@ -222,7 +228,7 @@ public final class ConversationReactionOverlay extends RelativeLayout {
   public boolean applyTouchEvent(@NonNull MotionEvent motionEvent) {
     if (!isShowing()) {
       if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-        lastSeenDownPoint.set(motionEvent.getRawX(), motionEvent.getRawY());
+        lastSeenDownPoint.set(motionEvent.getX(), motionEvent.getY());
       }
       return false;
     }
@@ -234,14 +240,14 @@ public final class ConversationReactionOverlay extends RelativeLayout {
     if (overlayState == OverlayState.UNINITAILIZED) {
       downIsOurs = false;
 
-      deadzoneTouchPoint.set(motionEvent.getRawX(), motionEvent.getRawY());
+      deadzoneTouchPoint.set(motionEvent.getX(), motionEvent.getY());
 
       overlayState = OverlayState.DEADZONE;
     }
 
     if (overlayState == OverlayState.DEADZONE) {
-      float deltaX = Math.abs(deadzoneTouchPoint.x - motionEvent.getRawX());
-      float deltaY = Math.abs(deadzoneTouchPoint.y - motionEvent.getRawY());
+      float deltaX = Math.abs(deadzoneTouchPoint.x - motionEvent.getX());
+      float deltaY = Math.abs(deadzoneTouchPoint.y - motionEvent.getY());
 
       if (deltaX > touchDownDeadZoneSize || deltaY > touchDownDeadZoneSize) {
         overlayState = OverlayState.SCRUB;
@@ -277,7 +283,7 @@ public final class ConversationReactionOverlay extends RelativeLayout {
           }
         }
 
-        deadzoneTouchPoint.set(motionEvent.getRawX(), motionEvent.getRawY());
+        deadzoneTouchPoint.set(motionEvent.getX(), motionEvent.getY());
         overlayState = OverlayState.DEADZONE;
         downIsOurs = true;
         return true;
@@ -337,7 +343,7 @@ public final class ConversationReactionOverlay extends RelativeLayout {
       final float emojiLeft = (segmentSize * i) + emojiStripViewBounds.left;
       horizontalEmojiBoundary.update(emojiLeft, emojiLeft + segmentSize);
 
-      if (horizontalEmojiBoundary.contains(motionEvent.getRawX()) && boundary.contains(motionEvent.getRawY())) {
+      if (horizontalEmojiBoundary.contains(motionEvent.getX()) && boundary.contains(motionEvent.getY())) {
         selected = i;
       }
     }

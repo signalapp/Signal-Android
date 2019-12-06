@@ -6,21 +6,21 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.thoughtcrime.securesms.util.ViewUtil;
-
 public class MaskView extends View {
 
-  private View  target;
-  private int[] targetLocation = new int[2];
-  private int   statusBarHeight;
-  private Paint maskPaint;
+  private View      target;
+  private ViewGroup activityContentView;
+  private Paint     maskPaint;
+  private Rect      drawingRect = new Rect();
 
   private final ViewTreeObserver.OnDrawListener onDrawListener = this::invalidate;
 
@@ -41,8 +41,12 @@ public class MaskView extends View {
     setLayerType(LAYER_TYPE_HARDWARE, maskPaint);
 
     maskPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+  }
 
-    statusBarHeight = ViewUtil.getStatusBarHeight(this);
+  @Override
+  protected void onAttachedToWindow() {
+    super.onAttachedToWindow();
+    activityContentView = getRootView().findViewById(android.R.id.content);
   }
 
   public void setTarget(@Nullable View target) {
@@ -67,14 +71,15 @@ public class MaskView extends View {
       return;
     }
 
-    target.getLocationInWindow(targetLocation);
+    target.getDrawingRect(drawingRect);
+    activityContentView.offsetDescendantRectToMyCoords(target, drawingRect);
 
     Bitmap mask       = Bitmap.createBitmap(target.getWidth(), target.getHeight(), Bitmap.Config.ARGB_8888);
     Canvas maskCanvas = new Canvas(mask);
 
     target.draw(maskCanvas);
 
-    canvas.drawBitmap(mask, 0, targetLocation[1] - statusBarHeight, maskPaint);
+    canvas.drawBitmap(mask, 0, drawingRect.top, maskPaint);
 
     mask.recycle();
   }
