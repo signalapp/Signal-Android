@@ -279,13 +279,16 @@ public class MessageNotifier {
       }
 
       if (notificationState.hasMultipleThreads()) {
-        if (Build.VERSION.SDK_INT >= 23) {
-          for (long threadId : notificationState.getThreads()) {
-            sendSingleThreadNotification(context, new NotificationState(notificationState.getNotificationsForThread(threadId)), false, true);
+        boolean buildLaterThan23 = Build.VERSION.SDK_INT >= 23;
+        if (buildLaterThan23) {
+          Iterator<Long> threadsIttr = notificationState.getThreads().iterator();
+          while (threadsIttr.hasNext()) {
+            List<NotificationItem> notificationItems = notificationState.getNotificationsForThread(threadsIttr.next());
+            sendSingleThreadNotification(context, new NotificationState(notificationItems), !threadsIttr.hasNext() && signal, true);
           }
         }
 
-        sendMultipleThreadNotification(context, notificationState, signal);
+        sendMultipleThreadNotification(context, notificationState, signal && !buildLaterThan23);
       } else {
         sendSingleThreadNotification(context, notificationState, signal, false);
       }
