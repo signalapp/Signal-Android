@@ -88,9 +88,9 @@
     <string name="BucketedThreadMedia_Yesterday">Yesterday</string>
     <string name="BucketedThreadMedia_This_week">This week</string>
     <string name="BucketedThreadMedia_This_month">This month</string>
-    <string name="BucketedThreadMedia_Large">Large</string>
-    <string name="BucketedThreadMedia_Medium">Medium</string>
-    <string name="BucketedThreadMedia_Small">Small</string>
+    <string name="BucketedThreadMedia_Large">Large filezise</string>
+    <string name="BucketedThreadMedia_Medium">Medium filesize</string>
+    <string name="BucketedThreadMedia_Small">Small filesize</string>
 
     <!-- CallScreen -->
     <string name="CallScreen_Incoming_call">Incoming call</string>
@@ -452,8 +452,8 @@
     <!-- InviteActivity -->
     <string name="InviteActivity_share">Share</string>
     <string name="InviteActivity_choose_contacts">Choose contacts</string>
-    <string name="InviteActivity_share_with_contacts">Share with contacts</string>
-    <string name="InviteActivity_choose_how_to_share">Choose how to share</string>
+    <string name="InviteActivity_share_with_contacts">Choose contacts (sms)</string>
+    <string name="InviteActivity_choose_how_to_share">Send using another app</string>
 
     <string name="InviteActivity_cancel">Cancel</string>
     <string name="InviteActivity_sending">Sending…</string>
@@ -493,7 +493,7 @@
 
     <!-- MediaOverviewActivity -->
     <string name="MediaOverviewActivity_Media">Media</string>
-    <string name="MediaOverviewActivity_Files">Files</string>
+    <string name="MediaOverviewActivity_Files">Documents</string>
     <string name="MediaOverviewActivity_Audio">Audio</string>
     <string name="MediaOverviewActivity_All">All</string>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
@@ -899,6 +899,7 @@
 
     <!-- MediaPreviewActivity -->
     <string name="MediaPreviewActivity_you">You</string>
+    <string name="MediaPreviewActivity_to_you">you</string>
     <string name="MediaPreviewActivity_unssuported_media_type">Unsupported media type</string>
     <string name="MediaPreviewActivity_draft">Draft</string>
     <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal requires permission to use the external storage in order to save media to the external storage, but that permission has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Storage\".</string>
@@ -1680,7 +1681,7 @@
     <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Your Insights percentage is calculated based on outgoing messages within the past %1$d days that have not disappeared or been deleted.</string>
     <string name="InsightsDashboardFragment__start_a_conversation">Start a conversation</string>
     <string name="InsightsDashboardFragment__invite_your_contacts">Start communicating securely and enable new features that go beyond the limitations of unencrypted SMS messages by inviting more contacts to join Signal.</string>
-    <string name="InsightsDashboardFragment__this_stat_was_generated_locally">These statistics were locally generated on your device and can only be seen by you. They are never transmitted anywhere.</string>
+    <string name="InsightsDashboardFragment__this_stat_was_generated_locally">This statistic was locally generated on your device and can only be seen by you. It is never transmitted anywhere.</string>
     <string name="InsightsDashboardFragment__encrypted_messages">Encrypted messages</string>
     <string name="InsightsDashboardFragment__cancel">Cancel</string>
     <string name="InsightsDashboardFragment__send">Send</string>
