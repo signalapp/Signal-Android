@@ -5,7 +5,7 @@ import androidx.annotation.NonNull;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
-import org.thoughtcrime.securesms.util.DirectoryHelper;
+import org.thoughtcrime.securesms.contacts.sync.DirectoryHelper;
 
 import java.io.IOException;
 

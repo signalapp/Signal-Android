@@ -4,16 +4,14 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import androidx.annotation.NonNull;
-import androidx.annotation.UiThread;
 import android.util.AttributeSet;
-
-import org.thoughtcrime.securesms.blurhash.BlurHash;
-import org.thoughtcrime.securesms.logging.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.UiThread;
 
 import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -23,7 +21,9 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.blurhash.BlurHash;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.GlideRequest;
 import org.thoughtcrime.securesms.mms.GlideRequests;
@@ -116,6 +116,26 @@ public class ThumbnailView extends FrameLayout {
 
     super.onMeasure(MeasureSpec.makeMeasureSpec(finalWidth, MeasureSpec.EXACTLY),
                     MeasureSpec.makeMeasureSpec(finalHeight, MeasureSpec.EXACTLY));
+  }
+
+  @Override
+  protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+    super.onSizeChanged(w, h, oldw, oldh);
+
+    float playOverlayScale = 1;
+    float captionIconScale = 1;
+    int   playOverlayWidth = playOverlay.getLayoutParams().width;
+
+    if (playOverlayWidth * 2 > getWidth()) {
+      playOverlayScale /= 2;
+      captionIconScale  = 0;
+    }
+
+    playOverlay.setScaleX(playOverlayScale);
+    playOverlay.setScaleY(playOverlayScale);
+
+    captionIcon.setScaleX(captionIconScale);
+    captionIcon.setScaleY(captionIconScale);
   }
 
   @SuppressWarnings("SuspiciousNameCombination")
@@ -291,7 +311,7 @@ public class ThumbnailView extends FrameLayout {
     SettableFuture<Boolean> result        = new SettableFuture<>();
     boolean                 resultHandled = false;
 
-    if (slide.hasPlaceholder() && !Objects.equals(slide.getPlaceholderBlur(), previousBlurhash)) {
+    if (slide.hasPlaceholder() && (previousBlurhash == null || !Objects.equals(slide.getPlaceholderBlur(), previousBlurhash))) {
       buildPlaceholderGlideRequest(glideRequests, slide).into(new GlideBitmapListeningTarget(blurhash, result));
       resultHandled = true;
     } else if (!slide.hasPlaceholder()) {

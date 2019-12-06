@@ -143,6 +143,7 @@ class ConversationItemSwipeCallback extends ItemTouchHelper.SimpleCallback {
       }
       recyclerView.setOnTouchListener(null);
     }
+    recyclerView.cancelPendingInputEvents();
   }
 
   private static void resetProgressIfAnimationsDisabled(RecyclerView.ViewHolder viewHolder) {

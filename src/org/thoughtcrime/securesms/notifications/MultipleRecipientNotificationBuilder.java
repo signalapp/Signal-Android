@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 
-import org.thoughtcrime.securesms.ConversationListActivity;
+import org.thoughtcrime.securesms.MainActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -28,7 +28,8 @@ public class MultipleRecipientNotificationBuilder extends AbstractNotificationBu
     setColor(context.getResources().getColor(R.color.textsecure_primary));
     setSmallIcon(R.drawable.icon_notification);
     setContentTitle(context.getString(R.string.app_name));
-    setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, ConversationListActivity.class), 0));
+    // TODO [greyson] Navigation
+    setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, MainActivity.class), 0));
     setCategory(NotificationCompat.CATEGORY_MESSAGE);
     setGroupSummary(true);
 
@@ -47,7 +48,7 @@ public class MultipleRecipientNotificationBuilder extends AbstractNotificationBu
   public void setMostRecentSender(Recipient recipient) {
     if (privacy.isDisplayContact()) {
       setContentText(context.getString(R.string.MessageNotifier_most_recent_from_s,
-                                       recipient.toShortString()));
+                                       recipient.toShortString(context)));
     }
 
     if (recipient.getNotificationChannel() != null) {
@@ -67,7 +68,7 @@ public class MultipleRecipientNotificationBuilder extends AbstractNotificationBu
     if (privacy.isDisplayMessage()) {
       messageBodies.add(getStyledMessage(sender, body));
     } else if (privacy.isDisplayContact()) {
-      messageBodies.add(Util.getBoldedString(sender.toShortString()));
+      messageBodies.add(Util.getBoldedString(sender.toShortString(context)));
     }
 
     if (privacy.isDisplayContact() && sender.getContactUri() != null) {

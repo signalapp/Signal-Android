@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="app_name">Signal</string>
+  <!-- Removed by excludeNonTranslatables <string name="app_name">Signal</string> -->
   <string name="yes">Tá</string>
   <string name="no">Níl</string>
   <string name="delete">Scrios</string>
@@ -10,7 +10,7 @@
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Teachtaireacht nua</string>
   <!--AlbumThumbnailView-->
-  <string name="AlbumThumbnailView_plus">\+%d</string>
+  <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus">\+%d</string> -->
   <!--ApplicationMigrationActivity-->
   <string name="ApplicationMigrationActivity__signal_is_updating">Tá Signal ag nuashonrú…</string>
   <!--ApplicationPreferencesActivity-->
@@ -275,7 +275,7 @@
   <string name="DeviceListItem_last_active_s">Gníomhach an uair dheiridh %s</string>
   <string name="DeviceListItem_today">Inniu</string>
   <!--DocumentView-->
-  <string name="DocumentView_unknown_file">Comhad anaithnid</string>
+  <!-- Removed by excludeNonTranslatables <string name="DocumentView_unknown_file">Comhad anaithnid</string> -->
   <!--DozeReminder-->
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Comhroinn le</string>
@@ -363,7 +363,7 @@
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Ag scriosadh</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Ag scriosadh teachtaireachtaí…</string>
-  <string name="MediaOverviewActivity_Documents">Cáipéisí</string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_Documents">Cáipéisí</string> -->
   <string name="MediaOverviewActivity_Select_all">Roghnaigh uile</string>
   <string name="MediaOverviewActivity_collecting_attachments">Ag bailiú ceangaltáin…</string>
   <!--- NotificationBarManager-->
@@ -1089,7 +1089,7 @@ a shonrú</string>
   <string name="media_preview__forward_title">Cuir ar aghaidh</string>
   <string name="media_preview__all_media_title">Gach meán</string>
   <!--media_overview-->
-  <string name="media_overview_documents_fragment__no_documents_found">Níl aon cáipéisí</string>
+  <!-- Removed by excludeNonTranslatables <string name="media_overview_documents_fragment__no_documents_found">Níl aon cáipéisí</string> -->
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Réamhamharc ar an meán</string>
   <!--new_conversation_activity-->

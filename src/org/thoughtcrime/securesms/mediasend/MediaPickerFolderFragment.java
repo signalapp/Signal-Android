@@ -39,9 +39,7 @@ public class MediaPickerFolderFragment extends Fragment implements MediaPickerFo
     String toolbarTitle;
 
     if (recipient != null) {
-      String name = Optional.fromNullable(recipient.getName())
-                     .or(Optional.fromNullable(recipient.getProfileName()))
-                     .or(recipient.toShortString());
+      String name = recipient.getDisplayName(context);
       toolbarTitle = context.getString(R.string.MediaPickerActivity_send_to, name);
     } else {
       toolbarTitle = "";

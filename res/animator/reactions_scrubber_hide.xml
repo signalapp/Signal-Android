@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+    <objectAnimator
+        android:duration="@integer/reaction_scrubber_reveal_emoji_duration"
+        android:interpolator="@android:anim/decelerate_interpolator"
+        android:propertyName="translationY"
+        android:valueTo="@dimen/reaction_scrubber_anim_start_translation_y"
+        android:valueFrom="@dimen/reaction_scrubber_anim_end_translation_y" />
+
+    <objectAnimator
+        android:duration="@integer/reaction_scrubber_reveal_emoji_duration"
+        android:interpolator="@android:anim/decelerate_interpolator"
+        android:propertyName="alpha"
+        android:valueTo="0"
+        android:valueFrom="1" />
+</set>

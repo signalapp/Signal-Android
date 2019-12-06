@@ -5,7 +5,7 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.thoughtcrime.securesms.database.Address;
+import org.thoughtcrime.securesms.contacts.sync.DirectoryHelper;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 
 import java.io.Closeable;
+import java.io.IOException;
 import java.util.Locale;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -81,12 +82,7 @@ public class IncomingMessageProcessor {
      */
     public @Nullable String processEnvelope(@NonNull SignalServiceEnvelope envelope) {
       if (envelope.hasSource()) {
-        Recipient recipient = Recipient.external(context, envelope.getSource());
-
-        if (!isActiveNumber(recipient)) {
-          recipientDatabase.setRegistered(recipient.getId(), RecipientDatabase.RegisteredState.REGISTERED);
-          jobManager.add(new DirectoryRefreshJob(recipient, false));
-        }
+        Recipient.externalPush(context, envelope.getSourceAddress());
       }
 
       if (envelope.isReceipt()) {
@@ -113,12 +109,8 @@ public class IncomingMessageProcessor {
 
     private void processReceipt(@NonNull SignalServiceEnvelope envelope) {
       Log.i(TAG, String.format(Locale.ENGLISH, "Received receipt: (XXXXX, %d)", envelope.getTimestamp()));
-      mmsSmsDatabase.incrementDeliveryReceiptCount(new SyncMessageId(Recipient.external(context, envelope.getSource()).getId(), envelope.getTimestamp()),
+      mmsSmsDatabase.incrementDeliveryReceiptCount(new SyncMessageId(Recipient.externalPush(context, envelope.getSourceAddress()).getId(), envelope.getTimestamp()),
                                                    System.currentTimeMillis());
-    }
-
-    private boolean isActiveNumber(@NonNull Recipient recipient) {
-      return recipient.resolve().getRegistered() == RecipientDatabase.RegisteredState.REGISTERED;
     }
 
     @Override

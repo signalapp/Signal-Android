@@ -75,7 +75,6 @@ public class ContactNameEditActivity extends PassphraseRequiredActionBarActivity
     setSupportActionBar(toolbar);
 
     toolbar.setTitle("");
-    toolbar.setNavigationIcon(R.drawable.ic_check_white_24dp);
     toolbar.setNavigationOnClickListener(v -> {
       Intent resultIntent = new Intent();
       resultIntent.putExtra(KEY_NAME, viewModel.getName());

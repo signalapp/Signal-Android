@@ -23,6 +23,7 @@ import android.database.MatrixCursor;
 import android.database.MergeCursor;
 import android.provider.ContactsContract;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.loader.content.CursorLoader;
 import android.text.TextUtils;
 
@@ -37,6 +38,8 @@ import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.phonenumbers.NumberUtil;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.UsernameUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -81,7 +84,7 @@ public class ContactsCursorLoader extends CursorLoader {
       throw new AssertionError("Inactive group flag set, but the active group flag isn't!");
     }
 
-    this.filter            = filter == null ? "" : filter;
+    this.filter            = sanitizeFilter(filter);
     this.mode              = mode;
     this.recents           = recents;
     this.contactRepository = new ContactRepository(context);
@@ -95,6 +98,16 @@ public class ContactsCursorLoader extends CursorLoader {
       return new MergeCursor(cursorList.toArray(new Cursor[0]));
     }
     return null;
+  }
+
+  private static @NonNull String sanitizeFilter(@Nullable String filter) {
+    if (filter == null) {
+      return "";
+    } else if (filter.startsWith("@")) {
+      return filter.substring(1);
+    } else {
+      return filter;
+    }
   }
 
   private List<Cursor> getUnfilteredResults() {
@@ -132,8 +145,17 @@ public class ContactsCursorLoader extends CursorLoader {
       cursorList.addAll(getContactsCursors());
     }
 
-    if (NumberUtil.isValidSmsOrEmail(filter)) {
+    if (FeatureFlags.USERNAMES && NumberUtil.isVisuallyValidNumberOrEmail(filter)) {
+      cursorList.add(getPhoneNumberSearchHeaderCursor());
       cursorList.add(getNewNumberCursor());
+    } else if (!FeatureFlags.USERNAMES && NumberUtil.isValidSmsOrEmail(filter)){
+      cursorList.add(getContactsHeaderCursor());
+      cursorList.add(getNewNumberCursor());
+    }
+
+    if (FeatureFlags.USERNAMES && UsernameUtil.isValidUsernameForSearch(filter)) {
+      cursorList.add(getUsernameSearchHeaderCursor());
+      cursorList.add(getUsernameSearchCursor());
     }
 
     return cursorList;
@@ -172,6 +194,28 @@ public class ContactsCursorLoader extends CursorLoader {
     return groupHeader;
   }
 
+  private Cursor getPhoneNumberSearchHeaderCursor() {
+    MatrixCursor contactsHeader = new MatrixCursor(CONTACT_PROJECTION, 1);
+    contactsHeader.addRow(new Object[] { null,
+                                         getContext().getString(R.string.ContactsCursorLoader_phone_number_search),
+                                         "",
+                                         ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE,
+                                         "",
+                                         ContactRepository.DIVIDER_TYPE });
+    return contactsHeader;
+  }
+
+  private Cursor getUsernameSearchHeaderCursor() {
+    MatrixCursor contactsHeader = new MatrixCursor(CONTACT_PROJECTION, 1);
+    contactsHeader.addRow(new Object[] { null,
+                                         getContext().getString(R.string.ContactsCursorLoader_username_search),
+                                         "",
+                                         ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE,
+                                         "",
+                                         ContactRepository.DIVIDER_TYPE });
+    return contactsHeader;
+  }
+
 
   private Cursor getRecentConversationsCursor() {
     ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(getContext());
@@ -181,9 +225,12 @@ public class ContactsCursorLoader extends CursorLoader {
       ThreadDatabase.Reader reader = threadDatabase.readerFor(rawConversations);
       ThreadRecord threadRecord;
       while ((threadRecord = reader.getNext()) != null) {
-        recentConversations.addRow(new Object[] { threadRecord.getRecipient().getId().serialize(),
-                                                  threadRecord.getRecipient().toShortString(),
-                                                  threadRecord.getRecipient().requireAddress().serialize(),
+        Recipient recipient = threadRecord.getRecipient();
+        String    stringId  = recipient.isGroup() ? recipient.requireGroupId() : recipient.getE164().or(recipient.getEmail()).or("");
+
+        recentConversations.addRow(new Object[] { recipient.getId().serialize(),
+                                                  recipient.toShortString(getContext()),
+                                                  stringId,
                                                   ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE,
                                                   "",
                                                   ContactRepository.RECENT_TYPE });
@@ -234,8 +281,19 @@ public class ContactsCursorLoader extends CursorLoader {
                                           filter,
                                           ContactsContract.CommonDataKinds.Phone.TYPE_CUSTOM,
                                           "\u21e2",
-                                          ContactRepository.NEW_TYPE });
+                                          ContactRepository.NEW_PHONE_TYPE});
     return newNumberCursor;
+  }
+
+  private Cursor getUsernameSearchCursor() {
+    MatrixCursor cursor = new MatrixCursor(CONTACT_PROJECTION, 1);
+    cursor.addRow(new Object[] { null,
+                                 getContext().getString(R.string.contact_selection_list__unknown_contact),
+                                 filter,
+                                 ContactsContract.CommonDataKinds.Phone.TYPE_CUSTOM,
+                                 "\u21e2",
+                                 ContactRepository.NEW_USERNAME_TYPE});
+    return cursor;
   }
 
   private @NonNull Cursor filterNonPushContacts(@NonNull Cursor cursor) {

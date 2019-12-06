@@ -52,11 +52,11 @@ import androidx.viewpager.widget.ViewPager;
 import org.thoughtcrime.securesms.animation.DepthPageTransformer;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.components.viewpager.ExtendedOnPageChangedListener;
-import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.MediaDatabase;
 import org.thoughtcrime.securesms.database.MediaDatabase.MediaRecord;
 import org.thoughtcrime.securesms.database.loaders.PagingMediaLoader;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.mediaoverview.MediaOverviewActivity;
 import org.thoughtcrime.securesms.mediapreview.MediaPreviewFragment;
 import org.thoughtcrime.securesms.mediapreview.MediaPreviewViewModel;
 import org.thoughtcrime.securesms.mediapreview.MediaRailAdapter;
@@ -68,7 +68,6 @@ import org.thoughtcrime.securesms.util.AttachmentUtil;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask.Attachment;
-import org.thoughtcrime.securesms.util.Util;
 
 import java.util.HashMap;
 import java.util.Locale;
@@ -85,12 +84,16 @@ public final class MediaPreviewActivity extends PassphraseRequiredActionBarActiv
 
   private final static String TAG = MediaPreviewActivity.class.getSimpleName();
 
-  public static final String RECIPIENT_EXTRA      = "recipient_id";
+  private static final int NOT_IN_A_THREAD = -2;
+
+  public static final String THREAD_ID_EXTRA      = "thread_id";
   public static final String DATE_EXTRA           = "date";
   public static final String SIZE_EXTRA           = "size";
   public static final String CAPTION_EXTRA        = "caption";
-  public static final String OUTGOING_EXTRA       = "outgoing";
   public static final String LEFT_IS_RECENT_EXTRA = "left_is_recent";
+  public static final String HIDE_ALL_MEDIA_EXTRA = "came_from_all_media";
+  public static final String SHOW_THREAD_EXTRA    = "show_thread";
+  public static final String SORTING_EXTRA        = "sorting";
 
   private ViewPager             mediaPager;
   private View                  detailsContainer;
@@ -103,12 +106,15 @@ public final class MediaPreviewActivity extends PassphraseRequiredActionBarActiv
   private String                initialMediaType;
   private long                  initialMediaSize;
   private String                initialCaption;
-  private Recipient             conversationRecipient;
   private boolean               leftIsRecent;
   private MediaPreviewViewModel viewModel;
   private ViewPagerListener     viewPagerListener;
 
-  private int restartItem = -1;
+  private int                   restartItem      = -1;
+  private long                  threadId         = NOT_IN_A_THREAD;
+  private boolean               cameFromAllMedia;
+  private boolean               showThread;
+  private MediaDatabase.Sorting sorting;
 
   @SuppressWarnings("ConstantConditions")
   @Override
@@ -152,19 +158,45 @@ public final class MediaPreviewActivity extends PassphraseRequiredActionBarActiv
     MediaItem mediaItem = getCurrentMediaItem();
 
     if (mediaItem != null) {
-      CharSequence relativeTimeSpan;
+      getSupportActionBar().setTitle(getTitleText(mediaItem));
+      getSupportActionBar().setSubtitle(getSubTitleText(mediaItem));
+    }
+  }
 
-      if (mediaItem.date > 0) {
-        relativeTimeSpan = DateUtils.getExtendedRelativeTimeSpanString(this, Locale.getDefault(), mediaItem.date);
-      } else {
-        relativeTimeSpan = getString(R.string.MediaPreviewActivity_draft);
+  private @NonNull String getTitleText(@NonNull MediaItem mediaItem) {
+    String from;
+    if      (mediaItem.outgoing)          from = getString(R.string.MediaPreviewActivity_you);
+    else if (mediaItem.recipient != null) from = mediaItem.recipient.toShortString(this);
+    else                                  from = "";
+
+    if (showThread) {
+      String    to              = null;
+      Recipient threadRecipient = mediaItem.threadRecipient;
+
+      if (threadRecipient != null) {
+        if (mediaItem.outgoing || threadRecipient.isGroup()) {
+          if (threadRecipient.isLocalNumber()) {
+            from = getString(R.string.note_to_self);
+          } else {
+            to = threadRecipient.toShortString(this);
+          }
+        } else {
+          to = getString(R.string.MediaPreviewActivity_you);
+        }
       }
 
-      if      (mediaItem.outgoing)          getSupportActionBar().setTitle(getString(R.string.MediaPreviewActivity_you));
-      else if (mediaItem.recipient != null) getSupportActionBar().setTitle(mediaItem.recipient.toShortString());
-      else                                  getSupportActionBar().setTitle("");
+      return to != null ? getString(R.string.MediaPreviewActivity_s_to_s, from, to)
+                        : from;
+    } else {
+      return from;
+    }
+  }
 
-      getSupportActionBar().setSubtitle(relativeTimeSpan);
+  private @NonNull String getSubTitleText(@NonNull MediaItem mediaItem) {
+    if (mediaItem.date > 0) {
+      return DateUtils.getExtendedRelativeTimeSpanString(this, Locale.getDefault(), mediaItem.date);
+    } else {
+      return getString(R.string.MediaPreviewActivity_draft);
     }
   }
 
@@ -217,20 +249,19 @@ public final class MediaPreviewActivity extends PassphraseRequiredActionBarActiv
   }
 
   private void initializeResources() {
-    RecipientId recipientId = getIntent().getParcelableExtra(RECIPIENT_EXTRA);
+    Intent intent = getIntent();
 
-    initialMediaUri  = getIntent().getData();
-    initialMediaType = getIntent().getType();
-    initialMediaSize = getIntent().getLongExtra(SIZE_EXTRA, 0);
-    initialCaption   = getIntent().getStringExtra(CAPTION_EXTRA);
-    leftIsRecent     = getIntent().getBooleanExtra(LEFT_IS_RECENT_EXTRA, false);
+    threadId         = intent.getLongExtra(THREAD_ID_EXTRA, NOT_IN_A_THREAD);
+    cameFromAllMedia = intent.getBooleanExtra(HIDE_ALL_MEDIA_EXTRA, false);
+    showThread       = intent.getBooleanExtra(SHOW_THREAD_EXTRA, false);
+    sorting          = MediaDatabase.Sorting.values()[intent.getIntExtra(SORTING_EXTRA, 0)];
+
+    initialMediaUri  = intent.getData();
+    initialMediaType = intent.getType();
+    initialMediaSize = intent.getLongExtra(SIZE_EXTRA, 0);
+    initialCaption   = intent.getStringExtra(CAPTION_EXTRA);
+    leftIsRecent     = intent.getBooleanExtra(LEFT_IS_RECENT_EXTRA, false);
     restartItem      = -1;
-
-    if (recipientId != null) {
-      conversationRecipient = Recipient.live(recipientId).get();
-    } else {
-      conversationRecipient = null;
-    }
   }
 
   private void initializeObservers() {
@@ -280,7 +311,7 @@ public final class MediaPreviewActivity extends PassphraseRequiredActionBarActiv
 
     Log.i(TAG, "Loading Part URI: " + initialMediaUri);
 
-    if (conversationRecipient != null) {
+    if (isMediaInDb()) {
       LoaderManager.getInstance(this).restartLoader(0, null, this);
     } else {
       mediaPager.setAdapter(new SingleItemPagerAdapter(getSupportFragmentManager(), initialMediaUri, initialMediaType, initialMediaSize));
@@ -303,9 +334,7 @@ public final class MediaPreviewActivity extends PassphraseRequiredActionBarActiv
   }
 
   private void showOverview() {
-    Intent intent = new Intent(this, MediaOverviewActivity.class);
-    intent.putExtra(MediaOverviewActivity.RECIPIENT_EXTRA, conversationRecipient.getId());
-    startActivity(intent);
+    startActivity(MediaOverviewActivity.forThread(this, threadId));
   }
 
   private void forward() {
@@ -383,6 +412,10 @@ public final class MediaPreviewActivity extends PassphraseRequiredActionBarActiv
       menu.findItem(R.id.delete).setVisible(false);
     }
 
+    if (cameFromAllMedia) {
+      menu.findItem(R.id.media_preview__overview).setVisible(false);
+    }
+
     return true;
   }
 
@@ -402,7 +435,7 @@ public final class MediaPreviewActivity extends PassphraseRequiredActionBarActiv
   }
 
   private boolean isMediaInDb() {
-    return conversationRecipient != null;
+    return threadId != NOT_IN_A_THREAD;
   }
 
   private @Nullable MediaItem getCurrentMediaItem() {
@@ -421,7 +454,7 @@ public final class MediaPreviewActivity extends PassphraseRequiredActionBarActiv
 
   @Override
   public @NonNull Loader<Pair<Cursor, Integer>> onCreateLoader(int id, Bundle args) {
-    return new PagingMediaLoader(this, conversationRecipient, initialMediaUri, leftIsRecent);
+    return new PagingMediaLoader(this, threadId, initialMediaUri, leftIsRecent, sorting);
   }
 
   @Override
@@ -551,7 +584,7 @@ public final class MediaPreviewActivity extends PassphraseRequiredActionBarActiv
 
     @Override
     public MediaItem getMediaItemFor(int position) {
-      return new MediaItem(null, null, uri, mediaType, -1, true);
+      return new MediaItem(null, null, null, uri, mediaType, -1, true);
     }
 
     @Override
@@ -685,12 +718,15 @@ public final class MediaPreviewActivity extends PassphraseRequiredActionBarActiv
 
     public MediaItem getMediaItemFor(int position) {
       cursor.moveToPosition(getCursorPosition(position));
-      MediaRecord mediaRecord = MediaRecord.from(context, cursor);
-      RecipientId recipientId = mediaRecord.getRecipientId();
+
+      MediaRecord mediaRecord       = MediaRecord.from(context, cursor);
+      RecipientId recipientId       = mediaRecord.getRecipientId();
+      RecipientId threadRecipientId = mediaRecord.getThreadRecipientId();
 
       if (mediaRecord.getAttachment().getDataUri() == null) throw new AssertionError();
 
       return new MediaItem(Recipient.live(recipientId).get(),
+                           Recipient.live(threadRecipientId).get(),
                            mediaRecord.getAttachment(),
                            mediaRecord.getAttachment().getDataUri(),
                            mediaRecord.getContentType(),
@@ -724,6 +760,7 @@ public final class MediaPreviewActivity extends PassphraseRequiredActionBarActiv
 
   private static class MediaItem {
     private final @Nullable Recipient          recipient;
+    private final @Nullable Recipient          threadRecipient;
     private final @Nullable DatabaseAttachment attachment;
     private final @NonNull  Uri                uri;
     private final @NonNull  String             type;
@@ -731,18 +768,20 @@ public final class MediaPreviewActivity extends PassphraseRequiredActionBarActiv
     private final           boolean            outgoing;
 
     private MediaItem(@Nullable Recipient recipient,
+                      @Nullable Recipient threadRecipient,
                       @Nullable DatabaseAttachment attachment,
                       @NonNull Uri uri,
                       @NonNull String type,
                       long date,
                       boolean outgoing)
     {
-      this.recipient  = recipient;
-      this.attachment = attachment;
-      this.uri        = uri;
-      this.type       = type;
-      this.date       = date;
-      this.outgoing   = outgoing;
+      this.recipient       = recipient;
+      this.threadRecipient = threadRecipient;
+      this.attachment      = attachment;
+      this.uri             = uri;
+      this.type            = type;
+      this.date            = date;
+      this.outgoing        = outgoing;
     }
   }
 

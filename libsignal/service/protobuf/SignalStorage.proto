@@ -1,0 +1,78 @@
+/**
+ * Copyright (C) 2019 Open Whisper Systems
+ *
+ * Licensed according to the LICENSE file in this repository.
+ */
+syntax = "proto2";
+
+package signalservice;
+
+option java_package         = "org.whispersystems.signalservice.internal.storage.protos";
+option java_multiple_files  = true;
+
+
+message StorageItem {
+  optional bytes key   = 1;
+  optional bytes value = 2;
+}
+
+message StorageItems {
+  repeated StorageItem items = 1;
+}
+
+message StorageManifest {
+  optional uint64 version = 1;
+  optional bytes  value   = 2;
+}
+
+message ReadOperation {
+  repeated bytes readKey = 1;
+}
+
+message WriteOperation {
+  optional StorageManifest manifest   = 1;
+  repeated StorageItem     insertItem = 2;
+  repeated bytes           deleteKey  = 3;
+}
+
+message StorageRecord {
+  enum Type {
+    UNKNOWN = 0;
+    CONTACT = 1;
+  }
+
+  optional uint32        type    = 1;
+  optional ContactRecord contact = 2;
+}
+
+message ContactRecord {
+  message Identity {
+    enum State {
+      DEFAULT    = 0;
+      VERIFIED   = 1;
+      UNVERIFIED = 2;
+    }
+
+    optional bytes key   = 1;
+    optional State state = 2;
+  }
+
+  message Profile {
+    optional string name     = 1;
+    optional bytes  key      = 2;
+    optional string username = 3;
+  }
+
+  optional string   serviceUuid  = 1;
+  optional string   serviceE164  = 2;
+  optional Profile  profile      = 3;
+  optional Identity identity     = 4;
+  optional bool     blocked      = 5;
+  optional bool     whitelisted  = 6;
+  optional string   nickname     = 7;
+}
+
+message ManifestRecord {
+  optional uint64 version  = 1;
+  repeated bytes  keys     = 2;
+}

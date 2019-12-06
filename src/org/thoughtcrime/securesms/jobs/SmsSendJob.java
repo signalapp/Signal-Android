@@ -9,7 +9,6 @@ import androidx.annotation.NonNull;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.SmsManager;
 
-import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkOrCellServiceConstraint;
@@ -118,7 +117,7 @@ public class SmsSendJob extends SendJob {
       throw new UndeliverableMessageException("Trying to send a secure SMS?");
     }
 
-    String recipient = message.getIndividualRecipient().requireAddress().serialize();
+    String recipient = message.getIndividualRecipient().requireSmsAddress();
 
     // See issue #1516 for bug report, and discussion on commits related to #4833 for problems
     // related to the original fix to #1516. This still may not be a correct fix if networks allow

@@ -10,6 +10,7 @@ import android.text.TextUtils;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientExporter;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.util.LinkedList;
@@ -32,7 +33,7 @@ public class GroupMembersDialog extends AsyncTask<Void, Void, List<Recipient>> {
 
   @Override
   protected List<Recipient> doInBackground(Void... params) {
-    return DatabaseFactory.getGroupDatabase(context).getGroupMembers(recipient.requireAddress().toGroupString(), true);
+    return DatabaseFactory.getGroupDatabase(context).getGroupMembers(recipient.requireGroupId(), true);
   }
 
   @Override
@@ -90,7 +91,7 @@ public class GroupMembersDialog extends AsyncTask<Void, Void, List<Recipient>> {
 
     public GroupMembers(List<Recipient> recipients) {
       for (Recipient recipient : recipients) {
-        if (isLocalNumber(recipient)) {
+        if (recipient.isLocalNumber()) {
           members.push(recipient);
         } else {
           members.add(recipient);
@@ -102,15 +103,10 @@ public class GroupMembersDialog extends AsyncTask<Void, Void, List<Recipient>> {
       List<String> recipientStrings = new LinkedList<>();
 
       for (Recipient recipient : members) {
-        if (isLocalNumber(recipient)) {
+        if (recipient.isLocalNumber()) {
           recipientStrings.add(context.getString(R.string.GroupMembersDialog_me));
         } else {
-          String name = recipient.toShortString();
-
-          if (recipient.getName() == null && !TextUtils.isEmpty(recipient.getProfileName())) {
-            name += " ~" + recipient.getProfileName();
-          }
-
+          String name = getRecipientName(recipient);
           recipientStrings.add(name);
         }
       }
@@ -118,12 +114,20 @@ public class GroupMembersDialog extends AsyncTask<Void, Void, List<Recipient>> {
       return recipientStrings.toArray(new String[members.size()]);
     }
 
-    public Recipient get(int index) {
-      return members.get(index);
+    private String getRecipientName(Recipient recipient) {
+      if (FeatureFlags.PROFILE_DISPLAY) return recipient.getDisplayName(context);
+
+      String name = recipient.toShortString(context);
+
+      if (recipient.getName(context) == null && !TextUtils.isEmpty(recipient.getProfileName())) {
+        name += " ~" + recipient.getProfileName();
+      }
+
+      return name;
     }
 
-    private boolean isLocalNumber(Recipient recipient) {
-      return Util.isOwnNumber(context, recipient.requireAddress());
+    public Recipient get(int index) {
+      return members.get(index);
     }
   }
 }

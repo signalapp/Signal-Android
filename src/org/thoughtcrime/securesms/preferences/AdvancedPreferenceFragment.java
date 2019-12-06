@@ -17,6 +17,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.preference.CheckBoxPreference;
 import androidx.preference.Preference;
 
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.logging.Log;
+
 import com.google.firebase.iid.FirebaseInstanceId;
 
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
@@ -24,8 +27,6 @@ import org.thoughtcrime.securesms.LogSubmitActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactIdentityManager;
-import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.push.AccountManagerFactory;
 import org.thoughtcrime.securesms.registration.RegistrationNavigationActivity;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
@@ -185,7 +186,7 @@ public class AdvancedPreferenceFragment extends CorrectedPreferenceFragment {
       protected Integer doInBackground(Void... params) {
         try {
           Context                     context        = getActivity();
-          SignalServiceAccountManager accountManager = AccountManagerFactory.createManager(context);
+          SignalServiceAccountManager accountManager = ApplicationDependencies.getSignalServiceAccountManager();
 
           try {
             accountManager.setGcmId(Optional.<String>absent());

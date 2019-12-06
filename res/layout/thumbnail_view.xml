@@ -30,7 +30,9 @@
         android:layout_height="wrap_content"
         android:padding="6dp"
         android:src="@drawable/ic_caption_28"
-        android:visibility="gone" />
+        android:visibility="gone"
+        android:contentDescription="@string/ThumbnailView_Has_a_caption_description"
+        tools:visibility="visible" />
 
     <FrameLayout
         android:id="@+id/play_overlay"
@@ -43,12 +45,13 @@
         tools:visibility="visible">
 
         <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="12dp"
+            android:contentDescription="@string/ThumbnailView_Play_video_description"
             android:paddingLeft="5dp"
-            android:tint="@color/core_blue"
             android:scaleType="fitXY"
+            android:tint="@color/core_blue"
             app:srcCompat="@drawable/triangle_right"
             tools:ignore="RtlHardcoded,RtlSymmetry" />
 

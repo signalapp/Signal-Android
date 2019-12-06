@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.lock;
 
 
 import android.content.Context;
+
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -23,7 +24,7 @@ public class RegistrationLockReminders {
   public static final long INITIAL_INTERVAL = INTERVALS.first();
 
   public static boolean needsReminder(@NonNull Context context) {
-    if (!TextSecurePreferences.isRegistrationtLockEnabled(context)) return false;
+    if (!TextSecurePreferences.isRegistrationLockEnabled(context)) return false;
 
     long lastReminderTime = TextSecurePreferences.getRegistrationLockLastReminderTime(context);
     long nextIntervalTime = TextSecurePreferences.getRegistrationLockNextReminderInterval(context);
@@ -47,5 +48,4 @@ public class RegistrationLockReminders {
     TextSecurePreferences.setRegistrationLockLastReminderTime(context, System.currentTimeMillis());
     TextSecurePreferences.setRegistrationLockNextReminderInterval(context, nextReminderInterval);
   }
-
 }

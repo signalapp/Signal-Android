@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true"
+          android:color="@color/core_red"/>
+    <item android:state_focused="true"
+          android:color="@color/core_red"/>
+    <item android:state_enabled="false"
+          android:color="@color/core_red"/>
+    <item android:state_enabled="true"
+          android:color="@color/core_red"/>
+</selector>

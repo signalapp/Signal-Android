@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="app_name">Signal</string>
   <string name="yes">Bəli</string>
   <string name="no">Xeyr</string>
   <string name="delete">Sil</string>
@@ -10,7 +9,6 @@
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Yeni mesaj</string>
   <!--AlbumThumbnailView-->
-  <string name="AlbumThumbnailView_plus">\+%d</string>
   <!--ApplicationMigrationActivity-->
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Hal-hazırda: %s</string>
@@ -71,6 +69,8 @@
   <string name="BucketedThreadMedia_Yesterday">Dünən</string>
   <string name="BucketedThreadMedia_This_week">Bu həftə</string>
   <string name="BucketedThreadMedia_This_month">Bu ay</string>
+  <string name="BucketedThreadMedia_Large">Böyük</string>
+  <string name="BucketedThreadMedia_Small">Kiçik</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Gələn zəng</string>
   <!--CameraActivity-->
@@ -83,6 +83,8 @@
   <string name="ClearProfileActivity_remove_profile_photo">Profil şəklini silirsən?</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Veb brauzer tapılmadı.</string>
+  <string name="CommunicationActions_cancel">Ləğv et</string>
+  <string name="CommunicationActions_call">Zəng</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Tərkibində %1$s olan təhlükəsizlik rəqəmin dəyişdi. Kimsə sənin ünsiyyətinə müdaxilə etmək istəyir, yaxud da %2$sSignal-ı yenidən quraşdırdı.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Bu əlaqə ilə təhlükəsizlik rəqəmini təsdiqləmək arzun ola bilər.</string>
@@ -273,7 +275,6 @@
   <string name="DeviceListItem_last_active_s">Son aktiv olan - %s</string>
   <string name="DeviceListItem_today">Bu gün</string>
   <!--DocumentView-->
-  <string name="DocumentView_unknown_file">Naməlum fayl</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Çatışmayan Play Servisləri üçün optimallaşdır</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Bu cihaz Play Servisi dəstəkləmir. Qeyri aktiv vaxtlarda Signal-ın mesajları bərpa edə bilməsinin qarşısını almaq üçün sistem akkumulyator optimallaşdırılmasını deaktivə et.</string>
@@ -375,19 +376,15 @@
   <string name="MmsDownloader_error_reading_mms_settings">Telsiz provayder MMS parametrlərinin oxunmasında xəta</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Media</string>
-  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
-    <item quantity="one">Seçilmiş mesajı silirsən?</item>
-    <item quantity="other">Seçilmiş mesajları silirsən?</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-    <item quantity="one">Bu addımla seçilmiş mesaj həmişəlik silinəcək.</item>
-    <item quantity="other">Bu addımla seçilmiş %1$d mesaj həmişəlik silinəcək.</item>
-  </plurals>
+  <string name="MediaOverviewActivity_Audio">Səs</string>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Silinir</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Mesajların silinməsi…</string>
-  <string name="MediaOverviewActivity_Documents">Sənədlər</string>
   <string name="MediaOverviewActivity_Select_all">Hamısını seç</string>
   <string name="MediaOverviewActivity_collecting_attachments">Faylların toplanması…</string>
+  <string name="MediaOverviewActivity_file">Fayl</string>
+  <string name="MediaOverviewActivity_audio">Səs</string>
+  <string name="MediaOverviewActivity_video">Video</string>
+  <string name="MediaOverviewActivity_image">Şəkil</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal zəngi baş verməkdədir</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal zəngi hazırlanır</string>
@@ -472,9 +469,14 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Signal ikonası</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Şifrə ifadəsini təqdim et</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Səhv şifrə ifadəsi!</string>
+  <string name="PassphrasePromptActivity_unlock_signal">Signal-ın Kilidini Aç</string>
   <!--PlacePickerActivity-->
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Quraşdırdığın Google Play Servis versiyası düzgün işləmir. Zəhmət olmasa Google Play Servisini yenidən quraşdır və sına.</string>
+  <!--ProfileEditNameFragment-->
+  <string name="ProfileEditNameFragment_save">Yaddaşa yaz</string>
+  <!--ProfileEditOverviewFragment-->
+  <string name="ProfileEditOverviewFragment_profile">Profil</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Bu aplikasıyanı qiymətləndir</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Aplikasiyanı istifadə etməkdən zövq alırsansa, lütfən bizi qiymətləndirmək üçün bir neçə saniyəni istifadə et.</string>
@@ -632,6 +634,9 @@
   <!--UnverifiedSendDialog-->
   <string name="UnverifiedSendDialog_send_message">Mesaj göndərirsən?</string>
   <string name="UnverifiedSendDialog_send">Göndər</string>
+  <!--UsernameEditFragment-->
+  <string name="UsernameEditFragment_submit">Təqdim et</string>
+  <string name="UsernameEditFragment_delete">Sil</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Sənin əlaqən Signal-ın köhnə versiyasını istifadə edir. Sənin təhlükəsizlik rəqəmini təsdiq etməmişdən əvvəl proqramı yeniləməsini xahiş et.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Sənin əlaqən uyğun olmayan QR şifrə ilə Signal-ın yeni versiyasını istifadə edir. Müqayisə etmək üçün zəhmət olmasa yenilə.</string>
@@ -698,6 +703,7 @@
   <string name="NotificationChannel_other">Digər</string>
   <string name="NotificationChannel_group_messages">Mesajlar</string>
   <string name="NotificationChannel_missing_display_name">Naməlum</string>
+  <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal kilidli olarkən sürətli cavamlar mümkün deyil!</string>
   <string name="QuickResponseService_problem_sending_message">Mesajın göndərilməsində problem var!</string>
@@ -712,6 +718,7 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Yeni ismarış</string>
+  <!--ThumbnailView-->
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">
     <item quantity="one">%d Bənd</item>
@@ -815,7 +822,7 @@
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Aşağıya sürüşdür</string>
   <!--country_selection_fragment-->
-  <string name="country_selection_fragment__loading_countries">Ölkələr yüklənir</string>
+  <string name="country_selection_fragment__loading_countries">Ölkələr yüklənir…</string>
   <string name="country_selection_fragment__search">Axtar</string>
   <!--device_add_fragment-->
   <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">Cihazla bağlantı yaratmaq üçün nümayiş edilən QR şifrəni skan et</string>
@@ -1105,6 +1112,7 @@
   <string name="preferences_chats__when_roaming">Rominq zamanı</string>
   <string name="preferences_chats__media_auto_download">Medianın avtomatik yüklənməsi</string>
   <string name="preferences_chats__message_trimming">Mesajların təmizlənməsi</string>
+  <string name="preferences_storage__audio">Səs</string>
   <string name="preferences_advanced__use_system_emoji">Sistem smaylikini istifadə et</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Signal-ın daxili smaylik dəstəyini deaktiv et</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Bütün zəngləri Signal serveri üzərindən yayımla ki, əlaqən IP ünvanının müəyyən edilməsinin qarşısı alınmış olsun. Aktiv etsən, zəngin keyfiyyəti aşağı düşəcək.</string>
@@ -1145,6 +1153,7 @@
   <string name="conversation_context__menu_forward_message">Mesajı yönləndir</string>
   <string name="conversation_context__menu_resend_message">Mesajı yenidən göndər</string>
   <string name="conversation_context__menu_reply_to_message">Mesajı cavabla</string>
+  <!--conversation_context_reacction-->
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Faylı yadda saxla</string>
   <!--conversation_expiring_off-->
@@ -1225,8 +1234,6 @@
   <string name="media_preview__save_title">Yaddaşa yaz</string>
   <string name="media_preview__forward_title">Yönləndir</string>
   <string name="media_preview__all_media_title">Bütün media</string>
-  <!--media_overview-->
-  <string name="media_overview_documents_fragment__no_documents_found">Sənəd yoxdur</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Mediaya ilkin baxış</string>
   <!--new_conversation_activity-->
@@ -1236,6 +1243,11 @@
   <string name="trimmer__deleting">Silinir</string>
   <string name="trimmer__deleting_old_messages">Köhnə mesajların silinməsi…</string>
   <string name="trimmer__old_messages_successfully_deleted">Köhnə mesajlar müvəffəqiyyətlə silindi</string>
+  <!--Insights-->
+  <string name="InsightsDashboardFragment__cancel">Ləğv et</string>
+  <string name="InsightsDashboardFragment__send">Göndər</string>
+  <string name="FirstInviteReminder__title">Signal-a dəvət et</string>
+  <string name="InsightsReminder__invite">Dəvət et</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ötürülmə ikonası</string>
   <string name="ConversationListFragment_loading">Yüklənir…</string>
@@ -1327,5 +1339,9 @@
   <string name="prompt_passphrase_activity__tap_to_unlock">Açmaq üçün toxun</string>
   <string name="RegistrationLockDialog_reminder">Xatırlatma:</string>
   <string name="recipient_preferences__about">Haqqında</string>
+  <string name="Recipient_unknown">Naməlum</string>
+  <string name="MessageRequestBottomView_accept">Qəbul et</string>
+  <string name="MessageRequestBottomView_delete">Sil</string>
+  <string name="MessageRequestBottomView_block">Kilidlə</string>
   <!--EOF-->
 </resources>

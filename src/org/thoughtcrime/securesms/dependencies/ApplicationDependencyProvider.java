@@ -23,16 +23,19 @@ import org.thoughtcrime.securesms.push.SecurityEventListener;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.recipients.LiveRecipientCache;
 import org.thoughtcrime.securesms.service.IncomingMessageObserver;
+import org.thoughtcrime.securesms.util.AlarmSleepTimer;
+import org.thoughtcrime.securesms.util.FrameRateTracker;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
-import org.whispersystems.signalservice.api.util.RealtimeSleepTimer;
 import org.whispersystems.signalservice.api.util.SleepTimer;
 import org.whispersystems.signalservice.api.util.UptimeSleepTimer;
 import org.whispersystems.signalservice.api.websocket.ConnectivityListener;
+
+import java.util.UUID;
 
 /**
  * Implementation of {@link ApplicationDependencies.Provider} that provides real app dependencies.
@@ -70,7 +73,7 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
 
   @Override
   public @NonNull SignalServiceMessageReceiver provideSignalServiceMessageReceiver() {
-    SleepTimer sleepTimer = TextSecurePreferences.isFcmDisabled(context) ? new RealtimeSleepTimer(context)
+    SleepTimer sleepTimer = TextSecurePreferences.isFcmDisabled(context) ? new AlarmSleepTimer(context)
                                                                          : new UptimeSleepTimer();
     return new SignalServiceMessageReceiver(networkAccess.getConfiguration(context),
                                             new DynamicCredentialsProvider(context),
@@ -111,6 +114,11 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
                                                                .build());
   }
 
+  @Override
+  public @NonNull FrameRateTracker provideFrameRateTracker() {
+    return new FrameRateTracker(context);
+  }
+
   private static class DynamicCredentialsProvider implements CredentialsProvider {
 
     private final Context context;
@@ -120,7 +128,12 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
     }
 
     @Override
-    public String getUser() {
+    public UUID getUuid() {
+      return TextSecurePreferences.getLocalUuid(context);
+    }
+
+    @Override
+    public String getE164() {
       return TextSecurePreferences.getLocalNumber(context);
     }
 
@@ -140,6 +153,7 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
     @Override
     public void onConnected() {
       Log.i(TAG, "onConnected()");
+      TextSecurePreferences.setUnauthorizedReceived(context, false);
     }
 
     @Override

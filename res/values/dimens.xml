@@ -46,6 +46,12 @@
     <dimen name="media_bubble_max_height">320dp</dimen>
     <dimen name="media_bubble_sticker_dimens">128dp</dimen>
 
+    <dimen name="reactions_bubble_margin">-37dp</dimen>
+    <dimen name="reactions_bubble_size">32dp</dimen>
+    <dimen name="reactions_bubble_text_size">16dp</dimen>
+    <dimen name="reactions_bubble_margin_max">28dp</dimen>
+    <dimen name="reactions_bubble_container_max_height">60dp</dimen>
+
     <dimen name="media_picker_folder_width">175dp</dimen>
     <dimen name="media_picker_item_width">85dp</dimen>
     <dimen name="media_picker_rail_padding_affordance">130dp</dimen>
@@ -53,7 +59,7 @@
     <dimen name="media_keyboard_provider_icon_padding">5dp</dimen>
     <dimen name="media_keyboard_provider_icon_margin">4dp</dimen>
 
-    <dimen name="mediasend_progress_dialog_size">120dp</dimen>
+    <dimen name="progress_dialog_size">120dp</dimen>
 
     <dimen name="thumbnail_default_radius">4dp</dimen>
 
@@ -63,6 +69,10 @@
     <dimen name="conversation_group_left_gutter">52dp</dimen>
     <dimen name="conversation_vertical_message_spacing_default">8dp</dimen>
     <dimen name="conversation_vertical_message_spacing_collapse">1dp</dimen>
+
+    <dimen name="reaction_scrubber_anim_start_translation_y">25dp</dimen>
+    <dimen name="reaction_scrubber_anim_end_translation_y">0dp</dimen>
+    <dimen name="reaction_scrubber_width">320dp</dimen>
 
     <dimen name="conversation_item_reply_size">20dp</dimen>
     <dimen name="conversation_item_avatar_size">28dp</dimen>
@@ -91,6 +101,19 @@
     <dimen name="unread_count_bubble_radius">13sp</dimen>
     <dimen name="unread_count_bubble_diameter">26sp</dimen>
 
+    <dimen name="insights_modal_title_margin_top">41dp</dimen>
+    <dimen name="insights_modal_description_margin_top">12dp</dimen>
+    <dimen name="insights_modal_progress_margin_top">23dp</dimen>
+    <dimen name="insights_modal_progress_size">187dp</dimen>
+    <dimen name="insights_modal_avatar_size">140dp</dimen>
+    <dimen name="insights_modal_percent_margin_top">6dp</dimen>
+    <dimen name="insights_modal_percent_sign_margin_top">15dp</dimen>
+    <dimen name="insights_modal_view_insights_margin_top">41dp</dimen>
+    <dimen name="insights_modal_percent_text_size">28sp</dimen>
+    <dimen name="insights_modal_percent_sign_text_size">20sp</dimen>
+
+    <dimen name="invite_edit_text_min_height">84dp</dimen>
+
     <!-- RedPhone -->
 
     <!-- Height of the main row of in-call buttons. -->
@@ -115,5 +138,15 @@
     <dimen name="selection_item_header_width">48dp</dimen>
 
     <dimen name="contact_selection_item_height">@dimen/selection_item_header_height</dimen>
+
+    <dimen name="conversation_reaction_scrubber_height">136dp</dimen>
+    <dimen name="conversation_reaction_scrubber_distance">40dp</dimen>
+    <dimen name="conversation_reaction_touch_deadzone_size">60dp</dimen>
+    <dimen name="conversation_reaction_scrub_deadzone_distance_from_touch_top">136dp</dimen>
+    <dimen name="conversation_reaction_scrub_deadzone_distance_from_touch_bottom">40dp</dimen>
+    <dimen name="conversation_reaction_scrub_vertical_translation">20dp</dimen>
+    <dimen name="conversation_reaction_scrub_horizontal_margin">16dp</dimen>
+
+    <dimen name="storage_legend_circle_size">8dp</dimen>
 
 </resources>

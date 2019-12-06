@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="app_name">Signal</string>
   <string name="yes">Sim</string>
   <string name="no">Não</string>
   <string name="delete">Eliminar</string>
@@ -10,7 +9,6 @@
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Nova mensagem</string>
   <!--AlbumThumbnailView-->
-  <string name="AlbumThumbnailView_plus">\+%d</string>
   <!--ApplicationMigrationActivity-->
   <string name="ApplicationMigrationActivity__signal_is_updating">O Signal está a atualizar…</string>
   <!--ApplicationPreferencesActivity-->
@@ -74,6 +72,8 @@
   <string name="BucketedThreadMedia_Yesterday">Ontem</string>
   <string name="BucketedThreadMedia_This_week">Esta semana</string>
   <string name="BucketedThreadMedia_This_month">Este mês</string>
+  <string name="BucketedThreadMedia_Large">Grande</string>
+  <string name="BucketedThreadMedia_Small">Pequena</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">A receber chamada</string>
   <!--CameraActivity-->
@@ -100,6 +100,8 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Não foi encontrado nenhum navegador de Internet.</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Já está a decorrer uma chamada através das redes móveis.</string>
+  <string name="CommunicationActions_cancel">Cancelar</string>
+  <string name="CommunicationActions_call">Telefonar</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">O seu número de segurança com %1$s foi alterado. Isto poderá significar que alguém está a tentar intercetar esta comunicação ou simplesmente que %2$s reinstalou o Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Você poderá desejar verificar o seu número de segurança com este contacto.</string>
@@ -108,6 +110,8 @@
   <string name="ContactsCursorLoader_recent_chats">Conversas recentes</string>
   <string name="ContactsCursorLoader_contacts">Contactos</string>
   <string name="ContactsCursorLoader_groups">Grupos</string>
+  <string name="ContactsCursorLoader_phone_number_search">Pesquisar número de telefone</string>
+  <string name="ContactsCursorLoader_username_search">Pesquisar nome de utilizador</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Mensagem %s</string>
   <string name="ContactsDatabase_signal_call_s">Chamada do Signal %s</string>
@@ -244,7 +248,7 @@
     <item quantity="other">Isto irá eliminar permanentemente todas as %1$d conversas selecionadas.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">A eliminar</string>
-  <string name="ConversationListFragment_deleting_selected_conversations">A eliminar conversas seleccionadas…</string>
+  <string name="ConversationListFragment_deleting_selected_conversations">A eliminar conversas selecionadas…</string>
   <plurals name="ConversationListFragment_conversations_archived">
     <item quantity="one">Conversa arquivada</item>
     <item quantity="other">%d conversas arquivadas</item>
@@ -298,7 +302,6 @@
   <string name="DeviceListItem_last_active_s">Ativo pela última vez %s</string>
   <string name="DeviceListItem_today">Hoje</string>
   <!--DocumentView-->
-  <string name="DocumentView_unknown_file">Ficheiro desconhecido</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Otimizar para os \"Play Services\" em falta.</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Este dispositivo não suporta os Play Services. Toque para desativar o sistema de otimização de bateria que impede o Signal de recolher mensagens enquanto inativo.</string>
@@ -400,19 +403,15 @@
   <string name="MmsDownloader_error_reading_mms_settings">Erro ao ler as configurações do operador MMS</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Multimédia</string>
-  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
-    <item quantity="one">Apagar mensagem seleccionada?</item>
-    <item quantity="other">Eliminar mensagens selecionadas?</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-    <item quantity="one">Isto irá eliminar permanentemente a mensagem selecionada.</item>
-    <item quantity="other">Isto irá eliminar permanentemente todas as %1$d mensagens selecionadas.</item>
-  </plurals>
+  <string name="MediaOverviewActivity_Audio">Áudio</string>
   <string name="MediaOverviewActivity_Media_delete_progress_title">A eliminar</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">A eliminar mensagens…</string>
-  <string name="MediaOverviewActivity_Documents">Documentos</string>
   <string name="MediaOverviewActivity_Select_all">Seleccionar tudo</string>
   <string name="MediaOverviewActivity_collecting_attachments">A recolher anexos…</string>
+  <string name="MediaOverviewActivity_file">Ficheiro</string>
+  <string name="MediaOverviewActivity_audio">Áudio</string>
+  <string name="MediaOverviewActivity_video">Vídeo</string>
+  <string name="MediaOverviewActivity_image">Imagem</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Chamada do Signal em curso</string>
   <string name="NotificationBarManager__establishing_signal_call">A estabelecer chamada do Signal</string>
@@ -500,6 +499,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Ícone do Signal</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Enviar frase-passe</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Frase-passe inválida!</string>
+  <string name="PassphrasePromptActivity_unlock_signal">Desbloquear o Signal</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Mapa</string>
   <string name="PlacePickerActivity_not_a_valid_address">Não é um endereço válido</string>
@@ -507,6 +507,11 @@
   <string name="PlacePickerActivity_accept_address">Aceitar endereço</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">A versão do Google Play Services que tem instalada não está a funcionar corretamente. Por favor, reinstale o Google Play Services e tente novamente.</string>
+  <!--ProfileEditNameFragment-->
+  <string name="ProfileEditNameFragment_save">Guardar</string>
+  <!--ProfileEditOverviewFragment-->
+  <string name="ProfileEditOverviewFragment_profile">Perfil</string>
+  <string name="ProfileEditOverviewFragment_username">Nome de utilizador</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Avaliar esta aplicação</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Se gostou desta aplicação, ajude-nos avaliando-a.</string>
@@ -672,6 +677,10 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <!--UnverifiedSendDialog-->
   <string name="UnverifiedSendDialog_send_message">Enviar mensagem?</string>
   <string name="UnverifiedSendDialog_send">Enviar</string>
+  <!--UsernameEditFragment-->
+  <string name="UsernameEditFragment_username">Nome de utilizador</string>
+  <string name="UsernameEditFragment_submit">Submeter</string>
+  <string name="UsernameEditFragment_delete">Eliminar</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">O seu contacto está a utilizar uma versão antiga do Signal. Por favor peça-lhe para actualizar antes de verificar o seu número de segurança.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">O seu contacto está a utilizar uma versão mais recente do Signal, com um formato de código QR incompatível. Por favor, actualize para comparar.</string>
@@ -742,6 +751,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="NotificationChannel_other">Outro</string>
   <string name="NotificationChannel_group_messages">Mensagens</string>
   <string name="NotificationChannel_missing_display_name">Desconhecido</string>
+  <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Resposta rápida encontra-se indisponível enquanto o Signal estiver bloqueado!</string>
   <string name="QuickResponseService_problem_sending_message">Problema no envio da mensagem!</string>
@@ -756,6 +766,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Nova mensagem</string>
+  <!--ThumbnailView-->
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">
     <item quantity="one">%d Item</item>
@@ -821,6 +832,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">O Signal requer permissão de acesso aos contactos para visualizar os seus contactos, mas esta foi negada permanentemente. Por favor, aceda às definições da aplicação, seleccione \"Permissões\" e ative \"Contactos\".</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Problema a obter os contactos, verifique a sua ligação à rede</string>
+  <string name="ContactSelectionListFragment_okay">Ok</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Sem contactos bloqueados</string>
   <!--contact_selection_list_fragment-->
@@ -1136,6 +1148,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Apagar automaticamente as mensagens mais antigas quando uma conversa exceder um tamanho especifico</string>
   <string name="preferences__delete_old_messages">Apagar mensagens antigas</string>
   <string name="preferences__chats">Conversas e multimédia</string>
+  <string name="preferences__storage">Armazenamento</string>
   <string name="preferences__conversation_length_limit">Tamanho máximo das conversas</string>
   <string name="preferences__trim_all_conversations_now">Reduzir agora todas as conversas</string>
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Pesquisar por todas as conversas e limitá-las ao tamanho máximo das conversas</string>
@@ -1164,6 +1177,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="preferences_chats__when_roaming">Ao utilizar o roaming</string>
   <string name="preferences_chats__media_auto_download">Descarregar multimédia automaticamente</string>
   <string name="preferences_chats__message_trimming">Redução da mensagem</string>
+  <string name="preferences_storage__audio">Áudio</string>
   <string name="preferences_advanced__use_system_emoji">Utilizar os emojis do sistema</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Desativar o suporte de emojis próprios do Signal</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Passar todas as chamadas pelo servidor do Signal para evitar revelar o seu endereço IP ao destinatário. Ativar esta opção irá reduzir a qualidade da chamada.</string>
@@ -1204,6 +1218,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="conversation_context__menu_forward_message">Reencaminhar mensagem</string>
   <string name="conversation_context__menu_resend_message">Reenviar mensagem</string>
   <string name="conversation_context__menu_reply_to_message">Responder à mensagem</string>
+  <!--conversation_context_reacction-->
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Guardar anexo</string>
   <!--conversation_expiring_off-->
@@ -1282,12 +1297,11 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="reminder_header_share_text">Quanto mais amigos utilizarem o Signal, melhor este se torna.</string>
   <string name="reminder_header_service_outage_text">O Signal está a experienciar problemas técnicos. Estamos a trabalhar arduamente para re-estabelecer o serviço o mais rapidamente possível.</string>
   <string name="reminder_header_the_latest_signal_features_wont_work">As últimas funcionalidades do Signal não funcionarão nesta versão do Android. Por favor atualize este dispositivo para poder receber futuramente atualizações do Signal.</string>
+  <string name="reminder_header_progress">%1$d%%</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Gravar</string>
   <string name="media_preview__forward_title">Reencaminhar</string>
   <string name="media_preview__all_media_title">Toda a multimédia</string>
-  <!--media_overview-->
-  <string name="media_overview_documents_fragment__no_documents_found">Sem documentos</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Pré-visualização de multimédia</string>
   <!--new_conversation_activity-->
@@ -1297,6 +1311,29 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="trimmer__deleting">A eliminar</string>
   <string name="trimmer__deleting_old_messages">A eliminar mensagens antigas…</string>
   <string name="trimmer__old_messages_successfully_deleted">Mensagens antigas eliminadas com sucesso</string>
+  <!--Insights-->
+  <string name="Insights__percent">%</string>
+  <string name="Insights__title">Insights</string>
+  <string name="InsightsDashboardFragment__title">Insights</string>
+  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">O protocolo do Signal protegeu automaticamente %1$d%% das suas mensagens de saída através dos últimos %2$d dias. As conversas entre os utilizadores do Signal têm sempre uma encriptação do tipo end-to-end.</string>
+  <string name="InsightsDashboardFragment__boost_your_signal">Melhoria Signal</string>
+  <string name="InsightsDashboardFragment__not_enough_data">Sem dados suficientes</string>
+  <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">A sua percentagem do Insights é calculada com base nas mensagens de saída que não desapareceram ou foram eliminadas nos últimos %1$d dias.</string>
+  <string name="InsightsDashboardFragment__start_a_conversation">Iniciar uma conversa</string>
+  <string name="InsightsDashboardFragment__invite_your_contacts">Comece a comunicar de forma segura e ative os novos recursos que vão para além das limitações de mensagens de SMS desencriptadas ao convidar mais contactos a juntarem-se ao Signal.</string>
+  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Estas estatísticas foram geradas localmente no seu dispositivo e só podem ser vistas por si. Elas nunca são transmitidas para nenhum lado.</string>
+  <string name="InsightsDashboardFragment__encrypted_messages">Mensagens encriptadas</string>
+  <string name="InsightsDashboardFragment__cancel">Cancelar</string>
+  <string name="InsightsDashboardFragment__send">Enviar</string>
+  <string name="InsightsModalFragment__title">Introdução ao Insights</string>
+  <string name="InsightsModalFragment__description">Descubra quantas das suas mensagens de saída são enviadas de forma segura, depois convide rapidamente novos contactos para aumentar a sua percentagem do Signal.</string>
+  <string name="InsightsModalFragment__view_insights">Ver Insights</string>
+  <string name="FirstInviteReminder__title">Convidar para o Signal</string>
+  <string name="FirstInviteReminder__description">Você pode aumentar o número de mensagens encriptadas que envia em %1$d%%</string>
+  <string name="SecondInviteReminder__title">Potencie o seu Signal</string>
+  <string name="SecondInviteReminder__description">Convidar %1$s</string>
+  <string name="InsightsReminder__view_insights">Ver Insights</string>
+  <string name="InsightsReminder__invite">Convidar</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Ícone de transporte</string>
   <string name="ConversationListFragment_loading">A carregar…</string>
@@ -1391,5 +1428,9 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="prompt_passphrase_activity__tap_to_unlock">TOQUE PARA DESBLOQUEAR</string>
   <string name="RegistrationLockDialog_reminder">Lembrete:</string>
   <string name="recipient_preferences__about">Sobre</string>
+  <string name="Recipient_unknown">Desconhecido</string>
+  <string name="MessageRequestBottomView_accept">Aceitar</string>
+  <string name="MessageRequestBottomView_delete">Eliminar</string>
+  <string name="MessageRequestBottomView_block">Bloquear</string>
   <!--EOF-->
 </resources>

@@ -158,7 +158,7 @@ public class ConversationUpdateItem extends LinearLayout
       icon.setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.ic_timer_disabled_24));
     }
 
-    icon.setColorFilter(getGreyFilter());
+    icon.setColorFilter(getIconTintFilter());
     title.setText(ExpirationUtil.getExpirationDisplayValue(getContext(), (int)(messageRecord.getExpiresIn() / 1000)));
     body.setText(messageRecord.getDisplayBody(getContext()));
 
@@ -167,13 +167,13 @@ public class ConversationUpdateItem extends LinearLayout
     date.setVisibility(GONE);
   }
 
-  private ColorFilter getGreyFilter() {
-    return new PorterDuffColorFilter(ContextCompat.getColor(getContext(), R.color.core_grey_50), PorterDuff.Mode.MULTIPLY);
+  private ColorFilter getIconTintFilter() {
+    return new PorterDuffColorFilter(ThemeUtil.getThemedColor(getContext(), R.attr.icon_tint), PorterDuff.Mode.SRC_IN);
   }
 
   private void setIdentityRecord(final MessageRecord messageRecord) {
     icon.setImageDrawable(ThemeUtil.getThemedDrawable(getContext(), R.attr.safety_number_icon));
-    icon.setColorFilter(getGreyFilter());
+    icon.setColorFilter(getIconTintFilter());
     body.setText(messageRecord.getDisplayBody(getContext()));
 
     title.setVisibility(GONE);
@@ -185,7 +185,7 @@ public class ConversationUpdateItem extends LinearLayout
     if (messageRecord.isIdentityVerified()) icon.setImageResource(R.drawable.ic_check_white_24dp);
     else                                    icon.setImageResource(R.drawable.ic_info_outline_white_24dp);
 
-    icon.setColorFilter(getGreyFilter());
+    icon.setColorFilter(getIconTintFilter());
     body.setText(messageRecord.getDisplayBody(getContext()));
 
     title.setVisibility(GONE);
@@ -216,7 +216,7 @@ public class ConversationUpdateItem extends LinearLayout
 
   private void setEndSessionRecord(MessageRecord messageRecord) {
     icon.setImageResource(R.drawable.ic_refresh_white_24dp);
-    icon.setColorFilter(getGreyFilter());
+    icon.setColorFilter(getIconTintFilter());
     body.setText(messageRecord.getDisplayBody(getContext()));
 
     title.setVisibility(GONE);

@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="app_name">Signal</string>
   <string name="yes">Ναι</string>
   <string name="no">Όχι</string>
   <string name="delete">Διαγραφή</string>
@@ -10,7 +9,6 @@
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Νέο μήνυμα</string>
   <!--AlbumThumbnailView-->
-  <string name="AlbumThumbnailView_plus">\+%d</string>
   <!--ApplicationMigrationActivity-->
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Αυτή τη στιγμή: %s</string>
@@ -72,6 +70,8 @@
   <string name="BucketedThreadMedia_Yesterday">Χθες</string>
   <string name="BucketedThreadMedia_This_week">Αυτή την εβδομάδα</string>
   <string name="BucketedThreadMedia_This_month">Αυτό το μήνα</string>
+  <string name="BucketedThreadMedia_Large">Μεγάλο</string>
+  <string name="BucketedThreadMedia_Small">Μικρό</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Εισερχόμενη κλήση</string>
   <!--CameraActivity-->
@@ -94,6 +94,8 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Δεν βρέθηκε web browser.</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Μια τηλεφωνική κλήση είναι ήδη σε εξέλιξη.</string>
+  <string name="CommunicationActions_cancel">Ακύρωση</string>
+  <string name="CommunicationActions_call">Κλήση</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Ο αριθμός ασφαλείας σας με τον/την %1$s άλλαξε. Είτε κάποιος προσπαθεί να υποκλέψει τη συνομιλία σας, είτε ο/η %2$s απλά επανεγκατέστησε το Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Προτείνουμε να επιβεβαιώσετε τον αριθμό ασφαλείας σας με αυτή την επαφή.</string>
@@ -102,6 +104,8 @@
   <string name="ContactsCursorLoader_recent_chats">Πρόσφατες συνομιλίες</string>
   <string name="ContactsCursorLoader_contacts">Επαφές</string>
   <string name="ContactsCursorLoader_groups">Ομάδες</string>
+  <string name="ContactsCursorLoader_phone_number_search">Εύρεση τηλεφωνικού αριθμού</string>
+  <string name="ContactsCursorLoader_username_search">Εύρεση Ονόματος Χρήστη</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Μήνυμα %s</string>
   <string name="ContactsDatabase_signal_call_s">Κλήση Signal %s</string>
@@ -285,7 +289,6 @@
   <string name="DeviceListItem_last_active_s">Τελευταία ενεργή: %s</string>
   <string name="DeviceListItem_today">Σήμερα</string>
   <!--DocumentView-->
-  <string name="DocumentView_unknown_file">Άγνωστο αρχείο</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Βελτιστοποίηση για τις υπηρεσίες Play που λείπουν</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Αυτή η συσκευή δεν υποστηρίζει τις υπηρεσίες Play. Πατήστε για απενεργοποίηση των βελτιστοποιήσεων μπαταρίας του συστήματος που εμποδίζουν το Signal από το να λαμβάνει μηνύματα όταν είναι ανενεργό.</string>
@@ -356,7 +359,7 @@
   <string name="InviteActivity_share">Διαμοιρασμός</string>
   <string name="InviteActivity_choose_contacts">Επιλογή επαφών</string>
   <string name="InviteActivity_cancel">Ακύρωση</string>
-  <string name="InviteActivity_sending">Αποστολή…</string>
+  <string name="InviteActivity_sending">Αποστέλλεται…</string>
   <string name="InviteActivity_heart_content_description">Καρδιά</string>
   <string name="InviteActivity_invitations_sent">Οι προσκλήσεις στάλθηκαν!</string>
   <string name="InviteActivity_invite_to_signal">Πρόσκληση στο Signal</string>
@@ -387,19 +390,15 @@
   <string name="MmsDownloader_error_reading_mms_settings">Πρόβλημα κατά την ανάκτηση ρυθμίσεων από τον πάροχο για τα MMS </string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Πολυμέσα</string>
-  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
-    <item quantity="one">Διαγραφή επιλεγμένου μηνύματος;</item>
-    <item quantity="other">Διαγραφή επιλεγμένων μηνυμάτων;</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-    <item quantity="one">Αυτή η επιλογή θα διαγράψει οριστικά το επιλεγμένο μήνυμα.</item>
-    <item quantity="other">Αυτή η επιλογή θα διαγράψει οριστικά τα %1$d επιλεγμένα μηνύματα.</item>
-  </plurals>
+  <string name="MediaOverviewActivity_Audio">Ήχος</string>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Γίνεται διαγραφή</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Διαγραφή μηνυμάτων…</string>
-  <string name="MediaOverviewActivity_Documents">Αρχεία</string>
   <string name="MediaOverviewActivity_Select_all">Επιλογή όλων</string>
   <string name="MediaOverviewActivity_collecting_attachments">Τα συνημμένα συλλέγονται…</string>
+  <string name="MediaOverviewActivity_file">Αρχείο</string>
+  <string name="MediaOverviewActivity_audio">Ήχος</string>
+  <string name="MediaOverviewActivity_video">Βίντεο</string>
+  <string name="MediaOverviewActivity_image">Εικόνα</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Κλήση Signal εν εξελίξει</string>
   <string name="NotificationBarManager__establishing_signal_call">Γίνεται κλήση Signal</string>
@@ -486,6 +485,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Εικονίδιο Signal</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Καταχώρηση συνθηματικού</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Μη έγκυρο συνθηματικό!</string>
+  <string name="PassphrasePromptActivity_unlock_signal">Ξεκλειδώστε το Signal</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Χάρτης</string>
   <string name="PlacePickerActivity_not_a_valid_address">Δεν είναι έγκυρη Διεύθυνση</string>
@@ -493,6 +493,10 @@
   <string name="PlacePickerActivity_accept_address">Αποδοχή διεύθυνσης</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Η έκδοση των Υπηρεσιών Google Play που έχετε εγκαταστήσει δε λειτουργεί σωστά. Παρακαλούμε επανεγκαταστήστε τις Υπηρεσίες Google Play και δοκιμάστε ξανά.</string>
+  <!--ProfileEditNameFragment-->
+  <string name="ProfileEditNameFragment_save">Αποθήκευση</string>
+  <!--ProfileEditOverviewFragment-->
+  <string name="ProfileEditOverviewFragment_profile">Προφίλ</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Βαθμολογήστε αυτή την εφαρμογή</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Αν σας αρέσει αυτή η εφαρμογή, βοηθήστε μας βαθμολογώντας την - δε θα σας πάρει πολύ χρόνο.</string>
@@ -654,6 +658,9 @@
   <!--UnverifiedSendDialog-->
   <string name="UnverifiedSendDialog_send_message">Αποστολή μηνύματος;</string>
   <string name="UnverifiedSendDialog_send">Αποστολή</string>
+  <!--UsernameEditFragment-->
+  <string name="UsernameEditFragment_submit">Αποστολή</string>
+  <string name="UsernameEditFragment_delete">Διαγραφή</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Η επαφή σας χρησιμοποιεί παλιά έκδοση του Signal. Παρακαλούμε ζητήστε του/της να ανανεώσει την εφαρμογή πριν επιβεβαιώσετε το αριθμό ασφαλείας.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Η επαφή σας χρησιμοποιεί μια νεότερη έκδοση του Signal και ο κώδικας QR δεν έχει συμβατή μορφοποίηση. Παρακαλώ ενημερώστε την εφαρμογή.</string>
@@ -723,6 +730,7 @@
   <string name="NotificationChannel_other">Άλλο</string>
   <string name="NotificationChannel_group_messages">Μηνύματα</string>
   <string name="NotificationChannel_missing_display_name">Άγνωστο</string>
+  <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Η γρήγορη απάντηση δεν είναι διαθέσιμη όταν το Signal είναι κλειδωμένο!</string>
   <string name="QuickResponseService_problem_sending_message">Πρόβλημα με την αποστολή μηνύματος!</string>
@@ -737,6 +745,7 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Νέο μήνυμα</string>
+  <!--ThumbnailView-->
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">
     <item quantity="one">%d αντικείμενο</item>
@@ -795,6 +804,7 @@
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Το Signal χρειάζεται τα δικαιώματα Επαφών για να μπορούμε να εμφανίσουμε τις επαφές σας, αλλά αυτά δεν έχουν δοθεί μόνιμα. Παρακαλώ πηγαίνετε στις ρυθμίσεις εφαρμογών, επιλέξτε τα \"Δικαιώματα\", και ενεργοποιήστε τις \"Επαφές\".</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Σφάλμα κατά τη λήψη επαφών, ελέγξτε τη σύνδεσή σας στο δίκτυο</string>
+  <string name="ContactSelectionListFragment_okay">Εντάξει</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Καμία μπλοκαρισμένη επαφή</string>
   <!--contact_selection_list_fragment-->
@@ -989,7 +999,7 @@
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Αν θέλετε να επιβεβαιώσετε την ασφάλεια της κρυπτογράφησης με τον/την %s, συγκρίνετε τον παραπάνω αριθμό με τον αριθμό στη συσκευή του/της. Εναλλακτικά, μπορείτε να σκανάρετε τον κωδικο στο τηλέφωνό του/της, ή να του/της ζητήσετε να σκανάρει τον δικό σας κωδικό. <a href="https://signal.org/redirect/safety-numbers">Μάθετε περισσότερα.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Πατήστε για σκανάρισμα</string>
-  <string name="verify_display_fragment__loading">Φορτώνει…</string>
+  <string name="verify_display_fragment__loading">Φόρτωση…</string>
   <string name="verify_display_fragment__verified">Επιβεβαιωμένο</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Μοιραστείτε τον αριθμό ασφαλείας</string>
@@ -1133,6 +1143,7 @@
   <string name="preferences_chats__when_roaming">Κατά το roaming</string>
   <string name="preferences_chats__media_auto_download">Αυτόματη λήψη πολυμέσων</string>
   <string name="preferences_chats__message_trimming">Περικοπή μηνυμάτων</string>
+  <string name="preferences_storage__audio">Ήχος</string>
   <string name="preferences_advanced__use_system_emoji">Χρήση emoji συστήματος</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Απενεργοποίηση της ενσωματωμένης υποστήριξης για emoji του Signal</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Αναμετάδοση όλων των κλήσεων μέσω του σέρβερ Signal για να αποφύγετε την αποκάλυψη της IP διεύθυνσής σας στην επαφή σας. Η ενεργοποίηση θα ρίξει την ποιότητα των κλήσεων.</string>
@@ -1173,6 +1184,7 @@
   <string name="conversation_context__menu_forward_message">Προώθηση μηνύματος</string>
   <string name="conversation_context__menu_resend_message">Αποστολή ξανά</string>
   <string name="conversation_context__menu_reply_to_message">Απαντήστε στο μήνυμα</string>
+  <!--conversation_context_reacction-->
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Αποθήκευση συνημμένου</string>
   <!--conversation_expiring_off-->
@@ -1254,8 +1266,6 @@
   <string name="media_preview__save_title">Αποθήκευση</string>
   <string name="media_preview__forward_title">Προώθηση</string>
   <string name="media_preview__all_media_title">Όλα τα πολυμέσα</string>
-  <!--media_overview-->
-  <string name="media_overview_documents_fragment__no_documents_found">Δεν υπάρχουν έγγραφα</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Προεπισκόπιση</string>
   <!--new_conversation_activity-->
@@ -1265,10 +1275,15 @@
   <string name="trimmer__deleting">Διαγραφή</string>
   <string name="trimmer__deleting_old_messages">Τα παλία μηνύματα διαγράφονται…</string>
   <string name="trimmer__old_messages_successfully_deleted">Τα παλιά μηνύματα διαγράφτηκαν επιτυχώς</string>
+  <!--Insights-->
+  <string name="InsightsDashboardFragment__cancel">Ακύρωση</string>
+  <string name="InsightsDashboardFragment__send">Αποστολή</string>
+  <string name="FirstInviteReminder__title">Πρόσκληση στο Signal</string>
+  <string name="InsightsReminder__invite">Πρόσκληση</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Μεταφορά εικονίδιου</string>
-  <string name="ConversationListFragment_loading">Φορτώνει…</string>
-  <string name="CallNotificationBuilder_connecting">Γίνεται σύνδεση…</string>
+  <string name="ConversationListFragment_loading">Φόρτωση…</string>
+  <string name="CallNotificationBuilder_connecting">Συνδέεται…</string>
   <string name="Permissions_permission_required">Χρειάζονται δικαιώματα πρόσβασης</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Το Signal χρειάζεται τα δικαιώματα SMS για να μπορέσουμε να στείλουμε ένα SMS, αλλά αυτά δεν έχουν δοθεί μόνιμα. Παρακαλώ πηγαίνετε στις ρυθμίσεις εφαρμογών, επιλέξτε τα \"Δικαιώματα\", και ενεργοποιήστε τα \"SMS\".</string>
   <string name="Permissions_continue">Συνέχεια</string>
@@ -1356,5 +1371,9 @@
   <string name="prompt_passphrase_activity__tap_to_unlock">ΠΑΤΑ ΓΙΑ ΞΕΚΛΕΙΔΩΜΑ</string>
   <string name="RegistrationLockDialog_reminder">Υπενθύμιση:</string>
   <string name="recipient_preferences__about">Πληροφορίες</string>
+  <string name="Recipient_unknown">Άγνωστο</string>
+  <string name="MessageRequestBottomView_accept">Αποδοχή</string>
+  <string name="MessageRequestBottomView_delete">Διαγραφή</string>
+  <string name="MessageRequestBottomView_block">Μπλοκάρισμα</string>
   <!--EOF-->
 </resources>

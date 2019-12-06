@@ -4,13 +4,18 @@ import android.app.Application;
 
 import androidx.annotation.NonNull;
 
+import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.IncomingMessageProcessor;
 import org.thoughtcrime.securesms.gcm.MessageRetriever;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.recipients.LiveRecipientCache;
 import org.thoughtcrime.securesms.service.IncomingMessageObserver;
+import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.FrameRateTracker;
+import org.thoughtcrime.securesms.util.IasKeyStore;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.signalservice.api.KeyBackupService;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
@@ -35,6 +40,7 @@ public class ApplicationDependencies {
   private static MessageRetriever             messageRetriever;
   private static LiveRecipientCache           recipientCache;
   private static JobManager                   jobManager;
+  private static FrameRateTracker             frameRateTracker;
 
   public static synchronized void init(@NonNull Application application, @NonNull Provider provider) {
     if (ApplicationDependencies.application != null || ApplicationDependencies.provider != null) {
@@ -45,6 +51,11 @@ public class ApplicationDependencies {
     ApplicationDependencies.provider    = provider;
   }
 
+  public static @NonNull Application getApplication() {
+    assertInitialization();
+    return application;
+  }
+
   public static synchronized @NonNull SignalServiceAccountManager getSignalServiceAccountManager() {
     assertInitialization();
 
@@ -53,6 +64,14 @@ public class ApplicationDependencies {
     }
 
     return accountManager;
+  }
+
+  public static synchronized @NonNull KeyBackupService getKeyBackupService() {
+    if (!FeatureFlags.KBS) throw new AssertionError();
+    return getSignalServiceAccountManager().getKeyBackupService(IasKeyStore.getIasKeyStore(application),
+                                                                BuildConfig.KEY_BACKUP_ENCLAVE_NAME,
+                                                                BuildConfig.KEY_BACKUP_MRENCLAVE,
+                                                                10);
   }
 
   public static synchronized @NonNull SignalServiceMessageSender getSignalServiceMessageSender() {
@@ -128,6 +147,16 @@ public class ApplicationDependencies {
     return jobManager;
   }
 
+  public static synchronized @NonNull FrameRateTracker getFrameRateTracker() {
+    assertInitialization();
+
+    if (frameRateTracker == null) {
+      frameRateTracker = provider.provideFrameRateTracker();
+    }
+
+    return frameRateTracker;
+  }
+
   private static void assertInitialization() {
     if (application == null || provider == null) {
       throw new UninitializedException();
@@ -143,6 +172,7 @@ public class ApplicationDependencies {
     @NonNull MessageRetriever provideMessageRetriever();
     @NonNull LiveRecipientCache provideRecipientCache();
     @NonNull JobManager provideJobManager();
+    @NonNull FrameRateTracker provideFrameRateTracker();
   }
 
   private static class UninitializedException extends IllegalStateException {

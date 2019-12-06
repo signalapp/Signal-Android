@@ -32,6 +32,7 @@ import org.thoughtcrime.securesms.registration.service.RegistrationCodeRequest;
 import org.thoughtcrime.securesms.registration.service.RegistrationService;
 import org.thoughtcrime.securesms.registration.viewmodel.RegistrationViewModel;
 import org.thoughtcrime.securesms.util.concurrent.AssertedSuccessListener;
+import org.whispersystems.signalservice.internal.contacts.entities.TokenResponse;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -106,7 +107,7 @@ public final class EnterCodeFragment extends BaseRegistrationFragment {
 
       RegistrationService registrationService = RegistrationService.getInstance(model.getNumber().getE164Number(), model.getRegistrationSecret());
 
-      registrationService.verifyAccount(requireActivity(), model.getFcmToken(), code, null,
+      registrationService.verifyAccount(requireActivity(), model.getFcmToken(), code, null, null, null,
         new CodeVerificationRequest.VerifyCallback() {
 
           @Override
@@ -120,7 +121,8 @@ public final class EnterCodeFragment extends BaseRegistrationFragment {
           }
 
           @Override
-          public void onIncorrectRegistrationLockPin(long timeRemaining) {
+          public void onIncorrectRegistrationLockPin(long timeRemaining, String storageCredentials) {
+            model.setStorageCredentials(storageCredentials);
             keyboard.displayLocked().addListener(new AssertedSuccessListener<Boolean>() {
               @Override
               public void onSuccess(Boolean r) {
@@ -128,6 +130,12 @@ public final class EnterCodeFragment extends BaseRegistrationFragment {
                           .navigate(EnterCodeFragmentDirections.actionRequireRegistrationLockPin(timeRemaining));
               }
             });
+          }
+
+          @Override
+          public void onIncorrectKbsRegistrationLockPin(@NonNull TokenResponse triesRemaining) {
+            // Unexpected, because at this point, no pin has been provided by the user.
+            throw new AssertionError();
           }
 
           @Override

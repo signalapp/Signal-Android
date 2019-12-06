@@ -22,6 +22,6 @@ public class JobLogger {
                                                                                               : String.valueOf(job.getParameters().getLifespan()) + " ms";
     return String.format(Locale.US,
                          "[%s][%s]%s %s (Time Since Submission: %d ms, Lifespan: %s, Run Attempt: %d/%s)",
-                         id, job.getClass().getSimpleName(), tag, event, timeSinceSubmission, lifespan, runAttempt, maxAttempts);
+                         "JOB::" + id, job.getClass().getSimpleName(), tag, event, timeSinceSubmission, lifespan, runAttempt, maxAttempts);
   }
 }

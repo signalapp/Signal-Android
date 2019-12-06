@@ -23,10 +23,13 @@
         <item name="contact_selection_header_text">@color/textsecure_primary_dark</item>
 
         <item name="media_overview_toolbar_background">@color/white</item>
+        <item name="media_overview_toolbar_secondary_background">@color/core_grey_02</item>
         <item name="media_overview_toolbar_foreground">@color/core_grey_70</item>
         <item name="media_overview_header_foreground">@color/core_grey_50</item>
         <item name="media_overview_document_primary">@color/core_grey_90</item>
         <item name="media_overview_document_secondary">@color/core_grey_60</item>
+        <item name="media_overview_grid_view_icon">@drawable/ic_grid_outline_20</item>
+        <item name="media_overview_list_view_icon">@drawable/ic_list_outline_20</item>
     </style>
 
     <style name="TextSecure.DarkNoActionBar" parent="@style/TextSecure.BaseDarkNoActionBar">
@@ -59,25 +62,28 @@
         <item name="contact_selection_header_text">#66eeeeee</item>
 
         <item name="media_overview_toolbar_background">@color/black</item>
+        <item name="media_overview_toolbar_secondary_background">@color/core_grey_80</item>
         <item name="media_overview_toolbar_foreground">@color/white</item>
         <item name="media_overview_header_foreground">@color/core_grey_10</item>
         <item name="media_overview_document_primary">@color/core_grey_05</item>
         <item name="media_overview_document_secondary">@color/core_grey_25</item>
+        <item name="media_overview_grid_view_icon">@drawable/ic_grid_solid_20</item>
+        <item name="media_overview_list_view_icon">@drawable/ic_list_solid_20</item>
     </style>
 
-    <style name="TextSecure.HighlightTheme" parent="TextSecure.BaseHighlightTheme">
+    <style name="Signal.Light.NoActionBar.Invite" parent="Base.Signal.Light.NoActionBar.Invite">
         <!-- Empty for override -->
     </style>
 
-    <style name="TextSecure.BaseHighlightTheme" parent="@style/TextSecure.LightNoActionBar.DarkToolbar">
-        <item name="actionBarStyle">@style/TextSecure.HighlightActionBar</item>
-        <item name="android:actionBarStyle">@style/TextSecure.HighlightActionBar</item>
-        <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Dark</item>
-        <item name="android:windowBackground">@color/signal_primary</item>
-        <item name="android:windowContentOverlay">@null</item>
-        <item name="homeAsUpIndicator">@drawable/ic_arrow_left_conversation_24</item>
-        <item name="android:homeAsUpIndicator">@drawable/ic_arrow_left_conversation_24</item>
-        <item name="colorButtonNormal">@color/white</item>
+    <style name="Base.Signal.Light.NoActionBar.Invite" parent="@style/TextSecure.LightNoActionBar">
+        <item name="contact_filter_toolbar_icon_tint">?conversation_subtitle_color</item>
+    </style>
+
+    <style name="Signal.NoActionBar.Invite" parent="Base.Signal.NoActionBar.Invite">
+        <!-- Empty for override -->
+    </style>
+
+    <style name="Base.Signal.NoActionBar.Invite" parent="@style/TextSecure.DarkNoActionBar">
         <item name="contact_filter_toolbar_icon_tint">?conversation_subtitle_color</item>
     </style>
 
@@ -149,11 +155,20 @@
         <item name="icon_tint">@color/core_grey_75</item>
         <item name="icon_tint_dark">@color/core_grey_15</item>
 
+        <item name="insight_modal_background">@drawable/insights_modal_background</item>
+        <item name="insight_modal_button_background">@color/core_grey_10</item>
+        <item name="insight_title">@color/core_grey_90</item>
+        <item name="insight_body_2">@color/core_grey_60</item>
+        <item name="insight_dashboard_bottom_bar_background">@color/core_grey_02</item>
+        <item name="insight_progress_background">@color/core_grey_15</item>
+
         <item name="search_view_style">@style/Signal.SearchView</item>
         <item name="search_view_style_dark">@style/Signal.SearchView.Dark</item>
 
         <item name="title_text_color_primary">@color/core_grey_90</item>
         <item name="title_text_color_secondary">@color/core_grey_60</item>
+
+        <item name="bottomSheetDialogTheme">@style/Theme.Design.Light.BottomSheetDialog</item>
 
         <item name="actionBarStyle">@style/TextSecure.LightActionBar</item>
         <item name="actionBarTabBarStyle">@style/TextSecure.LightActionBar.TabBar</item>
@@ -180,6 +195,7 @@
         <item name="compose_icon_tint">?icon_tint</item>
 
         <item name="contact_filter_toolbar_icon_tint">?icon_tint</item>
+        <item name="contact_filter_toolbar_keyboard_icon">@drawable/ic_keyboard_outline_contact_filter_24</item>
 
         <item name="conversation_list_item_background">@drawable/conversation_list_item_background</item>
         <item name="conversation_list_item_contact_color">@color/core_grey_90</item>
@@ -210,7 +226,7 @@
         <item name="conversation_transport_popup_background">@color/white</item>
         <item name="conversation_emoji_toggle">@drawable/ic_emoji_smiley_outline_24</item>
         <item name="conversation_sticker_toggle">@drawable/ic_sticker_outline_24</item>
-        <item name="conversation_keyboard_toggle">@drawable/ic_keyboard_grey600_24dp</item>
+        <item name="conversation_keyboard_toggle">@drawable/ic_keyboard_outline_24</item>
         <item name="conversation_attach_camera">@drawable/ic_camera_outline_24</item>
         <item name="conversation_attach_image">@drawable/ic_image_light</item>
         <item name="conversation_attach_video">@drawable/ic_movie_creation_light</item>
@@ -248,6 +264,12 @@
         <item name="emoji_category_flags">@drawable/ic_emoji_flag_light_20</item>
         <item name="emoji_category_emoticons">@drawable/ic_emoji_emoticon_light_20</item>
         <item name="emoji_variation_selector_background">@drawable/emoji_variation_selector_background_light</item>
+
+        <item name="reactions_recv_background">@drawable/reactions_recv_background_light</item>
+        <item name="reactions_sent_background">@drawable/reactions_send_background_light</item>
+        <item name="reactions_overlay_old_background">@drawable/reactions_old_background_dark</item>
+        <item name="reactions_overlay_scrubber_background">@drawable/conversation_reaction_overlay_background_dark</item>
+        <item name="reactions_bottom_dialog_fragment_emoji_selected">@drawable/reactions_bottom_sheet_dialog_fragment_emoji_item_selected_light</item>
 
         <item name="conversation_item_bubble_background">@color/core_grey_05</item>
         <item name="conversation_item_sent_text_primary_color">@color/core_grey_90</item>
@@ -294,30 +316,36 @@
         <item name="menu_new_conversation_icon">@drawable/ic_add_white_24dp</item>
         <item name="menu_group_icon">@drawable/ic_group_solid_24</item>
         <item name="menu_search_icon">@drawable/ic_search_24</item>
-        <item name="menu_call_icon">@drawable/ic_call_white_24dp</item>
+        <item name="menu_call_icon">@drawable/ic_phone_right_unlock_solid_24</item>
         <item name="menu_popup_expand">@drawable/ic_launch_white_24dp</item>
         <item name="menu_unlock_icon">@drawable/ic_unlocked_white_24dp</item>
         <item name="menu_lock_icon">@drawable/ic_lock_white_24dp</item>
         <item name="menu_lock_icon_small">@drawable/ic_lock_white_18dp</item>
-        <item name="menu_trash_icon">@drawable/ic_delete_white_24dp</item>
+        <item name="menu_trash_icon">@drawable/ic_trash_outline_24</item>
         <item name="menu_selectall_icon">@drawable/ic_select_all_white_24dp</item>
         <item name="menu_split_icon">@drawable/ic_call_split_white_24dp</item>
         <item name="menu_accept_icon">@drawable/ic_check_24</item>
         <item name="menu_refresh_directory">@drawable/ic_refresh_white_24dp</item>
-        <item name="menu_copy_icon">@drawable/ic_content_copy_white_24dp</item>
+        <item name="menu_copy_icon">@drawable/ic_copy_outline_24</item>
         <item name="menu_info_icon">@drawable/ic_info_outline_white_24dp</item>
-        <item name="menu_forward_icon">@drawable/ic_forward_white_24dp</item>
-        <item name="menu_save_icon">@drawable/ic_download_filled_white_24</item>
-        <item name="menu_reply_icon">@drawable/ic_reply_white_24dp</item>
+        <item name="menu_forward_icon">@drawable/ic_forward_outline_24</item>
+        <item name="menu_save_icon">@drawable/ic_save_24</item>
+        <item name="menu_reply_icon">@drawable/ic_reply_outline_24</item>
+        <item name="menu_multi_select_icon">@drawable/ic_select_24</item>
+        <item name="menu_archive_icon">@drawable/ic_archive_white_24dp</item>
 
         <item name="message_icon">@drawable/ic_message_outline_tinted_24</item>
         <item name="notifications_icon">@drawable/ic_bell_outline_24</item>
         <item name="privacy_icon">@drawable/ic_lock_outline_24</item>
         <item name="appearance_icon">@drawable/ic_appearance_outline_24</item>
         <item name="chats_and_media_icon">@drawable/ic_photo_outline_24</item>
+        <item name="data_and_storage_icon">@drawable/ic_archive_outline_24dp</item>
         <item name="linked_devices_icon">@drawable/ic_linked_devices_24</item>
         <item name="advanced_icon">@drawable/ic_advanced_24</item>
         <item name="safety_number_icon">@drawable/ic_safety_number_outline_24</item>
+        <item name="message_request_dialog_button_background">@drawable/message_request_button_background_light</item>
+        <item name="message_request_text_color_primary">@color/core_grey_90</item>
+        <item name="message_request_text_color_secondary">@color/core_grey_60</item>
 
         <item name="conversation_icon_attach_audio">@drawable/ic_audio_light</item>
         <item name="conversation_icon_attach_video">@drawable/ic_video_light</item>
@@ -348,7 +376,8 @@
 
         <item name="search_toolbar_background">@color/white</item>
         <item name="search_background">@color/white</item>
-        <item name="invite_background">@color/signal_primary</item>
+        <item name="invite_edit_text_background">@drawable/invite_edit_text_background_light</item>
+        <item name="invite_share_icon">@drawable/ic_share_outline_24</item>
 
         <item name="shared_contact_details_header_background">@color/grey_100</item>
         <item name="shared_contact_details_titlebar">@color/grey_400</item>
@@ -364,11 +393,23 @@
         <item name="icon_tint">@color/core_grey_15</item>
         <item name="icon_tint_dark">?icon_tint</item>
 
+        <item name="insight_modal_background">@drawable/insights_modal_background_dark</item>
+        <item name="insight_modal_button_background">@color/core_grey_60</item>
+        <item name="insight_title">@color/core_grey_25</item>
+        <item name="insight_body_2">@color/core_grey_25</item>
+        <item name="insight_progress_background">@color/core_grey_60</item>
+        <item name="insight_dashboard_bottom_bar_background">@color/core_grey_80</item>
+
         <item name="search_view_style">@style/Signal.SearchView</item>
         <item name="search_view_style_dark">@style/Signal.SearchView.Dark</item>
 
+        <item name="invite_edit_text_background">@drawable/invite_edit_text_background_dark</item>
+        <item name="invite_share_icon">@drawable/ic_share_solid_24</item>
+
         <item name="title_text_color_primary">@color/core_grey_05</item>
         <item name="title_text_color_secondary">@color/core_grey_25</item>
+
+        <item name="bottomSheetDialogTheme">@style/Theme.Design.BottomSheetDialog</item>
 
         <item name="actionBarStyle">@style/TextSecure.DarkActionBar</item>
         <item name="actionBarTabBarStyle">@style/TextSecure.DarkActionBar.TabBar</item>
@@ -396,6 +437,7 @@
         <item name="compose_icon_tint">?icon_tint</item>
 
         <item name="contact_filter_toolbar_icon_tint">?icon_tint</item>
+        <item name="contact_filter_toolbar_keyboard_icon">@drawable/ic_keyboard_solid_contact_filter_24</item>
 
         <item name="conversation_list_item_background">@drawable/conversation_list_item_background_dark</item>
         <item name="conversation_list_item_contact_color">#ffdddddd</item>
@@ -461,7 +503,7 @@
         <item name="conversation_transport_popup_background">@color/black</item>
         <item name="conversation_emoji_toggle">@drawable/ic_emoji_smiley_solid_24</item>
         <item name="conversation_sticker_toggle">@drawable/ic_sticker_solid_24</item>
-        <item name="conversation_keyboard_toggle">@drawable/ic_keyboard_white_24dp</item>
+        <item name="conversation_keyboard_toggle">@drawable/ic_keyboard_solid_24</item>
         <item name="conversation_attach_camera">@drawable/ic_camera_solid_24</item>
         <item name="conversation_attach_image">@drawable/ic_image_dark</item>
         <item name="conversation_attach_video">@drawable/ic_movie_creation_dark</item>
@@ -476,6 +518,13 @@
         <item name="conversation_popup_theme">@style/ThemeOverlay.AppCompat.Dark</item>
         <item name="conversation_title_color">@color/transparent_white_90</item>
         <item name="conversation_subtitle_color">@color/transparent_white_80</item>
+
+        <item name="reactions_recv_background">@drawable/reactions_recv_background_dark</item>
+        <item name="reactions_sent_background">@drawable/reactions_send_background_dark</item>
+        <item name="reactions_overlay_old_background">@drawable/reactions_old_background_dark</item>
+        <item name="reactions_overlay_scrubber_background">@drawable/conversation_reaction_overlay_background_dark</item>
+        <item name="reactions_bottom_dialog_fragment_emoji_selected">@drawable/reactions_bottom_sheet_dialog_fragment_emoji_item_selected_dark</item>
+
 
         <item name="emoji_tab_strip_background">@color/core_grey_85</item>
         <item name="emoji_tab_indicator">@color/core_grey_65</item>
@@ -509,30 +558,36 @@
         <item name="menu_new_conversation_icon">@drawable/ic_add_white_24dp</item>
         <item name="menu_group_icon">@drawable/ic_group_solid_24</item>
         <item name="menu_search_icon">@drawable/ic_search_24</item>
-        <item name="menu_call_icon">@drawable/ic_call_white_24dp</item>
+        <item name="menu_call_icon">@drawable/ic_phone_right_unlock_solid_24</item>
         <item name="menu_popup_expand">@drawable/ic_launch_white_24dp</item>
         <item name="menu_unlock_icon">@drawable/ic_unlocked_white_24dp</item>
         <item name="menu_lock_icon">@drawable/ic_lock_white_24dp</item>
         <item name="menu_lock_icon_small">@drawable/ic_lock_white_18dp</item>
-        <item name="menu_trash_icon">@drawable/ic_delete_white_24dp</item>
+        <item name="menu_trash_icon">@drawable/ic_trash_solid_24</item>
         <item name="menu_selectall_icon">@drawable/ic_select_all_white_24dp</item>
         <item name="menu_split_icon">@drawable/ic_call_split_white_24dp</item>
         <item name="menu_accept_icon">@drawable/ic_check_24</item>
         <item name="menu_refresh_directory">@drawable/ic_refresh_white_24dp</item>
-        <item name="menu_copy_icon">@drawable/ic_content_copy_white_24dp</item>
-        <item name="menu_info_icon">@drawable/ic_info_outline_white_24dp</item>
-        <item name="menu_forward_icon">@drawable/ic_forward_white_24dp</item>
-        <item name="menu_save_icon">@drawable/ic_download_filled_white_24</item>
-        <item name="menu_reply_icon">@drawable/ic_reply_white_24dp</item>
+        <item name="menu_copy_icon">@drawable/ic_copy_solid_24</item>
+        <item name="menu_info_icon">@drawable/ic_info_solid_24</item>
+        <item name="menu_forward_icon">@drawable/ic_forward_solid_24</item>
+        <item name="menu_save_icon">@drawable/ic_save_24</item>
+        <item name="menu_reply_icon">@drawable/ic_reply_solid_24</item>
+        <item name="menu_multi_select_icon">@drawable/ic_select_24</item>
+        <item name="menu_archive_icon">@drawable/ic_archive_white_24dp</item>
 
         <item name="message_icon">@drawable/ic_message_solid_tinted_24</item>
         <item name="notifications_icon">@drawable/ic_bell_solid_24</item>
         <item name="privacy_icon">@drawable/ic_lock_solid_24</item>
         <item name="appearance_icon">@drawable/ic_appearance_solid_24</item>
         <item name="chats_and_media_icon">@drawable/ic_photo_solid_24</item>
+        <item name="data_and_storage_icon">@drawable/ic_archive_solid_24dp</item>
         <item name="linked_devices_icon">@drawable/ic_linked_devices_24</item>
         <item name="advanced_icon">@drawable/ic_advanced_24</item>
         <item name="safety_number_icon">@drawable/ic_safety_number_solid_24</item>
+        <item name="message_request_dialog_button_background">@drawable/message_request_button_background_dark</item>
+        <item name="message_request_text_color_primary">@color/core_grey_05</item>
+        <item name="message_request_text_color_secondary">@color/core_grey_25</item>
 
         <item name="conversation_icon_attach_audio">@drawable/ic_audio_dark</item>
         <item name="conversation_icon_attach_video">@drawable/ic_video_dark</item>
@@ -562,15 +617,21 @@
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.Fix</item>
         <item name="search_toolbar_background">@color/core_grey_95</item>
         <item name="search_background">@color/black</item>
-        <item name="invite_background">@color/black</item>
 
         <item name="shared_contact_details_header_background">@color/grey_800</item>
         <item name="shared_contact_details_titlebar">@color/grey_900</item>
         <item name="shared_contact_item_button_color">@color/core_grey_85</item>
     </style>
     
-    <style name="RationaleDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+    <style name="RationaleDialogLight" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:windowBackground">@drawable/permission_rationale_dialog_corners</item>
+    </style>
+
+    <style name="RationaleDialogDark" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="android:windowBackground">@drawable/permission_rationale_dialog_corners</item>
+    </style>
+
+    <style name="Theme.Signal.Insights.Modal" parent="@style/Theme.AppCompat.Dialog.MinWidth">
     </style>
 
     <style name="TextSecure.MediaSendProgressDialog" parent="@android:style/Theme.Dialog">
@@ -626,6 +687,16 @@
     <style name="TextSecure.LightTheme.WebRTCCall">
         <item name="android:statusBarColor" tools:ignore="NewApi">@color/signal_primary</item>
         <item name="android:windowLightStatusBar" tools:ignore="NewApi">false</item>
+        <item name="android:navigationBarColor" tools:ignore="NewApi">@color/core_black</item>
+        <item name="android:windowLightNavigationBar" tools:ignore="NewApi">false</item>
+    </style>
+
+    <style name="Theme.Design.Light.BottomSheetDialog.Fixed">
+        <item name="android:windowIsFloating">false</item>
+    </style>
+
+    <style name="Theme.Design.BottomSheetDialog.Fixed">
+        <item name="android:windowIsFloating">false</item>
     </style>
 
 </resources>

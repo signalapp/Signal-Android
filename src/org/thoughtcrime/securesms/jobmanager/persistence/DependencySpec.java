@@ -38,6 +38,6 @@ public final class DependencySpec {
 
   @Override
   public @NonNull String toString() {
-    return String.format("jobSpecId: %s | dependsOnJobSpecId: %s", jobId, dependsOnJobId);
+    return String.format("jobSpecId: JOB::%s | dependsOnJobSpecId: JOB::%s", jobId, dependsOnJobId);
   }
 }

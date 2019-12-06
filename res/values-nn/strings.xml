@@ -1,16 +1,14 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="app_name">Signal</string>
   <string name="yes">Ja</string>
   <string name="no">Nei</string>
   <string name="delete">Slett</string>
-  <string name="please_wait">Vent litt </string>
+  <string name="please_wait">Vent litt …</string>
   <string name="save">Lagra</string>
   <string name="note_to_self">Notat til meg sjølv</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Ny melding</string>
   <!--AlbumThumbnailView-->
-  <string name="AlbumThumbnailView_plus">\+%d</string>
   <!--ApplicationMigrationActivity-->
   <string name="ApplicationMigrationActivity__signal_is_updating">Signal oppdaterer seg …</string>
   <!--ApplicationPreferencesActivity-->
@@ -30,7 +28,7 @@
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Dette låser opp Signal og meldingsvarsel.</string>
   <string name="ApplicationPreferencesActivity_disable">Slå av</string>
   <string name="ApplicationPreferencesActivity_unregistering">Avregistrerer</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Avregistrerer frå Signal-meldingar og -samtalar </string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Avregistrerer frå Signal-meldingar og samtalar …</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Vil du slå av Signal-meldingar og -samtalar?</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Slå av Signal-meldingar og -samtalar ved å avregistrera deg frå tenaren. Du må registrera telefonnummeret ditt for å kunna finna igjen desse seinare.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Det oppstod ein feil under tilkopling til tenar.</string>
@@ -74,6 +72,8 @@
   <string name="BucketedThreadMedia_Yesterday">I går</string>
   <string name="BucketedThreadMedia_This_week">Denne veka</string>
   <string name="BucketedThreadMedia_This_month">Denne månaden</string>
+  <string name="BucketedThreadMedia_Large">Stor</string>
+  <string name="BucketedThreadMedia_Small">Liten</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Inngåande samtale</string>
   <!--CameraActivity-->
@@ -100,6 +100,8 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Fann ingen nettlesar.</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Ein mobilsamtale er alt i gang.</string>
+  <string name="CommunicationActions_cancel">Avbryt</string>
+  <string name="CommunicationActions_call">Ring</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Tryggleiksnummeret ditt med %1$s har endra seg. Dette kan tyda på at nokon prøver å overvaka kommunikasjonen, eller at %2$s berre har installert Signal på nytt.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Du ynskjer kanskje å stadfesta tryggleiksnummeret ditt med denne kontakten.</string>
@@ -217,10 +219,10 @@
     <item quantity="other">Lagrar %1$d vedlegg</item>
   </plurals>
   <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-    <item quantity="one">Lagrar vedlegg på einingslager …</item>
-    <item quantity="other">Lagrar %1$d vedlegg på einingslager …</item>
+    <item quantity="one">Lagrar vedlegg …</item>
+    <item quantity="other">Lagrar %1$d vedlegg …</item>
   </plurals>
-  <string name="ConversationFragment_pending">Ventar </string>
+  <string name="ConversationFragment_pending">Ventar …</string>
   <string name="ConversationFragment_push">Data (Signal)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
@@ -298,7 +300,6 @@
   <string name="DeviceListItem_last_active_s">Sist aktiv %s</string>
   <string name="DeviceListItem_today">I dag</string>
   <!--DocumentView-->
-  <string name="DocumentView_unknown_file">Ukjend fil</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimaliser for manglande Play-tenester</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Denne eininga støttar ikkje Play-tenester. Trykk for å skru av batterioptimaliseringane i systemet som hindrar Signal frå å henta meldingar når programmet ikkje er aktivt. </string>
@@ -352,7 +353,7 @@
   <string name="GroupCreateActivity_creating_group">Lagar %1$s …</string>
   <string name="GroupCreateActivity_updating_group">Oppdaterer %1$s …</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Klarte ikkje å leggja til %1$s fordi vedkomande ikkje brukar Signal.</string>
-  <string name="GroupCreateActivity_loading_group_details">Lastar inn gruppedetaljar </string>
+  <string name="GroupCreateActivity_loading_group_details">Lastar inn gruppedetaljar …</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Du ligg allereie i gruppa.</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Del profilnamnet og bildet ditt med denne gruppa?</string>
@@ -400,19 +401,15 @@
   <string name="MmsDownloader_error_reading_mms_settings">Klarte ikkje lesa MMS-oppsettet til teleselskapet</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">Media</string>
-  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
-    <item quantity="one">Slett den valde meldinga?</item>
-    <item quantity="other">Slett dei valde meldingane?</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-    <item quantity="one">Dette vil sletta den valde meldinga for godt.</item>
-    <item quantity="other">Dette vil sletta alle dei %1$d valde meldingane for godt.</item>
-  </plurals>
+  <string name="MediaOverviewActivity_Audio">Lyd</string>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Slettar</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Slettar meldingar …</string>
-  <string name="MediaOverviewActivity_Documents">Dokument</string>
   <string name="MediaOverviewActivity_Select_all">Vel alle</string>
   <string name="MediaOverviewActivity_collecting_attachments">Hentar vedlegg …</string>
+  <string name="MediaOverviewActivity_file">Fil</string>
+  <string name="MediaOverviewActivity_audio">Lyd</string>
+  <string name="MediaOverviewActivity_video">Video</string>
+  <string name="MediaOverviewActivity_image">Bilde</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal-samtale i gang</string>
   <string name="NotificationBarManager__establishing_signal_call">Set opp Signal-anrop</string>
@@ -500,6 +497,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Signal-ikon</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">Send inn passordfrase</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Ugyldig passordfrase.</string>
+  <string name="PassphrasePromptActivity_unlock_signal">Lås opp Signal</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">Kart</string>
   <string name="PlacePickerActivity_not_a_valid_address">Ikkje ei gyldig adresse</string>
@@ -507,6 +505,9 @@
   <string name="PlacePickerActivity_accept_address">Godta adresse</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Versjonen av Google Play-tenester som er installert på denne eininga fungerer ikkje skikkeleg. Installer Google Play-tenester på nytt og prøv igjen.</string>
+  <!--ProfileEditNameFragment-->
+  <string name="ProfileEditNameFragment_save">Lagra</string>
+  <!--ProfileEditOverviewFragment-->
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Vurder dette programmet</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Viss du liker dette programmet, vil vi gjerne at du hjelper oss ved å gje vurderinga di.</string>
@@ -673,6 +674,9 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <!--UnverifiedSendDialog-->
   <string name="UnverifiedSendDialog_send_message">Send melding?</string>
   <string name="UnverifiedSendDialog_send">Send</string>
+  <!--UsernameEditFragment-->
+  <string name="UsernameEditFragment_submit">Send</string>
+  <string name="UsernameEditFragment_delete">Slett</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Kontakten din køyrer ein gammal versjon av Signal. Ver venleg og be dei om å oppdatera før du stadfestar tryggleiksnummeret ditt.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Kontakten din køyrer ein nyare versjon av Signal med eit inkompatibelt QR-kodeformat. Ver venleg og oppdater for å samanlikna.</string>
@@ -743,6 +747,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="NotificationChannel_other">Anna</string>
   <string name="NotificationChannel_group_messages">Meldingar</string>
   <string name="NotificationChannel_missing_display_name">Ukjend</string>
+  <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Hurtigsvar er utilgjengeleg når Signal er låst.</string>
   <string name="QuickResponseService_problem_sending_message">Det oppstod eit problem under sending av melding.</string>
@@ -757,6 +762,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Ny melding</string>
+  <!--ThumbnailView-->
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">
     <item quantity="one">%delement</item>
@@ -1167,6 +1173,7 @@ Ved registrering sender me litt kontaktinformasjon til tenaren. Informasjonen ve
   <string name="preferences_chats__when_roaming">I framandnett</string>
   <string name="preferences_chats__media_auto_download">Automatisk nedlasting av media</string>
   <string name="preferences_chats__message_trimming">Meldingsforkorting</string>
+  <string name="preferences_storage__audio">Lyd</string>
   <string name="preferences_advanced__use_system_emoji">Bruk emoji på systemet</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Slå av innebygd emoji-støtte i Signal</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Vidaresend alle samtalar gjennom Signal-tenaren for å unngå å visa IP-adressa di til kontakten din. Dette vil gi dårlegare samtalekvalitet.</string>
@@ -1207,6 +1214,7 @@ Ved registrering sender me litt kontaktinformasjon til tenaren. Informasjonen ve
   <string name="conversation_context__menu_forward_message">Vidaresend melding</string>
   <string name="conversation_context__menu_resend_message">Send melding på nytt</string>
   <string name="conversation_context__menu_reply_to_message">Svar på meldinga</string>
+  <!--conversation_context_reacction-->
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Lagra vedlegg</string>
   <!--conversation_expiring_off-->
@@ -1286,12 +1294,11 @@ Du er à jour!</string>
   <string name="reminder_header_share_text">Jo fleire vennar som brukar Signal, desto betre vert det.</string>
   <string name="reminder_header_service_outage_text">Signal har for tida tekniske problem. Me jobbar hardt med å få tilbake tenesta så fort som mogleg.</string>
   <string name="reminder_header_the_latest_signal_features_wont_work">Dei nyaste Signal-funksjonane fungerer ikkje i denne utgåva av Android. Oppgrader eininga for å få oppdateringar av Signal.</string>
+  <string name="reminder_header_progress">%1$d%%</string>
   <!--media_preview-->
   <string name="media_preview__save_title">Lagra</string>
   <string name="media_preview__forward_title">Vidaresend</string>
   <string name="media_preview__all_media_title">All media</string>
-  <!--media_overview-->
-  <string name="media_overview_documents_fragment__no_documents_found">Ingen dokument</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">Førehandsvising av media</string>
   <!--new_conversation_activity-->
@@ -1301,6 +1308,29 @@ Du er à jour!</string>
   <string name="trimmer__deleting">Slettar</string>
   <string name="trimmer__deleting_old_messages">Slettar gamle meldingar …</string>
   <string name="trimmer__old_messages_successfully_deleted">Gamle meldingar vart sletta</string>
+  <!--Insights-->
+  <string name="Insights__percent">%</string>
+  <string name="Insights__title">Oversikt</string>
+  <string name="InsightsDashboardFragment__title">Oversikt</string>
+  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal-protokollen beskytta automatisk %1$d%% av dei utgåande meldingane dine dei siste %2$d dagane. Samtaler mellom Signal-brukarar er alltid kryptert ende-til-ende.</string>
+  <string name="InsightsDashboardFragment__boost_your_signal">Signal-auke</string>
+  <string name="InsightsDashboardFragment__not_enough_data">Ikkje nok data</string>
+  <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Prosentane i oversikta er rekna ut frå utgåande meldingar dei siste %1$d dagane som ikkje har forsvunne eller blitt sletta.</string>
+  <string name="InsightsDashboardFragment__start_a_conversation">Start ei samtale</string>
+  <string name="InsightsDashboardFragment__invite_your_contacts">Start å kommunisera trygt og skru på nye funksjonar som går forbi begrensningane til ukrypterte SMS-meldingar, ved å invitera fleire kontaktar til Signal.</string>
+  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Denne statistikken blei generert på di eining, det er berre du som kan sjå han. Den blir aldri sendt nokon stad.</string>
+  <string name="InsightsDashboardFragment__encrypted_messages">Krypterte meldingar</string>
+  <string name="InsightsDashboardFragment__cancel">Avbryt</string>
+  <string name="InsightsDashboardFragment__send">Send</string>
+  <string name="InsightsModalFragment__title">Her kjem Oversikt</string>
+  <string name="InsightsModalFragment__description">Finn ut kor mange av dine utgåande meldingar som blei sendt trygt, og inviter enkelt nye kontaktar for å auka Signal-prosenten din.</string>
+  <string name="InsightsModalFragment__view_insights">Vis Oversikt</string>
+  <string name="FirstInviteReminder__title">Inviter til Signal</string>
+  <string name="FirstInviteReminder__description">Du kan auka kor mange krypterte meldingar du sender med %1$d%%</string>
+  <string name="SecondInviteReminder__title">Auk ditt Signal</string>
+  <string name="SecondInviteReminder__description">Inviter %1$s</string>
+  <string name="InsightsReminder__view_insights">Vis Oversikt</string>
+  <string name="InsightsReminder__invite">Inviter</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transport-ikon</string>
   <string name="ConversationListFragment_loading">Lastar …</string>
@@ -1330,7 +1360,7 @@ Du er à jour!</string>
   <string name="RegistrationActivity_backup_failure_downgrade">Kan ikkje importera reservekopiar frå nyare utgåver av Signal</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">Feil passordfrase til reservekopi</string>
   <string name="RegistrationActivity_checking">Sjekkar …</string>
-  <string name="RegistrationActivity_d_messages_so_far">%d meldingar så langt …</string>
+  <string name="RegistrationActivity_d_messages_so_far">%dmeldingar så langt …</string>
   <string name="RegistrationActivity_restore_from_backup">Gjenopprett frå reservekopi?</string>
   <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Gjenopprett meldingar og media frå ein lokal reservekopi. Viss du ikkje gjenopprettar no, vil du ikkje få gjenoppretta seinare.</string>
   <string name="RegistrationActivity_backup_size_s">Storleik på reservekopi: %s</string>
@@ -1396,5 +1426,9 @@ Du er à jour!</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">TRYKK FOR Å LÅSA OPP</string>
   <string name="RegistrationLockDialog_reminder">Hugs:</string>
   <string name="recipient_preferences__about">Om</string>
+  <string name="Recipient_unknown">Ukjend</string>
+  <string name="MessageRequestBottomView_accept">Godta</string>
+  <string name="MessageRequestBottomView_delete">Slett</string>
+  <string name="MessageRequestBottomView_block">Blokker</string>
   <!--EOF-->
 </resources>

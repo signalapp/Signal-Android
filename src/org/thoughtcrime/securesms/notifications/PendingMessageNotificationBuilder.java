@@ -6,7 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import androidx.core.app.NotificationCompat;
 
-import org.thoughtcrime.securesms.ConversationListActivity;
+import org.thoughtcrime.securesms.MainActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference;
@@ -17,7 +17,8 @@ public class PendingMessageNotificationBuilder extends AbstractNotificationBuild
   public PendingMessageNotificationBuilder(Context context, NotificationPrivacyPreference privacy) {
     super(context, privacy);
 
-    Intent intent = new Intent(context, ConversationListActivity.class);
+    // TODO [greyson] Navigation
+    Intent intent = new Intent(context, MainActivity.class);
 
     setSmallIcon(R.drawable.icon_notification);
     setColor(context.getResources().getColor(R.color.textsecure_primary));

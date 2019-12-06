@@ -24,7 +24,6 @@ import com.klinker.android.send_message.Utils;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
-import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
@@ -221,7 +220,6 @@ public final class MmsSendJob extends SendJob {
   {
     SendReq          req               = new SendReq();
     String           lineNumber        = getMyNumber(context);
-    Address          destination       = message.getRecipient().requireAddress();
     MediaConstraints mediaConstraints  = MediaConstraints.getMmsMediaConstraints(message.getSubscriptionId());
     List<Attachment> scaledAttachments = message.getAttachments();
 
@@ -231,18 +229,18 @@ public final class MmsSendJob extends SendJob {
       req.setFrom(new EncodedStringValue(TextSecurePreferences.getLocalNumber(context)));
     }
 
-    if (destination.isMmsGroup()) {
-      List<Recipient> members = DatabaseFactory.getGroupDatabase(context).getGroupMembers(destination.toGroupString(), false);
+    if (message.getRecipient().isMmsGroup()) {
+      List<Recipient> members = DatabaseFactory.getGroupDatabase(context).getGroupMembers(message.getRecipient().requireGroupId(), false);
 
       for (Recipient member : members) {
         if (message.getDistributionType() == ThreadDatabase.DistributionTypes.BROADCAST) {
-          req.addBcc(new EncodedStringValue(member.requireAddress().serialize()));
+          req.addBcc(new EncodedStringValue(member.requireSmsAddress()));
         } else {
-          req.addTo(new EncodedStringValue(member.requireAddress().serialize()));
+          req.addTo(new EncodedStringValue(member.requireSmsAddress()));
         }
       }
     } else {
-      req.addTo(new EncodedStringValue(destination.serialize()));
+      req.addTo(new EncodedStringValue(message.getRecipient().requireSmsAddress()));
     }
 
     req.setDate(System.currentTimeMillis() / 1000);

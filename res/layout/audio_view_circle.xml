@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<org.thoughtcrime.securesms.components.AnimatingToggle xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/control_toggle"
+    android:layout_width="48dp"
+    android:layout_height="48dp"
+    android:layout_gravity="center"
+    android:gravity="center"
+    tools:showIn="@layout/audio_view">
+
+    <FrameLayout
+        android:id="@+id/progress_and_play"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.pnikosis.materialishprogress.ProgressWheel
+            android:id="@+id/circle_progress"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            app:matProg_barColor="@color/white"
+            app:matProg_linearProgress="true"
+            app:matProg_spinSpeed="0.333" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/play"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:background="@drawable/circle_touch_highlight_background"
+            android:contentDescription="@string/audio_view__play_pause_accessibility_description"
+            android:gravity="center_vertical"
+            android:padding="12dp"
+            android:visibility="gone"
+            app:lottie_rawRes="@raw/lottie_play_pause"
+            tools:visibility="visible" />
+
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/download"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:background="@drawable/circle_touch_highlight_background"
+        android:clickable="true"
+        android:contentDescription="@string/audio_view__download_accessibility_description"
+        android:focusable="true"
+        android:src="@drawable/ic_download_circle_fill_white_48dp"
+        android:visibility="gone" />
+
+</org.thoughtcrime.securesms.components.AnimatingToggle>

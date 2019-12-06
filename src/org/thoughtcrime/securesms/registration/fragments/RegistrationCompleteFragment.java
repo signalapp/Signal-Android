@@ -12,8 +12,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
 import androidx.navigation.ActivityNavigator;
 
-import org.thoughtcrime.securesms.ConversationListActivity;
 import org.thoughtcrime.securesms.CreateProfileActivity;
+import org.thoughtcrime.securesms.MainActivity;
 import org.thoughtcrime.securesms.R;
 
 public final class RegistrationCompleteFragment extends BaseRegistrationFragment {
@@ -31,7 +31,8 @@ public final class RegistrationCompleteFragment extends BaseRegistrationFragment
     FragmentActivity activity = requireActivity();
 
     if (!isReregister()) {
-      activity.startActivity(getRoutedIntent(activity, CreateProfileActivity.class, new Intent(activity, ConversationListActivity.class)));
+      // TODO [greyson] Navigation
+      activity.startActivity(getRoutedIntent(activity, CreateProfileActivity.class, new Intent(activity, MainActivity.class)));
     }
 
     activity.finish();

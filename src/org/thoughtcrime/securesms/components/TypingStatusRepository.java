@@ -43,7 +43,7 @@ public class TypingStatusRepository {
   }
 
   public synchronized void onTypingStarted(@NonNull Context context, long threadId, @NonNull Recipient author, int device) {
-    if (author.requireAddress().serialize().equals(TextSecurePreferences.getLocalNumber(context))) {
+    if (author.isLocalNumber()) {
       return;
     }
 
@@ -67,7 +67,7 @@ public class TypingStatusRepository {
   }
 
   public synchronized void onTypingStopped(@NonNull Context context, long threadId, @NonNull Recipient author, int device, boolean isReplacedByIncomingMessage) {
-    if (author.requireAddress().serialize().equals(TextSecurePreferences.getLocalNumber(context))) {
+    if (author.isLocalNumber()) {
       return;
     }
 

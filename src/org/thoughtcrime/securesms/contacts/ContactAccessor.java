@@ -32,12 +32,13 @@ import android.text.TextUtils;
 import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.Util;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -70,13 +71,13 @@ public class ContactAccessor {
     return instance;
   }
 
-  public Set<Address> getAllContactsWithNumbers(Context context) {
-    Set<Address> results = new HashSet<>();
+  public Set<String> getAllContactsWithNumbers(Context context) {
+    Set<String> results = new HashSet<>();
 
     try (Cursor cursor = context.getContentResolver().query(Phone.CONTENT_URI, new String[] {Phone.NUMBER}, null ,null, null)) {
       while (cursor != null && cursor.moveToNext()) {
         if (!TextUtils.isEmpty(cursor.getString(0))) {
-          results.add(Address.fromSerialized(PhoneNumberFormatter.get(context).format(cursor.getString(0))));
+          results.add(PhoneNumberFormatter.get(context).format(cursor.getString(0)));
         }
       }
     }
@@ -109,17 +110,21 @@ public class ContactAccessor {
     final ContentResolver resolver = context.getContentResolver();
     final String[] inProjection    = new String[]{PhoneLookup._ID, PhoneLookup.DISPLAY_NAME};
 
-    final List<Address>           registeredAddresses = Stream.of(DatabaseFactory.getRecipientDatabase(context).getRegistered()).map(Recipient::resolved).map(Recipient::requireAddress).toList();
+    final List<String>           registeredAddresses = Stream.of(DatabaseFactory.getRecipientDatabase(context).getRegistered())
+                                                              .map(Recipient::resolved)
+                                                              .filter(r -> r.getE164().isPresent())
+                                                              .map(Recipient::requireE164)
+                                                              .toList();
     final Collection<ContactData> lookupData          = new ArrayList<>(registeredAddresses.size());
 
-    for (Address registeredAddress : registeredAddresses) {
-      Uri    uri          = Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI, Uri.encode(registeredAddress.serialize()));
+    for (String registeredAddress : registeredAddresses) {
+      Uri    uri          = Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI, Uri.encode(registeredAddress));
       Cursor lookupCursor = resolver.query(uri, inProjection, null, null, null);
 
       try {
         if (lookupCursor != null && lookupCursor.moveToFirst()) {
           final ContactData contactData = new ContactData(lookupCursor.getLong(0), lookupCursor.getString(1));
-          contactData.numbers.add(new NumberData("TextSecure", registeredAddress.serialize()));
+          contactData.numbers.add(new NumberData("TextSecure", registeredAddress));
           lookupData.add(contactData);
         }
       } finally {
@@ -180,20 +185,14 @@ public class ContactAccessor {
 
   public List<String> getNumbersForThreadSearchFilter(Context context, String constraint) {
     LinkedList<String> numberList = new LinkedList<>();
-    Cursor cursor                 = null;
 
-    try {
-      cursor = context.getContentResolver().query(Uri.withAppendedPath(Phone.CONTENT_FILTER_URI,
-                                                                       Uri.encode(constraint)),
-                                                  null, null, null, null);
-
+    try (Cursor cursor = DatabaseFactory.getRecipientDatabase(context).queryAllContacts(constraint)) {
       while (cursor != null && cursor.moveToNext()) {
-        numberList.add(cursor.getString(cursor.getColumnIndexOrThrow(Phone.NUMBER)));
-      }
+        String phone = cursor.getString(cursor.getColumnIndexOrThrow(RecipientDatabase.PHONE));
+        String email = cursor.getString(cursor.getColumnIndexOrThrow(RecipientDatabase.EMAIL));
 
-    } finally {
-      if (cursor != null)
-        cursor.close();
+        numberList.add(Util.getFirstNonEmpty(phone, email));
+      }
     }
 
     GroupDatabase.Reader reader = null;

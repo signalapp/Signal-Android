@@ -31,7 +31,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.util.Util;
@@ -82,17 +81,17 @@ public class ContactsDatabase {
   }
 
   public synchronized void setRegisteredUsers(@NonNull Account account,
-                                              @NonNull List<Address> registeredAddressList,
+                                              @NonNull List<String> registeredAddressList,
                                               boolean remove)
       throws RemoteException, OperationApplicationException
   {
-    Set<Address>                        registeredAddressSet = new HashSet<>(registeredAddressList);
+    Set<String>                         registeredAddressSet = new HashSet<>(registeredAddressList);
     ArrayList<ContentProviderOperation> operations           = new ArrayList<>();
-    Map<Address, SignalContact>         currentContacts      = getSignalRawContacts(account);
-    List<List<Address>>                 registeredChunks     = Util.chunk(registeredAddressList, 50);
+    Map<String, SignalContact>          currentContacts      = getSignalRawContacts(account);
+    List<List<String>>                  registeredChunks     = Util.chunk(registeredAddressList, 50);
 
-    for (List<Address> registeredChunk : registeredChunks) {
-      for (Address registeredAddress : registeredChunk) {
+    for (List<String> registeredChunk : registeredChunks) {
+      for (String registeredAddress : registeredChunk) {
         if (!currentContacts.containsKey(registeredAddress)) {
           Optional<SystemContactInfo> systemContactInfo = getSystemContactInfo(registeredAddress);
 
@@ -109,7 +108,7 @@ public class ContactsDatabase {
       }
     }
 
-    for (Map.Entry<Address, SignalContact> currentContactEntry : currentContacts.entrySet()) {
+    for (Map.Entry<String, SignalContact> currentContactEntry : currentContacts.entrySet()) {
       if (!registeredAddressSet.contains(currentContactEntry.getKey())) {
         if (remove) {
           Log.i(TAG, "Removing number: " + currentContactEntry.getKey());
@@ -240,7 +239,7 @@ public class ContactsDatabase {
 
 
   private void addContactVoiceSupport(List<ContentProviderOperation> operations,
-                                      @NonNull Address address, long rawContactId)
+                                      @NonNull String address, long rawContactId)
   {
     operations.add(ContentProviderOperation.newUpdate(RawContacts.CONTENT_URI)
                                            .withSelection(RawContacts._ID + " = ?", new String[] {String.valueOf(rawContactId)})
@@ -250,9 +249,9 @@ public class ContactsDatabase {
     operations.add(ContentProviderOperation.newInsert(ContactsContract.Data.CONTENT_URI.buildUpon().appendQueryParameter(ContactsContract.CALLER_IS_SYNCADAPTER, "true").build())
                                            .withValue(ContactsContract.Data.RAW_CONTACT_ID, rawContactId)
                                            .withValue(ContactsContract.Data.MIMETYPE, CALL_MIMETYPE)
-                                           .withValue(ContactsContract.Data.DATA1, address.toPhoneString())
+                                           .withValue(ContactsContract.Data.DATA1, address)
                                            .withValue(ContactsContract.Data.DATA2, context.getString(R.string.app_name))
-                                           .withValue(ContactsContract.Data.DATA3, context.getString(R.string.ContactsDatabase_signal_call_s, address.toPhoneString()))
+                                           .withValue(ContactsContract.Data.DATA3, context.getString(R.string.ContactsDatabase_signal_call_s, address))
                                            .withYieldAllowed(true)
                                            .build());
   }
@@ -348,13 +347,13 @@ public class ContactsDatabase {
                                            .build());
   }
 
-  private @NonNull Map<Address, SignalContact> getSignalRawContacts(@NonNull Account account) {
+  private @NonNull Map<String, SignalContact> getSignalRawContacts(@NonNull Account account) {
     Uri currentContactsUri = RawContacts.CONTENT_URI.buildUpon()
                                                     .appendQueryParameter(RawContacts.ACCOUNT_NAME, account.name)
                                                     .appendQueryParameter(RawContacts.ACCOUNT_TYPE, account.type).build();
 
-    Map<Address, SignalContact> signalContacts = new HashMap<>();
-    Cursor                      cursor         = null;
+    Map<String, SignalContact> signalContacts = new HashMap<>();
+    Cursor                     cursor         = null;
 
     try {
       String[] projection = new String[] {BaseColumns._ID, RawContacts.SYNC1, RawContacts.SYNC4, RawContacts.CONTACT_ID, RawContacts.DISPLAY_NAME_PRIMARY, RawContacts.DISPLAY_NAME_SOURCE};
@@ -362,7 +361,7 @@ public class ContactsDatabase {
       cursor = context.getContentResolver().query(currentContactsUri, projection, null, null, null);
 
       while (cursor != null && cursor.moveToNext()) {
-        Address currentAddress              = Address.fromSerialized(PhoneNumberFormatter.get(context).format(cursor.getString(1)));
+        String  currentAddress              = PhoneNumberFormatter.get(context).format(cursor.getString(1));
         long    rawContactId                = cursor.getLong(0);
         long    contactId                   = cursor.getLong(3);
         String  supportsVoice               = cursor.getString(2);
@@ -380,11 +379,9 @@ public class ContactsDatabase {
     return signalContacts;
   }
 
-  private Optional<SystemContactInfo> getSystemContactInfo(@NonNull Address address)
+  private Optional<SystemContactInfo> getSystemContactInfo(@NonNull String address)
   {
-    if (!address.isPhone()) return Optional.absent();
-
-    Uri      uri          = Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI, Uri.encode(address.toPhoneString()));
+    Uri      uri          = Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI, Uri.encode(address));
     String[] projection   = {ContactsContract.PhoneLookup.NUMBER,
                              ContactsContract.PhoneLookup._ID,
                              ContactsContract.PhoneLookup.DISPLAY_NAME};
@@ -395,8 +392,8 @@ public class ContactsDatabase {
       numberCursor = context.getContentResolver().query(uri, projection, null, null, null);
 
       while (numberCursor != null && numberCursor.moveToNext()) {
-        String  systemNumber  = numberCursor.getString(0);
-        Address systemAddress = Address.fromSerialized(PhoneNumberFormatter.get(context).format(systemNumber));
+        String systemNumber  = numberCursor.getString(0);
+        String systemAddress = PhoneNumberFormatter.get(context).format(systemNumber);
 
         if (systemAddress.equals(address)) {
           idCursor = context.getContentResolver().query(RawContacts.CONTENT_URI,

@@ -40,15 +40,12 @@ public class UnidentifiedAccessUtil {
   public static Optional<UnidentifiedAccessPair> getAccessFor(@NonNull Context context,
                                                               @NonNull Recipient recipient)
   {
-    if (!TextSecurePreferences.isUnidentifiedDeliveryEnabled(context)) {
-      Log.i(TAG, "Unidentified delivery is disabled. [other]");
-      return Optional.absent();
-    }
-
     try {
       byte[] theirUnidentifiedAccessKey       = getTargetUnidentifiedAccessKey(recipient);
       byte[] ourUnidentifiedAccessKey         = getSelfUnidentifiedAccessKey(context);
-      byte[] ourUnidentifiedAccessCertificate = TextSecurePreferences.getUnidentifiedAccessCertificate(context);
+      byte[] ourUnidentifiedAccessCertificate = recipient.resolve().isUuidSupported() && Recipient.self().isUuidSupported()
+                                                  ? TextSecurePreferences.getUnidentifiedAccessCertificate(context)
+                                                  : TextSecurePreferences.getUnidentifiedAccessCertificateLegacy(context);
 
       if (TextSecurePreferences.isUniversalUnidentifiedAccess(context)) {
         ourUnidentifiedAccessKey = Util.getSecretBytes(16);
@@ -56,7 +53,8 @@ public class UnidentifiedAccessUtil {
 
       Log.i(TAG, "Their access key present? " + (theirUnidentifiedAccessKey != null) +
                  " | Our access key present? " + (ourUnidentifiedAccessKey != null) +
-                 " | Our certificate present? " + (ourUnidentifiedAccessCertificate != null));
+                 " | Our certificate present? " + (ourUnidentifiedAccessCertificate != null) +
+                 " | UUID certificate supported? " + recipient.isUuidSupported());
 
       if (theirUnidentifiedAccessKey != null &&
           ourUnidentifiedAccessKey != null   &&
@@ -76,14 +74,10 @@ public class UnidentifiedAccessUtil {
   }
 
   public static Optional<UnidentifiedAccessPair> getAccessForSync(@NonNull Context context) {
-    if (!TextSecurePreferences.isUnidentifiedDeliveryEnabled(context)) {
-      Log.i(TAG, "Unidentified delivery is disabled. [self]");
-      return Optional.absent();
-    }
-
     try {
       byte[] ourUnidentifiedAccessKey         = getSelfUnidentifiedAccessKey(context);
-      byte[] ourUnidentifiedAccessCertificate = TextSecurePreferences.getUnidentifiedAccessCertificate(context);
+      byte[] ourUnidentifiedAccessCertificate = Recipient.self().isUuidSupported() ? TextSecurePreferences.getUnidentifiedAccessCertificate(context)
+                                                                                   : TextSecurePreferences.getUnidentifiedAccessCertificateLegacy(context);
 
       if (TextSecurePreferences.isUniversalUnidentifiedAccess(context)) {
         ourUnidentifiedAccessKey = Util.getSecretBytes(16);

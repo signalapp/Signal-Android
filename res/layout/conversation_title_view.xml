@@ -53,14 +53,15 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
+            <include layout="@layout/expiration_timer_badge" />
+
             <ImageView
                 android:id="@+id/verified_indicator"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
+                android:layout_width="12dp"
+                android:layout_height="match_parent"
                 android:layout_marginEnd="3dp"
-                android:alpha="0.7"
-                android:src="@drawable/ic_check_circle_white_18dp"
+                android:tint="?conversation_subtitle_color"
+                app:srcCompat="@drawable/ic_check_24"
                 android:visibility="gone"
                 tools:visibility="visible" />
 
@@ -74,6 +75,7 @@
                 android:ellipsize="end"
                 android:gravity="center_vertical"
                 android:maxLines="1"
+                android:textColor="?conversation_subtitle_color"
                 android:text="@string/ConversationTitleView_verified"
                 android:textDirection="ltr" />
 
@@ -85,6 +87,7 @@
                 android:layout_gravity="center_vertical|start"
                 android:ellipsize="end"
                 android:gravity="center_vertical"
+                android:textColor="?conversation_subtitle_color"
                 android:maxLines="1"
                 android:textDirection="ltr"
                 tools:text="(123) 123-1234" />
