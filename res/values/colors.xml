@@ -16,8 +16,10 @@
     <color name="transparent_black_20">#33000000</color>
     <color name="transparent_black_40">#66000000</color>
     <color name="transparent_black_60">#99000000</color>
+    <color name="transparent_black_80">#CC000000</color>
 
     <color name="transparent_white_20">#33ffffff</color>
+    <color name="transparent_white_30">#4Dffffff</color>
     <color name="transparent_white_60">#99ffffff</color>
     <color name="transparent_white_80">#ccffffff</color>
     <color name="transparent_white_90">#e6ffffff</color>
@@ -44,7 +46,7 @@
     <color name="transparent">#00FFFFFF</color>
     <color name="transparent_black">#00000000</color>
 
-    <color name="MediaOverview_Media_selected_overlay">#88000000</color>
+    <color name="MediaOverview_Media_selected_overlay">#99000000</color>
 
     <color name="logsubmit_confirmation_background">#44ff2d00</color>
 
@@ -52,5 +54,11 @@
 
     <color name="media_preview_bar_background">#90010101</color>
     <color name="media_preview_bar_shade_center">#88000000</color>
+
+    <color name="storage_color_empty">@color/core_grey_50</color>
+    <color name="storage_color_photos">#ff5951C8</color>
+    <color name="storage_color_videos">#ff9BCFBD</color>
+    <color name="storage_color_audio">#ff2090EA</color>
+    <color name="storage_color_files">#ffA23474</color>
 
 </resources>

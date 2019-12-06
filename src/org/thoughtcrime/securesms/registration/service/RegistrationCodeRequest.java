@@ -50,7 +50,7 @@ public final class RegistrationCodeRequest {
             fcmToken = Optional.absent();
           }
 
-          SignalServiceAccountManager accountManager = AccountManagerFactory.createManager(context, credentials.getE164number(), credentials.getPassword());
+          SignalServiceAccountManager accountManager = AccountManagerFactory.createUnauthenticated(context, credentials.getE164number(), credentials.getPassword());
 
           Optional<String> pushChallenge = PushChallengeRequest.getPushChallengeBlocking(accountManager, fcmToken, credentials.getE164number(), PUSH_REQUEST_TIMEOUT_MS);
 

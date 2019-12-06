@@ -69,7 +69,6 @@
 
     <style name="TextSecure.HighlightActionBar" parent="@style/TextSecure.DarkActionBar.Conversation">
         <item name="background">@color/signal_primary</item>
-        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
         <item name="elevation">0dp</item>
     </style>
 
@@ -193,8 +192,7 @@
     <style name="ViewOnceVideo.Duration" parent="@android:style/TextAppearance">
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/white</item>
-        <!-- TODO: change to transparent_black_60 after color swap -->
-        <item name="android:shadowColor">#99000000</item>
+        <item name="android:shadowColor">@color/transparent_black_60</item>
         <item name="android:shadowDx">0</item>
         <item name="android:shadowDy">0</item>
         <item name="android:shadowRadius">2</item>
@@ -233,7 +231,7 @@
         <item name="android:inputType">textAutoCorrect|textCapSentences|textMultiLine</item>
         <item name="android:contentDescription">@string/conversation_activity__compose_description</item>
     </style>
-    
+
     <style name="AttachmentTypeLabel">
         <item name="android:textColor">#ff999999</item>
         <item name="android:textSize">14sp</item>
@@ -280,7 +278,6 @@
         <item name="android:clickable">false</item>
         <item name="android:focusable">false</item>
     </style>
-
 
     <style name="PreferenceThemeOverlay.Fix" parent="PreferenceThemeOverlay.v14.Material">
         <item name="android:divider">@null</item>
@@ -335,6 +332,18 @@
         <item name="titleTextStyle">@style/TextSecure.TitleTextStyle.Conversation</item>
     </style>
 
+    <style name="Widget.Signal.ArcProgressBar" parent="">
+        <item name="android:layout_width">187dp</item>
+        <item name="android:layout_height">187dp</item>
+        <item name="arcBackgroundColor">?insight_progress_background</item>
+        <item name="arcForegroundColor">@color/signal_primary</item>
+        <item name="arcProgress">0.0</item>
+        <item name="arcStartAngle">120</item>
+        <item name="arcSweepAngle">300</item>
+        <item name="arcWidth">8dp</item>
+        <item name="arcRoundedEnds">true</item>
+    </style>
+
     <declare-styleable name="CameraButtonView">
         <attr name="imageCaptureSize" format="dimension" />
         <attr name="recordSize" format="dimension" />
@@ -362,5 +371,34 @@
         </attr>
 
         <attr format="boolean" name="pinchToZoomEnabled"/>
+    </declare-styleable>
+
+    <declare-styleable name="ArcProgressBar">
+        <attr name="arcWidth" format="dimension"         />
+        <attr name="arcBackgroundColor" format="color"   />
+        <attr name="arcForegroundColor" format="color"   />
+        <attr name="arcRoundedEnds" format="boolean" />
+        <attr name="arcStartAngle" format="float"   />
+        <attr name="arcSweepAngle" format="float"   />
+        <attr name="arcProgress" format="float"   />
+    </declare-styleable>
+
+    <style name="Signal.MessageRequest.Button" parent="Button.Borderless">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:background">?message_request_dialog_button_background</item>
+    </style>
+
+    <style name="Signal.MessageRequest.Button.Deny">
+        <item name="android:textColor">@color/core_red</item>
+    </style>
+
+    <style name="Signal.MessageRequest.Button.Accept">
+        <item name="android:textColor">@color/core_blue</item>
+    </style>
+
+    <declare-styleable name="MaxHeightFrameLayout">
+        <attr name="mhfl_maxHeight" format="dimension" />
     </declare-styleable>
 </resources>

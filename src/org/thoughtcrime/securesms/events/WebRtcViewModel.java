@@ -118,6 +118,6 @@ public class WebRtcViewModel {
   }
 
   public @NonNull String toString() {
-    return "[State: " + state + ", recipient: " + recipient.requireAddress() + ", identity: " + identityKey + ", remoteVideo: " + remoteVideoEnabled + ", localVideo: " + localCameraState.isEnabled() + "]";
+    return "[State: " + state + ", recipient: " + recipient.getId().serialize() + ", identity: " + identityKey + ", remoteVideo: " + remoteVideoEnabled + ", localVideo: " + localCameraState.isEnabled() + "]";
   }
 }

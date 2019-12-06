@@ -1,18 +1,16 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="app_name">Signal</string>
   <string name="yes">نعم</string>
   <string name="no">لا</string>
   <string name="delete">حذف</string>
-  <string name="please_wait">رجاء الانتظار...</string>
+  <string name="please_wait">يُرجى الانتظار…</string>
   <string name="save">حفظ</string>
-  <string name="note_to_self">ملاحظة لنفسي</string>
+  <string name="note_to_self">المذكرة الشخصيّة</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">رسالة جديدة</string>
   <!--AlbumThumbnailView-->
-  <string name="AlbumThumbnailView_plus">/+%d</string>
   <!--ApplicationMigrationActivity-->
-  <string name="ApplicationMigrationActivity__signal_is_updating">يُحدّث سغنال...</string>
+  <string name="ApplicationMigrationActivity__signal_is_updating">سغنال قيد التحديث…</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">حاليا: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">لم تقم بتحديد عبارة سرية بعد!</string>
@@ -38,7 +36,7 @@
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">تفعيل Signal وإشعارات الرسائل بشكل دائم</string>
   <string name="ApplicationPreferencesActivity_disable">تعطيل</string>
   <string name="ApplicationPreferencesActivity_unregistering">جارٍ إلغاء التسجيل</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">جارٍ إلغاء التسجيل من رسائل ومكالمات Signal...</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">جارٍ إلغاء التسجيل من رسائل ومكالمات سغنال…</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">تعطيل رسائل ومكالمات Signal؟</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">سوف يتم تعطيل رسائل ومكالمات Signal بإلغاء تسجيلك من الخدمة. سوف يتعين عليك إعادة تسجيل رقم هاتفك لمعاودة استخدام الخدمتين في المستقبل.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">خطأ في الاتصال بالخادم!</string>
@@ -70,13 +68,13 @@
   <string name="DraftDatabase_Draft_quote_snippet">(رَدّ)</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">لم يتم العثور على تطبيق لاختيار ملف.</string>
-  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">يحتاج Signal إلى إذن سعة التخزين من أجل إضافة الصور والمرفقات ولكن تم إيقاف الإذن على نحو دائم، رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"سعة التخزين\".</string>
-  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">يحتاج Signal إلى إذن جهات الاتصال من أجل إرفاق بيانات جهة اتصال ولكن تم إيقاف الإذن على نحو دائم، رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"جهات الاتصال\".</string>
-  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">يحتاج Signal إلى إذن الموقع من أجل إرفاق الموقع الجغرافي ولكن تم إيقاف الإذن على نحو دائم، رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"الموقع\".</string>
-  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">يحتاج Signal إلى إذن الكاميرا من أجل التقاط صور ولكن تم إيقاف الإذن على نحو دائم، رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"الكاميرا\".</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">يحتاج سغنال إلى إذن سعة التخزين من أجل إضافة الصور والمرفقات، ولكن تم إيقاف الإذن على نحو دائم. رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"سعة التخزين\".</string>
+  <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">يحتاج سغنال إلى إذن جهات الاتصال من أجل إرفاق بيانات جهة اتصال ولكن تم إيقاف الإذن على نحو دائم. رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"جهات الاتصال\".</string>
+  <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">يحتاج سغنال إلى إذن الموقع من أجل إرفاق الموقع الجغرافي ولكن تم إيقاف الإذن على نحو دائم. رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"الموقع\".</string>
+  <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">يحتاج سغنال إلى إذن الكاميرا من أجل التقاط صور ولكن تم إيقاف الإذن على نحو دائم. رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"الكاميرا\".</string>
   <!--AttachmentUploadJob-->
-  <string name="AttachmentUploadJob_uploading_media">جاري رفع الميديا</string>
-  <string name="AttachmentUploadJob_compressing_video_start">جاري ضغط الفيديو...</string>
+  <string name="AttachmentUploadJob_uploading_media">جاري رفع الميديا…</string>
+  <string name="AttachmentUploadJob_compressing_video_start">جاري ضغط الفيديو…</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">خطأ في تشغيل الصوت!</string>
   <!--BlockedContactsActivity-->
@@ -86,11 +84,14 @@
   <string name="BucketedThreadMedia_Yesterday">البارحة</string>
   <string name="BucketedThreadMedia_This_week">هذا الأسبوع</string>
   <string name="BucketedThreadMedia_This_month">هذا الشهر</string>
+  <string name="BucketedThreadMedia_Large">كبيرة</string>
+  <string name="BucketedThreadMedia_Small">صغيرة</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">مكالمة واردة</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">فشل في حفظ الصورة.</string>
   <!--CameraXFragment-->
+  <string name="CameraXFragment_tap_for_photo_hold_for_video">المس لالتقاط صورة, اضغط باستمرار لتصوير فيديو</string>
   <string name="CameraXFragment_capture_description">التقاط</string>
   <string name="CameraXFragment_change_camera_description">تغيير الكاميرا</string>
   <string name="CameraXFragment_open_gallery_description">فتح معرض الصور</string>
@@ -98,6 +99,7 @@
   <string name="CameraContacts_recent_contacts">جهات الاتصال الأخيرة</string>
   <string name="CameraContacts_signal_contacts">جهات اتصال سغنال</string>
   <string name="CameraContacts_signal_groups">مجموعات سغنال</string>
+  <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">يمكنك مشاركة %d محادثات كحد أقصى</string>
   <string name="CameraContacts_select_signal_recipients">اختر المتلقّيين والمتلقّيات بسغنال</string>
   <string name="CameraContacts_no_signal_contacts">لا جهات اتصال في سغنال</string>
   <string name="CameraContacts_you_can_only_use_the_camera_button">يمكنك استخدام زر الكاميرا لإرسال الصور إلى من تراسل في سغنال.</string>
@@ -110,6 +112,8 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">لم يتم العثور على متصفح للإنترنت.</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">هناك مكالمة هاتفية تجري بالفعل</string>
+  <string name="CommunicationActions_cancel">إلغاء</string>
+  <string name="CommunicationActions_call">اتصل</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">تم تغيير بيان سلامة المحادثة مع %1$s ، وهذا يعني إما محاولة أحداً اعتراض المحادثة أو ببساطة قيام %2$s بإعادة التسجيل في Signal مرة أخرى.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">لربما ترغب بالتحقق من بيان سلامة المحادثة مع هذا المتصل.</string>
@@ -180,13 +184,17 @@
   <string name="ConversationActivity_unable_to_record_audio">تعذر تسجيل الصوت!</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">لا يوجد تطبيق على الجهاز لمعالجة هذا الرابط.</string>
   <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">لإرسال رسالة صوتية, برجاء السماح لSignal بالوصول إلي المايكروفون</string>
-  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">يحتاج Signal إلى إذن الميكروفون من أجل الرسائل الصوتية ولكن تم إيقاف الإذن على نحو دائم، رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"الميكروفون\".</string>
+  <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">يحتاج سغنال إلى إذن الميكروفون من أجل الرسائل الصوتية ولكن تم إيقاف الإذن على نحو دائم. رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"الميكروفون\".</string>
   <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">للإتصال ب%s, Signal يحتاج الوصول إلي المايكروفون و الكاميرا الخاصين بكم.</string>
-  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">يحتاج Signal إلى أذونات الميكروفون والكاميرا من أجل الاتصال بـ%s ولكن تم إيقافهم على نحو دائم، رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"الميكروفون\" و\"الكاميرا\"</string>
-  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">لإلتقاط صور و فيديوهات, برجاء السماح لSignal بالوصول إلي الكاميرا.</string>
-  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">يحتاج Signal إلى إذن الكاميرا من أجل التقاط صور وفيديو  ولكن تم إيقاف الإذن على نحو دائم، رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"الكاميرا\".</string>
+  <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">يحتاج سغنال إلى أذونات الميكروفون والكاميرا من أجل الاتصال بـ%s ولكن تم إيقافهم على نحو دائم. رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"الميكروفون\" و\"الكاميرا\".</string>
+  <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">لإلتقاط الصور و الفيديوهات, الرجاء السماح ل سغنال بالوصول إلي الكاميرا.</string>
+  <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">يحتاج سغنال إلى إذن الكاميرا من أجل التقاط صور وفيديو  ولكن تم إيقاف الإذن على نحو دائم. رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"الكاميرا\".</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">يحتاج Signal إلي إذن الكاميرا لالتقاط صور أو تسجيل فيديو</string>
+  <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">فعّل الإذن للميكروفون لالتقاط الصوت والفيديو.</string>
+  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">يحتاج سغنال إلى أذونات الميكروفون لتسجيل الفيديو, لكن قد تم ايقافهم. الرجاء الذهاب إلى إعدادات التطبيق ثم اختيار \"الأذونات\" ثم تفعيل \"الميكروفون\" و \"الكاميرا\".</string>
+  <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">يحتاج سغنال الى أذونات الميكروفون لتسجيل الفيديو. </string>
   <string name="ConversationActivity_quoted_contact_message">%1$s%2$s</string>
+  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">لا يستنطيع سغنال إرسال الرسائل النصية SMS أو رسائل الوسائط MMS لأنه ليس التطبيق الافتراضي للرسائل لديك. هل تريد تغيير ذلك في إعدادات الأندرويد؟</string>
   <string name="ConversationActivity_yes">نعم</string>
   <string name="ConversationActivity_no">لا</string>
   <string name="ConversationActivity_search_position">%1$dمن%2$d</string>
@@ -246,22 +254,24 @@
     <item quantity="other">جارٍ حفظ %1$d مرفق</item>
   </plurals>
   <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-    <item quantity="zero">جارٍ حفظ %1$d مرفق في الذاكرة...</item>
-    <item quantity="one">جارٍ حفظ المرفق في الذاكرة...</item>
-    <item quantity="two">جارٍ حفظ %1$d مرفق في الذاكرة...</item>
-    <item quantity="few">جارٍ حفظ %1$d مرفق في الذاكرة...</item>
-    <item quantity="many">جارٍ حفظ %1$d مرفق في الذاكرة...</item>
-    <item quantity="other">جارٍ حفظ %1$d مرفق في الذاكرة...</item>
+    <item quantity="zero">جارٍ حفظ %1$d مرفق في الذاكرة…</item>
+    <item quantity="one">جارٍ حفظ المرفق في الذاكرة…</item>
+    <item quantity="two">جارٍ حفظ %1$d مرفق في الذاكرة…</item>
+    <item quantity="few">جارٍ حفظ %1$d مرفق في الذاكرة…</item>
+    <item quantity="many">جارٍ حفظ %1$d مرفق في الذاكرة…</item>
+    <item quantity="other">جارٍ حفظ %1$d مرفق في الذاكرة…</item>
   </plurals>
-  <string name="ConversationFragment_pending">معلق...</string>
+  <string name="ConversationFragment_pending">معلق…</string>
   <string name="ConversationFragment_push">بيانات (Signal)</string>
   <string name="ConversationFragment_mms">رسالة وسائط متعددة</string>
   <string name="ConversationFragment_sms">رسالة نصية</string>
   <string name="ConversationFragment_deleting">جارٍ الحذف</string>
-  <string name="ConversationFragment_deleting_messages">حذف الرسائل جارٍ...</string>
+  <string name="ConversationFragment_deleting_messages">حذف الرسائل جارٍ…</string>
   <string name="ConversationFragment_quoted_message_not_found">لم يتم العثور على الرسالة الأصلية</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">الرسالة الأصلية لم تعد متوفرة</string>
   <string name="ConversationFragment_failed_to_open_message">فشل في فتح الرسالة</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_right_reply">يمكنك السحب إلى اليمين فوق أي رسالة للرد بسرعة</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_left_reply">يمكنك السحب إلى اليسار فوق أي رسالة للرد بسرعة</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">لا يوجد متصفح بالجهاز.</string>
   <!--ConversationListFragment-->
@@ -283,7 +293,7 @@
     <item quantity="other">سوف يتم حذف %1$d رسائل مختارة بشكل نهائي.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">حذف</string>
-  <string name="ConversationListFragment_deleting_selected_conversations">جارٍ حذف المحادثات المختارة...</string>
+  <string name="ConversationListFragment_deleting_selected_conversations">جارٍ حذف المحادثات المختارة…</string>
   <plurals name="ConversationListFragment_conversations_archived">
     <item quantity="zero">تم نقل %d رسالة إلى الأرشيف</item>
     <item quantity="one">تم نقل رسالة إلى الأرشيف</item>
@@ -336,7 +346,7 @@
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">لن يكون إرسال واستقبال الرسائل ممكنا بمجرد إلغاء ربط الجهاز.</string>
   <string name="DeviceListActivity_network_connection_failed">فشل في اتصالات الشبكة!</string>
   <string name="DeviceListActivity_try_again">حاول مجددا</string>
-  <string name="DeviceListActivity_unlinking_device">جارٍ إلغاء ربط الجهاز...</string>
+  <string name="DeviceListActivity_unlinking_device">جارٍ إلغاء ربط الجهاز…</string>
   <string name="DeviceListActivity_unlinking_device_no_ellipsis">جارٍ إلغاء ربط الجهاز</string>
   <string name="DeviceListActivity_network_failed">فشل في الشبكة!</string>
   <!--DeviceListItem-->
@@ -345,7 +355,6 @@
   <string name="DeviceListItem_last_active_s">آخر مرة %s</string>
   <string name="DeviceListItem_today">اليوم</string>
   <!--DocumentView-->
-  <string name="DocumentView_unknown_file">ملف مجهول</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">التحسين في حالة غياب خدمات Play Services</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">الهاتف لا يدعم خدمات Play. أنقر لإلغاء نظام تحسين البطارية التي تمنع Signal من استقبال الرسائل عند عدم النشاط.</string>
@@ -375,7 +384,7 @@
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">معاينات إختيارية للروابط مدعومة الآن لبعض أشهر مواقع الإنترنت. </string>
   <string name="ExperienceUpgradeActivity_got_it">عُلم</string>
   <!--GcmBroadcastReceiver-->
-  <string name="GcmBroadcastReceiver_retrieving_a_message">استعادة رسالة...</string>
+  <string name="GcmBroadcastReceiver_retrieving_a_message">استعادة رسالة…</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">فشل دائما في اتصال Signal!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal لم يتمكن من التسجيل مع خدمات جوجل بلاي، وتم تعطيل رسائل ومكالمات Signal. رجاء محاولة إعادة التسجيل عبر قائمة الإعدادات بالتطبيق ثم اختيار متقدم.</string>
@@ -386,7 +395,7 @@
   <string name="GiphyFragmentPagerAdapter_stickers">لصاقات</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">مجموعة جديدة</string>
-  <string name="GroupCreateActivity_actionbar_edit_title">تدقيق المجموعة</string>
+  <string name="GroupCreateActivity_actionbar_edit_title">اعدادات المجموعة</string>
   <string name="GroupCreateActivity_group_name_hint">أسم المجموعة</string>
   <string name="GroupCreateActivity_actionbar_mms_title">مجموعة وسائط متعددة جديدة</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">قمت باختيار شخص لا يدعم مجوعات Signal وبالتالي ستكون مجموعة وسائط متعددة.</string>
@@ -396,9 +405,9 @@
   <string name="GroupCreateActivity_avatar_content_description">الصورة الرمزية للمجموعة</string>
   <string name="GroupCreateActivity_menu_apply_button">تطبيق</string>
   <string name="GroupCreateActivity_creating_group">الإنشاء جارٍ %1$s…</string>
-  <string name="GroupCreateActivity_updating_group">التحديث جارٍ %1$s...</string>
+  <string name="GroupCreateActivity_updating_group">التحديث جارٍ %1$s…</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">لا يمكن إضافة %1$s بسبب عدم استخدام Signal.</string>
-  <string name="GroupCreateActivity_loading_group_details">تحميل بيانات المجموعة...</string>
+  <string name="GroupCreateActivity_loading_group_details">تحميل بيانات المجموعة…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">أنت في المجموعة بالفعل.</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">هل تريد مشاركة اسمك وصورتك مع هذه المجموعة؟</string>
@@ -415,7 +424,7 @@
   <string name="InviteActivity_share">شارك</string>
   <string name="InviteActivity_choose_contacts">اختر جهات الاتصال</string>
   <string name="InviteActivity_cancel">إلغاء</string>
-  <string name="InviteActivity_sending">ارسال...</string>
+  <string name="InviteActivity_sending">إرسال…</string>
   <string name="InviteActivity_heart_content_description">قلب</string>
   <string name="InviteActivity_invitations_sent">تم إرسال الدعوات!</string>
   <string name="InviteActivity_invite_to_signal">الدعوة إلى Signal</string>
@@ -439,7 +448,7 @@
   <string name="InviteActivity_no_app_to_share_to">يبدو عدم وجود أي تطبيقات لديك للمشاركة من خلالها.</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">الأصدقاء لا يتركون بعضهم يجرون محادثات غير مشفرة.</string>
   <!--Job-->
-  <string name="Job_working_in_the_background">يعمل في الخلفية...</string>
+  <string name="Job_working_in_the_background">يعمل في الخلفية…</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">الإرسال فشل.</string>
   <string name="MessageDetailsRecipient_new_safety_number">رقم أمان جديد</string>
@@ -454,19 +463,15 @@
   <string name="MmsDownloader_error_reading_mms_settings">خطأ في قراءة إعدادات مزود خدمة رسالة الوسائط المتعددة اللاسلكي</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">الوسائط</string>
-  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
-    <item quantity="zero">حذف المحادثات المختارة؟</item>
-    <item quantity="one">حذف المحادثات المختارة؟</item>
-    <item quantity="two">حذف المحادثات المختارة؟</item>
-    <item quantity="few">حذف المحادثات المختارة؟</item>
-    <item quantity="many">حذف الرسائل المختارة؟</item>
-    <item quantity="other">حذف الرسائل المختارة؟</item>
-  </plurals>
+  <string name="MediaOverviewActivity_Audio">صوت</string>
   <string name="MediaOverviewActivity_Media_delete_progress_title">جارٍ الحذف</string>
-  <string name="MediaOverviewActivity_Media_delete_progress_message">حذف الرسائل جارٍ...</string>
-  <string name="MediaOverviewActivity_Documents">الوثائق</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">حذف الرسائل جارٍ…</string>
   <string name="MediaOverviewActivity_Select_all">أختر الكل</string>
-  <string name="MediaOverviewActivity_collecting_attachments">جارٍ جمع المرفقات...</string>
+  <string name="MediaOverviewActivity_collecting_attachments">جارٍ جمع المرفقات…</string>
+  <string name="MediaOverviewActivity_file">ملف</string>
+  <string name="MediaOverviewActivity_audio">صوت</string>
+  <string name="MediaOverviewActivity_video">فيديو</string>
+  <string name="MediaOverviewActivity_image">صورة</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">مكالمة Signal</string>
   <string name="NotificationBarManager__establishing_signal_call">بدء مكالمة Signal</string>
@@ -485,13 +490,21 @@
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">أنقر للتحديد</string>
   <!--MediaSendActivity-->
-  <string name="MediaSendActivity_add_a_caption">إضافة شرح...</string>
+  <string name="MediaSendActivity_add_a_caption">إضافة تعليق…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">تم حذف عنصر لإنه تجاوز حد الحجم المسموح</string>
   <string name="MediaSendActivity_camera_unavailable">الكاميرا غير متاحة.</string>
   <string name="MediaSendActivity_message_to_s">رسالة إلى %s</string>
   <string name="MediaSendActivity_message">رسالة</string>
   <string name="MediaSendActivity_select_recipients">اختر المتلقّيين والمتلقّيات</string>
   <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal بحاجة إلى النفاذ إلى قائمة مراسليك و ذلك قصد عرضها.</string>
+  <plurals name="MediaSendActivity_cant_share_more_than_n_items">
+    <item quantity="zero">لا يمكنك ارسال أكثر من %dعناصر. </item>
+    <item quantity="one">لا يمكنك ارسال أكثر من عنصر %d.</item>
+    <item quantity="two">لا يمكنك ارسال أكثر من عنصرين %d. </item>
+    <item quantity="few">لا يمكنك ارسال أكثر من %d عناصر. </item>
+    <item quantity="many">لا يمكنك ارسال أكثر من %d عناصر. </item>
+    <item quantity="other">لا يمكنك ارسال أكثر من %d عناصر. </item>
+  </plurals>
   <string name="MediaSendActivity_select_recipients_description">اختر المتلقّيين والمتلقّيات</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">جميع الوسائط</string>
@@ -529,7 +542,7 @@
 • قراءة جميع الرسائل
 \n• أرسل رسائل باسمك</string>
   <string name="DeviceProvisioningActivity_content_progress_title">ربط الجهاز</string>
-  <string name="DeviceProvisioningActivity_content_progress_content">جارٍ ربط الجهاز...</string>
+  <string name="DeviceProvisioningActivity_content_progress_content">جارٍ ربط الجهاز…</string>
   <string name="DeviceProvisioningActivity_content_progress_success">تمت المصادقة على الجهاز.</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">لم يتم العثور على جهاز.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">خطأ في الشبكة.</string>
@@ -549,6 +562,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">أيقونة Signal</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">أدخل العبارة السرية</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">عبارة سرية غير صحيحة!</string>
+  <string name="PassphrasePromptActivity_unlock_signal">فك القفل عن سيجنال</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">الخريطة</string>
   <string name="PlacePickerActivity_not_a_valid_address">ليس عنوان صالح</string>
@@ -556,6 +570,10 @@
   <string name="PlacePickerActivity_accept_address">قبول العنوان</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">تطبيق Google Play Service الذي قمت بتثبيته لا يعمل بشكل صحيح. رجاء إعادة تثبيته والمحاولة مرة أخرى.</string>
+  <!--ProfileEditNameFragment-->
+  <string name="ProfileEditNameFragment_save">حفظ</string>
+  <!--ProfileEditOverviewFragment-->
+  <string name="ProfileEditOverviewFragment_profile">الملف الشخصي</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">تقييم التطبيق</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">إذا كنت مستمتع باستخدام التطبيق رجاء مساعدتنا بتقييمه</string>
@@ -616,9 +634,13 @@
   <string name="RegistrationActivity_next">التالي
 </string>
   <string name="RegistrationActivity_continue">استمر</string>
+  <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">حافظ على خصوصيتك اينما كنت.
+كن على طبيعتك في كل رسالة.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">أدخل رقم هاتفك للبدء</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">ستستلم رمز تفعيل. قد تطبَّق تكلفة الرسائل المحلية.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">أدخل الرمز الذي أرسلناه إلى%s</string>
+  <string name="RegistrationActivity_phone_number_description">رقم الهاتف</string>
+  <string name="RegistrationActivity_country_code_description">رمز البلد</string>
   <string name="RegistrationActivity_call">اتصل</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_photo">صورة</string>
@@ -705,12 +727,15 @@
   <!--UnverifiedSendDialog-->
   <string name="UnverifiedSendDialog_send_message">هل تود إرسال الرسالة ؟</string>
   <string name="UnverifiedSendDialog_send">إرسل</string>
+  <!--UsernameEditFragment-->
+  <string name="UsernameEditFragment_submit">قدَم</string>
+  <string name="UsernameEditFragment_delete">أحذف  </string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">متصلك يستعمل نسخة قديمة من تطبيق سيقنال. من فضلك اطلب منه تحديث التطبيق ليتسنى لك التحقق من رقم الأمان.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">إن متصلك هذا يستعمل نسخة تطبيق سيقنـال أحدث ورمز QR فيها لا يتوافق مع نسختك.
 من فضلك، قم بالتحديث لتتمكن من المقارنة.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">إن رمز التحقق من رقم الأمان المستقرأ من رمز QR غير مصاغ بشكل صحيح. يُرجى إعادة الاستقراء مجدداً.</string>
-  <string name="VerifyIdentityActivity_share_safety_number_via">شارك رقم الأمان بواسطة...</string>
+  <string name="VerifyIdentityActivity_share_safety_number_via">شارك رقم الأمان بواسطة…</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">رقم الأمان الخاص بنا في سيقنال:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">يبدو عدم وجود أي تطبيقات لديك للمشاركة من خلالها.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">لم يُعثر على رقم أمان في الحافظة من أجل المقارنة</string>
@@ -719,16 +744,16 @@
   <!--ViewOnceMessageActivity-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">رسالة مشفرة رديئة</string>
-  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">الرسالة مشفرة دون وجود قناة اتصال...</string>
+  <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">الرسالة مشفرة دون وجود قناة اتصال…</string>
   <!--MmsMessageRecord-->
   <string name="MmsMessageRecord_bad_encrypted_mms_message">رسالة مشفرة رديئة</string>
-  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">الرسالة مشفرة دون وجود قناة اتصال...</string>
+  <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">الرسالة مشفرة دون وجود قناة اتصال…</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">كتم الإشعارات</string>
   <!--OutdatedBuildReminder-->
   <string name="OutdatedBuildReminder_no_web_browser_installed">لم يتم العثور على أي متصفح ويب مثبت</string>
   <!--ApplicationMigrationService-->
-  <string name="ApplicationMigrationService_import_in_progress">جاري الاستيراد...</string>
+  <string name="ApplicationMigrationService_import_in_progress">جاري الاستيراد…</string>
   <string name="ApplicationMigrationService_importing_text_messages">استيراد رسائل نصية</string>
   <string name="ApplicationMigrationService_import_complete">تم الاستيراد</string>
   <string name="ApplicationMigrationService_system_database_import_is_complete">تم استيراد قاعدة بيانات النظام.</string>
@@ -741,7 +766,7 @@
   <string name="MediaPreviewActivity_you">أنت</string>
   <string name="MediaPreviewActivity_unssuported_media_type">غير مدعوم.</string>
   <string name="MediaPreviewActivity_draft">مسودة:</string>
-  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">يحتاج Signal إلى إذن سعة التخزين من أجل استخدام الذاكرة الخارجية ولكن تم إيقاف الإذن على نحو دائم، رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"سعة التخزين\".</string>
+  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">يحتاج سغنال إلى إذن سعة التخزين من أجل استخدام الذاكرة الخارجية ولكن تم إيقاف الإذن على نحو دائم. رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"سعة التخزين\".</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">لا يمكن الحفظ إلى الذاكرة الخارجية بدون أذونات</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">أَتريد حذف الرسالة ؟</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">سوف يقوم هذا بحذف الرسالة كُليًا.</string>
@@ -773,6 +798,7 @@
   <string name="NotificationChannel_other">أخرى</string>
   <string name="NotificationChannel_group_messages">الرسائل</string>
   <string name="NotificationChannel_missing_display_name">مجهول</string>
+  <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">الردود السريعة غير متاحة عند قفل Signal!</string>
   <string name="QuickResponseService_problem_sending_message">مشكلة في الإرسال!</string>
@@ -787,6 +813,7 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">رسالة جديدة</string>
+  <!--ThumbnailView-->
   <!--TransferControlView-->
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">إنّ الجهاز لم يعد مسجلا</string>
@@ -795,7 +822,7 @@
   <string name="VideoPlayer_error_playing_video">خطأ في تشغيل الفيديو</string>
   <!--WebRtcCallActivity-->
   <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">للإجابة على مكالمة %s يجب السماح لSignal إستخدام مايكروفون جهازك.</string>
-  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">يحتاج Signal إلى أذونات الميكروفون والكاميرا من أجل المكالمات ولكن تم إيقافهم على نحو دائم، رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"الميكروفون\" و\"الكاميرا\".</string>
+  <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">يحتاج سغنال إلى أذونات الميكروفون والكاميرا من أجل المكالمات ولكن تم إيقافهم على نحو دائم. رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"الميكروفون\" و\"الكاميرا\".</string>
   <!--WebRtcCallScreen-->
   <string name="WebRtcCallScreen_new_safety_numbers">تم تغيير بيان سلامة المحادثة مع %1$s، وهذا يعني إما محاولة أحداً اعتراض المحادثة أو ببساطة قيام %2$s بإعادة التسجيل في Signal مرة أخرى.</string>
   <string name="WebRtcCallScreen_you_may_wish_to_verify_this_contact">لربما ترغب بالتحقق من رقم الأمان مع هذا المتصل.</string>
@@ -842,11 +869,11 @@
   <string name="contact_filter_toolbar__show_dial_pad_description">إظهار لوحة الاتصال</string>
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">لا توجد جهات اتصال.</string>
-  <string name="contact_selection_group_activity__finding_contacts">تحميل جهات الاتصال...</string>
+  <string name="contact_selection_group_activity__finding_contacts">تحميل جهات الاتصال…</string>
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">صورة جهة الاتصال</string>
   <!--ContactSelectionListFragment-->
-  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">يحتاج Signal إلى أذن جهات الاتصال من أجل عرض جهات الاتصال الخاص بك ولكن تم إيقاف الإذن على نحو دائم، رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"جهات الاتصال\"</string>
+  <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">يحتاج سغنال إلى أذن جهات الاتصال من أجل عرض جهات الاتصال الخاص بك ولكن تم إيقاف الإذن على نحو دائم. رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"جهات الاتصال\".</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">خطأ في جلب قائمة المراسلين، يُرجى التحقق مِن اتصالك بالشبكة</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">لا توجد جهات اتصال محظورة </string>
@@ -894,7 +921,7 @@
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">النزول إلى الأسفل</string>
   <!--country_selection_fragment-->
-  <string name="country_selection_fragment__loading_countries">تحميل البلدان جارٍ ...</string>
+  <string name="country_selection_fragment__loading_countries">تحميل البلدان جارٍ …</string>
   <string name="country_selection_fragment__search">بحث</string>
   <!--device_add_fragment-->
   <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">مسح رمز الاستجابة السريع المبين على الجهاز لربطه.</string>
@@ -978,12 +1005,12 @@
   <string name="log_submit_activity__button_submit">قدَم</string>
   <string name="log_submit_activity__button_got_it">عُلم</string>
   <string name="log_submit_activity__button_compose_email">كتابة بريد إلكتروني</string>
-  <string name="log_submit_activity__loading_logs">جار تحميل السجلات...</string>
-  <string name="log_submit_activity__uploading_logs">جار رفع السجلات...</string>
+  <string name="log_submit_activity__loading_logs">جار تحميل السجلات…</string>
+  <string name="log_submit_activity__uploading_logs">جار رفع السجلات…</string>
   <string name="log_submit_activity__success">تم بنجاح!</string>
   <string name="log_submit_activity__copied_to_clipboard">نسخ إلى الحافظة</string>
   <string name="log_submit_activity__choose_email_app">اختر تطبيق البريد الإلكتروني</string>
-  <string name="log_submit_activity__please_review_this_log_from_my_app">الرجاء مراجعة هذا السجل من تطبيقي: %1$s</string>
+  <string name="log_submit_activity__please_review_this_log_from_my_app">الرجاء مراجعة هذا السجلّ من تطبيقي: %1$s</string>
   <string name="log_submit_activity__network_failure">فشل في الشبكة. الرجاء المحاولة مرة أخرى.</string>
   <!--database_migration_activity-->
   <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">هل تود استيراد الرسائل النصية الموجودة إلى قاعدة بيانات Signal المشفرة؟</string>
@@ -1004,7 +1031,7 @@
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">عرض</string>
   <string name="message_recipients_list_item__resend">إعادة الإرسال</string>
-  <string name="message_recipients_list_item__resending">إعادة الارسال</string>
+  <string name="message_recipients_list_item__resending">إعادة الارسال…</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="zero">%1$s انضموا إلى المجموعة.</item>
@@ -1058,7 +1085,7 @@
   <string name="unknown_sender_view__add_to_contacts">أضف إلى قائمة جهات الإتصال</string>
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__tap_to_scan">المس للمسح</string>
-  <string name="verify_display_fragment__loading">جاري التحميل ...</string>
+  <string name="verify_display_fragment__loading">قيد التحميل…</string>
   <string name="verify_display_fragment__verified"> تم التحقق منه</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">شارك رقم الأمان</string>
@@ -1174,6 +1201,7 @@
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">حذف الرسائل القديمة بالمحادثة عند تجاوز أقصى طول محدد.</string>
   <string name="preferences__delete_old_messages">احذف الرسائل القديمة</string>
   <string name="preferences__chats">المحادثات والوسائط</string>
+  <string name="preferences__storage">التخزين</string>
   <string name="preferences__conversation_length_limit">حد طول المحادثة</string>
   <string name="preferences__trim_all_conversations_now">تقليم كل المحادثات الآن</string>
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">فحص وتقليم كل المحادثات وفق الحد الأقصى</string>
@@ -1200,6 +1228,7 @@
   <string name="preferences_chats__when_roaming">عند استخدام التجوال</string>
   <string name="preferences_chats__media_auto_download">تنزلي تلقائي للوسائط</string>
   <string name="preferences_chats__message_trimming">تقليم الرسالة</string>
+  <string name="preferences_storage__audio">صوت</string>
   <string name="preferences_advanced__use_system_emoji">استخدام الرموز التعبيرية بالنظام</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">تعطيل الرموز التعبيرية المدمجة في Signal</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">تمرير جميع المكالمات عبر خادم Signal لتجنب الإفصاح عن الرقم التعريفي الخاص بك إلى جهة الاتصال. تفعيل الخاصية سوف يقلل من جودة المكالمة.</string>
@@ -1225,7 +1254,7 @@
   <!--menus-->
   <!--****************************************-->
   <!--contact_selection_list-->
-  <string name="contact_selection_list__unknown_contact">رسالة جديدة إلى...</string>
+  <string name="contact_selection_list__unknown_contact">رسالة جديدة إلى…</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">اتصل</string>
   <!--conversation_callable_secure-->
@@ -1237,6 +1266,7 @@
   <string name="conversation_context__menu_forward_message">إعادة الإرسال</string>
   <string name="conversation_context__menu_resend_message">إعادة الإرسال</string>
   <string name="conversation_context__menu_reply_to_message">الرَدّ على الرسالة</string>
+  <!--conversation_context_reacction-->
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">حفظ المرفق</string>
   <!--conversation_expiring_off-->
@@ -1270,7 +1300,7 @@
   <string name="conversation_unmuted__mute_notifications">كتم الإشعارات</string>
   <!--conversation-->
   <string name="conversation__menu_add_attachment">إضافات</string>
-  <string name="conversation__menu_edit_group">تدقيق المجموعة</string>
+  <string name="conversation__menu_edit_group">اعدادات المجموعة</string>
   <string name="conversation__menu_leave_group">أترك المجموعة</string>
   <string name="conversation__menu_view_all_media">جميع الوسائط</string>
   <string name="conversation__menu_conversation_settings">إعدادات المحادثة</string>
@@ -1322,8 +1352,6 @@
   <string name="media_preview__save_title">أحفظ</string>
   <string name="media_preview__forward_title">إعادة توجيه</string>
   <string name="media_preview__all_media_title">جميع الوسائط</string>
-  <!--media_overview-->
-  <string name="media_overview_documents_fragment__no_documents_found">لا توجد ملفات</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">معاينة الوسائط</string>
   <!--new_conversation_activity-->
@@ -1331,17 +1359,23 @@
   <!--redphone_audio_popup_menu-->
   <!--Trimmer-->
   <string name="trimmer__deleting">جارٍ الحذف</string>
-  <string name="trimmer__deleting_old_messages">جار حذف الرسائل القديمة...</string>
+  <string name="trimmer__deleting_old_messages">جار حذف الرسائل القديمة…</string>
   <string name="trimmer__old_messages_successfully_deleted">تم حذف الرسائل القديمة بنجاح</string>
+  <!--Insights-->
+  <string name="InsightsDashboardFragment__encrypted_messages">رسائل المشفّرة</string>
+  <string name="InsightsDashboardFragment__cancel">إلغاء</string>
+  <string name="InsightsDashboardFragment__send">أرسل</string>
+  <string name="FirstInviteReminder__title">ادعُ إلى Signal</string>
+  <string name="InsightsReminder__invite">توجيه دعوة</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">أيقونة النقل.</string>
-  <string name="ConversationListFragment_loading">جاري التحميل ...</string>
-  <string name="CallNotificationBuilder_connecting">الاتصال جارِ...</string>
+  <string name="ConversationListFragment_loading">قيد التحميل…</string>
+  <string name="CallNotificationBuilder_connecting">جار الربط…</string>
   <string name="Permissions_permission_required">منح إحدى الأذونات مطلوب</string>
-  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">يحتاج Signal إلى إذن الرسائل القصيرة من أجل إرسال SMS ولكن تم إيقاف الإذن على نحو دائم، رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"الرسائل القصيرة SMS\".</string>
+  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">يحتاج سغنال إلى إذن الرسائل القصيرة من أجل إرسال SMS ولكن تم إيقاف الإذن على نحو دائم. رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"الرسائل القصيرة SMS\".</string>
   <string name="Permissions_continue">استمر</string>
   <string name="Permissions_not_now">ليس الآن</string>
-  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">يحتاج Signal إلى أذن جهات الاتصال من أجل البحث في جهات الاتصال الخاص بك ولكن تم إيقاف الإذن على نحو دائم، رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"جهات الاتصال\"</string>
+  <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">يحتاج سغنال إلى أذن جهات الاتصال من أجل البحث في جهات الاتصال الخاص بك ولكن تم إيقاف الإذن على نحو دائم. رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"جهات الاتصال\".</string>
   <string name="conversation_activity__enable_signal_messages">تشغيل رسائل Signal</string>
   <string name="SQLCipherMigrationHelper_migrating_signal_database">جارٍ نقل قاعدة بيانات Signal</string>
   <string name="PushDecryptJob_new_locked_message">رسالة مُقفلة جديدة</string>
@@ -1357,12 +1391,12 @@
   <string name="preferences_chats__chat_backups">النُسخ الإحتياطية للمحادثات</string>
   <string name="preferences_chats__backup_chats_to_external_storage">حفظ نسخة احتياطية من المحادثات إلى سعة التخزين</string>
   <string name="preferences_chats__create_backup">إنشاء نسخة إحتياطية</string>
-  <string name="RegistrationActivity_enter_backup_passphrase">إدخال العبارة السرية الخاصة بالنسخة الإحتياطية</string>
+  <string name="RegistrationActivity_enter_backup_passphrase">ادخل العبارة السرية الخاصة بالنسخة الإحتياطية</string>
   <string name="RegistrationActivity_restore">استعادة</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">العبارة السرية غير صحيحة</string>
   <string name="RegistrationActivity_checking">عملية التحقق جارية …</string>
-  <string name="RegistrationActivity_d_messages_so_far">%dرسالة إلى الآن...</string>
-  <string name="RegistrationActivity_restore_from_backup">الإسترجاع مِن نسخة احتياطية ؟</string>
+  <string name="RegistrationActivity_d_messages_so_far">%dرسالة إلى الآن…</string>
+  <string name="RegistrationActivity_restore_from_backup">الإسترجاع مِن نسخة احتياطية؟</string>
   <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">استيراد المحادثات والوسائط من سعة التخزين. لن يمكنك الاستيراد لاحقا.</string>
   <string name="RegistrationActivity_backup_size_s">حجم النسخة الإحتياطية : %s</string>
   <string name="RegistrationActivity_backup_timestamp_s">تاريخ النسخة الاحتياطية: %s</string>
@@ -1373,10 +1407,10 @@
   <string name="BackupDialog_disable_and_delete_all_local_backups">أتريد تعطيل و حذف كافة النُّسخ الإحتياطية المحلية ؟</string>
   <string name="BackupDialog_delete_backups_statement">حذف النسخ الإحتياطية</string>
   <string name="BackupDialog_copied_to_clipboard">نسخ إلى الحافظة</string>
-  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">يحتاج Signal إلى إذن سعة التخزين من أجل استخدام الذاكرة الخارجية لإنشاء نسخة احتياطية ولكن تم إيقاف الإذن على نحو دائم، رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"سعة التخزين\".</string>
+  <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">يحتاج سغنال إلى إذن سعة التخزين من أجل استخدام الذاكرة الخارجية لإنشاء نسخة احتياطية ولكن تم إيقاف الإذن على نحو دائم. رجاء زيارة إعدادات التطبيق ثم \"الأذونات\"، ثم تفعيل \"سعة التخزين\".</string>
   <string name="ChatsPreferenceFragment_last_backup_s">آخِر نسخة إحتياطية : %s</string>
   <string name="ChatsPreferenceFragment_in_progress">جارٍ</string>
-  <string name="LocalBackupJob_creating_backup">جارٍ إنشاء نسخة احتياطية...</string>
+  <string name="LocalBackupJob_creating_backup">جارٍ إنشاء نسخة احتياطية…</string>
   <string name="ProgressPreference_d_messages_so_far">%dرسالة إلى الآن</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">رجاء إدخال كود التحقق الذي تم إرساله إلى %s.</string>
   <string name="RegistrationActivity_wrong_number">رقم خاطئ </string>
@@ -1404,7 +1438,7 @@
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">لقد قمت بمحاولة عديدة لإدخال الرقم التعريفي الشخصي. رجاء المحاولة مرة أخرى بعد يوم.</string>
   <string name="RegistrationActivity_error_connecting_to_service">عطل في الاتصال بالخدمة</string>
   <string name="RegistrationActivity_oh_no">أوه لا !</string>
-  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">إمكانية التسجيل بهذا الرقم على Signal سيكون متاح بدون الرقم التعريفي الشخصية بعد مرور سبعة أيام منذ آخر نشاط للرقم على Signal. تبقى أمامك %dيوم.</string>
+  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">إمكانية التسجيل بهذا الرقم على سغنال سيكون متاحًا بدون الرقم التعريفي الشخصي بعد مرور 7 أيام على آخر نشاط للرقم على البرنامج. تبقى أمامك %dيوم.</string>
   <string name="RegistrationActivity_registration_lock_pin">الرقم التعريفي الشخصية لحماية التسجيل</string>
   <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">يوجد رقم تعريفي شخصي لحماية التسجيل مصاحب لهذا الرقم. رجاء إدخاله.</string>
   <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">تم تفعيل رقم تعريفي شخصي لحماية التسجيل بهذا الهاتف. سوف يقوم Signal بشكل دوري بطلب تأكيد الرقم التعريفي لمساعدتك في تذكرة.</string>
@@ -1413,7 +1447,7 @@
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">الرقم التعريفي الشخصي لحماية التسجيل تحمي رقم هاتفك من محاولات غير مصرحة  للتسجيل في الخدمة. يمكن إلغاء هذه الخاصية في أي وقت عبر إعدادات الخصوصية في تطبيق Signal.</string>
   <string name="RegistrationLockDialog_registration_lock">الرقم التعريفي الشخصي لحماية التسجيل</string>
   <string name="RegistrationLockDialog_enable">تشغيل</string>
-  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">الرقم التعريفي الشخصي لحماية التسجيل يجب أن يتكون من أربعة أعداد على الأقل.</string>
+  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">الرقم التعريفي الشخصي لحماية التسجيل يجب أن يتكون من 4 أعداد على الأقل.</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">الأرقام التي أدخلتها غير متطابقة.</string>
   <string name="RegistrationLockDialog_error_connecting_to_the_service">حدث خطأ أثناء محاولة الربط بالخدمة</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">إلغاء الرقم التعريفي الشخصي لحماية التسجيل؟</string>
@@ -1423,5 +1457,9 @@
   <string name="prompt_passphrase_activity__tap_to_unlock">أنقُر لفك القُفل</string>
   <string name="RegistrationLockDialog_reminder">تذكير :</string>
   <string name="recipient_preferences__about">حول</string>
+  <string name="Recipient_unknown">مجهول</string>
+  <string name="MessageRequestBottomView_accept">موافقة</string>
+  <string name="MessageRequestBottomView_delete">أحذف  </string>
+  <string name="MessageRequestBottomView_block">حظر</string>
   <!--EOF-->
 </resources>

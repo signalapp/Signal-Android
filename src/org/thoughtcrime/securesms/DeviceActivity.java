@@ -20,6 +20,7 @@ import androidx.core.content.ContextCompat;
 
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.push.AccountManagerFactory;
@@ -177,7 +178,7 @@ public class DeviceActivity extends PassphraseRequiredActionBarActivity
 
         try {
           Context                     context          = DeviceActivity.this;
-          SignalServiceAccountManager accountManager   = AccountManagerFactory.createManager(context);
+          SignalServiceAccountManager accountManager   = ApplicationDependencies.getSignalServiceAccountManager();
           String                      verificationCode = accountManager.getNewDeviceVerificationCode();
           String                      ephemeralId      = uri.getQueryParameter("uuid");
           String                      publicKeyEncoded = uri.getQueryParameter("pub_key");

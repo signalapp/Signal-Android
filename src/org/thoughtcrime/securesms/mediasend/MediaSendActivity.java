@@ -75,6 +75,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
+import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 import org.thoughtcrime.securesms.util.views.Stub;
 import org.thoughtcrime.securesms.video.VideoUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -704,10 +705,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
     } else if (recipient.isLocalNumber()) {
       composeText.setHint(getString(R.string.note_to_self), null);
     } else {
-      String displayName = Optional.fromNullable(recipient.getName())
-                                   .or(Optional.fromNullable(recipient.getProfileName())
-                                               .or(recipient.requireAddress().serialize()));
-      composeText.setHint(getString(R.string.MediaSendActivity_message_to_s, displayName), null);
+      composeText.setHint(getString(R.string.MediaSendActivity_message_to_s, recipient.getDisplayName(this)), null);
     }
 
   }
@@ -851,13 +849,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
       protected void onPreExecute() {
         renderTimer   = new Stopwatch("ProcessMedia");
         progressTimer = () -> {
-          dialog = new AlertDialog.Builder(new ContextThemeWrapper(MediaSendActivity.this, R.style.TextSecure_MediaSendProgressDialog))
-                                  .setView(R.layout.progress_dialog)
-                                  .setCancelable(false)
-                                  .create();
-          dialog.show();
-          dialog.getWindow().setLayout(getResources().getDimensionPixelSize(R.dimen.mediasend_progress_dialog_size),
-                                       getResources().getDimensionPixelSize(R.dimen.mediasend_progress_dialog_size));
+          dialog = SimpleProgressDialog.show(new ContextThemeWrapper(MediaSendActivity.this, R.style.TextSecure_MediaSendProgressDialog));
         };
         Util.runOnMainDelayed(progressTimer, 250);
       }

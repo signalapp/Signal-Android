@@ -368,7 +368,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
         List<GroupReceiptInfo> receiptInfoList = DatabaseFactory.getGroupReceiptDatabase(context).getGroupReceiptInfo(messageRecord.getId());
 
         if (receiptInfoList.isEmpty()) {
-          List<Recipient> group = DatabaseFactory.getGroupDatabase(context).getGroupMembers(messageRecord.getRecipient().requireAddress().toGroupString(), false);
+          List<Recipient> group = DatabaseFactory.getGroupDatabase(context).getGroupMembers(messageRecord.getRecipient().requireGroupId(), false);
 
           for (Recipient recipient : group) {
             recipients.add(new RecipientDeliveryStatus(recipient, RecipientDeliveryStatus.Status.UNKNOWN, false, -1));

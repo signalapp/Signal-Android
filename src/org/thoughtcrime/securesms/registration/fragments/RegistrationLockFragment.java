@@ -19,16 +19,23 @@ import androidx.navigation.Navigation;
 import com.dd.CircularProgressButton;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.registration.service.CodeVerificationRequest;
 import org.thoughtcrime.securesms.registration.service.RegistrationService;
 import org.thoughtcrime.securesms.registration.viewmodel.RegistrationViewModel;
+import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
+import org.whispersystems.signalservice.internal.contacts.entities.TokenResponse;
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 public final class RegistrationLockFragment extends BaseRegistrationFragment {
 
+  private static final String TAG = Log.tag(RegistrationLockFragment.class);
+
   private EditText               pinEntry;
   private CircularProgressButton pinButton;
+  private long                   timeRemaining;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -51,7 +58,7 @@ public final class RegistrationLockFragment extends BaseRegistrationFragment {
 
     String code = getModel().getTextCodeEntered();
 
-    long timeRemaining = RegistrationLockFragmentArgs.fromBundle(requireArguments()).getTimeRemaining();
+    timeRemaining = RegistrationLockFragmentArgs.fromBundle(requireArguments()).getTimeRemaining();
 
     pinForgotButton.setOnClickListener(v -> handleForgottenPin(timeRemaining));
 
@@ -87,6 +94,36 @@ public final class RegistrationLockFragment extends BaseRegistrationFragment {
       hideKeyboard(requireContext(), pinEntry);
       handlePinEntry();
     });
+
+    RegistrationViewModel model = getModel();
+    model.getTokenResponseCredentialsPair()
+         .observe(this, pair -> {
+           TokenResponse token       = pair.first();
+           String        credentials = pair.second();
+           updateContinueText(token, credentials);
+         });
+
+    model.onRegistrationLockFragmentCreate();
+  }
+
+  private void updateContinueText(@Nullable TokenResponse tokenResponse, @Nullable String storageCredentials) {
+    if (tokenResponse == null) {
+      if (storageCredentials == null) {
+        pinButton.setIdleText(getString(R.string.RegistrationActivity_continue));
+      } else {
+        // TODO: This is the case where we can determine they are locked out
+        //  no token, but do have storage credentials. Might want to change text.
+        pinButton.setIdleText(getString(R.string.RegistrationActivity_continue));
+      }
+    } else {
+      int triesRemaining = tokenResponse.getTries();
+      if (triesRemaining == 1) {
+        pinButton.setIdleText(getString(R.string.RegistrationActivity_continue_last_attempt));
+      } else {
+        pinButton.setIdleText(getString(R.string.RegistrationActivity_continue_d_attempts_left, triesRemaining));
+      }
+    }
+    pinButton.setText(pinButton.getIdleText());
   }
 
   private void handlePinEntry() {
@@ -99,10 +136,17 @@ public final class RegistrationLockFragment extends BaseRegistrationFragment {
 
     RegistrationViewModel model               = getModel();
     RegistrationService   registrationService = RegistrationService.getInstance(model.getNumber().getE164Number(), model.getRegistrationSecret());
+    String                storageCredentials  = model.getBasicStorageCredentials();
+    TokenResponse         tokenResponse       = model.getKeyBackupCurrentToken();
 
     setSpinning(pinButton);
 
-    registrationService.verifyAccount(requireActivity(), model.getFcmToken(), model.getTextCodeEntered(), pin, new CodeVerificationRequest.VerifyCallback() {
+    registrationService.verifyAccount(requireActivity(),
+                                      model.getFcmToken(),
+                                      model.getTextCodeEntered(),
+                                      pin, storageCredentials, tokenResponse,
+
+      new CodeVerificationRequest.VerifyCallback() {
 
         @Override
         public void onSuccessfulRegistration() {
@@ -112,11 +156,32 @@ public final class RegistrationLockFragment extends BaseRegistrationFragment {
         }
 
         @Override
-        public void onIncorrectRegistrationLockPin(long timeRemaining) {
+        public void onIncorrectRegistrationLockPin(long timeRemaining, String storageCredentials) {
+          model.setStorageCredentials(storageCredentials);
           cancelSpinning(pinButton);
 
           pinEntry.setText("");
           Toast.makeText(requireContext(), R.string.RegistrationActivity_incorrect_registration_lock_pin, Toast.LENGTH_LONG).show();
+        }
+
+        @Override
+        public void onIncorrectKbsRegistrationLockPin(@NonNull TokenResponse tokenResponse) {
+          cancelSpinning(pinButton);
+
+          model.setKeyBackupCurrentToken(tokenResponse);
+
+          int triesRemaining = tokenResponse.getTries();
+
+          if (triesRemaining == 0) {
+            handleForgottenPin(timeRemaining);
+            return;
+          }
+
+          new AlertDialog.Builder(requireContext())
+                         .setTitle(R.string.RegistrationActivity_pin_incorrect)
+                         .setMessage(getString(R.string.RegistrationActivity_you_have_d_tries_remaining, triesRemaining))
+                         .setPositiveButton(android.R.string.ok, null)
+                         .show();
         }
 
         @Override

@@ -252,4 +252,13 @@ public class ViewUtil {
     return x > viewX && x < viewX + view.getWidth() &&
            y > viewY && y < viewY + view.getHeight();
   }
+
+  public static int getStatusBarHeight(@NonNull View view) {
+    int result = 0;
+    int resourceId = view.getResources().getIdentifier("status_bar_height", "dimen", "android");
+    if (resourceId > 0) {
+      result = view.getResources().getDimensionPixelSize(resourceId);
+    }
+    return result;
+  }
 }

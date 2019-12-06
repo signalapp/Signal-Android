@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -13,7 +14,6 @@ import androidx.appcompat.app.AlertDialog;
 
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.devicelist.Device;
-import org.thoughtcrime.securesms.jobs.RefreshUnidentifiedDeliveryAbilityJob;
 import org.thoughtcrime.securesms.logging.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -162,6 +162,7 @@ public class DeviceListFragment extends ListFragment
     builder.show();
   }
 
+  @SuppressLint("StaticFieldLeak")
   private void handleDisconnectDevice(final long deviceId) {
     new ProgressDialogAsyncTask<Void, Void, Void>(getActivity(),
                                                   R.string.DeviceListActivity_unlinking_device_no_ellipsis,
@@ -171,7 +172,6 @@ public class DeviceListFragment extends ListFragment
       protected Void doInBackground(Void... params) {
         try {
           accountManager.removeDevice(deviceId);
-          ApplicationDependencies.getJobManager().add(new RefreshUnidentifiedDeliveryAbilityJob());
         } catch (IOException e) {
           Log.w(TAG, e);
           Toast.makeText(getActivity(), R.string.DeviceListActivity_network_failed, Toast.LENGTH_LONG).show();

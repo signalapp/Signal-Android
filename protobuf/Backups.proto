@@ -4,6 +4,8 @@
  * Licensed according to the LICENSE file in this repository.
  */
 
+syntax = "proto2";
+
 package signal;
 
 option java_package         = "org.thoughtcrime.securesms.backup";

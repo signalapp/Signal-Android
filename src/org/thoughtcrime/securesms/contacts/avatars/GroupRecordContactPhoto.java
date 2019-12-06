@@ -6,7 +6,6 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.util.Conversions;
@@ -19,24 +18,24 @@ import java.security.MessageDigest;
 
 public class GroupRecordContactPhoto implements ContactPhoto {
 
-  private final @NonNull Address address;
-  private final          long avatarId;
+  private final String groupId;
+  private final long   avatarId;
 
-  public GroupRecordContactPhoto(@NonNull Address address, long avatarId) {
-    this.address  = address;
+  public GroupRecordContactPhoto(@NonNull String groupId, long avatarId) {
+    this.groupId  = groupId;
     this.avatarId = avatarId;
   }
 
   @Override
   public InputStream openInputStream(Context context) throws IOException {
     GroupDatabase                       groupDatabase = DatabaseFactory.getGroupDatabase(context);
-    Optional<GroupDatabase.GroupRecord> groupRecord   = groupDatabase.getGroup(address.toGroupString());
+    Optional<GroupDatabase.GroupRecord> groupRecord   = groupDatabase.getGroup(groupId);
 
     if (groupRecord.isPresent() && groupRecord.get().getAvatar() != null) {
       return new ByteArrayInputStream(groupRecord.get().getAvatar());
     }
 
-    throw new IOException("Couldn't load avatar for group: " + address.toGroupString());
+    throw new IOException("Couldn't load avatar for group: " + groupId);
   }
 
   @Override
@@ -51,7 +50,7 @@ public class GroupRecordContactPhoto implements ContactPhoto {
 
   @Override
   public void updateDiskCacheKey(@NonNull MessageDigest messageDigest) {
-    messageDigest.update(address.serialize().getBytes());
+    messageDigest.update(groupId.getBytes());
     messageDigest.update(Conversions.longToByteArray(avatarId));
   }
 
@@ -60,12 +59,11 @@ public class GroupRecordContactPhoto implements ContactPhoto {
     if (other == null || !(other instanceof GroupRecordContactPhoto)) return false;
 
     GroupRecordContactPhoto that = (GroupRecordContactPhoto)other;
-    return this.address.equals(that.address) && this.avatarId == that.avatarId;
+    return this.groupId.equals(that.groupId) && this.avatarId == that.avatarId;
   }
 
   @Override
   public int hashCode() {
-    return this.address.hashCode() ^ (int) avatarId;
+    return this.groupId.hashCode() ^ (int) avatarId;
   }
-
 }

@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 
+import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.calls.AnswerMessage;
@@ -59,7 +60,7 @@ public final class MessageRecipient implements SignalMessageRecipient {
   private void sendMessage(Context context, SignalServiceCallMessage callMessage)
     throws UntrustedIdentityException, IOException
   {
-    messageSender.sendCallMessage(new SignalServiceAddress(recipient.requireAddress().toPhoneString()),
+    messageSender.sendCallMessage(RecipientUtil.toSignalServiceAddress(context, recipient),
                                   UnidentifiedAccessUtil.getAccessFor(context, recipient),
                                   callMessage);
   }

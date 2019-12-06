@@ -33,6 +33,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.backup.BackupPassphrase;
 import org.thoughtcrime.securesms.backup.FullBackupBase;
 import org.thoughtcrime.securesms.backup.FullBackupImporter;
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
@@ -41,6 +42,7 @@ import org.thoughtcrime.securesms.database.NoExternalStorageException;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.permissions.Permissions;
+import org.thoughtcrime.securesms.service.LocalBackupListener;
 import org.thoughtcrime.securesms.util.BackupUtil;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -204,8 +206,10 @@ public final class RestoreBackupFragment extends BaseRegistrationFragment {
           DatabaseFactory.upgradeRestored(context, database);
           NotificationChannels.restoreContactNotificationChannels(context);
 
+          LocalBackupListener.setNextBackupTimeToIntervalFromNow(context);
+          BackupPassphrase.set(context, passphrase);
           TextSecurePreferences.setBackupEnabled(context, true);
-          TextSecurePreferences.setBackupPassphrase(context, passphrase);
+          LocalBackupListener.schedule(context);
 
           Log.i(TAG, "Backup restore complete.");
           return BackupImportResult.SUCCESS;

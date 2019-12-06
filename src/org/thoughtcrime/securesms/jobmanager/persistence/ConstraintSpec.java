@@ -38,6 +38,6 @@ public final class ConstraintSpec {
 
   @Override
   public @NonNull String toString() {
-    return String.format("jobSpecId: %s | factoryKey: %s", jobSpecId, factoryKey);
+    return String.format("jobSpecId: JOB::%s | factoryKey: %s", jobSpecId, factoryKey);
   }
 }

@@ -61,6 +61,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.logsubmit.util.Scrubber;
 import org.thoughtcrime.securesms.util.BucketInfo;
+import org.thoughtcrime.securesms.util.FrameRateTracker;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
@@ -545,6 +546,8 @@ public class SubmitLogFragment extends Fragment {
     builder.append("Memory       : ").append(getMemoryUsage(context)).append("\n");
     builder.append("Memclass     : ").append(getMemoryClass(context)).append("\n");
     builder.append("OS Host      : ").append(Build.HOST).append("\n");
+    builder.append("Refresh Rate : ").append(String.format(Locale.ENGLISH, "%.2f", FrameRateTracker.getDisplayRefreshRate(context))).append(" hz").append("\n");
+    builder.append("Average FPS  : ").append(String.format(Locale.ENGLISH, "%.2f", ApplicationDependencies.getFrameRateTracker().getRunningAverageFps())).append("\n");
     builder.append("First Version: ").append(TextSecurePreferences.getFirstInstallVersion(context)).append("\n");
     builder.append("App          : ");
     try {

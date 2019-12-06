@@ -35,6 +35,13 @@
     <attr name="fab_color" format="reference|color" />
     <attr name="lower_right_divet" format="reference" />
 
+    <attr name="insight_modal_background" format="reference" />
+    <attr name="insight_modal_button_background" format="color" />
+    <attr name="insight_title" format="color" />
+    <attr name="insight_body_2" format="color" />
+    <attr name="insight_dashboard_bottom_bar_background" format="color" />
+    <attr name="insight_progress_background" format="color" />
+
     <attr name="centered_app_title_color" format="reference|color" />
     <attr name="ic_arrow_forward" format="reference" />
     <attr name="ic_visibility" format="reference" />
@@ -85,6 +92,12 @@
     <attr name="emoji_category_emoticons" format="reference"/>
     <attr name="emoji_variation_selector_background" format="reference|color" />
 
+    <attr name="reactions_sent_background" format="reference" />
+    <attr name="reactions_recv_background" format="reference" />
+    <attr name="reactions_overlay_old_background" format="reference" />
+    <attr name="reactions_overlay_scrubber_background" format="reference" />
+    <attr name="reactions_bottom_dialog_fragment_emoji_selected" format="reference" />
+
     <attr name="camera_button_style" />
 
     <attr name="quick_camera_icon" format="reference"/>
@@ -125,6 +138,7 @@
     <attr name="contact_selection_header_text" format="reference|color" />
 
     <attr name="contact_filter_toolbar_icon_tint" format="color" />
+    <attr name="contact_filter_toolbar_keyboard_icon" format="reference" />
 
     <attr name="device_link_item_card_background" format="reference|color" />
 
@@ -134,7 +148,8 @@
     <attr name="import_export_item_background_shadow_color" format="reference|color" />
     <attr name="import_export_item_card_background" format="reference" />
 
-    <attr name="invite_background" format="color"/>
+    <attr name="invite_edit_text_background" format="reference" />
+    <attr name="invite_share_icon" format="reference" />
 
     <attr name="linkpreview_background_color" format="color" />
     <attr name="linkpreview_primary_text_color" format="color" />
@@ -163,15 +178,22 @@
     <attr name="menu_forward_icon" format="reference" />
     <attr name="menu_save_icon" format="reference" />
     <attr name="menu_reply_icon" format="reference" />
+    <attr name="menu_multi_select_icon" format="reference" />
+    <attr name="menu_archive_icon" format="reference" />
 
     <attr name="message_icon" format="reference" />
     <attr name="notifications_icon" format="reference" />
     <attr name="privacy_icon" format="reference" />
     <attr name="appearance_icon" format="reference" />
     <attr name="chats_and_media_icon" format="reference" />
+    <attr name="data_and_storage_icon" format="reference" />
     <attr name="linked_devices_icon" format="reference" />
     <attr name="advanced_icon" format="reference" />
     <attr name="safety_number_icon" format="reference" />
+
+    <attr name="message_request_dialog_button_background" format="reference" />
+    <attr name="message_request_text_color_primary" format="color" />
+    <attr name="message_request_text_color_secondary" format="color" />
 
     <attr name="pref_icon_tint" format="color"/>
 
@@ -192,9 +214,12 @@
 
     <attr name="media_overview_toolbar_background" format="color"/>
     <attr name="media_overview_toolbar_foreground" format="color"/>
+    <attr name="media_overview_toolbar_secondary_background" format="color"/>
     <attr name="media_overview_header_foreground" format="color"/>
     <attr name="media_overview_document_primary" format="color"/>
     <attr name="media_overview_document_secondary" format="color"/>
+    <attr name="media_overview_grid_view_icon" format="reference"/>
+    <attr name="media_overview_list_view_icon" format="reference"/>
 
     <attr name="shared_contact_details_header_background" format="color"/>
     <attr name="shared_contact_details_titlebar" format="color"/>
@@ -255,6 +280,8 @@
         <attr name="widgetBackground" format="color"/>
         <attr name="foregroundTintColor" format="color" />
         <attr name="backgroundTintColor" format="color" />
+        <attr name="small" format="boolean" />
+        <attr name="autoRewind" format="boolean" />
     </declare-styleable>
 
     <declare-styleable name="CircleColorImageView">

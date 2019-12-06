@@ -70,7 +70,7 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
   private final ItemClickListener clickListener;
   private final GlideRequests     glideRequests;
 
-  private final Set<String> selectedContacts = new HashSet<>();
+  private final Set<SelectedContact> selectedContacts = new HashSet<>();
 
   public abstract static class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -189,7 +189,12 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
 
     viewHolder.unbind(glideRequests);
     viewHolder.bind(glideRequests, id, contactType, name, number, labelText, color, multiSelect);
-    viewHolder.setChecked(selectedContacts.contains(number));
+
+    if (numberType == ContactRepository.NEW_USERNAME_TYPE) {
+      viewHolder.setChecked(selectedContacts.contains(SelectedContact.forUsername(id, number)));
+    } else {
+      viewHolder.setChecked(selectedContacts.contains(SelectedContact.forPhone(id, number)));
+    }
   }
 
   @Override
@@ -222,7 +227,7 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
     return getHeaderString(position);
   }
 
-  public Set<String> getSelectedContacts() {
+  public Set<SelectedContact> getSelectedContacts() {
     return selectedContacts;
   }
 

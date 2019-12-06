@@ -9,6 +9,7 @@ import android.text.TextUtils;
 
 import com.annimon.stream.function.Consumer;
 import com.annimon.stream.function.Predicate;
+import com.google.android.collect.Sets;
 import com.google.protobuf.ByteString;
 
 import net.sqlcipher.database.SQLiteDatabase;
@@ -20,7 +21,9 @@ import org.thoughtcrime.securesms.crypto.ClassicDecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.ModernDecryptingPartInputStream;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupReceiptDatabase;
+import org.thoughtcrime.securesms.database.JobDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.OneTimePreKeyDatabase;
@@ -31,6 +34,7 @@ import org.thoughtcrime.securesms.database.StickerDatabase;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.util.Conversions;
+import org.thoughtcrime.securesms.util.Stopwatch;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.kdf.HKDFv3;
 import org.whispersystems.libsignal.util.ByteUtil;
@@ -44,8 +48,10 @@ import java.io.OutputStream;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -60,8 +66,19 @@ public class FullBackupExporter extends FullBackupBase {
   @SuppressWarnings("unused")
   private static final String TAG = FullBackupExporter.class.getSimpleName();
 
-  public static void export(@NonNull Context context,
-                            @NonNull AttachmentSecret attachmentSecret,
+  private static final Set<String> BLACKLISTED_TABLES = Sets.newHashSet(
+    SignedPreKeyDatabase.TABLE_NAME,
+    OneTimePreKeyDatabase.TABLE_NAME,
+    SessionDatabase.TABLE_NAME,
+    SearchDatabase.SMS_FTS_TABLE_NAME,
+    SearchDatabase.MMS_FTS_TABLE_NAME,
+    JobDatabase.JOBS_TABLE_NAME,
+    JobDatabase.CONSTRAINTS_TABLE_NAME,
+    JobDatabase.DEPENDENCIES_TABLE_NAME
+  );
+
+public static void export(@NonNull Context context,
+@NonNull AttachmentSecret attachmentSecret,
                             @NonNull SQLiteDatabase input,
                             @NonNull File output,
                             @NonNull String passphrase)
@@ -73,6 +90,8 @@ public class FullBackupExporter extends FullBackupBase {
     List<String> tables = exportSchema(input, outputStream);
     int          count  = 0;
 
+    Stopwatch stopwatch = new Stopwatch("Backup");
+
     for (String table : tables) {
       if (table.equals(MmsDatabase.TABLE_NAME)) {
         count = exportTable(table, input, outputStream, FullBackupExporter::isNonExpiringMessage, null, count);
@@ -82,15 +101,10 @@ public class FullBackupExporter extends FullBackupBase {
         count = exportTable(table, input, outputStream, cursor -> isForNonExpiringMessage(input, cursor.getLong(cursor.getColumnIndexOrThrow(AttachmentDatabase.MMS_ID))), cursor -> exportAttachment(attachmentSecret, cursor, outputStream), count);
       } else if (table.equals(StickerDatabase.TABLE_NAME)) {
         count = exportTable(table, input, outputStream, cursor -> true, cursor -> exportSticker(attachmentSecret, cursor, outputStream), count);
-      } else if (!table.equals(SignedPreKeyDatabase.TABLE_NAME)       &&
-                 !table.equals(OneTimePreKeyDatabase.TABLE_NAME)      &&
-                 !table.equals(SessionDatabase.TABLE_NAME)            &&
-                 !table.startsWith(SearchDatabase.SMS_FTS_TABLE_NAME) &&
-                 !table.startsWith(SearchDatabase.MMS_FTS_TABLE_NAME) &&
-                 !table.startsWith("sqlite_"))
-      {
+      } else if (!BLACKLISTED_TABLES.contains(table) && !table.startsWith("sqlite_")) {
         count = exportTable(table, input, outputStream, null, null, count);
       }
+      stopwatch.split("table::" + table);
     }
 
     for (BackupProtos.SharedPreference preference : IdentityKeyUtil.getBackupRecord(context)) {
@@ -98,10 +112,15 @@ public class FullBackupExporter extends FullBackupBase {
       outputStream.write(preference);
     }
 
+    stopwatch.split("prefs");
+
     for (File avatar : AvatarHelper.getAvatarFiles(context)) {
       EventBus.getDefault().post(new BackupEvent(BackupEvent.Type.PROGRESS, ++count));
       outputStream.write(avatar.getName(), new FileInputStream(avatar), avatar.length());
     }
+
+    stopwatch.split("avatars");
+    stopwatch.stop(TAG);
 
     outputStream.writeEnd();
     outputStream.close();
@@ -201,8 +220,14 @@ public class FullBackupExporter extends FullBackupBase {
       String data   = cursor.getString(cursor.getColumnIndexOrThrow(AttachmentDatabase.DATA));
       byte[] random = cursor.getBlob(cursor.getColumnIndexOrThrow(AttachmentDatabase.DATA_RANDOM));
 
-      if (!TextUtils.isEmpty(data) && size <= 0) {
-        size = calculateVeryOldStreamLength(attachmentSecret, random, data);
+      if (!TextUtils.isEmpty(data)) {
+        long fileLength = new File(data).length();
+        long dbLength   = size;
+
+        if (size <= 0 || fileLength != dbLength) {
+          size = calculateVeryOldStreamLength(attachmentSecret, random, data);
+          Log.w(TAG, "Needed size calculation! Manual: " + size + " File: " + fileLength + "  DB: " + dbLength + " ID: " + new AttachmentId(rowId, uniqueId));
+        }
       }
 
       if (!TextUtils.isEmpty(data) && size > 0) {
@@ -331,7 +356,9 @@ public class FullBackupExporter extends FullBackupBase {
                                                                                 .build())
                                                   .build());
 
-      writeStream(in);
+      if (writeStream(in) != size) {
+        throw new IOException("Size mismatch!");
+      }
     }
 
     public void write(@NonNull AttachmentId attachmentId, @NonNull InputStream in, long size) throws IOException {
@@ -343,7 +370,9 @@ public class FullBackupExporter extends FullBackupBase {
                                                                                         .build())
                                                   .build());
 
-      writeStream(in);
+      if (writeStream(in) != size) {
+        throw new IOException("Size mismatch!");
+      }
     }
 
     public void writeSticker(long rowId, @NonNull InputStream in, long size) throws IOException {
@@ -354,7 +383,9 @@ public class FullBackupExporter extends FullBackupBase {
                                                                                   .build())
                                                   .build());
 
-      writeStream(in);
+      if (writeStream(in) != size) {
+        throw new IOException("Size mismatch!");
+      }
     }
 
     void writeDatabaseVersion(int version) throws IOException {
@@ -367,13 +398,18 @@ public class FullBackupExporter extends FullBackupBase {
       write(outputStream, BackupProtos.BackupFrame.newBuilder().setEnd(true).build());
     }
 
-    private void writeStream(@NonNull InputStream inputStream) throws IOException {
+    /**
+     * @return The amount of data written from the provided InputStream.
+     */
+    private long writeStream(@NonNull InputStream inputStream) throws IOException {
       try {
         Conversions.intToByteArray(iv, 0, counter++);
         cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(cipherKey, "AES"), new IvParameterSpec(iv));
         mac.update(iv);
 
         byte[] buffer = new byte[8192];
+        long   total  = 0;
+
         int read;
 
         while ((read = inputStream.read(buffer)) != -1) {
@@ -383,6 +419,8 @@ public class FullBackupExporter extends FullBackupBase {
             outputStream.write(ciphertext);
             mac.update(ciphertext);
           }
+
+          total += read;
         }
 
         byte[] remainder = cipher.doFinal();
@@ -391,6 +429,8 @@ public class FullBackupExporter extends FullBackupBase {
 
         byte[] attachmentDigest = mac.doFinal();
         outputStream.write(attachmentDigest, 0, 10);
+
+        return total;
       } catch (InvalidKeyException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
         throw new AssertionError(e);
       }

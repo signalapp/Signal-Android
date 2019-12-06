@@ -1,43 +1,46 @@
 package org.thoughtcrime.securesms;
 
-import android.animation.Animator;
 import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
+import android.graphics.PorterDuff;
 import android.os.AsyncTask;
-import android.os.Build.VERSION;
-import android.os.Build.VERSION_CODES;
+import android.os.Build;
 import android.os.Bundle;
-import androidx.annotation.AnimRes;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
-import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
-import androidx.appcompat.app.AlertDialog;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver.OnPreDrawListener;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Toast;
+
+import androidx.annotation.AnimRes;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
+import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
+
+import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.components.ContactFilterToolbar;
 import org.thoughtcrime.securesms.components.ContactFilterToolbar.OnFilterChangedListener;
 import org.thoughtcrime.securesms.contacts.ContactsCursorLoader.DisplayMode;
+import org.thoughtcrime.securesms.contacts.SelectedContact;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
+import org.thoughtcrime.securesms.util.DynamicNoActionBarInviteTheme;
+import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
+import org.thoughtcrime.securesms.util.WindowUtil;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture.Listener;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
+import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.concurrent.ExecutionException;
 
@@ -49,7 +52,14 @@ public class InviteActivity extends PassphraseRequiredActionBarActivity implemen
   private Button                       smsSendButton;
   private Animation                    slideInAnimation;
   private Animation                    slideOutAnimation;
-  private ImageView                    heart;
+  private DynamicTheme                 dynamicTheme = new DynamicNoActionBarInviteTheme();
+  private Toolbar                      primaryToolbar;
+
+  @Override
+  protected void onPreCreate() {
+    super.onPreCreate();
+    dynamicTheme.onCreate(this);
+  }
 
   @Override
   protected void onCreate(Bundle savedInstanceState, boolean ready) {
@@ -63,9 +73,15 @@ public class InviteActivity extends PassphraseRequiredActionBarActivity implemen
     initializeResources();
   }
 
+  @Override
+  protected void onResume() {
+    super.onResume();
+    dynamicTheme.onResume(this);
+  }
+
   private void initializeAppBar() {
-    Toolbar toolbar = findViewById(R.id.toolbar);
-    setSupportActionBar(toolbar);
+    primaryToolbar = findViewById(R.id.toolbar);
+    setSupportActionBar(primaryToolbar);
 
     assert getSupportActionBar() != null;
 
@@ -85,22 +101,18 @@ public class InviteActivity extends PassphraseRequiredActionBarActivity implemen
     inviteText        = ViewUtil.findById(this, R.id.invite_text);
     smsSendFrame      = ViewUtil.findById(this, R.id.sms_send_frame);
     smsSendButton     = ViewUtil.findById(this, R.id.send_sms_button);
-    heart             = ViewUtil.findById(this, R.id.heart);
     contactsFragment  = (ContactSelectionListFragment)getSupportFragmentManager().findFragmentById(R.id.contact_selection_list_fragment);
 
     inviteText.setText(getString(R.string.InviteActivity_lets_switch_to_signal, getString(R.string.install_url)));
     updateSmsButtonText();
 
-    if (VERSION.SDK_INT >= VERSION_CODES.LOLLIPOP) {
-      heart.getViewTreeObserver().addOnPreDrawListener(new HeartPreDrawListener());
-    }
     contactsFragment.setOnContactSelectedListener(this);
     shareButton.setOnClickListener(new ShareClickListener());
     smsButton.setOnClickListener(new SmsClickListener());
     smsCancelButton.setOnClickListener(new SmsCancelClickListener());
     smsSendButton.setOnClickListener(new SmsSendClickListener());
     contactFilter.setOnFilterChangedListener(new ContactFilterChangedListener());
-    contactFilter.setNavigationIcon(R.drawable.ic_search_24);
+    contactFilter.setNavigationIcon(R.drawable.ic_search_conversation_24);
   }
 
   private Animation loadAnimation(@AnimRes int animResId) {
@@ -110,12 +122,12 @@ public class InviteActivity extends PassphraseRequiredActionBarActivity implemen
   }
 
   @Override
-  public void onContactSelected(String number) {
+  public void onContactSelected(Optional<RecipientId> recipientId, String number) {
     updateSmsButtonText();
   }
 
   @Override
-  public void onContactDeselected(String number) {
+  public void onContactDeselected(Optional<RecipientId> recipientId, String number) {
     updateSmsButtonText();
   }
 
@@ -123,7 +135,7 @@ public class InviteActivity extends PassphraseRequiredActionBarActivity implemen
     new SendSmsInvitesAsyncTask(this, inviteText.getText().toString())
         .executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,
                            contactsFragment.getSelectedContacts()
-                                           .toArray(new String[contactsFragment.getSelectedContacts().size()]));
+                                           .toArray(new SelectedContact[contactsFragment.getSelectedContacts().size()]));
   }
 
   private void updateSmsButtonText() {
@@ -142,9 +154,40 @@ public class InviteActivity extends PassphraseRequiredActionBarActivity implemen
   }
 
   private void cancelSmsSelection() {
+    setPrimaryColorsToolbarNormal();
     contactsFragment.reset();
     updateSmsButtonText();
     ViewUtil.animateOut(smsSendFrame, slideOutAnimation, View.GONE);
+  }
+
+  private void setPrimaryColorsToolbarNormal() {
+    primaryToolbar.setBackgroundColor(0);
+    primaryToolbar.getNavigationIcon().setColorFilter(null);
+    primaryToolbar.setTitleTextColor(ThemeUtil.getThemedColor(this, R.attr.title_text_color_primary));
+
+    if (Build.VERSION.SDK_INT >= 23) {
+      getWindow().setStatusBarColor(ThemeUtil.getThemedColor(this, android.R.attr.statusBarColor));
+      getWindow().setNavigationBarColor(ThemeUtil.getThemedColor(this, android.R.attr.navigationBarColor));
+      WindowUtil.setLightStatusBarFromTheme(this);
+    }
+
+    WindowUtil.setLightNavigationBarFromTheme(this);
+  }
+
+  private void setPrimaryColorsToolbarForSms() {
+    primaryToolbar.setBackgroundColor(ContextCompat.getColor(this, R.color.signal_primary));
+    primaryToolbar.getNavigationIcon().setColorFilter(ThemeUtil.getThemedColor(this, R.attr.conversation_subtitle_color), PorterDuff.Mode.SRC_IN);
+    primaryToolbar.setTitleTextColor(ThemeUtil.getThemedColor(this, R.attr.conversation_title_color));
+
+    if (Build.VERSION.SDK_INT >= 23) {
+      getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.signal_primary));
+      WindowUtil.clearLightStatusBar(getWindow());
+    }
+
+    if (Build.VERSION.SDK_INT >= 27) {
+      getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.signal_primary));
+      WindowUtil.clearLightNavigationBar(getWindow());
+    }
   }
 
   private class ShareClickListener implements OnClickListener {
@@ -165,6 +208,7 @@ public class InviteActivity extends PassphraseRequiredActionBarActivity implemen
   private class SmsClickListener implements OnClickListener {
     @Override
     public void onClick(View v) {
+      setPrimaryColorsToolbarForSms();
       ViewUtil.animateIn(smsSendFrame, slideInAnimation);
     }
   }
@@ -197,25 +241,8 @@ public class InviteActivity extends PassphraseRequiredActionBarActivity implemen
     }
   }
 
-  private class HeartPreDrawListener implements OnPreDrawListener {
-    @Override
-    @TargetApi(VERSION_CODES.LOLLIPOP)
-    public boolean onPreDraw() {
-      heart.getViewTreeObserver().removeOnPreDrawListener(this);
-      final int w = heart.getWidth();
-      final int h = heart.getHeight();
-      Animator reveal = ViewAnimationUtils.createCircularReveal(heart,
-                                                                w / 2, h,
-                                                                0, (float)Math.sqrt(h*h + (w*w/4)));
-      reveal.setInterpolator(new FastOutSlowInInterpolator());
-      reveal.setDuration(800);
-      reveal.start();
-      return false;
-    }
-  }
-
   @SuppressLint("StaticFieldLeak")
-  private class SendSmsInvitesAsyncTask extends ProgressDialogAsyncTask<String,Void,Void> {
+  private class SendSmsInvitesAsyncTask extends ProgressDialogAsyncTask<SelectedContact,Void,Void> {
     private final String message;
 
     SendSmsInvitesAsyncTask(Context context, String message) {
@@ -224,18 +251,19 @@ public class InviteActivity extends PassphraseRequiredActionBarActivity implemen
     }
 
     @Override
-    protected Void doInBackground(String... numbers) {
+    protected Void doInBackground(SelectedContact... contacts) {
       final Context context = getContext();
       if (context == null) return null;
 
-      for (String number : numbers) {
-        Recipient recipient      = Recipient.external(context, number);
-        int       subscriptionId = recipient.getDefaultSubscriptionId().or(-1);
+      for (SelectedContact contact : contacts) {
+        RecipientId recipientId    = contact.getOrCreateRecipientId(context);
+        Recipient   recipient      = Recipient.resolved(recipientId);
+        int         subscriptionId = recipient.getDefaultSubscriptionId().or(-1);
 
         MessageSender.send(context, new OutgoingTextMessage(recipient, message, subscriptionId), -1L, true, null);
 
         if (recipient.getContactUri() != null) {
-          DatabaseFactory.getRecipientDatabase(context).setSeenInviteReminder(recipient.getId(), true);
+          DatabaseFactory.getRecipientDatabase(context).setHasSentInvite(recipient.getId());
         }
       }
 

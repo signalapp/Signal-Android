@@ -5,6 +5,7 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.annimon.stream.Stream;
 import com.google.protobuf.ByteString;
 
 import org.thoughtcrime.securesms.ApplicationContext;
@@ -22,6 +23,7 @@ import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.sms.IncomingGroupMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.util.Base64;
@@ -32,6 +34,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceContent;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroup;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroup.Type;
+import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -90,8 +93,8 @@ public class GroupMessageProcessor {
     List<RecipientId>       members = new LinkedList<>();
 
     if (group.getMembers().isPresent()) {
-      for (String member : group.getMembers().get()) {
-        members.add(Recipient.external(context, member).getId());
+      for (SignalServiceAddress member : group.getMembers().get()) {
+        members.add(Recipient.externalPush(context, member).getId());
       }
     }
 
@@ -114,8 +117,8 @@ public class GroupMessageProcessor {
     Set<RecipientId> recordMembers  = new HashSet<>(groupRecord.getMembers());
     Set<RecipientId> messageMembers = new HashSet<>();
 
-    for (String messageMember : group.getMembers().get()) {
-      messageMembers.add(Recipient.external(context, messageMember).getId());
+    for (SignalServiceAddress messageMember : group.getMembers().get()) {
+      messageMembers.add(Recipient.externalPush(context, messageMember).getId());
     }
 
     Set<RecipientId> addedMembers = new HashSet<>(messageMembers);
@@ -135,7 +138,13 @@ public class GroupMessageProcessor {
       builder.clearMembers();
 
       for (RecipientId addedMember : addedMembers) {
-        builder.addMembers(Recipient.resolved(addedMember).requireAddress().serialize());
+        Recipient recipient = Recipient.resolved(addedMember);
+
+        if (recipient.getE164().isPresent()) {
+          builder.addMembersE164(recipient.getE164().get());
+        }
+
+        builder.addMembers(createMember(RecipientUtil.toSignalServiceAddress(context, recipient)));
       }
     } else {
       builder.clearMembers();
@@ -164,7 +173,7 @@ public class GroupMessageProcessor {
                                              @NonNull SignalServiceGroup group,
                                              @NonNull GroupRecord record)
   {
-    Recipient sender = Recipient.external(context, content.getSender());
+    Recipient sender = Recipient.externalPush(context, content.getSender());
 
     if (record.getMembers().contains(sender.getId())) {
       ApplicationDependencies.getJobManager().add(new PushGroupUpdateJob(sender.getId(), group.getGroupId()));
@@ -186,8 +195,8 @@ public class GroupMessageProcessor {
     GroupContext.Builder builder = createGroupContext(group);
     builder.setType(GroupContext.Type.QUIT);
 
-    if (members.contains(Recipient.external(context, content.getSender()).getId())) {
-      database.remove(id, Recipient.external(context, content.getSender()).getId());
+    if (members.contains(Recipient.externalPush(context, content.getSender()).getId())) {
+      database.remove(id, Recipient.externalPush(context, content.getSender()).getId());
       if (outgoing) database.setActive(id, false);
 
       return storeMessage(context, content, group, builder.build(), outgoing);
@@ -223,7 +232,7 @@ public class GroupMessageProcessor {
       } else {
         SmsDatabase          smsDatabase  = DatabaseFactory.getSmsDatabase(context);
         String               body         = Base64.encodeBytes(storage.toByteArray());
-        IncomingTextMessage  incoming     = new IncomingTextMessage(Recipient.external(context, content.getSender()).getId(), content.getSenderDevice(), content.getTimestamp(), body, Optional.of(group), 0, content.isNeedsReceipt());
+        IncomingTextMessage  incoming     = new IncomingTextMessage(Recipient.externalPush(context, content.getSender()).getId(), content.getSenderDevice(), content.getTimestamp(), body, Optional.of(group), 0, content.isNeedsReceipt());
         IncomingGroupMessage groupMessage = new IncomingGroupMessage(incoming, storage, body);
 
         Optional<InsertResult> insertResult = smsDatabase.insertMessageInbox(groupMessage);
@@ -258,10 +267,29 @@ public class GroupMessageProcessor {
     }
 
     if (group.getMembers().isPresent()) {
-      builder.addAllMembers(group.getMembers().get());
+      builder.addAllMembersE164(Stream.of(group.getMembers().get())
+                                      .filter(a -> a.getNumber().isPresent())
+                                      .map(a -> a.getNumber().get())
+                                      .toList());
+      builder.addAllMembers(Stream.of(group.getMembers().get())
+                                  .map(GroupMessageProcessor::createMember)
+                                  .toList());
     }
 
     return builder;
   }
 
+  public static GroupContext.Member createMember(SignalServiceAddress address) {
+    GroupContext.Member.Builder member = GroupContext.Member.newBuilder();
+
+    if (address.getUuid().isPresent()) {
+      member = member.setUuid(address.getUuid().get().toString());
+    }
+
+    if (address.getNumber().isPresent()) {
+      member = member.setE164(address.getNumber().get());
+    }
+
+    return member.build();
+  }
 }

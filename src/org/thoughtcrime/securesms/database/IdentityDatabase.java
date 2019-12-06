@@ -26,6 +26,7 @@ import net.sqlcipher.database.SQLiteDatabase;
 
 import org.greenrobot.eventbus.EventBus;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.Base64;
 import org.whispersystems.libsignal.IdentityKey;
@@ -39,14 +40,14 @@ public class IdentityDatabase extends Database {
   @SuppressWarnings("unused")
   private static final String TAG = IdentityDatabase.class.getSimpleName();
 
-  private static final String TABLE_NAME           = "identities";
+          static final String TABLE_NAME           = "identities";
   private static final String ID                   = "_id";
-  private static final String RECIPIENT_ID         = "address";
-  private static final String IDENTITY_KEY         = "key";
+          static final String RECIPIENT_ID         = "address";
+          static final String IDENTITY_KEY         = "key";
   private static final String TIMESTAMP            = "timestamp";
   private static final String FIRST_USE            = "first_use";
   private static final String NONBLOCKING_APPROVAL = "nonblocking_approval";
-  private static final String VERIFIED             = "verified";
+          static final String VERIFIED             = "verified";
 
   public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME +
       " (" + ID + " INTEGER PRIMARY KEY, " +
@@ -112,21 +113,8 @@ public class IdentityDatabase extends Database {
   public void saveIdentity(@NonNull RecipientId recipientId, IdentityKey identityKey, VerifiedStatus verifiedStatus,
                            boolean firstUse, long timestamp, boolean nonBlockingApproval)
   {
-    SQLiteDatabase database          = databaseHelper.getWritableDatabase();
-    String         identityKeyString = Base64.encodeBytes(identityKey.serialize());
-
-    ContentValues contentValues = new ContentValues();
-    contentValues.put(RECIPIENT_ID, recipientId.serialize());
-    contentValues.put(IDENTITY_KEY, identityKeyString);
-    contentValues.put(TIMESTAMP, timestamp);
-    contentValues.put(VERIFIED, verifiedStatus.toInt());
-    contentValues.put(NONBLOCKING_APPROVAL, nonBlockingApproval ? 1 : 0);
-    contentValues.put(FIRST_USE, firstUse ? 1 : 0);
-
-    database.replace(TABLE_NAME, null, contentValues);
-
-    EventBus.getDefault().post(new IdentityRecord(recipientId, identityKey, verifiedStatus,
-                                                  firstUse, timestamp, nonBlockingApproval));
+    saveIdentityInternal(recipientId, identityKey, verifiedStatus, firstUse, timestamp, nonBlockingApproval);
+    DatabaseFactory.getRecipientDatabase(context).markDirty(recipientId, RecipientDatabase.DirtyState.UPDATE);
   }
 
   public void setApproval(@NonNull RecipientId recipientId, boolean nonBlockingApproval) {
@@ -136,6 +124,8 @@ public class IdentityDatabase extends Database {
     contentValues.put(NONBLOCKING_APPROVAL, nonBlockingApproval);
 
     database.update(TABLE_NAME, contentValues, RECIPIENT_ID + " = ?", new String[] {recipientId.serialize()});
+
+    DatabaseFactory.getRecipientDatabase(context).markDirty(recipientId, RecipientDatabase.DirtyState.UPDATE);
   }
 
   public void setVerified(@NonNull RecipientId recipientId, IdentityKey identityKey, VerifiedStatus verifiedStatus) {
@@ -150,6 +140,25 @@ public class IdentityDatabase extends Database {
     if (updated > 0) {
       Optional<IdentityRecord> record = getIdentity(recipientId);
       if (record.isPresent()) EventBus.getDefault().post(record.get());
+      DatabaseFactory.getRecipientDatabase(context).markDirty(recipientId, RecipientDatabase.DirtyState.UPDATE);
+    }
+  }
+
+  public void updateIdentityAfterSync(@NonNull RecipientId id, IdentityKey identityKey, VerifiedStatus verifiedStatus) {
+    if (!hasMatchingKey(id, identityKey, verifiedStatus)) {
+      saveIdentityInternal(id, identityKey, verifiedStatus, false, System.currentTimeMillis(), true);
+      Optional<IdentityRecord> record = getIdentity(id);
+      if (record.isPresent()) EventBus.getDefault().post(record.get());
+    }
+  }
+
+  private boolean hasMatchingKey(@NonNull RecipientId id, IdentityKey identityKey, VerifiedStatus verifiedStatus) {
+    SQLiteDatabase db    = databaseHelper.getReadableDatabase();
+    String         query = RECIPIENT_ID + " = ? AND " + IDENTITY_KEY + " = ? AND " + VERIFIED + " = ?";
+    String[]       args  = new String[]{id.serialize(), Base64.encodeBytes(identityKey.serialize()), String.valueOf(verifiedStatus.toInt())};
+
+    try (Cursor cursor = db.query(TABLE_NAME, null, query, args, null, null, null)) {
+      return cursor != null && cursor.moveToFirst();
     }
   }
 
@@ -163,6 +172,26 @@ public class IdentityDatabase extends Database {
     IdentityKey identity            = new IdentityKey(Base64.decode(serializedIdentity), 0);
 
     return new IdentityRecord(RecipientId.from(recipientId), identity, VerifiedStatus.forState(verifiedStatus), firstUse, timestamp, nonblockingApproval);
+  }
+
+  private void saveIdentityInternal(@NonNull RecipientId recipientId, IdentityKey identityKey, VerifiedStatus verifiedStatus,
+                                    boolean firstUse, long timestamp, boolean nonBlockingApproval)
+  {
+    SQLiteDatabase database          = databaseHelper.getWritableDatabase();
+    String         identityKeyString = Base64.encodeBytes(identityKey.serialize());
+
+    ContentValues contentValues = new ContentValues();
+    contentValues.put(RECIPIENT_ID, recipientId.serialize());
+    contentValues.put(IDENTITY_KEY, identityKeyString);
+    contentValues.put(TIMESTAMP, timestamp);
+    contentValues.put(VERIFIED, verifiedStatus.toInt());
+    contentValues.put(NONBLOCKING_APPROVAL, nonBlockingApproval ? 1 : 0);
+    contentValues.put(FIRST_USE, firstUse ? 1 : 0);
+
+    database.replace(TABLE_NAME, null, contentValues);
+
+    EventBus.getDefault().post(new IdentityRecord(recipientId, identityKey, verifiedStatus,
+        firstUse, timestamp, nonBlockingApproval));
   }
 
   public static class IdentityRecord {

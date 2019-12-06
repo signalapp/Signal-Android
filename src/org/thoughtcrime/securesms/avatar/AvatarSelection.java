@@ -6,9 +6,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.provider.MediaStore;
+
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
@@ -52,6 +55,22 @@ public final class AvatarSelection {
              .start(activity);
   }
 
+  /**
+   * Returns result on {@link #REQUEST_CODE_CROP_IMAGE}
+   */
+  public static void circularCropImage(Fragment fragment, Uri inputFile, Uri outputFile, @StringRes int title) {
+    CropImage.activity(inputFile)
+             .setGuidelines(CropImageView.Guidelines.ON)
+             .setAspectRatio(1, 1)
+             .setCropShape(CropImageView.CropShape.OVAL)
+             .setOutputUri(outputFile)
+             .setAllowRotation(true)
+             .setAllowFlipping(true)
+             .setBackgroundColor(ContextCompat.getColor(fragment.requireContext(), R.color.avatar_background))
+             .setActivityTitle(fragment.requireContext().getString(title))
+             .start(fragment.requireContext(), fragment);
+  }
+
   public static Uri getResultUri(Intent data) {
     return CropImage.getActivityResult(data).getUri();
   }
@@ -62,22 +81,37 @@ public final class AvatarSelection {
    * @return Temporary capture file if created.
    */
   public static File startAvatarSelection(Activity activity, boolean includeClear, boolean attemptToIncludeCamera) {
-    File    captureFile  = null;
-
-    if (attemptToIncludeCamera) {
-      if (Permissions.hasAll(activity, Manifest.permission.CAMERA)) {
-        try {
-          captureFile = File.createTempFile("capture", "jpg", activity.getExternalCacheDir());
-        } catch (IOException e) {
-          Log.w(TAG, e);
-          captureFile = null;
-        }
-      }
-    }
+    File captureFile  = attemptToIncludeCamera ? getCaptureFile(activity) : null;
 
     Intent chooserIntent = createAvatarSelectionIntent(activity, captureFile, includeClear);
     activity.startActivityForResult(chooserIntent, REQUEST_CODE_AVATAR);
     return captureFile;
+  }
+
+  /**
+   * Returns result on {@link #REQUEST_CODE_AVATAR}
+   *
+   * @return Temporary capture file if created.
+   */
+  public static File startAvatarSelection(Fragment fragment, boolean includeClear, boolean attemptToIncludeCamera) {
+    File captureFile  = attemptToIncludeCamera ? getCaptureFile(fragment.requireContext()) : null;
+
+    Intent chooserIntent = createAvatarSelectionIntent(fragment.requireContext(), captureFile, includeClear);
+    fragment.startActivityForResult(chooserIntent, REQUEST_CODE_AVATAR);
+    return captureFile;
+  }
+
+  private static @Nullable File getCaptureFile(@NonNull Context context) {
+    if (!Permissions.hasAll(context, Manifest.permission.CAMERA)) {
+      return null;
+    }
+
+    try {
+      return File.createTempFile("capture", "jpg", context.getExternalCacheDir());
+    } catch (IOException e) {
+      Log.w(TAG, e);
+      return null;
+    }
   }
 
   private static Intent createAvatarSelectionIntent(Context context, @Nullable File tempCaptureFile, boolean includeClear) {

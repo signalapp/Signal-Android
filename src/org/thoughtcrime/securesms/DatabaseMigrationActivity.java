@@ -149,7 +149,8 @@ public class DatabaseMigrationActivity extends PassphraseRequiredActionBarActivi
       if (getIntent().hasExtra("next_intent")) {
         startActivity((Intent)getIntent().getParcelableExtra("next_intent"));
       } else {
-        startActivity(new Intent(this, ConversationListActivity.class));
+        // TODO [greyson] Navigation
+        startActivity(new Intent(this, MainActivity.class));
       }
     }
 

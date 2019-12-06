@@ -19,6 +19,7 @@ package org.thoughtcrime.securesms.mms;
 import android.content.Context;
 import android.content.res.Resources.Theme;
 import android.net.Uri;
+
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -170,6 +171,34 @@ public abstract class Slide {
                              stickerLocator,
                              blurHash,
                              null);
+  }
+
+  public @NonNull Optional<String> getFileType(@NonNull Context context) {
+    Optional<String> fileName = getFileName();
+
+    if (fileName.isPresent()) {
+      return Optional.of(getFileType(fileName));
+    }
+
+    return Optional.fromNullable(MediaUtil.getExtension(context, getUri()));
+  }
+
+  private static @NonNull String getFileType(Optional<String> fileName) {
+    if (!fileName.isPresent()) return "";
+
+    String[] parts = fileName.get().split("\\.");
+
+    if (parts.length < 2) {
+      return "";
+    }
+
+    String suffix = parts[parts.length - 1];
+
+    if (suffix.length() <= 3) {
+      return suffix;
+    }
+
+    return "";
   }
 
   @Override

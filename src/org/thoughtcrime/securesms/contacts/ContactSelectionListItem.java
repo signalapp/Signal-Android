@@ -1,10 +1,10 @@
 package org.thoughtcrime.securesms.contacts;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.CheckBox;
@@ -14,15 +14,14 @@ import android.widget.TextView;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.components.FromTextView;
-import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.GroupUtil;
-import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
+import org.whispersystems.libsignal.util.guava.Optional;
 
 public class ContactSelectionListItem extends LinearLayout implements RecipientForeverObserver {
 
@@ -36,6 +35,7 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientF
   private CheckBox        checkBox;
 
   private String        number;
+  private int           contactType;
   private LiveRecipient recipient;
   private GlideRequests glideRequests;
 
@@ -70,17 +70,15 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientF
   {
     this.glideRequests = glideRequests;
     this.number        = number;
+    this.contactType   = type;
 
-    if (type == ContactRepository.NEW_TYPE) {
+    if (type == ContactRepository.NEW_PHONE_TYPE || type == ContactRepository.NEW_USERNAME_TYPE) {
       this.recipient = null;
       this.contactPhotoImage.setAvatar(glideRequests, null, false);
     } else if (recipientId != null) {
       this.recipient = Recipient.live(recipientId);
       this.recipient.observeForever(this);
-
-      if (this.recipient.get().getName() != null) {
-        name = this.recipient.get().getName();
-      }
+      name = this.recipient.get().getDisplayName(getContext());
     }
 
     Recipient recipientSnapshot = recipient != null ? recipient.get() : null;
@@ -106,6 +104,7 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientF
     }
   }
 
+  @SuppressLint("SetTextI18n")
   private void setText(@Nullable Recipient recipient, int type, String name, String number, String label) {
     if (number == null || number.isEmpty() || GroupUtil.isEncodedGroup(number)) {
       this.nameView.setEnabled(false);
@@ -115,6 +114,11 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientF
       this.numberView.setText(number);
       this.nameView.setEnabled(true);
       this.labelView.setVisibility(View.GONE);
+    } else if (type == ContactRepository.NEW_USERNAME_TYPE) {
+      this.numberView.setText("@" + number);
+      this.nameView.setEnabled(true);
+      this.labelView.setText(label);
+      this.labelView.setVisibility(View.VISIBLE);
     } else {
       this.numberView.setText(number);
       this.nameView.setEnabled(true);
@@ -131,6 +135,14 @@ public class ContactSelectionListItem extends LinearLayout implements RecipientF
 
   public String getNumber() {
     return number;
+  }
+
+  public boolean isUsernameType() {
+    return contactType == ContactRepository.NEW_USERNAME_TYPE;
+  }
+
+  public Optional<RecipientId> getRecipientId() {
+    return recipient != null ? Optional.of(recipient.getId()) : Optional.absent();
   }
 
   @Override

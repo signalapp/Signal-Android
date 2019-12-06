@@ -277,7 +277,7 @@ public class PassphrasePromptActivity extends PassphraseActivity {
       fingerprintManager.authenticate(null, 0, fingerprintCancellationSignal, fingerprintListener, null);
     } else if (Build.VERSION.SDK_INT >= 21){
       Log.i(TAG, "firing intent...");
-      Intent intent = keyguardManager.createConfirmDeviceCredentialIntent("Unlock Signal", "");
+      Intent intent = keyguardManager.createConfirmDeviceCredentialIntent(getString(R.string.PassphrasePromptActivity_unlock_signal), "");
       startActivityForResult(intent, 1);
     } else {
       Log.w(TAG, "Not compatible...");

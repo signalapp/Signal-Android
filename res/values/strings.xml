@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Signal</string>
+    <string name="app_name" translatable="false">Signal</string>
 
     <string name="install_url" translatable="false">https://signal.org/install</string>
 
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="delete">Delete</string>
-    <string name="please_wait">Please wait...</string>
+    <string name="please_wait">Please wait…</string>
     <string name="save">Save</string>
     <string name="note_to_self">Note to Self</string>
 
@@ -15,10 +15,10 @@
     <string name="AbstractNotificationBuilder_new_message">New message</string>
 
     <!-- AlbumThumbnailView -->
-    <string name="AlbumThumbnailView_plus">\+%d</string>
+    <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string>
 
     <!-- ApplicationMigrationActivity -->
-    <string name="ApplicationMigrationActivity__signal_is_updating">Signal is updating...</string>
+    <string name="ApplicationMigrationActivity__signal_is_updating">Signal is updating…</string>
 
     <!-- ApplicationPreferencesActivity -->
     <string name="ApplicationPreferencesActivity_currently_s">Currently: %s</string>
@@ -37,7 +37,7 @@
     <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">This will permanently unlock Signal and message notifications.</string>
     <string name="ApplicationPreferencesActivity_disable">Disable</string>
     <string name="ApplicationPreferencesActivity_unregistering">Unregistering</string>
-    <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Unregistering from Signal messages and calls...</string>
+    <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Unregistering from Signal messages and calls…</string>
     <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Disable Signal messages and calls?</string>
     <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Disable Signal messages and calls by unregistering from the server. You will need to re-register your phone number to use them again in the future.</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Error connecting to server!</string>
@@ -74,8 +74,8 @@
     <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal requires the Camera permission in order to take photos, but it has been permanently denied. Please continue to the app settings menu, select \"Permissions\", and enable \"Camera\".</string>
 
     <!-- AttachmentUploadJob -->
-    <string name="AttachmentUploadJob_uploading_media">Uploading media...</string>
-    <string name="AttachmentUploadJob_compressing_video_start">Compressing video...</string>
+    <string name="AttachmentUploadJob_uploading_media">Uploading media…</string>
+    <string name="AttachmentUploadJob_compressing_video_start">Compressing video…</string>
 
     <!-- AudioSlidePlayer -->
     <string name="AudioSlidePlayer_error_playing_audio">Error playing audio!</string>
@@ -88,6 +88,9 @@
     <string name="BucketedThreadMedia_Yesterday">Yesterday</string>
     <string name="BucketedThreadMedia_This_week">This week</string>
     <string name="BucketedThreadMedia_This_month">This month</string>
+    <string name="BucketedThreadMedia_Large">Large</string>
+    <string name="BucketedThreadMedia_Medium">Medium</string>
+    <string name="BucketedThreadMedia_Small">Small</string>
 
     <!-- CallScreen -->
     <string name="CallScreen_Incoming_call">Incoming call</string>
@@ -120,6 +123,10 @@
     <!-- CommunicationActions -->
     <string name="CommunicationActions_no_browser_found">No web browser found.</string>
     <string name="CommunicationActions_a_cellular_call_is_already_in_progress">A cellular call is already in progress.</string>
+    <string name="CommunicationActions_start_video_call">Start video call?</string>
+    <string name="CommunicationActions_start_voice_call">Start voice call?</string>
+    <string name="CommunicationActions_cancel">Cancel</string>
+    <string name="CommunicationActions_call">Call</string>
 
     <!-- ConfirmIdentityDialog -->
     <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Your safety number with %1$s has changed. This could either mean that someone is trying to intercept your communication, or that %2$s simply reinstalled Signal.</string>
@@ -130,6 +137,8 @@
     <string name="ContactsCursorLoader_recent_chats">Recent chats</string>
     <string name="ContactsCursorLoader_contacts">Contacts</string>
     <string name="ContactsCursorLoader_groups">Groups</string>
+    <string name="ContactsCursorLoader_phone_number_search">Phone number search</string>
+    <string name="ContactsCursorLoader_username_search">Username search</string>
 
     <!-- ContactsDatabase -->
     <string name="ContactsDatabase_message_s">Message %s</string>
@@ -250,15 +259,15 @@
         <item quantity="other">Saving %1$d attachments</item>
     </plurals>
     <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="one">Saving attachment to storage...</item>
-        <item quantity="other">Saving %1$d attachments to storage...</item>
+        <item quantity="one">Saving attachment to storage…</item>
+        <item quantity="other">Saving %1$d attachments to storage…</item>
     </plurals>
-    <string name="ConversationFragment_pending">Pending...</string>
+    <string name="ConversationFragment_pending">Pending…</string>
     <string name="ConversationFragment_push">Data (Signal)</string>
     <string name="ConversationFragment_mms">MMS</string>
     <string name="ConversationFragment_sms">SMS</string>
     <string name="ConversationFragment_deleting">Deleting</string>
-    <string name="ConversationFragment_deleting_messages">Deleting messages...</string>
+    <string name="ConversationFragment_deleting_messages">Deleting messages…</string>
     <string name="ConversationFragment_quoted_message_not_found">Original message not found</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">Original message no longer available</string>
     <string name="ConversationFragment_failed_to_open_message">Failed to open message</string>
@@ -280,7 +289,7 @@
         <item quantity="other">This will permanently delete all %1$d selected conversations.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Deleting</string>
-    <string name="ConversationListFragment_deleting_selected_conversations">Deleting selected conversations...</string>
+    <string name="ConversationListFragment_deleting_selected_conversations">Deleting selected conversations…</string>
     <plurals name="ConversationListFragment_conversations_archived">
         <item quantity="one">Conversation archived</item>
         <item quantity="other">%d conversations archived</item>
@@ -333,7 +342,7 @@
     <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">By unlinking this device, it will no longer be able to send or receive messages.</string>
     <string name="DeviceListActivity_network_connection_failed">Network connection failed</string>
     <string name="DeviceListActivity_try_again">Try again</string>
-    <string name="DeviceListActivity_unlinking_device">Unlinking device...</string>
+    <string name="DeviceListActivity_unlinking_device">Unlinking device…</string>
     <string name="DeviceListActivity_unlinking_device_no_ellipsis">Unlinking device</string>
     <string name="DeviceListActivity_network_failed">Network failed!</string>
 
@@ -344,7 +353,7 @@
     <string name="DeviceListItem_today">Today</string>
 
     <!-- DocumentView -->
-    <string name="DocumentView_unknown_file">Unknown file</string>
+    <string name="DocumentView_unnamed_file">Unnamed file</string>
 
     <!-- DozeReminder -->
     <string name="DozeReminder_optimize_for_missing_play_services">Optimize for missing Play Services</string>
@@ -383,7 +392,7 @@
     <string name="ExperienceUpgradeActivity_got_it">Got it</string>
 
     <!-- GcmBroadcastReceiver -->
-    <string name="GcmBroadcastReceiver_retrieving_a_message">Retrieving a message...</string>
+    <string name="GcmBroadcastReceiver_retrieving_a_message">Retrieving a message…</string>
 
     <!-- GcmRefreshJob -->
     <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Permanent Signal communication failure!</string>
@@ -409,9 +418,9 @@
     <string name="GroupCreateActivity_avatar_content_description">Group avatar</string>
     <string name="GroupCreateActivity_menu_apply_button">Apply</string>
     <string name="GroupCreateActivity_creating_group">Creating %1$s&#8230;</string>
-    <string name="GroupCreateActivity_updating_group">Updating %1$s...</string>
+    <string name="GroupCreateActivity_updating_group">Updating %1$s…</string>
     <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Couldn\'t add %1$s because they\'re not a Signal user.</string>
-    <string name="GroupCreateActivity_loading_group_details">Loading group details...</string>
+    <string name="GroupCreateActivity_loading_group_details">Loading group details…</string>
     <string name="GroupCreateActivity_youre_already_in_the_group">You\'re already in the group.</string>
 
     <!-- GroupShareProfileView -->
@@ -432,8 +441,11 @@
     <!-- InviteActivity -->
     <string name="InviteActivity_share">Share</string>
     <string name="InviteActivity_choose_contacts">Choose contacts</string>
+    <string name="InviteActivity_share_with_contacts">Share with contacts</string>
+    <string name="InviteActivity_choose_how_to_share">Choose how to share</string>
+
     <string name="InviteActivity_cancel">Cancel</string>
-    <string name="InviteActivity_sending">Sending...</string>
+    <string name="InviteActivity_sending">Sending…</string>
     <string name="InviteActivity_heart_content_description">Heart</string>
     <string name="InviteActivity_invitations_sent">Invitations sent!</string>
     <string name="InviteActivity_invite_to_signal">Invite to Signal</string>
@@ -450,7 +462,7 @@
     <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Friends don\'t let friends chat unencrypted.</string>
 
     <!-- Job -->
-    <string name="Job_working_in_the_background">Working in the background...</string>
+    <string name="Job_working_in_the_background">Working in the background…</string>
 
     <!-- MessageDetailsRecipient -->
     <string name="MessageDetailsRecipient_failed_to_send">Failed to send</string>
@@ -470,19 +482,49 @@
 
     <!-- MediaOverviewActivity -->
     <string name="MediaOverviewActivity_Media">Media</string>
+    <string name="MediaOverviewActivity_Files">Files</string>
+    <string name="MediaOverviewActivity_Audio">Audio</string>
+    <string name="MediaOverviewActivity_All">All</string>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
-        <item quantity="one">Delete selected message?</item>
-        <item quantity="other">Delete selected messages?</item>
+        <item quantity="one">Delete selected item?</item>
+        <item quantity="other">Delete selected items?</item>
     </plurals>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-        <item quantity="one">This will permanently delete the selected message.</item>
-        <item quantity="other">This will permanently delete all %1$d selected messages.</item>
+        <item quantity="one">This will permanently delete the selected file. Any message text associated with this item will also be deleted.</item>
+        <item quantity="other">This will permanently delete all %1$d selected files. Any message text associated with these items will also be deleted.</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">Deleting</string>
-    <string name="MediaOverviewActivity_Media_delete_progress_message">Deleting messages...</string>
-    <string name="MediaOverviewActivity_Documents">Documents</string>
+    <string name="MediaOverviewActivity_Media_delete_progress_message">Deleting messages…</string>
     <string name="MediaOverviewActivity_Select_all">Select all</string>
-    <string name="MediaOverviewActivity_collecting_attachments">Collecting attachments...</string>
+    <string name="MediaOverviewActivity_collecting_attachments">Collecting attachments…</string>
+    <string name="MediaOverviewActivity_Sort_by">Sort by</string>
+    <string name="MediaOverviewActivity_Newest">Newest</string>
+    <string name="MediaOverviewActivity_Oldest">Oldest</string>
+    <string name="MediaOverviewActivity_Storage_used">Storage used</string>
+    <string name="MediaOverviewActivity_All_storage_use">All storage use</string>
+    <string name="MediaOverviewActivity_Grid_view_description">Grid view</string>
+    <string name="MediaOverviewActivity_List_view_description">List view</string>
+    <string name="MediaOverviewActivity_Selected_description">Selected</string>
+
+    <plurals name="MediaOverviewActivity_d_items_s">
+        <item quantity="one">%1$d item %2$s</item>
+        <item quantity="other">%1$d items %2$s</item>
+    </plurals>
+    <plurals name="MediaOverviewActivity_d_items">
+        <item quantity="one">%1$d item</item>
+        <item quantity="other">%1$d items</item>
+    </plurals>
+    <string name="MediaOverviewActivity_file">File</string>
+    <string name="MediaOverviewActivity_audio">Audio</string>
+    <string name="MediaOverviewActivity_video">Video</string>
+    <string name="MediaOverviewActivity_image">Image</string>
+    <string name="MediaOverviewActivity_detail_line_2_part" translatable="false">%1$s &#183; %2$s</string>
+    <string name="MediaOverviewActivity_detail_line_3_part" translatable="false">%1$s &#183; %2$s &#183; %3$s</string>
+
+    <string name="MediaOverviewActivity_sent_by_s">Sent by %1$s</string>
+    <string name="MediaOverviewActivity_sent_by_you">Sent by you</string>
+    <string name="MediaOverviewActivity_sent_by_s_to_s">Sent by %1$s to %2$s</string>
+    <string name="MediaOverviewActivity_sent_by_you_to_s">Sent by you to %1$s</string>
 
     <!--- NotificationBarManager -->
     <string name="NotificationBarManager_signal_call_in_progress">Signal call in progress</string>
@@ -506,7 +548,7 @@
     <string name="MediaPickerItemFragment_tap_to_select">Tap to select</string>
 
     <!-- MediaSendActivity -->
-    <string name="MediaSendActivity_add_a_caption">Add a caption...</string>
+    <string name="MediaSendActivity_add_a_caption">Add a caption…</string>
     <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">An item was removed because it exceeded the size limit</string>
     <string name="MediaSendActivity_camera_unavailable">Camera unavailable.</string>
     <string name="MediaSendActivity_message_to_s">Message to %s</string>
@@ -561,7 +603,7 @@
         \n• Send messages in your name
     </string>
     <string name="DeviceProvisioningActivity_content_progress_title">Linking device</string>
-    <string name="DeviceProvisioningActivity_content_progress_content">Linking new device...</string>
+    <string name="DeviceProvisioningActivity_content_progress_content">Linking new device…</string>
     <string name="DeviceProvisioningActivity_content_progress_success">Device approved!</string>
     <string name="DeviceProvisioningActivity_content_progress_no_device">No device found.</string>
     <string name="DeviceProvisioningActivity_content_progress_network_error">Network error.</string>
@@ -584,6 +626,7 @@
     <string name="PassphrasePromptActivity_watermark_content_description">Signal icon</string>
     <string name="PassphrasePromptActivity_ok_button_content_description">Submit passphrase</string>
     <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Invalid passphrase!</string>
+    <string name="PassphrasePromptActivity_unlock_signal">Unlock Signal</string>
 
     <!-- PlacePickerActivity -->
     <string name="PlacePickerActivity_title">Map</string>
@@ -594,6 +637,19 @@
 
     <!-- PlayServicesProblemFragment -->
     <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">The version of Google Play Services you have installed is not functioning correctly.  Please reinstall Google Play Services and try again.</string>
+
+    <!-- ProfileEditNameFragment -->
+    <string name="ProfileEditNameFragment_profile_name">Profile name</string>
+    <string name="ProfileEditNameFragment_your_profile_name_can_be_seen_by_your_contacts">Your profile name can be seen by your contacts and by other users or groups when you initiate a conversation or accept a conversation request.</string>
+    <string name="ProfileEditNameFragment_save">Save</string>
+
+    <!-- ProfileEditOverviewFragment -->
+    <string name="ProfileEditOverviewFragment_profile">Profile</string>
+    <string name="ProfileEditOverviewFragment_profile_name">Profile name</string>
+    <string name="ProfileEditOverviewFragment_username">Username</string>
+    <string name="ProfileEditOverviewFragment_create_a_profile_name">Create a profile name</string>
+    <string name="ProfileEditOverviewFragment_create_a_username">Create a username</string>
+    <string name="ProfileEditOverviewFragment_your_signal_profile_can_be_seen_by">Your Signal Profile can be seen by your contacts and by other users or groups when you initiate a conversation or accept a conversation request. <a href="https://support.signal.org/hc/en-us/articles/360007459591-Signal-Profiles">Tap here to learn more</a>.</string>
 
     <!-- RatingManager -->
     <string name="RatingManager_rate_this_app">Rate this app</string>
@@ -668,6 +724,8 @@
     <string name="RegistrationActivity_failed_to_verify_the_captcha">Failed to verify the CAPTCHA</string>
     <string name="RegistrationActivity_next">Next</string>
     <string name="RegistrationActivity_continue">Continue</string>
+    <string name="RegistrationActivity_continue_d_attempts_left">Continue (%d attempts left)</string>
+    <string name="RegistrationActivity_continue_last_attempt">Continue (last attempt!)</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Take privacy with you.\nBe yourself in every message.</string>
     <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Enter your phone number to get started</string>
     <string name="RegistrationActivity_you_will_receive_a_verification_code">You will receive a verification code. Carrier rates may apply.</string>
@@ -784,11 +842,26 @@
     <string name="UnverifiedSendDialog_send_message">Send message?</string>
     <string name="UnverifiedSendDialog_send">Send</string>
 
+    <!-- UsernameEditFragment -->
+    <string name="UsernameEditFragment_username">Username</string>
+    <string name="UsernameEditFragment_submit">Submit</string>
+    <string name="UsernameEditFragment_delete">Delete</string>
+    <string name="UsernameEditFragment_successfully_set_username">Successfully set username.</string>
+    <string name="UsernameEditFragment_successfully_removed_username">Successfully removed username.</string>
+    <string name="UsernameEditFragment_encountered_a_network_error">Encountered a network error.</string>
+    <string name="UsernameEditFragment_this_username_is_taken">This username is taken.</string>
+    <string name="UsernameEditFragment_this_username_is_available">This username is available.</string>
+    <string name="UsernameEditFragment_usernames_can_only_include">Usernames can only include a-Z, 0-9, and underscores.</string>
+    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Usernames cannot begin with a number.</string>
+    <string name="UsernameEditFragment_username_is_invalid">Username is invalid.</string>
+    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Usernames must be between %1$d and %2$d characters.</string>
+    <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Other Signal users can send message requests to your unique username without knowing your phone number. Choosing a username is optional.</string>
+
     <!-- VerifyIdentityActivity -->
     <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Your contact is running an old version of Signal. Please ask them to update before verifying your safety number.</string>
     <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Your contact is running a newer version of Signal with an incompatible QR code format. Please update to compare.</string>
     <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">The scanned QR code is not a correctly formatted safety number verification code. Please try scanning again.</string>
-    <string name="VerifyIdentityActivity_share_safety_number_via">Share safety number via...</string>
+    <string name="VerifyIdentityActivity_share_safety_number_via">Share safety number via…</string>
     <string name="VerifyIdentityActivity_our_signal_safety_number">Our Signal safety number:</string>
     <string name="VerifyIdentityActivity_no_app_to_share_to">It looks like you don\'t have any apps to share to.</string>
     <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">No safety number to compare was found in the clipboard</string>
@@ -832,6 +905,7 @@
     <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Unable to save to external storage without permissions</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_title">Delete message?</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_message">This will permanently delete this message.</string>
+    <string name="MediaPreviewActivity_s_to_s">%1$s to %2$s</string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d new messages in %2$d conversations</string>
@@ -854,6 +928,7 @@
     <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Open Signal to check for recent notifications.</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">Contact</string>
+    <string name="MessageNotifier_reacted_to_your_message">Reacted to your message: %1$s</string>
 
     <!-- Notification Channels -->
     <string name="NotificationChannel_messages">Default</string>
@@ -865,6 +940,10 @@
     <string name="NotificationChannel_other">Other</string>
     <string name="NotificationChannel_group_messages">Messages</string>
     <string name="NotificationChannel_missing_display_name">Unknown</string>
+
+    <!-- ProfileEditNameFragment -->
+    <string name="ProfileEditNameFragment_successfully_set_profile_name">Successfully set profile name.</string>
+    <string name="ProfileEditNameFragment_encountered_a_network_error">Encountered a network error.</string>
 
     <!-- QuickResponseService -->
     <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Quick response unavailable when Signal is locked!</string>
@@ -884,6 +963,10 @@
     <!-- SingleRecipientNotificationBuilder -->
     <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
     <string name="SingleRecipientNotificationBuilder_new_message">New message</string>
+
+    <!-- ThumbnailView -->
+    <string name="ThumbnailView_Play_video_description">Play video</string>
+    <string name="ThumbnailView_Has_a_caption_description">Has a caption</string>
 
     <!-- TransferControlView -->
     <plurals name="TransferControlView_n_items">
@@ -965,6 +1048,9 @@
     <!-- ContactSelectionListFragment-->
     <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal requires the Contacts permission in order to display your contacts, but it has been permanently denied. Please continue to the app settings menu, select \"Permissions\", and enable \"Contacts\".</string>
     <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Error retrieving contacts, check your network connection</string>
+    <string name="ContactSelectionListFragment_username_not_found">Username not found</string>
+    <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"%1$s" is not a Signal user. Please check the username and try again.</string>
+    <string name="ContactSelectionListFragment_okay">Okay</string>
 
     <!-- blocked_contacts_fragment -->
     <string name="blocked_contacts_fragment__no_blocked_contacts">No blocked contacts</string>
@@ -1006,7 +1092,7 @@
     <string name="conversation_item_received__contact_photo_description">Contact photo</string>
 
     <!-- audio_view -->
-    <string name="audio_view__play_pause_accessibility_description">Play ... Pause</string>
+    <string name="audio_view__play_pause_accessibility_description">Play … Pause</string>
     <string name="audio_view__download_accessibility_description">Download</string>
 
     <!-- QuoteView -->
@@ -1023,7 +1109,7 @@
     <string name="conversation_fragment__scroll_to_the_bottom_content_description">Scroll to the bottom</string>
 
     <!-- country_selection_fragment -->
-    <string name="country_selection_fragment__loading_countries">Loading countries...</string>
+    <string name="country_selection_fragment__loading_countries">Loading countries…</string>
     <string name="country_selection_fragment__search">Search</string>
 
     <!-- device_add_fragment -->
@@ -1148,7 +1234,7 @@
     <!-- message_recipients_list_item -->
     <string name="message_recipients_list_item__view">VIEW</string>
     <string name="message_recipients_list_item__resend">RESEND</string>
-    <string name="message_recipients_list_item__resending">Resending...</string>
+    <string name="message_recipients_list_item__resending">Resending…</string>
 
     <!-- GroupUtil -->
     <plurals name="GroupUtil_joined_the_group">
@@ -1212,7 +1298,7 @@
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[If you wish to verify the security of your encryption with %s, compare the number above with the number on their device. Alternatively, you can scan the code on their phone, or ask them to scan your code. <a href="https://signal.org/redirect/safety-numbers">Learn more.</a>]]></string>
     <string name="verify_display_fragment__tap_to_scan">Tap to scan</string>
-    <string name="verify_display_fragment__loading">Loading...</string>
+    <string name="verify_display_fragment__loading">Loading…</string>
     <string name="verify_display_fragment__verified">Verified</string>
 
     <!-- verify_identity -->
@@ -1345,6 +1431,7 @@
     <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Automatically delete older messages once a conversation exceeds a specified length</string>
     <string name="preferences__delete_old_messages">Delete old messages</string>
     <string name="preferences__chats">Chats and media</string>
+    <string name="preferences__storage">Storage</string>
     <string name="preferences__conversation_length_limit">Conversation length limit</string>
     <string name="preferences__trim_all_conversations_now">Trim all conversations now</string>
     <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Scan through all conversations and enforce conversation length limits</string>
@@ -1373,6 +1460,12 @@
     <string name="preferences_chats__when_roaming">When roaming</string>
     <string name="preferences_chats__media_auto_download">Media auto-download</string>
     <string name="preferences_chats__message_trimming">Message trimming</string>
+    <string name="preferences_storage__storage_usage">Storage usage</string>
+    <string name="preferences_storage__photos">Photos</string>
+    <string name="preferences_storage__videos">Videos</string>
+    <string name="preferences_storage__files">Files</string>
+    <string name="preferences_storage__audio">Audio</string>
+    <string name="preferences_storage__review_storage">Review storage</string>
     <string name="preferences_advanced__use_system_emoji">Use system emoji</string>
     <string name="preferences_advanced__disable_signal_built_in_emoji_support">Disable Signal\'s built-in emoji support</string>
     <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Relay all calls through the Signal server to avoid revealing your IP address to your contact. Enabling will reduce call quality.</string>
@@ -1403,13 +1496,14 @@
     <!-- **************************************** -->
 
     <!-- contact_selection_list -->
-    <string name="contact_selection_list__unknown_contact">New message to...</string>
+    <string name="contact_selection_list__unknown_contact">New message to…</string>
 
     <!-- conversation_callable_insecure -->
     <string name="conversation_callable_insecure__menu_call">Call</string>
 
     <!-- conversation_callable_secure -->
     <string name="conversation_callable_secure__menu_call">Signal call</string>
+    <string name="conversation_callable_secure__menu_video">Signal video call</string>
 
     <!-- conversation_context -->
     <string name="conversation_context__menu_message_details">Message details</string>
@@ -1418,6 +1512,9 @@
     <string name="conversation_context__menu_forward_message">Forward message</string>
     <string name="conversation_context__menu_resend_message">Resend message</string>
     <string name="conversation_context__menu_reply_to_message">Reply to message</string>
+
+    <!-- conversation_context_reacction -->
+    <string name="conversation_context__reaction_multi_select">Select multiple</string>
 
     <!-- conversation_context_image -->
     <string name="conversation_context_image__save_attachment">Save attachment</string>
@@ -1517,14 +1614,12 @@
     <string name="reminder_header_share_text">The more friends use Signal, the better it gets.</string>
     <string name="reminder_header_service_outage_text">Signal is experiencing technical difficulties. We are working hard to restore service as quickly as possible.</string>
     <string name="reminder_header_the_latest_signal_features_wont_work">The latest Signal features won\'t work on this version of Android. Please upgrade this device to receive future Signal updates.</string>
+    <string name="reminder_header_progress">%1$d%%</string>
 
     <!-- media_preview -->
     <string name="media_preview__save_title">Save</string>
     <string name="media_preview__forward_title">Forward</string>
     <string name="media_preview__all_media_title">All media</string>
-
-    <!-- media_overview -->
-    <string name="media_overview_documents_fragment__no_documents_found">No documents</string>
 
     <!-- media_preview_activity -->
     <string name="media_preview_activity__media_content_description">Media preview</string>
@@ -1535,13 +1630,38 @@
 
     <!-- Trimmer -->
     <string name="trimmer__deleting">Deleting</string>
-    <string name="trimmer__deleting_old_messages">Deleting old messages...</string>
+    <string name="trimmer__deleting_old_messages">Deleting old messages…</string>
     <string name="trimmer__old_messages_successfully_deleted">Old messages successfully deleted</string>
+
+    <!-- Insights -->
+    <string name="Insights__percent">%</string>
+    <string name="Insights__title">Insights</string>
+    <string name="InsightsDashboardFragment__title">Insights</string>
+    <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol automatically protected %1$d%% of your outgoing messages over the past %2$d days. Conversations between Signal users are always end-to-end encrypted.</string>
+    <string name="InsightsDashboardFragment__boost_your_signal">Signal boost</string>
+    <string name="InsightsDashboardFragment__not_enough_data">Not enough data</string>
+    <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Your Insights percentage is calculated based on outgoing messages within the past %1$d days that have not disappeared or been deleted.</string>
+    <string name="InsightsDashboardFragment__start_a_conversation">Start a conversation</string>
+    <string name="InsightsDashboardFragment__invite_your_contacts">Start communicating securely and enable new features that go beyond the limitations of unencrypted SMS messages by inviting more contacts to join Signal.</string>
+    <string name="InsightsDashboardFragment__this_stat_was_generated_locally">These statistics were locally generated on your device and can only be seen by you. They are never transmitted anywhere.</string>
+    <string name="InsightsDashboardFragment__encrypted_messages">Encrypted messages</string>
+    <string name="InsightsDashboardFragment__cancel">Cancel</string>
+    <string name="InsightsDashboardFragment__send">Send</string>
+    <string name="InsightsModalFragment__title">Introducing Insights</string>
+    <string name="InsightsModalFragment__description">Find out how many of your outgoing messages were sent securely, then quickly invite new contacts to boost your Signal percentage.</string>
+    <string name="InsightsModalFragment__view_insights">View Insights</string>
+
+    <string name="FirstInviteReminder__title">Invite to Signal</string>
+    <string name="FirstInviteReminder__description">You could increase the number of encrypted messages you send by %1$d%%</string>
+    <string name="SecondInviteReminder__title">Boost your Signal</string>
+    <string name="SecondInviteReminder__description">Invite %1$s</string>
+    <string name="InsightsReminder__view_insights">View Insights</string>
+    <string name="InsightsReminder__invite">Invite</string>
 
     <!-- transport_selection_list_item -->
     <string name="transport_selection_list_item__transport_icon">Transport icon</string>
-    <string name="ConversationListFragment_loading">Loading...</string>
-    <string name="CallNotificationBuilder_connecting">Connecting...</string>
+    <string name="ConversationListFragment_loading">Loading…</string>
+    <string name="CallNotificationBuilder_connecting">Connecting…</string>
     <string name="Permissions_permission_required">Permission required</string>
     <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal needs SMS permission in order to send an SMS, but it has been permanently denied. Please continue to app settings, select \"Permissions\" and enable \"SMS\".</string>
     <string name="Permissions_continue">Continue</string>
@@ -1566,8 +1686,8 @@
     <string name="RegistrationActivity_restore">Restore</string>
     <string name="RegistrationActivity_backup_failure_downgrade">Cannot import backups from newer versions of Signal</string>
     <string name="RegistrationActivity_incorrect_backup_passphrase">Incorrect backup passphrase</string>
-    <string name="RegistrationActivity_checking">Checking...</string>
-    <string name="RegistrationActivity_d_messages_so_far">%d messages so far...</string>
+    <string name="RegistrationActivity_checking">Checking…</string>
+    <string name="RegistrationActivity_d_messages_so_far">%d messages so far…</string>
     <string name="RegistrationActivity_restore_from_backup">Restore from backup?</string>
     <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Restore your messages and media from a local backup. If you don\'t restore now, you won\'t be able to restore later.</string>
     <string name="RegistrationActivity_backup_size_s">Backup size: %s</string>
@@ -1582,7 +1702,7 @@
     <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal requires external storage permission in order to create backups, but it has been permanently denied. Please continue to app settings, select \"Permissions\" and enable \"Storage\".</string>
     <string name="ChatsPreferenceFragment_last_backup_s">Last backup: %s</string>
     <string name="ChatsPreferenceFragment_in_progress">In progress</string>
-    <string name="LocalBackupJob_creating_backup">Creating backup...</string>
+    <string name="LocalBackupJob_creating_backup">Creating backup…</string>
     <string name="ProgressPreference_d_messages_so_far">%d messages so far</string>
     <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Please enter the verification code sent to %s.</string>
     <string name="RegistrationActivity_wrong_number">Wrong number</string>
@@ -1628,11 +1748,26 @@
     <string name="RegistrationLockDialog_error_connecting_to_the_service">Error connecting to the service</string>
     <string name="RegistrationLockDialog_disable_registration_lock_pin">Disable Registration Lock PIN?</string>
     <string name="RegistrationLockDialog_disable">Disable</string>
+    <string name="RegistrationActivity_pin_incorrect">PIN Incorrect</string>
+    <string name="RegistrationActivity_you_have_d_tries_remaining">You have %d tries remaining</string>
     <string name="preferences_chats__backups">Backups</string>
     <string name="prompt_passphrase_activity__signal_is_locked">Signal is locked</string>
     <string name="prompt_passphrase_activity__tap_to_unlock">TAP TO UNLOCK</string>
     <string name="RegistrationLockDialog_reminder">Reminder:</string>
     <string name="recipient_preferences__about">About</string>
+    <string name="Recipient_unknown">Unknown</string>
+    <string name="MessageRequestBottomView_accept">Accept</string>
+    <string name="MessageRequestBottomView_delete">Delete</string>
+    <string name="MessageRequestBottomView_block">Block</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let">Do you want to receive messages from %1$s?</string>
+    <string name="MessageRequestProfileView_member_of_one_group">Member of %1$s</string>
+    <string name="MessageRequestProfileView_member_of_two_groups">Member of %1$s and %2$s</string>
+    <string name="MessageRequestProfileView_member_of_many_groups">Member of %1$s, %2$s, and %3$s</string>
+    <string name="MessageRequestProfileView_members">%1$d members</string>
+    <plurals name="MessageRequestProfileView_member_of_others">
+        <item quantity="one">%d other</item>
+        <item quantity="other">%d others</item>
+    </plurals>
     <!-- EOF -->
 
 </resources>

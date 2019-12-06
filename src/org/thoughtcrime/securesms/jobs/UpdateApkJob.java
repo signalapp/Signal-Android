@@ -25,9 +25,12 @@ import org.thoughtcrime.securesms.util.Hex;
 import org.thoughtcrime.securesms.util.JsonUtils;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.security.MessageDigest;
+import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -153,6 +156,8 @@ public class UpdateApkJob extends BaseJob {
   }
 
   private void handleDownloadStart(String uri, String versionName, byte[] digest) {
+    clearPreviousDownloads(context);
+
     DownloadManager         downloadManager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
     DownloadManager.Request downloadRequest = new DownloadManager.Request(Uri.parse(uri));
 
@@ -200,6 +205,23 @@ public class UpdateApkJob extends BaseJob {
     } catch (IOException e) {
       Log.w(TAG, e);
       return null;
+    }
+  }
+
+  private static void clearPreviousDownloads(@NonNull Context context) {
+    File directory = context.getExternalFilesDir(null);
+
+    if (directory == null) {
+      Log.w(TAG, "Failed to read external files directory.");
+      return;
+    }
+
+    for (File file : directory.listFiles()) {
+      if (file.getName().startsWith("signal-update")) {
+        if (file.delete()) {
+          Log.d(TAG, "Deleted " + file.getName());
+        }
+      }
     }
   }
 

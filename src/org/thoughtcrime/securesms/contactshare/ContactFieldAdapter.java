@@ -142,7 +142,7 @@ class ContactFieldAdapter extends RecyclerView.Adapter<ContactFieldAdapter.Conta
 
     Field(@NonNull Context context, @NonNull Phone phoneNumber, @NonNull Locale locale) {
       this.value      = ContactUtil.getPrettyPhoneNumber(phoneNumber, locale);
-      this.iconResId  = R.drawable.ic_call_white_24dp;
+      this.iconResId  = R.drawable.ic_phone_right_unlock_solid_24;
       this.iconUri    = null;
       this.maxLines   = 1;
       this.selectable = phoneNumber;

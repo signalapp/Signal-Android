@@ -4,16 +4,17 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
-import org.thoughtcrime.securesms.database.Address;
+import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.libsignal.SignalProtocolAddress;
 import org.whispersystems.libsignal.state.SessionStore;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
 public class SessionUtil {
 
-  public static boolean hasSession(Context context, @NonNull Address address) {
+  public static boolean hasSession(@NonNull Context context, @NonNull RecipientId id) {
     SessionStore          sessionStore   = new TextSecureSessionStore(context);
-    SignalProtocolAddress axolotlAddress = new SignalProtocolAddress(address.serialize(), SignalServiceAddress.DEFAULT_DEVICE_ID);
+    SignalProtocolAddress axolotlAddress = new SignalProtocolAddress(Recipient.resolved(id).requireServiceId(), SignalServiceAddress.DEFAULT_DEVICE_ID);
 
     return sessionStore.containsSession(axolotlAddress);
   }

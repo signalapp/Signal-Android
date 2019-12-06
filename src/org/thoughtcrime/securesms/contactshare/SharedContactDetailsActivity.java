@@ -228,7 +228,7 @@ public class SharedContactDetailsActivity extends PassphraseRequiredActionBarAct
 
       inviteButtonView.setOnClickListener(v -> {
         ContactUtil.selectRecipientThroughDialog(this, systemUsers, dynamicLanguage.getCurrentLocale(), recipient -> {
-          CommunicationActions.composeSmsThroughDefaultApp(this, recipient.requireAddress(), getString(R.string.InviteActivity_lets_switch_to_signal, getString(R.string.install_url)));
+          CommunicationActions.composeSmsThroughDefaultApp(this, recipient, getString(R.string.InviteActivity_lets_switch_to_signal, getString(R.string.install_url)));
         });
       });
     } else {

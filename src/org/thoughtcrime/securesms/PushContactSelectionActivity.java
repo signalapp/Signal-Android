@@ -19,6 +19,11 @@ package org.thoughtcrime.securesms;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.annimon.stream.Stream;
+
+import org.thoughtcrime.securesms.contacts.SelectedContact;
+import org.thoughtcrime.securesms.recipients.RecipientId;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +35,8 @@ import java.util.List;
  */
 public class PushContactSelectionActivity extends ContactSelectionActivity {
 
+  public static final String KEY_SELECTED_RECIPIENTS = "recipients";
+
   @SuppressWarnings("unused")
   private final static String TAG = PushContactSelectionActivity.class.getSimpleName();
 
@@ -40,12 +47,11 @@ public class PushContactSelectionActivity extends ContactSelectionActivity {
 
     getToolbar().setNavigationIcon(R.drawable.ic_check_24);
     getToolbar().setNavigationOnClickListener(v -> {
-      Intent resultIntent = getIntent();
-      List<String> selectedContacts = contactsFragment.getSelectedContacts();
+      Intent                resultIntent     = getIntent();
+      List<SelectedContact> selectedContacts = contactsFragment.getSelectedContacts();
+      List<RecipientId>     recipients       = Stream.of(selectedContacts).map(sc -> sc.getOrCreateRecipientId(this)).toList();
 
-      if (selectedContacts != null) {
-        resultIntent.putStringArrayListExtra("contacts", new ArrayList<>(selectedContacts));
-      }
+      resultIntent.putParcelableArrayListExtra(KEY_SELECTED_RECIPIENTS, new ArrayList<>(recipients));
 
       setResult(RESULT_OK, resultIntent);
       finish();

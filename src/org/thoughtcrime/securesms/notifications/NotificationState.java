@@ -4,6 +4,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -13,6 +14,9 @@ import org.thoughtcrime.securesms.database.RecipientDatabase.VibrateState;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -21,10 +25,9 @@ public class NotificationState {
 
   private static final String TAG = NotificationState.class.getSimpleName();
 
-  private final LinkedList<NotificationItem> notifications = new LinkedList<>();
-  private final LinkedHashSet<Long>          threads       = new LinkedHashSet<>();
-
-  private int notificationCount = 0;
+  private final Comparator<NotificationItem> notificationItemComparator = (a, b) -> -Long.compare(a.getTimestamp(), b.getTimestamp());
+  private final List<NotificationItem>       notifications              = new LinkedList<>();
+  private final LinkedHashSet<Long>          threads                    = new LinkedHashSet<>();
 
   public NotificationState() {}
 
@@ -35,19 +38,16 @@ public class NotificationState {
   }
 
   public void addNotification(NotificationItem item) {
-    notifications.addFirst(item);
+    notifications.add(item);
+    Collections.sort(notifications, notificationItemComparator);
 
-    if (threads.contains(item.getThreadId())) {
-      threads.remove(item.getThreadId());
-    }
-
+    threads.remove(item.getThreadId());
     threads.add(item.getThreadId());
-    notificationCount++;
   }
 
   public @Nullable Uri getRingtone(@NonNull Context context) {
     if (!notifications.isEmpty()) {
-      Recipient recipient = notifications.getFirst().getRecipient();
+      Recipient recipient = notifications.get(0).getRecipient();
 
       if (recipient != null) {
         return NotificationChannels.supported() ? NotificationChannels.getMessageRingtone(context, recipient)
@@ -60,7 +60,7 @@ public class NotificationState {
 
   public VibrateState getVibrate() {
     if (!notifications.isEmpty()) {
-      Recipient recipient = notifications.getFirst().getRecipient();
+      Recipient recipient = notifications.get(0).getRecipient();
 
       if (recipient != null) {
         return recipient.resolve().getMessageVibrate();
@@ -74,7 +74,7 @@ public class NotificationState {
     return threads.size() > 1;
   }
 
-  public LinkedHashSet<Long> getThreads() {
+  public Collection<Long> getThreads() {
     return threads;
   }
 
@@ -83,7 +83,7 @@ public class NotificationState {
   }
 
   public int getMessageCount() {
-    return notificationCount;
+    return notifications.size();
   }
 
   public List<NotificationItem> getNotifications() {
@@ -91,12 +91,13 @@ public class NotificationState {
   }
 
   public List<NotificationItem> getNotificationsForThread(long threadId) {
-    LinkedList<NotificationItem> list = new LinkedList<>();
+    List<NotificationItem> list = new LinkedList<>();
 
     for (NotificationItem item : notifications) {
-      if (item.getThreadId() == threadId) list.addFirst(item);
+      if (item.getThreadId() == threadId) list.add(item);
     }
 
+    Collections.sort(list, notificationItemComparator);
     return list;
   }
 

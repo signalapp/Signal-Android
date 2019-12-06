@@ -5,6 +5,10 @@ import android.app.Activity;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.whispersystems.signalservice.internal.contacts.entities.TokenResponse;
+
+import java.io.IOException;
+
 public final class RegistrationService {
 
   private final Credentials credentials;
@@ -35,8 +39,14 @@ public final class RegistrationService {
                             @Nullable String fcmToken,
                             @NonNull String code,
                             @Nullable String pin,
+                            @Nullable String basicStorageCredentials,
+                            @Nullable TokenResponse tokenResponse,
                             @NonNull CodeVerificationRequest.VerifyCallback callback)
   {
-    CodeVerificationRequest.verifyAccount(activity, credentials, fcmToken, code, pin, callback);
+    CodeVerificationRequest.verifyAccount(activity, credentials, fcmToken, code, pin, basicStorageCredentials, tokenResponse, callback);
+  }
+
+  public @Nullable TokenResponse getToken(@Nullable String basicStorageCredentials) throws IOException {
+    return CodeVerificationRequest.getToken(basicStorageCredentials);
   }
 }
