@@ -468,6 +468,18 @@
   <string name="MediaOverviewActivity_Grid_view_description">Mrežni pogled</string>
   <string name="MediaOverviewActivity_List_view_description">Seznam</string>
   <string name="MediaOverviewActivity_Selected_description">Izbrano</string>
+  <plurals name="MediaOverviewActivity_d_items_s">
+    <item quantity="one">%1$d predmet %2$s</item>
+    <item quantity="two">%1$d predmeta %2$s</item>
+    <item quantity="few">%1$d predmeti %2$s</item>
+    <item quantity="other">%1$d predmetov %2$s</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_d_items">
+    <item quantity="one">%1$d predmet</item>
+    <item quantity="two">%1$d predmeta</item>
+    <item quantity="few">%1$d predmeti</item>
+    <item quantity="other">%1$d predmetov</item>
+  </plurals>
   <string name="MediaOverviewActivity_file">Datoteka</string>
   <string name="MediaOverviewActivity_audio">Zvok</string>
   <string name="MediaOverviewActivity_video">Video</string>

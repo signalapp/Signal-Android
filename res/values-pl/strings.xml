@@ -468,6 +468,18 @@
   <string name="MediaOverviewActivity_Grid_view_description">Widok siatki</string>
   <string name="MediaOverviewActivity_List_view_description">Widok listy</string>
   <string name="MediaOverviewActivity_Selected_description">Zaznaczono</string>
+  <plurals name="MediaOverviewActivity_d_items_s">
+    <item quantity="one">%1$d element %2$s</item>
+    <item quantity="few">%1$d elementy %2$s</item>
+    <item quantity="many">%1$d elementów %2$s</item>
+    <item quantity="other">%1$d elementów %2$s</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_d_items">
+    <item quantity="one">%1$d element</item>
+    <item quantity="few">%1$d elementy</item>
+    <item quantity="many">%1$d elementów</item>
+    <item quantity="other">%1$d elementów</item>
+  </plurals>
   <string name="MediaOverviewActivity_file">Plik</string>
   <string name="MediaOverviewActivity_audio">Dźwięk</string>
   <string name="MediaOverviewActivity_video">Wideo</string>

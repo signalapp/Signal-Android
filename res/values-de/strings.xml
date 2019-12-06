@@ -424,7 +424,7 @@
   <string name="MediaOverviewActivity_Media_delete_progress_message">Nachrichten werden gelöscht …</string>
   <string name="MediaOverviewActivity_Select_all">Alle auswählen</string>
   <string name="MediaOverviewActivity_collecting_attachments">Anhänge werden gesammelt …</string>
-  <string name="MediaOverviewActivity_Sort_by">Sortieren nach</string>
+  <string name="MediaOverviewActivity_Sort_by">Sortieren nach …</string>
   <string name="MediaOverviewActivity_Newest">Neueste</string>
   <string name="MediaOverviewActivity_Oldest">Älteste</string>
   <string name="MediaOverviewActivity_Storage_used">Belegter Speicher</string>
@@ -432,6 +432,14 @@
   <string name="MediaOverviewActivity_Grid_view_description">Rasteransicht</string>
   <string name="MediaOverviewActivity_List_view_description">Listenansicht</string>
   <string name="MediaOverviewActivity_Selected_description">Ausgewählt</string>
+  <plurals name="MediaOverviewActivity_d_items_s">
+    <item quantity="one">%1$d Element %2$s</item>
+    <item quantity="other">%1$d Elemente %2$s</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_d_items">
+    <item quantity="one">%1$d Element</item>
+    <item quantity="other">%1$d Elemente</item>
+  </plurals>
   <string name="MediaOverviewActivity_file">Datei</string>
   <string name="MediaOverviewActivity_audio">Audio</string>
   <string name="MediaOverviewActivity_video">Video</string>

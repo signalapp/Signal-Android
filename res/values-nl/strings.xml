@@ -433,6 +433,14 @@ weergaven.</string>
   <string name="MediaOverviewActivity_Grid_view_description">Rasterweergave</string>
   <string name="MediaOverviewActivity_List_view_description">Lijstweergave</string>
   <string name="MediaOverviewActivity_Selected_description">Geselecteerd</string>
+  <plurals name="MediaOverviewActivity_d_items_s">
+    <item quantity="one">%1$d item %2$s</item>
+    <item quantity="other">%1$d items %2$s</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_d_items">
+    <item quantity="one">%1$d item</item>
+    <item quantity="other">%1$d items</item>
+  </plurals>
   <string name="MediaOverviewActivity_file">Bestand</string>
   <string name="MediaOverviewActivity_audio">Audio</string>
   <string name="MediaOverviewActivity_video">Video</string>
@@ -539,7 +547,7 @@ weergaven.</string>
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">De versie van Google Play Services die je in gebruik hebt werkt niet zoals het hoort. Installeer Google Play Services opnieuw en probeer het nog eens.</string>
   <!--ProfileEditNameFragment-->
   <string name="ProfileEditNameFragment_profile_name">Profielnaam</string>
-  <string name="ProfileEditNameFragment_your_profile_name_can_be_seen_by_your_contacts">Je profielnaam kan worden gezien door je contacten en door andere gebruikers als je iets naar hen hebt verzonden of als je een gespreksuitnodiging hebt geaccepteerd.</string>
+  <string name="ProfileEditNameFragment_your_profile_name_can_be_seen_by_your_contacts">Je profielnaam kan worden gezien door je contacten en door andere gebruikers als je zelf een gesprek hebt gestart of als je een gespreksuitnodiging hebt geaccepteerd.</string>
   <string name="ProfileEditNameFragment_save">Sla op</string>
   <!--ProfileEditOverviewFragment-->
   <string name="ProfileEditOverviewFragment_profile">Profiel</string>
@@ -547,7 +555,7 @@ weergaven.</string>
   <string name="ProfileEditOverviewFragment_username">Gebruikersnaam</string>
   <string name="ProfileEditOverviewFragment_create_a_profile_name">Profielnaam aanmaken</string>
   <string name="ProfileEditOverviewFragment_create_a_username">Gebruikersnaam aanmaken</string>
-  <string name="ProfileEditOverviewFragment_your_signal_profile_can_be_seen_by">Je Signal-profiel kan worden gezien door je contacten en door andere gebruikers als je iets naar hen hebt verzonden of als je een gespreksuitnodiging hebt geaccepteerd. <a href="https://support.signal.org/hc/nl/articles/360007459591-Signal-profielen">Tik hier als je meer wilt leren</a>.</string>
+  <string name="ProfileEditOverviewFragment_your_signal_profile_can_be_seen_by">Je Signal-profiel kan worden gezien door je contacten en door andere gebruikers als je zelf een gesprek hebt gestart of als je een gespreksuitnodiging hebt geaccepteerd. <a href="https://support.signal.org/hc/nl/articles/360007459591-Signal-profielen">Tik hier als je meer wilt leren</a>.</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Beoordeel deze app</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Gebruik je deze app graag? Help ons door anderen te laten weten wat je van de app vindt.</string>

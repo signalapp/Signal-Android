@@ -432,10 +432,22 @@
   <string name="MediaOverviewActivity_Grid_view_description">نمای مشبک</string>
   <string name="MediaOverviewActivity_List_view_description">نمای فهرستی</string>
   <string name="MediaOverviewActivity_Selected_description">انتخاب شده</string>
+  <plurals name="MediaOverviewActivity_d_items_s">
+    <item quantity="one">%1$d مورد %2$s</item>
+    <item quantity="other">%1$d مورد %2$s</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_d_items">
+    <item quantity="one">%1$d مورد</item>
+    <item quantity="other">%1$d مورد</item>
+  </plurals>
   <string name="MediaOverviewActivity_file">فایل</string>
   <string name="MediaOverviewActivity_audio">صدا</string>
   <string name="MediaOverviewActivity_video">ویدیو</string>
   <string name="MediaOverviewActivity_image">تصویر</string>
+  <string name="MediaOverviewActivity_sent_by_s">از طرف %1$s</string>
+  <string name="MediaOverviewActivity_sent_by_you">از طرف شما</string>
+  <string name="MediaOverviewActivity_sent_by_s_to_s">از طرف %1$s به %2$s</string>
+  <string name="MediaOverviewActivity_sent_by_you_to_s">از طرف شما به %1$s</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">پاسخ Signal در حال انجام</string>
   <string name="NotificationBarManager__establishing_signal_call">در حال برقراری يک تماس سيگنالی</string>
@@ -1191,8 +1203,8 @@
   <string name="preferences__mms_proxy_port">MMS پروکسی پورت</string>
   <string name="preferences__mmsc_username">MMSC نام کاربری</string>
   <string name="preferences__mmsc_password">MMSC رمز عبور</string>
-  <string name="preferences__sms_delivery_reports">گزارش های تحویل پیام کوتاه</string>
-  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">درخواست گزارش تحویل پیام برای هر پیامی که شما ارسال می کنید.</string>
+  <string name="preferences__sms_delivery_reports">گزارش تحویل پیام کوتاه</string>
+  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">درخواست گزارش تحویل برای هر پیام ارسالی</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">وقتی طول یک گفتگو از حد خاصی بیشتر شد، پیام‌های قدیمی آن را را حذف کن</string>
   <string name="preferences__delete_old_messages">حذف پیام‌های قدیمی</string>
   <string name="preferences__chats">گفتگوها و رسانه‌‌ها</string>
@@ -1211,8 +1223,8 @@
   <string name="preferences__signal_messages_and_calls">تماس ها و پیام های Signal</string>
   <string name="preferences__free_private_messages_and_calls">پیام های خصوصی و تماس رایگان به کاربران Signal</string>
   <string name="preferences__submit_debug_log">ارسال گزارش اشکال‌زدایی</string>
-  <string name="preferences__support_wifi_calling">\'وای فای تلفن\' حالت سازگاری</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">اگر دستگاه شما از تحویل SMS/MMS تحت WIFI استفاده می کند آنرا فعال کنید.(فقط زمانی فعال کنید که \"WIFI Calling\" روی دستگاه شما فعال شده باشد)</string>
+  <string name="preferences__support_wifi_calling">حالت سازگاری با «تماس WiFi»</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">اگر دستگاه شما از قابلیت تحویل SMS و MMS بر روی شبکهٔ WiFi استفاده می‌کند، این دکمه را روشن کنید (فقط زمانی روشن کنید که «تماس WiFi» بر روی دستگاه شما روشن باشد)</string>
   <string name="preferences__incognito_keyboard">صفحه‌کلید ناشناس</string>
   <string name="preferences__read_receipts">خواندن رسید ها</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">اگر رسید های خوانده شده غیر فعال باشد، شما قادر نخواهید بود تا رسید های خوانده شده از دیگران را ببینید.</string>
@@ -1340,7 +1352,7 @@
   <string name="reminder_header_outdated_build_details_today">نرم افزار Signal شما امروز منقضی می شود. برای بروزرسانی جدیدترین نسخه ضربه بزنید.</string>
   <string name="reminder_header_expired_build">نسخه نرم افزار Signal شما منقضی شده است.</string>
   <string name="reminder_header_expired_build_details">پیام ها دیگر با موفقیت ارسال نمی‌شوند. لمس کنید برای بروزرسانی به آخرین نسخه موجود.</string>
-  <string name="reminder_header_sms_default_title">تنظیم به عنوان برنامه پیش‌فرض پیامک</string>
+  <string name="reminder_header_sms_default_title">استفاده به عنوان برنامهٔ پیش‌فرض پیامک</string>
   <string name="reminder_header_sms_default_text">ضربه بزنید تا برنامه پیش فرض SMS را تغییر دهید</string>
   <string name="reminder_header_sms_import_title">وارد کردن SMS سیستم</string>
   <string name="reminder_header_sms_import_text">جهت کپی کردن اس ام اس های گوشی به داخل بانک اطلاعاتی رمزگذاری شده Signal ضربه بزنید.</string>

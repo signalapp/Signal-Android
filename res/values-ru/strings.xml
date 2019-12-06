@@ -460,11 +460,11 @@
   <string name="MediaOverviewActivity_Media_delete_progress_message">Удаляем сообщения…</string>
   <string name="MediaOverviewActivity_Select_all">Выбрать все</string>
   <string name="MediaOverviewActivity_collecting_attachments">Собираем вложения…</string>
-  <string name="MediaOverviewActivity_Sort_by">Сортировка по</string>
-  <string name="MediaOverviewActivity_Newest">Самые новые</string>
-  <string name="MediaOverviewActivity_Oldest">Самые старые</string>
-  <string name="MediaOverviewActivity_Storage_used">Использованное хранилище</string>
-  <string name="MediaOverviewActivity_All_storage_use">Использование хранилища</string>
+  <string name="MediaOverviewActivity_Sort_by">Порядок</string>
+  <string name="MediaOverviewActivity_Newest">Сначала новые</string>
+  <string name="MediaOverviewActivity_Oldest">Сначала старые</string>
+  <string name="MediaOverviewActivity_Storage_used">Сначала большие</string>
+  <string name="MediaOverviewActivity_All_storage_use">Содержимое хранилища</string>
   <string name="MediaOverviewActivity_Grid_view_description">Вид: сетка</string>
   <string name="MediaOverviewActivity_List_view_description">Вид: список</string>
   <string name="MediaOverviewActivity_Selected_description">Выбрано</string>
@@ -486,8 +486,8 @@
   <string name="MediaOverviewActivity_image">Изображение</string>
   <string name="MediaOverviewActivity_sent_by_s">Отправил(-а) %1$s</string>
   <string name="MediaOverviewActivity_sent_by_you">Отправили вы</string>
-  <string name="MediaOverviewActivity_sent_by_s_to_s">Отправил(-а) %1$s в %2$s</string>
-  <string name="MediaOverviewActivity_sent_by_you_to_s">Отправили вы в %1$s</string>
+  <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s отправил(-а) %2$s</string>
+  <string name="MediaOverviewActivity_sent_by_you_to_s">Вы отправили %1$s</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Идёт звонок в Signal</string>
   <string name="NotificationBarManager__establishing_signal_call">Начинаем звонок в Signal</string>
@@ -815,7 +815,7 @@
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Не удалось сохранить во внешнем хранилище без разрешений</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Удалить сообщение?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Это сообщение будет навсегда удалено.</string>
-  <string name="MediaPreviewActivity_s_to_s">%1$s в %2$s</string>
+  <string name="MediaPreviewActivity_s_to_s">%1$s для %2$s</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d новых сообщений в %2$d разговорах</string>
   <string name="MessageNotifier_most_recent_from_s">Последнее от: %1$s</string>
@@ -1303,7 +1303,7 @@
   <string name="preferences_storage__videos">Видео</string>
   <string name="preferences_storage__files">Файлы</string>
   <string name="preferences_storage__audio">Аудио</string>
-  <string name="preferences_storage__review_storage">Управлять хранилищем</string>
+  <string name="preferences_storage__review_storage">Просмотреть содержимое</string>
   <string name="preferences_advanced__use_system_emoji">Использовать системные эмодзи</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Отключить встроенные эмодзи Signal</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Пропускать все звонки через сервер Signal, чтобы не раскрывать ваш IP-адреса собеседнику. Качество звонка ухудшится.</string>

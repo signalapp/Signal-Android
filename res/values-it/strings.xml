@@ -433,6 +433,14 @@ I suoi messaggi e le chiamate sono state disabilitate, si prega di provare e ri-
   <string name="MediaOverviewActivity_Grid_view_description">Visualizzazione griglia</string>
   <string name="MediaOverviewActivity_List_view_description">Visualizzazione elenco</string>
   <string name="MediaOverviewActivity_Selected_description">Selezionato</string>
+  <plurals name="MediaOverviewActivity_d_items_s">
+    <item quantity="one">%1$d elemento %2$s</item>
+    <item quantity="other">%1$d elementi %2$s</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_d_items">
+    <item quantity="one">%1$d elemento</item>
+    <item quantity="other">%1$d elementi</item>
+  </plurals>
   <string name="MediaOverviewActivity_file">File</string>
   <string name="MediaOverviewActivity_audio">Audio</string>
   <string name="MediaOverviewActivity_video">Video</string>

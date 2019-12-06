@@ -1392,7 +1392,7 @@
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signali protokoll kaitses automaatselt %1$d%% väljuvat sõnumit %2$d päeva jooksul. Vestlused Signali kasutajate vahel on alati otspunktkrüpteeritud.</string>
   <string name="InsightsDashboardFragment__boost_your_signal">Signali võimendamine</string>
   <string name="InsightsDashboardFragment__not_enough_data">Pole piisavalt andmeid</string>
-  <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Sinu Pilguheidu protsent on arvutatud väljuvate sõnumite põhjal %1$d päeva jooksul, mis ei ole haihtunud ega kustutatud.</string>
+  <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Sinu Pilguheidu protsent on arvutatud %1$d päeva väljuvate sõnumite põhjal, mis ei ole haihtunud ega kustutatud.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Alusta vestlust</string>
   <string name="InsightsDashboardFragment__invite_your_contacts">Alusta turvalist suhtlemist ning luba uued funktsioonid, mis võimaldavad krüpteerimata SMS-sõnumitest rohkemat, kutsudes rohkem kontakte Signaliga liituma. </string>
   <string name="InsightsDashboardFragment__this_stat_was_generated_locally">See statistika on antud seadmes kohalikult genereeritud ning ainult sina näed seda. Seda ei saadeta mitte kunagi mitte kuhugi.</string>

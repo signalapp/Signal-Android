@@ -433,6 +433,14 @@
   <string name="MediaOverviewActivity_Grid_view_description">Rácsos nézet</string>
   <string name="MediaOverviewActivity_List_view_description">Listanézet</string>
   <string name="MediaOverviewActivity_Selected_description">Kiválasztott</string>
+  <plurals name="MediaOverviewActivity_d_items_s">
+    <item quantity="one">%1$d db elem %2$s</item>
+    <item quantity="other">%1$d db elem %2$s</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_d_items">
+    <item quantity="one">%1$d db elem</item>
+    <item quantity="other">%1$d db elem</item>
+  </plurals>
   <string name="MediaOverviewActivity_file">Fájl</string>
   <string name="MediaOverviewActivity_audio">Hang</string>
   <string name="MediaOverviewActivity_video">Videó</string>

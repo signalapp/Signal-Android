@@ -431,6 +431,14 @@
   <string name="MediaOverviewActivity_Grid_view_description">Pamje rrjetë</string>
   <string name="MediaOverviewActivity_List_view_description">Pamje listë</string>
   <string name="MediaOverviewActivity_Selected_description">Të përzgjedhura</string>
+  <plurals name="MediaOverviewActivity_d_items_s">
+    <item quantity="one">%1$d objekt %2$s</item>
+    <item quantity="other">%1$d objekte %2$s</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_d_items">
+    <item quantity="one">%1$d objekt</item>
+    <item quantity="other">%1$d objekte</item>
+  </plurals>
   <string name="MediaOverviewActivity_file">Kartelë</string>
   <string name="MediaOverviewActivity_audio">Audio</string>
   <string name="MediaOverviewActivity_video">Video</string>
