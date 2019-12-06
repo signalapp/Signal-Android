@@ -3086,8 +3086,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   @Override
   public void updateItemButtonPressed(@NonNull MessageRecord messageRecord) {
     // Loki - User clicked restore session
-    if (messageRecord.isNoRemoteSession() && !messageRecord.isLokiSessionRestoreSent()) {
-      // TODO: Send a message with `SESSION_RESTORE` flag
+    Recipient recipient = messageRecord.getRecipient();
+    if (!recipient.isGroupRecipient() && messageRecord.isNoRemoteSession() && !messageRecord.isLokiSessionRestoreSent()) {
+      MessageSender.sendRestoreSessionMessage(this, recipient.getAddress().serialize());
       DatabaseFactory.getSmsDatabase(this).markAsLokiSessionRestoreSent(messageRecord.id);
       TextSecurePreferences.setShowingSessionRestorePrompt(this, messageRecord.getIndividualRecipient().getAddress().serialize(), false);
     }

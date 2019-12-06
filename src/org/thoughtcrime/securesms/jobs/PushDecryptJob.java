@@ -74,6 +74,7 @@ import org.thoughtcrime.securesms.loki.LokiPreKeyBundleDatabase;
 import org.thoughtcrime.securesms.loki.LokiPreKeyRecordDatabase;
 import org.thoughtcrime.securesms.loki.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.MultiDeviceUtilities;
+import org.thoughtcrime.securesms.loki.DebouncerCache;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingExpirationUpdateMessage;
@@ -94,6 +95,7 @@ import org.thoughtcrime.securesms.sms.OutgoingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.OutgoingEndSessionMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
+import org.thoughtcrime.securesms.util.Debouncer;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.Hex;
 import org.thoughtcrime.securesms.util.IdentityUtil;
@@ -337,6 +339,8 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
             MultiDeviceUtilities.checkForRevocation(context);
           }
         } else {
+          // Loki - We shouldn't process session restore message any further
+          if (message.isSessionRestore()) { return; }
           if (message.isEndSession()) handleEndSessionMessage(content, smsMessageId);
           else if (message.isGroupUpdate()) handleGroupMessage(content, message, smsMessageId);
           else if (message.isExpirationUpdate())
@@ -1187,7 +1191,8 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   }
 
   private void storePreKeyBundleIfNeeded(@NonNull SignalServiceEnvelope envelope, @NonNull SignalServiceContent content) {
-    if (content.lokiServiceMessage.isPresent()) {
+    Recipient sender = Recipient.from(context, Address.fromSerialized(content.getSender()), false);
+    if (!sender.isGroupRecipient() && content.lokiServiceMessage.isPresent()) {
       LokiServiceMessage lokiMessage = content.lokiServiceMessage.get();
       if (lokiMessage.getPreKeyBundleMessage() != null) {
         int registrationID = TextSecurePreferences.getLocalRegistrationId(context);
@@ -1203,10 +1208,11 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
           // If we got a friend request and we were friends with this user then we need to reset our session
           if (envelope.isFriendRequest()) {
-            Recipient sender = Recipient.from(context, Address.fromSerialized(content.getSender()), false);
             long threadID = threadDatabase.getThreadIdIfExistsFor(sender);
             if (lokiThreadDatabase.getFriendRequestStatus(threadID) == LokiThreadFriendRequestStatus.FRIENDS) {
               resetSession(content.getSender(), threadID);
+              // Let our other devices know that we have reset session
+              MessageSender.syncContact(context, sender.getAddress());
             }
           }
         }
@@ -1398,21 +1404,41 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   private void handleNoSessionMessage(@NonNull String sender, int senderDevice, long timestamp,
                                       @NonNull Optional<Long> smsMessageId)
   {
-    SmsDatabase smsDatabase = DatabaseFactory.getSmsDatabase(context);
+    Recipient recipient = Recipient.from(context, Address.fromSerialized(sender), false);
+    if (recipient.isGroupRecipient()) { return; }
 
-    if (!smsMessageId.isPresent()) {
-      if (!TextSecurePreferences.isShowingSessionRestorePrompt(context, sender)) {
-        Optional<InsertResult> insertResult = insertPlaceholder(sender, senderDevice, timestamp);
+    long threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(recipient);
+    LokiThreadFriendRequestStatus friendRequestStatus = DatabaseFactory.getLokiThreadDatabase(context).getFriendRequestStatus(threadID);
+    /*
+    If we are friends with the user or we sent a friend request to them and we got a message back with no session then we want to try and restore the session automatically.
+    otherwise if we're not friends or our friend request expired then we need to prompt the user for action
+    */
+    if (friendRequestStatus == LokiThreadFriendRequestStatus.FRIENDS || friendRequestStatus == LokiThreadFriendRequestStatus.REQUEST_SENT) {
+      autoRestoreSession(sender);
+    } else if (friendRequestStatus == LokiThreadFriendRequestStatus.NONE || friendRequestStatus == LokiThreadFriendRequestStatus.REQUEST_EXPIRED) {
+      SmsDatabase smsDatabase = DatabaseFactory.getSmsDatabase(context);
 
-        if (insertResult.isPresent()) {
-          smsDatabase.markAsNoSession(insertResult.get().getMessageId());
-          TextSecurePreferences.setShowingSessionRestorePrompt(context, sender, true);
-          //MessageNotifier.updateNotification(context, insertResult.get().getThreadId());
+      if (!smsMessageId.isPresent()) {
+        if (!TextSecurePreferences.isShowingSessionRestorePrompt(context, sender)) {
+          Optional<InsertResult> insertResult = insertPlaceholder(sender, senderDevice, timestamp);
+
+          if (insertResult.isPresent()) {
+            smsDatabase.markAsNoSession(insertResult.get().getMessageId());
+            TextSecurePreferences.setShowingSessionRestorePrompt(context, sender, true);
+            //MessageNotifier.updateNotification(context, insertResult.get().getThreadId());
+          }
         }
+      } else {
+        smsDatabase.markAsNoSession(smsMessageId.get());
       }
-    } else {
-      smsDatabase.markAsNoSession(smsMessageId.get());
     }
+  }
+
+  private void autoRestoreSession(@NonNull String sender) {
+    // We don't want to keep spamming the user for an auto restore
+    String key = "restore_session_" + sender;
+    Debouncer debouncer = DebouncerCache.getDebouncer(key, 10000);
+    debouncer.publish(() ->  MessageSender.sendRestoreSessionMessage(context, sender));
   }
 
   private void handleLegacyMessage(@NonNull String sender, int senderDevice, long timestamp,
