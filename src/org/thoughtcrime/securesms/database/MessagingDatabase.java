@@ -99,8 +99,8 @@ public abstract class MessagingDatabase extends Database implements MmsSmsColumn
   public void setReactionsSeen(long threadId) {
     SQLiteDatabase db          = databaseHelper.getWritableDatabase();
     ContentValues  values      = new ContentValues();
-    String         whereClause = THREAD_ID + " = ?";
-    String[]       whereArgs   = new String[]{String.valueOf(threadId)};
+    String         whereClause = THREAD_ID + " = ? AND " + REACTIONS_UNREAD + " = ?";
+    String[]       whereArgs   = new String[]{String.valueOf(threadId), "1"};
 
     values.put(REACTIONS_UNREAD, 0);
     values.put(REACTIONS_LAST_SEEN, System.currentTimeMillis());
