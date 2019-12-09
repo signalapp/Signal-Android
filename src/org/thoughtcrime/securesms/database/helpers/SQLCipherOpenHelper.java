@@ -169,7 +169,8 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   @Override
   public void onConfigure(SQLiteDatabase db) {
     super.onConfigure(db);
-    //Loki: Enable Write Ahead Logging Mode, increase the cache size
+    // Loki: Enable Write Ahead Logging Mode, increase the cache size
+    // This should be disabled if we ever run into serious race condition bugs
     db.enableWriteAheadLogging();
     db.execSQL("PRAGMA cache_size = 10000");
   }

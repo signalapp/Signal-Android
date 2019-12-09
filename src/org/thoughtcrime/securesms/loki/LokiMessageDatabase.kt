@@ -6,7 +6,6 @@ import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.Database
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper
-import org.thoughtcrime.securesms.logging.Log
 import org.whispersystems.signalservice.loki.messaging.LokiMessageDatabaseProtocol
 import org.whispersystems.signalservice.loki.messaging.LokiMessageFriendRequestStatus
 
