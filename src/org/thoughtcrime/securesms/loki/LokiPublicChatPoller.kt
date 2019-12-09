@@ -10,7 +10,6 @@ import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.thoughtcrime.securesms.database.RecipientDatabase
 import org.thoughtcrime.securesms.jobs.PushDecryptJob
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob
 import org.thoughtcrime.securesms.recipients.Recipient
