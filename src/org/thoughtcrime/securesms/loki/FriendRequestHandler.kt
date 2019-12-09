@@ -26,10 +26,11 @@ object FriendRequestHandler {
         ActionType.Failed -> LokiThreadFriendRequestStatus.NONE
         ActionType.Sent -> LokiThreadFriendRequestStatus.REQUEST_SENT
       }
-      DatabaseFactory.getLokiThreadDatabase(context).setFriendRequestStatus(threadId, threadFriendStatus)
+      val database = DatabaseFactory.getLokiThreadDatabase(context)
+      database.setFriendRequestStatus(threadId, threadFriendStatus)
       // If we sent a friend request then we need to hide the session restore prompt
       if (type == ActionType.Sent) {
-        // TODO: Hide prompt
+        database.removeAllSessionRestoreDevices(threadId)
       }
     }
 

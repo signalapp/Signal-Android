@@ -1653,7 +1653,6 @@
     <string name="dialog_device_unlink_title">Device unlinked</string>
     <string name="dialog_device_unlink_message">This device has been successfully unlinked</string>
     <!-- Session restore banner -->
-    <string name="session_restore_banner_title">Could not decrypt an incoming message.</string>
     <string name="session_restore_banner_message">Would you like to start a new session with %s?</string>
     <string name="session_restore_banner_restore_button_title">Restore session</string>
     <string name="session_restore_banner_dismiss_button_title">Dismiss</string>

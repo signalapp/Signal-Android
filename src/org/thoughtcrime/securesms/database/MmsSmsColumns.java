@@ -83,7 +83,7 @@ public interface MmsSmsColumns {
     protected static final long ENCRYPTION_REMOTE_LEGACY_BIT     = 0x02000000;
 
     // Loki
-    protected static final long ENCRYPTION_LOKI_SESSION_RESTORE_SENT_BIT = 0x01000000; // Type that determines if we've sent a session reset after receiving `ENCRYPTION_REMOTE_NO_SESSION_BIT`
+    protected static final long ENCRYPTION_LOKI_SESSION_RESTORE_SENT_BIT = 0x01000000;
 
     public static boolean isDraftMessageType(long type) {
       return (type & BASE_TYPE_MASK) == BASE_DRAFT_TYPE;
