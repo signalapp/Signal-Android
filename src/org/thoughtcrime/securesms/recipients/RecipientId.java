@@ -16,18 +16,26 @@ import java.util.List;
 public class RecipientId implements Parcelable, Comparable<RecipientId> {
 
   private static final long UNKNOWN_ID = -1;
-  private static final char DELIMITER = ',';
+  private static final char DELIMITER  = ',';
 
   public static final RecipientId UNKNOWN = RecipientId.from(UNKNOWN_ID);
 
   private final long id;
 
   public static RecipientId from(long id) {
+    if (id == 0) {
+      throw new InvalidLongRecipientIdError();
+    }
+
     return new RecipientId(id);
   }
 
   public static RecipientId from(@NonNull String id) {
-    return RecipientId.from(Long.parseLong(id));
+    try {
+      return RecipientId.from(Long.parseLong(id));
+    } catch (NumberFormatException e) {
+      throw new InvalidStringRecipientIdError();
+    }
   }
 
   private RecipientId(long id) {
@@ -60,6 +68,10 @@ public class RecipientId implements Parcelable, Comparable<RecipientId> {
 
   public @NonNull String serialize() {
     return String.valueOf(id);
+  }
+
+  public long toLong() {
+    return id;
   }
 
   public @NonNull String toQueueKey() {
@@ -112,4 +124,7 @@ public class RecipientId implements Parcelable, Comparable<RecipientId> {
       return new RecipientId[size];
     }
   };
+
+  private static class InvalidLongRecipientIdError extends AssertionError {}
+  private static class InvalidStringRecipientIdError extends AssertionError {}
 }

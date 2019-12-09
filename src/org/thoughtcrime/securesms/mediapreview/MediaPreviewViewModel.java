@@ -83,6 +83,10 @@ public class MediaPreviewViewModel extends ViewModel {
                                           rail.indexOf(activeMedia)));
   }
 
+  public void resubmitPreviewData() {
+    previewData.postValue(previewData.getValue());
+  }
+
   private int getCursorPosition(int position) {
     if (cursor == null) {
       return 0;

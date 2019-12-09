@@ -9,7 +9,6 @@ import androidx.core.app.TaskStackBuilder;
 import androidx.appcompat.app.AppCompatActivity;
 import android.widget.Toast;
 
-import org.thoughtcrime.securesms.conversation.ConversationActivity;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.CommunicationActions;
@@ -34,16 +33,18 @@ public class ShortcutLauncherActivity extends AppCompatActivity {
 
     if (rawId == null) {
       Toast.makeText(this, R.string.ShortcutLauncherActivity_invalid_shortcut, Toast.LENGTH_SHORT).show();
-      startActivity(new Intent(this, ConversationListActivity.class));
+      // TODO [greyson] Navigation
+      startActivity(new Intent(this, MainActivity.class));
       finish();
       return;
     }
 
     Recipient        recipient = Recipient.live(RecipientId.from(rawId)).get();
+    // TODO [greyson] Navigation
     TaskStackBuilder backStack = TaskStackBuilder.create(this)
-                                                 .addNextIntent(new Intent(this, ConversationListActivity.class));
+                                                 .addNextIntent(new Intent(this, MainActivity.class));
 
-    CommunicationActions.startConversation(this, recipient, null, ConversationActivity.Breadcrumb.SHORTCUT, backStack);
+    CommunicationActions.startConversation(this, recipient, null, backStack);
     finish();
   }
 }

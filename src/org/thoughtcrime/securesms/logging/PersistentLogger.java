@@ -34,7 +34,7 @@ public class PersistentLogger extends Log.Logger {
 
   private static final String           LOG_DIRECTORY   = "log";
   private static final String           FILENAME_PREFIX = "log-";
-  private static final int              MAX_LOG_FILES   = 5;
+  private static final int              MAX_LOG_FILES   = 7;
   private static final int              MAX_LOG_SIZE    = 300 * 1024;
   private static final SimpleDateFormat DATE_FORMAT     = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS zzz");
 

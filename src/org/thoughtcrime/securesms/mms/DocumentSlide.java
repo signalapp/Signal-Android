@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
+import org.thoughtcrime.securesms.blurhash.BlurHash;
 import org.thoughtcrime.securesms.util.StorageUtil;
 
 public class DocumentSlide extends Slide {
@@ -19,7 +20,7 @@ public class DocumentSlide extends Slide {
                        @NonNull String contentType,  long size,
                        @Nullable String fileName)
   {
-    super(context, constructAttachmentFromUri(context, uri, contentType, size, 0, 0, true, StorageUtil.getCleanFileName(fileName), null, null, false, false));
+    super(context, constructAttachmentFromUri(context, uri, contentType, size, 0, 0, true, StorageUtil.getCleanFileName(fileName), null, null, null, false, false));
   }
 
   @Override

@@ -17,6 +17,8 @@
 
 package org.thoughtcrime.securesms.logsubmit.util;
 
+import android.text.TextUtils;
+
 import androidx.annotation.NonNull;
 
 import java.util.regex.Matcher;
@@ -50,11 +52,18 @@ public final class Scrubber {
   private static final Pattern GROUP_ID_PATTERN = Pattern.compile("(__)(textsecure_group__![^\\s]+)([^\\s]{2})");
   private static final String  GROUP_ID_CENSOR  = "...group...";
 
+  /**
+   * The middle group will be censored.
+   */
+  private static final Pattern UUID_PATTERN = Pattern.compile("(JOB::)?([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{10})([0-9a-f]{2})", Pattern.CASE_INSENSITIVE);
+  private static final String  UUID_CENSOR  = "********-****-****-****-**********";
+
   public static CharSequence scrub(@NonNull CharSequence in) {
 
     in = scrubE164(in);
     in = scrubEmail(in);
     in = scrubGroups(in);
+    in = scrubUuids(in);
 
     return in;
   }
@@ -80,6 +89,21 @@ public final class Scrubber {
                  (matcher, output) -> output.append(matcher.group(1))
                                             .append(GROUP_ID_CENSOR)
                                             .append(matcher.group(3)));
+  }
+
+  private static CharSequence scrubUuids(@NonNull CharSequence in) {
+    return scrub(in,
+                 UUID_PATTERN,
+                 (matcher, output) -> {
+                   if (matcher.group(1) != null && !matcher.group(1).isEmpty()) {
+                     output.append(matcher.group(1))
+                           .append(matcher.group(2))
+                           .append(matcher.group(3));
+                   } else {
+                     output.append(UUID_CENSOR)
+                           .append(matcher.group(3));
+                   }
+                 });
   }
 
   private static CharSequence scrub(@NonNull CharSequence in, @NonNull Pattern pattern, @NonNull ProcessMatch processMatch) {

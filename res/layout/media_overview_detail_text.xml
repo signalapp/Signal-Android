@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toEndOf="@+id/image_container"
+    app:layout_constraintTop_toTopOf="parent"
+    tools:showIn="@layout/media_overview_detail_item_media">
+
+    <TextView
+        android:id="@+id/line1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="marquee"
+        android:paddingStart="6dp"
+        android:paddingEnd="6dp"
+        android:singleLine="true"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@+id/image_container"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Sent voice note, 02:35" />
+
+    <TextView
+        android:id="@+id/line2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="marquee"
+        android:paddingStart="6dp"
+        android:paddingEnd="6dp"
+        android:singleLine="true"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@+id/image_container"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="2.7 MB, 11.06.19 at 5:25 AM" />
+
+</LinearLayout>

@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
@@ -85,8 +86,8 @@ public class RetrieveProfileAvatarJob extends BaseJob {
     }
 
     if (TextUtils.isEmpty(profileAvatar)) {
-      Log.w(TAG, "Removing profile avatar (no url) for: " + recipient.requireAddress().serialize());
-      AvatarHelper.delete(context, recipient.requireAddress());
+      Log.w(TAG, "Removing profile avatar (no url) for: " + recipient.getId().serialize());
+      AvatarHelper.delete(context, recipient.getId());
       database.setProfileAvatar(recipient.getId(), profileAvatar);
       return;
     }
@@ -104,11 +105,11 @@ public class RetrieveProfileAvatarJob extends BaseJob {
         throw new IOException("Failed to copy stream. Likely a Conscrypt issue.", e);
       }
 
-      decryptDestination.renameTo(AvatarHelper.getAvatarFile(context, recipient.requireAddress()));
+      decryptDestination.renameTo(AvatarHelper.getAvatarFile(context, recipient.getId()));
     } catch (PushNetworkException e) {
       if (e.getCause() instanceof NonSuccessfulResponseCodeException) {
-        Log.w(TAG, "Removing profile avatar (no image available) for: " + recipient.requireAddress().serialize());
-        AvatarHelper.delete(context, recipient.requireAddress());
+        Log.w(TAG, "Removing profile avatar (no image available) for: " + recipient.getId().serialize());
+        AvatarHelper.delete(context, recipient.getId());
       } else {
         throw e;
       }
@@ -117,6 +118,10 @@ public class RetrieveProfileAvatarJob extends BaseJob {
     }
 
     database.setProfileAvatar(recipient.getId(), profileAvatar);
+
+    if (recipient.isLocalNumber()) {
+      TextSecurePreferences.setProfileAvatarId(context, Util.getSecureRandom().nextInt());
+    }
   }
 
   @Override

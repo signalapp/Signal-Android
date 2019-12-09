@@ -13,56 +13,55 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.telephony.PhoneNumberUtils;
+import android.util.Pair;
+import android.view.LayoutInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import com.google.android.material.appbar.CollapsingToolbarLayout;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.Loader;
-import androidx.core.view.ViewCompat;
-import androidx.appcompat.app.AlertDialog;
 import androidx.preference.CheckBoxPreference;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceCategory;
-import androidx.appcompat.widget.Toolbar;
-import android.telephony.PhoneNumberUtils;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
+
+import org.thoughtcrime.securesms.color.MaterialColor;
+import org.thoughtcrime.securesms.color.MaterialColors;
 import org.thoughtcrime.securesms.components.SwitchPreferenceCompat;
+import org.thoughtcrime.securesms.components.ThreadPhotoRailView;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
-import org.thoughtcrime.securesms.conversation.ConversationActivity;
-import org.thoughtcrime.securesms.database.GroupDatabase;
-import org.thoughtcrime.securesms.jobs.RotateProfileKeyJob;
-import org.thoughtcrime.securesms.logging.Log;
-import android.util.Pair;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.WindowManager;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-
-import org.thoughtcrime.securesms.color.MaterialColor;
-import org.thoughtcrime.securesms.color.MaterialColors;
-import org.thoughtcrime.securesms.components.ThreadPhotoRailView;
 import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
-import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase.IdentityRecord;
+import org.thoughtcrime.securesms.database.MediaDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase.VibrateState;
-import org.thoughtcrime.securesms.database.loaders.ThreadMediaLoader;
-import org.thoughtcrime.securesms.jobs.MultiDeviceBlockedUpdateJob;
+import org.thoughtcrime.securesms.database.loaders.RecipientMediaLoader;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
+import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.mediaoverview.MediaOverviewActivity;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
-import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.preferences.CorrectedPreferenceFragment;
@@ -71,17 +70,20 @@ import org.thoughtcrime.securesms.preferences.widgets.ContactPreference;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.sms.MessageSender;
+import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.Dialogs;
+import org.thoughtcrime.securesms.util.DynamicDarkToolbarTheme;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
-import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
-import org.thoughtcrime.securesms.util.GroupUtil;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
+import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
+import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.concurrent.ExecutionException;
@@ -105,7 +107,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
   private static final String PREFERENCE_ABOUT                 = "pref_key_number";
   private static final String PREFERENCE_CUSTOM_NOTIFICATIONS  = "pref_key_recipient_custom_notifications";
 
-  private final DynamicTheme    dynamicTheme    = new DynamicNoActionBarTheme();
+  private final DynamicTheme    dynamicTheme    = new DynamicDarkToolbarTheme();
   private final DynamicLanguage dynamicLanguage = new DynamicLanguage();
 
   private ImageView               avatar;
@@ -174,13 +176,12 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
     this.threadPhotoRailView  = ViewUtil.findById(this, R.id.recent_photos);
     this.threadPhotoRailLabel = ViewUtil.findById(this, R.id.rail_label);
 
-    this.toolbarLayout.setExpandedTitleColor(getResources().getColor(R.color.white));
-    this.toolbarLayout.setCollapsedTitleTextColor(getResources().getColor(R.color.white));
+    this.toolbarLayout.setExpandedTitleColor(ThemeUtil.getThemedColor(this, R.attr.conversation_title_color));
+    this.toolbarLayout.setCollapsedTitleTextColor(ThemeUtil.getThemedColor(this, R.attr.conversation_title_color));
 
     this.threadPhotoRailView.setListener(mediaRecord -> {
       Intent intent = new Intent(RecipientPreferenceActivity.this, MediaPreviewActivity.class);
-      intent.putExtra(MediaPreviewActivity.RECIPIENT_EXTRA, recipientId);
-      intent.putExtra(MediaPreviewActivity.OUTGOING_EXTRA, mediaRecord.isOutgoing());
+      intent.putExtra(MediaPreviewActivity.THREAD_ID_EXTRA, mediaRecord.getThreadId());
       intent.putExtra(MediaPreviewActivity.DATE_EXTRA, mediaRecord.getDate());
       intent.putExtra(MediaPreviewActivity.SIZE_EXTRA, mediaRecord.getAttachment().getSize());
       intent.putExtra(MediaPreviewActivity.CAPTION_EXTRA, mediaRecord.getAttachment().getCaption());
@@ -189,11 +190,16 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       startActivity(intent);
     });
 
-    this.threadPhotoRailLabel.setOnClickListener(v -> {
-      Intent intent = new Intent(this, MediaOverviewActivity.class);
-      intent.putExtra(MediaOverviewActivity.RECIPIENT_EXTRA, recipientId);
-      startActivity(intent);
-    });
+    SimpleTask.run(
+      () -> DatabaseFactory.getThreadDatabase(this).getThreadIdFor(recipientId),
+      (threadId) -> {
+        if (threadId == null) {
+          Log.i(TAG, "No thread id for recipient.");
+        } else {
+          this.threadPhotoRailLabel.setOnClickListener(v -> startActivity(MediaOverviewActivity.forThread(this, threadId)));
+        }
+      }
+    );
 
     Toolbar toolbar = ViewUtil.findById(this, R.id.toolbar);
     setSupportActionBar(toolbar);
@@ -207,9 +213,9 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
   }
 
   private void setHeader(@NonNull Recipient recipient) {
-    ContactPhoto         contactPhoto  = recipient.isLocalNumber() ? new ProfileContactPhoto(recipient.requireAddress(), String.valueOf(TextSecurePreferences.getProfileAvatarId(this)))
+    ContactPhoto         contactPhoto  = recipient.isLocalNumber() ? new ProfileContactPhoto(recipient.getId(), String.valueOf(TextSecurePreferences.getProfileAvatarId(this)))
                                                                    : recipient.getContactPhoto();
-    FallbackContactPhoto fallbackPhoto = recipient.isLocalNumber() ? new ResourceContactPhoto(R.drawable.ic_profile_default, R.drawable.ic_person_large)
+    FallbackContactPhoto fallbackPhoto = recipient.isLocalNumber() ? new ResourceContactPhoto(R.drawable.ic_profile_outline_40, R.drawable.ic_profile_outline_20, R.drawable.ic_person_large)
                                                                    : recipient.getFallbackContactPhoto();
 
     glideRequests.load(contactPhoto)
@@ -222,13 +228,13 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
     else                      this.avatar.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
     this.avatar.setBackgroundColor(recipient.getColor().toActionBarColor(this));
-    this.toolbarLayout.setTitle(recipient.toShortString());
+    this.toolbarLayout.setTitle(recipient.toShortString(this));
     this.toolbarLayout.setContentScrimColor(recipient.getColor().toActionBarColor(this));
   }
 
   @Override
   public @NonNull Loader<Cursor> onCreateLoader(int id, Bundle args) {
-    return new ThreadMediaLoader(this, recipientId, true);
+    return new RecipientMediaLoader(this, recipientId, RecipientMediaLoader.MediaType.GALLERY, MediaDatabase.Sorting.Newest);
   }
 
   @Override
@@ -350,6 +356,14 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       }
     }
 
+    @Override
+    public RecyclerView onCreateRecyclerView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
+      RecyclerView recyclerView = super.onCreateRecyclerView(inflater, parent, savedInstanceState);
+      recyclerView.setItemAnimator(null);
+      recyclerView.setLayoutAnimation(null);
+      return recyclerView;
+    }
+
     private void initializeRecipients() {
       this.recipient = Recipient.live(getArguments().getParcelable(RECIPIENT_ID));
       this.recipient.observe(this, this::setSummaries);
@@ -386,6 +400,10 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       vibrateCallPreference.setSummary(vibrateCallSummary.first);
       vibrateCallPreference.setValueIndex(vibrateCallSummary.second);
 
+      blockPreference.setVisible(RecipientUtil.isBlockable(recipient));
+      if (recipient.isBlocked()) blockPreference.setTitle(R.string.RecipientPreferenceActivity_unblock);
+      else                       blockPreference.setTitle(R.string.RecipientPreferenceActivity_block);
+
       if (recipient.isLocalNumber()) {
         mutePreference.setVisible(false);
         customPreference.setVisible(false);
@@ -398,7 +416,9 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
         if (privacyCategory    != null) privacyCategory.setVisible(false);
         if (divider            != null) divider.setVisible(false);
         if (callCategory       != null) callCategory.setVisible(false);
-      } if (recipient.isGroup()) {
+      }
+
+      if (recipient.isGroup()) {
         if (colorPreference    != null) colorPreference.setVisible(false);
         if (identityPreference != null) identityPreference.setVisible(false);
         if (callCategory       != null) callCategory.setVisible(false);
@@ -406,15 +426,18 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
         if (aboutDivider       != null) aboutDivider.setVisible(false);
         if (divider            != null) divider.setVisible(false);
       } else {
-        colorPreference.setColors(MaterialColors.CONVERSATION_PALETTE.asConversationColorArray(getActivity()));
-        colorPreference.setColor(recipient.getColor().toActionBarColor(getActivity()));
+        colorPreference.setColors(MaterialColors.CONVERSATION_PALETTE.asConversationColorArray(requireActivity()));
+        colorPreference.setColor(recipient.getColor().toActionBarColor(requireActivity()));
 
-        aboutPreference.setTitle(formatAddress(recipient.requireAddress()));
-        aboutPreference.setSummary(recipient.getCustomLabel());
+        if (FeatureFlags.PROFILE_DISPLAY) {
+          aboutPreference.setTitle(recipient.getDisplayName(requireContext()));
+          aboutPreference.setSummary(recipient.resolve().getE164().or(""));
+        } else {
+          aboutPreference.setTitle(formatRecipient(recipient));
+          aboutPreference.setSummary(recipient.getCustomLabel());
+        }
+
         aboutPreference.setSecure(recipient.getRegistered() == RecipientDatabase.RegisteredState.REGISTERED);
-
-        if (recipient.isBlocked()) blockPreference.setTitle(R.string.RecipientPreferenceActivity_unblock);
-        else                       blockPreference.setTitle(R.string.RecipientPreferenceActivity_block);
 
         IdentityUtil.getRemoteIdentityKey(getActivity(), recipient).addListener(new ListenableFuture.Listener<Optional<IdentityRecord>>() {
           @Override
@@ -436,12 +459,16 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
           }
         });
       }
+
+      if (recipient.isMmsGroup() && privacyCategory != null) {
+        privacyCategory.setVisible(false);
+      }
     }
 
-    private @NonNull String formatAddress(@NonNull Address address) {
-      if      (address.isPhone()) return PhoneNumberUtils.formatNumber(address.toPhoneString());
-      else if (address.isEmail()) return address.toEmailString();
-      else                        return "";
+    private @NonNull String formatRecipient(@NonNull Recipient recipient) {
+      if      (recipient.getE164().isPresent())  return PhoneNumberUtils.formatNumber(recipient.requireE164());
+      else if (recipient.getEmail().isPresent()) return recipient.requireEmail();
+      else                                       return "";
     }
 
     private @NonNull String getRingtoneSummary(@NonNull Context context, @Nullable Uri ringtone) {
@@ -599,9 +626,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
               DatabaseFactory.getRecipientDatabase(context).setColor(recipient.getId(), selectedColor);
 
               if (recipient.get().resolve().getRegistered() == RecipientDatabase.RegisteredState.REGISTERED) {
-                ApplicationContext.getInstance(context)
-                                  .getJobManager()
-                                  .add(new MultiDeviceContactUpdateJob(recipient.getId()));
+                ApplicationDependencies.getJobManager().add(new MultiDeviceContactUpdateJob(recipient.getId()));
               }
               return null;
             }
@@ -684,7 +709,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
             if (recipient.get().isGroup()) {
               bodyRes = R.string.RecipientPreferenceActivity_block_and_leave_group_description;
 
-              if (recipient.get().isGroup() && DatabaseFactory.getGroupDatabase(context).isActive(recipient.get().requireAddress().toGroupString())) {
+              if (recipient.get().isGroup() && DatabaseFactory.getGroupDatabase(context).isActive(recipient.get().requireGroupId())) {
                 titleRes = R.string.RecipientPreferenceActivity_block_and_leave_group;
               } else {
                 titleRes = R.string.RecipientPreferenceActivity_block_group;
@@ -726,41 +751,13 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       }
 
       private void setBlocked(@NonNull final Context context, final Recipient recipient, final boolean blocked) {
-        new AsyncTask<Void, Void, Void>() {
-          @Override
-          protected Void doInBackground(Void... params) {
-            DatabaseFactory.getRecipientDatabase(context)
-                           .setBlocked(recipient.getId(), blocked);
-
-            if (recipient.isGroup() && DatabaseFactory.getGroupDatabase(context).isActive(recipient.requireAddress().toGroupString())) {
-              long                                threadId     = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
-              Optional<OutgoingGroupMediaMessage> leaveMessage = GroupUtil.createGroupLeaveMessage(context, recipient);
-
-              if (threadId != -1 && leaveMessage.isPresent()) {
-                MessageSender.send(context, leaveMessage.get(), threadId, false, null);
-
-                GroupDatabase groupDatabase = DatabaseFactory.getGroupDatabase(context);
-                String        groupId       = recipient.requireAddress().toGroupString();
-                groupDatabase.setActive(groupId, false);
-                groupDatabase.remove(groupId, Recipient.self().getId());
-              } else {
-                Log.w(TAG, "Failed to leave group. Can't block.");
-                Toast.makeText(context, R.string.RecipientPreferenceActivity_error_leaving_group, Toast.LENGTH_LONG).show();
-              }
-            }
-
-            if (blocked && (recipient.resolve().isSystemContact() || recipient.resolve().isProfileSharing())) {
-              ApplicationContext.getInstance(context)
-                                .getJobManager()
-                                .add(new RotateProfileKeyJob());
-            }
-
-            ApplicationContext.getInstance(context)
-                              .getJobManager()
-                              .add(new MultiDeviceBlockedUpdateJob());
-            return null;
+        SignalExecutors.BOUNDED.execute(() -> {
+          if (blocked) {
+            RecipientUtil.block(context, recipient);
+          } else {
+            RecipientUtil.unblock(context, recipient);
           }
-        }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        });
       }
     }
 
@@ -768,7 +765,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
 
       @Override
       public void onMessageClicked() {
-        CommunicationActions.startConversation(getContext(), recipient.get(), null, ConversationActivity.Breadcrumb.RECIPIENT_PREFERENCE);
+        CommunicationActions.startConversation(getContext(), recipient.get(), null);
       }
 
       @Override
@@ -777,10 +774,15 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
       }
 
       @Override
+      public void onSecureVideoClicked() {
+        CommunicationActions.startVideoCall(getActivity(), recipient.get());
+      }
+
+      @Override
       public void onInSecureCallClicked() {
         try {
           Intent dialIntent = new Intent(Intent.ACTION_DIAL,
-                                         Uri.parse("tel:" + recipient.get().requireAddress().serialize()));
+                                         Uri.parse("tel:" + recipient.get().requireE164()));
           startActivity(dialIntent);
         } catch (ActivityNotFoundException anfe) {
           Log.w(TAG, anfe);

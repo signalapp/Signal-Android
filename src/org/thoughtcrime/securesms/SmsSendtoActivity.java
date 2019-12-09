@@ -12,7 +12,6 @@ import org.thoughtcrime.securesms.conversation.ConversationActivity;
 import org.thoughtcrime.securesms.logging.Log;
 import android.widget.Toast;
 
-import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.Rfc5724Uri;
@@ -54,7 +53,7 @@ public class SmsSendtoActivity extends Activity {
       nextIntent = new Intent(this, ConversationActivity.class);
       nextIntent.putExtra(ConversationActivity.TEXT_EXTRA, destination.getBody());
       nextIntent.putExtra(ConversationActivity.THREAD_ID_EXTRA, threadId);
-      nextIntent.putExtra(ConversationActivity.RECIPIENT_EXTRA, ConversationActivity.Breadcrumb.SMS_SEND_TO);
+      nextIntent.putExtra(ConversationActivity.RECIPIENT_EXTRA, recipient.getId());
     }
     return nextIntent;
   }

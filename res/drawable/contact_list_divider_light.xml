@@ -11,7 +11,7 @@
     <item>
         <shape>
             <padding android:top="1dp" android:right="0dp" android:bottom="0dp" android:left="0dp" />
-            <solid android:color="@color/gray5" />
+            <solid android:color="@color/core_grey_05" />
             <size android:height="20dp"/>
         </shape>
     </item>

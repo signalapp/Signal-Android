@@ -19,12 +19,14 @@ package org.thoughtcrime.securesms.mms;
 import android.content.Context;
 import android.content.res.Resources.Theme;
 import android.net.Uri;
+
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.UriAttachment;
+import org.thoughtcrime.securesms.blurhash.BlurHash;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
 import org.thoughtcrime.securesms.util.MediaUtil;
@@ -126,6 +128,10 @@ public abstract class Slide {
     throw new AssertionError("getPlaceholderRes() called for non-drawable slide");
   }
 
+  public @Nullable BlurHash getPlaceholderBlur() {
+    return attachment.getBlurHash();
+  }
+
   public boolean hasPlaceholder() {
     return false;
   }
@@ -144,6 +150,7 @@ public abstract class Slide {
                                                          @Nullable String         fileName,
                                                          @Nullable String         caption,
                                                          @Nullable StickerLocator stickerLocator,
+                                                         @Nullable BlurHash       blurHash,
                                                                    boolean        voiceNote,
                                                                    boolean        quote)
   {
@@ -161,7 +168,37 @@ public abstract class Slide {
                              voiceNote,
                              quote,
                              caption,
-                             stickerLocator);
+                             stickerLocator,
+                             blurHash,
+                             null);
+  }
+
+  public @NonNull Optional<String> getFileType(@NonNull Context context) {
+    Optional<String> fileName = getFileName();
+
+    if (fileName.isPresent()) {
+      return Optional.of(getFileType(fileName));
+    }
+
+    return Optional.fromNullable(MediaUtil.getExtension(context, getUri()));
+  }
+
+  private static @NonNull String getFileType(Optional<String> fileName) {
+    if (!fileName.isPresent()) return "";
+
+    String[] parts = fileName.get().split("\\.");
+
+    if (parts.length < 2) {
+      return "";
+    }
+
+    String suffix = parts[parts.length - 1];
+
+    if (suffix.length() <= 3) {
+      return suffix;
+    }
+
+    return "";
   }
 
   @Override

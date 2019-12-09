@@ -56,6 +56,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.whispersystems.libsignal.util.Pair;
+import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -96,10 +97,13 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
   @Override
   protected void onCreate(Bundle icicle, boolean ready) {
     if (!getIntent().hasExtra(ContactSelectionListFragment.DISPLAY_MODE)) {
-      getIntent().putExtra(ContactSelectionListFragment.DISPLAY_MODE,
-                           TextSecurePreferences.isSmsEnabled(this)
-                               ? DisplayMode.FLAG_ALL
-                               : DisplayMode.FLAG_PUSH | DisplayMode.FLAG_GROUPS);
+      int mode = DisplayMode.FLAG_PUSH | DisplayMode.FLAG_ACTIVE_GROUPS;
+
+      if (TextSecurePreferences.isSmsEnabled(this))  {
+        mode |= DisplayMode.FLAG_SMS;
+
+      }
+      getIntent().putExtra(ContactSelectionListFragment.DISPLAY_MODE, mode);
     }
 
     getIntent().putExtra(ContactSelectionListFragment.REFRESHABLE, false);
@@ -241,7 +245,6 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
   private void createConversation(long threadId, @NonNull RecipientId recipientId, int distributionType) {
     final Intent intent = getBaseShareIntent(ConversationActivity.class);
     intent.putExtra(ConversationActivity.RECIPIENT_EXTRA, recipientId);
-    intent.putExtra(ConversationActivity.BREADCRUMB_EXTRA, ConversationActivity.Breadcrumb.SHARE);
     intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, threadId);
     intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, distributionType);
 
@@ -273,19 +276,25 @@ public class ShareActivity extends PassphraseRequiredActionBarActivity
   }
 
   @Override
-  public void onContactSelected(String number) {
+  public void onContactSelected(Optional<RecipientId> recipientId, String number) {
     SimpleTask.run(this.getLifecycle(), () -> {
-      Recipient recipient = Recipient.external(this, number);
+      Recipient recipient;
+      if (recipientId.isPresent()) {
+        recipient = Recipient.resolved(recipientId.get());
+      } else {
+        Log.i(TAG, "[onContactSelected] Maybe creating a new recipient.");
+        recipient = Recipient.external(this, number);
+      }
+
       long existingThread = DatabaseFactory.getThreadDatabase(this).getThreadIdIfExistsFor(recipient);
       return new Pair<>(existingThread, recipient);
     }, result -> {
       createConversation(result.first(), result.second().getId(), ThreadDatabase.DistributionTypes.DEFAULT);
     });
-
   }
 
   @Override
-  public void onContactDeselected(String number) {
+  public void onContactDeselected(@NonNull Optional<RecipientId> recipientId, String number) {
 
   }
 

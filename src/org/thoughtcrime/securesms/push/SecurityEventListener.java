@@ -3,10 +3,6 @@ package org.thoughtcrime.securesms.push;
 import android.content.Context;
 
 import org.thoughtcrime.securesms.crypto.SecurityEvent;
-import org.thoughtcrime.securesms.database.Address;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.RecipientDatabase;
-import org.thoughtcrime.securesms.recipients.Recipient;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 

@@ -3,15 +3,19 @@ package org.thoughtcrime.securesms.util;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.media.MediaDataSource;
+import android.media.MediaMetadataRetriever;
 import android.media.ThumbnailUtils;
 import android.net.Uri;
+import android.os.Build;
 import android.provider.MediaStore;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.WorkerThread;
 import android.text.TextUtils;
 import android.util.Pair;
 import android.webkit.MimeTypeMap;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.WorkerThread;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.gif.GifDrawable;
@@ -30,6 +34,7 @@ import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.StickerSlide;
 import org.thoughtcrime.securesms.mms.TextSlide;
 import org.thoughtcrime.securesms.mms.VideoSlide;
+import org.thoughtcrime.securesms.providers.BlobProvider;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -47,35 +52,47 @@ public class MediaUtil {
   public static final String IMAGE_GIF         = "image/gif";
   public static final String AUDIO_AAC         = "audio/aac";
   public static final String AUDIO_UNSPECIFIED = "audio/*";
+  public static final String VIDEO_MP4         = "video/mp4";
   public static final String VIDEO_UNSPECIFIED = "video/*";
   public static final String VCARD             = "text/x-vcard";
   public static final String LONG_TEXT         = "text/x-signal-plain";
 
-
-  public static Slide getSlideForAttachment(Context context, Attachment attachment) {
-    Slide slide = null;
-    if (attachment.isSticker()) {
-      slide = new StickerSlide(context, attachment);
-    } else if (isGif(attachment.getContentType())) {
-      slide = new GifSlide(context, attachment);
-    } else if (isImageType(attachment.getContentType())) {
-      slide = new ImageSlide(context, attachment);
-    } else if (isVideoType(attachment.getContentType())) {
-      slide = new VideoSlide(context, attachment);
-    } else if (isAudioType(attachment.getContentType())) {
-      slide = new AudioSlide(context, attachment);
-    } else if (isMms(attachment.getContentType())) {
-      slide = new MmsSlide(context, attachment);
-    } else if (isLongTextType(attachment.getContentType())) {
-      slide = new TextSlide(context, attachment);
-    } else if (attachment.getContentType() != null) {
-      slide = new DocumentSlide(context, attachment);
+  public static SlideType getSlideTypeFromContentType(@NonNull String contentType) {
+    if (isGif(contentType)) {
+      return SlideType.GIF;
+    } else if (isImageType(contentType)) {
+      return SlideType.IMAGE;
+    } else if (isVideoType(contentType)) {
+      return SlideType.VIDEO;
+    } else if (isAudioType(contentType)) {
+      return SlideType.AUDIO;
+    } else if (isMms(contentType)) {
+      return SlideType.MMS;
+    } else if (isLongTextType(contentType)) {
+      return SlideType.LONG_TEXT;
+    } else {
+      return SlideType.DOCUMENT;
     }
-
-    return slide;
   }
 
-  public static @Nullable String getMimeType(Context context, Uri uri) {
+  public static @NonNull Slide getSlideForAttachment(Context context, Attachment attachment) {
+    if (attachment.isSticker()) {
+      return new StickerSlide(context, attachment);
+    }
+
+    switch (getSlideTypeFromContentType(attachment.getContentType())) {
+      case GIF       : return new GifSlide(context, attachment);
+      case IMAGE     : return new ImageSlide(context, attachment);
+      case VIDEO     : return new VideoSlide(context, attachment);
+      case AUDIO     : return new AudioSlide(context, attachment);
+      case MMS       : return new MmsSlide(context, attachment);
+      case LONG_TEXT : return new TextSlide(context, attachment);
+      case DOCUMENT  : return new DocumentSlide(context, attachment);
+      default        : throw new AssertionError();
+    }
+  }
+
+  public static @Nullable String getMimeType(@NonNull Context context, @Nullable Uri uri) {
     if (uri == null) return null;
 
     if (PartAuthority.isLocalUri(uri)) {
@@ -89,6 +106,11 @@ public class MediaUtil {
     }
 
     return getCorrectedMimeType(type);
+  }
+
+  public static @Nullable String getExtension(@NonNull Context context, @Nullable Uri uri) {
+    return MimeTypeMap.getSingleton()
+                      .getExtensionFromMimeType(getMimeType(context, uri));
   }
 
   public static @Nullable String getCorrectedMimeType(@Nullable String mimeType) {
@@ -239,11 +261,19 @@ public class MediaUtil {
     return (null != contentType) && contentType.startsWith("video/");
   }
 
+  public static boolean isImageOrVideoType(String contentType) {
+    return isImageType(contentType) || isVideoType(contentType);
+  }
+
   public static boolean isLongTextType(String contentType) {
     return (null != contentType) && contentType.equals(LONG_TEXT);
   }
 
   public static boolean hasVideoThumbnail(Uri uri) {
+    if (BlobProvider.isAuthority(uri) && MediaUtil.isVideo(BlobProvider.getMimeType(uri)) && Build.VERSION.SDK_INT >= 23) {
+      return true;
+    }
+
     if (uri == null || !isSupportedVideoUriScheme(uri.getScheme())) {
       return false;
     }
@@ -260,6 +290,7 @@ public class MediaUtil {
     }
   }
 
+  @WorkerThread
   public static @Nullable Bitmap getVideoThumbnail(Context context, Uri uri) {
     if ("com.android.providers.media.documents".equals(uri.getAuthority())) {
       long videoId = Long.parseLong(uri.getLastPathSegment().split(":")[1]);
@@ -279,6 +310,19 @@ public class MediaUtil {
                MediaUtil.isVideo(URLConnection.guessContentTypeFromName(uri.toString()))) {
       return ThumbnailUtils.createVideoThumbnail(uri.toString().replace("file://", ""),
                                                  MediaStore.Video.Thumbnails.MINI_KIND);
+    } else if (BlobProvider.isAuthority(uri) &&
+               MediaUtil.isVideo(BlobProvider.getMimeType(uri)) &&
+               Build.VERSION.SDK_INT >= 23) {
+      try {
+        MediaDataSource        mediaDataSource        = BlobProvider.getInstance().getMediaDataSource(context, uri);
+        MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
+
+        MediaMetadataRetrieverUtil.setDataSource(mediaMetadataRetriever, mediaDataSource);
+        return mediaMetadataRetriever.getFrameAtTime(1000);
+      } catch (IOException e) {
+        Log.w(TAG, "failed to get thumbnail for video blob uri: " + uri, e);
+        return null;
+      }
     }
 
     return null;
@@ -320,5 +364,15 @@ public class MediaUtil {
   private static boolean isSupportedVideoUriScheme(@Nullable String scheme) {
     return ContentResolver.SCHEME_CONTENT.equals(scheme) ||
            ContentResolver.SCHEME_FILE.equals(scheme);
+  }
+
+  public enum SlideType {
+    GIF,
+    IMAGE,
+    VIDEO,
+    AUDIO,
+    MMS,
+    LONG_TEXT,
+    DOCUMENT
   }
 }

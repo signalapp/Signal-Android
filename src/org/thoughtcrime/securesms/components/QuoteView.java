@@ -149,7 +149,8 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
                        @NonNull Recipient author,
                        @Nullable String body,
                        boolean originalMissing,
-                       @NonNull SlideDeck attachments)
+                       @NonNull SlideDeck attachments,
+                       boolean isViewOnce)
   {
     if (this.author != null) this.author.removeForeverObserver(this);
 
@@ -160,7 +161,7 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
 
     this.author.observeForever(this);
     setQuoteAuthor(author);
-    setQuoteText(body, attachments);
+    setQuoteText(body, attachments, isViewOnce);
     setQuoteAttachment(glideRequests, attachments);
     setQuoteMissingFooter(originalMissing);
   }
@@ -186,18 +187,17 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
   }
 
   private void setQuoteAuthor(@NonNull Recipient author) {
-    boolean outgoing    = messageType != MESSAGE_TYPE_INCOMING;
-    boolean isOwnNumber = Util.isOwnNumber(getContext(), author.requireAddress());
+    boolean outgoing = messageType != MESSAGE_TYPE_INCOMING;
 
-    authorView.setText(isOwnNumber ? getContext().getString(R.string.QuoteView_you)
-                                   : author.toShortString());
+    authorView.setText(author.isLocalNumber() ? getContext().getString(R.string.QuoteView_you)
+                                              : author.toShortString(getContext()));
 
     // We use the raw color resource because Android 4.x was struggling with tints here
     quoteBarView.setImageResource(author.getColor().toQuoteBarColorResource(getContext(), outgoing));
     mainView.setBackgroundColor(author.getColor().toQuoteBackgroundColor(getContext(), outgoing));
   }
 
-  private void setQuoteText(@Nullable String body, @NonNull SlideDeck attachments) {
+  private void setQuoteText(@Nullable String body, @NonNull SlideDeck attachments, boolean isViewOnce) {
     if (!TextUtils.isEmpty(body) || !attachments.containsMediaSlide()) {
       bodyView.setVisibility(VISIBLE);
       bodyView.setText(body == null ? "" : body);
@@ -215,7 +215,9 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
     List<Slide> stickerSlides  = Stream.of(attachments.getSlides()).filter(Slide::hasSticker).limit(1).toList();
 
     // Given that most types have images, we specifically check images last
-    if (!audioSlides.isEmpty()) {
+    if (isViewOnce) {
+      mediaDescriptionText.setText(R.string.QuoteView_media);
+    } else if (!audioSlides.isEmpty()) {
       mediaDescriptionText.setText(R.string.QuoteView_audio);
     } else if (!documentSlides.isEmpty()) {
       mediaDescriptionText.setVisibility(GONE);

@@ -5,15 +5,16 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import androidx.annotation.AttrRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.AttrRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.pnikosis.materialishprogress.ProgressWheel;
 
@@ -22,10 +23,9 @@ import org.greenrobot.eventbus.ThreadMode;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
-import org.thoughtcrime.securesms.mms.DocumentSlide;
+import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideClickListener;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 public class DocumentView extends FrameLayout {
 
@@ -42,7 +42,7 @@ public class DocumentView extends FrameLayout {
 
   private @Nullable SlideClickListener downloadListener;
   private @Nullable SlideClickListener viewListener;
-  private @Nullable DocumentSlide      documentSlide;
+  private @Nullable Slide              documentSlide;
 
   public DocumentView(@NonNull Context context) {
     this(context, null);
@@ -87,7 +87,7 @@ public class DocumentView extends FrameLayout {
     this.viewListener = listener;
   }
 
-  public void setDocument(final @NonNull DocumentSlide documentSlide,
+  public void setDocument(final @NonNull Slide documentSlide,
                           final boolean showControls)
   {
     if (showControls && documentSlide.isPendingDownload()) {
@@ -104,9 +104,11 @@ public class DocumentView extends FrameLayout {
 
     this.documentSlide = documentSlide;
 
-    this.fileName.setText(documentSlide.getFileName().or(getContext().getString(R.string.DocumentView_unknown_file)));
+    this.fileName.setText(documentSlide.getFileName()
+                                       .or(documentSlide.getCaption())
+                                       .or(getContext().getString(R.string.DocumentView_unnamed_file)));
     this.fileSize.setText(Util.getPrettyFileSize(documentSlide.getFileSize()));
-    this.document.setText(getFileType(documentSlide.getFileName()));
+    this.document.setText(documentSlide.getFileType(getContext()).or("").toLowerCase());
     this.setOnClickListener(new OpenClickedListener(documentSlide));
   }
 
@@ -128,24 +130,6 @@ public class DocumentView extends FrameLayout {
     this.downloadButton.setEnabled(enabled);
   }
 
-  private @NonNull String getFileType(Optional<String> fileName) {
-    if (!fileName.isPresent()) return "";
-
-    String[] parts = fileName.get().split("\\.");
-
-    if (parts.length < 2) {
-      return "";
-    }
-
-    String suffix = parts[parts.length - 1];
-
-    if (suffix.length() <= 3) {
-      return suffix;
-    }
-
-    return "";
-  }
-
   @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
   public void onEventAsync(final PartProgressEvent event) {
     if (documentSlide != null && event.attachment.equals(documentSlide.asAttachment())) {
@@ -154,9 +138,9 @@ public class DocumentView extends FrameLayout {
   }
 
   private class DownloadClickedListener implements View.OnClickListener {
-    private final @NonNull DocumentSlide slide;
+    private final @NonNull Slide slide;
 
-    private DownloadClickedListener(@NonNull DocumentSlide slide) {
+    private DownloadClickedListener(@NonNull Slide slide) {
       this.slide = slide;
     }
 
@@ -167,9 +151,9 @@ public class DocumentView extends FrameLayout {
   }
 
   private class OpenClickedListener implements View.OnClickListener {
-    private final @NonNull DocumentSlide slide;
+    private final @NonNull Slide slide;
 
-    private OpenClickedListener(@NonNull DocumentSlide slide) {
+    private OpenClickedListener(@NonNull Slide slide) {
       this.slide = slide;
     }
 

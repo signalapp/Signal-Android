@@ -193,8 +193,12 @@ public class RecipientIdJobMigration extends JobMigration {
 
   private @NonNull JobData migrateSmsSendJob(@NonNull JobData jobData) {
     //noinspection ConstantConditions
-    Recipient recipient = Recipient.external(application, jobData.getQueueKey());
-    return jobData.withQueueKey(recipient.getId().toQueueKey());
+    if (jobData.getQueueKey() != null) {
+      Recipient recipient = Recipient.external(application, jobData.getQueueKey());
+      return jobData.withQueueKey(recipient.getId().toQueueKey());
+    } else {
+      return jobData;
+    }
   }
 
   @VisibleForTesting

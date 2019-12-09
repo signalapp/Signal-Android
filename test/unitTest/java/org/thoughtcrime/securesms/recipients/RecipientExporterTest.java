@@ -8,9 +8,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
-import org.thoughtcrime.securesms.database.Address;
-
-import static org.assertj.core.api.Assertions.*;
+import org.whispersystems.libsignal.util.guava.Optional;
 
 import static android.provider.ContactsContract.Intents.Insert.NAME;
 import static android.provider.ContactsContract.Intents.Insert.EMAIL;
@@ -18,7 +16,6 @@ import static android.provider.ContactsContract.Intents.Insert.PHONE;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(RobolectricTestRunner.class)
@@ -27,7 +24,7 @@ public final class RecipientExporterTest {
 
   @Test
   public void asAddContactIntent_with_phone_number() {
-    Recipient recipient = givenRecipient("Alice", givenPhoneNumber("+1555123456"));
+    Recipient recipient = givenPhoneRecipient("Alice", "+1555123456");
 
     Intent intent = RecipientExporter.export(recipient).asAddContactIntent();
 
@@ -40,7 +37,7 @@ public final class RecipientExporterTest {
 
   @Test
   public void asAddContactIntent_with_email() {
-    Recipient recipient = givenRecipient("Bob", givenEmail("bob@signal.org"));
+    Recipient recipient = givenEmailRecipient("Bob", "bob@signal.org");
 
     Intent intent = RecipientExporter.export(recipient).asAddContactIntent();
 
@@ -51,34 +48,25 @@ public final class RecipientExporterTest {
     assertNull(intent.getStringExtra(PHONE));
   }
 
-  @Test
-  public void asAddContactIntent_with_neither_email_nor_phone() {
-    RecipientExporter exporter = RecipientExporter.export(givenRecipient("Bob", mock(Address.class)));
-
-    assertThatThrownBy(exporter::asAddContactIntent).isExactlyInstanceOf(RuntimeException.class)
-                                                    .hasMessage("Cannot export Recipient with neither phone nor email");
-  }
-
-  private Recipient givenRecipient(String profileName, Address address) {
+  private Recipient givenPhoneRecipient(String profileName, String phone) {
     Recipient recipient = mock(Recipient.class);
     when(recipient.getProfileName()).thenReturn(profileName);
-    when(recipient.requireAddress()).thenReturn(address);
+
+    when(recipient.requireE164()).thenReturn(phone);
+    when(recipient.getE164()).thenAnswer(i -> Optional.of(phone));
+    when(recipient.getEmail()).thenAnswer(i -> Optional.absent());
+
     return recipient;
   }
 
-  private Address givenPhoneNumber(String phoneNumber) {
-    Address address = mock(Address.class);
-    when(address.isPhone()).thenReturn(true);
-    when(address.toPhoneString()).thenReturn(phoneNumber);
-    when(address.toEmailString()).thenThrow(new RuntimeException());
-    return address;
-  }
+  private Recipient givenEmailRecipient(String profileName, String email) {
+    Recipient recipient = mock(Recipient.class);
+    when(recipient.getProfileName()).thenReturn(profileName);
 
-  private Address givenEmail(String email) {
-    Address address = mock(Address.class);
-    when(address.isEmail()).thenReturn(true);
-    when(address.toEmailString()).thenReturn(email);
-    when(address.toPhoneString()).thenThrow(new RuntimeException());
-    return address;
+    when(recipient.requireEmail()).thenReturn(email);
+    when(recipient.getEmail()).thenAnswer(i -> Optional.of(email));
+    when(recipient.getE164()).thenAnswer(i -> Optional.absent());
+
+    return recipient;
   }
 }

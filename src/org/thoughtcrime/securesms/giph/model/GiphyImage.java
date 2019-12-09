@@ -1,7 +1,13 @@
 package org.thoughtcrime.securesms.giph.model;
 
 
+import android.text.TextUtils;
+
+import androidx.annotation.Nullable;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import org.thoughtcrime.securesms.util.Util;
 
 public class GiphyImage {
 
@@ -9,19 +15,23 @@ public class GiphyImage {
   private ImageTypes images;
 
   public String getGifUrl() {
-    return images.downsized.url;
+    ImageData data = getGifData();
+    return data != null ? data.url : null;
   }
 
   public long getGifSize() {
-    return images.downsized.size;
+    ImageData data = getGifData();
+    return data != null ? data.size : 0;
   }
 
   public String getGifMmsUrl() {
-    return images.fixed_height_downsampled.url;
+    ImageData data = getGifMmsData();
+    return data != null ? data.url : null;
   }
 
   public long getMmsGifSize() {
-    return images.fixed_height_downsampled.size;
+    ImageData data = getGifMmsData();
+    return data != null ? data.size : 0;
   }
 
   public float getGifAspectRatio() {
@@ -29,19 +39,45 @@ public class GiphyImage {
   }
 
   public int getGifWidth() {
-    return images.downsized.width;
+    ImageData data = getGifData();
+    return data != null ? data.width : 0;
   }
 
   public int getGifHeight() {
-    return images.downsized.height;
+    ImageData data = getGifData();
+    return data != null ? data.height : 0;
   }
 
   public String getStillUrl() {
-    return images.downsized_still.url;
+    ImageData data = getStillData();
+    return data != null ? data.url : null;
   }
 
   public long getStillSize() {
-    return images.downsized_still.size;
+    ImageData data = getStillData();
+    return data != null ? data.size : 0;
+  }
+
+  private @Nullable ImageData getGifData() {
+    return getFirstNonEmpty(images.downsized, images.downsized_medium, images.fixed_height, images.fixed_width);
+  }
+
+  private @Nullable ImageData getGifMmsData() {
+    return getFirstNonEmpty(images.fixed_height_downsampled, images.fixed_width_downsampled);
+  }
+
+  private @Nullable ImageData getStillData() {
+    return getFirstNonEmpty(images.downsized_still, images.fixed_height_still, images.fixed_width_still);
+  }
+
+  private static @Nullable ImageData getFirstNonEmpty(ImageData... data) {
+    for (ImageData image : data) {
+      if (!TextUtils.isEmpty(image.url)) {
+        return image;
+      }
+    }
+
+    return null;
   }
 
   public static class ImageTypes {

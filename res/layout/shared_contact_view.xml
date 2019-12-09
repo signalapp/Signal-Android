@@ -62,6 +62,8 @@
             android:layout_marginStart="@dimen/message_bubble_horizontal_padding"
             android:layout_marginEnd="@dimen/message_bubble_horizontal_padding"
             android:layout_marginTop="4dp"
+            android:layout_gravity="end"
+            android:gravity="end"
             android:elevation="9dp"
             android:orientation="horizontal" />
 

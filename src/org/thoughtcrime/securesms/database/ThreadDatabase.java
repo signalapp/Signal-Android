@@ -22,6 +22,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.MergeCursor;
 import android.net.Uri;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -79,7 +80,7 @@ public class ThreadDatabase extends Database {
   public  static final String READ_RECEIPT_COUNT     = "read_receipt_count";
   public  static final String EXPIRES_IN             = "expires_in";
   public  static final String LAST_SEEN              = "last_seen";
-  private static final String HAS_SENT               = "has_sent";
+  public  static final String HAS_SENT               = "has_sent";
 
   public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " ("                    +
     ID + " INTEGER PRIMARY KEY, " + DATE + " INTEGER DEFAULT 0, "                                  +
@@ -117,6 +118,10 @@ public class ThreadDatabase extends Database {
   }
 
   private long createThreadForRecipient(@NonNull RecipientId recipientId, boolean group, int distributionType) {
+    if (recipientId.isUnknown()) {
+      throw new AssertionError("Cannot create a thread for an unknown recipient!");
+    }
+
     ContentValues contentValues = new ContentValues(4);
     long date                   = System.currentTimeMillis();
 
@@ -273,12 +278,25 @@ public class ThreadDatabase extends Database {
     final List<MarkedMessageInfo> smsRecords = DatabaseFactory.getSmsDatabase(context).setAllMessagesRead();
     final List<MarkedMessageInfo> mmsRecords = DatabaseFactory.getMmsDatabase(context).setAllMessagesRead();
 
+    DatabaseFactory.getSmsDatabase(context).setAllReactionsSeen();
+    DatabaseFactory.getMmsDatabase(context).setAllReactionsSeen();
+
     notifyConversationListListeners();
 
-    return new LinkedList<MarkedMessageInfo>() {{
-      addAll(smsRecords);
-      addAll(mmsRecords);
-    }};
+    return Util.concatenatedList(smsRecords, mmsRecords);
+  }
+
+  public boolean hasCalledSince(@NonNull Recipient recipient, long timestamp) {
+    return DatabaseFactory.getMmsSmsDatabase(context).hasReceivedAnyCallsSince(getThreadIdFor(recipient), timestamp);
+  }
+
+  public List<MarkedMessageInfo> setEntireThreadRead(long threadId) {
+    setRead(threadId, false);
+
+    final List<MarkedMessageInfo> smsRecords = DatabaseFactory.getSmsDatabase(context).setEntireThreadRead(threadId);
+    final List<MarkedMessageInfo> mmsRecords = DatabaseFactory.getMmsDatabase(context).setEntireThreadRead(threadId);
+
+    return Util.concatenatedList(smsRecords, mmsRecords);
   }
 
   public List<MarkedMessageInfo> setRead(long threadId, boolean lastSeen) {
@@ -291,17 +309,18 @@ public class ThreadDatabase extends Database {
     }
 
     SQLiteDatabase db = databaseHelper.getWritableDatabase();
+
     db.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {threadId+""});
 
     final List<MarkedMessageInfo> smsRecords = DatabaseFactory.getSmsDatabase(context).setMessagesRead(threadId);
     final List<MarkedMessageInfo> mmsRecords = DatabaseFactory.getMmsDatabase(context).setMessagesRead(threadId);
 
+    DatabaseFactory.getSmsDatabase(context).setReactionsSeen(threadId);
+    DatabaseFactory.getMmsDatabase(context).setReactionsSeen(threadId);
+
     notifyConversationListListeners();
 
-    return new LinkedList<MarkedMessageInfo>() {{
-      addAll(smsRecords);
-      addAll(mmsRecords);
-    }};
+    return Util.concatenatedList(smsRecords, mmsRecords);
   }
 
   public void incrementUnread(long threadId, int amount) {
@@ -366,23 +385,25 @@ public class ThreadDatabase extends Database {
     return cursor;
   }
 
-  public Cursor getRecentConversationList(int limit) {
+  public Cursor getRecentConversationList(int limit, boolean includeInactiveGroups) {
     SQLiteDatabase db    = databaseHelper.getReadableDatabase();
-    String         query = createQuery(MESSAGE_COUNT + " != 0", limit);
-
-    return db.rawQuery(query, null);
+    String         query = !includeInactiveGroups ? MESSAGE_COUNT + " != 0 AND (" + GroupDatabase.TABLE_NAME + "." + GroupDatabase.ACTIVE + " IS NULL OR " + GroupDatabase.TABLE_NAME + "." + GroupDatabase.ACTIVE + " = 1)"
+                                                  : MESSAGE_COUNT + " != 0";
+    return db.rawQuery(createQuery(query, limit), null);
   }
 
-  public Cursor getRecentPushConversationList(int limit) {
-    SQLiteDatabase db    = databaseHelper.getReadableDatabase();
-    String         where = MESSAGE_COUNT + " != 0 AND " +
-                           "(" +
-                             RecipientDatabase.REGISTERED + " = " + RecipientDatabase.RegisteredState.REGISTERED.getId() + " OR " +
-                             "(" +
-                               GroupDatabase.TABLE_NAME + "." + GroupDatabase.GROUP_ID + " NOT NULL AND " +
-                               GroupDatabase.TABLE_NAME + "." + GroupDatabase.MMS + " = 0" +
-                             ")" +
-                           ")";
+  public Cursor getRecentPushConversationList(int limit, boolean includeInactiveGroups) {
+    SQLiteDatabase db               = databaseHelper.getReadableDatabase();
+    String         activeGroupQuery = !includeInactiveGroups ? " AND " + GroupDatabase.TABLE_NAME + "." + GroupDatabase.ACTIVE + " = 1" : "";
+    String         where            = MESSAGE_COUNT + " != 0 AND " +
+                                      "(" +
+                                        RecipientDatabase.REGISTERED + " = " + RecipientDatabase.RegisteredState.REGISTERED.getId() + " OR " +
+                                        "(" +
+                                          GroupDatabase.TABLE_NAME + "." + GroupDatabase.GROUP_ID + " NOT NULL AND " +
+                                          GroupDatabase.TABLE_NAME + "." + GroupDatabase.MMS + " = 0" +
+                                          activeGroupQuery +
+                                        ")" +
+                                      ")";
     String         query = createQuery(where, limit);
 
     return db.rawQuery(query, null);
@@ -404,13 +425,6 @@ public class ThreadDatabase extends Database {
     setNotifyConverationListListeners(cursor);
 
     return cursor;
-  }
-
-  public Cursor getDirectShareList() {
-    SQLiteDatabase db    = databaseHelper.getReadableDatabase();
-    String         query = createQuery(MESSAGE_COUNT + " != 0", 0);
-
-    return db.rawQuery(query, null);
   }
 
   public int getArchivedConversationListCount() {
@@ -518,47 +532,50 @@ public class ThreadDatabase extends Database {
     }
   }
 
-  public long getThreadIdFor(Recipient recipient) {
+  public long getThreadIdFor(@NonNull Recipient recipient) {
     return getThreadIdFor(recipient, DistributionTypes.DEFAULT);
   }
 
-  public long getThreadIdFor(Recipient recipient, int distributionType) {
-    SQLiteDatabase db            = databaseHelper.getReadableDatabase();
-    String         where         = RECIPIENT_ID + " = ?";
-    String[]       recipientsArg = new String[]{recipient.getId().serialize()};
-    Cursor         cursor        = null;
-
-    try {
-      cursor = db.query(TABLE_NAME, new String[]{ID}, where, recipientsArg, null, null, null);
-
-      if (cursor != null && cursor.moveToFirst()) {
-        return cursor.getLong(cursor.getColumnIndexOrThrow(ID));
-      } else {
-        return createThreadForRecipient(recipient.getId(), recipient.isGroup(), distributionType);
-      }
-    } finally {
-      if (cursor != null)
-        cursor.close();
+  public long getThreadIdFor(@NonNull Recipient recipient, int distributionType) {
+    Long threadId = getThreadIdFor(recipient.getId());
+    if (threadId != null) {
+      return threadId;
+    } else {
+      return createThreadForRecipient(recipient.getId(), recipient.isGroup(), distributionType);
     }
   }
 
-  public @Nullable Recipient getRecipientForThreadId(long threadId) {
-    SQLiteDatabase db = databaseHelper.getReadableDatabase();
-    Cursor cursor     = null;
+  public Long getThreadIdFor(@NonNull RecipientId recipientId) {
+    SQLiteDatabase db            = databaseHelper.getReadableDatabase();
+    String         where         = RECIPIENT_ID + " = ?";
+    String[]       recipientsArg = new String[]{recipientId.serialize()};
 
-    try {
-      cursor = db.query(TABLE_NAME, null, ID + " = ?", new String[] {threadId+""}, null, null, null);
+    try (Cursor cursor = db.query(TABLE_NAME, new String[]{ ID }, where, recipientsArg, null, null, null)) {
+      if (cursor != null && cursor.moveToFirst()) {
+        return cursor.getLong(cursor.getColumnIndexOrThrow(ID));
+      } else {
+        return null;
+      }
+    }
+  }
+
+  public @Nullable RecipientId getRecipientIdForThreadId(long threadId) {
+    SQLiteDatabase db = databaseHelper.getReadableDatabase();
+
+    try (Cursor cursor = db.query(TABLE_NAME, null, ID + " = ?", new String[]{ threadId + "" }, null, null, null)) {
 
       if (cursor != null && cursor.moveToFirst()) {
-        RecipientId id = RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(RECIPIENT_ID)));
-        return Recipient.resolved(id);
+        return RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(RECIPIENT_ID)));
       }
-    } finally {
-      if (cursor != null)
-        cursor.close();
     }
 
     return null;
+  }
+
+  public @Nullable Recipient getRecipientForThreadId(long threadId) {
+    RecipientId id = getRecipientIdForThreadId(threadId);
+    if (id == null) return null;
+    return Recipient.resolved(id);
   }
 
   public void setHasSent(long threadId, boolean hasSent) {

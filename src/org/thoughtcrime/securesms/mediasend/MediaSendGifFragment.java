@@ -65,4 +65,8 @@ public class MediaSendGifFragment extends Fragment implements MediaSendPageFragm
 
   @Override
   public void restoreState(@NonNull Object state) { }
+
+  @Override
+  public void notifyHidden() {
+  }
 }

@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="app_name">Signal</string>
+  <!-- Removed by excludeNonTranslatables <string name="app_name">Signal</string> -->
   <string name="yes">Yee</string>
   <string name="no">Nedda</string>
   <string name="delete">Sangula</string>
@@ -88,7 +88,7 @@ a</string>
   <string name="ConversationActivity_transport_insecure_mms">MMS terina bukumi</string>
   <string name="ConversationActivity_transport_signal">Signal</string>
   <string name="ConversationActivity_lets_switch_to_signal">Katudde ku Signal %1$s</string>
-  <string name="ConversationActivity_lets_use_this_to_chat">Katukozese emboozi eno: %1$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationActivity_lets_use_this_to_chat">Katukozese emboozi eno: %1$s</string> -->
   <string name="ConversationActivity_specify_recipient">Bambi londa contact</string>
   <string name="ConversationActivity_unblock_this_contact_question">sumulula contact eno</string>
   <string name="ConversationActivity_you_will_once_again_be_able_to_receive_messages_and_calls_from_this_contact">Ojjakudamu okufuna obubaka ne ssimu okuva ew\'omuntu ono</string>
@@ -201,7 +201,7 @@ a</string>
   <string name="GroupCreateActivity_creating_group">ku tondawo %1$s…</string>
   <string name="GroupCreateActivity_updating_group">ku zabujja %1$s.</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Tekisobose kugattako %1$s kubanga tebakozesa Signal</string>
-  <string name="GroupCreateActivity_loading_group_details">Loading group details...</string>
+  <string name="GroupCreateActivity_loading_group_details">Loading group details…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">Ekibinja kino wakyegattako dda.</string>
   <!--GroupShareProfileView-->
   <!--GroupMembersDialog-->
@@ -266,7 +266,7 @@ a</string>
 • Soma obubaka bwo bwona
  \n.• Sindika obubaka mu manya go</string>
   <string name="DeviceProvisioningActivity_content_progress_title">Divayisi eyungibwaako</string>
-  <string name="DeviceProvisioningActivity_content_progress_content">Divayisi empya eyungibwaako...</string>
+  <string name="DeviceProvisioningActivity_content_progress_content">Divayisi empya eyungibwaako…</string>
   <string name="DeviceProvisioningActivity_content_progress_success">Divayisi ekiriziddwa!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Tewali divayisi erabiddwa.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Omukutu guliko ekizibu.</string>
@@ -487,7 +487,7 @@ gy\'olonze (%s) sintuufu.</string>
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">ino kiyinza okumala akaseera.Gumukiriza, ojakutegeezebwa nga okuyingiza kuwedde.</string>
   <string name="database_migration_activity__importing">Kiyingizibwa</string>
   <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">Database ezibwa bujja</string>
+  <!-- Removed by excludeNonTranslatables <string name="database_upgrade_activity__updating_database">Database ezibwa bujja</string> -->
   <string name="import_fragment__import_system_sms_database">Yingiza system SMS database</string>
   <string name="import_fragment__import_the_database_from_the_default_system">Yingiza datbase okuva ku apu ya default system messenger</string>
   <string name="import_fragment__import_plaintext_backup">Yingiza backup yo bubaka obuwandike</string>
@@ -521,7 +521,7 @@ gy\'olonze (%s) sintuufu.</string>
   <string name="recipient_preferences__privacy">Byakyaama</string>
   <!--- redphone_call_controls-->
   <string name="redphone_call_card__signal_call">Ssimu okuva ku Signal</string>
-  <string name="redphone_call_controls__mute">Jakko edoboozi</string>
+  <!-- Removed by excludeNonTranslatables <string name="redphone_call_controls__mute">Jakko edoboozi</string> -->
   <!--registration_activity-->
   <string name="registration_activity__phone_number">Enamba yesimu</string>
   <!--recipients_panel-->
@@ -663,7 +663,7 @@ gy\'olonze (%s) sintuufu.</string>
   <!--menus-->
   <!--****************************************-->
   <!--contact_selection_list-->
-  <string name="contact_selection_list__unknown_contact">Obubaka obupya eri...</string>
+  <string name="contact_selection_list__unknown_contact">Obubaka obupya eri…</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Essimu</string>
   <!--conversation_callable_secure-->
@@ -752,7 +752,7 @@ gy\'olonze (%s) sintuufu.</string>
   <string name="trimmer__old_messages_successfully_deleted">Obubaka obukadde busangulidwa ddala</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">akatambuza</string>
-  <string name="CallNotificationBuilder_connecting">Tukonekitinga...</string>
+  <string name="CallNotificationBuilder_connecting">Tukonekitinga…</string>
   <string name="Permissions_continue">genda maaso</string>
   <string name="registration_activity__skip">Buuka</string>
   <string name="registration_activity__register">Wewandiise</string>

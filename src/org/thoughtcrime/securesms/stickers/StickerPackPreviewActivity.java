@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.ShareActivity;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.StickerPackDownloadJob;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
@@ -129,11 +130,6 @@ public final class StickerPackPreviewActivity extends PassphraseRequiredActionBa
     getSupportActionBar().setTitle(R.string.StickerPackPreviewActivity_stickers);
 
     toolbar.setNavigationOnClickListener(v -> onBackPressed());
-
-    if (!ThemeUtil.isDarkTheme(this) && Build.VERSION.SDK_INT >= 23) {
-      setStatusBarColor(ThemeUtil.getThemedColor(this, R.attr.sticker_preview_status_bar_color));
-      getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-    }
   }
 
   private void initViewModel(@NonNull String packId, @NonNull String packKey) {
@@ -162,9 +158,7 @@ public final class StickerPackPreviewActivity extends PassphraseRequiredActionBa
 
     installButton.setOnClickListener(v -> {
       SimpleTask.run(() -> {
-        ApplicationContext.getInstance(this)
-                          .getJobManager()
-                          .add(new StickerPackDownloadJob(manifest.getPackId(), manifest.getPackKey(), false));
+        ApplicationDependencies.getJobManager().add(new StickerPackDownloadJob(manifest.getPackId(), manifest.getPackKey(), false));
 
         return null;
       }, (nothing) -> finish());

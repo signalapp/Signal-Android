@@ -23,8 +23,8 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.conversation.ConversationActivity;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
@@ -215,7 +215,7 @@ public class SharedContactDetailsActivity extends PassphraseRequiredActionBarAct
 
       messageButtonView.setOnClickListener(v -> {
         ContactUtil.selectRecipientThroughDialog(this, pushUsers, dynamicLanguage.getCurrentLocale(), recipient -> {
-          CommunicationActions.startConversation(this, recipient, null, ConversationActivity.Breadcrumb.SHARED_CONTACT_DETAILS);
+          CommunicationActions.startConversation(this, recipient, null);
         });
       });
 
@@ -228,7 +228,7 @@ public class SharedContactDetailsActivity extends PassphraseRequiredActionBarAct
 
       inviteButtonView.setOnClickListener(v -> {
         ContactUtil.selectRecipientThroughDialog(this, systemUsers, dynamicLanguage.getCurrentLocale(), recipient -> {
-          CommunicationActions.composeSmsThroughDefaultApp(this, recipient.requireAddress(), getString(R.string.InviteActivity_lets_switch_to_signal, getString(R.string.install_url)));
+          CommunicationActions.composeSmsThroughDefaultApp(this, recipient, getString(R.string.InviteActivity_lets_switch_to_signal, getString(R.string.install_url)));
         });
       });
     } else {
@@ -249,9 +249,7 @@ public class SharedContactDetailsActivity extends PassphraseRequiredActionBarAct
     super.onActivityResult(requestCode, resultCode, data);
 
     if (requestCode == CODE_ADD_EDIT_CONTACT && contact != null) {
-      ApplicationContext.getInstance(getApplicationContext())
-                        .getJobManager()
-                        .add(new DirectoryRefreshJob(false));
+      ApplicationDependencies.getJobManager().add(new DirectoryRefreshJob(false));
     }
   }
 }

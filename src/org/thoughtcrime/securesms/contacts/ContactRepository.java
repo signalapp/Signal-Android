@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.Pair;
 
 import java.util.ArrayList;
@@ -32,6 +33,7 @@ public class ContactRepository {
 
   private final RecipientDatabase recipientDatabase;
   private final String            noteToSelfTitle;
+  private final Context           context;
 
   public static final String ID_COLUMN           = "id";
          static final String NAME_COLUMN         = "name";
@@ -40,11 +42,12 @@ public class ContactRepository {
          static final String LABEL_COLUMN        = "label";
          static final String CONTACT_TYPE_COLUMN = "contact_type";
 
-  static final int NORMAL_TYPE  = 0;
-  static final int PUSH_TYPE    = 1;
-  static final int NEW_TYPE     = 2;
-  static final int RECENT_TYPE  = 3;
-  static final int DIVIDER_TYPE = 4;
+  static final int NORMAL_TYPE       = 0;
+  static final int PUSH_TYPE         = 1;
+  static final int NEW_PHONE_TYPE    = 2;
+  static final int NEW_USERNAME_TYPE = 3;
+  static final int RECENT_TYPE       = 4;
+  static final int DIVIDER_TYPE      = 5;
 
   /** Maps the recipient results to the legacy contact column names */
   private static final List<Pair<String, ValueMapper>> SEARCH_CURSOR_MAPPERS = new ArrayList<Pair<String, ValueMapper>>() {{
@@ -54,14 +57,14 @@ public class ContactRepository {
       String system  = cursor.getString(cursor.getColumnIndexOrThrow(RecipientDatabase.SYSTEM_DISPLAY_NAME));
       String profile = cursor.getString(cursor.getColumnIndexOrThrow(RecipientDatabase.SIGNAL_PROFILE_NAME));
 
-      return !TextUtils.isEmpty(system) ? system : profile;
+      return Util.getFirstNonEmpty(system, profile);
     }));
 
     add(new Pair<>(NUMBER_COLUMN, cursor -> {
       String phone = cursor.getString(cursor.getColumnIndexOrThrow(RecipientDatabase.PHONE));
       String email = cursor.getString(cursor.getColumnIndexOrThrow(RecipientDatabase.EMAIL));
 
-      return !TextUtils.isEmpty(phone) ? phone : email;
+      return Util.getFirstNonEmpty(phone, email);
     }));
 
     add(new Pair<>(NUMBER_TYPE_COLUMN, cursor -> cursor.getInt(cursor.getColumnIndexOrThrow(RecipientDatabase.SYSTEM_PHONE_TYPE))));
@@ -77,6 +80,7 @@ public class ContactRepository {
   public ContactRepository(@NonNull Context context) {
     this.recipientDatabase = DatabaseFactory.getRecipientDatabase(context);
     this.noteToSelfTitle   = context.getString(R.string.note_to_self);
+    this.context           = context.getApplicationContext();
   }
 
   @WorkerThread
@@ -87,13 +91,13 @@ public class ContactRepository {
 
     if (noteToSelfTitle.toLowerCase().contains(query.toLowerCase())) {
       Recipient self        = Recipient.self();
-      boolean   nameMatch   = self.getDisplayName().toLowerCase().contains(query.toLowerCase());
-      boolean   numberMatch = self.requireAddress().serialize() != null && self.requireAddress().serialize().contains(query);
+      boolean   nameMatch   = self.getDisplayName(context).toLowerCase().contains(query.toLowerCase());
+      boolean   numberMatch = self.getE164().isPresent() && self.requireE164().contains(query);
       boolean   shouldAdd   = !nameMatch && !numberMatch;
 
       if (shouldAdd) {
         MatrixCursor selfCursor = new MatrixCursor(RecipientDatabase.SEARCH_PROJECTION);
-        selfCursor.addRow(new Object[]{ self.getId().serialize(), noteToSelfTitle, null, self.requireAddress().serialize(), null, null, -1, RecipientDatabase.RegisteredState.REGISTERED.getId(), noteToSelfTitle });
+        selfCursor.addRow(new Object[]{ self.getId().serialize(), noteToSelfTitle, null, self.getE164().or(""), self.getEmail().orNull(), null, -1, RecipientDatabase.RegisteredState.REGISTERED.getId(), noteToSelfTitle });
 
         cursor = cursor == null ? selfCursor : new MergeCursor(new Cursor[]{ cursor, selfCursor });
       }

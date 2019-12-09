@@ -8,6 +8,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
+import org.thoughtcrime.securesms.blurhash.BlurHash;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -210,7 +211,8 @@ public class AttachmentDownloadJob extends BaseJob {
                                                 Optional.fromNullable(attachment.getDigest()),
                                                 Optional.fromNullable(attachment.getFileName()),
                                                 attachment.isVoiceNote(),
-                                                Optional.absent());
+                                                Optional.absent(),
+                                                Optional.fromNullable(attachment.getBlurHash()).transform(BlurHash::getHash));
     } catch (IOException | ArithmeticException e) {
       Log.w(TAG, e);
       throw new InvalidPartException(e);

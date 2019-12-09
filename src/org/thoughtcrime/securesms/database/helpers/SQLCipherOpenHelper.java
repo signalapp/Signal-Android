@@ -1,24 +1,28 @@
 package org.thoughtcrime.securesms.database.helpers;
 
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.SystemClock;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import android.text.TextUtils;
+
+import com.annimon.stream.Stream;
+import com.bumptech.glide.Glide;
 
 import net.sqlcipher.database.SQLiteDatabase;
 import net.sqlcipher.database.SQLiteDatabaseHook;
 import net.sqlcipher.database.SQLiteOpenHelper;
 
-import org.thoughtcrime.securesms.ApplicationContext;
+import org.thoughtcrime.securesms.contacts.sync.StorageSyncHelper;
 import org.thoughtcrime.securesms.crypto.DatabaseSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DraftDatabase;
 import org.thoughtcrime.securesms.database.GroupDatabase;
@@ -34,20 +38,22 @@ import org.thoughtcrime.securesms.database.SessionDatabase;
 import org.thoughtcrime.securesms.database.SignedPreKeyDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.StickerDatabase;
+import org.thoughtcrime.securesms.database.StorageKeyDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.RefreshPreKeysJob;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
-import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.service.KeyCachingService;
-import org.thoughtcrime.securesms.util.DelimiterUtil;
+import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.GroupUtil;
-import org.thoughtcrime.securesms.phonenumbers.NumberUtil;
+import org.thoughtcrime.securesms.util.ServiceUtil;
+import org.thoughtcrime.securesms.util.SqlUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
 
 import java.io.File;
+import java.util.List;
 
 public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
@@ -78,12 +84,25 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int VIEW_ONCE_ONLY                   = 23;
   private static final int RECIPIENT_IDS                    = 24;
   private static final int RECIPIENT_SEARCH                 = 25;
+  private static final int RECIPIENT_CLEANUP                = 26;
+  private static final int MMS_RECIPIENT_CLEANUP            = 27;
+  private static final int ATTACHMENT_HASHING               = 28;
+  private static final int NOTIFICATION_RECIPIENT_IDS       = 29;
+  private static final int BLUR_HASH                        = 30;
+  private static final int MMS_RECIPIENT_CLEANUP_2          = 31;
+  private static final int ATTACHMENT_TRANSFORM_PROPERTIES  = 32;
+  private static final int ATTACHMENT_CLEAR_HASHES          = 33;
+  private static final int ATTACHMENT_CLEAR_HASHES_2        = 34;
+  private static final int UUIDS                            = 35;
+  private static final int USERNAMES                        = 36;
+  private static final int REACTIONS                        = 37;
+  private static final int STORAGE_SERVICE                  = 38;
+  private static final int REACTIONS_UNREAD_INDEX           = 39;
 
-  private static final int    DATABASE_VERSION = 25;
+  private static final int    DATABASE_VERSION = 39;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
-
   private final DatabaseSecret databaseSecret;
 
   public SQLCipherOpenHelper(@NonNull Context context, @NonNull DatabaseSecret databaseSecret) {
@@ -121,9 +140,11 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     db.execSQL(SignedPreKeyDatabase.CREATE_TABLE);
     db.execSQL(SessionDatabase.CREATE_TABLE);
     db.execSQL(StickerDatabase.CREATE_TABLE);
+    db.execSQL(StorageKeyDatabase.CREATE_TABLE);
     executeStatements(db, SearchDatabase.CREATE_TABLE);
     executeStatements(db, JobDatabase.CREATE_TABLE);
 
+    executeStatements(db, RecipientDatabase.CREATE_INDEXS);
     executeStatements(db, SmsDatabase.CREATE_INDEXS);
     executeStatements(db, MmsDatabase.CREATE_INDEXS);
     executeStatements(db, AttachmentDatabase.CREATE_INDEXS);
@@ -132,6 +153,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     executeStatements(db, GroupDatabase.CREATE_INDEXS);
     executeStatements(db, GroupReceiptDatabase.CREATE_INDEXES);
     executeStatements(db, StickerDatabase.CREATE_INDEXES);
+    executeStatements(db, StorageKeyDatabase.CREATE_INDEXES);
 
     if (context.getDatabasePath(ClassicOpenHelper.NAME).exists()) {
       ClassicOpenHelper                      legacyHelper = new ClassicOpenHelper(context);
@@ -145,7 +167,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
       else                      TextSecurePreferences.setNeedsSqlCipherMigration(context, true);
 
       if (!PreKeyMigrationHelper.migratePreKeys(context, db)) {
-        ApplicationContext.getInstance(context).getJobManager().add(new RefreshPreKeysJob());
+        ApplicationDependencies.getJobManager().add(new RefreshPreKeysJob());
       }
 
       SessionStoreMigrationHelper.migrateSessions(context, db);
@@ -156,6 +178,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   @Override
   public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
     Log.i(TAG, "Upgrading database: " + oldVersion + ", " + newVersion);
+    long startTime = System.currentTimeMillis();
 
     db.beginTransaction();
 
@@ -171,7 +194,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE one_time_prekeys (_id INTEGER PRIMARY KEY, key_id INTEGER UNIQUE, public_key TEXT NOT NULL, private_key TEXT NOT NULL)");
 
         if (!PreKeyMigrationHelper.migratePreKeys(context, db)) {
-          ApplicationContext.getInstance(context).getJobManager().add(new RefreshPreKeysJob());
+          ApplicationDependencies.getJobManager().add(new RefreshPreKeysJob());
         }
       }
 
@@ -286,12 +309,12 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
       }
 
       // Note: This column only being checked due to upgrade issues as described in #8184
-      if (oldVersion < QUOTE_MISSING && !columnExists(db, "mms", "quote_missing")) {
+      if (oldVersion < QUOTE_MISSING && !SqlUtil.columnExists(db, "mms", "quote_missing")) {
         db.execSQL("ALTER TABLE mms ADD COLUMN quote_missing INTEGER DEFAULT 0");
       }
 
       // Note: The column only being checked due to upgrade issues as described in #8184
-      if (oldVersion < NOTIFICATION_CHANNELS && !columnExists(db, "recipient_preferences", "notification_channel")) {
+      if (oldVersion < NOTIFICATION_CHANNELS && !SqlUtil.columnExists(db, "recipient_preferences", "notification_channel")) {
         db.execSQL("ALTER TABLE recipient_preferences ADD COLUMN notification_channel TEXT DEFAULT NULL");
         NotificationChannels.create(context);
 
@@ -304,7 +327,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
             String  messageSound    = cursor.getString(cursor.getColumnIndexOrThrow("notification"));
             Uri     messageSoundUri = messageSound != null ? Uri.parse(messageSound) : null;
             int     vibrateState    = cursor.getInt(cursor.getColumnIndexOrThrow("vibrate"));
-            String  displayName     = NotificationChannels.getChannelDisplayNameFor(context, systemName, profileName, Address.fromSerialized(address));
+            String  displayName     = NotificationChannels.getChannelDisplayNameFor(context, systemName, profileName, null, address);
             boolean vibrateEnabled  = vibrateState == 0 ? TextSecurePreferences.isNotificationVibrateEnabled(context) : vibrateState == 1;
 
             if (GroupUtil.isEncodedGroup(address)) {
@@ -319,7 +342,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
               }
             }
 
-            String channelId = NotificationChannels.createChannelFor(context, Address.fromSerialized(address), displayName, messageSoundUri, vibrateEnabled);
+            String channelId = NotificationChannels.createChannelFor(context, "contact_" + address + "_" + System.currentTimeMillis(), displayName, messageSoundUri, vibrateEnabled);
 
             ContentValues values = new ContentValues(1);
             values.put("notification_channel", channelId);
@@ -344,7 +367,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
       // 4.30.8 included a migration, but not a correct CREATE_TABLE statement, so we need to add
       // this column if it isn't present.
       if (oldVersion < ATTACHMENT_CAPTIONS_FIX) {
-        if (!columnExists(db, "part", "caption")) {
+        if (!SqlUtil.columnExists(db, "part", "caption")) {
           db.execSQL("ALTER TABLE part ADD COLUMN caption TEXT DEFAULT NULL");
         }
       }
@@ -513,6 +536,149 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
         }
       }
 
+      if (oldVersion < RECIPIENT_CLEANUP) {
+        RecipientIdCleanupHelper.execute(db);
+      }
+
+      if (oldVersion < MMS_RECIPIENT_CLEANUP) {
+        ContentValues values = new ContentValues(1);
+        values.put("address", "-1");
+        int count = db.update("mms", values, "address = ?", new String[] { "0" });
+        Log.i(TAG, "MMS recipient cleanup updated " + count + " rows.");
+      }
+
+      if (oldVersion < ATTACHMENT_HASHING) {
+        db.execSQL("ALTER TABLE part ADD COLUMN data_hash TEXT DEFAULT NULL");
+        db.execSQL("CREATE INDEX IF NOT EXISTS part_data_hash_index ON part (data_hash)");
+      }
+
+      if (oldVersion < NOTIFICATION_RECIPIENT_IDS && Build.VERSION.SDK_INT >= 26) {
+        NotificationManager       notificationManager = ServiceUtil.getNotificationManager(context);
+        List<NotificationChannel> channels            = Stream.of(notificationManager.getNotificationChannels())
+                                                              .filter(c -> c.getId().startsWith("contact_"))
+                                                              .toList();
+
+        Log.i(TAG, "Migrating " + channels.size() + " channels to use RecipientId's.");
+
+        for (NotificationChannel oldChannel : channels) {
+          notificationManager.deleteNotificationChannel(oldChannel.getId());
+
+          int    startIndex = "contact_".length();
+          int    endIndex   = oldChannel.getId().lastIndexOf("_");
+          String address    = oldChannel.getId().substring(startIndex, endIndex);
+
+          String recipientId;
+
+          try (Cursor cursor = db.query("recipient", new String[] { "_id" }, "phone = ? OR email = ? OR group_id = ?", new String[] { address, address, address}, null, null, null)) {
+            if (cursor != null && cursor.moveToFirst()) {
+              recipientId = cursor.getString(cursor.getColumnIndexOrThrow("_id"));
+            } else {
+              Log.w(TAG, "Couldn't find recipient for address: " + address);
+              continue;
+            }
+          }
+
+          String              newId      = "contact_" + recipientId + "_" + System.currentTimeMillis();
+          NotificationChannel newChannel = new NotificationChannel(newId, oldChannel.getName(), oldChannel.getImportance());
+
+          Log.i(TAG, "Updating channel ID from '" + oldChannel.getId() + "' to '" + newChannel.getId() + "'.");
+
+          newChannel.setGroup(oldChannel.getGroup());
+          newChannel.setSound(oldChannel.getSound(), oldChannel.getAudioAttributes());
+          newChannel.setBypassDnd(oldChannel.canBypassDnd());
+          newChannel.enableVibration(oldChannel.shouldVibrate());
+          newChannel.setVibrationPattern(oldChannel.getVibrationPattern());
+          newChannel.setLockscreenVisibility(oldChannel.getLockscreenVisibility());
+          newChannel.setShowBadge(oldChannel.canShowBadge());
+          newChannel.setLightColor(oldChannel.getLightColor());
+          newChannel.enableLights(oldChannel.shouldShowLights());
+
+          notificationManager.createNotificationChannel(newChannel);
+
+          ContentValues contentValues = new ContentValues(1);
+          contentValues.put("notification_channel", newChannel.getId());
+          db.update("recipient", contentValues, "_id = ?", new String[] { recipientId });
+        }
+      }
+
+      if (oldVersion < BLUR_HASH) {
+        db.execSQL("ALTER TABLE part ADD COLUMN blur_hash TEXT DEFAULT NULL");
+      }
+
+      if (oldVersion < MMS_RECIPIENT_CLEANUP_2) {
+        ContentValues values = new ContentValues(1);
+        values.put("address", "-1");
+        int count = db.update("mms", values, "address = ? OR address IS NULL", new String[] { "0" });
+        Log.i(TAG, "MMS recipient cleanup 2 updated " + count + " rows.");
+      }
+
+      if (oldVersion < ATTACHMENT_TRANSFORM_PROPERTIES) {
+        db.execSQL("ALTER TABLE part ADD COLUMN transform_properties TEXT DEFAULT NULL");
+      }
+
+      if (oldVersion < ATTACHMENT_CLEAR_HASHES) {
+        db.execSQL("UPDATE part SET data_hash = null");
+      }
+
+      if (oldVersion < ATTACHMENT_CLEAR_HASHES_2) {
+        db.execSQL("UPDATE part SET data_hash = null");
+        Glide.get(context).clearDiskCache();
+      }
+
+      if (oldVersion < UUIDS) {
+        db.execSQL("ALTER TABLE recipient ADD COLUMN uuid_supported INTEGER DEFAULT 0");
+        db.execSQL("ALTER TABLE push ADD COLUMN source_uuid TEXT DEFAULT NULL");
+      }
+
+      if (oldVersion < USERNAMES) {
+        db.execSQL("ALTER TABLE recipient ADD COLUMN username TEXT DEFAULT NULL");
+        db.execSQL("CREATE UNIQUE INDEX IF NOT EXISTS recipient_username_index ON recipient (username)");
+      }
+
+      if (oldVersion < REACTIONS) {
+        db.execSQL("ALTER TABLE sms ADD COLUMN reactions BLOB DEFAULT NULL");
+        db.execSQL("ALTER TABLE mms ADD COLUMN reactions BLOB DEFAULT NULL");
+
+        db.execSQL("ALTER TABLE sms ADD COLUMN reactions_unread INTEGER DEFAULT 0");
+        db.execSQL("ALTER TABLE mms ADD COLUMN reactions_unread INTEGER DEFAULT 0");
+
+        db.execSQL("ALTER TABLE sms ADD COLUMN reactions_last_seen INTEGER DEFAULT -1");
+        db.execSQL("ALTER TABLE mms ADD COLUMN reactions_last_seen INTEGER DEFAULT -1");
+      }
+
+      if (oldVersion < STORAGE_SERVICE) {
+        db.execSQL("CREATE TABLE storage_key (_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                                             "type INTEGER, " +
+                                             "key TEXT UNIQUE)");
+        db.execSQL("CREATE INDEX IF NOT EXISTS storage_key_type_index ON storage_key (type)");
+
+        db.execSQL("ALTER TABLE recipient ADD COLUMN system_info_pending INTEGER DEFAULT 0");
+        db.execSQL("ALTER TABLE recipient ADD COLUMN storage_service_key TEXT DEFAULT NULL");
+        db.execSQL("ALTER TABLE recipient ADD COLUMN dirty INTEGER DEFAULT 0");
+
+        db.execSQL("CREATE UNIQUE INDEX recipient_storage_service_key ON recipient (storage_service_key)");
+        db.execSQL("CREATE INDEX recipient_dirty_index ON recipient (dirty)");
+
+        // TODO [greyson] Do this in a future DB migration
+//        db.execSQL("UPDATE recipient SET dirty = 2 WHERE registered = 1");
+//
+//        try (Cursor cursor = db.rawQuery("SELECT _id FROM recipient WHERE registered = 1", null)) {
+//          while (cursor != null && cursor.moveToNext()) {
+//            String        id     = cursor.getString(cursor.getColumnIndexOrThrow("_id"));
+//            ContentValues values = new ContentValues(1);
+//
+//            values.put("storage_service_key", Base64.encodeBytes(StorageSyncHelper.generateKey()));
+//
+//            db.update("recipient", values, "_id = ?", new String[] { id });
+//          }
+//        }
+      }
+
+      if (oldVersion < REACTIONS_UNREAD_INDEX) {
+        db.execSQL("CREATE INDEX IF NOT EXISTS sms_reactions_unread_index ON sms (reactions_unread);");
+        db.execSQL("CREATE INDEX IF NOT EXISTS mms_reactions_unread_index ON mms (reactions_unread);");
+      }
+
       db.setTransactionSuccessful();
     } finally {
       db.endTransaction();
@@ -521,6 +687,8 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     if (oldVersion < MIGRATE_PREKEYS_VERSION) {
       PreKeyMigrationHelper.cleanUpPreKeys(context);
     }
+
+    Log.i(TAG, "Upgrade complete. Took " + (System.currentTimeMillis() - startTime) + " ms.");
   }
 
   public SQLiteDatabase getReadableDatabase() {
@@ -542,21 +710,5 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private void executeStatements(SQLiteDatabase db, String[] statements) {
     for (String statement : statements)
       db.execSQL(statement);
-  }
-
-  private static boolean columnExists(@NonNull SQLiteDatabase db, @NonNull String table, @NonNull String column) {
-    try (Cursor cursor = db.rawQuery("PRAGMA table_info(" + table + ")", null)) {
-      int nameColumnIndex = cursor.getColumnIndexOrThrow("name");
-
-      while (cursor.moveToNext()) {
-        String name = cursor.getString(nameColumnIndex);
-
-        if (name.equals(column)) {
-          return true;
-        }
-      }
-    }
-
-    return false;
   }
 }

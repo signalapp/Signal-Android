@@ -2,32 +2,35 @@ package org.thoughtcrime.securesms.components;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
 import android.net.Uri;
-import androidx.annotation.NonNull;
-import androidx.annotation.UiThread;
 import android.util.AttributeSet;
-import org.thoughtcrime.securesms.logging.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.UiThread;
+
 import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
-import com.bumptech.glide.load.resource.bitmap.FitCenter;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.blurhash.BlurHash;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.GlideRequest;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideClickListener;
 import org.thoughtcrime.securesms.mms.SlidesClickedListener;
+import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
@@ -36,6 +39,8 @@ import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.Collections;
 import java.util.Locale;
+import java.util.Objects;
+import java.util.concurrent.ExecutionException;
 
 import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
 
@@ -50,6 +55,7 @@ public class ThumbnailView extends FrameLayout {
   private static final int    MAX_HEIGHT = 3;
 
   private ImageView       image;
+  private ImageView       blurhash;
   private View            playOverlay;
   private View            captionIcon;
   private OnClickListener parentClickListener;
@@ -79,6 +85,7 @@ public class ThumbnailView extends FrameLayout {
     inflate(context, R.layout.thumbnail_view, this);
 
     this.image       = findViewById(R.id.thumbnail_image);
+    this.blurhash    = findViewById(R.id.thumbnail_blurhash);
     this.playOverlay = findViewById(R.id.play_overlay);
     this.captionIcon = findViewById(R.id.thumbnail_caption_icon);
     super.setOnClickListener(new ThumbnailClickDispatcher());
@@ -109,6 +116,26 @@ public class ThumbnailView extends FrameLayout {
 
     super.onMeasure(MeasureSpec.makeMeasureSpec(finalWidth, MeasureSpec.EXACTLY),
                     MeasureSpec.makeMeasureSpec(finalHeight, MeasureSpec.EXACTLY));
+  }
+
+  @Override
+  protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+    super.onSizeChanged(w, h, oldw, oldh);
+
+    float playOverlayScale = 1;
+    float captionIconScale = 1;
+    int   playOverlayWidth = playOverlay.getLayoutParams().width;
+
+    if (playOverlayWidth * 2 > getWidth()) {
+      playOverlayScale /= 2;
+      captionIconScale  = 0;
+    }
+
+    playOverlay.setScaleX(playOverlayScale);
+    playOverlay.setScaleY(playOverlayScale);
+
+    captionIcon.setScaleX(captionIconScale);
+    captionIcon.setScaleY(captionIconScale);
   }
 
   @SuppressWarnings("SuspiciousNameCombination")
@@ -270,22 +297,43 @@ public class ThumbnailView extends FrameLayout {
                + ", progress " + slide.getTransferState() + ", fast preflight id: " +
                slide.asAttachment().getFastPreflightId());
 
+    BlurHash previousBlurhash = this.slide != null ? this.slide.getPlaceholderBlur() : null;
+
     this.slide = slide;
 
     this.captionIcon.setVisibility(slide.getCaption().isPresent() ? VISIBLE : GONE);
 
     dimens[WIDTH]  = naturalWidth;
     dimens[HEIGHT] = naturalHeight;
+
     invalidate();
 
-    SettableFuture<Boolean> result = new SettableFuture<>();
+    SettableFuture<Boolean> result        = new SettableFuture<>();
+    boolean                 resultHandled = false;
+
+    if (slide.hasPlaceholder() && (previousBlurhash == null || !Objects.equals(slide.getPlaceholderBlur(), previousBlurhash))) {
+      buildPlaceholderGlideRequest(glideRequests, slide).into(new GlideBitmapListeningTarget(blurhash, result));
+      resultHandled = true;
+    } else if (!slide.hasPlaceholder()) {
+      glideRequests.clear(blurhash);
+      blurhash.setImageDrawable(null);
+    }
 
     if (slide.getThumbnailUri() != null) {
+      if (!MediaUtil.isJpegType(slide.getContentType()) && !MediaUtil.isVideoType(slide.getContentType())) {
+        SettableFuture<Boolean> thumbnailFuture = new SettableFuture<>();
+        thumbnailFuture.deferTo(result);
+        thumbnailFuture.addListener(new BlurhashClearListener(glideRequests, blurhash));
+      }
+
       buildThumbnailGlideRequest(glideRequests, slide).into(new GlideDrawableListeningTarget(image, result));
-    } else if (slide.hasPlaceholder()) {
-      buildPlaceholderGlideRequest(glideRequests, slide).into(new GlideBitmapListeningTarget(image, result));
+      resultHandled = true;
     } else {
       glideRequests.clear(image);
+      image.setImageDrawable(null);
+    }
+
+    if (!resultHandled) {
       result.set(false);
     }
 
@@ -308,6 +356,7 @@ public class ThumbnailView extends FrameLayout {
     }
 
     request.into(new GlideDrawableListeningTarget(image, future));
+    blurhash.setImageDrawable(null);
 
     return future;
   }
@@ -352,9 +401,16 @@ public class ThumbnailView extends FrameLayout {
   }
 
   private RequestBuilder buildPlaceholderGlideRequest(@NonNull GlideRequests glideRequests, @NonNull Slide slide) {
-    return applySizing(glideRequests.asBitmap()
-                        .load(slide.getPlaceholderRes(getContext().getTheme()))
-                        .diskCacheStrategy(DiskCacheStrategy.NONE), new FitCenter());
+    GlideRequest<Bitmap> bitmap          = glideRequests.asBitmap();
+    BlurHash             placeholderBlur = slide.getPlaceholderBlur();
+
+    if (placeholderBlur != null) {
+      bitmap = bitmap.load(placeholderBlur);
+    } else {
+      bitmap = bitmap.load(slide.getPlaceholderRes(getContext().getTheme()));
+    }
+
+    return applySizing(bitmap.diskCacheStrategy(DiskCacheStrategy.NONE), new CenterCrop());
   }
 
   private GlideRequest applySizing(@NonNull GlideRequest request, @NonNull BitmapTransformation fitting) {
@@ -414,6 +470,29 @@ public class ThumbnailView extends FrameLayout {
       } else {
         Log.w(TAG, "Received a download button click, but unable to execute it. slide: " + String.valueOf(slide) + "  downloadClickListener: " + String.valueOf(downloadClickListener));
       }
+    }
+  }
+
+  private static class BlurhashClearListener implements ListenableFuture.Listener<Boolean> {
+
+    private final GlideRequests glideRequests;
+    private final ImageView     blurhash;
+
+    private BlurhashClearListener(@NonNull GlideRequests glideRequests, @NonNull ImageView blurhash) {
+      this.glideRequests = glideRequests;
+      this.blurhash      = blurhash;
+    }
+
+    @Override
+    public void onSuccess(Boolean result) {
+      glideRequests.clear(blurhash);
+      blurhash.setImageDrawable(null);
+    }
+
+    @Override
+    public void onFailure(ExecutionException e) {
+      glideRequests.clear(blurhash);
+      blurhash.setImageDrawable(null);
     }
   }
 }

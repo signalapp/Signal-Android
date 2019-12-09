@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:fillViewport="true"
-            android:background="@drawable/background_pattern_repeat">
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:fillViewport="true"
+    android:background="@drawable/background_pattern_repeat">
 
     <FrameLayout
         android:layout_width="fill_parent"
@@ -94,7 +95,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:text="0/100"
+                    tools:text="0/100"
                     android:textSize="12.0sp" />
 
                 <TextView

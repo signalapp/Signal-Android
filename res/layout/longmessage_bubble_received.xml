@@ -33,6 +33,8 @@
         android:layout_marginStart="@dimen/message_bubble_horizontal_padding"
         android:layout_marginEnd="@dimen/message_bubble_horizontal_padding"
         android:layout_marginBottom="@dimen/message_bubble_bottom_padding"
+        android:layout_gravity="end"
+        android:gravity="end"
         android:clipChildren="false"
         android:clipToPadding="false"
         android:alpha="0.7"

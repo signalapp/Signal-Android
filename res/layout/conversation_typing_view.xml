@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <org.thoughtcrime.securesms.components.ConversationTypingView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -14,8 +15,10 @@
         android:foreground="@drawable/contact_photo_background"
         android:layout_width="@dimen/conversation_item_avatar_size"
         android:layout_height="@dimen/conversation_item_avatar_size"
+        android:layout_marginStart="4dp"
         android:cropToPadding="true"
-        android:contentDescription="@string/conversation_item_received__contact_photo_description" />
+        android:contentDescription="@string/conversation_item_received__contact_photo_description"
+        app:fallbackImageSize="small" />
 
     <FrameLayout
         android:id="@+id/typing_bubble"

@@ -6,6 +6,10 @@ import android.content.Context;
 import android.graphics.Color;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
+import androidx.core.graphics.drawable.DrawableCompat;
+
+import android.graphics.drawable.Drawable;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +19,7 @@ import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 public class RationaleDialog {
@@ -25,8 +30,10 @@ public class RationaleDialog {
     TextView  text   = view.findViewById(R.id.message);
 
     for (int i=0;i<drawables.length;i++) {
+      Drawable drawable = ContextCompat.getDrawable(context, drawables[i]);
+      DrawableCompat.setTint(drawable, ContextCompat.getColor(context, R.color.white));
       ImageView imageView = new ImageView(context);
-      imageView.setImageDrawable(context.getResources().getDrawable(drawables[i]));
+      imageView.setImageDrawable(drawable);
       imageView.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 
       header.addView(imageView);
@@ -47,7 +54,8 @@ public class RationaleDialog {
 
     text.setText(message);
 
-    return new AlertDialog.Builder(context, R.style.RationaleDialog).setView(view);
+    return new AlertDialog.Builder(context, ThemeUtil.isDarkTheme(context) ? R.style.RationaleDialogDark : R.style.RationaleDialogLight)
+                          .setView(view);
   }
 
 }

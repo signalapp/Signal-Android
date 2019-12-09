@@ -7,7 +7,6 @@ import androidx.annotation.Nullable;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;

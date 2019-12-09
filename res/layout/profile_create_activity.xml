@@ -57,7 +57,7 @@
                     android:layout_height="0dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
-                    android:src="@drawable/ic_profile_default"
+                    app:srcCompat="@drawable/ic_profile_outline_40"
                     android:tint="@color/core_grey_60"
                     android:transitionName="avatar"
                     app:layout_constraintBottom_toBottomOf="@+id/avatar_background"
@@ -162,7 +162,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="@string/profile_create_activity__set_later"
-            android:textColor="@color/gray50" />
+            android:textColor="@color/core_grey_50" />
 
         <org.thoughtcrime.securesms.components.emoji.MediaKeyboard
             android:id="@+id/emoji_drawer"

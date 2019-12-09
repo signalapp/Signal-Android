@@ -117,7 +117,7 @@ public class TooltipPopup extends PopupWindow {
     switch (position) {
       case POSITION_ABOVE:
         xoffset = 0;
-        yoffset = -(2 * anchor.getWidth() + tooltipSpacing);
+        yoffset = -(anchor.getHeight() + getContentView().getMeasuredHeight() + tooltipSpacing);
         onLayout(() -> setArrowHorizontalPosition(arrow, anchor));
         break;
       case POSITION_BELOW:
@@ -128,10 +128,12 @@ public class TooltipPopup extends PopupWindow {
       case POSITION_LEFT:
         xoffset = -getContentView().getMeasuredWidth() - tooltipSpacing;
         yoffset = -(getContentView().getMeasuredHeight()/2 + anchor.getHeight()/2);
+        onLayout(() -> setArrowVerticalPosition(arrow, anchor));
         break;
       case POSITION_RIGHT:
         xoffset = anchor.getWidth() + tooltipSpacing;
         yoffset = -(getContentView().getMeasuredHeight()/2 + anchor.getHeight()/2);
+        onLayout(() -> setArrowVerticalPosition(arrow, anchor));
         break;
       default:
         throw new AssertionError("Invalid tooltip position!");
@@ -154,7 +156,14 @@ public class TooltipPopup extends PopupWindow {
     int arrowCenterX  = getAbsolutePosition(arrow)[0] + arrow.getWidth()/2;
     int anchorCenterX = getAbsolutePosition(anchor)[0] + anchor.getWidth()/2;
 
-    arrow.setX(anchorCenterX - arrowCenterX);
+    arrow.setTranslationX(anchorCenterX - arrowCenterX);
+  }
+
+  private static void setArrowVerticalPosition(@NonNull View arrow, @NonNull View anchor) {
+    int arrowCenterY  = getAbsolutePosition(arrow)[1] + arrow.getHeight()/2;
+    int anchorCenterY = getAbsolutePosition(anchor)[1] + anchor.getHeight()/2;
+
+    arrow.setTranslationY(anchorCenterY - arrowCenterY);
   }
 
   private static int[] getAbsolutePosition(@NonNull View view) {

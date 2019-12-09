@@ -2,18 +2,21 @@ package org.thoughtcrime.securesms.util;
 
 
 import android.content.Context;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import org.thoughtcrime.securesms.logging.Log;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
+import org.thoughtcrime.securesms.logging.Log;
 import org.whispersystems.libsignal.util.ByteUtil;
 
 import java.io.File;
 import java.security.SecureRandom;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.List;
 import java.util.Locale;
 
 public class BackupUtil {
@@ -33,29 +36,19 @@ public class BackupUtil {
   }
 
   public static @Nullable BackupInfo getLatestBackup() throws NoExternalStorageException {
-    File       backupDirectory = StorageUtil.getBackupDirectory();
-    File[]     backups         = backupDirectory.listFiles();
-    BackupInfo latestBackup    = null;
+    List<BackupInfo> backups = getAllBackupsNewestFirst();
 
-    for (File backup : backups) {
-      long backupTimestamp = getBackupTimestamp(backup);
-
-      if (latestBackup == null || (backupTimestamp != -1 && backupTimestamp > latestBackup.getTimestamp())) {
-        latestBackup = new BackupInfo(backupTimestamp, backup.length(), backup);
-      }
-    }
-
-    return latestBackup;
+    return backups.isEmpty() ? null : backups.get(0);
   }
 
-  @SuppressWarnings("ResultOfMethodCallIgnored")
   public static void deleteAllBackups() {
-    try {
-      File   backupDirectory = StorageUtil.getBackupDirectory();
-      File[] backups         = backupDirectory.listFiles();
+    Log.i(TAG, "Deleting all backups");
 
-      for (File backup : backups) {
-        if (backup.isFile()) backup.delete();
+    try {
+      List<BackupInfo> backups = getAllBackupsNewestFirst();
+
+      for (BackupInfo backup : backups) {
+        backup.delete();
       }
     } catch (NoExternalStorageException e) {
       Log.w(TAG, e);
@@ -63,33 +56,37 @@ public class BackupUtil {
   }
 
   public static void deleteOldBackups() {
+    Log.i(TAG, "Deleting older backups");
+
     try {
-      File   backupDirectory = StorageUtil.getBackupDirectory();
-      File[] backups         = backupDirectory.listFiles();
+      List<BackupInfo> backups = getAllBackupsNewestFirst();
 
-      if (backups != null && backups.length > 2) {
-        Arrays.sort(backups, (left, right) -> {
-          long leftTimestamp  = getBackupTimestamp(left);
-          long rightTimestamp = getBackupTimestamp(right);
-
-          if      (leftTimestamp == -1 && rightTimestamp == -1) return 0;
-          else if (leftTimestamp == -1)                         return 1;
-          else if (rightTimestamp == -1)                        return -1;
-
-          return (int)(rightTimestamp - leftTimestamp);
-        });
-
-        for (int i=2;i<backups.length;i++) {
-          Log.i(TAG, "Deleting: " + backups[i].getAbsolutePath());
-
-          if (!backups[i].delete()) {
-            Log.w(TAG, "Delete failed: " + backups[i].getAbsolutePath());
-          }
-        }
+      for (int i = 2; i < backups.size(); i++) {
+        backups.get(i).delete();
       }
     } catch (NoExternalStorageException e) {
       Log.w(TAG, e);
     }
+  }
+
+  private static List<BackupInfo> getAllBackupsNewestFirst() throws NoExternalStorageException {
+    File             backupDirectory = StorageUtil.getBackupDirectory();
+    File[]           files           = backupDirectory.listFiles();
+    List<BackupInfo> backups         = new ArrayList<>(files.length);
+
+    for (File file : files) {
+      if (file.isFile() && file.getAbsolutePath().endsWith(".backup")) {
+        long backupTimestamp = getBackupTimestamp(file);
+
+        if (backupTimestamp != -1) {
+          backups.add(new BackupInfo(backupTimestamp, file.length(), file));
+        }
+      }
+    }
+
+    Collections.sort(backups, (a, b) -> Long.compare(b.timestamp, a.timestamp));
+
+    return backups;
   }
 
   public static @NonNull String[] generateBackupPassphrase() {
@@ -155,6 +152,14 @@ public class BackupUtil {
 
     public File getFile() {
       return file;
+    }
+
+    private void delete() {
+      Log.i(TAG, "Deleting: " + file.getAbsolutePath());
+
+      if (!file.delete()) {
+        Log.w(TAG, "Delete failed: " + file.getAbsolutePath());
+      }
     }
   }
 }

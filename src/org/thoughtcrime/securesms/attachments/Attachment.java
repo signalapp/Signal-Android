@@ -4,7 +4,9 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.thoughtcrime.securesms.blurhash.BlurHash;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
+import org.thoughtcrime.securesms.database.AttachmentDatabase.TransformProperties;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
 
 public abstract class Attachment {
@@ -44,26 +46,35 @@ public abstract class Attachment {
   @Nullable
   private final StickerLocator stickerLocator;
 
+  @Nullable
+  private final BlurHash blurHash;
+
+  @NonNull
+  private final TransformProperties transformProperties;
+
   public Attachment(@NonNull String contentType, int transferState, long size, @Nullable String fileName,
                     @Nullable String location, @Nullable String key, @Nullable String relay,
                     @Nullable byte[] digest, @Nullable String fastPreflightId, boolean voiceNote,
-                    int width, int height, boolean quote, @Nullable String caption, @Nullable StickerLocator stickerLocator)
+                    int width, int height, boolean quote, @Nullable String caption, @Nullable StickerLocator stickerLocator,
+                    @Nullable BlurHash blurHash, @Nullable TransformProperties transformProperties)
   {
-    this.contentType     = contentType;
-    this.transferState   = transferState;
-    this.size            = size;
-    this.fileName        = fileName;
-    this.location        = location;
-    this.key             = key;
-    this.relay           = relay;
-    this.digest          = digest;
-    this.fastPreflightId = fastPreflightId;
-    this.voiceNote       = voiceNote;
-    this.width           = width;
-    this.height          = height;
-    this.quote           = quote;
-    this.stickerLocator  = stickerLocator;
-    this.caption         = caption;
+    this.contentType         = contentType;
+    this.transferState       = transferState;
+    this.size                = size;
+    this.fileName            = fileName;
+    this.location            = location;
+    this.key                 = key;
+    this.relay               = relay;
+    this.digest              = digest;
+    this.fastPreflightId     = fastPreflightId;
+    this.voiceNote           = voiceNote;
+    this.width               = width;
+    this.height              = height;
+    this.quote               = quote;
+    this.stickerLocator      = stickerLocator;
+    this.caption             = caption;
+    this.blurHash            = blurHash;
+    this.transformProperties = transformProperties != null ? transformProperties : TransformProperties.empty();
   }
 
   @Nullable
@@ -144,7 +155,15 @@ public abstract class Attachment {
     return stickerLocator;
   }
 
+  public @Nullable BlurHash getBlurHash() {
+    return blurHash;
+  }
+
   public @Nullable String getCaption() {
     return caption;
+  }
+
+  public @NonNull TransformProperties getTransformProperties() {
+    return transformProperties;
   }
 }

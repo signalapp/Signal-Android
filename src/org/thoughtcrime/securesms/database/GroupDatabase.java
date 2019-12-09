@@ -49,7 +49,7 @@ public class GroupDatabase extends Database {
   private static final String AVATAR_RELAY        = "avatar_relay";
   private static final String AVATAR_DIGEST       = "avatar_digest";
   private static final String TIMESTAMP           = "timestamp";
-  private static final String ACTIVE              = "active";
+          static final String ACTIVE              = "active";
           static final String MMS                 = "mms";
 
   public static final String CREATE_TABLE =
@@ -117,11 +117,19 @@ public class GroupDatabase extends Database {
     return !getGroup(groupId).isPresent();
   }
 
-  public Reader getGroupsFilteredByTitle(String constraint) {
-    @SuppressLint("Recycle")
-    Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, null, TITLE + " LIKE ?",
-                                                                                        new String[]{"%" + constraint + "%"},
-                                                                                        null, null, null);
+  public Reader getGroupsFilteredByTitle(String constraint, boolean includeInactive) {
+    String   query;
+    String[] queryArgs;
+
+    if (includeInactive) {
+      query     = TITLE + " LIKE ? AND (" + ACTIVE + " = ? OR " + RECIPIENT_ID + " IN (SELECT " + ThreadDatabase.RECIPIENT_ID + " FROM " + ThreadDatabase.TABLE_NAME + "))";
+      queryArgs = new String[]{"%" + constraint + "%", "1"};
+    } else {
+      query     = TITLE + " LIKE ? AND " + ACTIVE + " = ?";
+      queryArgs = new String[]{"%" + constraint + "%", "1"};
+    }
+
+    Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, null, query, queryArgs, null, null, TITLE + " COLLATE NOCASE ASC");
 
     return new Reader(cursor);
   }
@@ -144,6 +152,26 @@ public class GroupDatabase extends Database {
     } finally {
       if (cursor != null) cursor.close();
     }
+  }
+
+  public List<String> getGroupNamesContainingMember(RecipientId recipientId) {
+    SQLiteDatabase database   = databaseHelper.getReadableDatabase();
+    List<String>   groupNames = new LinkedList<>();
+    String[]       projection = new String[]{TITLE, MEMBERS};
+    String         query      = MEMBERS + " LIKE ?";
+    String[]       args       = new String[]{"%" + recipientId.serialize() + "%"};
+
+    try (Cursor cursor = database.query(TABLE_NAME, projection, query, args, null, null, null)) {
+      while (cursor != null && cursor.moveToNext()) {
+        List<String> members = Util.split(cursor.getString(cursor.getColumnIndexOrThrow(MEMBERS)), ",");
+
+        if (members.contains(recipientId.serialize())) {
+          groupNames.add(cursor.getString(cursor.getColumnIndexOrThrow(TITLE)));
+        }
+      }
+    }
+
+    return groupNames;
   }
 
   public Reader getGroups() {

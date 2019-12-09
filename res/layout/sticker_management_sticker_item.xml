@@ -88,7 +88,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:tint="?sticker_management_action_button_color"
-        app:srcCompat="@drawable/ic_forward_outline"
+        app:srcCompat="@drawable/ic_forward_outline_24"
         app:layout_constraintTop_toTopOf="@id/sticker_management_share_button"
         app:layout_constraintBottom_toBottomOf="@id/sticker_management_share_button"
         app:layout_constraintStart_toStartOf="@id/sticker_management_share_button"

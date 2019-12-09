@@ -2,6 +2,8 @@ package org.thoughtcrime.securesms.jobs;
 
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import android.text.TextUtils;
 
 import org.thoughtcrime.securesms.ApplicationContext;
@@ -16,9 +18,13 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.service.IncomingMessageObserver;
 import org.thoughtcrime.securesms.util.Base64;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.IdentityUtil;
+import org.thoughtcrime.securesms.util.ProfileUtil;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.InvalidKeyException;
@@ -36,6 +42,10 @@ import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulRespons
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Retrieves a users profile and sets the appropriate local fields. If fetching the profile of the
+ * local user, use {@link RefreshOwnProfileJob} instead.
+ */
 public class RetrieveProfileJob extends BaseJob {
 
   public static final String KEY = "RetrieveProfileJob";
@@ -71,8 +81,12 @@ public class RetrieveProfileJob extends BaseJob {
 
   @Override
   public void onRun() throws IOException {
-    if (recipient.isGroup()) handleGroupRecipient(recipient);
-    else                     handleIndividualRecipient(recipient);
+    Log.i(TAG, "Retrieving profile of " + recipient.getId());
+
+    Recipient resolved = recipient.resolve();
+
+    if (resolved.isGroup()) handleGroupRecipient(resolved);
+    else                    handleIndividualRecipient(resolved);
   }
 
   @Override
@@ -84,58 +98,33 @@ public class RetrieveProfileJob extends BaseJob {
   public void onCanceled() {}
 
   private void handleIndividualRecipient(Recipient recipient) throws IOException {
-     if (recipient.requireAddress().isPhone()) handlePhoneNumberRecipient(recipient);
-     else                                  Log.w(TAG, "Skipping fetching profile of non-phone recipient");
+     if (recipient.hasServiceIdentifier()) handlePhoneNumberRecipient(recipient);
+     else                                  Log.w(TAG, "Skipping fetching profile of non-Signal recipient");
   }
 
   private void handlePhoneNumberRecipient(Recipient recipient) throws IOException {
-    String                       number             = recipient.requireAddress().toPhoneString();
-    Optional<UnidentifiedAccess> unidentifiedAccess = getUnidentifiedAccess(recipient);
+    SignalServiceProfile profile = ProfileUtil.retrieveProfile(context, recipient);
 
-    SignalServiceProfile profile;
-
-    try {
-      profile = retrieveProfile(number, unidentifiedAccess);
-    } catch (NonSuccessfulResponseCodeException e) {
-      if (unidentifiedAccess.isPresent()) {
-        profile = retrieveProfile(number, Optional.absent());
-      } else {
-        throw e;
-      }
+    if (recipient.getProfileKey() == null) {
+      Log.i(TAG, "No profile key available for " + recipient.getId());
+    } else {
+      Log.i(TAG, "Profile key available for " + recipient.getId());
     }
 
-    setIdentityKey(recipient, profile.getIdentityKey());
     setProfileName(recipient, profile.getName());
     setProfileAvatar(recipient, profile.getAvatar());
+    if (FeatureFlags.USERNAMES) setUsername(recipient, profile.getUsername());
+    setProfileCapabilities(recipient, profile.getCapabilities());
+    setIdentityKey(recipient, profile.getIdentityKey());
     setUnidentifiedAccessMode(recipient, profile.getUnidentifiedAccess(), profile.isUnrestrictedUnidentifiedAccess());
   }
 
   private void handleGroupRecipient(Recipient group) throws IOException {
-    List<Recipient> recipients = DatabaseFactory.getGroupDatabase(context).getGroupMembers(group.requireAddress().toGroupString(), false);
+    List<Recipient> recipients = DatabaseFactory.getGroupDatabase(context).getGroupMembers(group.requireGroupId(), false);
 
     for (Recipient recipient : recipients) {
       handleIndividualRecipient(recipient);
     }
-  }
-
-  private SignalServiceProfile retrieveProfile(@NonNull String number, Optional<UnidentifiedAccess> unidentifiedAccess)
-      throws IOException
-  {
-    SignalServiceMessagePipe authPipe         = IncomingMessageObserver.getPipe();
-    SignalServiceMessagePipe unidentifiedPipe = IncomingMessageObserver.getUnidentifiedPipe();
-    SignalServiceMessagePipe pipe             = unidentifiedPipe != null && unidentifiedAccess.isPresent() ? unidentifiedPipe
-                                                                                                           : authPipe;
-
-    if (pipe != null) {
-      try {
-        return pipe.getProfile(new SignalServiceAddress(number), unidentifiedAccess);
-      } catch (IOException e) {
-        Log.w(TAG, e);
-      }
-    }
-
-    SignalServiceMessageReceiver receiver = ApplicationDependencies.getSignalServiceMessageReceiver();
-    return receiver.retrieveProfile(new SignalServiceAddress(number), unidentifiedAccess);
   }
 
   private void setIdentityKey(Recipient recipient, String identityKeyValue) {
@@ -155,7 +144,7 @@ public class RetrieveProfileJob extends BaseJob {
         return;
       }
 
-      IdentityUtil.saveIdentity(context, recipient.requireAddress().toPhoneString(), identityKey);
+      IdentityUtil.saveIdentity(context, recipient.requireServiceId(), identityKey);
     } catch (InvalidKeyException | IOException e) {
       Log.w(TAG, e);
     }
@@ -166,11 +155,15 @@ public class RetrieveProfileJob extends BaseJob {
     byte[]            profileKey        = recipient.getProfileKey();
 
     if (unrestrictedUnidentifiedAccess && unidentifiedAccessVerifier != null) {
-      Log.i(TAG, "Marking recipient UD status as unrestricted.");
-      recipientDatabase.setUnidentifiedAccessMode(recipient.getId(), UnidentifiedAccessMode.UNRESTRICTED);
+      if (recipient.getUnidentifiedAccessMode() != UnidentifiedAccessMode.UNRESTRICTED) {
+        Log.i(TAG, "Marking recipient UD status as unrestricted.");
+        recipientDatabase.setUnidentifiedAccessMode(recipient.getId(), UnidentifiedAccessMode.UNRESTRICTED);
+      }
     } else if (profileKey == null || unidentifiedAccessVerifier == null) {
-      Log.i(TAG, "Marking recipient UD status as disabled.");
-      recipientDatabase.setUnidentifiedAccessMode(recipient.getId(), UnidentifiedAccessMode.DISABLED);
+      if (recipient.getUnidentifiedAccessMode() != UnidentifiedAccessMode.DISABLED) {
+        Log.i(TAG, "Marking recipient UD status as disabled.");
+        recipientDatabase.setUnidentifiedAccessMode(recipient.getId(), UnidentifiedAccessMode.DISABLED);
+      }
     } else {
       ProfileCipher profileCipher = new ProfileCipher(profileKey);
       boolean verifiedUnidentifiedAccess;
@@ -183,8 +176,11 @@ public class RetrieveProfileJob extends BaseJob {
       }
 
       UnidentifiedAccessMode mode = verifiedUnidentifiedAccess ? UnidentifiedAccessMode.ENABLED : UnidentifiedAccessMode.DISABLED;
-      Log.i(TAG, "Marking recipient UD status as " + mode.name() + " after verification.");
-      recipientDatabase.setUnidentifiedAccessMode(recipient.getId(), mode);
+
+      if (recipient.getUnidentifiedAccessMode() != mode) {
+        Log.i(TAG, "Marking recipient UD status as " + mode.name() + " after verification.");
+        recipientDatabase.setUnidentifiedAccessMode(recipient.getId(), mode);
+      }
     }
   }
 
@@ -193,15 +189,15 @@ public class RetrieveProfileJob extends BaseJob {
       byte[] profileKey = recipient.getProfileKey();
       if (profileKey == null) return;
 
-      String plaintextProfileName = null;
-
-      if (profileName != null) {
-        ProfileCipher profileCipher = new ProfileCipher(profileKey);
-        plaintextProfileName = new String(profileCipher.decryptName(Base64.decode(profileName)));
-      }
+      String plaintextProfileName = ProfileUtil.decryptName(profileKey, profileName);
 
       if (!Util.equals(plaintextProfileName, recipient.getProfileName())) {
+        Log.i(TAG, "Profile name updated. Writing new value.");
         DatabaseFactory.getRecipientDatabase(context).setProfileName(recipient.getId(), plaintextProfileName);
+      }
+
+      if (TextUtils.isEmpty(plaintextProfileName)) {
+        Log.i(TAG, "No profile name set.");
       }
     } catch (InvalidCiphertextException | IOException e) {
       Log.w(TAG, e);
@@ -212,20 +208,22 @@ public class RetrieveProfileJob extends BaseJob {
     if (recipient.getProfileKey() == null) return;
 
     if (!Util.equals(profileAvatar, recipient.getProfileAvatar())) {
-      ApplicationContext.getInstance(context)
-                        .getJobManager()
-                        .add(new RetrieveProfileAvatarJob(recipient, profileAvatar));
+      ApplicationDependencies.getJobManager().add(new RetrieveProfileAvatarJob(recipient, profileAvatar));
+    } else {
+      Log.d(TAG, "Skipping avatar fetch for " + recipient.getId());
     }
   }
 
-  private Optional<UnidentifiedAccess> getUnidentifiedAccess(@NonNull Recipient recipient) {
-    Optional<UnidentifiedAccessPair> unidentifiedAccess = UnidentifiedAccessUtil.getAccessFor(context, recipient);
+  private void setUsername(Recipient recipient, @Nullable String username) {
+    DatabaseFactory.getRecipientDatabase(context).setUsername(recipient.getId(), username);
+  }
 
-    if (unidentifiedAccess.isPresent()) {
-      return unidentifiedAccess.get().getTargetUnidentifiedAccess();
+  private void setProfileCapabilities(@NonNull Recipient recipient, @Nullable SignalServiceProfile.Capabilities capabilities) {
+    if (capabilities == null) {
+      return;
     }
 
-    return Optional.absent();
+    DatabaseFactory.getRecipientDatabase(context).setUuidSupported(recipient.getId(), capabilities.isUuid());
   }
 
   public static final class Factory implements Job.Factory<RetrieveProfileJob> {

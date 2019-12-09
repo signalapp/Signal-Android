@@ -46,7 +46,7 @@ public class CallNotificationBuilder {
                                                                .setSmallIcon(R.drawable.ic_call_secure_white_24dp)
                                                                .setContentIntent(pendingIntent)
                                                                .setOngoing(true)
-                                                               .setContentTitle(recipient.getName());
+                                                               .setContentTitle(recipient.getDisplayName(context));
 
     if (type == TYPE_INCOMING_CONNECTING) {
       builder.setContentText(context.getString(R.string.CallNotificationBuilder_connecting));

@@ -18,12 +18,16 @@ import java.util.List;
 
 public class JobDatabase extends Database {
 
+  public static String JOBS_TABLE_NAME         = "job_spec";
+  public static String CONSTRAINTS_TABLE_NAME  = "constraint_spec";
+  public static String DEPENDENCIES_TABLE_NAME = "dependency_spec";
+
   public static final String[] CREATE_TABLE = new String[] { Jobs.CREATE_TABLE,
                                                              Constraints.CREATE_TABLE,
                                                              Dependencies.CREATE_TABLE };
 
   private static final class Jobs {
-    private static final String TABLE_NAME            = "job_spec";
+    private static final String TABLE_NAME            = JOBS_TABLE_NAME;
     private static final String ID                    = "_id";
     private static final String JOB_SPEC_ID           = "job_spec_id";
     private static final String FACTORY_KEY           = "factory_key";
@@ -54,7 +58,7 @@ public class JobDatabase extends Database {
   }
 
   private static final class Constraints {
-    private static final String TABLE_NAME  = "constraint_spec";
+    private static final String TABLE_NAME  = CONSTRAINTS_TABLE_NAME;
     private static final String ID          = "_id";
     private static final String JOB_SPEC_ID = "job_spec_id";
     private static final String FACTORY_KEY = "factory_key";
@@ -66,7 +70,7 @@ public class JobDatabase extends Database {
   }
 
   private static final class Dependencies {
-    private static final String TABLE_NAME             = "dependency_spec";
+    private static final String TABLE_NAME             = DEPENDENCIES_TABLE_NAME;
     private static final String ID                     = "_id";
     private static final String JOB_SPEC_ID            = "job_spec_id";
     private static final String DEPENDS_ON_JOB_SPEC_ID = "depends_on_job_spec_id";
@@ -122,11 +126,12 @@ public class JobDatabase extends Database {
     databaseHelper.getWritableDatabase().update(Jobs.TABLE_NAME, contentValues, query, args);
   }
 
-  public synchronized void updateJobAfterRetry(@NonNull String id, boolean isRunning, int runAttempt, long nextRunAttemptTime) {
+  public synchronized void updateJobAfterRetry(@NonNull String id, boolean isRunning, int runAttempt, long nextRunAttemptTime, @NonNull String serializedData) {
     ContentValues contentValues = new ContentValues();
     contentValues.put(Jobs.IS_RUNNING, isRunning ? 1 : 0);
     contentValues.put(Jobs.RUN_ATTEMPT, runAttempt);
     contentValues.put(Jobs.NEXT_RUN_ATTEMPT_TIME, nextRunAttemptTime);
+    contentValues.put(Jobs.SERIALIZED_DATA, serializedData);
 
     String   query = Jobs.JOB_SPEC_ID + " = ?";
     String[] args  = new String[]{ id };

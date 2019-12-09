@@ -14,7 +14,7 @@
         android:contentDescription="@string/conversation_activity__quick_attachment_drawer_record_and_send_audio_description"
         android:scaleType="fitCenter"
         android:tint="?compose_icon_tint"
-        app:srcCompat="@drawable/ic_mic_filled_24" />
+        app:srcCompat="?quick_mic_icon" />
 
     <LinearLayout
         android:id="@+id/lock_drop_target"
@@ -59,7 +59,7 @@
         android:clickable="false"
         android:visibility="gone"
         android:tint="@color/core_white"
-        app:srcCompat="@drawable/ic_mic_filled_24"
+        app:srcCompat="?quick_mic_icon"
         tools:ignore="ContentDescription"
         tools:visibility="visible" />
 </merge>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<org.thoughtcrime.securesms.ConversationListItemInboxZero
+<org.thoughtcrime.securesms.conversationlist.ConversationListItemInboxZero
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -28,4 +28,4 @@
               android:padding="16dp"
               android:text="@string/conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up"/>
 
-</org.thoughtcrime.securesms.ConversationListItemInboxZero>
+</org.thoughtcrime.securesms.conversationlist.ConversationListItemInboxZero>

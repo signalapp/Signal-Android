@@ -59,9 +59,7 @@ public class RotateSignedPreKeyJob extends BaseJob {
     TextSecurePreferences.setSignedPreKeyRegistered(context, true);
     TextSecurePreferences.setSignedPreKeyFailureCount(context, 0);
 
-    ApplicationContext.getInstance(context)
-                      .getJobManager()
-                      .add(new CleanPreKeysJob());
+    ApplicationDependencies.getJobManager().add(new CleanPreKeysJob());
   }
 
   @Override

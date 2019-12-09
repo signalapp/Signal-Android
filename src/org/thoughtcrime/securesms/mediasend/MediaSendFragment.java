@@ -82,7 +82,15 @@ public class MediaSendFragment extends Fragment {
     super.onHiddenChanged(hidden);
     if (!hidden) {
       viewModel.onImageEditorStarted();
+    } else {
+      fragmentPagerAdapter.notifyHidden();
     }
+  }
+
+  @Override
+  public void onPause() {
+    super.onPause();
+    fragmentPagerAdapter.notifyHidden();
   }
 
   @Override
@@ -143,6 +151,7 @@ public class MediaSendFragment extends Fragment {
     @Override
     public void onPageSelected(int position) {
       viewModel.onPageChanged(position);
+      fragmentPagerAdapter.notifyPageChanged(position);
     }
   }
 }

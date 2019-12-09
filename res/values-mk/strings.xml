@@ -1,15 +1,15 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="app_name">Signal</string>
+  <!-- Removed by excludeNonTranslatables <string name="app_name">Signal</string> -->
   <string name="yes">Да</string>
   <string name="no">Не</string>
   <string name="delete">Избриши</string>
-  <string name="please_wait">Почекајте...</string>
+  <string name="please_wait">Почекајте…</string>
   <string name="save">Зачувај</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Нова порака</string>
   <!--AlbumThumbnailView-->
-  <string name="AlbumThumbnailView_plus">\+%d</string>
+  <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus">\+%d</string> -->
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">Моментално: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Сеуште не сте поставиле лозинка!</string>
@@ -27,7 +27,7 @@
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Трајно овозможи ги нотификациите на Signal апликацијата.</string>
   <string name="ApplicationPreferencesActivity_disable">Оневозможи</string>
   <string name="ApplicationPreferencesActivity_unregistering">Одјавување</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Одјавување од Signal пораки и повици...</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Одјавување од Signal пораки и повици…</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Оневозможи Signal пораки и повици?</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Оневозможи ги пораките и повиците од Signal со одрегистрирање од серверот. Ќе мора повторно да го ререгистрирате телефонскиот број за да може повторно да добивате пораки.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Грешка при поврзување со серверот!</string>
@@ -106,11 +106,11 @@
   <!--ConversationFragment-->
   <string name="ConversationFragment_save_to_sd_card">Сними на диск?</string>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Не може да се запишува на дискот!</string>
-  <string name="ConversationFragment_pending">Во тек...</string>
+  <string name="ConversationFragment_pending">Во тек…</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">Бришење</string>
-  <string name="ConversationFragment_deleting_messages">Бришење на пораките...</string>
+  <string name="ConversationFragment_deleting_messages">Бришење на пораките…</string>
   <!--ConversationListActivity-->
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_deleting">Бришење</string>
@@ -148,8 +148,8 @@
   <string name="GroupCreateActivity_contacts_invalid_number">Еден член на вашата група има број којшто не може да се прочита правилно. Исправете го или отстранете го тој контакт и пробајте повторно.</string>
   <string name="GroupCreateActivity_avatar_content_description">Групен аватар</string>
   <string name="GroupCreateActivity_creating_group">Се креира %1$s…</string>
-  <string name="GroupCreateActivity_updating_group">Се ажурира %1$s...</string>
-  <string name="GroupCreateActivity_loading_group_details">Вчитување на детали за групата...</string>
+  <string name="GroupCreateActivity_updating_group">Се ажурира %1$s…</string>
+  <string name="GroupCreateActivity_loading_group_details">Вчитување на детали за групата…</string>
   <!--GroupShareProfileView-->
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Јас</string>
@@ -164,7 +164,7 @@
   <!--MmsDownloader-->
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media_delete_progress_title">Бришење</string>
-  <string name="MediaOverviewActivity_Media_delete_progress_message">Бришење на пораките...</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">Бришење на пораките…</string>
   <string name="MediaOverviewActivity_Select_all">Избери се</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager__establishing_signal_call">Воспоставување на повик на Signal</string>
@@ -200,7 +200,7 @@
 
 \n• Испратете пораки во ваше име</string>
   <string name="DeviceProvisioningActivity_content_progress_title">Поврзување на уред</string>
-  <string name="DeviceProvisioningActivity_content_progress_content">Поврзување на нов уред...</string>
+  <string name="DeviceProvisioningActivity_content_progress_content">Поврзување на нов уред…</string>
   <string name="DeviceProvisioningActivity_content_progress_success">Уредот е одобрен!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">Уредот не е пронајден.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">Мрежна грешка.</string>
@@ -313,7 +313,7 @@
   <!--contact_selection_activity-->
   <!--contact_selection_group_activity-->
   <string name="contact_selection_group_activity__no_contacts">Нема контакти.</string>
-  <string name="contact_selection_group_activity__finding_contacts">Контактите се вчитуваат...</string>
+  <string name="contact_selection_group_activity__finding_contacts">Контактите се вчитуваат…</string>
   <!--single_contact_selection_activity-->
   <string name="SingleContactSelectionActivity_contact_photo">Слика на контакт</string>
   <!--ContactSelectionListFragment-->
@@ -341,7 +341,7 @@
   <string name="QuoteView_you">Вие</string>
   <!--conversation_fragment-->
   <!--country_selection_fragment-->
-  <string name="country_selection_fragment__loading_countries">Вчитување на држави...</string>
+  <string name="country_selection_fragment__loading_countries">Вчитување на држави…</string>
   <string name="country_selection_fragment__search">Барај</string>
   <!--device_add_fragment-->
   <!--device_link_fragment-->
@@ -364,7 +364,7 @@
   <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">Ова може да потрае. Бидете стрпливи, ќе бидете известени веднаш штом заврши импортирањето.</string>
   <string name="database_migration_activity__importing">ИМПОТИРАЊЕ</string>
   <!--database_upgrade_activity-->
-  <string name="database_upgrade_activity__updating_database">Ажурирање на базата на податоци...</string>
+  <!-- Removed by excludeNonTranslatables <string name="database_upgrade_activity__updating_database">Ажурирање на базата на податоци…</string> -->
   <string name="import_fragment__import_system_sms_database">Импортирај системска SMS база на податоци</string>
   <string name="import_fragment__import_plaintext_backup">Импортирајте нешифрирана копија</string>
   <!--load_more_header-->
@@ -488,7 +488,7 @@
   <!--menus-->
   <!--****************************************-->
   <!--contact_selection_list-->
-  <string name="contact_selection_list__unknown_contact">Нова порака до...</string>
+  <string name="contact_selection_list__unknown_contact">Нова порака до…</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">Повикај</string>
   <!--conversation_callable_secure-->
@@ -549,11 +549,11 @@
   <!--redphone_audio_popup_menu-->
   <!--Trimmer-->
   <string name="trimmer__deleting">Бришење</string>
-  <string name="trimmer__deleting_old_messages">Бришење на старите пораки...</string>
+  <string name="trimmer__deleting_old_messages">Бришење на старите пораки…</string>
   <string name="trimmer__old_messages_successfully_deleted">Старите пораки се успешно избришани</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Симбол за транспорт</string>
-  <string name="CallNotificationBuilder_connecting">Се поврзува...</string>
+  <string name="CallNotificationBuilder_connecting">Се поврзува…</string>
   <string name="Permissions_continue">Продолжете</string>
   <string name="registration_activity__skip">Прескокни</string>
   <string name="registration_activity__register">Регистрирајте се</string>

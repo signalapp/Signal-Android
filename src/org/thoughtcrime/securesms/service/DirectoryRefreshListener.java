@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import org.thoughtcrime.securesms.ApplicationContext;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
@@ -22,9 +23,7 @@ public class DirectoryRefreshListener extends PersistentAlarmManagerListener {
   @Override
   protected long onAlarm(Context context, long scheduledTime) {
     if (scheduledTime != 0 && TextSecurePreferences.isPushRegistered(context)) {
-      ApplicationContext.getInstance(context)
-                        .getJobManager()
-                        .add(new DirectoryRefreshJob(true));
+      ApplicationDependencies.getJobManager().add(new DirectoryRefreshJob(true));
     }
 
     long newTime = System.currentTimeMillis() + INTERVAL;

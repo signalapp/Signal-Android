@@ -4,7 +4,6 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.annimon.stream.Stream;
 import com.google.android.mms.pdu_alt.CharacterSets;
 import com.google.android.mms.pdu_alt.EncodedStringValue;
 import com.google.android.mms.pdu_alt.PduBody;
@@ -13,7 +12,6 @@ import com.google.android.mms.pdu_alt.RetrieveConf;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.UriAttachment;
-import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessagingDatabase.InsertResult;
@@ -34,10 +32,6 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
-import org.whispersystems.libsignal.DuplicateMessageException;
-import org.whispersystems.libsignal.InvalidMessageException;
-import org.whispersystems.libsignal.LegacyMessageException;
-import org.whispersystems.libsignal.NoSessionException;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.IOException;
@@ -189,14 +183,12 @@ public class MmsDownloadJob extends BaseJob {
     String           body        = null;
     List<Attachment> attachments = new LinkedList<>();
 
-    RecipientId      from;
+    RecipientId from = null;
 
     if (retrieved.getFrom() != null) {
       from = Recipient.external(context, Util.toIsoString(retrieved.getFrom().getTextString())).getId();
     } else if (notificationFrom != null) {
       from = notificationFrom;
-    } else {
-      from = RecipientId.UNKNOWN;
     }
 
     if (retrieved.getTo() != null) {
@@ -211,7 +203,9 @@ public class MmsDownloadJob extends BaseJob {
       }
     }
 
-    members.add(from);
+    if (from != null) {
+      members.add(from);
+    }
     members.add(Recipient.self().getId());
 
     if (retrieved.getBody() != null) {
@@ -229,7 +223,7 @@ public class MmsDownloadJob extends BaseJob {
 
           attachments.add(new UriAttachment(uri, Util.toIsoString(part.getContentType()),
                                             AttachmentDatabase.TRANSFER_PROGRESS_DONE,
-                                            part.getData().length, name, false, false, null, null));
+                                            part.getData().length, name, false, false, null, null, null, null));
         }
       }
     }

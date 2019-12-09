@@ -5,9 +5,10 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
+import android.widget.ImageView;
+
 import androidx.annotation.DrawableRes;
 import androidx.appcompat.content.res.AppCompatResources;
-import android.widget.ImageView;
 
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.makeramen.roundedimageview.RoundedDrawable;
@@ -18,15 +19,21 @@ import org.thoughtcrime.securesms.util.ThemeUtil;
 public class ResourceContactPhoto implements FallbackContactPhoto {
 
   private final int resourceId;
+  private final int smallResourceId;
   private final int callCardResourceId;
 
   public ResourceContactPhoto(@DrawableRes int resourceId) {
-    this(resourceId, resourceId);
+    this(resourceId, resourceId, resourceId);
   }
 
-  public ResourceContactPhoto(@DrawableRes int resourceId, @DrawableRes int callCardResourceId) {
+  public ResourceContactPhoto(@DrawableRes int resourceId, @DrawableRes int smallResourceId) {
+    this(resourceId, smallResourceId, resourceId);
+  }
+
+  public ResourceContactPhoto(@DrawableRes int resourceId, @DrawableRes int smallResourceId, @DrawableRes int callCardResourceId) {
     this.resourceId         = resourceId;
     this.callCardResourceId = callCardResourceId;
+    this.smallResourceId    = smallResourceId;
   }
 
   @Override
@@ -36,8 +43,17 @@ public class ResourceContactPhoto implements FallbackContactPhoto {
 
   @Override
   public Drawable asDrawable(Context context, int color, boolean inverted) {
+    return buildDrawable(context, resourceId, color, inverted);
+  }
+
+  @Override
+  public Drawable asSmallDrawable(Context context, int color, boolean inverted) {
+    return buildDrawable(context, smallResourceId, color, inverted);
+  }
+
+  private Drawable buildDrawable(Context context, int resourceId, int color, boolean inverted) {
     Drawable        background = TextDrawable.builder().buildRound(" ", inverted ? Color.WHITE : color);
-    RoundedDrawable foreground = (RoundedDrawable) RoundedDrawable.fromDrawable(context.getResources().getDrawable(resourceId));
+    RoundedDrawable foreground = (RoundedDrawable) RoundedDrawable.fromDrawable(AppCompatResources.getDrawable(context, resourceId));
 
     foreground.setScaleType(ImageView.ScaleType.CENTER);
 

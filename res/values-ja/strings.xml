@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="app_name">Signal</string>
   <string name="yes">はい</string>
   <string name="no">いいえ</string>
   <string name="delete">削除</string>
@@ -10,9 +9,8 @@
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">新着メッセージ</string>
   <!--AlbumThumbnailView-->
-  <string name="AlbumThumbnailView_plus">\+%d</string>
   <!--ApplicationMigrationActivity-->
-  <string name="ApplicationMigrationActivity__signal_is_updating">Signalをアップデート中</string>
+  <string name="ApplicationMigrationActivity__signal_is_updating">Signalをアップデート中…</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">現在： %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">パスワードが登録されていません。</string>
@@ -28,7 +26,7 @@
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Signalとメッセージ通知のロックを無効にします</string>
   <string name="ApplicationPreferencesActivity_disable">無効</string>
   <string name="ApplicationPreferencesActivity_unregistering">登録取り消し</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Signalの登録を解除します...</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Signalの登録を解除します…</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Signalでのメッセージ・通話を無効にしますか？</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">サーバーから登録を取消します。Signalを使ったメッセージのやり取りや通話はできなくなります。 再びSignalを使うためには、あなたの電話番号を再登録をする必要があります。</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">サーバー接続中にエラーが発生しました！</string>
@@ -60,8 +58,8 @@
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signalで位置情報を添付するには、位置情報へのアクセスを許可する必要がありますが、無効になっています。アプリ設定メニューから、『アプリの権限』を選び、『位置情報』へのアクセス許可を有効にしてください。</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signalで写真を撮るには、カメラへのアクセスを許可する必要がありますが、無効になっています。アプリ設定メニューから、『アプリの権限』を選び、『カメラ』へのアクセス許可を有効にしてください。</string>
   <!--AttachmentUploadJob-->
-  <string name="AttachmentUploadJob_uploading_media">アップロード中...</string>
-  <string name="AttachmentUploadJob_compressing_video_start">動画を圧縮中...</string>
+  <string name="AttachmentUploadJob_uploading_media">アップロード中…</string>
+  <string name="AttachmentUploadJob_compressing_video_start">動画を圧縮中…</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">音声再生中にエラーがありました！</string>
   <!--BlockedContactsActivity-->
@@ -71,11 +69,15 @@
   <string name="BucketedThreadMedia_Yesterday">昨日</string>
   <string name="BucketedThreadMedia_This_week">今週</string>
   <string name="BucketedThreadMedia_This_month">今月</string>
+  <string name="BucketedThreadMedia_Large">大きい</string>
+  <string name="BucketedThreadMedia_Medium">中</string>
+  <string name="BucketedThreadMedia_Small">小さい</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">着信</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">画像を保存できませんでした。</string>
   <!--CameraXFragment-->
+  <string name="CameraXFragment_tap_for_photo_hold_for_video">写真はタップ、動画はホールド</string>
   <string name="CameraXFragment_capture_description">キャプチャー</string>
   <string name="CameraXFragment_change_camera_description">カメラの変更</string>
   <string name="CameraXFragment_open_gallery_description">ギャラリーを開く</string>
@@ -96,6 +98,8 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">ウェブブラウザが見つかりません。</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">電話を使用中です</string>
+  <string name="CommunicationActions_cancel">キャンセル</string>
+  <string name="CommunicationActions_call">通話</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">%1$sとの安全番号が変更されました。通信が傍受されている可能性がありますが，%2$sがSignalを再インストールしただけかも知れません。</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">この連絡先との安全番号を確認しておいた方がいいかも知れません。</string>
@@ -104,6 +108,8 @@
   <string name="ContactsCursorLoader_recent_chats">最近のチャット</string>
   <string name="ContactsCursorLoader_contacts">連絡先</string>
   <string name="ContactsCursorLoader_groups">グループ</string>
+  <string name="ContactsCursorLoader_phone_number_search">電話番号検索</string>
+  <string name="ContactsCursorLoader_username_search">ユーザー名検索</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">%sにメッセージを送る</string>
   <string name="ContactsDatabase_signal_call_s">Signal通話%s</string>
@@ -173,6 +179,9 @@
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">写真や動画を撮るには、Signalのカメラへのアクセスを許可してください。</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signalで写真や動画を撮るには、カメラへのアクセスを許可する必要がありますが、無効になっています。アプリ設定メニューから、『アプリの権限』を選び、『カメラ』へのアクセス許可を有効にしてください。</string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signalで写真や動画を撮るには、カメラへのアクセス許可が必要です。</string>
+  <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">音も記録するためマイクを許可</string>
+  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">動画を保存するため、Signalにマイクを許可する必要があります。設定メニューの「アプリの権限」で、マイクとカメラのアクセス許可を有効にしてください。</string>
+  <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Signalで動画を撮るには、マイクへのアクセス許可が必要です。</string>
   <string name="ConversationActivity_quoted_contact_message">%2$s%1$s</string>
   <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signalは現在、デフォルトのショートメッセージアプリになっていないため、メッセージが送信できません。設定を変更しますか？</string>
   <string name="ConversationActivity_yes">はい</string>
@@ -204,17 +213,19 @@
     <item quantity="other">%1$d個の添付ファイルを保存</item>
   </plurals>
   <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-    <item quantity="other">%1$d個の添付ファイルを外部メモリに保存...</item>
+    <item quantity="other">%1$d個の添付ファイルを外部メモリに保存…</item>
   </plurals>
-  <string name="ConversationFragment_pending">保留中...</string>
+  <string name="ConversationFragment_pending">保留中…</string>
   <string name="ConversationFragment_push">データ (Signal)</string>
   <string name="ConversationFragment_mms">MMS</string>
   <string name="ConversationFragment_sms">SMS</string>
   <string name="ConversationFragment_deleting">削除中</string>
-  <string name="ConversationFragment_deleting_messages">メッセージを削除しています...</string>
+  <string name="ConversationFragment_deleting_messages">メッセージを削除しています…</string>
   <string name="ConversationFragment_quoted_message_not_found">元のメッセージが見つかりません</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">元のメッセージはすでに削除されています</string>
   <string name="ConversationFragment_failed_to_open_message">メッセージの開封に失敗しました</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_right_reply">メッセージを右にスワイプすると返信できます。</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_left_reply">メッセージを左にスワイプすると返信できます。</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">ブラウザがインストールされていません</string>
   <!--ConversationListFragment-->
@@ -226,7 +237,7 @@
     <item quantity="other">選択した%1$d個の会話が完全に削除されます。</item>
   </plurals>
   <string name="ConversationListFragment_deleting">削除</string>
-  <string name="ConversationListFragment_deleting_selected_conversations">選択した会話を削除しています...</string>
+  <string name="ConversationListFragment_deleting_selected_conversations">選択した会話を削除しています…</string>
   <plurals name="ConversationListFragment_conversations_archived">
     <item quantity="other">%d件の会話をアーカイブしました</item>
   </plurals>
@@ -269,7 +280,7 @@
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">このデバイスを切り離すとメッセージの送受信ができなくなります。</string>
   <string name="DeviceListActivity_network_connection_failed">ネットワーク接続に失敗</string>
   <string name="DeviceListActivity_try_again">再試行</string>
-  <string name="DeviceListActivity_unlinking_device">デバイスを切り離す...</string>
+  <string name="DeviceListActivity_unlinking_device">デバイスを切り離す…</string>
   <string name="DeviceListActivity_unlinking_device_no_ellipsis">デバイスを切り離す</string>
   <string name="DeviceListActivity_network_failed">ネットワークエラー！</string>
   <!--DeviceListItem-->
@@ -278,7 +289,6 @@
   <string name="DeviceListItem_last_active_s">最後の活動%s</string>
   <string name="DeviceListItem_today">今日</string>
   <!--DocumentView-->
-  <string name="DocumentView_unknown_file">不明なファイル</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">欠けているGoogle Play開発者サービスに最適化する</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">この端末はGoogle Play開発者サービスをサポートしていません。タップしてバッテリー最適化機能を切ってください。</string>
@@ -309,7 +319,7 @@
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">この機能は、Signalの設定（プライバシー &gt; リンクプレビューを送る）で有効化できます。</string>
   <string name="ExperienceUpgradeActivity_got_it">分かりました</string>
   <!--GcmBroadcastReceiver-->
-  <string name="GcmBroadcastReceiver_retrieving_a_message">メッセージを読み込んでいます...</string>
+  <string name="GcmBroadcastReceiver_retrieving_a_message">メッセージを読み込んでいます…</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">永続的なSignal通信のエラー！</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Google PlayサービスにSignalを登録できなかったため、Signalのメッセージと通話は無効になっています。設定 &gt; 詳細設定で再登録を試してください。</string>
@@ -329,10 +339,10 @@
   <string name="GroupCreateActivity_contacts_invalid_number">グループのメンバーで電話番号が正しくない人がいます。番号を修正するか、そのメンバーを削除してからやり直してください。</string>
   <string name="GroupCreateActivity_avatar_content_description">グループアバター</string>
   <string name="GroupCreateActivity_menu_apply_button">適用する</string>
-  <string name="GroupCreateActivity_creating_group">%1$sを作成中...</string>
-  <string name="GroupCreateActivity_updating_group">%1$sをアップデート中...</string>
+  <string name="GroupCreateActivity_creating_group">%1$sを作成中…</string>
+  <string name="GroupCreateActivity_updating_group">%1$sをアップデート中…</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">Signalユーザーでないので%1$sを加えることはできません</string>
-  <string name="GroupCreateActivity_loading_group_details">グループ詳細を読み込み...</string>
+  <string name="GroupCreateActivity_loading_group_details">グループ詳細を読み込み…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">グループに加入済みです</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">このグループにプロフィール情報を公開しますか？</string>
@@ -349,7 +359,7 @@
   <string name="InviteActivity_share">シェア</string>
   <string name="InviteActivity_choose_contacts">連絡先を選んでください</string>
   <string name="InviteActivity_cancel">キャンセル</string>
-  <string name="InviteActivity_sending">送信中…</string>
+  <string name="InviteActivity_sending">送信しています…</string>
   <string name="InviteActivity_heart_content_description">ハート</string>
   <string name="InviteActivity_invitations_sent">招待状を送りました</string>
   <string name="InviteActivity_invite_to_signal">Signalに招待する</string>
@@ -363,7 +373,7 @@
   <string name="InviteActivity_no_app_to_share_to">シェアするためのアプリがないようです。</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">友達とのチャットを暗号化しましょう。</string>
   <!--Job-->
-  <string name="Job_working_in_the_background">バックグラウンドで処理しています...</string>
+  <string name="Job_working_in_the_background">バックグラウンドで処理しています…</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">送信失敗</string>
   <string name="MessageDetailsRecipient_new_safety_number">新しい安全番号</string>
@@ -378,17 +388,27 @@
   <string name="MmsDownloader_error_reading_mms_settings">無線プロバイダのMMS設定の読み込みでエラー</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">メディア</string>
+  <string name="MediaOverviewActivity_Files">ファイル</string>
+  <string name="MediaOverviewActivity_Audio">音声</string>
+  <string name="MediaOverviewActivity_All">すべて</string>
   <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
-    <item quantity="other">選択したメッセージを削除しますか？</item>
+    <item quantity="other">選択したアイテムを削除しますか？</item>
   </plurals>
   <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-    <item quantity="other">選択した%1$d件のメッセージを完全に削除します。</item>
+    <item quantity="other">選択した%1$d個のファイルが完全に削除されます。これらのアイテムに関連付けられているメッセージテキストも削除されます。</item>
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">削除中</string>
-  <string name="MediaOverviewActivity_Media_delete_progress_message">メッセージを削除中...</string>
-  <string name="MediaOverviewActivity_Documents">ドキュメント</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">メッセージを削除中…</string>
   <string name="MediaOverviewActivity_Select_all">すべて選択</string>
-  <string name="MediaOverviewActivity_collecting_attachments">添付ファイルを集めています...</string>
+  <string name="MediaOverviewActivity_collecting_attachments">添付ファイルを集めています…</string>
+  <string name="MediaOverviewActivity_Sort_by">並べ替え</string>
+  <string name="MediaOverviewActivity_Newest">新しい順</string>
+  <string name="MediaOverviewActivity_Oldest">古い順</string>
+  <string name="MediaOverviewActivity_Storage_used">サイズ</string>
+  <string name="MediaOverviewActivity_file">ファイル</string>
+  <string name="MediaOverviewActivity_audio">音声</string>
+  <string name="MediaOverviewActivity_video">動画</string>
+  <string name="MediaOverviewActivity_image">画像</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal通話中</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal通話を準備しています</string>
@@ -407,7 +427,7 @@
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">タップで選択</string>
   <!--MediaSendActivity-->
-  <string name="MediaSendActivity_add_a_caption">キャプション追加...</string>
+  <string name="MediaSendActivity_add_a_caption">キャプションの追加…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">サイズの上限を超えたため、項目が削除されました。</string>
   <string name="MediaSendActivity_camera_unavailable">カメラは利用できません。</string>
   <string name="MediaSendActivity_message_to_s">%s へメッセージ</string>
@@ -455,7 +475,7 @@
 ・自分のメッセージを読む
 \n・自分の名前でメッセージを送る</string>
   <string name="DeviceProvisioningActivity_content_progress_title">端末を追加中</string>
-  <string name="DeviceProvisioningActivity_content_progress_content">新しい端末を追加中...</string>
+  <string name="DeviceProvisioningActivity_content_progress_content">新しい端末を追加中…</string>
   <string name="DeviceProvisioningActivity_content_progress_success">端末の認証完了</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">端末がありません</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">ネットワークエラー</string>
@@ -475,6 +495,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Signalアイコン</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">パスフレーズを設定</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">無効なパスフレーズです！</string>
+  <string name="PassphrasePromptActivity_unlock_signal">Signalを解錠する</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">地図</string>
   <string name="PlacePickerActivity_not_a_valid_address">無効なアドレスです</string>
@@ -482,6 +503,11 @@
   <string name="PlacePickerActivity_accept_address">アドレスを受け入れる</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">インストールされているGoogle Play開発者サービスのバージョンは正しく動作していません。Google Play開発者サービスを再インストールして再挑戦してみてください。</string>
+  <!--ProfileEditNameFragment-->
+  <string name="ProfileEditNameFragment_save">保存</string>
+  <!--ProfileEditOverviewFragment-->
+  <string name="ProfileEditOverviewFragment_profile">プロフィール</string>
+  <string name="ProfileEditOverviewFragment_username">ユーザー名</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">アプリを評価</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">このアプリのユーザーの方には評価アンケートへの協力をお願いいたします。</string>
@@ -548,11 +574,14 @@
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">あなたの電話番号を入力してください</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">認証コードが届きます。通信料金がかかるかもしれません。</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">%sに送ったコードを入力してください</string>
+  <string name="RegistrationActivity_phone_number_description">電話番号</string>
+  <string name="RegistrationActivity_country_code_description">国番号</string>
   <string name="RegistrationActivity_call">通話</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_view_photo">写真を見る</string>
-  <string name="RevealableMessageView_viewed">閲覧済み</string>
   <string name="RevealableMessageView_photo">写真</string>
+  <string name="RevealableMessageView_video">動画</string>
+  <string name="RevealableMessageView_viewed">閲覧済み</string>
+  <string name="RevealableMessageView_outgoing_media">メディア</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">画像の変更を保存できませんでした</string>
   <!--Search-->
@@ -611,6 +640,7 @@
   <string name="ThreadRecord_media_message">メディアでのメッセージ</string>
   <string name="ThreadRecord_sticker">ステッカー</string>
   <string name="ThreadRecord_disappearing_photo">消える写真</string>
+  <string name="ThreadRecord_disappearing_video">消える動画</string>
   <string name="ThreadRecord_s_is_on_signal">%sがSignalに登録しています！</string>
   <string name="ThreadRecord_disappearing_messages_disabled">消えるメッセージが無効にされました</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">消えるメッセージの消去時間が%sに設定されました</string>
@@ -635,16 +665,21 @@
   <!--UnverifiedSendDialog-->
   <string name="UnverifiedSendDialog_send_message">送信しますか？</string>
   <string name="UnverifiedSendDialog_send">送信</string>
+  <!--UsernameEditFragment-->
+  <string name="UsernameEditFragment_username">ユーザー名</string>
+  <string name="UsernameEditFragment_submit">送信</string>
+  <string name="UsernameEditFragment_delete">削除</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">連絡先の相手は古いSignalを使っています。Signalをアップデートしてから安全番号の検証を行うようお願いしてください。</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">相手がより新しいバージョンのSignalを使ってるため，QRコードの形式が異なります。Signalをアップデートしてから改めて比較してください。</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">読み取ったQRコードは、適正な安全番号認証コードではありません。もう一度読み取って下さい。</string>
-  <string name="VerifyIdentityActivity_share_safety_number_via">次の方法で安全番号を共有...</string>
+  <string name="VerifyIdentityActivity_share_safety_number_via">次の方法で安全番号を共有…</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">私たちの安全番号:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">シェアするためのアプリがないようです。</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">クリップボードで安全番号が見つかりませんでした</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">SignalでQRコードをスキャンするには、カメラへのアクセスを許可する必要がありますが、無効になっています。アプリ設定メニューから、『アプリの権限』を選び、『カメラ』へのアクセス許可を有効にしてください。</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">QRコードがスキャンできません。カメラへのアクセス許可が無効になっています。</string>
+  <!--ViewOnceMessageActivity-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">メッセージの暗号化が正しくありません</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">メッセージは存在しないセッションのために暗号化されています</string>
@@ -686,6 +721,7 @@
   <string name="MessageNotifier_media_message">メディアメッセージ</string>
   <string name="MessageNotifier_sticker">ステッカー</string>
   <string name="MessageNotifier_disappearing_photo">消える写真</string>
+  <string name="MessageNotifier_disappearing_video">消える動画</string>
   <string name="MessageNotifier_reply">返信</string>
   <string name="MessageNotifier_signal_message">Signalメッセージ</string>
   <string name="MessageNotifier_unsecured_sms">安全でないSMS</string>
@@ -703,6 +739,7 @@
   <string name="NotificationChannel_other">その他</string>
   <string name="NotificationChannel_group_messages">メッセージ</string>
   <string name="NotificationChannel_missing_display_name">不明</string>
+  <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signalのロック中はクイック・レスポンスは使えません</string>
   <string name="QuickResponseService_problem_sending_message">メッセージ送信で問題発生</string>
@@ -717,6 +754,7 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">新着メッセージ</string>
+  <!--ThumbnailView-->
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">
     <item quantity="other">%d個</item>
@@ -781,6 +819,7 @@
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signalで連絡先を表示するには、連絡先へのアクセスを許可する必要がありますが、無効になっています。アプリ設定メニューから、アプリの権限を選び、連絡先へのアクセス許可を有効にしてください。</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">連絡先の取得でエラーが起きました。インターネットにつながっているかを確かめてください。</string>
+  <string name="ContactSelectionListFragment_okay">OK</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">ブロックしている連絡先はありません</string>
   <!--contact_selection_list_fragment-->
@@ -814,12 +853,13 @@
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">連絡先の写真</string>
   <!--audio_view-->
-  <string name="audio_view__play_pause_accessibility_description">再生 ... 停止</string>
+  <string name="audio_view__play_pause_accessibility_description">再生 … 停止</string>
   <string name="audio_view__download_accessibility_description">ダウンロード</string>
   <!--QuoteView-->
   <string name="QuoteView_audio">音声</string>
   <string name="QuoteView_video">動画</string>
   <string name="QuoteView_photo">写真</string>
+  <string name="QuoteView_media">メディアメッセージ</string>
   <string name="QuoteView_sticker">ステッカー</string>
   <string name="QuoteView_document">ドキュメント</string>
   <string name="QuoteView_you">あなた</string>
@@ -827,7 +867,7 @@
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">最後までスクロール</string>
   <!--country_selection_fragment-->
-  <string name="country_selection_fragment__loading_countries">国名を読み込み中...</string>
+  <string name="country_selection_fragment__loading_countries">国名を読み込み中…</string>
   <string name="country_selection_fragment__search">検索</string>
   <!--device_add_fragment-->
   <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">追加する端末に表示されているQRコードをスキャンする</string>
@@ -890,9 +930,9 @@
   <string name="log_submit_activity__button_got_it">分かりました</string>
   <string name="log_submit_activity__button_compose_email">メール作成</string>
   <string name="log_submit_activity__this_log_will_be_posted_online">このログはコントリビュータに公開されますが、送信する前に内容を確認したり編集することができます。</string>
-  <string name="log_submit_activity__loading_logs">ログを読み込み中</string>
-  <string name="log_submit_activity__uploading_logs">ログをアップロード中</string>
-  <string name="log_submit_activity__success">成功しました。</string>
+  <string name="log_submit_activity__loading_logs">ログを読み込み中…</string>
+  <string name="log_submit_activity__uploading_logs">ログをアップロード中…</string>
+  <string name="log_submit_activity__success">成功しました！</string>
   <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">このURLをコピーしてバグレポートやサポートメールに貼り付けてください:\n\n<b>%1$s</b>\n</string>
   <string name="log_submit_activity__copied_to_clipboard">クリップボードにコピーしました</string>
   <string name="log_submit_activity__choose_email_app">メールアプリを選んで下さい</string>
@@ -917,7 +957,7 @@
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">見る</string>
   <string name="message_recipients_list_item__resend">再送</string>
-  <string name="message_recipients_list_item__resending">再送中...</string>
+  <string name="message_recipients_list_item__resending">再送中…</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="other">%1$sがグループに加わりました</item>
@@ -968,7 +1008,7 @@
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[%sに対する暗号化を検証したい場合は、上記の番号が相手端末上の番号と一致するか確認してください。あるいは相手の端末上のQRコードを読み取るか、こちらのQRコードを相手に読み取ってもらうこともできます。<a href="https://signal.org/redirect/safety-numbers">詳細</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">タップしてスキャンする</string>
-  <string name="verify_display_fragment__loading">取得中...</string>
+  <string name="verify_display_fragment__loading">読み込んでいます…</string>
   <string name="verify_display_fragment__verified">検証済み</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">安全番号を共有する</string>
@@ -1087,12 +1127,14 @@
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">会話が指定した長さを超えると古いメッセージを自動で消去する</string>
   <string name="preferences__delete_old_messages">古いメッセージの削除</string>
   <string name="preferences__chats">チャットとメディア</string>
+  <string name="preferences__storage">ストレージ</string>
   <string name="preferences__conversation_length_limit">会話の最大の長さ</string>
   <string name="preferences__trim_all_conversations_now">全会話で古いメッセージを削減する</string>
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">すべての会話で長さが一定値以下になるよう整理する</string>
   <string name="preferences__linked_devices">追加されている端末</string>
   <string name="preferences__light_theme">ライト</string>
   <string name="preferences__dark_theme">ダーク</string>
+  <string name="preferences__system_theme">システム</string>
   <string name="preferences__appearance">デザイン設定</string>
   <string name="preferences__theme">テーマ</string>
   <string name="preferences__default">初期設定の言語</string>
@@ -1114,6 +1156,12 @@
   <string name="preferences_chats__when_roaming">ローミング時</string>
   <string name="preferences_chats__media_auto_download">メディアの自動ダウンロード</string>
   <string name="preferences_chats__message_trimming">メッセージの削減</string>
+  <string name="preferences_storage__storage_usage">ストレージ使用量</string>
+  <string name="preferences_storage__photos">写真</string>
+  <string name="preferences_storage__videos">動画</string>
+  <string name="preferences_storage__files">ファイル</string>
+  <string name="preferences_storage__audio">音声</string>
+  <string name="preferences_storage__review_storage">ストレージを確認する</string>
   <string name="preferences_advanced__use_system_emoji">システムの絵文字を使う</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Signal独自の絵文字機能を無効にする</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">すべての通話をSignalサーバに中継して、相手にIP アドレスを知られることを防ぎます。ただし、通話の品質は下がります。</string>
@@ -1154,6 +1202,7 @@
   <string name="conversation_context__menu_forward_message">メッセージの転送</string>
   <string name="conversation_context__menu_resend_message">メッセージを再送信</string>
   <string name="conversation_context__menu_reply_to_message">メッセージに返信</string>
+  <!--conversation_context_reacction-->
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">添付ファイルを保存</string>
   <!--conversation_expiring_off-->
@@ -1231,12 +1280,11 @@
   <string name="reminder_header_share_text">ユーザが増やせば増やすほど、Signalはより便利になります</string>
   <string name="reminder_header_service_outage_text">Signalは技術的な問題を抱えています。私たちは、これをできるだけ早く解決するよう対応しています。</string>
   <string name="reminder_header_the_latest_signal_features_wont_work">Signalの最新機能は、このバージョンのAndroidでは対応しなくなります。OSのアップデートをしてください。</string>
+  <string name="reminder_header_progress">%1$d%%</string>
   <!--media_preview-->
   <string name="media_preview__save_title">保存</string>
   <string name="media_preview__forward_title">転送</string>
   <string name="media_preview__all_media_title">すべてのメディア</string>
-  <!--media_overview-->
-  <string name="media_overview_documents_fragment__no_documents_found">ドキュメントが見つかりません</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">メディアのプレビュー</string>
   <!--new_conversation_activity-->
@@ -1244,12 +1292,29 @@
   <!--redphone_audio_popup_menu-->
   <!--Trimmer-->
   <string name="trimmer__deleting">削除中</string>
-  <string name="trimmer__deleting_old_messages">古いメッセージを削除しています...</string>
+  <string name="trimmer__deleting_old_messages">古いメッセージを削除しています…</string>
   <string name="trimmer__old_messages_successfully_deleted">古いメッセージを削除しました</string>
+  <!--Insights-->
+  <string name="Insights__percent">%</string>
+  <string name="Insights__title">統計</string>
+  <string name="InsightsDashboardFragment__title">統計</string>
+  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocolは過去%2$d日間の送信メッセージを%1$d%%自動的に保護しました。Signalユーザー間の会話は常にエンドツーエンドで暗号化されます。</string>
+  <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">統計のパーセンテージは過去%1$d日間に消えたり削除されたりしていない送信メッセージに基づいて算出されます。</string>
+  <string name="InsightsDashboardFragment__start_a_conversation">会話を始める</string>
+  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">これらの統計は、あなたの端末上でローカルに生成されたもので、見ることができるのはあなただけです。どこにも送信されません。</string>
+  <string name="InsightsDashboardFragment__encrypted_messages">暗号化されたメッセージ</string>
+  <string name="InsightsDashboardFragment__cancel">キャンセル</string>
+  <string name="InsightsDashboardFragment__send">送信</string>
+  <string name="InsightsModalFragment__title">統計のご紹介</string>
+  <string name="InsightsModalFragment__view_insights">統計を見る</string>
+  <string name="FirstInviteReminder__title">Signalに招待する</string>
+  <string name="FirstInviteReminder__description">送信する暗号化されたメッセージの数を%1$d%%増やすことができます</string>
+  <string name="InsightsReminder__view_insights">統計を見る</string>
+  <string name="InsightsReminder__invite">招待する</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">転送アイコン</string>
-  <string name="ConversationListFragment_loading">読込中...</string>
-  <string name="CallNotificationBuilder_connecting">接続中...</string>
+  <string name="ConversationListFragment_loading">読み込んでいます…</string>
+  <string name="CallNotificationBuilder_connecting">接続しています…</string>
   <string name="Permissions_permission_required">アクセス許可が必要です</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">SignalでSMSを送信するには、SMSへのアクセスを許可する必要がありますが、無効になっています。アプリ設定メニューから、『アプリの権限』を選び、『SMS』へのアクセス許可を有効にしてください。</string>
   <string name="Permissions_continue">続行</string>
@@ -1290,11 +1355,14 @@
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signalはバックアップの作成のために外部ストレージへの許可が必要です。アプリの設定から「権限」を選択し、「ストレージ」を有効にしてください。</string>
   <string name="ChatsPreferenceFragment_last_backup_s">最終バックアップ: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">実施中</string>
-  <string name="LocalBackupJob_creating_backup">バックアップを作成しています...</string>
+  <string name="LocalBackupJob_creating_backup">バックアップを作成しています…</string>
   <string name="ProgressPreference_d_messages_so_far">今、%d個メッセージ</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">%sに送った検証コードを入力してください。</string>
   <string name="RegistrationActivity_wrong_number">番号が違います</string>
   <string name="RegistrationActivity_call_me_instead_available_in">電話してください \n (Available in %1$02d:%2$02d)</string>
+  <string name="RegistrationActivity_contact_signal_support">Signalサポートに問い合わせ</string>
+  <string name="RegistrationActivity_code_support_subject">Signal登録 - Android用認証コード</string>
+  <string name="RegistrationActivity_code_support_body">件名: Signal Registration - Verification Code for Android\nDevice info: %1$s\nAndroid version: %2$s\nSignal version: %3$s\nLocale: %4$s</string>
   <string name="BackupUtil_never">なし</string>
   <string name="BackupUtil_unknown">不明</string>
   <string name="preferences_app_protection__screen_lock">画面ロック</string>
@@ -1337,5 +1405,9 @@
   <string name="prompt_passphrase_activity__tap_to_unlock">タップしてロック解除</string>
   <string name="RegistrationLockDialog_reminder">備忘:</string>
   <string name="recipient_preferences__about">Signalについて</string>
+  <string name="Recipient_unknown">不明</string>
+  <string name="MessageRequestBottomView_accept">承認</string>
+  <string name="MessageRequestBottomView_delete">削除</string>
+  <string name="MessageRequestBottomView_block">ブロックする</string>
   <!--EOF-->
 </resources>

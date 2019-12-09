@@ -27,7 +27,6 @@
               android:layout_marginTop="8dp"
               style="@style/Signal.Text.Caption"
               android:textColor="?attr/conversation_item_sticky_date_text_color"
-              android:textAllCaps="true"
               android:background="?attr/conversation_item_sticky_date_background"
               android:elevation="9dp"
               android:visibility="gone"
@@ -56,5 +55,4 @@
             android:alpha="0.9"
             android:contentDescription="@string/conversation_fragment__scroll_to_the_bottom_content_description"
             android:src="@drawable/ic_scroll_down"/>
-
 </FrameLayout>

@@ -6,6 +6,9 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import android.text.TextUtils;
+
+import com.annimon.stream.Stream;
+
 import org.thoughtcrime.securesms.logging.Log;
 
 
@@ -59,7 +62,11 @@ public abstract class GiphyLoader extends AsyncLoader<List<GiphyImage>> {
       }
 
       GiphyResponse    giphyResponse = JsonUtils.fromJson(response.body().byteStream(), GiphyResponse.class);
-      List<GiphyImage> results       = giphyResponse.getData();
+      List<GiphyImage> results       = Stream.of(giphyResponse.getData())
+                                             .filterNot(g -> TextUtils.isEmpty(g.getGifUrl()))
+                                             .filterNot(g -> TextUtils.isEmpty(g.getGifMmsUrl()))
+                                             .filterNot(g -> TextUtils.isEmpty(g.getStillUrl()))
+                                             .toList();
 
       if (results == null) return new LinkedList<>();
       else                 return results;

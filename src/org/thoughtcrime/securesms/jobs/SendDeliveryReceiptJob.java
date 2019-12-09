@@ -4,7 +4,6 @@ package org.thoughtcrime.securesms.jobs;
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
-import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -12,6 +11,7 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.SignalServiceReceiptMessage;
@@ -76,7 +76,7 @@ public class SendDeliveryReceiptJob extends BaseJob {
   public void onRun() throws IOException, UntrustedIdentityException {
     SignalServiceMessageSender  messageSender  = ApplicationDependencies.getSignalServiceMessageSender();
     Recipient                   recipient      = Recipient.resolved(recipientId);
-    SignalServiceAddress        remoteAddress  = new SignalServiceAddress(recipient.requireAddress().serialize());
+    SignalServiceAddress        remoteAddress  = RecipientUtil.toSignalServiceAddress(context, recipient);
     SignalServiceReceiptMessage receiptMessage = new SignalServiceReceiptMessage(SignalServiceReceiptMessage.Type.DELIVERY,
                                                                                  Collections.singletonList(messageId),
                                                                                  timestamp);

@@ -10,6 +10,7 @@ import android.graphics.Rect;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
@@ -25,6 +26,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.view.ContextThemeWrapper;
+import androidx.core.util.Supplier;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProviders;
@@ -64,16 +66,23 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.scribbles.ImageEditorFragment;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.CharacterCalculator.CharacterState;
+import org.thoughtcrime.securesms.util.Function3;
+import org.thoughtcrime.securesms.util.IOFunction;
 import org.thoughtcrime.securesms.util.MediaUtil;
+import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.Stopwatch;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
+import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 import org.thoughtcrime.securesms.util.views.Stub;
+import org.thoughtcrime.securesms.video.VideoUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.ByteArrayOutputStream;
+import java.io.FileDescriptor;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -255,6 +264,8 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
         hud.hideSoftkey(composeText, null);
       }
 
+      sendButton.setEnabled(false);
+
       MediaSendFragment fragment = getMediaSendFragment();
 
       if (fragment != null) {
@@ -265,6 +276,8 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
         throw new AssertionError("No editor fragment available!");
       }
     });
+
+    sendButton.setOnLongClickListener(v -> true);
 
     sendButton.addOnTransportChangedListener((newTransport, manuallySelected) -> {
       presentCharactersRemaining();
@@ -378,23 +391,61 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
   }
 
   @Override
+  public void onVideoCaptureError() {
+    Vibrator vibrator = ServiceUtil.getVibrator(this);
+    vibrator.vibrate(50);
+  }
+
+  @Override
   public void onImageCaptured(@NonNull byte[] data, int width, int height) {
     Log.i(TAG, "Camera image captured.");
+    onMediaCaptured(() -> data,
+                    ignored -> (long) data.length,
+                    (blobProvider, bytes, ignored) -> blobProvider.forData(bytes),
+                    MediaUtil.IMAGE_JPEG,
+                    width,
+                    height);
+  }
 
+  @Override
+  public void onVideoCaptured(@NonNull FileDescriptor fd) {
+    Log.i(TAG, "Camera video captured.");
+    onMediaCaptured(() -> new FileInputStream(fd),
+                    fin -> fin.getChannel().size(),
+                    BlobProvider::forData,
+                    VideoUtil.RECORDED_VIDEO_CONTENT_TYPE,
+                    0,
+                    0);
+  }
+
+
+  private <T> void onMediaCaptured(Supplier<T> dataSupplier,
+                                   IOFunction<T, Long> getLength,
+                                   Function3<BlobProvider, T, Long, BlobProvider.BlobBuilder> createBlobBuilder,
+                                   String mimeType,
+                                   int width,
+                                   int height)
+  {
     SimpleTask.run(getLifecycle(), () -> {
       try {
-        Uri uri = BlobProvider.getInstance()
-                              .forData(data)
-                              .withMimeType(MediaUtil.IMAGE_JPEG)
-                              .createForSingleSessionOnDisk(this);
-        return new Media(uri,
-                         MediaUtil.IMAGE_JPEG,
-                         System.currentTimeMillis(),
-                         width,
-                         height,
-                         data.length,
-                         Optional.of(Media.ALL_MEDIA_BUCKET_ID),
-                         Optional.absent());
+
+        T    data   = dataSupplier.get();
+        long length = getLength.apply(data);
+
+        Uri uri = createBlobBuilder.apply(BlobProvider.getInstance(), data, length)
+            .withMimeType(mimeType)
+            .createForSingleSessionOnDisk(this);
+
+        return new Media(
+            uri,
+            mimeType,
+            System.currentTimeMillis(),
+            width,
+            height,
+            length,
+            Optional.of(Media.ALL_MEDIA_BUCKET_ID),
+            Optional.absent()
+        );
       } catch (IOException e) {
         return null;
       }
@@ -406,7 +457,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
 
       Log.i(TAG, "Camera capture stored: " + media.getUri().toString());
 
-      viewModel.onImageCaptured(media);
+      viewModel.onMediaCaptured(media);
       navigateToMediaSend(Locale.getDefault());
     });
   }
@@ -500,6 +551,8 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
   }
 
   public void onAddMediaClicked(@NonNull String bucketId) {
+    hud.hideCurrentInput(composeText);
+
     // TODO: Get actual folder title somehow
     MediaPickerFolderFragment folderFragment = MediaPickerFolderFragment.newInstance(this, recipient != null ? recipient.get() : null);
     MediaPickerItemFragment   itemFragment   = MediaPickerItemFragment.newInstance(bucketId, "", viewModel.getMaxSelection());
@@ -535,7 +588,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
       } else if (state.getViewOnceState() == ViewOnceState.ENABLED) {
         captionBackground = 0;
       } else {
-        captionBackground = R.color.transparent_black_70;
+        captionBackground = R.color.transparent_black_40;
       }
 
       captionAndRail.setBackgroundResource(captionBackground);
@@ -652,10 +705,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
     } else if (recipient.isLocalNumber()) {
       composeText.setHint(getString(R.string.note_to_self), null);
     } else {
-      String displayName = Optional.fromNullable(recipient.getName())
-                                   .or(Optional.fromNullable(recipient.getProfileName())
-                                               .or(recipient.requireAddress().serialize()));
-      composeText.setHint(getString(R.string.MediaSendActivity_message_to_s, displayName), null);
+      composeText.setHint(getString(R.string.MediaSendActivity_message_to_s, recipient.getDisplayName(this)), null);
     }
 
   }
@@ -680,7 +730,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
     Permissions.with(this)
                .request(Manifest.permission.CAMERA)
                .ifNecessary()
-               .withRationaleDialog(getString(R.string.ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera), R.drawable.ic_photo_camera_white_48dp)
+               .withRationaleDialog(getString(R.string.ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera), R.drawable.ic_camera_solid_24)
                .withPermanentDenialDialog(getString(R.string.ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video))
                .onAllGranted(() -> {
                  Fragment fragment = getOrCreateCameraFragment();
@@ -799,13 +849,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
       protected void onPreExecute() {
         renderTimer   = new Stopwatch("ProcessMedia");
         progressTimer = () -> {
-          dialog = new AlertDialog.Builder(new ContextThemeWrapper(MediaSendActivity.this, R.style.TextSecure_MediaSendProgressDialog))
-                                  .setView(R.layout.progress_dialog)
-                                  .setCancelable(false)
-                                  .create();
-          dialog.show();
-          dialog.getWindow().setLayout(getResources().getDimensionPixelSize(R.dimen.mediasend_progress_dialog_size),
-                                       getResources().getDimensionPixelSize(R.dimen.mediasend_progress_dialog_size));
+          dialog = SimpleProgressDialog.show(new ContextThemeWrapper(MediaSendActivity.this, R.style.TextSecure_MediaSendProgressDialog));
         };
         Util.runOnMainDelayed(progressTimer, 250);
       }
@@ -928,7 +972,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
       } else if (MediaUtil.isGif(mediaItem.getMimeType())) {
         slideDeck.addSlide(new GifSlide(this, mediaItem.getUri(), 0, mediaItem.getWidth(), mediaItem.getHeight(), mediaItem.getCaption().orNull()));
       } else if (MediaUtil.isImageType(mediaItem.getMimeType())) {
-        slideDeck.addSlide(new ImageSlide(this, mediaItem.getUri(), 0, mediaItem.getWidth(), mediaItem.getHeight(), mediaItem.getCaption().orNull()));
+        slideDeck.addSlide(new ImageSlide(this, mediaItem.getUri(), 0, mediaItem.getWidth(), mediaItem.getHeight(), mediaItem.getCaption().orNull(), null));
       } else {
         Log.w(TAG, "Asked to send an unexpected mimeType: '" + mediaItem.getMimeType() + "'. Skipping.");
       }

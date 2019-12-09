@@ -23,6 +23,7 @@ import android.database.MatrixCursor;
 import android.database.MergeCursor;
 import android.provider.ContactsContract;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.loader.content.CursorLoader;
 import android.text.TextUtils;
 
@@ -37,6 +38,8 @@ import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.phonenumbers.NumberUtil;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.UsernameUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,10 +54,11 @@ public class ContactsCursorLoader extends CursorLoader {
   private static final String TAG = ContactsCursorLoader.class.getSimpleName();
 
   public static final class DisplayMode {
-    public static final int FLAG_PUSH   = 1;
-    public static final int FLAG_SMS    = 1 << 1;
-    public static final int FLAG_GROUPS = 1 << 2;
-    public static final int FLAG_ALL    = FLAG_PUSH | FLAG_SMS | FLAG_GROUPS;
+    public static final int FLAG_PUSH            = 1;
+    public static final int FLAG_SMS             = 1 << 1;
+    public static final int FLAG_ACTIVE_GROUPS   = 1 << 2;
+    public static final int FLAG_INACTIVE_GROUPS = 1 << 3;
+    public static final int FLAG_ALL             = FLAG_PUSH |  FLAG_SMS | FLAG_ACTIVE_GROUPS | FLAG_INACTIVE_GROUPS;
   }
 
   private static final String[] CONTACT_PROJECTION = new String[]{ContactRepository.ID_COLUMN,
@@ -76,7 +80,11 @@ public class ContactsCursorLoader extends CursorLoader {
   {
     super(context);
 
-    this.filter            = filter == null ? "" : filter;
+    if (flagSet(mode, DisplayMode.FLAG_INACTIVE_GROUPS) && !flagSet(mode, DisplayMode.FLAG_ACTIVE_GROUPS)) {
+      throw new AssertionError("Inactive group flag set, but the active group flag isn't!");
+    }
+
+    this.filter            = sanitizeFilter(filter);
     this.mode              = mode;
     this.recents           = recents;
     this.contactRepository = new ContactRepository(context);
@@ -90,6 +98,16 @@ public class ContactsCursorLoader extends CursorLoader {
       return new MergeCursor(cursorList.toArray(new Cursor[0]));
     }
     return null;
+  }
+
+  private static @NonNull String sanitizeFilter(@Nullable String filter) {
+    if (filter == null) {
+      return "";
+    } else if (filter.startsWith("@")) {
+      return filter.substring(1);
+    } else {
+      return filter;
+    }
   }
 
   private List<Cursor> getUnfilteredResults() {
@@ -127,8 +145,17 @@ public class ContactsCursorLoader extends CursorLoader {
       cursorList.addAll(getContactsCursors());
     }
 
-    if (NumberUtil.isValidSmsOrEmail(filter)) {
+    if (FeatureFlags.USERNAMES && NumberUtil.isVisuallyValidNumberOrEmail(filter)) {
+      cursorList.add(getPhoneNumberSearchHeaderCursor());
       cursorList.add(getNewNumberCursor());
+    } else if (!FeatureFlags.USERNAMES && NumberUtil.isValidSmsOrEmail(filter)){
+      cursorList.add(getContactsHeaderCursor());
+      cursorList.add(getNewNumberCursor());
+    }
+
+    if (FeatureFlags.USERNAMES && UsernameUtil.isValidUsernameForSearch(filter)) {
+      cursorList.add(getUsernameSearchHeaderCursor());
+      cursorList.add(getUsernameSearchCursor());
     }
 
     return cursorList;
@@ -167,18 +194,43 @@ public class ContactsCursorLoader extends CursorLoader {
     return groupHeader;
   }
 
+  private Cursor getPhoneNumberSearchHeaderCursor() {
+    MatrixCursor contactsHeader = new MatrixCursor(CONTACT_PROJECTION, 1);
+    contactsHeader.addRow(new Object[] { null,
+                                         getContext().getString(R.string.ContactsCursorLoader_phone_number_search),
+                                         "",
+                                         ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE,
+                                         "",
+                                         ContactRepository.DIVIDER_TYPE });
+    return contactsHeader;
+  }
+
+  private Cursor getUsernameSearchHeaderCursor() {
+    MatrixCursor contactsHeader = new MatrixCursor(CONTACT_PROJECTION, 1);
+    contactsHeader.addRow(new Object[] { null,
+                                         getContext().getString(R.string.ContactsCursorLoader_username_search),
+                                         "",
+                                         ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE,
+                                         "",
+                                         ContactRepository.DIVIDER_TYPE });
+    return contactsHeader;
+  }
+
 
   private Cursor getRecentConversationsCursor() {
     ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(getContext());
 
     MatrixCursor recentConversations = new MatrixCursor(CONTACT_PROJECTION, RECENT_CONVERSATION_MAX);
-    try (Cursor rawConversations = threadDatabase.getRecentConversationList(RECENT_CONVERSATION_MAX)) {
+    try (Cursor rawConversations = threadDatabase.getRecentConversationList(RECENT_CONVERSATION_MAX, flagSet(mode, DisplayMode.FLAG_INACTIVE_GROUPS))) {
       ThreadDatabase.Reader reader = threadDatabase.readerFor(rawConversations);
       ThreadRecord threadRecord;
       while ((threadRecord = reader.getNext()) != null) {
-        recentConversations.addRow(new Object[] { threadRecord.getRecipient().getId().serialize(),
-                                                  threadRecord.getRecipient().toShortString(),
-                                                  threadRecord.getRecipient().requireAddress().serialize(),
+        Recipient recipient = threadRecord.getRecipient();
+        String    stringId  = recipient.isGroup() ? recipient.requireGroupId() : recipient.getE164().or(recipient.getEmail()).or("");
+
+        recentConversations.addRow(new Object[] { recipient.getId().serialize(),
+                                                  recipient.toShortString(getContext()),
+                                                  stringId,
                                                   ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE,
                                                   "",
                                                   ContactRepository.RECENT_TYPE });
@@ -208,7 +260,7 @@ public class ContactsCursorLoader extends CursorLoader {
 
   private Cursor getGroupsCursor() {
     MatrixCursor groupContacts = new MatrixCursor(CONTACT_PROJECTION);
-    try (GroupDatabase.Reader reader = DatabaseFactory.getGroupDatabase(getContext()).getGroupsFilteredByTitle(filter)) {
+    try (GroupDatabase.Reader reader = DatabaseFactory.getGroupDatabase(getContext()).getGroupsFilteredByTitle(filter, flagSet(mode, DisplayMode.FLAG_INACTIVE_GROUPS))) {
       GroupDatabase.GroupRecord groupRecord;
       while ((groupRecord = reader.getNext()) != null) {
         groupContacts.addRow(new Object[] { groupRecord.getRecipientId().serialize(),
@@ -229,8 +281,19 @@ public class ContactsCursorLoader extends CursorLoader {
                                           filter,
                                           ContactsContract.CommonDataKinds.Phone.TYPE_CUSTOM,
                                           "\u21e2",
-                                          ContactRepository.NEW_TYPE });
+                                          ContactRepository.NEW_PHONE_TYPE});
     return newNumberCursor;
+  }
+
+  private Cursor getUsernameSearchCursor() {
+    MatrixCursor cursor = new MatrixCursor(CONTACT_PROJECTION, 1);
+    cursor.addRow(new Object[] { null,
+                                 getContext().getString(R.string.contact_selection_list__unknown_contact),
+                                 filter,
+                                 ContactsContract.CommonDataKinds.Phone.TYPE_CUSTOM,
+                                 "\u21e2",
+                                 ContactRepository.NEW_USERNAME_TYPE});
+    return cursor;
   }
 
   private @NonNull Cursor filterNonPushContacts(@NonNull Cursor cursor) {
@@ -266,14 +329,18 @@ public class ContactsCursorLoader extends CursorLoader {
   }
 
   private static boolean pushEnabled(int mode) {
-    return (mode & DisplayMode.FLAG_PUSH) > 0;
+    return flagSet(mode, DisplayMode.FLAG_PUSH);
   }
 
   private static boolean smsEnabled(int mode) {
-    return (mode & DisplayMode.FLAG_SMS) > 0;
+    return flagSet(mode, DisplayMode.FLAG_SMS);
   }
 
   private static boolean groupsEnabled(int mode) {
-    return (mode & DisplayMode.FLAG_GROUPS) > 0;
+    return flagSet(mode, DisplayMode.FLAG_ACTIVE_GROUPS);
+  }
+
+  private static boolean flagSet(int mode, int flag) {
+    return (mode & flag) > 0;
   }
 }

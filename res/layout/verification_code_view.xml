@@ -1,135 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_gravity="center">
+    android:layout_gravity="center"
+    android:layoutDirection="ltr">
 
-    <LinearLayout
+    <FrameLayout
         android:id="@+id/container_zero"
-        android:layout_width="48dp"
-        android:layout_height="54dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:background="@drawable/labeled_edit_text_background_inactive">
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/labeled_edit_text_background_inactive"
+        app:layout_constraintDimensionRatio="w,1:1"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/code_zero"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="28dp"
-            tools:text="1" />
+            android:layout_gravity="center"
+            android:textColor="@color/core_black"
+            android:textSize="28sp"
+            tools:text="0" />
 
-    </LinearLayout>
+    </FrameLayout>
 
-    <LinearLayout
+    <FrameLayout
         android:id="@+id/container_one"
-        android:layout_width="48dp"
-        android:layout_height="54dp"
-        android:layout_marginStart="5dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:background="@drawable/labeled_edit_text_background_inactive">
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:background="@drawable/labeled_edit_text_background_inactive"
+        app:layout_constraintDimensionRatio="w,1:1"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/container_zero"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/code_one"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="28dp"
-            tools:text="2" />
+            android:layout_gravity="center"
+            android:textColor="@color/core_black"
+            android:textSize="28sp"
+            tools:text="1" />
 
-    </LinearLayout>
+    </FrameLayout>
 
-    <LinearLayout
+    <FrameLayout
         android:id="@+id/container_two"
-        android:layout_width="48dp"
-        android:layout_height="54dp"
-        android:layout_marginStart="5dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:background="@drawable/labeled_edit_text_background_inactive">
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:background="@drawable/labeled_edit_text_background_inactive"
+        app:layout_constraintDimensionRatio="w,1:1"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/container_one"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/code_two"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="28dp"
+            android:layout_gravity="center"
+            android:textColor="@color/core_black"
+            android:textSize="28sp"
             tools:text="2" />
 
-    </LinearLayout>
+    </FrameLayout>
 
-    <LinearLayout
-        android:id="@+id/separator_container"
+    <TextView
+        android:id="@+id/separator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:gravity="center_horizontal"
         android:layout_gravity="center"
-        android:orientation="vertical">
+        android:layout_marginStart="4dp"
+        android:text="-"
+        android:textColor="@color/core_black"
+        android:textSize="28sp"
+        app:layout_constraintStart_toEndOf="@+id/container_two"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText" />
 
-        <TextView
-            android:id="@+id/separator"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="-"
-            android:textSize="28dp" />
-
-    </LinearLayout>
-
-    <LinearLayout
+    <FrameLayout
         android:id="@+id/container_three"
-        android:layout_width="48dp"
-        android:layout_height="54dp"
-        android:layout_marginStart="5dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:background="@drawable/labeled_edit_text_background_inactive">
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:background="@drawable/labeled_edit_text_background_inactive"
+        app:layout_constraintDimensionRatio="w,1:1"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/separator"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/code_three"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="28dp"
-            tools:text="2" />
+            android:layout_gravity="center"
+            android:textColor="@color/core_black"
+            android:textSize="28sp"
+            tools:text="3" />
 
-    </LinearLayout>
+    </FrameLayout>
 
-
-    <LinearLayout
+    <FrameLayout
         android:id="@+id/container_four"
-        android:layout_width="48dp"
-        android:layout_height="54dp"
-        android:layout_marginStart="5dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:background="@drawable/labeled_edit_text_background_inactive">
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:background="@drawable/labeled_edit_text_background_inactive"
+        app:layout_constraintDimensionRatio="w,1:1"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/container_three"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/code_four"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="28dp"
-            tools:text="2" />
+            android:layout_gravity="center"
+            android:textColor="@color/core_black"
+            android:textSize="28sp"
+            tools:text="4" />
 
-    </LinearLayout>
+    </FrameLayout>
 
-    <LinearLayout
+    <FrameLayout
         android:id="@+id/container_five"
-        android:layout_width="48dp"
-        android:layout_height="54dp"
-        android:layout_marginStart="5dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:background="@drawable/labeled_edit_text_background_inactive">
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:background="@drawable/labeled_edit_text_background_inactive"
+        app:layout_constraintDimensionRatio="w,1:1"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/container_four"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/code_five"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="28dp"
-            android:gravity="center"
-            tools:text="2" />
+            android:layout_gravity="center"
+            android:textColor="@color/core_black"
+            android:textSize="28sp"
+            tools:text="5" />
 
-    </LinearLayout>
+    </FrameLayout>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

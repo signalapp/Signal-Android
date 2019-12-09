@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="16dp"
+        android:importantForAccessibility="no"
+        android:src="@drawable/welcome"
+        app:layout_constraintBottom_toTopOf="@+id/title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/title"
+        style="@style/Signal.Text.Headline.Registration"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:gravity="center"
+        android:text="@string/RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message"
+        app:layout_constraintBottom_toTopOf="@+id/welcome_terms_button"
+        app:layout_constraintEnd_toEndOf="@+id/welcome_continue_button"
+        app:layout_constraintStart_toStartOf="@+id/welcome_continue_button" />
+
+    <TextView
+        android:id="@+id/welcome_terms_button"
+        style="@style/Signal.Text.Body.Registration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:text="@string/RegistrationActivity_terms_and_privacy"
+        android:textColor="@color/signal_primary"
+        app:layout_constraintBottom_toTopOf="@+id/welcome_continue_button"
+        app:layout_constraintEnd_toEndOf="@+id/welcome_continue_button"
+        app:layout_constraintStart_toStartOf="@+id/welcome_continue_button" />
+
+    <com.dd.CircularProgressButton
+        android:id="@+id/welcome_continue_button"
+        style="@style/Button.Registration"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="@dimen/registration_button_bottom_margin"
+        app:cpb_textIdle="@string/RegistrationActivity_continue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

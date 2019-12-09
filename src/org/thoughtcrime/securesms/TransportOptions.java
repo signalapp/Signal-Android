@@ -108,7 +108,7 @@ public class TransportOptions {
 
   public static @NonNull TransportOption getPushTransportOption(@NonNull Context context) {
     return new TransportOption(Type.TEXTSECURE,
-                               R.drawable.ic_send_push_white_24dp,
+                               R.drawable.ic_send_lock_24,
                                context.getResources().getColor(R.color.textsecure_primary),
                                context.getString(R.string.ConversationActivity_transport_signal),
                                context.getString(R.string.conversation_activity__type_message_push),
@@ -187,13 +187,13 @@ public class TransportOptions {
     }
 
     if (subscriptions.size() < 2) {
-      results.add(new TransportOption(Type.SMS, R.drawable.ic_send_sms_white_24dp,
-                                      context.getResources().getColor(R.color.grey_600),
+      results.add(new TransportOption(Type.SMS, R.drawable.ic_send_unlock_24,
+                                      context.getResources().getColor(R.color.core_grey_50),
                                       text, composeHint, characterCalculator));
     } else {
       for (SubscriptionInfoCompat subscriptionInfo : subscriptions) {
-        results.add(new TransportOption(Type.SMS, R.drawable.ic_send_sms_white_24dp,
-                                        context.getResources().getColor(R.color.grey_600),
+        results.add(new TransportOption(Type.SMS, R.drawable.ic_send_unlock_24,
+                                        context.getResources().getColor(R.color.core_grey_50),
                                         text, composeHint, characterCalculator,
                                         Optional.of(subscriptionInfo.getDisplayName()),
                                         Optional.of(subscriptionInfo.getSubscriptionId())));

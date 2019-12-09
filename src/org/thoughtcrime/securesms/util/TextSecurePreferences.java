@@ -7,6 +7,8 @@ import android.net.Uri;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
+import android.text.TextUtils;
+
 import androidx.annotation.ArrayRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,6 +21,10 @@ import org.thoughtcrime.securesms.lock.RegistrationLockReminders;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference;
 import org.whispersystems.libsignal.util.Medium;
+import org.whispersystems.signalservice.api.RegistrationLockData;
+import org.whispersystems.signalservice.api.util.UuidUtil;
+import org.whispersystems.signalservice.internal.contacts.entities.TokenResponse;
+import org.whispersystems.signalservice.internal.registrationpin.PinStretcher;
 
 import java.io.IOException;
 import java.security.SecureRandom;
@@ -26,6 +32,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
 public class TextSecurePreferences {
 
@@ -71,6 +78,8 @@ public class TextSecurePreferences {
   private static final String MMS_CUSTOM_USER_AGENT            = "pref_custom_mms_user_agent";
   private static final String THREAD_TRIM_ENABLED              = "pref_trim_threads";
   private static final String LOCAL_NUMBER_PREF                = "pref_local_number";
+  private static final String LOCAL_UUID_PREF                  = "pref_local_uuid";
+  private static final String LOCAL_USERNAME_PREF              = "pref_local_username";
   private static final String VERIFYING_STATE_PREF             = "pref_verifying";
   public  static final String REGISTERED_GCM_PREF              = "pref_gcm_registered";
   private static final String GCM_PASSWORD_PREF                = "pref_gcm_password";
@@ -150,8 +159,14 @@ public class TextSecurePreferences {
 
   public static final  String REGISTRATION_LOCK_PREF                   = "pref_registration_lock";
   private static final String REGISTRATION_LOCK_PIN_PREF               = "pref_registration_lock_pin";
+  private static final String REGISTRATION_LOCK_TOKEN_PREF             = "pref_registration_lock_token";
+  private static final String REGISTRATION_LOCK_PIN_KEY_2_PREF         = "pref_registration_lock_pin_key_2";
+  private static final String REGISTRATION_LOCK_MASTER_KEY             = "pref_registration_lock_master_key";
+  private static final String REGISTRATION_LOCK_TOKEN_RESPONSE         = "pref_registration_lock_token_response";
   private static final String REGISTRATION_LOCK_LAST_REMINDER_TIME     = "pref_registration_lock_last_reminder_time";
   private static final String REGISTRATION_LOCK_NEXT_REMINDER_INTERVAL = "pref_registration_lock_next_reminder_interval";
+  private static final String REGISTRATION_LOCK_SERVER_CONSISTENT      = "pref_registration_lock_server_consistent";
+  private static final String REGISTRATION_LOCK_SERVER_CONSISTENT_TIME = "pref_registration_lock_server_consistent_time";
 
   private static final String SERVICE_OUTAGE         = "pref_service_outage";
   private static final String LAST_OUTAGE_CHECK_TIME = "pref_last_outage_check_time";
@@ -168,7 +183,8 @@ public class TextSecurePreferences {
   private static final String NEEDS_MESSAGE_PULL = "pref_needs_message_pull";
 
   private static final String UNIDENTIFIED_ACCESS_CERTIFICATE_ROTATION_TIME_PREF = "pref_unidentified_access_certificate_rotation_time";
-  private static final String UNIDENTIFIED_ACCESS_CERTIFICATE                    = "pref_unidentified_access_certificate";
+  private static final String UNIDENTIFIED_ACCESS_CERTIFICATE_LEGACY             = "pref_unidentified_access_certificate";
+  private static final String UNIDENTIFIED_ACCESS_CERTIFICATE                    = "pref_unidentified_access_certificate_uuid";
   public  static final String UNIVERSAL_UNIDENTIFIED_ACCESS                      = "pref_universal_unidentified_access";
   public  static final String SHOW_UNIDENTIFIED_DELIVERY_INDICATORS              = "pref_show_unidentifed_delivery_indicators";
   private static final String UNIDENTIFIED_DELIVERY_ENABLED                      = "pref_unidentified_delivery_enabled";
@@ -195,6 +211,10 @@ public class TextSecurePreferences {
 
   private static final String HAS_SEEN_SWIPE_TO_REPLY = "pref_has_seen_swipe_to_reply";
 
+  private static final String HAS_SEEN_VIDEO_RECORDING_TOOLTIP = "camerax.fragment.has.dismissed.video.recording.tooltip";
+
+  private static final String STORAGE_MANIFEST_VERSION = "pref_storage_manifest_version";
+
   public static boolean isScreenLockEnabled(@NonNull Context context) {
     return getBooleanPreference(context, SCREEN_LOCK, false);
   }
@@ -211,20 +231,129 @@ public class TextSecurePreferences {
     setLongPreference(context, SCREEN_LOCK_TIMEOUT, value);
   }
 
-  public static boolean isRegistrationtLockEnabled(@NonNull Context context) {
+  public static boolean isRegistrationLockEnabled(@NonNull Context context) {
     return getBooleanPreference(context, REGISTRATION_LOCK_PREF, false);
   }
 
-  public static void setRegistrationtLockEnabled(@NonNull Context context, boolean value) {
+  public static void setRegistrationLockEnabled(@NonNull Context context, boolean value) {
     setBooleanPreference(context, REGISTRATION_LOCK_PREF, value);
   }
 
-  public static @Nullable String getRegistrationLockPin(@NonNull Context context) {
+  /**
+   * @deprecated Use only for migrations to the Key Backup Store registration pinV2.
+   */
+  @Deprecated
+  public static @Nullable String getDeprecatedRegistrationLockPin(@NonNull Context context) {
     return getStringPreference(context, REGISTRATION_LOCK_PIN_PREF, null);
   }
 
-  public static void setRegistrationLockPin(@NonNull Context context, String pin) {
+  public static boolean hasOldRegistrationLockPin(@NonNull Context context) {
+    //noinspection deprecation
+    return !TextUtils.isEmpty(getDeprecatedRegistrationLockPin(context));
+  }
+
+  public static void clearOldRegistrationLockPin(@NonNull Context context) {
+    PreferenceManager.getDefaultSharedPreferences(context)
+                     .edit()
+                     .remove(REGISTRATION_LOCK_PIN_PREF)
+                     .apply();
+  }
+
+  /**
+   * @deprecated Use only for migrations to the Key Backup Store registration pinV2.
+   */
+  @Deprecated
+  public static void setDeprecatedRegistrationLockPin(@NonNull Context context, String pin) {
     setStringPreference(context, REGISTRATION_LOCK_PIN_PREF, pin);
+  }
+
+  /** Clears old pin preference at same time if non-null */
+  public static void setRegistrationLockMasterKey(@NonNull Context context, @Nullable RegistrationLockData registrationLockData, long time) {
+    SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(context)
+            .edit()
+            .putBoolean(REGISTRATION_LOCK_SERVER_CONSISTENT, true)
+            .putLong(REGISTRATION_LOCK_SERVER_CONSISTENT_TIME, time);
+
+    if (registrationLockData == null) {
+      editor.remove(REGISTRATION_LOCK_TOKEN_RESPONSE)
+            .remove(REGISTRATION_LOCK_MASTER_KEY)
+            .remove(REGISTRATION_LOCK_TOKEN_PREF)
+            .remove(REGISTRATION_LOCK_PIN_KEY_2_PREF);
+    } else {
+      PinStretcher.MasterKey masterKey = registrationLockData.getMasterKey();
+      String tokenResponse;
+      try {
+        tokenResponse = JsonUtils.toJson(registrationLockData.getTokenResponse());
+      } catch (IOException e) {
+        throw new AssertionError(e);
+      }
+
+      editor.remove(REGISTRATION_LOCK_PIN_PREF) // Removal of V1 pin
+            .putBoolean(REGISTRATION_LOCK_PREF, true)
+            .putString(REGISTRATION_LOCK_TOKEN_RESPONSE, tokenResponse)
+            .putString(REGISTRATION_LOCK_MASTER_KEY, Base64.encodeBytes(masterKey.getMasterKey()))
+            .putString(REGISTRATION_LOCK_TOKEN_PREF, masterKey.getRegistrationLock())
+            .putString(REGISTRATION_LOCK_PIN_KEY_2_PREF, Base64.encodeBytes(masterKey.getPinKey2()));
+    }
+
+    editor.apply();
+  }
+
+  public static byte[] getMasterKey(@NonNull Context context) {
+    String key = getStringPreference(context, REGISTRATION_LOCK_MASTER_KEY, null);
+    if (key == null) {
+      return null;
+    }
+    try {
+      return Base64.decode(key);
+    } catch (IOException e) {
+      throw new AssertionError(e);
+    }
+  }
+
+  public static void setRegistrationLockServerConsistent(@NonNull Context context, boolean consistent, long time) {
+    PreferenceManager.getDefaultSharedPreferences(context)
+                     .edit()
+                     .putBoolean(REGISTRATION_LOCK_SERVER_CONSISTENT, consistent)
+                     .putLong(REGISTRATION_LOCK_SERVER_CONSISTENT_TIME, time)
+                     .apply();
+  }
+
+  public static @Nullable String getRegistrationLockToken(@NonNull Context context) {
+    return getStringPreference(context, REGISTRATION_LOCK_TOKEN_PREF, null);
+  }
+
+  public static void setRegistrationLockTokenResponse(@NonNull Context context, @NonNull TokenResponse tokenResponse) {
+    String tokenResponseString;
+    try {
+      tokenResponseString = JsonUtils.toJson(tokenResponse);
+    } catch (IOException e) {
+      throw new AssertionError(e);
+    }
+    setStringPreference(context, REGISTRATION_LOCK_TOKEN_RESPONSE, tokenResponseString);
+  }
+
+  public static @Nullable TokenResponse getRegistrationLockTokenResponse(@NonNull Context context) {
+    String token = getStringPreference(context, REGISTRATION_LOCK_TOKEN_RESPONSE, null);
+
+    if (token == null) return null;
+
+    try {
+      return JsonUtils.fromJson(token, TokenResponse.class);
+    } catch (IOException e) {
+      Log.w(TAG, e);
+      return null;
+    }
+  }
+
+  public static @Nullable byte[] getRegistrationLockPinKey2(@NonNull Context context){
+    String pinKey2 = getStringPreference(context, REGISTRATION_LOCK_PIN_KEY_2_PREF, null);
+    try {
+      return pinKey2 != null ? Base64.decode(pinKey2) : null;
+    } catch (IOException e) {
+      Log.w(TAG, e);
+      return null;
+    }
   }
 
   public static long getRegistrationLockLastReminderTime(@NonNull Context context) {
@@ -378,6 +507,10 @@ public class TextSecurePreferences {
 
   public static boolean isLinkPreviewsEnabled(Context context) {
     return getBooleanPreference(context, LINK_PREVIEWS, true);
+  }
+
+  public static void setLinkPreviewsEnabled(Context context, boolean enabled) {
+    setBooleanPreference(context, LINK_PREVIEWS, enabled);
   }
 
   public static boolean isGifSearchInGridLayout(Context context) {
@@ -574,10 +707,21 @@ public class TextSecurePreferences {
   }
 
   public static byte[] getUnidentifiedAccessCertificate(Context context) {
+    return parseCertificate(getStringPreference(context, UNIDENTIFIED_ACCESS_CERTIFICATE, null));
+  }
+
+  public static void setUnidentifiedAccessCertificateLegacy(Context context, byte[] value) {
+    setStringPreference(context, UNIDENTIFIED_ACCESS_CERTIFICATE_LEGACY, Base64.encodeBytes(value));
+  }
+
+  public static byte[] getUnidentifiedAccessCertificateLegacy(Context context) {
+    return parseCertificate(getStringPreference(context, UNIDENTIFIED_ACCESS_CERTIFICATE_LEGACY, null));
+  }
+
+  private static byte[] parseCertificate(String raw) {
     try {
-      String result = getStringPreference(context, UNIDENTIFIED_ACCESS_CERTIFICATE, null);
-      if (result != null) {
-        return Base64.decode(result);
+      if (raw != null) {
+        return Base64.decode(raw);
       }
     } catch (IOException e) {
       Log.w(TAG, e);
@@ -588,6 +732,10 @@ public class TextSecurePreferences {
 
   public static boolean isUniversalUnidentifiedAccess(Context context) {
     return getBooleanPreference(context, UNIVERSAL_UNIDENTIFIED_ACCESS, false);
+  }
+
+  public static void setShowUnidentifiedDeliveryIndicatorsEnabled(Context context, boolean enabled) {
+    setBooleanPreference(context, SHOW_UNIDENTIFIED_DELIVERY_INDICATORS, enabled);
   }
 
   public static boolean isShowUnidentifiedDeliveryIndicatorsEnabled(Context context) {
@@ -648,6 +796,22 @@ public class TextSecurePreferences {
 
   public static void setLocalNumber(Context context, String localNumber) {
     setStringPreference(context, LOCAL_NUMBER_PREF, localNumber);
+  }
+
+  public static UUID getLocalUuid(Context context) {
+    return UuidUtil.parseOrNull(getStringPreference(context, LOCAL_UUID_PREF, null));
+  }
+
+  public static void setLocalUuid(Context context, UUID uuid) {
+    setStringPreference(context, LOCAL_UUID_PREF, uuid.toString());
+  }
+
+  public static String getLocalUsername(Context context) {
+    return getStringPreference(context, LOCAL_USERNAME_PREF, null);
+  }
+
+  public static void setLocalUsername(Context context, String username) {
+    setStringPreference(context, LOCAL_USERNAME_PREF, username);
   }
 
   public static String getPushServerPassword(Context context) {
@@ -1156,6 +1320,22 @@ public class TextSecurePreferences {
 
   public static void setHasSeenSwipeToReplyTooltip(Context context, boolean value) {
     setBooleanPreference(context, HAS_SEEN_SWIPE_TO_REPLY, value);
+  }
+
+  public static boolean hasSeenVideoRecordingTooltip(Context context) {
+    return getBooleanPreference(context, HAS_SEEN_VIDEO_RECORDING_TOOLTIP, false);
+  }
+
+  public static void setHasSeenVideoRecordingTooltip(Context context, boolean value) {
+    setBooleanPreference(context, HAS_SEEN_VIDEO_RECORDING_TOOLTIP, value);
+  }
+
+  public static long getStorageManifestVersion(Context context) {
+    return getLongPreference(context, STORAGE_MANIFEST_VERSION, 0);
+  }
+
+  public static void setStorageManifestVersion(Context context, long version) {
+    setLongPreference(context, STORAGE_MANIFEST_VERSION, version);
   }
 
   public static void setBooleanPreference(Context context, String key, boolean value) {

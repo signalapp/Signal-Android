@@ -17,7 +17,8 @@
             android:layout_width="fill_parent"/>
 
         <ImageButton android:id="@+id/contacts_button"
-                     android:background="#00000000"
+                     android:background="?actionBarItemBackground"
+                     android:tint="?icon_tint"
                      android:layout_width="40dp"
                      android:layout_height="35dp"
                      android:layout_marginEnd="5dp"

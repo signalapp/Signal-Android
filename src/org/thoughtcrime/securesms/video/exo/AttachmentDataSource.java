@@ -9,6 +9,7 @@ import com.google.android.exoplayer2.upstream.DefaultDataSource;
 import com.google.android.exoplayer2.upstream.TransferListener;
 
 import org.thoughtcrime.securesms.mms.PartAuthority;
+import org.thoughtcrime.securesms.providers.BlobProvider;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -19,12 +20,17 @@ public class AttachmentDataSource implements DataSource {
 
   private final DefaultDataSource defaultDataSource;
   private final PartDataSource    partDataSource;
+  private final BlobDataSource    blobDataSource;
 
   private DataSource dataSource;
 
-  public AttachmentDataSource(DefaultDataSource defaultDataSource, PartDataSource partDataSource) {
+  public AttachmentDataSource(DefaultDataSource defaultDataSource,
+                              PartDataSource partDataSource,
+                              BlobDataSource blobDataSource)
+  {
     this.defaultDataSource = defaultDataSource;
     this.partDataSource    = partDataSource;
+    this.blobDataSource    = blobDataSource;
   }
 
   @Override
@@ -33,8 +39,9 @@ public class AttachmentDataSource implements DataSource {
 
   @Override
   public long open(DataSpec dataSpec) throws IOException {
-    if (PartAuthority.isLocalUri(dataSpec.uri)) dataSource = partDataSource;
-    else                                        dataSource = defaultDataSource;
+    if      (BlobProvider.isAuthority(dataSpec.uri)) dataSource = blobDataSource;
+    else if (PartAuthority.isLocalUri(dataSpec.uri)) dataSource = partDataSource;
+    else                                             dataSource = defaultDataSource;
 
     return dataSource.open(dataSpec);
   }

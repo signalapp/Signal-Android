@@ -1,6 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="app_name">Signal</string>
   <string name="yes">예</string>
   <string name="no">아니요</string>
   <string name="delete">삭제</string>
@@ -10,7 +9,6 @@
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">새 메시지</string>
   <!--AlbumThumbnailView-->
-  <string name="AlbumThumbnailView_plus">\+%d</string>
   <!--ApplicationMigrationActivity-->
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">현재: %s</string>
@@ -68,6 +66,8 @@
   <string name="BucketedThreadMedia_Yesterday">어제</string>
   <string name="BucketedThreadMedia_This_week">이번주</string>
   <string name="BucketedThreadMedia_This_month">이번달</string>
+  <string name="BucketedThreadMedia_Large">크게</string>
+  <string name="BucketedThreadMedia_Small">작게</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">수신통화</string>
   <!--CameraActivity-->
@@ -81,6 +81,8 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">웹 브라우저를 찾을 수 없습니다.</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">이미 통신사 무선망 전화를 사용하고 있습니다.</string>
+  <string name="CommunicationActions_cancel">취소</string>
+  <string name="CommunicationActions_call">전화</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">%1$s의 안전 번호가 변경되었습니다. 누군가가 연결을 가로채려 시도하고 있거나 단순히 %2$s(이)가 Signal을 다시 설치한 것일 수도 있습니다. </string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">이 연락처와의 안전 번호를 검증해보세요.</string>
@@ -239,7 +241,7 @@
   <string name="CustomDefaultPreference_none">없음</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">방금 전</string>
-  <string name="DateUtils_minutes_ago">%d분 전</string>
+  <string name="DateUtils_minutes_ago">%d분</string>
   <string name="DateUtils_today">오늘</string>
   <string name="DateUtils_yesterday">어제</string>
   <!--DeliveryStatus-->
@@ -261,7 +263,6 @@
   <string name="DeviceListItem_last_active_s">최근 사용: %s</string>
   <string name="DeviceListItem_today">오늘</string>
   <!--DocumentView-->
-  <string name="DocumentView_unknown_file">알려지지 않은 파일</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Play Services를 찾을 수 없음</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">이 기기는 Play Services를 지원하지 않습니다. 시스템 내장 배터리 최적화 기능으로 인해 Signal을 사용하지 않을 때 메시지를 받지 못할 수 있습니다. 배터리 최적화를 끄려면 여기를 탭하세요.</string>
@@ -292,7 +293,7 @@
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Signal 설정(개인정보 &gt; 링크 미리보기 보내기)에서 기능을 켜고 끌 수 있습니다.</string>
   <string name="ExperienceUpgradeActivity_got_it">확인</string>
   <!--GcmBroadcastReceiver-->
-  <string name="GcmBroadcastReceiver_retrieving_a_message">메시지 받아오는 중...</string>
+  <string name="GcmBroadcastReceiver_retrieving_a_message">메시지 받아오는 중…</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">영구적인 Signal 통신 실패!</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal은 Google Play 서비스에 등록할 수 없습니다. Signal 메시지와 통화는 사용 중지되었으므로 Signal 설정 메뉴에서 재가입해 주세요.</string>
@@ -346,7 +347,7 @@
   <string name="InviteActivity_no_app_to_share_to">친구 초대 위해 공유할 수 있는 앱 없음</string>
   <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">좋은 친구라면 친구의 메시지도 암호화 해주세요~</string>
   <!--Job-->
-  <string name="Job_working_in_the_background">백그라운드에서 동작 중...</string>
+  <string name="Job_working_in_the_background">백그라운드에서 동작 중…</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">전송 실패</string>
   <string name="MessageDetailsRecipient_new_safety_number">새 안전 번호</string>
@@ -361,17 +362,15 @@
   <string name="MmsDownloader_error_reading_mms_settings">이동통신사 MMS 설정 읽기 오류 발생</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">매체</string>
-  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
-    <item quantity="other">선택된 메시지들을 삭제할까요?</item>
-  </plurals>
-  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-    <item quantity="other">%1$d 의 선택된 메시지들을 영구적으로 삭제합니다.</item>
-  </plurals>
+  <string name="MediaOverviewActivity_Audio">오디오</string>
   <string name="MediaOverviewActivity_Media_delete_progress_title">이전 메시지 삭제</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">메시지를 삭제 중…</string>
-  <string name="MediaOverviewActivity_Documents">문서들</string>
   <string name="MediaOverviewActivity_Select_all">모두 선택</string>
   <string name="MediaOverviewActivity_collecting_attachments">첨부파일 저장 준비 중…</string>
+  <string name="MediaOverviewActivity_file">파일</string>
+  <string name="MediaOverviewActivity_audio">오디오</string>
+  <string name="MediaOverviewActivity_video">비디오</string>
+  <string name="MediaOverviewActivity_image">이미지</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal 통화 중</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal 통화 연결 중</string>
@@ -389,7 +388,7 @@
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">탭하여 선택</string>
   <!--MediaSendActivity-->
-  <string name="MediaSendActivity_add_a_caption">설명 추가...</string>
+  <string name="MediaSendActivity_add_a_caption">자막 추가…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">용량 제한이 초과되어 항목이 삭제됨</string>
   <string name="MediaSendActivity_camera_unavailable">카메라를 사용할 수 없습니다.</string>
   <string name="MediaSendActivity_message_to_s">%s에게 메시지</string>
@@ -456,6 +455,9 @@
   <string name="PlacePickerActivity_title">지도</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">설치된 Google Play 서비스 버전은 제대로 작동하지 않습니다. Google Play 서비스를 재설치 하고 다시 시도해 주세요.</string>
+  <!--ProfileEditNameFragment-->
+  <string name="ProfileEditNameFragment_save">저장</string>
+  <!--ProfileEditOverviewFragment-->
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">앱 평가</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">앱이 마음에 들면 평가해 주시면 좋겠습니다.</string>
@@ -525,6 +527,8 @@
   <string name="RegistrationActivity_call">전화걸기</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_photo">사진</string>
+  <string name="RevealableMessageView_video">비디오</string>
+  <string name="RevealableMessageView_outgoing_media">미디어</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">이미지 변경점을 저장할 수 없음</string>
   <!--Search-->
@@ -606,16 +610,20 @@
   <!--UnverifiedSendDialog-->
   <string name="UnverifiedSendDialog_send_message">메시지를 보내시겠습니까?</string>
   <string name="UnverifiedSendDialog_send">보내기</string>
+  <!--UsernameEditFragment-->
+  <string name="UsernameEditFragment_submit">제출</string>
+  <string name="UsernameEditFragment_delete">삭제</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">해당 연락처는 오래된 버전의 Signal을 쓰고 있습니다. 안전 번호를 검증하기 전에 먼저 업데이트를 요청하세요.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">해당 연락처는 상위 버전 Signal의 호환되지 않는 QR 코드 형식을 사용하고 있습니다. 앱을 업데이트하세요.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">해당 QR 코드는 안전 번호 검증 코드 형식이 아닌 것 같습니다. 다시 시도해보세요.</string>
-  <string name="VerifyIdentityActivity_share_safety_number_via">다음으로 안전 번호 공유...</string>
+  <string name="VerifyIdentityActivity_share_safety_number_via">다음으로 안전 번호 공유…</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">우리의 Signal 안전 번호:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">친구 초대 위해 공유할 수 있는 앱 없음</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">클립보드에 비교할 수 있는 안전 번호가 없음</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal이 QR 코드를 읽으려면 카메라 권한이 필요하지만 현재 거부되어 있습니다. 앱 설정 메뉴에서 \"권한\"을 선택한 후 \"카메라\" 항목을 허용하세요.</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">QR 코드를 읽으려면 카메라 권한이 필요합니다</string>
+  <!--ViewOnceMessageActivity-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">잘못 암호화된 메시지</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">존재하지 않는 세션에서 암호화된 메시지</string>
@@ -673,6 +681,7 @@
   <string name="NotificationChannel_other">기타</string>
   <string name="NotificationChannel_group_messages">메시지</string>
   <string name="NotificationChannel_missing_display_name">알 수 없음</string>
+  <!--ProfileEditNameFragment-->
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal 잠겨 있는 경우 빠른 응답 사용할 수 없음</string>
   <string name="QuickResponseService_problem_sending_message">메시지 보내지 못함</string>
@@ -687,6 +696,7 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">새 메시지</string>
+  <!--ThumbnailView-->
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">
     <item quantity="other">항목 %d개</item>
@@ -782,6 +792,7 @@
   <string name="QuoteView_audio">오디오</string>
   <string name="QuoteView_video">동영상</string>
   <string name="QuoteView_photo">사진</string>
+  <string name="QuoteView_media">미디어 메시지</string>
   <string name="QuoteView_sticker">스티커</string>
   <string name="QuoteView_document">문서</string>
   <string name="QuoteView_you">나</string>
@@ -852,8 +863,8 @@
   <string name="log_submit_activity__button_got_it">확인</string>
   <string name="log_submit_activity__button_compose_email">이메일 작성</string>
   <string name="log_submit_activity__this_log_will_be_posted_online">해당 로그가 열람을 위해 온라인에 게시됩니다. 제출하기 전 로그를 보고 수정할 수 있습니다.</string>
-  <string name="log_submit_activity__loading_logs">로그 불러오는 중...</string>
-  <string name="log_submit_activity__uploading_logs">로그 업로드 중...</string>
+  <string name="log_submit_activity__loading_logs">로그 불러오는 중…</string>
+  <string name="log_submit_activity__uploading_logs">로그 업로드 중…</string>
   <string name="log_submit_activity__success">성공</string>
   <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">이 URL을 복사하여 문제점을 보고하거나 이메일을 작성하세요:\n\n<b>%1$s</b>\n</string>
   <string name="log_submit_activity__copied_to_clipboard">클립보드로 복사됨</string>
@@ -879,7 +890,7 @@
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">보기</string>
   <string name="message_recipients_list_item__resend">다시 보내기</string>
-  <string name="message_recipients_list_item__resending">재전송 중...</string>
+  <string name="message_recipients_list_item__resending">재전송 중…</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="other">%1$s님께서 그룹에 참여했습니다.</item>
@@ -985,9 +996,6 @@
   <string name="arrays__high">높게</string>
   <string name="arrays__max">최대</string>
   <!--plurals.xml-->
-  <plurals name="hours_ago">
-    <item quantity="other">%d시간 전</item>
-  </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">SMS 및 MMS</string>
   <string name="preferences__pref_all_sms_title">SMS 메시지 수신</string>
@@ -1055,6 +1063,7 @@
   <string name="preferences__linked_devices">연결된 기기</string>
   <string name="preferences__light_theme">밝게</string>
   <string name="preferences__dark_theme">어둡게</string>
+  <string name="preferences__system_theme">시스템</string>
   <string name="preferences__appearance">모양</string>
   <string name="preferences__theme">테마</string>
   <string name="preferences__default">기본</string>
@@ -1076,6 +1085,7 @@
   <string name="preferences_chats__when_roaming">로밍할 때</string>
   <string name="preferences_chats__media_auto_download">미디어 자동 다운로드</string>
   <string name="preferences_chats__message_trimming">대화 줄이기</string>
+  <string name="preferences_storage__audio">오디오</string>
   <string name="preferences_advanced__use_system_emoji">시스템 이모티콘 사용</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Signal 이모티콘 사용 중지</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">연락하는 이에게 IP 주소를 알려주지 않도록 모든 통화를 Signal 서버로 중계합니다. 통화 품질이 떨어질 수 있습니다.</string>
@@ -1116,6 +1126,7 @@
   <string name="conversation_context__menu_forward_message">메시지 전달</string>
   <string name="conversation_context__menu_resend_message">메시지 다시 보내기</string>
   <string name="conversation_context__menu_reply_to_message">메시지 답장</string>
+  <!--conversation_context_reacction-->
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">첨부파일 저장</string>
   <!--conversation_expiring_off-->
@@ -1195,8 +1206,6 @@
   <string name="media_preview__save_title">저장</string>
   <string name="media_preview__forward_title">전달</string>
   <string name="media_preview__all_media_title">모든 미디어</string>
-  <!--media_overview-->
-  <string name="media_overview_documents_fragment__no_documents_found">문서 없음</string>
   <!--media_preview_activity-->
   <string name="media_preview_activity__media_content_description">미디어 미리보기</string>
   <!--new_conversation_activity-->
@@ -1206,6 +1215,11 @@
   <string name="trimmer__deleting">이전 메시지 삭제</string>
   <string name="trimmer__deleting_old_messages">이전 메시지를 삭제 중…</string>
   <string name="trimmer__old_messages_successfully_deleted">이전 메시지 삭제됨</string>
+  <!--Insights-->
+  <string name="InsightsDashboardFragment__cancel">취소</string>
+  <string name="InsightsDashboardFragment__send">발신</string>
+  <string name="FirstInviteReminder__title">Signal로 초대</string>
+  <string name="InsightsReminder__invite">초대</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">전송 아이콘</string>
   <string name="ConversationListFragment_loading">불러오는 중</string>
@@ -1234,8 +1248,8 @@
   <string name="RegistrationActivity_restore">복원</string>
   <string name="RegistrationActivity_backup_failure_downgrade">상위 버전의 Signal에서 생성된 백업에서는 가져올 수 없습니다</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">백업 비밀번호가 틀립니다</string>
-  <string name="RegistrationActivity_checking">확인 중...</string>
-  <string name="RegistrationActivity_d_messages_so_far">현재 메시지 %d개 처리됨...</string>
+  <string name="RegistrationActivity_checking">확인 중…</string>
+  <string name="RegistrationActivity_d_messages_so_far">현재 메시지 %d개 처리됨…</string>
   <string name="RegistrationActivity_restore_from_backup">백업에서 복구하시겠습니까?</string>
   <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">로컬 백업에서 메시지와 미디어를 복원합니다. 지금 복원하지 않으면 이후에는 복원할 수 없습니다.</string>
   <string name="RegistrationActivity_backup_size_s">백업 크기: %s</string>
@@ -1250,11 +1264,12 @@
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal이 백업을 저장하려면 저장공간 권한이 필요하지만 현재 거부되어 있습니다. 앱 설정 메뉴에서 \"권한\"을 선택한 후 \"저장공간\" 항목을 허용하세요.</string>
   <string name="ChatsPreferenceFragment_last_backup_s">마지막 백업: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">진행 중</string>
-  <string name="LocalBackupJob_creating_backup">백업 생성 중...</string>
+  <string name="LocalBackupJob_creating_backup">백업 생성 중…</string>
   <string name="ProgressPreference_d_messages_so_far">현재 메시지 %d개 처리됨</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">%s에 보낸 인증 코드를 입력하세요</string>
   <string name="RegistrationActivity_wrong_number">잘못된 번호</string>
   <string name="RegistrationActivity_call_me_instead_available_in">대신 전화하기 \n (%1$02d:%2$02d 후 이용 가능)</string>
+  <string name="RegistrationActivity_contact_signal_support">Signal 지원에 문의</string>
   <string name="BackupUtil_never">안함</string>
   <string name="BackupUtil_unknown">알 수 없음</string>
   <string name="preferences_app_protection__screen_lock">화면 잠금</string>
@@ -1297,5 +1312,9 @@
   <string name="prompt_passphrase_activity__tap_to_unlock">탭하여 잠금 해제</string>
   <string name="RegistrationLockDialog_reminder">리마인더:</string>
   <string name="recipient_preferences__about">정보</string>
+  <string name="Recipient_unknown">알 수 없음</string>
+  <string name="MessageRequestBottomView_accept">수락</string>
+  <string name="MessageRequestBottomView_delete">삭제</string>
+  <string name="MessageRequestBottomView_block">차단</string>
   <!--EOF-->
 </resources>

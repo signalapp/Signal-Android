@@ -2,7 +2,8 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="wrap_content">
 
@@ -217,13 +218,14 @@
                         android:src="@drawable/ic_keyboard_arrow_down_white_24dp"
                         android:scaleType="center"
                         android:contentDescription="@string/attachment_type_selector__drawer_description"
-                        app:circleColor="@color/gray50"/>
+                        app:circleColor="@color/core_grey_50"/>
 
                 <TextView android:layout_marginTop="10dp"
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
                           style="@style/AttachmentTypeLabel"
-                          android:text=" "/>
+                          android:text=" "
+                          tools:ignore="HardcodedText" />
 
             </LinearLayout>
 

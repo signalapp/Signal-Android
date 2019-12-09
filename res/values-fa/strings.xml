@@ -1,34 +1,36 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
-  <string name="app_name">Signal</string>
   <string name="yes">بله</string>
   <string name="no">خیر</string>
   <string name="delete">حذف</string>
-  <string name="please_wait">لطفاً صبر کنید...</string>
-  <string name="save">ذخیره</string>
-  <string name="note_to_self">یادداشت برای خود</string>
+  <string name="please_wait">لطفاً صبر کنید…</string>
+  <string name="save">ذخیره‌سازی</string>
+  <string name="note_to_self">یادداشت شخصی</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">پیام جدید</string>
   <!--AlbumThumbnailView-->
-  <string name="AlbumThumbnailView_plus">\+%d</string>
   <!--ApplicationMigrationActivity-->
-  <string name="ApplicationMigrationActivity__signal_is_updating">سیگنال در حال به‌روزرسانی است...</string>
+  <string name="ApplicationMigrationActivity__signal_is_updating">سیگنال در حال بروزرسانی است…</string>
   <!--ApplicationPreferencesActivity-->
   <string name="ApplicationPreferencesActivity_currently_s">در حال حاضر: %s</string>
-  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">شما هنوز رمزی تعیین نکرده‌اید!</string>
+  <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">شما هنوز رمزی تنظیم نکرده‌اید!</string>
   <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
     <item quantity="one">%d پیام در هر گفتگو</item>
-    <item quantity="other">%d پیام در هر گفتگو</item>
+    <item quantity="other">%d پیام در هر مکاتبه</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">پیام‌های قدیمی حذف شوند؟</string>
+  <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
+    <item quantity="one">این گزینه بلافاصله تمامی مکاتبات شما را به آخرین پیام، کاهش خواهد داد.</item>
+    <item quantity="other">این گزینه‌، بلافاصله تمامی مکاتبات شما را به %d پیام آخر، کاهش خواهد داد.</item>
+  </plurals>
   <string name="ApplicationPreferencesActivity_delete">حذف</string>
-  <string name="ApplicationPreferencesActivity_disable_passphrase">عبارت عبور غیرفعال شود؟</string>
-  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">این گزینه، Signal و اعلان پیام را بطور دائم از وضعیت قفل خارج می‌کند.</string>
+  <string name="ApplicationPreferencesActivity_disable_passphrase">گذرواژه غیرفعال شود؟</string>
+  <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">این گزینه Signal و اعلان پیام را بطور دائم از وضعیت قفل خارج می‌کند.</string>
   <string name="ApplicationPreferencesActivity_disable">غیرفعال کردن</string>
-  <string name="ApplicationPreferencesActivity_unregistering">لغو ثبت‌نام</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">لغو ثبت‌نام برای پیام‌ها و تماس‌های Signal ...</string>
+  <string name="ApplicationPreferencesActivity_unregistering">لغو عضویت</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">لغو ثبت‌نام برای پیام‌ها و تماس‌های Signal …</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">تماس‌ها و پیام‌های Signal غیرفعال شوند؟</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">غیرفعال کردن پیام ها و تماس های Signal از طریق لغو ثبت نام از سرور. در آینده برای استفاده از Signal نیاز به ثبت‌نام دوبارۀ شمارۀ تلفن خود خواهید داشت.</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">غیرفعال کردن پیام‌ها و تماس‌های Signal از طریق لغو عضویت از سرور. در آینده برای استفاده از Signal نیاز به عضویت دوباره از طریق شماره‌تلفن خود خواهید داشت.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">خطا در اتصال به سرور!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">پیامک فعال شد</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">لمس کنید تا برنامهٔ پیش‌فرض پیامک را تغییر دهید</string>
@@ -38,7 +40,7 @@
   <string name="ApplicationPreferencesActivity_On">روشن</string>
   <string name="ApplicationPreferencesActivity_off">خاموش</string>
   <string name="ApplicationPreferencesActivity_Off">خاموش</string>
-  <string name="ApplicationPreferencesActivity_sms_mms_summary">پیامک %1$s, فراپیام %2$s</string>
+  <string name="ApplicationPreferencesActivity_sms_mms_summary">پیام کوتاه %1$s, پیام چندرسانه‌ای %2$s</string>
   <string name="ApplicationPreferencesActivity_privacy_summary">قفل صفحه %1$s، قفل عضویت %2$s</string>
   <string name="ApplicationPreferencesActivity_appearance_summary">تم %1$s، زبان %2$s</string>
   <!--AppProtectionPreferenceFragment-->
@@ -53,14 +55,14 @@
   <string name="DraftDatabase_Draft_location_snippet">(موقعیت)</string>
   <string name="DraftDatabase_Draft_quote_snippet">(پاسخ)</string>
   <!--AttachmentManager-->
-  <string name="AttachmentManager_cant_open_media_selection">امکان یافتن برنامه‌ای برای انتخاب مدیا وجود ندارد.</string>
-  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal برای ارسال فایل‌های تصویری و صوتی نیاز به دسترسی به حافظه دارد اما این دسترسی به طور همیشگی رد شده است. لطفا به بخش برنامه در تنظیمات تلفن همراه خود رفته و پس از یافتن Signal وارد بخش دسترسی ها شده و گزینه حافظه را فعال کنید.</string>
+  <string name="AttachmentManager_cant_open_media_selection">برنامه‌ای برای انتخاب رسانه پیدا نشد.</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal برای ارسال فایل‌های تصویری و صوتی به مجوز دسترسی به حافظه نیاز دارد اما این دسترسی به طور همیشگی لغو شده است. لطفاً به بخش مدیریت برنامه‌ها در تنظیمات تلفن همراه خود رفته و پس از یافتن Signal وارد بخش «مجوزها» شده و گزینهٔ حافظه را فعال کنید.</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal برای جستجوی مخاطبان نیاز به دسترسی به مجوز مخاطبان دارد اما این دسترسی به Signal داده نشده است. لطفا به بخش برنامه ها در تنظیمات تلفن همراه خود رفته در ادامه پس از یافتن Signal وارد بخش دسترسی ها شده و گزینه مخاطبان را فعال کنید.</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal برای استفاده از سرویس مکانیاب،  نیازمند دسترسی به سرویس مکان دارد ولی این دسترسی قطع شده است. لطفا برای ادامه دادن، به بخش منوی تنظیمات برنامه رفته، \"اجازه ها\" را انتخاب کرده و گزینه ی \"مکان\" را فعال نمایید.</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal جهت گرفتن عکس نیاز به دسترسی دوربین دارد، اما به طور دائم رد شده است. لطفاً به منوی تنظیمات برنامه ها رفته، \"Permissions\" را انتخاب کرده، و \"Camera\" را فعال کنید.</string>
   <!--AttachmentUploadJob-->
-  <string name="AttachmentUploadJob_uploading_media">در حال ارسال رسانه...</string>
-  <string name="AttachmentUploadJob_compressing_video_start">فشرده‌سازی ویدئو...</string>
+  <string name="AttachmentUploadJob_uploading_media">در حال ارسال رسانه…</string>
+  <string name="AttachmentUploadJob_compressing_video_start">فشرده‌سازی ویدئو…</string>
   <!--AudioSlidePlayer-->
   <string name="AudioSlidePlayer_error_playing_audio">خطا در پخش صوتی!</string>
   <!--BlockedContactsActivity-->
@@ -70,11 +72,15 @@
   <string name="BucketedThreadMedia_Yesterday">دیروز</string>
   <string name="BucketedThreadMedia_This_week">این هفته</string>
   <string name="BucketedThreadMedia_This_month">این ماه</string>
+  <string name="BucketedThreadMedia_Large">بزرگ</string>
+  <string name="BucketedThreadMedia_Medium">متوسط</string>
+  <string name="BucketedThreadMedia_Small">کوچک</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">تماس های دریافتی</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">تصویر ذخیره نشد</string>
   <!--CameraXFragment-->
+  <string name="CameraXFragment_tap_for_photo_hold_for_video">برای عکس ضربه بزنید ، برای فیلم نگه دارید</string>
   <string name="CameraXFragment_capture_description">گرفتن</string>
   <string name="CameraXFragment_change_camera_description">تغییر دوربین</string>
   <string name="CameraXFragment_open_gallery_description">بازکردن گالری</string>
@@ -95,6 +101,10 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">هیچ مرورگر اینترنتی یافت نشد.</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">در حال حاضر یک تماس تلفنی در حال برقراری است.</string>
+  <string name="CommunicationActions_start_video_call">شروع تماس تصویری؟</string>
+  <string name="CommunicationActions_start_voice_call">شروع تماس صوتی؟</string>
+  <string name="CommunicationActions_cancel">لغو</string>
+  <string name="CommunicationActions_call">تماس</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">شمارۀ امنیتی شما با %1$s تغییر یافته است. این به این معنا است که شخص ثالثی تلاش می‌کند تا ارتباط شما را شنود کند و یا %2$s Signal را مجدداً نصب کرده است.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">شاید بخواهید که شمارۀ امنیتی خود را با این مخاطب تأیید کنید.</string>
@@ -103,6 +113,8 @@
   <string name="ContactsCursorLoader_recent_chats">گفتگوهای اخیر</string>
   <string name="ContactsCursorLoader_contacts">مخاطبین</string>
   <string name="ContactsCursorLoader_groups">گروه‌ها</string>
+  <string name="ContactsCursorLoader_phone_number_search">جستجوی شماره‌تلفن</string>
+  <string name="ContactsCursorLoader_username_search">جستجوی نام کاربری</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">ارسال پیام به  %s</string>
   <string name="ContactsDatabase_signal_call_s">تماس Signal %s</string>
@@ -124,9 +136,9 @@
   <string name="ConversationItem_group_action_left">%1$s گروه را ترک کرده است.</string>
   <string name="ConversationItem_click_to_approve_unencrypted">ارسال نشد، برای ارتباط جایگزین ناامن ضربه بزنید</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">بازگشت به حالت پیامک بدون رمزگذاری؟</string>
-  <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">بازگشت به حالت فراپیام بدون رمزگذاری؟</string>
+  <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">بازگشت به حالت پیام چندرسانه‌ای رمز نشده؟</string>
   <string name="ConversationItem_click_to_approve_unencrypted_dialog_message"> این پیام رمزگذاری <b>نخواهد</b>شد، زیرا دریافت کننده از Signal استفاده نمی‌کند. پیام به صورت ناامن ارسال شود؟</string>
-  <string name="ConversationItem_unable_to_open_media">برنامه‌ای برای بازکردن این رسانه وجود ندارد.</string>
+  <string name="ConversationItem_unable_to_open_media">برنامه‌ای برای بازکردن این رسانه پیدا نشد.</string>
   <string name="ConversationItem_copied_text">%s کپی شد</string>
   <string name="ConversationItem_from_s">از %s</string>
   <string name="ConversationItem_to_s">به %s</string>
@@ -151,7 +163,7 @@
   <string name="ConversationActivity_leave_group">ترک گروه؟</string>
   <string name="ConversationActivity_are_you_sure_you_want_to_leave_this_group">آیا شما مطمئن‌اید که می‌خواهید این گروه را ترک کنید؟</string>
   <string name="ConversationActivity_transport_insecure_sms">پیامک ناامن</string>
-  <string name="ConversationActivity_transport_insecure_mms">فراپیام ناامن</string>
+  <string name="ConversationActivity_transport_insecure_mms">پیام چندرسانه‌ای ناامن</string>
   <string name="ConversationActivity_transport_signal">سیگنال</string>
   <string name="ConversationActivity_lets_switch_to_signal">بیاین از Signal استفاده کنیم: %1$s</string>
   <string name="ConversationActivity_error_leaving_group">خطا در ترک کردن گروه</string>
@@ -172,8 +184,11 @@
   <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">برای گرفتن تصاویر و ویدیو، به سیگنال اجازه دسترسی به دوربین را بدهید.</string>
   <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal برای عکس گرفتن یا ضبط ویدئو نیاز به دسترسی به دوربین دارد، اما دسترسی به آن به طور دائم رد شده است. لطفا به تنظیمات برنامه رفته، \"دسترسی ها\" را انتخاب کرده، و دوربین را فعال کنید. </string>
   <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal برای گرفتن عکس یا ضبط ویدئو به دسترسیِ دوربین نیاز دارد</string>
+  <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">مجوز میکروفون را برای ضبط فیلم ها با صدا فعال کنید.</string>
+  <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">سیگنال برای ضبط فیلم به مجوزها ی میکروفون احتیاج دارد ، اما آنها رد شده اند. لطفاً تنظیمات برنامه را ادامه دهید ، \"مجوزها\" را انتخاب کرده و \"میکروفون\" و \"دوربین\" را فعال کنید.</string>
+  <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">سیگنال برای ضبط فیلم به مجوزها ی میکروفون احتیاج دارد.</string>
   <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
-  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal نمی‌تواند پیامک (SMS)/فراپیام (MMS) بفرستد چون برنامهٔ پیش‌فرض پیامک شما نیست. آیا مایل به تغییر برنامۀ پیش‌فرض پیامک در تنظیمات اَندروید خود هستید؟</string>
+  <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Signal نمی‌تواند پیامک کوتاه یا پیام چندرسانه‌ای ارسال کند چون به عنوان برنامهٔ پیش‌فرض پیام کوتاه شما انتخاب نشده است. آیا مایل به تغییر برنامۀ پیش‌فرض پیام کوتاه در تنظیمات اَندروید خود هستید؟</string>
   <string name="ConversationActivity_yes">بله</string>
   <string name="ConversationActivity_no">خیر</string>
   <string name="ConversationActivity_search_position">%1$d از %2$d</string>
@@ -190,14 +205,18 @@
     <item quantity="one">پیام های انتخاب شده حدف شوند؟</item>
     <item quantity="other">پیام‌های انتخاب شده حذف شوند؟</item>
   </plurals>
-  <string name="ConversationFragment_save_to_sd_card">ذخیره درحافظه؟</string>
+  <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
+    <item quantity="one">این گزینه به صورت دائم پیام‌ انتخابی را حذف می‌کند.</item>
+    <item quantity="other">این گزینه به صورت دائم تمام %1$d پیام انتخابی را حذف می‌کند.</item>
+  </plurals>
+  <string name="ConversationFragment_save_to_sd_card">در حافظه ذخیره شود؟</string>
   <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
-    <item quantity="one">ذخیره همه %1$d مدیا به حافظه دستگاه ، باعث خواهد شد که همه برنامه های دیگر نصب شده در دستگاه شما ، به این اطلاعات دسترسی پیدا کنند. \n\n آیا مایل به ادامه هستید ؟</item>
-    <item quantity="other">ذخیره همه %1$d مدیا به حافظه دستگاه ، باعث خواهد شد که همه برنامه های دیگر نصب شده در دستگاه شما ، به این اطلاعات دسترسی پیدا کنند. \n\n آیا مایل به ادامه هستید ؟</item>
+    <item quantity="one">ذخیره‌سازی این رسانه در حافظهٔ دستگاه،  اجازهٔ دسترسی به آن را به هر برنامهٔ دیگری می‌دهد.\n\n آیا مایل به ادامه هستید؟</item>
+    <item quantity="other">ذخیره‌سازی تمام %1$d رسانه در حافظهٔ دستگاه اجازهٔ دسترسی به آن‌ها را به هر برنامهٔ دیگری می‌دهد.\n\n آیا مایل به ادامه هستید؟</item>
   </plurals>
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
-    <item quantity="one">خطا در هنگام ذخیره سازی فایل ضمیمه</item>
-    <item quantity="other">خطا در هنگام ذخیره‌سازی پیوست‌ها</item>
+    <item quantity="one">خطا در هنگام ذخیره‌سازی پیوست!</item>
+    <item quantity="other">خطا در هنگام ذخیره‌سازی پیوست‌‌ها!</item>
   </plurals>
   <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">قادر به ذخیره‌سازی نیست!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
@@ -205,32 +224,34 @@
     <item quantity="other">در حال ذخیره‌ی %1$d پیوست</item>
   </plurals>
   <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-    <item quantity="one">در حال ذخیره‌ی %1$d پیوست در حافظه...</item>
-    <item quantity="other">در حال ذخیره‌ی %1$d پیوست در حافظه...</item>
+    <item quantity="one">در حال ذخیره‌ی %1$d پیوست در حافظه…</item>
+    <item quantity="other">در حال ذخیره‌ی %1$d پیوست در حافظه…</item>
   </plurals>
-  <string name="ConversationFragment_pending">در انتظار...</string>
+  <string name="ConversationFragment_pending">در انتظار…</string>
   <string name="ConversationFragment_push">داده‌ها (Signal)</string>
-  <string name="ConversationFragment_mms">فراپیام</string>
+  <string name="ConversationFragment_mms">پیام چندرسانه‌ای</string>
   <string name="ConversationFragment_sms">پیامک</string>
   <string name="ConversationFragment_deleting">در حال حذف کردن</string>
-  <string name="ConversationFragment_deleting_messages">حذف پیام‌ها...</string>
+  <string name="ConversationFragment_deleting_messages">حذف پیام‌ها…</string>
   <string name="ConversationFragment_quoted_message_not_found">پیام اصلی یافت نشد</string>
   <string name="ConversationFragment_quoted_message_no_longer_available">پیام اصلی دیگر در دسترس نیست</string>
   <string name="ConversationFragment_failed_to_open_message">باز کردن پیام ناموفق بود</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_right_reply">برای پاسخ سریع می توانید در هر پیام به راست بکشید</string>
+  <string name="ConversationFragment_you_can_swipe_to_the_left_reply">برای پاسخ سریع می توانید به سمت چپ روی هر پیام بکشید</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">برروی دستگاه شما هیچ مرورگری نصب نیست.</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_no_results_found_for_s_">نتایجی برای «%s» یافت نشد</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">مکالمات انتخاب شده حذف شوند؟</item>
-    <item quantity="other">مکالمات انتخاب شده حذف شوند؟</item>
+    <item quantity="other">مکاتبات انتخابی حذف شوند؟</item>
   </plurals>
   <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
     <item quantity="one">این %1$d پیامهای انتخاب شده را به تور دائم حذف میکند.</item>
     <item quantity="other">این %1$d پیامهای انتخاب شده را به تور دائم حذف میکند.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">حذف</string>
-  <string name="ConversationListFragment_deleting_selected_conversations">مکالمات انتخاب شده حذف شوند؟</string>
+  <string name="ConversationListFragment_deleting_selected_conversations">مکاتبات انتخابی حذف شوند؟</string>
   <plurals name="ConversationListFragment_conversations_archived">
     <item quantity="one">%d گفت‌و‌گو آرشیو شدند</item>
     <item quantity="other">%d گفت‌و‌گو آرشیو شدند</item>
@@ -275,7 +296,7 @@
   <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">با لغو کردن اتصال این دستگاه، دستگاه دیگر قادر به ارسال و دریافت پیام‌ها نخواهد بود.</string>
   <string name="DeviceListActivity_network_connection_failed">خطا در اتصال به شبکه</string>
   <string name="DeviceListActivity_try_again">دوباره تلاش کن</string>
-  <string name="DeviceListActivity_unlinking_device">در حال جداسازی دستگاه...</string>
+  <string name="DeviceListActivity_unlinking_device">در حال جداسازی دستگاه…</string>
   <string name="DeviceListActivity_unlinking_device_no_ellipsis">در حال جداسازی دستگاه</string>
   <string name="DeviceListActivity_network_failed">شبکه قطع است</string>
   <!--DeviceListItem-->
@@ -284,7 +305,7 @@
   <string name="DeviceListItem_last_active_s">آخرین فعالیت %s</string>
   <string name="DeviceListItem_today">امروز</string>
   <!--DocumentView-->
-  <string name="DocumentView_unknown_file">فایل ناشناخته</string>
+  <string name="DocumentView_unnamed_file">فایل بدون نام</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">بهینه‌سازی برای جایگزینی سرویس Play</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">موبایل شما از سرویس Play پشتیبانی نمی‌کند. برای غیرفعال کردن سیستم بهینه‌سازی باتری که هنگامی که Signal غیرفعال است، از دریافت پیام‌ها جلوگیری می‌کند، ضربه بزنید.</string>
@@ -297,7 +318,7 @@
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal">TextSecure حالا به Signal تبدیل شده است.</string>
   <string name="ExperienceUpgradeActivity_textsecure_is_now_signal_long">TextSecure و RedPhone در یک برنامه ادغام شده‌اند: Signal. برای اطلاعات بیشتر ضربه بزنید.</string>
   <string name="ExperienceUpgradeActivity_say_hello_to_video_calls">به مکالمه امن تصویری سلام کنید.</string>
-  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">حالا سینگال از مکالمۀ تصویری امن پشتیبانی می‌کند. تنها کافی است یک تماس را شروع کنید، روی دکمه ویدئو ضربه بزنید و برای یکدیگر دست تکان دهید...</string>
+  <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calls">حالا سینگال از مکالمۀ تصویری امن پشتیبانی می‌کند. تنها کافی است یک تماس را شروع کنید، روی دکمه ویدئو ضربه بزنید و برای یکدیگر دست تکان دهید…</string>
   <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling">Signal هم اکنون از تماس ویدئویی امن پشتیبانی می‌کند.</string>
   <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal هم اکنون از تماس ویدئویی امن پشتیبانی می‌کند. برای اطلاعات بیشتر ضربه بزنید.</string>
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">برای نمای نزدیک آماده‌اید؟</string>
@@ -310,12 +331,12 @@
   <string name="ExperienceUpgradeActivity_enable_typing_indicators">فعال سازی نشانگر های نوشته</string>
   <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">فعال کردن نشانگر های نوشته</string>
   <string name="ExperienceUpgradeActivity_no_thanks">نه ممنون</string>
-  <string name="ExperienceUpgradeActivity_introducing_link_previews">معرفی پیش نمایش های لینک</string>
-  <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">پیش نمایش های لینک اختیاری اکنون برای برخی از شناخته ترین سایت های روی اینترنت پشتیبانی می شود.</string>
+  <string name="ExperienceUpgradeActivity_introducing_link_previews">معرفی پیش‌نمایش‌ پیوند</string>
+  <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">پیش‌نمایش‌های پیوند اختیاری اکنون برای برخی از شناخته‌شده‌ترین سایت‌ها پشتیبانی می‌شود.</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">شما همیشه می‌توانید این ویژگی را در تنظیمات Signal فعال یا غیرفعال کنید (حریم خصوصی ← ارسال پیش‌نمایش‌های پیوند).</string>
   <string name="ExperienceUpgradeActivity_got_it">فهمیدم</string>
   <!--GcmBroadcastReceiver-->
-  <string name="GcmBroadcastReceiver_retrieving_a_message">در حال بازیابی یک پیام...</string>
+  <string name="GcmBroadcastReceiver_retrieving_a_message">در حال بارگیری یک پیام…</string>
   <!--GcmRefreshJob-->
   <string name="GcmRefreshJob_Permanent_Signal_communication_failure">ارتباط Signal بطور کل قطع شده است</string>
   <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">نرم‌افزار Signal نمی‌تواند از طریق خدمات Google Play، شما را ثبت‌نام کند. پیام‌ها و تماس‌های Signal، غیرفعال شده‌اند، لطفاً تلاش کنید از طریق تنظیمات مجدداً ثبت‌نام کنید.</string>
@@ -328,7 +349,7 @@
   <string name="GroupCreateActivity_actionbar_title">گروه جدید</string>
   <string name="GroupCreateActivity_actionbar_edit_title">ویرایش گروه</string>
   <string name="GroupCreateActivity_group_name_hint">نام گروه</string>
-  <string name="GroupCreateActivity_actionbar_mms_title">گروه MMS جدید</string>
+  <string name="GroupCreateActivity_actionbar_mms_title">گروه پیام چندرسانه‌ای جدید</string>
   <string name="GroupCreateActivity_contacts_dont_support_push">شما مخاطبی را انتخاب کرده‌اید که از قابلیت گروه‌های Signal پشتیبانی نمی‌کند، چراکه این گروه‌ها MMS می‌شوند.</string>
   <string name="GroupCreateActivity_youre_not_registered_for_signal">شما برای استفاده از خدمات پیام‌رسانی و تماس‌های Signal ثبت‌نام نکرده‌اید! به همین خاطر گروه‌ها غیرفعال هستند!. لطفاً در تنظیمات اقدام به ثبت‌نام کنید.</string>
   <string name="GroupCreateActivity_contacts_no_members">شما حداقل یک نفر در گروه خود نیاز دارید!</string>
@@ -336,9 +357,9 @@
   <string name="GroupCreateActivity_avatar_content_description">آواتار گروه</string>
   <string name="GroupCreateActivity_menu_apply_button">ثبت</string>
   <string name="GroupCreateActivity_creating_group">ایجاد %1$s…</string>
-  <string name="GroupCreateActivity_updating_group">به روز رسانی %1$s...</string>
+  <string name="GroupCreateActivity_updating_group">بروزرسانی %1$s…</string>
   <string name="GroupCreateActivity_cannot_add_non_push_to_existing_group">امکان اضافه کردن %1$s وجود ندارد زیرا از کاربران Signal نیستند.</string>
-  <string name="GroupCreateActivity_loading_group_details">در حال بارگذاری جزئیات گروه...</string>
+  <string name="GroupCreateActivity_loading_group_details">در حال بارگذاری جزئیات گروه…</string>
   <string name="GroupCreateActivity_youre_already_in_the_group">در حال حاضردر این گروه هستید</string>
   <!--GroupShareProfileView-->
   <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">آیا مایل به اشتراک عکس و نام پروفایل‌تان در این گروه هستید؟</string>
@@ -354,10 +375,12 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">اشتراک گذاری</string>
   <string name="InviteActivity_choose_contacts">انتخاب مخاطبین</string>
+  <string name="InviteActivity_share_with_contacts">اشتراک‌گذاری با مخاطبین</string>
+  <string name="InviteActivity_choose_how_to_share">انتخاب نحوهٔ اشتراک‌گذاری</string>
   <string name="InviteActivity_cancel">لغو</string>
-  <string name="InviteActivity_sending">در حال ارسال</string>
+  <string name="InviteActivity_sending">در حال ارسال…</string>
   <string name="InviteActivity_heart_content_description">فلب</string>
-  <string name="InviteActivity_invitations_sent">دعوت نامه ارسال شد!</string>
+  <string name="InviteActivity_invitations_sent">دعوت‌نامه ارسال شد!</string>
   <string name="InviteActivity_invite_to_signal">دعوت به Signal</string>
   <plurals name="InviteActivity_send_sms_to_friends">
     <item quantity="one">ارسال SMS به %d دوست</item>
@@ -369,9 +392,9 @@
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">بیایید از این برای Signal استفاده کنیم:  %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">به نظر می رسد شما هیچ برنامه ای برای اشتراک گذاری در آن ندارید.</string>
-  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">دوست واقعی نمی‌گذارد دوستش بدون رمزگذاری گپ بزند.</string>
+  <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">دوستان نمی‌گذارند دوستان بدون رمزنگاری گفتگو کنند.</string>
   <!--Job-->
-  <string name="Job_working_in_the_background">در حال کار در پس زمینه...</string>
+  <string name="Job_working_in_the_background">در حال کار در پس زمینه…</string>
   <!--MessageDetailsRecipient-->
   <string name="MessageDetailsRecipient_failed_to_send">ارسال نشد</string>
   <string name="MessageDetailsRecipient_new_safety_number">شماره امنیتی جدید</string>
@@ -386,19 +409,45 @@
   <string name="MmsDownloader_error_reading_mms_settings">خطا در هنگام دریافت تنظیمات MMS اپراتور تلفن همراه</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">رسانه</string>
+  <string name="MediaOverviewActivity_Files">فایل‌ها</string>
+  <string name="MediaOverviewActivity_Audio">صوت</string>
+  <string name="MediaOverviewActivity_All">همه</string>
   <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
-    <item quantity="one">حذف پیام انتخاب شده؟</item>
-    <item quantity="other">حذف پیام های انتخاب شده</item>
+    <item quantity="one">پیام انتخابی حذف شود؟</item>
+    <item quantity="other">پیام‌های انتخابی حذف شوند؟</item>
   </plurals>
   <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-    <item quantity="one">این پیام انتخاب شده را به صورت دائم پاک خواهد کرد.</item>
-    <item quantity="other">این به صورت دائم %1$d پیام انتخاب شده را پاک خواهد کرد.</item>
+    <item quantity="one">این گزینه به صورت دائم فایل انتخابی را حذف می‌کند. هر پیام متنی متصل به این فایل نیز حذف خواهد شد.</item>
+    <item quantity="other">این گزینه به صورت دائم تمام %1$d پیام انتخابی را حذف می‌کند. هر پیام متنی متصل به این فایل‌ها نیز حذف خواهد شد.</item>
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">در حال حذف</string>
-  <string name="MediaOverviewActivity_Media_delete_progress_message">حذف پیام های...</string>
-  <string name="MediaOverviewActivity_Documents">اسناد</string>
+  <string name="MediaOverviewActivity_Media_delete_progress_message">حذف پیام های…</string>
   <string name="MediaOverviewActivity_Select_all">انتخاب همه</string>
-  <string name="MediaOverviewActivity_collecting_attachments">در حال جمع‌آوری پیوست‌ها...</string>
+  <string name="MediaOverviewActivity_collecting_attachments">در حال جمع‌آوری پیوست‌ها…</string>
+  <string name="MediaOverviewActivity_Sort_by">مرتب‌سازی بر اساس</string>
+  <string name="MediaOverviewActivity_Newest">جدیدترین</string>
+  <string name="MediaOverviewActivity_Oldest">قدیمی‌ترین</string>
+  <string name="MediaOverviewActivity_Storage_used">حافظهٔ مورد استفاده</string>
+  <string name="MediaOverviewActivity_All_storage_use">کل حافظهٔ مورد استفاده</string>
+  <string name="MediaOverviewActivity_Grid_view_description">نمای مشبک</string>
+  <string name="MediaOverviewActivity_List_view_description">نمای فهرستی</string>
+  <string name="MediaOverviewActivity_Selected_description">انتخاب شده</string>
+  <plurals name="MediaOverviewActivity_d_items_s">
+    <item quantity="one">%1$d مورد %2$s</item>
+    <item quantity="other">%1$d مورد %2$s</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_d_items">
+    <item quantity="one">%1$d مورد</item>
+    <item quantity="other">%1$d مورد</item>
+  </plurals>
+  <string name="MediaOverviewActivity_file">فایل</string>
+  <string name="MediaOverviewActivity_audio">صدا</string>
+  <string name="MediaOverviewActivity_video">ویدیو</string>
+  <string name="MediaOverviewActivity_image">تصویر</string>
+  <string name="MediaOverviewActivity_sent_by_s">از طرف %1$s</string>
+  <string name="MediaOverviewActivity_sent_by_you">از طرف شما</string>
+  <string name="MediaOverviewActivity_sent_by_s_to_s">از طرف %1$s به %2$s</string>
+  <string name="MediaOverviewActivity_sent_by_you_to_s">از طرف شما به %1$s</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">پاسخ Signal در حال انجام</string>
   <string name="NotificationBarManager__establishing_signal_call">در حال برقراری يک تماس سيگنالی</string>
@@ -408,8 +457,8 @@
   <string name="NotificationBarManager__end_call">پایان تماس</string>
   <string name="NotificationBarManager__cancel_call">لغو تماس</string>
   <!--NotificationMmsMessageRecord-->
-  <string name="NotificationMmsMessageRecord_multimedia_message">پیام های چند رسانه ای</string>
-  <string name="NotificationMmsMessageRecord_downloading_mms_message">در حال بارگیری پیام چندرسانه‌ای...</string>
+  <string name="NotificationMmsMessageRecord_multimedia_message">پیام‌های چندرسانه‌ای</string>
+  <string name="NotificationMmsMessageRecord_downloading_mms_message">در حال بارگیری پیام چندرسانه‌ای…</string>
   <string name="NotificationMmsMessageRecord_error_downloading_mms_message">بروز مشکل در دانلود پیام MMS، جهت تلاش دوباره تپ کنید</string>
   <!--MediaPickerActivity-->
   <string name="MediaPickerActivity_send_to">ارسال به %s</string>
@@ -417,7 +466,7 @@
   <!--MediaPickerItemFragment-->
   <string name="MediaPickerItemFragment_tap_to_select">برای انتخاب کلیک کنید</string>
   <!--MediaSendActivity-->
-  <string name="MediaSendActivity_add_a_caption">یک عنوان اضافه کنید...</string>
+  <string name="MediaSendActivity_add_a_caption">یک عنوان اضافه کنید…</string>
   <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">یک آیتم حذف شد چون از محدودیت اندازه بیشتر بود</string>
   <string name="MediaSendActivity_camera_unavailable">دوربین در دسترس نیست</string>
   <string name="MediaSendActivity_message_to_s">پیام به %s </string>
@@ -431,7 +480,7 @@
   </plurals>
   <string name="MediaSendActivity_select_recipients_description">گیرندگان را انتخاب کنید</string>
   <!--MediaRepository-->
-  <string name="MediaRepository_all_media">تمام رسانه ها</string>
+  <string name="MediaRepository_all_media">تمامی رسانه‌ها</string>
   <!--MessageRecord-->
   <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">یک پیام رمزنگاری شده با استفاده از نسخه‌ای قدیمی از Signal که دیگر پشتیبانی نمی‌شود برایتان ارسال شده است، لطفاً از فرستنده بخواهید نرم‌افزار Signal خود را به آخرین نسخه بروزرسانی کرده و مجدداً پیام را برای شما ارسال کند.</string>
   <string name="MessageRecord_left_group">شما گروه را ترک کرده اید.</string>
@@ -444,7 +493,7 @@
   <string name="MessageRecord_called_s">%s تماس گرفته</string>
   <string name="MessageRecord_missed_call_from">تماس از دست رفته از %s</string>
   <string name="MessageRecord_s_joined_signal">%s در Signal است!</string>
-  <string name="MessageRecord_you_disabled_disappearing_messages">شما پیام های نابودشونده را غیر فعال کردید.</string>
+  <string name="MessageRecord_you_disabled_disappearing_messages">شما پیام‌های ناپدیدشونده را غیر فعال کردید.</string>
   <string name="MessageRecord_s_disabled_disappearing_messages">%1$s پیام های نابود شونده را غیرفعال کرد.</string>
   <string name="MessageRecord_you_set_disappearing_message_time_to_s">شما زمان پیام های نابود شونده را به %1$s تنظیم کردید.</string>
   <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s زمان پیام های نابود شونده را روی %2$s گذاشت.</string>
@@ -466,7 +515,7 @@
 . تمام پیام‌هایتان را بخوانید
 /n. با نام خودتان پیام‌ها را بفرستید</string>
   <string name="DeviceProvisioningActivity_content_progress_title">در حال اتصال دستگاه</string>
-  <string name="DeviceProvisioningActivity_content_progress_content">در حال اتصال دستگاه جدید...</string>
+  <string name="DeviceProvisioningActivity_content_progress_content">در حال اتصال دستگاه جدید…</string>
   <string name="DeviceProvisioningActivity_content_progress_success">دستگاه تایید شد!</string>
   <string name="DeviceProvisioningActivity_content_progress_no_device">دستگاه یافت نشد.</string>
   <string name="DeviceProvisioningActivity_content_progress_network_error">خطای شبکه.</string>
@@ -478,7 +527,7 @@
   <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal نیاز به دسترسی دوربین دارد تا بتواند یک کد QR را اسکن کند، اما این اجازه داده نشده است. لطفا به قسمت تنظیمات برنامه رفته، \"دسترسی ها\" را انتخاب کنید، و \"دوربین\" را فعال کنید.</string>
   <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">ناتوانی در اسکن یک کد QR بدون دسترسی دوربین</string>
   <!--ExpirationDialog-->
-  <string name="ExpirationDialog_disappearing_messages">پیامهای نشان داده نشده</string>
+  <string name="ExpirationDialog_disappearing_messages">پیامهای ناپدید شونده</string>
   <string name="ExpirationDialog_your_messages_will_not_expire">پیام های شما منقضی نخواهد شد.</string>
   <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">پیامهای ارسالی و دریافتی در این گفتگو پس از %s ناپدید خواهند شد.</string>
   <!--PassphrasePromptActivity-->
@@ -486,6 +535,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">آیکون Signal</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">ثبت کردن عبارت عبور</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">رمز معتبر نیست!</string>
+  <string name="PassphrasePromptActivity_unlock_signal">آنلاک کردن Signal</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">نقشه</string>
   <string name="PlacePickerActivity_not_a_valid_address">آدرس معتبر نیست</string>
@@ -493,6 +543,17 @@
   <string name="PlacePickerActivity_accept_address">تایید آدرس</string>
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">نسخه Google Play Services نصب شده روی دستگاه شما به درستی کار نمی‌کند. لطفا از ابتدا Google Play Services را نصب کرده و دوباره تلاش کنید.</string>
+  <!--ProfileEditNameFragment-->
+  <string name="ProfileEditNameFragment_profile_name">نام نمایه</string>
+  <string name="ProfileEditNameFragment_your_profile_name_can_be_seen_by_your_contacts">نام نمایهٔ شما برای مخاطبین‌تان و همچنین برای دیگر کاربران و گروه‌هایی که با آن‌ها گفتگویی آغاز می‌کنید یا درخواست گفتگویشان را می‌پذیرید، قابل رؤیت است.</string>
+  <string name="ProfileEditNameFragment_save">ذخیره‌سازی</string>
+  <!--ProfileEditOverviewFragment-->
+  <string name="ProfileEditOverviewFragment_profile">نمایه</string>
+  <string name="ProfileEditOverviewFragment_profile_name">نام نمایه</string>
+  <string name="ProfileEditOverviewFragment_username">نام کاربری</string>
+  <string name="ProfileEditOverviewFragment_create_a_profile_name">ایجاد نام نمایه</string>
+  <string name="ProfileEditOverviewFragment_create_a_username">ایجاد نام کاربری</string>
+  <string name="ProfileEditOverviewFragment_your_signal_profile_can_be_seen_by">نام نمایهٔ شما برای مخاطبین‌تان و همچنین برای دیگر کاربران و گروه‌هایی که با آنان گفتگویی آغاز می‌کنید یا درخواست گفتگویشان را می‌پذیرید، قابل رؤیت است. <a href="https://support.signal.org/hc/en-us/articles/360007459591-Signal-Profiles">برای اطلاعات بیشتر اینجا ضربه بزنید</a>.</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">امتیاز به این برنامه</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">اگر شما از این برنامه لذت بردید،لطفا یک لحظه به ما کمک کنید و امتیاز دهید.</string>
@@ -535,8 +596,7 @@
   <string name="RegistrationActivity_you_must_specify_your_country_code">شما باید کد کشور خود را
 مشخص کنید
     </string>
-  <string name="RegistrationActivity_you_must_specify_your_phone_number">شما باید شماره تلفن همراه
-خود را مشخص کنید</string>
+  <string name="RegistrationActivity_you_must_specify_your_phone_number">شما باید شماره‌تلفن خود را مشخص کنید</string>
   <string name="RegistrationActivity_invalid_number">شماره معتبر نیست</string>
   <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">شماره‌ای که شما
 مشخص کرده‌اید (%s) معتبر نیست.</string>
@@ -549,9 +609,9 @@
   <string name="RegistrationActivity_no_browser">ناتوانی در باز کردن لینک. هیچ مرورگر وبی یافت نشد.</string>
   <string name="RegistrationActivity_more_information">اطلاعات بیشتر</string>
   <string name="RegistrationActivity_less_information">اطلاعات کمتر</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal نیاز دارد تا به مخاطبان و رسانه های شما دسترسی داشته باشد تا به دوستان، پیام های تبادلی بتواند اتصال برقرار کند، و تماس های امن بگیرد.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal برای ارتباط با دوستان، مبادلهٔ پیام و برقراری تماس‌های امن نیاز دارد به مخاطبین و رسانه‌های شما دسترسی پیدا کند.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">ناتوانی در اتصال به سرویس. لطفا اتصال شبکه را بررسی کنید و دوباره امتحان کنید.</string>
-  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">برای تایید شماره تلفن خود به آسانی، Signal  می تواند به صورت خودکار کد تاییدیه شما را شناسایی کند اگر شما به Signal اجازه دیدن پیام های SMS خود را بدهید.</string>
+  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">برای تأیید شماره‌تلفن خود به آسانی اگر به Signal اجازهٔ دسترسی به پیام‌های کوتاه خود را بدهید، Signal به صورت خودکار کد تصدیق شما را تشخیص دهد.</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">شما %d قدم از ثبت گزارش اشکال زدایی فاصله دارید.</item>
     <item quantity="other">شما  %d قدم از ثبت گزارش اشکال زدایی فاصله دارید.</item>
@@ -560,15 +620,20 @@
   <string name="RegistrationActivity_failed_to_verify_the_captcha">ناموفیت در تایید CAPTCHA</string>
   <string name="RegistrationActivity_next">بعدی</string>
   <string name="RegistrationActivity_continue">ادامه</string>
+  <string name="RegistrationActivity_continue_d_attempts_left">ادامه (%d تلاش دیگر باقی مانده است)</string>
+  <string name="RegistrationActivity_continue_last_attempt">ادامه (تلاش آخر)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">همیشه حریم خصوصی به همراه داشته باشید.n\در هر پیام خودتان باشید.</string>
-  <string name="RegistrationActivity_enter_your_phone_number_to_get_started">برای شروع شماره تلفن خود را وارد کنید</string>
+  <string name="RegistrationActivity_enter_your_phone_number_to_get_started">برای شروع شماره‌تلفن خود را وارد کنید</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">شما یک کد تاییدیه دریافت خواهید کرد. اپراتور شما ممکن است مبلغی در ازای این کار دریافت کند.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">کدی که به %s ارسال کردیم را وارد کنید</string>
+  <string name="RegistrationActivity_phone_number_description">شماره‌تلفن</string>
+  <string name="RegistrationActivity_country_code_description">کد کشور</string>
   <string name="RegistrationActivity_call">تماس</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_view_photo">مشاهده عکس</string>
-  <string name="RevealableMessageView_viewed">Viewed</string>
   <string name="RevealableMessageView_photo">تصویر</string>
+  <string name="RevealableMessageView_video">ویدیو</string>
+  <string name="RevealableMessageView_viewed">Viewed</string>
+  <string name="RevealableMessageView_outgoing_media">رسانه‌ها</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">ناموفقیت در ذخیره تغییرات تصویر</string>
   <!--Search-->
@@ -626,9 +691,10 @@
   <string name="ThreadRecord_called">شما تماس گرفتید</string>
   <string name="ThreadRecord_called_you">با شما تماس گرفت</string>
   <string name="ThreadRecord_missed_call">تماس از دست رفته</string>
-  <string name="ThreadRecord_media_message">پیام رسانه</string>
+  <string name="ThreadRecord_media_message">پیام رسانه‌ای</string>
   <string name="ThreadRecord_sticker">استیکر</string>
   <string name="ThreadRecord_disappearing_photo">عکس ناپدید شد</string>
+  <string name="ThreadRecord_disappearing_video">ویدئوی ناپدید شونده</string>
   <string name="ThreadRecord_s_is_on_signal">%s در Signal است!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">پیام های نابود شونده غیر فعال شد</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">زمان پنهان شدن پیام بر روی %s تنظیم شد</string>
@@ -653,16 +719,31 @@
   <!--UnverifiedSendDialog-->
   <string name="UnverifiedSendDialog_send_message">ارسال پیام؟</string>
   <string name="UnverifiedSendDialog_send">ارسال</string>
+  <!--UsernameEditFragment-->
+  <string name="UsernameEditFragment_username">نام کاربری</string>
+  <string name="UsernameEditFragment_submit">ثبت</string>
+  <string name="UsernameEditFragment_delete">حذف</string>
+  <string name="UsernameEditFragment_successfully_set_username">نام کاربری با موفقیت ثبت شد.</string>
+  <string name="UsernameEditFragment_successfully_removed_username">نام کاربری با موفقیت حذف شد.</string>
+  <string name="UsernameEditFragment_encountered_a_network_error">خطای شبکه رخ داد.</string>
+  <string name="UsernameEditFragment_this_username_is_taken">این نام کاربری اشغال است.</string>
+  <string name="UsernameEditFragment_this_username_is_available">این نام کاربری قابل استفاده است.</string>
+  <string name="UsernameEditFragment_usernames_can_only_include">نام‌های کاربری باید فقط شامل a-Z ،0-9 و _ باشند.</string>
+  <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">نام‌های کاربری نباید با عدد آغاز شوند.</string>
+  <string name="UsernameEditFragment_username_is_invalid">نام کاربری نامعتبر است.</string>
+  <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">نام‌های کاربری باید حاوی %1$d تا %2$d کاراکتر باشند.</string>
+  <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">کاربران Signal می‌توانند به شما از طریق نام کاربری‌تان و بدون نیاز به شمارهٔ تلفن، درخواست مکاتبه ارسال کنند. انتخاب نام کاربری اختیاری است.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">مخاطب شما از نسخه قدیمی Signal استفاده میکند. از او بخواهید تا پیش از تایید شماره امنیتی شما Signal را بروزرسانی کند.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">مخاطب شما نسخه جدیدتری از Signal را دارد که نوع کد QR آن سازگار نیست. لطفا برای مقایسه، Signal را بروز نمایید.</string>
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">کد QR اسکن شده در واقع کد تاییدیه فرمت شده شماره امنیتی شما نمی باشد. لطفا دوباره اسکن کنید.</string>
-  <string name="VerifyIdentityActivity_share_safety_number_via">به اشتراک گذاشتن شماره امنیتی از طریق...</string>
+  <string name="VerifyIdentityActivity_share_safety_number_via">به اشتراک گذاشتن شماره امنیتی از طریق…</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">شماره امنیتی ما:</string>
   <string name="VerifyIdentityActivity_no_app_to_share_to">به نظر می رسد شما هیچ برنامه ای برای اشتراک گذاری در آن ندارید.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">هیچ شماره امنیتی برای مقایسه در کلیپ بورد پیدا نشد</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal نیاز به دسترسی دوربین دارد تا بتواند یک کد QR را اسکن کند، اما این اجازه داده نشده است. لطفا به قسمت تنظیمات برنامه رفته، \"دسترسی ها\" را انتخاب کنید، و \"دوربین\" را فعال کنید.</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">ناتوانی در اسکن کد QR بدون دسترسی دوربین</string>
+  <!--ViewOnceMessageActivity-->
   <!--MessageDisplayHelper-->
   <string name="MessageDisplayHelper_bad_encrypted_message">پیام بد رمزگذاری شده</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">پیام ها، برای نشست های غیر موجود رمزنگاری شده اند</string>
@@ -685,25 +766,27 @@
   <string name="KeyCachingService_lock">قفل Signal</string>
   <!--MediaPreviewActivity-->
   <string name="MediaPreviewActivity_you">شما</string>
-  <string name="MediaPreviewActivity_unssuported_media_type">نوع رسانه پشتیبانی نشده</string>
+  <string name="MediaPreviewActivity_unssuported_media_type">نوع رسانه پشتیبانی نشده است</string>
   <string name="MediaPreviewActivity_draft">پیش نویس</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal نیاز به دسترسی حافظه دارد تا بتواند روی حافظه خارجی ذخیره کند، اما به طور دائم دسترسی آن رد شده است. لطفا به تنظیمات برنامه رفته، \"دسترسی ها\" را انتخاب کرده و \"حافظه\" را فعال کنید.</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">ناتوانی در ذخیره بر حافظه خارجی بدون اجازه</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">حذف پیام؟</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">این باعث حذف این پیام به صورت دائم خواهد شد.</string>
+  <string name="MediaPreviewActivity_s_to_s">%1$s تا %2$s</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d پیام در %2$d گفتگو</string>
   <string name="MessageNotifier_most_recent_from_s">پیام های اخیر: %1$s</string>
   <string name="MessageNotifier_locked_message">پیام قفل شده</string>
-  <string name="MessageNotifier_media_message_with_text">پیام رسانه ها: %s</string>
+  <string name="MessageNotifier_media_message_with_text">پیام رسانه‌ای: %s</string>
   <string name="MessageNotifier_message_delivery_failed">تحویل پیام شکست خورده است.</string>
   <string name="MessageNotifier_failed_to_deliver_message">ناموفق برای تحویل پیام.</string>
   <string name="MessageNotifier_error_delivering_message">خطا در تحویل پیام.</string>
   <string name="MessageNotifier_mark_all_as_read">علامت همه به عنوان خوانده شده</string>
   <string name="MessageNotifier_mark_read">علامت گذاری به عنوان خوانده شده</string>
-  <string name="MessageNotifier_media_message">پیام رسانه</string>
+  <string name="MessageNotifier_media_message">پیام رسانه‌ای</string>
   <string name="MessageNotifier_sticker">استیکر</string>
   <string name="MessageNotifier_disappearing_photo">عکس ناپدید شد</string>
+  <string name="MessageNotifier_disappearing_video">ویدیو ناپدید شونده</string>
   <string name="MessageNotifier_reply">پاسخ</string>
   <string name="MessageNotifier_signal_message">پیام Signal</string>
   <string name="MessageNotifier_unsecured_sms">پیامک ناامن</string>
@@ -711,6 +794,7 @@
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">برای اعلان‌های اخیر Signal را باز کنید</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">مخاطب</string>
+  <string name="MessageNotifier_reacted_to_your_message">%1$s به پیام شما واکنش نشان داد</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">پیش فرض</string>
   <string name="NotificationChannel_calls">تماس ها</string>
@@ -721,6 +805,9 @@
   <string name="NotificationChannel_other">دیگر</string>
   <string name="NotificationChannel_group_messages">پیام ها</string>
   <string name="NotificationChannel_missing_display_name">ناشناخته</string>
+  <!--ProfileEditNameFragment-->
+  <string name="ProfileEditNameFragment_successfully_set_profile_name">نام نمایه با موفقیت ثبت شد.</string>
+  <string name="ProfileEditNameFragment_encountered_a_network_error">خطای شبکه</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">پاسخگوی سریع هنگامی که نرم‌افزار Signal قفل باشد غیرفعال می‌شود.</string>
   <string name="QuickResponseService_problem_sending_message">بروز خطا در ارسال پیام!</string>
@@ -735,6 +822,9 @@
   <!--SingleRecipientNotificationBuilder-->
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">پیام جدید</string>
+  <!--ThumbnailView-->
+  <string name="ThumbnailView_Play_video_description">پخش ویدئو</string>
+  <string name="ThumbnailView_Has_a_caption_description">حاوی زیرعنوان</string>
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">
     <item quantity="one">%d آیتم</item>
@@ -800,6 +890,9 @@
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal نیاز به دسترسی به مخاطبان دارد تا مخاطبان شما را نمایش دهد، اما دسترسی به آن به طور دائم رد شده است. لطفا به منو تنظیمات برنامه رفته، \"دسترسی ها\" را انتخاب کنید و \"مخاطبان\" را فعال کنید.</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">خطا در بازیابی مخاطبان، اتصال اینترنت خود را بررسی کنید</string>
+  <string name="ContactSelectionListFragment_username_not_found">نام کاربری یافت نشد</string>
+  <string name="ContactSelectionListFragment_s_is_not_a_signal_user">«%1$s» کاربر Signal نیست. لطفاً نام کاربری را بازبینی کرده و دوباره امتحان کنید.</string>
+  <string name="ContactSelectionListFragment_okay">تأیید</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">هیج مخاطبی بسته نشده است</string>
   <!--contact_selection_list_fragment-->
@@ -813,7 +906,7 @@
   <string name="conversation_activity__sim_n">سیم کارت %1$d</string>
   <string name="conversation_activity__send">ارسال</string>
   <string name="conversation_activity__compose_description">ترکیب پیام</string>
-  <string name="conversation_activity__emoji_toggle_description">تعویض صفحه کلید شکلک</string>
+  <string name="conversation_activity__emoji_toggle_description">تعویض صفحه‌کلید شکلک‌ها</string>
   <string name="conversation_activity__attachment_thumbnail">پیوست تصویر کوچک</string>
   <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">تغییر حالت نگه دارنده پیوست دوربین سریع</string>
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">فایل صوتی خود را ضبط کرده و ارسال کنید.</string>
@@ -823,7 +916,7 @@
   <string name="conversation_input_panel__slide_to_cancel">برای لغو به کناره بکشید</string>
   <string name="conversation_input_panel__cancel">لغو</string>
   <!--conversation_item-->
-  <string name="conversation_item__mms_image_description">پیام رسانه</string>
+  <string name="conversation_item__mms_image_description">پیام رسانه‌ای</string>
   <string name="conversation_item__secure_message_description">پیام امن</string>
   <!--conversation_item_sent-->
   <string name="conversation_item_sent__send_failed_indicator_description">ارسال نشد</string>
@@ -833,12 +926,13 @@
   <!--conversation_item_received-->
   <string name="conversation_item_received__contact_photo_description">تصویر مخاطب</string>
   <!--audio_view-->
-  <string name="audio_view__play_pause_accessibility_description">پخش ... قطع</string>
+  <string name="audio_view__play_pause_accessibility_description">پخش … قطع</string>
   <string name="audio_view__download_accessibility_description">دریافت</string>
   <!--QuoteView-->
-  <string name="QuoteView_audio">صوت</string>
+  <string name="QuoteView_audio">صدا</string>
   <string name="QuoteView_video">ویدئو</string>
   <string name="QuoteView_photo">تصویر</string>
+  <string name="QuoteView_media">پیام رسانه‌ای</string>
   <string name="QuoteView_sticker">استیکر</string>
   <string name="QuoteView_document">سند</string>
   <string name="QuoteView_you">شما</string>
@@ -846,7 +940,7 @@
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">به ته برو</string>
   <!--country_selection_fragment-->
-  <string name="country_selection_fragment__loading_countries">کشورهای در حال بارگذاری ...</string>
+  <string name="country_selection_fragment__loading_countries">کشورهای در حال بارگذاری …</string>
   <string name="country_selection_fragment__search">جستجو</string>
   <!--device_add_fragment-->
   <string name="device_add_fragment__scan_the_qr_code_displayed_on_the_device_to_link">برای پیوند دادن، تصویر QR نمایش داده شده روی دستگاه را اسکن کنید.</string>
@@ -915,8 +1009,8 @@
   <string name="log_submit_activity__button_got_it">فهمیدم</string>
   <string name="log_submit_activity__button_compose_email">نوشتن ایمیل</string>
   <string name="log_submit_activity__this_log_will_be_posted_online">این گزارش به صورت آنلاین برای بازنگری مشارکت کنندگان پست خواهد شد تا بتوانند آن را ببینند، می توانید آن را قبل از ثبت بررسی کرده و ویرایش کنید.</string>
-  <string name="log_submit_activity__loading_logs">بارگذاری لاگ ها...</string>
-  <string name="log_submit_activity__uploading_logs">ارسال گزارش ها...</string>
+  <string name="log_submit_activity__loading_logs">بارگذاری لاگ ها…</string>
+  <string name="log_submit_activity__uploading_logs">ارسال گزارش ها…</string>
   <string name="log_submit_activity__success">موفقیت!</string>
   <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">کپی کردن این آدرس اینترنتی و اضافه کردن آن به گزارش موضوع یا ایمیل پشتیبانی:\n\n<b>%1$s</b>\n</string>
   <string name="log_submit_activity__copied_to_clipboard">روی کلیپ بورد کپی شد</string>
@@ -938,11 +1032,11 @@
   <string name="load_more_header__see_full_conversation">گفتگو کامل را ببینید</string>
   <string name="load_more_header__loading">در حال بارگذاری</string>
   <!--media_overview_activity-->
-  <string name="media_overview_activity__no_media">رسانه ای موجود نیست</string>
+  <string name="media_overview_activity__no_media">رسانه‌ای موجود نیست</string>
   <!--message_recipients_list_item-->
   <string name="message_recipients_list_item__view">نمایش</string>
   <string name="message_recipients_list_item__resend">ارسال دوباره</string>
-  <string name="message_recipients_list_item__resending">در حال ارسال مجدد...</string>
+  <string name="message_recipients_list_item__resending">در حال ارسال مجدد…</string>
   <!--GroupUtil-->
   <plurals name="GroupUtil_joined_the_group">
     <item quantity="one">%1$s به گروه افزوده شد.</item>
@@ -954,15 +1048,15 @@
   <!--prompt_passphrase_activity-->
   <string name="prompt_passphrase_activity__unlock">قفل باز شود</string>
   <!--prompt_mms_activity-->
-  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal نیاز به تنظیمات MMS دارد تا بتواند رسانه ها و پیام های گروهی را از طریق حامل بی سیم شما تحویل دهد. دستگاه شما این اطلاعات را در دسترس نگذاشته است، که برای دستگاه های قفل شده یا پیکربندی های محدود صادق می باشد.</string>
-  <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">برای ارسال رسانه و پیام های گروهی، روی \'باشه\' کلیک کنید و تنظیمات درخواست شده را تکمیل کنید. تنظیمات MMS برای حامل شما می تواند به صورت عادی با جستجو کردن \'APN حامل شما\' پیدا شود. شما اینکار را فقط یکبار باید انجام دهید.</string>
+  <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal برای ارسال پیام‌ها به تنظیمات پیام چندرسانه‌ای یا MMS اپراتور شبکهٔ شما نیاز دارد. دستگاه شما این اطلاعات را در دسترس قرار نمی‌دهد، این مورد معمولاً برای دستگاه‌های قفل شده و پیکربندی‌های محدودشده رخ می‌دهد.</string>
+  <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">برای ارسال رسانه و پیام‌های گروهی برروی «خوب» ضربه بزنید و تنظیمات خواسته شده را کامل کنید. تنظیمات پیام چندرسانه‌ای یا MMS برای اپراتور شبکهٔ شما معمولاً با جستجوی «نام‌ نقاط دسترسی شما» یا APN یافت می‌شود. شما فقط یک بار نیاز به انجام این کار دارید.</string>
   <!--profile_create_activity-->
   <string name="profile_create_activity__set_later">بعداً تنظیم کن</string>
   <string name="profile_create_activity__finish">اتمام</string>
   <string name="profile_create_activity__who_can_see_this_information">چه کسانی می توانند این اطلاعات را ببینند؟</string>
   <string name="profile_create_activity__your_name">نام شما</string>
   <!--recipient_preferences_activity-->
-  <string name="recipient_preference_activity__shared_media">رسانه های اشتراک گذاشته شده</string>
+  <string name="recipient_preference_activity__shared_media">رسانه‌های به اشتراک‌ گذاشته شده</string>
   <!--recipient_preferences-->
   <string name="recipient_preferences__mute_conversation">مکالمه صامت</string>
   <string name="recipient_preferences__custom_notifications">نوتیفیکیشن های سفارشی</string>
@@ -972,7 +1066,7 @@
   <string name="recipient_preferences__block">بلوک</string>
   <string name="recipient_preferences__color">رنگ</string>
   <string name="recipient_preferences__view_safety_number">نمایش شماره امنیتی</string>
-  <string name="recipient_preferences__chat_settings">تنظیمات گپ</string>
+  <string name="recipient_preferences__chat_settings">تنظیمات گفتگو</string>
   <string name="recipient_preferences__privacy">حریم خصوصی</string>
   <string name="recipient_preferences__call_settings">تنظیمات تماس</string>
   <string name="recipient_preferences__ringtone">آهنگ های زنگ</string>
@@ -994,7 +1088,7 @@
   <!--verify_display_fragment-->
   <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ اگر مایل هستید تا امنیت رمزنگاری خود را با %s تایید کنید، عدد آمده در بالا را با عدد در دستگاه آن ها مقایسه کنید. در غیر این صورت، شما میتوانید کد روی گوشی آن ها را اسکن کرده، یا از آن ها بخواهید تا کد شما را اسکن کنند. <a href="https://signal.org/redirect/safety-numbers">بیشتر یاد بگیرید.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">برای جستجو ضربه بزنید</string>
-  <string name="verify_display_fragment__loading">درحال بارگذاری...</string>
+  <string name="verify_display_fragment__loading">در حال بارگزاری…</string>
   <string name="verify_display_fragment__verified">تایید شده</string>
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">به اشتراک گذاشتن شماره امنیتی</string>
@@ -1016,7 +1110,7 @@
   <string name="AndroidManifest__change_passphrase">تغییر رمز</string>
   <string name="AndroidManifest__verify_safety_number">تایید کردن شماره امنیتی</string>
   <string name="AndroidManifest__log_submit">ارسال گزارش اشکال‌زدایی</string>
-  <string name="AndroidManifest__media_preview">پیش نمایش رسانه</string>
+  <string name="AndroidManifest__media_preview">پیش‌نمایش رسانه</string>
   <string name="AndroidManifest__message_details">جزییات پیام</string>
   <string name="AndroidManifest__linked_devices">دستگاه‌های متصل‌شده</string>
   <string name="AndroidManifest__invite_friends">دعوت دوستان</string>
@@ -1037,7 +1131,7 @@
   <string name="arrays__name_and_message">نام و پیام</string>
   <string name="arrays__name_only">تنها نام</string>
   <string name="arrays__no_name_or_message">بدون نام و یا پیام</string>
-  <string name="arrays__images">تصویر</string>
+  <string name="arrays__images">تصاویر</string>
   <string name="arrays__audio">صدا</string>
   <string name="arrays__video">ویدئو</string>
   <string name="arrays__documents">اسناد</string>
@@ -1050,19 +1144,19 @@
   <string name="arrays__max">حداکثر</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
-    <item quantity="one">%d ساعت</item>
+    <item quantity="one">%dساعت</item>
     <item quantity="other">%d ساعت</item>
   </plurals>
   <!--preferences.xml-->
-  <string name="preferences__sms_mms">SMS و MMS</string>
+  <string name="preferences__sms_mms">پیام کوتاه و چندرسانه‌ای</string>
   <string name="preferences__pref_all_sms_title">دریافت تمام SMS</string>
-  <string name="preferences__pref_all_mms_title">دریافت تمام MMS</string>
+  <string name="preferences__pref_all_mms_title">دریافت تمامی پیام‌های چندرسانه‌ای</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">استفاده از Signal برای همه پیام های متنی دریافتی</string>
-  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">استفاده از Signal برای همه پیام های چند رسانه ای ورودی</string>
+  <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">استفاده از Signal برای تمامی پیام‌های چندرسانه‌ای ورودی (MMS)</string>
   <string name="preferences__pref_enter_sends_title">ارسال با کلید Enter</string>
   <string name="preferences__pressing_the_enter_key_will_send_text_messages">پیام‌ها با زدن کلید Enter ارسال شوند</string>
-  <string name="preferences__send_link_previews">ارسال پیش نمایش لینک ها</string>
-  <string name="preferences__previews_are_supported_for">پیش نمایش ها برای Imgur، Instagram، Pinterest، Reddit، و لینک های Youtube پشتیبانی می شود</string>
+  <string name="preferences__send_link_previews">ارسال پیش‌نمایش پیوند</string>
+  <string name="preferences__previews_are_supported_for">پیش‌نمایش‌ها برای پیوند‌های Imgur ،Reddit Pinterest ،Instagram و Youtube پشتیبانی می‌شوند</string>
   <string name="preferences__choose_identity">انتخاب هویت</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">انتخاب کنید ورود تماس با خود را از لیست مخاطبین.</string>
   <string name="preferences__change_passphrase">تغییر رمز</string>
@@ -1102,24 +1196,26 @@
   <string name="preferences__slow">آهسته</string>
   <string name="preferences__advanced">تنظیمات پیشرفته</string>
   <string name="preferences__privacy">حریم خصوصی</string>
-  <string name="preferences__mms_user_agent">عامل کاربر MMS</string>
+  <string name="preferences__mms_user_agent">عامل کاربر پیام چندرسانه‌ای</string>
   <string name="preferences__advanced_mms_access_point_names">تنظیمات MMS دستی</string>
   <string name="preferences__mmsc_url">MMSC URL</string>
   <string name="preferences__mms_proxy_host">MMS پروکسی میزبان</string>
   <string name="preferences__mms_proxy_port">MMS پروکسی پورت</string>
   <string name="preferences__mmsc_username">MMSC نام کاربری</string>
   <string name="preferences__mmsc_password">MMSC رمز عبور</string>
-  <string name="preferences__sms_delivery_reports">گزارش های تحویل پیام کوتاه</string>
-  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">درخواست گزارش تحویل پیام برای هر پیامی که شما ارسال می کنید.</string>
+  <string name="preferences__sms_delivery_reports">گزارش تحویل پیام کوتاه</string>
+  <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">درخواست گزارش تحویل برای هر پیام ارسالی</string>
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">وقتی طول یک گفتگو از حد خاصی بیشتر شد، پیام‌های قدیمی آن را را حذف کن</string>
   <string name="preferences__delete_old_messages">حذف پیام‌های قدیمی</string>
-  <string name="preferences__chats">گپ و رسانه‌ها</string>
+  <string name="preferences__chats">گفتگوها و رسانه‌‌ها</string>
+  <string name="preferences__storage">مدیریت حافظه</string>
   <string name="preferences__conversation_length_limit">محدودیت طول گفتگو</string>
   <string name="preferences__trim_all_conversations_now">حذف پیام‌های قدیمی، همین حالا</string>
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">اسکن از طریق تمام گفتگوها و اجرای محدودیت طول گفتگوها</string>
   <string name="preferences__linked_devices">دستگاه‌های متصل‌شده</string>
   <string name="preferences__light_theme">روشن</string>
   <string name="preferences__dark_theme">تیره</string>
+  <string name="preferences__system_theme">سیستم</string>
   <string name="preferences__appearance">ظاهر برنامه</string>
   <string name="preferences__theme">قالب</string>
   <string name="preferences__default">پیش فرض</string>
@@ -1127,41 +1223,47 @@
   <string name="preferences__signal_messages_and_calls">تماس ها و پیام های Signal</string>
   <string name="preferences__free_private_messages_and_calls">پیام های خصوصی و تماس رایگان به کاربران Signal</string>
   <string name="preferences__submit_debug_log">ارسال گزارش اشکال‌زدایی</string>
-  <string name="preferences__support_wifi_calling">\'وای فای تلفن\' حالت سازگاری</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">اگر دستگاه شما از تحویل SMS/MMS تحت WIFI استفاده می کند آنرا فعال کنید.(فقط زمانی فعال کنید که \"WIFI Calling\" روی دستگاه شما فعال شده باشد)</string>
+  <string name="preferences__support_wifi_calling">حالت سازگاری با «تماس WiFi»</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">اگر دستگاه شما از قابلیت تحویل SMS و MMS بر روی شبکهٔ WiFi استفاده می‌کند، این دکمه را روشن کنید (فقط زمانی روشن کنید که «تماس WiFi» بر روی دستگاه شما روشن باشد)</string>
   <string name="preferences__incognito_keyboard">صفحه‌کلید ناشناس</string>
   <string name="preferences__read_receipts">خواندن رسید ها</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">اگر رسید های خوانده شده غیر فعال باشد، شما قادر نخواهید بود تا رسید های خوانده شده از دیگران را ببینید.</string>
   <string name="preferences__typing_indicators">نشانگر های نوشته</string>
   <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">اگر نشانگر های نوشته غیرفعال می باشند، شما قادر نخواهید بود تا نشانگر های نوشته سایرین را ببینید.</string>
-  <string name="preferences__request_keyboard_to_disable_personalized_learning">درخواست از صفحه‌کلید برای غیرفعال کردن یادگیری شخصی سازی شده</string>
+  <string name="preferences__request_keyboard_to_disable_personalized_learning">درخواست از صفحه‌کلید برای توقف یادگیری شخصی‌سازی شده</string>
   <string name="preferences_app_protection__blocked_contacts">اطلاعات تماس مسدود</string>
   <string name="preferences_chats__when_using_mobile_data">هنگام استفاده از داده های تلفن همراه</string>
   <string name="preferences_chats__when_using_wifi">هنگام استفاده از Wi-Fi</string>
   <string name="preferences_chats__when_roaming">در هنگام رومینگ</string>
-  <string name="preferences_chats__media_auto_download">رسانه دانلودخودکار</string>
+  <string name="preferences_chats__media_auto_download">بارگیری خودکار رسانه</string>
   <string name="preferences_chats__message_trimming">برش دادن پیام</string>
-  <string name="preferences_advanced__use_system_emoji">سیستم استفاده از Emoji</string>
-  <string name="preferences_advanced__disable_signal_built_in_emoji_support">غیرفعال کردن پشتیبانی از شکلک های ساخته شده Signal</string>
+  <string name="preferences_storage__storage_usage">حافظهٔ مورد استفاده</string>
+  <string name="preferences_storage__photos">عکس‌ها</string>
+  <string name="preferences_storage__videos">ویدئو‌ها</string>
+  <string name="preferences_storage__files">فایل‌ها</string>
+  <string name="preferences_storage__audio">صوت‌ها</string>
+  <string name="preferences_storage__review_storage">بازبینی حافظه</string>
+  <string name="preferences_advanced__use_system_emoji">استفاده از شکلک‌های سیستم اندروید</string>
+  <string name="preferences_advanced__disable_signal_built_in_emoji_support">غیرفعال کردن پشتیبانی از شکلک‌های Signal</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">بازپخش تمامی تماس ها از طریق سرور Signal، مانع از آشکار شدن آدرس IP شما برای مخاطبین شما می شود. فعال سازی این گزینه باعث کاهش کیفیت مکالمه می گردد.</string>
   <string name="preferences_advanced__always_relay_calls">همیشه تماس ها بازپخش شود</string>
   <string name="preferences_app_protection__app_access">دسترسی برنامه</string>
   <string name="preferences_app_protection__communication">ارتباطات</string>
-  <string name="preferences_chats__chats">گپ‌ها</string>
+  <string name="preferences_chats__chats">گفتگوها</string>
   <string name="preferences_notifications__messages">پیام ها</string>
   <string name="preferences_notifications__events">حوادث</string>
-  <string name="preferences_notifications__in_chat_sounds">صداهای درون گپ</string>
+  <string name="preferences_notifications__in_chat_sounds">اصوات در حین گفتگو</string>
   <string name="preferences_notifications__show">نمایش</string>
   <string name="preferences_notifications__calls">تماس ها</string>
   <string name="preferences_notifications__ringtone">آهنگ های زنگ</string>
-  <string name="preferences_chats__show_invitation_prompts">نمایش دعوتنامه ها</string>
-  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">نمایش دعوتنامه ها برای مخاطبین بدون Signal</string>
+  <string name="preferences_chats__show_invitation_prompts">نمایش دعوتنامه‌ها</string>
+  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">نمایش گزینهٔ ارسال دعوتنامه برای مخاطبینی که عضو Signal نیستند</string>
   <string name="preferences_chats__message_text_size">سایز فونت پیام</string>
   <string name="preferences_events__contact_joined_signal">مخاطب به Signal پیوست</string>
   <string name="preferences_notifications__priority">اولویت</string>
   <string name="preferences_communication__category_sealed_sender">ارسال کننده مهر و موم شده</string>
   <string name="preferences_communication__sealed_sender_display_indicators">نمایش نشانگر ها</string>
-  <string name="preferences_communication__sealed_sender_display_indicators_description">نمایش آیکون وضعیت زمانیکه شما \"جزئیات پیام\" روی پیام های که تحویل داده شده بودند را با استفاده از ارسال کننده مهر و موم شده انتخاب می کنید.</string>
+  <string name="preferences_communication__sealed_sender_display_indicators_description">نمایش آیکون وضعیت زمانیکه شما «جزئیات پیام» روی پیام‌هایی که تحویل داده شده بودند را با استفاده از ارسال کننده مهر و موم شده انتخاب می کنید.</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">اجازه به همه</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone_description">فعال سازی ارسال کننده مهر و موم شده برای پیام های دریافتی از غیر-مخاطبان و کسانی که پروفایل خود را با آن ها به اشتراک نگذاشته اید.</string>
   <string name="preferences_communication__sealed_sender_learn_more">بیشتر یاد بگیرید</string>
@@ -1169,11 +1271,12 @@
   <!--menus-->
   <!--****************************************-->
   <!--contact_selection_list-->
-  <string name="contact_selection_list__unknown_contact">پیام جدید به ...</string>
+  <string name="contact_selection_list__unknown_contact">پیام جدید به …</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">تماس گرفتن</string>
   <!--conversation_callable_secure-->
   <string name="conversation_callable_secure__menu_call">تماس Signal</string>
+  <string name="conversation_callable_secure__menu_video">تماس تصویری Signal</string>
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">جزییات پیام</string>
   <string name="conversation_context__menu_copy_text">کپی متن</string>
@@ -1181,6 +1284,8 @@
   <string name="conversation_context__menu_forward_message">پیام به جلو</string>
   <string name="conversation_context__menu_resend_message">پیام فرستادن مجدد</string>
   <string name="conversation_context__menu_reply_to_message">پاسخ به پیام</string>
+  <!--conversation_context_reacction-->
+  <string name="conversation_context__reaction_multi_select">انتخاب متعدد</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">ذخیره پیوست</string>
   <!--conversation_expiring_off-->
@@ -1216,7 +1321,7 @@
   <string name="conversation__menu_add_attachment">پیوست فایل</string>
   <string name="conversation__menu_edit_group">ویرایش گروه</string>
   <string name="conversation__menu_leave_group">مرخص شدن از گروه</string>
-  <string name="conversation__menu_view_all_media">تمامه رسانه ها</string>
+  <string name="conversation__menu_view_all_media">تمامی رسانه‌ها</string>
   <string name="conversation__menu_conversation_settings">تنظیمات گفتگو</string>
   <string name="conversation__menu_add_shortcut">افزودن به صفحه اصلی</string>
   <!--conversation_popup-->
@@ -1247,7 +1352,7 @@
   <string name="reminder_header_outdated_build_details_today">نرم افزار Signal شما امروز منقضی می شود. برای بروزرسانی جدیدترین نسخه ضربه بزنید.</string>
   <string name="reminder_header_expired_build">نسخه نرم افزار Signal شما منقضی شده است.</string>
   <string name="reminder_header_expired_build_details">پیام ها دیگر با موفقیت ارسال نمی‌شوند. لمس کنید برای بروزرسانی به آخرین نسخه موجود.</string>
-  <string name="reminder_header_sms_default_title">تنظیم به عنوان برنامه پیش‌فرض پیامک</string>
+  <string name="reminder_header_sms_default_title">استفاده به عنوان برنامهٔ پیش‌فرض پیامک</string>
   <string name="reminder_header_sms_default_text">ضربه بزنید تا برنامه پیش فرض SMS را تغییر دهید</string>
   <string name="reminder_header_sms_import_title">وارد کردن SMS سیستم</string>
   <string name="reminder_header_sms_import_text">جهت کپی کردن اس ام اس های گوشی به داخل بانک اطلاعاتی رمزگذاری شده Signal ضربه بزنید.</string>
@@ -1259,25 +1364,47 @@
   <string name="reminder_header_share_text">بیشتر دوستانتان از Signal استفاده میکنند, بهتره اون بگیرید</string>
   <string name="reminder_header_service_outage_text">Signal با مشکلات فنی روبروست. ما به سختی در تلاش هستیم تا سرویس را حد امکان سریعا برگردانیم.</string>
   <string name="reminder_header_the_latest_signal_features_wont_work">آخرین ویژگی های Signal روی این نسخه از اندروید کار نخواهند کرد. لطفا این دستگاه ها را آپگرید کنید تا به روز رسانی های بعدی Signal را دریافت کنید.</string>
+  <string name="reminder_header_progress">%%%1$d</string>
   <!--media_preview-->
   <string name="media_preview__save_title">ذخیره</string>
   <string name="media_preview__forward_title">ارسال به دیگری</string>
-  <string name="media_preview__all_media_title">تمام رسانه ها</string>
-  <!--media_overview-->
-  <string name="media_overview_documents_fragment__no_documents_found">اسنادی نیست</string>
+  <string name="media_preview__all_media_title">تمامی رسانه‌ها</string>
   <!--media_preview_activity-->
-  <string name="media_preview_activity__media_content_description">پیش نمایش رسانه</string>
+  <string name="media_preview_activity__media_content_description">پیش‌نمایش رسانه</string>
   <!--new_conversation_activity-->
   <string name="new_conversation_activity__refresh">تازه سازی</string>
   <!--redphone_audio_popup_menu-->
   <!--Trimmer-->
   <string name="trimmer__deleting">در حال حذف</string>
-  <string name="trimmer__deleting_old_messages">در حال حذف پیام‌های قدیمی...</string>
+  <string name="trimmer__deleting_old_messages">در حال حذف پیام‌های قدیمی…</string>
   <string name="trimmer__old_messages_successfully_deleted">پیام‌های قدیمی با موفقیت حذف شدند</string>
+  <!--Insights-->
+  <string name="Insights__percent">٪</string>
+  <string name="Insights__title">بینش‌ها</string>
+  <string name="InsightsDashboardFragment__title">بینش‌ها</string>
+  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">پروتکل Signal به صورت خودکار، طی %2$d روز گذشته، از %%%1$d پیام‌ خروجی شما محافظت کرده است. مکاتبات بین کاربران Signal همیشه به صورت سرتاسری رمزگذاری می‌شوند.</string>
+  <string name="InsightsDashboardFragment__boost_your_signal">تقویت Signal</string>
+  <string name="InsightsDashboardFragment__not_enough_data">دادهٔ کافی در دسترس نیست</string>
+  <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">درصد مشاهده شده بر اساس تعداد پیام‌های خروجی شما طی %1$d روز گذشته که تا کنون حذف و یا ناپدید نشده‌اند، محاسبه می‌شود.</string>
+  <string name="InsightsDashboardFragment__start_a_conversation">آغاز گفتگو</string>
+  <string name="InsightsDashboardFragment__invite_your_contacts">ارتباطات امن را آغاز کنید و امکانات جدید که از محدودیت‌های SMS رمزگذاری نشده فراتر می‌روند را با دعوت مخاطبان بیشتر به Signal فعال کنید.</string>
+  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">این آمارها به صورت محلی بر روی دستگاه شما تولید شده‌اند و فقط شما توانایی رؤیت آن‌ها را دارید. آن‌ها هیچگاه به بیرون ارسال نمی‌شوند.</string>
+  <string name="InsightsDashboardFragment__encrypted_messages">پیام‌های رمز شده</string>
+  <string name="InsightsDashboardFragment__cancel">لغو</string>
+  <string name="InsightsDashboardFragment__send">ارسال</string>
+  <string name="InsightsModalFragment__title">معرفی بینش‌ها</string>
+  <string name="InsightsModalFragment__description">متوجه شوید چه تعداد از پیام‌های خروجی شما به صورت امن ارسال شدند، سپس Signal خود را با دعوت مخاطبان جدید تقویت کنید.</string>
+  <string name="InsightsModalFragment__view_insights">مشاهدهٔ بینش‌ها</string>
+  <string name="FirstInviteReminder__title">دعوت به Signal</string>
+  <string name="FirstInviteReminder__description">شما می‌توانید پیام‌های رمزگذاری‌شدهٔ ارسالی‌تان را به میزان %1$d%% عدد افزایش دهید</string>
+  <string name="SecondInviteReminder__title">Signal خود را تقویت کنید</string>
+  <string name="SecondInviteReminder__description">%1$s را دعوت کنید</string>
+  <string name="InsightsReminder__view_insights">مشاهدهٔ بینش‌ها</string>
+  <string name="InsightsReminder__invite">دعوت کردن</string>
   <!--transport_selection_list_item-->
-  <string name="transport_selection_list_item__transport_icon">آیکون های حمل و نقل</string>
-  <string name="ConversationListFragment_loading">درحال بارگذاری...</string>
-  <string name="CallNotificationBuilder_connecting">در حال اتصال ...</string>
+  <string name="transport_selection_list_item__transport_icon">آیکون‌ انتقال</string>
+  <string name="ConversationListFragment_loading">در حال بارگزاری…</string>
+  <string name="CallNotificationBuilder_connecting">در حال اتصال…</string>
   <string name="Permissions_permission_required">مجوز لازم است</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal برای ارسال پیامک نیاز به دسترسی به پیامک دارد اما این دسترسی به‌ طور همیشگی رد شده است. لطفاً به بخش برنامه‌ها در تنظیمات تلفن همراه خود رفته در ادامه  پس از یافتن Signal وارد بخش دسترسی ها شده و گزینهٔ پیامک را فعال کنید.</string>
   <string name="Permissions_continue">ادامه</string>
@@ -1295,17 +1422,17 @@
   <string name="registration_activity__restore_backup">بازیابی پشتیبان</string>
   <string name="registration_activity__skip">پرش</string>
   <string name="registration_activity__register">ثبت نام</string>
-  <string name="preferences_chats__chat_backups">پشتیبان‌های گپ</string>
-  <string name="preferences_chats__backup_chats_to_external_storage">پشتیبان گیری از گپ‌ها در حافظهٔ خارجی</string>
+  <string name="preferences_chats__chat_backups">پشتیبان‌گیری از گفتگو</string>
+  <string name="preferences_chats__backup_chats_to_external_storage">پشتیبان‌گیری از گفتگوها در حافظهٔ خارجی</string>
   <string name="preferences_chats__create_backup">ایجاد پشتیبان</string>
   <string name="RegistrationActivity_enter_backup_passphrase">وارد کردن عبارت عبور پشتیبان</string>
   <string name="RegistrationActivity_restore">بازیابی</string>
   <string name="RegistrationActivity_backup_failure_downgrade">ناتوانی در وارد کردن پشتیبان ها از نسخه های جدیدتر Signal</string>
   <string name="RegistrationActivity_incorrect_backup_passphrase">عبارت عبور پشتیبان ناصحیح</string>
-  <string name="RegistrationActivity_checking">در حال بررسی...</string>
-  <string name="RegistrationActivity_d_messages_so_far">%d پیام تا به الان...</string>
+  <string name="RegistrationActivity_checking">در حال بررسی…</string>
+  <string name="RegistrationActivity_d_messages_so_far">%d پیام تا به الان…</string>
   <string name="RegistrationActivity_restore_from_backup">بازیابی از پشتیبان؟</string>
-  <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">بازیابی پیام ها و رسانه ها از پشتیبان محلی. اگر الان بازیابی نکنید، بعدا قادر به بازیابی نخواهید نبود.</string>
+  <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">بازیابی پیام‌ها و رسانه‌ها از پشتیبان محلی. اگر هم‌اکنون عملیات بازیابی را انجام ندهید، بعداً قادر به انجام آن نخواهید نبود.</string>
   <string name="RegistrationActivity_backup_size_s">اندازه پشتیبان: %s</string>
   <string name="RegistrationActivity_backup_timestamp_s">برچسب زمان پشتیبان: %s</string>
   <string name="BackupDialog_enable_local_backups">فعال سازی پشتیبان های محلی؟</string>
@@ -1318,11 +1445,14 @@
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal نیاز به دسترسی حافظه خارجی دارد تا بتواند پشتیبان بگیرد، اما به طور دائم رد شده است. لطفا به تنظیمات برنامه رفته، \"دسترسی ها\" را انتخاب کنید و \"حافظه\" را فعال کنید.</string>
   <string name="ChatsPreferenceFragment_last_backup_s">آخرین پشتیبان: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">در حال پیشرفت</string>
-  <string name="LocalBackupJob_creating_backup">ایجاد پشتیبان...</string>
+  <string name="LocalBackupJob_creating_backup">ایجاد پشتیبان…</string>
   <string name="ProgressPreference_d_messages_so_far">%d پیام تا به الان</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">لطفا کد تاییدیه ارسال شده به %s را وارد کنید.</string>
   <string name="RegistrationActivity_wrong_number">شماره اشتباه</string>
   <string name="RegistrationActivity_call_me_instead_available_in">در عوض به من زنگ بزن n\ (قابل دسترسی در %1$02d:%2$02d )</string>
+  <string name="RegistrationActivity_contact_signal_support">ارتباط با پشتیبانی Signal</string>
+  <string name="RegistrationActivity_code_support_subject">ثبت نام سیگنال - کد تأیید برای اَندروید</string>
+  <string name="RegistrationActivity_code_support_body">موضوع: ثبت نام سیگنال - کد تأیید برای اَندروید اطلاعات مشاوره:%1$s نسخه Android%2$s نسخه اصلی%3$s موقعیت محلی:%4$s</string>
   <string name="BackupUtil_never">هرگز</string>
   <string name="BackupUtil_unknown">ناشناخته</string>
   <string name="preferences_app_protection__screen_lock">قفل صفحه</string>
@@ -1360,10 +1490,25 @@
   <string name="RegistrationLockDialog_error_connecting_to_the_service">خطا در اتصال به سرویس</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">غیرفعال سازی قفل ثبت نام؟</string>
   <string name="RegistrationLockDialog_disable">غیرفعال کردن</string>
+  <string name="RegistrationActivity_pin_incorrect">PIN صحیح نیست</string>
+  <string name="RegistrationActivity_you_have_d_tries_remaining">%d تلاش دیگر باقی مانده است</string>
   <string name="preferences_chats__backups">پشتیبان ها</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal قفل شده است</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">برای باز کردن قفل کلیک کنید.</string>
   <string name="RegistrationLockDialog_reminder">یادآور:</string>
   <string name="recipient_preferences__about">درباره ی ما</string>
+  <string name="Recipient_unknown">ناشناخته</string>
+  <string name="MessageRequestBottomView_accept">پذیرفتن</string>
+  <string name="MessageRequestBottomView_delete">حذف</string>
+  <string name="MessageRequestBottomView_block">مسدود کردن</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let">آیا مایل به دریافت پیام از %1$s هستید؟</string>
+  <string name="MessageRequestProfileView_member_of_one_group">عضو %1$s</string>
+  <string name="MessageRequestProfileView_member_of_two_groups">عضو %1$s و %2$s</string>
+  <string name="MessageRequestProfileView_member_of_many_groups">عضو ،%1$s، %2$s و %3$s </string>
+  <string name="MessageRequestProfileView_members">%1$d عضو</string>
+  <plurals name="MessageRequestProfileView_member_of_others">
+    <item quantity="one">%d گروه دیگر</item>
+    <item quantity="other"> %d گروه دیگر</item>
+  </plurals>
   <!--EOF-->
 </resources>

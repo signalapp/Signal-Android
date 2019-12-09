@@ -9,23 +9,25 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.preference.CheckBoxPreference;
 import androidx.preference.Preference;
+
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.logging.Log;
-import android.widget.Toast;
 
 import com.google.firebase.iid.FirebaseInstanceId;
 
 import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.LogSubmitActivity;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.RegistrationActivity;
 import org.thoughtcrime.securesms.contacts.ContactAccessor;
 import org.thoughtcrime.securesms.contacts.ContactIdentityManager;
-import org.thoughtcrime.securesms.push.AccountManagerFactory;
+import org.thoughtcrime.securesms.registration.RegistrationNavigationActivity;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -184,7 +186,7 @@ public class AdvancedPreferenceFragment extends CorrectedPreferenceFragment {
       protected Integer doInBackground(Void... params) {
         try {
           Context                     context        = getActivity();
-          SignalServiceAccountManager accountManager = AccountManagerFactory.createManager(context);
+          SignalServiceAccountManager accountManager = ApplicationDependencies.getSignalServiceAccountManager();
 
           try {
             accountManager.setGcmId(Optional.<String>absent());
@@ -220,12 +222,7 @@ public class AdvancedPreferenceFragment extends CorrectedPreferenceFragment {
         });
         builder.show();
       } else {
-        Intent nextIntent = new Intent(getActivity(), ApplicationPreferencesActivity.class);
-
-        Intent intent = new Intent(getActivity(), RegistrationActivity.class);
-        intent.putExtra(RegistrationActivity.RE_REGISTRATION_EXTRA, true);
-        intent.putExtra("next_intent", nextIntent);
-        startActivity(intent);
+        startActivity(RegistrationNavigationActivity.newIntentForReRegistration(requireContext()));
       }
 
       return false;

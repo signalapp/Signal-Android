@@ -30,7 +30,6 @@ import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
 import org.thoughtcrime.securesms.jobs.PushTextSendJob;
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
 import org.thoughtcrime.securesms.jobs.RefreshPreKeysJob;
-import org.thoughtcrime.securesms.jobs.RefreshUnidentifiedDeliveryAbilityJob;
 import org.thoughtcrime.securesms.jobs.RequestGroupInfoJob;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob;
@@ -80,7 +79,7 @@ public class WorkManagerFactoryMappings {
     put(PushTextSendJob.class.getName(), PushTextSendJob.KEY);
     put(RefreshAttributesJob.class.getName(), RefreshAttributesJob.KEY);
     put(RefreshPreKeysJob.class.getName(), RefreshPreKeysJob.KEY);
-    put(RefreshUnidentifiedDeliveryAbilityJob.class.getName(), RefreshUnidentifiedDeliveryAbilityJob.KEY);
+    put("RefreshUnidentifiedDeliveryAbilityJob", FailingJob.KEY);
     put(RequestGroupInfoJob.class.getName(), RequestGroupInfoJob.KEY);
     put(RetrieveProfileAvatarJob.class.getName(), RetrieveProfileAvatarJob.KEY);
     put(RetrieveProfileJob.class.getName(), RetrieveProfileJob.KEY);

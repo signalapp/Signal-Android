@@ -7,7 +7,6 @@ import android.text.TextUtils;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.MessageSender;

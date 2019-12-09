@@ -25,7 +25,6 @@ import org.thoughtcrime.securesms.contactshare.Contact.PostalAddress;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
-import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.SpanUtil;
@@ -123,7 +122,7 @@ public final class ContactUtil {
       CharSequence[] values = new CharSequence[choices.size()];
 
       for (int i = 0; i < values.length; i++) {
-        values[i] = getPrettyPhoneNumber(choices.get(i).requireAddress().toPhoneString(), locale);
+        values[i] = getPrettyPhoneNumber(choices.get(i).requireE164(), locale);
       }
 
       new AlertDialog.Builder(context)

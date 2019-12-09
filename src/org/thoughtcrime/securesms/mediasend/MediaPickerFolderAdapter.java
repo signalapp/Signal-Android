@@ -2,6 +2,8 @@ package org.thoughtcrime.securesms.mediasend;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -75,7 +77,7 @@ class MediaPickerFolderAdapter extends RecyclerView.Adapter<MediaPickerFolderAda
     void bind(@NonNull MediaFolder folder, @NonNull GlideRequests glideRequests, @NonNull EventListener eventListener) {
       title.setText(folder.getTitle());
       count.setText(String.valueOf(folder.getItemCount()));
-      icon.setImageResource(folder.getFolderType() == MediaFolder.FolderType.CAMERA ? R.drawable.ic_camera_alt_white_24dp : R.drawable.ic_folder_white_48dp);
+      icon.setImageResource(folder.getFolderType() == MediaFolder.FolderType.CAMERA ? R.drawable.ic_camera_solid_white_24 : R.drawable.ic_folder_white_48dp);
 
       glideRequests.load(folder.getThumbnailUri())
                    .diskCacheStrategy(DiskCacheStrategy.NONE)

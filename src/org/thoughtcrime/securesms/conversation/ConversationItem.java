@@ -26,11 +26,6 @@ import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.net.Uri;
-import androidx.annotation.DimenRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
@@ -51,9 +46,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.DimenRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+
 import com.annimon.stream.Stream;
 
-import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.BindableConversationItem;
 import org.thoughtcrime.securesms.ConfirmIdentityDialog;
 import org.thoughtcrime.securesms.MediaPreviewActivity;
@@ -69,9 +68,6 @@ import org.thoughtcrime.securesms.components.DocumentView;
 import org.thoughtcrime.securesms.components.LinkPreviewView;
 import org.thoughtcrime.securesms.components.Outliner;
 import org.thoughtcrime.securesms.components.QuoteView;
-import org.thoughtcrime.securesms.recipients.LiveRecipient;
-import org.thoughtcrime.securesms.recipients.RecipientForeverObserver;
-import org.thoughtcrime.securesms.revealable.ViewOnceMessageView;
 import org.thoughtcrime.securesms.components.SharedContactView;
 import org.thoughtcrime.securesms.components.StickerView;
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
@@ -86,6 +82,7 @@ import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.Quote;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob;
 import org.thoughtcrime.securesms.jobs.MmsDownloadJob;
 import org.thoughtcrime.securesms.jobs.MmsSendJob;
@@ -100,11 +97,15 @@ import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideClickListener;
 import org.thoughtcrime.securesms.mms.SlidesClickedListener;
 import org.thoughtcrime.securesms.mms.TextSlide;
+import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientForeverObserver;
+import org.thoughtcrime.securesms.revealable.ViewOnceMessageView;
 import org.thoughtcrime.securesms.revealable.ViewOnceUtil;
 import org.thoughtcrime.securesms.stickers.StickerUrl;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.LongClickCopySpan;
 import org.thoughtcrime.securesms.util.LongClickMovementMethod;
 import org.thoughtcrime.securesms.util.SearchUtil;
@@ -157,6 +158,7 @@ public class ConversationItem extends LinearLayout implements BindableConversati
   private   AvatarImageView            contactPhoto;
   private   AlertView                  alertView;
   private   ViewGroup                  container;
+  protected ViewGroup                  reactionsContainer;
 
   private @NonNull  Set<MessageRecord>              batchSelected = new HashSet<>();
   private @NonNull  Outliner                        outliner      = new Outliner();
@@ -167,8 +169,9 @@ public class ConversationItem extends LinearLayout implements BindableConversati
   private           Stub<SharedContactView>         sharedContactStub;
   private           Stub<LinkPreviewView>           linkPreviewStub;
   private           Stub<StickerView>               stickerStub;
-  private           Stub<ViewOnceMessageView>     revealableStub;
+  private           Stub<ViewOnceMessageView>       revealableStub;
   private @Nullable EventListener                   eventListener;
+  private           ConversationItemReactionBubbles conversationItemReactionBubbles;
 
   private int defaultBubbleColor;
   private int measureCalls;
@@ -223,6 +226,9 @@ public class ConversationItem extends LinearLayout implements BindableConversati
     this.quoteView               =            findViewById(R.id.quote_view);
     this.container               =            findViewById(R.id.container);
     this.reply                   =            findViewById(R.id.reply_icon);
+    this.reactionsContainer      =            findViewById(R.id.reactions_bubbles_container);
+
+    this.conversationItemReactionBubbles = new ConversationItemReactionBubbles(this.reactionsContainer);
 
     setOnClickListener(new ClickListener(null));
 
@@ -272,6 +278,7 @@ public class ConversationItem extends LinearLayout implements BindableConversati
     setAuthor(messageRecord, previousMessageRecord, nextMessageRecord, groupThread);
     setQuote(messageRecord, previousMessageRecord, nextMessageRecord, groupThread);
     setMessageSpacing(context, messageRecord, previousMessageRecord, nextMessageRecord, groupThread);
+    setReactions(messageRecord);
     setFooter(messageRecord, nextMessageRecord, locale, groupThread);
   }
 
@@ -367,7 +374,7 @@ public class ConversationItem extends LinearLayout implements BindableConversati
   @Override
   public void unbind() {
     if (recipient != null) {
-      recipient.removeForeverObserver(this);;
+      recipient.removeForeverObserver(this);
     }
   }
 
@@ -848,7 +855,7 @@ public class ConversationItem extends LinearLayout implements BindableConversati
     if (current.isMms() && !current.isMmsNotification() && ((MediaMmsMessageRecord)current).getQuote() != null) {
       Quote quote = ((MediaMmsMessageRecord)current).getQuote();
       //noinspection ConstantConditions
-      quoteView.setQuote(glideRequests, quote.getId(), Recipient.live(quote.getAuthor()).get(), quote.getText(), quote.isOriginalMissing(), quote.getAttachment());
+      quoteView.setQuote(glideRequests, quote.getId(), Recipient.live(quote.getAuthor()).get(), quote.getText(), quote.isOriginalMissing(), quote.getAttachment(), messageRecord.isViewOnce());
       quoteView.setVisibility(View.VISIBLE);
       quoteView.getLayoutParams().width = ViewGroup.LayoutParams.WRAP_CONTENT;
 
@@ -898,6 +905,15 @@ public class ConversationItem extends LinearLayout implements BindableConversati
     }
   }
 
+  private void setReactions(@NonNull MessageRecord current) {
+    conversationItemReactionBubbles.setReactions(current.getReactions());
+    reactionsContainer.setOnClickListener(v -> {
+      if (eventListener == null) return;
+
+      eventListener.onReactionClicked(current.getId(), current.isMms());
+    });
+  }
+
   private void setFooter(@NonNull MessageRecord current, @NonNull Optional<MessageRecord> next, @NonNull Locale locale, boolean isGroupThread) {
     ViewUtil.updateLayoutParams(footer, LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 
@@ -943,14 +959,20 @@ public class ConversationItem extends LinearLayout implements BindableConversati
   @SuppressLint("SetTextI18n")
   private void setGroupMessageStatus(MessageRecord messageRecord, Recipient recipient) {
     if (groupThread && !messageRecord.isOutgoing()) {
-      this.groupSender.setText(recipient.toShortString());
 
-      if (recipient.getName() == null && !TextUtils.isEmpty(recipient.getProfileName())) {
-        this.groupSenderProfileName.setText("~" + recipient.getProfileName());
-        this.groupSenderProfileName.setVisibility(View.VISIBLE);
-      } else {
-        this.groupSenderProfileName.setText(null);
+      if (FeatureFlags.PROFILE_DISPLAY) {
+        this.groupSender.setText(recipient.getDisplayName(getContext()));
         this.groupSenderProfileName.setVisibility(View.GONE);
+      } else {
+        this.groupSender.setText(recipient.toShortString(context));
+
+        if (recipient.getName(context) == null && !TextUtils.isEmpty(recipient.getProfileName())) {
+          this.groupSenderProfileName.setText("~" + recipient.getProfileName());
+          this.groupSenderProfileName.setVisibility(View.VISIBLE);
+        } else {
+          this.groupSenderProfileName.setText(null);
+          this.groupSenderProfileName.setVisibility(View.GONE);
+        }
       }
     }
   }
@@ -972,7 +994,7 @@ public class ConversationItem extends LinearLayout implements BindableConversati
     if (isGroupThread && !current.isOutgoing()) {
       contactPhotoHolder.setVisibility(VISIBLE);
 
-      if (!previous.isPresent() || previous.get().isUpdate() || !current.getRecipient().requireAddress().equals(previous.get().getRecipient().requireAddress()) ||
+      if (!previous.isPresent() || previous.get().isUpdate() || !current.getRecipient().equals(previous.get().getRecipient()) ||
           !DateUtils.isSameDay(previous.get().getTimestamp(), current.getTimestamp()))
       {
         groupSenderHolder.setVisibility(VISIBLE);
@@ -980,7 +1002,7 @@ public class ConversationItem extends LinearLayout implements BindableConversati
         groupSenderHolder.setVisibility(GONE);
       }
 
-      if (!next.isPresent() || next.get().isUpdate() || !current.getRecipient().requireAddress().equals(next.get().getRecipient().requireAddress())) {
+      if (!next.isPresent() || next.get().isUpdate() || !current.getRecipient().equals(next.get().getRecipient())) {
         contactPhoto.setVisibility(VISIBLE);
       } else {
         contactPhoto.setVisibility(GONE);
@@ -1040,7 +1062,7 @@ public class ConversationItem extends LinearLayout implements BindableConversati
   private boolean isStartOfMessageCluster(@NonNull MessageRecord current, @NonNull Optional<MessageRecord> previous, boolean isGroupThread) {
     if (isGroupThread) {
       return !previous.isPresent() || previous.get().isUpdate() || !DateUtils.isSameDay(current.getTimestamp(), previous.get().getTimestamp()) ||
-             !current.getRecipient().requireAddress().equals(previous.get().getRecipient().requireAddress());
+             !current.getRecipient().equals(previous.get().getRecipient());
     } else {
       return !previous.isPresent() || previous.get().isUpdate() || !DateUtils.isSameDay(current.getTimestamp(), previous.get().getTimestamp()) ||
              current.isOutgoing() != previous.get().isOutgoing();
@@ -1050,7 +1072,7 @@ public class ConversationItem extends LinearLayout implements BindableConversati
   private boolean isEndOfMessageCluster(@NonNull MessageRecord current, @NonNull Optional<MessageRecord> next, boolean isGroupThread) {
     if (isGroupThread) {
       return !next.isPresent() || next.get().isUpdate() || !DateUtils.isSameDay(current.getTimestamp(), next.get().getTimestamp()) ||
-             !current.getRecipient().requireAddress().equals(next.get().getRecipient().requireAddress());
+             !current.getRecipient().equals(next.get().getRecipient());
     } else {
       return !next.isPresent() || next.get().isUpdate() || !DateUtils.isSameDay(current.getTimestamp(), next.get().getTimestamp()) ||
              current.isOutgoing() != next.get().isOutgoing();
@@ -1218,18 +1240,16 @@ public class ConversationItem extends LinearLayout implements BindableConversati
       Log.i(TAG, "onClick() for attachment download");
       if (messageRecord.isMmsNotification()) {
         Log.i(TAG, "Scheduling MMS attachment download");
-        ApplicationContext.getInstance(context)
-                          .getJobManager()
-                          .add(new MmsDownloadJob(messageRecord.getId(),
-                                                  messageRecord.getThreadId(), false));
+        ApplicationDependencies.getJobManager().add(new MmsDownloadJob(messageRecord.getId(),
+                                                                       messageRecord.getThreadId(),
+                                                                       false));
       } else {
         Log.i(TAG, "Scheduling push attachment downloads for " + slides.size() + " items");
 
         for (Slide slide : slides) {
-          ApplicationContext.getInstance(context)
-                            .getJobManager()
-                            .add(new AttachmentDownloadJob(messageRecord.getId(),
-                                                           ((DatabaseAttachment)slide.asAttachment()).getAttachmentId(), true));
+          ApplicationDependencies.getJobManager().add(new AttachmentDownloadJob(messageRecord.getId(),
+                                                                                ((DatabaseAttachment)slide.asAttachment()).getAttachmentId(),
+                                                                                true));
         }
       }
     }
@@ -1269,8 +1289,7 @@ public class ConversationItem extends LinearLayout implements BindableConversati
         Intent intent = new Intent(context, MediaPreviewActivity.class);
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         intent.setDataAndType(slide.getUri(), slide.getContentType());
-        intent.putExtra(MediaPreviewActivity.RECIPIENT_EXTRA, conversationRecipient.getId());
-        intent.putExtra(MediaPreviewActivity.OUTGOING_EXTRA, messageRecord.isOutgoing());
+        intent.putExtra(MediaPreviewActivity.THREAD_ID_EXTRA, messageRecord.getThreadId());
         intent.putExtra(MediaPreviewActivity.DATE_EXTRA, messageRecord.getTimestamp());
         intent.putExtra(MediaPreviewActivity.SIZE_EXTRA, slide.asAttachment().getSize());
         intent.putExtra(MediaPreviewActivity.CAPTION_EXTRA, slide.getCaption().orNull());
@@ -1359,7 +1378,7 @@ public class ConversationItem extends LinearLayout implements BindableConversati
         database.markAsForcedSms(messageRecord.getId());
 
         MmsSendJob.enqueue(context,
-                           ApplicationContext.getInstance(context).getJobManager(),
+                           ApplicationDependencies.getJobManager(),
                            messageRecord.getId());
       } else {
         SmsDatabase database = DatabaseFactory.getSmsDatabase(context);
@@ -1367,10 +1386,9 @@ public class ConversationItem extends LinearLayout implements BindableConversati
         database.markAsOutbox(messageRecord.getId());
         database.markAsForcedSms(messageRecord.getId());
 
-        ApplicationContext.getInstance(context)
-                          .getJobManager()
-                          .add(new SmsSendJob(context, messageRecord.getId(),
-                                              messageRecord.getIndividualRecipient()));
+        ApplicationDependencies.getJobManager().add(new SmsSendJob(context,
+                                                                   messageRecord.getId(),
+                                                                   messageRecord.getIndividualRecipient()));
       }
     });
 

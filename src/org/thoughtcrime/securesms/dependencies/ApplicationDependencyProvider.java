@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.dependencies;
 
+import android.app.Application;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
@@ -8,23 +9,33 @@ import org.greenrobot.eventbus.EventBus;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.IncomingMessageProcessor;
 import org.thoughtcrime.securesms.crypto.storage.SignalProtocolStoreImpl;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.events.ReminderUpdateEvent;
 import org.thoughtcrime.securesms.gcm.MessageRetriever;
+import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.JobManager;
+import org.thoughtcrime.securesms.jobmanager.JobMigrator;
+import org.thoughtcrime.securesms.jobmanager.impl.JsonDataSerializer;
+import org.thoughtcrime.securesms.jobs.FastJobStorage;
+import org.thoughtcrime.securesms.jobs.JobManagerFactories;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.push.SecurityEventListener;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.recipients.LiveRecipientCache;
 import org.thoughtcrime.securesms.service.IncomingMessageObserver;
+import org.thoughtcrime.securesms.util.AlarmSleepTimer;
+import org.thoughtcrime.securesms.util.FrameRateTracker;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
-import org.whispersystems.signalservice.api.util.RealtimeSleepTimer;
 import org.whispersystems.signalservice.api.util.SleepTimer;
 import org.whispersystems.signalservice.api.util.UptimeSleepTimer;
 import org.whispersystems.signalservice.api.websocket.ConnectivityListener;
+
+import java.util.UUID;
 
 /**
  * Implementation of {@link ApplicationDependencies.Provider} that provides real app dependencies.
@@ -33,11 +44,11 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
 
   private static final String TAG = Log.tag(ApplicationDependencyProvider.class);
 
-  private final Context                    context;
+  private final Application                context;
   private final SignalServiceNetworkAccess networkAccess;
 
-  public ApplicationDependencyProvider(@NonNull Context context, @NonNull SignalServiceNetworkAccess networkAccess) {
-    this.context       = context.getApplicationContext();
+  public ApplicationDependencyProvider(@NonNull Application context, @NonNull SignalServiceNetworkAccess networkAccess) {
+    this.context       = context;
     this.networkAccess = networkAccess;
   }
 
@@ -62,7 +73,7 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
 
   @Override
   public @NonNull SignalServiceMessageReceiver provideSignalServiceMessageReceiver() {
-    SleepTimer sleepTimer = TextSecurePreferences.isFcmDisabled(context) ? new RealtimeSleepTimer(context)
+    SleepTimer sleepTimer = TextSecurePreferences.isFcmDisabled(context) ? new AlarmSleepTimer(context)
                                                                          : new UptimeSleepTimer();
     return new SignalServiceMessageReceiver(networkAccess.getConfiguration(context),
                                             new DynamicCredentialsProvider(context),
@@ -87,9 +98,25 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
   }
 
   @Override
-  public @NonNull
-  LiveRecipientCache provideRecipientCache() {
+  public @NonNull LiveRecipientCache provideRecipientCache() {
     return new LiveRecipientCache(context);
+  }
+
+  @Override
+  public @NonNull JobManager provideJobManager() {
+    return new JobManager(context, new JobManager.Configuration.Builder()
+                                                               .setDataSerializer(new JsonDataSerializer())
+                                                               .setJobFactories(JobManagerFactories.getJobFactories(context))
+                                                               .setConstraintFactories(JobManagerFactories.getConstraintFactories(context))
+                                                               .setConstraintObservers(JobManagerFactories.getConstraintObservers(context))
+                                                               .setJobStorage(new FastJobStorage(DatabaseFactory.getJobDatabase(context)))
+                                                               .setJobMigrator(new JobMigrator(TextSecurePreferences.getJobManagerVersion(context), JobManager.CURRENT_VERSION, JobManagerFactories.getJobMigrations(context)))
+                                                               .build());
+  }
+
+  @Override
+  public @NonNull FrameRateTracker provideFrameRateTracker() {
+    return new FrameRateTracker(context);
   }
 
   private static class DynamicCredentialsProvider implements CredentialsProvider {
@@ -101,7 +128,12 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
     }
 
     @Override
-    public String getUser() {
+    public UUID getUuid() {
+      return TextSecurePreferences.getLocalUuid(context);
+    }
+
+    @Override
+    public String getE164() {
       return TextSecurePreferences.getLocalNumber(context);
     }
 
@@ -121,6 +153,7 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
     @Override
     public void onConnected() {
       Log.i(TAG, "onConnected()");
+      TextSecurePreferences.setUnauthorizedReceived(context, false);
     }
 
     @Override

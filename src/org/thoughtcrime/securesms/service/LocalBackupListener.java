@@ -4,7 +4,9 @@ package org.thoughtcrime.securesms.service;
 import android.content.Context;
 import android.content.Intent;
 
-import org.thoughtcrime.securesms.ApplicationContext;
+import androidx.annotation.NonNull;
+
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.LocalBackupJob;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
@@ -22,18 +24,22 @@ public class LocalBackupListener extends PersistentAlarmManagerListener {
   @Override
   protected long onAlarm(Context context, long scheduledTime) {
     if (TextSecurePreferences.isBackupEnabled(context)) {
-      ApplicationContext.getInstance(context).getJobManager().add(new LocalBackupJob());
+      ApplicationDependencies.getJobManager().add(new LocalBackupJob());
     }
 
-    long nextTime = System.currentTimeMillis() + INTERVAL;
-    TextSecurePreferences.setNextBackupTime(context, nextTime);
-
-    return nextTime;
+    return setNextBackupTimeToIntervalFromNow(context);
   }
 
   public static void schedule(Context context) {
     if (TextSecurePreferences.isBackupEnabled(context)) {
       new LocalBackupListener().onReceive(context, new Intent());
     }
+  }
+
+  public static long setNextBackupTimeToIntervalFromNow(@NonNull Context context) {
+    long nextTime = System.currentTimeMillis() + INTERVAL;
+    TextSecurePreferences.setNextBackupTime(context, nextTime);
+
+    return nextTime;
   }
 }

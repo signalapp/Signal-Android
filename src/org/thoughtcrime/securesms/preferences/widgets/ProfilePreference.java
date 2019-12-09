@@ -16,15 +16,16 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
-import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.mms.GlideApp;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.Util;
 
 public class ProfilePreference extends Preference {
 
   private ImageView avatarView;
   private TextView  profileNameView;
-  private TextView  profileNumberView;
+  private TextView profileSubtextView;
 
   @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
   public ProfilePreference(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
@@ -54,22 +55,22 @@ public class ProfilePreference extends Preference {
   @Override
   public void onBindViewHolder(PreferenceViewHolder viewHolder) {
     super.onBindViewHolder(viewHolder);
-    avatarView        = (ImageView)viewHolder.findViewById(R.id.avatar);
-    profileNameView   = (TextView)viewHolder.findViewById(R.id.profile_name);
-    profileNumberView = (TextView)viewHolder.findViewById(R.id.number);
+    avatarView         = (ImageView)viewHolder.findViewById(R.id.avatar);
+    profileNameView    = (TextView)viewHolder.findViewById(R.id.profile_name);
+    profileSubtextView = (TextView)viewHolder.findViewById(R.id.number);
 
     refresh();
   }
 
   public void refresh() {
-    if (profileNumberView == null) return;
+    if (profileSubtextView == null) return;
 
-    final Address localAddress = Address.fromSerialized(TextSecurePreferences.getLocalNumber(getContext()));
-    final String  profileName  = TextSecurePreferences.getProfileName(getContext());
+    final Recipient self        = Recipient.self();
+    final String    profileName = TextSecurePreferences.getProfileName(getContext());
 
     GlideApp.with(getContext().getApplicationContext())
-            .load(new ProfileContactPhoto(localAddress, String.valueOf(TextSecurePreferences.getProfileAvatarId(getContext()))))
-            .error(new ResourceContactPhoto(R.drawable.ic_camera_alt_white_24dp).asDrawable(getContext(), getContext().getResources().getColor(R.color.grey_400)))
+            .load(new ProfileContactPhoto(self.getId(), String.valueOf(TextSecurePreferences.getProfileAvatarId(getContext()))))
+            .error(new ResourceContactPhoto(R.drawable.ic_camera_solid_white_24).asDrawable(getContext(), getContext().getResources().getColor(R.color.grey_400)))
             .circleCrop()
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .into(avatarView);
@@ -78,6 +79,6 @@ public class ProfilePreference extends Preference {
       profileNameView.setText(profileName);
     }
 
-    profileNumberView.setText(localAddress.toPhoneString());
+    profileSubtextView.setText(self.getUsername().or(self.getE164()).orNull());
   }
 }

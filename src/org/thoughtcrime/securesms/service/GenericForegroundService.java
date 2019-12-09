@@ -13,7 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 
-import org.thoughtcrime.securesms.ConversationListActivity;
+import org.thoughtcrime.securesms.MainActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
@@ -103,11 +103,12 @@ public final class GenericForegroundService extends Service {
 
   private void postObligatoryForegroundNotification(@NonNull Entry active) {
     lastPosted = active;
+    // TODO [greyson] Navigation
     startForeground(NOTIFICATION_ID, new NotificationCompat.Builder(this, active.channelId)
                                                            .setSmallIcon(active.iconRes)
                                                            .setContentTitle(active.title)
                                                            .setProgress(active.progressMax, active.progress, active.indeterminate)
-                                                           .setContentIntent(PendingIntent.getActivity(this, 0, new Intent(this, ConversationListActivity.class), 0))
+                                                           .setContentIntent(PendingIntent.getActivity(this, 0, new Intent(this, MainActivity.class), 0))
                                                            .build());
   }
 

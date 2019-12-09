@@ -28,12 +28,12 @@ public final class InMemoryTranscoder implements Closeable {
 
   private static final String TAG = Log.tag(InMemoryTranscoder.class);
 
-  private static final int MAXIMUM_TARGET_VIDEO_BITRATE = 2_000_000;
+  private static final int MAXIMUM_TARGET_VIDEO_BITRATE = VideoUtil.VIDEO_BIT_RATE;
   private static final int LOW_RES_TARGET_VIDEO_BITRATE = 1_750_000;
-  private static final int MINIMUM_TARGET_VIDEO_BITRATE =   500_000;
-  private static final int AUDIO_BITRATE                =   192_000;
-  private static final int OUTPUT_FORMAT                =       720;
-  private static final int LOW_RES_OUTPUT_FORMAT        =       480;
+  private static final int MINIMUM_TARGET_VIDEO_BITRATE = 500_000;
+  private static final int AUDIO_BITRATE                = VideoUtil.AUDIO_BIT_RATE;
+  private static final int OUTPUT_FORMAT                = VideoUtil.VIDEO_SHORT_WIDTH;
+  private static final int LOW_RES_OUTPUT_FORMAT        = 480;
 
   private final Context         context;
   private final MediaDataSource dataSource;

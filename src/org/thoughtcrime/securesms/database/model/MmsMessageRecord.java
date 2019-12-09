@@ -32,9 +32,10 @@ public abstract class MmsMessageRecord extends MessageRecord {
                    long expireStarted, boolean viewOnce,
                    @NonNull SlideDeck slideDeck, int readReceiptCount,
                    @Nullable Quote quote, @NonNull List<Contact> contacts,
-                   @NonNull List<LinkPreview> linkPreviews, boolean unidentified)
+                   @NonNull List<LinkPreview> linkPreviews, boolean unidentified,
+                   @NonNull List<ReactionRecord> reactions)
   {
-    super(id, body, conversationRecipient, individualRecipient, recipientDeviceId, dateSent, dateReceived, threadId, deliveryStatus, deliveryReceiptCount, type, mismatches, networkFailures, subscriptionId, expiresIn, expireStarted, readReceiptCount, unidentified);
+    super(id, body, conversationRecipient, individualRecipient, recipientDeviceId, dateSent, dateReceived, threadId, deliveryStatus, deliveryReceiptCount, type, mismatches, networkFailures, subscriptionId, expiresIn, expireStarted, readReceiptCount, unidentified, reactions);
 
     this.slideDeck = slideDeck;
     this.quote     = quote;
@@ -65,6 +66,11 @@ public abstract class MmsMessageRecord extends MessageRecord {
     return false;
   }
 
+  @Override
+  public boolean isViewOnce() {
+    return viewOnce;
+  }
+
   public boolean containsMediaSlide() {
     return slideDeck.containsMediaSlide();
   }
@@ -79,9 +85,5 @@ public abstract class MmsMessageRecord extends MessageRecord {
 
   public @NonNull List<LinkPreview> getLinkPreviews() {
     return linkPreviews;
-  }
-
-  public boolean isViewOnce() {
-    return viewOnce;
   }
 }

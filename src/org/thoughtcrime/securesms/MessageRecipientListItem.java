@@ -34,6 +34,7 @@ import org.thoughtcrime.securesms.components.FromTextView;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver;
@@ -166,7 +167,12 @@ public class MessageRecipientListItem extends RelativeLayout
 
   @Override
   public void onRecipientChanged(@NonNull Recipient recipient) {
-    fromView.setText(recipient);
-    contactPhotoImage.setAvatar(glideRequests, recipient, false);
+    if (this.member != null && this.member.getRecipient().equals(recipient)) {
+      Log.d(TAG, "onRecipientChanged -- valid");
+      fromView.setText(recipient);
+      contactPhotoImage.setAvatar(glideRequests, recipient, false);
+    } else {
+      Log.d(TAG, "onRecipientChanged -- invalid");
+    }
   }
 }

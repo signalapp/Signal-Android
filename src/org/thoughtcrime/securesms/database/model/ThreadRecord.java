@@ -101,7 +101,7 @@ public class ThreadRecord extends DisplayRecord {
     } else if (SmsDatabase.Types.isMissedCall(type)) {
       return emphasisAdded(context.getString(org.thoughtcrime.securesms.R.string.ThreadRecord_missed_call));
     } else if (SmsDatabase.Types.isJoinedType(type)) {
-      return emphasisAdded(context.getString(R.string.ThreadRecord_s_is_on_signal, getRecipient().toShortString()));
+      return emphasisAdded(context.getString(R.string.ThreadRecord_s_is_on_signal, getRecipient().toShortString(context)));
     } else if (SmsDatabase.Types.isExpirationTimerUpdate(type)) {
       int seconds = (int)(getExpiresIn() / 1000);
       if (seconds <= 0) {
@@ -111,7 +111,7 @@ public class ThreadRecord extends DisplayRecord {
       return emphasisAdded(context.getString(R.string.ThreadRecord_disappearing_message_time_updated_to_s, time));
     } else if (SmsDatabase.Types.isIdentityUpdate(type)) {
       if (getRecipient().isGroup()) return emphasisAdded(context.getString(R.string.ThreadRecord_safety_number_changed));
-      else                                   return emphasisAdded(context.getString(R.string.ThreadRecord_your_safety_number_with_s_has_changed, getRecipient().toShortString()));
+      else                          return emphasisAdded(context.getString(R.string.ThreadRecord_your_safety_number_with_s_has_changed, getRecipient().toShortString(context)));
     } else if (SmsDatabase.Types.isIdentityVerified(type)) {
       return emphasisAdded(context.getString(R.string.ThreadRecord_you_marked_verified));
     } else if (SmsDatabase.Types.isIdentityDefault(type)) {
@@ -122,8 +122,8 @@ public class ThreadRecord extends DisplayRecord {
       if (TextUtils.isEmpty(getBody())) {
         if (extra != null && extra.isSticker()) {
           return new SpannableString(emphasisAdded(context.getString(R.string.ThreadRecord_sticker)));
-        } else if (extra != null && extra.isRevealable() && MediaUtil.isImageType(contentType)) {
-          return new SpannableString(emphasisAdded(context.getString(R.string.ThreadRecord_disappearing_photo)));
+        } else if (extra != null && extra.isRevealable()) {
+          return new SpannableString(emphasisAdded(getViewOnceDescription(context, contentType)));
         } else {
           return new SpannableString(emphasisAdded(context.getString(R.string.ThreadRecord_media_message)));
         }
@@ -142,6 +142,14 @@ public class ThreadRecord extends DisplayRecord {
     spannable.setSpan(new StyleSpan(android.graphics.Typeface.ITALIC),
                       start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
     return spannable;
+  }
+
+  private String getViewOnceDescription(@NonNull Context context, @Nullable String contentType) {
+    if (MediaUtil.isVideoType(contentType)) {
+      return context.getString(R.string.ThreadRecord_disappearing_video);
+    } else {
+      return context.getString(R.string.ThreadRecord_disappearing_photo);
+    }
   }
 
   public long getCount() {

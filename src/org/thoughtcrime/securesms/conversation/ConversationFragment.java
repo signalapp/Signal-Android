@@ -26,19 +26,6 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
-import androidx.core.app.ActivityOptionsCompat;
-import androidx.fragment.app.Fragment;
-import androidx.loader.app.LoaderManager;
-import androidx.loader.content.Loader;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.view.ActionMode;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.RecyclerView.OnScrollListener;
 import android.text.ClipboardManager;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -54,7 +41,23 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewSwitcher;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.view.ActionMode;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.ActivityOptionsCompat;
+import androidx.fragment.app.Fragment;
+import androidx.loader.app.LoaderManager;
+import androidx.loader.content.Loader;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView.OnScrollListener;
+
 import com.annimon.stream.Stream;
+import com.google.android.collect.Sets;
 
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.MessageDetailsActivity;
@@ -78,6 +81,7 @@ import org.thoughtcrime.securesms.database.loaders.ConversationLoader;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceViewOnceOpenJob;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
@@ -90,6 +94,7 @@ import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.profiles.UnknownSenderView;
 import org.thoughtcrime.securesms.providers.BlobProvider;
+import org.thoughtcrime.securesms.reactions.ReactionsBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -100,6 +105,7 @@ import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
 import org.thoughtcrime.securesms.stickers.StickerPackPreviewActivity;
 import org.thoughtcrime.securesms.util.CommunicationActions;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -143,7 +149,7 @@ public class ConversationFragment extends Fragment
   private int                         previousOffset;
   private int                         activeOffset;
   private boolean                     firstLoad;
-  private long                        loaderStartTime;
+  private boolean                     isReacting;
   private ActionMode                  actionMode;
   private Locale                      locale;
   private RecyclerView                list;
@@ -322,8 +328,11 @@ public class ConversationFragment extends Fragment
 
       if (recipients.size() > 0) {
         if (!isTypingIndicatorShowing() && isAtBottom()) {
+          Context context = requireContext();
           list.setVerticalScrollBarEnabled(false);
-          list.post(() -> getListLayoutManager().smoothScrollToPosition(requireContext(), 0, 250));
+          list.post(() -> { if (!isReacting) {
+            getListLayoutManager().smoothScrollToPosition(context, 0, 250);
+          }});
           list.postDelayed(() -> list.setVerticalScrollBarEnabled(true), 300);
           adapter.setHeaderView(typingView);
           adapter.notifyItemInserted(0);
@@ -338,7 +347,7 @@ public class ConversationFragment extends Fragment
         }
       } else {
         if (getListLayoutManager().findFirstCompletelyVisibleItemPosition() == 0 && getListLayoutManager().getItemCount() > 1 && !replacedByIncomingMessage) {
-          getListLayoutManager().smoothScrollToPosition(requireContext(), 1, 250);
+          if (!isReacting) getListLayoutManager().smoothScrollToPosition(requireContext(), 1, 250);
           list.setVerticalScrollBarEnabled(false);
           list.postDelayed(() -> {
             adapter.setHeaderView(null);
@@ -650,7 +659,6 @@ public class ConversationFragment extends Fragment
   @Override
   public @NonNull Loader<Cursor> onCreateLoader(int id, Bundle args) {
     Log.i(TAG, "onCreateLoader");
-    loaderStartTime = System.currentTimeMillis();
 
     int limit  = args.getInt(KEY_LIMIT, PARTIAL_CONVERSATION_LIMIT);
     int offset = 0;
@@ -664,9 +672,7 @@ public class ConversationFragment extends Fragment
 
   @Override
   public void onLoadFinished(@NonNull Loader<Cursor> cursorLoader, Cursor cursor) {
-    long loadTime = System.currentTimeMillis() - loaderStartTime;
     int  count    = cursor.getCount();
-    Log.i(TAG, "onLoadFinished - took " + loadTime + " ms to load a cursor of size " + count);
     ConversationLoader loader = (ConversationLoader)cursorLoader;
 
     ConversationAdapter adapter = getListAdapter();
@@ -684,10 +690,18 @@ public class ConversationFragment extends Fragment
       setLastSeen(loader.getLastSeen());
     }
 
-    if (!loader.hasSent() && !recipient.get().isSystemContact() && !recipient.get().isGroup() && recipient.get().getRegistered() == RecipientDatabase.RegisteredState.REGISTERED) {
-      adapter.setHeaderView(unknownSenderView);
+    if (FeatureFlags.MESSAGE_REQUESTS) {
+      if (!loader.hasSent() && !recipient.get().isSystemContact() && !recipient.get().isProfileSharing() && !recipient.get().isBlocked() && recipient.get().isRegistered()) {
+        listener.onMessageRequest();
+      } else {
+        clearHeaderIfNotTyping(adapter);
+      }
     } else {
-      clearHeaderIfNotTyping(adapter);
+      if (!loader.hasSent() && !recipient.get().isSystemContact() && !recipient.get().isGroup() && recipient.get().getRegistered() == RecipientDatabase.RegisteredState.REGISTERED) {
+        adapter.setHeaderView(unknownSenderView);
+      } else {
+        clearHeaderIfNotTyping(adapter);
+      }
     }
 
     if (loader.hasOffset()) {
@@ -699,8 +713,8 @@ public class ConversationFragment extends Fragment
     }
 
     activeOffset = loader.getOffset();
-
     adapter.changeCursor(cursor);
+    listener.onCursorChanged();
 
     int lastSeenPosition = adapter.findLastSeenPosition(lastSeen);
 
@@ -741,6 +755,7 @@ public class ConversationFragment extends Fragment
   public void onLoaderReset(@NonNull Loader<Cursor> arg0) {
     if (list.getAdapter() != null) {
       getListAdapter().changeCursor(null);
+      listener.onCursorChanged();
     }
   }
 
@@ -857,6 +872,12 @@ public class ConversationFragment extends Fragment
     void handleReplyMessage(MessageRecord messageRecord);
     void onMessageActionToolbarOpened();
     void onForwardClicked();
+    void onMessageRequest();
+    void handleReaction(@NonNull View maskTarget,
+                        @NonNull MessageRecord messageRecord,
+                        @NonNull Toolbar.OnMenuItemClickListener toolbarListener,
+                        @NonNull ConversationReactionOverlay.OnHideListener onHideListener);
+    void onCursorChanged();
   }
 
   private class ConversationScrollListener extends OnScrollListener {
@@ -946,8 +967,21 @@ public class ConversationFragment extends Fragment
     }
 
     @Override
-    public void onItemLongClick(MessageRecord messageRecord) {
-      if (actionMode == null) {
+    public void onItemLongClick(View maskTarget, MessageRecord messageRecord) {
+
+      if (actionMode != null) return;
+
+      if (FeatureFlags.REACTION_SENDING &&
+          messageRecord.isSecure()      &&
+          ((ConversationAdapter) list.getAdapter()).getSelectedItems().isEmpty())
+      {
+        isReacting = true;
+        list.setLayoutFrozen(true);
+        listener.handleReaction(maskTarget, messageRecord, new ReactionsToolbarListener(messageRecord), () -> {
+          isReacting = false;
+          list.setLayoutFrozen(false);
+        });
+      } else {
         ((ConversationAdapter) list.getAdapter()).toggleSelection(messageRecord);
         list.getAdapter().notifyDataSetChanged();
 
@@ -1014,8 +1048,11 @@ public class ConversationFragment extends Fragment
         Log.i(TAG, "Copying the view-once photo to temp storage and deleting underlying media.");
 
         try {
-          InputStream inputStream = PartAuthority.getAttachmentStream(requireContext(), messageRecord.getSlideDeck().getThumbnailSlide().getUri());
-          Uri         tempUri     = BlobProvider.getInstance().forData(inputStream, 0).createForSingleSessionOnDisk(requireContext());
+          Slide       thumbnailSlide = messageRecord.getSlideDeck().getThumbnailSlide();
+          InputStream inputStream    = PartAuthority.getAttachmentStream(requireContext(), thumbnailSlide.getUri());
+          Uri         tempUri        = BlobProvider.getInstance().forData(inputStream, thumbnailSlide.getFileSize())
+                                                                 .withMimeType(thumbnailSlide.getContentType())
+                                                                 .createForSingleSessionOnDisk(requireContext());
 
           DatabaseFactory.getAttachmentDatabase(requireContext()).deleteAttachmentFilesForMessage(messageRecord.getId());
 
@@ -1023,9 +1060,7 @@ public class ConversationFragment extends Fragment
                             .getViewOnceMessageManager()
                             .scheduleIfNecessary();
 
-          ApplicationContext.getInstance(requireContext())
-                            .getJobManager()
-                            .add(new MultiDeviceViewOnceOpenJob(new MessagingDatabase.SyncMessageId(messageRecord.getIndividualRecipient().getId(), messageRecord.getDateSent())));
+          ApplicationDependencies.getJobManager().add(new MultiDeviceViewOnceOpenJob(new MessagingDatabase.SyncMessageId(messageRecord.getIndividualRecipient().getId(), messageRecord.getDateSent())));
 
           return tempUri;
         } catch (IOException e) {
@@ -1072,7 +1107,7 @@ public class ConversationFragment extends Fragment
       if (getContext() == null) return;
 
       ContactUtil.selectRecipientThroughDialog(getContext(), choices, locale, recipient -> {
-        CommunicationActions.startConversation(getContext(), recipient, null, ConversationActivity.Breadcrumb.SHARED_CONTACT);
+        CommunicationActions.startConversation(getContext(), recipient, null);
       });
     }
 
@@ -1081,8 +1116,15 @@ public class ConversationFragment extends Fragment
       if (getContext() == null) return;
 
       ContactUtil.selectRecipientThroughDialog(getContext(), choices, locale, recipient -> {
-        CommunicationActions.composeSmsThroughDefaultApp(getContext(), recipient.requireAddress(), getString(R.string.InviteActivity_lets_switch_to_signal, getString(R.string.install_url)));
+        CommunicationActions.composeSmsThroughDefaultApp(getContext(), recipient, getString(R.string.InviteActivity_lets_switch_to_signal, getString(R.string.install_url)));
       });
+    }
+
+    @Override
+    public void onReactionClicked(long messageId, boolean isMms) {
+      if (getContext() == null) return;
+
+      ReactionsBottomSheetDialogFragment.create(messageId, isMms).show(requireFragmentManager(), null);
     }
   }
 
@@ -1091,9 +1133,37 @@ public class ConversationFragment extends Fragment
     super.onActivityResult(requestCode, resultCode, data);
 
     if (requestCode == CODE_ADD_EDIT_CONTACT && getContext() != null) {
-      ApplicationContext.getInstance(getContext().getApplicationContext())
-                        .getJobManager()
-                        .add(new DirectoryRefreshJob(false));
+      ApplicationDependencies.getJobManager().add(new DirectoryRefreshJob(false));
+    }
+  }
+
+  private void handleEnterMultiSelect(@NonNull MessageRecord messageRecord) {
+    ((ConversationAdapter) list.getAdapter()).toggleSelection(messageRecord);
+    list.getAdapter().notifyDataSetChanged();
+
+    actionMode = ((AppCompatActivity)getActivity()).startSupportActionMode(actionModeCallback);
+  }
+
+  private class ReactionsToolbarListener implements Toolbar.OnMenuItemClickListener {
+
+    private final MessageRecord messageRecord;
+
+    private ReactionsToolbarListener(@NonNull MessageRecord messageRecord) {
+      this.messageRecord = messageRecord;
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+      switch (item.getItemId()) {
+        case R.id.action_info:        handleDisplayDetails(messageRecord);                         return true;
+        case R.id.action_delete:      handleDeleteMessages(Sets.newHashSet(messageRecord));        return true;
+        case R.id.action_copy:        handleCopyMessage(Sets.newHashSet(messageRecord));           return true;
+        case R.id.action_reply:       handleReplyMessage(messageRecord);                           return true;
+        case R.id.action_multiselect: handleEnterMultiSelect(messageRecord);                       return true;
+        case R.id.action_forward:     handleForwardMessage(messageRecord);                         return true;
+        case R.id.action_download:    handleSaveAttachment((MediaMmsMessageRecord) messageRecord); return true;
+        default:                                                                                   return false;
+      }
     }
   }
 

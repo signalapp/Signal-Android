@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_info"
+        android:icon="?menu_info_icon"
+        android:title="@string/conversation_context__menu_message_details"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_delete"
+        android:icon="?menu_trash_icon"
+        android:title="@string/conversation_context__menu_delete_message"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_copy"
+        android:icon="?menu_copy_icon"
+        android:title="@string/conversation_context__menu_copy_text"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_reply"
+        android:icon="?menu_reply_icon"
+        android:title="@string/conversation_context__menu_reply_to_message"
+        app:showAsAction="always" />
+    <item
+        android:visible="false"
+        android:id="@+id/action_download"
+        android:icon="?menu_save_icon"
+        android:title="@string/conversation_context_image__save_attachment"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_multiselect"
+        android:icon="?menu_multi_select_icon"
+        android:title="@string/conversation_context__reaction_multi_select"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_forward"
+        android:icon="?menu_forward_icon"
+        android:title="@string/conversation_context__menu_forward_message"
+        app:showAsAction="ifRoom" />
+</menu>

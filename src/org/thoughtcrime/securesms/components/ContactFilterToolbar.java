@@ -1,8 +1,13 @@
 package org.thoughtcrime.securesms.components;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Rect;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.widget.TextViewCompat;
+
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
@@ -97,7 +102,25 @@ public class ContactFilterToolbar extends Toolbar {
     setLogo(null);
     setContentInsetStartWithNavigation(0);
     expandTapArea(toggleContainer, dialpadToggle);
+    styleSearchText(searchText, context, attrs, defStyleAttr);
     searchText.requestFocus();
+  }
+
+  private void styleSearchText(@NonNull EditText searchText,
+                               @NonNull Context context,
+                               @NonNull AttributeSet attrs,
+                               int defStyle)
+  {
+    final TypedArray attributes = context.obtainStyledAttributes(attrs,
+                                                                 R.styleable.ContactFilterToolbar,
+                                                                 defStyle,
+                                                                 0);
+
+    int styleResource = attributes.getResourceId(R.styleable.ContactFilterToolbar_searchTextStyle, -1);
+    if (styleResource != -1) {
+      TextViewCompat.setTextAppearance(searchText, styleResource);
+    }
+    attributes.recycle();
   }
 
   public void clear() {

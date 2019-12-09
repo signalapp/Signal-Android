@@ -15,7 +15,7 @@
         android:layout_height="24dp"
         android:layout_margin="16dp"
         android:tint="@color/grey_600"
-        tools:src="@drawable/ic_call_white_24dp" />
+        tools:src="@drawable/ic_phone_right_unlock_solid_24" />
 
     <ImageView
         android:id="@+id/contact_field_avatar"

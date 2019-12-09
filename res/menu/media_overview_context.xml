@@ -7,7 +7,7 @@
 
     <item android:id="@+id/delete"
         android:title="@string/delete"
-        android:icon="@drawable/ic_delete_white_24dp"
+        android:icon="?menu_trash_icon"
         app:showAsAction="always"/>
 
     <item android:id="@+id/select_all"

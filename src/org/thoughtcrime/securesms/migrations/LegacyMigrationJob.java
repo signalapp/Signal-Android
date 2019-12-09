@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase.Reader;
 import org.thoughtcrime.securesms.database.PushDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob;
@@ -134,9 +135,7 @@ public class LegacyMigrationJob extends MigrationJob {
     }
 
     if (lastSeenVersion < SIGNED_PREKEY_VERSION) {
-      ApplicationContext.getInstance(context)
-                        .getJobManager()
-                        .add(new CreateSignedPreKeyJob(context));
+      ApplicationDependencies.getJobManager().add(new CreateSignedPreKeyJob(context));
     }
 
     if (lastSeenVersion < NO_DECRYPT_QUEUE_VERSION) {
@@ -156,9 +155,7 @@ public class LegacyMigrationJob extends MigrationJob {
     }
 
     if (lastSeenVersion < CONTACTS_ACCOUNT_VERSION) {
-      ApplicationContext.getInstance(context)
-                        .getJobManager()
-                        .add(new DirectoryRefreshJob(false));
+      ApplicationDependencies.getJobManager().add(new DirectoryRefreshJob(false));
     }
 
     if (lastSeenVersion < MEDIA_DOWNLOAD_CONTROLS_VERSION) {
@@ -166,18 +163,12 @@ public class LegacyMigrationJob extends MigrationJob {
     }
 
     if (lastSeenVersion < REDPHONE_SUPPORT_VERSION) {
-      ApplicationContext.getInstance(context)
-                        .getJobManager()
-                        .add(new RefreshAttributesJob());
-      ApplicationContext.getInstance(context)
-                        .getJobManager()
-                        .add(new DirectoryRefreshJob(false));
+      ApplicationDependencies.getJobManager().add(new RefreshAttributesJob());
+      ApplicationDependencies.getJobManager().add(new DirectoryRefreshJob(false));
     }
 
     if (lastSeenVersion < PROFILES) {
-      ApplicationContext.getInstance(context)
-                        .getJobManager()
-                        .add(new DirectoryRefreshJob(false));
+      ApplicationDependencies.getJobManager().add(new DirectoryRefreshJob(false));
     }
 
     if (lastSeenVersion < SCREENSHOTS) {
@@ -268,16 +259,12 @@ public class LegacyMigrationJob extends MigrationJob {
       }
 
       Log.i(TAG, "Scheduling UD attributes refresh.");
-      ApplicationContext.getInstance(context)
-                        .getJobManager()
-                        .add(new RefreshAttributesJob());
+      ApplicationDependencies.getJobManager().add(new RefreshAttributesJob());
     }
 
     if (lastSeenVersion < SIGNALING_KEY_DEPRECATION) {
       Log.i(TAG, "Scheduling a RefreshAttributesJob to remove the signaling key remotely.");
-      ApplicationContext.getInstance(context)
-                        .getJobManager()
-                        .add(new RefreshAttributesJob());
+      ApplicationDependencies.getJobManager().add(new RefreshAttributesJob());
     }
   }
 
@@ -301,9 +288,7 @@ public class LegacyMigrationJob extends MigrationJob {
         attachmentDb.setTransferState(attachment.getMmsId(), attachment.getAttachmentId(), AttachmentDatabase.TRANSFER_PROGRESS_DONE);
       } else if (record != null && !record.isOutgoing() && record.isPush()) {
         Log.i(TAG, "queuing new attachment download job for incoming push part " + attachment.getAttachmentId() + ".");
-        ApplicationContext.getInstance(context)
-                          .getJobManager()
-                          .add(new AttachmentDownloadJob(attachment.getMmsId(), attachment.getAttachmentId(), false));
+        ApplicationDependencies.getJobManager().add(new AttachmentDownloadJob(attachment.getMmsId(), attachment.getAttachmentId(), false));
       }
       reader.close();
     }
@@ -317,10 +302,8 @@ public class LegacyMigrationJob extends MigrationJob {
       pushReader = pushDatabase.getPending();
 
       while (pushReader != null && pushReader.moveToNext()) {
-        ApplicationContext.getInstance(context)
-                          .getJobManager()
-                          .add(new PushDecryptJob(context,
-                                                  pushReader.getLong(pushReader.getColumnIndexOrThrow(PushDatabase.ID))));
+        ApplicationDependencies.getJobManager().add(new PushDecryptJob(context,
+                                                                       pushReader.getLong(pushReader.getColumnIndexOrThrow(PushDatabase.ID))));
       }
     } finally {
       if (pushReader != null)

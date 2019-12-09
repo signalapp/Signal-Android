@@ -163,8 +163,8 @@ public class FastJobStorage implements JobStorage {
   }
 
   @Override
-  public synchronized void updateJobAfterRetry(@NonNull String id, boolean isRunning, int runAttempt, long nextRunAttemptTime) {
-    jobDatabase.updateJobAfterRetry(id, isRunning, runAttempt, nextRunAttemptTime);
+  public synchronized void updateJobAfterRetry(@NonNull String id, boolean isRunning, int runAttempt, long nextRunAttemptTime, @NonNull String serializedData) {
+    jobDatabase.updateJobAfterRetry(id, isRunning, runAttempt, nextRunAttemptTime, serializedData);
 
     ListIterator<JobSpec> iter = jobs.listIterator();
 
@@ -181,7 +181,7 @@ public class FastJobStorage implements JobStorage {
                                       existing.getMaxBackoff(),
                                       existing.getLifespan(),
                                       existing.getMaxInstances(),
-                                      existing.getSerializedData(),
+                                      serializedData,
                                       isRunning);
         iter.set(updated);
       }

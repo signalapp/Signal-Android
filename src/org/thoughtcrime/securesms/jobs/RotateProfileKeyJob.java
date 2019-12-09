@@ -5,7 +5,6 @@ import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
-import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -56,9 +55,7 @@ public class RotateProfileKeyJob extends BaseJob {
     accountManager.setProfileName(profileKey, TextSecurePreferences.getProfileName(context));
     accountManager.setProfileAvatar(profileKey, getProfileAvatar());
 
-    ApplicationContext.getInstance(context)
-                      .getJobManager()
-                      .add(new RefreshAttributesJob());
+    ApplicationDependencies.getJobManager().add(new RefreshAttributesJob());
   }
 
   @Override
@@ -73,7 +70,7 @@ public class RotateProfileKeyJob extends BaseJob {
 
   private @Nullable StreamDetails getProfileAvatar() {
     try {
-      File avatarFile = AvatarHelper.getAvatarFile(context, Recipient.self().requireAddress());
+      File avatarFile = AvatarHelper.getAvatarFile(context, Recipient.self().getId());
 
       if (avatarFile.exists()) {
         return new StreamDetails(new FileInputStream(avatarFile), "image/jpeg", avatarFile.length());

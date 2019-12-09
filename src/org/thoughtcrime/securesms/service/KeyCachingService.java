@@ -32,9 +32,9 @@ import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 
 import org.thoughtcrime.securesms.ApplicationContext;
+import org.thoughtcrime.securesms.MainActivity;
 import org.thoughtcrime.securesms.logging.Log;
 
-import org.thoughtcrime.securesms.ConversationListActivity;
 import org.thoughtcrime.securesms.DummyActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.crypto.InvalidPassphraseException;
@@ -79,7 +79,7 @@ public class KeyCachingService extends Service {
   public KeyCachingService() {}
 
   public static synchronized boolean isLocked(Context context) {
-    return getMasterSecret(context) == null;
+    return masterSecret == null && (!TextSecurePreferences.isPasswordDisabled(context) || TextSecurePreferences.isScreenLockEnabled(context));
   }
 
   public static synchronized @Nullable MasterSecret getMasterSecret(Context context) {
@@ -285,7 +285,8 @@ public class KeyCachingService extends Service {
   }
 
   private PendingIntent buildLaunchIntent() {
-    Intent intent              = new Intent(this, ConversationListActivity.class);
+    // TODO [greyson] Navigation
+    Intent intent              = new Intent(this, MainActivity.class);
     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
     return PendingIntent.getActivity(getApplicationContext(), 0, intent, 0);
   }

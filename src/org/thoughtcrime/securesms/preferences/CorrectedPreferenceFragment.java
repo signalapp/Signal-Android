@@ -54,9 +54,9 @@ public abstract class CorrectedPreferenceFragment extends PreferenceFragmentComp
   }
 
   @Override
+  @SuppressLint("RestrictedApi")
   protected RecyclerView.Adapter onCreateAdapter(PreferenceScreen preferenceScreen) {
     return new PreferenceGroupAdapter(preferenceScreen) {
-      @SuppressLint("RestrictedApi")
       @Override
       public void onBindViewHolder(PreferenceViewHolder holder, int position) {
         super.onBindViewHolder(holder, position);

@@ -20,11 +20,13 @@ package org.thoughtcrime.securesms;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import android.text.TextUtils;
 
 import org.thoughtcrime.securesms.avatar.AvatarSelection;
@@ -50,7 +52,6 @@ import org.thoughtcrime.securesms.contacts.ContactsCursorLoader.DisplayMode;
 import org.thoughtcrime.securesms.contacts.RecipientsEditor;
 import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
 import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
-import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
@@ -91,7 +92,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
 
   private final static String TAG = GroupCreateActivity.class.getSimpleName();
 
-  public static final String GROUP_ADDRESS_EXTRA = "group_recipient";
+  public static final String GROUP_ID_EXTRA      = "group_id";
   public static final String GROUP_THREAD_EXTRA  = "group_thread";
 
   private final DynamicTheme    dynamicTheme    = new DynamicTheme();
@@ -118,7 +119,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
   protected void onCreate(Bundle state, boolean ready) {
     setContentView(R.layout.group_create_activity);
     //noinspection ConstantConditions
-    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    initializeAppBar();
     initializeResources();
     initializeExistingGroup();
   }
@@ -177,6 +178,12 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
     addSelectedContacts(recipients.toArray(new Recipient[recipients.size()]));
   }
 
+  private void initializeAppBar() {
+    Drawable upIcon = ContextCompat.getDrawable(this, R.drawable.ic_arrow_left_24);
+    getSupportActionBar().setHomeAsUpIndicator(upIcon);
+    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+  }
+
   private void initializeResources() {
     RecipientsEditor    recipientsEditor = ViewUtil.findById(this, R.id.recipients_text);
     PushRecipientsPanel recipientsPanel  = ViewUtil.findById(this, R.id.recipients);
@@ -190,15 +197,15 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
     recipientsEditor.setHint(R.string.recipients_panel__add_members);
     recipientsPanel.setPanelChangeListener(this);
     findViewById(R.id.contacts_button).setOnClickListener(new AddRecipientButtonListener());
-    avatar.setImageDrawable(new ResourceContactPhoto(R.drawable.ic_group_white_24dp).asDrawable(this, ContactColors.UNKNOWN_COLOR.toConversationColor(this)));
+    avatar.setImageDrawable(new ResourceContactPhoto(R.drawable.ic_group_outline_40, R.drawable.ic_group_outline_20).asDrawable(this, ContactColors.UNKNOWN_COLOR.toConversationColor(this)));
     avatar.setOnClickListener(view -> AvatarSelection.startAvatarSelection(this, false, false));
   }
 
   private void initializeExistingGroup() {
-    final Address groupAddress = getIntent().getParcelableExtra(GROUP_ADDRESS_EXTRA);
+    final String groupId = getIntent().getStringExtra(GROUP_ID_EXTRA);
 
-    if (groupAddress != null) {
-      new FillExistingGroupInfoAsyncTask(this).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, groupAddress.toGroupString());
+    if (groupId != null) {
+      new FillExistingGroupInfoAsyncTask(this).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, groupId);
     }
   }
 
@@ -262,7 +269,6 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
     intent.putExtra(ConversationActivity.THREAD_ID_EXTRA, threadId);
     intent.putExtra(ConversationActivity.DISTRIBUTION_TYPE_EXTRA, ThreadDatabase.DistributionTypes.DEFAULT);
     intent.putExtra(ConversationActivity.RECIPIENT_EXTRA, recipient.getId());
-    intent.putExtra(ConversationActivity.BREADCRUMB_EXTRA, ConversationActivity.Breadcrumb.GROUP_CREATE);
     startActivity(intent);
     finish();
   }
@@ -285,12 +291,13 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
 
     switch (reqCode) {
       case PICK_CONTACT:
-        List<String> selected = data.getStringArrayListExtra("contacts");
+        List<RecipientId> selected = data.getParcelableArrayListExtra(PushContactSelectionActivity.KEY_SELECTED_RECIPIENTS);
 
-        for (String contact : selected) {
-          Recipient recipient = Recipient.external(this, contact);
+        for (RecipientId contact : selected) {
+          Recipient recipient = Recipient.resolved(contact);
           addSelectedContacts(recipient);
         }
+
         break;
 
       case AvatarSelection.REQUEST_CODE_AVATAR:
@@ -451,7 +458,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
         if (!activity.isFinishing()) {
           Intent intent = activity.getIntent();
           intent.putExtra(GROUP_THREAD_EXTRA, result.get().getThreadId());
-          intent.putExtra(GROUP_ADDRESS_EXTRA, result.get().getGroupRecipient().requireAddress());
+          intent.putExtra(GROUP_ID_EXTRA, result.get().getGroupRecipient().requireGroupId());
           activity.setResult(RESULT_OK, intent);
           activity.finish();
         }
@@ -493,8 +500,8 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
 
         if (failIfNotPush && !isPush) {
           results.add(new Result(null, false, activity.getString(R.string.GroupCreateActivity_cannot_add_non_push_to_existing_group,
-                                                                 recipient.toShortString())));
-        } else if (TextUtils.equals(TextSecurePreferences.getLocalNumber(activity), recipient.requireAddress().serialize())) {
+                                                                 recipient.toShortString(activity))));
+        } else if (TextUtils.equals(TextSecurePreferences.getLocalNumber(activity), recipient.getE164().or(""))) {
           results.add(new Result(null, false, activity.getString(R.string.GroupCreateActivity_youre_already_in_the_group)));
         } else {
           results.add(new Result(recipient, isPush, null));

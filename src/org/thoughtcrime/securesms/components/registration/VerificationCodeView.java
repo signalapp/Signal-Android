@@ -1,16 +1,8 @@
 package org.thoughtcrime.securesms.components.registration;
 
-
 import android.content.Context;
-import android.content.res.TypedArray;
-import android.graphics.Color;
 import android.os.Build;
-import androidx.annotation.MainThread;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import android.util.AttributeSet;
-import android.util.TypedValue;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -20,6 +12,11 @@ import android.view.animation.TranslateAnimation;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import androidx.annotation.MainThread;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
@@ -28,66 +25,51 @@ import org.thoughtcrime.securesms.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VerificationCodeView extends FrameLayout {
+public final class VerificationCodeView extends FrameLayout {
 
   private final List<TextView> codes      = new ArrayList<>(6);
   private final List<View>     containers = new ArrayList<>(6);
 
   private OnCodeEnteredListener listener;
-  private int index = 0;
+  private int                   index;
 
   public VerificationCodeView(Context context) {
     super(context);
-    initialize(context, null);
+    initialize(context);
   }
 
   public VerificationCodeView(Context context, @Nullable AttributeSet attrs) {
     super(context, attrs);
-    initialize(context, attrs);
+    initialize(context);
   }
 
   public VerificationCodeView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
-    initialize(context, attrs);
+    initialize(context);
   }
 
   @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
   public VerificationCodeView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
     super(context, attrs, defStyleAttr, defStyleRes);
-    initialize(context, attrs);
+    initialize(context);
   }
 
-  private void initialize(@NonNull Context context, @Nullable AttributeSet attrs) {
+  private void initialize(@NonNull Context context) {
     inflate(context, R.layout.verification_code_view, this);
 
-    TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.VerificationCodeView);
+    codes.add(findViewById(R.id.code_zero));
+    codes.add(findViewById(R.id.code_one));
+    codes.add(findViewById(R.id.code_two));
+    codes.add(findViewById(R.id.code_three));
+    codes.add(findViewById(R.id.code_four));
+    codes.add(findViewById(R.id.code_five));
 
-    try {
-      TextView separator = findViewById(R.id.separator);
-
-      this.codes.add(findViewById(R.id.code_zero));
-      this.codes.add(findViewById(R.id.code_one));
-      this.codes.add(findViewById(R.id.code_two));
-      this.codes.add(findViewById(R.id.code_three));
-      this.codes.add(findViewById(R.id.code_four));
-      this.codes.add(findViewById(R.id.code_five));
-
-      this.containers.add(findViewById(R.id.container_zero));
-      this.containers.add(findViewById(R.id.container_one));
-      this.containers.add(findViewById(R.id.container_two));
-      this.containers.add(findViewById(R.id.container_three));
-      this.containers.add(findViewById(R.id.container_four));
-      this.containers.add(findViewById(R.id.container_five));
-
-      Stream.of(codes).forEach(textView -> textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, typedArray.getDimension(R.styleable.VerificationCodeView_vcv_textSize, 30)));
-      Stream.of(codes).forEach(textView -> textView.setTextColor(typedArray.getColor(R.styleable.VerificationCodeView_vcv_textColor, Color.GRAY)));
-
-      separator.setTextSize(TypedValue.COMPLEX_UNIT_SP, typedArray.getDimension(R.styleable.VerificationCodeView_vcv_textSize, 30));
-      separator.setTextColor(typedArray.getColor(R.styleable.VerificationCodeView_vcv_textColor, Color.GRAY));
-
-    } finally {
-      if (typedArray != null) typedArray.recycle();
-    }
+    containers.add(findViewById(R.id.container_zero));
+    containers.add(findViewById(R.id.container_one));
+    containers.add(findViewById(R.id.container_two));
+    containers.add(findViewById(R.id.container_three));
+    containers.add(findViewById(R.id.container_four));
+    containers.add(findViewById(R.id.container_five));
   }
 
   @MainThread
@@ -143,11 +125,11 @@ public class VerificationCodeView extends FrameLayout {
     setInactive(containers);
   }
 
-  private void setInactive(List<View> views) {
+  private static void setInactive(List<View> views) {
     Stream.of(views).forEach(c -> c.setBackgroundResource(R.drawable.labeled_edit_text_background_inactive));
   }
 
-  private void setActive(@NonNull View container) {
+  private static void setActive(@NonNull View container) {
     container.setBackgroundResource(R.drawable.labeled_edit_text_background_active);
   }
 

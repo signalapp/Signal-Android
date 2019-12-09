@@ -47,7 +47,6 @@ import com.google.i18n.phonenumbers.Phonenumber;
 
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.components.ComposeText;
-import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.OutgoingLegacyMmsConnection;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -230,13 +229,6 @@ public class Util {
     }
 
     return totalSize;
-  }
-
-  public static boolean isOwnNumber(Context context, Address address) {
-    if (address.isGroup()) return false;
-    if (address.isEmail()) return false;
-
-    return TextSecurePreferences.getLocalNumber(context).equals(address.toPhoneString());
   }
 
   public static void readFully(InputStream in, byte[] buffer) throws IOException {
@@ -547,9 +539,9 @@ public class Util {
     if (sizeBytes <= 0) return "0";
 
     String[] units       = new String[]{"B", "kB", "MB", "GB", "TB"};
-    int      digitGroups = (int) (Math.log10(sizeBytes) / Math.log10(1024));
+    int      digitGroups = (int) (Math.log10(sizeBytes) / 3);
 
-    return new DecimalFormat("#,##0.#").format(sizeBytes/Math.pow(1024, digitGroups)) + " " + units[digitGroups];
+    return new DecimalFormat("#,##0.#").format(sizeBytes/Math.pow(1000, digitGroups)) + " " + units[digitGroups];
   }
 
   public static void sleep(long millis) {
@@ -570,4 +562,14 @@ public class Util {
     }
     return handler;
   }
+
+  public static <T> List<T> concatenatedList(List<T> first, List<T> second) {
+    final List<T> concat = new ArrayList<>(first.size() + second.size());
+
+    concat.addAll(first);
+    concat.addAll(second);
+
+    return concat;
+  }
+
 }
