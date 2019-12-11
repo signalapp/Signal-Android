@@ -1764,7 +1764,7 @@
     <string name="registration_lock_dialog_view__confirm_pin">Confirm PIN</string>
     <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Enter your Registration Lock PIN</string>
     <string name="registration_lock_reminder_view__enter_pin">Enter PIN</string>
-    <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Configure a PIN which will be required if you want to register this phone number with Signal again. By doing this you prevent someone who hijacked your phone number from also using Signal in your name.</string>
+    <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Configure a PIN which will from then on be required to register this phone number with Signal again. By doing this you prevent someone who hijacked your phone number from also using Signal in your name.</string>
     <string name="preferences_app_protection__registration_lock_pin">Registration Lock PIN</string>
     <string name="preferences_app_protection__registration_lock">Registration Lock</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">You must enter your Registration Lock PIN</string>
