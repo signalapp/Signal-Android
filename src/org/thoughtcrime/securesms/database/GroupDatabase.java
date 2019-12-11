@@ -448,6 +448,10 @@ public class GroupDatabase extends Database {
       return mms;
     }
 
+    public boolean isPublicChat() { return Address.fromSerialized(id).isPublicChat(); }
+
+    public boolean isRSSFeed() { return Address.fromSerialized(id).isRSSFeed(); }
+
     public String getUrl() { return url; }
   }
 }

@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.database.GroupReceiptDatabase.GroupReceiptInfo;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
@@ -231,7 +232,15 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
       throws IOException, UntrustedIdentityException, UndeliverableMessageException {
     // rotateSenderCertificateIfNecessary();
 
-    String                                     groupId            = message.getRecipient().getAddress().toGroupString();
+    // Messages shouldn't be able to be sent to RSS Feeds
+    Address groupAddress = message.getRecipient().getAddress();
+    if (groupAddress.isRSSFeed()) {
+      List<SendMessageResult> results = new ArrayList<>();
+      for (Address destination : destinations) results.add(SendMessageResult.networkFailure(new SignalServiceAddress(destination.toPhoneString())));
+      return results;
+    }
+
+    String                                     groupId            = groupAddress.toGroupString();
     Optional<byte[]>                           profileKey         = getProfileKey(message.getRecipient());
     Optional<Quote>                            quote              = getQuoteFor(message);
     Optional<SignalServiceDataMessage.Sticker> sticker            = getStickerFor(message);
@@ -247,24 +256,28 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
                                                                       .map(recipient -> UnidentifiedAccessUtil.getAccessFor(context, recipient))
                                                                       .toList();
 
-    if (message.isGroup()) {
+    SignalServiceGroup.GroupType groupType = SignalServiceGroup.GroupType.SIGNAL;
+    if (groupAddress.isPublicChat()) {
+      groupType = SignalServiceGroup.GroupType.PUBLIC_CHAT;
+    }
+
+    if (message.isGroup() && groupAddress.isSignalGroup()) {
+      // Loki - Only send GroupUpdate or GroupQuit to signal groups
       OutgoingGroupMediaMessage groupMessage     = (OutgoingGroupMediaMessage) message;
       GroupContext              groupContext     = groupMessage.getGroupContext();
       SignalServiceAttachment   avatar           = attachmentPointers.isEmpty() ? null : attachmentPointers.get(0);
       SignalServiceGroup.Type   type             = groupMessage.isGroupQuit() ? SignalServiceGroup.Type.QUIT : SignalServiceGroup.Type.UPDATE;
-      SignalServiceGroup        group            = new SignalServiceGroup(type, GroupUtil.getDecodedId(groupId), groupContext.getName(), groupContext.getMembersList(), avatar);
+      SignalServiceGroup        group            = new SignalServiceGroup(type, GroupUtil.getDecodedId(groupId), groupType, groupContext.getName(), groupContext.getMembersList(), avatar);
       SignalServiceDataMessage  groupDataMessage = SignalServiceDataMessage.newBuilder()
                                                                            .withTimestamp(message.getSentTimeMillis())
                                                                            .withExpiration(message.getRecipient().getExpireMessages())
+                                                                           .withBody(message.getBody())
                                                                            .asGroupMessage(group)
                                                                            .build();
 
-      // Loki - Disable group updates for now
-      List<SendMessageResult> results = new ArrayList<>();
-      for (Address destination : destinations) results.add(SendMessageResult.success(new SignalServiceAddress(destination.toPhoneString()), false, false));
-      return results;
+      return messageSender.sendMessage(messageId, addresses, unidentifiedAccess, groupDataMessage);
     } else {
-      SignalServiceGroup       group        = new SignalServiceGroup(GroupUtil.getDecodedId(groupId));
+      SignalServiceGroup       group        = new SignalServiceGroup(GroupUtil.getDecodedId(groupId), groupType);
       SignalServiceDataMessage groupMessage = SignalServiceDataMessage.newBuilder()
                                                                       .withTimestamp(message.getSentTimeMillis())
                                                                       .asGroupMessage(group)
@@ -284,26 +297,24 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
   }
 
   private @NonNull List<Address> getGroupMessageRecipients(String groupId, long messageId) {
-    ArrayList<Address> result = new ArrayList<>();
+    if (GroupUtil.isRssFeed(groupId)) { return new ArrayList<>(); }
 
-    // Loki - All group messages should be directed to their respective servers
-    long threadID = GroupManager.getThreadIdFromGroupId(groupId, context);
-    LokiPublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(context).getPublicChat(threadID);
-    if (publicChat != null) {
-      // We need to somehow maintain information that will allow the sender to map
-      // a recipient to the correct public chat thread, and so this might be a bit hacky
-      result.add(Address.fromPublicChatGroupID(groupId));
+    // Loki - All public chat group messages should be directed to their respective servers
+    if (GroupUtil.isPublicChat(groupId)) {
+      ArrayList<Address> result = new ArrayList<>();
+      long threadID = GroupManager.getThreadIdFromGroupId(groupId, context);
+      LokiPublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(context).getPublicChat(threadID);
+      if (publicChat != null) {
+        result.add(Address.fromSerialized(groupId));
+      }
+      return result;
+    } else {
+      List<GroupReceiptInfo> destinations = DatabaseFactory.getGroupReceiptDatabase(context).getGroupReceiptInfo(messageId);
+      if (!destinations.isEmpty()) return Stream.of(destinations).map(GroupReceiptInfo::getAddress).toList();
+
+      List<Recipient> members = DatabaseFactory.getGroupDatabase(context).getGroupMembers(groupId, false);
+      return Stream.of(members).map(Recipient::getAddress).toList();
     }
-
-    return result;
-
-    /*
-    List<GroupReceiptInfo> destinations = DatabaseFactory.getGroupReceiptDatabase(context).getGroupReceiptInfo(messageId);
-    if (!destinations.isEmpty()) return Stream.of(destinations).map(GroupReceiptInfo::getAddress).toList();
-
-    List<Recipient> members = DatabaseFactory.getGroupDatabase(context).getGroupMembers(groupId, false);
-    return Stream.of(members).map(Recipient::getAddress).toList();
-     */
   }
 
   public static class Factory implements Job.Factory<PushGroupSendJob> {

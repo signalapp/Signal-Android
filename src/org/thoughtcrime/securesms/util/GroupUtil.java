@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
 import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.api.messages.SignalServiceGroup;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -28,10 +29,30 @@ public class GroupUtil {
 
   private static final String ENCODED_SIGNAL_GROUP_PREFIX = "__textsecure_group__!";
   private static final String ENCODED_MMS_GROUP_PREFIX    = "__signal_mms_group__!";
+  private static final String ENCODED_PUBLIC_CHAT_GROUP_PREFIX = "__loki_public_chat_group__!";
+  private static final String ENCODED_RSS_FEED_GROUP_PREFIX    = "__loki_rss_feed_group__!";
   private static final String TAG                         = GroupUtil.class.getSimpleName();
+
+  public static String getEncodedId(SignalServiceGroup group) {
+    byte[] groupId = group.getGroupId();
+    if (group.getGroupType() == SignalServiceGroup.GroupType.PUBLIC_CHAT) {
+      return getEncodedPublicChatId(groupId);
+    } else if (group.getGroupType() == SignalServiceGroup.GroupType.RSS_FEED) {
+      return getEncodedRSSFeedId(groupId);
+    }
+    return getEncodedId(groupId, false);
+  }
 
   public static String getEncodedId(byte[] groupId, boolean mms) {
     return (mms ? ENCODED_MMS_GROUP_PREFIX  : ENCODED_SIGNAL_GROUP_PREFIX) + Hex.toStringCondensed(groupId);
+  }
+
+  public static String getEncodedPublicChatId(byte[] groupId) {
+    return ENCODED_PUBLIC_CHAT_GROUP_PREFIX + Hex.toStringCondensed(groupId);
+  }
+
+  public static String getEncodedRSSFeedId(byte[] groupId) {
+    return ENCODED_RSS_FEED_GROUP_PREFIX + Hex.toStringCondensed(groupId);
   }
 
   public static byte[] getDecodedId(String groupId) throws IOException {
@@ -48,11 +69,19 @@ public class GroupUtil {
   }
 
   public static boolean isEncodedGroup(@NonNull String groupId) {
-    return groupId.startsWith(ENCODED_SIGNAL_GROUP_PREFIX) || groupId.startsWith(ENCODED_MMS_GROUP_PREFIX);
+    return groupId.startsWith(ENCODED_SIGNAL_GROUP_PREFIX) || groupId.startsWith(ENCODED_MMS_GROUP_PREFIX) || groupId.startsWith(ENCODED_PUBLIC_CHAT_GROUP_PREFIX) || groupId.startsWith(ENCODED_RSS_FEED_GROUP_PREFIX);
   }
 
   public static boolean isMmsGroup(@NonNull String groupId) {
     return groupId.startsWith(ENCODED_MMS_GROUP_PREFIX);
+  }
+
+  public static boolean isPublicChat(@NonNull String groupId) {
+    return groupId.startsWith(ENCODED_PUBLIC_CHAT_GROUP_PREFIX);
+  }
+
+  public static boolean isRssFeed(@NonNull String groupId) {
+    return groupId.startsWith(ENCODED_RSS_FEED_GROUP_PREFIX);
   }
 
   @WorkerThread

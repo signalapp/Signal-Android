@@ -13,7 +13,6 @@ import org.thoughtcrime.securesms.groups.GroupManager
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.loki.api.LokiPublicChat
-import java.util.*
 
 class LokiPublicChatManager(private val context: Context) {
   private var chats = mutableMapOf<Long, LokiPublicChat>()
@@ -49,10 +48,10 @@ class LokiPublicChatManager(private val context: Context) {
 
   public fun addChat(server: String, channel: Long, name: String): LokiPublicChat {
     val chat = LokiPublicChat(channel, server, name, true)
-    var threadID =  GroupManager.getThreadId(chat.id, context)
+    var threadID =  GroupManager.getPublicChatThreadId(chat.id, context)
     // Create the group if we don't have one
     if (threadID < 0) {
-      val result = GroupManager.createGroup(chat.id, context, HashSet(), null, chat.displayName, false)
+      val result = GroupManager.createPublicChatGroup(chat.id, context, null, chat.displayName)
       threadID = result.threadId
     }
     DatabaseFactory.getLokiThreadDatabase(context).setPublicChat(chat, threadID)
@@ -73,7 +72,7 @@ class LokiPublicChatManager(private val context: Context) {
     removedChatThreadIds.forEach { pollers.remove(it)?.stop() }
 
     // Only append to chats if we have a thread for the chat
-    chats = chatsInDB.filter { GroupManager.getThreadId(it.value.id, context) > -1 }.toMutableMap()
+    chats = chatsInDB.filter { GroupManager.getPublicChatThreadId(it.value.id, context) > -1 }.toMutableMap()
   }
 
   private fun listenToThreadDeletion(threadID: Long) {

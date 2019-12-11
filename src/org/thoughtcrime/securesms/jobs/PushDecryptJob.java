@@ -350,7 +350,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
           else if (message.getBody().isPresent())
             handleTextMessage(content, message, smsMessageId, Optional.absent());
 
-          if (message.getGroupInfo().isPresent() && groupDatabase.isUnknownGroup(GroupUtil.getEncodedId(message.getGroupInfo().get().getGroupId(), false))) {
+          if (message.getGroupInfo().isPresent() && groupDatabase.isUnknownGroup(GroupUtil.getEncodedId(message.getGroupInfo().get()))) {
             handleUnknownGroupMessage(content, message.getGroupInfo().get());
           }
 
@@ -606,9 +606,11 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   private void handleUnknownGroupMessage(@NonNull SignalServiceContent content,
                                          @NonNull SignalServiceGroup group)
   {
-    ApplicationContext.getInstance(context)
-                      .getJobManager()
-                      .add(new RequestGroupInfoJob(content.getSender(), group.getGroupId()));
+    if (group.getGroupType() == SignalServiceGroup.GroupType.SIGNAL) {
+      ApplicationContext.getInstance(context)
+              .getJobManager()
+              .add(new RequestGroupInfoJob(content.getSender(), group.getGroupId()));
+    }
   }
 
   private void handleExpirationUpdate(@NonNull SignalServiceContent content,
@@ -733,7 +735,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         threadId = handleSynchronizeSentTextMessage(message);
       }
 
-      if (message.getMessage().getGroupInfo().isPresent() && groupDatabase.isUnknownGroup(GroupUtil.getEncodedId(message.getMessage().getGroupInfo().get().getGroupId(), false))) {
+      if (message.getMessage().getGroupInfo().isPresent() && groupDatabase.isUnknownGroup(GroupUtil.getEncodedId(message.getMessage().getGroupInfo().get()))) {
         handleUnknownGroupMessage(content, message.getMessage().getGroupInfo().get());
       }
 
@@ -743,7 +745,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         Recipient recipient = null;
 
         if      (message.getDestination().isPresent())            recipient = Recipient.from(context, Address.fromSerialized(message.getDestination().get()), false);
-        else if (message.getMessage().getGroupInfo().isPresent()) recipient = Recipient.from(context, Address.fromSerialized(GroupUtil.getEncodedId(message.getMessage().getGroupInfo().get().getGroupId(), false)), false);
+        else if (message.getMessage().getGroupInfo().isPresent()) recipient = Recipient.from(context, Address.fromSerialized(GroupUtil.getEncodedId(message.getMessage().getGroupInfo().get())), false);
 
 
         if (recipient != null && !recipient.isSystemContact() && !recipient.isProfileSharing()) {
@@ -1571,10 +1573,11 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     long threadId;
 
     if (typingMessage.getGroupId().isPresent()) {
+      // Typing messages should only apply to signal groups, thus we use `getEncodedId`
       Address   groupAddress   = Address.fromSerialized(GroupUtil.getEncodedId(typingMessage.getGroupId().get(), false));
       Recipient groupRecipient = Recipient.from(context, groupAddress, false);
 
-      threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient);
+      threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(groupRecipient);
     } else {
       // See if we need to redirect the message
       author = getPrimaryDeviceRecipient(content.getSender());
@@ -1723,7 +1726,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
   private Recipient getSyncMessageDestination(SentTranscriptMessage message) {
     if (message.getMessage().getGroupInfo().isPresent()) {
-      return Recipient.from(context, Address.fromSerialized(GroupUtil.getEncodedId(message.getMessage().getGroupInfo().get().getGroupId(), false)), false);
+      return Recipient.from(context, Address.fromSerialized(GroupUtil.getEncodedId(message.getMessage().getGroupInfo().get())), false);
     } else {
       return Recipient.from(context, Address.fromSerialized(message.getDestination().get()), false);
     }
@@ -1739,7 +1742,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
   private Recipient getMessageDestination(SignalServiceContent content, SignalServiceDataMessage message) {
     if (message.getGroupInfo().isPresent()) {
-      return Recipient.from(context, Address.fromSerialized(GroupUtil.getEncodedId(message.getGroupInfo().get().getGroupId(), false)), false);
+      return Recipient.from(context, Address.fromSerialized(GroupUtil.getEncodedId(message.getGroupInfo().get())), false);
     } else {
       return Recipient.from(context, Address.fromSerialized(content.getSender()), false);
     }
@@ -1804,7 +1807,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         return true;
       } else if (conversation.isGroupRecipient()) {
         GroupDatabase    groupDatabase = DatabaseFactory.getGroupDatabase(context);
-        Optional<String> groupId       = message.getGroupInfo().isPresent() ? Optional.of(GroupUtil.getEncodedId(message.getGroupInfo().get().getGroupId(), false))
+        Optional<String> groupId       = message.getGroupInfo().isPresent() ? Optional.of(GroupUtil.getEncodedId(message.getGroupInfo().get()))
                                                                             : Optional.absent();
 
         if (groupId.isPresent() && groupDatabase.isUnknownGroup(groupId.get())) {

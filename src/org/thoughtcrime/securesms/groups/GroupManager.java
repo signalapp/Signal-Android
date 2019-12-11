@@ -36,8 +36,13 @@ import java.util.Set;
 
 public class GroupManager {
 
-  public static long getThreadId(String id, @NonNull  Context context) {
-    final String groupId = GroupUtil.getEncodedId(id.getBytes(), false);
+  public static long getPublicChatThreadId(String id, @NonNull  Context context) {
+    final String groupId = GroupUtil.getEncodedPublicChatId(id.getBytes());
+    return getThreadIdFromGroupId(groupId, context);
+  }
+
+  public static long getRSSFeedThreadId(String id, @NonNull  Context context) {
+    final String groupId = GroupUtil.getEncodedRSSFeedId(id.getBytes());
     return getThreadIdFromGroupId(groupId, context);
   }
 
@@ -76,22 +81,48 @@ public class GroupManager {
     if (!mms) {
       groupDatabase.updateAvatar(groupId, avatarBytes);
       DatabaseFactory.getRecipientDatabase(context).setProfileSharing(groupRecipient, true);
-    }
-
-    long threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient, ThreadDatabase.DistributionTypes.CONVERSATION);
-    return new GroupActionResult(groupRecipient, threadId);
-
-    /* Loki: Original Code
-    ==================
-    if (!mms) {
-      groupDatabase.updateAvatar(groupId, avatarBytes);
-      DatabaseFactory.getRecipientDatabase(context).setProfileSharing(groupRecipient, true);
       return sendGroupUpdate(context, groupId, memberAddresses, name, avatarBytes);
     } else {
       long threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient, ThreadDatabase.DistributionTypes.CONVERSATION);
       return new GroupActionResult(groupRecipient, threadId);
     }
-    */
+  }
+
+  public static @NonNull GroupActionResult createPublicChatGroup(@NonNull  String         id,
+                                                                 @NonNull  Context        context,
+                                                                 @Nullable Bitmap         avatar,
+                                                                 @Nullable String         name)
+  {
+    final String groupId = GroupUtil.getEncodedPublicChatId(id.getBytes());
+    return createLokiGroup(groupId, context, avatar, name);
+  }
+
+  public static @NonNull GroupActionResult createRSSFeedGroup(@NonNull  String         id,
+                                                              @NonNull  Context        context,
+                                                              @Nullable Bitmap         avatar,
+                                                              @Nullable String         name)
+  {
+    final String groupId = GroupUtil.getEncodedRSSFeedId(id.getBytes());
+    return createLokiGroup(groupId, context, avatar, name);
+  }
+
+  private static @NonNull GroupActionResult createLokiGroup(@NonNull  String         groupId,
+                                                            @NonNull  Context        context,
+                                                            @Nullable Bitmap         avatar,
+                                                            @Nullable String         name)
+  {
+    final byte[]        avatarBytes     = BitmapUtil.toByteArray(avatar);
+    final GroupDatabase groupDatabase   = DatabaseFactory.getGroupDatabase(context);
+    final Recipient     groupRecipient  = Recipient.from(context, Address.fromSerialized(groupId), false);
+    final Set<Address>  memberAddresses = new HashSet<>();
+
+    memberAddresses.add(Address.fromSerialized(TextSecurePreferences.getLocalNumber(context)));
+    groupDatabase.create(groupId, name, new LinkedList<>(memberAddresses), null, null);
+
+    groupDatabase.updateAvatar(groupId, avatarBytes);
+
+    long threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient, ThreadDatabase.DistributionTypes.CONVERSATION);
+    return new GroupActionResult(groupRecipient, threadId);
   }
 
   public static GroupActionResult updateGroup(@NonNull  Context        context,

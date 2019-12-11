@@ -104,7 +104,7 @@ public class PushGroupUpdateJob extends BaseJob implements InjectableType {
 
     SignalServiceGroup groupContext = SignalServiceGroup.newBuilder(Type.UPDATE)
                                                         .withAvatar(avatar)
-                                                        .withId(groupId)
+                                                        .withId(groupId, SignalServiceGroup.GroupType.SIGNAL)
                                                         .withMembers(members)
                                                         .withName(record.get().getTitle())
                                                         .build();

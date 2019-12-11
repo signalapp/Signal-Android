@@ -37,10 +37,14 @@ import org.thoughtcrime.securesms.jobs.RefreshPreKeysJob;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.*;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.KeyCachingService;
+import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.signalservice.loki.api.LokiPublicChat;
 
 import java.io.File;
+import java.security.acl.Group;
 
 public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
@@ -71,8 +75,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int lokiV2                           = 23;
   private static final int lokiV3                           = 24;
   private static final int lokiV4                           = 25;
+  private static final int lokiV5                           = 26;
 
-  private static final int    DATABASE_VERSION = lokiV4; // Loki - onUpgrade(...) must be updated to use Loki version numbers if Signal makes any database changes
+  private static final int    DATABASE_VERSION = lokiV5; // Loki - onUpgrade(...) must be updated to use Loki version numbers if Signal makes any database changes
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -508,6 +513,40 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
       if (oldVersion < lokiV4) {
         db.execSQL(LokiMessageDatabase.getCreateMessageToThreadMappingTableCommand());
+      }
+
+      if (oldVersion < lokiV5) {
+        // Migrate public chats from __textsecure_group__ to __loki_public_chat_group__
+        try (Cursor lokiPublicChatCursor = db.rawQuery("SELECT public_chat FROM loki_public_chat_database", null)) {
+          while (lokiPublicChatCursor != null && lokiPublicChatCursor.moveToNext()) {
+            String chatString = lokiPublicChatCursor.getString(0);
+            LokiPublicChat publicChat = LokiPublicChat.fromJSON(chatString);
+            if (publicChat != null) {
+              byte[] groupId = publicChat.getId().getBytes();
+              String oldId = GroupUtil.getEncodedId(groupId, false);
+              String newId = GroupUtil.getEncodedPublicChatId(groupId);
+              ContentValues threadUpdate = new ContentValues();
+              threadUpdate.put("recipient_ids", newId);
+              db.update("thread", threadUpdate, "recipient_ids = ?", new String[]{ oldId });
+              ContentValues groupUpdate = new ContentValues();
+              groupUpdate.put("group_id", newId);
+              db.update("groups", groupUpdate,"group_id = ?", new String[] { oldId });
+            }
+          }
+        }
+
+        // Migrate rss feeds from __textsecure_group__ to __loki_rss_feed_group__
+        String[] rssFeedIds = new String[] { "loki.network.feed", "loki.network.messenger-updates.feed" };
+        for (String groupId : rssFeedIds) {
+          String oldId = GroupUtil.getEncodedId(groupId.getBytes(), false);
+          String newId = GroupUtil.getEncodedRSSFeedId(groupId.getBytes());
+          ContentValues threadUpdate = new ContentValues();
+          threadUpdate.put("recipient_ids", newId);
+          db.update("thread", threadUpdate, "recipient_ids = ?", new String[]{ oldId });
+          ContentValues groupUpdate = new ContentValues();
+          groupUpdate.put("group_id", newId);
+          db.update("groups", groupUpdate,"group_id = ?", new String[] { oldId });
+        }
       }
 
       db.setTransactionSuccessful();

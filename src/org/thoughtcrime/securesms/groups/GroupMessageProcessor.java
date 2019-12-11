@@ -58,7 +58,7 @@ public class GroupMessageProcessor {
 
     GroupDatabase         database = DatabaseFactory.getGroupDatabase(context);
     SignalServiceGroup    group    = message.getGroupInfo().get();
-    String                id       = GroupUtil.getEncodedId(group.getGroupId(), false);
+    String                id       = GroupUtil.getEncodedId(group);
     Optional<GroupRecord> record   = database.getGroup(id);
 
     if (record.isPresent() && group.getType() == Type.UPDATE) {
@@ -81,7 +81,7 @@ public class GroupMessageProcessor {
                                                   boolean outgoing)
   {
     GroupDatabase        database = DatabaseFactory.getGroupDatabase(context);
-    String               id       = GroupUtil.getEncodedId(group.getGroupId(), false);
+    String               id       = GroupUtil.getEncodedId(group);
     GroupContext.Builder builder  = createGroupContext(group);
     builder.setType(GroupContext.Type.UPDATE);
 
@@ -108,7 +108,7 @@ public class GroupMessageProcessor {
   {
 
     GroupDatabase database = DatabaseFactory.getGroupDatabase(context);
-    String        id       = GroupUtil.getEncodedId(group.getGroupId(), false);
+    String        id       = GroupUtil.getEncodedId(group);
 
     Set<Address> recordMembers = new HashSet<>(groupRecord.getMembers());
     Set<Address> messageMembers = new HashSet<>();
@@ -179,7 +179,7 @@ public class GroupMessageProcessor {
                                        boolean  outgoing)
   {
     GroupDatabase database = DatabaseFactory.getGroupDatabase(context);
-    String        id       = GroupUtil.getEncodedId(group.getGroupId(), false);
+    String        id       = GroupUtil.getEncodedId(group);
     List<Address> members  = record.getMembers();
 
     GroupContext.Builder builder = createGroupContext(group);
@@ -204,14 +204,14 @@ public class GroupMessageProcessor {
   {
     if (group.getAvatar().isPresent()) {
       ApplicationContext.getInstance(context).getJobManager()
-                        .add(new AvatarDownloadJob(group.getGroupId()));
+                        .add(new AvatarDownloadJob(GroupUtil.getEncodedId(group)));
     }
 
     try {
       if (outgoing) {
         MmsDatabase               mmsDatabase     = DatabaseFactory.getMmsDatabase(context);
-        Address                   addres          = Address.fromExternal(context, GroupUtil.getEncodedId(group.getGroupId(), false));
-        Recipient                 recipient       = Recipient.from(context, addres, false);
+        Address                   address          = Address.fromExternal(context, GroupUtil.getEncodedId(group));
+        Recipient                 recipient       = Recipient.from(context, address, false);
         OutgoingGroupMediaMessage outgoingMessage = new OutgoingGroupMediaMessage(recipient, storage, null, content.getTimestamp(), 0, null, Collections.emptyList(), Collections.emptyList());
         long                      threadId        = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
         long                      messageId       = mmsDatabase.insertMessageOutbox(outgoingMessage, threadId, false, null);
