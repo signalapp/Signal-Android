@@ -1841,7 +1841,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   }
 
   private boolean isGroupChatMessage(SignalServiceContent content) {
-    return content.getDataMessage().isPresent() && content.getDataMessage().get().isGroupUpdate();
+    return content.getDataMessage().isPresent() && content.getDataMessage().get().getGroupInfo().isPresent();
   }
 
   private void resetRecipientToPush(@NonNull Recipient recipient) {
