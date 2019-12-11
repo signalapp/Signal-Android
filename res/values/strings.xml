@@ -1759,7 +1759,7 @@
     <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">The Registration Lock PIN is not the same as the SMS verification code you just received. Please enter the PIN you previously configured in the application.</string>
     <string name="registration_activity__registration_lock_pin">Registration Lock PIN</string>
     <string name="registration_activity__forgot_pin">Forgot PIN?</string>
-    <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">The PIN can consist of four or more digits. If you forget your PIN, you could be locked out of your account for up to seven days.</string>
+    <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">Make up your own PIN, which must consist of four or more digits. If you forget your PIN, you could be locked out of your Signal account for up to seven days.</string>
     <string name="registration_lock_dialog_view__enter_pin">Enter PIN</string>
     <string name="registration_lock_dialog_view__confirm_pin">Confirm PIN</string>
     <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Enter your Registration Lock PIN</string>
