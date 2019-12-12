@@ -7,10 +7,13 @@ import android.support.annotation.WorkerThread;
 
 import com.google.protobuf.ByteString;
 
+import network.loki.messenger.BuildConfig;
 import network.loki.messenger.R;
 import org.thoughtcrime.securesms.database.Address;
+import org.thoughtcrime.securesms.database.Database;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.database.GroupDatabase.*;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -111,17 +114,25 @@ public class GroupUtil {
   }
 
 
-  public static @NonNull GroupDescription getDescription(@NonNull Context context, @Nullable String encodedGroup) {
+  public static @NonNull GroupDescription getDescription(@NonNull Context context, @Nullable String encodedGroup, @Nullable Recipient groupRecipient) {
+    // Make sure we always are passing a group recipient
+    if (BuildConfig.DEBUG && groupRecipient != null && !groupRecipient.isGroupRecipient()) {
+      throw new AssertionError();
+    }
+
     if (encodedGroup == null) {
-      return new GroupDescription(context, null);
+      return new GroupDescription(context, null, null);
     }
 
     try {
-      GroupContext  groupContext = GroupContext.parseFrom(Base64.decode(encodedGroup));
-      return new GroupDescription(context, groupContext);
+      GroupContext groupContext = GroupContext.parseFrom(Base64.decode(encodedGroup));
+      GroupRecord groupRecord = groupRecipient != null
+              ? DatabaseFactory.getGroupDatabase(context).getGroup(groupRecipient.getAddress().toGroupString()).orNull()
+              : null;
+      return new GroupDescription(context, groupContext, groupRecord);
     } catch (IOException e) {
       Log.w(TAG, e);
-      return new GroupDescription(context, null);
+      return new GroupDescription(context, null, null);
     }
   }
 
@@ -129,24 +140,50 @@ public class GroupUtil {
 
     @NonNull  private final Context         context;
     @Nullable private final GroupContext    groupContext;
-    @Nullable private final List<Recipient> members;
+    private final List<Recipient> members;
+    private final List<Recipient> removedMembers;
+    private boolean ourDeviceWasRemoved;
 
-    public GroupDescription(@NonNull Context context, @Nullable GroupContext groupContext) {
+    public GroupDescription(@NonNull Context context, @Nullable GroupContext groupContext) { this(context, groupContext, null); }
+    public GroupDescription(@NonNull Context context, @Nullable GroupContext groupContext, @Nullable GroupRecord groupRecord) {
       this.context      = context.getApplicationContext();
       this.groupContext = groupContext;
 
-      if (groupContext == null || groupContext.getMembersList().isEmpty()) {
-        this.members = null;
-      } else {
-        this.members = new LinkedList<>();
+      this.members = new LinkedList<>();
+      this.removedMembers = new LinkedList<>();
+      this.ourDeviceWasRemoved = false;
 
-        for (String member : groupContext.getMembersList()) {
-          this.members.add(Recipient.from(context, Address.fromExternal(context, member), true));
+      if (groupContext != null && !groupContext.getMembersList().isEmpty()) {
+        List<String> memberList = groupContext.getMembersList();
+        List<Address> currentMembers = groupRecord != null ? groupRecord.getMembers() : null;
+
+        // Add them to the member or removed members lists
+        for (String member : memberList) {
+          Address address = Address.fromSerialized(member);
+          Recipient recipient = Recipient.from(context, address, true);
+          if (currentMembers == null || currentMembers.contains(address)) {
+            this.members.add(recipient);
+          } else {
+            this.removedMembers.add(recipient);
+          }
+        }
+
+        // Check if our device was removed
+        if (!removedMembers.isEmpty()) {
+          String masterHexEncodedPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
+          String hexEncodedPublicKey = masterHexEncodedPublicKey != null ? masterHexEncodedPublicKey : TextSecurePreferences.getLocalNumber(context);
+          Recipient self = Recipient.from(context, Address.fromSerialized(hexEncodedPublicKey), false);
+          ourDeviceWasRemoved = removedMembers.contains(self);
         }
       }
     }
 
     public String toString(Recipient sender) {
+      // Show the local removed message
+      if (ourDeviceWasRemoved) {
+          return context.getString(R.string.GroupUtil_you_were_removed_from_group);
+      }
+
       StringBuilder description = new StringBuilder();
       description.append(context.getString(R.string.MessageRecord_s_updated_group, sender.toShortString()));
 
@@ -156,14 +193,20 @@ public class GroupUtil {
 
       String title = groupContext.getName();
 
-      if (members != null) {
+      if (!members.isEmpty()) {
         description.append("\n");
         description.append(context.getResources().getQuantityString(R.plurals.GroupUtil_joined_the_group,
                                                                     members.size(), toString(members)));
       }
 
+      if (!removedMembers.isEmpty()) {
+        description.append("\n");
+        description.append(context.getResources().getQuantityString(R.plurals.GroupUtil_removed_from_the_group,
+                removedMembers.size(), toString(removedMembers)));
+      }
+
       if (title != null && !title.trim().isEmpty()) {
-        if (members != null) description.append(" ");
+        if (!members.isEmpty()) description.append(" ");
         else                 description.append("\n");
         description.append(context.getString(R.string.GroupUtil_group_name_is_now, title));
       }
@@ -172,7 +215,7 @@ public class GroupUtil {
     }
 
     public void addListener(RecipientModifiedListener listener) {
-      if (this.members != null) {
+      if (!this.members.isEmpty()) {
         for (Recipient member : this.members) {
           member.addListener(listener);
         }

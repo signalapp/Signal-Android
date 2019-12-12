@@ -1073,7 +1073,12 @@
         <item quantity="one">%1$s joined the group.</item>
         <item quantity="other">%1$s joined the group.</item>
     </plurals>
+    <plurals name="GroupUtil_removed_from_the_group">
+        <item quantity="one">%1$s was removed from the group.</item>
+        <item quantity="other">%1$s were removed from the group.</item>
+    </plurals>
     <string name="GroupUtil_group_name_is_now">Group name is now \'%1$s\'.</string>
+    <string name="GroupUtil_you_were_removed_from_group">You were removed from the group.</string>
 
     <!-- profile_group_share_view -->
     <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Make your profile name and photo visible to this group?</string>

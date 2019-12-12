@@ -141,7 +141,9 @@ public class GroupMessageProcessor {
     }
 
     if (missingMembers.size() > 0) {
-      // TODO We should tell added and missing about each-other.
+      for (Address removedMember : missingMembers) {
+        builder.addMembers(removedMember.serialize());
+      }
     }
 
     if (group.getName().isPresent() || group.getAvatar().isPresent()) {
