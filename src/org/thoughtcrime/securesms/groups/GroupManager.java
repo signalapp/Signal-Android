@@ -55,11 +55,12 @@ public class GroupManager {
                                                        @NonNull  Set<Recipient> members,
                                                        @Nullable Bitmap         avatar,
                                                        @Nullable String         name,
-                                                                 boolean        mms)
+                                                                 boolean        mms,
+                                                       @NonNull  Set<Recipient> admins)
   {
     GroupDatabase database = DatabaseFactory.getGroupDatabase(context);
     String id = GroupUtil.getEncodedId(database.allocateGroupId(), mms);
-    return createGroup(id, context, members, avatar, name, mms);
+    return createGroup(id, context, members, avatar, name, mms, admins);
   }
 
   public static @NonNull GroupActionResult createGroup(@NonNull  String         id,
@@ -67,21 +68,23 @@ public class GroupManager {
                                                        @NonNull  Set<Recipient> members,
                                                        @Nullable Bitmap         avatar,
                                                        @Nullable String         name,
-                                                                 boolean        mms)
+                                                                 boolean        mms,
+                                                       @NonNull  Set<Recipient> admins)
   {
     final byte[]        avatarBytes     = BitmapUtil.toByteArray(avatar);
     final GroupDatabase groupDatabase   = DatabaseFactory.getGroupDatabase(context);
     final String        groupId         = GroupUtil.getEncodedId(id.getBytes(), mms);
     final Recipient     groupRecipient  = Recipient.from(context, Address.fromSerialized(groupId), false);
     final Set<Address>  memberAddresses = getMemberAddresses(members);
+    final Set<Address>  adminAddresses  = getMemberAddresses(admins);
 
     memberAddresses.add(Address.fromSerialized(TextSecurePreferences.getLocalNumber(context)));
-    groupDatabase.create(groupId, name, new LinkedList<>(memberAddresses), null, null);
+    groupDatabase.create(groupId, name, new LinkedList<>(memberAddresses), null, null, new LinkedList<>(adminAddresses));
 
     if (!mms) {
       groupDatabase.updateAvatar(groupId, avatarBytes);
       DatabaseFactory.getRecipientDatabase(context).setProfileSharing(groupRecipient, true);
-      return sendGroupUpdate(context, groupId, memberAddresses, name, avatarBytes);
+      return sendGroupUpdate(context, groupId, memberAddresses, name, avatarBytes, adminAddresses);
     } else {
       long threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient, ThreadDatabase.DistributionTypes.CONVERSATION);
       return new GroupActionResult(groupRecipient, threadId);
@@ -117,7 +120,7 @@ public class GroupManager {
     final Set<Address>  memberAddresses = new HashSet<>();
 
     memberAddresses.add(Address.fromSerialized(TextSecurePreferences.getLocalNumber(context)));
-    groupDatabase.create(groupId, name, new LinkedList<>(memberAddresses), null, null);
+    groupDatabase.create(groupId, name, new LinkedList<>(memberAddresses), null, null, new LinkedList<>());
 
     groupDatabase.updateAvatar(groupId, avatarBytes);
 
@@ -129,20 +132,23 @@ public class GroupManager {
                                               @NonNull  String         groupId,
                                               @NonNull  Set<Recipient> members,
                                               @Nullable Bitmap         avatar,
-                                              @Nullable String         name)
+                                              @Nullable String         name,
+                                              @NonNull  Set<Recipient> admins)
       throws InvalidNumberException
   {
     final GroupDatabase groupDatabase   = DatabaseFactory.getGroupDatabase(context);
     final Set<Address>  memberAddresses = getMemberAddresses(members);
+    final Set<Address>  adminAddresses  = getMemberAddresses(admins);
     final byte[]        avatarBytes     = BitmapUtil.toByteArray(avatar);
 
     memberAddresses.add(Address.fromSerialized(TextSecurePreferences.getLocalNumber(context)));
     groupDatabase.updateMembers(groupId, new LinkedList<>(memberAddresses));
+    groupDatabase.updateAdmins(groupId, new LinkedList<>(adminAddresses));
     groupDatabase.updateTitle(groupId, name);
     groupDatabase.updateAvatar(groupId, avatarBytes);
 
     if (!GroupUtil.isMmsGroup(groupId)) {
-      return sendGroupUpdate(context, groupId, memberAddresses, name, avatarBytes);
+      return sendGroupUpdate(context, groupId, memberAddresses, name, avatarBytes, adminAddresses);
     } else {
       Recipient groupRecipient = Recipient.from(context, Address.fromSerialized(groupId), true);
       long      threadId       = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient);
@@ -154,7 +160,8 @@ public class GroupManager {
                                                    @NonNull  String       groupId,
                                                    @NonNull  Set<Address> members,
                                                    @Nullable String       groupName,
-                                                   @Nullable byte[]       avatar)
+                                                   @Nullable byte[]       avatar,
+                                                   @NonNull  Set<Address> admins)
   {
     try {
       Attachment avatarAttachment = null;
@@ -162,15 +169,20 @@ public class GroupManager {
       Recipient  groupRecipient   = Recipient.from(context, groupAddress, false);
 
       List<String> numbers = new LinkedList<>();
-
       for (Address member : members) {
         numbers.add(member.serialize());
+      }
+
+      List<String> adminNumbers = new LinkedList<>();
+      for (Address admin : admins) {
+        adminNumbers.add(admin.serialize());
       }
 
       GroupContext.Builder groupContextBuilder = GroupContext.newBuilder()
                                                              .setId(ByteString.copyFrom(GroupUtil.getDecodedId(groupId)))
                                                              .setType(GroupContext.Type.UPDATE)
-                                                             .addAllMembers(numbers);
+                                                             .addAllMembers(numbers)
+                                                             .addAllAdmins(adminNumbers);
       if (groupName != null) groupContextBuilder.setName(groupName);
       GroupContext groupContext = groupContextBuilder.build();
 

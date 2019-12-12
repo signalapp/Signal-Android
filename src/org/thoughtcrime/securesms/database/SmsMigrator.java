@@ -220,7 +220,7 @@ public class SmsMigrator {
               memberAddresses.add(recipient.getAddress());
             }
 
-            String    ourGroupId        = DatabaseFactory.getGroupDatabase(context).getOrCreateGroupForMembers(memberAddresses, true);
+            String    ourGroupId        = DatabaseFactory.getGroupDatabase(context).getOrCreateGroupForMembers(memberAddresses, true, null);
             Recipient ourGroupRecipient = Recipient.from(context, Address.fromSerialized(ourGroupId), true);
             long      ourThreadId       = threadDatabase.getThreadIdFor(ourGroupRecipient, ThreadDatabase.DistributionTypes.CONVERSATION);
 

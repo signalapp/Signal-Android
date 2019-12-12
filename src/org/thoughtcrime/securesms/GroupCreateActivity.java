@@ -72,6 +72,7 @@ import org.whispersystems.signalservice.api.util.InvalidNumberException;
 
 import java.io.File;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -246,7 +247,8 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
       return;
     }
     if (isSignalGroup()) {
-      new CreateSignalGroupTask(this, avatarBmp, getGroupName(), getAdapter().getRecipients()).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+      Recipient local = Recipient.from(this, Address.fromSerialized(TextSecurePreferences.getLocalNumber(this)), false);
+      new CreateSignalGroupTask(this, avatarBmp, getGroupName(), getAdapter().getRecipients(), Collections.singleton(local)).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     } else {
       new CreateMmsGroupTask(this, getAdapter().getRecipients()).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
@@ -254,7 +256,7 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
 
   private void handleGroupUpdate() {
     new UpdateSignalGroupTask(this, groupToUpdate.get().id, avatarBmp,
-                              getGroupName(), getAdapter().getRecipients()).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+                              getGroupName(), getAdapter().getRecipients(), groupToUpdate.get().admins).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
   }
 
   private void handleOpenConversation(long threadId, Recipient recipient) {
@@ -344,9 +346,10 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
       for (Recipient recipient : members) {
         memberAddresses.add(recipient.getAddress());
       }
-      memberAddresses.add(Address.fromSerialized(TextSecurePreferences.getLocalNumber(activity)));
+      Address local = Address.fromSerialized(TextSecurePreferences.getLocalNumber(activity));
+      memberAddresses.add(local);
 
-      String    groupId        = DatabaseFactory.getGroupDatabase(activity).getOrCreateGroupForMembers(memberAddresses, true);
+      String    groupId        = DatabaseFactory.getGroupDatabase(activity).getOrCreateGroupForMembers(memberAddresses, true, Collections.singletonList(local));
       Recipient groupRecipient = Recipient.from(activity, Address.fromSerialized(groupId), true);
       long      threadId       = DatabaseFactory.getThreadDatabase(activity).getThreadIdFor(groupRecipient, ThreadDatabase.DistributionTypes.DEFAULT);
 
@@ -370,16 +373,19 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
     protected Bitmap              avatar;
     protected Set<Recipient>      members;
     protected String              name;
+    protected Set<Recipient>      admins;
 
     public SignalGroupTask(GroupCreateActivity activity,
                            Bitmap              avatar,
                            String              name,
-                           Set<Recipient>      members)
+                           Set<Recipient>      members,
+                           Set<Recipient>      admins)
     {
       this.activity     = activity;
       this.avatar       = avatar;
       this.name         = name;
       this.members      = members;
+      this.admins       = admins;
     }
 
     @Override
@@ -403,13 +409,13 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
   }
 
   private static class CreateSignalGroupTask extends SignalGroupTask {
-    public CreateSignalGroupTask(GroupCreateActivity activity, Bitmap avatar, String name, Set<Recipient> members) {
-      super(activity, avatar, name, members);
+    public CreateSignalGroupTask(GroupCreateActivity activity, Bitmap avatar, String name, Set<Recipient> members, Set<Recipient> admins) {
+      super(activity, avatar, name, members, admins);
     }
 
     @Override
     protected Optional<GroupActionResult> doInBackground(Void... aVoid) {
-      return Optional.of(GroupManager.createGroup(activity, members, avatar, name, false));
+      return Optional.of(GroupManager.createGroup(activity, members, avatar, name, false, admins));
     }
 
     @Override
@@ -430,16 +436,16 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
     private String groupId;
 
     public UpdateSignalGroupTask(GroupCreateActivity activity, String groupId,
-                                 Bitmap avatar, String name, Set<Recipient> members)
+                                 Bitmap avatar, String name, Set<Recipient> members, Set<Recipient> admins)
     {
-      super(activity, avatar, name, members);
+      super(activity, avatar, name, members, admins);
       this.groupId = groupId;
     }
 
     @Override
     protected Optional<GroupActionResult> doInBackground(Void... aVoid) {
       try {
-        return Optional.of(GroupManager.updateGroup(activity, groupId, members, avatar, name));
+        return Optional.of(GroupManager.updateGroup(activity, groupId, members, avatar, name, admins));
       } catch (InvalidNumberException e) {
         return Optional.absent();
       }
@@ -537,11 +543,17 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
       existingContacts.addAll(recipients);
 
       if (group.isPresent()) {
+        List<Address> adminList = group.get().getAdmins();
+        final Set<Recipient> admins = new HashSet<>(adminList.size());
+        for (Address admin : adminList) {
+          admins.add(Recipient.from(getContext(), admin, false));
+        }
         return Optional.of(new GroupData(groupIds[0],
                                          existingContacts,
                                          BitmapUtil.fromByteArray(group.get().getAvatar()),
                                          group.get().getAvatar(),
-                                         group.get().getTitle()));
+                                         group.get().getTitle(),
+                                         admins));
       } else {
         return Optional.absent();
       }
@@ -582,13 +594,15 @@ public class GroupCreateActivity extends PassphraseRequiredActionBarActivity
     Bitmap         avatarBmp;
     byte[]         avatarBytes;
     String         name;
+    Set<Recipient> admins;
 
-    public GroupData(String id, Set<Recipient> recipients, Bitmap avatarBmp, byte[] avatarBytes, String name) {
+    public GroupData(String id, Set<Recipient> recipients, Bitmap avatarBmp, byte[] avatarBytes, String name, Set<Recipient> admins) {
       this.id          = id;
       this.recipients  = recipients;
       this.avatarBmp   = avatarBmp;
       this.avatarBytes = avatarBytes;
       this.name        = name;
+      this.admins      = admins;
     }
   }
 }

@@ -25,12 +25,15 @@ import org.thoughtcrime.securesms.sms.IncomingGroupMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.GroupUtil;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceContent;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroup;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroup.Type;
+import org.whispersystems.signalservice.loki.api.LokiStorageAPI;
+import org.whispersystems.signalservice.loki.utilities.PromiseUtil;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -87,6 +90,7 @@ public class GroupMessageProcessor {
 
     SignalServiceAttachment avatar  = group.getAvatar().orNull();
     List<Address>           members = group.getMembers().isPresent() ? new LinkedList<Address>() : null;
+    List<Address>           admins  = group.getAdmins().isPresent() ? new LinkedList<>() : null;
 
     if (group.getMembers().isPresent()) {
       for (String member : group.getMembers().get()) {
@@ -94,8 +98,22 @@ public class GroupMessageProcessor {
       }
     }
 
+    // We should only create the group if we are part of the member list
+    String masterHexEncodedPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
+    String hexEncodedPublicKey = masterHexEncodedPublicKey != null ? masterHexEncodedPublicKey : TextSecurePreferences.getLocalNumber(context);
+    if (members == null || !members.contains(Address.fromSerialized(hexEncodedPublicKey))) {
+      Log.d("Loki - Group Message", "Received a group create message which doesn't include us in the member list. Ignoring.");
+      return null;
+    }
+
+    if (group.getAdmins().isPresent()) {
+      for (String admin : group.getAdmins().get()) {
+        admins.add(Address.fromExternal(context, admin));
+      }
+    }
+
     database.create(id, group.getName().orNull(), members,
-                    avatar != null && avatar.isPointer() ? avatar.asPointer() : null, null);
+                    avatar != null && avatar.isPointer() ? avatar.asPointer() : null, null, admins);
 
     return storeMessage(context, content, group, builder.build(), outgoing);
   }
@@ -109,6 +127,21 @@ public class GroupMessageProcessor {
 
     GroupDatabase database = DatabaseFactory.getGroupDatabase(context);
     String        id       = GroupUtil.getEncodedId(group);
+
+    // Only update group if admin sent the message
+    if (group.getGroupType() == SignalServiceGroup.GroupType.SIGNAL) {
+      String sender = content.getSender();
+      String hexEncodedPublicKey = sender;
+      try {
+        String primaryDevice = PromiseUtil.timeout(LokiStorageAPI.shared.getPrimaryDevicePublicKey(sender), 5000).get();
+        if (primaryDevice != null) { hexEncodedPublicKey = primaryDevice; }
+      } catch (Exception e) { }
+
+      if (!groupRecord.getAdmins().contains(Address.fromSerialized(hexEncodedPublicKey))) {
+        Log.d("Loki - Group Message", "Received a group update message from a non-admin user for " + id +". Ignoring.");
+        return null;
+      }
+    }
 
     Set<Address> recordMembers = new HashSet<>(groupRecord.getMembers());
     Set<Address> messageMembers = new HashSet<>();
@@ -260,6 +293,10 @@ public class GroupMessageProcessor {
 
     if (group.getMembers().isPresent()) {
       builder.addAllMembers(group.getMembers().get());
+    }
+
+    if (group.getAdmins().isPresent()) {
+      builder.addAllAdmins(group.getAdmins().get());
     }
 
     return builder;

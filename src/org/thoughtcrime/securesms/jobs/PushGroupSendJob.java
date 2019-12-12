@@ -267,7 +267,7 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
       GroupContext              groupContext     = groupMessage.getGroupContext();
       SignalServiceAttachment   avatar           = attachmentPointers.isEmpty() ? null : attachmentPointers.get(0);
       SignalServiceGroup.Type   type             = groupMessage.isGroupQuit() ? SignalServiceGroup.Type.QUIT : SignalServiceGroup.Type.UPDATE;
-      SignalServiceGroup        group            = new SignalServiceGroup(type, GroupUtil.getDecodedId(groupId), groupType, groupContext.getName(), groupContext.getMembersList(), avatar);
+      SignalServiceGroup        group            = new SignalServiceGroup(type, GroupUtil.getDecodedId(groupId), groupType, groupContext.getName(), groupContext.getMembersList(), avatar, groupContext.getAdminsList());
       SignalServiceDataMessage  groupDataMessage = SignalServiceDataMessage.newBuilder()
                                                                            .withTimestamp(message.getSentTimeMillis())
                                                                            .withExpiration(message.getRecipient().getExpireMessages())

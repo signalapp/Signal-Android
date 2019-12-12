@@ -10,7 +10,6 @@ import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.thoughtcrime.securesms.database.RecipientDatabase
 import org.thoughtcrime.securesms.jobs.PushDecryptJob
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -112,7 +111,7 @@ class LokiPublicChatPoller(private val context: Context, private val group: Loki
     // region Polling
     private fun getDataMessage(message: LokiPublicChatMessage): SignalServiceDataMessage {
         val id = group.id.toByteArray()
-        val serviceGroup = SignalServiceGroup(SignalServiceGroup.Type.UPDATE, id, SignalServiceGroup.GroupType.PUBLIC_CHAT, null, null, null)
+        val serviceGroup = SignalServiceGroup(SignalServiceGroup.Type.UPDATE, id, SignalServiceGroup.GroupType.PUBLIC_CHAT, null, null, null, null)
         val quote = if (message.quote != null) {
             SignalServiceDataMessage.Quote(message.quote!!.quotedMessageTimestamp, SignalServiceAddress(message.quote!!.quoteeHexEncodedPublicKey), message.quote!!.quotedMessageBody, listOf())
         } else {

@@ -35,16 +35,19 @@ import org.thoughtcrime.securesms.database.StickerDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.jobs.RefreshPreKeysJob;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.loki.*;
+import org.thoughtcrime.securesms.loki.LokiAPIDatabase;
+import org.thoughtcrime.securesms.loki.LokiMessageDatabase;
+import org.thoughtcrime.securesms.loki.LokiPreKeyBundleDatabase;
+import org.thoughtcrime.securesms.loki.LokiPreKeyRecordDatabase;
+import org.thoughtcrime.securesms.loki.LokiThreadDatabase;
+import org.thoughtcrime.securesms.loki.LokiUserDatabase;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
-import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.loki.api.LokiPublicChat;
 
 import java.io.File;
-import java.security.acl.Group;
 
 public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
@@ -547,6 +550,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
           groupUpdate.put("group_id", newId);
           db.update("groups", groupUpdate,"group_id = ?", new String[] { oldId });
         }
+
+        // Add admin field in groups
+        db.execSQL("ALTER TABLE groups ADD COLUMN admins TEXT");
       }
 
       db.setTransactionSuccessful();
