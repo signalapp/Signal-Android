@@ -266,6 +266,10 @@ public class ViewUtil {
     view.setPadding(view.getPaddingLeft(), view.getPaddingTop(), view.getPaddingRight(), padding);
   }
 
+  public static void setPadding(@NonNull View view, int padding) {
+    view.setPadding(padding, padding, padding, padding);
+  }
+
   public static boolean isPointInsideView(@NonNull View view, float x, float y) {
     int[] location = new int[2];
 

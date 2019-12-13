@@ -100,8 +100,8 @@ public class PersistentLogger extends Log.Logger {
   }
 
   @WorkerThread
-  public ListenableFuture<String> getLogs() {
-    final SettableFuture<String> future = new SettableFuture<>();
+  public ListenableFuture<CharSequence> getLogs() {
+    final SettableFuture<CharSequence> future = new SettableFuture<>();
 
     executor.execute(() -> {
       StringBuilder builder = new StringBuilder();
@@ -118,7 +118,7 @@ public class PersistentLogger extends Log.Logger {
           }
         }
 
-        future.set(builder.toString());
+        future.set(builder);
       } catch (NoExternalStorageException e) {
         future.setException(e);
       }

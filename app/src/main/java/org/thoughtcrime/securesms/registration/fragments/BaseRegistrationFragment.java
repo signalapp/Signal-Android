@@ -17,8 +17,8 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.dd.CircularProgressButton;
 
-import org.thoughtcrime.securesms.LogSubmitActivity;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogActivity;
 import org.thoughtcrime.securesms.registration.viewmodel.RegistrationViewModel;
 
 import static org.thoughtcrime.securesms.registration.RegistrationNavigationActivity.RE_REGISTRATION_EXTRA;
@@ -95,7 +95,7 @@ abstract class BaseRegistrationFragment extends Fragment {
         debugTapCounter++;
 
         if (debugTapCounter >= DEBUG_TAP_TARGET) {
-          context.startActivity(new Intent(context, LogSubmitActivity.class));
+          context.startActivity(new Intent(context, SubmitDebugLogActivity.class));
         } else if (debugTapCounter >= DEBUG_TAP_ANNOUNCE) {
           int remaining = DEBUG_TAP_TARGET - debugTapCounter;
 

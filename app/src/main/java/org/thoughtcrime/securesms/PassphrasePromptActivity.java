@@ -55,6 +55,7 @@ import org.thoughtcrime.securesms.components.AnimatingToggle;
 import org.thoughtcrime.securesms.crypto.InvalidPassphraseException;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
+import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogActivity;
 import org.thoughtcrime.securesms.util.DynamicIntroTheme;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -164,7 +165,7 @@ public class PassphrasePromptActivity extends PassphraseActivity {
   }
 
   private void handleLogSubmit() {
-    Intent intent = new Intent(this, LogSubmitActivity.class);
+    Intent intent = new Intent(this, SubmitDebugLogActivity.class);
     startActivity(intent);
   }
 

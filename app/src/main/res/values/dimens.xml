@@ -149,4 +149,6 @@
 
     <dimen name="storage_legend_circle_size">8dp</dimen>
 
+    <dimen name="debug_log_text_size">12sp</dimen>
+
 </resources>

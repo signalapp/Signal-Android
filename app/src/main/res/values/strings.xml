@@ -870,6 +870,18 @@
     <string name="StickerPackPreviewActivity_stickers">Stickers</string>
     <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">Failed to load sticker pack</string>
 
+    <!-- SubmitDebugLogActivity -->
+    <string name="SubmitDebugLogActivity_edit">Edit</string>
+    <string name="SubmitDebugLogActivity_done">Done</string>
+    <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">Tap a line to delete it</string>
+    <string name="SubmitDebugLogActivity_submit">Submit</string>
+    <string name="SubmitDebugLogActivity_failed_to_submit_logs">Failed to submit logs</string>
+    <string name="SubmitDebugLogActivity_success">Success!</string>
+    <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Copy this URL and add it to your issue report or support email:\n\n<b>%1$s</b></string>
+    <string name="SubmitDebugLogActivity_copied_to_clipboard">Copied to clipboard</string>
+    <string name="SubmitDebugLogActivity_ok">Ok</string>
+    <string name="SubmitDebugLogActivity_share">Share</string>
+
     <!-- ThreadRecord -->
     <string name="ThreadRecord_group_updated">Group updated</string>
     <string name="ThreadRecord_left_the_group">Left the group</string>
@@ -1282,9 +1294,6 @@
     <string name="log_submit_activity__this_log_will_be_posted_online">This log will be posted publicly online for contributors to view, you may examine and edit it before submitting.</string>
     <string name="log_submit_activity__loading_logs">Loading logs…</string>
     <string name="log_submit_activity__uploading_logs">Uploading logs…</string>
-    <string name="log_submit_activity__success">Success!</string>
-    <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">Copy this URL and add it to your issue report or support email:\n\n<b>%1$s</b>\n</string>
-    <string name="log_submit_activity__copied_to_clipboard">Copied to clipboard</string>
     <string name="log_submit_activity__choose_email_app">Choose email app</string>
     <string name="log_submit_activity__please_review_this_log_from_my_app">Please review this log from my app: %1$s</string>
     <string name="log_submit_activity__network_failure">Network failure. Please try again.</string>

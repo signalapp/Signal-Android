@@ -249,6 +249,13 @@
 
         <item name="contact_list_divider">@drawable/contact_list_divider_light</item>
 
+        <item name="debuglog_color_none">@color/debuglog_light_none</item>
+        <item name="debuglog_color_verbose">@color/debuglog_light_verbose</item>
+        <item name="debuglog_color_debug">@color/debuglog_light_debug</item>
+        <item name="debuglog_color_info">@color/debuglog_light_info</item>
+        <item name="debuglog_color_warn">@color/debuglog_light_warn</item>
+        <item name="debuglog_color_error">@color/debuglog_light_error</item>
+
         <item name="verification_background">@color/core_grey_05</item>
 
         <item name="emoji_tab_strip_background">@color/core_grey_05</item>
@@ -495,6 +502,13 @@
         <item name="conversation_item_reveal_viewed_background_color">?conversation_background</item>
 
         <item name="contact_list_divider">@drawable/contact_list_divider_dark</item>
+
+        <item name="debuglog_color_none">@color/debuglog_dark_none</item>
+        <item name="debuglog_color_verbose">@color/debuglog_dark_verbose</item>
+        <item name="debuglog_color_debug">@color/debuglog_dark_debug</item>
+        <item name="debuglog_color_info">@color/debuglog_dark_info</item>
+        <item name="debuglog_color_warn">@color/debuglog_dark_warn</item>
+        <item name="debuglog_color_error">@color/debuglog_dark_error</item>
 
         <item name="verification_background">@color/core_grey_95</item>
 

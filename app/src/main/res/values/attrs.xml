@@ -261,6 +261,13 @@
     <attr name="megaphone_reactions_shade" format="color"/>
     <attr name="megaphone_reactions_close_tint" format="color"/>
 
+    <attr name="debuglog_color_none" format="color" />
+    <attr name="debuglog_color_verbose" format="color" />
+    <attr name="debuglog_color_debug" format="color" />
+    <attr name="debuglog_color_info" format="color" />
+    <attr name="debuglog_color_warn" format="color" />
+    <attr name="debuglog_color_error" format="color" />
+
     <declare-styleable name="ColorPreference">
         <attr name="itemLayout" format="reference" />
         <attr name="choices" format="reference" />

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <color name="debuglog_light_none">@color/core_black</color>
+  <color name="debuglog_light_verbose">#515151</color>
+  <color name="debuglog_light_debug">#089314</color>
+  <color name="debuglog_light_info">#0a7087</color>
+  <color name="debuglog_light_warn">#b58c12</color>
+  <color name="debuglog_light_error">#af0d0a</color>
+
+  <color name="debuglog_dark_none">@color/core_white</color>
+  <color name="debuglog_dark_verbose">#8a8a8a</color>
+  <color name="debuglog_dark_debug">#5ca72b</color>
+  <color name="debuglog_dark_info">#46bbb9</color>
+  <color name="debuglog_dark_warn">#cdd637</color>
+  <color name="debuglog_dark_error">#ff6b68</color>
+</resources>
