@@ -99,8 +99,7 @@ public class GroupMessageProcessor {
     }
 
     // We should only create the group if we are part of the member list
-    String masterHexEncodedPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(context);
-    String hexEncodedPublicKey = masterHexEncodedPublicKey != null ? masterHexEncodedPublicKey : TextSecurePreferences.getLocalNumber(context);
+    String hexEncodedPublicKey = getMasterHexEncodedPublicKey(context, TextSecurePreferences.getLocalNumber(context));
     if (members == null || !members.contains(Address.fromSerialized(hexEncodedPublicKey))) {
       Log.d("Loki - Group Message", "Received a group create message which doesn't include us in the member list. Ignoring.");
       return null;
@@ -130,13 +129,7 @@ public class GroupMessageProcessor {
 
     // Only update group if admin sent the message
     if (group.getGroupType() == SignalServiceGroup.GroupType.SIGNAL) {
-      String sender = content.getSender();
-      String hexEncodedPublicKey = sender;
-      try {
-        String primaryDevice = PromiseUtil.timeout(LokiStorageAPI.shared.getPrimaryDevicePublicKey(sender), 5000).get();
-        if (primaryDevice != null) { hexEncodedPublicKey = primaryDevice; }
-      } catch (Exception e) { }
-
+      String hexEncodedPublicKey = getMasterHexEncodedPublicKey(context, content.getSender());
       if (!groupRecord.getAdmins().contains(Address.fromSerialized(hexEncodedPublicKey))) {
         Log.d("Loki - Group Message", "Received a group update message from a non-admin user for " + id +". Ignoring.");
         return null;
@@ -198,7 +191,10 @@ public class GroupMessageProcessor {
                                              @NonNull SignalServiceGroup group,
                                              @NonNull GroupRecord record)
   {
-    if (record.getMembers().contains(Address.fromExternal(context, content.getSender()))) {
+    String hexEncodedPublicKey = getMasterHexEncodedPublicKey(context, content.getSender());
+    String ourPublicKey = getMasterHexEncodedPublicKey(context, TextSecurePreferences.getLocalNumber(context));
+    // If the requester is a group member and we are admin then we should send them the group update
+    if (record.getMembers().contains(Address.fromSerialized(hexEncodedPublicKey)) && record.getAdmins().contains(Address.fromSerialized(ourPublicKey))) {
       ApplicationContext.getInstance(context)
                         .getJobManager()
                         .add(new PushGroupUpdateJob(content.getSender(), group.getGroupId()));
@@ -302,4 +298,15 @@ public class GroupMessageProcessor {
     return builder;
   }
 
+  private static String getMasterHexEncodedPublicKey(Context context, String hexEncodedPublicKey) {
+    String ourPublicKey = TextSecurePreferences.getLocalNumber(context);
+    try {
+      String masterHexEncodedPublicKey = hexEncodedPublicKey.equalsIgnoreCase(ourPublicKey)
+              ? TextSecurePreferences.getMasterHexEncodedPublicKey(context)
+              : PromiseUtil.timeout(LokiStorageAPI.shared.getPrimaryDevicePublicKey(hexEncodedPublicKey), 5000).get();
+      return masterHexEncodedPublicKey != null ? masterHexEncodedPublicKey : hexEncodedPublicKey;
+    } catch (Exception e) {
+      return hexEncodedPublicKey;
+    }
+  }
 }

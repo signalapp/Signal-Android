@@ -47,6 +47,8 @@ import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupContext;
 import org.whispersystems.signalservice.loki.api.LokiPublicChat;
+import org.whispersystems.signalservice.loki.api.LokiStorageAPI;
+import org.whispersystems.signalservice.loki.utilities.PromiseUtil;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -313,7 +315,20 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
       if (!destinations.isEmpty()) return Stream.of(destinations).map(GroupReceiptInfo::getAddress).toList();
 
       List<Recipient> members = DatabaseFactory.getGroupDatabase(context).getGroupMembers(groupId, false);
-      return Stream.of(members).map(Recipient::getAddress).toList();
+
+      // Add secondary devices to the list
+      Set<Address> memberSet = Stream.of(members).map(Recipient::getAddress).collect(Collectors.toSet());
+      for (Recipient member : members) {
+        if (!member.getAddress().isPhone()) { continue; }
+        try {
+          List<String> secondaryDevices = PromiseUtil.timeout(LokiStorageAPI.shared.getSecondaryDevicePublicKeys(member.getAddress().serialize()), 5000).get();
+          memberSet.addAll(Stream.of(secondaryDevices).map(Address::fromSerialized).toList());
+        } catch (Exception e) {
+          // Timed out, go to the next member
+        }
+      }
+
+      return new LinkedList<>(memberSet);
     }
   }
 

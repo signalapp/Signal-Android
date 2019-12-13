@@ -152,7 +152,9 @@ public class GroupDatabase extends Database {
       if (!includeSelf && Util.isOwnNumber(context, member))
         continue;
 
-      recipients.add(Recipient.from(context, member, false));
+      if (member.isPhone()) {
+        recipients.add(Recipient.from(context, member, false));
+      }
     }
 
     return recipients;
