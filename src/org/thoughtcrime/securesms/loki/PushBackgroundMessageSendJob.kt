@@ -13,7 +13,6 @@ import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.internal.util.JsonUtil
 import java.io.IOException
-import java.lang.IllegalStateException
 import java.util.concurrent.TimeUnit
 
 data class BackgroundMessage private constructor(val data: Map<String, Any>) {
@@ -36,6 +35,12 @@ data class BackgroundMessage private constructor(val data: Map<String, Any>) {
             "recipient" to recipient,
             "friendRequest" to true,
             "sessionRestore" to true
+    ))
+    @JvmStatic
+    fun createSessionRequest(recipient: String) = BackgroundMessage(mapOf(
+            "recipient" to recipient,
+            "friendRequest" to true,
+            "sessionRequest" to true
     ))
             
     internal fun parse(serialized: String): BackgroundMessage {
@@ -101,6 +106,10 @@ class PushBackgroundMessageSendJob private constructor(
 
     if (message.get("sessionRestore", false)) {
       dataMessage.asSessionRestore(true)
+    }
+
+    if (message.get("sessionRequest", false)) {
+      dataMessage.asSessionRequest(true)
     }
 
     val messageSender = ApplicationContext.getInstance(context).communicationModule.provideSignalMessageSender()

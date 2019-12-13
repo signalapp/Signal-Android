@@ -42,7 +42,6 @@ import org.thoughtcrime.securesms.crypto.storage.SignalProtocolStoreImpl;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
-import org.thoughtcrime.securesms.database.Database;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.GroupReceiptDatabase;
@@ -296,6 +295,9 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       // Loki - Handle friend request acceptance if needed
       acceptFriendRequestIfNeeded(envelope, content);
 
+      // Loki - Session requests
+      handleSessionRequestIfNeeded(envelope, content);
+
       // Loki - Store pre key bundle
       // We shouldn't store it if it's a pairing message
       if (!content.getPairingAuthorisation().isPresent()) {
@@ -340,7 +342,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
           }
         } else {
           // Loki - We shouldn't process session restore message any further
-          if (message.isSessionRestore()) { return; }
+          if (message.isSessionRestore() || message.isSessionRequest()) { return; }
           if (message.isEndSession()) handleEndSessionMessage(content, smsMessageId);
           else if (message.isGroupUpdate()) handleGroupMessage(content, message, smsMessageId);
           else if (message.isExpirationUpdate())
@@ -697,7 +699,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
             Log.d("Loki", "Sent friend request to " + pubKey);
           } else if (status == LokiThreadFriendRequestStatus.REQUEST_RECEIVED) {
             // Accept the incoming friend request
-            becomeFriendsWithContact(pubKey, false);
+            becomeFriendsWithContact(pubKey, false, false);
             // Send them an accept message back
             MessageSender.sendBackgroundMessage(context, pubKey);
             Log.d("Loki", "Became friends with " + deviceContact.getNumber());
@@ -1225,10 +1227,21 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   private void acceptFriendRequestIfNeeded(@NonNull SignalServiceEnvelope envelope, @NonNull SignalServiceContent content) {
     // If we get anything other than a friend request, we can assume that we have a session with the other user
     if (envelope.isFriendRequest() || isGroupChatMessage(content)) { return; }
-    becomeFriendsWithContact(content.getSender(), true);
+    becomeFriendsWithContact(content.getSender(), true, false);
   }
 
-  private void becomeFriendsWithContact(String pubKey, boolean syncContact) {
+  private void handleSessionRequestIfNeeded(@NonNull SignalServiceEnvelope envelope, @NonNull SignalServiceContent content) {
+    if (envelope.isFriendRequest() && isSessionRequest(content)) {
+      // TODO: Check if member is in one of our private groups
+      boolean isInOneOfOurGroups = false;
+      if (isInOneOfOurGroups) {
+        // Send a background message to acknowledge session request
+        MessageSender.sendBackgroundMessage(context, content.getSender());
+      }
+    }
+  }
+
+  private void becomeFriendsWithContact(String pubKey, boolean syncContact, boolean force) {
     LokiThreadDatabase lokiThreadDatabase = DatabaseFactory.getLokiThreadDatabase(context);
     Recipient contactID = Recipient.from(context, Address.fromSerialized(pubKey), false);
     if (contactID.isGroupRecipient()) return;
@@ -1236,6 +1249,11 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     long threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(contactID);
     LokiThreadFriendRequestStatus threadFriendRequestStatus = lokiThreadDatabase.getFriendRequestStatus(threadID);
     if (threadFriendRequestStatus == LokiThreadFriendRequestStatus.FRIENDS) { return; }
+
+    // We shouldn't be able to skip from None -> Friends in normal circumstances.
+    // Multi-device is the exception to this rule because we want to automatically be friends with a secondary device
+    if (!force && threadFriendRequestStatus == LokiThreadFriendRequestStatus.NONE) { return; }
+
     // If the thread's friend request status is not `FRIENDS`, but we're receiving a message,
     // it must be a friend request accepted message. Declining a friend request doesn't send a message.
     lokiThreadDatabase.setFriendRequestStatus(threadID, LokiThreadFriendRequestStatus.FRIENDS);
@@ -1256,13 +1274,13 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
   }
 
   private void updateFriendRequestStatusIfNeeded(@NonNull SignalServiceEnvelope envelope, @NonNull SignalServiceContent content, @NonNull SignalServiceDataMessage message) {
-    if (!envelope.isFriendRequest() || message.isGroupUpdate()) { return; }
+    if (!envelope.isFriendRequest() || message.isGroupUpdate() || message.isSessionRequest()) { return; }
     // This handles the case where another user sends us a regular message without authorisation
     Promise<Boolean, Exception> promise = PromiseUtil.timeout(MultiDeviceUtilities.shouldAutomaticallyBecomeFriendsWithDevice(content.getSender(), context), 8000);
     boolean shouldBecomeFriends = PromiseUtil.get(promise, false);
     if (shouldBecomeFriends) {
       // Become friends AND update the message they sent
-      becomeFriendsWithContact(content.getSender(), true);
+      becomeFriendsWithContact(content.getSender(), true, true);
       // Send them an accept message back
       MessageSender.sendBackgroundMessage(context, content.getSender());
     } else {
@@ -1841,6 +1859,10 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
     }
 
     return false;
+  }
+
+  private boolean isSessionRequest(SignalServiceContent content) {
+    return content.getDataMessage().isPresent() && content.getDataMessage().get().isSessionRequest();
   }
 
   private boolean isGroupChatMessage(SignalServiceContent content) {

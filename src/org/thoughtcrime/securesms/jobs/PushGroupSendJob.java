@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
+import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupReceiptDatabase.GroupReceiptInfo;
@@ -30,9 +31,11 @@ import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingGroupMediaMessage;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
 import org.thoughtcrime.securesms.util.GroupUtil;
+import org.whispersystems.libsignal.SignalProtocolAddress;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
@@ -160,7 +163,23 @@ public class PushGroupSendJob extends PushSendJob implements InjectableType {
       else if (!existingNetworkFailures.isEmpty()) target = Stream.of(existingNetworkFailures).map(NetworkFailure::getAddress).toList();
       else                                         target = getGroupMessageRecipients(message.getRecipient().getAddress().toGroupString(), messageId);
 
-      List<SendMessageResult>   results                  = deliver(message, target);
+      // Only send messages to the contacts we have sessions with
+      List<Address> validTargets = Stream.of(target).filter(member -> {
+        SignalProtocolAddress protocolAddress = new SignalProtocolAddress(member.toPhoneString(), SignalServiceAddress.DEFAULT_DEVICE_ID);
+        boolean hasSession = new TextSecureSessionStore(context).containsSession(protocolAddress);
+        if (hasSession) { return true; }
+
+        // We should allow sending if we have a prekeybundle for the contact
+        return DatabaseFactory.getLokiPreKeyBundleDatabase(context).hasPreKeyBundle(member.toPhoneString());
+      }).toList();
+
+      // Send a session request to the other devices
+      List<Address> others = Stream.of(target).filter(t -> !validTargets.contains(t)).toList();
+      for (Address device : others) {
+        MessageSender.sendBackgroundSessionRequest(context, device.toPhoneString());
+      }
+
+      List<SendMessageResult>   results                  = deliver(message, validTargets);
       List<NetworkFailure>      networkFailures          = Stream.of(results).filter(SendMessageResult::isNetworkFailure).map(result -> new NetworkFailure(Address.fromSerialized(result.getAddress().getNumber()))).toList();
       List<IdentityKeyMismatch> identityMismatches       = Stream.of(results).filter(result -> result.getIdentityFailure() != null).map(result -> new IdentityKeyMismatch(Address.fromSerialized(result.getAddress().getNumber()), result.getIdentityFailure().getIdentityKey())).toList();
       Set<Address>              successAddresses         = Stream.of(results).filter(result -> result.getSuccess() != null).map(result -> Address.fromSerialized(result.getAddress().getNumber())).collect(Collectors.toSet());

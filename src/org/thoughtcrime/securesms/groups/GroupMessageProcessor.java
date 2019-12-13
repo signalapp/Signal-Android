@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import com.google.protobuf.ByteString;
 
 import org.thoughtcrime.securesms.ApplicationContext;
+import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
@@ -23,15 +24,18 @@ import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.IncomingGroupMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
+import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.libsignal.SignalProtocolAddress;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceContent;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroup;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroup.Type;
+import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.loki.api.LokiStorageAPI;
 import org.whispersystems.signalservice.loki.utilities.PromiseUtil;
 
@@ -40,6 +44,8 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
+
+import kotlin.Unit;
 
 import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
 import static org.whispersystems.signalservice.internal.push.SignalServiceProtos.AttachmentPointer;
@@ -114,6 +120,10 @@ public class GroupMessageProcessor {
     database.create(id, group.getName().orNull(), members,
                     avatar != null && avatar.isPointer() ? avatar.asPointer() : null, null, admins);
 
+    if (group.getMembers().isPresent()) {
+      establishSessionsWithMembersIfNeeded(context, group.getMembers().get());
+    }
+
     return storeMessage(context, content, group, builder.build(), outgoing);
   }
 
@@ -182,6 +192,10 @@ public class GroupMessageProcessor {
     }
 
     if (!groupRecord.isActive()) database.setActive(id, true);
+
+    if (group.getMembers().isPresent()) {
+      establishSessionsWithMembersIfNeeded(context, group.getMembers().get());
+    }
 
     return storeMessage(context, content, group, builder.build(), outgoing);
   }
@@ -307,6 +321,22 @@ public class GroupMessageProcessor {
       return masterHexEncodedPublicKey != null ? masterHexEncodedPublicKey : hexEncodedPublicKey;
     } catch (Exception e) {
       return hexEncodedPublicKey;
+    }
+  }
+
+  private static void establishSessionsWithMembersIfNeeded(Context context, List<String> members) {
+    String ourNumber = TextSecurePreferences.getLocalNumber(context);
+    for (String member : members) {
+      // Make sure we have session with all of the members secondary devices
+      LokiStorageAPI.shared.getAllDevicePublicKeys(member).success(devices -> {
+        if (devices.contains(ourNumber)) { return Unit.INSTANCE; }
+        for (String device : devices) {
+          SignalProtocolAddress protocolAddress = new SignalProtocolAddress(device, SignalServiceAddress.DEFAULT_DEVICE_ID);
+          boolean haveSession = new TextSecureSessionStore(context).containsSession(protocolAddress);
+          if (!haveSession) { MessageSender.sendBackgroundSessionRequest(context, device); }
+        }
+        return Unit.INSTANCE;
+      });
     }
   }
 }
