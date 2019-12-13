@@ -47,6 +47,7 @@ import org.thoughtcrime.securesms.jobs.CreateSignedPreKeyJob;
 import org.thoughtcrime.securesms.jobs.FcmRefreshJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
 import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
+import org.thoughtcrime.securesms.jobs.StickerPackDownloadJob;
 import org.thoughtcrime.securesms.logging.AndroidLogger;
 import org.thoughtcrime.securesms.logging.CustomSignalProtocolLogger;
 import org.thoughtcrime.securesms.logging.Log;
@@ -68,8 +69,10 @@ import org.thoughtcrime.securesms.revealable.ViewOnceMessageManager;
 import org.thoughtcrime.securesms.service.RotateSenderCertificateListener;
 import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener;
 import org.thoughtcrime.securesms.service.UpdateApkRefreshListener;
+import org.thoughtcrime.securesms.stickers.BlessedPacks;
 import org.thoughtcrime.securesms.util.FrameRateTracker;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.dynamiclanguage.DynamicLanguageContextWrapper;
 import org.webrtc.voiceengine.WebRtcAudioManager;
 import org.webrtc.voiceengine.WebRtcAudioUtils;
@@ -112,8 +115,8 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
     initializeSecurityProvider();
     initializeLogging();
     initializeCrashHandling();
-    initializeFirstEverAppLaunch();
     initializeAppDependencies();
+    initializeFirstEverAppLaunch();
     initializeApplicationMigrations();
     initializeMessageRetrieval();
     initializeExpiringMessageManager();
@@ -237,6 +240,10 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
         InsightsOptOut.userRequestedOptOut(this);
         TextSecurePreferences.setAppMigrationVersion(this, ApplicationMigrations.CURRENT_VERSION);
         TextSecurePreferences.setJobManagerVersion(this, JobManager.CURRENT_VERSION);
+        TextSecurePreferences.setLastExperienceVersionCode(this, Util.getCanonicalVersionCode());
+        TextSecurePreferences.setHasSeenStickerIntroTooltip(this, true);
+        ApplicationDependencies.getJobManager().add(StickerPackDownloadJob.forInstall(BlessedPacks.ZOZO.getPackId(), BlessedPacks.ZOZO.getPackKey(), false));
+        ApplicationDependencies.getJobManager().add(StickerPackDownloadJob.forInstall(BlessedPacks.BANDIT.getPackId(), BlessedPacks.BANDIT.getPackKey(), false));
       }
 
       Log.i(TAG, "Setting first install version to " + BuildConfig.CANONICAL_VERSION_CODE);

@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Point;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
@@ -76,7 +77,7 @@ public final class StickerPackPreviewActivity extends PassphraseRequiredActionBa
   protected void onCreate(Bundle savedInstanceState, boolean ready) {
     setContentView(R.layout.sticker_preview_activity);
 
-    Optional<Pair<String, String>> stickerParams = StickerUrl.parseActionUri(getIntent().getData());
+    Optional<Pair<String, String>> stickerParams = StickerUrl.parseExternalUri(getIntent().getData());
 
     if (!stickerParams.isPresent()) {
       Log.w(TAG, "Invalid URI!");
@@ -155,14 +156,6 @@ public final class StickerPackPreviewActivity extends PassphraseRequiredActionBa
     stickerTitle.setText(manifest.getTitle().or(getString(R.string.StickerPackPreviewActivity_untitled)));
     stickerAuthor.setText(manifest.getAuthor().or(getString(R.string.StickerPackPreviewActivity_unknown)));
     adapter.setStickers(manifest.getStickers());
-
-    installButton.setOnClickListener(v -> {
-      SimpleTask.run(() -> {
-        ApplicationDependencies.getJobManager().add(new StickerPackDownloadJob(manifest.getPackId(), manifest.getPackKey(), false));
-
-        return null;
-      }, (nothing) -> finish());
-    });
 
     Sticker first = manifest.getStickers().isEmpty() ? null : manifest.getStickers().get(0);
     Sticker cover = manifest.getCover().or(Optional.fromNullable(first)).orNull();

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?android:windowBackground">
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/stickers_experience_animation"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/stickers_experience_title"
+        app:lottie_rawRes="@raw/lottie_stickers_splash"/>
+
+    <TextView
+        android:id="@+id/stickers_experience_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="7dp"
+        style="@style/Signal.Text.Headline"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/ExperienceUpgradeActivity_introducing_stickers"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@id/stickers_experience_subtitle"
+        app:layout_constraintStart_toStartOf="@id/stickers_experience_start_margin"
+        app:layout_constraintEnd_toEndOf="@id/stickers_experience_end_margin"/>
+
+    <TextView
+        android:id="@+id/stickers_experience_subtitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="7dp"
+        style="@style/Signal.Text.Body"
+        android:text="@string/ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@id/stickers_experience_icon"
+        app:layout_constraintStart_toStartOf="@id/stickers_experience_start_margin"
+        app:layout_constraintEnd_toEndOf="@id/stickers_experience_end_margin"/>
+
+    <ImageView
+        android:id="@+id/stickers_experience_icon"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:layout_marginBottom="32dp"
+        app:srcCompat="@drawable/ic_sticker_splash_24"
+        app:layout_constraintBottom_toTopOf="@id/stickers_experience_go_button"
+        app:layout_constraintStart_toStartOf="@id/stickers_experience_start_margin"
+        app:layout_constraintEnd_toEndOf="@id/stickers_experience_end_margin"/>
+
+    <com.dd.CircularProgressButton
+        android:id="@+id/stickers_experience_go_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="32dp"
+        android:background="@color/signal_primary"
+        android:textColor="@color/white"
+        android:elevation="4dp"
+        app:cpb_colorIndicator="@color/white"
+        app:cpb_colorProgress="@color/textsecure_primary"
+        app:cpb_cornerRadius="4dp"
+        app:cpb_selectorIdle="@drawable/progress_button_state"
+        app:cpb_textIdle="@string/ExperienceUpgradeActivity_lets_go"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/stickers_experience_start_margin"
+        app:layout_constraintEnd_toEndOf="@id/stickers_experience_end_margin"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/stickers_experience_start_margin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="16dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/stickers_experience_end_margin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="16dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

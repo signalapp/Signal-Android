@@ -188,6 +188,14 @@
             <data android:scheme="sgnl"
                   android:host="addstickers" />
         </intent-filter>
+        <intent-filter>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="https"
+                  android:host="signal.art"
+                  android:pathPrefix="/addstickers"/>
+        </intent-filter>
     </activity>
 
     <activity-alias android:name=".RoutingActivity"
@@ -248,7 +256,7 @@
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".ExperienceUpgradeActivity"
-              android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+              android:theme="@style/TextSecure.LightNoActionBar"
               android:launchMode="singleTask"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 

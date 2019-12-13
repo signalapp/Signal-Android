@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.jobs;
 import androidx.annotation.NonNull;
 import androidx.core.util.Preconditions;
 
-import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.StickerDatabase;
 import org.thoughtcrime.securesms.database.model.IncomingSticker;
@@ -34,27 +33,46 @@ public class StickerPackDownloadJob extends BaseJob {
   private static final String KEY_PACK_ID        = "pack_key";
   private static final String KEY_PACK_KEY       = "pack_id";
   private static final String KEY_REFERENCE_PACK = "reference_pack";
+  private static final String KEY_NOTIFY         = "notify";
 
   private final String  packId;
   private final String  packKey;
   private final boolean isReferencePack;
+  private final boolean notify;
 
-  public StickerPackDownloadJob(@NonNull String packId, @NonNull String packKey, boolean isReferencePack)
+  /**
+   * Downloads all the stickers in a pack.
+   * @param notify Whether or not a tooltip will be shown indicating the pack was installed.
+   */
+  public static @NonNull StickerPackDownloadJob forInstall(@NonNull String packId, @NonNull String packKey, boolean notify) {
+    return new StickerPackDownloadJob(packId, packKey, false, notify);
+  }
+
+  /**
+   * Just installs a reference to the pack -- i.e. just the cover.
+   */
+  public static @NonNull StickerPackDownloadJob forReference(@NonNull String packId, @NonNull String packKey) {
+    return new StickerPackDownloadJob(packId, packKey, true, true);
+  }
+
+  private StickerPackDownloadJob(@NonNull String packId, @NonNull String packKey, boolean isReferencePack, boolean notify)
   {
     this(new Parameters.Builder()
-                           .addConstraint(NetworkConstraint.KEY)
-                           .setLifespan(TimeUnit.DAYS.toMillis(1))
-                           .setQueue("StickerPackDownloadJob_" + packKey)
-                           .build(),
+                       .addConstraint(NetworkConstraint.KEY)
+                       .setLifespan(TimeUnit.DAYS.toMillis(30))
+                       .setQueue("StickerPackDownloadJob_" + packId)
+                       .build(),
         packId,
         packKey,
-        isReferencePack);
+        isReferencePack,
+        notify);
   }
 
   private StickerPackDownloadJob(@NonNull Parameters parameters,
                                  @NonNull String packId,
                                  @NonNull String packKey,
-                                 boolean isReferencePack)
+                                 boolean isReferencePack,
+                                 boolean notify)
   {
     super(parameters);
 
@@ -64,6 +82,21 @@ public class StickerPackDownloadJob extends BaseJob {
     this.packId          = packId;
     this.packKey         = packKey;
     this.isReferencePack = isReferencePack;
+    this.notify          = notify;
+  }
+
+  @Override
+  public @NonNull Data serialize() {
+    return new Data.Builder().putString(KEY_PACK_ID, packId)
+                             .putString(KEY_PACK_KEY, packKey)
+                             .putBoolean(KEY_REFERENCE_PACK, isReferencePack)
+                             .putBoolean(KEY_NOTIFY, notify)
+                             .build();
+  }
+
+  @Override
+  public @NonNull String getFactoryKey() {
+    return KEY;
   }
 
   @Override
@@ -86,12 +119,12 @@ public class StickerPackDownloadJob extends BaseJob {
     SignalServiceStickerManifest manifest        = receiver.retrieveStickerManifest(packIdBytes, packKeyBytes);
 
     if (manifest.getStickers().isEmpty()) {
-      Log.w(TAG, "No stickers in  pack!");
+      Log.w(TAG, "No stickers in pack!");
       return;
     }
 
     if (!isReferencePack && stickerDatabase.isPackAvailableAsReference(packId)) {
-      stickerDatabase.markPackAsInstalled(packId);
+      stickerDatabase.markPackAsInstalled(packId, notify);
     }
 
     StickerInfo      cover = manifest.getCover().or(manifest.getStickers().get(0));
@@ -102,7 +135,8 @@ public class StickerPackDownloadJob extends BaseJob {
                                                                                               cover.getId(),
                                                                                               "",
                                                                                               true,
-                                                                                              !isReferencePack)));
+                                                                                              !isReferencePack),
+                                                                          notify));
 
 
 
@@ -117,7 +151,8 @@ public class StickerPackDownloadJob extends BaseJob {
                                                             stickerInfo.getId(),
                                                             stickerInfo.getEmoji(),
                                                             false,
-                                                            true)));
+                                                            true),
+                                        notify));
       }
 
       chain.then(jobs);
@@ -132,21 +167,10 @@ public class StickerPackDownloadJob extends BaseJob {
   }
 
   @Override
-  public @NonNull Data serialize() {
-    return new Data.Builder().putString(KEY_PACK_ID, packId)
-                             .putString(KEY_PACK_KEY, packKey)
-                             .putBoolean(KEY_REFERENCE_PACK, isReferencePack)
-                             .build();
-  }
-
-  @Override
-  public @NonNull String getFactoryKey() {
-    return KEY;
-  }
-
-  @Override
   public void onCanceled() {
-    Log.w(TAG, "Failed to download manifest with pack_id: " + packId);
+    Log.w(TAG, "Failed to download manifest! Uninstalling pack.");
+    DatabaseFactory.getStickerDatabase(context).uninstallPack(packId);
+    DatabaseFactory.getStickerDatabase(context).deleteOrphanedPacks();
   }
 
   public static final class Factory implements Job.Factory<StickerPackDownloadJob> {
@@ -154,9 +178,10 @@ public class StickerPackDownloadJob extends BaseJob {
     public @NonNull
     StickerPackDownloadJob create(@NonNull Parameters parameters, @NonNull Data data) {
       return new StickerPackDownloadJob(parameters,
-                                            data.getString(KEY_PACK_ID),
-                                            data.getString(KEY_PACK_KEY),
-                                            data.getBoolean(KEY_REFERENCE_PACK));
+                                        data.getString(KEY_PACK_ID),
+                                        data.getString(KEY_PACK_KEY),
+                                        data.getBoolean(KEY_REFERENCE_PACK),
+                                        data.getBoolean(KEY_NOTIFY));
     }
   }
 }

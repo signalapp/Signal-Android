@@ -20,6 +20,12 @@ public class StickerUrl {
 
   private static final Pattern STICKER_URL_PATTERN = Pattern.compile("^https://signal\\.art/addstickers/#pack_id=(.*)&pack_key=(.*)$");
 
+  public static Optional<Pair<String, String>> parseExternalUri(@Nullable Uri uri) {
+    if (uri == null) return Optional.absent();
+
+    return parseActionUri(uri).or(parseShareLink(uri.toString()));
+  }
+
   public static Optional<Pair<String, String>> parseActionUri(@Nullable Uri uri) {
     if (uri == null) return Optional.absent();
 

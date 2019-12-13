@@ -69,7 +69,7 @@
         android:id="@+id/sticker_install_share_button_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:tint="@color/core_grey_90"
+        android:tint="?sticker_management_action_button_color"
         android:visibility="gone"
         app:srcCompat="@drawable/ic_forward_outline_24"
         app:layout_constraintTop_toTopOf="@id/sticker_install_share_button"

@@ -23,7 +23,6 @@ public final class LinkPreviewUtil {
   private static final Pattern DOMAIN_PATTERN        = Pattern.compile("^(https?://)?([^/]+).*$");
   private static final Pattern ALL_ASCII_PATTERN     = Pattern.compile("^[\\x00-\\x7F]*$");
   private static final Pattern ALL_NON_ASCII_PATTERN = Pattern.compile("^[^\\x00-\\x7F]*$");
-  private static final Pattern STICKER_URL_PATTERN   = Pattern.compile("^.*#pack_id=(.*)&pack_key=(.*)$");
 
   /**
    * @return All whitelisted URLs in the source text.

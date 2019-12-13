@@ -55,7 +55,7 @@ final class StickerPackPreviewViewModel extends ViewModel {
   }
 
   void onInstallClicked() {
-    managementRepository.installStickerPack(packId, packKey);
+    managementRepository.installStickerPack(packId, packKey, true);
   }
 
   void onRemoveClicked() {

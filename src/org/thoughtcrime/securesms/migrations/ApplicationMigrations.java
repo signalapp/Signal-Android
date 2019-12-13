@@ -38,7 +38,7 @@ public class ApplicationMigrations {
 
   private static final int LEGACY_CANONICAL_VERSION = 455;
 
-  public static final int CURRENT_VERSION = 7;
+  public static final int CURRENT_VERSION = 8;
 
   private static final class Version {
     static final int LEGACY             = 1;
@@ -48,6 +48,7 @@ public class ApplicationMigrations {
     static final int AVATAR_MIGRATION   = 5;
     static final int UUIDS              = 6;
     static final int CACHED_ATTACHMENTS = 7;
+    static final int STICKERS_LAUNCH    = 8;
   }
 
   /**
@@ -186,6 +187,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.CACHED_ATTACHMENTS) {
       jobs.put(Version.CACHED_ATTACHMENTS, new CachedAttachmentsMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.STICKERS_LAUNCH) {
+      jobs.put(Version.STICKERS_LAUNCH, new StickerLaunchMigrationJob());
     }
 
     return jobs;

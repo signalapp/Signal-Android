@@ -78,7 +78,7 @@ public class StickerDatabase extends Database {
     this.attachmentSecret = attachmentSecret;
   }
 
-  public void insertSticker(@NonNull IncomingSticker sticker, @NonNull InputStream dataStream) throws IOException {
+  public void insertSticker(@NonNull IncomingSticker sticker, @NonNull InputStream dataStream, boolean notify) throws IOException {
     FileInfo      fileInfo      = saveStickerImage(dataStream);
     ContentValues contentValues = new ContentValues();
 
@@ -102,7 +102,7 @@ public class StickerDatabase extends Database {
       if (sticker.isCover()) {
         notifyStickerPackListeners();
 
-        if (sticker.isInstalled()) {
+        if (sticker.isInstalled() && notify) {
           broadcastInstallEvent(sticker.getPackId());
         }
       }
@@ -226,8 +226,8 @@ public class StickerDatabase extends Database {
     notifyStickerPackListeners();
   }
 
-  public void markPackAsInstalled(@NonNull String packKey) {
-    updatePackInstalled(databaseHelper.getWritableDatabase(), packKey, true);
+  public void markPackAsInstalled(@NonNull String packKey, boolean notify) {
+    updatePackInstalled(databaseHelper.getWritableDatabase(), packKey, true, notify);
     notifyStickerPackListeners();
   }
 
@@ -273,7 +273,7 @@ public class StickerDatabase extends Database {
     db.beginTransaction();
     try {
 
-      updatePackInstalled(db, packId, false);
+      updatePackInstalled(db, packId, false, false);
       deleteStickersInPackExceptCover(db, packId);
 
       db.setTransactionSuccessful();
@@ -284,7 +284,7 @@ public class StickerDatabase extends Database {
     }
   }
 
-  private void updatePackInstalled(@NonNull SQLiteDatabase db, @NonNull String packId, boolean installed) {
+  private void updatePackInstalled(@NonNull SQLiteDatabase db, @NonNull String packId, boolean installed, boolean notify) {
     StickerPackRecord existing = getStickerPack(packId);
 
     if (existing != null && existing.isInstalled() == installed) {
@@ -298,7 +298,7 @@ public class StickerDatabase extends Database {
     values.put(INSTALLED, installed ? 1 : 0);
     db.update(TABLE_NAME, values, selection, args);
 
-    if (installed) {
+    if (installed && notify) {
       broadcastInstallEvent(packId);
     }
   }

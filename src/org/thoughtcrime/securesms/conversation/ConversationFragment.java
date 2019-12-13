@@ -330,9 +330,11 @@ public class ConversationFragment extends Fragment
         if (!isTypingIndicatorShowing() && isAtBottom()) {
           Context context = requireContext();
           list.setVerticalScrollBarEnabled(false);
-          list.post(() -> { if (!isReacting) {
-            getListLayoutManager().smoothScrollToPosition(context, 0, 250);
-          }});
+          list.post(() -> {
+            if (!isReacting) {
+              getListLayoutManager().smoothScrollToPosition(context, 0, 250);
+            }
+          });
           list.postDelayed(() -> list.setVerticalScrollBarEnabled(true), 300);
           adapter.setHeaderView(typingView);
           adapter.notifyItemInserted(0);
@@ -346,8 +348,10 @@ public class ConversationFragment extends Fragment
           }
         }
       } else {
-        if (getListLayoutManager().findFirstCompletelyVisibleItemPosition() == 0 && getListLayoutManager().getItemCount() > 1 && !replacedByIncomingMessage) {
-          if (!isReacting) getListLayoutManager().smoothScrollToPosition(requireContext(), 1, 250);
+        if (isTypingIndicatorShowing() && getListLayoutManager().findFirstCompletelyVisibleItemPosition() == 0 && getListLayoutManager().getItemCount() > 1 && !replacedByIncomingMessage) {
+          if (!isReacting) {
+            getListLayoutManager().smoothScrollToPosition(requireContext(), 1, 250);
+          }
           list.setVerticalScrollBarEnabled(false);
           list.postDelayed(() -> {
             adapter.setHeaderView(null);

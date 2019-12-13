@@ -391,6 +391,11 @@
     <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">You can disable or enable this feature anytime in your Signal settings (Privacy &gt; Send link previews).</string>
     <string name="ExperienceUpgradeActivity_got_it">Got it</string>
 
+    <string name="ExperienceUpgradeActivity_introducing_stickers">Introducing stickers</string>
+    <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Why use words when you can use stickers?</string>
+    <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Why use words when you can use stickers? Tap this icon on your keyboard:</string>
+    <string name="ExperienceUpgradeActivity_lets_go">Let\'s go</string>
+
     <!-- GcmBroadcastReceiver -->
     <string name="GcmBroadcastReceiver_retrieving_a_message">Retrieving a message…</string>
 

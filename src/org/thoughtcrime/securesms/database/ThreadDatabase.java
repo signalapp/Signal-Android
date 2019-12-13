@@ -48,6 +48,7 @@ import org.thoughtcrime.securesms.util.JsonUtils;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.Pair;
+import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.Closeable;
 import java.io.IOException;
@@ -648,7 +649,7 @@ public class ThreadDatabase extends Database {
     if (!record.isMms() || record.isMmsNotification() || record.isGroupAction()) return null;
 
     SlideDeck slideDeck = ((MediaMmsMessageRecord)record).getSlideDeck();
-    Slide     thumbnail = slideDeck.getThumbnailSlide();
+    Slide     thumbnail = Optional.fromNullable(slideDeck.getThumbnailSlide()).or(Optional.fromNullable(slideDeck.getStickerSlide())).orNull();
 
     if (thumbnail != null && !((MmsMessageRecord) record).isViewOnce()) {
       return thumbnail.getThumbnailUri();

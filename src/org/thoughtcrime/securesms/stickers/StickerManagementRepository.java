@@ -45,7 +45,7 @@ final class StickerManagementRepository {
           String packId  = cursor.getString(cursor.getColumnIndexOrThrow(AttachmentDatabase.STICKER_PACK_ID));
           String packKey = cursor.getString(cursor.getColumnIndexOrThrow(AttachmentDatabase.STICKER_PACK_KEY));
 
-          jobManager.add(new StickerPackDownloadJob(packId, packKey, true));
+          jobManager.add(StickerPackDownloadJob.forReference(packId, packKey));
         }
       }
     });
@@ -84,15 +84,15 @@ final class StickerManagementRepository {
     });
   }
 
-  void installStickerPack(@NonNull String packId, @NonNull String packKey) {
+  void installStickerPack(@NonNull String packId, @NonNull String packKey, boolean notify) {
     SignalExecutors.SERIAL.execute(() -> {
       JobManager jobManager = ApplicationDependencies.getJobManager();
 
       if (stickerDatabase.isPackAvailableAsReference(packId)) {
-        stickerDatabase.markPackAsInstalled(packId);
+        stickerDatabase.markPackAsInstalled(packId, notify);
       }
 
-      jobManager.add(new StickerPackDownloadJob(packId, packKey, false));
+      jobManager.add(StickerPackDownloadJob.forInstall(packId, packKey, notify));
 
       if (TextSecurePreferences.isMultiDevice(context)) {
         jobManager.add(new MultiDeviceStickerPackOperationJob(packId, packKey, MultiDeviceStickerPackOperationJob.Type.INSTALL));

@@ -53,7 +53,7 @@ final class StickerManagementViewModel extends ViewModel {
   }
 
   void onStickerPackInstallClicked(@NonNull String packId, @NonNull String packKey) {
-    repository.installStickerPack(packId, packKey);
+    repository.installStickerPack(packId, packKey, false);
   }
 
   @Override

@@ -31,20 +31,43 @@ public class StickerDownloadJob extends BaseJob {
   private static final String KEY_EMOJI       = "emoji";
   private static final String KEY_COVER       = "cover";
   private static final String KEY_INSTALLED   = "installed";
+  private static final String KEY_NOTIFY      = "notify";
 
   private final IncomingSticker sticker;
+  private final boolean         notify;
 
-  public StickerDownloadJob(@NonNull IncomingSticker sticker) {
+  StickerDownloadJob(@NonNull IncomingSticker sticker, boolean notify) {
     this(new Job.Parameters.Builder()
                            .addConstraint(NetworkConstraint.KEY)
-                           .setLifespan(TimeUnit.DAYS.toMillis(1))
+                           .setLifespan(TimeUnit.DAYS.toMillis(30))
                            .build(),
-        sticker);
+        sticker,
+        notify);
   }
 
-  private StickerDownloadJob(@NonNull Job.Parameters parameters, @NonNull IncomingSticker sticker) {
+  private StickerDownloadJob(@NonNull Job.Parameters parameters, @NonNull IncomingSticker sticker, boolean notify) {
     super(parameters);
     this.sticker = sticker;
+    this.notify  = notify;
+  }
+
+  @Override
+  public @NonNull Data serialize() {
+    return new Data.Builder().putString(KEY_PACK_ID, sticker.getPackId())
+                             .putString(KEY_PACK_KEY, sticker.getPackKey())
+                             .putString(KEY_PACK_TITLE, sticker.getPackTitle())
+                             .putString(KEY_PACK_AUTHOR, sticker.getPackAuthor())
+                             .putInt(KEY_STICKER_ID, sticker.getStickerId())
+                             .putString(KEY_EMOJI, sticker.getEmoji())
+                             .putBoolean(KEY_COVER, sticker.isCover())
+                             .putBoolean(KEY_INSTALLED, sticker.isInstalled())
+                             .putBoolean(KEY_NOTIFY, notify)
+                             .build();
+  }
+
+  @Override
+  public @NonNull String getFactoryKey() {
+    return KEY;
   }
 
   @Override
@@ -66,30 +89,12 @@ public class StickerDownloadJob extends BaseJob {
     byte[]                       packKeyBytes = Hex.fromStringCondensed(sticker.getPackKey());
     InputStream                  stream       = receiver.retrieveSticker(packIdBytes, packKeyBytes, sticker.getStickerId());
 
-    db.insertSticker(sticker, stream);
+    db.insertSticker(sticker, stream, notify);
   }
 
   @Override
   protected boolean onShouldRetry(@NonNull Exception e) {
     return e instanceof PushNetworkException;
-  }
-
-  @Override
-  public @NonNull Data serialize() {
-    return new Data.Builder().putString(KEY_PACK_ID, sticker.getPackId())
-                             .putString(KEY_PACK_KEY, sticker.getPackKey())
-                             .putString(KEY_PACK_TITLE, sticker.getPackTitle())
-                             .putString(KEY_PACK_AUTHOR, sticker.getPackAuthor())
-                             .putInt(KEY_STICKER_ID, sticker.getStickerId())
-                             .putString(KEY_EMOJI, sticker.getEmoji())
-                             .putBoolean(KEY_COVER, sticker.isCover())
-                             .putBoolean(KEY_INSTALLED, sticker.isInstalled())
-                             .build();
-  }
-
-  @Override
-  public @NonNull String getFactoryKey() {
-    return KEY;
   }
 
   @Override
@@ -109,7 +114,7 @@ public class StickerDownloadJob extends BaseJob {
                                                     data.getBoolean(KEY_COVER),
                                                     data.getBoolean(KEY_INSTALLED));
 
-      return new StickerDownloadJob(parameters, sticker);
+      return new StickerDownloadJob(parameters, sticker, data.getBoolean(KEY_NOTIFY));
     }
   }
 }
