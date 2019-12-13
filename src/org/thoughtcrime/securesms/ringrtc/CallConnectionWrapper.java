@@ -1,11 +1,20 @@
 package org.thoughtcrime.securesms.ringrtc;
 
 
+import android.annotation.TargetApi;
 import android.content.Context;
+import android.hardware.camera2.CameraAccessException;
+import android.hardware.camera2.CameraCharacteristics;
+import android.hardware.camera2.CameraManager;
+import android.hardware.camera2.CameraMetadata;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.annimon.stream.Stream;
+
 import java.io.IOException;
+import java.util.List;
+import java.util.LinkedList;
 
 import org.signal.ringrtc.CallConnection;
 import org.signal.ringrtc.CallConnectionFactory;
@@ -17,6 +26,7 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.webrtc.AudioSource;
 import org.webrtc.AudioTrack;
 import org.webrtc.Camera1Enumerator;
+import org.webrtc.Camera2Capturer;
 import org.webrtc.Camera2Enumerator;
 import org.webrtc.CameraEnumerator;
 import org.webrtc.CameraVideoCapturer;
@@ -265,7 +275,7 @@ public class CallConnectionWrapper {
 
       Log.i(TAG, "Camera2 enumerator supported: " + camera2EnumeratorIsSupported);
 
-      return camera2EnumeratorIsSupported ? new Camera2Enumerator(context)
+      return camera2EnumeratorIsSupported ? new FilteredCamera2Enumerator(context)
                                           : new Camera1Enumerator(true);
     }
 
@@ -284,5 +294,107 @@ public class CallConnectionWrapper {
 
   public interface CameraEventListener {
     void onCameraSwitchCompleted(@NonNull CameraState newCameraState);
+  }
+
+  @TargetApi(21)
+  private static class FilteredCamera2Enumerator extends Camera2Enumerator {
+
+    @NonNull  private final Context       context;
+    @Nullable private final CameraManager cameraManager;
+    @Nullable private       String[]      deviceNames;
+
+    FilteredCamera2Enumerator(@NonNull Context context) {
+      super(context);
+
+      this.context       = context;
+      this.cameraManager = (CameraManager) context.getSystemService(Context.CAMERA_SERVICE);
+      this.deviceNames   = null;
+    }
+
+    private boolean isMonochrome(String deviceName, CameraManager cameraManager) {
+
+      try {
+        CameraCharacteristics characteristics = cameraManager.getCameraCharacteristics(deviceName);
+        int[] capabilities = characteristics.get(CameraCharacteristics.REQUEST_AVAILABLE_CAPABILITIES);
+
+        if (capabilities != null) {
+          for (int cap : capabilities) {
+            if (cap == CameraMetadata.REQUEST_AVAILABLE_CAPABILITIES_MONOCHROME) {
+              return true;
+            }
+          }
+        }
+      } catch (CameraAccessException e) {
+        return false;
+      }
+
+      return false;
+    }
+
+    private boolean isLensFacing(String deviceName, CameraManager cameraManager, Integer facing) {
+
+      try {
+        CameraCharacteristics characteristics = cameraManager.getCameraCharacteristics(deviceName);
+        Integer               lensFacing      = characteristics.get(CameraCharacteristics.LENS_FACING);
+
+        return facing.equals(lensFacing);
+      } catch (CameraAccessException e) {
+        return false;
+      }
+
+    }
+
+    @Override
+    public @NonNull String[] getDeviceNames() {
+
+      if (deviceNames != null) {
+        return deviceNames;
+      }
+
+      try {
+        List<String> cameraList = new LinkedList<>();
+
+        if (cameraManager != null) {
+          // While skipping cameras that are monochrome, gather cameras
+          // until we have at most 1 front facing camera and 1 back
+          // facing camera.
+
+          List<String> devices = Stream.of(cameraManager.getCameraIdList())
+                                       .filterNot(id -> isMonochrome(id, cameraManager))
+                                       .toList();
+
+          String frontCamera = Stream.of(devices)
+                                     .filter(id -> isLensFacing(id, cameraManager, CameraMetadata.LENS_FACING_FRONT))
+                                     .findFirst()
+                                     .orElse(null);
+
+          if (frontCamera != null) {
+            cameraList.add(frontCamera);
+          }
+
+          String backCamera = Stream.of(devices)
+                                    .filter(id -> isLensFacing(id, cameraManager, CameraMetadata.LENS_FACING_BACK))
+                                    .findFirst()
+                                    .orElse(null);
+
+          if (backCamera != null) {
+            cameraList.add(backCamera);
+          }
+        }
+
+        this.deviceNames = cameraList.toArray(new String[0]);
+      } catch (CameraAccessException e) {
+        Log.e(TAG, "Camera access exception: " + e);
+        this.deviceNames = new String[] {};
+      }
+
+      return deviceNames;
+    }
+
+    @Override
+    public @NonNull CameraVideoCapturer createCapturer(@Nullable String deviceName,
+                                                       @Nullable CameraVideoCapturer.CameraEventsHandler eventsHandler) {
+      return new Camera2Capturer(context, deviceName, eventsHandler, new FilteredCamera2Enumerator(context));
+    }
   }
 }
