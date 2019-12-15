@@ -1258,7 +1258,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     boolean isMediaMessage = recipient.isMmsGroupRecipient() || attachmentManager.isAttachmentPresent();
 
     sendButton.resetAvailableTransports(isMediaMessage);
+    sendButton.setDefaultTransport(Type.TEXTSECURE);
 
+    /* Loki - We don't support SMS
     if (!isSecureText && !isPushGroupConversation()) sendButton.disableTransport(Type.TEXTSECURE);
     if (recipient.isPushGroupRecipient())            sendButton.disableTransport(Type.SMS);
 
@@ -1268,6 +1270,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       if (isSecureText || isPushGroupConversation()) sendButton.setDefaultTransport(Type.TEXTSECURE);
       else                                           sendButton.setDefaultTransport(Type.SMS);
     }
+    */
 
     calculateCharactersRemaining();
     supportInvalidateOptionsMenu();
