@@ -2,6 +2,11 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Session -->
+    <style name="Session.DarkActionBar" parent="@style/Widget.AppCompat.ActionBar">
+        <item name="background">@color/action_bar_background</item>
+        <item name="android:background">@color/action_bar_background</item>
+    </style>
+
     <style name="MediumProminentFilledButton">
         <item name="android:background">@drawable/prominent_filled_button_medium_background</item>
         <item name="android:textAllCaps">false</item>

@@ -2,6 +2,15 @@
 
 <resources>
 
+    <!-- Session -->
+    <style name="Session.DarkTheme" parent="@style/Theme.AppCompat">
+        <item name="actionBarStyle">@style/Session.DarkActionBar</item>
+        <item name="colorPrimary">@color/action_bar_background</item>
+        <item name="colorPrimaryDark">@color/action_bar_background</item>
+        <item name="android:navigationBarColor">@color/navigation_bar_background</item>
+    </style>
+    <!-- Session -->
+
     <style name="TextSecure.LightNoActionBar" parent="@style/TextSecure.LightTheme">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

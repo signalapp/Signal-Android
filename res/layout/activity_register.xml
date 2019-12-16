@@ -61,7 +61,19 @@
         android:layout_marginLeft="@dimen/massive_spacing"
         android:layout_marginTop="@dimen/medium_spacing"
         android:layout_marginRight="@dimen/massive_spacing"
-        android:layout_marginBottom="@dimen/onboarding_button_bottom_offset"
         android:text="Copy" />
+
+    <Button
+        android:id="@+id/legalButton"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/onboarding_button_bottom_offset"
+        android:layout_marginLeft="@dimen/massive_spacing"
+        android:layout_marginRight="@dimen/massive_spacing"
+        android:gravity="center"
+        android:background="@color/transparent"
+        android:textAllCaps="false"
+        android:textSize="@dimen/very_small_font_size"
+        android:textColor="@color/text"
+        android:text="By using this service, you agree to our Terms and Conditions and Privacy Statement" />
 
 </LinearLayout>

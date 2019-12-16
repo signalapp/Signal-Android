@@ -49,7 +49,19 @@
         android:layout_marginLeft="@dimen/massive_spacing"
         android:layout_marginTop="@dimen/medium_spacing"
         android:layout_marginRight="@dimen/massive_spacing"
-        android:layout_marginBottom="@dimen/onboarding_button_bottom_offset"
         android:text="Continue Your Session" />
+
+    <Button
+        android:id="@+id/linkButton"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/onboarding_button_bottom_offset"
+        android:layout_marginLeft="@dimen/massive_spacing"
+        android:layout_marginRight="@dimen/massive_spacing"
+        android:gravity="center"
+        android:background="@color/transparent"
+        android:textAllCaps="false"
+        android:textSize="@dimen/medium_font_size"
+        android:textColor="@color/text"
+        android:text="Link to an existing account" />
 
 </LinearLayout>

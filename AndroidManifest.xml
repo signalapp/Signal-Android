@@ -98,7 +98,7 @@
         android:largeHeap="true"
         android:networkSecurityConfig="@xml/network_security_configuration"
         android:supportsRtl="true"
-        android:theme="@style/TextSecure.DarkTheme"
+        android:theme="@style/Session.DarkTheme"
         tools:replace="android:allowBackup">
 
         <meta-data
