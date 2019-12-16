@@ -1,5 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources>
+
+    <!-- Session -->
+    <color name="accent">#00F782</color>
+    <color name="text">#FFFFFF</color>
+    <!-- Session -->
+
     <!-- Loki -->
     <color name="loki_green">#78be20</color>
     <color name="loki_dark_green">#419B41</color>

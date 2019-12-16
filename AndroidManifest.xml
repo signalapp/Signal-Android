@@ -124,6 +124,20 @@
             android:name="firebase_messaging_auto_init_enabled"
             android:value="false" />
 
+        <activity
+            android:name="org.thoughtcrime.securesms.loki.redesign.LandingActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="org.thoughtcrime.securesms.loki.redesign.RegisterActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name="org.thoughtcrime.securesms.loki.redesign.DisplayNameActivity"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name="org.thoughtcrime.securesms.loki.redesign.RestoreActivity"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="adjustResize" />
         <activity android:name="org.thoughtcrime.securesms.loki.LinkedDevicesActivity" />
         <activity
             android:name="org.thoughtcrime.securesms.WebRtcCallActivity"

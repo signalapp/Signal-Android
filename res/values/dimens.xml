@@ -1,5 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- Session -->
+
+    <!-- Font Sizes -->
+    <dimen name="very_small_font_size">10sp</dimen>
+    <dimen name="small_font_size">13sp</dimen>
+    <dimen name="medium_font_size">15sp</dimen>
+    <dimen name="large_font_size">20sp</dimen>
+    <dimen name="very_large_font_size">25sp</dimen>
+    <dimen name="massive_font_size">50sp</dimen>
+
+    <!-- Element Sizes -->
+    <dimen name="medium_button_height">48dp</dimen>
+    <dimen name="border_thickness">2dp</dimen>
+    <dimen name="text_view_corner_radius">8dp</dimen>
+
+    <!-- Distances -->
+    <dimen name="medium_spacing">16dp</dimen>
+    <dimen name="large_spacing">24dp</dimen>
+    <dimen name="very_large_spacing">35dp</dimen>
+    <dimen name="massive_spacing">64dp</dimen>
+    <dimen name="onboarding_button_bottom_offset">48dp</dimen>
+
+    <!-- Session -->
+
     <dimen name="emoji_drawer_size">32sp</dimen>
     <dimen name="min_keyboard_size">50dp</dimen>
     <dimen name="default_custom_keyboard_size">220dp</dimen>

@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -14,9 +13,9 @@ import android.support.v4.app.Fragment;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.loki.redesign.LandingActivity;
 import org.thoughtcrime.securesms.loki.SeedActivity;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
-import org.thoughtcrime.securesms.registration.WelcomeActivity;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
@@ -182,7 +181,7 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
   }
 
   private Intent getWelcomeIntent() {
-    return getRoutedIntent(WelcomeActivity.class, getPushRegistrationIntent());
+    return getRoutedIntent(LandingActivity.class, getPushRegistrationIntent());
   }
 
   private Intent getPushRegistrationIntent() {

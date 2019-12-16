@@ -603,7 +603,12 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
 
   public void updatePublicChatProfileAvatarIfNeeded() {
     AsyncTask.execute(() -> {
-      LokiPublicChatAPI publicChatAPI = getLokiPublicChatAPI();
+      LokiPublicChatAPI publicChatAPI = null;
+      try {
+        publicChatAPI = getLokiPublicChatAPI();
+      } catch (Exception e) {
+        // Do nothing
+      }
       if (publicChatAPI != null) {
         byte[] profileKey = ProfileKeyUtil.getProfileKey(this);
         String url = TextSecurePreferences.getProfileAvatarUrl(this);

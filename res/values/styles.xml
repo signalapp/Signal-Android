@@ -1,5 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Session -->
+    <style name="MediumProminentFilledButton">
+        <item name="android:background">@drawable/prominent_filled_button_medium_background</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">@dimen/medium_font_size</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="MediumProminentOutlineButton">
+        <item name="android:background">@drawable/prominent_outline_button_medium_background</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">@dimen/medium_font_size</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/accent</item>
+    </style>
+
+    <style name="SessionIDTextView">
+        <item name="android:background">@drawable/session_id_text_view_background</item>
+        <item name="android:padding">@dimen/medium_spacing</item>
+        <item name="android:textSize">@dimen/large_font_size</item>
+        <item name="android:textColor">@color/text</item>
+        <item name="android:fontFamily">@font/space_mono_regular</item>
+    </style>
+
+    <style name="SessionEditText">
+        <item name="android:background">@drawable/session_id_text_view_background</item>
+        <item name="android:paddingLeft">@dimen/medium_spacing</item>
+        <item name="android:paddingTop">@dimen/very_large_spacing</item>
+        <item name="android:paddingRight">@dimen/medium_spacing</item>
+        <item name="android:paddingBottom">@dimen/very_large_spacing</item>
+        <item name="android:textSize">@dimen/small_font_size</item>
+        <item name="android:textColor">@color/text</item>
+        <item name="android:textCursorDrawable">@drawable/session_edit_text_cursor</item>
+        <item name="android:maxLines">1</item>
+    </style>
+    <!-- Session -->
+
     <style name="NoAnimation.Theme.BlackScreen" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowAnimationStyle">@null</item>
         <item name="android:windowBackground">@android:color/black</item>
