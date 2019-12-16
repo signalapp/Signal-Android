@@ -205,6 +205,8 @@ public class WebRtcCallScreen extends FrameLayout implements RecipientForeverObs
 
     localRenderer.setMirror(cameraState.getActiveDirection() == CameraState.Direction.FRONT);
 
+    this.localRenderer = localRenderer;
+
     if (localRenderLayout.getChildCount() != 0) {
       displayLocalRendererInSmallLayout(!cameraState.isEnabled());
     } else {
@@ -238,7 +240,10 @@ public class WebRtcCallScreen extends FrameLayout implements RecipientForeverObs
   private void displayLocalRendererInLargeLayout(boolean hide) {
     if (localLargeRenderLayout.getChildCount() == 0) {
       localRenderLayout.removeAllViews();
-      localLargeRenderLayout.addView(localRenderer);
+
+      if (localRenderer != null) {
+        localLargeRenderLayout.addView(localRenderer);
+      }
     }
 
     localRenderLayout.setHidden(true);
@@ -257,7 +262,10 @@ public class WebRtcCallScreen extends FrameLayout implements RecipientForeverObs
   private void displayLocalRendererInSmallLayout(boolean hide) {
     if (localRenderLayout.getChildCount() == 0) {
       localLargeRenderLayout.removeAllViews();
-      localRenderLayout.addView(localRenderer);
+
+      if (localRenderer != null) {
+        localRenderLayout.addView(localRenderer);
+      }
     }
 
     localLargeRenderLayout.setHidden(true);
