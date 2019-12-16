@@ -36,6 +36,30 @@
         <item name="android:textCursorDrawable">@drawable/session_edit_text_cursor</item>
         <item name="android:maxLines">1</item>
     </style>
+
+    <style name="FakeChatViewIncomingMessageBubble">
+        <item name="android:background">@drawable/fake_chat_view_incoming_message_background</item>
+        <item name="android:paddingLeft">@dimen/medium_spacing</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingRight">@dimen/medium_spacing</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="android:textSize">@dimen/medium_font_size</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/fake_chat_bubble_text</item>
+        <item name="android:elevation">20dp</item>
+    </style>
+
+    <style name="FakeChatViewOutgoingMessageBubble">
+        <item name="android:background">@drawable/fake_chat_view_outgoing_message_background</item>
+        <item name="android:paddingLeft">@dimen/medium_spacing</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingRight">@dimen/medium_spacing</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="android:textSize">@dimen/medium_font_size</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text</item>
+        <item name="android:elevation">20dp</item>
+    </style>
     <!-- Session -->
 
     <style name="NoAnimation.Theme.BlackScreen" parent="Theme.AppCompat.NoActionBar">

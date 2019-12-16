@@ -15,8 +15,12 @@
     <dimen name="medium_button_height">48dp</dimen>
     <dimen name="border_thickness">2dp</dimen>
     <dimen name="text_view_corner_radius">8dp</dimen>
+    <dimen name="fake_chat_view_bubble_width">224dp</dimen>
+    <dimen name="fake_chat_view_bubble_corner_radius">10dp</dimen>
+    <dimen name="fake_chat_view_height">234dp</dimen>
 
     <!-- Distances -->
+    <dimen name="small_spacing">8dp</dimen>
     <dimen name="medium_spacing">16dp</dimen>
     <dimen name="large_spacing">24dp</dimen>
     <dimen name="very_large_spacing">35dp</dimen>

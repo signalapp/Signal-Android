@@ -11,6 +11,7 @@ class LandingActivity : BaseActionBarActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_landing)
+        fakeChatView.startAnimating()
         registerButton.setOnClickListener { register() }
         restoreButton.setOnClickListener { restore() }
     }
