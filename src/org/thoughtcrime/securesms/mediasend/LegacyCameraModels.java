@@ -7,10 +7,6 @@ import java.util.Set;
 
 public final class LegacyCameraModels {
   private static final Set<String> LEGACY_MODELS = new HashSet<String>() {{
-    // Pixel 4
-    add("Pixel 4");
-    add("Pixel 4 XL");
-
     // Huawei Mate 10
     add("ALP-L29");
     add("ALP-L09");
