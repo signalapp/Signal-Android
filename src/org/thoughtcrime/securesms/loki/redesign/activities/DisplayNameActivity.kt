@@ -10,6 +10,7 @@ import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.BaseActionBarActivity
 import org.thoughtcrime.securesms.ConversationListActivity
 import org.thoughtcrime.securesms.database.DatabaseFactory
+import org.thoughtcrime.securesms.loki.redesign.utilities.push
 import org.thoughtcrime.securesms.loki.redesign.utilities.setUpActionBarSessionLogo
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.crypto.ProfileCipher
@@ -54,6 +55,6 @@ class DisplayNameActivity : BaseActionBarActivity() {
             servers.forEach { publicChatAPI.setDisplayName(displayName, it) }
         }
         startActivity(Intent(this, ConversationListActivity::class.java))
-        finish()
+        push(intent)
     }
 }

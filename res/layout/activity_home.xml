@@ -25,6 +25,7 @@
             android:background="@drawable/new_conversation_button_background" />
 
         <Button
+            android:id="@+id/newConversationButton"
             android:layout_width="@dimen/new_conversation_button_size"
             android:layout_height="@dimen/new_conversation_button_size"
             android:layout_centerInParent="true"

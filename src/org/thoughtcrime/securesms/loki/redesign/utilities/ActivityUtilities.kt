@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.loki.redesign.utilities
 
+import android.content.Intent
 import android.support.v7.app.ActionBar
 import android.support.v7.app.AppCompatActivity
 import android.view.Gravity
@@ -18,4 +19,9 @@ fun AppCompatActivity.setUpActionBarSessionLogo() {
     val logoImageViewContainerLayoutParams = ActionBar.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.WRAP_CONTENT)
     supportActionBar!!.setCustomView(logoImageViewContainer, logoImageViewContainerLayoutParams)
     supportActionBar!!.setDisplayShowCustomEnabled(true)
+}
+
+fun AppCompatActivity.push(intent: Intent) {
+    startActivity(intent)
+    overridePendingTransition(R.anim.slide_from_right, R.anim.fade_scale_out)
 }

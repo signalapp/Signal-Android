@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/cell_background"
+    android:background="@drawable/conversation_view_background"
     android:orientation="horizontal"
     android:gravity="center_vertical">
 
@@ -31,12 +31,15 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
 
             <TextView
                 android:id="@+id/displayNameTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:ellipsize="end"
                 android:textSize="@dimen/medium_font_size"
                 android:textStyle="bold"
                 android:textColor="@color/text"
@@ -52,6 +55,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/medium_spacing"
+                android:maxLines="1"
+                android:ellipsize="end"
                 android:textSize="@dimen/small_font_size"
                 android:textColor="@color/text"
                 android:alpha="0.4"
@@ -62,12 +67,15 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
 
             <TextView
                 android:id="@+id/snippetTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:ellipsize="end"
                 android:textSize="@dimen/medium_font_size"
                 android:textColor="@color/text"
                 android:text="Sorry, gotta go fight crime again" />

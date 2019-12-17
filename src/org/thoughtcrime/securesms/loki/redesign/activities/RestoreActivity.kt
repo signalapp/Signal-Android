@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.IdentityDatabase
+import org.thoughtcrime.securesms.loki.redesign.utilities.push
 import org.thoughtcrime.securesms.loki.redesign.utilities.setUpActionBarSessionLogo
 import org.thoughtcrime.securesms.util.Base64
 import org.thoughtcrime.securesms.util.Hex
@@ -92,7 +93,7 @@ class RestoreActivity : BaseActionBarActivity() {
                     true, System.currentTimeMillis(), true)
             TextSecurePreferences.setLocalNumber(this, userHexEncodedPublicKey)
             val intent = Intent(this, DisplayNameActivity::class.java)
-            startActivity(intent)
+            push(intent)
         } catch (e: Exception) {
             val message = if (e is MnemonicCodec.DecodingError) e.description else MnemonicCodec.DecodingError.Generic.description
             return Toast.makeText(this, message, Toast.LENGTH_SHORT).show()

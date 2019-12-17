@@ -10,7 +10,6 @@ import android.widget.ScrollView
 import kotlinx.android.synthetic.main.fake_chat_content_view.view.*
 import network.loki.messenger.R
 
-
 class FakeChatView : ScrollView {
 
     // region Settings

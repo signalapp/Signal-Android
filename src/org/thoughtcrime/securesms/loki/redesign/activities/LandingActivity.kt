@@ -5,6 +5,7 @@ import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_landing.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.BaseActionBarActivity
+import org.thoughtcrime.securesms.loki.redesign.utilities.push
 import org.thoughtcrime.securesms.loki.redesign.utilities.setUpActionBarSessionLogo
 
 class LandingActivity : BaseActionBarActivity() {
@@ -20,11 +21,11 @@ class LandingActivity : BaseActionBarActivity() {
 
     private fun register() {
         val intent = Intent(this, RegisterActivity::class.java)
-        startActivity(intent)
+        push(intent)
     }
 
     private fun restore() {
         val intent = Intent(this, RestoreActivity::class.java)
-        startActivity(intent)
+        push(intent)
     }
 }
