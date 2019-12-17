@@ -88,9 +88,9 @@
     <string name="BucketedThreadMedia_Yesterday">Yesterday</string>
     <string name="BucketedThreadMedia_This_week">This week</string>
     <string name="BucketedThreadMedia_This_month">This month</string>
-    <string name="BucketedThreadMedia_Large">Large filezise</string>
-    <string name="BucketedThreadMedia_Medium">Medium filesize</string>
-    <string name="BucketedThreadMedia_Small">Small filesize</string>
+    <string name="BucketedThreadMedia_Large">Large file size</string>
+    <string name="BucketedThreadMedia_Medium">Medium file size</string>
+    <string name="BucketedThreadMedia_Small">Small file size</string>
 
     <!-- CallScreen -->
     <string name="CallScreen_Incoming_call">Incoming call</string>
@@ -399,7 +399,7 @@
 
     <string name="ExperienceUpgradeActivity_introducing_link_previews">Introducing link previews.</string>
     <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Optional link previews are now supported for some of the most popular websites on the Internet.</string>
-    <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">You can disable or enable this feature anytime in your Signal settings (Privacy &gt; Send link previews).</string>
+    <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">You can disable or enable this feature anytime in Signal\'s settings (Privacy &gt; Send link previews).</string>
     <string name="ExperienceUpgradeActivity_got_it">Got it</string>
 
     <!-- GcmBroadcastReceiver -->
@@ -407,7 +407,7 @@
 
     <!-- GcmRefreshJob -->
     <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Permanent Signal communication failure!</string>
-    <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal was unable to register with the Google Play Services on your phone. Signal messages and calls have therefore been disabled. Please try re-registering your Signal phone number in Signals Settings &gt; Advanced &gt; Signal messages and calls.</string>
+    <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal was unable to register with the Google Play Services on your phone. Signal messages and calls have therefore been disabled. Please try re-registering your Signal phone number in Signal\'s Settings &gt; Advanced &gt; Signal messages and calls.</string>
 
 
     <!-- GiphyActivity -->
@@ -452,7 +452,7 @@
     <!-- InviteActivity -->
     <string name="InviteActivity_share">Share</string>
     <string name="InviteActivity_choose_contacts">Choose contacts</string>
-    <string name="InviteActivity_share_with_contacts">Choose contacts (sms)</string>
+    <string name="InviteActivity_share_with_contacts">Choose contacts (SMS)</string>
     <string name="InviteActivity_choose_how_to_share">Send using another app</string>
 
     <string name="InviteActivity_cancel">Cancel</string>
@@ -1519,7 +1519,7 @@
     <string name="preferences_notifications__calls">Calls</string>
     <string name="preferences_notifications__ringtone">Ringtone</string>
     <string name="preferences_chats__show_invitation_prompts">Show invitation prompts</string>
-    <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Display a suggestion to intive your contact to Signal, above an SMS chat with a contact who is not on Signal.</string>
+    <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Display a suggestion to invite your contact to Signal, above an SMS chat with a contact who is not on Signal.</string>
     <string name="preferences_chats__message_text_size">Message font size</string>
     <string name="preferences_events__contact_joined_signal">Contact now uses Signal</string>
     <string name="preferences_notifications__priority">Urgency</string>
