@@ -18,7 +18,7 @@ import org.thoughtcrime.securesms.stickers.StickerKeyboardProvider;
 import org.thoughtcrime.securesms.stickers.StickerManagementActivity;
 import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 
-public final class NewStickerSelectActivity extends FragmentActivity {
+public final class ImageEditorStickerSelectActivity extends FragmentActivity {
 
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,7 +48,7 @@ public final class NewStickerSelectActivity extends FragmentActivity {
 
       @Override
       public void onStickerManagementClicked() {
-        startActivity(StickerManagementActivity.getIntent(NewStickerSelectActivity.this));
+        startActivity(StickerManagementActivity.getIntent(ImageEditorStickerSelectActivity.this));
       }
     }
     ));

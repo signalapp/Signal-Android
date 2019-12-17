@@ -298,14 +298,8 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
         break;
       }
 
-      case INSERT_ASSET_STICKER: {
-        Intent intent = new Intent(getContext(), StickerSelectActivity.class);
-        startActivityForResult(intent, SELECT_OLD_STICKER_REQUEST_CODE);
-        break;
-      }
-
       case INSERT_STICKER: {
-        Intent intent = new Intent(getContext(), NewStickerSelectActivity.class);
+        Intent intent = new Intent(getContext(), ImageEditorStickerSelectActivity.class);
         startActivityForResult(intent, SELECT_NEW_STICKER_REQUEST_CODE);
         break;
       }

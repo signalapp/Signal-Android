@@ -75,14 +75,6 @@
                 android:src="@drawable/ic_brush_highlight_32" />
 
             <ImageView
-                android:id="@+id/old_scribble_sticker_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:padding="8dp"
-                android:src="@drawable/ic_emoji_32" />
-
-            <ImageView
                 android:id="@+id/scribble_sticker_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

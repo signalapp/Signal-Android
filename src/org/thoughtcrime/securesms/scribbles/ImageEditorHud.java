@@ -36,8 +36,7 @@ public final class ImageEditorHud extends LinearLayout {
   private View                     drawButton;
   private View                     highlightButton;
   private View                     textButton;
-  private View                     oldStickerButton;
-  private View                     newStickerButton;
+  private View                     stickerButton;
   private View                     undoButton;
   private View                     saveButton;
   private View                     deleteButton;
@@ -83,8 +82,7 @@ public final class ImageEditorHud extends LinearLayout {
     drawButton       = findViewById(R.id.scribble_draw_button);
     highlightButton  = findViewById(R.id.scribble_highlight_button);
     textButton       = findViewById(R.id.scribble_text_button);
-    oldStickerButton = findViewById(R.id.old_scribble_sticker_button);
-    newStickerButton = findViewById(R.id.scribble_sticker_button);
+    stickerButton = findViewById(R.id.scribble_sticker_button);
     undoButton       = findViewById(R.id.scribble_undo_button);
     saveButton       = findViewById(R.id.scribble_save_button);
     deleteButton     = findViewById(R.id.scribble_delete_button);
@@ -118,16 +116,13 @@ public final class ImageEditorHud extends LinearLayout {
 
     setVisibleViewsWhenInMode(Mode.INSERT_STICKER, confirmButton);
 
-    setVisibleViewsWhenInMode(Mode.INSERT_ASSET_STICKER, confirmButton);
-
     setVisibleViewsWhenInMode(Mode.CROP, confirmButton, cropFlipButton, cropRotateButton, cropAspectLock, undoButton);
 
     for (Set<View> views : visibilityModeMap.values()) {
       allViews.addAll(views);
     }
 
-    allViews.add(newStickerButton);
-    allViews.add(oldStickerButton);
+    allViews.add(stickerButton);
   }
 
   private void setVisibleViewsWhenInMode(Mode mode, View... views) {
@@ -137,9 +132,9 @@ public final class ImageEditorHud extends LinearLayout {
   @MainThread
   public void setStickersAvailable(boolean stickersAvailable) {
     if (stickersAvailable) {
-      setVisibleViewsWhenInMode(Mode.NONE, drawButton, highlightButton, textButton, newStickerButton, cropButton, undoButton, saveButton);
+      setVisibleViewsWhenInMode(Mode.NONE, drawButton, highlightButton, textButton, stickerButton, cropButton, undoButton, saveButton);
     } else {
-      setVisibleViewsWhenInMode(Mode.NONE, drawButton, highlightButton, textButton, oldStickerButton, cropButton, undoButton, saveButton);
+      setVisibleViewsWhenInMode(Mode.NONE, drawButton, highlightButton, textButton, cropButton, undoButton, saveButton);
     }
     updateButtonVisibility(currentMode);
   }
@@ -167,8 +162,7 @@ public final class ImageEditorHud extends LinearLayout {
     drawButton.setOnClickListener(v -> setMode(Mode.DRAW));
     highlightButton.setOnClickListener(v -> setMode(Mode.HIGHLIGHT));
     textButton.setOnClickListener(v -> setMode(Mode.TEXT));
-    oldStickerButton.setOnClickListener(v -> setMode(Mode.INSERT_ASSET_STICKER));
-    newStickerButton.setOnClickListener(v -> setMode(Mode.INSERT_STICKER));
+    stickerButton.setOnClickListener(v -> setMode(Mode.INSERT_STICKER));
     saveButton.setOnClickListener(v -> eventListener.onSave());
   }
 
@@ -269,7 +263,6 @@ public final class ImageEditorHud extends LinearLayout {
     HIGHLIGHT,
     MOVE_DELETE,
     INSERT_STICKER,
-    INSERT_ASSET_STICKER
   }
 
   public interface EventListener {
