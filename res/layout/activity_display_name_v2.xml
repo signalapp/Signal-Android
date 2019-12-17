@@ -48,6 +48,7 @@
 
     <Button
         style="@style/MediumProminentFilledButton"
+        android:id="@+id/registerButton"
         android:layout_width="match_parent"
         android:layout_height="@dimen/medium_button_height"
         android:layout_marginLeft="@dimen/massive_spacing"

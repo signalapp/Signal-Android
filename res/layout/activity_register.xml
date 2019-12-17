@@ -33,6 +33,7 @@
 
     <TextView
         style="@style/SessionIDTextView"
+        android:id="@+id/publicKeyTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/very_large_spacing"
@@ -46,8 +47,8 @@
         android:layout_weight="1"/>
 
     <Button
-        android:id="@+id/registerButton"
         style="@style/MediumProminentFilledButton"
+        android:id="@+id/registerButton"
         android:layout_width="match_parent"
         android:layout_height="@dimen/medium_button_height"
         android:layout_marginLeft="@dimen/massive_spacing"
@@ -56,6 +57,7 @@
 
     <Button
         style="@style/MediumProminentOutlineButton"
+        android:id="@+id/copyButton"
         android:layout_width="match_parent"
         android:layout_height="@dimen/medium_button_height"
         android:layout_marginLeft="@dimen/massive_spacing"
@@ -64,7 +66,7 @@
         android:text="Copy" />
 
     <Button
-        android:id="@+id/legalButton"
+        android:id="@+id/termsButton"
         android:layout_width="match_parent"
         android:layout_height="@dimen/onboarding_button_bottom_offset"
         android:layout_marginLeft="@dimen/massive_spacing"

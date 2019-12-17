@@ -1652,4 +1652,10 @@
     <string name="dialog_device_unlink_title">Device unlinked</string>
     <string name="dialog_device_unlink_message">This device has been successfully unlinked</string>
 
+    <!-- Loki -->
+
+    <!-- Session -->
+    <string name="activity_register_public_key_copied_message">Copied to clipboard</string>
+    <!-- Session -->
+
 </resources>

@@ -49,6 +49,7 @@
 
     <Button
         style="@style/MediumProminentFilledButton"
+        android:id="@+id/restoreButton"
         android:layout_width="match_parent"
         android:layout_height="@dimen/medium_button_height"
         android:layout_marginLeft="@dimen/massive_spacing"
@@ -57,7 +58,7 @@
         android:text="Continue" />
 
     <Button
-        android:id="@+id/legalButton"
+        android:id="@+id/termsButton"
         android:layout_width="match_parent"
         android:layout_height="@dimen/onboarding_button_bottom_offset"
         android:layout_marginLeft="@dimen/massive_spacing"
