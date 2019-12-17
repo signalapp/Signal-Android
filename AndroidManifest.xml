@@ -124,20 +124,25 @@
             android:name="firebase_messaging_auto_init_enabled"
             android:value="false" />
 
+        <!-- Session -->
         <activity
-            android:name="org.thoughtcrime.securesms.loki.redesign.LandingActivity"
+            android:name="org.thoughtcrime.securesms.loki.redesign.activities.LandingActivity"
             android:launchMode="singleTask" />
         <activity
-            android:name="org.thoughtcrime.securesms.loki.redesign.RegisterActivity"
+            android:name="org.thoughtcrime.securesms.loki.redesign.activities.RegisterActivity"
             android:launchMode="singleTask" />
         <activity
-            android:name="org.thoughtcrime.securesms.loki.redesign.DisplayNameActivity"
+            android:name="org.thoughtcrime.securesms.loki.redesign.activities.DisplayNameActivity"
             android:launchMode="singleTask"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="org.thoughtcrime.securesms.loki.redesign.RestoreActivity"
+            android:name="org.thoughtcrime.securesms.loki.redesign.activities.RestoreActivity"
             android:launchMode="singleTask"
             android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name="org.thoughtcrime.securesms.loki.redesign.activities.HomeActivity"
+            android:launchMode="singleTask" />
+        <!-- Session -->
         <activity android:name="org.thoughtcrime.securesms.loki.LinkedDevicesActivity" />
         <activity
             android:name="org.thoughtcrime.securesms.WebRtcCallActivity"
@@ -216,7 +221,7 @@
         <activity-alias
             android:name=".RoutingActivity"
             android:exported="true"
-            android:targetActivity="org.thoughtcrime.securesms.ConversationListActivity">
+            android:targetActivity="org.thoughtcrime.securesms.loki.redesign.activities.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

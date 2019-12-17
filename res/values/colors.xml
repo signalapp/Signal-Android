@@ -4,6 +4,9 @@
     <!-- Session -->
     <color name="accent">#00F782</color>
     <color name="text">#FFFFFF</color>
+    <color name="unimportant">#D8D8D8</color>
+    <color name="cell_background">#1B1B1B</color>
+    <color name="cell_selected">#0C0C0C</color>
     <color name="action_bar_background">#171717</color>
     <color name="navigation_bar_background">#121212</color>
     <color name="fake_chat_bubble_background">#3F4146</color>

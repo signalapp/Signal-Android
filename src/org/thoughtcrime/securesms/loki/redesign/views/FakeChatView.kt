@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.loki.redesign
+package org.thoughtcrime.securesms.loki.redesign.views
 
 import android.content.Context
 import android.content.Context.LAYOUT_INFLATER_SERVICE

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Loki Messenger</string>
+    <string name="app_name">Session</string>
     <string name="install_url" translatable="false">https://signal.org/install</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>

@@ -5,6 +5,13 @@
     <style name="Session.DarkActionBar" parent="@style/Widget.AppCompat.ActionBar">
         <item name="background">@color/action_bar_background</item>
         <item name="android:background">@color/action_bar_background</item>
+        <item name="titleTextStyle">@style/Session.TitleTextStyle</item>
+        <item name="android:titleTextStyle">@style/Session.TitleTextStyle</item>
+    </style>
+
+    <style name="Session.TitleTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/text</item>
+        <item name="android:textSize">@dimen/very_large_font_size</item>
     </style>
 
     <style name="MediumProminentFilledButton">

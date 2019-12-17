@@ -13,7 +13,8 @@ import android.support.v4.app.Fragment;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
 import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.loki.redesign.LandingActivity;
+import org.thoughtcrime.securesms.loki.redesign.activities.HomeActivity;
+import org.thoughtcrime.securesms.loki.redesign.activities.LandingActivity;
 import org.thoughtcrime.securesms.loki.SeedActivity;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.service.KeyCachingService;
@@ -199,7 +200,7 @@ public abstract class PassphraseRequiredActionBarActivity extends BaseActionBarA
   }
 
   private Intent getConversationListIntent() {
-    return new Intent(this, ConversationListActivity.class);
+    return new Intent(this, HomeActivity.class);
   }
 
   private void initializeClearKeyReceiver() {

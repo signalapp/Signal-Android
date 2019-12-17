@@ -13,7 +13,11 @@
 
     <!-- Element Sizes -->
     <dimen name="medium_button_height">48dp</dimen>
+    <dimen name="accent_line_thickness">4dp</dimen>
+    <dimen name="medium_profile_picture_size">45dp</dimen>
+    <dimen name="conversation_view_status_indicator_size">14dp</dimen>
     <dimen name="border_thickness">2dp</dimen>
+    <dimen name="new_conversation_button_size">56dp</dimen>
     <dimen name="text_view_corner_radius">8dp</dimen>
     <dimen name="fake_chat_view_bubble_width">224dp</dimen>
     <dimen name="fake_chat_view_bubble_corner_radius">10dp</dimen>

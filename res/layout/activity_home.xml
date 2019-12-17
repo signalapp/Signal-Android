@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/default_session_background">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- The button below intentionally uses dp for the text size and not sp -->
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="72dp">
+
+        <View
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:background="@drawable/new_conversation_button_background" />
+
+        <Button
+            android:layout_width="@dimen/new_conversation_button_size"
+            android:layout_height="@dimen/new_conversation_button_size"
+            android:layout_centerInParent="true"
+            android:paddingLeft="1dp"
+            android:paddingBottom="2dp"
+            android:background="@drawable/new_conversation_button_foreground"
+            android:fontFamily="@font/roboto_light"
+            android:textSize="40dp"
+            android:textColor="#121212"
+            android:text="+"
+            android:elevation="0dp" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

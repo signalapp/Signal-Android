@@ -72,6 +72,7 @@ import org.thoughtcrime.securesms.loki.LokiPublicChatManager;
 import org.thoughtcrime.securesms.loki.LokiRSSFeedPoller;
 import org.thoughtcrime.securesms.loki.LokiUserDatabase;
 import org.thoughtcrime.securesms.loki.MultiDeviceUtilities;
+import org.thoughtcrime.securesms.loki.redesign.activities.HomeActivity;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.providers.BlobProvider;
@@ -651,7 +652,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   }
 
   public void restartApplication() {
-    Intent intent = new Intent(this, ConversationListActivity.class);
+    Intent intent = new Intent(this, HomeActivity.class);
     ComponentName componentName = intent.getComponent();
     Intent mainIntent = Intent.makeRestartActivityTask(componentName);
     this.startActivity(mainIntent);

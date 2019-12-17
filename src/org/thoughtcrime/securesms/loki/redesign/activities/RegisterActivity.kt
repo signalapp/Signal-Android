@@ -1,5 +1,8 @@
-package org.thoughtcrime.securesms.loki.redesign
+package org.thoughtcrime.securesms.loki.redesign.activities
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.content.Intent
 import android.graphics.Typeface
 import android.net.Uri
@@ -8,7 +11,7 @@ import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.style.StyleSpan
 import android.widget.Toast
-import kotlinx.android.synthetic.main.activity_restore.*
+import kotlinx.android.synthetic.main.activity_register.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.BaseActionBarActivity
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
@@ -19,34 +22,33 @@ import org.thoughtcrime.securesms.loki.redesign.utilities.setUpActionBarSessionL
 import org.thoughtcrime.securesms.util.Base64
 import org.thoughtcrime.securesms.util.Hex
 import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.whispersystems.curve25519.Curve25519
 import org.whispersystems.libsignal.ecc.Curve
+import org.whispersystems.libsignal.ecc.ECKeyPair
 import org.whispersystems.libsignal.util.KeyHelper
-import org.whispersystems.signalservice.loki.crypto.MnemonicCodec
 import org.whispersystems.signalservice.loki.utilities.hexEncodedPublicKey
 import java.io.File
 import java.io.FileOutputStream
 
-class RestoreActivity : BaseActionBarActivity() {
-    private lateinit var languageFileDirectory: File
+class RegisterActivity : BaseActionBarActivity() {
+    private var seed: ByteArray? = null
+    private var keyPair: ECKeyPair? = null
+        set(value) { field = value; updatePublicKeyTextView() }
 
     // region Lifecycle
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_register)
         setUpLanguageFileDirectory()
         setUpActionBarSessionLogo()
-        setContentView(R.layout.activity_restore)
-        mnemonicEditText.imeOptions = mnemonicEditText.imeOptions or 16777216 // Always use incognito keyboard
-        restoreButton.setOnClickListener { restore() }
+        registerButton.setOnClickListener { register() }
+        copyButton.setOnClickListener { copyPublicKey() }
         val termsExplanation = SpannableStringBuilder("By using this service, you agree to our Terms and Conditions and Privacy Statement")
         termsExplanation.setSpan(StyleSpan(Typeface.BOLD), 40, 60, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         termsExplanation.setSpan(StyleSpan(Typeface.BOLD), 65, 82, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         termsButton.text = termsExplanation
         termsButton.setOnClickListener { showTerms() }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        mnemonicEditText.requestFocus()
+        updateKeyPair()
     }
     // endregion
 
@@ -69,34 +71,46 @@ class RestoreActivity : BaseActionBarActivity() {
             inputStream.close()
             outputStream.close()
         }
-        languageFileDirectory = directory
+    }
+    // endregion
+
+    // region Updating
+    private fun updateKeyPair() {
+        val seedCandidate = Curve25519.getInstance(Curve25519.BEST).generateSeed(16)
+        try {
+            this.keyPair = Curve.generateKeyPair(seedCandidate + seedCandidate) // Validate the seed
+        } catch (exception: Exception) {
+            return updateKeyPair()
+        }
+        seed = seedCandidate
+    }
+
+    private fun updatePublicKeyTextView() {
+        publicKeyTextView.text = keyPair!!.hexEncodedPublicKey
     }
     // endregion
 
     // region Interaction
-    private fun restore() {
-        val mnemonic = mnemonicEditText.text.toString()
-        try {
-            val hexEncodedSeed = MnemonicCodec(languageFileDirectory).decode(mnemonic)
-            var seed = Hex.fromStringCondensed(hexEncodedSeed)
-            IdentityKeyUtil.save(this, IdentityKeyUtil.lokiSeedKey, Hex.toStringCondensed(seed))
-            if (seed.size == 16) { seed = seed + seed }
-            val keyPair = Curve.generateKeyPair(seed)
-            IdentityKeyUtil.save(this, IdentityKeyUtil.IDENTITY_PUBLIC_KEY_PREF, Base64.encodeBytes(keyPair.publicKey.serialize()))
-            IdentityKeyUtil.save(this, IdentityKeyUtil.IDENTITY_PRIVATE_KEY_PREF, Base64.encodeBytes(keyPair.privateKey.serialize()))
-            val userHexEncodedPublicKey = keyPair.hexEncodedPublicKey
-            val registrationID = KeyHelper.generateRegistrationId(false)
-            TextSecurePreferences.setLocalRegistrationId(this, registrationID)
-            DatabaseFactory.getIdentityDatabase(this).saveIdentity(Address.fromSerialized(userHexEncodedPublicKey),
-                    IdentityKeyUtil.getIdentityKeyPair(this).publicKey, IdentityDatabase.VerifiedStatus.VERIFIED,
-                    true, System.currentTimeMillis(), true)
-            TextSecurePreferences.setLocalNumber(this, userHexEncodedPublicKey)
-            val intent = Intent(this, DisplayNameActivity::class.java)
-            startActivity(intent)
-        } catch (e: Exception) {
-            val message = if (e is MnemonicCodec.DecodingError) e.description else MnemonicCodec.DecodingError.Generic.description
-            return Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-        }
+    private fun register() {
+        IdentityKeyUtil.save(this, IdentityKeyUtil.lokiSeedKey, Hex.toStringCondensed(seed))
+        IdentityKeyUtil.save(this, IdentityKeyUtil.IDENTITY_PUBLIC_KEY_PREF, Base64.encodeBytes(keyPair!!.publicKey.serialize()))
+        IdentityKeyUtil.save(this, IdentityKeyUtil.IDENTITY_PRIVATE_KEY_PREF, Base64.encodeBytes(keyPair!!.privateKey.serialize()))
+        val userHexEncodedPublicKey = keyPair!!.hexEncodedPublicKey
+        val registrationID = KeyHelper.generateRegistrationId(false)
+        TextSecurePreferences.setLocalRegistrationId(this, registrationID)
+        DatabaseFactory.getIdentityDatabase(this).saveIdentity(Address.fromSerialized(userHexEncodedPublicKey),
+            IdentityKeyUtil.getIdentityKeyPair(this).publicKey, IdentityDatabase.VerifiedStatus.VERIFIED,
+            true, System.currentTimeMillis(), true)
+        TextSecurePreferences.setLocalNumber(this, userHexEncodedPublicKey)
+        val intent = Intent(this, DisplayNameActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun copyPublicKey() {
+        val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        val clip = ClipData.newPlainText("Session ID", keyPair!!.hexEncodedPublicKey)
+        clipboard.primaryClip = clip
+        Toast.makeText(this, R.string.activity_register_public_key_copied_message, Toast.LENGTH_SHORT).show()
     }
 
     private fun showTerms() {

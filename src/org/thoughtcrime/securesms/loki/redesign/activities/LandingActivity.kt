@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.loki.redesign
+package org.thoughtcrime.securesms.loki.redesign.activities
 
 import android.content.Intent
 import android.os.Bundle
