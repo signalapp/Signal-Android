@@ -297,7 +297,7 @@
   <string name="DeviceListActivity_network_connection_failed">La connexió de xarxa ha fallat</string>
   <string name="DeviceListActivity_try_again">Torna a provar-ho</string>
   <string name="DeviceListActivity_unlinking_device">Es desenllaça el dispositiu…</string>
-  <string name="DeviceListActivity_unlinking_device_no_ellipsis">S\'està desenllaçant el dispositiu</string>
+  <string name="DeviceListActivity_unlinking_device_no_ellipsis">Es desenllaça el dispositiu</string>
   <string name="DeviceListActivity_network_failed">La xarxa ha fallat!</string>
   <!--DeviceListItem-->
   <string name="DeviceListItem_unnamed_device">Dispositiu sense nom</string>
@@ -432,6 +432,14 @@
   <string name="MediaOverviewActivity_Grid_view_description">Vista de graella</string>
   <string name="MediaOverviewActivity_List_view_description">Vista de llista</string>
   <string name="MediaOverviewActivity_Selected_description">Seleccionat</string>
+  <plurals name="MediaOverviewActivity_d_items_s">
+    <item quantity="one">%1$d element: %2$s</item>
+    <item quantity="other">%1$d elements: %2$s</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_d_items">
+    <item quantity="one">%1$d element</item>
+    <item quantity="other">%1$d elements</item>
+  </plurals>
   <string name="MediaOverviewActivity_file">Fitxer</string>
   <string name="MediaOverviewActivity_audio">Àudio</string>
   <string name="MediaOverviewActivity_video">Vídeo</string>
@@ -1378,7 +1386,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="InsightsDashboardFragment__boost_your_signal">Impuls de Signal</string>
   <string name="InsightsDashboardFragment__not_enough_data">Dades insuficients</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">El percentatge d’Interior es calcula a partir dels missatges de sortida dels darrers %1$d dies que no han desaparegut ni s’han suprimit.</string>
-  <string name="InsightsDashboardFragment__start_a_conversation">Inicieu una conversa</string>
+  <string name="InsightsDashboardFragment__start_a_conversation">Comenceu una conversa</string>
   <string name="InsightsDashboardFragment__invite_your_contacts">Comenceu a comunicar-vos de manera segura i activeu funcions noves que vagin més enllà de les limitacions dels missatges d\'SMS no encriptats convidant més contactes a unir-se al Signal.</string>
   <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Aquestes estadístiques es van generar localment al dispositiu i només vosaltres les podreu veure. Mai es transmeten enlloc.</string>
   <string name="InsightsDashboardFragment__encrypted_messages">Missatges encriptats</string>

@@ -79,6 +79,7 @@
   <string name="BucketedThreadMedia_This_week">Ši savaitė</string>
   <string name="BucketedThreadMedia_This_month">Šis mėnuo</string>
   <string name="BucketedThreadMedia_Large">Didelis</string>
+  <string name="BucketedThreadMedia_Medium">Vidutinis</string>
   <string name="BucketedThreadMedia_Small">Mažas</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Gaunamasis skambutis</string>
@@ -332,6 +333,7 @@
   <string name="DeviceListItem_last_active_s">Paskutinį kartą aktyvus %s</string>
   <string name="DeviceListItem_today">Šiandien</string>
   <!--DocumentView-->
+  <string name="DocumentView_unnamed_file">Bevardis failas</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">Optimizuoti trūkstamoms „Play“ paslaugoms</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">Šis įrenginys nepalaiko „Play“ paslaugų. Bakstelėkite, norėdami išjungti sistemos baterijos optimizavimus, kurie neleidžia Signal gauti žinučių tol, kol įrenginys yra neaktyvus.</string>
@@ -402,6 +404,7 @@
   <string name="InviteActivity_share">Bendrinti</string>
   <string name="InviteActivity_choose_contacts">Pasirinkti adresatus</string>
   <string name="InviteActivity_share_with_contacts">Bendrinti su adresatais</string>
+  <string name="InviteActivity_choose_how_to_share">Pasirinkite kaip bendrinti</string>
   <string name="InviteActivity_cancel">Atsisakyti</string>
   <string name="InviteActivity_sending">Siunčiama…</string>
   <string name="InviteActivity_heart_content_description">Širdis</string>
@@ -440,14 +443,41 @@
   <string name="MediaOverviewActivity_Media">Medija</string>
   <string name="MediaOverviewActivity_Files">Failai</string>
   <string name="MediaOverviewActivity_Audio">Garso įrašai</string>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+    <item quantity="one">Ištrinti pažymėtą elementą</item>
+    <item quantity="few">Ištrinti pažymėtus elementus?</item>
+    <item quantity="many">Ištrinti pažymėtus elementus?</item>
+    <item quantity="other">Ištrinti pažymėtus elementus?</item>
+  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Ištrinama</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Ištrinamos žinutės…</string>
   <string name="MediaOverviewActivity_Select_all">Žymėti visus</string>
   <string name="MediaOverviewActivity_collecting_attachments">Renkami priedai…</string>
+  <string name="MediaOverviewActivity_Sort_by">Rikiuoti pagal</string>
+  <string name="MediaOverviewActivity_Newest">Naujausi</string>
+  <string name="MediaOverviewActivity_Oldest">Seniausi</string>
+  <string name="MediaOverviewActivity_Storage_used">Panaudota saugyklos</string>
+  <string name="MediaOverviewActivity_All_storage_use">Visas saugyklos turinys</string>
+  <string name="MediaOverviewActivity_Grid_view_description">Tinklelio rodinys</string>
+  <string name="MediaOverviewActivity_List_view_description">Sąrašo rodinys</string>
+  <plurals name="MediaOverviewActivity_d_items_s">
+    <item quantity="one">%1$d elementas %2$s</item>
+    <item quantity="few">%1$d elementai %2$s</item>
+    <item quantity="many">%1$d elementų %2$s</item>
+    <item quantity="other">%1$d elementas %2$s</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_d_items">
+    <item quantity="one">%1$d elementas</item>
+    <item quantity="few">%1$d elementai</item>
+    <item quantity="many">%1$d elementų</item>
+    <item quantity="other">%1$d elementas</item>
+  </plurals>
   <string name="MediaOverviewActivity_file">Failas</string>
   <string name="MediaOverviewActivity_audio">Garso įrašai</string>
   <string name="MediaOverviewActivity_video">Vaizdo įrašai</string>
   <string name="MediaOverviewActivity_image">Paveikslas</string>
+  <string name="MediaOverviewActivity_sent_by_s">Išsiuntė %1$s</string>
+  <string name="MediaOverviewActivity_sent_by_you">Išsiuntėte jūs</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal skambutis yra eigoje</string>
   <string name="NotificationBarManager__establishing_signal_call">Užmezgiamas Signal skambutis</string>
@@ -553,6 +583,8 @@
   <string name="ProfileEditOverviewFragment_profile">Profilis</string>
   <string name="ProfileEditOverviewFragment_profile_name">Profilio pavadinimas</string>
   <string name="ProfileEditOverviewFragment_username">Naudotojo vardas</string>
+  <string name="ProfileEditOverviewFragment_create_a_profile_name">Sukurti profilio pavadinimą</string>
+  <string name="ProfileEditOverviewFragment_create_a_username">Sukurti naudotojo vardą</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Įvertinkite šią programėlę</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Jeigu jūs mėgaujatės naudodamiesi šia programėle, skirkite minutėlę mums padėti ir įvertinkite ją.</string>
@@ -624,6 +656,8 @@
   <string name="RegistrationActivity_failed_to_verify_the_captcha">Nepavyko patvirtinti SAUGOS KODO</string>
   <string name="RegistrationActivity_next">Kitas</string>
   <string name="RegistrationActivity_continue">Tęsti</string>
+  <string name="RegistrationActivity_continue_d_attempts_left">Tęsti (liko %d bandymai)</string>
+  <string name="RegistrationActivity_continue_last_attempt">Tęsti (paskutinis bandymas!)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Pasiimkite privatumą kartu su savimi.\nBūkite savimi kiekvienoje žinutėje.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Norėdami pradėti, įveskite savo telefono numerį</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Gausite patvirtinimo kodą. Gali būti taikomi mobiliojo ryšio tinklo operatoriaus mokesčiai.</string>
@@ -727,11 +761,15 @@
   <string name="UsernameEditFragment_username">Naudotojo vardas</string>
   <string name="UsernameEditFragment_submit">Pateikti</string>
   <string name="UsernameEditFragment_delete">Ištrinti</string>
+  <string name="UsernameEditFragment_successfully_set_username">Naudotojo vardas sėkmingai nustatytas.</string>
+  <string name="UsernameEditFragment_successfully_removed_username">Naudotojo vardas sėkmingai pašalintas.</string>
   <string name="UsernameEditFragment_encountered_a_network_error">Susidurta su tinklo klaida.</string>
   <string name="UsernameEditFragment_this_username_is_taken">Šis naudotojo vardas yra užimtas.</string>
   <string name="UsernameEditFragment_this_username_is_available">Šis naudotojo vardas yra prieinamas.</string>
+  <string name="UsernameEditFragment_usernames_can_only_include">Naudotojo varduose gali būti simboliai a-Z, 0-9, ir pabraukimo brūkšniai.</string>
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Naudotojo vardai negali prasidėti skaitmenimi.</string>
   <string name="UsernameEditFragment_username_is_invalid">Naudotojo vardas yra neteisingas.</string>
+  <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Naudotojo varduose privalo būti nuo %1$d iki %2$d simbolių.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Jūsų adresatas naudoja seną Signal versiją. Prieš patvirtindami savo saugumo numerį, paprašykite, kad jis atnaujintų programėlę.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Jūsų adresatas naudoja naujesnę Signal versiją su nesuderinamu QR kodo formatu. Norėdami palyginti, atsinaujinkite programėlę.</string>
@@ -771,6 +809,7 @@
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Nepavyksta įrašyti į išorinę saugyklą be leidimų</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Ištrinti žinutę?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Tai visiems laikams ištrins šią žinutę.</string>
+  <string name="MediaPreviewActivity_s_to_s">%1$s naudotojui %2$s</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d naujų(-os) žinutės(-ių) %2$d pokalbyje(-iuose)</string>
   <string name="MessageNotifier_most_recent_from_s">Paskiausia nuo: %1$s</string>
@@ -803,6 +842,7 @@
   <string name="NotificationChannel_group_messages">Žinutės</string>
   <string name="NotificationChannel_missing_display_name">Nežinoma</string>
   <!--ProfileEditNameFragment-->
+  <string name="ProfileEditNameFragment_successfully_set_profile_name">Profilio pavadinimas sėkmingai nustatytas.</string>
   <string name="ProfileEditNameFragment_encountered_a_network_error">Susidurta su tinklo klaida.</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Spartusis atsakymas neprieinamas, kai Signal yra užrakinta!</string>
@@ -820,6 +860,7 @@
   <string name="SingleRecipientNotificationBuilder_new_message">Nauja žinutė</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Atkurti vaizdo įrašą</string>
+  <string name="ThumbnailView_Has_a_caption_description">Turi paaiškinimą</string>
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">
     <item quantity="one">%d elementas</item>
@@ -1221,6 +1262,7 @@
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Automatiškai ištrinti senesnes žinutes, kai pokalbis viršija nurodytą ilgį</string>
   <string name="preferences__delete_old_messages">Ištrinti senas žinutes</string>
   <string name="preferences__chats">Pokalbiai ir medija</string>
+  <string name="preferences__storage">Saugykla</string>
   <string name="preferences__conversation_length_limit">Pokalbio ilgio riba</string>
   <string name="preferences__trim_all_conversations_now">Apkirpti visus pokalbius dabar</string>
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">Peržiūrėti visus pokalbius ir priverstinai taikyti pokalbio ilgio ribas</string>
@@ -1249,10 +1291,12 @@
   <string name="preferences_chats__when_roaming">Naudojant tarptinklinį ryšį</string>
   <string name="preferences_chats__media_auto_download">Automatinis medijos atsisiuntimas</string>
   <string name="preferences_chats__message_trimming">Žinučių apkirpimas</string>
+  <string name="preferences_storage__storage_usage">Saugyklos naudojimas</string>
   <string name="preferences_storage__photos">Nuotraukos</string>
   <string name="preferences_storage__videos">Vaizdo įrašai</string>
   <string name="preferences_storage__files">Failai</string>
   <string name="preferences_storage__audio">Garso įrašai</string>
+  <string name="preferences_storage__review_storage">Peržiūrėti saugyklą</string>
   <string name="preferences_advanced__use_system_emoji">Naudoti sistemos jaustukus</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Išjungti Signal įtaisytą jaustukų palaikymą</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Retransliuoti visus skambučius per Signal serverį, kad būtų išvengta jūsų IP adreso atskleidimo jūsų adresatui. Įjungus, pablogės skambučių kokybė.</string>
@@ -1395,6 +1439,7 @@
   <string name="InsightsDashboardFragment__title">Įžvalgos</string>
   <string name="InsightsDashboardFragment__not_enough_data">Trūksta duomenų</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Pradėti pokalbį</string>
+  <string name="InsightsDashboardFragment__invite_your_contacts">Nuo šiol, pakvietę daugiau adresatų naudotis Signal, bendraukite saugiai ir įjunkite naujas ypatybes, kurios viršija nešifruotų SMS žinučių apribojimus.</string>
   <string name="InsightsDashboardFragment__encrypted_messages">Šifruotos žinutės</string>
   <string name="InsightsDashboardFragment__cancel">Atsisakyti</string>
   <string name="InsightsDashboardFragment__send">Siųsti</string>
@@ -1402,6 +1447,7 @@
   <string name="InsightsModalFragment__view_insights">Rodyti įžvalgas</string>
   <string name="FirstInviteReminder__title">Pakviesti į Signal</string>
   <string name="FirstInviteReminder__description">Jūs galėtumėte %1$d%% padidinti siunčiamų šifruotų žinučių skaičių</string>
+  <string name="SecondInviteReminder__description">Pakviesti %1$s</string>
   <string name="InsightsReminder__view_insights">Rodyti įžvalgas</string>
   <string name="InsightsReminder__invite">Pakviesti</string>
   <!--transport_selection_list_item-->
@@ -1494,6 +1540,7 @@
   <string name="RegistrationLockDialog_disable_registration_lock_pin">Išjungti Registracijos užrakto PIN?</string>
   <string name="RegistrationLockDialog_disable">Išjungti</string>
   <string name="RegistrationActivity_pin_incorrect">Neteisingas PIN kodas</string>
+  <string name="RegistrationActivity_you_have_d_tries_remaining">Jums liko bandymų: %d</string>
   <string name="preferences_chats__backups">Atsarginės kopijos</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal yra užrakinta</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">BAKSTELĖKITE, NORĖDAMI ATRAKINTI</string>
@@ -1504,5 +1551,7 @@
   <string name="MessageRequestBottomView_delete">Ištrinti</string>
   <string name="MessageRequestBottomView_block">Užblokuoti</string>
   <string name="MessageRequestBottomView_do_you_want_to_let">Ar norite gauti žinutes nuo %1$s?</string>
+  <string name="MessageRequestProfileView_member_of_one_group">%1$s grupės dalyvis</string>
+  <string name="MessageRequestProfileView_member_of_two_groups"> %1$s ir %2$s grupių dalyvis</string>
   <!--EOF-->
 </resources>

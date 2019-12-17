@@ -468,6 +468,18 @@
   <string name="MediaOverviewActivity_Grid_view_description">תצוגת סורג</string>
   <string name="MediaOverviewActivity_List_view_description">תצוגת רשימה</string>
   <string name="MediaOverviewActivity_Selected_description">נבחר</string>
+  <plurals name="MediaOverviewActivity_d_items_s">
+    <item quantity="one">פריט %1$d %2$s</item>
+    <item quantity="two">%1$d פריטים %2$s</item>
+    <item quantity="many">%1$d פריטים %2$s</item>
+    <item quantity="other">%1$d פריטים %2$s</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_d_items">
+    <item quantity="one">פריט %1$d</item>
+    <item quantity="two">%1$d פריטים</item>
+    <item quantity="many">%1$d פריטים</item>
+    <item quantity="other">%1$d פריטים</item>
+  </plurals>
   <string name="MediaOverviewActivity_file">קובץ</string>
   <string name="MediaOverviewActivity_audio">שמע</string>
   <string name="MediaOverviewActivity_video">סרטון</string>

@@ -97,6 +97,8 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">未能找到网页浏览器。</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">一个基站通话已在处理中。</string>
+  <string name="CommunicationActions_start_video_call">发起视频通话？</string>
+  <string name="CommunicationActions_start_voice_call">发起语音通话？</string>
   <string name="CommunicationActions_cancel">取消</string>
   <string name="CommunicationActions_call">拨号</string>
   <!--ConfirmIdentityDialog-->
@@ -288,6 +290,7 @@
   <string name="DeviceListItem_last_active_s">最后活动  %s</string>
   <string name="DeviceListItem_today">今天</string>
   <!--DocumentView-->
+  <string name="DocumentView_unnamed_file">未命名文件</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">对缺失的 Google Play服务进行优化</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">此设备不支持 Google Play 服务。点击以禁用系统电池优化以避免 Signal 无法收到新消息。</string>
@@ -357,6 +360,8 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">共享</string>
   <string name="InviteActivity_choose_contacts">选择联系人</string>
+  <string name="InviteActivity_share_with_contacts">与联系人分享</string>
+  <string name="InviteActivity_choose_how_to_share">选择分享方式</string>
   <string name="InviteActivity_cancel">取消</string>
   <string name="InviteActivity_sending">发送中…</string>
   <string name="InviteActivity_heart_content_description">心</string>
@@ -387,11 +392,17 @@
   <string name="MmsDownloader_error_reading_mms_settings">读取运营商的彩信设定时出错</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">媒体文件</string>
+  <string name="MediaOverviewActivity_Files">文件</string>
   <string name="MediaOverviewActivity_Audio">音频</string>
+  <string name="MediaOverviewActivity_All">全部</string>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+    <item quantity="other">删除选中项目？</item>
+  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">删除中</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">正在删除信息…</string>
   <string name="MediaOverviewActivity_Select_all">选择全部</string>
   <string name="MediaOverviewActivity_collecting_attachments">正在收集附件…</string>
+  <string name="MediaOverviewActivity_Storage_used">已用存储</string>
   <string name="MediaOverviewActivity_file">文件</string>
   <string name="MediaOverviewActivity_audio">音频</string>
   <string name="MediaOverviewActivity_video">视频</string>
@@ -495,6 +506,7 @@
   <!--ProfileEditOverviewFragment-->
   <string name="ProfileEditOverviewFragment_profile">资料</string>
   <string name="ProfileEditOverviewFragment_username">用户名</string>
+  <string name="ProfileEditOverviewFragment_create_a_username">创建一个用户名</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">对此应用评分</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">如果您喜欢使用此应用，请使用片刻时间对其进行打分。</string>
@@ -747,6 +759,7 @@
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">新信息</string>
   <!--ThumbnailView-->
+  <string name="ThumbnailView_Play_video_description">播放视频</string>
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">
     <item quantity="other">%d项目</item>
@@ -811,6 +824,7 @@
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal 需要\"通讯录\"权限才能显示联系人信息，但是该权限已被永久禁用。请转到系统的应用设置菜单，找到权限设置，选择 Signal 应用，并启用\"通讯录\"权限。</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">无法获取通讯录数据，请检查您的网络连接</string>
+  <string name="ContactSelectionListFragment_username_not_found">未找到此用户名</string>
   <string name="ContactSelectionListFragment_okay">好的</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">没有屏蔽的联系人</string>
@@ -1150,6 +1164,10 @@
   <string name="preferences_chats__when_roaming">当漫游时</string>
   <string name="preferences_chats__media_auto_download">媒体自动下载</string>
   <string name="preferences_chats__message_trimming">信息整理</string>
+  <string name="preferences_storage__storage_usage">存储使用量</string>
+  <string name="preferences_storage__photos">照片</string>
+  <string name="preferences_storage__videos">视频</string>
+  <string name="preferences_storage__files">文件</string>
   <string name="preferences_storage__audio">音频</string>
   <string name="preferences_advanced__use_system_emoji">使用系统表情符号</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">禁用 Signal 内置的表情支持</string>
@@ -1184,6 +1202,7 @@
   <string name="conversation_callable_insecure__menu_call">呼叫</string>
   <!--conversation_callable_secure-->
   <string name="conversation_callable_secure__menu_call"> Signal 呼叫</string>
+  <string name="conversation_callable_secure__menu_video">Signal 视频通话</string>
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">信息详情</string>
   <string name="conversation_context__menu_copy_text">复制文本</string>
@@ -1192,6 +1211,7 @@
   <string name="conversation_context__menu_resend_message">重新发送信息</string>
   <string name="conversation_context__menu_reply_to_message">回复该消息</string>
   <!--conversation_context_reacction-->
+  <string name="conversation_context__reaction_multi_select">多选</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">保存附件</string>
   <!--conversation_expiring_off-->
@@ -1286,6 +1306,7 @@
   <string name="trimmer__old_messages_successfully_deleted">旧信息已被成功删除。</string>
   <!--Insights-->
   <string name="Insights__percent">%</string>
+  <string name="InsightsDashboardFragment__encrypted_messages">加密信息</string>
   <string name="InsightsDashboardFragment__cancel">取消</string>
   <string name="InsightsDashboardFragment__send">发送</string>
   <string name="FirstInviteReminder__title">邀请至 Signal</string>

@@ -968,22 +968,22 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
     <item quantity="one">%d minuto</item>
     <item quantity="other">%d minuti</item>
   </plurals>
-  <string name="expiration_minutes_abbreviated">%dm</string>
+  <string name="expiration_minutes_abbreviated">%dmin</string>
   <plurals name="expiration_hours">
     <item quantity="one">%d ora</item>
     <item quantity="other">%d ore</item>
   </plurals>
-  <string name="expiration_hours_abbreviated">%dore</string>
+  <string name="expiration_hours_abbreviated">%dh</string>
   <plurals name="expiration_days">
     <item quantity="one">%d giorno</item>
     <item quantity="other">%d giorni</item>
   </plurals>
-  <string name="expiration_days_abbreviated">%dgiorni</string>
+  <string name="expiration_days_abbreviated">%dd</string>
   <plurals name="expiration_weeks">
     <item quantity="one">%d settimana</item>
     <item quantity="other">%d settimane</item>
   </plurals>
-  <string name="expiration_weeks_abbreviated">%dset.</string>
+  <string name="expiration_weeks_abbreviated">%dset</string>
   <!--unverified safety numbers-->
   <string name="IdentityUtil_unverified_banner_one">Il tuo codice di sicurezza con %s è cambiato e non è più verificato</string>
   <string name="IdentityUtil_unverified_banner_two">I codici di sicurezza con %1$s e %2$s non sono più verificati</string>

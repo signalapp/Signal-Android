@@ -98,6 +98,8 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">ウェブブラウザが見つかりません。</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">電話を使用中です</string>
+  <string name="CommunicationActions_start_video_call">ビデオ通話を始めますか？</string>
+  <string name="CommunicationActions_start_voice_call">音声通話を始めますか？</string>
   <string name="CommunicationActions_cancel">キャンセル</string>
   <string name="CommunicationActions_call">通話</string>
   <!--ConfirmIdentityDialog-->
@@ -289,6 +291,7 @@
   <string name="DeviceListItem_last_active_s">最後の活動%s</string>
   <string name="DeviceListItem_today">今日</string>
   <!--DocumentView-->
+  <string name="DocumentView_unnamed_file">無名のファイル</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">欠けているGoogle Play開発者サービスに最適化する</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">この端末はGoogle Play開発者サービスをサポートしていません。タップしてバッテリー最適化機能を切ってください。</string>
@@ -358,6 +361,8 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">シェア</string>
   <string name="InviteActivity_choose_contacts">連絡先を選んでください</string>
+  <string name="InviteActivity_share_with_contacts">連絡先と共有</string>
+  <string name="InviteActivity_choose_how_to_share">共有方法を選択</string>
   <string name="InviteActivity_cancel">キャンセル</string>
   <string name="InviteActivity_sending">送信しています…</string>
   <string name="InviteActivity_heart_content_description">ハート</string>
@@ -405,10 +410,24 @@
   <string name="MediaOverviewActivity_Newest">新しい順</string>
   <string name="MediaOverviewActivity_Oldest">古い順</string>
   <string name="MediaOverviewActivity_Storage_used">サイズ</string>
+  <string name="MediaOverviewActivity_All_storage_use">ストレージ内容</string>
+  <string name="MediaOverviewActivity_Grid_view_description">グリッド表示</string>
+  <string name="MediaOverviewActivity_List_view_description">リスト表示</string>
+  <string name="MediaOverviewActivity_Selected_description">選択済み</string>
+  <plurals name="MediaOverviewActivity_d_items_s">
+    <item quantity="other">%1$d 件を選択中 (%2$s)</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_d_items">
+    <item quantity="other">%1$d アイテム</item>
+  </plurals>
   <string name="MediaOverviewActivity_file">ファイル</string>
   <string name="MediaOverviewActivity_audio">音声</string>
   <string name="MediaOverviewActivity_video">動画</string>
   <string name="MediaOverviewActivity_image">画像</string>
+  <string name="MediaOverviewActivity_sent_by_s">%1$s が送信</string>
+  <string name="MediaOverviewActivity_sent_by_you">あなたが送信</string>
+  <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s が %2$s 宛に送信</string>
+  <string name="MediaOverviewActivity_sent_by_you_to_s">あなたが %1$s 宛に送信</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal通話中</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal通話を準備しています</string>
@@ -504,10 +523,16 @@
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">インストールされているGoogle Play開発者サービスのバージョンは正しく動作していません。Google Play開発者サービスを再インストールして再挑戦してみてください。</string>
   <!--ProfileEditNameFragment-->
+  <string name="ProfileEditNameFragment_profile_name">プロフィール名</string>
+  <string name="ProfileEditNameFragment_your_profile_name_can_be_seen_by_your_contacts">あなたのプロフィール名は、会話を開始したとき、または会話リクエストを承諾したときに、連絡先や他のユーザーまたはグループに表示されます。</string>
   <string name="ProfileEditNameFragment_save">保存</string>
   <!--ProfileEditOverviewFragment-->
   <string name="ProfileEditOverviewFragment_profile">プロフィール</string>
+  <string name="ProfileEditOverviewFragment_profile_name">プロフィール名</string>
   <string name="ProfileEditOverviewFragment_username">ユーザー名</string>
+  <string name="ProfileEditOverviewFragment_create_a_profile_name">プロフィール名を作成</string>
+  <string name="ProfileEditOverviewFragment_create_a_username">ユーザー名を作成</string>
+  <string name="ProfileEditOverviewFragment_your_signal_profile_can_be_seen_by">あなたのSignalプロフィールは、会話を開始したとき、または会話リクエストを承諾したときに、連絡先や他のユーザーまたはグループに表示されます。<a href="https://support.signal.org/hc/en-us/articles/360007459591-Signal-Profiles">詳細については、ここをタップしてください</a>。</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">アプリを評価</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">このアプリのユーザーの方には評価アンケートへの協力をお願いいたします。</string>
@@ -570,6 +595,8 @@
   <string name="RegistrationActivity_failed_to_verify_the_captcha">CAPTCHAの認証に失敗しました</string>
   <string name="RegistrationActivity_next">進む</string>
   <string name="RegistrationActivity_continue">続行</string>
+  <string name="RegistrationActivity_continue_d_attempts_left">続ける (あと%d回)</string>
+  <string name="RegistrationActivity_continue_last_attempt">続ける (最後！)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Take privacy with you.\nBe yourself in every message.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">あなたの電話番号を入力してください</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">認証コードが届きます。通信料金がかかるかもしれません。</string>
@@ -669,6 +696,16 @@
   <string name="UsernameEditFragment_username">ユーザー名</string>
   <string name="UsernameEditFragment_submit">送信</string>
   <string name="UsernameEditFragment_delete">削除</string>
+  <string name="UsernameEditFragment_successfully_set_username">ユーザー名を設定しました。</string>
+  <string name="UsernameEditFragment_successfully_removed_username">ユーザー名を削除しました。</string>
+  <string name="UsernameEditFragment_encountered_a_network_error">ネットワークエラーが発生しました。</string>
+  <string name="UsernameEditFragment_this_username_is_taken">このユーザー名は既に使用されています。</string>
+  <string name="UsernameEditFragment_this_username_is_available">このユーザー名は利用可能です。</string>
+  <string name="UsernameEditFragment_usernames_can_only_include">ユーザー名には半角の英数字とアンダーバーのみ使用できます。</string>
+  <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">ユーザー名の先頭に数字は使用できません。</string>
+  <string name="UsernameEditFragment_username_is_invalid">無効なユーザー名です。</string>
+  <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">ユーザー名は%1$dから%2$d文字としてください。</string>
+  <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">他のSignalユーザーは、あなたの電話番号を知らなくても、あなたのユーザー名にメッセージリクエストを送信することができます。ユーザー名の選択はオプションです。</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">連絡先の相手は古いSignalを使っています。Signalをアップデートしてから安全番号の検証を行うようお願いしてください。</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">相手がより新しいバージョンのSignalを使ってるため，QRコードの形式が異なります。Signalをアップデートしてから改めて比較してください。</string>
@@ -708,6 +745,7 @@
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">外部ストレージに保存できません。ストレージへのアクセス許可が無効になっています。</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">メッセージを削除しますか？</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">このメッセージを完全に削除します。</string>
+  <string name="MediaPreviewActivity_s_to_s">%1$s から %2$s</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%2$d個の会話に%1$d個の新着メッセージ</string>
   <string name="MessageNotifier_most_recent_from_s">最新の受信: %1$s</string>
@@ -740,6 +778,8 @@
   <string name="NotificationChannel_group_messages">メッセージ</string>
   <string name="NotificationChannel_missing_display_name">不明</string>
   <!--ProfileEditNameFragment-->
+  <string name="ProfileEditNameFragment_successfully_set_profile_name">プロフィール名を設定しました。</string>
+  <string name="ProfileEditNameFragment_encountered_a_network_error">ネットワークエラーが発生しました。</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signalのロック中はクイック・レスポンスは使えません</string>
   <string name="QuickResponseService_problem_sending_message">メッセージ送信で問題発生</string>
@@ -819,6 +859,8 @@
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signalで連絡先を表示するには、連絡先へのアクセスを許可する必要がありますが、無効になっています。アプリ設定メニューから、アプリの権限を選び、連絡先へのアクセス許可を有効にしてください。</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">連絡先の取得でエラーが起きました。インターネットにつながっているかを確かめてください。</string>
+  <string name="ContactSelectionListFragment_username_not_found">ユーザー名が見つかりません</string>
+  <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\"はSignalユーザーではありません。ユーザー名を確認して、やり直してください。</string>
   <string name="ContactSelectionListFragment_okay">OK</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">ブロックしている連絡先はありません</string>
@@ -1184,7 +1226,7 @@
   <string name="preferences_communication__sealed_sender_display_indicators">アイコンを表示する</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">送信者の秘匿化を用いて届けられたメッセージで「メッセージの詳細」を選択した際に、ステータスアイコンを表示します。</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">全員を許可する</string>
-  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">あなたのプロファイルを共有しておらず、連絡先にもないユーザからのメッセージ受信において、送信者の秘匿化を有効にします。</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">あなたのプロフィールを共有しておらず、連絡先にもないユーザーからのメッセージ受信において、送信者の秘匿化を有効にします。</string>
   <string name="preferences_communication__sealed_sender_learn_more">さらに詳しく</string>
   <!--****************************************-->
   <!--menus-->
@@ -1195,6 +1237,7 @@
   <string name="conversation_callable_insecure__menu_call">通話</string>
   <!--conversation_callable_secure-->
   <string name="conversation_callable_secure__menu_call">Signal通話</string>
+  <string name="conversation_callable_secure__menu_video">Signalビデオ通話</string>
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">メッセージの詳細</string>
   <string name="conversation_context__menu_copy_text">テキストをコピー</string>
@@ -1299,8 +1342,10 @@
   <string name="Insights__title">統計</string>
   <string name="InsightsDashboardFragment__title">統計</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocolは過去%2$d日間の送信メッセージを%1$d%%自動的に保護しました。Signalユーザー間の会話は常にエンドツーエンドで暗号化されます。</string>
+  <string name="InsightsDashboardFragment__not_enough_data">データ不足</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">統計のパーセンテージは過去%1$d日間に消えたり削除されたりしていない送信メッセージに基づいて算出されます。</string>
   <string name="InsightsDashboardFragment__start_a_conversation">会話を始める</string>
+  <string name="InsightsDashboardFragment__invite_your_contacts">より多くの連絡先をSignalに招待することで、安全に通信を開始し、暗号化されていないSMSメッセージの制限を超える新機能を有効にします。</string>
   <string name="InsightsDashboardFragment__this_stat_was_generated_locally">これらの統計は、あなたの端末上でローカルに生成されたもので、見ることができるのはあなただけです。どこにも送信されません。</string>
   <string name="InsightsDashboardFragment__encrypted_messages">暗号化されたメッセージ</string>
   <string name="InsightsDashboardFragment__cancel">キャンセル</string>
@@ -1309,6 +1354,8 @@
   <string name="InsightsModalFragment__view_insights">統計を見る</string>
   <string name="FirstInviteReminder__title">Signalに招待する</string>
   <string name="FirstInviteReminder__description">送信する暗号化されたメッセージの数を%1$d%%増やすことができます</string>
+  <string name="SecondInviteReminder__title">あなたのSignalをブースト</string>
+  <string name="SecondInviteReminder__description">%1$s を招待</string>
   <string name="InsightsReminder__view_insights">統計を見る</string>
   <string name="InsightsReminder__invite">招待する</string>
   <!--transport_selection_list_item-->
@@ -1409,5 +1456,6 @@
   <string name="MessageRequestBottomView_accept">承認</string>
   <string name="MessageRequestBottomView_delete">削除</string>
   <string name="MessageRequestBottomView_block">ブロックする</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let">%1$s からのメッセージ受信を希望しますか？</string>
   <!--EOF-->
 </resources>

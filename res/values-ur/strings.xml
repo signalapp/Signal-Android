@@ -1306,6 +1306,8 @@
   <string name="trimmer__deleting_old_messages">پرانے پیغامات حذف ہو رہے ہیں۔۔۔</string>
   <string name="trimmer__old_messages_successfully_deleted">پرانے پیغامات کامیابی سے حذف ہو چکے ہیں</string>
   <!--Insights-->
+  <string name="Insights__title">Insights</string>
+  <string name="InsightsDashboardFragment__title">Insights</string>
   <string name="InsightsDashboardFragment__cancel">منسوخ کریں</string>
   <string name="InsightsDashboardFragment__send">بھیجیں</string>
   <string name="FirstInviteReminder__title">Signal میں مدعو کریں</string>

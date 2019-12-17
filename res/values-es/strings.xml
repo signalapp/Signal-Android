@@ -432,6 +432,14 @@
   <string name="MediaOverviewActivity_Grid_view_description">Vista de rejilla</string>
   <string name="MediaOverviewActivity_List_view_description">Vista en lista</string>
   <string name="MediaOverviewActivity_Selected_description">Selección</string>
+  <plurals name="MediaOverviewActivity_d_items_s">
+    <item quantity="one">%1$d objeto %2$s</item>
+    <item quantity="other">%1$d objetos %2$s</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_d_items">
+    <item quantity="one">%1$d objeto</item>
+    <item quantity="other">%1$d objetos</item>
+  </plurals>
   <string name="MediaOverviewActivity_file">Archivo</string>
   <string name="MediaOverviewActivity_audio">Audio</string>
   <string name="MediaOverviewActivity_video">Vídeo</string>

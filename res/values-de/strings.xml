@@ -375,8 +375,8 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Teilen</string>
   <string name="InviteActivity_choose_contacts">Kontakte auswählen</string>
-  <string name="InviteActivity_share_with_contacts">Mit Kontakten teilen</string>
-  <string name="InviteActivity_choose_how_to_share">Wähle, wie du teilen möchtest</string>
+  <string name="InviteActivity_share_with_contacts">Mit Kontakten teilen (SMS)</string>
+  <string name="InviteActivity_choose_how_to_share">Mit anderer App teilen</string>
   <string name="InviteActivity_cancel">Abbrechen</string>
   <string name="InviteActivity_sending">Wird gesendet …</string>
   <string name="InviteActivity_heart_content_description">Herz</string>
@@ -418,7 +418,7 @@
   </plurals>
   <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
     <item quantity="one">Dies wird die ausgewählte Datei unwiderruflich löschen. Jeglicher diesem Element zugehöriger Nachrichtentext wird ebenfalls gelöscht.</item>
-    <item quantity="other">Dies wird unwiderruflich alle %1$d ausgewählten Dateien löschen. Jegliche diesen Elementen zugehörigen Nachrichtentexte werden ebenfalls gelöscht.</item>
+    <item quantity="other">Dies wird alle %1$d ausgewählten Dateien unwiderruflich löschen. Jegliche diesen Elementen zugehörigen Nachrichtentexte werden ebenfalls gelöscht.</item>
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Löschen</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Nachrichten werden gelöscht …</string>
@@ -467,7 +467,7 @@
   <string name="MediaPickerItemFragment_tap_to_select">Zum Auswählen antippen</string>
   <!--MediaSendActivity-->
   <string name="MediaSendActivity_add_a_caption">Beschriftung hinzufügen …</string>
-  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Ein Anhang wurde entfernt, da er zu groß war</string>
+  <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Ein Anhang konnte nicht hinzugefügt werden, da er zu groß war</string>
   <string name="MediaSendActivity_camera_unavailable">Kamera nicht verfügbar.</string>
   <string name="MediaSendActivity_message_to_s">Nachricht an %s</string>
   <string name="MediaSendActivity_message">Nachricht</string>
@@ -544,7 +544,7 @@
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Die derzeit installierte Version der Google-Play-Dienste funktioniert nicht korrekt. Bitte installiere die Google-Play-Dienste neu und versuche es noch einmal.</string>
   <!--ProfileEditNameFragment-->
   <string name="ProfileEditNameFragment_profile_name">Profilname</string>
-  <string name="ProfileEditNameFragment_your_profile_name_can_be_seen_by_your_contacts">Dein Profilname kann von deinen Kontakten und anderen Nutzern oder Gruppen gesehen werden, wenn du eine Unterhaltung beginnst oder einer Unterhaltungsanfrage zustimmst.</string>
+  <string name="ProfileEditNameFragment_your_profile_name_can_be_seen_by_your_contacts">Dein Profilname kann von deinen Kontakten und anderen Nutzern oder Gruppen gesehen werden, sobald du eine Unterhaltung beginnst oder einer Unterhaltungsanfrage zustimmst.</string>
   <string name="ProfileEditNameFragment_save">Speichern</string>
   <!--ProfileEditOverviewFragment-->
   <string name="ProfileEditOverviewFragment_profile">Profil</string>
@@ -552,7 +552,7 @@
   <string name="ProfileEditOverviewFragment_username">Benutzername</string>
   <string name="ProfileEditOverviewFragment_create_a_profile_name">Erstelle einen Profilnamen</string>
   <string name="ProfileEditOverviewFragment_create_a_username">Erstelle einen Benutzernamen</string>
-  <string name="ProfileEditOverviewFragment_your_signal_profile_can_be_seen_by">Dein Signal-Profil kann von deinen Kontakten und anderen Nutzern oder Gruppen gesehen werden, wenn du eine Unterhaltung beginnst oder einer Unterhaltungsanfrage zustimmst. <a href="https://support.signal.org/hc/en-us/articles/360007459591-Signal-Profiles">Hier antippen für mehr Informationen</a>.</string>
+  <string name="ProfileEditOverviewFragment_your_signal_profile_can_be_seen_by">Dein Signal-Profil kann von deinen Kontakten und anderen Nutzern oder Gruppen gesehen werden, sobald du eine Unterhaltung beginnst oder einer Unterhaltungsanfrage zustimmst. <a href="https://support.signal.org/hc/en-us/articles/360007459591-Signal-Profiles">Hier antippen für mehr Informationen</a>.</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Bewerte diese App</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Hilf uns durch deine Bewertung, falls dir die App gefällt.</string>
@@ -724,7 +724,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="UsernameEditFragment_this_username_is_taken">Dieser Benutzername ist vergeben.</string>
   <string name="UsernameEditFragment_this_username_is_available">Dieser Benutzername ist verfügbar.</string>
   <string name="UsernameEditFragment_usernames_can_only_include">Benutzernamen dürfen nur a-Z, 0-9 und Unterstriche beinhalten.</string>
-  <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Benutzernamen dürfen nicht mit einer Zahl beginnen.</string>
+  <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Benutzernamen dürfen nicht mit einer Ziffer beginnen.</string>
   <string name="UsernameEditFragment_username_is_invalid">Benutzername ist ungültig.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Benutzernamen dürfen aus %1$d bis %2$d Zeichen bestehen.</string>
   <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Andere Signal-Nutzer können Unterhaltungsanfragen an deinen einzigartigen Benutzernamen senden, ohne deine Rufnummer zu kennen. Die Wahl eines Benutzernamens ist optional.</string>
@@ -802,7 +802,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="NotificationChannel_missing_display_name">Unbekannt</string>
   <!--ProfileEditNameFragment-->
   <string name="ProfileEditNameFragment_successfully_set_profile_name">Profilname erfolgreich festgelegt.</string>
-  <string name="ProfileEditNameFragment_encountered_a_network_error">Ein Netzfehler ist aufgetreten</string>
+  <string name="ProfileEditNameFragment_encountered_a_network_error">Ein Netzfehler ist aufgetreten.</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Schnellantwort nicht verfügbar, solange Signal gesperrt ist!</string>
   <string name="QuickResponseService_problem_sending_message">Problem beim Senden der Nachricht!</string>
@@ -1377,7 +1377,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="Insights__percent"> %</string>
   <string name="Insights__title">Einblicke</string>
   <string name="InsightsDashboardFragment__title">Einblicke</string>
-  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol hat automatisch %1$d %% deiner ausgehenden Nachrichten der letzten %2$d Tage geschützt. Unterhaltungen zwischen Signal-Benutzern werden immer Ende-zu-Ende-verschlüsselt.</string>
+  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal Protocol hat automatisch %1$d %% deiner ausgehenden Nachrichten der letzten %2$d Tage geschützt. Unterhaltungen zwischen Signal-Nutzern werden immer Ende-zu-Ende-verschlüsselt.</string>
   <string name="InsightsDashboardFragment__boost_your_signal">Signal-Boost</string>
   <string name="InsightsDashboardFragment__not_enough_data">Zu wenige Daten</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Dein »Einblicke«-Prozentwert wird berechnet anhand aller ausgehender Nachrichten der letzten %1$d Tage, die nicht verschwunden sind oder gelöscht wurden.</string>

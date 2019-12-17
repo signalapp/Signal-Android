@@ -450,6 +450,16 @@
   <string name="MediaOverviewActivity_Grid_view_description">Vizualizare grilă</string>
   <string name="MediaOverviewActivity_List_view_description">Vizualizare listă</string>
   <string name="MediaOverviewActivity_Selected_description">Selectat</string>
+  <plurals name="MediaOverviewActivity_d_items_s">
+    <item quantity="one">%1$d element %2$s</item>
+    <item quantity="few">%1$d elemente %2$s</item>
+    <item quantity="other">%1$d elemente %2$s</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_d_items">
+    <item quantity="one">%1$d element</item>
+    <item quantity="few">%1$d elemente</item>
+    <item quantity="other">%1$d elemente</item>
+  </plurals>
   <string name="MediaOverviewActivity_file">Fișier</string>
   <string name="MediaOverviewActivity_audio">Audio</string>
   <string name="MediaOverviewActivity_video">Video</string>

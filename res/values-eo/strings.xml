@@ -15,13 +15,13 @@
   <string name="ApplicationPreferencesActivity_currently_s">Aktuale: %s</string>
   <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Vi ankoraŭ ne metis pasfrazon!</string>
   <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
-    <item quantity="one">Po %d mesaĝo en interparolado</item>
+    <item quantity="one">Po %d mesaĝo en interparolo</item>
     <item quantity="other">Po %d mesaĝoj en interparolo</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Ĉu nun forviŝi ĉiujn malnovajn mesaĝojn?</string>
   <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
-    <item quantity="one">Tio tuj tondetos ĉiujn konversaciojn al la plej lastatempa mesaĝo.</item>
-    <item quantity="other">Tio tuj tondetos ĉiujn interparolojn al la %d plej lastatempaj mesaĝoj.</item>
+    <item quantity="one">Ĉiuj interparoloj estos tuj limigitaj al la plej lastatempa mesaĝo. La plej malnovaj mesaĝoj foriĝos.</item>
+    <item quantity="other">Ĉiuj interparoloj estos tuj limigitaj al la %d plej lastatempaj mesaĝoj. La plej malnovaj mesaĝoj foriĝos.</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">Forviŝi</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Ĉu malŝalti la pasfrazon?</string>
@@ -30,12 +30,12 @@
   <string name="ApplicationPreferencesActivity_unregistering">Malregistriĝo</string>
   <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Malregistriĝo el Signal-aj mesaĝoj kaj alvokoj…</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Ĉu malŝalti Signal-ajn mesaĝojn kaj alvokojn?</string>
-  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Malŝalti Signal-ajn mesaĝojn kaj alvokojn per malregistriĝo el la servilo. Vi devos re-registri vian telefonnumeron por poste reuzi ilin.</string>
+  <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Malŝalto de  Signal-mesaĝoj kaj -alvokoj per malregistriĝo de via telefonnumero el la servilo. Vi devos re-registri vian telefonnumeron por estonta reuzo de ili.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Eraro dum konekto al servilo!</string>
   <string name="ApplicationPreferencesActivity_sms_enabled">SMS ŝaltita</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Tuŝetu por ŝanĝi la defaŭltan SMS-aplikaĵon</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS malŝaltita</string>
-  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Tuŝetu por igi Signal-on vian defaŭltan SMS aplikaĵon</string>
+  <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Tuŝetu por igi Signal-on vian defaŭltan SMS-aplikaĵon</string>
   <string name="ApplicationPreferencesActivity_on">ŝaltita</string>
   <string name="ApplicationPreferencesActivity_On">Ŝaltita</string>
   <string name="ApplicationPreferencesActivity_off">malŝaltita</string>
@@ -81,7 +81,7 @@
   <string name="CameraActivity_image_save_failure">Eraro dum konservo de bildo.</string>
   <!--CameraXFragment-->
   <string name="CameraXFragment_tap_for_photo_hold_for_video">Tuŝetu por foto, tuŝadu por videaĵo</string>
-  <string name="CameraXFragment_capture_description">Ekkapti</string>
+  <string name="CameraXFragment_capture_description">Ekfoti</string>
   <string name="CameraXFragment_change_camera_description">Elekti alian fotilon</string>
   <string name="CameraXFragment_open_gallery_description">Malfermi la galerion</string>
   <!--CameraContacts-->
@@ -92,15 +92,15 @@
   <string name="CameraContacts_select_signal_recipients">Elekti Signal-ricevontojn</string>
   <string name="CameraContacts_no_signal_contacts">Neniu Signal-kontakto</string>
   <string name="CameraContacts_you_can_only_use_the_camera_button">La fotilo-butono uzeblas nur por sendi fotojn al Signal-kontaktoj.</string>
-  <string name="CameraContacts_cant_find_who_youre_looking_for">Ĉu vi ne trovas, kion vi serĉas?</string>
+  <string name="CameraContacts_cant_find_who_youre_looking_for">Ĉu vi ne trovas tiun, kiun vi serĉas?</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">Inviti kontakton uzi Signal-on</string>
   <string name="CameraContacts__menu_search">Serĉi</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Forviŝi</string>
-  <string name="ClearProfileActivity_remove_profile_photo">Ĉu forviŝi profilan foton?</string>
+  <string name="ClearProfileActivity_remove_profile_photo">Ĉu forviŝi profilfoton?</string>
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">Neniu retumilo trovita.</string>
-  <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Ĉela alvoko jam estas okazanta.</string>
+  <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Alia alvoko jam estas okazanta.</string>
   <string name="CommunicationActions_start_video_call">Ĉu eki vid-alvokon?</string>
   <string name="CommunicationActions_start_voice_call">Ĉu eki voĉ-alvokon?</string>
   <string name="CommunicationActions_cancel">Nuligi</string>
@@ -117,13 +117,13 @@
   <string name="ContactsCursorLoader_username_search">Serĉo de uzantnomo</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Mesaĝi al %s</string>
-  <string name="ContactsDatabase_signal_call_s">Signal-e telefoni %s</string>
+  <string name="ContactsDatabase_signal_call_s">Signal-alvoko %s</string>
   <!--ContactNameEditActivity-->
   <string name="ContactNameEditActivity_given_name">Persona nomo</string>
   <string name="ContactNameEditActivity_family_name">Familia nomo</string>
   <string name="ContactNameEditActivity_prefix">Prefikso</string>
   <string name="ContactNameEditActivity_suffix">Sufikso</string>
-  <string name="ContactNameEditActivity_middle_name">Dua nomo</string>
+  <string name="ContactNameEditActivity_middle_name">Dua persona nomo</string>
   <!--ContactShareEditActivity-->
   <string name="ContactShareEditActivity_type_home">Hejmo</string>
   <string name="ContactShareEditActivity_type_mobile">Poŝtelefono</string>
@@ -225,7 +225,7 @@
   </plurals>
   <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
     <item quantity="one">Konservado de kunsendaĵo al konservejo…</item>
-    <item quantity="other">Konservado de %1$d kunsendaĵoj al konservejo…</item>
+    <item quantity="other">Konservado de %1$d kunsendaĵoj al konservejo…</item>
   </plurals>
   <string name="ConversationFragment_pending">Pritraktota…</string>
   <string name="ConversationFragment_push">Datumoj (Signal)</string>
@@ -387,8 +387,8 @@
     <item quantity="other">SENDI SMS AL %d AMIKOJ</item>
   </plurals>
   <plurals name="InviteActivity_send_sms_invites">
-    <item quantity="one">Ĉu sendi %d SMS-inviton?</item>
-    <item quantity="other">Ĉu sendi %d SMS-invitojn?</item>
+    <item quantity="one">Ĉu sendi %d SMS-inviton?</item>
+    <item quantity="other">Ĉu sendi %d SMS-invitojn?</item>
   </plurals>
   <string name="InviteActivity_lets_switch_to_signal">Ni transiru al Signal: %1$s</string>
   <string name="InviteActivity_no_app_to_share_to">Ŝajnas, ke vi ne havas aplikaĵojn, al kiu kunhavigi.</string>
@@ -427,11 +427,19 @@
   <string name="MediaOverviewActivity_Sort_by">Ordigi laŭ</string>
   <string name="MediaOverviewActivity_Newest">Plej novaj</string>
   <string name="MediaOverviewActivity_Oldest">Plej malnovaj</string>
-  <string name="MediaOverviewActivity_Storage_used">Uzata spaco</string>
+  <string name="MediaOverviewActivity_Storage_used">Dosiergrando</string>
   <string name="MediaOverviewActivity_All_storage_use">Ĉiu uzata spaco</string>
   <string name="MediaOverviewActivity_Grid_view_description">Krada vido</string>
   <string name="MediaOverviewActivity_List_view_description">Lista vido</string>
   <string name="MediaOverviewActivity_Selected_description">Elektita</string>
+  <plurals name="MediaOverviewActivity_d_items_s">
+    <item quantity="one">%1$d ero %2$s</item>
+    <item quantity="other">%1$d eroj %2$s</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_d_items">
+    <item quantity="one">%1$d ero</item>
+    <item quantity="other">%1$d eroj</item>
+  </plurals>
   <string name="MediaOverviewActivity_file">Dosiero</string>
   <string name="MediaOverviewActivity_audio">Sonaĵo</string>
   <string name="MediaOverviewActivity_video">Videaĵo</string>
@@ -766,7 +774,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="MediaPreviewActivity_unssuported_media_type">Nesubtenata tipo de aŭdvidaĵo</string>
   <string name="MediaPreviewActivity_draft">Malneto</string>
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal bezonas la permeson aliri al konservejo por konservi al ekstera konservejo, sed ĝi estis porĉiame malakceptita. Bonvolu iri al la aplikaĵaj agordoj, elekti „Permesoj“, kaj ŝalti „Konservejo“.</string>
-  <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Ne eblas konservi en la ekstera konservejo sen permesoj</string>
+  <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Ne eblas konservi en la eksteran konservejon sen permesoj</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Ĉu forviŝi mesaĝon?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Tio daŭre forviŝos ĉi tiun mesaĝon.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s al %2$s</string>
@@ -1151,9 +1159,9 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Uzi Signal-on por ĉiuj envenaj tekstmesaĝetoj</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Uzi Signal-on por ĉiuj envenaj aŭdvidaj mesaĝoj</string>
   <string name="preferences__pref_enter_sends_title">La Eniga klavo kaŭzas sendon</string>
-  <string name="preferences__pressing_the_enter_key_will_send_text_messages">Premi la Enigan klavon sendos mesaĝojn</string>
+  <string name="preferences__pressing_the_enter_key_will_send_text_messages">Premado de la Eniga klavo sendos mesaĝojn</string>
   <string name="preferences__send_link_previews">Sendi autaŭrigardojn de ligilo</string>
-  <string name="preferences__previews_are_supported_for">Antaŭrigardoj funkcias por ligiloj al Imgur, Instagram, Pinterest, Reddit kaj YouTube</string>
+  <string name="preferences__previews_are_supported_for">Antaŭrigardoj funkcias por ligiloj al Imgur, Instagram, Pinterest, Reddit kaj YouTube.</string>
   <string name="preferences__choose_identity">Elekti identecon</string>
   <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Elektu vian propran kontakton el la kontaktlisto.</string>
   <string name="preferences__change_passphrase">Ŝanĝi pasfrazon</string>
@@ -1233,12 +1241,12 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="preferences_chats__when_using_wifi">Kiam uziĝas vifio</string>
   <string name="preferences_chats__when_roaming">Dum retmigrado</string>
   <string name="preferences_chats__media_auto_download">Aŭdvidaĵa aŭtomata elŝuto</string>
-  <string name="preferences_chats__message_trimming">Tondeto de mesaĝoj</string>
-  <string name="preferences_storage__storage_usage">Uzo de la konservejo</string>
+  <string name="preferences_chats__message_trimming">Limigo de mesaĝo-tenperiodo</string>
+  <string name="preferences_storage__storage_usage">Uzado de la konservejo</string>
   <string name="preferences_storage__photos">Fotoj</string>
   <string name="preferences_storage__videos">Videaĵoj</string>
   <string name="preferences_storage__files">Dosieroj</string>
-  <string name="preferences_storage__audio">Sonaĵo</string>
+  <string name="preferences_storage__audio">Sonaĵoj</string>
   <string name="preferences_storage__review_storage">Kontroli la konservejon</string>
   <string name="preferences_advanced__use_system_emoji">Uzi sisteman emoĝiaron</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Malebligi emoĝiaron de Signal</string>
@@ -1253,16 +1261,16 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="preferences_notifications__show">Montri</string>
   <string name="preferences_notifications__calls">Alvokoj</string>
   <string name="preferences_notifications__ringtone">Sonoro</string>
-  <string name="preferences_chats__show_invitation_prompts">Montri invitojn</string>
-  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Montri invitojn por kontaktoj sen Signal</string>
+  <string name="preferences_chats__show_invitation_prompts">Montri invit-avizojn</string>
+  <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Montri invit-avizojn ĉe kontaktoj sen Signal</string>
   <string name="preferences_chats__message_text_size">Mesaĝa tipargrando</string>
   <string name="preferences_events__contact_joined_signal">Kontakto aliĝis al Signal</string>
   <string name="preferences_notifications__priority">Prioritato</string>
-  <string name="preferences_communication__category_sealed_sender">Sigelita sendinto</string>
+  <string name="preferences_communication__category_sealed_sender">Sekretigo de la sendinto</string>
   <string name="preferences_communication__sealed_sender_display_indicators">Montri indikilojn</string>
-  <string name="preferences_communication__sealed_sender_display_indicators_description">Montri stato-piktogramon, kiam vi elektas eron „Detaloj de la mesaĝo“ ĉe mesaĝoj, kiu liveriĝis uzante funkcion „sigelita sendinto“.</string>
+  <string name="preferences_communication__sealed_sender_display_indicators_description">Montri stato-piktogramon, kiam vi elektas eron „Detaloj de la mesaĝo“ ĉe mesaĝoj, kiuj liveriĝis uzante la funkcion „Sekretigo de la sendinto“.</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Permesi de iu ajn</string>
-  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Ebligi la funkcion „sigelita sendinto“ por envenaj mesaĝoj el ne-kontaktoj kaj personoj, kun kiuj vi ne kunhavigis vian profilon.</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Ebligi la funkcion „Sekretigo de la sendinto“ ĉe envenaj mesaĝoj el ne-kontaktoj kaj personoj, kun kiuj vi ne kunhavigis vian profilon.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Scii pli</string>
   <!--****************************************-->
   <!--menus-->

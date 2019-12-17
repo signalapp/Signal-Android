@@ -1308,6 +1308,8 @@
   <string name="trimmer__deleting_old_messages">পুরানো বার্তাগুলি মোছা হচ্ছে …‌</string>
   <string name="trimmer__old_messages_successfully_deleted">পুরানো বার্তা সফলভাবে মোছা হয়েছে</string>
   <!--Insights-->
+  <string name="Insights__title">অন্তর্দৃষ্টি</string>
+  <string name="InsightsDashboardFragment__title">অন্তর্দৃষ্টি</string>
   <string name="InsightsDashboardFragment__cancel">বাতিল</string>
   <string name="InsightsDashboardFragment__send">পাঠান</string>
   <string name="FirstInviteReminder__title">Signal এ আমন্ত্রন জানান</string>

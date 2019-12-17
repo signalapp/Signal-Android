@@ -49,7 +49,7 @@
     <item quantity="other">%d دقیقه</item>
   </plurals>
   <!--DraftDatabase-->
-  <string name="DraftDatabase_Draft_image_snippet">(تصویر)</string>
+  <string name="DraftDatabase_Draft_image_snippet">(عکس)</string>
   <string name="DraftDatabase_Draft_audio_snippet">(صوت)</string>
   <string name="DraftDatabase_Draft_video_snippet">(ویدئو)</string>
   <string name="DraftDatabase_Draft_location_snippet">(موقعیت)</string>
@@ -78,7 +78,7 @@
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">تماس های دریافتی</string>
   <!--CameraActivity-->
-  <string name="CameraActivity_image_save_failure">تصویر ذخیره نشد</string>
+  <string name="CameraActivity_image_save_failure">عکس ذخیره نشد</string>
   <!--CameraXFragment-->
   <string name="CameraXFragment_tap_for_photo_hold_for_video">برای عکس ضربه بزنید ، برای فیلم نگه دارید</string>
   <string name="CameraXFragment_capture_description">گرفتن</string>
@@ -443,7 +443,7 @@
   <string name="MediaOverviewActivity_file">فایل</string>
   <string name="MediaOverviewActivity_audio">صدا</string>
   <string name="MediaOverviewActivity_video">ویدیو</string>
-  <string name="MediaOverviewActivity_image">تصویر</string>
+  <string name="MediaOverviewActivity_image">عکس</string>
   <string name="MediaOverviewActivity_sent_by_s">از طرف %1$s</string>
   <string name="MediaOverviewActivity_sent_by_you">از طرف شما</string>
   <string name="MediaOverviewActivity_sent_by_s_to_s">از طرف %1$s به %2$s</string>
@@ -635,7 +635,7 @@
   <string name="RevealableMessageView_viewed">Viewed</string>
   <string name="RevealableMessageView_outgoing_media">رسانه‌ها</string>
   <!--ScribbleActivity-->
-  <string name="ScribbleActivity_save_failure">ناموفقیت در ذخیره تغییرات تصویر</string>
+  <string name="ScribbleActivity_save_failure">ذخیرهٔ تغییرات برروی عکس ناموفق بود</string>
   <!--Search-->
   <string name="SearchFragment_no_results">نتایجی برای %s یافت نشد</string>
   <string name="SearchFragment_header_conversations">مکالمات</string>
@@ -651,7 +651,7 @@
   <string name="SharedContactView_invite_to_signal">دعوت به Signal</string>
   <string name="SharedContactView_message">پیام Signal</string>
   <!--Slide-->
-  <string name="Slide_image">تصویر</string>
+  <string name="Slide_image">عکس</string>
   <string name="Slide_sticker">استیکر</string>
   <string name="Slide_audio">صدا</string>
   <string name="Slide_video">ویدئو</string>
@@ -866,7 +866,7 @@
   <string name="attachment_type_selector__location_description">موقعیت</string>
   <string name="attachment_type_selector__gif">گیف</string>
   <string name="attachment_type_selector__gif_description">گیف</string>
-  <string name="attachment_type_selector__gallery_description">تصویر با ویدئو</string>
+  <string name="attachment_type_selector__gallery_description">عکس یا ویدئو</string>
   <string name="attachment_type_selector__file_description">فایل</string>
   <string name="attachment_type_selector__gallery">گالری</string>
   <string name="attachment_type_selector__file">فایل</string>
@@ -1131,7 +1131,7 @@
   <string name="arrays__name_and_message">نام و پیام</string>
   <string name="arrays__name_only">تنها نام</string>
   <string name="arrays__no_name_or_message">بدون نام و یا پیام</string>
-  <string name="arrays__images">تصاویر</string>
+  <string name="arrays__images">عکس‌ها</string>
   <string name="arrays__audio">صدا</string>
   <string name="arrays__video">ویدئو</string>
   <string name="arrays__documents">اسناد</string>
@@ -1303,7 +1303,7 @@
   <string name="conversation_list_settings_shortcut">میانبر تنظیمات</string>
   <string name="conversation_list_search_description">جستجو</string>
   <!--conversation_list_item_view-->
-  <string name="conversation_list_item_view__contact_photo_image">تماس با عکس تصویر</string>
+  <string name="conversation_list_item_view__contact_photo_image">عکس مخاطب</string>
   <string name="conversation_list_item_view__archived">آرشیو</string>
   <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">اینباکس صفررررر</string>
   <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">هیچ. صفر. تهی. خالی.\n  چیزی برای خواندن وجود ندارد!</string>
@@ -1353,9 +1353,9 @@
   <string name="reminder_header_expired_build">نسخه نرم افزار Signal شما منقضی شده است.</string>
   <string name="reminder_header_expired_build_details">پیام ها دیگر با موفقیت ارسال نمی‌شوند. لمس کنید برای بروزرسانی به آخرین نسخه موجود.</string>
   <string name="reminder_header_sms_default_title">استفاده به عنوان برنامهٔ پیش‌فرض پیامک</string>
-  <string name="reminder_header_sms_default_text">ضربه بزنید تا برنامه پیش فرض SMS را تغییر دهید</string>
-  <string name="reminder_header_sms_import_title">وارد کردن SMS سیستم</string>
-  <string name="reminder_header_sms_import_text">جهت کپی کردن اس ام اس های گوشی به داخل بانک اطلاعاتی رمزگذاری شده Signal ضربه بزنید.</string>
+  <string name="reminder_header_sms_default_text">ضربه بزنید تا Signal به برنامهٔ پیش‌فرض پیامک تبدیل شود</string>
+  <string name="reminder_header_sms_import_title">وارد کردن پیامک‌های بر روی سیستم</string>
+  <string name="reminder_header_sms_import_text">ضربه بزنید تا پیامک‌های گوشی به بانک اطلاعاتی رمز شدهٔ Signal وارد شود.</string>
   <string name="reminder_header_push_title">فعال کردن تماس ها و پیام های Signal</string>
   <string name="reminder_header_push_text">تجربه ارتباط  خود را ارتقا دهید.</string>
   <string name="reminder_header_invite_title">دعوت به Signal</string>
@@ -1406,7 +1406,7 @@
   <string name="ConversationListFragment_loading">در حال بارگزاری…</string>
   <string name="CallNotificationBuilder_connecting">در حال اتصال…</string>
   <string name="Permissions_permission_required">مجوز لازم است</string>
-  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal برای ارسال پیامک نیاز به دسترسی به پیامک دارد اما این دسترسی به‌ طور همیشگی رد شده است. لطفاً به بخش برنامه‌ها در تنظیمات تلفن همراه خود رفته در ادامه  پس از یافتن Signal وارد بخش دسترسی ها شده و گزینهٔ پیامک را فعال کنید.</string>
+  <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal برای ارسال پیامک نیاز به مجوز پیامک نیاز دارد اما این دسترسی به‌ طور همیشگی لغو شده است. لطفاً به بخش برنامه‌ها در تنظیمات تلفن همراه خود رفته، در ادامه وارد بخش دسترسی‌ها شده و گزینهٔ پیامک را فعال کنید.</string>
   <string name="Permissions_continue">ادامه</string>
   <string name="Permissions_not_now">حالا نه</string>
   <string name="ConversationListActivity_signal_needs_contacts_permission_in_order_to_search_your_contacts_but_it_has_been_permanently_denied">Signal برای جستجو مخاطبان نیاز به دسترسی به مجوز مخاطباندارد اما این دسترسی به طور همیشگی رد شده است. لطفا به بخش برنامه ها در تنظیمات تلفن همراه خود رفته در ادامه پس از یافتن Signal وارد بخش دسترسی ها شده و گزینه مخاطبان را فعال کنید.</string>
