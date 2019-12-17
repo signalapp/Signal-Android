@@ -7,7 +7,7 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ScrollView
-import kotlinx.android.synthetic.main.fake_chat_content_view.view.*
+import kotlinx.android.synthetic.main.fake_chat_view.view.*
 import network.loki.messenger.R
 
 class FakeChatView : ScrollView {
@@ -38,7 +38,7 @@ class FakeChatView : ScrollView {
 
     private fun setUpViewHierarchy() {
         val inflater = context.applicationContext.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val contentView = inflater.inflate(R.layout.fake_chat_content_view, null)
+        val contentView = inflater.inflate(R.layout.fake_chat_view, null)
         addView(contentView)
         isVerticalScrollBarEnabled = false
     }

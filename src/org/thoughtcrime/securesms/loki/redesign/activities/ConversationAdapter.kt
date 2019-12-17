@@ -16,7 +16,7 @@ class ConversationAdapter(context: Context, cursor: Cursor) : CursorRecyclerView
     class ViewHolder(val view: ConversationView) : RecyclerView.ViewHolder(view)
 
     override fun onCreateItemViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = ConversationView.get(context, parent)
+        val view = ConversationView(context)
         view.setOnClickListener { conversationClickListener?.onConversationClick(view) }
         view.setOnLongClickListener {
             conversationClickListener?.onLongConversationClick(view)

@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.loki.redesign.utilities.setUpActionBarSessionL
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.crypto.ProfileCipher
 
+
 class DisplayNameActivity : BaseActionBarActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,7 +55,8 @@ class DisplayNameActivity : BaseActionBarActivity() {
             val servers = DatabaseFactory.getLokiThreadDatabase(this).getAllPublicChatServers()
             servers.forEach { publicChatAPI.setDisplayName(displayName, it) }
         }
-        startActivity(Intent(this, ConversationListActivity::class.java))
+        val intent = Intent(this, ConversationListActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         push(intent)
     }
 }
