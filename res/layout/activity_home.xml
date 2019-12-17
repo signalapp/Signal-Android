@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="72dp">
+        android:layout_marginBottom="@dimen/new_conversation_button_bottom_offset">
 
         <View
             android:layout_width="72dp"

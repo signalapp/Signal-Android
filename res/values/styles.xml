@@ -7,6 +7,8 @@
         <item name="android:background">@color/action_bar_background</item>
         <item name="titleTextStyle">@style/Session.TitleTextStyle</item>
         <item name="android:titleTextStyle">@style/Session.TitleTextStyle</item>
+        <item name="elevation">0dp</item>
+        <item name="android:elevation">0dp</item>
     </style>
 
     <style name="Session.TitleTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">

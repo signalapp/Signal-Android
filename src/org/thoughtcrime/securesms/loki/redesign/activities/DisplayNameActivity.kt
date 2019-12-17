@@ -15,7 +15,6 @@ import org.thoughtcrime.securesms.loki.redesign.utilities.setUpActionBarSessionL
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.crypto.ProfileCipher
 
-
 class DisplayNameActivity : BaseActionBarActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
