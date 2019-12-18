@@ -15,63 +15,52 @@
         android:layout_width="64dp"
         android:layout_height="64dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/sticker_management_divider"
+        tools:src="@drawable/ic_person_white_24dp"
+        tools:tint="@color/core_blue"/>
 
     <LinearLayout
-        android:id="@+id/sticker_management_text_container"
+        android:id="@+id/sticker_management_title_container"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:layout_marginEnd="4dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="4dp"
         android:orientation="vertical"
-        app:layout_constraintTop_toTopOf="@id/sticker_management_cover"
-        app:layout_constraintBottom_toBottomOf="@id/sticker_management_cover"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/sticker_management_divider"
         app:layout_constraintStart_toEndOf="@id/sticker_management_cover"
-        app:layout_constraintEnd_toStartOf="@id/sticker_management_share_button">
+        app:layout_constraintEnd_toStartOf="@id/sticker_management_button_barrier">
 
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
-
-            <org.thoughtcrime.securesms.components.emoji.EmojiTextView
-                android:id="@+id/sticker_management_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/Signal.Text.Body"
-                android:maxLines="2"
-                android:ellipsize="end"
-                tools:text="Spider-Man"/>
-
-            <ImageView
-                android:id="@+id/sticker_management_blessed_badge"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
-                android:layout_marginTop="1dp"
-                android:src="@drawable/ic_check_circle_white_18dp"
-                android:tint="@color/core_blue"/>
-
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
-
-        </LinearLayout>
-
-        <org.thoughtcrime.securesms.components.emoji.EmojiTextView
-            android:id="@+id/sticker_management_author"
+    <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+            android:id="@+id/sticker_management_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/Signal.Text.Body"
-            android:maxLines="2"
             android:ellipsize="end"
+            app:emoji_maxLength="45"
+            tools:text="Spider-Man"/>
+
+        <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+            android:id="@+id/sticker_management_author"
+            style="@style/Signal.Text.Body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="2"
             android:textColor="@color/core_grey_60"
-            tools:text="Peter Parker"/>
+            tools:text="Peter Parker" />
 
     </LinearLayout>
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/sticker_management_button_barrier"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        app:barrierDirection="start"
+        app:constraint_referenced_ids="sticker_management_action_button,sticker_management_share_button"/>
 
     <View
         android:id="@+id/sticker_management_share_button"
@@ -80,8 +69,8 @@
         android:layout_marginEnd="4dp"
         android:background="?sticker_management_icon"
         app:layout_constraintEnd_toStartOf="@id/sticker_management_action_button"
-        app:layout_constraintTop_toTopOf="@id/sticker_management_text_container"
-        app:layout_constraintBottom_toBottomOf="@id/sticker_management_text_container" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
     <ImageView
         android:id="@+id/sticker_management_share_button_image"
@@ -100,8 +89,8 @@
         android:layout_height="40dp"
         android:background="?sticker_management_icon"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/sticker_management_text_container"
-        app:layout_constraintBottom_toBottomOf="@id/sticker_management_text_container" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
     <ImageView
         android:id="@+id/sticker_management_action_button_image"
@@ -119,9 +108,8 @@
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:background="?sticker_management_divider_color"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="@id/sticker_management_text_container"
-        app:layout_constraintTop_toBottomOf="@id/sticker_management_cover"
+        app:layout_constraintStart_toStartOf="@id/sticker_management_title_container"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
