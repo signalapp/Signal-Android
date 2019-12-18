@@ -24,11 +24,9 @@ import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.media.AudioManager;
-import android.os.Build;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
-import androidx.core.app.ActivityCompat;
 
 import org.thoughtcrime.securesms.logging.Log;
 import android.view.View;
@@ -150,6 +148,20 @@ public class WebRtcCallActivity extends Activity {
     callScreen.setCameraFlipButtonListener(new CameraFlipButtonListener());
     callScreen.setSpeakerButtonListener(new SpeakerButtonListener());
     callScreen.setBluetoothButtonListener(new BluetoothButtonListener());
+  }
+
+  private void handleSetAudioSpeaker(boolean enabled) {
+    Intent intent = new Intent(this, WebRtcCallService.class);
+    intent.setAction(WebRtcCallService.ACTION_SET_AUDIO_SPEAKER);
+    intent.putExtra(WebRtcCallService.EXTRA_SPEAKER, enabled);
+    startService(intent);
+  }
+
+  private void handleSetAudioBluetooth(boolean enabled) {
+    Intent intent = new Intent(this, WebRtcCallService.class);
+    intent.setAction(WebRtcCallService.ACTION_SET_AUDIO_BLUETOOTH);
+    intent.putExtra(WebRtcCallService.EXTRA_BLUETOOTH, enabled);
+    startService(intent);
   }
 
   private void handleSetMuteAudio(boolean enabled) {
@@ -376,28 +388,14 @@ public class WebRtcCallActivity extends Activity {
   private class SpeakerButtonListener implements WebRtcCallControls.SpeakerButtonListener {
     @Override
     public void onSpeakerChange(boolean isSpeaker) {
-      AudioManager audioManager = ServiceUtil.getAudioManager(WebRtcCallActivity.this);
-      audioManager.setSpeakerphoneOn(isSpeaker);
-
-      if (isSpeaker && audioManager.isBluetoothScoOn()) {
-        audioManager.stopBluetoothSco();
-        audioManager.setBluetoothScoOn(false);
-      }
+      WebRtcCallActivity.this.handleSetAudioSpeaker(isSpeaker);
     }
   }
 
   private class BluetoothButtonListener implements WebRtcCallControls.BluetoothButtonListener {
     @Override
     public void onBluetoothChange(boolean isBluetooth) {
-      AudioManager audioManager = ServiceUtil.getAudioManager(WebRtcCallActivity.this);
-
-      if (isBluetooth) {
-        audioManager.startBluetoothSco();
-        audioManager.setBluetoothScoOn(true);
-      } else {
-        audioManager.stopBluetoothSco();
-        audioManager.setBluetoothScoOn(false);
-      }
+      WebRtcCallActivity.this.handleSetAudioBluetooth(isBluetooth);
     }
   }
 

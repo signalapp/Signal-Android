@@ -100,7 +100,6 @@ public class WebRtcCallControls extends LinearLayout {
       @Override
       public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         listener.onSpeakerChange(isChecked);
-        updateAudioState(bluetoothButton.getVisibility() == View.VISIBLE);
       }
     });
   }
@@ -110,7 +109,6 @@ public class WebRtcCallControls extends LinearLayout {
       @Override
       public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         listener.onBluetoothChange(isChecked);
-        updateAudioState(true);
       }
     });
   }

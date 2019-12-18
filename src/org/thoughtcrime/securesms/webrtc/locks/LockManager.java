@@ -32,6 +32,7 @@ public class LockManager {
     PROCESSING,  //used when the phone is active but before the user should be alerted.
     INTERACTIVE,
     IN_CALL,
+    IN_HANDS_FREE_CALL,
     IN_VIDEO
   }
 
@@ -98,6 +99,11 @@ public class LockManager {
         break;
       case INTERACTIVE:
         setLockState(LockState.FULL);
+        accelerometerListener.enable(false);
+        break;
+      case IN_HANDS_FREE_CALL:
+        setLockState(LockState.PARTIAL);
+        proximityDisabled = true;
         accelerometerListener.enable(false);
         break;
       case IN_VIDEO:

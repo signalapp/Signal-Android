@@ -116,6 +116,8 @@ public class WebRtcCallService extends Service implements CallConnection.Observe
   public static final String EXTRA_RESULT_RECEIVER    = "result_receiver";
   public static final String EXTRA_CALL_ERROR         = "call_error";
   public static final String EXTRA_IDENTITY_KEY_BYTES = "identity_key_bytes";
+  public static final String EXTRA_SPEAKER            = "audio_speaker";
+  public static final String EXTRA_BLUETOOTH          = "audio_bluetooth";
 
   public static final String ACTION_INCOMING_CALL        = "CALL_INCOMING";
   public static final String ACTION_OUTGOING_CALL        = "CALL_OUTGOING";
@@ -130,6 +132,8 @@ public class WebRtcCallService extends Service implements CallConnection.Observe
   public static final String ACTION_SCREEN_OFF           = "SCREEN_OFF";
   public static final String ACTION_CHECK_TIMEOUT        = "CHECK_TIMEOUT";
   public static final String ACTION_IS_IN_CALL_QUERY     = "IS_IN_CALL";
+  public static final String ACTION_SET_AUDIO_SPEAKER    = "SET_AUDIO_SPEAKER";
+  public static final String ACTION_SET_AUDIO_BLUETOOTH  = "SET_AUDIO_BLUETOOTH";
 
   public static final String ACTION_RESPONSE_MESSAGE  = "RESPONSE_MESSAGE";
   public static final String ACTION_ICE_MESSAGE       = "ICE_MESSAGE";
@@ -217,6 +221,8 @@ public class WebRtcCallService extends Service implements CallConnection.Observe
       else if (intent.getAction().equals(ACTION_CHECK_TIMEOUT))             handleCheckTimeout(intent);
       else if (intent.getAction().equals(ACTION_IS_IN_CALL_QUERY))          handleIsInCallQuery(intent);
       else if (intent.getAction().equals(ACTION_CALL_ERROR))                handleCallError(intent);
+      else if (intent.getAction().equals(ACTION_SET_AUDIO_SPEAKER))         handleSetSpeakerAudio(intent);
+      else if (intent.getAction().equals(ACTION_SET_AUDIO_BLUETOOTH))       handleSetBluetoothAudio(intent);
     });
 
     return START_NOT_STICKY;
@@ -406,7 +412,7 @@ public class WebRtcCallService extends Service implements CallConnection.Observe
     initializeVideo();
 
     sendMessage(WebRtcViewModel.State.CALL_OUTGOING, recipient, localCameraState, remoteVideoEnabled, bluetoothAvailable, microphoneEnabled);
-    lockManager.updatePhoneState(LockManager.PhoneState.IN_CALL);
+    lockManager.updatePhoneState(getInCallPhoneState());
     audioManager.initializeAudioForCall();
     audioManager.startOutgoingRinger(OutgoingRinger.Type.RINGING);
     bluetoothStateManager.setWantsConnection(true);
@@ -534,7 +540,7 @@ public class WebRtcCallService extends Service implements CallConnection.Observe
     callState = CallState.STATE_CONNECTED;
 
     if (localCameraState.isEnabled()) lockManager.updatePhoneState(LockManager.PhoneState.IN_VIDEO);
-    else                              lockManager.updatePhoneState(LockManager.PhoneState.IN_CALL);
+    else                              lockManager.updatePhoneState(getInCallPhoneState());
 
     sendMessage(WebRtcViewModel.State.CALL_CONNECTED, recipient, localCameraState, remoteVideoEnabled, bluetoothAvailable, microphoneEnabled);
 
@@ -746,6 +752,43 @@ public class WebRtcCallService extends Service implements CallConnection.Observe
     terminate();
   }
 
+  private void handleSetSpeakerAudio(Intent intent) {
+    boolean      isSpeaker    = intent.getBooleanExtra(EXTRA_SPEAKER, false);
+    AudioManager audioManager = ServiceUtil.getAudioManager(this);
+
+    audioManager.setSpeakerphoneOn(isSpeaker);
+
+    if (isSpeaker && audioManager.isBluetoothScoOn()) {
+      audioManager.stopBluetoothSco();
+      audioManager.setBluetoothScoOn(false);
+    }
+
+    if (!localCameraState.isEnabled()) {
+      lockManager.updatePhoneState(getInCallPhoneState());
+    }
+
+    sendMessage(viewModelStateFor(callState), recipient, localCameraState, remoteVideoEnabled, bluetoothAvailable, microphoneEnabled);
+  }
+
+  private void handleSetBluetoothAudio(Intent intent) {
+    boolean      isBluetooth  = intent.getBooleanExtra(EXTRA_BLUETOOTH, false);
+    AudioManager audioManager = ServiceUtil.getAudioManager(this);
+
+    if (isBluetooth) {
+      audioManager.startBluetoothSco();
+      audioManager.setBluetoothScoOn(true);
+    } else {
+      audioManager.stopBluetoothSco();
+      audioManager.setBluetoothScoOn(false);
+    }
+
+    if (!localCameraState.isEnabled()) {
+      lockManager.updatePhoneState(getInCallPhoneState());
+    }
+
+    sendMessage(viewModelStateFor(callState), recipient, localCameraState, remoteVideoEnabled, bluetoothAvailable, microphoneEnabled);
+  }
+
   private void handleSetMuteAudio(Intent intent) {
     boolean muted = intent.getBooleanExtra(EXTRA_MUTE, false);
     this.microphoneEnabled = !muted;
@@ -777,7 +820,7 @@ public class WebRtcCallService extends Service implements CallConnection.Observe
 
     if (callState == CallState.STATE_CONNECTED) {
       if (localCameraState.isEnabled()) this.lockManager.updatePhoneState(LockManager.PhoneState.IN_VIDEO);
-      else                              this.lockManager.updatePhoneState(LockManager.PhoneState.IN_CALL);
+      else                              this.lockManager.updatePhoneState(getInCallPhoneState());
     }
 
     if (localCameraState.isEnabled() &&
@@ -1343,6 +1386,15 @@ public class WebRtcCallService extends Service implements CallConnection.Observe
       VideoTrack videoTrack = stream.videoTracks.get(0);
       videoTrack.setEnabled(true);
       videoTrack.addSink(remoteRenderer);
+    }
+  }
+
+  private LockManager.PhoneState getInCallPhoneState() {
+    AudioManager audioManager = ServiceUtil.getAudioManager(this);
+    if (audioManager.isSpeakerphoneOn() || audioManager.isBluetoothScoOn() || audioManager.isWiredHeadsetOn()) {
+      return LockManager.PhoneState.IN_HANDS_FREE_CALL;
+    } else {
+      return LockManager.PhoneState.IN_CALL;
     }
   }
 
