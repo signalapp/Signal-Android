@@ -285,7 +285,7 @@ public class ThumbnailView extends FrameLayout {
     }
 
     if (this.slide != null && this.slide.getFastPreflightId() != null      &&
-        Util.equals(this.slide.getThumbnailUri(), slide.getThumbnailUri()) &&
+        (!slide.hasVideo() || Util.equals(this.slide.getThumbnailUri(), slide.getThumbnailUri())) &&
         Util.equals(this.slide.getFastPreflightId(), slide.getFastPreflightId()))
     {
       Log.i(TAG, "Not re-loading slide for fast preflight: " + slide.getFastPreflightId());
