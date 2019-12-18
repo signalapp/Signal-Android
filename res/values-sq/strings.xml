@@ -334,6 +334,8 @@
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Tanimë mbulohet paraparja opsionale e lidhjeve për disa nga sajtet më popullorë në Internet.</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Këtë veçori mund ta aktivizoni ose çaktivizoni në çfarëdo kohe, te rregullimet tuaja të Signal-it (Privatësi &gt; Dërgo paraparje lidhjesh).</string>
   <string name="ExperienceUpgradeActivity_got_it">U mor</string>
+  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Pse të përdorni fjalë, kur mund të përdorni ngjitës?</string>
+  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Pse të përdorni fjalë, kur mund të përdorni ngjitës? Prekeni këtë ikonë në tastierën tuaj:</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Po merret një mesazh…</string>
   <!--GcmRefreshJob-->

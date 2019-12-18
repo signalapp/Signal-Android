@@ -363,6 +363,7 @@
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Volitelné náhledy odkazu jsou nyní podporovány na některých populárních internetových stránkách.</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Tuto funkcionalitu můžete zakázat či povolit v Nastavení (Soukromí &gt; Odesílat náhledy odkazu)</string>
   <string name="ExperienceUpgradeActivity_got_it">Rozumím</string>
+  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Proč užívat slova, když můžete poslat nálepku?</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Načítám zprávu…</string>
   <!--GcmRefreshJob-->

@@ -331,6 +331,8 @@
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported"> इंटरनेट की सबसे लोकप्रिय साइटों के पूर्वदर्शन अब आपकी इच्छा अनुसार देखे जा सकते हैं।</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">आप इस सुविधा को कभी भी अपनी Signal सेटिंग से शुरु या बंद कर सकते हैं ( प्राईवसी और लिंक भेजने के पूर्वदर्शन) |</string>
   <string name="ExperienceUpgradeActivity_got_it">समझ गया </string>
+  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">शब्द क्युँ इस्तेमाल करने जब आप स्टिकर इस्तेमाल कर सकते हैं?</string>
+  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">शब्द क्युँ इस्तेमाल करने जब आप स्टिकर इस्तेमाल कर सकते हैं? अपने किबोर्ड पर यह आइकन टैप करें:</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">मेसेज मंगाया जा रहा है़…</string>
   <!--GcmRefreshJob-->

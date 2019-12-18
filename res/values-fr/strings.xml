@@ -326,6 +326,8 @@
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Les aperçus facultatifs de liens sont maintenant pris en charge pour certains des sites les plus populaires d’Internet.</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Vous pouvez désactiver ou activer cette fonction en tout temps dans vos paramètres de Signal (Confidentialité &gt; Envoyer des aperçus de liens).</string>
   <string name="ExperienceUpgradeActivity_got_it">D’accord</string>
+  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Pourquoi utiliser des mots quand vous pouvez utiliser des autocollants ?</string>
+  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Pourquoi utiliser des mots quand vous pouvez utiliser des autocollants ? Touchez cette icône sur votre clavier :</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Récupération d’un message…</string>
   <!--GcmRefreshJob-->

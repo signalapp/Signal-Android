@@ -363,6 +363,8 @@
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Для некоторых из самых популярных сайтов в интернете появилась опциональная возможность предварительного просмотра ссылок.</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Вы можете отключить или включить эту функцию в любое время в настройках Signal (Конфиденциальность &gt; Отправлять предпросмотры ссылок).</string>
   <string name="ExperienceUpgradeActivity_got_it">Понятно</string>
+  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Зачем использовать слова, когда можно использовать стикеры?</string>
+  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Зачем использовать слова, когда можно использовать стикеры? Нажмите этот значок на своей клавиатуре:</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Принимаем сообщение…</string>
   <!--GcmRefreshJob-->

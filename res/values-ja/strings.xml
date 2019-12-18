@@ -321,6 +321,7 @@
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">リンクのプレビューは、主要なネットサービスに対応しています。</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">この機能は、Signalの設定（プライバシー &gt; リンクプレビューを送る）で有効化できます。</string>
   <string name="ExperienceUpgradeActivity_got_it">分かりました</string>
+  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">ステッカーに文字を使えます。このアイコンをタップしてください。</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">メッセージを読み込んでいます…</string>
   <!--GcmRefreshJob-->

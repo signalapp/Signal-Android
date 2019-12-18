@@ -331,6 +331,8 @@
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">ঐচ্ছিক লিঙ্ক পূর্বরূপগুলি এখন ইন্টারনেটের বেশ কয়েকটি জনপ্রিয় সাইটের জন্য সমর্থিত।</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">আপনি আপনার Signal সেটিংসে এই বৈশিষ্ট্যটি যে কোনও সময় অক্ষম বা সক্ষম করতে পারেন (গোপনীয়তা এবং লিঙ্কের পূর্বরূপ প্রেরণ করুন)।</string>
   <string name="ExperienceUpgradeActivity_got_it">বুঝতে পেরেছি</string>
+  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">আপনি যখন স্টিকার ব্যবহার করতে পারেন তখন কেন শব্দ ব্যবহার করবেন?</string>
+  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">আপনি যখন স্টিকার ব্যবহার করতে পারেন তখন কেন শব্দ ব্যবহার করবেন? আপনার কীবোর্ডে এই আইকনটি আলতো চাপুন:</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">একটি বার্তা আনয়ন করা হচ্ছে…</string>
   <!--GcmRefreshJob-->

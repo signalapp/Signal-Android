@@ -335,6 +335,8 @@
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Agora  são suportadas pré-visualizações de hiperligações para os sites mais populares da Internet.</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Pode desativar ou ativar esta funcionalidade a qualquer altura nas definições do Signal (Privacidade &gt; Enviar pré-visualização de hiperligações).</string>
   <string name="ExperienceUpgradeActivity_got_it">Percebido</string>
+  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Porquê utilizar palavras quando pode utilizar autocolantes?</string>
+  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Porquê utilizar palavras quando pode utilizar autocolantes? Toque neste ícone no seu teclado:</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">A obter uma mensagem…</string>
   <!--GcmRefreshJob-->

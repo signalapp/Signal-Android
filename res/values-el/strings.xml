@@ -318,6 +318,7 @@
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Οι προεπισκοπήσεις συνδέσμων υποστηρίζονται πλέον προαιρετικά για μερικές από τις γνωστότερες ιστοσελίδες του διαδικτύου.  </string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Μπορείτε να απενεργοποιήσετε ή να ενεργοποιήσετε αυτό το χαρακτηριστικό από τις ρυθμίσεις του Signal (Ιδιωτικότητα &gt; Αποστολή προεπισκοπήσεων συνδέσμων).</string>
   <string name="ExperienceUpgradeActivity_got_it">Εντάξει</string>
+  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Γιατί να το πείτε με λέξεις, αν μπορείτε να το πείτε με ένα αυτοκόλλητο;</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Λαμβάνουμε ένα μήνυμα…</string>
   <!--GcmRefreshJob-->

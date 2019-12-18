@@ -349,6 +349,8 @@
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Previzualizarea opțională de link-uri este acum suportată pentru unele dintre cele mai populare site-uri de pe Internet.</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Puteți activa sau dezactiva această functionalitate oricând din setările Signal ( Confidențialitate &gt; Trimite previzualizarea link-urilor).</string>
   <string name="ExperienceUpgradeActivity_got_it">Am înțeles</string>
+  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">De ce să folosiți cuvinte când puteți folosi autocolante?</string>
+  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">De ce să folosiți cuvinte când puteți folosi autocolante? Apăsați pe această icoană pe tastatura dvs:</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Se obține un mesaj…</string>
   <!--GcmRefreshJob-->

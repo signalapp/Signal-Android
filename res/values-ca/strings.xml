@@ -335,6 +335,8 @@
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Ara s\'admeten previsualitzacions d\'enllaços opcionals per a la majoria de les pàgines més populars d\'Internet.</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Podeu habilitar o inhabilitar aquesta opció en qualsevol moment a la configuració del Signal (Privadesa &gt; Envia previsualitzacions d\'enllaços).</string>
   <string name="ExperienceUpgradeActivity_got_it">Entès!</string>
+  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Per què usar paraules quan podeu fer servir adhesius?</string>
+  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Per què usar paraules quan podeu fer servir adhesius? Toqueu aquesta icona del teclat:</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Es recupera un missatge…</string>
   <!--GcmRefreshJob-->

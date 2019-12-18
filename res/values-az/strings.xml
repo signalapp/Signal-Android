@@ -304,6 +304,7 @@
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Bir çox ən populyar veb saytların ilkin baxışı funksiyası indi dəstəklənir.</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Signal parametrlərində bu seçimi istədiyin zaman aktiv və ya deaktiv edə bilərsən (Məxfilik &gt; Linkin ilkin baxışını göndər)</string>
   <string name="ExperienceUpgradeActivity_got_it">Anladım</string>
+  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Sticker olan yerdə sözə nə ehtiyac var? Klavyaturada bu işarəni sıxın:</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Mesajın bərpası…</string>
   <!--GcmRefreshJob-->

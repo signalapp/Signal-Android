@@ -331,6 +331,8 @@
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">इंटरनेट वरील सर्वात लोकप्रिय साईट पैकी काहींकरिता पर्यायी दुवा पुनरावलोकन आता समर्थित आहे.</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">आपण हे वैशिष्ट्य कुठल्याही वेळी आपल्या Signal सेटिंग मध्ये (गोपनीयताआणि दुवा पुनरावलोकन पाठवा)अक्षम किंवा सक्षम करू शकता.</string>
   <string name="ExperienceUpgradeActivity_got_it">कळले</string>
+  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">स्टिकर वापरू शकत असताना शब्द का वापरायचे?</string>
+  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">आपण स्टिकर वापरू शकत असल्यावर शब्द का वापरायचे? आपल्या कीबोर्ड करिता हे चिन्ह टॅप करा:</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">संदेश पुनर्प्राप्त करत आहे…</string>
   <!--GcmRefreshJob-->

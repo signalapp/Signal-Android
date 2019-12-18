@@ -319,6 +319,8 @@
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Pilihan pratonton pautan kini disokong untuk beberapa laman web yang paling popular di Internet.</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Anda boleh menyahdayakan atau mendayakan ciri-ciri tersebut bila-bila masa dalam tetapan Signal (Privasi &gt; Hantar pratonton pautan).</string>
   <string name="ExperienceUpgradeActivity_got_it">Faham</string>
+  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Mengapa menggunakan kata-kata apabila anda boleh menggunakan pelekat?</string>
+  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Mengapa menggunakan kata-kata apabila anda boleh menggunakan pelekat? Ketik ikon ini di papan kekunci anda:</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Mengambil satu mesej… </string>
   <!--GcmRefreshJob-->

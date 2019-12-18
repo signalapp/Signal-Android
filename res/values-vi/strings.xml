@@ -321,6 +321,8 @@
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Tính năng xem trước liên kết đã hỗ trợ một số trang web lớn trên Internet.</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Bạn có thể bật tắt tính năng này bất cứ lúc nào trong cài đặt Signal (Riêng tư &gt; Gửi bản xem trước liên kết)</string>
   <string name="ExperienceUpgradeActivity_got_it">Đã rõ</string>
+  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Tại sao phải sử dụng từ ngữ khi mà bạn có thể sử dụng nhãn dán?</string>
+  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Tại sao phải sử dụng từ ngữ khi mà bạn có thể sử dụng nhãn dán? Nhấn biểu tượng này trên bàn phím của bạn:</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Đang nhận tin nhắn…</string>
   <!--GcmRefreshJob-->

@@ -329,6 +329,8 @@
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Agora é possível mostrar pré-visualizações de links de alguns dos sites mais populares da internet.</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Você pode desativar ou ativar esta função quando quiser nas configurações do seu Signal (Privacidade &gt; Enviar pré-visualizações de links).</string>
   <string name="ExperienceUpgradeActivity_got_it">Entendi</string>
+  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Por que utilizar palavras quando você pode utilizar figurinhas? </string>
+  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Por que utilizar palavras quando você pode usar figurinhas? Clique neste ícone em seu teclado:</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Recuperando uma mensagem…</string>
   <!--GcmRefreshJob-->

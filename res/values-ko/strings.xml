@@ -292,6 +292,7 @@
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">인터넷에서 유명한 사이트들의 링크를 미리 볼 수 있습니다. (선택사항)</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Signal 설정(개인정보 &gt; 링크 미리보기 보내기)에서 기능을 켜고 끌 수 있습니다.</string>
   <string name="ExperienceUpgradeActivity_got_it">확인</string>
+  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">스티커를 쓸 수 있는데 왜 일일이 글을 입력해야 하죠?</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">메시지 받아오는 중…</string>
   <!--GcmRefreshJob-->

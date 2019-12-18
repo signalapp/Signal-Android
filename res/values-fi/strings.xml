@@ -335,6 +335,8 @@
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Linkkien esikatselukuvat ovat valinnaisia ja niitä tuetaan nyt joillakin Internetin suosituimmista sivustoista.</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Voit poistaa tämän ominaisuuden käytöstä tai ottaa sen käyttöön milloin tahansa Signalin asetuksissa (Yksityisyys &gt; Lähetä esikatselukuva linkeistä).</string>
   <string name="ExperienceUpgradeActivity_got_it">Selvä</string>
+  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Miksi käyttää sanoja, kun voit käyttää tarroja?</string>
+  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Miksi käyttää sanoja, kun voit käyttää tarroja? Napauta tätä kuvaketta näppäimistössä:</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Haetaan viestiä…</string>
   <!--GcmRefreshJob-->

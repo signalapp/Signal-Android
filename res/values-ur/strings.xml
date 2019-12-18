@@ -332,6 +332,8 @@
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">اختیاری لنک پریؤیو اب انٹرنیٹ کی کچھ مشہور سائٹوں کے لئے معاون ہیں۔</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">آپ اپنی Signal کی ترتیبات میں کسی بھی وقت اس خصوصیت کو غیر فعال یا فعال بنا سکتے ہیں (پرائیویسی &amp; gt؛ لنک پریؤیو بھیجیں)۔</string>
   <string name="ExperienceUpgradeActivity_got_it">یہ مل گیا</string>
+  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">جب آپ اسٹیکرز استعمال کرسکتے ہیں تو الفاظ کیوں استعمال کریں؟</string>
+  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">ورڑز استعمال کیوں کرتے ہیں جب اسٹیکرز استعمال کرسکتے ہیں؟ اس آئیکن کو اپنے کی بورڈ پر کللک کریں:</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">پیغام دوبارہ حاصل ہو رہا ہے۔۔۔</string>
   <!--GcmRefreshJob-->

@@ -335,6 +335,10 @@
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Valikulised linkide eelvaated on nüüd toetatud populaarseimate saitide puhul.</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Sa saad seda funktsiooni igal ajal keelata ja lubada oma Signali seadetes (Privaatsus &gt; Saada linkide eelvaateid).</string>
   <string name="ExperienceUpgradeActivity_got_it">Sain aru</string>
+  <string name="ExperienceUpgradeActivity_introducing_stickers">Tutvustame kleepse</string>
+  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Miks kasutada sõnu, kui saab kasutada kleepse?</string>
+  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Miks kasutada sõnu, kui saab kasutada kleepse?</string>
+  <string name="ExperienceUpgradeActivity_lets_go">Läksime</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Sõnumi hankimine…</string>
   <!--GcmRefreshJob-->

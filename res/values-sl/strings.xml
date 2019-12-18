@@ -363,6 +363,10 @@
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Nekatere najbolj priljubljene spletne strani si lahko odslej izbirno ogledate v predogledu.</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Storitev lahko kadarkoli izklopite ali vklopite v nastavitvah aplikacije Signal (Zasebnost &gt; Pošiljanje povezav s predogledom).</string>
   <string name="ExperienceUpgradeActivity_got_it">Razumem</string>
+  <string name="ExperienceUpgradeActivity_introducing_stickers">Novo: nalepke!</string>
+  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Zakaj bi uporabljali besede, če lahko poveste z nalepkami?</string>
+  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Zakaj bi uporabljali besede, če lahko poveste z nalepkami? Tapnite to ikono na vaši tipkovnici:</string>
+  <string name="ExperienceUpgradeActivity_lets_go">Gremo!</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Pridobivanje sporočila …</string>
   <!--GcmRefreshJob-->

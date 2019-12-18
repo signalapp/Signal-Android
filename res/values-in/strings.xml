@@ -321,6 +321,8 @@
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Untuk beberapa situs populer di internet sekarang ada pilihan pratinjau tautan</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Anda dapat menonaktifkan atau mengaktifkan fitur ini kapanpun pada pengaturan Signal Anda (Privasi &gt; Kirim pratinjau tautan).</string>
   <string name="ExperienceUpgradeActivity_got_it">Paham</string>
+  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Mengapa menggunakan kata-kata saat Anda bisa menggunakan stiker?</string>
+  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Mengapa menggunakan kata-kata saat Anda bisa menggunakan stiker? Ketuk ikon ini pada papan ketik Anda:</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Mengambil pesan…</string>
   <!--GcmRefreshJob-->

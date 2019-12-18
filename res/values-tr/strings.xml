@@ -335,6 +335,8 @@
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">İsteğe bağlı bağlantı ön izlemeleri artık İnternet\'teki bazı gözde siteler için desteklenmektedir.</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Bu özelliği istediğiniz zaman Signal ayarlarınızdan (Gizlilik &gt; Bağlantı ön izlemelerini gönder). etkinleştirebilir veya devre dışı bırakabilirsiniz.</string>
   <string name="ExperienceUpgradeActivity_got_it">Anladım</string>
+  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Çıkartma kullanabilecek iken neden kelimeler kullanasınız?</string>
+  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Çıkartma kullanabilecek iken neden kelimeler kullanasınız? Klavyenizdeki bu simgeye dokunun:</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Bir ileti alınıyor…</string>
   <!--GcmRefreshJob-->

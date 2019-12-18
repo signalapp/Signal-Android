@@ -331,6 +331,8 @@
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">விருப்ப இணைப்பு முன்னோட்டங்கள் இப்போது இணையத்தில் மிகவும் பிரபலமான சில தளங்களுக்கு துணைபுரிகின்றன.</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">உங்கள் Signal அமைப்புகளில் எப்போது வேண்டுமானாலும் இந்த அம்சத்தை முடக்கலாம் அல்லது இயக்கலாம் (தனியுரிமை &amp; ஜிடி; இணைப்பு மாதிரிக்காட்சிகளை அனுப்பு).</string>
   <string name="ExperienceUpgradeActivity_got_it">அறிந்துகொண்டேன் .</string>
+  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">நீங்கள் ஸ்டிக்கர்களைப் பயன்படுத்தும்போது ஏன் வார்த்தைகளைப் பயன்படுத்த வேண்டும்?</string>
+  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">நீங்கள் ஸ்டிக்கர்களைப் பயன்படுத்தும்போது ஏன் வார்த்தைகளைப் பயன்படுத்த வேண்டும்? உங்கள் விசைப்பலகையில் இந்த ஐகானைத் தட்டவும்:</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">ஒரு செய்தியை மீட்டெடுக்கிறது …</string>
   <!--GcmRefreshJob-->

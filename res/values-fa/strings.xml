@@ -193,8 +193,8 @@
   <string name="ConversationActivity_no">خیر</string>
   <string name="ConversationActivity_search_position">%1$d از %2$d</string>
   <string name="ConversationActivity_no_results">بدون نتیجه</string>
-  <string name="ConversationActivity_sticker_pack_installed">پکیج استیکر نصب شد</string>
-  <string name="ConversationActivity_new_say_it_with_stickers">قابلیت جدید! حرفت رو با استیکرها بزن!</string>
+  <string name="ConversationActivity_sticker_pack_installed">بستهٔ استیکر نصب شد</string>
+  <string name="ConversationActivity_new_say_it_with_stickers">قابلیت جدید! حرفت رو با استیکر بگو!</string>
   <!--ConversationAdapter-->
   <plurals name="ConversationAdapter_n_unread_messages">
     <item quantity="one">%d پیام ناخوانده</item>
@@ -335,6 +335,8 @@
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">پیش‌نمایش‌های پیوند اختیاری اکنون برای برخی از شناخته‌شده‌ترین سایت‌ها پشتیبانی می‌شود.</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">شما همیشه می‌توانید این ویژگی را در تنظیمات Signal فعال یا غیرفعال کنید (حریم خصوصی ← ارسال پیش‌نمایش‌های پیوند).</string>
   <string name="ExperienceUpgradeActivity_got_it">فهمیدم</string>
+  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">چرا از کلمات استفاده می کنید وقتی میتوانید از استیکر استفاده کنید؟</string>
+  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">چرا از کلمات استفاده می کنید وقتی می توانید از استیکر ها استفاده کنید؟ روی کیبورد خود این آیکون را کلیک کنید:</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">در حال بارگیری یک پیام…</string>
   <!--GcmRefreshJob-->
@@ -344,7 +346,7 @@
   <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">خطا در هنگام دریافت GIF با کیفیت کامل</string>
   <!--GiphyFragmentPageAdapter-->
   <string name="GiphyFragmentPagerAdapter_gifs">گیف ها</string>
-  <string name="GiphyFragmentPagerAdapter_stickers">استیکر ها</string>
+  <string name="GiphyFragmentPagerAdapter_stickers">استیکرها</string>
   <!--GroupCreateActivity-->
   <string name="GroupCreateActivity_actionbar_title">گروه جدید</string>
   <string name="GroupCreateActivity_actionbar_edit_title">ویرایش گروه</string>
@@ -582,14 +584,14 @@
   <!--RedPhone-->
   <string name="RedPhone_answering">پاسخ دادن</string>
   <string name="RedPhone_ending_call">پایان دادن به پاسخ</string>
-  <string name="RedPhone_dialing">شماره گیری</string>
+  <string name="RedPhone_dialing">شماره‌گیری</string>
   <string name="RedPhone_ringing">در حال زنگ خوردن</string>
   <string name="RedPhone_busy">مشغول</string>
   <string name="RedPhone_connected">متصل</string>
   <string name="RedPhone_recipient_unavailable">گیرنده در دسترس نیست</string>
   <string name="RedPhone_network_failed">شکست خوردن در شبکه!</string>
   <string name="RedPhone_number_not_registered">شماره ثبت نام نکرده!</string>
-  <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">شماره‌ای که گرفتيد، از تماس ايمن پشتيبانی نمی‌کند.</string>
+  <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">شماره‌ای که گرفتيد، از تماس امن پشتيبانی نمی‌کند.</string>
   <string name="RedPhone_got_it">فهمیدم</string>
   <!--RegistrationActivity-->
   <string name="RegistrationActivity_select_your_country">کشور خود را انتخاب کنید</string>
@@ -667,13 +669,13 @@
   <string name="SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version">این پیام قابل دریافت نیست، زیرا از نسخۀ بالاتری از Signal ارسال شده است. پس از بروزرسانی، از مخاطب ارسال دوبارۀ این پیام را درخواست کنید.</string>
   <string name="SmsMessageRecord_error_handling_incoming_message">خطا در کنترل پیام دریافتی</string>
   <!--StickerManagementActivity-->
-  <string name="StickerManagementActivity_stickers">استیکر ها</string>
+  <string name="StickerManagementActivity_stickers">استیکرها</string>
   <!--StickerManagementAdapter-->
-  <string name="StickerManagementAdapter_installed_stickers">استیکر های نصب شده</string>
-  <string name="StickerManagementAdapter_stickers_you_received">استیکر هایی که دریافت کردید</string>
+  <string name="StickerManagementAdapter_installed_stickers">استیکرهای نصب شده</string>
+  <string name="StickerManagementAdapter_stickers_you_received">استیکرهایی که دریافت کردید</string>
   <string name="StickerManagementAdapter_signal_artist_series">سری های هنرمند Signal</string>
-  <string name="StickerManagementAdapter_no_stickers_installed">هیچ استیکری نصب نیست</string>
-  <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">استیکر ها از پیام های دریافتی در اینجا پدیدار خواهند شد</string>
+  <string name="StickerManagementAdapter_no_stickers_installed">هیچ استیکری نصب نشده است</string>
+  <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">استیکرها از پیام‌های دریافتی در اینجا نشان داده خواهند شد</string>
   <string name="StickerManagementAdapter_untitled">بدون نام</string>
   <string name="StickerManagementAdapter_unknown">ناشناخته</string>
   <!--StickerPackPreviewActivity-->
@@ -681,8 +683,8 @@
   <string name="StickerPackPreviewActivity_unknown">ناشناخته</string>
   <string name="StickerPackPreviewActivity_install">نصب</string>
   <string name="StickerPackPreviewActivity_remove">حذف</string>
-  <string name="StickerPackPreviewActivity_stickers">استیکر ها</string>
-  <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">خطا در بارگذاری بسته‌ی استیکر</string>
+  <string name="StickerPackPreviewActivity_stickers">استیکرها</string>
+  <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">خطا در بارگذاری بسته‌ٔ استیکر</string>
   <!--ThreadRecord-->
   <string name="ThreadRecord_group_updated">گروه به روز شد</string>
   <string name="ThreadRecord_left_the_group">گروه را ترک کرد</string>
@@ -996,7 +998,7 @@
     <item quantity="other">%d دیگران</item>
   </plurals>
   <!--giphy_activity-->
-  <string name="giphy_activity_toolbar__search_gifs_and_stickers">جست‌وجوی فایل گیف و استیکر</string>
+  <string name="giphy_activity_toolbar__search_gifs_and_stickers">جستجوی گیف و استیکر</string>
   <!--giphy_fragment-->
   <string name="giphy_fragment__nothing_found">چیزی یافت نشد</string>
   <!--log_submit_activity-->

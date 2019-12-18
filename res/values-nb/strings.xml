@@ -335,6 +335,8 @@
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Valgfrie linkforhåndsvisninger støttes nå for noen av de mest populære nettstedene på Internett.</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Du kan deaktivere eller aktivere denne funksjonen når som helst i innstillingene for Signal (Personvern &gt; Send linkforhåndsvisninger).</string>
   <string name="ExperienceUpgradeActivity_got_it">Ålreit</string>
+  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Hvorfor bruke ord når du kan bruke klistremerker?</string>
+  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Hvorfor bruke ord når du kan bruke klistremerker? Trykk på dette ikonet på tastaturet ditt:</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Mottar en melding…</string>
   <!--GcmRefreshJob-->

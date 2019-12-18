@@ -335,6 +335,7 @@
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Opciaj antaŭrigardoj de ligiloj disponeblas nun por kelkaj el la plej popularaj retejoj.</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Vi povas ŝalti aŭ malŝalti tiun funkcion en viaj Signal-agordoj (Privateco → Sendi antaŭrigardojn de ligilo).</string>
   <string name="ExperienceUpgradeActivity_got_it">Bone</string>
+  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Kial uzi vortojn, kiam vi povas uzi glumarkojn?</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Ricevo de mesaĝo…</string>
   <!--GcmRefreshJob-->
