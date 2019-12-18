@@ -336,6 +336,10 @@
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Mulighed for eksempelvisning af links, er nu understøttet for de fleste populære sider på nettet</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Du kan når som helst aktivere eller deaktivere funktionaliteten, under Signal, Indstillinger (Privatliv -&gt; Send link eksempelvisning)</string>
   <string name="ExperienceUpgradeActivity_got_it">Modtaget</string>
+  <string name="ExperienceUpgradeActivity_introducing_stickers">Inklusiv klistermærker</string>
+  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Hvorfor bruge ord når du kan bruge klistermærker?</string>
+  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Hvorfor bruge ord når du kan bruge klistermærker? Tap på ikonet her på dit tastatur:</string>
+  <string name="ExperienceUpgradeActivity_lets_go">Kom igang</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Modtager besked…</string>
   <!--GcmRefreshJob-->
@@ -431,6 +435,8 @@
   <string name="MediaOverviewActivity_image">Billede</string>
   <string name="MediaOverviewActivity_sent_by_s">Sendt af %1$s</string>
   <string name="MediaOverviewActivity_sent_by_you">Sendt af dig</string>
+  <string name="MediaOverviewActivity_sent_by_s_to_s">Sendt fra %1$s til %2$s</string>
+  <string name="MediaOverviewActivity_sent_by_you_to_s">Sendt fra dig til %1$s</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal opkald i gang</string>
   <string name="NotificationBarManager__establishing_signal_call">Foretager Signalopkald</string>
@@ -529,11 +535,15 @@
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Din installerede version af Google Play tjenester virker ikke korrekt. Geninstallér venligst Google Play tjenester og prøv igen</string>
   <!--ProfileEditNameFragment-->
   <string name="ProfileEditNameFragment_profile_name">Profilnavn</string>
+  <string name="ProfileEditNameFragment_your_profile_name_can_be_seen_by_your_contacts">Dit profilnavn kan ses af dine kontakter, andre brugere og grupper, når du opretter en samtale eller accepterer en invitation til at deltage i en</string>
   <string name="ProfileEditNameFragment_save">Gem</string>
   <!--ProfileEditOverviewFragment-->
   <string name="ProfileEditOverviewFragment_profile">Profil</string>
   <string name="ProfileEditOverviewFragment_profile_name">Profilnavn</string>
   <string name="ProfileEditOverviewFragment_username">Brugernavn</string>
+  <string name="ProfileEditOverviewFragment_create_a_profile_name">Opret et profilnavn</string>
+  <string name="ProfileEditOverviewFragment_create_a_username">Opret et brugernavn</string>
+  <string name="ProfileEditOverviewFragment_your_signal_profile_can_be_seen_by">Din Signal profil kan ses af dine kontakter, andre brugere og grupper, når du opretter en samtale eller accepterer en invitation til at deltage i en. <a href="https://support.signal.org/hc/en-us/articles/360007459591-Signal-Profiles">Tap her for at læse mere</a></string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Bedøm app\'en</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Hvis du kan lide at bruge app\'en, så hjælp os venligst ved at bedømme den</string>
@@ -602,6 +612,8 @@ nummer (%s) er ugyldigt</string>
   <string name="RegistrationActivity_failed_to_verify_the_captcha">Kunne ikke bekræfte CAPTCHA</string>
   <string name="RegistrationActivity_next">Næste</string>
   <string name="RegistrationActivity_continue">Fortsæt</string>
+  <string name="RegistrationActivity_continue_d_attempts_left">Fortsæt (%d forsøg tilbage)</string>
+  <string name="RegistrationActivity_continue_last_attempt">Fortsæt (sidste forsøg!)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Tag privatlivet med dig. \nSkriv hvad du ønsker i enhver besked</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Indtast dit telefonnummer for at komme i gang</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">Du modtager en verifikationskode. Takster fra din udbyder kan blive pålagt</string>
@@ -705,6 +717,16 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="UsernameEditFragment_username">Brugernavn</string>
   <string name="UsernameEditFragment_submit">Send</string>
   <string name="UsernameEditFragment_delete">Slet</string>
+  <string name="UsernameEditFragment_successfully_set_username">Brugernavn gemt</string>
+  <string name="UsernameEditFragment_successfully_removed_username">Brugernavn slettet</string>
+  <string name="UsernameEditFragment_encountered_a_network_error">Registreret en netværksfejl</string>
+  <string name="UsernameEditFragment_this_username_is_taken">Brugernavnet er allerede brugt</string>
+  <string name="UsernameEditFragment_this_username_is_available">Brugernavnet er ledigt</string>
+  <string name="UsernameEditFragment_usernames_can_only_include">Brugernavne kan kun bestå af a-Z, 0-9, og underscore_</string>
+  <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Brugernavne kan ikke starte med et tal</string>
+  <string name="UsernameEditFragment_username_is_invalid">Brugernavn er invalid</string>
+  <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Brugernavne skal være mellem %1$d og %2$d karakters længde</string>
+  <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Andre Signal brugere kan sende invitationer til dit unikke brugernavn, uden at kende dit mobilnummer. At vælge et brugernavn er valgfrit</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Din kontakt har en gammel version af Signal installeret. Bed ham om at opdatere inden i udveksler sikkerhedsnummer</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Din kontakt bruger en nyere version af Signal, med en inkompatibel QR kode. Opdatér venligst din app for at sammenligne</string>
@@ -744,6 +766,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Ikke muligt at gemme til ekstern placering, uden tilladelse</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Slet besked?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Dette sletter beskeden permanent</string>
+  <string name="MediaPreviewActivity_s_to_s">%1$s til %2$s</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nye beskeder i %2$d samtaler</string>
   <string name="MessageNotifier_most_recent_from_s">Seneste fra: %1$s</string>
@@ -765,6 +788,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Åbn Signal for at tjekke seneste notifikationer</string>
   <string name="MessageNotifier_contact_message">%1$s%2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Kontakt</string>
+  <string name="MessageNotifier_reacted_to_your_message">Har reageret på din besked: %1$s</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Standard</string>
   <string name="NotificationChannel_calls">Opkald</string>
@@ -776,6 +800,8 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="NotificationChannel_group_messages">Beskeder</string>
   <string name="NotificationChannel_missing_display_name">Ukendt</string>
   <!--ProfileEditNameFragment-->
+  <string name="ProfileEditNameFragment_successfully_set_profile_name">Oprettet profilnavn</string>
+  <string name="ProfileEditNameFragment_encountered_a_network_error">Registreret en netværksfejl</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Hurtig svar utilgængelig når Signal er låst!</string>
   <string name="QuickResponseService_problem_sending_message">Problem med at sende besked!</string>
@@ -791,6 +817,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">Ny besked</string>
   <!--ThumbnailView-->
+  <string name="ThumbnailView_Play_video_description">Afspil video</string>
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">
     <item quantity="one">%d Enheder</item>
@@ -856,6 +883,9 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal kræver tilladelse til at tilgå dine kontakter for at kunne vise dem, hvilket det er blevet nægtet. Gå venligst via appens menu til Indstillinger, vælg \"Tilladelser\" og tilvælg \"Kontakter\"</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">Fejl ved modtagelse af kontakter, tjek din netværksforbindelse</string>
+  <string name="ContactSelectionListFragment_username_not_found">Brugernavn ikke fundet</string>
+  <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" er ikke en Signal bruger. Tjek venligst brugernavnet og prøv igen</string>
+  <string name="ContactSelectionListFragment_okay">Okay</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">Ingen blokerede kontakter</string>
   <!--contact_selection_list_fragment-->
@@ -1200,8 +1230,12 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="preferences_chats__when_roaming">Ved roaming</string>
   <string name="preferences_chats__media_auto_download">Hent automatisk multimedier</string>
   <string name="preferences_chats__message_trimming">Trimning af beskeder</string>
+  <string name="preferences_storage__storage_usage">Brug af hukommelse</string>
+  <string name="preferences_storage__photos">Billeder</string>
+  <string name="preferences_storage__videos">Videoer</string>
   <string name="preferences_storage__files">Filer</string>
   <string name="preferences_storage__audio">Lyd</string>
+  <string name="preferences_storage__review_storage">Kontroller hukommelse</string>
   <string name="preferences_advanced__use_system_emoji">Anvend system emoji</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Deaktivér Signals indbyggede emoji understøttelse</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Videresend alle opkald gennem Signal serveren, for at undgå at afsløre din IP-adresse for din kontakt. Dette vil reducere opkaldskvaliteten</string>
@@ -1235,6 +1269,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="conversation_callable_insecure__menu_call">Opkald</string>
   <!--conversation_callable_secure-->
   <string name="conversation_callable_secure__menu_call">Signal opkald</string>
+  <string name="conversation_callable_secure__menu_video">Signal video opkald</string>
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">Besked detaljer</string>
   <string name="conversation_context__menu_copy_text">Kopiér tekst</string>
@@ -1243,6 +1278,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="conversation_context__menu_resend_message">Send besked igen</string>
   <string name="conversation_context__menu_reply_to_message">Svar på besked</string>
   <!--conversation_context_reacction-->
+  <string name="conversation_context__reaction_multi_select">Vælg flere</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Gem vedhæftet fil</string>
   <!--conversation_expiring_off-->
@@ -1448,6 +1484,8 @@ Der er %d dage tilbage</string>
   <string name="RegistrationLockDialog_error_connecting_to_the_service">Fejl ved oprettelse af forbindelse til service</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">Slå registreringskode fra?</string>
   <string name="RegistrationLockDialog_disable">Deaktivér</string>
+  <string name="RegistrationActivity_pin_incorrect">PIN forkert</string>
+  <string name="RegistrationActivity_you_have_d_tries_remaining">Du har %d forsøg tilbage</string>
   <string name="preferences_chats__backups">Backups</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal er låst</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">TAP FOR AT LÅSE OP</string>
@@ -1457,5 +1495,6 @@ Der er %d dage tilbage</string>
   <string name="MessageRequestBottomView_accept">Godkend</string>
   <string name="MessageRequestBottomView_delete">Slet</string>
   <string name="MessageRequestBottomView_block">Blokér</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let">Vil du modtage beskeder fra %1$s?</string>
   <!--EOF-->
 </resources>

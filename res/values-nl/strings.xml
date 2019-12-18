@@ -283,7 +283,7 @@
   <string name="CustomDefaultPreference_none">Geen</string>
   <!--DateUtils-->
   <string name="DateUtils_just_now">Nu</string>
-  <string name="DateUtils_minutes_ago">%dmin</string>
+  <string name="DateUtils_minutes_ago">%d min</string>
   <string name="DateUtils_today">Vandaag</string>
   <string name="DateUtils_yesterday">Gisteren</string>
   <!--DeliveryStatus-->
@@ -973,27 +973,27 @@ Signal heeft ook toegang nodig tot de foto\'s, media en bestanden op je apparaat
     <item quantity="one">%d seconde</item>
     <item quantity="other">%d seconden</item>
   </plurals>
-  <string name="expiration_seconds_abbreviated">%ds</string>
+  <string name="expiration_seconds_abbreviated">%d s</string>
   <plurals name="expiration_minutes">
     <item quantity="one">%d minuut</item>
     <item quantity="other">%d minuten</item>
   </plurals>
-  <string name="expiration_minutes_abbreviated">%dmin</string>
+  <string name="expiration_minutes_abbreviated">%d min</string>
   <plurals name="expiration_hours">
     <item quantity="one">%d uur</item>
     <item quantity="other">%d uur</item>
   </plurals>
-  <string name="expiration_hours_abbreviated">%du</string>
+  <string name="expiration_hours_abbreviated">%d u</string>
   <plurals name="expiration_days">
     <item quantity="one">%d dag</item>
     <item quantity="other">%d dagen</item>
   </plurals>
-  <string name="expiration_days_abbreviated">%dd</string>
+  <string name="expiration_days_abbreviated">%d d</string>
   <plurals name="expiration_weeks">
     <item quantity="one">%d week</item>
     <item quantity="other">%d weken</item>
   </plurals>
-  <string name="expiration_weeks_abbreviated">%dw</string>
+  <string name="expiration_weeks_abbreviated">%d w</string>
   <!--unverified safety numbers-->
   <string name="IdentityUtil_unverified_banner_one">Je veiligheidsnummer met %s is veranderd en is niet langer geverifieerd</string>
   <string name="IdentityUtil_unverified_banner_two">Je veiligheidsnummers met %1$s en %2$s  zijn niet langer geverifieerd</string>
@@ -1157,8 +1157,8 @@ Signal heeft ook toegang nodig tot de foto\'s, media en bestanden op je apparaat
   <string name="arrays__max">Maximaal</string>
   <!--plurals.xml-->
   <plurals name="hours_ago">
-    <item quantity="one">%du</item>
-    <item quantity="other">%du</item>
+    <item quantity="one">%d u</item>
+    <item quantity="other">%d u</item>
   </plurals>
   <!--preferences.xml-->
   <string name="preferences__sms_mms">Sms en mms</string>
@@ -1474,7 +1474,7 @@ Ze wordt nooit verzonden.</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Inactiviteitsduur voor schermvergrendeling</string>
   <string name="AppProtectionPreferenceFragment_none">Geen</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">De pincode voor registratievergrendeling is niet hetzelfde als de sms-verificatiecode die je net ontvangen hebt. Voer de pincode in die je hiervoor in de app ingesteld hebt.</string>
-  <string name="registration_activity__registration_lock_pin">Pincode voor registratievergrendeling</string>
+  <string name="registration_activity__registration_lock_pin">Registratievergrendeling</string>
   <string name="registration_activity__forgot_pin">Pincode vergeten?</string>
   <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">Verzin een pincode, deze moet uit vier of meer cijfers bestaan. Als je de pincode vergeet, kun je voor maximaal 7 dagen geen toegang krijgen tot je Signal-account.</string>
   <string name="registration_lock_dialog_view__enter_pin">Voer pincode in</string>
@@ -1482,7 +1482,7 @@ Ze wordt nooit verzonden.</string>
   <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Voer je pincode voor registratievergrendeling in</string>
   <string name="registration_lock_reminder_view__enter_pin">Voer pincode in</string>
   <string name="preferences_app_protection__enable_a_registration_lock_pin_that_will_be_required">Stel een pincode in welke vanaf dan nodig zal zijn om dit telefoonnummer opnieuw te registreren bij Signal. Hiermee voorkom je dat iemand wie je telefoonnummer kaapt ook onder jouw naam Signal kan gebruiken.</string>
-  <string name="preferences_app_protection__registration_lock_pin">Pincode voor registratievergrendeling</string>
+  <string name="preferences_app_protection__registration_lock_pin">Registratievergrendeling</string>
   <string name="preferences_app_protection__registration_lock">Registratievergrendeling</string>
   <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">Je moet je pincode voor registratievergrendeling invoeren</string>
   <string name="RegistrationActivity_incorrect_registration_lock_pin">Ongeldige pincode voor registratievergrendeling</string>
@@ -1490,10 +1490,10 @@ Ze wordt nooit verzonden.</string>
   <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Je hebt te veel ongeldige pogingen ondernomen om een pincode voor registratievergrendeling in te voeren, probeer het morgen opnieuw.</string>
   <string name="RegistrationActivity_error_connecting_to_service">Fout bij het verbinden met de dienst</string>
   <string name="RegistrationActivity_oh_no">Oh nee!</string>
-  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Registratie van dit telefoonnummer zal zonder pincode voor registratievergrendeling pas mogelijk zijn 7 dagen nadat dit telefoonnummer voor het laatst actief was op Signal. Je hebt nog %d dagen te gaan.</string>
-  <string name="RegistrationActivity_registration_lock_pin">Pincode voor registratievergrendeling</string>
+  <string name="RegistrationActivity_registration_of_this_phone_number_will_be_possible_without_your_registration_lock_pin_after_seven_days_have_passed">Registratie van dit telefoonnummer zal zonder de pincode voor registratievergrendeling pas mogelijk zijn 7 dagen nadat dit telefoonnummer voor het laatst actief was op Signal. Je hebt nog %d dagen te gaan.</string>
+  <string name="RegistrationActivity_registration_lock_pin">Registratievergrendeling</string>
   <string name="RegistrationActivity_this_phone_number_has_registration_lock_enabled_please_enter_the_registration_lock_pin">Registratievergrendeling is ingeschakeld voor dit telefoonnummer. Voer de pincode voor registratievergrendeling in.</string>
-  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Registratievergrendeling is ingeschakeld voor je telefoonnummer. Signal zal je af en toe vragen om je pincode te bevestigen om je te helpen deze te onthouden.</string>
+  <string name="RegistrationLockDialog_registration_lock_is_enabled_for_your_phone_number">Registratievergrendeling voor je telefoonnummer is ingeschakeld. Signal zal je af en toe vragen om je pincode te bevestigen om je te helpen deze te onthouden.</string>
   <string name="RegistrationLockDialog_i_forgot_my_pin">Ik ben mijn pincode vergeten.</string>
   <string name="RegistrationLockDialog_forgotten_pin">Pincode vergeten?</string>
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Registratievergrendeling beschermt je telefoonnummer tegen niet-geautoriseerde registratiepogingen. Deze functie kan op elk moment in je Signal-privacyinstellingen uitgeschakeld worden.</string>

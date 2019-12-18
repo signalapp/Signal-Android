@@ -335,8 +335,10 @@
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Optionale Link-Vorschauen werden nun für einige der beliebtesten Internetsites unterstützt.</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Du kannst diese Funktion jederzeit in Signals Einstellungen aus- oder einschalten (»Datenschutz« → »Link-Vorschauen senden«).</string>
   <string name="ExperienceUpgradeActivity_got_it">Verstanden</string>
-  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Warum viel schreiben, wenn du auch Sticker benutzen kannst?</string>
-  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Warum Worte, wenn du auch Sticker benutzen kannst? Tippe auf dieses Symbol deiner Tastatur:</string>
+  <string name="ExperienceUpgradeActivity_introducing_stickers">Einführung von Stickern</string>
+  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Warum Worte, wenn du auch Sticker verwenden kannst?</string>
+  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Warum Worte, wenn du auch Sticker verwenden kannst? Tippe auf dieses Symbol deiner Tastatur:</string>
+  <string name="ExperienceUpgradeActivity_lets_go">Los geht\'s</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Nachricht wird abgerufen …</string>
   <!--GcmRefreshJob-->

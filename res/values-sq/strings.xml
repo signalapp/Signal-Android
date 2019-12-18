@@ -73,6 +73,7 @@
   <string name="BucketedThreadMedia_This_week">Këtë javë</string>
   <string name="BucketedThreadMedia_This_month">Këtë muaj</string>
   <string name="BucketedThreadMedia_Large">Të mëdha</string>
+  <string name="BucketedThreadMedia_Medium">Mesatare</string>
   <string name="BucketedThreadMedia_Small">Të vogla</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Thirrje ardhëse</string>
@@ -334,8 +335,10 @@
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Tanimë mbulohet paraparja opsionale e lidhjeve për disa nga sajtet më popullorë në Internet.</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Këtë veçori mund ta aktivizoni ose çaktivizoni në çfarëdo kohe, te rregullimet tuaja të Signal-it (Privatësi &gt; Dërgo paraparje lidhjesh).</string>
   <string name="ExperienceUpgradeActivity_got_it">U mor</string>
+  <string name="ExperienceUpgradeActivity_introducing_stickers">Ju prezantojmë ngjitësat</string>
   <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Pse të përdorni fjalë, kur mund të përdorni ngjitës?</string>
   <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Pse të përdorni fjalë, kur mund të përdorni ngjitës? Prekeni këtë ikonë në tastierën tuaj:</string>
+  <string name="ExperienceUpgradeActivity_lets_go">Shkojmë</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Po merret një mesazh…</string>
   <!--GcmRefreshJob-->
@@ -774,6 +777,7 @@
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">S\’bëhet dot ruajtje në depozitë të jashtme pa leje</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Të fshihet mesazhi?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Kjo do ta fshijë përgjithmonë këtë mesazh.</string>
+  <string name="MediaPreviewActivity_s_to_s">%1$s për %2$s</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d mesazhe të reja në %2$d biseda</string>
   <string name="MessageNotifier_most_recent_from_s">Më të rejat nga: %1$s</string>

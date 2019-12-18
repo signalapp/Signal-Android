@@ -363,8 +363,10 @@
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">קדם־תצוגות רשותיות של קישורים נתמכות כעת עבור כמה מהאתרים הפופולריים ביותר באינטרנט.</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">אתה יכול להשבית או לאפשר מאפיין זה בכל זמן בהגדרות Signal שלך (פרטיות &gt; שלח קדם־תצוגות של קישורים).</string>
   <string name="ExperienceUpgradeActivity_got_it">הבנתי</string>
+  <string name="ExperienceUpgradeActivity_introducing_stickers">היכרות עם מדבקות</string>
   <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">למה להשתמש במילים כשאתה יכול להשתמש במדבקות?</string>
   <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">למה להשתמש במילים כשאתה יכול להשתמש במדבקות? הקש על צלמית זו במקלדת שלך:</string>
+  <string name="ExperienceUpgradeActivity_lets_go">בוא נתחיל</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">מאחזר הודעה…</string>
   <!--GcmRefreshJob-->
@@ -1458,7 +1460,7 @@
   <string name="InsightsDashboardFragment__encrypted_messages">הודעות מוצפנות</string>
   <string name="InsightsDashboardFragment__cancel">בטל</string>
   <string name="InsightsDashboardFragment__send">שלח</string>
-  <string name="InsightsModalFragment__title">מציגים את תובנות</string>
+  <string name="InsightsModalFragment__title">היכרות עם תובנות</string>
   <string name="InsightsModalFragment__description">גלה כמה מההודעות היוצאות שלך נשלחו באופן מאובטח, לאחר מכן הזמן בזריזות אנשי קשר חדשים כדי להמריץ את אחוז Signal שלך.</string>
   <string name="InsightsModalFragment__view_insights">הצג תובנות</string>
   <string name="FirstInviteReminder__title">הזמן אל Signal</string>

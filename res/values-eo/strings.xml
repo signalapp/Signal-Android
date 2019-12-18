@@ -331,11 +331,14 @@
   <string name="ExperienceUpgradeActivity_enable_typing_indicators">Ŝalti tajp-indikilojn</string>
   <string name="ExperienceUpgradeActivity_turn_on_typing_indicators">Ŝalti tajp-indikilojn</string>
   <string name="ExperienceUpgradeActivity_no_thanks">Ne, dankon</string>
-  <string name="ExperienceUpgradeActivity_introducing_link_previews">Enkonduko de antaŭrigardo de ligiloj</string>
+  <string name="ExperienceUpgradeActivity_introducing_link_previews">Jen la antaŭrigardo de ligiloj</string>
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Opciaj antaŭrigardoj de ligiloj disponeblas nun por kelkaj el la plej popularaj retejoj.</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Vi povas ŝalti aŭ malŝalti tiun funkcion en viaj Signal-agordoj (Privateco → Sendi antaŭrigardojn de ligilo).</string>
   <string name="ExperienceUpgradeActivity_got_it">Bone</string>
+  <string name="ExperienceUpgradeActivity_introducing_stickers">Jen la glumarkoj</string>
   <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Kial uzi vortojn, kiam vi povas uzi glumarkojn?</string>
+  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Kial uzi vortojn, kiam vi povas uzi glumarkojn? Tuŝetu tiun piktogramon en via klavaro:</string>
+  <string name="ExperienceUpgradeActivity_lets_go">Daŭrigi</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Ricevo de mesaĝo…</string>
   <!--GcmRefreshJob-->

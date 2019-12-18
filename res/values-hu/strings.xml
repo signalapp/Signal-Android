@@ -336,7 +336,10 @@
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">A hivatkozásokhoz opcionálisan engedélyezhető előnézeti képeket az internet legnépszerűbb oldalaira mutató linkekhez veheted igénybe.</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">A funkció engedélyezését vagy letiltását a Signal beállításaiban teheted meg (Adatvédelem &gt; Hivatkozások előnézeti képének küldése)</string>
   <string name="ExperienceUpgradeActivity_got_it">Rendben</string>
+  <string name="ExperienceUpgradeActivity_introducing_stickers">Bemutatkoznak a matricák</string>
   <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Miért használnál szavakat, ha használhatsz matricákat is?</string>
+  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Miért használnál szavakat, ha használhatsz matricákat is? Koppints erre az ikonra a billentyűzeteden:</string>
+  <string name="ExperienceUpgradeActivity_lets_go">Kezdjük el</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Üzenet letöltése…</string>
   <!--GcmRefreshJob-->

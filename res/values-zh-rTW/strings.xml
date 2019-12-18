@@ -321,8 +321,10 @@
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">連結預覽選項現在支援網路上一些最受歡迎的網站。</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">任何時候你可以在 Signal 設定中關閉或開啟這個功能 (隱私權 &gt; 傳送連結預覽)。</string>
   <string name="ExperienceUpgradeActivity_got_it">收到</string>
+  <string name="ExperienceUpgradeActivity_introducing_stickers">介紹貼圖功能</string>
   <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">如果你可以使用貼圖，為什麼要使用文字？</string>
   <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">當你可以使用貼圖的時候，為什麼要用文字呢？點擊你鍵盤上的這個圖示：</string>
+  <string name="ExperienceUpgradeActivity_lets_go">讓我們開始吧</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">讀取一個訊息中…</string>
   <!--GcmRefreshJob-->

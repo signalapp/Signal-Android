@@ -335,8 +335,10 @@
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Le anteprime facoltative dei link sono ora supportate per alcuni dei siti internet più famosi.</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Puoi disattivare o attivare questa funzione in qualsiasi momento nelle impostazioni di Signal (Privacy &gt; Invia anteprime dei link).</string>
   <string name="ExperienceUpgradeActivity_got_it">Capito</string>
-  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Perché utilizzare le parole quando puoi usare degli adesivi?</string>
-  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Perché usare le parole quando si possono usare gli adesivi? Toccare questa icona sulla tastiera:</string>
+  <string name="ExperienceUpgradeActivity_introducing_stickers">Ti presentiamo gli adesivi</string>
+  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Perché usare le parole quando puoi utilizzare gli adesivi?</string>
+  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Perché usare le parole quando puoi utilizzare gli adesivi? Tocca questa icona sulla tua tastiera:</string>
+  <string name="ExperienceUpgradeActivity_lets_go">Cominciamo</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Recupero di un messaggio…</string>
   <!--GcmRefreshJob-->

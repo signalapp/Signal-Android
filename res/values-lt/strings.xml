@@ -365,6 +365,7 @@
   <string name="ExperienceUpgradeActivity_got_it">Supratau</string>
   <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Kam naudoti žodžius, kai galima naudoti lipdukus?</string>
   <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Kam naudoti žodžius, kai galima naudoti lipdukus? Bakstelėkite savo klaviatūroje šią piktogramą:</string>
+  <string name="ExperienceUpgradeActivity_lets_go">Pirmyn</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Atgaunama žinutė…</string>
   <!--GcmRefreshJob-->
@@ -1442,6 +1443,7 @@
   <string name="InsightsDashboardFragment__not_enough_data">Trūksta duomenų</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Pradėti pokalbį</string>
   <string name="InsightsDashboardFragment__invite_your_contacts">Nuo šiol, pakvietę daugiau adresatų naudotis Signal, bendraukite saugiai ir įjunkite naujas ypatybes, kurios viršija nešifruotų SMS žinučių apribojimus.</string>
+  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Ši statistika buvo sugeneruota jūsų įrenginyje ir ją galite matyti tik jūs. Ji niekada nėra niekur persiunčiama.</string>
   <string name="InsightsDashboardFragment__encrypted_messages">Šifruotos žinutės</string>
   <string name="InsightsDashboardFragment__cancel">Atsisakyti</string>
   <string name="InsightsDashboardFragment__send">Siųsti</string>

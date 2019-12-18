@@ -363,8 +363,10 @@
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Opcjonalne podglądy linków są teraz obsługiwane dla niektórych najpopularniejszych witryn w Internecie.</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">W dowolnej chwili możesz wyłączyć lub włączyć tę funkcję w ustawieniach Signal (Prywatność &gt; Podgląd linków).</string>
   <string name="ExperienceUpgradeActivity_got_it">Rozumiem</string>
+  <string name="ExperienceUpgradeActivity_introducing_stickers">Przedstawiamy naklejki</string>
   <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Po co używać słów, gdy można używać naklejek?</string>
   <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Po co używać słów, skoro można używać naklejek? Dotknij tę ikonę na klawiaturze:</string>
+  <string name="ExperienceUpgradeActivity_lets_go">Zaczynajmy</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Pobieranie wiadomości…</string>
   <!--GcmRefreshJob-->

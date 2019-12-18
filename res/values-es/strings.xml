@@ -73,7 +73,7 @@
   <string name="BucketedThreadMedia_This_week">Esta semana</string>
   <string name="BucketedThreadMedia_This_month">Este mes</string>
   <string name="BucketedThreadMedia_Large">Grande</string>
-  <string name="BucketedThreadMedia_Medium">Mediano</string>
+  <string name="BucketedThreadMedia_Medium">Mediana</string>
   <string name="BucketedThreadMedia_Small">Pequeña</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Llamada entrante</string>
@@ -104,7 +104,7 @@
   <string name="CommunicationActions_start_video_call">¿Iniciar vídeollamada?</string>
   <string name="CommunicationActions_start_voice_call">¿Iniciar llamada?</string>
   <string name="CommunicationActions_cancel">Cancelar</string>
-  <string name="CommunicationActions_call">Llamada</string>
+  <string name="CommunicationActions_call">Llamar</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Tus cifras de seguridad con %1$s han cambiado. Esto podría significar que o bien alguien está tratando de interceptar su comunicación, o que %2$s simplemente ha reinstalado Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Tal vez desees verificar tus cifras de seguridad con este contacto.</string>
@@ -324,7 +324,7 @@
   <string name="ExperienceUpgradeActivity_ready_for_your_closeup">¿Listo para tu retrato?</string>
   <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Ahora puedes compartir la foto y nombre de perfil con contactos de Signal</string>
   <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Los perfiles de Signal han llegado</string>
-  <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Presentando los indicadores de tecleo.</string>
+  <string name="ExperienceUpgradeActivity_introducing_typing_indicators">¡Los indicadores de tecleo han llegado!</string>
   <string name="ExperienceUpgradeActivity_now_you_can_optionally_see_and_share_when_messages_are_being_typed">Ahora puedes visualizar de manera opcional cuando tus contactos están escribiendo un mensaje y tus contactos pueden saber cuando estás escribiendo en su chat.</string>
   <string name="ExperienceUpgradeActivity_would_you_like_to_enable_them_now">¿Deseas activar la opción ahora?</string>
   <string name="ExperienceUpgradeActivity_typing_ui_title">Los indicadores de tecleo han llegado</string>
@@ -335,8 +335,10 @@
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Ahora están disponibles las previsualizaciones de enlaces hacia los sitios más populares de Internet.</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Puedes desactivar o activar esta opción en cualquier momento desde el menú de ajustes de Signal (Privacidad &gt; Enviar previsualizaciones).</string>
   <string name="ExperienceUpgradeActivity_got_it">Entendido</string>
+  <string name="ExperienceUpgradeActivity_introducing_stickers">¡Los cromos (stickers) han llegado!</string>
   <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">¿Por qué usar palabras si puedes usar cromos (stickers)?</string>
   <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">¿Por qué usar palabras si puedes usar cromos? Toca este icono en tu teclado:</string>
+  <string name="ExperienceUpgradeActivity_lets_go">¡Vamos!</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Recuperando mensaje …</string>
   <!--GcmRefreshJob-->
@@ -431,7 +433,7 @@
   <string name="MediaOverviewActivity_Oldest">Antiguo</string>
   <string name="MediaOverviewActivity_Storage_used">Almacenamiento utilizado</string>
   <string name="MediaOverviewActivity_All_storage_use">Uso de almacenamiento total</string>
-  <string name="MediaOverviewActivity_Grid_view_description">Vista de rejilla</string>
+  <string name="MediaOverviewActivity_Grid_view_description">Vista en rejilla</string>
   <string name="MediaOverviewActivity_List_view_description">Vista en lista</string>
   <string name="MediaOverviewActivity_Selected_description">Selección</string>
   <plurals name="MediaOverviewActivity_d_items_s">
@@ -729,7 +731,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="UnverifiedSendDialog_send">Enviar</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">Nombre de usuario</string>
-  <string name="UsernameEditFragment_submit">Enviar</string>
+  <string name="UsernameEditFragment_submit">Solicitar</string>
   <string name="UsernameEditFragment_delete">Eliminar</string>
   <string name="UsernameEditFragment_successfully_set_username">Nombre de usuario establecido con éxito.</string>
   <string name="UsernameEditFragment_successfully_removed_username">Nombre de usuario eliminado con éxito.</string>
@@ -802,7 +804,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Abre Signal para comprobar las últimas notificaciones.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Contacto</string>
-  <string name="MessageNotifier_reacted_to_your_message">Reacciones a tu mensaje: %1$s</string>
+  <string name="MessageNotifier_reacted_to_your_message">Reacción a tu mensaje: %1$s</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Por defecto</string>
   <string name="NotificationChannel_calls">Llamadas</string>
@@ -1389,26 +1391,26 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="trimmer__old_messages_successfully_deleted">Mensajes antiguos eliminados con éxito</string>
   <!--Insights-->
   <string name="Insights__percent">%</string>
-  <string name="Insights__title">Estadística</string>
-  <string name="InsightsDashboardFragment__title">Estadística</string>
+  <string name="Insights__title">Estadísticas</string>
+  <string name="InsightsDashboardFragment__title">Estadísticas</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">El protocolo de Signal ha cifrado automáticamente %1$d%% de tus mensajes enviados en los últimos %2$d días. Chats entre usuarios de Signal siempre están cifrados.</string>
   <string name="InsightsDashboardFragment__boost_your_signal">Mejora con Signal</string>
   <string name="InsightsDashboardFragment__not_enough_data">No hay datos suficientes</string>
-  <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">El porcentaje de esta estadística se calcula con los mensajes enviados durante los últimos %1$d días que no han desaparecido o se han eliminado.</string>
+  <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Este porcentaje se calcula con los mensajes enviados durante los últimos %1$d días que no han desaparecido o se han eliminado.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Comenza un chat</string>
   <string name="InsightsDashboardFragment__invite_your_contacts">Comienza a comunicarte de manera segura con las características de Signal que van más allá de SMS sin cifrar e invita contactos a chatear contigo con Signal.</string>
   <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Esta cifra se ha generado en este dispositivo y sólo tú puedes verla. No se envía a ningún servidor.</string>
   <string name="InsightsDashboardFragment__encrypted_messages">Mensajes cifrados</string>
   <string name="InsightsDashboardFragment__cancel">Cancelar</string>
   <string name="InsightsDashboardFragment__send">Enviar</string>
-  <string name="InsightsModalFragment__title">Presentando la estadística</string>
+  <string name="InsightsModalFragment__title">Te mostramos tus estadísticas</string>
   <string name="InsightsModalFragment__description">Descubre cuántos de tus mensajes se han enviado de manera segura e invita a tus contactos a aumentar tu porcentaje de mensajes de Signal.</string>
-  <string name="InsightsModalFragment__view_insights">Ver estadística</string>
+  <string name="InsightsModalFragment__view_insights">Ver estadísticas</string>
   <string name="FirstInviteReminder__title">Invitar a Signal</string>
   <string name="FirstInviteReminder__description">Puedes aumentar el número de mensajes cifrados que envías en %1$d%%</string>
   <string name="SecondInviteReminder__title">Mejora con Signal</string>
   <string name="SecondInviteReminder__description">Invitar a %1$s</string>
-  <string name="InsightsReminder__view_insights">Ver estadística</string>
+  <string name="InsightsReminder__view_insights">Ver estadísticas</string>
   <string name="InsightsReminder__invite">Invitar</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Icono de transporte</string>
