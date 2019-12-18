@@ -136,17 +136,17 @@ public final class AvatarImageView extends AppCompatImageView {
   }
 
   private void setAvatarClickHandler(final Recipient recipient, boolean quickContactEnabled) {
-    if (!recipient.isGroup() && quickContactEnabled) {
-      super.setOnClickListener(v -> {
+    super.setOnClickListener(v -> {
+      if (!recipient.isGroup() && quickContactEnabled) {
         if (recipient.getContactUri() != null) {
           ContactsContract.QuickContact.showQuickContact(getContext(), AvatarImageView.this, recipient.getContactUri(), ContactsContract.QuickContact.MODE_LARGE, null);
         } else {
           getContext().startActivity(RecipientExporter.export(recipient).asAddContactIntent());
         }
-      });
-    } else {
-      super.setOnClickListener(listener);
-    }
+      } else {
+        listener.onClick(v);
+      }
+    });
   }
 
   private static class RecipientContactPhoto {
