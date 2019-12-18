@@ -1,22 +1,17 @@
 package org.thoughtcrime.securesms.loki.redesign.activities
 
-import android.Manifest
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
-import android.support.v4.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.tbruyelle.rxpermissions2.RxPermissions
-import kotlinx.android.synthetic.main.activity_new_private_chat.*
+import kotlinx.android.synthetic.main.activity_create_private_chat.*
 import kotlinx.android.synthetic.main.fragment_enter_public_key.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.BaseActionBarActivity
@@ -24,22 +19,20 @@ import org.thoughtcrime.securesms.conversation.ConversationActivity
 import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.ThreadDatabase
-import org.thoughtcrime.securesms.loki.redesign.fragments.ScanQRCodeFragmentV2
-import org.thoughtcrime.securesms.loki.redesign.fragments.ScanQRCodePlaceholderFragment
-import org.thoughtcrime.securesms.loki.redesign.fragments.ScanQRCodePlaceholderFragmentDelegate
-import org.thoughtcrime.securesms.qr.ScanListener
+import org.thoughtcrime.securesms.loki.redesign.fragments.ScanQRCodeWrapperFragment
+import org.thoughtcrime.securesms.loki.redesign.fragments.ScanQRCodeWrapperFragmentDelegate
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.loki.utilities.PublicKeyValidation
 
-class NewPrivateChatActivity : BaseActionBarActivity() {
-    private val adapter = Adapter(supportFragmentManager)
+class CreatePrivateChatActivity : BaseActionBarActivity(), ScanQRCodeWrapperFragmentDelegate {
+    private val adapter = CreatePrivateChatActivityAdapter(this)
 
     // region Lifecycle
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // Set content view
-        setContentView(R.layout.activity_new_private_chat)
+        setContentView(R.layout.activity_create_private_chat)
         // Set title
         supportActionBar!!.title = "New Conversation"
         // Set up view pager
@@ -49,6 +42,10 @@ class NewPrivateChatActivity : BaseActionBarActivity() {
     // endregion
 
     // region Interaction
+    override fun handleQRCodeScanned(hexEncodedPublicKey: String) {
+        createPrivateChatIfPossible(hexEncodedPublicKey)
+    }
+
     fun createPrivateChatIfPossible(hexEncodedPublicKey: String) {
         if (!PublicKeyValidation.isValid(hexEncodedPublicKey)) { return Toast.makeText(this, "Invalid Session ID", Toast.LENGTH_SHORT).show() }
         val masterHexEncodedPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(this)
@@ -69,7 +66,7 @@ class NewPrivateChatActivity : BaseActionBarActivity() {
 }
 
 // region Adapter
-private class Adapter(manager: FragmentManager) : FragmentPagerAdapter(manager) {
+private class CreatePrivateChatActivityAdapter(val activity: CreatePrivateChatActivity) : FragmentPagerAdapter(activity.supportFragmentManager) {
 
     override fun getCount(): Int {
         return 2
@@ -78,7 +75,12 @@ private class Adapter(manager: FragmentManager) : FragmentPagerAdapter(manager) 
     override fun getItem(index: Int): Fragment {
         return when (index) {
             0 -> EnterPublicKeyFragment()
-            1 -> ScanQRCodeWrapperFragment()
+            1 -> {
+                val result = ScanQRCodeWrapperFragment()
+                result.delegate = activity
+                result.message = "Users can share their QR code by going into their account settings and tapping &quot;Share QR Code&quot;"
+                result
+            }
             else -> throw IllegalStateException()
         }
     }
@@ -95,6 +97,7 @@ private class Adapter(manager: FragmentManager) : FragmentPagerAdapter(manager) 
 
 // region Enter Public Key Fragment
 class EnterPublicKeyFragment : Fragment() {
+
     private val hexEncodedPublicKey: String
         get() {
             val masterHexEncodedPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(context!!)
@@ -131,51 +134,7 @@ class EnterPublicKeyFragment : Fragment() {
 
     private fun createPrivateChatIfPossible() {
         val hexEncodedPublicKey = publicKeyEditText.text.trim().toString()
-        (activity!! as NewPrivateChatActivity).createPrivateChatIfPossible(hexEncodedPublicKey)
-    }
-}
-// endregion
-
-// region Scan QR Code Wrapper Fragment
-class ScanQRCodeWrapperFragment : Fragment(), ScanQRCodePlaceholderFragmentDelegate, ScanListener {
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_scan_qr_code_wrapper, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        update()
-    }
-
-    private fun update() {
-        val fragment: Fragment
-        if (ContextCompat.checkSelfPermission(activity!!, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
-            val scanQRCodeFragment = ScanQRCodeFragmentV2()
-            scanQRCodeFragment.scanListener = this
-            fragment = scanQRCodeFragment
-        } else {
-            val scanQRCodePlaceholderFragment = ScanQRCodePlaceholderFragment()
-            scanQRCodePlaceholderFragment.delegate = this
-            fragment = scanQRCodePlaceholderFragment
-        }
-        val transaction = childFragmentManager.beginTransaction()
-        transaction.replace(R.id.fragmentContainer, fragment)
-        transaction.commit()
-    }
-
-    override fun requestCameraAccess() {
-        @SuppressWarnings("unused")
-        val unused = RxPermissions(this).request(Manifest.permission.CAMERA).subscribe { isGranted ->
-            if (isGranted) {
-                update()
-            }
-        }
-    }
-
-    override fun onQrDataFound(hexEncodedPublicKey: String) {
-        val activity = activity!! as NewPrivateChatActivity
-        activity.createPrivateChatIfPossible(hexEncodedPublicKey)
+        (activity!! as CreatePrivateChatActivity).createPrivateChatIfPossible(hexEncodedPublicKey)
     }
 }
 // endregion

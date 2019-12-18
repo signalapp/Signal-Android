@@ -3,6 +3,8 @@ package org.thoughtcrime.securesms.loki.redesign.activities
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.view.Menu
+import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_home.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.ApplicationContext
@@ -42,7 +44,22 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
             application.startRSSFeedPollersIfNeeded()
         }
     }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_home, menu)
+        return true
+    }
     // endregion
+
+    // region Interaction
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item.getItemId()
+        when (id) {
+            R.id.joinPublicChatItem -> joinPublicChat()
+            else -> { /* Do nothing */ }
+        }
+        return super.onOptionsItemSelected(item)
+    }
 
     override fun onConversationClick(view: ConversationView) {
         val thread = view.thread ?: return
@@ -65,7 +82,13 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
     }
 
     private fun createPrivateChat() {
-        val intent = Intent(this, NewPrivateChatActivity::class.java)
+        val intent = Intent(this, CreatePrivateChatActivity::class.java)
         startActivity(intent)
     }
+
+    private fun joinPublicChat() {
+        val intent = Intent(this, JoinPublicChatActivity::class.java)
+        startActivity(intent)
+    }
+    // endregion
 }

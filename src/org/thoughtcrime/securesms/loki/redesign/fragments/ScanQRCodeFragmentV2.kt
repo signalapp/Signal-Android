@@ -7,16 +7,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import kotlinx.android.synthetic.main.fragment_scan_qr_code.*
+import kotlinx.android.synthetic.main.fragment_scan_qr_code_v2.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.qr.ScanListener
 import org.thoughtcrime.securesms.qr.ScanningThread
 
 class ScanQRCodeFragmentV2 : Fragment() {
     private val scanningThread = ScanningThread()
-    private var viewCreated = false
     var scanListener: ScanListener? = null
         set(value) { field = value; scanningThread.setScanListener(scanListener) }
+    var message: CharSequence = ""
 
     override fun onCreateView(layoutInflater: LayoutInflater, viewGroup: ViewGroup?, bundle: Bundle?): View? {
         return layoutInflater.inflate(R.layout.fragment_scan_qr_code_v2, viewGroup, false)
@@ -24,11 +24,11 @@ class ScanQRCodeFragmentV2 : Fragment() {
 
     override fun onViewCreated(view: View, bundle: Bundle?) {
         super.onViewCreated(view, bundle)
-        viewCreated = true
         when (resources.configuration.orientation) {
             Configuration.ORIENTATION_LANDSCAPE -> overlayView.orientation = LinearLayout.HORIZONTAL
             else -> overlayView.orientation = LinearLayout.VERTICAL
         }
+        messageTextView.text = message
     }
 
     override fun onResume() {
