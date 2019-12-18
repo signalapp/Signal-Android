@@ -6,7 +6,7 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
-import kotlinx.android.synthetic.main.conversation_view.view.*
+import kotlinx.android.synthetic.main.view_conversation.view.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.database.model.ThreadRecord
 import org.thoughtcrime.securesms.loki.LokiAPIUtilities.populateUserHexEncodedPublicKeyCacheIfNeeded
@@ -37,7 +37,7 @@ class ConversationView : LinearLayout {
 
     private fun setUpViewHierarchy() {
         val inflater = context.applicationContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val contentView = inflater.inflate(R.layout.conversation_view, null)
+        val contentView = inflater.inflate(R.layout.view_conversation, null)
         addView(contentView)
     }
     // endregion

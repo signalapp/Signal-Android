@@ -9,7 +9,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.ThreadRecord
 import org.thoughtcrime.securesms.loki.redesign.views.ConversationView
 
-class ConversationAdapter(context: Context, cursor: Cursor) : CursorRecyclerViewAdapter<ConversationAdapter.ViewHolder>(context, cursor) {
+class HomeAdapter(context: Context, cursor: Cursor) : CursorRecyclerViewAdapter<HomeAdapter.ViewHolder>(context, cursor) {
     private val threadDatabase = DatabaseFactory.getThreadDatabase(context)
     var conversationClickListener: ConversationClickListener? = null
 
@@ -30,7 +30,7 @@ class ConversationAdapter(context: Context, cursor: Cursor) : CursorRecyclerView
     }
 
     private fun getThread(cursor: Cursor): ThreadRecord? {
-        return threadDatabase.readerFor(cursor).getCurrent()
+        return threadDatabase.readerFor(cursor).current
     }
 }
 

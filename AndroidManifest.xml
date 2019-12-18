@@ -142,6 +142,9 @@
         <activity
             android:name="org.thoughtcrime.securesms.loki.redesign.activities.HomeActivity"
             android:launchMode="singleTask" />
+        <activity
+            android:name="org.thoughtcrime.securesms.loki.redesign.activities.NewPrivateChatActivity"
+            android:launchMode="singleTask" />
         <!-- Session -->
         <activity android:name="org.thoughtcrime.securesms.loki.LinkedDevicesActivity" />
         <activity

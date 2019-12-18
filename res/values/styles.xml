@@ -5,15 +5,30 @@
     <style name="Session.DarkActionBar" parent="@style/Widget.AppCompat.ActionBar">
         <item name="background">@color/action_bar_background</item>
         <item name="android:background">@color/action_bar_background</item>
-        <item name="titleTextStyle">@style/Session.TitleTextStyle</item>
-        <item name="android:titleTextStyle">@style/Session.TitleTextStyle</item>
+        <item name="titleTextStyle">@style/Session.DarkActionBar.TitleTextStyle</item>
+        <item name="android:titleTextStyle">@style/Session.DarkActionBar.TitleTextStyle</item>
         <item name="elevation">0dp</item>
         <item name="android:elevation">0dp</item>
     </style>
 
-    <style name="Session.TitleTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+    <style name="Session.DarkActionBar.TitleTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="android:textColor">@color/text</item>
         <item name="android:textSize">@dimen/very_large_font_size</item>
+    </style>
+
+    <style name="Session.DarkTabLayout" parent="Widget.Design.TabLayout">
+        <item name="tabIndicatorColor">@color/accent</item>
+        <item name="tabIndicatorHeight">@dimen/accent_line_thickness</item>
+        <item name="tabBackground">@color/action_bar_background</item>
+        <item name="tabRippleColor">@color/cell_selected</item>
+        <item name="tabTextAppearance">@style/Session.DarkTabLayout.TextAppearance</item>
+        <item name="tabSelectedTextColor">@color/text</item>
+    </style>
+
+    <style name="Session.DarkTabLayout.TextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">@dimen/medium_font_size</item>
+        <item name="android:textColor">@color/unimportant</item>"
+        <item name="textAllCaps">false</item>
     </style>
 
     <style name="MediumProminentFilledButton">
@@ -21,6 +36,7 @@
         <item name="android:textAllCaps">false</item>
         <item name="android:textSize">@dimen/medium_font_size</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text</item>
     </style>
 
     <style name="MediumProminentOutlineButton">
@@ -29,6 +45,14 @@
         <item name="android:textSize">@dimen/medium_font_size</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/accent</item>
+    </style>
+
+    <style name="MediumUnimportantFilledButton">
+        <item name="android:background">@drawable/unimportant_filled_button_medium_background</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">@dimen/medium_font_size</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text</item>
     </style>
 
     <style name="SessionIDTextView">

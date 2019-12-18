@@ -10,13 +10,13 @@ import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.conversation.ConversationActivity
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.ThreadRecord
-import org.thoughtcrime.securesms.loki.NewConversationActivity
 import org.thoughtcrime.securesms.loki.redesign.utilities.push
 import org.thoughtcrime.securesms.loki.redesign.views.ConversationView
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 
 class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListener {
 
+    // region Lifecycle
     constructor() : super()
 
     override fun onCreate(savedInstanceState: Bundle?, isReady: Boolean) {
@@ -27,7 +27,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         supportActionBar!!.title = "Messages"
         // Set up recycler view
         val cursor = DatabaseFactory.getThreadDatabase(this).conversationList
-        val conversationAdapter = ConversationAdapter(this, cursor)
+        val conversationAdapter = HomeAdapter(this, cursor)
         conversationAdapter.conversationClickListener = this
         recyclerView.adapter = conversationAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -42,6 +42,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
             application.startRSSFeedPollersIfNeeded()
         }
     }
+    // endregion
 
     override fun onConversationClick(view: ConversationView) {
         val thread = view.thread ?: return
@@ -64,7 +65,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
     }
 
     private fun createPrivateChat() {
-        val intent = Intent(this, NewConversationActivity::class.java)
+        val intent = Intent(this, NewPrivateChatActivity::class.java)
         startActivity(intent)
     }
 }

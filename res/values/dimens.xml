@@ -20,6 +20,7 @@
     <dimen name="border_thickness">2dp</dimen>
     <dimen name="profile_picture_border_thickness">1dp</dimen>
     <dimen name="new_conversation_button_size">56dp</dimen>
+    <dimen name="tab_bar_height">48dp</dimen>
     <dimen name="text_view_corner_radius">8dp</dimen>
     <dimen name="fake_chat_view_bubble_width">224dp</dimen>
     <dimen name="fake_chat_view_bubble_corner_radius">10dp</dimen>
@@ -31,7 +32,7 @@
     <dimen name="large_spacing">24dp</dimen>
     <dimen name="very_large_spacing">35dp</dimen>
     <dimen name="massive_spacing">64dp</dimen>
-    <dimen name="new_conversation_button_bottom_offset">60dp</dimen>
+    <dimen name="new_conversation_button_bottom_offset">48dp</dimen>
     <dimen name="onboarding_button_bottom_offset">48dp</dimen>
 
     <!-- Session -->

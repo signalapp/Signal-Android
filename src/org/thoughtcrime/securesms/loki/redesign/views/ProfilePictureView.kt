@@ -5,7 +5,7 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.RelativeLayout
-import kotlinx.android.synthetic.main.profile_picture_view.view.*
+import kotlinx.android.synthetic.main.view_profile_picture.view.*
 import network.loki.messenger.R
 
 class ProfilePictureView : RelativeLayout {
@@ -32,10 +32,12 @@ class ProfilePictureView : RelativeLayout {
 
     private fun setUpViewHierarchy() {
         val inflater = context.applicationContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val contentView = inflater.inflate(R.layout.profile_picture_view, null)
+        val contentView = inflater.inflate(R.layout.view_profile_picture, null)
         addView(contentView)
     }
+    // endregion
 
+    // region Updating
     fun update() {
         val hexEncodedPublicKey = hexEncodedPublicKey ?: return
         val additionalHexEncodedPublicKey = additionalHexEncodedPublicKey
