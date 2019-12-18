@@ -20,14 +20,19 @@ public class DeviceContact {
   private final Optional<byte[]>                        profileKey;
   private final boolean                                 blocked;
   private final Optional<Integer>                       expirationTimer;
+  private final Optional<Integer> inboxPosition;
+  private final boolean                                 archived;
 
-  public DeviceContact(SignalServiceAddress address, Optional<String> name,
+  public DeviceContact(SignalServiceAddress address,
+                       Optional<String> name,
                        Optional<SignalServiceAttachmentStream> avatar,
                        Optional<String> color,
                        Optional<VerifiedMessage> verified,
                        Optional<byte[]> profileKey,
                        boolean blocked,
-                       Optional<Integer> expirationTimer)
+                       Optional<Integer> expirationTimer,
+                       Optional<Integer> inboxPosition,
+                       boolean archived)
   {
     this.address         = address;
     this.name            = name;
@@ -37,6 +42,8 @@ public class DeviceContact {
     this.profileKey      = profileKey;
     this.blocked         = blocked;
     this.expirationTimer = expirationTimer;
+    this.inboxPosition   = inboxPosition;
+    this.archived        = archived;
   }
 
   public Optional<SignalServiceAttachmentStream> getAvatar() {
@@ -69,5 +76,13 @@ public class DeviceContact {
 
   public Optional<Integer> getExpirationTimer() {
     return expirationTimer;
+  }
+
+  public Optional<Integer> getInboxPosition() {
+    return inboxPosition;
+  }
+
+  public boolean isArchived() {
+    return archived;
   }
 }

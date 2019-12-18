@@ -52,8 +52,11 @@ import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.Closeable;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class ThreadDatabase extends Database {
@@ -416,6 +419,36 @@ public class ThreadDatabase extends Database {
 
   public Cursor getArchivedConversationList() {
     return getConversationList("1");
+  }
+
+  public @NonNull Set<RecipientId> getArchivedRecipients() {
+    Set<RecipientId> archived = new HashSet<>();
+
+    try (Cursor cursor = DatabaseFactory.getThreadDatabase(context).getArchivedConversationList()) {
+      while (cursor != null && cursor.moveToNext()) {
+        archived.add(RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.RECIPIENT_ID))));
+      }
+    }
+
+    return archived;
+  }
+
+  public @NonNull Map<RecipientId, Integer> getInboxPositions() {
+    SQLiteDatabase db     = databaseHelper.getReadableDatabase();
+    String         query  = createQuery(MESSAGE_COUNT + " != ?", 0);
+
+    Map<RecipientId, Integer> positions = new HashMap<>();
+
+    try (Cursor cursor = db.rawQuery(query, new String[] { "0" })) {
+      int i = 0;
+      while (cursor != null && cursor.moveToNext()) {
+        RecipientId recipientId = RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(ThreadDatabase.RECIPIENT_ID)));
+        positions.put(recipientId, i);
+        i++;
+      }
+    }
+
+    return positions;
   }
 
   private Cursor getConversationList(String archived) {

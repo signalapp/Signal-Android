@@ -34,6 +34,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 public class MultiDeviceGroupUpdateJob extends BaseJob {
@@ -90,15 +92,22 @@ public class MultiDeviceGroupUpdateJob extends BaseJob {
             members.add(RecipientUtil.toSignalServiceAddress(context, Recipient.resolved(member)));
           }
 
-          RecipientId       recipientId     = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(GroupUtil.getEncodedId(record.getId(), record.isMms()));
-          Recipient         recipient       = Recipient.resolved(recipientId);
-          Optional<Integer> expirationTimer = recipient.getExpireMessages() > 0 ? Optional.of(recipient.getExpireMessages()) : Optional.absent();
+          RecipientId               recipientId     = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(GroupUtil.getEncodedId(record.getId(), record.isMms()));
+          Recipient                 recipient       = Recipient.resolved(recipientId);
+          Optional<Integer>         expirationTimer = recipient.getExpireMessages() > 0 ? Optional.of(recipient.getExpireMessages()) : Optional.absent();
+          Map<RecipientId, Integer> inboxPositions  = DatabaseFactory.getThreadDatabase(context).getInboxPositions();
+          Set<RecipientId>          archived        = DatabaseFactory.getThreadDatabase(context).getArchivedRecipients();
 
-          out.write(new DeviceGroup(record.getId(), Optional.fromNullable(record.getTitle()),
-                                    members, getAvatar(record.getAvatar()),
-                                    record.isActive(), expirationTimer,
+          out.write(new DeviceGroup(record.getId(),
+                                    Optional.fromNullable(record.getTitle()),
+                                    members,
+                                    getAvatar(record.getAvatar()),
+                                    record.isActive(),
+                                    expirationTimer,
                                     Optional.of(recipient.getColor().serialize()),
-                                    recipient.isBlocked()));
+                                    recipient.isBlocked(),
+                                    Optional.fromNullable(inboxPositions.get(recipientId)),
+                                    archived.contains(recipientId)));
         }
       }
 

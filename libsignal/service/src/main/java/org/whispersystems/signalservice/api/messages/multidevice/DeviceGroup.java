@@ -22,11 +22,19 @@ public class DeviceGroup {
   private final Optional<Integer>                       expirationTimer;
   private final Optional<String>                        color;
   private final boolean                                 blocked;
+  private final Optional<Integer>                       inboxPosition;
+  private final boolean                                 archived;
 
-  public DeviceGroup(byte[] id, Optional<String> name, List<SignalServiceAddress> members,
+  public DeviceGroup(byte[] id,
+                     Optional<String> name,
+                     List<SignalServiceAddress> members,
                      Optional<SignalServiceAttachmentStream> avatar,
-                     boolean active, Optional<Integer> expirationTimer,
-                     Optional<String> color, boolean blocked)
+                     boolean active,
+                     Optional<Integer> expirationTimer,
+                     Optional<String> color,
+                     boolean blocked,
+                     Optional<Integer> inboxPosition,
+                     boolean archived)
   {
     this.id              = id;
     this.name            = name;
@@ -36,6 +44,8 @@ public class DeviceGroup {
     this.expirationTimer = expirationTimer;
     this.color           = color;
     this.blocked         = blocked;
+    this.inboxPosition   = inboxPosition;
+    this.archived        = archived;
   }
 
   public Optional<SignalServiceAttachmentStream> getAvatar() {
@@ -68,5 +78,13 @@ public class DeviceGroup {
 
   public boolean isBlocked() {
     return blocked;
+  }
+
+  public Optional<Integer> getInboxPosition() {
+    return inboxPosition;
+  }
+
+  public boolean isArchived() {
+    return archived;
   }
 }

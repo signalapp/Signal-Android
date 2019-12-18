@@ -1075,6 +1075,25 @@ public class RecipientDatabase extends Database {
     return databaseHelper.getReadableDatabase().query(TABLE_NAME, SEARCH_PROJECTION, selection, args, null, null, null);
   }
 
+  public @NonNull List<Recipient> getRecipientsForMultiDeviceSync() {
+    String   subquery  = "SELECT " + ThreadDatabase.TABLE_NAME + "." + ThreadDatabase.RECIPIENT_ID + " FROM " + ThreadDatabase.TABLE_NAME;
+    String   selection = REGISTERED      + " = ? AND " +
+                         GROUP_ID        + " IS NULL AND " +
+                         ID              + " != ? AND " +
+                         "(" + SYSTEM_DISPLAY_NAME + " NOT NULL OR " + ID + " IN (" + subquery + "))";
+    String[] args      = new String[] { String.valueOf(RegisteredState.REGISTERED.getId()), Recipient.self().getId().serialize() };
+
+    List<Recipient> recipients = new ArrayList<>();
+
+    try (Cursor cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, ID_PROJECTION, selection, args, null, null, null)) {
+      while (cursor != null && cursor.moveToNext()) {
+        recipients.add(Recipient.resolved(RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(ID)))));
+      }
+    }
+
+    return recipients;
+  }
+
   public void applyBlockedUpdate(@NonNull List<SignalServiceAddress> blocked, List<byte[]> groupIds) {
     List<String> blockedE164 = Stream.of(blocked)
                                      .filter(b -> b.getNumber().isPresent())
