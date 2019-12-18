@@ -193,6 +193,8 @@ dependencies {
     implementation("com.crashlytics.sdk.android:crashlytics:$crashlytics_version@aar") {
         transitive = true
     }
+    implementation "com.jakewharton.rxbinding3:rxbinding:3.1.0"
+    implementation "com.github.tbruyelle:rxpermissions:0.10.2"
 }
 
 def canonicalVersionCode = 23

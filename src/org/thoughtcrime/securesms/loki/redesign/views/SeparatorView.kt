@@ -13,7 +13,6 @@ import org.thoughtcrime.securesms.loki.getColorWithID
 import org.thoughtcrime.securesms.loki.toPx
 
 class SeparatorView : RelativeLayout {
-    lateinit var title: CharSequence
 
     private val path = Path()
 
@@ -21,7 +20,7 @@ class SeparatorView : RelativeLayout {
         val result = Paint()
         result.style = Paint.Style.STROKE
         result.color = resources.getColorWithID(R.color.separator, context.theme)
-        result.strokeWidth = 2.0f
+        result.strokeWidth = toPx(1, resources).toFloat()
         result.isAntiAlias = true
         result
     }()
