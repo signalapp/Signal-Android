@@ -32,8 +32,8 @@
     <dimen name="large_spacing">24dp</dimen>
     <dimen name="very_large_spacing">35dp</dimen>
     <dimen name="massive_spacing">64dp</dimen>
-    <dimen name="new_conversation_button_bottom_offset">48dp</dimen>
-    <dimen name="onboarding_button_bottom_offset">48dp</dimen>
+    <dimen name="new_conversation_button_bottom_offset">40dp</dimen>
+    <dimen name="onboarding_button_bottom_offset">40dp</dimen>
 
     <!-- Session -->
 

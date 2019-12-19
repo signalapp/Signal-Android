@@ -36,7 +36,8 @@
             android:textSize="40dp"
             android:textColor="#121212"
             android:text="+"
-            android:elevation="0dp" />
+            android:elevation="0dp"
+            android:stateListAnimator="@null" />
 
     </RelativeLayout>
 
