@@ -8,7 +8,6 @@ import kotlinx.android.synthetic.main.activity_display_name_v2.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.BaseActionBarActivity
-import org.thoughtcrime.securesms.ConversationListActivity
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.loki.redesign.utilities.push
 import org.thoughtcrime.securesms.loki.redesign.utilities.setUpActionBarSessionLogo
@@ -54,7 +53,7 @@ class DisplayNameActivity : BaseActionBarActivity() {
             val servers = DatabaseFactory.getLokiThreadDatabase(this).getAllPublicChatServers()
             servers.forEach { publicChatAPI.setDisplayName(displayName, it) }
         }
-        val intent = Intent(this, ConversationListActivity::class.java)
+        val intent = Intent(this, HomeActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         push(intent)
     }

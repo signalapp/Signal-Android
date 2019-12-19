@@ -33,16 +33,10 @@ class ScanQRCodeFragmentV2 : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        scanningThread.setScanListener(scanListener)
         cameraView.onResume()
         cameraView.setPreviewCallback(scanningThread)
         scanningThread.start()
-    }
-
-    override fun onPause() {
-        super.onPause()
-        this.cameraView.onPause()
-        this.scanningThread.stopScanning()
+        scanningThread.setScanListener(scanListener)
     }
 
     override fun onConfigurationChanged(newConfiguration: Configuration) {
@@ -54,5 +48,11 @@ class ScanQRCodeFragmentV2 : Fragment() {
         }
         cameraView.onResume()
         cameraView.setPreviewCallback(scanningThread)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        this.cameraView.onPause()
+        this.scanningThread.stopScanning()
     }
 }
