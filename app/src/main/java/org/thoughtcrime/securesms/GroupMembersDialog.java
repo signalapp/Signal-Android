@@ -113,7 +113,7 @@ public class GroupMembersDialog extends AsyncTask<Void, Void, List<Recipient>> {
     }
 
     private String getRecipientName(Recipient recipient) {
-      if (FeatureFlags.PROFILE_DISPLAY) return recipient.getDisplayName(context);
+      if (FeatureFlags.profileDisplay()) return recipient.getDisplayName(context);
 
       String name = recipient.toShortString(context);
 

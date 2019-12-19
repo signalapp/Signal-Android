@@ -17,14 +17,14 @@ public class DirectoryHelper {
 
   @WorkerThread
   public static void refreshDirectory(@NonNull Context context, boolean notifyOfNewUsers) throws IOException {
-    if (FeatureFlags.UUIDS) {
+    if (FeatureFlags.uuids()) {
       // TODO [greyson] Create a DirectoryHelperV2 when appropriate.
       DirectoryHelperV1.refreshDirectory(context, notifyOfNewUsers);
     } else {
       DirectoryHelperV1.refreshDirectory(context, notifyOfNewUsers);
     }
 
-    if (FeatureFlags.STORAGE_SERVICE) {
+    if (FeatureFlags.storageService()) {
       ApplicationDependencies.getJobManager().add(new StorageSyncJob());
     }
   }
@@ -34,14 +34,14 @@ public class DirectoryHelper {
     RegisteredState originalRegisteredState = recipient.resolve().getRegistered();
     RegisteredState newRegisteredState      = null;
 
-    if (FeatureFlags.UUIDS) {
+    if (FeatureFlags.uuids()) {
       // TODO [greyson] Create a DirectoryHelperV2 when appropriate.
       newRegisteredState = DirectoryHelperV1.refreshDirectoryFor(context, recipient, notifyOfNewUsers);
     } else {
       newRegisteredState = DirectoryHelperV1.refreshDirectoryFor(context, recipient, notifyOfNewUsers);
     }
 
-    if (FeatureFlags.STORAGE_SERVICE && newRegisteredState != originalRegisteredState) {
+    if (FeatureFlags.storageService() && newRegisteredState != originalRegisteredState) {
       ApplicationDependencies.getJobManager().add(new StorageSyncJob());
     }
 

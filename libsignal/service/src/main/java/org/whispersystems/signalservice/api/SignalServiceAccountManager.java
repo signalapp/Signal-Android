@@ -43,6 +43,7 @@ import org.whispersystems.signalservice.internal.crypto.ProvisioningCipher;
 import org.whispersystems.signalservice.internal.push.ProfileAvatarData;
 import org.whispersystems.signalservice.internal.push.PushServiceSocket;
 import org.whispersystems.signalservice.internal.push.RemoteAttestationUtil;
+import org.whispersystems.signalservice.internal.push.RemoteConfigResponse;
 import org.whispersystems.signalservice.internal.push.http.ProfileCipherOutputStreamFactory;
 import org.whispersystems.signalservice.internal.storage.protos.ManifestRecord;
 import org.whispersystems.signalservice.internal.storage.protos.ReadOperation;
@@ -501,6 +502,16 @@ public class SignalServiceAccountManager {
     }
   }
 
+  public Map<String, Boolean> getRemoteConfig() throws IOException {
+    RemoteConfigResponse response = this.pushServiceSocket.getRemoteConfig();
+    Map<String, Boolean> out      = new HashMap<>();
+
+    for (RemoteConfigResponse.Config config : response.getConfig()) {
+      out.put(config.getName(), config.isEnabled());
+    }
+
+    return out;
+  }
 
 
   public String getNewDeviceVerificationCode() throws IOException {

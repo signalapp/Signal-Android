@@ -203,7 +203,7 @@ public class EditProfileFragment extends Fragment {
     this.usernameLabel      = view.findViewById(R.id.profile_overview_username_label);
     this.nextIntent         = getArguments().getParcelable(NEXT_INTENT);
 
-    if (FeatureFlags.USERNAMES && getArguments().getBoolean(DISPLAY_USERNAME, false)) {
+    if (FeatureFlags.usernames() && getArguments().getBoolean(DISPLAY_USERNAME, false)) {
       username.setVisibility(View.VISIBLE);
       usernameEditButton.setVisibility(View.VISIBLE);
       usernameLabel.setVisibility(View.VISIBLE);

@@ -1209,7 +1209,7 @@ public class RecipientDatabase extends Database {
   }
 
   void markDirty(@NonNull RecipientId recipientId, @NonNull DirtyState dirtyState) {
-    if (!FeatureFlags.STORAGE_SERVICE) return;
+    if (!FeatureFlags.storageService()) return;
 
     ContentValues contentValues = new ContentValues(1);
     contentValues.put(DIRTY, dirtyState.getId());

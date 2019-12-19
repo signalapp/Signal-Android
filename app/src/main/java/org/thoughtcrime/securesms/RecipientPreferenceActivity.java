@@ -434,7 +434,7 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
         colorPreference.setColors(MaterialColors.CONVERSATION_PALETTE.asConversationColorArray(requireActivity()));
         colorPreference.setColor(recipient.getColor().toActionBarColor(requireActivity()));
 
-        if (FeatureFlags.PROFILE_DISPLAY) {
+        if (FeatureFlags.profileDisplay()) {
           aboutPreference.setTitle(recipient.getDisplayName(requireContext()));
           aboutPreference.setSummary(recipient.resolve().getE164().or(""));
         } else {

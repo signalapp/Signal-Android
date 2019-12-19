@@ -55,7 +55,7 @@ public final class RegistrationPinV2MigrationJob extends BaseJob {
 
   @Override
   protected void onRun() throws IOException, UnauthenticatedResponseException, KeyBackupServicePinException {
-    if (!FeatureFlags.KBS) {
+    if (!FeatureFlags.kbs()) {
       Log.i(TAG, "Not migrating pin to KBS");
       return;
     }

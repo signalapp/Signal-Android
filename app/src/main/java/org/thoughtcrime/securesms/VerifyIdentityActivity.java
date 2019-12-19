@@ -275,7 +275,7 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
       byte[] localId;
       byte[] remoteId;
 
-      if (FeatureFlags.UUIDS && recipient.resolve().getUuid().isPresent()) {
+      if (FeatureFlags.uuids() && recipient.resolve().getUuid().isPresent()) {
         Log.i(TAG, "Using UUID (version 2).");
         version  = 2;
         localId  = UuidUtil.toByteArray(TextSecurePreferences.getLocalUuid(requireContext()));

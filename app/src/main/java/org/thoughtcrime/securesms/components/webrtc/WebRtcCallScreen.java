@@ -370,7 +370,7 @@ public class WebRtcCallScreen extends FrameLayout implements RecipientForeverObs
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .into(this.photo);
 
-    if (FeatureFlags.PROFILE_DISPLAY) {
+    if (FeatureFlags.profileDisplay()) {
       this.name.setText(recipient.getDisplayName(getContext()));
 
       if (recipient.getE164().isPresent()) {

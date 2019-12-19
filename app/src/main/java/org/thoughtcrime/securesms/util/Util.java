@@ -122,6 +122,19 @@ public class Util {
     return sb.toString();
   }
 
+  public static String rightPad(String value, int length) {
+    if (value.length() >= length) {
+      return value;
+    }
+
+    StringBuilder out = new StringBuilder(value);
+    while (out.length() < length) {
+      out.append(" ");
+    }
+
+    return out.toString();
+  }
+
   public static ExecutorService newSingleThreadedLifoExecutor() {
     ThreadPoolExecutor executor = new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingLifoQueue<Runnable>());
 

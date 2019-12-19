@@ -2014,7 +2014,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void setGroupShareProfileReminder(@NonNull Recipient recipient) {
-    if (!FeatureFlags.MESSAGE_REQUESTS && recipient.isPushGroup() && !recipient.isProfileSharing()) {
+    if (!FeatureFlags.messageRequests() && recipient.isPushGroup() && !recipient.isProfileSharing()) {
       groupShareProfileView.get().setRecipient(recipient);
       groupShareProfileView.get().setVisibility(View.VISIBLE);
     } else if (groupShareProfileView.resolved()) {

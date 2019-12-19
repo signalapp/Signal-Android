@@ -55,7 +55,7 @@ public final class CodeVerificationRequest {
 
   static TokenResponse getToken(@Nullable String basicStorageCredentials) throws IOException {
     if (basicStorageCredentials == null) return null;
-    if (!FeatureFlags.KBS) return null;
+    if (!FeatureFlags.kbs()) return null;
     return ApplicationDependencies.getKeyBackupService().getToken(basicStorageCredentials);
   }
 
@@ -214,7 +214,7 @@ public final class CodeVerificationRequest {
       //noinspection deprecation Only acceptable place to write the old pin enabled state.
       TextSecurePreferences.setV1RegistrationLockEnabled(context, pin != null);
       if (pin != null) {
-        if (FeatureFlags.KBS) {
+        if (FeatureFlags.kbs()) {
           Log.i(TAG, "Pin V1 successfully entered during registration, scheduling a migration to Pin V2");
           ApplicationDependencies.getJobManager().add(new RegistrationPinV2MigrationJob());
         }
@@ -230,7 +230,7 @@ public final class CodeVerificationRequest {
   }
 
   private static void repostPinToResetTries(@NonNull Context context, @Nullable String pin, @NonNull RegistrationLockData kbsData) {
-    if (!FeatureFlags.KBS) return;
+    if (!FeatureFlags.kbs()) return;
 
     if (pin == null) return;
 
@@ -264,7 +264,7 @@ public final class CodeVerificationRequest {
       return null;
     }
 
-    if (!FeatureFlags.KBS) {
+    if (!FeatureFlags.kbs()) {
       Log.w(TAG, "User appears to have a KBS pin, but this build has KBS off.");
       return null;
     }

@@ -52,6 +52,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.annimon.stream.Stream;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.thoughtcrime.securesms.ApplicationContext;
@@ -61,6 +63,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.logsubmit.util.Scrubber;
 import org.thoughtcrime.securesms.util.BucketInfo;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.FrameRateTracker;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
@@ -111,6 +114,7 @@ public class SubmitLogFragment extends Fragment {
   private static final String HEADER_POWER       = "========== POWER ==========";
   private static final String HEADER_THREADS     = "===== BLOCKED THREADS =====";
   private static final String HEADER_PERMISSIONS = "======= PERMISSIONS =======";
+  private static final String HEADER_FLAGS       = "====== FEATURE FLAGS ======";
   private static final String HEADER_LOGCAT      = "========== LOGCAT =========";
   private static final String HEADER_LOGGER      = "========== LOGGER =========";
 
@@ -411,6 +415,11 @@ public class SubmitLogFragment extends Fragment {
                    .append(buildBlockedThreads())
                    .append("\n\n\n");
 
+      stringBuilder.append(HEADER_FLAGS)
+                   .append("\n\n")
+                   .append(buildFlags())
+                   .append("\n\n\n");
+
       stringBuilder.append(HEADER_PERMISSIONS)
                    .append("\n\n")
                    .append(buildPermissions(context))
@@ -627,6 +636,28 @@ public class SubmitLogFragment extends Fragment {
 
     return out;
   }
+
+  private static CharSequence buildFlags() {
+    StringBuilder        out          = new StringBuilder();
+    Map<String, Boolean> remote       = FeatureFlags.getRemoteValues();
+    Map<String, Boolean> forced       = FeatureFlags.getForcedValues();
+    int                  remoteLength = Stream.of(remote.keySet()).map(String::length).max(Integer::compareTo).orElse(0);
+    int                  forcedLength = Stream.of(forced.keySet()).map(String::length).max(Integer::compareTo).orElse(0);
+
+    out.append("-- Remote\n");
+    for (Map.Entry<String, Boolean> entry : remote.entrySet()) {
+      out.append(Util.rightPad(entry.getKey(), remoteLength)).append(": ").append(entry.getValue()).append("\n");
+    }
+    out.append("\n");
+
+    out.append("-- Forced\n");
+    for (Map.Entry<String, Boolean> entry : forced.entrySet()) {
+      out.append(Util.rightPad(entry.getKey(), forcedLength)).append(": ").append(entry.getValue()).append("\n");
+    }
+
+    return out;
+  }
+
 
   private static Iterable<String> getSupportedAbis() {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

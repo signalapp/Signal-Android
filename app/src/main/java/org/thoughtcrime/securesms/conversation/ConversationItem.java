@@ -960,7 +960,7 @@ public class ConversationItem extends LinearLayout implements BindableConversati
   private void setGroupMessageStatus(MessageRecord messageRecord, Recipient recipient) {
     if (groupThread && !messageRecord.isOutgoing()) {
 
-      if (FeatureFlags.PROFILE_DISPLAY) {
+      if (FeatureFlags.profileDisplay()) {
         this.groupSender.setText(recipient.getDisplayName(getContext()));
         this.groupSenderProfileName.setVisibility(View.GONE);
       } else {

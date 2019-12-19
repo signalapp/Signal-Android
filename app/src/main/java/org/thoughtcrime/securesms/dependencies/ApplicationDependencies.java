@@ -69,7 +69,7 @@ public class ApplicationDependencies {
   }
 
   public static synchronized @NonNull KeyBackupService getKeyBackupService() {
-    if (!FeatureFlags.KBS) throw new AssertionError();
+    if (!FeatureFlags.kbs()) throw new AssertionError();
     return getSignalServiceAccountManager().getKeyBackupService(IasKeyStore.getIasKeyStore(application),
                                                                 BuildConfig.KEY_BACKUP_ENCLAVE_NAME,
                                                                 BuildConfig.KEY_BACKUP_MRENCLAVE,

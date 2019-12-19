@@ -44,7 +44,7 @@ public class RecipientUtil {
       throw new AssertionError(recipient.getId() + " - No UUID or phone number!");
     }
 
-    if (FeatureFlags.UUIDS && !recipient.getUuid().isPresent()) {
+    if (FeatureFlags.uuids() && !recipient.getUuid().isPresent()) {
       Log.i(TAG, recipient.getId() + " is missing a UUID...");
       try {
         RegisteredState state = DirectoryHelper.refreshDirectoryFor(context, recipient, false);
@@ -110,7 +110,7 @@ public class RecipientUtil {
 
   @WorkerThread
   public static boolean isRecipientMessageRequestAccepted(@NonNull Context context, @Nullable Recipient recipient) {
-    if (recipient == null || !FeatureFlags.MESSAGE_REQUESTS) return true;
+    if (recipient == null || !FeatureFlags.messageRequests()) return true;
 
     Recipient resolved = recipient.resolve();
 

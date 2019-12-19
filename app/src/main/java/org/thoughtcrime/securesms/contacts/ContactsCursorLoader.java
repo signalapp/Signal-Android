@@ -145,15 +145,15 @@ public class ContactsCursorLoader extends CursorLoader {
       cursorList.addAll(getContactsCursors());
     }
 
-    if (FeatureFlags.USERNAMES && NumberUtil.isVisuallyValidNumberOrEmail(filter)) {
+    if (FeatureFlags.usernames() && NumberUtil.isVisuallyValidNumberOrEmail(filter)) {
       cursorList.add(getPhoneNumberSearchHeaderCursor());
       cursorList.add(getNewNumberCursor());
-    } else if (!FeatureFlags.USERNAMES && NumberUtil.isValidSmsOrEmail(filter)){
+    } else if (!FeatureFlags.usernames() && NumberUtil.isValidSmsOrEmail(filter)){
       cursorList.add(getContactsHeaderCursor());
       cursorList.add(getNewNumberCursor());
     }
 
-    if (FeatureFlags.USERNAMES && UsernameUtil.isValidUsernameForSearch(filter)) {
+    if (FeatureFlags.usernames() && UsernameUtil.isValidUsernameForSearch(filter)) {
       cursorList.add(getUsernameSearchHeaderCursor());
       cursorList.add(getUsernameSearchCursor());
     }

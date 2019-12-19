@@ -126,7 +126,7 @@ public final class RegistrationLockDialog {
         dialog.dismiss();
         RegistrationLockReminders.scheduleReminder(context, true);
 
-        if (FeatureFlags.KBS) {
+        if (FeatureFlags.kbs()) {
           Log.i(TAG, "Pin V1 successfully remembered, scheduling a migration to V2");
           ApplicationDependencies.getJobManager().add(new RegistrationPinV2MigrationJob());
         }
@@ -201,7 +201,7 @@ public final class RegistrationLockDialog {
           @Override
           protected Boolean doInBackground(Void... voids) {
             try {
-              if (!FeatureFlags.KBS) {
+              if (!FeatureFlags.kbs()) {
                 Log.i(TAG, "Setting V1 pin");
                 SignalServiceAccountManager accountManager = ApplicationDependencies.getSignalServiceAccountManager();
                 accountManager.setPin(pinValue);
@@ -282,7 +282,7 @@ public final class RegistrationLockDialog {
           @Override
           protected Boolean doInBackground(Void... voids) {
             try {
-              if (!FeatureFlags.KBS) {
+              if (!FeatureFlags.kbs()) {
                 Log.i(TAG, "Removing v1 registration lock pin from server");
                 ApplicationDependencies.getSignalServiceAccountManager().removeV1Pin();
               } else {

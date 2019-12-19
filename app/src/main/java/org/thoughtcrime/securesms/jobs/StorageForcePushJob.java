@@ -67,7 +67,7 @@ public class StorageForcePushJob extends BaseJob {
 
   @Override
   protected void onRun() throws IOException, RetryLaterException {
-    if (!FeatureFlags.STORAGE_SERVICE) throw new AssertionError();
+    if (!FeatureFlags.storageService()) throw new AssertionError();
 
     MasterKey kbsMasterKey = SignalStore.kbsValues().getPinBackedMasterKey();
 
