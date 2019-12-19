@@ -78,7 +78,7 @@ private class CreatePrivateChatActivityAdapter(val activity: CreatePrivateChatAc
             1 -> {
                 val result = ScanQRCodeWrapperFragment()
                 result.delegate = activity
-                result.message = "Users can share their QR code by going into their account settings and tapping &quot;Share QR Code&quot;"
+                result.message = "Users can share their QR code by going into their account settings and tapping \"Share QR Code\""
                 result
             }
             else -> throw IllegalStateException()

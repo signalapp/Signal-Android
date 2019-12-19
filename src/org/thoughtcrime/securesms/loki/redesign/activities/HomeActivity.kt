@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.loki.redesign.activities
 
+import android.arch.lifecycle.Observer
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -14,9 +15,12 @@ import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.ThreadRecord
 import org.thoughtcrime.securesms.loki.redesign.utilities.push
 import org.thoughtcrime.securesms.loki.redesign.views.ConversationView
+import org.thoughtcrime.securesms.mms.GlideApp
+import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 
 class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListener {
+    private lateinit var glide: GlideRequests
 
     // region Lifecycle
     constructor() : super()
@@ -27,14 +31,25 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         setContentView(R.layout.activity_home)
         // Set title
         supportActionBar!!.title = "Messages"
+        // Set up Glide
+        glide = GlideApp.with(this)
         // Set up recycler view
         val cursor = DatabaseFactory.getThreadDatabase(this).conversationList
-        val conversationAdapter = HomeAdapter(this, cursor)
-        conversationAdapter.conversationClickListener = this
-        recyclerView.adapter = conversationAdapter
+        val homeAdapter = HomeAdapter(this, cursor)
+        homeAdapter.glide = glide
+        homeAdapter.conversationClickListener = this
+        recyclerView.adapter = homeAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
         // Set up new conversation button
         newConversationButton.setOnClickListener { createPrivateChat() }
+        // Set up typing observer
+        ApplicationContext.getInstance(this).typingStatusRepository.typingThreads.observe(this, object : Observer<Set<Long>> {
+
+            override fun onChanged(threadIDs: Set<Long>?) {
+                val adapter = recyclerView.adapter as HomeAdapter
+                adapter.typingThreadIDs = threadIDs ?: setOf()
+            }
+        })
         // Set up public chats and RSS feeds if needed
         if (TextSecurePreferences.getLocalNumber(this) != null) {
             val application = ApplicationContext.getInstance(this)

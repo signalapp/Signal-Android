@@ -8,9 +8,13 @@ import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.ThreadRecord
 import org.thoughtcrime.securesms.loki.redesign.views.ConversationView
+import org.thoughtcrime.securesms.mms.GlideRequests
 
 class HomeAdapter(context: Context, cursor: Cursor) : CursorRecyclerViewAdapter<HomeAdapter.ViewHolder>(context, cursor) {
     private val threadDatabase = DatabaseFactory.getThreadDatabase(context)
+    lateinit var glide: GlideRequests
+    var typingThreadIDs = setOf<Long>()
+        set(value) { field = value; notifyDataSetChanged() }
     var conversationClickListener: ConversationClickListener? = null
 
     class ViewHolder(val view: ConversationView) : RecyclerView.ViewHolder(view)
@@ -26,7 +30,9 @@ class HomeAdapter(context: Context, cursor: Cursor) : CursorRecyclerViewAdapter<
     }
 
     override fun onBindItemViewHolder(viewHolder: ViewHolder, cursor: Cursor) {
-        viewHolder.view.bind(getThread(cursor)!!)
+        val thread = getThread(cursor)!!
+        val isTyping = typingThreadIDs.contains(thread.threadId)
+        viewHolder.view.bind(thread, isTyping, glide)
     }
 
     private fun getThread(cursor: Cursor): ThreadRecord? {

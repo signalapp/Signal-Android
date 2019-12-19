@@ -11,6 +11,7 @@ import network.loki.messenger.R
 import org.thoughtcrime.securesms.database.model.ThreadRecord
 import org.thoughtcrime.securesms.loki.LokiAPIUtilities.populateUserHexEncodedPublicKeyCacheIfNeeded
 import org.thoughtcrime.securesms.loki.MentionUtilities.highlightMentions
+import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.util.DateUtils
 import org.whispersystems.signalservice.loki.api.LokiAPI
 import java.util.*
@@ -43,7 +44,7 @@ class ConversationView : LinearLayout {
     // endregion
 
     // region Updating
-    fun bind(thread: ThreadRecord) {
+    fun bind(thread: ThreadRecord, isTyping: Boolean, glide: GlideRequests) {
         this.thread = thread
         populateUserHexEncodedPublicKeyCacheIfNeeded(thread.threadId, context) // FIXME: This is a terrible place to do this
         unreadMessagesIndicatorView.visibility = if (thread.unreadCount > 0) View.VISIBLE else View.INVISIBLE
@@ -58,6 +59,7 @@ class ConversationView : LinearLayout {
             profilePictureView.additionalHexEncodedPublicKey = null
             profilePictureView.isRSSFeed = false
         }
+        profilePictureView.glide = glide
         profilePictureView.update()
         val senderDisplayName = if (thread.recipient.isLocalNumber) context.getString(R.string.note_to_self) else thread.recipient.name
         displayNameTextView.text = senderDisplayName
@@ -66,6 +68,21 @@ class ConversationView : LinearLayout {
         val snippet = highlightMentions(rawSnippet, thread.threadId, context)
         snippetTextView.text = snippet
         snippetTextView.typeface = if (thread.unreadCount > 0) Typeface.DEFAULT_BOLD else Typeface.DEFAULT
+        snippetTextView.visibility = if (isTyping) View.GONE else View.VISIBLE
+        if (isTyping) {
+            typingIndicatorView.startAnimation()
+        } else {
+            typingIndicatorView.stopAnimation()
+        }
+        typingIndicatorView.visibility = if (isTyping) View.VISIBLE else View.GONE
+        statusIndicatorImageView.visibility = View.VISIBLE
+        when {
+            !thread.isOutgoing || thread.isVerificationStatusChange -> statusIndicatorImageView.visibility = View.GONE
+            thread.isFailed -> statusIndicatorImageView.setImageResource(R.drawable.ic_error)
+            thread.isPending -> statusIndicatorImageView.setImageResource(R.drawable.ic_circle_dot_dot_dot)
+            thread.isRemoteRead -> statusIndicatorImageView.setImageResource(R.drawable.ic_filled_circle_check)
+            else -> statusIndicatorImageView.setImageResource(R.drawable.ic_circle_check)
+        }
     }
     // endregion
 }
