@@ -114,7 +114,16 @@ public class GroupDatabase extends Database {
   }
 
   public boolean isUnknownGroup(String groupId) {
-    return !getGroup(groupId).isPresent();
+    Optional<GroupRecord> group = getGroup(groupId);
+
+    if (!group.isPresent()) {
+      return true;
+    }
+
+    boolean noMetadata = group.get().getAvatar() == null && TextUtils.isEmpty(group.get().getTitle());
+    boolean noMembers  = group.get().getMembers().isEmpty() || (group.get().getMembers().size() == 1 && group.get().getMembers().contains(Recipient.self().getId()));
+
+    return noMetadata && noMembers;
   }
 
   public Reader getGroupsFilteredByTitle(String constraint, boolean includeInactive) {
