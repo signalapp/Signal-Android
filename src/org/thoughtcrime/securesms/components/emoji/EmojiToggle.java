@@ -64,6 +64,10 @@ public class EmojiToggle extends AppCompatImageButton implements MediaKeyboard.M
     }
   }
 
+  public boolean isStickerMode() {
+    return this.mediaToggle == stickerToggle;
+  }
+
   @Override public void onShown() {
     setToIme();
   }

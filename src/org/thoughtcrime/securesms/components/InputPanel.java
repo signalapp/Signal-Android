@@ -224,6 +224,10 @@ public class InputPanel extends LinearLayout
     mediaKeyboard.setStickerMode(isSticker);
   }
 
+  public boolean isStickerMode() {
+    return mediaKeyboard.isStickerMode();
+  }
+
   public View getMediaKeyboardToggleAnchorView() {
     return mediaKeyboard;
   }

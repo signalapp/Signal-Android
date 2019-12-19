@@ -1820,10 +1820,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     if (!TextSecurePreferences.hasSeenStickerIntroTooltip(this)) return;
 
     EventBus.getDefault().removeStickyEvent(event);
-    TooltipPopup.forTarget(inputPanel.getMediaKeyboardToggleAnchorView())
-                .setText(R.string.ConversationActivity_sticker_pack_installed)
-                .setIconGlideModel(event.getIconGlideModel())
-                .show(TooltipPopup.POSITION_ABOVE);
+
+    if (!inputPanel.isStickerMode()) {
+      TooltipPopup.forTarget(inputPanel.getMediaKeyboardToggleAnchorView())
+                  .setText(R.string.ConversationActivity_sticker_pack_installed)
+                  .setIconGlideModel(event.getIconGlideModel())
+                  .show(TooltipPopup.POSITION_ABOVE);
+    }
   }
 
   private void initializeReceivers() {
