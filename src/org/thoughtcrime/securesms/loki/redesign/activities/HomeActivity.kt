@@ -2,7 +2,10 @@ package org.thoughtcrime.securesms.loki.redesign.activities
 
 import android.arch.lifecycle.Observer
 import android.content.Intent
+import android.database.Cursor
 import android.os.Bundle
+import android.support.v4.app.LoaderManager
+import android.support.v4.content.Loader
 import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
@@ -40,15 +43,27 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         homeAdapter.conversationClickListener = this
         recyclerView.adapter = homeAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
+        // This is a workaround for the fact that CursorRecyclerViewAdapter doesn't actually auto-update (even though it says it will)
+        LoaderManager.getInstance(this).restartLoader(0, null, object : LoaderManager.LoaderCallbacks<Cursor> {
+
+            override fun onCreateLoader(id: Int, bundle: Bundle?): Loader<Cursor> {
+                return HomeLoader(this@HomeActivity)
+            }
+
+            override fun onLoadFinished(loader: Loader<Cursor>, cursor: Cursor?) {
+                homeAdapter.changeCursor(cursor)
+            }
+
+            override fun onLoaderReset(cursor: Loader<Cursor>) {
+                homeAdapter.changeCursor(null)
+            }
+        })
         // Set up new conversation button
         newConversationButton.setOnClickListener { createPrivateChat() }
         // Set up typing observer
-        ApplicationContext.getInstance(this).typingStatusRepository.typingThreads.observe(this, object : Observer<Set<Long>> {
-
-            override fun onChanged(threadIDs: Set<Long>?) {
-                val adapter = recyclerView.adapter as HomeAdapter
-                adapter.typingThreadIDs = threadIDs ?: setOf()
-            }
+        ApplicationContext.getInstance(this).typingStatusRepository.typingThreads.observe(this, Observer<Set<Long>> { threadIDs ->
+            val adapter = recyclerView.adapter as HomeAdapter
+            adapter.typingThreadIDs = threadIDs ?: setOf()
         })
         // Set up public chats and RSS feeds if needed
         if (TextSecurePreferences.getLocalNumber(this) != null) {
@@ -68,7 +83,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
 
     // region Interaction
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val id = item.getItemId()
+        val id = item.itemId
         when (id) {
             R.id.joinPublicChatItem -> joinPublicChat()
             else -> { /* Do nothing */ }

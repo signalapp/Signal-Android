@@ -87,7 +87,7 @@ private class CreatePrivateChatActivityAdapter(val activity: CreatePrivateChatAc
 
     override fun getPageTitle(index: Int): CharSequence? {
         return when (index) {
-            0 -> "Enter Public Key"
+            0 -> "Enter Session ID"
             1 -> "Scan QR Code"
             else -> throw IllegalStateException()
         }
