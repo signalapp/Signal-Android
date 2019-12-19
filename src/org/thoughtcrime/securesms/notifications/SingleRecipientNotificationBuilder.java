@@ -13,9 +13,13 @@ import androidx.annotation.StringRes;
 import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationCompat.Action;
+import androidx.core.app.Person;
 import androidx.core.app.RemoteInput;
+import androidx.core.graphics.drawable.IconCompat;
+
 import android.text.SpannableStringBuilder;
 
+import com.annimon.stream.Stream;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import org.thoughtcrime.securesms.R;
@@ -46,11 +50,12 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
   private static final int BIG_PICTURE_DIMEN = 500;
   private static final int LARGE_ICON_DIMEN  = 250;
 
-  private final List<CharSequence> messageBodies = new LinkedList<>();
+  private final List<NotificationCompat.MessagingStyle.Message> messages = new LinkedList<>();
 
   private SlideDeck    slideDeck;
   private CharSequence contentTitle;
   private CharSequence contentText;
+  private Recipient threadRecipient;
 
   public SingleRecipientNotificationBuilder(@NonNull Context context, @NonNull NotificationPrivacyPreference privacy)
   {
@@ -76,29 +81,32 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
         addPerson(recipient.getContactUri().toString());
       }
 
-      ContactPhoto         contactPhoto         = recipient.getContactPhoto();
-      FallbackContactPhoto fallbackContactPhoto = recipient.getFallbackContactPhoto();
-
-      if (contactPhoto != null) {
-        try {
-          setLargeIcon(GlideApp.with(context.getApplicationContext())
-                               .load(contactPhoto)
-                               .diskCacheStrategy(DiskCacheStrategy.ALL)
-                               .circleCrop()
-                               .submit(context.getResources().getDimensionPixelSize(android.R.dimen.notification_large_icon_width),
-                                       context.getResources().getDimensionPixelSize(android.R.dimen.notification_large_icon_height))
-                               .get());
-        } catch (InterruptedException | ExecutionException e) {
-          Log.w(TAG, e);
-          setLargeIcon(fallbackContactPhoto.asDrawable(context, recipient.getColor().toConversationColor(context)));
-        }
-      } else {
-        setLargeIcon(fallbackContactPhoto.asDrawable(context, recipient.getColor().toConversationColor(context)));
-      }
+      setLargeIcon(getContactDrawable(recipient));
 
     } else {
       setContentTitle(context.getString(R.string.SingleRecipientNotificationBuilder_signal));
       setLargeIcon(new GeneratedContactPhoto("Unknown", R.drawable.ic_profile_outline_40).asDrawable(context, ContactColors.UNKNOWN_COLOR.toConversationColor(context)));
+    }
+  }
+
+  private Drawable getContactDrawable(@NonNull Recipient recipient) {
+    ContactPhoto         contactPhoto         = recipient.getContactPhoto();
+    FallbackContactPhoto fallbackContactPhoto = recipient.getFallbackContactPhoto();
+
+    if (contactPhoto != null) {
+      try {
+        return GlideApp.with(context.getApplicationContext())
+                                    .load(contactPhoto)
+                                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                                    .circleCrop()
+                                    .submit(context.getResources().getDimensionPixelSize(android.R.dimen.notification_large_icon_width),
+                                            context.getResources().getDimensionPixelSize(android.R.dimen.notification_large_icon_height))
+                                    .get();
+      } catch (InterruptedException | ExecutionException e) {
+        return fallbackContactPhoto.asDrawable(context, recipient.getColor().toConversationColor(context));
+      }
+    } else {
+      return fallbackContactPhoto.asDrawable(context, recipient.getColor().toConversationColor(context));
     }
   }
 
@@ -139,10 +147,10 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
 
     NotificationCompat.CarExtender.UnreadConversation.Builder unreadConversationBuilder =
             new NotificationCompat.CarExtender.UnreadConversation.Builder(contentTitle.toString())
-                .addMessage(contentText.toString())
-                .setLatestTimestamp(timestamp)
-                .setReadPendingIntent(androidAutoHeardIntent)
-                .setReplyAction(androidAutoReplyIntent, remoteInput);
+                                                                 .addMessage(contentText.toString())
+                                                                 .setLatestTimestamp(timestamp)
+                                                                 .setReadPendingIntent(androidAutoHeardIntent)
+                                                                 .setReplyAction(androidAutoReplyIntent, remoteInput);
 
     extend(new NotificationCompat.CarExtender().setUnreadConversation(unreadConversationBuilder.build()));
   }
@@ -202,19 +210,35 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
 
   public void addMessageBody(@NonNull Recipient threadRecipient,
                              @NonNull Recipient individualRecipient,
-                             @Nullable CharSequence messageBody)
+                             @Nullable CharSequence messageBody,
+                             long timestamp)
   {
     SpannableStringBuilder stringBuilder = new SpannableStringBuilder();
+    Person.Builder personBuilder = new Person.Builder()
+                                             .setKey(individualRecipient.getId().serialize())
+                                             .setBot(false);
 
-    if (privacy.isDisplayContact() && threadRecipient.isGroup()) {
-      stringBuilder.append(Util.getBoldedString(individualRecipient.toShortString(context) + ": "));
-    }
+    this.threadRecipient = threadRecipient;
 
-    if (privacy.isDisplayMessage()) {
-      messageBodies.add(stringBuilder.append(messageBody == null ? "" : messageBody));
+    if (privacy.isDisplayContact()) {
+      personBuilder.setName(individualRecipient.getDisplayName(context));
+
+      Bitmap bitmap = getLargeBitmap(getContactDrawable(individualRecipient));
+      if (bitmap != null) {
+        personBuilder.setIcon(IconCompat.createWithBitmap(bitmap));
+      }
     } else {
-      messageBodies.add(stringBuilder.append(context.getString(R.string.SingleRecipientNotificationBuilder_new_message)));
+      personBuilder.setName("");
     }
+
+    final CharSequence text;
+    if (privacy.isDisplayMessage()) {
+      text = messageBody == null ? "" : messageBody;
+    } else {
+      text = stringBuilder.append(context.getString(R.string.SingleRecipientNotificationBuilder_new_message));
+    }
+
+    messages.add(new NotificationCompat.MessagingStyle.Message(text, timestamp, personBuilder.build()));
   }
 
   @Override
@@ -223,31 +247,66 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
       Optional<Uri> largeIconUri  = getLargeIconUri(slideDeck);
       Optional<Uri> bigPictureUri = getBigPictureUri(slideDeck);
 
-      if (messageBodies.size() == 1 && largeIconUri.isPresent()) {
+      if (messages.size() == 1 && largeIconUri.isPresent()) {
         setLargeIcon(getNotificationPicture(largeIconUri.get(), LARGE_ICON_DIMEN));
       }
 
-      if (messageBodies.size() == 1 && bigPictureUri.isPresent()) {
+      if (messages.size() == 1 && bigPictureUri.isPresent()) {
         setStyle(new NotificationCompat.BigPictureStyle()
                                        .bigPicture(getNotificationPicture(bigPictureUri.get(), BIG_PICTURE_DIMEN))
-                                       .setSummaryText(getBigText(messageBodies)));
+                                       .setSummaryText(getBigText()));
       } else {
-        setStyle(new NotificationCompat.BigTextStyle().bigText(getBigText(messageBodies)));
+        if (Build.VERSION.SDK_INT >= 24) {
+          applyMessageStyle();
+        } else {
+          applyLegacy();
+        }
       }
     }
 
     return super.build();
   }
 
+  private void applyMessageStyle() {
+    NotificationCompat.MessagingStyle messagingStyle = new NotificationCompat.MessagingStyle(
+        new Person.Builder()
+                  .setBot(false)
+                  .setName(Recipient.self().getDisplayName(context))
+                  .setKey(Recipient.self().getId().serialize())
+                  .build());
+
+    if (threadRecipient.isGroup()) {
+      if (privacy.isDisplayContact()) {
+        messagingStyle.setConversationTitle(threadRecipient.getDisplayName(context));
+      } else {
+        messagingStyle.setConversationTitle(context.getString(R.string.SingleRecipientNotificationBuilder_signal));
+      }
+
+      messagingStyle.setGroupConversation(true);
+    }
+
+    Stream.of(messages).forEach(messagingStyle::addMessage);
+    setStyle(messagingStyle);
+  }
+
+  private void applyLegacy() {
+    setStyle(new NotificationCompat.BigTextStyle().bigText(getBigText()));
+  }
+
   private void setLargeIcon(@Nullable Drawable drawable) {
     if (drawable != null) {
-      int    largeIconTargetSize  = context.getResources().getDimensionPixelSize(R.dimen.contact_photo_target_size);
-      Bitmap recipientPhotoBitmap = BitmapUtil.createFromDrawable(drawable, largeIconTargetSize, largeIconTargetSize);
-
-      if (recipientPhotoBitmap != null) {
-        setLargeIcon(recipientPhotoBitmap);
-      }
+      setLargeIcon(getLargeBitmap(drawable));
     }
+  }
+
+  private @Nullable Bitmap getLargeBitmap(@Nullable Drawable drawable) {
+    if (drawable != null) {
+      int largeIconTargetSize  = context.getResources().getDimensionPixelSize(R.dimen.contact_photo_target_size);
+
+      return BitmapUtil.createFromDrawable(drawable, largeIconTargetSize, largeIconTargetSize);
+    }
+
+    return null;
   }
 
   private static Optional<Uri> getLargeIconUri(@Nullable SlideDeck slideDeck) {
@@ -302,17 +361,27 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
     return super.setContentText(this.contentText);
   }
 
-  private CharSequence getBigText(List<CharSequence> messageBodies) {
+  private CharSequence getBigText() {
     SpannableStringBuilder content = new SpannableStringBuilder();
 
-    for (int i = 0; i < messageBodies.size(); i++) {
-      content.append(trimToDisplayLength(messageBodies.get(i)));
-      if (i < messageBodies.size() - 1) {
+    for (int i = 0; i < messages.size(); i++) {
+      content.append(getBigTextFor(messages.get(i)));
+      if (i < messages.size() - 1) {
         content.append('\n');
       }
     }
 
     return content;
+  }
+
+  private CharSequence getBigTextFor(NotificationCompat.MessagingStyle.Message message) {
+    SpannableStringBuilder content = new SpannableStringBuilder();
+
+    if (message.getPerson() != null && message.getPerson().getName() != null && threadRecipient.isGroup()) {
+      content.append(Util.getBoldedString(message.getPerson().getName().toString())).append(": ");
+    }
+
+    return trimToDisplayLength(content.append(message.getText()));
   }
 
 }

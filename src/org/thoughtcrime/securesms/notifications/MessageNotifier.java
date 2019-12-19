@@ -37,7 +37,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
-import androidx.core.text.HtmlCompat;
 
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
@@ -71,11 +70,9 @@ import org.thoughtcrime.securesms.webrtc.CallNotificationBuilder;
 import org.whispersystems.signalservice.internal.util.Util;
 
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Set;
-import java.util.TreeSet;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -170,6 +167,30 @@ public class MessageNotifier {
     }
   }
 
+  private static boolean isDisplayingSummaryNotification(@NonNull Context context) {
+    if (Build.VERSION.SDK_INT >= 23) {
+      try {
+        NotificationManager     notificationManager = ServiceUtil.getNotificationManager(context);
+        StatusBarNotification[] activeNotifications = notificationManager.getActiveNotifications();
+
+        for (StatusBarNotification activeNotification : activeNotifications) {
+          if (activeNotification.getId() == SUMMARY_NOTIFICATION_ID) {
+            return true;
+          }
+        }
+
+        return false;
+
+      } catch (Throwable e) {
+        // XXX Android ROM Bug, see #6043
+        Log.w(TAG, e);
+        return false;
+      }
+    } else {
+      return false;
+    }
+  }
+
   private static void cancelOrphanedNotifications(@NonNull Context context, NotificationState notificationState) {
     if (Build.VERSION.SDK_INT >= 23) {
       try {
@@ -209,7 +230,7 @@ public class MessageNotifier {
       return;
     }
 
-    updateNotification(context, false, 0);
+    updateNotification(context, -1, false, 0);
   }
 
   public static void updateNotification(@NonNull Context context, long threadId)
@@ -226,7 +247,7 @@ public class MessageNotifier {
                                         long      threadId,
                                         boolean   signal)
   {
-    boolean    isVisible  = visibleThread == threadId;
+    boolean isVisible = visibleThread == threadId;
 
     ThreadDatabase threads    = DatabaseFactory.getThreadDatabase(context);
     Recipient      recipients = DatabaseFactory.getThreadDatabase(context)
@@ -246,11 +267,12 @@ public class MessageNotifier {
     if (isVisible) {
       sendInThreadNotification(context, threads.getRecipientForThreadId(threadId));
     } else {
-      updateNotification(context, signal, 0);
+      updateNotification(context, threadId, signal, 0);
     }
   }
 
   private static void updateNotification(@NonNull Context context,
+                                         long targetThread,
                                          boolean signal,
                                          int     reminderCount)
   {
@@ -281,13 +303,22 @@ public class MessageNotifier {
       if (notificationState.hasMultipleThreads()) {
         if (Build.VERSION.SDK_INT >= 23) {
           for (long threadId : notificationState.getThreads()) {
-            sendSingleThreadNotification(context, new NotificationState(notificationState.getNotificationsForThread(threadId)), false, true);
+            if (targetThread < 1 || targetThread == threadId) {
+              sendSingleThreadNotification(context,
+                                           new NotificationState(notificationState.getNotificationsForThread(threadId)),
+                                           signal && (threadId == targetThread),
+                                           true);
+            }
           }
         }
 
-        sendMultipleThreadNotification(context, notificationState, signal);
+        sendMultipleThreadNotification(context, notificationState, signal && (Build.VERSION.SDK_INT < 23));
       } else {
         sendSingleThreadNotification(context, notificationState, signal, false);
+
+        if (isDisplayingSummaryNotification(context)) {
+          sendMultipleThreadNotification(context, notificationState, false);
+        }
       }
 
       cancelOrphanedNotifications(context, notificationState);
@@ -302,9 +333,10 @@ public class MessageNotifier {
     }
   }
 
-  private static void sendSingleThreadNotification(@NonNull  Context context,
-                                                   @NonNull  NotificationState notificationState,
-                                                   boolean signal, boolean bundled)
+  private static void sendSingleThreadNotification(@NonNull Context context,
+                                                   @NonNull NotificationState notificationState,
+                                                   boolean signal,
+                                                   boolean bundled)
   {
     Log.i(TAG, "sendSingleThreadNotification()  signal: " + signal + "  bundled: " + bundled);
 
@@ -317,8 +349,13 @@ public class MessageNotifier {
     SingleRecipientNotificationBuilder builder        = new SingleRecipientNotificationBuilder(context, TextSecurePreferences.getNotificationPrivacy(context));
     List<NotificationItem>             notifications  = notificationState.getNotifications();
     Recipient                          recipient      = notifications.get(0).getRecipient();
-    int                                notificationId = (int) (SUMMARY_NOTIFICATION_ID + (bundled ? notifications.get(0).getThreadId() : 0));
+    int                                notificationId;
 
+    if (Build.VERSION.SDK_INT >= 23) {
+      notificationId = (int) (SUMMARY_NOTIFICATION_ID + notifications.get(0).getThreadId());
+    } else {
+      notificationId = SUMMARY_NOTIFICATION_ID;
+    }
 
     builder.setThread(notifications.get(0).getRecipient());
     builder.setMessageCount(notificationState.getMessageCount());
@@ -327,7 +364,7 @@ public class MessageNotifier {
     builder.setContentIntent(notifications.get(0).getPendingIntent(context));
     builder.setDeleteIntent(notificationState.getDeleteIntent(context));
     builder.setOnlyAlertOnce(!signal);
-    builder.setGroupAlertBehavior(NotificationCompat.GROUP_ALERT_SUMMARY);
+    builder.setSortKey(String.valueOf(Long.MAX_VALUE - notifications.get(0).getTimestamp()));
 
     long timestamp = notifications.get(0).getTimestamp();
     if (timestamp != 0) builder.setWhen(timestamp);
@@ -348,7 +385,7 @@ public class MessageNotifier {
 
     while(iterator.hasPrevious()) {
       NotificationItem item = iterator.previous();
-      builder.addMessageBody(item.getRecipient(), item.getIndividualRecipient(), item.getText());
+      builder.addMessageBody(item.getRecipient(), item.getIndividualRecipient(), item.getText(), item.getTimestamp());
     }
 
     if (signal) {
@@ -357,9 +394,9 @@ public class MessageNotifier {
                         notifications.get(0).getText());
     }
 
-    if (bundled) {
+    if (Build.VERSION.SDK_INT >= 23) {
       builder.setGroup(NOTIFICATION_GROUP);
-      builder.setGroupAlertBehavior(NotificationCompat.GROUP_ALERT_SUMMARY);
+      builder.setGroupAlertBehavior(NotificationCompat.GROUP_ALERT_CHILDREN);
     }
 
     Notification notification = builder.build();
@@ -378,10 +415,13 @@ public class MessageNotifier {
 
     builder.setMessageCount(notificationState.getMessageCount(), notificationState.getThreadCount());
     builder.setMostRecentSender(notifications.get(0).getIndividualRecipient());
-    builder.setGroup(NOTIFICATION_GROUP);
     builder.setDeleteIntent(notificationState.getDeleteIntent(context));
     builder.setOnlyAlertOnce(!signal);
-    builder.setGroupAlertBehavior(NotificationCompat.GROUP_ALERT_SUMMARY);
+
+    if (Build.VERSION.SDK_INT >= 23) {
+      builder.setGroup(NOTIFICATION_GROUP);
+      builder.setGroupAlertBehavior(NotificationCompat.GROUP_ALERT_CHILDREN);
+    }
 
     long timestamp = notifications.get(0).getTimestamp();
     if (timestamp != 0) builder.setWhen(timestamp);
@@ -599,7 +639,7 @@ public class MessageNotifier {
         @Override
         protected Void doInBackground(Void... params) {
           int reminderCount = intent.getIntExtra("reminder_count", 0);
-          MessageNotifier.updateNotification(context, true, reminderCount + 1);
+          MessageNotifier.updateNotification(context, -1, true, reminderCount + 1);
 
           return null;
         }
