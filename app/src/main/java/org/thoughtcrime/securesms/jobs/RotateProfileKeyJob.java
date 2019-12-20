@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.jobs;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
@@ -52,7 +51,7 @@ public class RotateProfileKeyJob extends BaseJob {
     SignalServiceAccountManager accountManager = ApplicationDependencies.getSignalServiceAccountManager();
     byte[]                      profileKey     = ProfileKeyUtil.rotateProfileKey(context);
 
-    accountManager.setProfileName(profileKey, TextSecurePreferences.getProfileName(context));
+    accountManager.setProfileName(profileKey, TextSecurePreferences.getProfileName(context).serialize());
     accountManager.setProfileAvatar(profileKey, getProfileAvatar());
 
     ApplicationDependencies.getJobManager().add(new RefreshAttributesJob());

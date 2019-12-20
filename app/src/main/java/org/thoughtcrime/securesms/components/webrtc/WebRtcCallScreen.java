@@ -20,7 +20,6 @@ package org.thoughtcrime.securesms.components.webrtc;
 import android.content.Context;
 import android.text.SpannableString;
 import android.text.Spanned;
-import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -40,7 +39,6 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -384,8 +382,8 @@ public class WebRtcCallScreen extends FrameLayout implements RecipientForeverObs
     } else {
       this.name.setText(recipient.getName(getContext()));
 
-      if (recipient.getName(getContext()) == null && !TextUtils.isEmpty(recipient.getProfileName())) {
-        this.phoneNumber.setText(recipient.requireE164() + " (~" + recipient.getProfileName() + ")");
+      if (recipient.getName(getContext()) == null && !recipient.getProfileName().isEmpty()) {
+        this.phoneNumber.setText(recipient.requireE164() + " (~" + recipient.getProfileName().toString() + ")");
       } else {
         this.phoneNumber.setText(recipient.requireE164());
       }

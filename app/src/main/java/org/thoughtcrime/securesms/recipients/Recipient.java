@@ -22,7 +22,6 @@ import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.SystemContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.TransparentContactPhoto;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase.VerifiedStatus;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RegisteredState;
@@ -34,9 +33,9 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.phonenumbers.NumberUtil;
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
+import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.GroupUtil;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.libsignal.util.guava.Preconditions;
@@ -83,7 +82,7 @@ public class Recipient {
   private final Uri                    systemContactPhoto;
   private final String                 customLabel;
   private final Uri                    contactUri;
-  private final String                 profileName;
+  private final ProfileName            profileName;
   private final String                 profileAvatar;
   private final boolean                profileSharing;
   private final String                 notificationChannel;
@@ -295,7 +294,7 @@ public class Recipient {
     this.systemContactPhoto     = null;
     this.customLabel            = null;
     this.contactUri             = null;
-    this.profileName            = null;
+    this.profileName            = ProfileName.EMPTY;
     this.profileAvatar          = null;
     this.profileSharing         = false;
     this.notificationChannel    = null;
@@ -383,7 +382,7 @@ public class Recipient {
 
   public @NonNull String getDisplayName(@NonNull Context context) {
     return Util.getFirstNonEmpty(getName(context),
-                                 getProfileName(),
+                                 getProfileName().toString(),
                                  getDisplayUsername(),
                                  e164,
                                  email,
@@ -518,7 +517,7 @@ public class Recipient {
     return defaultSubscriptionId;
   }
 
-  public @Nullable String getProfileName() {
+  public @NonNull ProfileName getProfileName() {
     return profileName;
   }
 

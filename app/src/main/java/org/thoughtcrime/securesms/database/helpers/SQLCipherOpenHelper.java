@@ -9,9 +9,9 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.os.SystemClock;
-import androidx.annotation.NonNull;
-
 import android.text.TextUtils;
+
+import androidx.annotation.NonNull;
 
 import com.annimon.stream.Stream;
 import com.bumptech.glide.Glide;
@@ -20,7 +20,6 @@ import net.sqlcipher.database.SQLiteDatabase;
 import net.sqlcipher.database.SQLiteDatabaseHook;
 import net.sqlcipher.database.SQLiteOpenHelper;
 
-import org.thoughtcrime.securesms.contacts.sync.StorageSyncHelper;
 import org.thoughtcrime.securesms.crypto.DatabaseSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
@@ -47,7 +46,6 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.service.KeyCachingService;
-import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.SqlUtil;
@@ -102,8 +100,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int RESUMABLE_DOWNLOADS              = 40;
   private static final int KEY_VALUE_STORE                  = 41;
   private static final int ATTACHMENT_DISPLAY_ORDER         = 42;
+  private static final int SPLIT_PROFILE_NAMES              = 43;
 
-  private static final int    DATABASE_VERSION = 42;
+  private static final int    DATABASE_VERSION = 43;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -531,11 +530,11 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
               values.put("phone", localNumber);
               values.put("registered", 1);
               values.put("profile_sharing", 1);
-              values.put("signal_profile_name", TextSecurePreferences.getProfileName(context));
+              values.put("signal_profile_name", TextSecurePreferences.getProfileName(context).getGivenName());
               db.insert("recipient", null, values);
             } else {
               db.execSQL("UPDATE recipient SET registered = ?, profile_sharing = ?, signal_profile_name = ? WHERE phone = ?",
-                         new String[] { "1", "1", TextSecurePreferences.getProfileName(context), localNumber });
+                         new String[] { "1", "1", TextSecurePreferences.getProfileName(context).getGivenName(), localNumber });
             }
           }
         }
@@ -697,6 +696,11 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
       if (oldVersion < ATTACHMENT_DISPLAY_ORDER) {
         db.execSQL("ALTER TABLE part ADD COLUMN display_order INTEGER DEFAULT 0");
+      }
+
+      if (oldVersion < SPLIT_PROFILE_NAMES) {
+        db.execSQL("ALTER TABLE recipient ADD COLUMN profile_family_name TEXT DEFAULT NULL");
+        db.execSQL("ALTER TABLE recipient ADD COLUMN profile_joined_name TEXT DEFAULT NULL");
       }
 
       db.setTransactionSuccessful();

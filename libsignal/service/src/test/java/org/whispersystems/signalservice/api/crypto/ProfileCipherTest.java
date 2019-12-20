@@ -19,9 +19,9 @@ public class ProfileCipherTest extends TestCase {
   public void testEncryptDecrypt() throws InvalidCiphertextException {
     byte[]        key       = Util.getSecretBytes(32);
     ProfileCipher cipher    = new ProfileCipher(key);
-    byte[]        name      = cipher.encryptName("Clement Duval".getBytes(), 26);
+    byte[]        name      = cipher.encryptName("Clement\0Duval".getBytes(), ProfileCipher.NAME_PADDED_LENGTH);
     byte[]        plaintext = cipher.decryptName(name);
-    assertEquals(new String(plaintext), "Clement Duval");
+    assertEquals(new String(plaintext), "Clement\0Duval");
   }
 
   public void testEmpty() throws Exception {

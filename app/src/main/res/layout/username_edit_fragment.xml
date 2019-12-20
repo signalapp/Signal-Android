@@ -15,7 +15,7 @@
       android:layout_width="0dp"
       android:layout_height="wrap_content"
       android:layout_marginTop="48dp"
-      android:hint="@string/ProfileEditOverviewFragment_create_a_username"
+      android:hint="@string/CreateProfileActivity__create_a_username"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent" />

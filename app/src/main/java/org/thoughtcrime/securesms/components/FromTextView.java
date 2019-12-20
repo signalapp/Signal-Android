@@ -3,14 +3,12 @@ package org.thoughtcrime.securesms.components;
 import android.content.Context;
 import android.graphics.Typeface;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.view.ViewCompat;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
-import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
 import android.text.style.TypefaceSpan;
@@ -63,8 +61,8 @@ public class FromTextView extends EmojiTextView {
 
     if (recipient.isLocalNumber()) {
       builder.append(getContext().getString(R.string.note_to_self));
-    } else if (!FeatureFlags.PROFILE_DISPLAY && recipient.getName(getContext()) == null && !TextUtils.isEmpty(recipient.getProfileName())) {
-      SpannableString profileName = new SpannableString(" (~" + recipient.getProfileName() + ") ");
+    } else if (!FeatureFlags.PROFILE_DISPLAY && recipient.getName(getContext()) == null && !recipient.getProfileName().isEmpty()) {
+      SpannableString profileName = new SpannableString(" (~" + recipient.getProfileName().toString() + ") ");
       profileName.setSpan(new CenterAlignedRelativeSizeSpan(0.75f), 0, profileName.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
       profileName.setSpan(new TypefaceSpan("sans-serif-light"), 0, profileName.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
       profileName.setSpan(new ForegroundColorSpan(ResUtil.getColor(getContext(), R.attr.conversation_list_item_subject_color)), 0, profileName.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);

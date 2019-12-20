@@ -21,7 +21,8 @@ public final class RecipientExporter {
   public Intent asAddContactIntent() {
     Intent intent = new Intent(ACTION_INSERT_OR_EDIT);
     intent.setType(ContactsContract.Contacts.CONTENT_ITEM_TYPE);
-    addNameToIntent(intent, recipient.getProfileName());
+
+    addNameToIntent(intent, recipient.getProfileName().toString());
     addAddressToIntent(intent, recipient);
     return intent;
   }

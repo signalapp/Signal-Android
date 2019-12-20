@@ -55,7 +55,7 @@ public class ContactRepository {
 
     add(new Pair<>(NAME_COLUMN, cursor -> {
       String system  = cursor.getString(cursor.getColumnIndexOrThrow(RecipientDatabase.SYSTEM_DISPLAY_NAME));
-      String profile = cursor.getString(cursor.getColumnIndexOrThrow(RecipientDatabase.SIGNAL_PROFILE_NAME));
+      String profile = cursor.getString(cursor.getColumnIndexOrThrow(RecipientDatabase.SEARCH_PROFILE_NAME));
 
       return Util.getFirstNonEmpty(system, profile);
     }));
@@ -96,7 +96,7 @@ public class ContactRepository {
       boolean   shouldAdd   = !nameMatch && !numberMatch;
 
       if (shouldAdd) {
-        MatrixCursor selfCursor = new MatrixCursor(RecipientDatabase.SEARCH_PROJECTION);
+        MatrixCursor selfCursor = new MatrixCursor(RecipientDatabase.SEARCH_PROJECTION_NAMES);
         selfCursor.addRow(new Object[]{ self.getId().serialize(), noteToSelfTitle, null, self.getE164().or(""), self.getEmail().orNull(), null, -1, RecipientDatabase.RegisteredState.REGISTERED.getId(), noteToSelfTitle });
 
         cursor = cursor == null ? selfCursor : new MergeCursor(new Cursor[]{ cursor, selfCursor });

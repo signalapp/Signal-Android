@@ -1,18 +1,13 @@
 package org.thoughtcrime.securesms.contacts.sync;
 
-import android.content.Context;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 
 import com.annimon.stream.Stream;
 
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
-import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
-import org.thoughtcrime.securesms.database.StorageKeyDatabase;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.SetUtil;
@@ -219,7 +214,7 @@ public final class StorageSyncHelper {
 
     return new SignalContactRecord.Builder(storageKey, new SignalServiceAddress(recipient.getUuid(), recipient.getE164()))
                                    .setProfileKey(recipient.getProfileKey())
-                                   .setProfileName(recipient.getProfileName())
+                                   .setProfileName(recipient.getProfileName().serialize())
                                    .setBlocked(recipient.isBlocked())
                                    .setProfileSharingEnabled(recipient.isProfileSharing())
                                    .setIdentityKey(recipient.getIdentityKey())

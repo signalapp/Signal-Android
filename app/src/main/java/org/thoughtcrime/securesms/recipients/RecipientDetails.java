@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientSettings;
 import org.thoughtcrime.securesms.database.RecipientDatabase.RegisteredState;
 import org.thoughtcrime.securesms.database.RecipientDatabase.UnidentifiedAccessMode;
 import org.thoughtcrime.securesms.database.RecipientDatabase.VibrateState;
+import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -43,7 +44,7 @@ public class RecipientDetails {
   final boolean                blocked;
   final int                    expireMessages;
   final List<Recipient>        participants;
-  final String                 profileName;
+  final ProfileName            profileName;
   final Optional<Integer>      defaultSubscriptionId;
   final RegisteredState        registered;
   final byte[]                 profileKey;

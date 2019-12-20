@@ -966,8 +966,8 @@ public class ConversationItem extends LinearLayout implements BindableConversati
       } else {
         this.groupSender.setText(recipient.toShortString(context));
 
-        if (recipient.getName(context) == null && !TextUtils.isEmpty(recipient.getProfileName())) {
-          this.groupSenderProfileName.setText("~" + recipient.getProfileName());
+        if (recipient.getName(context) == null && !recipient.getProfileName().isEmpty()) {
+          this.groupSenderProfileName.setText("~" + recipient.getProfileName().toString());
           this.groupSenderProfileName.setVisibility(View.VISIBLE);
         } else {
           this.groupSenderProfileName.setText(null);

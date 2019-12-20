@@ -19,7 +19,6 @@ import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.thoughtcrime.securesms.util.Util;
 
 public class ProfilePreference extends Preference {
 
@@ -66,7 +65,7 @@ public class ProfilePreference extends Preference {
     if (profileSubtextView == null) return;
 
     final Recipient self        = Recipient.self();
-    final String    profileName = TextSecurePreferences.getProfileName(getContext());
+    final String    profileName = TextSecurePreferences.getProfileName(getContext()).toString();
 
     GlideApp.with(getContext().getApplicationContext())
             .load(new ProfileContactPhoto(self.getId(), String.valueOf(TextSecurePreferences.getProfileAvatarId(getContext()))))

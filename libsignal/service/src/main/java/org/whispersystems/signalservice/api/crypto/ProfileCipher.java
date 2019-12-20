@@ -19,7 +19,7 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class ProfileCipher {
 
-  public static final int NAME_PADDED_LENGTH = 26;
+  public static final int NAME_PADDED_LENGTH = 53;
 
   private final byte[] key;
 

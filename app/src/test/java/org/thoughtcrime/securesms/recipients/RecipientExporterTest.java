@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
+import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import static android.provider.ContactsContract.Intents.Insert.NAME;
@@ -24,7 +25,7 @@ public final class RecipientExporterTest {
 
   @Test
   public void asAddContactIntent_with_phone_number() {
-    Recipient recipient = givenPhoneRecipient("Alice", "+1555123456");
+    Recipient recipient = givenPhoneRecipient(ProfileName.fromParts("Alice", null), "+1555123456");
 
     Intent intent = RecipientExporter.export(recipient).asAddContactIntent();
 
@@ -37,7 +38,7 @@ public final class RecipientExporterTest {
 
   @Test
   public void asAddContactIntent_with_email() {
-    Recipient recipient = givenEmailRecipient("Bob", "bob@signal.org");
+    Recipient recipient = givenEmailRecipient(ProfileName.fromParts("Bob", null), "bob@signal.org");
 
     Intent intent = RecipientExporter.export(recipient).asAddContactIntent();
 
@@ -48,7 +49,7 @@ public final class RecipientExporterTest {
     assertNull(intent.getStringExtra(PHONE));
   }
 
-  private Recipient givenPhoneRecipient(String profileName, String phone) {
+  private Recipient givenPhoneRecipient(ProfileName profileName, String phone) {
     Recipient recipient = mock(Recipient.class);
     when(recipient.getProfileName()).thenReturn(profileName);
 
@@ -59,7 +60,7 @@ public final class RecipientExporterTest {
     return recipient;
   }
 
-  private Recipient givenEmailRecipient(String profileName, String email) {
+  private Recipient givenEmailRecipient(ProfileName profileName, String email) {
     Recipient recipient = mock(Recipient.class);
     when(recipient.getProfileName()).thenReturn(profileName);
 

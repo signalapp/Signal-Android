@@ -38,8 +38,8 @@ import org.thoughtcrime.securesms.preferences.NotificationsPreferenceFragment;
 import org.thoughtcrime.securesms.preferences.SmsMmsPreferenceFragment;
 import org.thoughtcrime.securesms.preferences.StoragePreferenceFragment;
 import org.thoughtcrime.securesms.preferences.widgets.ProfilePreference;
+import org.thoughtcrime.securesms.profiles.edit.EditProfileActivity;
 import org.thoughtcrime.securesms.service.KeyCachingService;
-import org.thoughtcrime.securesms.usernames.ProfileEditActivityV2;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.FeatureFlags;
@@ -266,14 +266,12 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
     private class ProfileClickListener implements Preference.OnPreferenceClickListener {
       @Override
       public boolean onPreferenceClick(Preference preference) {
-        if (FeatureFlags.USERNAMES) {
-          requireActivity().startActivity(ProfileEditActivityV2.getLaunchIntent(requireContext()));
-        } else {
-          Intent intent = new Intent(preference.getContext(), CreateProfileActivity.class);
-          intent.putExtra(CreateProfileActivity.EXCLUDE_SYSTEM, true);
+        Intent intent = new Intent(preference.getContext(), EditProfileActivity.class);
+        intent.putExtra(EditProfileActivity.EXCLUDE_SYSTEM, true);
+        intent.putExtra(EditProfileActivity.DISPLAY_USERNAME, true);
+        intent.putExtra(EditProfileActivity.NEXT_BUTTON_TEXT, R.string.save);
 
-          requireActivity().startActivity(intent);
-        }
+        requireActivity().startActivity(intent);
         return true;
       }
     }

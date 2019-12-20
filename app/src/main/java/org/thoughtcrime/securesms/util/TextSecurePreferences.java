@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.lock.RegistrationLockReminders;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference;
+import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.whispersystems.libsignal.util.Medium;
 import org.whispersystems.signalservice.api.RegistrationLockData;
 import org.whispersystems.signalservice.api.util.UuidUtil;
@@ -442,12 +443,12 @@ public class TextSecurePreferences {
     setStringPreference(context, PROFILE_KEY_PREF, key);
   }
 
-  public static void setProfileName(Context context, String name) {
-    setStringPreference(context, PROFILE_NAME_PREF, name);
+  public static void setProfileName(Context context, ProfileName name) {
+    setStringPreference(context, PROFILE_NAME_PREF, name.serialize());
   }
 
-  public static String getProfileName(Context context) {
-    return getStringPreference(context, PROFILE_NAME_PREF, null);
+  public static ProfileName getProfileName(Context context) {
+    return ProfileName.fromSerialized(getStringPreference(context, PROFILE_NAME_PREF, null));
   }
 
   public static void setProfileAvatarId(Context context, int id) {

@@ -4,8 +4,10 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+
 import android.text.TextUtils;
+
+import org.thoughtcrime.securesms.util.cjkv.CJKVUtil;
 
 import static org.thoughtcrime.securesms.contactshare.Contact.*;
 
@@ -67,7 +69,12 @@ public class ContactNameEditViewModel extends ViewModel {
   }
 
   private String buildDisplayName() {
-    boolean isCJKV = isCJKV(givenName) && isCJKV(middleName) && isCJKV(familyName) && isCJKV(prefix) && isCJKV(suffix);
+    boolean isCJKV = CJKVUtil.isCJKV(givenName)  &&
+                     CJKVUtil.isCJKV(middleName) &&
+                     CJKVUtil.isCJKV(familyName) &&
+                     CJKVUtil.isCJKV(prefix)     &&
+                     CJKVUtil.isCJKV(suffix);
+
     if (isCJKV) {
       return joinString(familyName, givenName, prefix, suffix, middleName);
     }
@@ -86,47 +93,4 @@ public class ContactNameEditViewModel extends ViewModel {
     return builder.toString().trim();
   }
 
-  private boolean isCJKV(@Nullable String value) {
-    if  (TextUtils.isEmpty(value)) {
-      return true;
-    }
-
-    for (int offset = 0; offset < value.length(); ) {
-      int codepoint = Character.codePointAt(value, offset);
-
-      if (!isCodepointCJKV(codepoint)) {
-        return false;
-      }
-
-      offset += Character.charCount(codepoint);
-    }
-
-    return true;
-  }
-
-  private boolean isCodepointCJKV(int codepoint) {
-    if (codepoint == (int)' ') return true;
-    
-    Character.UnicodeBlock block = Character.UnicodeBlock.of(codepoint);
-
-    return Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS.equals(block)                  ||
-           Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_A.equals(block)      ||
-           Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_B.equals(block)      ||
-           Character.UnicodeBlock.CJK_COMPATIBILITY.equals(block)                       ||
-           Character.UnicodeBlock.CJK_COMPATIBILITY_FORMS.equals(block)                 ||
-           Character.UnicodeBlock.CJK_COMPATIBILITY_IDEOGRAPHS.equals(block)            ||
-           Character.UnicodeBlock.CJK_COMPATIBILITY_IDEOGRAPHS_SUPPLEMENT.equals(block) ||
-           Character.UnicodeBlock.CJK_RADICALS_SUPPLEMENT.equals(block)                 ||
-           Character.UnicodeBlock.CJK_SYMBOLS_AND_PUNCTUATION.equals(block)             ||
-           Character.UnicodeBlock.ENCLOSED_CJK_LETTERS_AND_MONTHS.equals(block)         ||
-           Character.UnicodeBlock.KANGXI_RADICALS.equals(block)                         ||
-           Character.UnicodeBlock.IDEOGRAPHIC_DESCRIPTION_CHARACTERS.equals(block)      ||
-           Character.UnicodeBlock.HIRAGANA.equals(block)                                ||
-           Character.UnicodeBlock.KATAKANA.equals(block)                                ||
-           Character.UnicodeBlock.KATAKANA_PHONETIC_EXTENSIONS.equals(block)            ||
-           Character.UnicodeBlock.HANGUL_JAMO.equals(block)                             ||
-           Character.UnicodeBlock.HANGUL_COMPATIBILITY_JAMO.equals(block)               ||
-           Character.UnicodeBlock.HANGUL_SYLLABLES.equals(block)                        ||
-           Character.isIdeographic(codepoint);
-  }
 }

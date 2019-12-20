@@ -409,10 +409,10 @@
     <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
               android:theme="@style/TextSecure.DarkTheme"/>
 
-    <activity android:name=".CreateProfileActivity"
-              android:theme="@style/TextSecure.LightRegistrationTheme"
-              android:windowSoftInputMode="stateVisible"
-              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
+    <activity android:name=".profiles.edit.EditProfileActivity"
+            android:theme="@style/TextSecure.LightRegistrationTheme"
+            android:windowSoftInputMode="stateVisible"
+            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".ClearProfileAvatarActivity"
               android:theme="@style/Theme.AppCompat.Dialog.Alert"
@@ -448,11 +448,6 @@
             android:label="@string/PlacePickerActivity_title"
             android:theme="@style/TextSecure.LightNoActionBar"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
-
-    <activity
-        android:name=".usernames.ProfileEditActivityV2"
-        android:theme="@style/TextSecure.LightNoActionBar"
-        android:windowSoftInputMode="adjustResize"/>
 
     <activity android:name=".MainActivity"
               android:theme="@style/TextSecure.LightNoActionBar"

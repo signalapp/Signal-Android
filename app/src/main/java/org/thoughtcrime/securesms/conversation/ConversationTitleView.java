@@ -142,10 +142,10 @@ public class ConversationTitleView extends RelativeLayout {
   private void setNonContactRecipientTitle(Recipient recipient) {
     this.title.setText(Util.getFirstNonEmpty(recipient.getE164().orNull(), recipient.getUuid().transform(UUID::toString).orNull()));
 
-    if (TextUtils.isEmpty(recipient.getProfileName())) {
+    if (recipient.getProfileName().isEmpty()) {
       this.subtitle.setText(null);
     } else {
-      this.subtitle.setText("~" + recipient.getProfileName());
+      this.subtitle.setText("~" + recipient.getProfileName().toString());
     }
 
     updateSubtitleVisibility();

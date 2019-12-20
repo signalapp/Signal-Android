@@ -7,12 +7,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.View;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.core.app.NotificationCompat;
 import androidx.viewpager.widget.ViewPager;
-import android.view.View;
 
 import com.melnykov.fab.FloatingActionButton;
 
@@ -21,6 +22,7 @@ import org.thoughtcrime.securesms.experienceupgrades.StickersIntroFragment;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.notifications.NotificationIds;
+import org.thoughtcrime.securesms.profiles.edit.EditProfileActivity;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.ServiceUtil;
@@ -71,7 +73,7 @@ public class ExperienceUpgradeActivity extends BaseActionBarActivity
              R.string.ExperienceUpgradeActivity_signal_profiles_are_here,
              R.string.ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal,
              R.string.ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal,
-             CreateProfileActivity.class,
+             EditProfileActivity.class,
              false),
     READ_RECEIPTS(299,
                   new IntroPage(0xFF2090EA,
