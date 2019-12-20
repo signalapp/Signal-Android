@@ -22,7 +22,7 @@ import org.thoughtcrime.securesms.jobs.MultiDeviceGroupUpdateJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceProfileKeyUpdateJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceReadUpdateJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceVerifiedUpdateJob;
-import org.thoughtcrime.securesms.jobs.PushDecryptJob;
+import org.thoughtcrime.securesms.jobs.PushDecryptMessageJob;
 import org.thoughtcrime.securesms.jobs.PushGroupSendJob;
 import org.thoughtcrime.securesms.jobs.PushGroupUpdateJob;
 import org.thoughtcrime.securesms.jobs.PushMediaSendJob;
@@ -71,7 +71,7 @@ public class WorkManagerFactoryMappings {
     put(MultiDeviceReadUpdateJob.class.getName(), MultiDeviceReadUpdateJob.KEY);
     put(MultiDeviceVerifiedUpdateJob.class.getName(), MultiDeviceVerifiedUpdateJob.KEY);
     put("PushContentReceiveJob", FailingJob.KEY);
-    put(PushDecryptJob.class.getName(), PushDecryptJob.KEY);
+    put("PushDecryptJob", PushDecryptMessageJob.KEY);
     put(PushGroupSendJob.class.getName(), PushGroupSendJob.KEY);
     put(PushGroupUpdateJob.class.getName(), PushGroupUpdateJob.KEY);
     put(PushMediaSendJob.class.getName(), PushMediaSendJob.KEY);

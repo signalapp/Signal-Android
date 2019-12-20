@@ -2,21 +2,21 @@ package org.thoughtcrime.securesms.gcm;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
-import androidx.lifecycle.Observer;
 
 import org.thoughtcrime.securesms.IncomingMessageProcessor;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.JobTracker;
+import org.thoughtcrime.securesms.jobs.MarkerJob;
+import org.thoughtcrime.securesms.jobs.PushDecryptMessageJob;
+import org.thoughtcrime.securesms.jobs.PushProcessMessageJob;
 import org.thoughtcrime.securesms.logging.Log;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * Retrieves messages over the REST endpoint.
@@ -33,9 +33,8 @@ public class RestStrategy implements MessageRetriever.Strategy {
     long startTime = System.currentTimeMillis();
 
     try (IncomingMessageProcessor.Processor processor = ApplicationDependencies.getIncomingMessageProcessor().acquire()) {
-      SignalServiceMessageReceiver receiver  = ApplicationDependencies.getSignalServiceMessageReceiver();
-      AtomicReference<String>      lastJobId = new AtomicReference<>(null);
-      AtomicInteger                jobCount  = new AtomicInteger(0);
+      SignalServiceMessageReceiver receiver = ApplicationDependencies.getSignalServiceMessageReceiver();
+      AtomicInteger                jobCount = new AtomicInteger(0);
 
       receiver.setSoTimeoutMillis(SOCKET_TIMEOUT);
 
@@ -44,16 +43,17 @@ public class RestStrategy implements MessageRetriever.Strategy {
         String jobId = processor.processEnvelope(envelope);
 
         if (jobId != null) {
-          lastJobId.set(jobId);
           jobCount.incrementAndGet();
         }
         Log.i(TAG, "Successfully processed an envelope." + timeSuffix(startTime));
       });
 
-      Log.d(TAG, jobCount.get() + " PushDecryptJob(s) were enqueued.");
+      Log.d(TAG, jobCount.get() + " PushDecryptMessageJob(s) were enqueued.");
 
-      if (lastJobId.get() != null) {
-        blockUntilJobIsFinished(lastJobId.get());
+      long timeRemainingMs = blockUntilQueueDrained(PushDecryptMessageJob.QUEUE, TimeUnit.SECONDS.toMillis(10));
+
+      if (timeRemainingMs > 0) {
+        blockUntilQueueDrained(PushProcessMessageJob.QUEUE, timeRemainingMs);
       }
 
       return true;
@@ -63,29 +63,40 @@ public class RestStrategy implements MessageRetriever.Strategy {
       return false;
     }
   }
-  private static void blockUntilJobIsFinished(@NonNull String jobId) {
+
+  private static long blockUntilQueueDrained(@NonNull String queue, long timeoutMs) {
+    final JobManager jobManager = ApplicationDependencies.getJobManager();
+    final MarkerJob  markerJob  = new MarkerJob(queue);
+
+    jobManager.add(markerJob);
+
     long           startTime = System.currentTimeMillis();
     CountDownLatch latch     = new CountDownLatch(1);
 
-    ApplicationDependencies.getJobManager().addListener(jobId, new JobTracker.JobListener() {
+    jobManager.addListener(markerJob.getId(), new JobTracker.JobListener() {
       @Override
       public void onStateChanged(@NonNull JobTracker.JobState jobState) {
         if (jobState.isComplete()) {
-          ApplicationDependencies.getJobManager().removeListener(this);
+          jobManager.removeListener(this);
           latch.countDown();
         }
       }
     });
 
     try {
-      if (!latch.await(10, TimeUnit.SECONDS)) {
-        Log.w(TAG, "Timed out waiting for PushDecryptJob(s) to finish!");
+      if (!latch.await(timeoutMs, TimeUnit.MILLISECONDS)) {
+        Log.w(TAG, "Timed out waiting for " + queue + " job(s) to finish!");
+        return 0;
       }
     } catch (InterruptedException e) {
       throw new AssertionError(e);
     }
 
-    Log.d(TAG, "Waited " + (System.currentTimeMillis() - startTime) + " ms for the PushDecryptJob(s) to finish.");
+    long endTime  = System.currentTimeMillis();
+    long duration = endTime - startTime;
+
+    Log.d(TAG, "Waited " + duration + " ms for the " + queue + " job(s) to finish.");
+    return timeoutMs - duration;
   }
 
   private static String timeSuffix(long startTime) {

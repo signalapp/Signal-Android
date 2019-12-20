@@ -1,11 +1,8 @@
-package org.whispersystems.signalservice.util;
+package org.whispersystems.signalservice.api.util;
 
 
 import junit.framework.AssertionFailedError;
 import junit.framework.TestCase;
-
-import org.whispersystems.signalservice.api.util.InvalidNumberException;
-import org.whispersystems.signalservice.api.util.PhoneNumberFormatter;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

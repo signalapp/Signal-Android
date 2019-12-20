@@ -2,13 +2,13 @@ package org.thoughtcrime.securesms.groups;
 
 
 import android.content.Context;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.annimon.stream.Stream;
 import com.google.protobuf.ByteString;
 
-import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.MessagingDatabase.InsertResult;
@@ -232,7 +232,7 @@ public class GroupMessageProcessor {
       } else {
         SmsDatabase          smsDatabase  = DatabaseFactory.getSmsDatabase(context);
         String               body         = Base64.encodeBytes(storage.toByteArray());
-        IncomingTextMessage  incoming     = new IncomingTextMessage(Recipient.externalPush(context, content.getSender()).getId(), content.getSenderDevice(), content.getTimestamp(), body, Optional.of(group), 0, content.isNeedsReceipt());
+        IncomingTextMessage  incoming     = new IncomingTextMessage(Recipient.externalPush(context, content.getSender()).getId(), content.getSenderDevice(), content.getTimestamp(), body, Optional.of(GroupUtil.getEncodedId(group.getGroupId(), false)), 0, content.isNeedsReceipt());
         IncomingGroupMessage groupMessage = new IncomingGroupMessage(incoming, storage, body);
 
         Optional<InsertResult> insertResult = smsDatabase.insertMessageInbox(groupMessage);

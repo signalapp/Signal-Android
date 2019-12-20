@@ -2,15 +2,13 @@ package org.thoughtcrime.securesms.sms;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.telephony.SmsMessage;
 
-import org.thoughtcrime.securesms.database.model.ReactionRecord;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.util.GroupUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.api.messages.SignalServiceGroup;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
 import java.util.List;
@@ -61,7 +59,7 @@ public class IncomingTextMessage implements Parcelable {
   }
 
   public IncomingTextMessage(@NonNull RecipientId sender, int senderDeviceId, long sentTimestampMillis,
-                             String encodedBody, Optional<SignalServiceGroup> group,
+                             String encodedBody, Optional<String> groupId,
                              long expiresInMillis, boolean unidentified)
   {
     this.message              = encodedBody;
@@ -76,12 +74,7 @@ public class IncomingTextMessage implements Parcelable {
     this.subscriptionId       = -1;
     this.expiresInMillis      = expiresInMillis;
     this.unidentified         = unidentified;
-
-    if (group.isPresent()) {
-      this.groupId = GroupUtil.getEncodedId(group.get().getGroupId(), false);
-    } else {
-      this.groupId = null;
-    }
+    this.groupId              = groupId.orNull();
   }
 
   public IncomingTextMessage(Parcel in) {

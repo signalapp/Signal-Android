@@ -6,7 +6,6 @@ import android.database.Cursor;
 import androidx.annotation.NonNull;
 import androidx.preference.PreferenceManager;
 
-import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.contacts.avatars.ContactColorsLegacy;
@@ -21,10 +20,11 @@ import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob;
 import org.thoughtcrime.securesms.jobs.CreateSignedPreKeyJob;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
-import org.thoughtcrime.securesms.jobs.PushDecryptJob;
+import org.thoughtcrime.securesms.jobs.PushDecryptMessageJob;
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.GlideApp;
@@ -294,20 +294,15 @@ public class LegacyMigrationJob extends MigrationJob {
     }
   }
 
-  private void scheduleMessagesInPushDatabase(Context context) {
+  private static void scheduleMessagesInPushDatabase(@NonNull Context context) {
     PushDatabase pushDatabase = DatabaseFactory.getPushDatabase(context);
-    Cursor       pushReader   = null;
+    JobManager   jobManager   = ApplicationDependencies.getJobManager();
 
-    try {
-      pushReader = pushDatabase.getPending();
-
+    try (Cursor pushReader = pushDatabase.getPending()) {
       while (pushReader != null && pushReader.moveToNext()) {
-        ApplicationDependencies.getJobManager().add(new PushDecryptJob(context,
-                                                                       pushReader.getLong(pushReader.getColumnIndexOrThrow(PushDatabase.ID))));
+        jobManager.add(new PushDecryptMessageJob(context,
+                                                 pushReader.getLong(pushReader.getColumnIndexOrThrow(PushDatabase.ID))));
       }
-    } finally {
-      if (pushReader != null)
-        pushReader.close();
     }
   }
 

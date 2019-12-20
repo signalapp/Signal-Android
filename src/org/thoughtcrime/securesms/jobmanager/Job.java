@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.jobmanager;
 
 import android.content.Context;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
@@ -250,7 +251,7 @@ public abstract class Job {
       return maxInstances;
     }
 
-    @Nullable String getQueue() {
+    public @Nullable String getQueue() {
       return queue;
     }
 

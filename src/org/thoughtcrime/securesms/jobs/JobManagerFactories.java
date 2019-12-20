@@ -63,7 +63,8 @@ public final class JobManagerFactories {
       put(MultiDeviceStorageSyncRequestJob.KEY,      new MultiDeviceStorageSyncRequestJob.Factory());
       put(MultiDeviceVerifiedUpdateJob.KEY,          new MultiDeviceVerifiedUpdateJob.Factory());
       put(MultiDeviceViewOnceOpenJob.KEY,            new MultiDeviceViewOnceOpenJob.Factory());
-      put(PushDecryptJob.KEY,                        new PushDecryptJob.Factory());
+      put(PushDecryptMessageJob.KEY,                 new PushDecryptMessageJob.Factory());
+      put(PushProcessMessageJob.KEY,                 new PushProcessMessageJob.Factory());
       put(PushGroupSendJob.KEY,                      new PushGroupSendJob.Factory());
       put(PushGroupUpdateJob.KEY,                    new PushGroupUpdateJob.Factory());
       put(PushMediaSendJob.KEY,                      new PushMediaSendJob.Factory());
@@ -92,6 +93,7 @@ public final class JobManagerFactories {
       put(TrimThreadJob.KEY,                         new TrimThreadJob.Factory());
       put(TypingSendJob.KEY,                         new TypingSendJob.Factory());
       put(UpdateApkJob.KEY,                          new UpdateApkJob.Factory());
+      put(MarkerJob.KEY,                             new MarkerJob.Factory());
 
       // Migrations
       put(AvatarMigrationJob.KEY,                    new AvatarMigrationJob.Factory());

@@ -5,11 +5,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.database.Cursor;
 import android.os.AsyncTask;
-import androidx.appcompat.app.AlertDialog;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AlertDialog;
 
 import org.thoughtcrime.securesms.crypto.storage.TextSecureIdentityKeyStore;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -20,13 +21,12 @@ import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.jobs.PushDecryptJob;
+import org.thoughtcrime.securesms.jobs.PushDecryptMessageJob;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.Base64;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.VerifySpan;
 import org.whispersystems.libsignal.SignalProtocolAddress;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -179,7 +179,7 @@ public class ConfirmIdentityDialog extends AlertDialog {
 
             long pushId = pushDatabase.insert(envelope);
 
-            ApplicationDependencies.getJobManager().add(new PushDecryptJob(getContext(), pushId, messageRecord.getId()));
+            ApplicationDependencies.getJobManager().add(new PushDecryptMessageJob(getContext(), pushId, messageRecord.getId()));
           } catch (IOException e) {
             throw new AssertionError(e);
           }

@@ -1,34 +1,18 @@
 package org.thoughtcrime.securesms.jobs;
 
 import android.annotation.SuppressLint;
-import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
 import android.text.TextUtils;
 import android.util.Pair;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
-import org.signal.libsignal.metadata.InvalidMetadataMessageException;
-import org.signal.libsignal.metadata.InvalidMetadataVersionException;
-import org.signal.libsignal.metadata.ProtocolDuplicateMessageException;
-import org.signal.libsignal.metadata.ProtocolInvalidKeyException;
-import org.signal.libsignal.metadata.ProtocolInvalidKeyIdException;
-import org.signal.libsignal.metadata.ProtocolInvalidMessageException;
-import org.signal.libsignal.metadata.ProtocolInvalidVersionException;
-import org.signal.libsignal.metadata.ProtocolLegacyMessageException;
-import org.signal.libsignal.metadata.ProtocolNoSessionException;
-import org.signal.libsignal.metadata.ProtocolUntrustedIdentityException;
-import org.signal.libsignal.metadata.SelfSendException;
 import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.MainActivity;
-import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.attachments.PointerAttachment;
@@ -36,10 +20,7 @@ import org.thoughtcrime.securesms.attachments.TombstoneAttachment;
 import org.thoughtcrime.securesms.attachments.UriAttachment;
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.contactshare.ContactModelMapper;
-import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.SecurityEvent;
-import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
-import org.thoughtcrime.securesms.crypto.storage.SignalProtocolStoreImpl;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -51,8 +32,6 @@ import org.thoughtcrime.securesms.database.MessagingDatabase.InsertResult;
 import org.thoughtcrime.securesms.database.MessagingDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
-import org.thoughtcrime.securesms.database.NoSuchMessageException;
-import org.thoughtcrime.securesms.database.PushDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.StickerDatabase;
@@ -79,7 +58,6 @@ import org.thoughtcrime.securesms.mms.QuoteModel;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.mms.StickerSlide;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
-import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.service.WebRtcCallService;
@@ -90,21 +68,18 @@ import org.thoughtcrime.securesms.sms.OutgoingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.OutgoingEndSessionMessage;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
-import org.thoughtcrime.securesms.transport.RetryLaterException;
+import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.Hex;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.state.SessionStore;
-import org.whispersystems.libsignal.state.SignalProtocolStore;
 import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.api.crypto.SignalServiceCipher;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceContent;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage.Preview;
-import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 import org.whispersystems.signalservice.api.messages.SignalServiceGroup;
 import org.whispersystems.signalservice.api.messages.SignalServiceReceiptMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceTypingMessage;
@@ -125,8 +100,8 @@ import org.whispersystems.signalservice.api.messages.multidevice.VerifiedMessage
 import org.whispersystems.signalservice.api.messages.multidevice.ViewOnceOpenMessage;
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
-import org.whispersystems.signalservice.internal.push.UnsupportedDataMessageException;
 
+import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.SecureRandom;
 import java.util.ArrayList;
@@ -135,44 +110,112 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-public class PushDecryptJob extends BaseJob {
+public final class PushProcessMessageJob extends BaseJob {
 
-  public static final String KEY = "PushDecryptJob";
+  public static final String KEY   = "PushProcessJob";
+  public static final String QUEUE = "__PUSH_PROCESS_JOB__";
 
-  public static final String TAG = PushDecryptJob.class.getSimpleName();
+  public static final String TAG = Log.tag(PushProcessMessageJob.class);
 
-  private static final String KEY_MESSAGE_ID     = "message_id";
-  private static final String KEY_SMS_MESSAGE_ID = "sms_message_id";
+  private static final String KEY_MESSAGE_STATE      = "message_state";
+  private static final String KEY_MESSAGE_PLAINTEXT  = "message_content";
+  private static final String KEY_MESSAGE_ID         = "message_id";
+  private static final String KEY_SMS_MESSAGE_ID     = "sms_message_id";
+  private static final String KEY_TIMESTAMP          = "timestamp";
+  private static final String KEY_EXCEPTION_SENDER   = "exception_sender";
+  private static final String KEY_EXCEPTION_DEVICE   = "exception_device";
+  private static final String KEY_EXCEPTION_GROUP_ID = "exception_groupId";
 
-  private long messageId;
-  private long smsMessageId;
+  @NonNull  private final MessageState      messageState;
+  @Nullable private final byte[]            serializedPlaintextContent;
+  @Nullable private final ExceptionMetadata exceptionMetadata;
+            private final long              messageId;
+            private final long              smsMessageId;
+            private final long              timestamp;
 
-  public PushDecryptJob(Context context, long pushMessageId) {
-    this(context, pushMessageId, -1);
-  }
-
-  public PushDecryptJob(Context context, long pushMessageId, long smsMessageId) {
-    this(new Job.Parameters.Builder()
-                           .setQueue("__PUSH_DECRYPT_JOB__")
-                           .setMaxAttempts(Parameters.UNLIMITED)
-                           .build(),
+  PushProcessMessageJob(@NonNull byte[] serializedPlaintextContent,
+                        long pushMessageId,
+                        long smsMessageId,
+                        long timestamp)
+  {
+    this(MessageState.DECRYPTED_OK,
+         serializedPlaintextContent,
+         null,
          pushMessageId,
-         smsMessageId);
-    setContext(context);
+         smsMessageId,
+         timestamp);
   }
 
-  private PushDecryptJob(@NonNull Job.Parameters parameters, long pushMessageId, long smsMessageId) {
+  PushProcessMessageJob(@NonNull MessageState messageState,
+                        @NonNull ExceptionMetadata exceptionMetadata,
+                        long pushMessageId,
+                        long smsMessageId,
+                        long timestamp)
+  {
+    this(messageState,
+         null,
+         exceptionMetadata,
+         pushMessageId,
+         smsMessageId,
+         timestamp);
+  }
+
+  private PushProcessMessageJob(@NonNull MessageState messageState,
+                                @Nullable byte[] serializedPlaintextContent,
+                                @Nullable ExceptionMetadata exceptionMetadata,
+                                long pushMessageId,
+                                long smsMessageId,
+                                long timestamp)
+  {
+    this(new Parameters.Builder()
+                       .setQueue(QUEUE)
+                       .setMaxAttempts(Parameters.UNLIMITED)
+                       .build(),
+         messageState,
+         serializedPlaintextContent,
+         exceptionMetadata,
+         pushMessageId,
+         smsMessageId,
+         timestamp);
+  }
+
+  private PushProcessMessageJob(@NonNull Parameters parameters,
+                                @NonNull MessageState messageState,
+                                @Nullable byte[] serializedPlaintextContent,
+                                @Nullable ExceptionMetadata exceptionMetadata,
+                                long pushMessageId,
+                                long smsMessageId,
+                                long timestamp)
+  {
     super(parameters);
 
-    this.messageId    = pushMessageId;
-    this.smsMessageId = smsMessageId;
+    this.messageState               = messageState;
+    this.exceptionMetadata          = exceptionMetadata;
+    this.serializedPlaintextContent = serializedPlaintextContent;
+    this.messageId                  = pushMessageId;
+    this.smsMessageId               = smsMessageId;
+    this.timestamp                  = timestamp;
   }
 
   @Override
   public @NonNull Data serialize() {
-    return new Data.Builder().putLong(KEY_MESSAGE_ID, messageId)
-                             .putLong(KEY_SMS_MESSAGE_ID, smsMessageId)
-                             .build();
+    Data.Builder dataBuilder = new Data.Builder()
+                                       .putInt(KEY_MESSAGE_STATE, messageState.ordinal())
+                                       .putLong(KEY_MESSAGE_ID, messageId)
+                                       .putLong(KEY_SMS_MESSAGE_ID, smsMessageId)
+                                       .putLong(KEY_TIMESTAMP, timestamp);
+
+    if (messageState == MessageState.DECRYPTED_OK) {
+      //noinspection ConstantConditions
+      dataBuilder.putString(KEY_MESSAGE_PLAINTEXT, Base64.encodeBytes(serializedPlaintextContent));
+    } else {
+      //noinspection ConstantConditions
+      dataBuilder.putString(KEY_EXCEPTION_SENDER, exceptionMetadata.sender)
+                 .putInt(KEY_EXCEPTION_DEVICE, exceptionMetadata.senderDevice)
+                 .putString(KEY_EXCEPTION_GROUP_ID, exceptionMetadata.groupId);
+    }
+
+    return dataBuilder.build();
   }
 
   @Override
@@ -181,59 +224,33 @@ public class PushDecryptJob extends BaseJob {
   }
 
   @Override
-  public void onRun() throws NoSuchMessageException, RetryLaterException {
-    if (needsMigration()) {
-      Log.w(TAG, "Migration is still needed.");
-      postMigrationNotification();
-      throw new RetryLaterException();
+  public void onRun() {
+    Optional<Long> optionalSmsMessageId = smsMessageId > 0 ? Optional.of(smsMessageId) : Optional.absent();
+
+    if (messageState == MessageState.DECRYPTED_OK) {
+      //noinspection ConstantConditions
+      handleMessage(serializedPlaintextContent, optionalSmsMessageId);
+    } else {
+      //noinspection ConstantConditions
+      handleExceptionMessage(exceptionMetadata, optionalSmsMessageId);
     }
-
-    PushDatabase          database             = DatabaseFactory.getPushDatabase(context);
-    SignalServiceEnvelope envelope             = database.get(messageId);
-    Optional<Long>        optionalSmsMessageId = smsMessageId > 0 ? Optional.of(smsMessageId) : Optional.absent();
-
-    handleMessage(envelope, optionalSmsMessageId);
-    database.delete(messageId);
   }
 
   @Override
   public boolean onShouldRetry(@NonNull Exception exception) {
-    return exception instanceof RetryLaterException;
+    return false;
   }
 
   @Override
   public void onCanceled() {
   }
 
-  private boolean needsMigration() {
-    return !IdentityKeyUtil.hasIdentityKey(context) || TextSecurePreferences.getNeedsSqlCipherMigration(context);
-  }
-
-  private void postMigrationNotification() {
-    // TODO [greyson] Navigation
-    NotificationManagerCompat.from(context).notify(494949,
-                                                   new NotificationCompat.Builder(context, NotificationChannels.getMessagesChannel(context))
-                                                                         .setSmallIcon(R.drawable.icon_notification)
-                                                                         .setPriority(NotificationCompat.PRIORITY_HIGH)
-                                                                         .setCategory(NotificationCompat.CATEGORY_MESSAGE)
-                                                                         .setContentTitle(context.getString(R.string.PushDecryptJob_new_locked_message))
-                                                                         .setContentText(context.getString(R.string.PushDecryptJob_unlock_to_view_pending_messages))
-                                                                         .setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, MainActivity.class), 0))
-                                                                         .setDefaults(NotificationCompat.DEFAULT_SOUND | NotificationCompat.DEFAULT_VIBRATE)
-                                                                         .build());
-
-  }
-
-  private void handleMessage(@NonNull SignalServiceEnvelope envelope, @NonNull Optional<Long> smsMessageId) {
+  private void handleMessage(@NonNull byte[] plaintextDataBuffer, @NonNull Optional<Long> smsMessageId) {
     try {
       GroupDatabase        groupDatabase = DatabaseFactory.getGroupDatabase(context);
-      SignalProtocolStore  axolotlStore  = new SignalProtocolStoreImpl(context);
-      SignalServiceAddress localAddress  = new SignalServiceAddress(Optional.of(TextSecurePreferences.getLocalUuid(context)), Optional.of(TextSecurePreferences.getLocalNumber(context)));
-      SignalServiceCipher  cipher        = new SignalServiceCipher(localAddress, axolotlStore, UnidentifiedAccessUtil.getCertificateValidator());
+      SignalServiceContent content       = SignalServiceContent.deserialize(plaintextDataBuffer);
 
-      SignalServiceContent content = cipher.decrypt(envelope);
-
-      if (shouldIgnore(content)) {
+      if (content == null || shouldIgnore(content)) {
         Log.i(TAG, "Ignoring message.");
         return;
       }
@@ -242,7 +259,7 @@ public class PushDecryptJob extends BaseJob {
         SignalServiceDataMessage message        = content.getDataMessage().get();
         boolean                  isMediaMessage = message.getAttachments().isPresent() || message.getQuote().isPresent() || message.getSharedContacts().isPresent() || message.getPreviews().isPresent() || message.getSticker().isPresent();
 
-        if      (isInvalidMessage(message))         handleInvalidMessage(content.getSender(), content.getSenderDevice(), message.getGroupInfo(), content.getTimestamp(), smsMessageId);
+        if      (isInvalidMessage(message))         handleInvalidMessage(content.getSender(), content.getSenderDevice(), toEncodedId(message.getGroupInfo()), content.getTimestamp(), smsMessageId);
         else if (message.isEndSession())            handleEndSessionMessage(content, smsMessageId);
         else if (message.isGroupUpdate())           handleGroupMessage(content, message, smsMessageId);
         else if (message.isExpirationUpdate())      handleExpirationUpdate(content, message, smsMessageId);
@@ -298,41 +315,51 @@ public class PushDecryptJob extends BaseJob {
 
       resetRecipientToPush(Recipient.externalPush(context, content.getSender()));
 
-      if (envelope.isPreKeySignalMessage()) {
-        ApplicationDependencies.getJobManager().add(new RefreshPreKeysJob());
-      }
-    } catch (ProtocolInvalidVersionException e) {
-      Log.w(TAG, e);
-      handleInvalidVersionMessage(e.getSender(), e.getSenderDevice(), envelope.getTimestamp(), smsMessageId);
-    } catch (ProtocolInvalidMessageException  e) {
-      if (!TextUtils.isEmpty(e.getSender())) {
-        Log.w(TAG, e);
-        handleCorruptMessage(e.getSender(), e.getSenderDevice(), envelope.getTimestamp(), smsMessageId);
-      } else {
-        Log.w(TAG, "Invalid message, but no sender info!", e);
-      }
-    } catch (ProtocolInvalidKeyIdException | ProtocolInvalidKeyException | ProtocolUntrustedIdentityException e) {
-      Log.w(TAG, e);
-      handleCorruptMessage(e.getSender(), e.getSenderDevice(), envelope.getTimestamp(), smsMessageId);
     } catch (StorageFailedException e) {
       Log.w(TAG, e);
-      handleCorruptMessage(e.getSender(), e.getSenderDevice(), envelope.getTimestamp(), smsMessageId);
-    } catch (ProtocolNoSessionException e) {
-      Log.w(TAG, e);
-      handleNoSessionMessage(e.getSender(), e.getSenderDevice(), envelope.getTimestamp(), smsMessageId);
-    } catch (ProtocolLegacyMessageException e) {
-      Log.w(TAG, e);
-      handleLegacyMessage(e.getSender(), e.getSenderDevice(), envelope.getTimestamp(), smsMessageId);
-    } catch (ProtocolDuplicateMessageException e) {
-      Log.w(TAG, e);
-      handleDuplicateMessage(e.getSender(), e.getSenderDevice(), envelope.getTimestamp(), smsMessageId);
-    } catch (InvalidMetadataVersionException | InvalidMetadataMessageException e) {
-      Log.w(TAG, e);
-    } catch (SelfSendException e) {
-      Log.i(TAG, "Dropping UD message from self.");
-    } catch (UnsupportedDataMessageException e) {
-      Log.w(TAG, e);
-      handleUnsupportedDataMessage(e.getSender(), e.getSenderDevice(), e.getGroup(), envelope.getTimestamp(), smsMessageId);
+      handleCorruptMessage(e.getSender(), e.getSenderDevice(), timestamp, smsMessageId);
+    }
+  }
+
+  private static @NonNull Optional<String> toEncodedId(@NonNull Optional<SignalServiceGroup> groupInfo) {
+    return groupInfo.transform(g -> GroupUtil.getEncodedId(g.getGroupId(), false));
+  }
+
+  private void handleExceptionMessage(@NonNull ExceptionMetadata e, @NonNull Optional<Long> smsMessageId) {
+    switch (messageState) {
+
+      case INVALID_VERSION:
+        Log.w(TAG, "Handling invalid version");
+        handleInvalidVersionMessage(e.sender, e.senderDevice, timestamp, smsMessageId);
+        break;
+
+      case CORRUPT_MESSAGE:
+        Log.w(TAG, "Handling corrupt message");
+        handleCorruptMessage(e.sender, e.senderDevice, timestamp, smsMessageId);
+        break;
+
+      case NO_SESSION:
+        Log.w(TAG, "Handling no session");
+        handleNoSessionMessage(e.sender, e.senderDevice, timestamp, smsMessageId);
+        break;
+
+      case LEGACY_MESSAGE:
+        Log.w(TAG, "Handling legacy message");
+        handleLegacyMessage(e.sender, e.senderDevice, timestamp, smsMessageId);
+        break;
+
+      case DUPLICATE_MESSAGE:
+        Log.w(TAG, "Handling duplicate message");
+        handleDuplicateMessage(e.sender, e.senderDevice, timestamp, smsMessageId);
+        break;
+
+      case UNSUPPORTED_DATA_MESSAGE:
+        Log.w(TAG, "Handling unsupported data message");
+        handleUnsupportedDataMessage(e.sender, e.senderDevice, Optional.fromNullable(e.groupId), timestamp, smsMessageId);
+        break;
+
+      default:
+        throw new AssertionError("Not handled " + messageState);
     }
   }
 
@@ -599,7 +626,7 @@ public class PushDecryptJob extends BaseJob {
     DatabaseFactory.getRecipientDatabase(context).applyBlockedUpdate(blockMessage.getAddresses(), blockMessage.getGroupIds());
   }
 
-  private void handleSynchronizeFetchMessage(@NonNull SignalServiceSyncMessage.FetchType fetchType) {
+  private static void handleSynchronizeFetchMessage(@NonNull SignalServiceSyncMessage.FetchType fetchType) {
     if (fetchType == SignalServiceSyncMessage.FetchType.LOCAL_PROFILE) {
       ApplicationDependencies.getJobManager().add(new RefreshOwnProfileJob());
     } else {
@@ -952,7 +979,7 @@ public class PushDecryptJob extends BaseJob {
       IncomingTextMessage textMessage = new IncomingTextMessage(Recipient.externalPush(context, content.getSender()).getId(),
                                                                 content.getSenderDevice(),
                                                                 message.getTimestamp(), body,
-                                                                message.getGroupInfo(),
+                                                                toEncodedId(message.getGroupInfo()),
                                                                 message.getExpiresInSeconds() * 1000L,
                                                                 content.isNeedsReceipt());
 
@@ -1074,14 +1101,14 @@ public class PushDecryptJob extends BaseJob {
 
   private void handleUnsupportedDataMessage(@NonNull String sender,
                                             int senderDevice,
-                                            @NonNull Optional<SignalServiceGroup> group,
+                                            @NonNull Optional<String> groupId,
                                             long timestamp,
                                             @NonNull Optional<Long> smsMessageId)
   {
     SmsDatabase smsDatabase = DatabaseFactory.getSmsDatabase(context);
 
     if (!smsMessageId.isPresent()) {
-      Optional<InsertResult> insertResult = insertPlaceholder(sender, senderDevice, timestamp, group);
+      Optional<InsertResult> insertResult = insertPlaceholder(sender, senderDevice, timestamp, groupId);
 
       if (insertResult.isPresent()) {
         smsDatabase.markAsUnsupportedProtocolVersion(insertResult.get().getMessageId());
@@ -1094,14 +1121,14 @@ public class PushDecryptJob extends BaseJob {
 
   private void handleInvalidMessage(@NonNull SignalServiceAddress sender,
                                     int senderDevice,
-                                    @NonNull Optional<SignalServiceGroup> group,
+                                    @NonNull Optional<String> groupId,
                                     long timestamp,
                                     @NonNull Optional<Long> smsMessageId)
   {
     SmsDatabase smsDatabase = DatabaseFactory.getSmsDatabase(context);
 
     if (!smsMessageId.isPresent()) {
-      Optional<InsertResult> insertResult = insertPlaceholder(sender.getIdentifier(), senderDevice, timestamp, group);
+      Optional<InsertResult> insertResult = insertPlaceholder(sender.getIdentifier(), senderDevice, timestamp, groupId);
 
       if (insertResult.isPresent()) {
         smsDatabase.markAsInvalidMessage(insertResult.get().getMessageId());
@@ -1223,7 +1250,7 @@ public class PushDecryptJob extends BaseJob {
     }
   }
 
-  private boolean isInvalidMessage(@NonNull SignalServiceDataMessage message) {
+  private static boolean isInvalidMessage(@NonNull SignalServiceDataMessage message) {
     if (message.isViewOnce()) {
       List<SignalServiceAttachment> attachments = message.getAttachments().or(Collections.emptyList());
 
@@ -1234,7 +1261,7 @@ public class PushDecryptJob extends BaseJob {
     return false;
   }
 
-  private boolean isViewOnceSupportedContentType(@NonNull String contentType) {
+  private static boolean isViewOnceSupportedContentType(@NonNull String contentType) {
     return MediaUtil.isImageType(contentType) || MediaUtil.isVideoType(contentType);
   }
 
@@ -1326,7 +1353,7 @@ public class PushDecryptJob extends BaseJob {
     }
   }
 
-  private Optional<List<Contact>> getContacts(Optional<List<SharedContact>> sharedContacts) {
+  private static Optional<List<Contact>> getContacts(Optional<List<SharedContact>> sharedContacts) {
     if (!sharedContacts.isPresent()) return Optional.absent();
 
     List<Contact> contacts = new ArrayList<>(sharedContacts.get().size());
@@ -1338,7 +1365,7 @@ public class PushDecryptJob extends BaseJob {
     return Optional.of(contacts);
   }
 
-  private Optional<List<LinkPreview>> getLinkPreviews(Optional<List<Preview>> previews, @NonNull String message) {
+  private static Optional<List<LinkPreview>> getLinkPreviews(Optional<List<Preview>> previews, @NonNull String message) {
     if (!previews.isPresent()) return Optional.absent();
 
     List<LinkPreview> linkPreviews = new ArrayList<>(previews.get().size());
@@ -1366,11 +1393,11 @@ public class PushDecryptJob extends BaseJob {
     return insertPlaceholder(sender, senderDevice, timestamp, Optional.absent());
   }
 
-  private Optional<InsertResult> insertPlaceholder(@NonNull String sender, int senderDevice, long timestamp, Optional<SignalServiceGroup> group) {
+  private Optional<InsertResult> insertPlaceholder(@NonNull String sender, int senderDevice, long timestamp, Optional<String> groupId) {
     SmsDatabase         database    = DatabaseFactory.getSmsDatabase(context);
     IncomingTextMessage textMessage = new IncomingTextMessage(Recipient.external(context, sender).getId(),
                                                               senderDevice, timestamp, "",
-                                                              group, 0, false);
+                                                              groupId, 0, false);
 
     textMessage = new IncomingEncryptedMessage(textMessage, "");
     return database.insertMessageInbox(textMessage);
@@ -1470,7 +1497,7 @@ public class PushDecryptJob extends BaseJob {
   @SuppressWarnings("WeakerAccess")
   private static class StorageFailedException extends Exception {
     private final String sender;
-    private final int senderDevice;
+    private final int    senderDevice;
 
     private StorageFailedException(Exception e, String sender, int senderDevice) {
       super(e);
@@ -1487,10 +1514,62 @@ public class PushDecryptJob extends BaseJob {
     }
   }
 
-  public static final class Factory implements Job.Factory<PushDecryptJob> {
+  public static final class Factory implements Job.Factory<PushProcessMessageJob> {
     @Override
-    public @NonNull PushDecryptJob create(@NonNull Parameters parameters, @NonNull Data data) {
-      return new PushDecryptJob(parameters, data.getLong(KEY_MESSAGE_ID), data.getLong(KEY_SMS_MESSAGE_ID));
+    public @NonNull PushProcessMessageJob create(@NonNull Parameters parameters, @NonNull Data data) {
+      try {
+        MessageState state = MessageState.values()[data.getInt(KEY_MESSAGE_STATE)];
+
+        if (state == MessageState.DECRYPTED_OK) {
+          return new PushProcessMessageJob(parameters,
+                                           state,
+                                           Base64.decode(data.getString(KEY_MESSAGE_PLAINTEXT)),
+                                           null,
+                                           data.getLong(KEY_MESSAGE_ID),
+                                           data.getLong(KEY_SMS_MESSAGE_ID),
+                                           data.getLong(KEY_TIMESTAMP));
+        } else {
+          ExceptionMetadata exceptionMetadata = new ExceptionMetadata(data.getString(KEY_EXCEPTION_SENDER),
+                                                                      data.getInt(KEY_EXCEPTION_DEVICE),
+                                                                      data.getStringOrDefault(KEY_EXCEPTION_GROUP_ID, null));
+
+          return new PushProcessMessageJob(parameters,
+                                           state,
+                                           null,
+                                           exceptionMetadata,
+                                           data.getLong(KEY_MESSAGE_ID),
+                                           data.getLong(KEY_SMS_MESSAGE_ID),
+                                           data.getLong(KEY_TIMESTAMP));
+        }
+      } catch (IOException e) {
+        throw new AssertionError(e);
+      }
+    }
+  }
+
+  public enum MessageState {
+    DECRYPTED_OK,
+    INVALID_VERSION,
+    CORRUPT_MESSAGE,
+    NO_SESSION,
+    LEGACY_MESSAGE,
+    DUPLICATE_MESSAGE,
+    UNSUPPORTED_DATA_MESSAGE
+  }
+
+  static class ExceptionMetadata {
+    @NonNull  private final String sender;
+              private final int    senderDevice;
+    @Nullable private final String groupId;
+
+    ExceptionMetadata(@NonNull String sender, int senderDevice, @Nullable String groupId) {
+      this.sender       = sender;
+      this.senderDevice = senderDevice;
+      this.groupId      = groupId;
+    }
+
+    ExceptionMetadata(@NonNull String sender, int senderDevice) {
+      this(sender, senderDevice, null);
     }
   }
 }

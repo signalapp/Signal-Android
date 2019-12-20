@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.util;
 
 import android.content.Context;
 import android.os.AsyncTask;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
@@ -34,7 +35,6 @@ import org.whispersystems.libsignal.state.IdentityKeyStore;
 import org.whispersystems.libsignal.state.SessionRecord;
 import org.whispersystems.libsignal.state.SessionStore;
 import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.api.messages.SignalServiceGroup;
 import org.whispersystems.signalservice.api.messages.multidevice.VerifiedMessage;
 
 import java.util.List;
@@ -75,17 +75,16 @@ public class IdentityUtil {
 
     while ((groupRecord = reader.getNext()) != null) {
       if (groupRecord.getMembers().contains(recipient.getId()) && groupRecord.isActive() && !groupRecord.isMms()) {
-        SignalServiceGroup group = new SignalServiceGroup(groupRecord.getId());
 
         if (remote) {
-          IncomingTextMessage incoming = new IncomingTextMessage(recipient.getId(), 1, time, null, Optional.of(group), 0, false);
+          IncomingTextMessage incoming = new IncomingTextMessage(recipient.getId(), 1, time, null, Optional.of(groupRecord.getEncodedId()), 0, false);
 
           if (verified) incoming = new IncomingIdentityVerifiedMessage(incoming);
           else          incoming = new IncomingIdentityDefaultMessage(incoming);
 
           smsDatabase.insertMessageInbox(incoming);
         } else {
-          RecipientId         recipientId    = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(GroupUtil.getEncodedId(group.getGroupId(), false));
+          RecipientId         recipientId    = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(groupRecord.getEncodedId());
           Recipient           groupRecipient = Recipient.resolved(recipientId);
           long                threadId       = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(groupRecipient);
           OutgoingTextMessage outgoing ;
@@ -128,8 +127,7 @@ public class IdentityUtil {
 
     while ((groupRecord = reader.getNext()) != null) {
       if (groupRecord.getMembers().contains(recipient.getId()) && groupRecord.isActive()) {
-        SignalServiceGroup            group       = new SignalServiceGroup(groupRecord.getId());
-        IncomingTextMessage           incoming    = new IncomingTextMessage(recipient.getId(), 1, time, null, Optional.of(group), 0, false);
+        IncomingTextMessage           incoming    = new IncomingTextMessage(recipient.getId(), 1, time, null, Optional.of(groupRecord.getEncodedId()), 0, false);
         IncomingIdentityUpdateMessage groupUpdate = new IncomingIdentityUpdateMessage(incoming);
 
         smsDatabase.insertMessageInbox(groupUpdate);
