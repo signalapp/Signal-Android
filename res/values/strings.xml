@@ -331,7 +331,7 @@
 
     <!-- DateUtils -->
     <string name="DateUtils_just_now">Now</string>
-    <string name="DateUtils_minutes_ago">%dmin</string>
+    <string name="DateUtils_minutes_ago">%d min</string>
     <string name="DateUtils_today">Today</string>
     <string name="DateUtils_yesterday">Yesterday</string>
     <string name="DateUtils_Sunday_abbreviated">Sun</string>
@@ -1157,49 +1157,49 @@
         <item quantity="other">%d seconds</item>
     </plurals>
 
-    <string name="expiration_seconds_abbreviated">%ds</string>
+    <string name="expiration_seconds_abbreviated">%d s</string>
 
     <plurals name="expiration_minutes">
         <item quantity="one">%d minute</item>
         <item quantity="other">%d minutes</item>
     </plurals>
 
-    <string name="expiration_minutes_abbreviated">%dmin</string>
+    <string name="expiration_minutes_abbreviated">%d min</string>
 
     <plurals name="expiration_hours">
         <item quantity="one">%d hour</item>
         <item quantity="other">%d hours</item>
     </plurals>
 
-    <string name="expiration_hours_abbreviated">%dh</string>
+    <string name="expiration_hours_abbreviated">%d h</string>
 
     <plurals name="expiration_days">
         <item quantity="one">%d day</item>
         <item quantity="other">%d days</item>
     </plurals>
 
-    <string name="expiration_days_abbreviated">%dd</string>
+    <string name="expiration_days_abbreviated">%d d</string>
 
     <plurals name="expiration_weeks">
         <item quantity="one">%d week</item>
         <item quantity="other">%d weeks</item>
     </plurals>
 
-    <string name="expiration_weeks_abbreviated">%dw</string>
+    <string name="expiration_weeks_abbreviated">%d w</string>
 
     <plurals name="expiration_months">
         <item quantity="one">%d month</item>
         <item quantity="other">%d months</item>
     </plurals>
 
-    <string name="expiration_months_abbreviated">%dmth</string>
+    <string name="expiration_months_abbreviated">%d mth</string>
 
     <plurals name="expiration_years">
         <item quantity="one">%d year</item>
         <item quantity="other">%d years</item>
     </plurals>
 
-    <string name="expiration_years_abbreviated">%dy</string>
+    <string name="expiration_years_abbreviated">%d y</string>
 
     <!-- unverified safety numbers -->
     <string name="IdentityUtil_unverified_banner_one">Your safety number with %s has changed and is no longer verified</string>
@@ -1402,8 +1402,8 @@
 
     <!-- plurals.xml -->
     <plurals name="hours_ago">
-        <item quantity="one">%dh</item>
-        <item quantity="other">%dh</item>
+        <item quantity="one">%d h</item>
+        <item quantity="other">%d h/<item>
     </plurals>
 
     <!-- preferences.xml -->
