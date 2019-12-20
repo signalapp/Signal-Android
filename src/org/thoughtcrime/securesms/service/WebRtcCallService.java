@@ -408,7 +408,7 @@ public class WebRtcCallService extends Service implements CallConnection.Observe
     sendMessage(WebRtcViewModel.State.CALL_OUTGOING, recipient, localCameraState, remoteVideoEnabled, bluetoothAvailable, microphoneEnabled);
     lockManager.updatePhoneState(LockManager.PhoneState.IN_CALL);
     audioManager.initializeAudioForCall();
-    audioManager.startOutgoingRinger(OutgoingRinger.Type.RINGING);
+    audioManager.startOutgoingRinger(OutgoingRinger.Type.CONNECTING);
     bluetoothStateManager.setWantsConnection(true);
 
     setCallInProgressNotification(TYPE_OUTGOING_RINGING, recipient);
@@ -522,6 +522,7 @@ public class WebRtcCallService extends Service implements CallConnection.Observe
       if (this.recipient == null) throw new AssertionError("assert");
 
       this.callState = CallState.STATE_REMOTE_RINGING;
+      this.audioManager.startOutgoingRinger(OutgoingRinger.Type.RINGING);
 
       sendMessage(WebRtcViewModel.State.CALL_RINGING, recipient, localCameraState, remoteVideoEnabled, bluetoothAvailable, microphoneEnabled);
     }
