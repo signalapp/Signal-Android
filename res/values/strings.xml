@@ -1403,7 +1403,7 @@
     <!-- plurals.xml -->
     <plurals name="hours_ago">
         <item quantity="one">%d h</item>
-        <item quantity="other">%d h/<item>
+        <item quantity="other">%d h</item>
     </plurals>
 
     <!-- preferences.xml -->
