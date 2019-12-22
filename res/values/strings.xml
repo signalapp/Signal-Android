@@ -469,7 +469,7 @@
         <item quantity="other">Send %d SMS invites?</item>
     </plurals>
     <string name="InviteActivity_lets_switch_to_signal">Let\'s switch to Signal: %1$s</string>
-    <string name="InviteActivity_no_app_to_share_to">It looks like you don\'t have any apps to share to.</string>
+    <string name="InviteActivity_no_app_to_share_to">It looks like you don\'t have any apps which you can use to send an invite.</string>
     <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Friends don\'t let friends chat unencrypted.</string>
 
     <!-- Job -->
@@ -509,9 +509,9 @@
     <string name="MediaOverviewActivity_Select_all">Select all</string>
     <string name="MediaOverviewActivity_collecting_attachments">Collecting attachments…</string>
     <string name="MediaOverviewActivity_Sort_by">Sort by</string>
-    <string name="MediaOverviewActivity_Newest">Newest</string>
-    <string name="MediaOverviewActivity_Oldest">Oldest</string>
-    <string name="MediaOverviewActivity_Storage_used">Storage used</string>
+    <string name="MediaOverviewActivity_Newest">Newest first</string>
+    <string name="MediaOverviewActivity_Oldest">Oldest first</string>
+    <string name="MediaOverviewActivity_Storage_used">Amount of storage used</string>
     <string name="MediaOverviewActivity_All_storage_use">All stored files</string>
     <string name="MediaOverviewActivity_Grid_view_description">Grid view</string>
     <string name="MediaOverviewActivity_List_view_description">List view</string>
@@ -786,11 +786,11 @@
     <string name="StickerManagementActivity_stickers">Stickers</string>
 
     <!-- StickerManagementAdapter -->
-    <string name="StickerManagementAdapter_installed_stickers">Installed Stickers</string>
-    <string name="StickerManagementAdapter_stickers_you_received">Stickers You Received</string>
+    <string name="StickerManagementAdapter_installed_stickers">Installed Sticker Packs</string>
+    <string name="StickerManagementAdapter_stickers_you_received">Sticker Packs You Received</string>
     <string name="StickerManagementAdapter_signal_artist_series">Signal Artist Series</string>
-    <string name="StickerManagementAdapter_no_stickers_installed">No stickers installed</string>
-    <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Stickers from incoming messages will appear here</string>
+    <string name="StickerManagementAdapter_no_stickers_installed">No sticker packs installed</string>
+    <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Sticker packs from incoming messages will appear here</string>
     <string name="StickerManagementAdapter_untitled">Untitled</string>
     <string name="StickerManagementAdapter_unknown">Unknown</string>
 
@@ -855,7 +855,7 @@
     <string name="UsernameEditFragment_usernames_can_only_include">Usernames can only include a-Z, 0-9, and underscores.</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Usernames cannot begin with a number.</string>
     <string name="UsernameEditFragment_username_is_invalid">Username is invalid.</string>
-    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Usernames must be between %1$d and %2$d characters.</string>
+    <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Usernames must consist of at least %1$d and at most %2$d characters.</string>
     <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Other Signal users can send message requests to your unique username without knowing your phone number. Choosing a username is optional.</string>
 
     <!-- VerifyIdentityActivity -->
@@ -864,7 +864,7 @@
     <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">The scanned QR code is not a correctly formatted safety number verification code. Please try scanning again.</string>
     <string name="VerifyIdentityActivity_share_safety_number_via">Share safety number via…</string>
     <string name="VerifyIdentityActivity_our_signal_safety_number">Our Signal safety number:</string>
-    <string name="VerifyIdentityActivity_no_app_to_share_to">It looks like you don\'t have any apps to share to.</string>
+    <string name="VerifyIdentityActivity_no_app_to_share_to">It looks like you don\'t have any apps which you can use to forward your safetynumber.</string>
     <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">No safety number to compare was found in the clipboard</string>
     <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal requires permission to use the camera in order to scan a QR code, but that permission has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Camera\".</string>
     <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Unable to scan QR code without Camera permission</string>
