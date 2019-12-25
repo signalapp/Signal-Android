@@ -127,8 +127,12 @@ public class GroupUtil {
 
       if (members != null) {
         description.append("\n");
-        description.append(context.getResources().getQuantityString(R.plurals.GroupUtil_joined_the_group,
-                                                                    members.size(), toString(members)));
+        if (members.size() == 1 && members.get(0).isLocalNumber()) {
+          description.append(context.getResources().getString(R.string.GroupUtil_you_joined_the_group));
+        } else {
+          description.append(context.getResources().getQuantityString(R.plurals.GroupUtil_joined_the_group,
+                                                                      members.size(), toString(members)));
+        }
       }
 
       if (title != null && !title.trim().isEmpty()) {
@@ -157,16 +161,16 @@ public class GroupUtil {
     }
 
     private String toString(List<Recipient> recipients) {
-      String result = "";
+      LinkedList<String> recipientStrings = new LinkedList<>();
+      for (Recipient recipient : recipients) {
+        if (recipient.isLocalNumber()) {
+          recipientStrings.push(context.getString(R.string.GroupUtil_you));
+        } else {
+          recipientStrings.add(recipient.toShortString(context));
+        }
+      }
 
-      for (int i=0;i<recipients.size();i++) {
-        result += recipients.get(i).toShortString(context);
-
-      if (i != recipients.size() -1 )
-        result += ", ";
-    }
-
-    return result;
+      return TextUtils.join(", ", recipientStrings);
     }
   }
 }

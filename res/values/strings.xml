@@ -434,7 +434,7 @@
     <string name="GroupShareProfileView_make_visible">Make visible</string>
 
     <!-- GroupMembersDialog -->
-    <string name="GroupMembersDialog_me">Me</string>
+    <string name="GroupMembersDialog_you">You</string>
 
     <!-- CropImageActivity -->
     <string name="CropImageActivity_group_avatar">Group avatar</string>
@@ -1242,6 +1242,8 @@
     <string name="message_recipients_list_item__resending">Resending…</string>
 
     <!-- GroupUtil -->
+    <string name="GroupUtil_you">You</string>
+    <string name="GroupUtil_you_joined_the_group">You joined the group.</string>
     <plurals name="GroupUtil_joined_the_group">
         <item quantity="one">%1$s joined the group.</item>
         <item quantity="other">%1$s joined the group.</item>
