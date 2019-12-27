@@ -41,6 +41,7 @@ import org.thoughtcrime.securesms.registration.viewmodel.NumberViewState;
 import org.thoughtcrime.securesms.registration.viewmodel.RegistrationViewModel;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.PlayServicesUtil;
+import org.whispersystems.signalservice.api.push.exceptions.RateLimitException;
 
 public final class EnterPhoneNumberFragment extends BaseRegistrationFragment {
 
@@ -245,8 +246,12 @@ public final class EnterPhoneNumberFragment extends BaseRegistrationFragment {
         }
 
         @Override
-        public void onError() {
-          Toast.makeText(register.getContext(), R.string.RegistrationActivity_unable_to_connect_to_service, Toast.LENGTH_LONG).show();
+        public void onError(Exception exception) {
+          if (exception instanceof RateLimitException) {
+            Toast.makeText(register.getContext(), R.string.RegistrationActivity_attempted_to_register_too_many_times, Toast.LENGTH_LONG).show();
+          } else {
+            Toast.makeText(register.getContext(), R.string.RegistrationActivity_unable_to_connect_to_service, Toast.LENGTH_LONG).show();
+          }
           cancelSpinning(register);
           enableAllEntries();
           model.getRequestLimiter().onUnsuccessfulRequest();

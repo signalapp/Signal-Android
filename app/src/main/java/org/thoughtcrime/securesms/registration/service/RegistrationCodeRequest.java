@@ -68,10 +68,13 @@ public final class RegistrationCodeRequest {
       }
 
       protected void onPostExecute(@NonNull VerificationRequestResult result) {
-        if (result.exception.isPresent() && result.exception.get() instanceof CaptchaRequiredException) {
-          callback.onNeedCaptcha();
-        } else if (result.exception.isPresent()) {
-          callback.onError();
+        if (result.exception.isPresent()) {
+          Exception exception = result.exception.get();
+          if (exception instanceof CaptchaRequiredException) {
+            callback.onNeedCaptcha();
+          } else {
+            callback.onError(exception);
+          }
         } else {
           callback.requestSent(result.fcmToken);
         }
@@ -149,6 +152,6 @@ public final class RegistrationCodeRequest {
 
     void requestSent(@Nullable String fcmToken);
 
-    void onError();
+    void onError(Exception exception);
   }
 }

@@ -32,6 +32,7 @@ import org.thoughtcrime.securesms.registration.service.RegistrationCodeRequest;
 import org.thoughtcrime.securesms.registration.service.RegistrationService;
 import org.thoughtcrime.securesms.registration.viewmodel.RegistrationViewModel;
 import org.thoughtcrime.securesms.util.concurrent.AssertedSuccessListener;
+import org.whispersystems.signalservice.api.push.exceptions.RateLimitException;
 import org.whispersystems.signalservice.internal.contacts.entities.TokenResponse;
 
 import java.util.ArrayList;
@@ -277,8 +278,12 @@ public final class EnterCodeFragment extends BaseRegistrationFragment {
         }
 
         @Override
-        public void onError() {
-          Toast.makeText(requireContext(), R.string.RegistrationActivity_unable_to_connect_to_service, Toast.LENGTH_LONG).show();
+        public void onError(Exception exception) {
+          if (exception instanceof RateLimitException) {
+            Toast.makeText(requireContext(), R.string.RegistrationActivity_attempted_to_register_too_many_times, Toast.LENGTH_LONG).show();
+          } else {
+            Toast.makeText(requireContext(), R.string.RegistrationActivity_unable_to_connect_to_service, Toast.LENGTH_LONG).show();
+          }
         }
       });
   }
