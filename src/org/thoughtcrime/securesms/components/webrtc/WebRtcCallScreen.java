@@ -49,6 +49,7 @@ import org.thoughtcrime.securesms.ringrtc.CameraState;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.VerifySpan;
 import org.thoughtcrime.securesms.util.ViewUtil;
+import org.webrtc.RendererCommon;
 import org.webrtc.SurfaceViewRenderer;
 import org.whispersystems.libsignal.IdentityKey;
 
@@ -204,6 +205,7 @@ public class WebRtcCallScreen extends FrameLayout implements RecipientForeverObs
     this.controls.setCameraFlipButtonEnabled(cameraState.getActiveDirection() == CameraState.Direction.BACK);
 
     localRenderer.setMirror(cameraState.getActiveDirection() == CameraState.Direction.FRONT);
+    localRenderer.setScalingType(RendererCommon.ScalingType.SCALE_ASPECT_FIT);
 
     this.localRenderer = localRenderer;
 
@@ -344,7 +346,6 @@ public class WebRtcCallScreen extends FrameLayout implements RecipientForeverObs
       }
 
       localRenderLayout.setPosition(7, 70, 25, 25);
-      localRenderLayout.setSquare(true);
       remoteRenderLayout.setPosition(0, 0, 100, 100);
 
       localRenderer.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
