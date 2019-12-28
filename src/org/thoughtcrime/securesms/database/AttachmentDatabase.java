@@ -57,6 +57,7 @@ import org.thoughtcrime.securesms.stickers.StickerLocator;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.BitmapUtil;
+import org.thoughtcrime.securesms.util.FileUtils;
 import org.thoughtcrime.securesms.util.JsonUtils;
 import org.thoughtcrime.securesms.util.MediaMetadataRetrieverUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
@@ -98,6 +99,7 @@ public class AttachmentDatabase extends Database {
           static final String CONTENT_LOCATION       = "cl";
   public  static final String DATA                   = "_data";
           static final String TRANSFER_STATE         = "pending_push";
+  private static final String TRANSFER_FILE          = "transfer_file";
   public  static final String SIZE                   = "data_size";
           static final String FILE_NAME              = "file_name";
   public  static final String THUMBNAIL              = "thumbnail";
@@ -136,7 +138,7 @@ public class AttachmentDatabase extends Database {
                                                            UNIQUE_ID, DIGEST, FAST_PREFLIGHT_ID, VOICE_NOTE,
                                                            QUOTE, DATA_RANDOM, THUMBNAIL_RANDOM, WIDTH, HEIGHT,
                                                            CAPTION, STICKER_PACK_ID, STICKER_PACK_KEY, STICKER_ID,
-                                                           DATA_HASH, BLUR_HASH, TRANSFORM_PROPERTIES};
+                                                           DATA_HASH, BLUR_HASH, TRANSFORM_PROPERTIES, TRANSFER_FILE };
 
   public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ROW_ID + " INTEGER PRIMARY KEY, " +
     MMS_ID + " INTEGER, " + "seq" + " INTEGER DEFAULT 0, "                        +
@@ -152,7 +154,7 @@ public class AttachmentDatabase extends Database {
     CAPTION + " TEXT DEFAULT NULL, " + STICKER_PACK_ID + " TEXT DEFAULT NULL, " +
     STICKER_PACK_KEY + " DEFAULT NULL, " + STICKER_ID + " INTEGER DEFAULT -1, " +
     DATA_HASH + " TEXT DEFAULT NULL, " + BLUR_HASH + " TEXT DEFAULT NULL, " +
-    TRANSFORM_PROPERTIES + " TEXT DEFAULT NULL);";
+    TRANSFORM_PROPERTIES + " TEXT DEFAULT NULL, " + TRANSFER_FILE + " TEXT DEFAULT NULL);";
 
   public static final String[] CREATE_INDEXS = {
     "CREATE INDEX IF NOT EXISTS part_mms_id_index ON " + TABLE_NAME + " (" + MMS_ID + ");",
@@ -396,12 +398,7 @@ public class AttachmentDatabase extends Database {
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
     database.delete(TABLE_NAME, null, null);
 
-    File   attachmentsDirectory = context.getDir(DIRECTORY, Context.MODE_PRIVATE);
-    File[] attachments          = attachmentsDirectory.listFiles();
-
-    for (File attachment : attachments) {
-      attachment.delete();
-    }
+    FileUtils.deleteDirectoryContents(context.getDir(DIRECTORY, Context.MODE_PRIVATE));
 
     notifyAttachmentListeners();
   }
@@ -449,11 +446,12 @@ public class AttachmentDatabase extends Database {
   public void insertAttachmentsForPlaceholder(long mmsId, @NonNull AttachmentId attachmentId, @NonNull InputStream inputStream)
       throws MmsException
   {
-    DatabaseAttachment placeholder = getAttachment(attachmentId);
-    SQLiteDatabase     database    = databaseHelper.getWritableDatabase();
-    ContentValues      values      = new ContentValues();
-    DataInfo           oldInfo     = getAttachmentDataFileInfo(attachmentId, DATA);
-    DataInfo           dataInfo    = setAttachmentData(inputStream, false, attachmentId);
+    DatabaseAttachment placeholder  = getAttachment(attachmentId);
+    SQLiteDatabase     database     = databaseHelper.getWritableDatabase();
+    ContentValues      values       = new ContentValues();
+    DataInfo           oldInfo      = getAttachmentDataFileInfo(attachmentId, DATA);
+    DataInfo           dataInfo     = setAttachmentData(inputStream, false, attachmentId);
+    File               transferFile = getTransferFile(databaseHelper.getReadableDatabase(), attachmentId);
 
     if (oldInfo != null) {
       updateAttachmentDataHash(database, oldInfo.hash, dataInfo);
@@ -479,10 +477,16 @@ public class AttachmentDatabase extends Database {
     values.put(DIGEST, (byte[])null);
     values.put(NAME, (String) null);
     values.put(FAST_PREFLIGHT_ID, (String)null);
+    values.put(TRANSFER_FILE, (String)null);
 
     if (database.update(TABLE_NAME, values, PART_ID_WHERE, attachmentId.toStrings()) == 0) {
       //noinspection ResultOfMethodCallIgnored
       dataInfo.file.delete();
+
+      if (transferFile != null) {
+        //noinspection ResultOfMethodCallIgnored
+        transferFile.delete();
+      }
     } else {
       notifyConversationListeners(DatabaseFactory.getMmsDatabase(context).getThreadIdForMessage(mmsId));
       notifyConversationListListeners();
@@ -614,6 +618,38 @@ public class AttachmentDatabase extends Database {
 
     int updateCount = updateAttachmentAndMatchingHashes(databaseHelper.getWritableDatabase(), attachmentId, dataInfo.hash, contentValues);
     Log.i(TAG, "[markAttachmentAsTransformed] Updated " + updateCount + " rows.");
+  }
+
+  public @NonNull File getOrCreateTransferFile(@NonNull AttachmentId attachmentId) throws IOException {
+    SQLiteDatabase db       = databaseHelper.getWritableDatabase();
+    File           existing = getTransferFile(db, attachmentId);
+
+    if (existing != null) {
+      return existing;
+    }
+
+    File partsDirectory = context.getDir(DIRECTORY, Context.MODE_PRIVATE);
+    File transferFile   = File.createTempFile("transfer", ".mms", partsDirectory);
+
+    ContentValues values = new ContentValues();
+    values.put(TRANSFER_FILE, transferFile.getAbsolutePath());
+
+    db.update(TABLE_NAME, values, PART_ID_WHERE, attachmentId.toStrings());
+
+    return transferFile;
+  }
+
+  private @Nullable static File getTransferFile(@NonNull SQLiteDatabase db, @NonNull AttachmentId attachmentId) {
+    try (Cursor cursor = db.query(TABLE_NAME, new String[] { TRANSFER_FILE }, PART_ID_WHERE, attachmentId.toStrings(), null, null, "1")) {
+      if (cursor != null && cursor.moveToFirst()) {
+        String path = cursor.getString(cursor.getColumnIndexOrThrow(TRANSFER_FILE));
+        if (path != null) {
+          return new File(path);
+        }
+      }
+    }
+
+    return null;
   }
 
   private static int updateAttachmentAndMatchingHashes(@NonNull SQLiteDatabase database,
@@ -1188,6 +1224,7 @@ public class AttachmentDatabase extends Database {
       this.hash   = hash;
     }
   }
+
   public static final class TransformProperties {
 
     @JsonProperty private final boolean skipTransform;

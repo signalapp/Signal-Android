@@ -98,8 +98,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int REACTIONS                        = 37;
   private static final int STORAGE_SERVICE                  = 38;
   private static final int REACTIONS_UNREAD_INDEX           = 39;
+  private static final int RESUMABLE_DOWNLOADS              = 40;
 
-  private static final int    DATABASE_VERSION = 39;
+  private static final int    DATABASE_VERSION = 40;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -677,6 +678,10 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
       if (oldVersion < REACTIONS_UNREAD_INDEX) {
         db.execSQL("CREATE INDEX IF NOT EXISTS sms_reactions_unread_index ON sms (reactions_unread);");
         db.execSQL("CREATE INDEX IF NOT EXISTS mms_reactions_unread_index ON mms (reactions_unread);");
+      }
+
+      if (oldVersion < RESUMABLE_DOWNLOADS) {
+        db.execSQL("ALTER TABLE part ADD COLUMN transfer_file TEXT DEFAULT NULL");
       }
 
       db.setTransactionSuccessful();

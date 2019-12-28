@@ -33,6 +33,7 @@ import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.concurrent.TimeUnit;
 
 public class AttachmentDownloadJob extends BaseJob {
 
@@ -55,12 +56,12 @@ public class AttachmentDownloadJob extends BaseJob {
     this(new Job.Parameters.Builder()
                            .setQueue("AttachmentDownloadJob" + attachmentId.getRowId() + "-" + attachmentId.getUniqueId())
                            .addConstraint(NetworkConstraint.KEY)
-                           .setMaxAttempts(25)
+                           .setLifespan(TimeUnit.DAYS.toMillis(1))
+                           .setMaxAttempts(Parameters.UNLIMITED)
                            .build(),
          messageId,
          attachmentId,
          manual);
-
   }
 
   private AttachmentDownloadJob(@NonNull Job.Parameters parameters, long messageId, AttachmentId attachmentId, boolean manual) {
@@ -156,11 +157,9 @@ public class AttachmentDownloadJob extends BaseJob {
   {
 
     AttachmentDatabase database       = DatabaseFactory.getAttachmentDatabase(context);
-    File               attachmentFile = null;
+    File               attachmentFile = database.getOrCreateTransferFile(attachmentId);
 
     try {
-      attachmentFile = createTempFile();
-
       SignalServiceMessageReceiver   messageReceiver = ApplicationDependencies.getSignalServiceMessageReceiver();
       SignalServiceAttachmentPointer pointer         = createAttachmentPointer(attachment);
       InputStream                    stream          = messageReceiver.retrieveAttachment(pointer, attachmentFile, MAX_ATTACHMENT_SIZE, (total, progress) -> EventBus.getDefault().postSticky(new PartProgressEvent(attachment, PartProgressEvent.Type.NETWORK, total, progress)));
@@ -169,18 +168,10 @@ public class AttachmentDownloadJob extends BaseJob {
     } catch (InvalidPartException | NonSuccessfulResponseCodeException | InvalidMessageException | MmsException e) {
       Log.w(TAG, "Experienced exception while trying to download an attachment.", e);
       markFailed(messageId, attachmentId);
-    } finally {
-      if (attachmentFile != null) {
-        //noinspection ResultOfMethodCallIgnored
-        attachmentFile.delete();
-      }
     }
   }
 
-  @VisibleForTesting
-  SignalServiceAttachmentPointer createAttachmentPointer(Attachment attachment)
-      throws InvalidPartException
-  {
+  private SignalServiceAttachmentPointer createAttachmentPointer(Attachment attachment) throws InvalidPartException {
     if (TextUtils.isEmpty(attachment.getLocation())) {
       throw new InvalidPartException("empty content id");
     }

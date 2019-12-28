@@ -1,5 +1,7 @@
 package org.thoughtcrime.securesms.util;
 
+import androidx.annotation.Nullable;
+
 import java.io.File;
 import java.io.FileDescriptor;
 import java.io.FileInputStream;
@@ -34,7 +36,7 @@ public final class FileUtils {
     }
   }
 
-  public static void deleteDirectoryContents(File directory) throws IOException {
+  public static void deleteDirectoryContents(@Nullable File directory) {
     if (directory == null || !directory.exists() || !directory.isDirectory()) return;
 
     File[] files = directory.listFiles();
@@ -47,7 +49,7 @@ public final class FileUtils {
     }
   }
 
-  public static void deleteDirectory(File directory) throws IOException {
+  public static void deleteDirectory(@Nullable File directory) {
     if (directory == null || !directory.exists() || !directory.isDirectory()) {
       return;
     }

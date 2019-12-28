@@ -207,20 +207,12 @@ public class LegacyMigrationJob extends MigrationJob {
     }
 
     if (lastSeenVersion < REMOVE_CACHE) {
-      try {
-        FileUtils.deleteDirectoryContents(context.getCacheDir());
-      } catch (IOException e) {
-        Log.w(TAG, e);
-      }
+      FileUtils.deleteDirectoryContents(context.getCacheDir());
     }
 
     if (lastSeenVersion < IMAGE_CACHE_CLEANUP) {
-      try {
-        FileUtils.deleteDirectoryContents(context.getExternalCacheDir());
-        GlideApp.get(context).clearDiskCache();
-      } catch (IOException e) {
-        Log.w(TAG, e);
-      }
+      FileUtils.deleteDirectoryContents(context.getExternalCacheDir());
+      GlideApp.get(context).clearDiskCache();
     }
 
     // This migration became unnecessary after switching away from WorkManager

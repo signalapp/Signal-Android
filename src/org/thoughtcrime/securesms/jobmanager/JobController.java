@@ -355,6 +355,7 @@ class JobController {
                   .setMaxAttempts(jobSpec.getMaxAttempts())
                   .setQueue(jobSpec.getQueueKey())
                   .setConstraints(Stream.of(constraintSpecs).map(ConstraintSpec::getFactoryKey).toList())
+                  .setMaxBackoff(jobSpec.getMaxBackoff())
                   .build();
   }
 

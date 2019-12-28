@@ -39,12 +39,8 @@ public class CachedAttachmentsMigrationJob extends MigrationJob {
       return;
     }
 
-    try {
-      FileUtils.deleteDirectoryContents(context.getExternalCacheDir());
-      GlideApp.get(context).clearDiskCache();
-    } catch (IOException e) {
-      Log.w(TAG, e);
-    }
+    FileUtils.deleteDirectoryContents(context.getExternalCacheDir());
+    GlideApp.get(context).clearDiskCache();
   }
 
   @Override
