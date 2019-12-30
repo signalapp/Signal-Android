@@ -17,6 +17,7 @@ import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.FitCenter;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 
@@ -68,6 +69,7 @@ public class ThumbnailView extends FrameLayout {
   private SlideClickListener            thumbnailClickListener = null;
   private SlidesClickedListener         downloadClickListener  = null;
   private Slide                         slide                  = null;
+  private BitmapTransformation          fit                    = new CenterCrop();
 
   private int radius;
 
@@ -97,6 +99,7 @@ public class ThumbnailView extends FrameLayout {
       bounds[MIN_HEIGHT] = typedArray.getDimensionPixelSize(R.styleable.ThumbnailView_minHeight, 0);
       bounds[MAX_HEIGHT] = typedArray.getDimensionPixelSize(R.styleable.ThumbnailView_maxHeight, 0);
       radius             = typedArray.getDimensionPixelSize(R.styleable.ThumbnailView_thumbnail_radius, getResources().getDimensionPixelSize(R.dimen.thumbnail_default_radius));
+      fit                = typedArray.getInt(R.styleable.ThumbnailView_thumbnail_fit, 0) == 1 ? new FitCenter() : new CenterCrop();
       typedArray.recycle();
     } else {
       radius = getResources().getDimensionPixelSize(R.dimen.message_corner_collapse_radius);
@@ -394,7 +397,7 @@ public class ThumbnailView extends FrameLayout {
   private GlideRequest buildThumbnailGlideRequest(@NonNull GlideRequests glideRequests, @NonNull Slide slide) {
     GlideRequest request = applySizing(glideRequests.load(new DecryptableUri(slide.getThumbnailUri()))
                                           .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                                          .transition(withCrossFade()), new CenterCrop());
+                                          .transition(withCrossFade()), fit);
 
     if (slide.isInProgress()) return request;
     else                      return request.apply(RequestOptions.errorOf(R.drawable.ic_missing_thumbnail_picture));

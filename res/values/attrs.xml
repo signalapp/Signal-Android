@@ -266,6 +266,10 @@
         <attr name="minHeight" format="dimension" />
         <attr name="maxHeight" format="dimension" />
         <attr name="thumbnail_radius" format="dimension" />
+        <attr name="thumbnail_fit" format="enum">
+            <enum name="center_crop" value="0" />
+            <enum name="fit_center" value="1" />
+        </attr>
     </declare-styleable>
 
     <declare-styleable name="DeliveryStatusView">

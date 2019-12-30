@@ -17,6 +17,7 @@
         android:id="@+id/sticker_thumbnail"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:thumbnail_radius="0dp"/>
+        app:thumbnail_radius="0dp"
+        app:thumbnail_fit="fit_center"/>
 
 </merge>
