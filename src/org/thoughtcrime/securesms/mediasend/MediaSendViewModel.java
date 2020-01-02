@@ -188,11 +188,7 @@ class MediaSendViewModel extends ViewModel {
     buttonState    = (recipient != null) ? ButtonState.SEND : ButtonState.CONTINUE;
 
     if (viewOnceState == ViewOnceState.GONE && viewOnceSupported()) {
-      if (FeatureFlags.VIEW_ONCE_SENDING) {
-        viewOnceState = TextSecurePreferences.isRevealableMessageEnabled(application) ? ViewOnceState.ENABLED : ViewOnceState.DISABLED;
-      } else {
-        viewOnceState = ViewOnceState.GONE;
-      }
+      viewOnceState = TextSecurePreferences.isRevealableMessageEnabled(application) ? ViewOnceState.ENABLED : ViewOnceState.DISABLED;
     } else if (!viewOnceSupported()) {
       viewOnceState = ViewOnceState.GONE;
     }
@@ -452,7 +448,7 @@ class MediaSendViewModel extends ViewModel {
   }
 
   boolean isViewOnce() {
-    return FeatureFlags.VIEW_ONCE_SENDING && viewOnceState == ViewOnceState.ENABLED;
+    return viewOnceState == ViewOnceState.ENABLED;
   }
 
   @NonNull MediaConstraints getMediaConstraints() {
@@ -477,13 +473,12 @@ class MediaSendViewModel extends ViewModel {
   }
 
   private HudState buildHudState() {
-    ViewOnceState updatedViewOnceState  = FeatureFlags.VIEW_ONCE_SENDING ? viewOnceState : ViewOnceState.GONE;
     List<Media>   selectedMedia         = getSelectedMediaOrDefault();
     int           selectionCount        = selectedMedia.size();
     ButtonState   updatedButtonState    = buttonState == ButtonState.COUNT && selectionCount == 0 ? ButtonState.GONE : buttonState;
     boolean       updatedCaptionVisible = captionVisible && (selectedMedia.size() > 1 || (selectedMedia.size() > 0 && selectedMedia.get(0).getCaption().isPresent()));
 
-    return new HudState(hudVisible, composeVisible, updatedCaptionVisible, selectionCount, updatedButtonState, railState, updatedViewOnceState);
+    return new HudState(hudVisible, composeVisible, updatedCaptionVisible, selectionCount, updatedButtonState, railState, viewOnceState);
   }
 
   private void clearPersistedMedia() {
