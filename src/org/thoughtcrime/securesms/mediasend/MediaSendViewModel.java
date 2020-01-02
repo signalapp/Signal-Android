@@ -110,6 +110,10 @@ class MediaSendViewModel extends ViewModel {
   }
 
   void onSelectedMediaChanged(@NonNull Context context, @NonNull List<Media> newMedia) {
+    if (!newMedia.isEmpty()) {
+      selectedMedia.setValue(newMedia);
+    }
+
     repository.getPopulatedMedia(context, newMedia, populatedMedia -> {
       Util.runOnMain(() -> {
 
@@ -153,6 +157,8 @@ class MediaSendViewModel extends ViewModel {
   }
 
   void onSingleMediaSelected(@NonNull Context context, @NonNull Media media) {
+    selectedMedia.setValue(Collections.singletonList(media));
+
     repository.getPopulatedMedia(context, Collections.singletonList(media), populatedMedia -> {
       Util.runOnMain(() -> {
         List<Media> filteredMedia = getFilteredMedia(context, populatedMedia, mediaConstraints);
@@ -183,7 +189,6 @@ class MediaSendViewModel extends ViewModel {
   void onImageEditorStarted() {
     page           = Page.EDITOR;
     hudVisible     = true;
-    composeVisible = viewOnceState != ViewOnceState.ENABLED;
     captionVisible = getSelectedMediaOrDefault().size() > 1 || (getSelectedMediaOrDefault().size() > 0 && getSelectedMediaOrDefault().get(0).getCaption().isPresent());
     buttonState    = (recipient != null) ? ButtonState.SEND : ButtonState.CONTINUE;
 
@@ -193,7 +198,8 @@ class MediaSendViewModel extends ViewModel {
       viewOnceState = ViewOnceState.GONE;
     }
 
-    railState  = !isSms && viewOnceState != ViewOnceState.ENABLED ? RailState.INTERACTIVE : RailState.GONE;
+    railState      = !isSms && viewOnceState != ViewOnceState.ENABLED ? RailState.INTERACTIVE : RailState.GONE;
+    composeVisible = viewOnceState != ViewOnceState.ENABLED;
 
     hudState.setValue(buildHudState());
   }
