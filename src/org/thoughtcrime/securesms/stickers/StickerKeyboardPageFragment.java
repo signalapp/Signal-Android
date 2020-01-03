@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.stickers;
 
 import androidx.lifecycle.ViewModelProviders;
-import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Point;
 import android.os.Bundle;
@@ -11,9 +10,7 @@ import androidx.annotation.Px;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -21,15 +18,18 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.model.StickerRecord;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.stickers.StickerKeyboardPageAdapter.StickerKeyboardPageViewHolder;
-import org.thoughtcrime.securesms.util.ViewUtil;
+import org.whispersystems.libsignal.util.Pair;
 
 /**
  * An individual page of stickers in the {@link StickerKeyboardProvider}.
  */
-public final class StickerKeyboardPageFragment extends Fragment implements StickerKeyboardPageAdapter.EventListener {
+public final class StickerKeyboardPageFragment extends Fragment implements StickerKeyboardPageAdapter.EventListener,
+                                                                           StickerRolloverTouchListener.RolloverStickerRetriever
+{
 
   private static final String TAG = Log.tag(StickerKeyboardPageFragment.class);
 
@@ -43,7 +43,7 @@ public final class StickerKeyboardPageFragment extends Fragment implements Stick
 
   private StickerKeyboardPageViewModel viewModel;
   private EventListener                eventListener;
-  private ListTouchListener            listTouchListener;
+  private StickerRolloverTouchListener listTouchListener;
 
   private String                       packId;
 
@@ -70,7 +70,7 @@ public final class StickerKeyboardPageFragment extends Fragment implements Stick
     this.list              = view.findViewById(R.id.sticker_keyboard_list);
     this.adapter           = new StickerKeyboardPageAdapter(glideRequests, this);
     this.layoutManager     = new GridLayoutManager(requireContext(), 2);
-    this.listTouchListener = new ListTouchListener(requireContext(), glideRequests);
+    this.listTouchListener = new StickerRolloverTouchListener(requireContext(), glideRequests, eventListener, this);
     this.packId            = getArguments().getString(KEY_PACK_ID);
 
     list.setLayoutManager(layoutManager);
@@ -99,6 +99,18 @@ public final class StickerKeyboardPageFragment extends Fragment implements Stick
     if (listTouchListener != null) {
       listTouchListener.enterHoverMode(list, targetView);
     }
+  }
+
+  @Override
+  public @Nullable Pair<Object, String> getStickerDataFromView(@NonNull View view) {
+    if (list != null) {
+      StickerKeyboardPageViewHolder holder = (StickerKeyboardPageViewHolder) list.getChildViewHolder(view);
+      if (holder != null && holder.getCurrentSticker() != null) {
+        return new Pair<>(new DecryptableStreamUriLoader.DecryptableUri(holder.getCurrentSticker().getUri()),
+                          holder.getCurrentSticker().getEmoji());
+      }
+    }
+    return null;
   }
 
   public void setEventListener(@NonNull EventListener eventListener) {
@@ -146,69 +158,7 @@ public final class StickerKeyboardPageFragment extends Fragment implements Stick
     return (int) ((screenWidth - ((columnCount + 1) * multiplier)) / columnCount);
   }
 
-  private final class ListTouchListener implements RecyclerView.OnItemTouchListener {
-
-    private final StickerPreviewPopup popup;
-
-    private boolean hoverMode;
-
-    ListTouchListener(@NonNull Context context, @NonNull GlideRequests glideRequests) {
-      this.popup = new StickerPreviewPopup(context, glideRequests);
-      popup.setAnimationStyle(R.style.StickerPopupAnimation);
-    }
-
-    @Override
-    public boolean onInterceptTouchEvent(@NonNull RecyclerView recyclerView, @NonNull MotionEvent motionEvent) {
-      return hoverMode;
-    }
-
-    @Override
-    public void onTouchEvent(@NonNull RecyclerView recyclerView, @NonNull MotionEvent motionEvent) {
-      switch (motionEvent.getAction()) {
-        case MotionEvent.ACTION_UP:
-        case MotionEvent.ACTION_CANCEL:
-          hoverMode = false;
-          popup.dismiss();
-          eventListener.onStickerPopupEnded();
-          break;
-        default:
-          for (int i = 0, len = recyclerView.getChildCount(); i < len; i++) {
-            View child = recyclerView.getChildAt(i);
-
-            if (ViewUtil.isPointInsideView(recyclerView, motionEvent.getRawX(), motionEvent.getRawY()) &&
-                ViewUtil.isPointInsideView(child, motionEvent.getRawX(), motionEvent.getRawY()))
-            {
-              showStickerForView(recyclerView, child);
-            }
-          }
-      }
-    }
-
-    @Override
-    public void onRequestDisallowInterceptTouchEvent(boolean b) {
-    }
-
-    void enterHoverMode(@NonNull RecyclerView recyclerView, View targetView) {
-      this.hoverMode = true;
-      showStickerForView(recyclerView, targetView);
-    }
-
-    private void showStickerForView(@NonNull RecyclerView recyclerView, @NonNull View view) {
-      StickerKeyboardPageViewHolder holder = (StickerKeyboardPageViewHolder) recyclerView.getChildViewHolder(view);
-
-      if (holder != null && holder.getCurrentSticker() != null) {
-        if (!popup.isShowing()) {
-          popup.showAtLocation(recyclerView, Gravity.NO_GRAVITY, 0, 0);
-          eventListener.onStickerPopupStarted();
-        }
-        popup.presentSticker(holder.getCurrentSticker());
-      }
-    }
-  }
-
-  interface EventListener {
+  interface EventListener extends StickerRolloverTouchListener.RolloverEventListener {
     void onStickerSelected(@NonNull StickerRecord sticker);
-    void onStickerPopupStarted();
-    void onStickerPopupEnded();
   }
 }

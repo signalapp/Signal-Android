@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.stickers;
 
+import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -22,11 +23,13 @@ import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.ShareActivity;
+import org.thoughtcrime.securesms.database.model.StickerRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.StickerPackDownloadJob;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
 import org.thoughtcrime.securesms.mms.GlideApp;
+import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.stickers.StickerManifest.Sticker;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
@@ -40,7 +43,11 @@ import org.whispersystems.libsignal.util.guava.Optional;
  * Shows the contents of a pack and allows the user to install it (if not installed) or remove it
  * (if installed). This is also the handler for sticker pack deep links.
  */
-public final class StickerPackPreviewActivity extends PassphraseRequiredActionBarActivity {
+public final class StickerPackPreviewActivity extends    PassphraseRequiredActionBarActivity
+                                              implements StickerRolloverTouchListener.RolloverEventListener,
+                                                         StickerRolloverTouchListener.RolloverStickerRetriever,
+                                                         StickerPackPreviewAdapter.EventListener
+{
 
   private static final String TAG = Log.tag(StickerPackPreviewActivity.class);
 
@@ -57,8 +64,9 @@ public final class StickerPackPreviewActivity extends PassphraseRequiredActionBa
   private View         shareButton;
   private View         shareButtonImage;
 
-  private StickerPackPreviewAdapter adapter;
-  private GridLayoutManager         layoutManager;
+  private StickerPackPreviewAdapter    adapter;
+  private GridLayoutManager            layoutManager;
+  private StickerRolloverTouchListener touchListener;
 
   public static Intent getIntent(@NonNull String packId, @NonNull String packKey) {
     Intent intent = new Intent(Intent.ACTION_VIEW, StickerUrl.createActionUri(packId, packKey));
@@ -105,6 +113,32 @@ public final class StickerPackPreviewActivity extends PassphraseRequiredActionBa
     onScreenWidthChanged(getScreenWidth());
   }
 
+  @Override
+  public void onStickerLongPress(@NonNull View view) {
+    if (touchListener != null) {
+      touchListener.enterHoverMode(stickerList, view);
+    }
+  }
+
+  @Override
+  public void onStickerPopupStarted() {
+  }
+
+  @Override
+  public void onStickerPopupEnded() {
+  }
+
+  @Override
+  public @Nullable Pair<Object, String> getStickerDataFromView(@NonNull View view) {
+    if (stickerList != null) {
+      StickerPackPreviewAdapter.StickerViewHolder holder = (StickerPackPreviewAdapter.StickerViewHolder) stickerList.getChildViewHolder(view);
+      if (holder != null) {
+        return new Pair<>(holder.getCurrentGlideModel(), holder.getCurrentEmoji());
+      }
+    }
+    return null;
+  }
+
   private void initView() {
     this.coverImage       = findViewById(R.id.sticker_install_cover);
     this.stickerTitle     = findViewById(R.id.sticker_install_title);
@@ -115,11 +149,13 @@ public final class StickerPackPreviewActivity extends PassphraseRequiredActionBa
     this.shareButton      = findViewById(R.id.sticker_install_share_button);
     this.shareButtonImage = findViewById(R.id.sticker_install_share_button_image);
 
-    this.adapter       = new StickerPackPreviewAdapter(GlideApp.with(this));
+    this.adapter       = new StickerPackPreviewAdapter(GlideApp.with(this), this);
     this.layoutManager = new GridLayoutManager(this, 2);
+    this.touchListener = new StickerRolloverTouchListener(this, GlideApp.with(this), this, this);
     onScreenWidthChanged(getScreenWidth());
 
     stickerList.setLayoutManager(layoutManager);
+    stickerList.addOnItemTouchListener(touchListener);
     stickerList.setAdapter(adapter);
   }
 

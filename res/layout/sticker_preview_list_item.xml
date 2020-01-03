@@ -4,4 +4,5 @@
     android:id="@+id/sticker_install_item_image"
     android:layout_width="match_parent"
     android:layout_height="@dimen/sticker_preview_sticker_size"
+    android:layout_marginTop="6dp"
     android:scaleType="centerInside"/>

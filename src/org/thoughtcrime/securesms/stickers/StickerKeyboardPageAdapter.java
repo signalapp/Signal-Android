@@ -45,8 +45,7 @@ final class StickerKeyboardPageAdapter extends RecyclerView.Adapter<StickerKeybo
   }
 
   @Override
-  public @NonNull
-  StickerKeyboardPageViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+  public @NonNull StickerKeyboardPageViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
     return new StickerKeyboardPageViewHolder(LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.sticker_keyboard_page_list_item, viewGroup, false));
   }
 
