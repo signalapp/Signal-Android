@@ -167,7 +167,7 @@ public class StickerPackDownloadJob extends BaseJob {
   }
 
   @Override
-  public void onCanceled() {
+  public void onFailure() {
     Log.w(TAG, "Failed to download manifest! Uninstalling pack.");
     DatabaseFactory.getStickerDatabase(context).uninstallPack(packId);
     DatabaseFactory.getStickerDatabase(context).deleteOrphanedPacks();

@@ -181,9 +181,7 @@ public final class Argon2TestJob extends BaseJob {
   }
 
   @Override
-  public void onCanceled() {
-
-  }
+  public void onFailure() {}
 
   private static abstract class Argon2RuntimeException extends RuntimeException {
     private Argon2RuntimeException(String message) {

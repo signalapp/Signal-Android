@@ -110,7 +110,7 @@ public class FcmRefreshJob extends BaseJob {
   }
 
   @Override
-  public void onCanceled() {
+  public void onFailure() {
     Log.w(TAG, "GCM reregistration failed after retry attempt exhaustion!");
   }
 

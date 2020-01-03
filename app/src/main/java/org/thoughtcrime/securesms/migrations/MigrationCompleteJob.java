@@ -48,7 +48,7 @@ public class MigrationCompleteJob extends BaseJob {
   }
 
   @Override
-  public void onCanceled() {
+  public void onFailure() {
     throw new AssertionError("This job should never fail.");
   }
 

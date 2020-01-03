@@ -99,7 +99,7 @@ public final class RegistrationPinV2MigrationJob extends BaseJob {
   }
 
   @Override
-  public void onCanceled() {
+  public void onFailure() {
   }
 
   public static class Factory implements Job.Factory<RegistrationPinV2MigrationJob> {

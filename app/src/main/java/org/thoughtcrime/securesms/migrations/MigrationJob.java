@@ -54,7 +54,7 @@ abstract class MigrationJob extends Job {
   }
 
   @Override
-  public void onCanceled() {
+  public void onFailure() {
     throw new AssertionError("This job should never fail. " + getClass().getSimpleName());
   }
 

@@ -32,8 +32,10 @@ public abstract class Job {
 
   private final Parameters parameters;
 
-  private int    runAttempt;
-  private long   nextRunAttemptTime;
+  private int  runAttempt;
+  private long nextRunAttemptTime;
+
+  private volatile boolean canceled;
 
   protected Context context;
 
@@ -75,10 +77,25 @@ public abstract class Job {
     this.nextRunAttemptTime = nextRunAttemptTime;
   }
 
+  /** Should only be invoked by {@link JobController} */
+  final void cancel() {
+    this.canceled = true;
+  }
+
   @WorkerThread
   final void onSubmit() {
     Log.i(TAG, JobLogger.format(this, "onSubmit()"));
     onAdded();
+  }
+
+  /**
+   * @return True if your job has been marked as canceled while it was running, otherwise false.
+   *         If a job sees that it has been canceled, it should make a best-effort attempt at
+   *         stopping it's work. This job will have {@link #onFailure()} called after {@link #run()}
+   *         has finished.
+   */
+  public final boolean isCanceled() {
+    return canceled;
   }
 
   /**
@@ -112,10 +129,10 @@ public abstract class Job {
   public abstract @NonNull Result run();
 
   /**
-   * Called when your job has completely failed.
+   * Called when your job has completely failed and will not be run again.
    */
   @WorkerThread
-  public abstract void onCanceled();
+  public abstract void onFailure();
 
   public interface Factory<T extends Job> {
     @NonNull T create(@NonNull Parameters parameters, @NonNull Data data);

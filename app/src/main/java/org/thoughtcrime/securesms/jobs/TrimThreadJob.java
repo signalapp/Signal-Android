@@ -70,7 +70,7 @@ public class TrimThreadJob extends BaseJob {
   }
 
   @Override
-  public void onCanceled() {
+  public void onFailure() {
     Log.w(TAG, "Canceling trim attempt: " + threadId);
   }
 

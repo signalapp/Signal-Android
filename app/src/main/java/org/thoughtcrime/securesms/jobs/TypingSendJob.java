@@ -101,7 +101,7 @@ public class TypingSendJob extends BaseJob {
   }
 
   @Override
-  public void onCanceled() {
+  public void onFailure() {
   }
 
   @Override

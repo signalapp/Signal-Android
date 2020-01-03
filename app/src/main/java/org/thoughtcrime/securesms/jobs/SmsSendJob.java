@@ -98,8 +98,8 @@ public class SmsSendJob extends SendJob {
   }
 
   @Override
-  public void onCanceled() {
-    warn(TAG, "onCanceled() messageId: " + messageId);
+  public void onFailure() {
+    warn(TAG, "onFailure() messageId: " + messageId);
     long      threadId  = DatabaseFactory.getSmsDatabase(context).getThreadIdForMessage(messageId);
     Recipient recipient = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(threadId);
 

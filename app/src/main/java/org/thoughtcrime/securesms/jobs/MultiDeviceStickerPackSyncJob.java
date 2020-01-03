@@ -83,7 +83,7 @@ public class MultiDeviceStickerPackSyncJob extends BaseJob {
   }
 
   @Override
-  public void onCanceled() {
+  public void onFailure() {
     Log.w(TAG, "Failed to sync sticker pack operation!");
   }
 

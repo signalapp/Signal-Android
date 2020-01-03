@@ -70,7 +70,7 @@ public class RefreshOwnProfileJob extends BaseJob {
   }
 
   @Override
-  public void onCanceled() { }
+  public void onFailure() { }
 
   private void setProfileName(@Nullable String encryptedName) {
     try {

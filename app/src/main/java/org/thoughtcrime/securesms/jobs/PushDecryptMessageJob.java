@@ -126,7 +126,7 @@ public final class PushDecryptMessageJob extends BaseJob {
   }
 
   @Override
-  public void onCanceled() {
+  public void onFailure() {
   }
 
   private boolean needsMigration() {

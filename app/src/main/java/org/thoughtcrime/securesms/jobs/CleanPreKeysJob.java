@@ -96,7 +96,7 @@ public class CleanPreKeysJob extends BaseJob {
   }
 
   @Override
-  public void onCanceled() {
+  public void onFailure() {
     Log.w(TAG, "Failed to execute clean signed prekeys task.");
   }
 

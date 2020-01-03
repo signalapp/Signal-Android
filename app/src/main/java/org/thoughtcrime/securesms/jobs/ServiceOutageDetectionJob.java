@@ -86,7 +86,7 @@ public class ServiceOutageDetectionJob extends BaseJob {
   }
 
   @Override
-  public void onCanceled() {
+  public void onFailure() {
     Log.i(TAG, "Service status check could not complete. Assuming success to avoid false positives due to bad network.");
     TextSecurePreferences.setServiceOutage(context, false);
     TextSecurePreferences.setLastOutageCheckTime(context, System.currentTimeMillis());

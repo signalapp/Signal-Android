@@ -84,7 +84,7 @@ public class SmsSentJob extends BaseJob {
   }
 
   @Override
-  public void onCanceled() {
+  public void onFailure() {
   }
 
   private void handleDeliveredResult(long messageId, int result) {

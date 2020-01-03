@@ -112,7 +112,6 @@ public class JobManager implements ConstraintObserver.Notifier {
     jobTracker.removeListener(listener);
   }
 
-
   /**
    * Enqueues a single job to be run.
    */
@@ -137,8 +136,21 @@ public class JobManager implements ConstraintObserver.Notifier {
   }
 
   /**
+   * Attempts to cancel a job. This is best-effort and may not actually prevent a job from
+   * completing if it was already running. If this job is running, this can only stop jobs that
+   * bother to check {@link Job#isCanceled()}.
+   *
+   * When a job is canceled, {@link Job#onFailure()} will be triggered at the earliest possible
+   * moment. Just like a normal failure, all later jobs in the same chain will also be failed.
+   */
+  public void cancel(@NonNull String id) {
+    executor.execute(() -> jobController.cancelJob(id));
+  }
+
+  /**
    * Retrieves a string representing the state of the job queue. Intended for debugging.
    */
+  @WorkerThread
   public @NonNull String getDebugInfo() {
     Future<String> result = executor.submit(jobController::getDebugInfo);
     try {

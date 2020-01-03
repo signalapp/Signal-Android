@@ -17,11 +17,12 @@ import org.thoughtcrime.securesms.util.Debouncer;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
-import java.util.UUID;
 
 /**
  * Manages the queue of jobs. This is the only class that should write to {@link JobStorage} to
@@ -40,7 +41,7 @@ class JobController {
   private final Scheduler              scheduler;
   private final Debouncer              debouncer;
   private final Callback               callback;
-  private final Set<String>            runningJobs;
+  private final Map<String, Job>       runningJobs;
 
   JobController(@NonNull Application application,
                 @NonNull JobStorage jobStorage,
@@ -61,7 +62,7 @@ class JobController {
     this.scheduler              = scheduler;
     this.debouncer              = debouncer;
     this.callback               = callback;
-    this.runningJobs            = new HashSet<>();
+    this.runningJobs            = new HashMap<>();
   }
 
   @WorkerThread
@@ -94,6 +95,29 @@ class JobController {
     scheduleJobs(chain.get(0));
     triggerOnSubmit(chain);
     notifyAll();
+  }
+
+  @WorkerThread
+  synchronized void cancelJob(@NonNull String id) {
+    Job runningJob = runningJobs.get(id);
+
+    if (runningJob != null) {
+      Log.w(TAG, JobLogger.format(runningJob, "Canceling while running."));
+      runningJob.cancel();
+    } else {
+      JobSpec jobSpec = jobStorage.getJobSpec(id);
+
+      if (jobSpec != null) {
+        Job job = createJob(jobSpec, jobStorage.getConstraintSpecs(id));
+        Log.w(TAG, JobLogger.format(job, "Canceling while inactive."));
+        Log.w(TAG, JobLogger.format(job, "Job failed."));
+
+        job.onFailure();
+        onFailure(job);
+      } else {
+        Log.w(TAG, "Tried to cancel JOB::" + id + ", but it could not be found.");
+      }
+    }
   }
 
   @WorkerThread
@@ -177,7 +201,7 @@ class JobController {
       }
 
       jobStorage.updateJobRunningState(job.getId(), true);
-      runningJobs.add(job.getId());
+      runningJobs.put(job.getId(), job);
       jobTracker.onStateChange(job.getId(), JobTracker.JobState.RUNNING);
 
       return job;
@@ -333,7 +357,7 @@ class JobController {
 
       return job;
     } catch (RuntimeException e) {
-      Log.e(TAG, "Failed to instantiate job! Failing it and its dependencies without calling Job#onCanceled. Crash imminent.");
+      Log.e(TAG, "Failed to instantiate job! Failing it and its dependencies without calling Job#onFailure. Crash imminent.");
 
       List<String> failIds = Stream.of(jobStorage.getDependencySpecsThatDependOnJob(jobSpec.getId()))
                                    .map(DependencySpec::getJobId)

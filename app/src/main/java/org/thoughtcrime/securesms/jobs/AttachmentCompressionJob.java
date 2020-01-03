@@ -129,7 +129,7 @@ public final class AttachmentCompressionJob extends BaseJob {
   }
 
   @Override
-  public void onCanceled() { }
+  public void onFailure() { }
 
   @Override
   protected boolean onShouldRetry(@NonNull Exception exception) {

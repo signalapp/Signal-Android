@@ -225,7 +225,7 @@ public class PushGroupSendJob extends PushSendJob {
   }
 
   @Override
-  public void onCanceled() {
+  public void onFailure() {
     DatabaseFactory.getMmsDatabase(context).markAsSentFailed(messageId);
   }
 

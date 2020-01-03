@@ -59,7 +59,7 @@ public class RotateProfileKeyJob extends BaseJob {
   }
 
   @Override
-  public void onCanceled() {
+  public void onFailure() {
 
   }
 

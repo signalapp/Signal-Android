@@ -54,8 +54,8 @@ class JobRunner extends Thread {
         job.onRetry();
       } else if (result.isFailure()) {
         List<Job> dependents = jobController.onFailure(job);
-        job.onCanceled();
-        Stream.of(dependents).forEach(Job::onCanceled);
+        job.onFailure();
+        Stream.of(dependents).forEach(Job::onFailure);
 
         if (result.getException() != null) {
           throw result.getException();
@@ -80,6 +80,11 @@ class JobRunner extends Thread {
     try {
       wakeLock = WakeLockUtil.acquire(application, PowerManager.PARTIAL_WAKE_LOCK, WAKE_LOCK_TIMEOUT, job.getId());
       result = job.run();
+
+      if (job.isCanceled()) {
+        Log.w(TAG, JobLogger.format(job, String.valueOf(id), "Failing because the job was canceled."));
+        result = Job.Result.failure();
+      }
     } catch (Exception e) {
       Log.w(TAG, JobLogger.format(job, String.valueOf(id), "Failing due to an unexpected exception."), e);
       return Job.Result.failure();

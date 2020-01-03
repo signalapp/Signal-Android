@@ -88,7 +88,7 @@ public class MmsReceiveJob extends BaseJob {
   }
 
   @Override
-  public void onCanceled() {
+  public void onFailure() {
     // TODO
   }
 

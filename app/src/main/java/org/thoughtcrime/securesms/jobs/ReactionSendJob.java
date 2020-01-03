@@ -185,7 +185,7 @@ public class ReactionSendJob extends BaseJob {
   }
 
   @Override
-  public void onCanceled() {
+  public void onFailure() {
     if (recipients.size() < initialRecipientCount) {
       Log.w(TAG, "Only sent a reaction to " + recipients.size() + "/" + initialRecipientCount + " recipients. Still, it sent to someone, so it stays.");
       return;

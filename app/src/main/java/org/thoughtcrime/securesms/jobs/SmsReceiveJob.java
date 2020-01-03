@@ -89,7 +89,7 @@ public class SmsReceiveJob extends BaseJob {
   }
 
   @Override
-  public void onCanceled() {
+  public void onFailure() {
 
   }
 

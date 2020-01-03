@@ -67,7 +67,7 @@ public class CreateSignedPreKeyJob extends BaseJob {
   }
 
   @Override
-  public void onCanceled() {}
+  public void onFailure() {}
 
   @Override
   public boolean onShouldRetry(@NonNull Exception exception) {

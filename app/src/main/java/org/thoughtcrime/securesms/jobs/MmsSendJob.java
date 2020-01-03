@@ -30,6 +30,7 @@ import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
+import org.thoughtcrime.securesms.jobmanager.JobLogger;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.logging.Log;
@@ -152,8 +153,8 @@ public final class MmsSendJob extends SendJob {
   }
 
   @Override
-  public void onCanceled() {
-    Log.i(TAG, "onCanceled() messageId: " + messageId);
+  public void onFailure() {
+    Log.i(TAG, JobLogger.format(this, "onFailure() messageId: " + messageId));
     DatabaseFactory.getMmsDatabase(context).markAsSentFailed(messageId);
     notifyMediaMessageDeliveryFailed(context, messageId);
   }

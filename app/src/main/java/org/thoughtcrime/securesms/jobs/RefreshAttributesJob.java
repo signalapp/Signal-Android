@@ -71,7 +71,7 @@ public class RefreshAttributesJob extends BaseJob {
   }
 
   @Override
-  public void onCanceled() {
+  public void onFailure() {
     Log.w(TAG, "Failed to update account attributes!");
   }
 

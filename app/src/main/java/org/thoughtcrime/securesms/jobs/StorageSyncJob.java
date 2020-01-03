@@ -102,7 +102,7 @@ public class StorageSyncJob extends BaseJob {
   }
 
   @Override
-  public void onCanceled() {
+  public void onFailure() {
   }
 
   private boolean performSync() throws IOException, RetryLaterException, InvalidKeyException {

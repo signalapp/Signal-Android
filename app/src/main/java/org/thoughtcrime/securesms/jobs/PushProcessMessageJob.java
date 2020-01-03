@@ -242,7 +242,7 @@ public final class PushProcessMessageJob extends BaseJob {
   }
 
   @Override
-  public void onCanceled() {
+  public void onFailure() {
   }
 
   private void handleMessage(@NonNull byte[] plaintextDataBuffer, @NonNull Optional<Long> smsMessageId) {
