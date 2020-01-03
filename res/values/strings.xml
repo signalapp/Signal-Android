@@ -566,6 +566,7 @@
         <item quantity="other">You can\'t share more than %d items.</item>
     </plurals>
     <string name="MediaSendActivity_select_recipients_description">Select recipients</string>
+    <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">Tap here to make this message disappear after it is viewed.</string>
 
     <!-- MediaRepository -->
     <string name="MediaRepository_all_media">All media</string>

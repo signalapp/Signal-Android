@@ -13,6 +13,7 @@ import androidx.annotation.ArrayRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
+import androidx.core.content.ContextCompat;
 
 import org.greenrobot.eventbus.EventBus;
 import org.thoughtcrime.securesms.R;
@@ -199,7 +200,8 @@ public class TextSecurePreferences {
 
   private static final String MEDIA_KEYBOARD_MODE = "pref_media_keyboard_mode";
 
-  private static final String VIEW_ONCE_DEFAULT = "pref_revealable_message_default";
+  private static final String VIEW_ONCE_DEFAULT      = "pref_revealable_message_default";
+  private static final String VIEW_ONCE_TOOLTIP_SEEN = "pref_revealable_message_tooltip_seen";
 
   private static final String SEEN_CAMERA_FIRST_TOOLTIP = "pref_seen_camera_first_tooltip";
 
@@ -1274,19 +1276,27 @@ public class TextSecurePreferences {
     return MediaKeyboardMode.valueOf(name);
   }
 
-  public static void setIsRevealableMessageEnabled(Context context, boolean value) {
+  public static void setIsViewOnceMessageEnabled(Context context, boolean value) {
     setBooleanPreference(context, VIEW_ONCE_DEFAULT, value);
   }
 
-  public static boolean isRevealableMessageEnabled(Context context) {
+  public static boolean isViewOnceMessageEnabled(Context context) {
     return getBooleanPreference(context, VIEW_ONCE_DEFAULT, false);
+  }
+
+  public static void setHasSeenViewOnceTooltip(Context context, boolean value) {
+    setBooleanPreference(context, VIEW_ONCE_TOOLTIP_SEEN, value);
+  }
+
+  public static boolean hasSeenViewOnceTooltip(Context context) {
+    return getBooleanPreference(context, VIEW_ONCE_TOOLTIP_SEEN, false);
   }
 
   public static void setHasSeenCameraFirstTooltip(Context context, boolean value) {
     setBooleanPreference(context, SEEN_CAMERA_FIRST_TOOLTIP, value);
   }
 
-  public static boolean hasSeendCameraFirstTooltip(Context context) {
+  public static boolean hasSeenCameraFirstTooltip(Context context) {
     return getBooleanPreference(context, SEEN_CAMERA_FIRST_TOOLTIP, false);
   }
 

@@ -19,7 +19,6 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -52,6 +51,7 @@ class MediaSendViewModel extends ViewModel {
   private final MutableLiveData<List<MediaFolder>> folders;
   private final MutableLiveData<HudState>          hudState;
   private final SingleLiveEvent<Error>             error;
+  private final SingleLiveEvent<Event>             event;
   private final Map<Uri, Object>                   savedDrawState;
 
   private MediaConstraints mediaConstraints;
@@ -82,6 +82,7 @@ class MediaSendViewModel extends ViewModel {
     this.folders           = new MutableLiveData<>();
     this.hudState          = new MutableLiveData<>();
     this.error             = new SingleLiveEvent<>();
+    this.event             = new SingleLiveEvent<>();
     this.savedDrawState    = new HashMap<>();
     this.lastCameraCapture = Optional.absent();
     this.body              = "";
@@ -193,7 +194,8 @@ class MediaSendViewModel extends ViewModel {
     buttonState    = (recipient != null) ? ButtonState.SEND : ButtonState.CONTINUE;
 
     if (viewOnceState == ViewOnceState.GONE && viewOnceSupported()) {
-      viewOnceState = TextSecurePreferences.isRevealableMessageEnabled(application) ? ViewOnceState.ENABLED : ViewOnceState.DISABLED;
+      viewOnceState = TextSecurePreferences.isViewOnceMessageEnabled(application) ? ViewOnceState.ENABLED : ViewOnceState.DISABLED;
+      showViewOnceTooltipIfNecessary(viewOnceState);
     } else if (!viewOnceSupported()) {
       viewOnceState = ViewOnceState.GONE;
     }
@@ -271,7 +273,7 @@ class MediaSendViewModel extends ViewModel {
 
     selectedMedia.setValue(uncaptioned);
 
-    TextSecurePreferences.setIsRevealableMessageEnabled(application, viewOnceState == ViewOnceState.ENABLED);
+    TextSecurePreferences.setIsViewOnceMessageEnabled(application, viewOnceState == ViewOnceState.ENABLED);
 
     hudState.setValue(buildHudState());
   }
@@ -445,6 +447,10 @@ class MediaSendViewModel extends ViewModel {
     return error;
   }
 
+  @NonNull LiveData<Event> getEvents() {
+    return event;
+  }
+
   @NonNull LiveData<HudState> getHudState() {
     return hudState;
   }
@@ -503,6 +509,12 @@ class MediaSendViewModel extends ViewModel {
     return MediaUtil.isImageOrVideoType(media.get(0).getMimeType());
   }
 
+  private void showViewOnceTooltipIfNecessary(@NonNull ViewOnceState viewOnceState) {
+    if (viewOnceState == ViewOnceState.DISABLED && !TextSecurePreferences.hasSeenViewOnceTooltip(application)) {
+      event.postValue(Event.VIEW_ONCE_TOOLTIP);
+    }
+  }
+
   @Override
   protected void onCleared() {
     if (!sentMedia) {
@@ -512,6 +524,10 @@ class MediaSendViewModel extends ViewModel {
 
   enum Error {
     ITEM_TOO_LARGE, TOO_MANY_ITEMS, NO_ITEMS
+  }
+
+  enum Event {
+    VIEW_ONCE_TOOLTIP
   }
 
   enum Page {

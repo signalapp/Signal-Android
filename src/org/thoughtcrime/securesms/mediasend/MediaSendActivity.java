@@ -610,7 +610,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
           countButton.setVisibility(View.GONE);
           continueButton.setVisibility(View.VISIBLE);
 
-          if (!TextSecurePreferences.hasSeendCameraFirstTooltip(this)) {
+          if (!TextSecurePreferences.hasSeenCameraFirstTooltip(this)) {
             TooltipPopup.forTarget(continueButton)
                         .setText(R.string.MediaSendActivity_select_recipients)
                         .show(TooltipPopup.POSITION_ABOVE);
@@ -695,6 +695,17 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
           int maxSelection = viewModel.getMaxSelection();
           Toast.makeText(this, getResources().getQuantityString(R.plurals.MediaSendActivity_cant_share_more_than_n_items, maxSelection, maxSelection), Toast.LENGTH_SHORT).show();
           break;
+      }
+    });
+
+    viewModel.getEvents().observe(this, event -> {
+      if (event == MediaSendViewModel.Event.VIEW_ONCE_TOOLTIP) {
+        TooltipPopup.forTarget(revealButton)
+                    .setText(R.string.MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed)
+                    .setBackgroundTint(getResources().getColor(R.color.core_blue))
+                    .setTextColor(getResources().getColor(R.color.core_white))
+                    .setOnDismissListener(() -> TextSecurePreferences.setHasSeenViewOnceTooltip(this, true))
+                    .show(TooltipPopup.POSITION_ABOVE);
       }
     });
   }

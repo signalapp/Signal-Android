@@ -196,12 +196,12 @@ public class TooltipPopup extends PopupWindow {
       this.anchor = anchor;
     }
 
-    public Builder setBackgroundTint(int color) {
+    public Builder setBackgroundTint(@ColorInt int color) {
       this.backgroundTint = color;
       return this;
     }
 
-    public Builder setTextColor(int color) {
+    public Builder setTextColor(@ColorInt int color) {
       this.textColor = color;
       return this;
     }
