@@ -1507,7 +1507,7 @@
     <string name="preferences_storage__review_storage">View all stored files</string>
     <string name="preferences_advanced__use_system_emoji">Use Android emoji</string>
     <string name="preferences_advanced__disable_signal_built_in_emoji_support">Disable Signal\'s built-in emoji support</string>
-    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">For unlisted contacts calls are always routed through the Signal server to avoid revealing your IP address to your contact. Enabling this will also relay calls with listed contacts, but it will reduce call quality.</string>
+    <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Calls from unlisted contacts are always routed through the Signal server to avoid revealing your IP address to your contact. Enabling this will also relay calls with listed contacts, but it will reduce call quality.</string>
     <string name="preferences_advanced__always_relay_calls">Always relay calls</string>
     <string name="preferences_app_protection__app_access">App access</string>
     <string name="preferences_app_protection__communication">Communication</string>
