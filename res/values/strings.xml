@@ -1423,7 +1423,7 @@
     <string name="preferences__enable_passphrase">Enable passphrase screen lock</string>
     <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Lock screen and notifications with a passphrase</string>
     <string name="preferences__screen_security">Block screenshots</string>
-    <string name="preferences__disable_screen_security_to_allow_screen_shots">Protect your conversations against screen recording by other apps, both when Signal is opened as in the list of recently used apps</string>
+    <string name="preferences__disable_screen_security_to_allow_screen_shots">Prevent Signal from appearing in the app switcher and block other apps from taking screenshots</string>
     <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Auto-lock Signal after a specified time interval of inactivity</string>
     <string name="preferences__inactivity_timeout_passphrase">Inactivity timeout passphrase</string>
     <string name="preferences__inactivity_timeout_interval">Inactivity timeout interval</string>
