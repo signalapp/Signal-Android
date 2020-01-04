@@ -182,7 +182,7 @@
     <string name="ConversationActivity_add_attachment">Add attachment</string>
     <string name="ConversationActivity_select_contact_info">Select contact info</string>
     <string name="ConversationActivity_compose_message">Compose message</string>
-    <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Sorry, there was an error while attempting to include your attachment.</string>
+    <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Sorry, there was an error adding your attachment.</string>
     <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">Recipient is not a valid SMS or email address!</string>
     <string name="ConversationActivity_message_is_empty_exclamation">Message is empty!</string>
     <string name="ConversationActivity_group_members">Group members</string>
@@ -829,7 +829,7 @@
 
     <!-- UnknownSenderView -->
     <string name="UnknownSenderView_block_s">Block %s?</string>
-    <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Blocked contacts will still be able to call you or send you a message, but you will never receive those calls or messages.</string>
+    <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Blocked contacts cannot see that they have been blocked; on his side your phone still seems to ring, and messages still appear as delivered, but those messages and calls won't be shown to you.</string>
     <string name="UnknownSenderView_block">Block</string>
     <string name="UnknownSenderView_share_profile_with_s">Make profile visible to %s?</string>
     <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">The easiest way to make your profile avatar and profile name visible is to add the sender to your contacts. If you do not wish to, you can still make your profile visible this way.</string>
@@ -864,7 +864,7 @@
     <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">The scanned QR code is not a correctly formatted safety number verification code. Please try scanning again.</string>
     <string name="VerifyIdentityActivity_share_safety_number_via">Forward safety number via…</string>
     <string name="VerifyIdentityActivity_our_signal_safety_number">Our Signal safety number:</string>
-    <string name="VerifyIdentityActivity_no_app_to_share_to">It looks like you don\'t have any apps which you can use to forward your safetynumber.</string>
+    <string name="VerifyIdentityActivity_no_app_to_share_to">It looks like you don\'t have any apps which you can use to forward your safety number.</string>
     <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">No safety number to compare was found in the clipboard</string>
     <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal requires permission to use the camera in order to scan a QR code, but that permission has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Camera\".</string>
     <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Unable to scan QR code without Camera permission</string>
@@ -1466,7 +1466,7 @@
     <string name="preferences__mmsc_password">MMSC Password</string>
     <string name="preferences__sms_delivery_reports">SMS delivery reports</string>
     <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Request a delivery report for each SMS message you send</string>
-    <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Automatically delete old messages once a conversation exceeds a specified number of messages. Use this to keep the app from taking up too much storage space, or to prevent old messages from lingering on your phone.</string>
+    <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">Automatically delete old messages once a conversation exceeds a specified number of messages. Use this to prevent old messages from lingering on your phone and also to keep the app from taking up too much storage space.</string>
     <string name="preferences__delete_old_messages">Delete old messages</string>
     <string name="preferences__chats">Chats and media</string>
     <string name="preferences__storage">Storage</string>
@@ -1650,7 +1650,7 @@
     <string name="reminder_header_invite_title">Invite to Signal</string>
     <string name="reminder_header_invite_text">Suggest to %1$s to continue this conversation as a secure Signal conversation.</string>
     <string name="reminder_header_share_title">Invite your friends!</string>
-    <string name="reminder_header_share_text">The more people use Signal, the more often you can communicate in pivate.</string>
+    <string name="reminder_header_share_text">The more people use Signal, the more often you can communicate in private.</string>
     <string name="reminder_header_service_outage_text">Signal is experiencing technical difficulties. We are working hard to restore service as quickly as possible.</string>
     <string name="reminder_header_the_latest_signal_features_wont_work">The latest Signal features won\'t work on this version of Android. Please upgrade this device to receive future Signal updates.</string>
     <string name="reminder_header_progress">%1$d%%</string>
