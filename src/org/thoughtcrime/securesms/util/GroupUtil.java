@@ -110,7 +110,10 @@ public class GroupUtil {
         this.members = new LinkedList<>();
 
         for (GroupContext.Member member : groupContext.getMembersList()) {
-          this.members.add(Recipient.externalPush(context, new SignalServiceAddress(UuidUtil.parseOrNull(member.getUuid()), member.getE164())));
+          Recipient recipient = Recipient.externalPush(context, new SignalServiceAddress(UuidUtil.parseOrNull(member.getUuid()), member.getE164()));
+          if (!recipient.isLocalNumber()) {
+            this.members.add(recipient);
+          }
         }
       }
     }
