@@ -829,7 +829,7 @@
 
     <!-- UnknownSenderView -->
     <string name="UnknownSenderView_block_s">Block %s?</string>
-    <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Blocked contacts cannot see that they have been blocked; on his side your phone still seems to ring, and messages still appear as delivered, but those messages and calls won't be shown to you.</string>
+    <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Blocked contacts cannot see that they have been blocked; on his side your phone still seems to ring, and messages still appear as delivered, but those messages and calls won\'t be shown to you.</string>
     <string name="UnknownSenderView_block">Block</string>
     <string name="UnknownSenderView_share_profile_with_s">Make profile visible to %s?</string>
     <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">The easiest way to make your profile avatar and profile name visible is to add the sender to your contacts. If you do not wish to, you can still make your profile visible this way.</string>
