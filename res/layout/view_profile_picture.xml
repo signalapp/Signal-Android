@@ -9,29 +9,63 @@
         android:layout_width="@dimen/medium_profile_picture_size"
         android:layout_height="@dimen/medium_profile_picture_size">
 
-        <ImageView
-            android:id="@+id/doubleModeImageView1"
+        <RelativeLayout
             android:layout_width="@dimen/small_profile_picture_size"
             android:layout_height="@dimen/small_profile_picture_size"
-            android:background="@drawable/profile_picture_view_small_background"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true" />
+            android:layout_alignParentTop="true">
 
-        <ImageView
-            android:id="@+id/doubleModeImageView2"
+            <ImageView
+                android:id="@+id/doubleModeImageView1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/profile_picture_view_small_background" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/profile_picture_view_small_foreground" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
             android:layout_width="@dimen/small_profile_picture_size"
             android:layout_height="@dimen/small_profile_picture_size"
-            android:background="@drawable/profile_picture_view_small_background"
             android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true" />
+            android:layout_alignParentBottom="true">
+
+            <ImageView
+                android:id="@+id/doubleModeImageView2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/profile_picture_view_small_background" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/profile_picture_view_small_foreground" />
+
+        </RelativeLayout>
 
     </RelativeLayout>
 
-    <ImageView
-        android:id="@+id/singleModeImageView"
+    <RelativeLayout
+        android:id="@+id/singleModeImageViewContainer"
         android:layout_width="@dimen/medium_profile_picture_size"
-        android:layout_height="@dimen/medium_profile_picture_size"
-        android:background="@drawable/profile_picture_view_medium_background" />
+        android:layout_height="@dimen/medium_profile_picture_size">
+
+        <ImageView
+            android:id="@+id/singleModeImageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/profile_picture_view_medium_background" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/profile_picture_view_medium_foreground" />
+
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/rssTextView"
