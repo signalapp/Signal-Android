@@ -533,6 +533,7 @@ public class VerifyIdentityActivity extends PassphraseRequiredActionBarActivity 
       qrVerified.setImageBitmap(qrSuccess);
       qrVerified.getBackground().setColorFilter(getResources().getColor(R.color.green_500), PorterDuff.Mode.MULTIPLY);
 
+      this.verified.setChecked(true);
       animateVerified();
     }
 
