@@ -407,7 +407,7 @@
 
     <!-- GcmRefreshJob -->
     <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Permanent Signal communication failure!</string>
-    <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal was unable to register with the Google Play Services on your phone. Signal messages and calls have therefore been disabled. Please try re-registering your Signal phone number in Signal\'s Settings &gt; Advanced &gt; Signal messages and calls.</string>
+    <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal was unable to register with Google Play Services. Signal messages and calls have therefore been disabled. Please try re-registering your Signal phone number in Signal\'s Settings &gt; Advanced &gt; Signal messages and calls.</string>
 
 
     <!-- GiphyActivity -->
