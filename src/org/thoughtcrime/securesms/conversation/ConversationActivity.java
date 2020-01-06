@@ -1241,9 +1241,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   private void handleSecurityChange(boolean isSecureText, boolean isDefaultSms) {
     Log.i(TAG, "handleSecurityChange(" + isSecureText + ", " + isDefaultSms + ")");
-    if (isSecurityInitialized && isSecureText == this.isSecureText && isDefaultSms == this.isDefaultSms) {
-      return;
-    }
 
     this.isSecureText          = isSecureText;
     this.isDefaultSms          = isDefaultSms;
