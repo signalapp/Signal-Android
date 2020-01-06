@@ -121,7 +121,7 @@ class ViewMyQRCodeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val size = toPx(240, resources)
+        val size = toPx(280, resources)
         val qrCode = QRCodeUtilities.encode(hexEncodedPublicKey, size)
         qrCodeImageView.setImageBitmap(qrCode)
         val explanation = SpannableStringBuilder("This is your unique public QR code. Other users may scan this in order to begin a conversation with you.")
@@ -137,7 +137,7 @@ class ViewMyQRCodeFragment : Fragment() {
             val file = File(directory, fileName)
             file.createNewFile()
             val fos = FileOutputStream(file)
-            val size = toPx(240, resources)
+            val size = toPx(280, resources)
             val qrCode = QRCodeUtilities.encode(hexEncodedPublicKey, size, false)
             qrCode.compress(Bitmap.CompressFormat.PNG, 100, fos)
             fos.flush()

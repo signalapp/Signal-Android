@@ -19,9 +19,9 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/very_large_spacing"
+                android:layout_marginLeft="@dimen/large_spacing"
                 android:layout_marginTop="@dimen/medium_spacing"
-                android:layout_marginRight="@dimen/very_large_spacing"
+                android:layout_marginRight="@dimen/large_spacing"
                 android:textSize="@dimen/massive_font_size"
                 android:textColor="@color/text"
                 android:textStyle="bold"
@@ -38,8 +38,8 @@
 
                 <ImageView
                     android:id="@+id/qrCodeImageView"
-                    android:layout_width="320dp"
-                    android:layout_height="320dp" />
+                    android:layout_width="280dp"
+                    android:layout_height="280dp" />
 
             </RelativeLayout>
 
@@ -47,12 +47,11 @@
                 android:id="@+id/explanationTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/very_large_spacing"
+                android:layout_marginLeft="@dimen/large_spacing"
                 android:layout_marginTop="20dp"
-                android:layout_marginRight="@dimen/very_large_spacing"
+                android:layout_marginRight="@dimen/large_spacing"
                 android:textSize="@dimen/medium_font_size"
                 android:textColor="@color/text"
-                android:fontFamily="@font/space_mono_regular"
                 android:textAlignment="center"
                 android:text="This is your unique public QR code. Other users may scan this in order to begin a conversation with you." />
 

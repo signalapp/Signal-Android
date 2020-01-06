@@ -44,11 +44,6 @@ class RestoreActivity : BaseActionBarActivity() {
         termsButton.text = termsExplanation
         termsButton.setOnClickListener { showTerms() }
     }
-
-    override fun onResume() {
-        super.onResume()
-        mnemonicEditText.requestFocus()
-    }
     // endregion
 
     // region General

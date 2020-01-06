@@ -23,11 +23,6 @@ class DisplayNameActivity : BaseActionBarActivity() {
         registerButton.setOnClickListener { register() }
     }
 
-    override fun onResume() {
-        super.onResume()
-        displayNameEditText.requestFocus()
-    }
-
     private fun register() {
         val displayName = displayNameEditText.text.toString().trim()
         if (displayName.isEmpty()) {

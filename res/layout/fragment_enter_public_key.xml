@@ -12,17 +12,17 @@
         android:id="@+id/publicKeyEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/very_large_spacing"
-        android:layout_marginTop="@dimen/medium_spacing"
-        android:layout_marginRight="@dimen/very_large_spacing"
+        android:layout_marginLeft="@dimen/large_spacing"
+        android:layout_marginTop="@dimen/large_spacing"
+        android:layout_marginRight="@dimen/large_spacing"
         android:hint="Enter Session ID of recipient" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/very_large_spacing"
+        android:layout_marginLeft="@dimen/large_spacing"
         android:layout_marginTop="@dimen/medium_spacing"
-        android:layout_marginRight="@dimen/very_large_spacing"
+        android:layout_marginRight="@dimen/large_spacing"
         android:textSize="@dimen/small_font_size"
         android:textColor="@color/text"
         android:alpha="0.6"
@@ -33,17 +33,17 @@
         android:id="@+id/separatorView"
         android:layout_width="match_parent"
         android:layout_height="32dp"
-        android:layout_marginLeft="@dimen/very_large_spacing"
+        android:layout_marginLeft="@dimen/large_spacing"
         android:layout_marginTop="@dimen/large_spacing"
-        android:layout_marginRight="@dimen/very_large_spacing" />
+        android:layout_marginRight="@dimen/large_spacing" />
 
     <TextView
         android:id="@+id/publicKeyTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/very_large_spacing"
+        android:layout_marginLeft="@dimen/large_spacing"
         android:layout_marginTop="@dimen/large_spacing"
-        android:layout_marginRight="@dimen/very_large_spacing"
+        android:layout_marginRight="@dimen/large_spacing"
         android:textSize="@dimen/medium_font_size"
         android:textColor="@color/text"
         android:fontFamily="@font/space_mono_regular"
@@ -53,9 +53,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/very_large_spacing"
+        android:layout_marginLeft="@dimen/large_spacing"
         android:layout_marginTop="@dimen/large_spacing"
-        android:layout_marginRight="@dimen/very_large_spacing"
+        android:layout_marginRight="@dimen/large_spacing"
         android:orientation="horizontal">
 
         <Button
