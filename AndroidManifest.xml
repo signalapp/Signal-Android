@@ -150,6 +150,9 @@
             android:name="org.thoughtcrime.securesms.loki.redesign.activities.JoinPublicChatActivity"
             android:launchMode="singleTask"
             android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name="org.thoughtcrime.securesms.loki.redesign.activities.SettingsActivity"
+            android:launchMode="singleTask" />
         <!-- Session -->
         <activity android:name="org.thoughtcrime.securesms.loki.LinkedDevicesActivity" />
         <activity

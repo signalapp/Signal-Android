@@ -14,7 +14,7 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_create_private_chat.*
 import kotlinx.android.synthetic.main.fragment_enter_public_key.*
 import network.loki.messenger.R
-import org.thoughtcrime.securesms.BaseActionBarActivity
+import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.conversation.ConversationActivity
 import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
@@ -25,12 +25,12 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.loki.utilities.PublicKeyValidation
 
-class CreatePrivateChatActivity : BaseActionBarActivity(), ScanQRCodeWrapperFragmentDelegate {
+class CreatePrivateChatActivity : PassphraseRequiredActionBarActivity(), ScanQRCodeWrapperFragmentDelegate {
     private val adapter = CreatePrivateChatActivityAdapter(this)
 
     // region Lifecycle
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onCreate(savedInstanceState: Bundle?, isReady: Boolean) {
+        super.onCreate(savedInstanceState, isReady)
         // Set content view
         setContentView(R.layout.activity_create_private_chat)
         // Set title

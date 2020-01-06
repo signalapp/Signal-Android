@@ -16,6 +16,7 @@
     <dimen name="accent_line_thickness">4dp</dimen>
     <dimen name="small_profile_picture_size">36dp</dimen>
     <dimen name="medium_profile_picture_size">46dp</dimen>
+    <dimen name="large_profile_picture_size">76dp</dimen>
     <dimen name="conversation_view_status_indicator_size">14dp</dimen>
     <dimen name="border_thickness">2dp</dimen>
     <dimen name="profile_picture_border_thickness">1dp</dimen>
@@ -25,6 +26,7 @@
     <dimen name="fake_chat_view_bubble_width">224dp</dimen>
     <dimen name="fake_chat_view_bubble_corner_radius">10dp</dimen>
     <dimen name="fake_chat_view_height">234dp</dimen>
+    <dimen name="setting_button_height">72dp</dimen>
 
     <!-- Distances -->
     <dimen name="small_spacing">8dp</dimen>

@@ -24,7 +24,8 @@
                 android:id="@+id/profileButton"
                 android:layout_width="@dimen/small_profile_picture_size"
                 android:layout_height="@dimen/small_profile_picture_size"
-                android:layout_alignParentStart="true"
+                android:layout_marginLeft="8dp"
+                android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"/>
 
             <TextView
@@ -34,16 +35,16 @@
                 android:textColor="@color/text"
                 android:textSize="@dimen/very_large_font_size"
                 android:fontFamily="sans-serif-medium"
-                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                android:layout_marginStart="64dp" />
+                android:layout_marginLeft="64dp" />
 
             <ImageView
                 android:id="@+id/joinPublicChatButton"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_globe"
-                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
                 android:layout_centerVertical="true" />
 
         </RelativeLayout>

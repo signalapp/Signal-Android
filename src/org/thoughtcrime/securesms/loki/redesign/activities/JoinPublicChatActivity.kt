@@ -9,16 +9,16 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.activity_join_public_chat.*
 import kotlinx.android.synthetic.main.fragment_enter_chat_url.*
 import network.loki.messenger.R
-import org.thoughtcrime.securesms.BaseActionBarActivity
+import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.loki.redesign.fragments.ScanQRCodeWrapperFragment
 import org.thoughtcrime.securesms.loki.redesign.fragments.ScanQRCodeWrapperFragmentDelegate
 
-class JoinPublicChatActivity : BaseActionBarActivity(), ScanQRCodeWrapperFragmentDelegate {
+class JoinPublicChatActivity : PassphraseRequiredActionBarActivity(), ScanQRCodeWrapperFragmentDelegate {
     private val adapter = JoinPublicChatActivityAdapter(this)
 
     // region Lifecycle
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onCreate(savedInstanceState: Bundle?, isReady: Boolean) {
+        super.onCreate(savedInstanceState, isReady)
         // Set content view
         setContentView(R.layout.activity_join_public_chat)
         // Set title

@@ -77,4 +77,22 @@
         android:textSize="@dimen/small_font_size"
         android:background="@drawable/profile_picture_view_rss_medium_background" />
 
+    <RelativeLayout
+        android:id="@+id/largeSingleModeImageViewContainer"
+        android:layout_width="@dimen/large_profile_picture_size"
+        android:layout_height="@dimen/large_profile_picture_size">
+
+        <ImageView
+            android:id="@+id/largeSingleModeImageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/profile_picture_view_large_background" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/profile_picture_view_large_foreground" />
+
+    </RelativeLayout>
+
 </RelativeLayout>

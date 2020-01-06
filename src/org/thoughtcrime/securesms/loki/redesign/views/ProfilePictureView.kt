@@ -15,11 +15,14 @@ import org.thoughtcrime.securesms.loki.JazzIdenticonDrawable
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.recipients.Recipient
 
+// TODO: Look into a better way of handling different sizes
+
 class ProfilePictureView : RelativeLayout {
     lateinit var glide: GlideRequests
     var hexEncodedPublicKey: String? = null
     var additionalHexEncodedPublicKey: String? = null
     var isRSSFeed = false
+    var isLarge = false
 
     // region Lifecycle
     constructor(context: Context) : super(context) {
@@ -50,7 +53,8 @@ class ProfilePictureView : RelativeLayout {
         val hexEncodedPublicKey = hexEncodedPublicKey ?: return
         val additionalHexEncodedPublicKey = additionalHexEncodedPublicKey
         doubleModeImageViewContainer.visibility = if (additionalHexEncodedPublicKey != null && !isRSSFeed) View.VISIBLE else View.INVISIBLE
-        singleModeImageViewContainer.visibility = if (additionalHexEncodedPublicKey == null && !isRSSFeed) View.VISIBLE else View.INVISIBLE
+        singleModeImageViewContainer.visibility = if (additionalHexEncodedPublicKey == null && !isRSSFeed && !isLarge) View.VISIBLE else View.INVISIBLE
+        largeSingleModeImageViewContainer.visibility = if (additionalHexEncodedPublicKey == null && !isRSSFeed && isLarge) View.VISIBLE else View.INVISIBLE
         rssTextView.visibility = if (isRSSFeed) View.VISIBLE else View.INVISIBLE
         fun setProfilePictureIfNeeded(imageView: ImageView, hexEncodedPublicKey: String, @DimenRes sizeID: Int) {
             glide.clear(imageView)
@@ -67,9 +71,10 @@ class ProfilePictureView : RelativeLayout {
                 imageView.setImageDrawable(null)
             }
         }
-        setProfilePictureIfNeeded(singleModeImageView, hexEncodedPublicKey, R.dimen.medium_profile_picture_size)
         setProfilePictureIfNeeded(doubleModeImageView1, hexEncodedPublicKey, R.dimen.small_profile_picture_size)
         setProfilePictureIfNeeded(doubleModeImageView2, additionalHexEncodedPublicKey ?: "", R.dimen.small_profile_picture_size)
+        setProfilePictureIfNeeded(singleModeImageView, hexEncodedPublicKey, R.dimen.medium_profile_picture_size)
+        setProfilePictureIfNeeded(largeSingleModeImageView, hexEncodedPublicKey, R.dimen.large_profile_picture_size)
     }
     // endregion
 }

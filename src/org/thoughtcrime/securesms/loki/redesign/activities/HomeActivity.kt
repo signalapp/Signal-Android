@@ -32,6 +32,13 @@ import kotlin.math.abs
 class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListener {
     private lateinit var glide: GlideRequests
 
+    private val hexEncodedPublicKey: String
+        get() {
+            val masterHexEncodedPublicKey = TextSecurePreferences.getMasterHexEncodedPublicKey(this)
+            val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this)
+            return masterHexEncodedPublicKey ?: userHexEncodedPublicKey
+        }
+
     // region Lifecycle
     constructor() : super()
 
@@ -45,7 +52,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         glide = GlideApp.with(this)
         // Set up toolbar buttons
         profileButton.glide = glide
-        profileButton.hexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this)
+        profileButton.hexEncodedPublicKey = hexEncodedPublicKey
         profileButton.update()
         profileButton.setOnClickListener { openSettings() }
         joinPublicChatButton.setOnClickListener { joinPublicChat() }
@@ -110,7 +117,8 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
     }
 
     private fun openSettings() {
-        // TODO: Implement
+        val intent = Intent(this, SettingsActivity::class.java)
+        startActivity(intent)
     }
 
     private fun createPrivateChat() {

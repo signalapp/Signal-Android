@@ -55,6 +55,14 @@
         <item name="android:textColor">@color/text</item>
     </style>
 
+    <style name="MediumUnimportantOutlineButton">
+        <item name="android:background">@drawable/unimportant_outline_button_medium_background</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">@dimen/medium_font_size</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text</item>
+    </style>
+
     <style name="SessionIDTextView">
         <item name="android:background">@drawable/session_id_text_view_background</item>
         <item name="android:padding">@dimen/medium_spacing</item>
