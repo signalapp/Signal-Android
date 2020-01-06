@@ -7,7 +7,7 @@ ext {
 }
 
 def allStringsResourceFiles(@ClosureParams(value = SimpleType.class, options = ['java.io.File']) Closure c) {
-    file('../res').eachFileRecurse(FileType.FILES) { f ->
+    file('src/main/res').eachFileRecurse(FileType.FILES) { f ->
         if (f.name == 'strings.xml') {
             c(f)
         }
@@ -70,7 +70,7 @@ task excludeNonTranslatables {
     group 'Translate'
     description 'Remove strings that are marked "translatable"="false" or are ExtraTranslations.'
     doLast {
-        def englishFile = file('../res/values/strings.xml')
+        def englishFile = file('src/main/res/values/strings.xml')
 
         def english = new XmlParser().parse(englishFile)
         def nonTranslatable = english
