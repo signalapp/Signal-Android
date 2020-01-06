@@ -14,8 +14,6 @@ import android.support.v4.content.Loader
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.helper.ItemTouchHelper
-import android.view.Menu
-import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_home.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.ApplicationContext
@@ -42,9 +40,15 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         // Set content view
         setContentView(R.layout.activity_home)
         // Set title
-        supportActionBar!!.title = "Messages"
+        setSupportActionBar(toolbar)
         // Set up Glide
         glide = GlideApp.with(this)
+        // Set up toolbar buttons
+        profileButton.glide = glide
+        profileButton.hexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this)
+        profileButton.update()
+        profileButton.setOnClickListener { openSettings() }
+        joinPublicChatButton.setOnClickListener { joinPublicChat() }
         // Set up recycler view
         val cursor = DatabaseFactory.getThreadDatabase(this).conversationList
         val homeAdapter = HomeAdapter(this, cursor)
@@ -85,22 +89,6 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_home, menu)
-        return true
-    }
-    // endregion
-
-    // region Interaction
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val id = item.itemId
-        when (id) {
-            R.id.joinPublicChatItem -> joinPublicChat()
-            else -> { /* Do nothing */ }
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
     override fun onConversationClick(view: ConversationView) {
         val thread = view.thread ?: return
         openConversation(thread)
@@ -119,6 +107,10 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         intent.putExtra(ConversationActivity.LAST_SEEN_EXTRA, thread.lastSeen)
         intent.putExtra(ConversationActivity.STARTING_POSITION_EXTRA, -1)
         push(intent)
+    }
+
+    private fun openSettings() {
+        // TODO: Implement
     }
 
     private fun createPrivateChat() {

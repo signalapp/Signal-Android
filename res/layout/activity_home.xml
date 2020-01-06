@@ -1,43 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/default_session_background">
+    android:orientation="vertical"
+    android:background="@drawable/default_session_background"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="?attr/actionBarSize"
+        android:minHeight="?attr/actionBarSize"
+        app:contentInsetLeft="20dp"
+        app:contentInsetRight="20dp"
+        android:theme="?attr/actionBarStyle">
 
-    <!-- The button below intentionally uses dp for the text size and not sp -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <org.thoughtcrime.securesms.loki.redesign.views.ProfilePictureView
+                android:id="@+id/profileButton"
+                android:layout_width="@dimen/small_profile_picture_size"
+                android:layout_height="@dimen/small_profile_picture_size"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Messages"
+                android:textColor="@color/text"
+                android:textSize="@dimen/very_large_font_size"
+                android:fontFamily="sans-serif-medium"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="64dp" />
+
+            <ImageView
+                android:id="@+id/joinPublicChatButton"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_globe"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true" />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.Toolbar>
 
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/new_conversation_button_bottom_offset">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <View
-            android:layout_width="72dp"
-            android:layout_height="72dp"
-            android:background="@drawable/new_conversation_button_background" />
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
-        <Button
-            android:id="@+id/newConversationButton"
-            android:layout_width="@dimen/new_conversation_button_size"
-            android:layout_height="@dimen/new_conversation_button_size"
-            android:layout_centerInParent="true"
-            android:paddingLeft="1dp"
-            android:paddingBottom="2dp"
-            android:background="@drawable/new_conversation_button_foreground"
-            android:fontFamily="@font/roboto_light"
-            android:textSize="40dp"
-            android:textColor="#121212"
-            android:text="+"
-            android:elevation="0dp"
-            android:stateListAnimator="@null" />
+        <!-- The button below intentionally uses dp for the text size and not sp -->
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/new_conversation_button_bottom_offset">
+
+            <View
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:background="@drawable/new_conversation_button_background" />
+
+            <Button
+                android:id="@+id/newConversationButton"
+                android:layout_width="@dimen/new_conversation_button_size"
+                android:layout_height="@dimen/new_conversation_button_size"
+                android:layout_centerInParent="true"
+                android:paddingLeft="1dp"
+                android:paddingBottom="2dp"
+                android:background="@drawable/new_conversation_button_foreground"
+                android:fontFamily="@font/roboto_light"
+                android:textSize="40dp"
+                android:textColor="#121212"
+                android:text="+"
+                android:elevation="0dp"
+                android:stateListAnimator="@null" />
+
+        </RelativeLayout>
 
     </RelativeLayout>
 
-</RelativeLayout>
+</LinearLayout>
