@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/default_session_background" >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:id="@+id/contentView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/very_large_spacing"
+                android:layout_marginTop="@dimen/medium_spacing"
+                android:layout_marginRight="@dimen/very_large_spacing"
+                android:textSize="@dimen/massive_font_size"
+                android:textColor="@color/text"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:text="Scan Me" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/very_large_spacing"
+                android:layout_marginTop="@dimen/small_spacing"
+                android:layout_marginRight="@dimen/very_large_spacing"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/qrCodeImageView"
+                    android:layout_width="320dp"
+                    android:layout_height="320dp" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/explanationTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/very_large_spacing"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="@dimen/very_large_spacing"
+                android:textSize="@dimen/medium_font_size"
+                android:textColor="@color/text"
+                android:fontFamily="@font/space_mono_regular"
+                android:textAlignment="center"
+                android:text="This is your unique public QR code. Other users may scan this in order to begin a conversation with you." />
+
+            <Button
+                style="@style/MediumUnimportantOutlineButton"
+                android:id="@+id/shareButton"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/medium_button_height"
+                android:layout_marginLeft="90dp"
+                android:layout_marginTop="28dp"
+                android:layout_marginRight="90dp"
+                android:layout_marginBottom="@dimen/medium_spacing"
+                android:text="Share" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

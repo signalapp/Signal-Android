@@ -116,6 +116,22 @@
             android:background="@color/separator" />
 
         <TextView
+            android:id="@+id/chatsButton"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/setting_button_height"
+            android:background="@drawable/setting_button_background"
+            android:textColor="@color/text"
+            android:textSize="@dimen/medium_font_size"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:text="Chats" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/separator" />
+
+        <TextView
             android:id="@+id/linkedDevicesButton"
             android:layout_width="match_parent"
             android:layout_height="@dimen/setting_button_height"

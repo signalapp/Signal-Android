@@ -35,7 +35,11 @@ class ScanQRCodeFragmentV2 : Fragment() {
         super.onResume()
         cameraView.onResume()
         cameraView.setPreviewCallback(scanningThread)
-        scanningThread.start()
+        try {
+            scanningThread.start()
+        } catch (exception: Exception) {
+            // Do nothing
+        }
         scanningThread.setScanListener(scanListener)
     }
 

@@ -12,6 +12,7 @@ import kotlinx.android.synthetic.main.activity_settings.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.database.DatabaseFactory
+import org.thoughtcrime.securesms.loki.redesign.utilities.push
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.util.TextSecurePreferences
@@ -67,7 +68,8 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
     }
 
     private fun showQRCode() {
-        // TODO: Implement
+        val intent = Intent(this, QRCodeActivity::class.java)
+        push(intent)
     }
 
     private fun copyPublicKey() {

@@ -153,6 +153,9 @@
         <activity
             android:name="org.thoughtcrime.securesms.loki.redesign.activities.SettingsActivity"
             android:launchMode="singleTask" />
+        <activity
+            android:name="org.thoughtcrime.securesms.loki.redesign.activities.QRCodeActivity"
+            android:launchMode="singleTask" />
         <!-- Session -->
         <activity android:name="org.thoughtcrime.securesms.loki.LinkedDevicesActivity" />
         <activity

@@ -15,7 +15,7 @@ import org.thoughtcrime.securesms.loki.JazzIdenticonDrawable
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.recipients.Recipient
 
-// TODO: Look into a better way of handling different sizes
+// TODO: Look into a better way of handling different sizes. Maybe an enum (with associated values) encapsulating the different modes?
 
 class ProfilePictureView : RelativeLayout {
     lateinit var glide: GlideRequests
