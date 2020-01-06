@@ -29,8 +29,8 @@
     </plurals>
     <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Delete all old messages now?</string>
     <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
-        <item quantity="one">This will immediately trim all conversations to the most recent message, but only for yourself.</item>
-        <item quantity="other">This will immediately trim all conversations to the %d most recent messages, but only for yourself.</item>
+        <item quantity="one">This will immediately trim all conversations to the most recent message, but only for you.</item>
+        <item quantity="other">This will immediately trim all conversations to the %d most recent messages, but only for you.</item>
     </plurals>
     <string name="ApplicationPreferencesActivity_delete">Delete</string>
     <string name="ApplicationPreferencesActivity_disable_passphrase">Disable passphrase?</string>
@@ -245,8 +245,8 @@
         <item quantity="other">Delete selected messages?</item>
     </plurals>
     <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
-        <item quantity="one">This will permanently delete the selected message, but only for yourself.</item>
-        <item quantity="other">This will permanently delete all %1$d selected messages, but only for yourself.</item>
+        <item quantity="one">This will permanently delete the selected message, but only for you.</item>
+        <item quantity="other">This will permanently delete all %1$d selected messages, but only for you.</item>
     </plurals>
     <string name="ConversationFragment_save_to_sd_card">Save to external storage?</string>
     <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
@@ -289,8 +289,8 @@
         <item quantity="other">Delete selected conversations?</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="one">This will permanently delete the selected conversation, but only for yourself.</item>
-        <item quantity="other">This will permanently delete all %1$d selected conversations, but only for yourself.</item>
+        <item quantity="one">This will permanently delete the selected conversation, but only for you.</item>
+        <item quantity="other">This will permanently delete all %1$d selected conversations, but only for you.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Deleting</string>
     <string name="ConversationListFragment_deleting_selected_conversations">Deleting selected conversations…</string>
@@ -501,8 +501,8 @@
         <item quantity="other">Delete selected items?</item>
     </plurals>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-        <item quantity="one">This will permanently delete the selected media, but only for yourself. Any message text associated with this item will also be deleted.</item>
-        <item quantity="other">This will permanently delete the %1$d selected media, but only for yourself. Any message text associated with these items will also be deleted.</item>
+        <item quantity="one">This will permanently delete the selected media, but only for you. Any message text associated with this item will also be deleted.</item>
+        <item quantity="other">This will permanently delete the %1$d selected media, but only for you. Any message text associated with these items will also be deleted.</item>
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">Deleting</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">Deleting media messages…</string>
@@ -909,7 +909,7 @@
     <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal requires permission to use the external storage in order to save media to the external storage, but that permission has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Storage\".</string>
     <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Unable to save media to external storage without permissions</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_title">Delete media message?</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_message">This will permanently delete this message, but only for yourself.</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_message">This will permanently delete this message, but only for you.</string>
     <string name="MediaPreviewActivity_s_to_s">%1$s to %2$s</string>
 
     <!-- MessageNotifier -->
