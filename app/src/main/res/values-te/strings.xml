@@ -340,8 +340,10 @@
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">ఐచ్ఛిక లింక్  పూర్వప్రదర్శనలు ఇప్పుడు ఇంటర్నెట్‌లోని అత్యంత ప్రాచుర్యం పొందిన కొన్ని సైట్‌లకు మద్దతు ఇస్తున్నాయి.</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">మీరు మీ Signal అమరికలలో ఎప్పుడైనా ఈ లక్షణాన్ని నిలిపివేయవచ్చు లేదా ప్రారంభించవచ్చు (గోప్యత &amp; gt; లింక్ పూర్వప్రదర్శనను పంపండి).</string>
   <string name="ExperienceUpgradeActivity_got_it">దొరికింది</string>
+  <string name="ExperienceUpgradeActivity_introducing_stickers">స్టిక్కర్లను పరిచయం చేస్తున్నాము</string>
   <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">స్టిక్కెర్లు వుందగా పదాలు ఎందుకు?</string>
   <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">స్టిక్కెర్లు వుందగా పదాలు ఎందుకు? కీబోర్డ్‌లో ఈ చిహ్నాన్ని నొక్కండి:</string>
+  <string name="ExperienceUpgradeActivity_lets_go">పదా  వెళ్దాము</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">సందేశాన్ని తిరిగి పొందుతోంది…</string>
   <!--GcmRefreshJob-->

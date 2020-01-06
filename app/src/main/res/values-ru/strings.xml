@@ -407,7 +407,7 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">Поделиться</string>
   <string name="InviteActivity_choose_contacts">Выбрать контакты</string>
-  <string name="InviteActivity_share_with_contacts">Выбрать контакты (SMS)</string>
+  <string name="InviteActivity_share_with_contacts">Поделиться с контактами</string>
   <string name="InviteActivity_choose_how_to_share">Выбрать, как поделиться</string>
   <string name="InviteActivity_cancel">Отмена</string>
   <string name="InviteActivity_sending">Отправляется…</string>
@@ -458,7 +458,7 @@
     <item quantity="one">Это навсегда удалит выбранный файл. Текст сообщения, связанный с этим элементом, также будет удалён.</item>
     <item quantity="few">Это навсегда удалит %1$d выбранных файла. Текст сообщения, связанный с этими элементами, также будет удалён.</item>
     <item quantity="many">Это навсегда удалит %1$d выбранных файлов. Текст сообщения, связанный с этими элементами, также будет удалён.</item>
-    <item quantity="other">Это навсегда удалит %1$d выбранных файлов. Текст сообщения, связанный с этими элементами, также будет удалён.</item>
+    <item quantity="other">Это навсегда удалит %1$d выбранных файлов. Текст сообщений, связанных с этими элементами, также будет удалён.</item>
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Удаление</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Удаляем сообщения…</string>
@@ -1471,7 +1471,7 @@
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Значок транспорта</string>
   <string name="ConversationListFragment_loading">Загружаем…</string>
-  <string name="CallNotificationBuilder_connecting">Соединеняемся…</string>
+  <string name="CallNotificationBuilder_connecting">Соединяемся…</string>
   <string name="Permissions_permission_required">Требуется разрешение</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal требуется разрешение на доступ к SMS-сообщениям для отправки SMS, но оно было вами отклонено. Нажмите «Продолжить», чтобы перейти в настройки приложения, откройте «Разрешения» и включите «Сообщения» («SMS»).</string>
   <string name="Permissions_continue">Продолжить</string>

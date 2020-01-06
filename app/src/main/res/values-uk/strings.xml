@@ -5,7 +5,7 @@
   <string name="delete">Видалити</string>
   <string name="please_wait">Будь ласка, зачекайте…</string>
   <string name="save">Зберегти</string>
-  <string name="note_to_self">Замітка для себе</string>
+  <string name="note_to_self">Примітка для себе</string>
   <!--AbstractNotificationBuilder-->
   <string name="AbstractNotificationBuilder_new_message">Нове повідомлення</string>
   <!--AlbumThumbnailView-->
@@ -76,19 +76,27 @@
   <string name="BucketedThreadMedia_This_week">Цього тижня</string>
   <string name="BucketedThreadMedia_This_month">Цього місяця</string>
   <string name="BucketedThreadMedia_Large">Великий</string>
+  <string name="BucketedThreadMedia_Medium">Середній</string>
   <string name="BucketedThreadMedia_Small">Малий</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Вхідний виклик</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">Помилка збереження зображення</string>
   <!--CameraXFragment-->
+  <string name="CameraXFragment_change_camera_description">Змінити камеру</string>
+  <string name="CameraXFragment_open_gallery_description">Відкрити Галерею</string>
   <!--CameraContacts-->
+  <string name="CameraContacts_recent_contacts">Нещодавні контакти</string>
+  <string name="CameraContacts_signal_contacts">Контакти Signal</string>
+  <string name="CameraContacts_signal_groups">Групи Signal</string>
+  <string name="CameraContacts_select_signal_recipients">Оберіть одержувача Signal</string>
+  <string name="CameraContacts_no_signal_contacts">Немає контактів Signal</string>
   <string name="CameraContacts__menu_search">Пошук</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Вилучити</string>
   <string name="ClearProfileActivity_remove_profile_photo">Видалити фото профіля?</string>
   <!--CommunicationActions-->
-  <string name="CommunicationActions_no_browser_found">Браузера не знайдено</string>
+  <string name="CommunicationActions_no_browser_found">Браузера не знайдено.</string>
   <string name="CommunicationActions_cancel">Скасувати</string>
   <string name="CommunicationActions_call">Виклик</string>
   <!--ConfirmIdentityDialog-->
@@ -115,7 +123,7 @@
   <string name="ContactShareEditActivity_type_missing">Інший</string>
   <string name="ContactShareEditActivity_invalid_contact">Обраний контакт не дійсний</string>
   <!--ConversationItem-->
-  <string name="ConversationItem_error_not_delivered">Помилка відправлення, переглянути деталі</string>
+  <string name="ConversationItem_error_not_delivered">Помилка відправлення, торкніться для подробиць</string>
   <string name="ConversationItem_received_key_exchange_message_tap_to_process">Отримано повідомлення обміну ключами, торкніться, щоб продовжити.</string>
   <string name="ConversationItem_group_action_left">%1$s покидає групу.</string>
   <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Скористатися незашифрованим SMS як запасним варіантом?</string>
@@ -552,7 +560,7 @@
   <string name="RegistrationActivity_less_information">Менше інформації</string>
   <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal потребує доступу до телефонної книги та файлової системи, щоб підключити друзів, відправляти повідомлення та здійснювати виклики</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Немає з\'єднання із сервером. Перевірте чи наявність доступу до Інтернет та спробуйте знову.</string>
-  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Якщо ви увімкнете дозвіл \"SMS\", перевірку коду буде виконано автоматично</string>
+  <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Якщо ви надасте Signal дозвіл \"SMS\", Signal виконає перевірку коду автоматично.</string>
   <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Нам потрібно підтвердження що Ви людина.</string>
   <string name="RegistrationActivity_failed_to_verify_the_captcha">Неможливо підтвертити CAPTCHA</string>
   <string name="RegistrationActivity_next">Далі</string>
@@ -697,7 +705,7 @@
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Контакт</string>
   <!--Notification Channels-->
-  <string name="NotificationChannel_messages">Типово</string>
+  <string name="NotificationChannel_messages">Системна</string>
   <string name="NotificationChannel_calls">Виклики</string>
   <string name="NotificationChannel_failures">Відмови</string>
   <string name="NotificationChannel_backups">Резервні копії</string>
@@ -788,9 +796,9 @@
   <string name="conversation_activity__compose_description">Написання повідомлення</string>
   <string name="conversation_activity__emoji_toggle_description">Відрити клавіатуру emoji</string>
   <string name="conversation_activity__attachment_thumbnail">Мініатюра вкладення</string>
-  <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Увімк/вимк скриньку прикріплень камери</string>
-  <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Записати та надіслати аудіо-прикріплення</string>
-  <string name="conversation_activity__enable_signal_for_sms">Увімкнути Signal для SMS</string>
+  <string name="conversation_activity__quick_attachment_drawer_toggle_camera_description">Увімк/вимк скриньку вкладень камери</string>
+  <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Записати та надіслати аудіо вкладення</string>
+  <string name="conversation_activity__enable_signal_for_sms">Дозволити Signal обробляти SMS</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">Проведіть щоб відмінити</string>
   <string name="conversation_input_panel__cancel">Скасувати</string>
@@ -1032,7 +1040,7 @@
   <string name="arrays__max">Максимум</string>
   <!--plurals.xml-->
   <!--preferences.xml-->
-  <string name="preferences__sms_mms">SMS та MMS</string>
+  <string name="preferences__sms_mms">SMS і MMS</string>
   <string name="preferences__pref_all_sms_title">Отримати усі SMS</string>
   <string name="preferences__pref_all_mms_title">Отримати усі MMS</string>
   <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Використовувати Signal для усіх вхідних текстових повідомлень</string>
@@ -1106,7 +1114,7 @@
   <string name="preferences__free_private_messages_and_calls">Безкоштовні приватні повідомлення та виклики для користувачів Signal</string>
   <string name="preferences__submit_debug_log">Надіслати журнал відлагодження</string>
   <string name="preferences__support_wifi_calling">Режим сумісності \'WiFi Calling\'</string>
-  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Увімкніть, якщо ваш пристрій використовує доставку SMS/MMS через WiFi (вмикайте лише якщо «Виклики по WiFi» увімкнені на вашому пристрої)</string>
+  <string name="preferences__enable_if_your_device_supports_sms_mms_delivery_over_wifi">Увімкніть, якщо ваш пристрій використовує доставку SMS/MMS через WiFi (вмикайте лише якщо «WiFi Calling» увімкнені на вашому пристрої)</string>
   <string name="preferences__incognito_keyboard">Клавіатура в режимі \"інкогніто\"</string>
   <string name="preferences__read_receipts">Звіти про прочитання</string>
   <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">Якщо звіти про прочитання вимкнено, ви не зможете отримувати звіти від інших.</string>

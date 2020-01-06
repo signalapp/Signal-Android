@@ -926,7 +926,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Hangcsatolmány rögzítésének zárolása</string>
   <string name="conversation_activity__enable_signal_for_sms">Signal engedélyezése SMS-hez</string>
   <!--conversation_input_panel-->
-  <string name="conversation_input_panel__slide_to_cancel">Megszakításhoz csúsztasd</string>
+  <string name="conversation_input_panel__slide_to_cancel">Elvetés csúsztatással</string>
   <string name="conversation_input_panel__cancel">Mégse</string>
   <!--conversation_item-->
   <string name="conversation_item__mms_image_description">Médiaüzenet</string>

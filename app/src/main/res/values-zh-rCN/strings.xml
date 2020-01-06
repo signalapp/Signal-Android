@@ -320,8 +320,10 @@
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">可选的链接预览功能现支持互联网上一些最热门的站点。</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">您可以随时在Signal设置中启用或禁用此功能（隐私 &gt; 发送链接预览）。</string>
   <string name="ExperienceUpgradeActivity_got_it">知道了</string>
+  <string name="ExperienceUpgradeActivity_introducing_stickers">隆重推出“表情包”功能</string>
   <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">既然可以用表情，为何还要打字呢？</string>
   <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">既然可以用表情，为何还要打字呢？点击键盘上的这个图标：</string>
+  <string name="ExperienceUpgradeActivity_lets_go">开始吧</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">检索消息中…</string>
   <!--GcmRefreshJob-->
@@ -404,6 +406,8 @@
   <string name="MediaOverviewActivity_Media_delete_progress_message">正在删除信息…</string>
   <string name="MediaOverviewActivity_Select_all">选择全部</string>
   <string name="MediaOverviewActivity_collecting_attachments">正在收集附件…</string>
+  <string name="MediaOverviewActivity_Newest">最新的</string>
+  <string name="MediaOverviewActivity_Oldest">最旧的</string>
   <string name="MediaOverviewActivity_Storage_used">已用存储</string>
   <string name="MediaOverviewActivity_file">文件</string>
   <string name="MediaOverviewActivity_audio">音频</string>

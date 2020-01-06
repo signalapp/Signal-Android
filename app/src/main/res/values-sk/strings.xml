@@ -25,7 +25,7 @@
     <item quantity="one">Týmto sa skrátia všetky konverzácie na poslednú správu.</item>
     <item quantity="few">Týmto sa skrátia všetky konverzácie na posledné %d správy.</item>
     <item quantity="many">Týmto sa skrátia všetky konverzácie na posledných %d správ.</item>
-    <item quantity="other">Týmto sa skrátia všetky konverzácie na posledných %d správ.</item>
+    <item quantity="other">Týmto sa oseknú všetky konverzácie na posledných %d správ.</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">Zmazať</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Vypnúť heslo?</string>
@@ -36,7 +36,7 @@
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Vypnúť Signal správy a hovory?</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Zakážte Signal správy a hovory zrušením registrácie zo serveru. Pre ich opätovné použitie budete musieť svoje telefónne číslo znovu zaregistrovať.</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">Chyba pripojenia na server!</string>
-  <string name="ApplicationPreferencesActivity_sms_enabled">SMS zapnuté</string>
+  <string name="ApplicationPreferencesActivity_sms_enabled">SMS povolené</string>
   <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Dotykom môžete zmeniť Vašu predvolenú SMS aplikáciu.</string>
   <string name="ApplicationPreferencesActivity_sms_disabled">SMS vypnuté</string>
   <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Dotykom nastavte Signal ako predvolenú aplikáciu</string>
@@ -363,7 +363,10 @@
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Náhľady sú teraz voliteľne podporované pre niektoré z najpopulárnejších webových stránok na internete.</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Túto funkciu môžete kedykoľvek vypnúť alebo zapnúť v nastaveniach Signal-u (Súkromie &gt; Posielať náhľady stránok).</string>
   <string name="ExperienceUpgradeActivity_got_it">Chápem</string>
+  <string name="ExperienceUpgradeActivity_introducing_stickers">Predstavujeme nálepky</string>
   <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Prečo používať slová, keď môžete používať nálepky?</string>
+  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Prečo používať slová, keď môžete používať nálepky? Ťuknite ná túto ikonu na klávesnici:</string>
+  <string name="ExperienceUpgradeActivity_lets_go">Poďme na to</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Preberanie správy…</string>
   <!--GcmRefreshJob-->

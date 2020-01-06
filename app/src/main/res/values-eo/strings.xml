@@ -1332,7 +1332,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="conversation__menu_leave_group">Forlasi la grupon</string>
   <string name="conversation__menu_view_all_media">Ĉiuj aŭvidaĵoj</string>
   <string name="conversation__menu_conversation_settings">Agordoj pri interparolo</string>
-  <string name="conversation__menu_add_shortcut">Aldonita al la ĉefekrano</string>
+  <string name="conversation__menu_add_shortcut">Aldoni al la ĉefekrano</string>
   <!--conversation_popup-->
   <string name="conversation_popup__menu_expand_popup">Montri spruĉmenuon</string>
   <!--conversation_callable_insecure-->

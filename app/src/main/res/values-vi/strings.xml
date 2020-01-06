@@ -321,8 +321,10 @@
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Tính năng xem trước liên kết đã hỗ trợ một số trang web lớn trên Internet.</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Bạn có thể bật tắt tính năng này bất cứ lúc nào trong cài đặt Signal (Riêng tư &gt; Gửi bản xem trước liên kết)</string>
   <string name="ExperienceUpgradeActivity_got_it">Đã rõ</string>
+  <string name="ExperienceUpgradeActivity_introducing_stickers">Xin giới thiệu Nhãn dán</string>
   <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Tại sao phải sử dụng từ ngữ khi mà bạn có thể sử dụng nhãn dán?</string>
   <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Tại sao phải sử dụng từ ngữ khi mà bạn có thể sử dụng nhãn dán? Nhấn biểu tượng này trên bàn phím của bạn:</string>
+  <string name="ExperienceUpgradeActivity_lets_go">Bắt đầu</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Đang nhận tin nhắn…</string>
   <!--GcmRefreshJob-->
@@ -649,7 +651,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Nhãn dán</string>
   <!--StickerManagementAdapter-->
-  <string name="StickerManagementAdapter_installed_stickers">Các nhãn dán đã cài</string>
+  <string name="StickerManagementAdapter_installed_stickers">Các gói nhãn dán đã cài</string>
   <string name="StickerManagementAdapter_stickers_you_received">Nhãn dán nhận được</string>
   <string name="StickerManagementAdapter_signal_artist_series">Tuyển tập Nghệ sĩ Signal</string>
   <string name="StickerManagementAdapter_no_stickers_installed">Chưa có nhãn dán nào được cài</string>

@@ -306,7 +306,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="CreateProfileActivity_profile_name">Enw Proffil</string>
   <string name="CreateProfileActivity_set_up_your_profile">Creu eich proffil</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Mae proffiliau Signal wedi eu hamgryprio\'n llwyr ac nid oes gan wasanaeth Signal fynediad i\'r wybodaeth hwn.</string>
-  <string name="CreateProfileActivity_set_avatar_description">Gosod afatar</string>
+  <string name="CreateProfileActivity_set_avatar_description">Gosod rhithffurf</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Defnyddio\'r cyfaddas: %s</string>
   <string name="CustomDefaultPreference_using_default">Defnyddio rhagosodedig: %s</string>
@@ -365,6 +365,10 @@ Send neges heb ei ddiogelu?</string>
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Mae rhagolygon dolenni dewisol nawr yn cael eu cynnal ar gyfer rhai o\'r gwefannau mwyaf poblogaidd ar y rhyngrwyd.</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Gallwch alluogi neu analluogi\'r nodwedd yng ngosodiadau Signal. (Preifatrwydd &gt; Anfon dolen rhagolwg).</string>
   <string name="ExperienceUpgradeActivity_got_it">Iawn, rwy\'n deall</string>
+  <string name="ExperienceUpgradeActivity_introducing_stickers">Yn cyflwyno sticeri</string>
+  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Pam defnyddio geiriau pan allwch chi ddefnyddio sticeri?</string>
+  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Pam defnyddio geiriau pan allwch chi ddefnyddio sticeri? Tapiwch yr eicon hwn ar eich bysellfwrdd:</string>
+  <string name="ExperienceUpgradeActivity_lets_go">Amdani</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Estyn neges…</string>
   <!--GcmRefreshJob-->
@@ -384,7 +388,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="GroupCreateActivity_youre_not_registered_for_signal">Nid ydych chi wedi cofrestru ar gyfer negeseuon a galwadau Signal, felly mae grwpiau Signal wedi eu hanalluogi. Ceisiwch gofrestru yn y Gosodiadau &gt; Uwch.</string>
   <string name="GroupCreateActivity_contacts_no_members">Mae angen o leiaf un person yn eich grŵp!</string>
   <string name="GroupCreateActivity_contacts_invalid_number">Mae gan un o aelodau eich grŵp rif nad oes modd ei ddarllen yn iawn. Dylech ddileu neu ddileu\'r cyswllt hwnnw a cheisio eto.</string>
-  <string name="GroupCreateActivity_avatar_content_description">Llun y grŵp</string>
+  <string name="GroupCreateActivity_avatar_content_description">Rhithffurf y grŵp</string>
   <string name="GroupCreateActivity_menu_apply_button">Gosod</string>
   <string name="GroupCreateActivity_creating_group">Creu %1$s…</string>
   <string name="GroupCreateActivity_updating_group">Yn diweddaru %1$s…</string>
@@ -398,8 +402,8 @@ Send neges heb ei ddiogelu?</string>
   <!--GroupMembersDialog-->
   <string name="GroupMembersDialog_me">Fi</string>
   <!--CropImageActivity-->
-  <string name="CropImageActivity_group_avatar">Llun y grŵp</string>
-  <string name="CropImageActivity_profile_avatar">Afatar</string>
+  <string name="CropImageActivity_group_avatar">Rhithffurf y grŵp</string>
+  <string name="CropImageActivity_profile_avatar">Rhithffurf</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Tapio a dal i recordio neges lais, rhyddhau i\'w hanfon</string>
   <!--InviteActivity-->
@@ -1554,7 +1558,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">Rhaid i\'r Clo Cofrestru PIN fod o leiaf 4 digid.</string>
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Nid yw\'r ddau PIN rydych chi wedi\'u cofnodi yn cyfateb.</string>
   <string name="RegistrationLockDialog_error_connecting_to_the_service">Gwall wrth gysylltu â\'r gwasanaeth</string>
-  <string name="RegistrationLockDialog_disable_registration_lock_pin">Analluogi PIN Cofrestru Clo?</string>
+  <string name="RegistrationLockDialog_disable_registration_lock_pin">Analluogi PIN Clo Cofrestru?</string>
   <string name="RegistrationLockDialog_disable">Analluogi</string>
   <string name="RegistrationActivity_pin_incorrect">PIN anghywir</string>
   <string name="RegistrationActivity_you_have_d_tries_remaining">Mae genych %d cais ar ôl</string>

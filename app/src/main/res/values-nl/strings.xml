@@ -20,8 +20,8 @@
   </plurals>
   <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Nu alle oude berichten wissen?</string>
   <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
-    <item quantity="one">Dit zal onmiddellijk alle gesprekken inkorten tot het laatste bericht, maar alleen voor jezelf.</item>
-    <item quantity="other">Dit zal onmiddellijk alle gesprekken inkorten tot de laatste %d berichten, maar alleen voor jezelf.</item>
+    <item quantity="one">Dit zal onmiddellijk alle gesprekken inkorten tot het laatste bericht, maar alleen voor jou.</item>
+    <item quantity="other">Dit zal onmiddellijk alle gesprekken inkorten tot de laatste %d berichten, maar alleen voor jou.</item>
   </plurals>
   <string name="ApplicationPreferencesActivity_delete">Wissen</string>
   <string name="ApplicationPreferencesActivity_disable_passphrase">Wachtwoord uitschakelen?</string>
@@ -53,7 +53,7 @@
   <string name="DraftDatabase_Draft_audio_snippet">(audio)</string>
   <string name="DraftDatabase_Draft_video_snippet">(video)</string>
   <string name="DraftDatabase_Draft_location_snippet">(locatie)</string>
-  <string name="DraftDatabase_Draft_quote_snippet">(reactie)</string>
+  <string name="DraftDatabase_Draft_quote_snippet">(citaat)</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Geen app gevonden om media te selecteren.</string>
   <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal heeft toegang nodig tot de externe opslagruimte om foto\'s, video\'s of audio te kunnen verzenden, maar deze toestemming is pertinent geweigerd. Ga naar de instellingen, selecteer  ‘Machtigingen’ en schakel ‘Opslagruimte’ in.</string>
@@ -94,7 +94,7 @@
   <string name="CameraContacts_you_can_only_use_the_camera_button">Je kunt de cameraknop alleen gebruiken om foto\'s te verzenden aan Signal-gebruikers.</string>
   <string name="CameraContacts_cant_find_who_youre_looking_for">Kun je de persoon die je zoekt niet vinden?</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">Nodig een contactpersoon uit om ook Signal te gebruiken</string>
-  <string name="CameraContacts__menu_search">Zoek</string>
+  <string name="CameraContacts__menu_search">Zoeken</string>
   <!--ClearProfileActivity-->
   <string name="ClearProfileActivity_remove">Verwijderen</string>
   <string name="ClearProfileActivity_remove_profile_photo">Profielfoto verwijderen?</string>
@@ -104,7 +104,7 @@
   <string name="CommunicationActions_start_video_call">Video-oproep beginnen?</string>
   <string name="CommunicationActions_start_voice_call">Spraak-oproep beginnen?</string>
   <string name="CommunicationActions_cancel">Annuleren</string>
-  <string name="CommunicationActions_call">Bel</string>
+  <string name="CommunicationActions_call">Bellen</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Je veiligheidsnummer met %1$s is veranderd. Dit kan betekenen dat iemand je communicatie probeert te onderscheppen, of gewoon dat %2$s Signal opnieuw heeft geïnstalleerd.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Je wilt misschien je veiligheidsnummer bij deze contactpersoon verifiëren.</string>
@@ -206,8 +206,8 @@
     <item quantity="other">Geselecteerde berichten wissen?</item>
   </plurals>
   <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
-    <item quantity="one">Dit zal het geselecteerde bericht onherroepelijk wissen, maar alleen voor jezelf.</item>
-    <item quantity="other">Dit zal alle %1$d geselecteerde berichten onherroepelijk wissen, maar alleen voor jezelf.</item>
+    <item quantity="one">Dit zal het geselecteerde bericht onherroepelijk wissen, maar alleen voor jou.</item>
+    <item quantity="other">Dit zal alle %1$d geselecteerde berichten onherroepelijk wissen, maar alleen voor jou.</item>
   </plurals>
   <string name="ConversationFragment_save_to_sd_card">Opslaan naar SD-kaart?</string>
   <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
@@ -247,8 +247,8 @@
     <item quantity="other">Geselecteerde gesprekken wissen?</item>
   </plurals>
   <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-    <item quantity="one">Dit zal het geselecteerde gesprek onherroepelijk wissen, maar alleen voor jezelf.</item>
-    <item quantity="other">Dit zal alle %1$d geselecteerde gesprekken onherroepelijk wissen, maar alleen voor jezelf.</item>
+    <item quantity="one">Dit zal het geselecteerde gesprek onherroepelijk wissen, maar alleen voor jou.</item>
+    <item quantity="other">Dit zal alle %1$d geselecteerde gesprekken onherroepelijk wissen, maar alleen voor jou.</item>
   </plurals>
   <string name="ConversationListFragment_deleting">Verwijderen</string>
   <string name="ConversationListFragment_deleting_selected_conversations">Geselecteerde gesprekken aan het verwijderen…</string>
@@ -378,7 +378,7 @@ weergaven.</string>
   <!--InputPanel-->
   <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Tik en houd vast om een audio bericht op te nemen, laat los om te verzenden</string>
   <!--InviteActivity-->
-  <string name="InviteActivity_share">Delen</string>
+  <string name="InviteActivity_share">Doorsturen via andere app</string>
   <string name="InviteActivity_choose_contacts">Kies contactpersonen</string>
   <string name="InviteActivity_share_with_contacts">Contactpersonen kiezen (sms)</string>
   <string name="InviteActivity_choose_how_to_share">Verzenden via andere app</string>
@@ -422,8 +422,8 @@ weergaven.</string>
     <item quantity="other">Geselecteerd items wissen?</item>
   </plurals>
   <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
-    <item quantity="one">Dit zal het geselecteerde bestand onherroepelijk wissen, maar alleen voor jezelf. Enig berichttekst geassocieerd met dit bestand zal ook worden gewist.</item>
-    <item quantity="other">Dit zal alle %1$d geselecteerde bestanden onherroepelijk wissen, maar alleen voor jezelf. Enig berichttekst geassocieerd met deze bestanden zal ook worden gewist.</item>
+    <item quantity="one">Dit zal het geselecteerde bestand onherroepelijk wissen, maar alleen voor jou. Enig berichttekst geassocieerd met dit bestand zal ook worden gewist.</item>
+    <item quantity="other">Dit zal alle %1$d geselecteerde bestanden onherroepelijk wissen, maar alleen voor jou. Enig berichttekst geassocieerd met deze bestanden zal ook worden gewist.</item>
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Aan het verwijderen</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Berichten aan het wissen…</string>
@@ -552,7 +552,7 @@ weergaven.</string>
   <!--ProfileEditNameFragment-->
   <string name="ProfileEditNameFragment_profile_name">Profielnaam</string>
   <string name="ProfileEditNameFragment_your_profile_name_can_be_seen_by_your_contacts">Je profielnaam kan worden gezien door je contacten en door andere gebruikers als je zelf een gesprek hebt gestart of als je een gespreksuitnodiging hebt geaccepteerd.</string>
-  <string name="ProfileEditNameFragment_save">Sla op</string>
+  <string name="ProfileEditNameFragment_save">Opslaan</string>
   <!--ProfileEditOverviewFragment-->
   <string name="ProfileEditOverviewFragment_profile">Profiel</string>
   <string name="ProfileEditOverviewFragment_profile_name">Profielnaam</string>
@@ -653,7 +653,7 @@ Signal heeft ook toegang nodig tot de foto\'s, media en bestanden op je apparaat
   <string name="SearchFragment_header_contacts">Contacten</string>
   <string name="SearchFragment_header_messages">Berichten</string>
   <!--SharedContactDetailsActivity-->
-  <string name="SharedContactDetailsActivity_add_to_contacts">Toevoegen aan contacten</string>
+  <string name="SharedContactDetailsActivity_add_to_contacts">Toevoegen aan contactenlijst</string>
   <string name="SharedContactDetailsActivity_invite_to_signal">Uitnodigen voor Signal</string>
   <string name="SharedContactDetailsActivity_signal_message">Signal-bericht</string>
   <string name="SharedContactDetailsActivity_signal_call">Signal-oproep</string>
@@ -682,11 +682,11 @@ Signal heeft ook toegang nodig tot de foto\'s, media en bestanden op je apparaat
   <!--StickerManagementActivity-->
   <string name="StickerManagementActivity_stickers">Stickers</string>
   <!--StickerManagementAdapter-->
-  <string name="StickerManagementAdapter_installed_stickers">Geïnstalleerde stickers</string>
-  <string name="StickerManagementAdapter_stickers_you_received">Ontvangen stickers</string>
-  <string name="StickerManagementAdapter_signal_artist_series">Signals eigen stickers</string>
-  <string name="StickerManagementAdapter_no_stickers_installed">Geen stickers geïnstalleerd</string>
-  <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Stickers uit binnenkomende berichten zullen hier verschijnen</string>
+  <string name="StickerManagementAdapter_installed_stickers">Geïnstalleerde stickerpakketten</string>
+  <string name="StickerManagementAdapter_stickers_you_received">Ontvangen stickerpakketten</string>
+  <string name="StickerManagementAdapter_signal_artist_series">Signals eigen stickerpakketten</string>
+  <string name="StickerManagementAdapter_no_stickers_installed">Geen stickerpakketten geïnstalleerd</string>
+  <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Stickerpakketten uit binnenkomende berichten zullen hier verschijnen</string>
   <string name="StickerManagementAdapter_untitled">Zonder titel</string>
   <string name="StickerManagementAdapter_unknown">Onbekend</string>
   <!--StickerPackPreviewActivity-->
@@ -752,7 +752,7 @@ Signal heeft ook toegang nodig tot de foto\'s, media en bestanden op je apparaat
   <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">De gescande QR-code is geen goed geformatteerd veiligheidsnummer-verificatiecode. Probeer de code opnieuw te scannen.</string>
   <string name="VerifyIdentityActivity_share_safety_number_via">Veiligheidsnummer doorsturen via…</string>
   <string name="VerifyIdentityActivity_our_signal_safety_number">Ons Signal-veiligheidsnummer:</string>
-  <string name="VerifyIdentityActivity_no_app_to_share_to">Het lijkt erop dat je geen apps waarmee je dit kunt delen.</string>
+  <string name="VerifyIdentityActivity_no_app_to_share_to">Het lijkt erop dat je geen apps hebt waarmee je je veiligheidsnummer kunt doorsturen.</string>
   <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">Geen veiligheidsnummer gevonden op het klembord</string>
   <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal heeft toegang tot de camera nodig om een QR-code te scannen, maar deze is pertinent geweigerd. Ga naar de instellingen voor deze app, selecteer ‘Machtigingen’ en schakel ‘Camera’ in.</string>
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Kan QR-code niet scannen zonder toegang tot camera</string>
@@ -784,7 +784,7 @@ Signal heeft ook toegang nodig tot de foto\'s, media en bestanden op je apparaat
   <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal heeft toegang tot externe opslagruimte nodig om iets op te slaan op de externe opslag, maar deze toegang is pertinent geweigerd. Ga naar de instellingen voor deze app, selecteer ‘Machtigingen’ en schakel ‘Opslagruimte’ in.</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Kan niet opslaan naar externe opslag zonder machtiging</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Bericht wissen?</string>
-  <string name="MediaPreviewActivity_media_delete_confirmation_message">Dit bericht zal onherroepelijk gewist worden, maar alleen voor jezelf.</string>
+  <string name="MediaPreviewActivity_media_delete_confirmation_message">Dit bericht zal onherroepelijk gewist worden, maar alleen voor jou.</string>
   <string name="MediaPreviewActivity_s_to_s">%1$s naar %2$s</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nieuwe berichten in %2$d gesprekken</string>
@@ -1042,7 +1042,7 @@ Signal heeft ook toegang nodig tot de foto\'s, media en bestanden op je apparaat
   <string name="import_fragment__import_plaintext_backup">Onversleutelde back-up importeren</string>
   <string name="import_fragment__import_a_plaintext_backup_file">Importeer een onversleutelde back-up. Compatibel met ‘Sms back-up &amp; Herstellen’.</string>
   <!--load_more_header-->
-  <string name="load_more_header__see_full_conversation">Bekijk volledig gesprek</string>
+  <string name="load_more_header__see_full_conversation">Volledig gesprek bekijken</string>
   <string name="load_more_header__loading">Aan het laden</string>
   <!--media_overview_activity-->
   <string name="media_overview_activity__no_media">Geen media</string>
@@ -1389,7 +1389,7 @@ Signal heeft ook toegang nodig tot de foto\'s, media en bestanden op je apparaat
   <!--redphone_audio_popup_menu-->
   <!--Trimmer-->
   <string name="trimmer__deleting">Aan het verwijderen</string>
-  <string name="trimmer__deleting_old_messages">Oude berichten aan het verwijderen…</string>
+  <string name="trimmer__deleting_old_messages">Oude berichten aan het wissen…</string>
   <string name="trimmer__old_messages_successfully_deleted">Oude berichten succesvol gewist</string>
   <!--Insights-->
   <string name="Insights__percent">%</string>
@@ -1418,7 +1418,7 @@ Ze wordt nooit verzonden.</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">Transportmethodepictogram</string>
   <string name="ConversationListFragment_loading">Aan het laden…</string>
-  <string name="CallNotificationBuilder_connecting">Verbinden…</string>
+  <string name="CallNotificationBuilder_connecting">Aan het verbinden…</string>
   <string name="Permissions_permission_required">Toestemming vereist</string>
   <string name="ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms">Signal heeft toestemming nodig om sms-berichten te sturen, maar deze toestemming is pertinent geweigerd. Ga naar de instellingen voor deze app, selecteer ‘Machtigingen’ en schakel ‘Sms’ in.</string>
   <string name="Permissions_continue">Doorgaan</string>

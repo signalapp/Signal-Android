@@ -1381,7 +1381,7 @@
   <string name="RegistrationActivity_wrong_number">गलत नंबर</string>
   <string name="RegistrationActivity_call_me_instead_available_in">मुझे काॅल करें (%1$02d:%2$02d में उपलब्ध)</string>
   <string name="RegistrationActivity_contact_signal_support">Signal समर्थन से संपर्क करें</string>
-  <string name="RegistrationActivity_code_support_subject">Signal  पंजीकरण - Android के लिये वेरीफिकेशन कोड</string>
+  <string name="RegistrationActivity_code_support_subject">Signal पंजीकरण - Android के लिये वेरीफिकेशन कोड</string>
   <string name="RegistrationActivity_code_support_body">विषय: Signal पंजीकरण - Android डिवाइस के लिये वेरिफिकेशन कोड
 डिवाइस की जानकारीः %1$s
 Android वर्ज़नः %2$s

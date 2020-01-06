@@ -448,10 +448,10 @@
   <string name="MediaOverviewActivity_audio">Ljud</string>
   <string name="MediaOverviewActivity_video">Video</string>
   <string name="MediaOverviewActivity_image">Bild</string>
-  <string name="MediaOverviewActivity_sent_by_s">Skickat av %1$s</string>
-  <string name="MediaOverviewActivity_sent_by_you">Skickat av dig</string>
-  <string name="MediaOverviewActivity_sent_by_s_to_s">Skickat av %1$s till %2$s</string>
-  <string name="MediaOverviewActivity_sent_by_you_to_s">Skickas av dig till %1$s</string>
+  <string name="MediaOverviewActivity_sent_by_s">Skickad av %1$s</string>
+  <string name="MediaOverviewActivity_sent_by_you">Skickad av dig</string>
+  <string name="MediaOverviewActivity_sent_by_s_to_s">Skickad av %1$s till %2$s</string>
+  <string name="MediaOverviewActivity_sent_by_you_to_s">Skickad av dig till %1$s</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal-samtal pågår</string>
   <string name="NotificationBarManager__establishing_signal_call">Upprättar Signal-samtal</string>

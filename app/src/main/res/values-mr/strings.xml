@@ -1313,6 +1313,8 @@
   <string name="trimmer__deleting_old_messages">जुने संदेश हटवत आहे…</string>
   <string name="trimmer__old_messages_successfully_deleted">जुने संदेश यशस्वीरीत्या हटवले</string>
   <!--Insights-->
+  <string name="Insights__title">अंतर्दृष्टी</string>
+  <string name="InsightsDashboardFragment__title">अंतर्दृष्टी</string>
   <string name="InsightsDashboardFragment__cancel">रद्द करा</string>
   <string name="InsightsDashboardFragment__send">पाठवा</string>
   <string name="FirstInviteReminder__title">Signal वर आमंत्रित करा</string>

@@ -818,6 +818,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="SingleRecipientNotificationBuilder_new_message">Ny besked</string>
   <!--ThumbnailView-->
   <string name="ThumbnailView_Play_video_description">Afspil video</string>
+  <string name="ThumbnailView_Has_a_caption_description">Har en billedtekst</string>
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">
     <item quantity="one">%d Enheder</item>
@@ -1496,5 +1497,9 @@ Der er %d dage tilbage</string>
   <string name="MessageRequestBottomView_delete">Slet</string>
   <string name="MessageRequestBottomView_block">Blokér</string>
   <string name="MessageRequestBottomView_do_you_want_to_let">Vil du modtage beskeder fra %1$s?</string>
+  <string name="MessageRequestProfileView_member_of_one_group">Medlem af %1$s</string>
+  <string name="MessageRequestProfileView_member_of_two_groups">Medlem af%1$s og %2$s</string>
+  <string name="MessageRequestProfileView_member_of_many_groups">Medlem af %1$s, %2$s og %3$s</string>
+  <string name="MessageRequestProfileView_members">%1$d medlemmer</string>
   <!--EOF-->
 </resources>
