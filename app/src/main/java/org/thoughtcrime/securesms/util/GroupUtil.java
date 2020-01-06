@@ -128,7 +128,7 @@ public class GroupUtil {
 
       String title = groupContext.getName();
 
-      if (members != null) {
+      if (members != null && members.size() > 0) {
         description.append("\n");
         description.append(context.getResources().getQuantityString(R.plurals.GroupUtil_joined_the_group,
                                                                     members.size(), toString(members)));
