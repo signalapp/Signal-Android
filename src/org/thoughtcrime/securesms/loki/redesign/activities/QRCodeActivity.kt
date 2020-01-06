@@ -1,8 +1,10 @@
 package org.thoughtcrime.securesms.loki.redesign.activities
 
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.Typeface
 import android.os.Bundle
+import android.os.Environment
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentPagerAdapter
 import android.text.Spannable
@@ -25,9 +27,11 @@ import org.thoughtcrime.securesms.loki.redesign.fragments.ScanQRCodeWrapperFragm
 import org.thoughtcrime.securesms.loki.redesign.utilities.QRCodeUtilities
 import org.thoughtcrime.securesms.loki.toPx
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.util.FileProviderUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.loki.utilities.PublicKeyValidation
-
+import java.io.File
+import java.io.FileOutputStream
 
 class QRCodeActivity : PassphraseRequiredActionBarActivity(), ScanQRCodeWrapperFragmentDelegate {
     private val adapter = QRCodeActivityAdapter(this)
@@ -125,7 +129,21 @@ class ViewMyQRCodeFragment : Fragment() {
     }
 
     private fun shareQRCode() {
-        // TODO: Implement
+        val directory = File(Environment.getExternalStorageDirectory(), Environment.DIRECTORY_PICTURES)
+        val fileName = "$hexEncodedPublicKey.png"
+        val file = File(directory, fileName)
+        file.createNewFile()
+        val fos = FileOutputStream(file)
+        val size = toPx(240, resources)
+        val qrCode = QRCodeUtilities.encode(hexEncodedPublicKey, size, false)
+        qrCode.compress(Bitmap.CompressFormat.PNG, 100, fos)
+        fos.flush()
+        fos.close()
+        val intent = Intent(Intent.ACTION_SEND)
+        intent.putExtra(Intent.EXTRA_STREAM, FileProviderUtil.getUriFor(activity!!, file))
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+        intent.type = "image/png"
+        startActivity(Intent.createChooser(intent, "Share QR Code"))
     }
 }
 // endregion
