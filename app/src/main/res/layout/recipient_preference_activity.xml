@@ -2,6 +2,7 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/recipient_preference_root"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="0dp"
@@ -11,7 +12,7 @@
 
     <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/app_bar_layout"
-        android:layout_width="match_parent"
+            android:layout_width="match_parent"
             android:layout_height="300dp"
             android:background="@color/transparent">
 
@@ -47,7 +48,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     android:background="@color/transparent"
-                    android:layout_marginTop="24dp"
                     android:theme="@style/TextSecure.DarkActionBar.Conversation"
                     app:layout_collapseMode="pin" >
 

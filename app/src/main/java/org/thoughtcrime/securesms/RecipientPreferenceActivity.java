@@ -209,6 +209,11 @@ public class RecipientPreferenceActivity extends PassphraseRequiredActionBarActi
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
       getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
       getWindow().setStatusBarColor(Color.TRANSPARENT);
+
+      ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.recipient_preference_root), (v, insets) -> {
+        ViewUtil.setTopMargin(toolbar, insets.getSystemWindowInsetTop());
+        return insets;
+      });
     }
   }
 
