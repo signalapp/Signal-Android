@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.avatar.AvatarSelection
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
 import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
+import org.thoughtcrime.securesms.loki.redesign.dialogs.ClearAllDataDialog
 import org.thoughtcrime.securesms.loki.redesign.dialogs.SeedDialog
 import org.thoughtcrime.securesms.loki.redesign.utilities.push
 import org.thoughtcrime.securesms.loki.toPx
@@ -80,6 +81,7 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
         copyButton.setOnClickListener { copyPublicKey() }
         shareButton.setOnClickListener { sharePublicKey() }
         seedButton.setOnClickListener { showSeed() }
+        clearAllDataButton.setOnClickListener { clearAllData() }
     }
 
     public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -240,6 +242,10 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
 
     private fun showSeed() {
         SeedDialog().show(supportFragmentManager, "Seed Dialog")
+    }
+
+    private fun clearAllData() {
+        ClearAllDataDialog().show(supportFragmentManager, "Clear All Data Dialog")
     }
     // endregion
 }
