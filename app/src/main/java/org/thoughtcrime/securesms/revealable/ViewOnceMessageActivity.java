@@ -36,9 +36,6 @@ public class ViewOnceMessageActivity extends PassphraseRequiredActionBarActivity
   private static final String KEY_MESSAGE_ID = "message_id";
   private static final String KEY_URI        = "uri";
 
-  private static final int  OVERLAY_TIMEOUT_S   = 2;
-  private static final int  FADE_OUT_DURATION_MS = 200;
-
   private ImageView                image;
   private VideoPlayer              video;
   private View                     closeButton;
@@ -46,20 +43,14 @@ public class ViewOnceMessageActivity extends PassphraseRequiredActionBarActivity
   private ViewOnceMessageViewModel viewModel;
   private Uri                      uri;
 
-  private int updateCounter;
-
   private final Handler  handler                = new Handler(Looper.getMainLooper());
   private final Runnable durationUpdateRunnable = () -> {
-    long timeLeft = TimeUnit.MILLISECONDS.toSeconds(video.getDuration()) - updateCounter;
+    long timeLeft = TimeUnit.MILLISECONDS.toSeconds(video.getDuration() - video.getPlaybackPosition());
     long minutes  = timeLeft / 60;
     long seconds  = timeLeft % 60;
+
     duration.setText(getString(R.string.ViewOnceMessageActivity_video_duration, minutes, seconds));
-    updateCounter++;
-    if (updateCounter > OVERLAY_TIMEOUT_S) {
-      animateOutOverlay();
-    } else {
-      scheduleDurationUpdate();
-    }
+    scheduleDurationUpdate();
   };
 
   public static Intent getIntent(@NonNull Context context, long messageId, @NonNull Uri uri) {
@@ -108,7 +99,6 @@ public class ViewOnceMessageActivity extends PassphraseRequiredActionBarActivity
 
   @Override
   public void onPlayerReady() {
-    updateCounter = 0;
     handler.post(durationUpdateRunnable);
   }
 
@@ -163,13 +153,8 @@ public class ViewOnceMessageActivity extends PassphraseRequiredActionBarActivity
             .into(image);
   }
 
-  private void animateOutOverlay() {
-    duration.animate().alpha(0f).setDuration(200).start();
-    closeButton.animate().alpha(0f).setDuration(200).start();
-  }
-
   private void scheduleDurationUpdate() {
-    handler.postDelayed(durationUpdateRunnable, 1000L);
+    handler.postDelayed(durationUpdateRunnable, 100);
   }
 
   private void cancelDurationUpdate() {

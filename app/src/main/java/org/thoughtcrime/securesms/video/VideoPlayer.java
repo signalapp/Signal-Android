@@ -135,6 +135,13 @@ public class VideoPlayer extends FrameLayout {
     return 0L;
   }
 
+  public long getPlaybackPosition() {
+    if (this.exoPlayer != null) {
+      return this.exoPlayer.getCurrentPosition();
+    }
+    return 0L;
+  }
+
   public void setWindow(@Nullable Window window) {
     this.window = window;
   }
