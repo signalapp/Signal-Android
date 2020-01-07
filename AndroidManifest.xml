@@ -152,7 +152,8 @@
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name="org.thoughtcrime.securesms.loki.redesign.activities.SettingsActivity"
-            android:launchMode="singleTask" />
+            android:launchMode="singleTask"
+            android:theme="@style/Session.DarkTheme.NoActionBar" />
         <activity
             android:name="org.thoughtcrime.securesms.loki.redesign.activities.QRCodeActivity"
             android:launchMode="singleTask" />

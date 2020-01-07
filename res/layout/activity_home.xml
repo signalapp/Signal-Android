@@ -26,7 +26,7 @@
                 android:layout_height="@dimen/small_profile_picture_size"
                 android:layout_marginLeft="8dp"
                 android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"/>
+                android:layout_centerVertical="true" />
 
             <TextView
                 android:layout_width="wrap_content"

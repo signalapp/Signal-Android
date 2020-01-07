@@ -35,7 +35,7 @@
         <item name="android:background">@drawable/prominent_filled_button_medium_background</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:textSize">@dimen/medium_font_size</item>
-        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
         <item name="android:textColor">@color/text</item>
     </style>
 
@@ -43,7 +43,7 @@
         <item name="android:background">@drawable/prominent_outline_button_medium_background</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:textSize">@dimen/medium_font_size</item>
-        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
         <item name="android:textColor">@color/accent</item>
     </style>
 
@@ -51,7 +51,7 @@
         <item name="android:background">@drawable/unimportant_filled_button_medium_background</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:textSize">@dimen/medium_font_size</item>
-        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
         <item name="android:textColor">@color/text</item>
     </style>
 
@@ -59,7 +59,7 @@
         <item name="android:background">@drawable/unimportant_outline_button_medium_background</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:textSize">@dimen/medium_font_size</item>
-        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
         <item name="android:textColor">@color/text</item>
     </style>
 
@@ -90,7 +90,7 @@
         <item name="android:paddingRight">@dimen/medium_spacing</item>
         <item name="android:paddingBottom">12dp</item>
         <item name="android:textSize">@dimen/medium_font_size</item>
-        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
         <item name="android:textColor">@color/fake_chat_bubble_text</item>
         <item name="android:elevation">20dp</item>
     </style>
@@ -102,7 +102,7 @@
         <item name="android:paddingRight">@dimen/medium_spacing</item>
         <item name="android:paddingBottom">12dp</item>
         <item name="android:textSize">@dimen/medium_font_size</item>
-        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
         <item name="android:textColor">@color/text</item>
         <item name="android:elevation">20dp</item>
     </style>

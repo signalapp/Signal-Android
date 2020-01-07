@@ -46,7 +46,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         super.onCreate(savedInstanceState, isReady)
         // Set content view
         setContentView(R.layout.activity_home)
-        // Set title
+        // Set custom toolbar
         setSupportActionBar(toolbar)
         // Set up Glide
         glide = GlideApp.with(this)

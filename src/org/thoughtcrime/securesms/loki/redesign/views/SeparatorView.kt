@@ -60,7 +60,7 @@ class SeparatorView : RelativeLayout {
         path.reset()
         path.moveTo(0.0f, h / 2)
         path.lineTo(titleTextView.left - hMargin, h / 2)
-        path.addRoundRect(titleTextView.left - hMargin, 0.0f, titleTextView.right + hMargin, h, h / 2, h / 2, Path.Direction.CCW)
+        path.addRoundRect(titleTextView.left - hMargin, toPx(1, resources).toFloat(), titleTextView.right + hMargin, h - toPx(1, resources).toFloat(), h / 2, h / 2, Path.Direction.CCW)
         path.moveTo(titleTextView.right + hMargin, h / 2)
         path.lineTo(w, h / 2)
         path.close()
