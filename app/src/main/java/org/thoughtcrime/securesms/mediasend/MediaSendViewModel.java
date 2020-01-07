@@ -194,7 +194,7 @@ class MediaSendViewModel extends ViewModel {
     buttonState    = (recipient != null) ? ButtonState.SEND : ButtonState.CONTINUE;
 
     if (viewOnceState == ViewOnceState.GONE && viewOnceSupported()) {
-      viewOnceState = TextSecurePreferences.isViewOnceMessageEnabled(application) ? ViewOnceState.ENABLED : ViewOnceState.DISABLED;
+      viewOnceState = ViewOnceState.DISABLED;
       showViewOnceTooltipIfNecessary(viewOnceState);
     } else if (!viewOnceSupported()) {
       viewOnceState = ViewOnceState.GONE;
@@ -272,9 +272,6 @@ class MediaSendViewModel extends ViewModel {
                                     .toList();
 
     selectedMedia.setValue(uncaptioned);
-
-    TextSecurePreferences.setIsViewOnceMessageEnabled(application, viewOnceState == ViewOnceState.ENABLED);
-
     hudState.setValue(buildHudState());
   }
 

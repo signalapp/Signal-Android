@@ -200,7 +200,6 @@ public class TextSecurePreferences {
 
   private static final String MEDIA_KEYBOARD_MODE = "pref_media_keyboard_mode";
 
-  private static final String VIEW_ONCE_DEFAULT      = "pref_revealable_message_default";
   private static final String VIEW_ONCE_TOOLTIP_SEEN = "pref_revealable_message_tooltip_seen";
 
   private static final String SEEN_CAMERA_FIRST_TOOLTIP = "pref_seen_camera_first_tooltip";
@@ -1274,14 +1273,6 @@ public class TextSecurePreferences {
   public static MediaKeyboardMode getMediaKeyboardMode(Context context) {
     String name = getStringPreference(context, MEDIA_KEYBOARD_MODE, MediaKeyboardMode.EMOJI.name());
     return MediaKeyboardMode.valueOf(name);
-  }
-
-  public static void setIsViewOnceMessageEnabled(Context context, boolean value) {
-    setBooleanPreference(context, VIEW_ONCE_DEFAULT, value);
-  }
-
-  public static boolean isViewOnceMessageEnabled(Context context) {
-    return getBooleanPreference(context, VIEW_ONCE_DEFAULT, false);
   }
 
   public static void setHasSeenViewOnceTooltip(Context context, boolean value) {
