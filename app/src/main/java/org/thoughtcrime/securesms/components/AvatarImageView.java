@@ -143,7 +143,7 @@ public final class AvatarImageView extends AppCompatImageView {
         } else {
           getContext().startActivity(RecipientExporter.export(recipient).asAddContactIntent());
         }
-      } else {
+      } else if (listener != null) {
         listener.onClick(v);
       }
     });
