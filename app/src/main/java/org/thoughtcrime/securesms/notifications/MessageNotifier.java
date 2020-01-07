@@ -95,8 +95,6 @@ public class MessageNotifier {
   public static final  String EXTRA_REMOTE_REPLY = "extra_remote_reply";
 
   private static final String EMOJI_REPLACEMENT_STRING  = "__EMOJI__";
-  private static final  int   SUMMARY_NOTIFICATION_ID   = 1338;
-  private static final int    PENDING_MESSAGES_ID       = 1111;
   private static final String NOTIFICATION_GROUP        = "messages";
   private static final long   MIN_AUDIBLE_PERIOD_MILLIS = TimeUnit.SECONDS.toMillis(2);
   private static final long   DESKTOP_ACTIVITY_PERIOD   = TimeUnit.MINUTES.toMillis(1);
@@ -135,11 +133,11 @@ public class MessageNotifier {
     }
 
     PendingMessageNotificationBuilder builder = new PendingMessageNotificationBuilder(context, TextSecurePreferences.getNotificationPrivacy(context));
-    ServiceUtil.getNotificationManager(context).notify(PENDING_MESSAGES_ID, builder.build());
+    ServiceUtil.getNotificationManager(context).notify(NotificationIds.PENDING_MESSAGES, builder.build());
   }
 
   public static void cancelMessagesPending(Context context) {
-    ServiceUtil.getNotificationManager(context).cancel(PENDING_MESSAGES_ID);
+    ServiceUtil.getNotificationManager(context).cancel(NotificationIds.PENDING_MESSAGES);
   }
 
   public static void cancelDelayedNotifications() {
@@ -148,7 +146,7 @@ public class MessageNotifier {
 
   private static void cancelActiveNotifications(@NonNull Context context) {
     NotificationManager notifications = ServiceUtil.getNotificationManager(context);
-    notifications.cancel(SUMMARY_NOTIFICATION_ID);
+    notifications.cancel(NotificationIds.MESSAGE_SUMMARY);
 
     if (Build.VERSION.SDK_INT >= 23) {
       try {
@@ -174,7 +172,7 @@ public class MessageNotifier {
         StatusBarNotification[] activeNotifications = notificationManager.getActiveNotifications();
 
         for (StatusBarNotification activeNotification : activeNotifications) {
-          if (activeNotification.getId() == SUMMARY_NOTIFICATION_ID) {
+          if (activeNotification.getId() == NotificationIds.MESSAGE_SUMMARY) {
             return true;
           }
         }
@@ -200,14 +198,14 @@ public class MessageNotifier {
         for (StatusBarNotification notification : activeNotifications) {
           boolean validNotification = false;
 
-          if (notification.getId() != SUMMARY_NOTIFICATION_ID               &&
+          if (notification.getId() != NotificationIds.MESSAGE_SUMMARY       &&
               notification.getId() != KeyCachingService.SERVICE_RUNNING_ID  &&
               notification.getId() != IncomingMessageObserver.FOREGROUND_ID &&
-              notification.getId() != PENDING_MESSAGES_ID                   &&
+              notification.getId() != NotificationIds.PENDING_MESSAGES      &&
               !CallNotificationBuilder.isWebRtcNotification(notification.getId()))
           {
             for (NotificationItem item : notificationState.getNotifications()) {
-              if (notification.getId() == (SUMMARY_NOTIFICATION_ID + item.getThreadId())) {
+              if (notification.getId() == NotificationIds.getNotificationIdForThread(item.getThreadId())) {
                 validNotification = true;
                 break;
               }
@@ -352,9 +350,9 @@ public class MessageNotifier {
     int                                notificationId;
 
     if (Build.VERSION.SDK_INT >= 23) {
-      notificationId = (int) (SUMMARY_NOTIFICATION_ID + notifications.get(0).getThreadId());
+      notificationId = NotificationIds.getNotificationIdForThread(notifications.get(0).getThreadId());
     } else {
-      notificationId = SUMMARY_NOTIFICATION_ID;
+      notificationId = NotificationIds.MESSAGE_SUMMARY;
     }
 
     builder.setThread(notifications.get(0).getRecipient());
@@ -426,7 +424,7 @@ public class MessageNotifier {
     long timestamp = notifications.get(0).getTimestamp();
     if (timestamp != 0) builder.setWhen(timestamp);
 
-    builder.addActions(notificationState.getMarkAsReadIntent(context, SUMMARY_NOTIFICATION_ID));
+    builder.addActions(notificationState.getMarkAsReadIntent(context, NotificationIds.MESSAGE_SUMMARY));
 
     ListIterator<NotificationItem> iterator = notifications.listIterator(notifications.size());
 
@@ -442,7 +440,7 @@ public class MessageNotifier {
     }
 
     Notification notification = builder.build();
-    NotificationManagerCompat.from(context).notify(SUMMARY_NOTIFICATION_ID, builder.build());
+    NotificationManagerCompat.from(context).notify(NotificationIds.MESSAGE_SUMMARY, builder.build());
     Log.i(TAG, "Posted notification. " + notification.toString());
   }
 

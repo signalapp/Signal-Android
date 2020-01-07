@@ -37,6 +37,7 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.PlayServicesProblemActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
+import org.thoughtcrime.securesms.notifications.NotificationIds;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -134,7 +135,7 @@ public class FcmRefreshJob extends BaseJob {
     builder.setContentIntent(pendingIntent);
 
     ((NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE))
-        .notify(12, builder.build());
+        .notify(NotificationIds.FCM_FAILURE, builder.build());
   }
 
   public static final class Factory implements Job.Factory<FcmRefreshJob> {

@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.SmsMigrator;
 import org.thoughtcrime.securesms.database.SmsMigrator.ProgressDescription;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
+import org.thoughtcrime.securesms.notifications.NotificationIds;
 
 import java.lang.ref.WeakReference;
 import java.util.concurrent.Executor;
@@ -121,7 +122,7 @@ public class ApplicationMigrationService extends Service
     notification.setProgress(total, complete, false);
 
     ((NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE))
-      .notify(4242, notification.build());
+      .notify(NotificationIds.APPLICATION_MIGRATION, notification.build());
   }
 
   private NotificationCompat.Builder initializeBackgroundNotification() {
@@ -137,7 +138,7 @@ public class ApplicationMigrationService extends Service
     builder.setContentIntent(PendingIntent.getActivity(this, 0, new Intent(this, MainActivity.class), 0));
 
     stopForeground(true);
-    startForeground(4242, builder.build());
+    startForeground(NotificationIds.APPLICATION_MIGRATION, builder.build());
 
     return builder;
   }
@@ -192,7 +193,7 @@ public class ApplicationMigrationService extends Service
       builder.setAutoCancel(true);
 
       Notification notification = builder.build();
-      ((NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE)).notify(31337, notification);
+      ((NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE)).notify(NotificationIds.SMS_IMPORT_COMPLETE, notification);
     }
   }
 
