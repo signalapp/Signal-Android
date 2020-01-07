@@ -1,30 +1,56 @@
 package org.thoughtcrime.securesms.loki.redesign.activities
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
+import android.app.Activity
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
+import android.os.AsyncTask
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.LinearLayout
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_settings.*
 import network.loki.messenger.R
+import nl.komponents.kovenant.Promise
+import nl.komponents.kovenant.all
+import nl.komponents.kovenant.deferred
+import nl.komponents.kovenant.ui.alwaysUi
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
+import org.thoughtcrime.securesms.avatar.AvatarSelection
+import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
+import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.loki.redesign.utilities.push
 import org.thoughtcrime.securesms.loki.toPx
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.mms.GlideRequests
+import org.thoughtcrime.securesms.profiles.AvatarHelper
+import org.thoughtcrime.securesms.profiles.ProfileMediaConstraints
+import org.thoughtcrime.securesms.util.BitmapDecodingException
+import org.thoughtcrime.securesms.util.BitmapUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.whispersystems.signalservice.api.crypto.ProfileCipher
+import org.whispersystems.signalservice.api.util.StreamDetails
+import org.whispersystems.signalservice.loki.api.LokiStorageAPI
+import java.io.ByteArrayInputStream
+import java.io.File
+import java.security.SecureRandom
 
 class SettingsActivity : PassphraseRequiredActionBarActivity() {
     private lateinit var glide: GlideRequests
     private var isEditingDisplayName = false
         set(value) { field = value; handleIsEditingDisplayNameChanged() }
     private var displayNameToBeUploaded: String? = null
+    private var profilePictureToBeUploaded: ByteArray? = null
+    private var tempFile: File? = null
 
     private val hexEncodedPublicKey: String
         get() {
@@ -50,6 +76,7 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
         profilePictureView.hexEncodedPublicKey = hexEncodedPublicKey
         profilePictureView.isLarge = true
         profilePictureView.update()
+        profilePictureView.setOnClickListener { showEditProfilePictureUI() }
         // Set up display name container
         displayNameContainer.setOnClickListener { showEditDisplayNameUI() }
         // Set up display name text view
@@ -60,6 +87,34 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
         copyButton.setOnClickListener { copyPublicKey() }
         // Set up share button
         shareButton.setOnClickListener { sharePublicKey() }
+    }
+
+    public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when (requestCode) {
+            AvatarSelection.REQUEST_CODE_AVATAR -> {
+                if (resultCode != Activity.RESULT_OK) { return }
+                val outputFile = Uri.fromFile(File(cacheDir, "cropped"))
+                var inputFile: Uri? = data?.data
+                if (inputFile == null && tempFile != null) {
+                    inputFile = Uri.fromFile(tempFile)
+                }
+                AvatarSelection.circularCropImage(this, inputFile, outputFile, R.string.CropImageActivity_profile_avatar)
+            }
+            AvatarSelection.REQUEST_CODE_CROP_IMAGE -> {
+                if (resultCode != Activity.RESULT_OK) { return }
+                AsyncTask.execute {
+                    try {
+                        profilePictureToBeUploaded = BitmapUtil.createScaledBytes(this@SettingsActivity, AvatarSelection.getResultUri(data), ProfileMediaConstraints()).bitmap
+                        Handler(Looper.getMainLooper()).post {
+                            updateProfile(true)
+                        }
+                    } catch (e: BitmapDecodingException) {
+                        e.printStackTrace()
+                    }
+                }
+            }
+        }
     }
     // endregion
 
@@ -82,18 +137,62 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
         }
     }
 
-    private fun updateProfile(isUpdatingDisplayName: Boolean, isUpdatingProfilePicture: Boolean) {
-        val displayName = displayNameToBeUploaded ?: TextSecurePreferences.getProfileName(this)
-        TextSecurePreferences.setProfileName(this, displayName)
-        val publicChatAPI = ApplicationContext.getInstance(this).lokiPublicChatAPI
-        if (publicChatAPI != null) {
-            val servers = DatabaseFactory.getLokiThreadDatabase(this).getAllPublicChatServers()
-            for (server in servers) {
-                publicChatAPI.setDisplayName(displayName, server)
+    private fun updateProfile(isUpdatingProfilePicture: Boolean) {
+        showLoader()
+        val promises = mutableListOf<Promise<*, Exception>>()
+        val displayName = displayNameToBeUploaded
+        if (displayName != null) {
+            val publicChatAPI = ApplicationContext.getInstance(this).lokiPublicChatAPI
+            if (publicChatAPI != null) {
+                val servers = DatabaseFactory.getLokiThreadDatabase(this).getAllPublicChatServers()
+                promises.addAll(servers.map { publicChatAPI.setDisplayName(displayName, it) })
             }
+            TextSecurePreferences.setProfileName(this, displayName)
         }
-        displayNameTextView.text = displayName
-        displayNameToBeUploaded = null
+        val profilePicture = profilePictureToBeUploaded
+        val encodedProfileKey = ProfileKeyUtil.generateEncodedProfileKey(this)
+        val profileKey = ProfileKeyUtil.getProfileKeyFromEncodedString(encodedProfileKey)
+        if (isUpdatingProfilePicture && profilePicture != null) {
+            val storageAPI = LokiStorageAPI.shared
+            val deferred = deferred<Unit, Exception>()
+            AsyncTask.execute {
+                val stream = StreamDetails(ByteArrayInputStream(profilePicture), "image/jpeg", profilePicture.size.toLong())
+                val (_, url) = storageAPI.uploadProfilePicture(storageAPI.server, profileKey, stream)
+                TextSecurePreferences.setProfileAvatarUrl(this, url)
+                deferred.resolve(Unit)
+            }
+            promises.add(deferred.promise)
+        }
+        all(promises).alwaysUi {
+            if (displayName != null) {
+                displayNameTextView.text = displayName
+            }
+            displayNameToBeUploaded = null
+            if (isUpdatingProfilePicture && profilePicture != null) {
+                AvatarHelper.setAvatar(this, Address.fromSerialized(TextSecurePreferences.getLocalNumber(this)), profilePicture)
+                TextSecurePreferences.setProfileAvatarId(this, SecureRandom().nextInt())
+                ProfileKeyUtil.setEncodedProfileKey(this, encodedProfileKey)
+                ApplicationContext.getInstance(this).updatePublicChatProfileAvatarIfNeeded()
+                profilePictureView.update()
+            }
+            profilePictureToBeUploaded = null
+            hideLoader()
+        }
+    }
+
+    private fun showLoader() {
+        loader.visibility = View.VISIBLE
+        loader.animate().setDuration(150).alpha(1.0f).start()
+    }
+
+    private fun hideLoader() {
+        loader.animate().setDuration(150).alpha(0.0f).setListener(object : AnimatorListenerAdapter() {
+
+            override fun onAnimationEnd(animation: Animator?) {
+                super.onAnimationEnd(animation)
+                loader.visibility = View.GONE
+            }
+        })
     }
     // endregion
 
@@ -103,16 +202,28 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
     }
 
     private fun saveDisplayName() {
-        val displayName = displayNameEditText.text.trim().toString()
-        // TODO: Validation
+        val displayName = displayNameEditText.text.toString().trim()
+        if (displayName.isEmpty()) {
+            return Toast.makeText(this, "Please pick a display name", Toast.LENGTH_SHORT).show()
+        }
+        if (!displayName.matches(Regex("[a-zA-Z0-9_]+"))) {
+            return Toast.makeText(this, "Please pick a display name that consists of only a-z, A-Z, 0-9 and _ characters", Toast.LENGTH_SHORT).show()
+        }
+        if (displayName.toByteArray().size > ProfileCipher.NAME_PADDED_LENGTH) {
+            return Toast.makeText(this, "Please pick a shorter display name", Toast.LENGTH_SHORT).show()
+        }
         isEditingDisplayName = false
         displayNameToBeUploaded = displayName
-        updateProfile(true, false)
+        updateProfile(false)
     }
 
     private fun showQRCode() {
         val intent = Intent(this, QRCodeActivity::class.java)
         push(intent)
+    }
+
+    private fun showEditProfilePictureUI() {
+        tempFile = AvatarSelection.startAvatarSelection(this, false, true)
     }
 
     private fun showEditDisplayNameUI() {

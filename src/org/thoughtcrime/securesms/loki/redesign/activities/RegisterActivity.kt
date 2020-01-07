@@ -91,14 +91,14 @@ class RegisterActivity : BaseActionBarActivity() {
         val hexEncodedPublicKey = keyPair!!.hexEncodedPublicKey
         val characterCount = hexEncodedPublicKey.count()
         var count = 0
-        val limit = 40
+        val limit = 32
         fun animate() {
-            val numberOfIndexesToShuffle = (0 until (40 - count)).random()
+            val numberOfIndexesToShuffle = 32 - count
             val indexesToShuffle = (0 until characterCount).shuffled().subList(0, numberOfIndexesToShuffle)
             var mangledHexEncodedPublicKey = hexEncodedPublicKey
             for (index in indexesToShuffle) {
                 try {
-                    mangledHexEncodedPublicKey = mangledHexEncodedPublicKey.substring(0, index) + "0123456789abcdef________________".random() + mangledHexEncodedPublicKey.substring(index + 1, mangledHexEncodedPublicKey.count())
+                    mangledHexEncodedPublicKey = mangledHexEncodedPublicKey.substring(0, index) + "0123456789abcdef__".random() + mangledHexEncodedPublicKey.substring(index + 1, mangledHexEncodedPublicKey.count())
                 } catch (exception: Exception) {
                     // Do nothing
                 }
@@ -108,7 +108,7 @@ class RegisterActivity : BaseActionBarActivity() {
                 publicKeyTextView.text = mangledHexEncodedPublicKey
                 Handler().postDelayed({
                     animate()
-                }, 40)
+                }, 32)
             } else {
                 publicKeyTextView.text = hexEncodedPublicKey
             }

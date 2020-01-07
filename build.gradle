@@ -197,6 +197,7 @@ dependencies {
     }
     implementation "com.jakewharton.rxbinding3:rxbinding:3.1.0"
     implementation "com.github.tbruyelle:rxpermissions:0.10.2"
+    implementation "com.github.ybq:Android-SpinKit:1.4.0"
 }
 
 def canonicalVersionCode = 23

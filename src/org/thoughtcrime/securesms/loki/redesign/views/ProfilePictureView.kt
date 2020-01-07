@@ -10,6 +10,7 @@ import android.widget.RelativeLayout
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import kotlinx.android.synthetic.main.view_profile_picture.view.*
 import network.loki.messenger.R
+import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto
 import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.loki.JazzIdenticonDrawable
 import org.thoughtcrime.securesms.mms.GlideRequests
@@ -60,7 +61,7 @@ class ProfilePictureView : RelativeLayout {
             glide.clear(imageView)
             if (hexEncodedPublicKey.isNotEmpty()) {
                 val signalProfilePicture = Recipient.from(context, Address.fromSerialized(hexEncodedPublicKey), false).contactPhoto
-                if (signalProfilePicture != null) {
+                if (signalProfilePicture != null && (signalProfilePicture as? ProfileContactPhoto)?.avatarObject != "0") {
                     glide.load(signalProfilePicture).diskCacheStrategy(DiskCacheStrategy.ALL).circleCrop().into(imageView)
                 } else {
                     val size = resources.getDimensionPixelSize(sizeID)
