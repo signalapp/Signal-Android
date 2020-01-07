@@ -63,6 +63,20 @@
         <item name="android:textColor">@color/text</item>
     </style>
 
+    <style name="UnimportantDialogButton">
+        <item name="android:background">@drawable/unimportant_dialog_button_background</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">@dimen/small_font_size</item>
+        <item name="android:textColor">@color/text</item>
+    </style>
+
+    <style name="ProminentDialogButton">
+        <item name="android:background">@drawable/prominent_dialog_button_background</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">@dimen/small_font_size</item>
+        <item name="android:textColor">@color/text</item>
+    </style>
+
     <style name="SessionIDTextView">
         <item name="android:background">@drawable/session_id_text_view_background</item>
         <item name="android:padding">@dimen/medium_spacing</item>

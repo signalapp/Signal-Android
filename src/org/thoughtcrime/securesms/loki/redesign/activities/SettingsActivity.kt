@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.avatar.AvatarSelection
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
 import org.thoughtcrime.securesms.database.Address
 import org.thoughtcrime.securesms.database.DatabaseFactory
+import org.thoughtcrime.securesms.loki.redesign.dialogs.SeedDialog
 import org.thoughtcrime.securesms.loki.redesign.utilities.push
 import org.thoughtcrime.securesms.loki.toPx
 import org.thoughtcrime.securesms.mms.GlideApp
@@ -62,31 +63,23 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
     // region Lifecycle
     override fun onCreate(savedInstanceState: Bundle?, isReady: Boolean) {
         super.onCreate(savedInstanceState, isReady)
-        // Set content view
         setContentView(R.layout.activity_settings)
-        // Set custom toolbar
         setSupportActionBar(toolbar)
         cancelButton.setOnClickListener { cancelEditingDisplayName() }
         saveButton.setOnClickListener { saveDisplayName() }
         showQRCodeButton.setOnClickListener { showQRCode() }
-        // Set up Glide
         glide = GlideApp.with(this)
-        // Set up profile picture view
         profilePictureView.glide = glide
         profilePictureView.hexEncodedPublicKey = hexEncodedPublicKey
         profilePictureView.isLarge = true
         profilePictureView.update()
         profilePictureView.setOnClickListener { showEditProfilePictureUI() }
-        // Set up display name container
         displayNameContainer.setOnClickListener { showEditDisplayNameUI() }
-        // Set up display name text view
         displayNameTextView.text = DatabaseFactory.getLokiUserDatabase(this).getDisplayName(hexEncodedPublicKey)
-        // Set up public key text view
         publicKeyTextView.text = hexEncodedPublicKey
-        // Set up copy button
         copyButton.setOnClickListener { copyPublicKey() }
-        // Set up share button
         shareButton.setOnClickListener { sharePublicKey() }
+        seedButton.setOnClickListener { showSeed() }
     }
 
     public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -243,6 +236,10 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
         intent.putExtra(Intent.EXTRA_TEXT, hexEncodedPublicKey)
         intent.type = "text/plain"
         startActivity(intent)
+    }
+
+    private fun showSeed() {
+        SeedDialog().show(supportFragmentManager, "Seed Dialog")
     }
     // endregion
 }

@@ -12,6 +12,7 @@
     <dimen name="massive_font_size">50sp</dimen>
 
     <!-- Element Sizes -->
+    <dimen name="small_button_height">34dp</dimen>
     <dimen name="medium_button_height">48dp</dimen>
     <dimen name="accent_line_thickness">4dp</dimen>
     <dimen name="small_profile_picture_size">36dp</dimen>
@@ -27,6 +28,8 @@
     <dimen name="fake_chat_view_bubble_corner_radius">10dp</dimen>
     <dimen name="fake_chat_view_height">234dp</dimen>
     <dimen name="setting_button_height">72dp</dimen>
+    <dimen name="dialog_corner_radius">8dp</dimen>
+    <dimen name="dialog_button_corner_radius">4dp</dimen>
 
     <!-- Distances -->
     <dimen name="small_spacing">8dp</dimen>
