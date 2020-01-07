@@ -287,7 +287,7 @@
         <item name="conversation_item_sticky_date_background">@drawable/sticky_date_header_background_light</item>
         <item name="conversation_item_sticky_date_text_color">@color/core_grey_60</item>
         <item name="conversation_item_image_outline_color">@color/transparent_black_20</item>
-        <item name="conversation_item_reveal_viewed_background_color">@color/core_white</item>
+        <item name="conversation_item_reveal_viewed_background_color">?conversation_background</item>
 
         <item name="quick_camera_icon">@drawable/ic_camera_outline_24</item>
         <item name="quick_mic_icon">@drawable/ic_mic_outline_24</item>
@@ -472,7 +472,7 @@
         <item name="conversation_item_sticky_date_background">@drawable/sticky_date_header_background_dark</item>
         <item name="conversation_item_sticky_date_text_color">@color/core_grey_25</item>
         <item name="conversation_item_image_outline_color">@color/transparent_white_20</item>
-        <item name="conversation_item_reveal_viewed_background_color">@color/core_black</item>
+        <item name="conversation_item_reveal_viewed_background_color">?conversation_background</item>
 
         <item name="contact_list_divider">@drawable/contact_list_divider_dark</item>
 
