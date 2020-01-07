@@ -979,8 +979,8 @@
   <string name="log_submit_activity__button_got_it">分かりました</string>
   <string name="log_submit_activity__button_compose_email">メール作成</string>
   <string name="log_submit_activity__this_log_will_be_posted_online">このログはコントリビュータに公開されますが、送信する前に内容を確認したり編集することができます。</string>
-  <string name="log_submit_activity__loading_logs">ログを読み込み中…</string>
-  <string name="log_submit_activity__uploading_logs">ログをアップロード中…</string>
+  <string name="log_submit_activity__loading_logs">ログを読み込んでいます…</string>
+  <string name="log_submit_activity__uploading_logs">ログをアップロードしています…</string>
   <string name="log_submit_activity__success">成功しました！</string>
   <string name="log_submit_activity__copy_this_url_and_add_it_to_your_issue">このURLをコピーしてバグレポートやサポートメールに貼り付けてください:\n\n<b>%1$s</b>\n</string>
   <string name="log_submit_activity__copied_to_clipboard">クリップボードにコピーしました</string>

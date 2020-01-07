@@ -335,7 +335,10 @@
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">No kan me laga førehandsvisningar av lenkjer til nokre av dei mest populære nettstadene, viss du vil.</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Du kan skru på eller av denne funksjonen når som helst i Signal-innstillingane dine (Privay → Send lenkjesniktitt).</string>
   <string name="ExperienceUpgradeActivity_got_it">Ålreit</string>
+  <string name="ExperienceUpgradeActivity_introducing_stickers">Klistremerke på veg</string>
   <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Kvifor bruka ord når du kan bruka klistremerke?</string>
+  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Kvifor bruka ord når du kan bruka klistremerke? Trykk dette ikonet på tastaturet ditt:</string>
+  <string name="ExperienceUpgradeActivity_lets_go">Kom i gang</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Hentar ei melding …</string>
   <!--GcmRefreshJob-->

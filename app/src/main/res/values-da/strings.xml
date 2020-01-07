@@ -417,6 +417,14 @@
   <string name="MediaOverviewActivity_Files">Filer</string>
   <string name="MediaOverviewActivity_Audio">Lyd</string>
   <string name="MediaOverviewActivity_All">Alle</string>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+    <item quantity="one">Slet det markerede emne?</item>
+    <item quantity="other">Slet markerede emner?</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+    <item quantity="one">Dette vil slette den markerede fil permanent. Alle beskedtekster associeret med denne fil vil også blive slettet.</item>
+    <item quantity="other">Dette vil slette alle %1$d markerede filer permanent. Alle beskedtekster associeret med disse filer vil også blive slettet.</item>
+  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Sletter</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Sletter beskeder…</string>
   <string name="MediaOverviewActivity_Select_all">Vælg alle</string>
@@ -429,6 +437,14 @@
   <string name="MediaOverviewActivity_Grid_view_description">Gittervisning</string>
   <string name="MediaOverviewActivity_List_view_description">Listevisning</string>
   <string name="MediaOverviewActivity_Selected_description">Valgte</string>
+  <plurals name="MediaOverviewActivity_d_items_s">
+    <item quantity="one">%1$d emne %2$s</item>
+    <item quantity="other">%1$d emner %2$s</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_d_items">
+    <item quantity="one">%1$d emne</item>
+    <item quantity="other">%1$d emner</item>
+  </plurals>
   <string name="MediaOverviewActivity_file">Fil</string>
   <string name="MediaOverviewActivity_audio">Lyd</string>
   <string name="MediaOverviewActivity_video">Video</string>
@@ -1501,5 +1517,9 @@ Der er %d dage tilbage</string>
   <string name="MessageRequestProfileView_member_of_two_groups">Medlem af%1$s og %2$s</string>
   <string name="MessageRequestProfileView_member_of_many_groups">Medlem af %1$s, %2$s og %3$s</string>
   <string name="MessageRequestProfileView_members">%1$d medlemmer</string>
+  <plurals name="MessageRequestProfileView_member_of_others">
+    <item quantity="one">%d andre</item>
+    <item quantity="other">%d andre</item>
+  </plurals>
   <!--EOF-->
 </resources>
