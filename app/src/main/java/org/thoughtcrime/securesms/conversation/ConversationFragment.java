@@ -636,6 +636,11 @@ public class ConversationFragment extends Fragment
   }
 
   private void handleReplyMessage(final MessageRecord message) {
+    if (getActivity() != null) {
+      //noinspection ConstantConditions
+      ((AppCompatActivity) getActivity()).getSupportActionBar().collapseActionView();
+    }
+
     listener.handleReplyMessage(message);
   }
 
