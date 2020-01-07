@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.loki.redesign.activities
 
+import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.arch.lifecycle.Observer
 import android.content.Context
@@ -8,9 +9,11 @@ import android.database.Cursor
 import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import android.graphics.Paint
+import android.os.AsyncTask
 import android.os.Bundle
 import android.support.v4.app.LoaderManager
 import android.support.v4.content.Loader
+import android.support.v7.app.AlertDialog
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.helper.ItemTouchHelper
@@ -26,6 +29,7 @@ import org.thoughtcrime.securesms.loki.redesign.utilities.push
 import org.thoughtcrime.securesms.loki.redesign.views.ConversationView
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.mms.GlideRequests
+import org.thoughtcrime.securesms.notifications.MessageNotifier
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import kotlin.math.abs
 
@@ -139,7 +143,29 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
 
         @SuppressLint("StaticFieldLeak")
         override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-            // TODO: Implement
+            val builder = AlertDialog.Builder(context)
+            builder.setIconAttribute(R.attr.dialog_alert_icon)
+            builder.setTitle("Delete Selected Conversation?")
+            builder.setMessage("This will permanently delete the selected conversation.")
+            builder.setCancelable(true)
+            builder.setPositiveButton("Delete") { dialog, _ ->
+                val threadID = (viewHolder as HomeAdapter.ViewHolder).view.thread!!.threadId
+                AsyncTask.execute {
+                    DatabaseFactory.getThreadDatabase(context).deleteConversation(threadID)
+                    MessageNotifier.updateNotification(context)
+                }
+                dialog.dismiss()
+            }
+            builder.setNegativeButton(android.R.string.cancel) { dialog, _ ->
+                val animator = ValueAnimator.ofFloat(viewHolder.itemView.translationX, 0.0f)
+                animator.duration = 150
+                animator.addUpdateListener {
+                    update(viewHolder, animator.animatedValue as Float)
+                }
+                animator.start()
+                dialog.dismiss()
+            }
+            builder.create().show()
         }
 
         override fun onChildDraw(c: Canvas, recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, dx: Float, dy: Float, actionState: Int, isCurrentlyActive: Boolean) {
@@ -147,7 +173,6 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
                 super.onChildDraw(c, recyclerView, viewHolder, dx, dy, actionState, isCurrentlyActive)
             } else {
                 val itemView = viewHolder.itemView
-                val alpha = 1.0f - abs(dx) / viewHolder.itemView.width.toFloat()
                 if (dx < 0) {
                     val backgroundPaint = Paint()
                     backgroundPaint.color = context.resources.getColorWithID(R.color.destructive, context.theme)
@@ -158,9 +183,14 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
                     val top = itemView.top.toFloat() + (itemView.bottom.toFloat() - itemView.top.toFloat() - icon.height) / 2
                     c.drawBitmap(icon, left, top, iconPaint)
                 }
-                viewHolder.itemView.alpha = alpha
-                viewHolder.itemView.translationX = dx
+                update(viewHolder, dx)
             }
+        }
+
+        private fun update(viewHolder: RecyclerView.ViewHolder, dx: Float) {
+            val alpha = 1.0f - abs(dx) / viewHolder.itemView.width.toFloat()
+            viewHolder.itemView.alpha = alpha
+            viewHolder.itemView.translationX = dx
         }
     }
     // endregion
