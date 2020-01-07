@@ -102,7 +102,12 @@ public class ViewOnceMessageView extends LinearLayout {
   }
 
   private void presentText(@NonNull MmsMessageRecord messageRecord) {
-    if (messageRecord.isOutgoing()) {
+    if (messageRecord.isOutgoing() && networkInProgress(messageRecord)) {
+      foregroundColor = openedForegroundColor;
+      text.setText(R.string.RevealableMessageView_outgoing_media);
+      icon.setImageResource(0);
+      progress.setVisibility(VISIBLE);
+    } else if (messageRecord.isOutgoing()) {
       foregroundColor = openedForegroundColor;
       text.setText(R.string.RevealableMessageView_outgoing_media);
       icon.setImageResource(R.drawable.ic_play_outline_24);
