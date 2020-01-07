@@ -1,9 +1,7 @@
 package org.thoughtcrime.securesms.loki.redesign.activities
 
-import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.arch.lifecycle.Observer
-import android.content.Context
 import android.content.Intent
 import android.database.Cursor
 import android.graphics.BitmapFactory
@@ -11,9 +9,10 @@ import android.graphics.Canvas
 import android.graphics.Paint
 import android.os.AsyncTask
 import android.os.Bundle
+import android.os.Handler
+import android.support.design.widget.Snackbar
 import android.support.v4.app.LoaderManager
 import android.support.v4.content.Loader
-import android.support.v7.app.AlertDialog
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.helper.ItemTouchHelper
@@ -23,6 +22,7 @@ import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.conversation.ConversationActivity
 import org.thoughtcrime.securesms.database.DatabaseFactory
+import org.thoughtcrime.securesms.database.ThreadDatabase
 import org.thoughtcrime.securesms.database.model.ThreadRecord
 import org.thoughtcrime.securesms.loki.getColorWithID
 import org.thoughtcrime.securesms.loki.redesign.utilities.push
@@ -48,6 +48,24 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
 
     override fun onCreate(savedInstanceState: Bundle?, isReady: Boolean) {
         super.onCreate(savedInstanceState, isReady)
+        // Process any outstanding deletes
+        val threadDatabase = DatabaseFactory.getThreadDatabase(this)
+        val archivedConversationCount = threadDatabase.archivedConversationListCount
+        if (archivedConversationCount > 0) {
+            val archivedConversations = threadDatabase.archivedConversationList
+            archivedConversations.moveToFirst()
+            fun deleteThreadAtCurrentPosition() {
+                val threadID = archivedConversations.getLong(archivedConversations.getColumnIndex(ThreadDatabase.ID))
+                AsyncTask.execute {
+                    threadDatabase.deleteConversation(threadID)
+                    MessageNotifier.updateNotification(this)
+                }
+            }
+            deleteThreadAtCurrentPosition()
+            while (archivedConversations.moveToNext()) {
+                deleteThreadAtCurrentPosition()
+            }
+        }
         // Set content view
         setContentView(R.layout.activity_home)
         // Set custom toolbar
@@ -106,7 +124,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
     }
 
     override fun onLongConversationClick(view: ConversationView) {
-        // TODO: Implement
+        // Do nothing
     }
 
     private fun openConversation(thread: ThreadRecord) {
@@ -135,7 +153,7 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         startActivity(intent)
     }
 
-    private class SwipeCallback(val context: Context) : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+    private class SwipeCallback(val activity: HomeActivity) : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
 
         override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
             return false
@@ -143,51 +161,48 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
 
         @SuppressLint("StaticFieldLeak")
         override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-            val builder = AlertDialog.Builder(context)
-            builder.setIconAttribute(R.attr.dialog_alert_icon)
-            builder.setTitle("Delete Selected Conversation?")
-            builder.setMessage("This will permanently delete the selected conversation.")
-            builder.setCancelable(true)
-            builder.setPositiveButton("Delete") { dialog, _ ->
-                val threadID = (viewHolder as HomeAdapter.ViewHolder).view.thread!!.threadId
-                AsyncTask.execute {
-                    DatabaseFactory.getThreadDatabase(context).deleteConversation(threadID)
-                    MessageNotifier.updateNotification(context)
+            val threadID = (viewHolder as HomeAdapter.ViewHolder).view.thread!!.threadId
+            val threadDatabase = DatabaseFactory.getThreadDatabase(activity)
+            threadDatabase.archiveConversation(threadID)
+            val deleteThread = object : Runnable {
+
+                override fun run() {
+                    AsyncTask.execute {
+                        threadDatabase.deleteConversation(threadID)
+                        MessageNotifier.updateNotification(activity)
+                    }
                 }
-                dialog.dismiss()
             }
-            builder.setNegativeButton(android.R.string.cancel) { dialog, _ ->
-                val animator = ValueAnimator.ofFloat(viewHolder.itemView.translationX, 0.0f)
-                animator.duration = 150
-                animator.addUpdateListener {
-                    update(viewHolder, animator.animatedValue as Float)
-                }
-                animator.start()
-                dialog.dismiss()
+            val handler = Handler()
+            handler.postDelayed(deleteThread, 5000)
+            val snackbar = Snackbar.make(activity.contentView, "Conversation Deleted", Snackbar.LENGTH_LONG)
+            snackbar.setAction("Undo") {
+                threadDatabase.unarchiveConversation(threadID)
+                handler.removeCallbacks(deleteThread)
+                animate(viewHolder, 0.0f)
             }
-            builder.create().show()
+            snackbar.setActionTextColor(activity.resources.getColorWithID(R.color.accent, activity.theme))
+            snackbar.show()
         }
 
         override fun onChildDraw(c: Canvas, recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, dx: Float, dy: Float, actionState: Int, isCurrentlyActive: Boolean) {
-            if (actionState != ItemTouchHelper.ACTION_STATE_SWIPE) {
-                super.onChildDraw(c, recyclerView, viewHolder, dx, dy, actionState, isCurrentlyActive)
-            } else {
+            if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE && dx < 0) {
                 val itemView = viewHolder.itemView
-                if (dx < 0) {
-                    val backgroundPaint = Paint()
-                    backgroundPaint.color = context.resources.getColorWithID(R.color.destructive, context.theme)
-                    c.drawRect(itemView.right.toFloat() - abs(dx), itemView.top.toFloat(), itemView.right.toFloat(), itemView.bottom.toFloat(), backgroundPaint)
-                    val icon = BitmapFactory.decodeResource(context.resources, R.drawable.ic_trash_filled_32)
-                    val iconPaint = Paint()
-                    val left = itemView.right.toFloat() - abs(dx) + context.resources.getDimension(R.dimen.medium_spacing)
-                    val top = itemView.top.toFloat() + (itemView.bottom.toFloat() - itemView.top.toFloat() - icon.height) / 2
-                    c.drawBitmap(icon, left, top, iconPaint)
-                }
-                update(viewHolder, dx)
+                animate(viewHolder, dx)
+                val backgroundPaint = Paint()
+                backgroundPaint.color = activity.resources.getColorWithID(R.color.destructive, activity.theme)
+                c.drawRect(itemView.right.toFloat() - abs(dx), itemView.top.toFloat(), itemView.right.toFloat(), itemView.bottom.toFloat(), backgroundPaint)
+                val icon = BitmapFactory.decodeResource(activity.resources, R.drawable.ic_trash_filled_32)
+                val iconPaint = Paint()
+                val left = itemView.right.toFloat() - abs(dx) + activity.resources.getDimension(R.dimen.medium_spacing)
+                val top = itemView.top.toFloat() + (itemView.bottom.toFloat() - itemView.top.toFloat() - icon.height) / 2
+                c.drawBitmap(icon, left, top, iconPaint)
+            } else {
+                super.onChildDraw(c, recyclerView, viewHolder, dx, dy, actionState, isCurrentlyActive)
             }
         }
 
-        private fun update(viewHolder: RecyclerView.ViewHolder, dx: Float) {
+        private fun animate(viewHolder: RecyclerView.ViewHolder, dx: Float) {
             val alpha = 1.0f - abs(dx) / viewHolder.itemView.width.toFloat()
             viewHolder.itemView.alpha = alpha
             viewHolder.itemView.translationX = dx

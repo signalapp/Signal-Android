@@ -16,6 +16,19 @@
         <item name="android:textSize">@dimen/very_large_font_size</item>
     </style>
 
+    <style name="Session.AlertDialog" parent="ThemeOverlay.AppCompat.Dialog.Alert">
+        <item name="buttonBarNegativeButtonStyle">@style/Session.AlertDialog.NegativeButtonStyle</item>
+        <item name="buttonBarPositiveButtonStyle">@style/Session.AlertDialog.PositiveButtonStyle</item>
+    </style>
+
+    <style name="Session.AlertDialog.NegativeButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:textColor">@color/accent</item>
+    </style>
+
+    <style name="Session.AlertDialog.PositiveButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:textColor">@color/accent</item>
+    </style>
+
     <style name="Session.DarkTabLayout" parent="Widget.Design.TabLayout">
         <item name="tabIndicatorColor">@color/accent</item>
         <item name="tabIndicatorHeight">@dimen/accent_line_thickness</item>

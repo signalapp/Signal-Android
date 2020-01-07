@@ -1,17 +1,28 @@
 package org.thoughtcrime.securesms.loki.redesign.activities
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentPagerAdapter
+import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_join_public_chat.*
 import kotlinx.android.synthetic.main.fragment_enter_chat_url.*
 import network.loki.messenger.R
+import nl.komponents.kovenant.ui.failUi
+import nl.komponents.kovenant.ui.successUi
+import org.thoughtcrime.securesms.ApplicationContext
+import org.thoughtcrime.securesms.BaseActionBarActivity
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
+import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
 import org.thoughtcrime.securesms.loki.redesign.fragments.ScanQRCodeWrapperFragment
 import org.thoughtcrime.securesms.loki.redesign.fragments.ScanQRCodeWrapperFragmentDelegate
+import org.thoughtcrime.securesms.util.TextSecurePreferences
 
 class JoinPublicChatActivity : PassphraseRequiredActionBarActivity(), ScanQRCodeWrapperFragmentDelegate {
     private val adapter = JoinPublicChatActivityAdapter(this)
@@ -29,13 +40,48 @@ class JoinPublicChatActivity : PassphraseRequiredActionBarActivity(), ScanQRCode
     }
     // endregion
 
+    // region Updating
+    private fun showLoader() {
+        loader.visibility = View.VISIBLE
+        loader.animate().setDuration(150).alpha(1.0f).start()
+    }
+
+    private fun hideLoader() {
+        loader.animate().setDuration(150).alpha(0.0f).setListener(object : AnimatorListenerAdapter() {
+
+            override fun onAnimationEnd(animation: Animator?) {
+                super.onAnimationEnd(animation)
+                loader.visibility = View.GONE
+            }
+        })
+    }
+    // endregion
+
     // region Interaction
     override fun handleQRCodeScanned(url: String) {
         joinPublicChatIfPossible(url)
     }
 
     fun joinPublicChatIfPossible(url: String) {
-        // TODO: Implement
+        if (!Patterns.WEB_URL.matcher(url).matches() || !url.startsWith("https://")) {
+            return Toast.makeText(this, "Invalid URL", Toast.LENGTH_SHORT).show()
+        }
+        showLoader()
+        val application = ApplicationContext.getInstance(this)
+        val channel: Long = 1
+        val displayName = TextSecurePreferences.getProfileName(this)
+        val lokiPublicChatAPI = application.lokiPublicChatAPI!!
+        application.lokiPublicChatManager.addChat(url, channel).successUi {
+            lokiPublicChatAPI.getMessages(channel, url)
+            lokiPublicChatAPI.setDisplayName(displayName, url)
+            val profileKey: ByteArray = ProfileKeyUtil.getProfileKey(this)
+            val profileUrl: String? = TextSecurePreferences.getProfileAvatarUrl(this)
+            lokiPublicChatAPI.setProfilePicture(url, profileKey, profileUrl)
+            finish()
+        }.failUi {
+            hideLoader()
+            Toast.makeText(this, "Couldn't Join Public Chat", Toast.LENGTH_SHORT).show()
+        }
     }
     // endregion
 }
@@ -83,7 +129,9 @@ class EnterChatURLFragment : Fragment() {
     }
 
     private fun joinPublicChatIfPossible() {
-        val chatURL = chatURLEditText.text.trim().toString()
+        val inputMethodManager = context!!.getSystemService(BaseActionBarActivity.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(chatURLEditText.windowToken, 0)
+        val chatURL = chatURLEditText.text.trim().toString().toLowerCase().replace("http://", "https://")
         (activity!! as JoinPublicChatActivity).joinPublicChatIfPossible(chatURL)
     }
 }

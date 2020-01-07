@@ -8,6 +8,7 @@
         <item name="colorPrimary">@color/action_bar_background</item>
         <item name="colorPrimaryDark">@color/action_bar_background</item>
         <item name="android:navigationBarColor">@color/navigation_bar_background</item>
+        <item name="alertDialogTheme">@style/Session.AlertDialog</item>
     </style>
 
     <style name="Session.DarkTheme.NoActionBar" parent="@style/Theme.AppCompat.NoActionBar">
@@ -15,6 +16,7 @@
         <item name="colorPrimary">@color/action_bar_background</item>
         <item name="colorPrimaryDark">@color/action_bar_background</item>
         <item name="android:navigationBarColor">@color/navigation_bar_background</item>
+        <item name="alertDialogTheme">@style/Session.AlertDialog</item>
     </style>
     <!-- Session -->
 
