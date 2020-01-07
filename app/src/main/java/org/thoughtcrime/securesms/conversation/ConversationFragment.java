@@ -373,6 +373,7 @@ public class ConversationFragment extends Fragment
     boolean            actionMessage  = false;
     boolean            hasText        = false;
     boolean            sharedContact  = false;
+    boolean            viewOnce       = false;
 
     if (actionMode != null && messageRecords.size() == 0) {
       actionMode.finish();
@@ -392,6 +393,10 @@ public class ConversationFragment extends Fragment
       if (messageRecord.isMms() && !((MmsMessageRecord) messageRecord).getSharedContacts().isEmpty()) {
         sharedContact = true;
       }
+
+      if (messageRecord.isViewOnce()) {
+        viewOnce = true;
+      }
     }
 
     if (messageRecords.size() > 1) {
@@ -405,12 +410,13 @@ public class ConversationFragment extends Fragment
 
       menu.findItem(R.id.menu_context_resend).setVisible(messageRecord.isFailed());
       menu.findItem(R.id.menu_context_save_attachment).setVisible(!actionMessage                                              &&
+                                                                  !viewOnce                                                   &&
                                                                   messageRecord.isMms()                                       &&
                                                                   !messageRecord.isMmsNotification()                          &&
                                                                   ((MediaMmsMessageRecord)messageRecord).containsMediaSlide() &&
                                                                   ((MediaMmsMessageRecord)messageRecord).getSlideDeck().getStickerSlide() == null);
 
-      menu.findItem(R.id.menu_context_forward).setVisible(!actionMessage && !sharedContact);
+      menu.findItem(R.id.menu_context_forward).setVisible(!actionMessage && !sharedContact && !viewOnce);
       menu.findItem(R.id.menu_context_details).setVisible(!actionMessage);
       menu.findItem(R.id.menu_context_reply).setVisible(canReplyToMessage(actionMessage, messageRecord));
     }
@@ -561,6 +567,10 @@ public class ConversationFragment extends Fragment
   }
 
   private void handleForwardMessage(MessageRecord message) {
+    if (message.isViewOnce()) {
+      throw new AssertionError("Cannot forward a view-once message.");
+    }
+
     listener.onForwardClicked();
 
     SimpleTask.run(getLifecycle(), () -> {
@@ -645,6 +655,10 @@ public class ConversationFragment extends Fragment
   }
 
   private void handleSaveAttachment(final MediaMmsMessageRecord message) {
+    if (message.isViewOnce()) {
+      throw new AssertionError("Cannot save a view-once message.");
+    }
+
     SaveAttachmentTask.showWarningDialog(getActivity(), new DialogInterface.OnClickListener() {
       public void onClick(DialogInterface dialog, int which) {
         List<SaveAttachmentTask.Attachment> attachments = Stream.of(message.getSlideDeck().getSlides())
