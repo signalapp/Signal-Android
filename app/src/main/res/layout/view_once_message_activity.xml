@@ -18,14 +18,24 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <ImageView
-        android:id="@+id/view_once_close_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="19dp"
-        android:layout_marginStart="19dp"
-        android:tint="@color/core_white"
-        app:srcCompat="@drawable/ic_x"/>
+    <!-- Need this wrapper layout to get the ripple to show correctly. https://issuetracker.google.com/issues/111819099 -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/transparent">
+
+        <ImageView
+            android:id="@+id/view_once_close_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="15dp"
+            android:padding="4dp"
+            android:tint="@color/core_white"
+            android:background="?selectableItemBackgroundBorderless"
+            app:srcCompat="@drawable/ic_x"/>
+
+    </FrameLayout>
 
     <TextView
         android:id="@+id/view_once_duration"

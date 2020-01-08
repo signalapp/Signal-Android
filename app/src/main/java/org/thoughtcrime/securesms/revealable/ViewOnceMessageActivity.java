@@ -71,18 +71,6 @@ public class ViewOnceMessageActivity extends PassphraseRequiredActionBarActivity
     this.closeButton = findViewById(R.id.view_once_close_button);
     this.uri         = getIntent().getParcelableExtra(KEY_URI);
 
-    ViewOnceGestureListener imageListener = new ViewOnceGestureListener(image);
-    GestureDetector         imageDetector = new GestureDetector(this, imageListener);
-
-    ViewOnceGestureListener videoListener = new ViewOnceGestureListener(video);
-    GestureDetector         videoDetector = new GestureDetector(this, videoListener);
-
-    image.setOnTouchListener((view, event) -> imageDetector.onTouchEvent(event));
-    image.setOnClickListener(v -> finish());
-
-    video.setOnTouchListener((view, event) -> videoDetector.onTouchEvent(event));
-    video.setOnClickListener(v -> finish());
-
     closeButton.setOnClickListener(v -> finish());
 
     initViewModel(getIntent().getLongExtra(KEY_MESSAGE_ID, -1), uri);
