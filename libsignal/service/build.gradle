@@ -65,10 +65,6 @@ protobuf {
     }
 }
 
-sourceSets {
-    main.proto.srcDir 'protobuf'
-}
-
 def isReleaseBuild() {
     return version.contains("SNAPSHOT") == false
 }

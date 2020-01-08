@@ -92,7 +92,12 @@ public class DeviceContactsOutputStream extends ChunkedOutputStream {
       contactDetails.setExpireTimer(contact.getExpirationTimer().get());
     }
 
+    if (contact.getInboxPosition().isPresent()) {
+      contactDetails.setInboxPosition(contact.getInboxPosition().get());
+    }
+
     contactDetails.setBlocked(contact.isBlocked());
+    contactDetails.setArchived(contact.isArchived());
 
     byte[] serializedContactDetails = contactDetails.build().toByteArray();
 

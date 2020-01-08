@@ -506,7 +506,7 @@ public class PushServiceSocket {
     String                hexPackId = Hex.toStringCondensed(packId);
     ByteArrayOutputStream output    = new ByteArrayOutputStream();
 
-    downloadFromCdn(output, String.format(Locale.US, STICKER_PATH, hexPackId, stickerId), 1024 * 1024, null);
+    downloadFromCdn(output, 0, String.format(Locale.US, STICKER_PATH, hexPackId, stickerId), 1024 * 1024, null);
 
     return output.toByteArray();
   }
@@ -517,7 +517,7 @@ public class PushServiceSocket {
     String                hexPackId = Hex.toStringCondensed(packId);
     ByteArrayOutputStream output    = new ByteArrayOutputStream();
 
-    downloadFromCdn(output, String.format(STICKER_MANIFEST_PATH, hexPackId), 1024 * 1024, null);
+    downloadFromCdn(output, 0, String.format(STICKER_MANIFEST_PATH, hexPackId), 1024 * 1024, null);
 
     return output.toByteArray();
   }
@@ -771,14 +771,14 @@ public class PushServiceSocket {
   private void downloadFromCdn(File destination, String path, int maxSizeBytes, ProgressListener listener)
       throws PushNetworkException, NonSuccessfulResponseCodeException
   {
-    try (FileOutputStream outputStream = new FileOutputStream(destination)) {
-      downloadFromCdn(outputStream, path, maxSizeBytes, listener);
+    try (FileOutputStream outputStream = new FileOutputStream(destination, true)) {
+      downloadFromCdn(outputStream, destination.length(), path, maxSizeBytes, listener);
     } catch (IOException e) {
       throw new PushNetworkException(e);
     }
   }
 
-  private void downloadFromCdn(OutputStream outputStream, String path, int maxSizeBytes, ProgressListener listener)
+  private void downloadFromCdn(OutputStream outputStream, long offset, String path, int maxSizeBytes, ProgressListener listener)
       throws PushNetworkException, NonSuccessfulResponseCodeException
   {
     ConnectionHolder connectionHolder = getRandom(cdnClients, random);
@@ -794,19 +794,25 @@ public class PushServiceSocket {
       request.addHeader("Host", connectionHolder.getHostHeader().get());
     }
 
+    if (offset > 0) {
+      Log.i(TAG, "Starting download from CDN with offset " + offset);
+      request.addHeader("Range", "bytes=" + offset + "-");
+    }
+
     Call call = okHttpClient.newCall(request.build());
 
     synchronized (connections) {
       connections.add(call);
     }
 
-    Response response;
+    Response     response = null;
+    ResponseBody body     = null;
 
     try {
       response = call.execute();
 
       if (response.isSuccessful()) {
-        ResponseBody body = response.body();
+        body = response.body();
 
         if (body == null)                        throw new PushNetworkException("No response body!");
         if (body.contentLength() > maxSizeBytes) throw new PushNetworkException("Response exceeds max size!");
@@ -814,20 +820,24 @@ public class PushServiceSocket {
         InputStream  in     = body.byteStream();
         byte[]       buffer = new byte[32768];
 
-        int read, totalRead = 0;
+        int  read      = 0;
+        long totalRead = offset;
 
         while ((read = in.read(buffer, 0, buffer.length)) != -1) {
           outputStream.write(buffer, 0, read);
           if ((totalRead += read) > maxSizeBytes) throw new PushNetworkException("Response exceeded max size!");
 
           if (listener != null) {
-            listener.onAttachmentProgress(body.contentLength(), totalRead);
+            listener.onAttachmentProgress(body.contentLength() + offset, totalRead);
           }
         }
 
         return;
       }
     } catch (IOException e) {
+      if (body != null) {
+        body.close();
+      }
       throw new PushNetworkException(e);
     } finally {
       synchronized (connections) {

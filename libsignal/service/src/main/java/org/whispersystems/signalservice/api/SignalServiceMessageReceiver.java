@@ -134,7 +134,8 @@ public class SignalServiceMessageReceiver {
    *
    * @param pointer The {@link SignalServiceAttachmentPointer}
    *                received in a {@link SignalServiceDataMessage}.
-   * @param destination The download destination for this attachment.
+   * @param destination The download destination for this attachment. If this file exists, it is
+   *                    assumed that this is previously-downloaded content that can be resumed.
    * @param listener An optional listener (may be null) to receive callbacks on download progress.
    *
    * @return An InputStream that streams the plaintext attachment contents.

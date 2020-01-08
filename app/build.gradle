@@ -117,7 +117,7 @@ dependencies {
 
     implementation project(':libsignal-service')
 
-    implementation 'org.signal:ringrtc-android:0.2.0'
+    implementation 'org.signal:ringrtc-android:0.3.1'
 
     implementation "me.leolin:ShortcutBadger:1.1.16"
     implementation 'se.emilsjolander:stickylistheaders:2.7.0'
@@ -194,8 +194,8 @@ dependencyVerification {
     configuration = '(play|website)(Debug|Release)RuntimeClasspath'
 }
 
-def canonicalVersionCode = 579
-def canonicalVersionName = "4.51.6"
+def canonicalVersionCode = 588
+def canonicalVersionName = "4.53.3"
 
 def postFixSize = 10
 def abiPostFix = ['universal'   : 0,
@@ -343,32 +343,6 @@ android {
 
             output.versionCodeOverride = canonicalVersionCode * postFixSize + postFix
         }
-    }
-
-    sourceSets {
-        main {
-            manifest.srcFile '../AndroidManifest.xml'
-            java.srcDirs = ['../src']
-            resources.srcDirs = ['../src']
-            aidl.srcDirs = ['../src']
-            renderscript.srcDirs = ['../src']
-            res.srcDirs = ['../res']
-            assets.srcDirs = ['../assets']
-            jniLibs.srcDirs = ['../libs']
-            proto.srcDir '../protobuf'
-        }
-        androidTest {
-            java.srcDirs = ['../test/androidTest/java']
-        }
-        test {
-            java.srcDirs = ['../test/unitTest/java']
-            resources.srcDirs = ['../test/unitTest/resources']
-        }
-        staging {
-            res.srcDirs = ['../staging/res']
-        }
-
-        website.manifest.srcFile '../website/AndroidManifest.xml'
     }
 
     lintOptions {

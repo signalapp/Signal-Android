@@ -44,6 +44,8 @@ public class DeviceGroupsInputStream extends ChunkedInputStream{
     Optional<Integer>                       expirationTimer = Optional.absent();
     Optional<String>                        color           = Optional.fromNullable(details.getColor());
     boolean                                 blocked         = details.getBlocked();
+    Optional<Integer>                       inboxPosition   = Optional.absent();
+    boolean                                 archived        = false;
 
     if (details.hasAvatar()) {
       long        avatarLength      = details.getAvatar().getLength();
@@ -66,7 +68,15 @@ public class DeviceGroupsInputStream extends ChunkedInputStream{
       }
     }
 
-    return new DeviceGroup(id, name, addressMembers, avatar, active, expirationTimer, color, blocked);
+    if (details.hasInboxPosition()) {
+      inboxPosition = Optional.of(details.getInboxPosition());
+    }
+
+    if (details.hasArchived()) {
+      archived = details.getArchived();
+    }
+
+    return new DeviceGroup(id, name, addressMembers, avatar, active, expirationTimer, color, blocked, inboxPosition, archived);
   }
 
 }

@@ -14,9 +14,9 @@ public class SignalServiceStickerManifest {
   private final List<StickerInfo>     stickers;
 
   public SignalServiceStickerManifest(String title, String author, StickerInfo cover, List<StickerInfo> stickers) {
-    this.title    = Optional.of(title);
-    this.author   = Optional.of(author);
-    this.cover    = Optional.of(cover);
+    this.title    = Optional.fromNullable(title);
+    this.author   = Optional.fromNullable(author);
+    this.cover    = Optional.fromNullable(cover);
     this.stickers = (stickers == null) ? Collections.<StickerInfo>emptyList() : new ArrayList<>(stickers);
   }
 

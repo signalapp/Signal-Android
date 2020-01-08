@@ -7,7 +7,7 @@
         errorLine1="    List&lt;SubscriptionInfo> list = subscriptionManager.getActiveSubscriptionInfoList();"
         errorLine2="                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
-            file="src/org/thoughtcrime/securesms/util/dualsim/SubscriptionManagerCompat.java"
+            file="src/main/java/org/thoughtcrime/securesms/util/dualsim/SubscriptionManagerCompat.java"
             line="101"
             column="35"/>
     </issue>
@@ -18,7 +18,7 @@
         errorLine1="                drawables.getColor(1, 0xff000000);"
         errorLine2="                                   ~">
         <location
-            file="src/org/thoughtcrime/securesms/contacts/ContactSelectionListAdapter.java"
+            file="src/main/java/org/thoughtcrime/securesms/contacts/ContactSelectionListAdapter.java"
             line="187"
             column="36"/>
     </issue>
