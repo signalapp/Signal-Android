@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/default_dialog_background_inset"
     android:gravity="center_horizontal"
     android:orientation="vertical"
@@ -11,57 +12,52 @@
     android:paddingRight="32dp"
     android:paddingBottom="@dimen/medium_spacing">
 
-    <TextView
+    <com.github.ybq.android.spinkit.SpinKitView
+        style="@style/SpinKitView.DoubleBounce"
+        android:id="@+id/spinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Your Recovery Phrase"
+        android:layout_marginTop="8dp"
+        android:layout_centerInParent="true"
+        app:SpinKit_Color="@color/text" />
+
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/large_spacing"
+        android:text="Waiting for Authorization"
         android:textColor="@color/text"
         android:textStyle="bold"
         android:textSize="@dimen/medium_font_size" />
 
     <TextView
-        android:id="@+id/seedTextView"
+        android:id="@+id/explanationTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/large_spacing"
-        android:text="habitat kiwi amply iceberg dog nerves spiderman soft match partial awakened maximum degrees"
+        android:text="Please check that the words below match those shown on your other device."
         android:textColor="@color/text"
+        android:alpha="0.6"
         android:textSize="@dimen/small_font_size"
         android:textAlignment="center" />
 
     <TextView
+        android:id="@+id/mnemonicTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/large_spacing"
-        android:text="This is your personal recovery phrase. It can be used to restore your account or migrate your account to a new device."
+        android:text="puffin circle idled"
         android:textColor="@color/text"
         android:textSize="@dimen/small_font_size"
-        android:textAlignment="center"
-        android:alpha="0.6" />
+        android:textAlignment="center" />
 
-    <LinearLayout
+    <Button
+        style="@style/UnimportantDialogButton"
+        android:id="@+id/cancelButton"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/small_button_height"
         android:layout_marginTop="@dimen/large_spacing"
-        android:orientation="horizontal">
-
-        <Button
-            style="@style/UnimportantDialogButton"
-            android:id="@+id/cancelButton"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/small_button_height"
-            android:layout_weight="1"
-            android:text="Cancel" />
-
-        <Button
-            style="@style/UnimportantDialogButton"
-            android:id="@+id/copyButton"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/small_button_height"
-            android:layout_weight="1"
-            android:layout_marginLeft="@dimen/medium_spacing"
-            android:text="Copy" />
-
-    </LinearLayout>
+        android:text="Cancel" />
 
 </LinearLayout>

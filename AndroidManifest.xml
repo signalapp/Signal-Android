@@ -126,37 +126,32 @@
 
         <!-- Session -->
         <activity
-            android:name="org.thoughtcrime.securesms.loki.redesign.activities.LandingActivity"
-            android:launchMode="singleTask" />
+            android:name="org.thoughtcrime.securesms.loki.redesign.activities.LandingActivity" />
         <activity
-            android:name="org.thoughtcrime.securesms.loki.redesign.activities.RegisterActivity"
-            android:launchMode="singleTask" />
-        <activity
-            android:name="org.thoughtcrime.securesms.loki.redesign.activities.DisplayNameActivity"
-            android:launchMode="singleTask"
-            android:windowSoftInputMode="adjustResize" />
+            android:name="org.thoughtcrime.securesms.loki.redesign.activities.RegisterActivity" />
         <activity
             android:name="org.thoughtcrime.securesms.loki.redesign.activities.RestoreActivity"
-            android:launchMode="singleTask"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name="org.thoughtcrime.securesms.loki.redesign.activities.LinkDeviceActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name="org.thoughtcrime.securesms.loki.redesign.activities.DisplayNameActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name="org.thoughtcrime.securesms.loki.redesign.activities.HomeActivity"
             android:launchMode="singleTask"
             android:theme="@style/Session.DarkTheme.NoActionBar" />
         <activity
-            android:name="org.thoughtcrime.securesms.loki.redesign.activities.CreatePrivateChatActivity"
-            android:launchMode="singleTask" />
-        <activity
-            android:name="org.thoughtcrime.securesms.loki.redesign.activities.JoinPublicChatActivity"
-            android:launchMode="singleTask"
-            android:windowSoftInputMode="adjustResize" />
-        <activity
             android:name="org.thoughtcrime.securesms.loki.redesign.activities.SettingsActivity"
-            android:launchMode="singleTask"
             android:theme="@style/Session.DarkTheme.NoActionBar" />
         <activity
-            android:name="org.thoughtcrime.securesms.loki.redesign.activities.QRCodeActivity"
-            android:launchMode="singleTask" />
+            android:name="org.thoughtcrime.securesms.loki.redesign.activities.QRCodeActivity" />
+        <activity
+            android:name="org.thoughtcrime.securesms.loki.redesign.activities.CreatePrivateChatActivity" />
+        <activity
+            android:name="org.thoughtcrime.securesms.loki.redesign.activities.JoinPublicChatActivity"
+            android:windowSoftInputMode="adjustResize" />
         <!-- Session -->
         <activity android:name="org.thoughtcrime.securesms.loki.LinkedDevicesActivity" />
         <activity

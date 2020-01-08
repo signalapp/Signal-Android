@@ -30,7 +30,7 @@
         android:layout_marginRight="@dimen/very_large_spacing"
         android:textSize="@dimen/medium_font_size"
         android:textColor="@color/text"
-        android:text="Enter the seed that was given to you when you signed up to restore your account." />
+        android:text="Enter the recovery phrase that was given to you when you signed up to restore your account." />
 
     <EditText
         style="@style/SessionEditText"
@@ -40,7 +40,7 @@
         android:layout_marginLeft="@dimen/very_large_spacing"
         android:layout_marginTop="20dp"
         android:layout_marginRight="@dimen/very_large_spacing"
-        android:hint="Enter your seed" />
+        android:hint="Enter your recovery phrase" />
 
     <View
         android:layout_width="match_parent"

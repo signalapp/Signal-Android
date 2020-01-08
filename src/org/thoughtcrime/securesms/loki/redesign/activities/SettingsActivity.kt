@@ -80,6 +80,13 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
         publicKeyTextView.text = hexEncodedPublicKey
         copyButton.setOnClickListener { copyPublicKey() }
         shareButton.setOnClickListener { sharePublicKey() }
+        val isMasterDevice = (TextSecurePreferences.getMasterHexEncodedPublicKey(this) == null)
+        if (!isMasterDevice) {
+            linkedDevicesButtonTopSeparator.visibility = View.GONE
+            linkedDevicesButton.visibility = View.GONE
+            seedButtonTopSeparator.visibility = View.GONE
+            seedButton.visibility = View.GONE
+        }
         seedButton.setOnClickListener { showSeed() }
         clearAllDataButton.setOnClickListener { clearAllData() }
     }
@@ -241,7 +248,7 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
     }
 
     private fun showSeed() {
-        SeedDialog().show(supportFragmentManager, "Seed Dialog")
+        SeedDialog().show(supportFragmentManager, "Recovery Phrase Dialog")
     }
 
     private fun clearAllData() {

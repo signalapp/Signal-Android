@@ -124,7 +124,7 @@ class ViewMyQRCodeFragment : Fragment() {
         val size = toPx(280, resources)
         val qrCode = QRCodeUtilities.encode(hexEncodedPublicKey, size)
         qrCodeImageView.setImageBitmap(qrCode)
-        val explanation = SpannableStringBuilder("This is your unique public QR code. Other users may scan this in order to begin a conversation with you.")
+        val explanation = SpannableStringBuilder("This is your unique public QR code. Other users can scan this to start a conversation with you.")
         explanation.setSpan(StyleSpan(Typeface.BOLD), 8, 34, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         explanationTextView.text = explanation
         shareButton.setOnClickListener { shareQRCode() }

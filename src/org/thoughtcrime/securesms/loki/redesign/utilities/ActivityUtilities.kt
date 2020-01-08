@@ -21,7 +21,20 @@ fun AppCompatActivity.setUpActionBarSessionLogo() {
     supportActionBar!!.setDisplayShowCustomEnabled(true)
 }
 
-fun AppCompatActivity.push(intent: Intent) {
-    startActivity(intent)
+fun AppCompatActivity.push(intent: Intent, isForResult: Boolean = false) {
+    if (isForResult) {
+        startActivityForResult(intent, 42)
+    } else {
+        startActivity(intent)
+    }
     overridePendingTransition(R.anim.slide_from_right, R.anim.fade_scale_out)
+}
+
+fun AppCompatActivity.show(intent: Intent, isForResult: Boolean = false) {
+    if (isForResult) {
+        startActivityForResult(intent, 42)
+    } else {
+        startActivity(intent)
+    }
+    overridePendingTransition(R.anim.slide_from_bottom, R.anim.fade_scale_out)
 }

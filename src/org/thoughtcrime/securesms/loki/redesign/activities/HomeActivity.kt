@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.database.ThreadDatabase
 import org.thoughtcrime.securesms.database.model.ThreadRecord
 import org.thoughtcrime.securesms.loki.getColorWithID
 import org.thoughtcrime.securesms.loki.redesign.utilities.push
+import org.thoughtcrime.securesms.loki.redesign.utilities.show
 import org.thoughtcrime.securesms.loki.redesign.views.ConversationView
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.mms.GlideRequests
@@ -140,17 +141,17 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
 
     private fun openSettings() {
         val intent = Intent(this, SettingsActivity::class.java)
-        startActivity(intent)
+        show(intent)
     }
 
     private fun createPrivateChat() {
         val intent = Intent(this, CreatePrivateChatActivity::class.java)
-        startActivity(intent)
+        show(intent)
     }
 
     private fun joinPublicChat() {
         val intent = Intent(this, JoinPublicChatActivity::class.java)
-        startActivity(intent)
+        show(intent)
     }
 
     private class SwipeCallback(val activity: HomeActivity) : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {

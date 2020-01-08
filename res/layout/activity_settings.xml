@@ -205,6 +205,7 @@
                 android:text="Chats" />
 
             <View
+                android:id="@+id/linkedDevicesButtonTopSeparator"
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:background="@color/separator" />
@@ -221,6 +222,7 @@
                 android:text="Linked Devices" />
 
             <View
+                android:id="@+id/seedButtonTopSeparator"
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:background="@color/separator" />
@@ -234,7 +236,7 @@
                 android:textSize="@dimen/medium_font_size"
                 android:textStyle="bold"
                 android:gravity="center"
-                android:text="Show Seed" />
+                android:text="Show Recovery Phrase" />
 
             <View
                 android:layout_width="match_parent"

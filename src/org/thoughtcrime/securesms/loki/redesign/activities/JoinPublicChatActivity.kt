@@ -33,7 +33,7 @@ class JoinPublicChatActivity : PassphraseRequiredActionBarActivity(), ScanQRCode
         // Set content view
         setContentView(R.layout.activity_join_public_chat)
         // Set title
-        supportActionBar!!.title = "Join Public Chat"
+        supportActionBar!!.title = "Join Channel"
         // Set up view pager
         viewPager.adapter = adapter
         tabLayout.setupWithViewPager(viewPager)
@@ -80,7 +80,7 @@ class JoinPublicChatActivity : PassphraseRequiredActionBarActivity(), ScanQRCode
             finish()
         }.failUi {
             hideLoader()
-            Toast.makeText(this, "Couldn't Join Public Chat", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Couldn't Join Channel", Toast.LENGTH_SHORT).show()
         }
     }
     // endregion
@@ -99,7 +99,7 @@ private class JoinPublicChatActivityAdapter(val activity: JoinPublicChatActivity
             1 -> {
                 val result = ScanQRCodeWrapperFragment()
                 result.delegate = activity
-                result.message = "Scan the QR code of the public chat you'd like to join"
+                result.message = "Scan the QR code of the channel you'd like to join"
                 result
             }
             else -> throw IllegalStateException()
@@ -108,7 +108,7 @@ private class JoinPublicChatActivityAdapter(val activity: JoinPublicChatActivity
 
     override fun getPageTitle(index: Int): CharSequence? {
         return when (index) {
-            0 -> "Enter Chat URL"
+            0 -> "Enter Channel URL"
             1 -> "Scan QR Code"
             else -> throw IllegalStateException()
         }
@@ -116,7 +116,7 @@ private class JoinPublicChatActivityAdapter(val activity: JoinPublicChatActivity
 }
 // endregion
 
-// region Enter Public Key Fragment
+// region Enter Chat URL Fragment
 class EnterChatURLFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {

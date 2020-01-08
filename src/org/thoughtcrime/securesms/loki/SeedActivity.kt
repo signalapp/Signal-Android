@@ -256,7 +256,7 @@ class SeedActivity : BaseActionBarActivity(), DeviceLinkingDelegate, ScanListene
         TextSecurePreferences.setHasSeenWelcomeScreen(this, false)
         TextSecurePreferences.setPromptedPushRegistration(this, false)
     }
-    // endregion
+
     override fun onQrDataFound(data: String?) {
         runOnUiThread {
             if (data != null && PublicKeyValidation.isValid(data.trim())) {
