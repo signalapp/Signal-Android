@@ -483,6 +483,7 @@
     <item quantity="other">Et voi jakaa useampaa kuin %d kappaletta.</item>
   </plurals>
   <string name="MediaSendActivity_select_recipients_description">Valitse vastaanottajat</string>
+  <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">Napauttamalla tätä viesti katoaa sen jälkeen, kun se on katsottu.</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Kaikki media</string>
   <!--MessageRecord-->

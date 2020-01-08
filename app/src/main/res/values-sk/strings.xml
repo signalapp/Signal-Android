@@ -525,6 +525,7 @@
     <item quantity="other">Nemôžete zdieľať viac ako %d položiek.</item>
   </plurals>
   <string name="MediaSendActivity_select_recipients_description">Vybrať príjemcov</string>
+  <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">Ťuknite sem, aby táto správa po zobrazení zmizla.</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Všetky médiá</string>
   <!--MessageRecord-->

@@ -462,6 +462,7 @@
     <item quantity="other">Vous ne pouvez pas partager plus de %d éléments.</item>
   </plurals>
   <string name="MediaSendActivity_select_recipients_description">Sélectionner des destinataires</string>
+  <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">Touchez ici pour que ce message disparaisse après qu’il a été vu.</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Tous les médias</string>
   <!--MessageRecord-->

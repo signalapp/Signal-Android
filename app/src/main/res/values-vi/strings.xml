@@ -462,6 +462,7 @@
     <item quantity="other">Bạn không thể chia sẻ quá %d mục.</item>
   </plurals>
   <string name="MediaSendActivity_select_recipients_description">Chọn người nhận</string>
+  <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">Nhấn vào đây để khiến tin nhắn tự hủy sau khi đã được xem.</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Tất cả tập tin đa phương tiện</string>
   <!--MessageRecord-->

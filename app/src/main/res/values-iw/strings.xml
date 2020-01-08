@@ -525,6 +525,7 @@
     <item quantity="other">אינך יכול לשתף יותר מ־%d פריטים.</item>
   </plurals>
   <string name="MediaSendActivity_select_recipients_description">בחר מקבלים</string>
+  <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">הקש כאן כדי להעלים הודעה זו לאחר שהיא תיקרא.</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">כל המדיה</string>
   <!--MessageRecord-->

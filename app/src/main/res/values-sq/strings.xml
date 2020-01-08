@@ -483,6 +483,7 @@
     <item quantity="other">S\’mund të ndani me të tjerët më shumë se %d objekte.</item>
   </plurals>
   <string name="MediaSendActivity_select_recipients_description">Përzgjidhni marrës</string>
+  <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">Prekni këtu që të zhduket ky mesazh pasi të jetë parë.</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Krejt mediat</string>
   <!--MessageRecord-->

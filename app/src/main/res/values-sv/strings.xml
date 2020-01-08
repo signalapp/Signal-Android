@@ -483,6 +483,7 @@
     <item quantity="other">Du kan inte dela mer än %d objekt.</item>
   </plurals>
   <string name="MediaSendActivity_select_recipients_description">Välj mottagare</string>
+  <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">Tryck här för att få detta meddelande att försvinna efter att det har visats.</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Alla media</string>
   <!--MessageRecord-->

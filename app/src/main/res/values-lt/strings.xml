@@ -363,6 +363,7 @@
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Dabar yra palaikomos pasirinktinos populiariausių svetainių internete nuorodų peržiūros.</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Šią ypatybę galite bet kuriuo metu įjungti ar išjungti savo Signal nustatymuose (Privatumas &gt; Siųsti nuorodų peržiūras).</string>
   <string name="ExperienceUpgradeActivity_got_it">Supratau</string>
+  <string name="ExperienceUpgradeActivity_introducing_stickers">Pristatome lipdukus</string>
   <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Kam naudoti žodžius, kai galima naudoti lipdukus?</string>
   <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Kam naudoti žodžius, kai galima naudoti lipdukus? Bakstelėkite savo klaviatūroje šią piktogramą:</string>
   <string name="ExperienceUpgradeActivity_lets_go">Pirmyn</string>

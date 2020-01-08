@@ -525,6 +525,7 @@
     <item quantity="other">Вы не можете поделиться более чем %d элементами.</item>
   </plurals>
   <string name="MediaSendActivity_select_recipients_description">Выберите получателей</string>
+  <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">Нажмите здесь, чтобы ваше сообщение исчезло после того, как оно будет просмотрено.</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Все медиа</string>
   <!--MessageRecord-->

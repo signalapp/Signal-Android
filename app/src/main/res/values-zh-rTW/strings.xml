@@ -462,6 +462,7 @@
     <item quantity="other">你無法分享超過 %d 個項目。</item>
   </plurals>
   <string name="MediaSendActivity_select_recipients_description">選擇收件人</string>
+  <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">點擊此處使該訊息在查看後消失。</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">所有的媒體</string>
   <!--MessageRecord-->

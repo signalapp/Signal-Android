@@ -484,6 +484,7 @@
     <item quantity="other">Nem oszthatsz meg többet, mint %d db elem.</item>
   </plurals>
   <string name="MediaSendActivity_select_recipients_description">Címzettek kiválasztása</string>
+  <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">Koppints ide, hogy az üzenet olvasás után azonnal törlődő típusú legyen.</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Összes médiafájl</string>
   <!--MessageRecord-->

@@ -504,6 +504,7 @@
     <item quantity="other">Nu puteți partaja mai mult de %d elemente.</item>
   </plurals>
   <string name="MediaSendActivity_select_recipients_description">Selectați destinatarii</string>
+  <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">Apăsați aici pentru a face acest mesaj să dispară după ce este vizualizat.</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Toate fișierele media</string>
   <!--MessageRecord-->
