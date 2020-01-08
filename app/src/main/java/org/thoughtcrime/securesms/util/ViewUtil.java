@@ -19,6 +19,7 @@ package org.thoughtcrime.securesms.util;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
@@ -196,6 +197,10 @@ public class ViewUtil {
 
   public static int dpToPx(Context context, int dp) {
     return (int)((dp * context.getResources().getDisplayMetrics().density) + 0.5);
+  }
+
+  public static int dpToPx(int dp) {
+    return Math.round(dp * Resources.getSystem().getDisplayMetrics().density);
   }
 
   public static void updateLayoutParams(@NonNull View view, int width, int height) {

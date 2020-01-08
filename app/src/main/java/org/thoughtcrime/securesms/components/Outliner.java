@@ -6,7 +6,8 @@ import android.graphics.Path;
 import android.graphics.RectF;
 
 import androidx.annotation.ColorInt;
-import androidx.annotation.NonNull;
+
+import org.thoughtcrime.securesms.util.ViewUtil;
 
 public class Outliner {
 
@@ -16,7 +17,7 @@ public class Outliner {
   private final Paint   outlinePaint = new Paint();
   {
     outlinePaint.setStyle(Paint.Style.STROKE);
-    outlinePaint.setStrokeWidth(1f);
+    outlinePaint.setStrokeWidth(ViewUtil.dpToPx(1));
     outlinePaint.setAntiAlias(true);
   }
 

@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientExporter;
 import org.thoughtcrime.securesms.util.ThemeUtil;
+import org.thoughtcrime.securesms.util.ViewUtil;
 
 import java.util.Objects;
 
@@ -40,12 +41,12 @@ public final class AvatarImageView extends AppCompatImageView {
   static {
     LIGHT_THEME_OUTLINE_PAINT.setColor(Color.argb((int) (255 * 0.2), 0, 0, 0));
     LIGHT_THEME_OUTLINE_PAINT.setStyle(Paint.Style.STROKE);
-    LIGHT_THEME_OUTLINE_PAINT.setStrokeWidth(1f);
+    LIGHT_THEME_OUTLINE_PAINT.setStrokeWidth(ViewUtil.dpToPx(1));
     LIGHT_THEME_OUTLINE_PAINT.setAntiAlias(true);
 
     DARK_THEME_OUTLINE_PAINT.setColor(Color.argb((int) (255 * 0.2), 255, 255, 255));
     DARK_THEME_OUTLINE_PAINT.setStyle(Paint.Style.STROKE);
-    DARK_THEME_OUTLINE_PAINT.setStrokeWidth(1f);
+    DARK_THEME_OUTLINE_PAINT.setStrokeWidth(ViewUtil.dpToPx(1));
     DARK_THEME_OUTLINE_PAINT.setAntiAlias(true);
   }
 
