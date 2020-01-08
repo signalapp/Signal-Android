@@ -16,13 +16,12 @@ import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.Debouncer;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * Manages the queue of jobs. This is the only class that should write to {@link JobStorage} to
@@ -93,6 +92,28 @@ class JobController {
 
     insertJobChain(chain);
     scheduleJobs(chain.get(0));
+    triggerOnSubmit(chain);
+    notifyAll();
+  }
+
+  @WorkerThread
+  synchronized void submitJobWithExistingDependencies(@NonNull Job job, @NonNull Collection<String> dependsOn) {
+    List<List<Job>> chain = Collections.singletonList(Collections.singletonList(job));
+
+    if (chainExceedsMaximumInstances(chain)) {
+      jobTracker.onStateChange(job.getId(), JobTracker.JobState.IGNORED);
+      Log.w(TAG, JobLogger.format(job, "Already at the max instance count of " + job.getParameters().getMaxInstances() + ". Skipping."));
+      return;
+    }
+
+    dependsOn = Stream.of(dependsOn)
+                      .filter(id -> jobStorage.getJobSpec(id) != null)
+                      .toList();
+
+    FullSpec fullSpec = buildFullSpec(job, dependsOn);
+    jobStorage.insertJobs(Collections.singletonList(fullSpec));
+
+    scheduleJobs(Collections.singletonList(job));
     triggerOnSubmit(chain);
     notifyAll();
   }
@@ -272,20 +293,20 @@ class JobController {
   @WorkerThread
   private void insertJobChain(@NonNull List<List<Job>> chain) {
     List<FullSpec> fullSpecs = new LinkedList<>();
-    List<Job>      dependsOn = Collections.emptyList();
+    List<String>   dependsOn = Collections.emptyList();
 
     for (List<Job> jobList : chain) {
       for (Job job : jobList) {
         fullSpecs.add(buildFullSpec(job, dependsOn));
       }
-      dependsOn = jobList;
+      dependsOn = Stream.of(jobList).map(Job::getId).toList();
     }
 
     jobStorage.insertJobs(fullSpecs);
   }
 
   @WorkerThread
-  private @NonNull FullSpec buildFullSpec(@NonNull Job job, @NonNull List<Job> dependsOn) {
+  private @NonNull FullSpec buildFullSpec(@NonNull Job job, @NonNull Collection<String> dependsOn) {
     job.setRunAttempt(0);
 
     JobSpec jobSpec = new JobSpec(job.getId(),
@@ -306,7 +327,7 @@ class JobController {
                                                  .toList();
 
     List<DependencySpec> dependencySpecs = Stream.of(dependsOn)
-                                                 .map(depends -> new DependencySpec(job.getId(), depends.getId()))
+                                                 .map(depends -> new DependencySpec(job.getId(), depends))
                                                  .toList();
 
     return new FullSpec(jobSpec, constraintSpecs, dependencySpecs);

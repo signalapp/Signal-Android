@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Build;
 import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
-import androidx.lifecycle.LiveData;
 
 import org.thoughtcrime.securesms.jobmanager.impl.DefaultExecutorFactory;
 import org.thoughtcrime.securesms.jobmanager.impl.JsonDataSerializer;
@@ -16,6 +15,7 @@ import org.thoughtcrime.securesms.util.Debouncer;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -117,6 +117,18 @@ public class JobManager implements ConstraintObserver.Notifier {
    */
   public void add(@NonNull Job job) {
     new Chain(this, Collections.singletonList(job)).enqueue();
+  }
+
+  /**
+   * Enqueues a single job that depends on a collection of job ID's.
+   */
+  public void add(@NonNull Job job, @NonNull Collection<String> dependsOn) {
+    jobTracker.onStateChange(job.getId(), JobTracker.JobState.PENDING);
+
+    executor.execute(() -> {
+      jobController.submitJobWithExistingDependencies(job, dependsOn);
+      wakeUp();
+    });
   }
 
   /**
