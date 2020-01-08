@@ -111,7 +111,7 @@ public class Camera1Fragment extends Fragment implements CameraFragment,
     GestureDetector gestureDetector = new GestureDetector(flipGestureListener);
     cameraPreview.setOnTouchListener((v, event) -> gestureDetector.onTouchEvent(event));
 
-    viewModel.getMostRecentMediaItem(requireContext()).observe(this, this::presentRecentItemThumbnail);
+    viewModel.getMostRecentMediaItem().observe(this, this::presentRecentItemThumbnail);
     viewModel.getHudState().observe(this, this::presentHud);
   }
 

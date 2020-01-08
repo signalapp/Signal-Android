@@ -212,7 +212,8 @@ public class MmsDatabase extends MessagingDatabase {
           "'" + AttachmentDatabase.STICKER_PACK_KEY + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.STICKER_PACK_KEY + ", " +
           "'" + AttachmentDatabase.STICKER_ID + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.STICKER_ID + ", " +
           "'" + AttachmentDatabase.BLUR_HASH + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.BLUR_HASH + ", " +
-          "'" + AttachmentDatabase.TRANSFORM_PROPERTIES + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.TRANSFORM_PROPERTIES +
+          "'" + AttachmentDatabase.TRANSFORM_PROPERTIES + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.TRANSFORM_PROPERTIES + ", " +
+          "'" + AttachmentDatabase.DISPLAY_ORDER + "', " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.DISPLAY_ORDER +
           ")) AS " + AttachmentDatabase.ATTACHMENT_JSON_ALIAS,
   };
 
@@ -702,6 +703,7 @@ public class MmsDatabase extends MessagingDatabase {
         List<Attachment>  attachments        = Stream.of(associatedAttachments).filterNot(Attachment::isQuote)
                                                                                .filterNot(contactAttachments::contains)
                                                                                .filterNot(previewAttachments::contains)
+                                                                               .sorted(new DatabaseAttachment.DisplayOrderComparator())
                                                                                .map(a -> (Attachment)a).toList();
 
         Recipient                 recipient       = Recipient.resolved(RecipientId.from(recipientId));
@@ -865,7 +867,8 @@ public class MmsDatabase extends MessagingDatabase {
                                                databaseAttachment.getCaption(),
                                                databaseAttachment.getSticker(),
                                                databaseAttachment.getBlurHash(),
-                                               databaseAttachment.getTransformProperties()));
+                                               databaseAttachment.getTransformProperties(),
+                                               databaseAttachment.getDisplayOrder()));
       }
 
       return insertMediaMessage(request.getBody(),
@@ -1563,7 +1566,7 @@ public class MmsDatabase extends MessagingDatabase {
       List<NetworkFailure>      networkFailures    = getFailures(networkDocument);
       List<DatabaseAttachment>  attachments        = DatabaseFactory.getAttachmentDatabase(context).getAttachment(cursor);
       List<Contact>             contacts           = getSharedContacts(cursor, attachments);
-      Set<Attachment>           contactAttachments = Stream.of(contacts).map(Contact::getAvatarAttachment).filter(a -> a != null).collect(Collectors.toSet());
+      Set<Attachment>           contactAttachments = Stream.of(contacts).map(Contact::getAvatarAttachment).withoutNulls().collect(Collectors.toSet());
       List<LinkPreview>         previews           = getLinkPreviews(cursor, attachments);
       Set<Attachment>           previewAttachments = Stream.of(previews).filter(lp -> lp.getThumbnail().isPresent()).map(lp -> lp.getThumbnail().get()).collect(Collectors.toSet());
       SlideDeck                 slideDeck          = getSlideDeck(Stream.of(attachments).filterNot(contactAttachments::contains).filterNot(previewAttachments::contains).toList());
@@ -1601,9 +1604,10 @@ public class MmsDatabase extends MessagingDatabase {
     }
 
     private SlideDeck getSlideDeck(@NonNull List<DatabaseAttachment> attachments) {
-      List<? extends Attachment> messageAttachments = Stream.of(attachments)
-                                                            .filterNot(Attachment::isQuote)
-                                                            .toList();
+      List<DatabaseAttachment> messageAttachments = Stream.of(attachments)
+                                                          .filterNot(Attachment::isQuote)
+                                                          .sorted(new DatabaseAttachment.DisplayOrderComparator())
+                                                          .toList();
       return new SlideDeck(context, messageAttachments);
     }
 

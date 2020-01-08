@@ -44,6 +44,7 @@ public class MediaDatabase extends Database {
         + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.STICKER_ID + ", "
         + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.BLUR_HASH + ", "
         + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.TRANSFORM_PROPERTIES + ", "
+        + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.DISPLAY_ORDER + ", "
         + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.CAPTION + ", "
         + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.NAME + ", "
         + MmsDatabase.TABLE_NAME + "." + MmsDatabase.MESSAGE_BOX + ", "
@@ -247,9 +248,9 @@ public class MediaDatabase extends Database {
   }
 
   public enum Sorting {
-    Newest (AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.ROW_ID + " DESC"),
-    Oldest (AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.ROW_ID + " ASC" ),
-    Largest(AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.SIZE   + " DESC");
+    Newest (AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.MMS_ID + " DESC, " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.DISPLAY_ORDER + " DESC"),
+    Oldest (AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.MMS_ID + " ASC, "  + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.DISPLAY_ORDER + " DESC"),
+    Largest(AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.SIZE   + " DESC, " + AttachmentDatabase.TABLE_NAME + "." + AttachmentDatabase.DISPLAY_ORDER + " DESC");
 
     private final String postFix;
 

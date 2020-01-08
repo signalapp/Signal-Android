@@ -37,6 +37,7 @@ import org.signal.aesgcmprovider.AesGcmProvider;
 import org.signal.ringrtc.CallConnectionFactory;
 import org.thoughtcrime.securesms.components.TypingStatusRepository;
 import org.thoughtcrime.securesms.components.TypingStatusSender;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencyProvider;
@@ -72,6 +73,7 @@ import org.thoughtcrime.securesms.service.UpdateApkRefreshListener;
 import org.thoughtcrime.securesms.stickers.BlessedPacks;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.util.dynamiclanguage.DynamicLanguageContextWrapper;
 import org.webrtc.voiceengine.WebRtcAudioManager;
 import org.webrtc.voiceengine.WebRtcAudioUtils;
@@ -129,6 +131,7 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
     initializeRingRtc();
     initializePendingMessages();
     initializeBlobProvider();
+    initializeCleanup();
     initializeCameraX();
     NotificationChannels.create(this);
     ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
@@ -367,8 +370,15 @@ public class ApplicationContext extends MultiDexApplication implements DefaultLi
   }
 
   private void initializeBlobProvider() {
-    AsyncTask.THREAD_POOL_EXECUTOR.execute(() -> {
+    SignalExecutors.BOUNDED.execute(() -> {
       BlobProvider.getInstance().onSessionStart(this);
+    });
+  }
+
+  private void initializeCleanup() {
+    SignalExecutors.BOUNDED.execute(() -> {
+      int deleted = DatabaseFactory.getAttachmentDatabase(this).deleteAbandonedPreuploadedAttachments();
+      Log.i(TAG, "Deleted " + deleted + " abandoned attachments.");
     });
   }
 

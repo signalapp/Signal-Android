@@ -4,6 +4,7 @@ import android.content.Context;
 import android.media.MediaDataSource;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
 import org.greenrobot.eventbus.EventBus;
@@ -143,7 +144,7 @@ public final class AttachmentCompressionJob extends BaseJob {
   {
     try {
       if (MediaUtil.isVideo(attachment) && MediaConstraints.isVideoTranscodeAvailable()) {
-        transcodeVideoIfNeededToDatabase(context, attachmentDatabase, attachment, constraints, EventBus.getDefault());
+        transcodeVideoIfNeededToDatabase(context, attachmentDatabase, attachment, constraints, EventBus.getDefault(), this::isCanceled);
       } else if (constraints.isSatisfied(context, attachment)) {
         if (MediaUtil.isJpeg(attachment)) {
           MediaStream stripped = getResizedMedia(context, attachment, constraints);
@@ -167,7 +168,8 @@ public final class AttachmentCompressionJob extends BaseJob {
                                                        @NonNull AttachmentDatabase attachmentDatabase,
                                                        @NonNull DatabaseAttachment attachment,
                                                        @NonNull MediaConstraints constraints,
-                                                       @NonNull EventBus eventBus)
+                                                       @NonNull EventBus eventBus,
+                                                       @NonNull InMemoryTranscoder.CancelationSignal cancelationSignal)
       throws UndeliverableMessageException
   {
     try (NotificationController notification = GenericForegroundService.startForegroundTask(context, context.getString(R.string.AttachmentUploadJob_compressing_video_start))) {
@@ -190,7 +192,7 @@ public final class AttachmentCompressionJob extends BaseJob {
                                                         PartProgressEvent.Type.COMPRESSION,
                                                         100,
                                                         percent));
-            });
+            }, cancelationSignal);
 
             attachmentDatabase.updateAttachmentData(attachment, mediaStream);
             attachmentDatabase.markAttachmentAsTransformed(attachment.getAttachmentId());

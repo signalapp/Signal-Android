@@ -101,8 +101,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int REACTIONS_UNREAD_INDEX           = 39;
   private static final int RESUMABLE_DOWNLOADS              = 40;
   private static final int KEY_VALUE_STORE                  = 41;
+  private static final int ATTACHMENT_DISPLAY_ORDER         = 42;
 
-  private static final int    DATABASE_VERSION = 41;
+  private static final int    DATABASE_VERSION = 42;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -692,6 +693,10 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
                                            "key TEXT UNIQUE, " +
                                            "value TEXT, " +
                                            "type INTEGER)");
+      }
+
+      if (oldVersion < ATTACHMENT_DISPLAY_ORDER) {
+        db.execSQL("ALTER TABLE part ADD COLUMN display_order INTEGER DEFAULT 0");
       }
 
       db.setTransactionSuccessful();

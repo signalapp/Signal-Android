@@ -1,14 +1,11 @@
 package org.thoughtcrime.securesms.mediasend;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.text.Editable;
@@ -46,41 +43,30 @@ import org.thoughtcrime.securesms.components.emoji.EmojiKeyboardProvider;
 import org.thoughtcrime.securesms.components.emoji.EmojiToggle;
 import org.thoughtcrime.securesms.components.emoji.MediaKeyboard;
 import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher;
-import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.imageeditor.model.EditorModel;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mediapreview.MediaRailAdapter;
 import org.thoughtcrime.securesms.mediasend.MediaSendViewModel.ViewOnceState;
-import org.thoughtcrime.securesms.mms.GifSlide;
 import org.thoughtcrime.securesms.mms.GlideApp;
-import org.thoughtcrime.securesms.mms.ImageSlide;
-import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
-import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage;
-import org.thoughtcrime.securesms.mms.SlideDeck;
-import org.thoughtcrime.securesms.mms.VideoSlide;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.scribbles.ImageEditorFragment;
-import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.CharacterCalculator.CharacterState;
 import org.thoughtcrime.securesms.util.Function3;
 import org.thoughtcrime.securesms.util.IOFunction;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.ServiceUtil;
-import org.thoughtcrime.securesms.util.Stopwatch;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
-import org.thoughtcrime.securesms.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 import org.thoughtcrime.securesms.util.views.Stub;
 import org.thoughtcrime.securesms.video.VideoUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
 
-import java.io.ByteArrayOutputStream;
 import java.io.FileDescriptor;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -110,11 +96,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
 {
   private static final String TAG = MediaSendActivity.class.getSimpleName();
 
-  public static final String EXTRA_MEDIA     = "media";
-  public static final String EXTRA_MESSAGE   = "message";
-  public static final String EXTRA_TRANSPORT = "transport";
-  public static final String EXTRA_VIEW_ONCE = "view_once";
-
+  public static final String EXTRA_RESULT    = "result";
 
   private static final String KEY_RECIPIENT = "recipient_id";
   private static final String KEY_BODY      = "body";
@@ -150,6 +132,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
   private TextView            charactersLeft;
   private RecyclerView        mediaRail;
   private MediaRailAdapter    mediaRailAdapter;
+  private AlertDialog         progressDialog;
 
   private int visibleHeight;
 
@@ -232,6 +215,10 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
     viewModel = ViewModelProviders.of(this, new MediaSendViewModel.Factory(getApplication(), new MediaRepository())).get(MediaSendViewModel.class);
     transport = getIntent().getParcelableExtra(KEY_TRANSPORT);
 
+    MeteredConnectivityObserver meteredConnectivityObserver = new MeteredConnectivityObserver(this, this);
+    meteredConnectivityObserver.isMetered().observe(this, viewModel::onMeteredConnectivityStatusChanged);
+    viewModel.onMeteredConnectivityStatusChanged(Optional.fromNullable(meteredConnectivityObserver.isMetered().getValue()).or(false));
+
     viewModel.setTransport(transport);
     viewModel.setRecipient(recipient != null ? recipient.get() : null);
     viewModel.onBodyChanged(getIntent().getStringExtra(KEY_BODY));
@@ -259,23 +246,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
                                  .commit();
     }
 
-    sendButton.setOnClickListener(v -> {
-      if (hud.isKeyboardOpen()) {
-        hud.hideSoftkey(composeText, null);
-      }
-
-      sendButton.setEnabled(false);
-
-      MediaSendFragment fragment = getMediaSendFragment();
-
-      if (fragment != null) {
-        processMedia(fragment.getAllMedia(), fragment.getSavedState(), processedMedia -> {
-          setActivityResultAndFinish(processedMedia, composeText.getTextTrimmed(), transport);
-        });
-      } else {
-        throw new AssertionError("No editor fragment available!");
-      }
-    });
+    sendButton.setOnClickListener(v -> onSendClicked());
 
     sendButton.setOnLongClickListener(v -> true);
 
@@ -418,7 +389,6 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
                     0);
   }
 
-
   private <T> void onMediaCaptured(Supplier<T> dataSupplier,
                                    IOFunction<T, Long> getLength,
                                    Function3<BlobProvider, T, Long, BlobProvider.BlobBuilder> createBlobBuilder,
@@ -428,7 +398,6 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
   {
     SimpleTask.run(getLifecycle(), () -> {
       try {
-
         T    data   = dataSupplier.get();
         long length = getLength.apply(data);
 
@@ -542,16 +511,51 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
     MediaSendFragment fragment = getMediaSendFragment();
 
     if (fragment != null) {
-      processMedia(fragment.getAllMedia(), fragment.getSavedState(), processedMedia -> {
-        String body = viewModel.isViewOnce() ? "" : composeText.getTextTrimmed();
-        sendMessages(recipients, processedMedia, body, transport);
+      viewModel.onSendClicked(buildModelsToRender(fragment), recipients).observe(this, result -> {
+        finish();
       });
     } else {
       throw new AssertionError("No editor fragment available!");
     }
   }
 
-  public void onAddMediaClicked(@NonNull String bucketId) {
+  private void onSendClicked() {
+    MediaSendFragment fragment = getMediaSendFragment();
+
+    if (fragment == null) {
+      throw new AssertionError("No editor fragment available!");
+    }
+
+    if (hud.isKeyboardOpen()) {
+      hud.hideSoftkey(composeText, null);
+    }
+
+    sendButton.setEnabled(false);
+
+    viewModel.onSendClicked(buildModelsToRender(fragment), Collections.emptyList()).observe(this, this::setActivityResultAndFinish);
+  }
+
+  private Map<Media, EditorModel> buildModelsToRender(@NonNull MediaSendFragment fragment) {
+    List<Media>             mediaList      = fragment.getAllMedia();
+    Map<Uri, Object>        savedState     = fragment.getSavedState();
+    Map<Media, EditorModel> modelsToRender = new HashMap<>();
+
+    for (Media media : mediaList) {
+      Object state = savedState.get(media.getUri());
+
+      if (state instanceof ImageEditorFragment.Data) {
+        EditorModel model = ((ImageEditorFragment.Data) state).readModel();
+        if (model != null && model.isChanged()) {
+          modelsToRender.put(media, model);
+        }
+      }
+    }
+
+    return modelsToRender;
+  }
+
+
+  private void onAddMediaClicked(@NonNull String bucketId) {
     hud.hideCurrentInput(composeText);
 
     // TODO: Get actual folder title somehow
@@ -569,7 +573,7 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
                                .commit();
   }
 
-  public void onNoMediaAvailable() {
+  private void onNoMediaAvailable() {
     setResult(RESULT_CANCELED);
     finish();
   }
@@ -700,13 +704,24 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
     });
 
     viewModel.getEvents().observe(this, event -> {
-      if (event == MediaSendViewModel.Event.VIEW_ONCE_TOOLTIP) {
-        TooltipPopup.forTarget(revealButton)
-                    .setText(R.string.MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed)
-                    .setBackgroundTint(getResources().getColor(R.color.core_blue))
-                    .setTextColor(getResources().getColor(R.color.core_white))
-                    .setOnDismissListener(() -> TextSecurePreferences.setHasSeenViewOnceTooltip(this, true))
-                    .show(TooltipPopup.POSITION_ABOVE);
+      switch (event) {
+        case VIEW_ONCE_TOOLTIP:
+          TooltipPopup.forTarget(revealButton)
+                      .setText(R.string.MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed)
+                      .setBackgroundTint(getResources().getColor(R.color.core_blue))
+                      .setTextColor(getResources().getColor(R.color.core_white))
+                      .setOnDismissListener(() -> TextSecurePreferences.setHasSeenViewOnceTooltip(this, true))
+                      .show(TooltipPopup.POSITION_ABOVE);
+          break;
+        case SHOW_RENDER_PROGRESS:
+          progressDialog = SimpleProgressDialog.show(new ContextThemeWrapper(MediaSendActivity.this, R.style.TextSecure_MediaSendProgressDialog));
+          break;
+        case HIDE_RENDER_PROGRESS:
+          if (progressDialog != null) {
+            progressDialog.dismiss();
+            progressDialog = null;
+          }
+          break;
       }
     });
   }
@@ -836,161 +851,17 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
     }
   }
 
-  @SuppressLint("StaticFieldLeak")
-  private void processMedia(@NonNull List<Media> mediaList, @NonNull Map<Uri, Object> savedState, @NonNull OnProcessComplete callback) {
-    Map<Media, EditorModel> modelsToRender = new HashMap<>();
-
-    for (Media media : mediaList) {
-      Object state = savedState.get(media.getUri());
-
-      if (state instanceof ImageEditorFragment.Data) {
-        EditorModel model = ((ImageEditorFragment.Data) state).readModel();
-        if (model != null && model.isChanged()) {
-          modelsToRender.put(media, model);
-        }
-      }
-    }
-
-    new AsyncTask<Void, Void, List<Media>>() {
-
-      private Stopwatch   renderTimer;
-      private Runnable    progressTimer;
-      private AlertDialog dialog;
-
-      @Override
-      protected void onPreExecute() {
-        renderTimer   = new Stopwatch("ProcessMedia");
-        progressTimer = () -> {
-          dialog = SimpleProgressDialog.show(new ContextThemeWrapper(MediaSendActivity.this, R.style.TextSecure_MediaSendProgressDialog));
-        };
-        Util.runOnMainDelayed(progressTimer, 250);
-      }
-
-      @Override
-      protected List<Media> doInBackground(Void... voids) {
-        Context               context      = MediaSendActivity.this;
-        List<Media>           updatedMedia = new ArrayList<>(mediaList.size());
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-
-        for (Media media : mediaList) {
-          EditorModel modelToRender = modelsToRender.get(media);
-          if (modelToRender != null) {
-            Bitmap bitmap = modelToRender.render(context);
-            try {
-              outputStream.reset();
-              bitmap.compress(Bitmap.CompressFormat.JPEG, 80, outputStream);
-
-              Uri uri = BlobProvider.getInstance()
-                                    .forData(outputStream.toByteArray())
-                                    .withMimeType(MediaUtil.IMAGE_JPEG)
-                                    .createForSingleSessionOnDisk(context);
-
-              Media updated = new Media(uri, MediaUtil.IMAGE_JPEG, media.getDate(), bitmap.getWidth(), bitmap.getHeight(), outputStream.size(), media.getBucketId(), media.getCaption());
-
-              updatedMedia.add(updated);
-              renderTimer.split("item");
-            } catch (IOException e) {
-              Log.w(TAG, "Failed to render image. Using base image.");
-              updatedMedia.add(media);
-            } finally {
-              bitmap.recycle();
-            }
-          } else {
-            updatedMedia.add(media);
-          }
-        }
-        return updatedMedia;
-      }
-
-      @Override
-      protected void onPostExecute(List<Media> media) {
-        callback.onComplete(media);
-        Util.cancelRunnableOnMain(progressTimer);
-        if (dialog != null) {
-          dialog.dismiss();
-        }
-        renderTimer.stop(TAG);
-      }
-    }.executeOnExecutor(SignalExecutors.BOUNDED);
-  }
-
   private @Nullable MediaSendFragment getMediaSendFragment() {
     return (MediaSendFragment) getSupportFragmentManager().findFragmentByTag(TAG_SEND);
   }
 
-  private void setActivityResultAndFinish(@NonNull List<Media> media, @NonNull String message, @NonNull TransportOption transport) {
-    viewModel.onSendClicked();
-
-    ArrayList<Media> mediaList = new ArrayList<>(media);
-
-    if (mediaList.size() > 0) {
-      Intent intent = new Intent();
-
-      intent.putParcelableArrayListExtra(EXTRA_MEDIA, mediaList);
-      intent.putExtra(EXTRA_MESSAGE, viewModel.isViewOnce() ? "" : message);
-      intent.putExtra(EXTRA_TRANSPORT, transport);
-      intent.putExtra(EXTRA_VIEW_ONCE, viewModel.isViewOnce());
-
-      setResult(RESULT_OK, intent);
-    } else {
-      setResult(RESULT_CANCELED);
-    }
+  private void setActivityResultAndFinish(@NonNull MediaSendActivityResult result) {
+    Intent intent = new Intent();
+    intent.putExtra(EXTRA_RESULT, result);
+    setResult(RESULT_OK, intent);
 
     finish();
-
     overridePendingTransition(R.anim.stationary, R.anim.camera_slide_to_bottom);
-  }
-
-  private void sendMessages(@NonNull List<Recipient> recipients, @NonNull List<Media> media, @NonNull String body, @NonNull TransportOption transport) {
-    SimpleTask.run(() -> {
-      List<OutgoingSecureMediaMessage> messages = new ArrayList<>(recipients.size());
-
-      for (Recipient recipient : recipients) {
-        SlideDeck            slideDeck = buildSlideDeck(media);
-        OutgoingMediaMessage message   = new OutgoingMediaMessage(recipient,
-                                                                  body,
-                                                                  slideDeck.asAttachments(),
-                                                                  System.currentTimeMillis(),
-                                                                  -1,
-                                                                  recipient.getExpireMessages() * 1000,
-                                                                  viewModel.isViewOnce(),
-                                                                  ThreadDatabase.DistributionTypes.DEFAULT,
-                                                                  null,
-                                                                  Collections.emptyList(),
-                                                                  Collections.emptyList(),
-                                                                  Collections.emptyList(),
-                                                                  Collections.emptyList());
-
-        messages.add(new OutgoingSecureMediaMessage(message));
-
-        // XXX We must do this to avoid sending out messages to the same recipient with the same
-        //     sentTimestamp. If we do this, they'll be considered dupes by the receiver.
-        Util.sleep(5);
-      }
-
-      MessageSender.sendMediaBroadcast(this, messages);
-      return null;
-    }, (nothing) -> {
-      finish();
-    });
-  }
-
-  private @NonNull SlideDeck buildSlideDeck(@NonNull List<Media> mediaList) {
-    SlideDeck slideDeck = new SlideDeck();
-
-    for (Media mediaItem : mediaList) {
-      if (MediaUtil.isVideoType(mediaItem.getMimeType())) {
-        slideDeck.addSlide(new VideoSlide(this, mediaItem.getUri(), 0, mediaItem.getCaption().orNull()));
-      } else if (MediaUtil.isGif(mediaItem.getMimeType())) {
-        slideDeck.addSlide(new GifSlide(this, mediaItem.getUri(), 0, mediaItem.getWidth(), mediaItem.getHeight(), mediaItem.getCaption().orNull()));
-      } else if (MediaUtil.isImageType(mediaItem.getMimeType())) {
-        slideDeck.addSlide(new ImageSlide(this, mediaItem.getUri(), 0, mediaItem.getWidth(), mediaItem.getHeight(), mediaItem.getCaption().orNull(), null));
-      } else {
-        Log.w(TAG, "Asked to send an unexpected mimeType: '" + mediaItem.getMimeType() + "'. Skipping.");
-      }
-    }
-
-    return slideDeck;
   }
 
   private class ComposeKeyPressedListener implements View.OnKeyListener, View.OnClickListener, TextWatcher, View.OnFocusChangeListener {
@@ -1032,9 +903,5 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
 
     @Override
     public void onFocusChange(View v, boolean hasFocus) {}
-  }
-
-  private interface OnProcessComplete {
-    void onComplete(@NonNull List<Media> media);
   }
 }

@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.mediasend;
 import android.app.Application;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.WorkerThread;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -10,26 +11,41 @@ import androidx.lifecycle.ViewModelProvider;
 import android.content.Context;
 import android.net.Uri;
 import androidx.annotation.NonNull;
+
 import android.text.TextUtils;
 
 import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.TransportOption;
+import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.imageeditor.model.EditorModel;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
+import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
+import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage;
+import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.sms.MessageSender;
+import org.thoughtcrime.securesms.sms.MessageSender.PreUploadResult;
+import org.thoughtcrime.securesms.util.DiffHelper;
 import org.thoughtcrime.securesms.util.MediaUtil;
+import org.thoughtcrime.securesms.util.MessageUtil;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.libsignal.util.guava.Preconditions;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * Manages the observable datasets available in {@link MediaSendActivity}.
@@ -43,6 +59,7 @@ class MediaSendViewModel extends ViewModel {
 
   private final Application                        application;
   private final MediaRepository                    repository;
+  private final MediaUploadRepository              uploadRepository;
   private final MutableLiveData<List<Media>>       selectedMedia;
   private final MutableLiveData<List<Media>>       bucketMedia;
   private final MutableLiveData<Optional<Media>>   mostRecentMedia;
@@ -54,13 +71,16 @@ class MediaSendViewModel extends ViewModel {
   private final SingleLiveEvent<Event>             event;
   private final Map<Uri, Object>                   savedDrawState;
 
+  private TransportOption  transport;
   private MediaConstraints mediaConstraints;
   private CharSequence     body;
   private boolean          sentMedia;
   private int              maxSelection;
   private Page             page;
   private boolean          isSms;
+  private boolean          meteredConnection;
   private Optional<Media>  lastCameraCapture;
+  private boolean          preUploadEnabled;
 
   private boolean       hudVisible;
   private boolean       composeVisible;
@@ -69,11 +89,16 @@ class MediaSendViewModel extends ViewModel {
   private RailState     railState;
   private ViewOnceState viewOnceState;
 
+
   private @Nullable Recipient recipient;
 
-  private MediaSendViewModel(@NonNull Application application, @NonNull MediaRepository repository) {
+  private MediaSendViewModel(@NonNull Application application,
+                             @NonNull MediaRepository repository,
+                             @NonNull MediaUploadRepository uploadRepository)
+  {
     this.application       = application;
     this.repository        = repository;
+    this.uploadRepository  = uploadRepository;
     this.selectedMedia     = new MutableLiveData<>();
     this.bucketMedia       = new MutableLiveData<>();
     this.mostRecentMedia   = new MutableLiveData<>();
@@ -90,11 +115,14 @@ class MediaSendViewModel extends ViewModel {
     this.railState         = RailState.GONE;
     this.viewOnceState     = ViewOnceState.GONE;
     this.page              = Page.UNKNOWN;
+    this.preUploadEnabled  = true;
 
     position.setValue(-1);
   }
 
   void setTransport(@NonNull TransportOption transport) {
+    this.transport = transport;
+
     if (transport.isSms()) {
       isSms            = true;
       maxSelection     = MAX_SMS;
@@ -104,20 +132,24 @@ class MediaSendViewModel extends ViewModel {
       maxSelection     = MAX_PUSH;
       mediaConstraints = MediaConstraints.getPushMediaConstraints();
     }
+
+    preUploadEnabled = shouldPreUpload(application, meteredConnection, isSms, recipient);
   }
 
   void setRecipient(@Nullable Recipient recipient) {
-    this.recipient = recipient;
+    this.recipient        = recipient;
+    this.preUploadEnabled = shouldPreUpload(application, meteredConnection, isSms, recipient);
   }
 
   void onSelectedMediaChanged(@NonNull Context context, @NonNull List<Media> newMedia) {
+    List<Media> originalMedia = getSelectedMediaOrDefault();
+
     if (!newMedia.isEmpty()) {
       selectedMedia.setValue(newMedia);
     }
 
     repository.getPopulatedMedia(context, newMedia, populatedMedia -> {
       Util.runOnMain(() -> {
-
         List<Media> filteredMedia = getFilteredMedia(context, populatedMedia, mediaConstraints);
 
         if (filteredMedia.size() != newMedia.size()) {
@@ -153,6 +185,8 @@ class MediaSendViewModel extends ViewModel {
           selectedMedia.setValue(filteredMedia);
           hudState.setValue(buildHudState());
         }
+
+        updateAttachmentUploads(originalMedia, getSelectedMediaOrDefault());
       });
     });
   }
@@ -221,6 +255,7 @@ class MediaSendViewModel extends ViewModel {
       selected.remove(lastCameraCapture.get());
       selectedMedia.setValue(selected);
       BlobProvider.getInstance().delete(application, lastCameraCapture.get().getUri());
+      cancelUpload(lastCameraCapture.get());
     }
 
     hudState.setValue(buildHudState());
@@ -350,6 +385,8 @@ class MediaSendViewModel extends ViewModel {
       BlobProvider.getInstance().delete(context, removed.getUri());
     }
 
+    cancelUpload(removed);
+
     if (page == Page.EDITOR && getSelectedMediaOrDefault().isEmpty()) {
       error.setValue(Error.NO_ITEMS);
     } else {
@@ -385,6 +422,8 @@ class MediaSendViewModel extends ViewModel {
     selectedMedia.setValue(selected);
     position.setValue(selected.size() - 1);
     bucketId.setValue(Media.ALL_MEDIA_BUCKET_ID);
+
+    startUpload(media);
   }
 
   void onCaptionChanged(@NonNull String newCaption) {
@@ -397,13 +436,66 @@ class MediaSendViewModel extends ViewModel {
     repository.getMostRecentItem(application, mostRecentMedia::postValue);
   }
 
+  void onMeteredConnectivityStatusChanged(boolean metered) {
+    Log.i(TAG, "Metered connectivity status set to: " + metered);
+
+    meteredConnection = metered;
+    preUploadEnabled  = shouldPreUpload(application, metered, isSms, recipient);
+  }
+
   void saveDrawState(@NonNull Map<Uri, Object> state) {
     savedDrawState.clear();
     savedDrawState.putAll(state);
   }
 
-  void onSendClicked() {
+  @NonNull LiveData<MediaSendActivityResult> onSendClicked(Map<Media, EditorModel> modelsToRender, @NonNull List<Recipient> recipients) {
+    if (isSms && recipients.size() > 0) {
+      throw new IllegalStateException("Provided recipients to send to, but this is SMS!");
+    }
+
+    MutableLiveData<MediaSendActivityResult> result         = new MutableLiveData<>();
+    Runnable                                 dialogRunnable = () -> event.postValue(Event.SHOW_RENDER_PROGRESS);
+    String                                   trimmedBody    = isViewOnce() ? "" : body.toString().trim();
+    List<Media>                              initialMedia   = getSelectedMediaOrDefault();
+
+    Preconditions.checkState(initialMedia.size() > 0, "No media to send!");
+
+    Util.runOnMainDelayed(dialogRunnable, 250);
+
+    repository.renderMedia(application, initialMedia, modelsToRender, (oldToNew) -> {
+      List<Media> updatedMedia = new ArrayList<>(oldToNew.values());
+
+      if (isSms || MessageSender.isLocalSelfSend(application, recipient, isSms)) {
+        Log.i(TAG, "SMS or local self-send. Skipping pre-upload.");
+        result.postValue(MediaSendActivityResult.forTraditionalSend(updatedMedia, trimmedBody, transport, isViewOnce()));
+        return;
+      }
+
+      MessageUtil.SplitResult splitMessage = MessageUtil.getSplitMessage(application, trimmedBody, transport.calculateCharacters(trimmedBody).maxPrimaryMessageSize);
+      String                  splitBody    = splitMessage.getBody();
+
+      if (splitMessage.getTextSlide().isPresent()) {
+        Slide slide = splitMessage.getTextSlide().get();
+        uploadRepository.startUpload(new Media(Objects.requireNonNull(slide.getUri()), slide.getContentType(), System.currentTimeMillis(), 0, 0, slide.getFileSize(), Optional.absent(), Optional.absent()), recipient);
+      }
+
+      uploadRepository.applyMediaUpdates(oldToNew, recipient);
+      uploadRepository.updateCaptions(updatedMedia);
+      uploadRepository.updateDisplayOrder(updatedMedia);
+      uploadRepository.getPreUploadResults(uploadResults -> {
+        if (recipients.size() > 0) {
+          sendMessages(recipients, splitBody, uploadResults);
+          uploadRepository.deleteAbandonedAttachments();
+        }
+
+        Util.cancelRunnableOnMain(dialogRunnable);
+        result.postValue(MediaSendActivityResult.forPreUpload(uploadResults, splitBody, transport, isViewOnce()));
+      });
+    });
+
     sentMedia = true;
+
+    return result;
   }
 
   @NonNull Map<Uri, Object> getDrawState() {
@@ -424,7 +516,7 @@ class MediaSendViewModel extends ViewModel {
     return folders;
   }
 
-  @NonNull LiveData<Optional<Media>> getMostRecentMediaItem(@NonNull Context context) {
+  @NonNull LiveData<Optional<Media>> getMostRecentMediaItem() {
     return mostRecentMedia;
   }
 
@@ -512,10 +604,63 @@ class MediaSendViewModel extends ViewModel {
     }
   }
 
+  private void updateAttachmentUploads(@NonNull List<Media> oldMedia, @NonNull List<Media> newMedia) {
+    if (!preUploadEnabled) return;
+
+    DiffHelper.Result<Media> result = DiffHelper.calculate(oldMedia, newMedia);
+
+    uploadRepository.cancelUpload(result.getRemoved());
+    uploadRepository.startUpload(result.getInserted(), recipient);
+  }
+
+  private void cancelUpload(@NonNull Media media) {
+    uploadRepository.cancelUpload(media);
+  }
+
+  private void startUpload(@NonNull Media media) {
+    if (!preUploadEnabled) return;
+    uploadRepository.startUpload(media, recipient);
+  }
+
+  @WorkerThread
+  private void sendMessages(@NonNull List<Recipient> recipients, @NonNull String body, @NonNull Collection<PreUploadResult> preUploadResults) {
+    List<OutgoingSecureMediaMessage> messages = new ArrayList<>(recipients.size());
+
+    for (Recipient recipient : recipients) {
+      OutgoingMediaMessage message   = new OutgoingMediaMessage(recipient,
+                                                                body,
+                                                                Collections.emptyList(),
+                                                                System.currentTimeMillis(),
+                                                                -1,
+                                                                recipient.getExpireMessages() * 1000,
+                                                                isViewOnce(),
+                                                                ThreadDatabase.DistributionTypes.DEFAULT,
+                                                                null,
+                                                                Collections.emptyList(),
+                                                                Collections.emptyList(),
+                                                                Collections.emptyList(),
+                                                                Collections.emptyList());
+
+      messages.add(new OutgoingSecureMediaMessage(message));
+
+      // XXX We must do this to avoid sending out messages to the same recipient with the same
+      //     sentTimestamp. If we do this, they'll be considered dupes by the receiver.
+      Util.sleep(5);
+    }
+
+    MessageSender.sendMediaBroadcast(application, messages, preUploadResults);
+  }
+
+  private static boolean shouldPreUpload(@NonNull Context context, boolean metered, boolean isSms, @Nullable Recipient recipient) {
+    return !metered && !isSms && !MessageSender.isLocalSelfSend(context, recipient, isSms);
+  }
+
   @Override
   protected void onCleared() {
     if (!sentMedia) {
       clearPersistedMedia();
+      uploadRepository.cancelAllUploads();
+      uploadRepository.deleteAbandonedAttachments();
     }
   }
 
@@ -524,7 +669,7 @@ class MediaSendViewModel extends ViewModel {
   }
 
   enum Event {
-    VIEW_ONCE_TOOLTIP
+    VIEW_ONCE_TOOLTIP, SHOW_RENDER_PROGRESS, HIDE_RENDER_PROGRESS
   }
 
   enum Page {
@@ -611,7 +756,7 @@ class MediaSendViewModel extends ViewModel {
 
     @Override
     public @NonNull <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-      return modelClass.cast(new MediaSendViewModel(application, repository));
+      return modelClass.cast(new MediaSendViewModel(application, repository, new MediaUploadRepository(application)));
     }
   }
 }

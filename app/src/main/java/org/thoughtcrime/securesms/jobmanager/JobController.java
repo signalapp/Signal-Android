@@ -133,6 +133,7 @@ class JobController {
         Log.w(TAG, JobLogger.format(job, "Canceling while inactive."));
         Log.w(TAG, JobLogger.format(job, "Job failed."));
 
+        job.cancel();
         job.onFailure();
         onFailure(job);
       } else {

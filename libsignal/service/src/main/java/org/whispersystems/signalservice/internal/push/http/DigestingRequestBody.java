@@ -18,19 +18,22 @@ public class DigestingRequestBody extends RequestBody {
   private final String              contentType;
   private final long                contentLength;
   private final ProgressListener    progressListener;
+  private final CancelationSignal   cancelationSignal;
 
   private byte[] digest;
 
   public DigestingRequestBody(InputStream inputStream,
                               OutputStreamFactory outputStreamFactory,
                               String contentType, long contentLength,
-                              ProgressListener progressListener)
+                              ProgressListener progressListener,
+                              CancelationSignal cancelationSignal)
   {
     this.inputStream         = inputStream;
     this.outputStreamFactory = outputStreamFactory;
     this.contentType         = contentType;
     this.contentLength       = contentLength;
     this.progressListener    = progressListener;
+    this.cancelationSignal   = cancelationSignal;
   }
 
   @Override
@@ -47,6 +50,10 @@ public class DigestingRequestBody extends RequestBody {
     long total = 0;
 
     while ((read = inputStream.read(buffer, 0, buffer.length)) != -1) {
+      if (cancelationSignal != null && cancelationSignal.isCanceled()) {
+        throw new IOException("Canceled!");
+      }
+
       outputStream.write(buffer, 0, read);
       total += read;
 

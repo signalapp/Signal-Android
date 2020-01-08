@@ -7,6 +7,7 @@
 package org.whispersystems.signalservice.api.messages;
 
 import org.whispersystems.libsignal.util.guava.Optional;
+import org.whispersystems.signalservice.internal.push.http.CancelationSignal;
 
 import java.io.InputStream;
 
@@ -39,16 +40,17 @@ public abstract class SignalServiceAttachment {
 
   public static class Builder {
 
-    private InputStream      inputStream;
-    private String           contentType;
-    private String           fileName;
-    private long             length;
-    private ProgressListener listener;
-    private boolean          voiceNote;
-    private int              width;
-    private int              height;
-    private String           caption;
-    private String           blurHash;
+    private InputStream       inputStream;
+    private String            contentType;
+    private String            fileName;
+    private long              length;
+    private ProgressListener  listener;
+    private CancelationSignal cancelationSignal;
+    private boolean           voiceNote;
+    private int               width;
+    private int               height;
+    private String            caption;
+    private String            blurHash;
 
     private Builder() {}
 
@@ -74,6 +76,11 @@ public abstract class SignalServiceAttachment {
 
     public Builder withListener(ProgressListener listener) {
       this.listener = listener;
+      return this;
+    }
+
+    public Builder withCancelationSignal(CancelationSignal cancelationSignal) {
+      this.cancelationSignal = cancelationSignal;
       return this;
     }
 
@@ -117,7 +124,8 @@ public abstract class SignalServiceAttachment {
                                                height,
                                                Optional.fromNullable(caption),
                                                Optional.fromNullable(blurHash),
-                                               listener);
+                                               listener,
+                                               cancelationSignal);
     }
   }
 

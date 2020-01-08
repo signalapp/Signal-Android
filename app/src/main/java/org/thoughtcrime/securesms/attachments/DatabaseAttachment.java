@@ -11,12 +11,15 @@ import org.thoughtcrime.securesms.database.AttachmentDatabase.TransformPropertie
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
 
+import java.util.Comparator;
+
 public class DatabaseAttachment extends Attachment {
 
   private final AttachmentId attachmentId;
   private final long         mmsId;
   private final boolean      hasData;
   private final boolean      hasThumbnail;
+  private final int          displayOrder;
 
   public DatabaseAttachment(AttachmentId attachmentId, long mmsId,
                             boolean hasData, boolean hasThumbnail,
@@ -25,13 +28,14 @@ public class DatabaseAttachment extends Attachment {
                             byte[] digest, String fastPreflightId, boolean voiceNote,
                             int width, int height, boolean quote, @Nullable String caption,
                             @Nullable StickerLocator stickerLocator, @Nullable BlurHash blurHash,
-                            @Nullable TransformProperties transformProperties)
+                            @Nullable TransformProperties transformProperties, int displayOrder)
   {
     super(contentType, transferProgress, size, fileName, location, key, relay, digest, fastPreflightId, voiceNote, width, height, quote, caption, stickerLocator, blurHash, transformProperties);
     this.attachmentId = attachmentId;
     this.hasData      = hasData;
     this.hasThumbnail = hasThumbnail;
     this.mmsId        = mmsId;
+    this.displayOrder = displayOrder;
   }
 
   @Override
@@ -58,6 +62,10 @@ public class DatabaseAttachment extends Attachment {
     return attachmentId;
   }
 
+  public int getDisplayOrder() {
+    return displayOrder;
+  }
+
   @Override
   public boolean equals(Object other) {
     return other != null &&
@@ -80,5 +88,12 @@ public class DatabaseAttachment extends Attachment {
 
   public boolean hasThumbnail() {
     return hasThumbnail;
+  }
+
+  public static class DisplayOrderComparator implements Comparator<DatabaseAttachment> {
+    @Override
+    public int compare(DatabaseAttachment lhs, DatabaseAttachment rhs) {
+      return Integer.compare(lhs.getDisplayOrder(), rhs.getDisplayOrder());
+    }
   }
 }

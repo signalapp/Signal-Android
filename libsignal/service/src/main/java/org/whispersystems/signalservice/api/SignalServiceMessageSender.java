@@ -341,7 +341,8 @@ public class SignalServiceMessageSender {
                                                                  dataStream,
                                                                  ciphertextLength,
                                                                  new AttachmentCipherOutputStreamFactory(attachmentKey),
-                                                                 attachment.getListener());
+                                                                 attachment.getListener(),
+                                                                 attachment.getCancelationSignal());
 
     AttachmentUploadAttributes uploadAttributes = null;
 

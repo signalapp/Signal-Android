@@ -76,6 +76,7 @@ import java.io.OutputStream;
 import java.security.DigestInputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -120,6 +121,7 @@ public class AttachmentDatabase extends Database {
   private static final String DATA_HASH              = "data_hash";
           static final String BLUR_HASH              = "blur_hash";
           static final String TRANSFORM_PROPERTIES   = "transform_properties";
+          static final String DISPLAY_ORDER          = "display_order";
 
   public  static final String DIRECTORY              = "parts";
 
@@ -127,6 +129,8 @@ public class AttachmentDatabase extends Database {
   public static final int TRANSFER_PROGRESS_STARTED = 1;
   public static final int TRANSFER_PROGRESS_PENDING = 2;
   public static final int TRANSFER_PROGRESS_FAILED  = 3;
+
+  public static final long PREUPLOAD_MESSAGE_ID = -8675309;
 
   private static final String PART_ID_WHERE     = ROW_ID + " = ? AND " + UNIQUE_ID + " = ?";
   private static final String PART_ID_WHERE_NOT = ROW_ID + " != ? AND " + UNIQUE_ID + " != ?";
@@ -138,7 +142,8 @@ public class AttachmentDatabase extends Database {
                                                            UNIQUE_ID, DIGEST, FAST_PREFLIGHT_ID, VOICE_NOTE,
                                                            QUOTE, DATA_RANDOM, THUMBNAIL_RANDOM, WIDTH, HEIGHT,
                                                            CAPTION, STICKER_PACK_ID, STICKER_PACK_KEY, STICKER_ID,
-                                                           DATA_HASH, BLUR_HASH, TRANSFORM_PROPERTIES, TRANSFER_FILE };
+                                                           DATA_HASH, BLUR_HASH, TRANSFORM_PROPERTIES, TRANSFER_FILE,
+                                                           DISPLAY_ORDER };
 
   public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ROW_ID + " INTEGER PRIMARY KEY, " +
     MMS_ID + " INTEGER, " + "seq" + " INTEGER DEFAULT 0, "                        +
@@ -154,7 +159,8 @@ public class AttachmentDatabase extends Database {
     CAPTION + " TEXT DEFAULT NULL, " + STICKER_PACK_ID + " TEXT DEFAULT NULL, " +
     STICKER_PACK_KEY + " DEFAULT NULL, " + STICKER_ID + " INTEGER DEFAULT -1, " +
     DATA_HASH + " TEXT DEFAULT NULL, " + BLUR_HASH + " TEXT DEFAULT NULL, " +
-    TRANSFORM_PROPERTIES + " TEXT DEFAULT NULL, " + TRANSFER_FILE + " TEXT DEFAULT NULL);";
+    TRANSFORM_PROPERTIES + " TEXT DEFAULT NULL, " + TRANSFER_FILE + " TEXT DEFAULT NULL, " +
+    DISPLAY_ORDER + " INTEGER DEFAULT 0);";
 
   public static final String[] CREATE_INDEXS = {
     "CREATE INDEX IF NOT EXISTS part_mms_id_index ON " + TABLE_NAME + " (" + MMS_ID + ");",
@@ -318,6 +324,33 @@ public class AttachmentDatabase extends Database {
 
     database.delete(TABLE_NAME, MMS_ID + " = ?", new String[] {mmsId + ""});
     notifyAttachmentListeners();
+  }
+
+  /**
+   * Deletes all attachments with an ID of {@link #PREUPLOAD_MESSAGE_ID}. These represent
+   * attachments that were pre-uploaded and haven't been assigned to a message. This should only be
+   * done when you *know* that all attachments *should* be assigned a real mmsId. For instance, when
+   * the app starts. Otherwise you could delete attachments that are legitimately being
+   * pre-uploaded.
+   */
+  public int deleteAbandonedPreuploadedAttachments() {
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+    String   query = MMS_ID + " = ?";
+    String[] args  = new String[] { String.valueOf(PREUPLOAD_MESSAGE_ID) };
+    int      count = 0;
+
+    try (Cursor cursor = db.query(TABLE_NAME, null, query, args, null, null, null)) {
+      while (cursor != null && cursor.moveToNext()) {
+        long         rowId    = cursor.getLong(cursor.getColumnIndexOrThrow(ROW_ID));
+        long         uniqueId = cursor.getLong(cursor.getColumnIndexOrThrow(UNIQUE_ID));
+        AttachmentId id       = new AttachmentId(rowId, uniqueId);
+
+        deleteAttachment(id);
+        count++;
+      }
+    }
+
+    return count;
   }
 
   public void deleteAttachmentFilesForViewOnceMessage(long mmsId) {
@@ -538,6 +571,32 @@ public class AttachmentDatabase extends Database {
     database.update(TABLE_NAME, contentValues, PART_ID_WHERE, destinationId.toStrings());
   }
 
+  public void updateAttachmentCaption(@NonNull AttachmentId id, @Nullable String caption) {
+    ContentValues values = new ContentValues(1);
+    values.put(CAPTION, caption);
+
+    databaseHelper.getWritableDatabase().update(TABLE_NAME, values, PART_ID_WHERE, id.toStrings());
+  }
+
+  public void updateDisplayOrder(@NonNull Map<AttachmentId, Integer> orderMap) {
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+
+    db.beginTransaction();
+    try {
+      for (Map.Entry<AttachmentId, Integer> entry : orderMap.entrySet()) {
+        ContentValues values = new ContentValues(1);
+        values.put(DISPLAY_ORDER, entry.getValue());
+
+        databaseHelper.getWritableDatabase().update(TABLE_NAME, values, PART_ID_WHERE, entry.getKey().toStrings());
+      }
+
+      db.setTransactionSuccessful();
+    } finally {
+      db.endTransaction();
+    }
+
+  }
+
   public void updateAttachmentAfterUpload(@NonNull AttachmentId id, @NonNull Attachment attachment) {
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
     ContentValues  values   = new ContentValues();
@@ -552,6 +611,42 @@ public class AttachmentDatabase extends Database {
     values.put(BLUR_HASH, getBlurHashStringOrNull(attachment.getBlurHash()));
 
     database.update(TABLE_NAME, values, PART_ID_WHERE, id.toStrings());
+  }
+
+  public @NonNull DatabaseAttachment insertAttachmentForPreUpload(@NonNull Attachment attachment) throws MmsException {
+    Map<Attachment, AttachmentId> result = insertAttachmentsForMessage(PREUPLOAD_MESSAGE_ID,
+                                                                       Collections.singletonList(attachment),
+                                                                       Collections.emptyList());
+
+    if (result.values().isEmpty()) {
+      throw new MmsException("Bad attachment result!");
+    }
+
+    DatabaseAttachment databaseAttachment = getAttachment(result.values().iterator().next());
+
+    if (databaseAttachment == null) {
+      throw new MmsException("Failed to retrieve attachment we just inserted!");
+    }
+
+    return databaseAttachment;
+  }
+
+  public void updateMessageId(@NonNull Collection<AttachmentId> attachmentIds, long mmsId) {
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+
+    db.beginTransaction();
+    try {
+      ContentValues values = new ContentValues(1);
+      values.put(MMS_ID, mmsId);
+
+      for (AttachmentId attachmentId : attachmentIds) {
+        db.update(TABLE_NAME, values, PART_ID_WHERE, attachmentId.toStrings());
+      }
+
+      db.setTransactionSuccessful();
+    } finally {
+      db.endTransaction();
+    }
   }
 
   @NonNull Map<Attachment, AttachmentId> insertAttachmentsForMessage(long mmsId, @NonNull List<Attachment> attachments, @NonNull List<Attachment> quoteAttachment)
@@ -957,7 +1052,8 @@ public class AttachmentDatabase extends Database {
                                                                        object.getInt(STICKER_ID))
                                                   : null,
                                               BlurHash.parseOrNull(object.getString(BLUR_HASH)),
-                                              TransformProperties.parse(object.getString(TRANSFORM_PROPERTIES))));
+                                              TransformProperties.parse(object.getString(TRANSFORM_PROPERTIES)),
+                                              object.getInt(DISPLAY_ORDER)));
           }
         }
 
@@ -988,7 +1084,8 @@ public class AttachmentDatabase extends Database {
                                                                                          cursor.getInt(cursor.getColumnIndexOrThrow(STICKER_ID)))
                                                                     : null,
                                                                 BlurHash.parseOrNull(cursor.getString(cursor.getColumnIndexOrThrow(BLUR_HASH))),
-                                                                TransformProperties.parse(cursor.getString(cursor.getColumnIndexOrThrow(TRANSFORM_PROPERTIES)))));
+                                                                TransformProperties.parse(cursor.getString(cursor.getColumnIndexOrThrow(TRANSFORM_PROPERTIES))),
+                                                                cursor.getInt(cursor.getColumnIndexOrThrow(DISPLAY_ORDER))));
       }
     } catch (JSONException e) {
       throw new AssertionError(e);

@@ -84,7 +84,9 @@ public final class InMemoryTranscoder implements Closeable {
                               : OUTPUT_FORMAT;
   }
 
-  public @NonNull MediaStream transcode(@NonNull Progress progress) throws IOException, EncodingException, VideoSizeException {
+  public @NonNull MediaStream transcode(@NonNull Progress progress, @Nullable CancelationSignal cancelationSignal)
+      throws IOException, EncodingException, VideoSizeException
+  {
     if (memoryFile != null) throw new AssertionError("Not expecting to reuse transcoder");
 
     float durationSec = duration / 1000f;
@@ -131,7 +133,7 @@ public final class InMemoryTranscoder implements Closeable {
 
     converter.setListener(percent -> {
       progress.onProgress(percent);
-      return false;
+      return cancelationSignal != null && cancelationSignal.isCanceled();
     });
 
     converter.convert();
@@ -211,7 +213,10 @@ public final class InMemoryTranscoder implements Closeable {
   }
 
   public interface Progress {
-
     void onProgress(int percent);
+  }
+
+  public interface CancelationSignal {
+    boolean isCanceled();
   }
 }

@@ -1,19 +1,19 @@
 package org.thoughtcrime.securesms.util;
 
-import java.util.HashSet;
+import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
 public final class SetUtil {
   private SetUtil() {}
 
-  public static <E> Set<E> intersection(Set<E> a, Set<E> b) {
+  public static <E> Set<E> intersection(Collection<E> a, Collection<E> b) {
     Set<E> intersection = new LinkedHashSet<>(a);
     intersection.retainAll(b);
     return intersection;
   }
 
-  public static <E> Set<E> difference(Set<E> a, Set<E> b) {
+  public static <E> Set<E> difference(Collection<E> a, Collection<E> b) {
     Set<E> difference = new LinkedHashSet<>(a);
     difference.removeAll(b);
     return difference;
