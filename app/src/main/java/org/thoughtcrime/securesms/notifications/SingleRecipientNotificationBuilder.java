@@ -34,6 +34,7 @@ import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.util.AvatarUtil;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
@@ -273,6 +274,7 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
                   .setBot(false)
                   .setName(Recipient.self().getDisplayName(context))
                   .setKey(Recipient.self().getId().serialize())
+                  .setIcon(AvatarUtil.getIconForNotification(context, Recipient.self()))
                   .build());
 
     if (threadRecipient.isGroup()) {
