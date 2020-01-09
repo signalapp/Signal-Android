@@ -52,6 +52,11 @@
 
     </android.support.v7.widget.Toolbar>
 
+    <org.thoughtcrime.securesms.loki.redesign.views.SeedReminderView
+        android:id="@+id/seedReminderView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">

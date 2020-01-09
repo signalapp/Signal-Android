@@ -152,6 +152,8 @@
         <activity
             android:name="org.thoughtcrime.securesms.loki.redesign.activities.JoinPublicChatActivity"
             android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name="org.thoughtcrime.securesms.loki.redesign.activities.SeedActivity" />
         <!-- Session -->
         <activity android:name="org.thoughtcrime.securesms.loki.LinkedDevicesActivity" />
         <activity

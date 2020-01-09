@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/default_session_background"
+    android:orientation="vertical">
+
+    <org.thoughtcrime.securesms.loki.redesign.views.SeedReminderView
+        android:id="@+id/seedReminderView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/very_large_spacing"
+        android:layout_marginRight="@dimen/very_large_spacing"
+        android:textSize="@dimen/very_large_font_size"
+        android:textStyle="bold"
+        android:textColor="@color/text"
+        android:text="Meet your recovery phrase" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/very_large_spacing"
+        android:layout_marginTop="@dimen/medium_spacing"
+        android:layout_marginRight="@dimen/very_large_spacing"
+        android:textSize="@dimen/medium_font_size"
+        android:textColor="@color/text"
+        android:text="Think of this as the crypto-equivalent of a social security number. This allows whomever has it complete access to your account." />
+
+    <TextView
+        style="@style/SessionIDTextView"
+        android:id="@+id/seedTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/very_large_spacing"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="@dimen/very_large_spacing"
+        android:gravity="center"
+        android:textSize="@dimen/medium_font_size"
+        android:textAlignment="center"
+        android:text="nautical novelty populate onion awkward bent etiquette plant submarine itches vipers september axis maximum populate" />
+
+    <TextView
+        android:id="@+id/revealButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/medium_spacing"
+        android:textAlignment="center"
+        android:textSize="@dimen/medium_font_size"
+        android:textColor="@color/text"
+        android:alpha="0.6"
+        android:text="Hold to reveal" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <Button
+        style="@style/MediumProminentOutlineButton"
+        android:id="@+id/copyButton"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/medium_button_height"
+        android:layout_marginLeft="@dimen/massive_spacing"
+        android:layout_marginRight="@dimen/massive_spacing"
+        android:layout_marginBottom="@dimen/medium_spacing"
+        android:text="Copy" />
+
+</LinearLayout>

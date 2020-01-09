@@ -1195,6 +1195,14 @@ public class TextSecurePreferences {
     setStringPreference(context, "master_hex_encoded_public_key", masterHexEncodedPublicKey.toLowerCase());
   }
 
+  public static Boolean getHasViewedSeed(Context context) {
+    return getBooleanPreference(context, "has_viewed_seed", false);
+  }
+
+  public static void setHasViewedSeed(Context context, Boolean hasViewedSeed) {
+    setBooleanPreference(context, "has_viewed_seed", hasViewedSeed);
+  }
+
   public static void setResetDatabase(Context context, boolean resetDatabase) {
     // We do it this way so that it gets persisted in storage straight away
     PreferenceManager.getDefaultSharedPreferences(context).edit().putBoolean("database_reset", resetDatabase).commit();

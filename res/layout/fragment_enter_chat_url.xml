@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/default_session_background"
+    android:gravity="center_horizontal"
     android:orientation="vertical">
 
     <EditText
@@ -37,10 +38,8 @@
     <Button
         style="@style/MediumProminentOutlineButton"
         android:id="@+id/joinPublicChatButton"
-        android:layout_width="match_parent"
+        android:layout_width="196dp"
         android:layout_height="@dimen/medium_button_height"
-        android:layout_marginLeft="90dp"
-        android:layout_marginRight="90dp"
         android:layout_marginBottom="@dimen/medium_spacing"
         android:text="Next" />
 

@@ -18,6 +18,8 @@
     <color name="unimportant_dialog_button_background">#1B1B1B</color>
     <color name="fake_chat_bubble_background">#3F4146</color>
     <color name="fake_chat_bubble_text">#000000</color>
+    <color name="app_icon_background">#333132</color>
+    <color name="progress_bar_background">#0AFFFFFF</color>
     <!-- Session -->
 
     <!-- Loki -->

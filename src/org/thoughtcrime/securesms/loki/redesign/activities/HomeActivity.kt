@@ -16,6 +16,10 @@ import android.support.v4.content.Loader
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.helper.ItemTouchHelper
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
+import android.view.View
 import kotlinx.android.synthetic.main.activity_home.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.ApplicationContext
@@ -28,13 +32,14 @@ import org.thoughtcrime.securesms.loki.getColorWithID
 import org.thoughtcrime.securesms.loki.redesign.utilities.push
 import org.thoughtcrime.securesms.loki.redesign.utilities.show
 import org.thoughtcrime.securesms.loki.redesign.views.ConversationView
+import org.thoughtcrime.securesms.loki.redesign.views.SeedReminderViewDelegate
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.notifications.MessageNotifier
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import kotlin.math.abs
 
-class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListener {
+class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListener, SeedReminderViewDelegate {
     private lateinit var glide: GlideRequests
 
     private val hexEncodedPublicKey: String
@@ -79,6 +84,19 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
         profileButton.update()
         profileButton.setOnClickListener { openSettings() }
         joinPublicChatButton.setOnClickListener { joinPublicChat() }
+        // Set up seed reminder view
+        val isMasterDevice = (TextSecurePreferences.getMasterHexEncodedPublicKey(this) == null)
+        val hasViewedSeed = TextSecurePreferences.getHasViewedSeed(this)
+        if (!hasViewedSeed && isMasterDevice) {
+            val seedReminderViewTitle = SpannableString("You're almost finished! 80%")
+            seedReminderViewTitle.setSpan(ForegroundColorSpan(resources.getColorWithID(R.color.accent, theme)), 24, 27, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+            seedReminderView.title = seedReminderViewTitle
+            seedReminderView.subtitle = "Secure your account by saving your recovery phrase"
+            seedReminderView.setProgress(80, false)
+            seedReminderView.delegate = this
+        } else {
+            seedReminderView.visibility = View.GONE
+        }
         // Set up recycler view
         val cursor = DatabaseFactory.getThreadDatabase(this).conversationList
         val homeAdapter = HomeAdapter(this, cursor)
@@ -117,6 +135,21 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
             application.lokiPublicChatManager.startPollersIfNeeded()
             application.startRSSFeedPollersIfNeeded()
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val isMasterDevice = (TextSecurePreferences.getMasterHexEncodedPublicKey(this) == null)
+        val hasViewedSeed = TextSecurePreferences.getHasViewedSeed(this)
+        if (hasViewedSeed || !isMasterDevice) {
+            seedReminderView.visibility = View.GONE
+        }
+    }
+    // endregion
+
+    override fun handleSeedReminderViewContinueButtonTapped() {
+        val intent = Intent(this, SeedActivity::class.java)
+        show(intent)
     }
 
     override fun onConversationClick(view: ConversationView) {

@@ -4,7 +4,7 @@
                 android:id="@+id/prompt_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/loki_darkest_gray">
+                android:background="@drawable/default_session_background">
 
 
   <ProgressBar android:id="@+id/passphrase_edit"
