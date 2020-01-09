@@ -543,7 +543,8 @@ public class MediaSendActivity extends PassphraseRequiredActionBarActivity imple
 
     if (fragment != null) {
       processMedia(fragment.getAllMedia(), fragment.getSavedState(), processedMedia -> {
-        sendMessages(recipients, processedMedia, composeText.getTextTrimmed(), transport);
+        String body = viewModel.isViewOnce() ? "" : composeText.getTextTrimmed();
+        sendMessages(recipients, processedMedia, body, transport);
       });
     } else {
       throw new AssertionError("No editor fragment available!");
