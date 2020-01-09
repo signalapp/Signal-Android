@@ -154,6 +154,12 @@
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name="org.thoughtcrime.securesms.loki.redesign.activities.SeedActivity" />
+        <activity
+            android:name="org.thoughtcrime.securesms.loki.redesign.activities.PrivacySettingsActivity" />
+        <activity
+            android:name="org.thoughtcrime.securesms.loki.redesign.activities.NotificationSettingsActivity" />
+        <activity
+            android:name="org.thoughtcrime.securesms.loki.redesign.activities.ChatSettingsActivity" />
         <!-- Session -->
         <activity android:name="org.thoughtcrime.securesms.loki.LinkedDevicesActivity" />
         <activity

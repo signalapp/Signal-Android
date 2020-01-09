@@ -140,6 +140,12 @@
         <item name="android:textColor">@color/text</item>
         <item name="android:elevation">20dp</item>
     </style>
+
+    <style name="Session.SettingsTheme" parent="PreferenceThemeOverlay.v14.Material" >
+        <item name="android:textColor">@color/text</item>
+        <item name="android:textColorSecondary">#99FFFFFF</item>
+        <item name="android:textSize">@dimen/medium_font_size</item>
+    </style>
     <!-- Session -->
 
     <style name="NoAnimation.Theme.BlackScreen" parent="Theme.AppCompat.NoActionBar">
@@ -375,7 +381,6 @@
         <item name="android:clickable">false</item>
         <item name="android:focusable">false</item>
     </style>
-
 
     <style name="PreferenceThemeOverlay.Fix" parent="PreferenceThemeOverlay.v14.Material">
     </style>

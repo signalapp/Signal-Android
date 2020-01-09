@@ -23,7 +23,6 @@ import nl.komponents.kovenant.all
 import nl.komponents.kovenant.deferred
 import nl.komponents.kovenant.ui.alwaysUi
 import org.thoughtcrime.securesms.ApplicationContext
-import org.thoughtcrime.securesms.ApplicationPreferencesActivity
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
 import org.thoughtcrime.securesms.avatar.AvatarSelection
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
@@ -89,6 +88,8 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
             seedButton.visibility = View.GONE
         }
         privacyButton.setOnClickListener { showPrivacySettings() }
+        notificationsButton.setOnClickListener { showNotificationSettings() }
+        chatsButton.setOnClickListener { showChatSettings() }
         seedButton.setOnClickListener { showSeed() }
         clearAllDataButton.setOnClickListener { clearAllData() }
     }
@@ -250,7 +251,17 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
     }
 
     private fun showPrivacySettings() {
-        val intent = Intent(this, ApplicationPreferencesActivity::class.java)
+        val intent = Intent(this, PrivacySettingsActivity::class.java)
+        push(intent)
+    }
+
+    private fun showNotificationSettings() {
+        val intent = Intent(this, NotificationSettingsActivity::class.java)
+        push(intent)
+    }
+
+    private fun showChatSettings() {
+        val intent = Intent(this, ChatSettingsActivity::class.java)
         push(intent)
     }
 

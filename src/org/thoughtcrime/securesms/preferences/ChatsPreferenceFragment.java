@@ -17,8 +17,6 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
-import network.loki.messenger.R;
 import org.thoughtcrime.securesms.backup.BackupDialog;
 import org.thoughtcrime.securesms.backup.FullBackupBase.BackupEvent;
 import org.thoughtcrime.securesms.components.SwitchPreferenceCompat;
@@ -34,6 +32,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
+
+import network.loki.messenger.R;
 
 public class ChatsPreferenceFragment extends ListSummaryPreferenceFragment {
   private static final String TAG = ChatsPreferenceFragment.class.getSimpleName();
@@ -76,7 +76,6 @@ public class ChatsPreferenceFragment extends ListSummaryPreferenceFragment {
   @Override
   public void onResume() {
     super.onResume();
-    ((ApplicationPreferencesActivity)getActivity()).getSupportActionBar().setTitle(R.string.preferences__chats);
     setMediaDownloadSummaries();
     setBackupSummary();
   }
