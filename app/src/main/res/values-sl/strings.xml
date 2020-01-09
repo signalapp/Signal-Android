@@ -676,10 +676,10 @@
   <string name="RegistrationActivity_country_code_description">Koda države</string>
   <string name="RegistrationActivity_call">Kliči</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_photo">Slika</string>
-  <string name="RevealableMessageView_video">Video</string>
+  <string name="RevealableMessageView_view_photo">Slika</string>
+  <string name="RevealableMessageView_view_video">Video</string>
   <string name="RevealableMessageView_viewed">Ogledano</string>
-  <string name="RevealableMessageView_outgoing_media">Medijske datoteke</string>
+  <string name="RevealableMessageView_media">Medijske datoteke</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Shranjevanje slik ni uspelo.</string>
   <!--Search-->
@@ -739,8 +739,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="ThreadRecord_missed_call">Neodgovorjen klic</string>
   <string name="ThreadRecord_media_message">Večpredstavno sporočilo</string>
   <string name="ThreadRecord_sticker">Nalepka</string>
-  <string name="ThreadRecord_disappearing_photo">Izginjajoča fotografija</string>
-  <string name="ThreadRecord_disappearing_video">Izginjajoči video</string>
+  <string name="ThreadRecord_view_once_photo">Izginjajoča fotografija</string>
+  <string name="ThreadRecord_view_once_video">Izginjajoči video</string>
   <string name="ThreadRecord_s_is_on_signal">%s uporablja Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Izginjajoča sporočila so izklopljena</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Čas poteka sporočila je nastavljen na %s</string>
@@ -831,8 +831,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="MessageNotifier_mark_read">Označi kot prebrano</string>
   <string name="MessageNotifier_media_message">Večpredstavno sporočilo</string>
   <string name="MessageNotifier_sticker">Nalepka</string>
-  <string name="MessageNotifier_disappearing_photo">Izginjajoča fotografija</string>
-  <string name="MessageNotifier_disappearing_video">Izginjajoči video</string>
+  <string name="MessageNotifier_view_once_photo">Izginjajoča fotografija</string>
+  <string name="MessageNotifier_view_once_video">Izginjajoči video</string>
   <string name="MessageNotifier_reply">Odgovor</string>
   <string name="MessageNotifier_signal_message">Sporočilo Signal</string>
   <string name="MessageNotifier_unsecured_sms">Nezavarovan SMS</string>
@@ -980,7 +980,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="QuoteView_audio">Zvok</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Fotografija</string>
-  <string name="QuoteView_media">Multimedijsko sporočilo</string>
+  <string name="QuoteView_view_once_media">Multimedijsko sporočilo</string>
   <string name="QuoteView_sticker">Nalepka</string>
   <string name="QuoteView_document">Dokument</string>
   <string name="QuoteView_you">Vi</string>

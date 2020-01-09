@@ -510,10 +510,10 @@ nambari yako ya simu</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Ingiza msimbo tuetuma kwa 1%s</string>
   <string name="RegistrationActivity_call">wito</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_photo">picha</string>
-  <string name="RevealableMessageView_video">Video</string>
+  <string name="RevealableMessageView_view_photo">picha</string>
+  <string name="RevealableMessageView_view_video">Video</string>
   <string name="RevealableMessageView_viewed">Imeonyeshwa</string>
-  <string name="RevealableMessageView_outgoing_media">Midia</string>
+  <string name="RevealableMessageView_media">Midia</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">imefeli kuhifadhi picha zilizobadilika</string>
   <!--Search-->
@@ -562,7 +562,7 @@ nambari yako ya simu</string>
   <string name="ThreadRecord_called_you">ulipigiwa simu</string>
   <string name="ThreadRecord_missed_call">Simu zilizopotea</string>
   <string name="ThreadRecord_media_message">Ujumbe wa vyombo vya habari</string>
-  <string name="ThreadRecord_disappearing_photo">Picha inatoweka</string>
+  <string name="ThreadRecord_view_once_photo">Picha inatoweka</string>
   <string name="ThreadRecord_s_is_on_signal">%s yupo Signal</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Uumbe zilizopotea  imezuiliwa</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Ujumbe unapotea kwa mpangilio wa muda  kwa 1%s</string>
@@ -635,7 +635,7 @@ nambari yako ya simu</string>
   <string name="MessageNotifier_mark_all_as_read">nakili yote kama haijasomeka</string>
   <string name="MessageNotifier_mark_read">soma nakili</string>
   <string name="MessageNotifier_media_message">Ujumbe wa vyombo vya habari</string>
-  <string name="MessageNotifier_disappearing_photo">Picha inatoweka</string>
+  <string name="MessageNotifier_view_once_photo">Picha inatoweka</string>
   <string name="MessageNotifier_reply">jibu</string>
   <string name="MessageNotifier_signal_message">ujumbe wa Signal</string>
   <string name="MessageNotifier_unsecured_sms">ujumbe sio salama</string>
@@ -767,7 +767,7 @@ nambari yako ya simu</string>
   <string name="QuoteView_audio">Sauti</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">picha</string>
-  <string name="QuoteView_media">Ujumbe wa vyombo vya habari</string>
+  <string name="QuoteView_view_once_media">Ujumbe wa vyombo vya habari</string>
   <string name="QuoteView_document">nyaraka</string>
   <string name="QuoteView_you">Wewe</string>
   <string name="QuoteView_original_missing">Meseji halisi haipatikani</string>

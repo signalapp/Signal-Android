@@ -614,10 +614,10 @@
   <string name="RegistrationActivity_country_code_description">國碼</string>
   <string name="RegistrationActivity_call">撥打</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_photo">照片</string>
-  <string name="RevealableMessageView_video">影片</string>
+  <string name="RevealableMessageView_view_photo">照片</string>
+  <string name="RevealableMessageView_view_video">影片</string>
   <string name="RevealableMessageView_viewed">已查看</string>
-  <string name="RevealableMessageView_outgoing_media">媒體</string>
+  <string name="RevealableMessageView_media">媒體</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">無法儲存圖片的變更</string>
   <!--Search-->
@@ -678,8 +678,8 @@
   <string name="ThreadRecord_missed_call">未接來電</string>
   <string name="ThreadRecord_media_message">媒體訊息</string>
   <string name="ThreadRecord_sticker">貼圖</string>
-  <string name="ThreadRecord_disappearing_photo">銷毀照片</string>
-  <string name="ThreadRecord_disappearing_video">銷毀影片</string>
+  <string name="ThreadRecord_view_once_photo">銷毀照片</string>
+  <string name="ThreadRecord_view_once_video">銷毀影片</string>
   <string name="ThreadRecord_s_is_on_signal">%s 在 Signal 了！</string>
   <string name="ThreadRecord_disappearing_messages_disabled">自動銷毀訊息功能已被關閉。</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">訊息銷毀時間設定為 %s</string>
@@ -771,8 +771,8 @@
   <string name="MessageNotifier_mark_read">標示已讀</string>
   <string name="MessageNotifier_media_message">媒體訊息</string>
   <string name="MessageNotifier_sticker">貼圖</string>
-  <string name="MessageNotifier_disappearing_photo">銷毀照片</string>
-  <string name="MessageNotifier_disappearing_video">銷毀影片</string>
+  <string name="MessageNotifier_view_once_photo">銷毀照片</string>
+  <string name="MessageNotifier_view_once_video">銷毀影片</string>
   <string name="MessageNotifier_reply">回覆</string>
   <string name="MessageNotifier_signal_message">Signal 訊息</string>
   <string name="MessageNotifier_unsecured_sms">不安全的簡訊</string>
@@ -917,7 +917,7 @@
   <string name="QuoteView_audio">音訊</string>
   <string name="QuoteView_video">影片</string>
   <string name="QuoteView_photo">照片</string>
-  <string name="QuoteView_media">媒體訊息</string>
+  <string name="QuoteView_view_once_media">媒體訊息</string>
   <string name="QuoteView_sticker">貼圖</string>
   <string name="QuoteView_document">文件</string>
   <string name="QuoteView_you">您</string>

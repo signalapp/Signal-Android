@@ -637,10 +637,10 @@ Ver deg sjølv i kvar einaste melding.</string>
   <string name="RegistrationActivity_country_code_description">Landkode</string>
   <string name="RegistrationActivity_call">Ring</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_photo">Bilde</string>
-  <string name="RevealableMessageView_video">Video</string>
+  <string name="RevealableMessageView_view_photo">Bilde</string>
+  <string name="RevealableMessageView_view_video">Video</string>
   <string name="RevealableMessageView_viewed">Vist</string>
-  <string name="RevealableMessageView_outgoing_media">Media</string>
+  <string name="RevealableMessageView_media">Media</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Klarte ikkje lagra bildeendringane</string>
   <!--Search-->
@@ -700,8 +700,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="ThreadRecord_missed_call">Usvart anrop</string>
   <string name="ThreadRecord_media_message">Mediemelding</string>
   <string name="ThreadRecord_sticker">Klistremerke</string>
-  <string name="ThreadRecord_disappearing_photo">Forsvinnande foto</string>
-  <string name="ThreadRecord_disappearing_video">Forsvinnande film</string>
+  <string name="ThreadRecord_view_once_photo">Forsvinnande foto</string>
+  <string name="ThreadRecord_view_once_video">Forsvinnande film</string>
   <string name="ThreadRecord_s_is_on_signal">%s er på Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Forsvinnande meldingar skrudd av</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Utløpstid for melding endra til %s</string>
@@ -792,8 +792,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="MessageNotifier_mark_read">Merk lesen</string>
   <string name="MessageNotifier_media_message">Mediemelding</string>
   <string name="MessageNotifier_sticker">Klistremerke</string>
-  <string name="MessageNotifier_disappearing_photo">Forsvinnande foto</string>
-  <string name="MessageNotifier_disappearing_video">Forsvinnande film</string>
+  <string name="MessageNotifier_view_once_photo">Forsvinnande foto</string>
+  <string name="MessageNotifier_view_once_video">Forsvinnande film</string>
   <string name="MessageNotifier_reply">Svar</string>
   <string name="MessageNotifier_signal_message">Signal-melding</string>
   <string name="MessageNotifier_unsecured_sms">Usikra SMS</string>
@@ -939,7 +939,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversjon.</string>
   <string name="QuoteView_audio">Lyd</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Foto</string>
-  <string name="QuoteView_media">Mediemelding</string>
+  <string name="QuoteView_view_once_media">Mediemelding</string>
   <string name="QuoteView_sticker">Klistremerke</string>
   <string name="QuoteView_document">Dokument</string>
   <string name="QuoteView_you">Deg</string>

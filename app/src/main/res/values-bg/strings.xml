@@ -550,9 +550,9 @@
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Въведете кода, който изпратихме на %s</string>
   <string name="RegistrationActivity_call">Обаждане</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_photo">Снимка</string>
-  <string name="RevealableMessageView_video">Видео</string>
-  <string name="RevealableMessageView_outgoing_media">Медия</string>
+  <string name="RevealableMessageView_view_photo">Снимка</string>
+  <string name="RevealableMessageView_view_video">Видео</string>
+  <string name="RevealableMessageView_media">Медия</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Неуспешнп запазване на промененото изображение</string>
   <!--Search-->
@@ -818,7 +818,7 @@
   <string name="QuoteView_audio">Аудио</string>
   <string name="QuoteView_video">Видео</string>
   <string name="QuoteView_photo">Снимка</string>
-  <string name="QuoteView_media">Медийно съобщение</string>
+  <string name="QuoteView_view_once_media">Медийно съобщение</string>
   <string name="QuoteView_sticker">Стикер</string>
   <string name="QuoteView_document">Документ</string>
   <string name="QuoteView_you">Ти</string>

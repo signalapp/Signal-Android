@@ -639,10 +639,10 @@
   <string name="RegistrationActivity_country_code_description">Ülke kodu</string>
   <string name="RegistrationActivity_call">Ara</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_photo">Fotoğraf</string>
-  <string name="RevealableMessageView_video">Video</string>
+  <string name="RevealableMessageView_view_photo">Fotoğraf</string>
+  <string name="RevealableMessageView_view_video">Video</string>
   <string name="RevealableMessageView_viewed">Görüldü</string>
-  <string name="RevealableMessageView_outgoing_media">İçerik</string>
+  <string name="RevealableMessageView_media">İçerik</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Görüntü değişiklikleri kaydedilemedi</string>
   <!--Search-->
@@ -702,8 +702,8 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="ThreadRecord_missed_call">Cevapsız arama</string>
   <string name="ThreadRecord_media_message">İçerik iletisi</string>
   <string name="ThreadRecord_sticker">Çıkartma</string>
-  <string name="ThreadRecord_disappearing_photo">Kaybolan fotoğraf</string>
-  <string name="ThreadRecord_disappearing_video">Kaybolan video</string>
+  <string name="ThreadRecord_view_once_photo">Kaybolan fotoğraf</string>
+  <string name="ThreadRecord_view_once_video">Kaybolan video</string>
   <string name="ThreadRecord_s_is_on_signal">%s Signal\'e katıldı!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Kaybolan iletiler devre dışı</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Kaybolan ileti süresi %s olarak ayarlandı</string>
@@ -794,8 +794,8 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="MessageNotifier_mark_read">Okundu işaretle</string>
   <string name="MessageNotifier_media_message">İçerik iletisi</string>
   <string name="MessageNotifier_sticker">Çıkartma</string>
-  <string name="MessageNotifier_disappearing_photo">Kaybolan fotoğraf</string>
-  <string name="MessageNotifier_disappearing_video">Kaybolan video</string>
+  <string name="MessageNotifier_view_once_photo">Kaybolan fotoğraf</string>
+  <string name="MessageNotifier_view_once_video">Kaybolan video</string>
   <string name="MessageNotifier_reply">Cevapla</string>
   <string name="MessageNotifier_signal_message">Signal İletisi</string>
   <string name="MessageNotifier_unsecured_sms">Şifresiz SMS</string>
@@ -941,7 +941,7 @@ Geçersiz protokol sürümünde anahtar değişim iletisi alındı.</string>
   <string name="QuoteView_audio">Ses</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Fotoğraf</string>
-  <string name="QuoteView_media">İçerik iletisi</string>
+  <string name="QuoteView_view_once_media">İçerik iletisi</string>
   <string name="QuoteView_sticker">Çıkartma</string>
   <string name="QuoteView_document">Doküman</string>
   <string name="QuoteView_you">Siz</string>

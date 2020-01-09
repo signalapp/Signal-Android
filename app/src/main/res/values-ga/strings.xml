@@ -501,10 +501,10 @@ a shonrú</string>
   <string name="RegistrationActivity_continue">Lean ar aghaidh</string>
   <string name="RegistrationActivity_call">Glao</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_photo">Grianghraf</string>
-  <string name="RevealableMessageView_video">Físeán</string>
+  <string name="RevealableMessageView_view_photo">Grianghraf</string>
+  <string name="RevealableMessageView_view_video">Físeán</string>
   <string name="RevealableMessageView_viewed">Feicthe</string>
-  <string name="RevealableMessageView_outgoing_media">Meáin</string>
+  <string name="RevealableMessageView_media">Meáin</string>
   <!--ScribbleActivity-->
   <!--Search-->
   <string name="SearchFragment_no_results">Níor aimsíodh aon torthaí le haghaidh \'%s\'</string>
@@ -742,7 +742,7 @@ a shonrú</string>
   <string name="QuoteView_audio">Fuaim</string>
   <string name="QuoteView_video">Físeán</string>
   <string name="QuoteView_photo">Grianghraf</string>
-  <string name="QuoteView_media">Teachtaireacht mheán</string>
+  <string name="QuoteView_view_once_media">Teachtaireacht mheán</string>
   <string name="QuoteView_sticker">Greamán</string>
   <string name="QuoteView_document">Cáipéis</string>
   <string name="QuoteView_you">Tusa</string>

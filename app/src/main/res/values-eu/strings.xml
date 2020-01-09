@@ -638,10 +638,10 @@ zenbakia (%s) baliogabea da.
   <string name="RegistrationActivity_country_code_description">Herrialde kodea</string>
   <string name="RegistrationActivity_call">Deitu</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_photo">Argazkia</string>
-  <string name="RevealableMessageView_video">Bideoa</string>
+  <string name="RevealableMessageView_view_photo">Argazkia</string>
+  <string name="RevealableMessageView_view_video">Bideoa</string>
   <string name="RevealableMessageView_viewed">Ikusita</string>
-  <string name="RevealableMessageView_outgoing_media">Media</string>
+  <string name="RevealableMessageView_media">Media</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Irudien aldaketak gordetzeak huts egin du</string>
   <!--Search-->
@@ -703,8 +703,8 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="ThreadRecord_missed_call">Erantzun gabeko deia</string>
   <string name="ThreadRecord_media_message">Multimedia mezua</string>
   <string name="ThreadRecord_sticker">Eranskailua</string>
-  <string name="ThreadRecord_disappearing_photo">Argazkia desagertuta</string>
-  <string name="ThreadRecord_disappearing_video">Desagertzen den bideoa</string>
+  <string name="ThreadRecord_view_once_photo">Argazkia desagertuta</string>
+  <string name="ThreadRecord_view_once_video">Desagertzen den bideoa</string>
   <string name="ThreadRecord_s_is_on_signal">%sSignal-en dago!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Mezuen desagerpena ezgaituta dago</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Desagertzen diren mezuen debora %s-tan ezarrita</string>
@@ -795,8 +795,8 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="MessageNotifier_mark_read">Markatu irakurritako gisa</string>
   <string name="MessageNotifier_media_message">Multimedia mezua</string>
   <string name="MessageNotifier_sticker">Eranskailua</string>
-  <string name="MessageNotifier_disappearing_photo">Argazkia desagertuta</string>
-  <string name="MessageNotifier_disappearing_video">Desagertzen den bideoa</string>
+  <string name="MessageNotifier_view_once_photo">Argazkia desagertuta</string>
+  <string name="MessageNotifier_view_once_video">Desagertzen den bideoa</string>
   <string name="MessageNotifier_reply">Erantzun</string>
   <string name="MessageNotifier_signal_message">Signal mezua</string>
   <string name="MessageNotifier_unsecured_sms">SMS ez segurua</string>
@@ -942,7 +942,7 @@ Gakoaren elkar-trukeraro mezua jaso da protokoloaren bertsio baliogabe baterako.
   <string name="QuoteView_audio">Audioa</string>
   <string name="QuoteView_video">Bideoa</string>
   <string name="QuoteView_photo">Argazkia</string>
-  <string name="QuoteView_media">Multimedia mezua</string>
+  <string name="QuoteView_view_once_media">Multimedia mezua</string>
   <string name="QuoteView_sticker">Eranskailua</string>
   <string name="QuoteView_document">Dokumentua</string>
   <string name="QuoteView_you">Zu</string>

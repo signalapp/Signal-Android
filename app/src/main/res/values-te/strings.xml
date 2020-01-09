@@ -641,10 +641,10 @@
   <string name="RegistrationActivity_country_code_description">దేశం కోడ్</string>
   <string name="RegistrationActivity_call">కాల్</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_photo">చిత్రం </string>
-  <string name="RevealableMessageView_video">వీడియో</string>
+  <string name="RevealableMessageView_view_photo">చిత్రం </string>
+  <string name="RevealableMessageView_view_video">వీడియో</string>
   <string name="RevealableMessageView_viewed">వీక్షించినవి</string>
-  <string name="RevealableMessageView_outgoing_media">మీడియా</string>
+  <string name="RevealableMessageView_media">మీడియా</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">చిత్రం మార్పులను భద్రపరచడంలో విఫలమైంది</string>
   <!--Search-->
@@ -703,8 +703,8 @@
   <string name="ThreadRecord_missed_call">తప్పిన కాల్</string>
   <string name="ThreadRecord_media_message">మీడియ సందేశం</string>
   <string name="ThreadRecord_sticker">స్టికర్</string>
-  <string name="ThreadRecord_disappearing_photo">అదృశ్యమవుతున్న చిత్రం</string>
-  <string name="ThreadRecord_disappearing_video">అదృశ్యమవుతున్న వీడియో</string>
+  <string name="ThreadRecord_view_once_photo">అదృశ్యమవుతున్న చిత్రం</string>
+  <string name="ThreadRecord_view_once_video">అదృశ్యమవుతున్న వీడియో</string>
   <string name="ThreadRecord_s_is_on_signal">1%s Signal ఉంది!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">కనుమరుగవుతున్న సందేశాలు నిలిపివేయబడ్డాయి</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s"> కనుమరుగవుథున సంధెషం కొరకు సమయం కుర్చుత కొసం %s</string>
@@ -795,8 +795,8 @@
   <string name="MessageNotifier_mark_read">చదివినట్టు గుర్తుపెట్టు</string>
   <string name="MessageNotifier_media_message">మీడియ సందేశం</string>
   <string name="MessageNotifier_sticker">స్టికర్</string>
-  <string name="MessageNotifier_disappearing_photo">అదృశ్యమవుతున్న  చిత్రం</string>
-  <string name="MessageNotifier_disappearing_video">అదృశ్యమవుతున్న వీడియో</string>
+  <string name="MessageNotifier_view_once_photo">అదృశ్యమవుతున్న  చిత్రం</string>
+  <string name="MessageNotifier_view_once_video">అదృశ్యమవుతున్న వీడియో</string>
   <string name="MessageNotifier_reply">స్పంధించు</string>
   <string name="MessageNotifier_signal_message">Signal సందేశం</string>
   <string name="MessageNotifier_unsecured_sms">భద్రతలేని సందేశం</string>
@@ -942,7 +942,7 @@
   <string name="QuoteView_audio">ఆడియో</string>
   <string name="QuoteView_video">వీడియో</string>
   <string name="QuoteView_photo">చిత్రం </string>
-  <string name="QuoteView_media">మీడియ సందేశం</string>
+  <string name="QuoteView_view_once_media">మీడియ సందేశం</string>
   <string name="QuoteView_sticker">స్టికర్</string>
   <string name="QuoteView_document">పత్రం</string>
   <string name="QuoteView_you">మీరు</string>

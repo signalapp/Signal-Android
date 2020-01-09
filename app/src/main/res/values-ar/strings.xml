@@ -643,10 +643,10 @@
   <string name="RegistrationActivity_country_code_description">رمز البلد</string>
   <string name="RegistrationActivity_call">اتصل</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_photo">صورة</string>
-  <string name="RevealableMessageView_video">فيديو</string>
+  <string name="RevealableMessageView_view_photo">صورة</string>
+  <string name="RevealableMessageView_view_video">فيديو</string>
   <string name="RevealableMessageView_viewed">تمت المشاهدة</string>
-  <string name="RevealableMessageView_outgoing_media">الوسائط</string>
+  <string name="RevealableMessageView_media">الوسائط</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">تعذر حفظ التغييرات بالصورة</string>
   <!--Search-->
@@ -913,7 +913,7 @@
   <string name="QuoteView_audio">صوت</string>
   <string name="QuoteView_video">فيديو</string>
   <string name="QuoteView_photo">صورة</string>
-  <string name="QuoteView_media">رسائل الاعلام</string>
+  <string name="QuoteView_view_once_media">رسائل الاعلام</string>
   <string name="QuoteView_sticker">ملصق</string>
   <string name="QuoteView_document">مستند</string>
   <string name="QuoteView_you">أنت</string>

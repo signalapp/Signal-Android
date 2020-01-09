@@ -631,10 +631,10 @@
   <string name="RegistrationActivity_country_code_description">Landesvorwahl</string>
   <string name="RegistrationActivity_call">Mich anrufen</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_photo">Foto</string>
-  <string name="RevealableMessageView_video">Video</string>
+  <string name="RevealableMessageView_view_photo">Foto</string>
+  <string name="RevealableMessageView_view_video">Video</string>
   <string name="RevealableMessageView_viewed">Angesehen</string>
-  <string name="RevealableMessageView_outgoing_media">Medieninhalte</string>
+  <string name="RevealableMessageView_media">Medieninhalte</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Bildänderungen konnten nicht gespeichert werden</string>
   <!--Search-->
@@ -693,8 +693,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="ThreadRecord_missed_call">Entgangener Anruf</string>
   <string name="ThreadRecord_media_message">Nachricht mit Medieninhalten</string>
   <string name="ThreadRecord_sticker">Sticker</string>
-  <string name="ThreadRecord_disappearing_photo">Verschwindendes Foto</string>
-  <string name="ThreadRecord_disappearing_video">Verschwindendes Video</string>
+  <string name="ThreadRecord_view_once_photo">Verschwindendes Foto</string>
+  <string name="ThreadRecord_view_once_video">Verschwindendes Video</string>
   <string name="ThreadRecord_s_is_on_signal">%s ist bei Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Verschwindende Nachrichten deaktiviert</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Zeit für verschwindende Nachrichten auf %s festgelegt</string>
@@ -785,8 +785,8 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="MessageNotifier_mark_read">Gelesen</string>
   <string name="MessageNotifier_media_message">Nachricht mit Medieninhalten</string>
   <string name="MessageNotifier_sticker">Sticker</string>
-  <string name="MessageNotifier_disappearing_photo">Verschwindendes Foto</string>
-  <string name="MessageNotifier_disappearing_video">Verschwindendes Video</string>
+  <string name="MessageNotifier_view_once_photo">Verschwindendes Foto</string>
+  <string name="MessageNotifier_view_once_video">Verschwindendes Video</string>
   <string name="MessageNotifier_reply">Antworten</string>
   <string name="MessageNotifier_signal_message">Signal-Nachricht</string>
   <string name="MessageNotifier_unsecured_sms">Unsichere SMS</string>
@@ -932,7 +932,7 @@ Schlüsselaustausch-Nachricht für eine ungültige Protokollversion empfangen</s
   <string name="QuoteView_audio">Audio</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Foto</string>
-  <string name="QuoteView_media">Nachricht mit Medieninhalten</string>
+  <string name="QuoteView_view_once_media">Nachricht mit Medieninhalten</string>
   <string name="QuoteView_sticker">Sticker</string>
   <string name="QuoteView_document">Dokument</string>
   <string name="QuoteView_you">Du</string>

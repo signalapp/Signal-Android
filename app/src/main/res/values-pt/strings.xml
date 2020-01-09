@@ -634,10 +634,10 @@ especificou (%s) é inválido.</string>
   <string name="RegistrationActivity_country_code_description">Código do país</string>
   <string name="RegistrationActivity_call">Telefonar</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_photo">Fotografia</string>
-  <string name="RevealableMessageView_video">Vídeo</string>
+  <string name="RevealableMessageView_view_photo">Fotografia</string>
+  <string name="RevealableMessageView_view_video">Vídeo</string>
   <string name="RevealableMessageView_viewed">Vista(s)</string>
-  <string name="RevealableMessageView_outgoing_media">Média</string>
+  <string name="RevealableMessageView_media">Média</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Falha ao guardar as alterações da imagem</string>
   <!--Search-->
@@ -699,8 +699,8 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="ThreadRecord_missed_call">Chamada perdida</string>
   <string name="ThreadRecord_media_message">Mensagem multimédia</string>
   <string name="ThreadRecord_sticker">Autocolante</string>
-  <string name="ThreadRecord_disappearing_photo">Destruição de fotografia</string>
-  <string name="ThreadRecord_disappearing_video">Destruição de vídeo</string>
+  <string name="ThreadRecord_view_once_photo">Destruição de fotografia</string>
+  <string name="ThreadRecord_view_once_video">Destruição de vídeo</string>
   <string name="ThreadRecord_s_is_on_signal">%s está no Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Destruição de mensagens desactivada</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">O tempo a decorrer até que as mensagens sejam destruídas está definido para %s</string>
@@ -791,8 +791,8 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="MessageNotifier_mark_read">Marcar como lida</string>
   <string name="MessageNotifier_media_message">Mensagem multimédia</string>
   <string name="MessageNotifier_sticker">Autocolante</string>
-  <string name="MessageNotifier_disappearing_photo">Destruição de fotografia</string>
-  <string name="MessageNotifier_disappearing_video">Destruição de vídeo</string>
+  <string name="MessageNotifier_view_once_photo">Destruição de fotografia</string>
+  <string name="MessageNotifier_view_once_video">Destruição de vídeo</string>
   <string name="MessageNotifier_reply">Responder</string>
   <string name="MessageNotifier_signal_message">Mensagem do Signal</string>
   <string name="MessageNotifier_unsecured_sms">SMS inseguro</string>
@@ -938,7 +938,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="QuoteView_audio">Áudio</string>
   <string name="QuoteView_video">Vídeo</string>
   <string name="QuoteView_photo">Foto</string>
-  <string name="QuoteView_media">Mensagem multimédia</string>
+  <string name="QuoteView_view_once_media">Mensagem multimédia</string>
   <string name="QuoteView_sticker">Autocolante</string>
   <string name="QuoteView_document">Documento</string>
   <string name="QuoteView_you">Você</string>

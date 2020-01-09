@@ -634,10 +634,10 @@
   <string name="RegistrationActivity_country_code_description">کد کشور</string>
   <string name="RegistrationActivity_call">تماس</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_photo">تصویر</string>
-  <string name="RevealableMessageView_video">ویدیو</string>
+  <string name="RevealableMessageView_view_photo">تصویر</string>
+  <string name="RevealableMessageView_view_video">ویدیو</string>
   <string name="RevealableMessageView_viewed">Viewed</string>
-  <string name="RevealableMessageView_outgoing_media">رسانه‌ها</string>
+  <string name="RevealableMessageView_media">رسانه‌ها</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">ذخیرهٔ تغییرات برروی عکس ناموفق بود</string>
   <!--Search-->
@@ -697,8 +697,8 @@
   <string name="ThreadRecord_missed_call">تماس از دست رفته</string>
   <string name="ThreadRecord_media_message">پیام رسانه‌ای</string>
   <string name="ThreadRecord_sticker">استیکر</string>
-  <string name="ThreadRecord_disappearing_photo">عکس ناپدید شد</string>
-  <string name="ThreadRecord_disappearing_video">ویدئوی ناپدید شونده</string>
+  <string name="ThreadRecord_view_once_photo">عکس ناپدید شد</string>
+  <string name="ThreadRecord_view_once_video">ویدئوی ناپدید شونده</string>
   <string name="ThreadRecord_s_is_on_signal">%s در Signal است!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">پیام های نابود شونده غیر فعال شد</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">زمان پنهان شدن پیام بر روی %s تنظیم شد</string>
@@ -789,8 +789,8 @@
   <string name="MessageNotifier_mark_read">علامت گذاری به عنوان خوانده شده</string>
   <string name="MessageNotifier_media_message">پیام رسانه‌ای</string>
   <string name="MessageNotifier_sticker">استیکر</string>
-  <string name="MessageNotifier_disappearing_photo">عکس ناپدید شد</string>
-  <string name="MessageNotifier_disappearing_video">ویدیو ناپدید شونده</string>
+  <string name="MessageNotifier_view_once_photo">عکس ناپدید شد</string>
+  <string name="MessageNotifier_view_once_video">ویدیو ناپدید شونده</string>
   <string name="MessageNotifier_reply">پاسخ</string>
   <string name="MessageNotifier_signal_message">پیام Signal</string>
   <string name="MessageNotifier_unsecured_sms">پیامک ناامن</string>
@@ -936,7 +936,7 @@
   <string name="QuoteView_audio">صدا</string>
   <string name="QuoteView_video">ویدئو</string>
   <string name="QuoteView_photo">تصویر</string>
-  <string name="QuoteView_media">پیام رسانه‌ای</string>
+  <string name="QuoteView_view_once_media">پیام رسانه‌ای</string>
   <string name="QuoteView_sticker">استیکر</string>
   <string name="QuoteView_document">سند</string>
   <string name="QuoteView_you">شما</string>

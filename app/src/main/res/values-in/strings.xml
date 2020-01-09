@@ -614,10 +614,10 @@ isikan (%s) tidak valid.
   <string name="RegistrationActivity_country_code_description">Kode negara</string>
   <string name="RegistrationActivity_call">Panggil</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_photo">Foto</string>
-  <string name="RevealableMessageView_video">Video</string>
+  <string name="RevealableMessageView_view_photo">Foto</string>
+  <string name="RevealableMessageView_view_video">Video</string>
   <string name="RevealableMessageView_viewed">Dilihat</string>
-  <string name="RevealableMessageView_outgoing_media">Media</string>
+  <string name="RevealableMessageView_media">Media</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Gagal menyimpan perubahan gambar.</string>
   <!--Search-->
@@ -679,8 +679,8 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="ThreadRecord_missed_call">Panggilan tak terjawab</string>
   <string name="ThreadRecord_media_message">Pesan media</string>
   <string name="ThreadRecord_sticker">Stiker</string>
-  <string name="ThreadRecord_disappearing_photo">Foto akan menghilang</string>
-  <string name="ThreadRecord_disappearing_video">Video akan menghilang</string>
+  <string name="ThreadRecord_view_once_photo">Foto akan menghilang</string>
+  <string name="ThreadRecord_view_once_video">Video akan menghilang</string>
   <string name="ThreadRecord_s_is_on_signal">%s ada di Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Pesan menghilang dinonaktifkan</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Waktu penghilangan pesan diatur menjadi %s</string>
@@ -771,8 +771,8 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="MessageNotifier_mark_read">Tandai sudah dibaca</string>
   <string name="MessageNotifier_media_message">Pesan media</string>
   <string name="MessageNotifier_sticker">Stiker</string>
-  <string name="MessageNotifier_disappearing_photo">Foto akan menghilang</string>
-  <string name="MessageNotifier_disappearing_video">Video akan menghilang</string>
+  <string name="MessageNotifier_view_once_photo">Foto akan menghilang</string>
+  <string name="MessageNotifier_view_once_video">Video akan menghilang</string>
   <string name="MessageNotifier_reply">Balas</string>
   <string name="MessageNotifier_signal_message">Pesan Signal</string>
   <string name="MessageNotifier_unsecured_sms">SMS tidak terenkripsi</string>
@@ -917,7 +917,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="QuoteView_audio">Audio</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Foto</string>
-  <string name="QuoteView_media">Pesan berisi media</string>
+  <string name="QuoteView_view_once_media">Pesan berisi media</string>
   <string name="QuoteView_sticker">Stiker</string>
   <string name="QuoteView_document">Dokumen</string>
   <string name="QuoteView_you">Anda</string>

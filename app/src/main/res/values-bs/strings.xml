@@ -660,10 +660,10 @@
   <string name="RegistrationActivity_country_code_description">Državni kōd</string>
   <string name="RegistrationActivity_call">Poziv</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_photo">Fotografija</string>
-  <string name="RevealableMessageView_video">Video</string>
+  <string name="RevealableMessageView_view_photo">Fotografija</string>
+  <string name="RevealableMessageView_view_video">Video</string>
   <string name="RevealableMessageView_viewed">Viđeno</string>
-  <string name="RevealableMessageView_outgoing_media">Slike</string>
+  <string name="RevealableMessageView_media">Slike</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Neuspjelo pohranjivanje izmjena na slici</string>
   <!--Search-->
@@ -725,8 +725,8 @@
   <string name="ThreadRecord_missed_call">Propušten poziv</string>
   <string name="ThreadRecord_media_message">Multimedijalna poruka</string>
   <string name="ThreadRecord_sticker">Naljepnica</string>
-  <string name="ThreadRecord_disappearing_photo">Nestajuća fotografija</string>
-  <string name="ThreadRecord_disappearing_video">Nestajući videozapis</string>
+  <string name="ThreadRecord_view_once_photo">Nestajuća fotografija</string>
+  <string name="ThreadRecord_view_once_video">Nestajući videozapis</string>
   <string name="ThreadRecord_s_is_on_signal">%s je na Signalu!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Onemogućene su nestajuće poruke</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Vrijeme za nestajanje poruka: %s</string>
@@ -817,8 +817,8 @@
   <string name="MessageNotifier_mark_read">Označi kao pročitano</string>
   <string name="MessageNotifier_media_message">Multimedijalna poruka</string>
   <string name="MessageNotifier_sticker">Naljepnica</string>
-  <string name="MessageNotifier_disappearing_photo">Nestajuća fotografija</string>
-  <string name="MessageNotifier_disappearing_video">Nestajući videozapis</string>
+  <string name="MessageNotifier_view_once_photo">Nestajuća fotografija</string>
+  <string name="MessageNotifier_view_once_video">Nestajući videozapis</string>
   <string name="MessageNotifier_reply">Odgovori</string>
   <string name="MessageNotifier_signal_message">Signal poruka</string>
   <string name="MessageNotifier_unsecured_sms">Nezaštićen SMS</string>
@@ -965,7 +965,7 @@
   <string name="QuoteView_audio">Audio</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Fotografija</string>
-  <string name="QuoteView_media">Multimedijalna poruka</string>
+  <string name="QuoteView_view_once_media">Multimedijalna poruka</string>
   <string name="QuoteView_sticker">Naljepnica</string>
   <string name="QuoteView_document">Dokument</string>
   <string name="QuoteView_you">Vi</string>

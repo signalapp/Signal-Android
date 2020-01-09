@@ -29,9 +29,7 @@ import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver;
-import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.ThemeUtil;
-import org.thoughtcrime.securesms.util.Util;
 
 import java.util.List;
 
@@ -217,7 +215,7 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
 
     // Given that most types have images, we specifically check images last
     if (!viewOnceSlides.isEmpty()) {
-      mediaDescriptionText.setText(R.string.QuoteView_media);
+      mediaDescriptionText.setText(R.string.QuoteView_view_once_media);
     } else if (!audioSlides.isEmpty()) {
       mediaDescriptionText.setText(R.string.QuoteView_audio);
     } else if (!documentSlides.isEmpty()) {

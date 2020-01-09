@@ -642,10 +642,10 @@ Signal heeft ook toegang nodig tot de foto\'s, media en bestanden op je apparaat
   <string name="RegistrationActivity_country_code_description">Landcode</string>
   <string name="RegistrationActivity_call">Bellen</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_photo">Foto</string>
-  <string name="RevealableMessageView_video">Video</string>
+  <string name="RevealableMessageView_view_photo">Foto</string>
+  <string name="RevealableMessageView_view_video">Video</string>
   <string name="RevealableMessageView_viewed">Gezien</string>
-  <string name="RevealableMessageView_outgoing_media">Media</string>
+  <string name="RevealableMessageView_media">Media</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Mislukt om bewerkte afbeelding op te slaan</string>
   <!--Search-->
@@ -707,8 +707,8 @@ Signal heeft ook toegang nodig tot de foto\'s, media en bestanden op je apparaat
   <string name="ThreadRecord_missed_call">Gemiste oproep</string>
   <string name="ThreadRecord_media_message">Mediabericht</string>
   <string name="ThreadRecord_sticker">Sticker</string>
-  <string name="ThreadRecord_disappearing_photo">Zelf-wissende foto</string>
-  <string name="ThreadRecord_disappearing_video">Zelf-wissende video</string>
+  <string name="ThreadRecord_view_once_photo">Zelf-wissende foto</string>
+  <string name="ThreadRecord_view_once_video">Zelf-wissende video</string>
   <string name="ThreadRecord_s_is_on_signal">%s gebruikt nu ook Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Zelf-wissende berichten uitgeschakeld</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Berichten zullen zichzelf wissen %s nadat ze gelezen zijn</string>
@@ -799,8 +799,8 @@ Signal heeft ook toegang nodig tot de foto\'s, media en bestanden op je apparaat
   <string name="MessageNotifier_mark_read">Markeren als gelezen</string>
   <string name="MessageNotifier_media_message">Mediabericht</string>
   <string name="MessageNotifier_sticker">Sticker</string>
-  <string name="MessageNotifier_disappearing_photo">Zelf-wissende foto</string>
-  <string name="MessageNotifier_disappearing_video">Zelf-wissende video</string>
+  <string name="MessageNotifier_view_once_photo">Zelf-wissende foto</string>
+  <string name="MessageNotifier_view_once_video">Zelf-wissende video</string>
   <string name="MessageNotifier_reply">Reageren</string>
   <string name="MessageNotifier_signal_message">Signal-bericht</string>
   <string name="MessageNotifier_unsecured_sms">Onbeveiligde sms</string>
@@ -946,7 +946,7 @@ Signal heeft ook toegang nodig tot de foto\'s, media en bestanden op je apparaat
   <string name="QuoteView_audio">Audio</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Afbeelding</string>
-  <string name="QuoteView_media">Mediabericht</string>
+  <string name="QuoteView_view_once_media">Mediabericht</string>
   <string name="QuoteView_sticker">Sticker</string>
   <string name="QuoteView_document">Document</string>
   <string name="QuoteView_you">Jij</string>

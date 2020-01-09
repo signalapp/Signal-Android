@@ -635,10 +635,10 @@ especificat (%s) no és vàlid.</string>
   <string name="RegistrationActivity_country_code_description">Codi de país</string>
   <string name="RegistrationActivity_call">Truca</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_photo">Foto</string>
-  <string name="RevealableMessageView_video">Vídeo</string>
+  <string name="RevealableMessageView_view_photo">Foto</string>
+  <string name="RevealableMessageView_view_video">Vídeo</string>
   <string name="RevealableMessageView_viewed">Vista</string>
-  <string name="RevealableMessageView_outgoing_media">Contingut</string>
+  <string name="RevealableMessageView_media">Contingut</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">No s\'ha pogut desar els canvis en la imatge</string>
   <!--Search-->
@@ -698,8 +698,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ThreadRecord_missed_call">Trucada perduda</string>
   <string name="ThreadRecord_media_message">Missatge multimèdia</string>
   <string name="ThreadRecord_sticker">Adhesiu</string>
-  <string name="ThreadRecord_disappearing_photo">Fotografia efímera</string>
-  <string name="ThreadRecord_disappearing_video">Vídeo efímer</string>
+  <string name="ThreadRecord_view_once_photo">Fotografia efímera</string>
+  <string name="ThreadRecord_view_once_video">Vídeo efímer</string>
   <string name="ThreadRecord_s_is_on_signal">%s és al Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Missatges efímers inhabilitats</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">El temps del missatge efímer s\'ha establit a %s</string>
@@ -790,8 +790,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="MessageNotifier_mark_read">Marca\'l com a llegit</string>
   <string name="MessageNotifier_media_message">Missatge multimèdia</string>
   <string name="MessageNotifier_sticker">Adhesiu</string>
-  <string name="MessageNotifier_disappearing_photo">Fotografia efímera</string>
-  <string name="MessageNotifier_disappearing_video">Vídeo efímer</string>
+  <string name="MessageNotifier_view_once_photo">Fotografia efímera</string>
+  <string name="MessageNotifier_view_once_video">Vídeo efímer</string>
   <string name="MessageNotifier_reply">Respon</string>
   <string name="MessageNotifier_signal_message">Missatge del Signal</string>
   <string name="MessageNotifier_unsecured_sms">SMS no segur</string>
@@ -937,7 +937,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="QuoteView_audio">Àudio</string>
   <string name="QuoteView_video">Vídeo</string>
   <string name="QuoteView_photo">Foto</string>
-  <string name="QuoteView_media">Missatge multimèdia</string>
+  <string name="QuoteView_view_once_media">Missatge multimèdia</string>
   <string name="QuoteView_sticker">Adhesiu</string>
   <string name="QuoteView_document">Document</string>
   <string name="QuoteView_you">Jo</string>

@@ -104,18 +104,18 @@ public class ViewOnceMessageView extends LinearLayout {
   private void presentText(@NonNull MmsMessageRecord messageRecord) {
     if (messageRecord.isOutgoing() && networkInProgress(messageRecord)) {
       foregroundColor = openedForegroundColor;
-      text.setText(R.string.RevealableMessageView_outgoing_media);
+      text.setText(R.string.RevealableMessageView_media);
       icon.setImageResource(0);
       progress.setVisibility(VISIBLE);
     } else if (messageRecord.isOutgoing()) {
       foregroundColor = openedForegroundColor;
-      text.setText(R.string.RevealableMessageView_outgoing_media);
-      icon.setImageResource(R.drawable.ic_play_outline_24);
+      text.setText(R.string.RevealableMessageView_media);
+      icon.setImageResource(R.drawable.ic_viewed_once_24);
       progress.setVisibility(GONE);
     } else if (ViewOnceUtil.isViewable(messageRecord)) {
       foregroundColor = unopenedForegroundColor;
       text.setText(getDescriptionId(messageRecord));
-      icon.setImageResource(R.drawable.ic_play_solid_24);
+      icon.setImageResource(R.drawable.ic_view_once_24);
       progress.setVisibility(GONE);
     } else if (networkInProgress(messageRecord)) {
       foregroundColor = unopenedForegroundColor;
@@ -130,7 +130,7 @@ public class ViewOnceMessageView extends LinearLayout {
     } else {
       foregroundColor = openedForegroundColor;
       text.setText(R.string.RevealableMessageView_viewed);
-      icon.setImageResource(R.drawable.ic_play_outline_24);
+      icon.setImageResource(R.drawable.ic_viewed_once_24);
       progress.setVisibility(GONE);
     }
 
@@ -158,10 +158,10 @@ public class ViewOnceMessageView extends LinearLayout {
     Slide thumbnailSlide = messageRecord.getSlideDeck().getThumbnailSlide();
 
     if (thumbnailSlide != null && MediaUtil.isVideoType(thumbnailSlide.getContentType())) {
-      return R.string.RevealableMessageView_video;
+      return R.string.RevealableMessageView_view_video;
     }
 
-    return R.string.RevealableMessageView_photo;
+    return R.string.RevealableMessageView_view_photo;
   }
 
   @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)

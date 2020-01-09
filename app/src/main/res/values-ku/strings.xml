@@ -518,9 +518,9 @@
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Ji bo destpêkirinê jimara xwe ya telefonê binivîse</string>
   <string name="RegistrationActivity_call">Gazî</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_photo">Wêne</string>
-  <string name="RevealableMessageView_video">Vîdyo</string>
-  <string name="RevealableMessageView_outgoing_media">Medya</string>
+  <string name="RevealableMessageView_view_photo">Wêne</string>
+  <string name="RevealableMessageView_view_video">Vîdyo</string>
+  <string name="RevealableMessageView_media">Medya</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Guhertinên weneyê nehate tomarkirin</string>
   <!--Search-->
@@ -768,7 +768,7 @@
   <string name="QuoteView_audio">Deng</string>
   <string name="QuoteView_video">Vidyo</string>
   <string name="QuoteView_photo">Wêne</string>
-  <string name="QuoteView_media">Peyama medyayê</string>
+  <string name="QuoteView_view_once_media">Peyama medyayê</string>
   <string name="QuoteView_document">Pelge</string>
   <string name="QuoteView_you">Tu</string>
   <string name="QuoteView_original_missing">Peyama orjînal nehate dîtin</string>

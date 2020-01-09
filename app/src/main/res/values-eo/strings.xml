@@ -638,10 +638,10 @@
   <string name="RegistrationActivity_country_code_description">Landokodo</string>
   <string name="RegistrationActivity_call">Alvoko</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_photo">Foto</string>
-  <string name="RevealableMessageView_video">Videaĵo</string>
+  <string name="RevealableMessageView_view_photo">Foto</string>
+  <string name="RevealableMessageView_view_video">Videaĵo</string>
   <string name="RevealableMessageView_viewed">Vidita</string>
-  <string name="RevealableMessageView_outgoing_media">Aŭdvidaĵo</string>
+  <string name="RevealableMessageView_media">Aŭdvidaĵo</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Malsukcesis konservi bildajn ŝanĝojn</string>
   <!--Search-->
@@ -702,8 +702,8 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="ThreadRecord_missed_call">Maltrafita alvoko</string>
   <string name="ThreadRecord_media_message">Aŭdvida mesaĝo</string>
   <string name="ThreadRecord_sticker">Glumarko</string>
-  <string name="ThreadRecord_disappearing_photo">Memviŝonta foto</string>
-  <string name="ThreadRecord_disappearing_video">Memviŝonta videaĵo</string>
+  <string name="ThreadRecord_view_once_photo">Memviŝonta foto</string>
+  <string name="ThreadRecord_view_once_video">Memviŝonta videaĵo</string>
   <string name="ThreadRecord_s_is_on_signal">%s estas ĉe Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Memviŝontaj mesaĝoj malŝaltita</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Daŭro de memviŝontaj mesaĝoj agordita je %s</string>
@@ -794,8 +794,8 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="MessageNotifier_mark_read">Marki legita</string>
   <string name="MessageNotifier_media_message">Aŭdvida mesaĝo</string>
   <string name="MessageNotifier_sticker">Glumarko</string>
-  <string name="MessageNotifier_disappearing_photo">Memviŝonta foto</string>
-  <string name="MessageNotifier_disappearing_video">Memviŝonta videaĵo</string>
+  <string name="MessageNotifier_view_once_photo">Memviŝonta foto</string>
+  <string name="MessageNotifier_view_once_video">Memviŝonta videaĵo</string>
   <string name="MessageNotifier_reply">Respondi</string>
   <string name="MessageNotifier_signal_message">Signal-mesaĝo</string>
   <string name="MessageNotifier_unsecured_sms">Nesekura SMS</string>
@@ -941,7 +941,7 @@ Ricevis mesaĝon pri interŝanĝo de ŝlosiloj por nevalida protokola versio.
   <string name="QuoteView_audio">Sonaĵo</string>
   <string name="QuoteView_video">Videaĵo</string>
   <string name="QuoteView_photo">Foto</string>
-  <string name="QuoteView_media">Aŭdvida mesaĝo</string>
+  <string name="QuoteView_view_once_media">Aŭdvida mesaĝo</string>
   <string name="QuoteView_sticker">Glumarko</string>
   <string name="QuoteView_document">Dokumento</string>
   <string name="QuoteView_you">Vi</string>

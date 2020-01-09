@@ -483,9 +483,9 @@
   <string name="RegistrationActivity_continue">ดำเนินการต่อ</string>
   <string name="RegistrationActivity_call">โทร</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_photo">รูปภาพ</string>
-  <string name="RevealableMessageView_video">วิดีโอ</string>
-  <string name="RevealableMessageView_outgoing_media">สื่อ</string>
+  <string name="RevealableMessageView_view_photo">รูปภาพ</string>
+  <string name="RevealableMessageView_view_video">วิดีโอ</string>
+  <string name="RevealableMessageView_media">สื่อ</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">บันทึกการเปลี่ยนแปลงของภาพล้มเหลว</string>
   <!--Search-->
@@ -730,7 +730,7 @@
   <string name="QuoteView_audio">เสียง</string>
   <string name="QuoteView_video">วิดีโอ</string>
   <string name="QuoteView_photo">รูปภาพ</string>
-  <string name="QuoteView_media">ข้อความสื่อ</string>
+  <string name="QuoteView_view_once_media">ข้อความสื่อ</string>
   <string name="QuoteView_document">เอกสาร</string>
   <string name="QuoteView_you">คุณ</string>
   <string name="QuoteView_original_missing">ไม่พบข้อความดั้งเดิม</string>

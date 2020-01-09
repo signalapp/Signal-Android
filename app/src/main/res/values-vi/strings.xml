@@ -613,10 +613,10 @@ mã quốc gia bạn</string>
   <string name="RegistrationActivity_country_code_description">Mã quốc gia</string>
   <string name="RegistrationActivity_call">Gọi</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_photo">Ảnh</string>
-  <string name="RevealableMessageView_video">Video</string>
+  <string name="RevealableMessageView_view_photo">Ảnh</string>
+  <string name="RevealableMessageView_view_video">Video</string>
   <string name="RevealableMessageView_viewed">Đã xem</string>
-  <string name="RevealableMessageView_outgoing_media">Đa phương tiện</string>
+  <string name="RevealableMessageView_media">Đa phương tiện</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Không thể lưu thay đổi trên ảnh</string>
   <!--Search-->
@@ -676,8 +676,8 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="ThreadRecord_missed_call">Cuộc gọi nhỡ</string>
   <string name="ThreadRecord_media_message">Tin nhắn đa phương tiện</string>
   <string name="ThreadRecord_sticker">Nhãn dán</string>
-  <string name="ThreadRecord_disappearing_photo">Ảnh tự hủy</string>
-  <string name="ThreadRecord_disappearing_video">Video tự hủy</string>
+  <string name="ThreadRecord_view_once_photo">Ảnh tự hủy</string>
+  <string name="ThreadRecord_view_once_video">Video tự hủy</string>
   <string name="ThreadRecord_s_is_on_signal">%s đang sử dụng Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Tin nhắn tự hủy đã được vô hiệu hóa</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Tin nhắn sẽ tự hủy sau %s</string>
@@ -768,8 +768,8 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="MessageNotifier_mark_read">Đánh dấu đã đọc</string>
   <string name="MessageNotifier_media_message">Tin nhắn đa phương tiện</string>
   <string name="MessageNotifier_sticker">Nhãn dán</string>
-  <string name="MessageNotifier_disappearing_photo">Ảnh tự hủy</string>
-  <string name="MessageNotifier_disappearing_video">Video tự hủy</string>
+  <string name="MessageNotifier_view_once_photo">Ảnh tự hủy</string>
+  <string name="MessageNotifier_view_once_video">Video tự hủy</string>
   <string name="MessageNotifier_reply">Trả lời</string>
   <string name="MessageNotifier_signal_message">Tin nhắn Signal</string>
   <string name="MessageNotifier_unsecured_sms">SMS không bảo mật</string>
@@ -914,7 +914,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="QuoteView_audio">Âm thanh</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Ảnh</string>
-  <string name="QuoteView_media">Tin nhắn đa phương tiện</string>
+  <string name="QuoteView_view_once_media">Tin nhắn đa phương tiện</string>
   <string name="QuoteView_sticker">Nhãn dán</string>
   <string name="QuoteView_document">Tài liệu</string>
   <string name="QuoteView_you">Bạn</string>

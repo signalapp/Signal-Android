@@ -581,9 +581,9 @@ public class MessageNotifier {
     final String contentType = getMessageContentType(messageRecord);
 
     if (MediaUtil.isImageType(contentType)) {
-      return R.string.MessageNotifier_disappearing_photo;
+      return R.string.MessageNotifier_view_once_photo;
     }
-    return R.string.MessageNotifier_disappearing_video;
+    return R.string.MessageNotifier_view_once_video;
   }
 
   private static String getMessageContentType(@NonNull MmsMessageRecord messageRecord) {

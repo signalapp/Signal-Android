@@ -590,10 +590,10 @@
   <string name="RegistrationActivity_country_code_description">देश कोड</string>
   <string name="RegistrationActivity_call">कॉल करा</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_photo">फोटो</string>
-  <string name="RevealableMessageView_video">व्हिडिओ</string>
+  <string name="RevealableMessageView_view_photo">फोटो</string>
+  <string name="RevealableMessageView_view_video">व्हिडिओ</string>
   <string name="RevealableMessageView_viewed">बघितले</string>
-  <string name="RevealableMessageView_outgoing_media">मीडिया</string>
+  <string name="RevealableMessageView_media">मीडिया</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">चित्र बदल जतन करण्यात अयशस्वी</string>
   <!--Search-->
@@ -654,8 +654,8 @@
   <string name="ThreadRecord_missed_call">सुटलेला कॉल</string>
   <string name="ThreadRecord_media_message">मिडिया संदेश</string>
   <string name="ThreadRecord_sticker">स्टिकर</string>
-  <string name="ThreadRecord_disappearing_photo">हरवणारा फोटो</string>
-  <string name="ThreadRecord_disappearing_video">हरवणारा व्हिडिओ</string>
+  <string name="ThreadRecord_view_once_photo">हरवणारा फोटो</string>
+  <string name="ThreadRecord_view_once_video">हरवणारा व्हिडिओ</string>
   <string name="ThreadRecord_s_is_on_signal">%s Signal वर आहे!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">हरवणारे संदेश अक्षम केले</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">हरवणारा संदेश वेळ %s वर सेट केली</string>
@@ -735,8 +735,8 @@
   <string name="MessageNotifier_mark_read">वाचले चिन्हांकित करा</string>
   <string name="MessageNotifier_media_message">मिडिया संदेश</string>
   <string name="MessageNotifier_sticker">स्टिकर</string>
-  <string name="MessageNotifier_disappearing_photo">हरवणारा फोटो</string>
-  <string name="MessageNotifier_disappearing_video">हरवणारा व्हिडिओ</string>
+  <string name="MessageNotifier_view_once_photo">हरवणारा फोटो</string>
+  <string name="MessageNotifier_view_once_video">हरवणारा व्हिडिओ</string>
   <string name="MessageNotifier_reply">प्रत्युत्तर द्या</string>
   <string name="MessageNotifier_signal_message">Signal संदेश</string>
   <string name="MessageNotifier_unsecured_sms">असुरक्षित SMS</string>
@@ -875,7 +875,7 @@
   <string name="QuoteView_audio">ऑडिओ</string>
   <string name="QuoteView_video">व्हिडिओ</string>
   <string name="QuoteView_photo">फोटो</string>
-  <string name="QuoteView_media">मिडिया संदेश</string>
+  <string name="QuoteView_view_once_media">मिडिया संदेश</string>
   <string name="QuoteView_sticker">स्टिकर</string>
   <string name="QuoteView_document">दस्तऐवज</string>
   <string name="QuoteView_you">आपण</string>

@@ -638,10 +638,10 @@ nummer (%s) er ugyldigt</string>
   <string name="RegistrationActivity_country_code_description">Landekode</string>
   <string name="RegistrationActivity_call">Ring op</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_photo">Billed</string>
-  <string name="RevealableMessageView_video">Video</string>
+  <string name="RevealableMessageView_view_photo">Billed</string>
+  <string name="RevealableMessageView_view_video">Video</string>
   <string name="RevealableMessageView_viewed">Er set</string>
-  <string name="RevealableMessageView_outgoing_media">Medie</string>
+  <string name="RevealableMessageView_media">Medie</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Fejl ved forsøg på at gemme redigeret billede</string>
   <!--Search-->
@@ -703,8 +703,8 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="ThreadRecord_missed_call">Mistet opkald</string>
   <string name="ThreadRecord_media_message">Mediebesked</string>
   <string name="ThreadRecord_sticker">Klistermærke</string>
-  <string name="ThreadRecord_disappearing_photo">Billed med tidsudløb</string>
-  <string name="ThreadRecord_disappearing_video">Video med tidsudløb</string>
+  <string name="ThreadRecord_view_once_photo">Billed med tidsudløb</string>
+  <string name="ThreadRecord_view_once_video">Video med tidsudløb</string>
   <string name="ThreadRecord_s_is_on_signal">%s er på Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Beskeder med tidsudløb deaktiveret</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Beskeder udløber efter %s</string>
@@ -795,8 +795,8 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="MessageNotifier_mark_read">Markér som læst</string>
   <string name="MessageNotifier_media_message">Mediebesked</string>
   <string name="MessageNotifier_sticker">Klistermærke</string>
-  <string name="MessageNotifier_disappearing_photo">Billed med tidsudløb</string>
-  <string name="MessageNotifier_disappearing_video">Video med tidsudløb</string>
+  <string name="MessageNotifier_view_once_photo">Billed med tidsudløb</string>
+  <string name="MessageNotifier_view_once_video">Video med tidsudløb</string>
   <string name="MessageNotifier_reply">Svar</string>
   <string name="MessageNotifier_signal_message">Signalbesked</string>
   <string name="MessageNotifier_unsecured_sms">Usikret SMS</string>
@@ -942,7 +942,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="QuoteView_audio">Lyd</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Billed</string>
-  <string name="QuoteView_media">Mediebesked</string>
+  <string name="QuoteView_view_once_media">Mediebesked</string>
   <string name="QuoteView_sticker">Klistermærke</string>
   <string name="QuoteView_document">Dokument</string>
   <string name="QuoteView_you">Dig</string>

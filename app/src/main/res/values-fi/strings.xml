@@ -635,10 +635,10 @@ puhelinnumero</string>
   <string name="RegistrationActivity_country_code_description">Maatunnus</string>
   <string name="RegistrationActivity_call">Soita</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_photo">Kuva</string>
-  <string name="RevealableMessageView_video">Video</string>
+  <string name="RevealableMessageView_view_photo">Kuva</string>
+  <string name="RevealableMessageView_view_video">Video</string>
   <string name="RevealableMessageView_viewed">Nähty</string>
-  <string name="RevealableMessageView_outgoing_media">Media</string>
+  <string name="RevealableMessageView_media">Media</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Kuvaan tehtyjen muutosten tallentaminen ei onnistunut.</string>
   <!--Search-->
@@ -698,8 +698,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ThreadRecord_missed_call">Vastaamatta jäänyt puhelu</string>
   <string name="ThreadRecord_media_message">Mediaviesti</string>
   <string name="ThreadRecord_sticker">Tarra</string>
-  <string name="ThreadRecord_disappearing_photo">Katoava kuva</string>
-  <string name="ThreadRecord_disappearing_video">Katoava video</string>
+  <string name="ThreadRecord_view_once_photo">Katoava kuva</string>
+  <string name="ThreadRecord_view_once_video">Katoava video</string>
   <string name="ThreadRecord_s_is_on_signal">%s käyttää Signalia!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Katoavat viestit poistettu käytöstä</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Katoavien viestien ajaksi asetettu %s</string>
@@ -790,8 +790,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="MessageNotifier_mark_read">Luettu</string>
   <string name="MessageNotifier_media_message">Mediaviesti</string>
   <string name="MessageNotifier_sticker">Tarra</string>
-  <string name="MessageNotifier_disappearing_photo">Katoava kuva</string>
-  <string name="MessageNotifier_disappearing_video">Katoava video</string>
+  <string name="MessageNotifier_view_once_photo">Katoava kuva</string>
+  <string name="MessageNotifier_view_once_video">Katoava video</string>
   <string name="MessageNotifier_reply">Vastaa</string>
   <string name="MessageNotifier_signal_message">Signal viesti</string>
   <string name="MessageNotifier_unsecured_sms">Salaamaton SMS-viesti</string>
@@ -937,7 +937,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="QuoteView_audio">Äänitallenne</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Kuva</string>
-  <string name="QuoteView_media">Mediaviesti</string>
+  <string name="QuoteView_view_once_media">Mediaviesti</string>
   <string name="QuoteView_sticker">Tarra</string>
   <string name="QuoteView_document">Dokumentti</string>
   <string name="QuoteView_you">Sinä</string>

@@ -146,11 +146,11 @@ public class ThreadRecord extends DisplayRecord {
 
   private String getViewOnceDescription(@NonNull Context context, @Nullable String contentType) {
     if (MediaUtil.isViewOnceType(contentType)) {
-      return context.getString(R.string.ThreadRecord_disappearing_media);
+      return context.getString(R.string.ThreadRecord_view_once_media);
     } else if (MediaUtil.isVideoType(contentType)) {
-      return context.getString(R.string.ThreadRecord_disappearing_video);
+      return context.getString(R.string.ThreadRecord_view_once_video);
     } else {
-      return context.getString(R.string.ThreadRecord_disappearing_photo);
+      return context.getString(R.string.ThreadRecord_view_once_photo);
     }
   }
 

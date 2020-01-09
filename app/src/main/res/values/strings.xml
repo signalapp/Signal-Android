@@ -273,6 +273,8 @@
     <string name="ConversationFragment_failed_to_open_message">Failed to open message</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">You can swipe to the right on any message to quickly reply</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">You can swipe to the left on any message to quickly reply</string>
+    <string name="ConversationFragment_view_once_message_are_not_stored_in_your_conversation_history">View-once messages are not stored in your conversation history</string>
+    <string name="ConversationFragment_you_already_viewed_this_message">You already viewed this message</string>
 
     <!-- ConversationListActivity -->
     <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">There is no browser installed on your device.</string>
@@ -742,10 +744,10 @@
     <string name="RegistrationActivity_call">Call</string>
 
     <!-- RevealableMessageView -->
-    <string name="RevealableMessageView_photo">Photo</string>
-    <string name="RevealableMessageView_video">Video</string>
+    <string name="RevealableMessageView_view_photo">View Photo</string>
+    <string name="RevealableMessageView_view_video">View Video</string>
     <string name="RevealableMessageView_viewed">Viewed</string>
-    <string name="RevealableMessageView_outgoing_media">Media</string>
+    <string name="RevealableMessageView_media">Media</string>
 
     <!-- ScribbleActivity -->
     <string name="ScribbleActivity_save_failure">Failed to save image changes</string>
@@ -817,9 +819,9 @@
     <string name="ThreadRecord_missed_call">Missed call</string>
     <string name="ThreadRecord_media_message">Media message</string>
     <string name="ThreadRecord_sticker">Sticker</string>
-    <string name="ThreadRecord_disappearing_photo">Disappearing photo</string>
-    <string name="ThreadRecord_disappearing_video">Disappearing video</string>
-    <string name="ThreadRecord_disappearing_media">Disappearing media</string>
+    <string name="ThreadRecord_view_once_photo">View-once photo</string>
+    <string name="ThreadRecord_view_once_video">View-once video</string>
+    <string name="ThreadRecord_view_once_media">View-once media</string>
     <string name="ThreadRecord_s_is_on_signal">%s is on Signal!</string>
     <string name="ThreadRecord_disappearing_messages_disabled">Disappearing messages disabled</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">Disappearing message time set to %s</string>
@@ -926,8 +928,8 @@
     <string name="MessageNotifier_mark_read">Mark read</string>
     <string name="MessageNotifier_media_message">Media message</string>
     <string name="MessageNotifier_sticker">Sticker</string>
-    <string name="MessageNotifier_disappearing_photo">Disappearing photo</string>
-    <string name="MessageNotifier_disappearing_video">Disappearing video</string>
+    <string name="MessageNotifier_view_once_photo">View-once photo</string>
+    <string name="MessageNotifier_view_once_video">View-once video</string>
     <string name="MessageNotifier_reply">Reply</string>
     <string name="MessageNotifier_signal_message">Signal Message</string>
     <string name="MessageNotifier_unsecured_sms">Unsecured SMS</string>
@@ -1106,7 +1108,7 @@
     <string name="QuoteView_audio">Audio</string>
     <string name="QuoteView_video">Video</string>
     <string name="QuoteView_photo">Photo</string>
-    <string name="QuoteView_media">Media message</string>
+    <string name="QuoteView_view_once_media">View-once media</string>
     <string name="QuoteView_sticker">Sticker</string>
     <string name="QuoteView_document">Document</string>
     <string name="QuoteView_you">You</string>

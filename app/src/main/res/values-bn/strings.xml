@@ -588,10 +588,10 @@
   <string name="RegistrationActivity_country_code_description">দেশ কোড</string>
   <string name="RegistrationActivity_call">কল করুন</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_photo">ছবি</string>
-  <string name="RevealableMessageView_video">ভিডিও</string>
+  <string name="RevealableMessageView_view_photo">ছবি</string>
+  <string name="RevealableMessageView_view_video">ভিডিও</string>
   <string name="RevealableMessageView_viewed">দেখা হয়ে গেছে</string>
-  <string name="RevealableMessageView_outgoing_media">মিডিয়া</string>
+  <string name="RevealableMessageView_media">মিডিয়া</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">চিত্রের পরিবর্তনগুলি সংরক্ষণ করতে ব্যর্থ</string>
   <!--Search-->
@@ -651,8 +651,8 @@
   <string name="ThreadRecord_missed_call">ব্যর্থ কল</string>
   <string name="ThreadRecord_media_message">মিডিয়া বার্তা</string>
   <string name="ThreadRecord_sticker">স্টিকার</string>
-  <string name="ThreadRecord_disappearing_photo">অদৃশ্য ছবি</string>
-  <string name="ThreadRecord_disappearing_video">অদৃশ্য ভিডিও</string>
+  <string name="ThreadRecord_view_once_photo">অদৃশ্য ছবি</string>
+  <string name="ThreadRecord_view_once_video">অদৃশ্য ভিডিও</string>
   <string name="ThreadRecord_s_is_on_signal">%s Signal এ যোগ দিয়েছেন!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">অদৃশ্য হওয়া বার্তাগুলি অক্ষম করা হয়েছে</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">অদৃশ্য হয়ে যাওয়া বার্তার সময়টি %s এ সেট করা হয়েছে</string>
@@ -732,8 +732,8 @@
   <string name="MessageNotifier_mark_read">পঠিত বলে সনাক্ত কর</string>
   <string name="MessageNotifier_media_message">মিডিয়া বার্তা</string>
   <string name="MessageNotifier_sticker">স্টিকার</string>
-  <string name="MessageNotifier_disappearing_photo">অদৃশ্য ছবি</string>
-  <string name="MessageNotifier_disappearing_video">অদৃশ্য ভিডিও</string>
+  <string name="MessageNotifier_view_once_photo">অদৃশ্য ছবি</string>
+  <string name="MessageNotifier_view_once_video">অদৃশ্য ভিডিও</string>
   <string name="MessageNotifier_reply">প্রত্যুত্তর</string>
   <string name="MessageNotifier_signal_message">Signal বার্তা</string>
   <string name="MessageNotifier_unsecured_sms">অনিরাপদ এসএমএস</string>
@@ -872,7 +872,7 @@
   <string name="QuoteView_audio">অডিও</string>
   <string name="QuoteView_video">ভিডিও</string>
   <string name="QuoteView_photo">ছবি</string>
-  <string name="QuoteView_media">মিডিয়া বার্তা</string>
+  <string name="QuoteView_view_once_media">মিডিয়া বার্তা</string>
   <string name="QuoteView_sticker">স্টিকার</string>
   <string name="QuoteView_document">নথিপত্র</string>
   <string name="QuoteView_you">আপনি</string>

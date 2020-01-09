@@ -1214,10 +1214,10 @@ public class ConversationItem extends LinearLayout implements BindableConversati
     public void onClick(View view) {
       ViewOnceMessageView revealView = (ViewOnceMessageView) view;
 
-      if (eventListener != null && batchSelected.isEmpty() && messageRecord.isMms() && ViewOnceUtil.isViewable((MmsMessageRecord) messageRecord)) {
-        eventListener.onViewOnceMessageClicked((MmsMessageRecord) messageRecord);
-      } else if (batchSelected.isEmpty() && messageRecord.isMms() && revealView.requiresTapToDownload((MmsMessageRecord) messageRecord)) {
+      if (batchSelected.isEmpty() && messageRecord.isMms() && revealView.requiresTapToDownload((MmsMessageRecord) messageRecord)) {
         singleDownloadClickListener.onClick(view, ((MmsMessageRecord) messageRecord).getSlideDeck().getThumbnailSlide());
+      } else if (eventListener != null && batchSelected.isEmpty() && messageRecord.isMms()) {
+        eventListener.onViewOnceMessageClicked((MmsMessageRecord) messageRecord);
       } else {
         passthroughClickListener.onClick(view);
       }

@@ -679,10 +679,10 @@
   <string name="RegistrationActivity_country_code_description">קוד מדינה</string>
   <string name="RegistrationActivity_call">חייג</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_photo">תצלום</string>
-  <string name="RevealableMessageView_video">סרטון</string>
+  <string name="RevealableMessageView_view_photo">תצלום</string>
+  <string name="RevealableMessageView_view_video">סרטון</string>
   <string name="RevealableMessageView_viewed">הוצג</string>
-  <string name="RevealableMessageView_outgoing_media">מדיה</string>
+  <string name="RevealableMessageView_media">מדיה</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">נכשל בשמירת שינויי תמונה</string>
   <!--Search-->
@@ -742,8 +742,8 @@
   <string name="ThreadRecord_missed_call">שיחה שלא נענתה</string>
   <string name="ThreadRecord_media_message">הודעת מדיה</string>
   <string name="ThreadRecord_sticker">מדבקה</string>
-  <string name="ThreadRecord_disappearing_photo">תצלום נעלם</string>
-  <string name="ThreadRecord_disappearing_video">סרטון נעלם</string>
+  <string name="ThreadRecord_view_once_photo">תצלום נעלם</string>
+  <string name="ThreadRecord_view_once_video">סרטון נעלם</string>
   <string name="ThreadRecord_s_is_on_signal">%s משתמש ב-Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">הודעות נעלמות הושבתו</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">זמן הודעות נעלמות הוגדר אל %s</string>
@@ -834,8 +834,8 @@
   <string name="MessageNotifier_mark_read">סמן כנקרא</string>
   <string name="MessageNotifier_media_message">הודעת מדיה</string>
   <string name="MessageNotifier_sticker">מדבקה</string>
-  <string name="MessageNotifier_disappearing_photo">תצלום נעלם</string>
-  <string name="MessageNotifier_disappearing_video">סרטון נעלם</string>
+  <string name="MessageNotifier_view_once_photo">תצלום נעלם</string>
+  <string name="MessageNotifier_view_once_video">סרטון נעלם</string>
   <string name="MessageNotifier_reply">השב</string>
   <string name="MessageNotifier_signal_message">הודעת Signal</string>
   <string name="MessageNotifier_unsecured_sms">מסרון בלתי מאובטח</string>
@@ -983,7 +983,7 @@
   <string name="QuoteView_audio">שמע</string>
   <string name="QuoteView_video">סרטון</string>
   <string name="QuoteView_photo">תצלום</string>
-  <string name="QuoteView_media">הודעת מדיה</string>
+  <string name="QuoteView_view_once_media">הודעת מדיה</string>
   <string name="QuoteView_sticker">מדבקה</string>
   <string name="QuoteView_document">מסמך</string>
   <string name="QuoteView_you">אתה</string>

@@ -678,10 +678,10 @@
   <string name="RegistrationActivity_country_code_description">Numer kierunkowy</string>
   <string name="RegistrationActivity_call">Zadzwoń</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_photo">Zdjęcie</string>
-  <string name="RevealableMessageView_video">Wideo</string>
+  <string name="RevealableMessageView_view_photo">Zdjęcie</string>
+  <string name="RevealableMessageView_view_video">Wideo</string>
   <string name="RevealableMessageView_viewed">Wyświetlono</string>
-  <string name="RevealableMessageView_outgoing_media">Multimedia</string>
+  <string name="RevealableMessageView_media">Multimedia</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Nie udało się zapisać zmian obrazu</string>
   <!--Search-->
@@ -740,8 +740,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="ThreadRecord_missed_call">Nieodebrane połączenie</string>
   <string name="ThreadRecord_media_message">Wiadomość multimedialna</string>
   <string name="ThreadRecord_sticker">Naklejka</string>
-  <string name="ThreadRecord_disappearing_photo">Znikające zdjęcie</string>
-  <string name="ThreadRecord_disappearing_video">Znikające wideo</string>
+  <string name="ThreadRecord_view_once_photo">Znikające zdjęcie</string>
+  <string name="ThreadRecord_view_once_video">Znikające wideo</string>
   <string name="ThreadRecord_s_is_on_signal">%s jest w Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Znikające wiadomości zostały wyłączone</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Czas znikania wiadomości ustawiony na %s</string>
@@ -832,8 +832,8 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="MessageNotifier_mark_read">Przeczytane</string>
   <string name="MessageNotifier_media_message">Wiadomość multimedialna</string>
   <string name="MessageNotifier_sticker">Naklejka</string>
-  <string name="MessageNotifier_disappearing_photo">Znikające zdjęcie</string>
-  <string name="MessageNotifier_disappearing_video">Znikające wideo</string>
+  <string name="MessageNotifier_view_once_photo">Znikające zdjęcie</string>
+  <string name="MessageNotifier_view_once_video">Znikające wideo</string>
   <string name="MessageNotifier_reply">Odpowiedź</string>
   <string name="MessageNotifier_signal_message">Wiadomość Signal</string>
   <string name="MessageNotifier_unsecured_sms">Nieszyfrowany SMS</string>
@@ -981,7 +981,7 @@ Otrzymano wiadomość wymiany klucz dla niepoprawnej wersji protokołu.</string>
   <string name="QuoteView_audio">Dźwięk</string>
   <string name="QuoteView_video">Wideo</string>
   <string name="QuoteView_photo">Zdjęcie</string>
-  <string name="QuoteView_media">Wiadomość multimedialna</string>
+  <string name="QuoteView_view_once_media">Wiadomość multimedialna</string>
   <string name="QuoteView_sticker">Naklejka</string>
   <string name="QuoteView_document">Dokument</string>
   <string name="QuoteView_you">Ty</string>

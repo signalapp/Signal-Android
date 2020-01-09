@@ -17,7 +17,7 @@
             android:id="@+id/revealable_icon"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            tools:src="@drawable/ic_play_solid_24"/>
+            tools:src="@drawable/ic_view_once_24"/>
 
         <com.pnikosis.materialishprogress.ProgressWheel
             android:id="@+id/revealable_progress"

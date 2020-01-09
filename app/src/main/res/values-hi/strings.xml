@@ -586,10 +586,10 @@
   <string name="RegistrationActivity_country_code_description">देश कोड</string>
   <string name="RegistrationActivity_call">कोल</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_photo">फ़ोटो</string>
-  <string name="RevealableMessageView_video">वीडियो </string>
+  <string name="RevealableMessageView_view_photo">फ़ोटो</string>
+  <string name="RevealableMessageView_view_video">वीडियो </string>
   <string name="RevealableMessageView_viewed">देखा गया</string>
-  <string name="RevealableMessageView_outgoing_media">मीडिया</string>
+  <string name="RevealableMessageView_media">मीडिया</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">छवि परिवर्तनों को सहेजने में विफल</string>
   <!--Search-->
@@ -649,8 +649,8 @@
   <string name="ThreadRecord_missed_call">मिस कॉल</string>
   <string name="ThreadRecord_media_message">मीडिया मेसेज</string>
   <string name="ThreadRecord_sticker">स्टिकर</string>
-  <string name="ThreadRecord_disappearing_photo">गायब हो रहा छवि</string>
-  <string name="ThreadRecord_disappearing_video">गायब हो रहा वीडियो</string>
+  <string name="ThreadRecord_view_once_photo">गायब हो रहा छवि</string>
+  <string name="ThreadRecord_view_once_video">गायब हो रहा वीडियो</string>
   <string name="ThreadRecord_s_is_on_signal">%sअब Signal पर हैं! </string>
   <string name="ThreadRecord_disappearing_messages_disabled">मेसेज जो गायब हो जाते हैं अक्षम करे</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">गायब मेसेज समय %s तक सेट हो गया</string>
@@ -730,8 +730,8 @@
   <string name="MessageNotifier_mark_read">पढ़ा हुआ मार्क करें</string>
   <string name="MessageNotifier_media_message">मीडिया संदेश</string>
   <string name="MessageNotifier_sticker">स्टिकर</string>
-  <string name="MessageNotifier_disappearing_photo">गायब हो रहा छवि</string>
-  <string name="MessageNotifier_disappearing_video">गायब हो रहा वीडियो</string>
+  <string name="MessageNotifier_view_once_photo">गायब हो रहा छवि</string>
+  <string name="MessageNotifier_view_once_video">गायब हो रहा वीडियो</string>
   <string name="MessageNotifier_reply">उत्तर</string>
   <string name="MessageNotifier_signal_message">Signal मेसेज</string>
   <string name="MessageNotifier_unsecured_sms">असुरक्षित SMS</string>
@@ -870,7 +870,7 @@
   <string name="QuoteView_audio">ऑडियो</string>
   <string name="QuoteView_video">वीडियो </string>
   <string name="QuoteView_photo">फ़ोटो</string>
-  <string name="QuoteView_media">मीडिया मेसेज</string>
+  <string name="QuoteView_view_once_media">मीडिया मेसेज</string>
   <string name="QuoteView_sticker">स्टिकर</string>
   <string name="QuoteView_document">दस्तावेज़</string>
   <string name="QuoteView_you">आप</string>

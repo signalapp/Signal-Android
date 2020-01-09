@@ -637,10 +637,10 @@ Sii te stesso in ogni messaggio.</string>
   <string name="RegistrationActivity_country_code_description">Prefisso internazionale</string>
   <string name="RegistrationActivity_call">Chiama</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_photo">Foto</string>
-  <string name="RevealableMessageView_video">Video</string>
+  <string name="RevealableMessageView_view_photo">Foto</string>
+  <string name="RevealableMessageView_view_video">Video</string>
   <string name="RevealableMessageView_viewed">Visualizzato</string>
-  <string name="RevealableMessageView_outgoing_media">Media</string>
+  <string name="RevealableMessageView_media">Media</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Salvataggio modifiche all\'immagine fallito</string>
   <!--Search-->
@@ -701,8 +701,8 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="ThreadRecord_missed_call">Chiamata persa</string>
   <string name="ThreadRecord_media_message">Messaggio multimediale</string>
   <string name="ThreadRecord_sticker">Adesivo</string>
-  <string name="ThreadRecord_disappearing_photo">Foto a scomparsa</string>
-  <string name="ThreadRecord_disappearing_video">Video a scomparsa</string>
+  <string name="ThreadRecord_view_once_photo">Foto a scomparsa</string>
+  <string name="ThreadRecord_view_once_video">Video a scomparsa</string>
   <string name="ThreadRecord_s_is_on_signal">%s è su Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Messaggi a scomparsa disabilitati</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">La scomparsa dei messaggi è settata a %s</string>
@@ -793,8 +793,8 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="MessageNotifier_mark_read">Segna come già letto</string>
   <string name="MessageNotifier_media_message">Messaggio multimediale</string>
   <string name="MessageNotifier_sticker">Adesivo</string>
-  <string name="MessageNotifier_disappearing_photo">Foto a scomparsa</string>
-  <string name="MessageNotifier_disappearing_video">Video a scomparsa</string>
+  <string name="MessageNotifier_view_once_photo">Foto a scomparsa</string>
+  <string name="MessageNotifier_view_once_video">Video a scomparsa</string>
   <string name="MessageNotifier_reply">Rispondi</string>
   <string name="MessageNotifier_signal_message">Messaggio Signal</string>
   <string name="MessageNotifier_unsecured_sms">SMS non sicuro</string>
@@ -940,7 +940,7 @@ Ricevuto un messaggio di scambio chiavi per una versione di protocollo non valid
   <string name="QuoteView_audio">Audio</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Foto</string>
-  <string name="QuoteView_media">Messaggio multimediale</string>
+  <string name="QuoteView_view_once_media">Messaggio multimediale</string>
   <string name="QuoteView_sticker">Adesivo</string>
   <string name="QuoteView_document">Documento</string>
   <string name="QuoteView_you">Tu</string>
