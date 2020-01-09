@@ -682,10 +682,10 @@ telefónne číslo
   <string name="RegistrationActivity_country_code_description">Kód krajiny</string>
   <string name="RegistrationActivity_call">Zavolať</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_view_photo">Fotka</string>
-  <string name="RevealableMessageView_view_video">Video</string>
+  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_photo">Fotka</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_video">Video</string> -->
   <string name="RevealableMessageView_viewed">Zobrazené</string>
-  <string name="RevealableMessageView_media">Médiá</string>
+  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_outgoing_media">Médiá</string> -->
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Nepodarilo sa uložiť zmeny v obrázku</string>
   <!--Search-->
@@ -747,8 +747,8 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="ThreadRecord_missed_call">Zmeškaný hovor</string>
   <string name="ThreadRecord_media_message">Multimediálna správa</string>
   <string name="ThreadRecord_sticker">Nálepka</string>
-  <string name="ThreadRecord_view_once_photo">Miznúca fotka</string>
-  <string name="ThreadRecord_view_once_video">Miznúce video</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_disappearing_photo">Miznúca fotka</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_disappearing_video">Miznúce video</string> -->
   <string name="ThreadRecord_s_is_on_signal">%s je na Signale!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Miznúce správy vypnuté</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Čas miznúcich správ bol nastavený na %s</string>
@@ -839,8 +839,8 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="MessageNotifier_mark_read">Označiť ako prečítané</string>
   <string name="MessageNotifier_media_message">Multimediálna správa</string>
   <string name="MessageNotifier_sticker">Nálepka</string>
-  <string name="MessageNotifier_view_once_photo">Miznúca fotka</string>
-  <string name="MessageNotifier_view_once_video">Miznúce video</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_disappearing_photo">Miznúca fotka</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_disappearing_video">Miznúce video</string> -->
   <string name="MessageNotifier_reply">Odpovedať</string>
   <string name="MessageNotifier_signal_message">Signal správa</string>
   <string name="MessageNotifier_unsecured_sms">Nezabezpečená SMS</string>
@@ -988,7 +988,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="QuoteView_audio">Zvuk</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Fotka</string>
-  <string name="QuoteView_view_once_media">Multimediálna správa</string>
+  <!-- Removed by excludeNonTranslatables <string name="QuoteView_media">Multimediálna správa</string> -->
   <string name="QuoteView_sticker">Nálepka</string>
   <string name="QuoteView_document">Dokument</string>
   <string name="QuoteView_you">Vy</string>

@@ -112,6 +112,8 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">لم يتم العثور على متصفح للإنترنت.</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">هناك مكالمة هاتفية تجري بالفعل</string>
+  <string name="CommunicationActions_start_video_call">بدأ المكالمة المرئية؟</string>
+  <string name="CommunicationActions_start_voice_call">بدأ المكالمة الصوتية؟</string>
   <string name="CommunicationActions_cancel">إلغاء</string>
   <string name="CommunicationActions_call">اتصل</string>
   <!--ConfirmIdentityDialog-->
@@ -122,6 +124,7 @@
   <string name="ContactsCursorLoader_recent_chats">الدردشات الحديثة</string>
   <string name="ContactsCursorLoader_contacts">جهات الإتصال</string>
   <string name="ContactsCursorLoader_groups">مجموعات</string>
+  <string name="ContactsCursorLoader_phone_number_search">البحث عن طريق رقم الهاتف</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">رسالة %s</string>
   <string name="ContactsDatabase_signal_call_s">مكالمة Signal %s</string>
@@ -643,10 +646,10 @@
   <string name="RegistrationActivity_country_code_description">رمز البلد</string>
   <string name="RegistrationActivity_call">اتصل</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_view_photo">صورة</string>
-  <string name="RevealableMessageView_view_video">فيديو</string>
+  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_photo">صورة</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_video">فيديو</string> -->
   <string name="RevealableMessageView_viewed">تمت المشاهدة</string>
-  <string name="RevealableMessageView_media">الوسائط</string>
+  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_outgoing_media">الوسائط</string> -->
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">تعذر حفظ التغييرات بالصورة</string>
   <!--Search-->
@@ -913,7 +916,7 @@
   <string name="QuoteView_audio">صوت</string>
   <string name="QuoteView_video">فيديو</string>
   <string name="QuoteView_photo">صورة</string>
-  <string name="QuoteView_view_once_media">رسائل الاعلام</string>
+  <!-- Removed by excludeNonTranslatables <string name="QuoteView_media">رسائل الاعلام</string> -->
   <string name="QuoteView_sticker">ملصق</string>
   <string name="QuoteView_document">مستند</string>
   <string name="QuoteView_you">أنت</string>

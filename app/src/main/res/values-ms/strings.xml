@@ -569,10 +569,10 @@
   <string name="RegistrationActivity_country_code_description">Kod negara</string>
   <string name="RegistrationActivity_call">Panggilan</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_view_photo">Foto</string>
-  <string name="RevealableMessageView_view_video">Video</string>
+  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_photo">Foto</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_video">Video</string> -->
   <string name="RevealableMessageView_viewed">Dilihat</string>
-  <string name="RevealableMessageView_media">Media</string>
+  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_outgoing_media">Media</string> -->
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Gagal untuk menyimpan perubahan imej</string>
   <!--Search-->
@@ -631,8 +631,8 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="ThreadRecord_missed_call">Panggilan tidak dijawab</string>
   <string name="ThreadRecord_media_message">Mesej media</string>
   <string name="ThreadRecord_sticker">Pelekat</string>
-  <string name="ThreadRecord_view_once_photo">Foto hilang</string>
-  <string name="ThreadRecord_view_once_video">Video hilang</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_disappearing_photo">Foto hilang</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_disappearing_video">Video hilang</string> -->
   <string name="ThreadRecord_s_is_on_signal">%s ada di Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Mesej hilang dinyahdayakan</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Tempoh masa mesej hilang ditetapkan kepada %s </string>
@@ -712,8 +712,8 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="MessageNotifier_mark_read">Tandakan dibaca</string>
   <string name="MessageNotifier_media_message">Mesej media</string>
   <string name="MessageNotifier_sticker">Pelekat</string>
-  <string name="MessageNotifier_view_once_photo">Foto hilang</string>
-  <string name="MessageNotifier_view_once_video">Video hilang</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_disappearing_photo">Foto hilang</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_disappearing_video">Video hilang</string> -->
   <string name="MessageNotifier_reply">Balas</string>
   <string name="MessageNotifier_signal_message">Mesej Signal</string>
   <string name="MessageNotifier_unsecured_sms">SMS yang tidak selamat</string>
@@ -851,7 +851,7 @@ Menerima mesej pertukaran kunci untuk versi protokol yang tidak sah.</string>
   <string name="QuoteView_audio">Audio</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Foto</string>
-  <string name="QuoteView_view_once_media">Mesej media</string>
+  <!-- Removed by excludeNonTranslatables <string name="QuoteView_media">Mesej media</string> -->
   <string name="QuoteView_sticker">Pelekat</string>
   <string name="QuoteView_document">Dokumen</string>
   <string name="QuoteView_you">Anda</string>

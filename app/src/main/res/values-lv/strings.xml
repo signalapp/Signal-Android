@@ -591,10 +591,10 @@ tālruņa numurs</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Ievadiet kodu, ko mēs nosūtījām %s</string>
   <string name="RegistrationActivity_call">Zvanīt</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_view_photo">Attēls</string>
-  <string name="RevealableMessageView_view_video">Video</string>
+  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_photo">Attēls</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_video">Video</string> -->
   <string name="RevealableMessageView_viewed">Skatīts</string>
-  <string name="RevealableMessageView_media">Multivide</string>
+  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_outgoing_media">Multivide</string> -->
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Nesanāca saglabāt attēla izmaiņas</string>
   <!--Search-->
@@ -654,7 +654,7 @@ Saņemts atslēgas apmaiņas ziņojums par nederīgu protokola versiju. </string
   <string name="ThreadRecord_missed_call">Neatbildēts zvans</string>
   <string name="ThreadRecord_media_message">Multivides ziņa</string>
   <string name="ThreadRecord_sticker">Uzlīme</string>
-  <string name="ThreadRecord_view_once_photo">Izgaistošais attēls</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_disappearing_photo">Izgaistošais attēls</string> -->
   <string name="ThreadRecord_s_is_on_signal">%s lieto Signal</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Izgaistošās ziņas atspējotas</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">izgaistošo ziņu laiks iestādīts uz %s</string>
@@ -733,7 +733,7 @@ Saņemts atslēgas apmaiņas ziņojums par nederīgu protokola versiju. </string
   <string name="MessageNotifier_mark_read">Atzīmēt lasītu</string>
   <string name="MessageNotifier_media_message">Multivides ziņa</string>
   <string name="MessageNotifier_sticker">Uzlīme</string>
-  <string name="MessageNotifier_view_once_photo">Izgaistošais attēls</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_disappearing_photo">Izgaistošais attēls</string> -->
   <string name="MessageNotifier_reply">Abildēt</string>
   <string name="MessageNotifier_signal_message">Signal ziņa</string>
   <string name="MessageNotifier_unsecured_sms">Nedroš SMS</string>
@@ -872,7 +872,7 @@ Saņemts atslēgas apmaiņas ziņojums par nederīgu protokola versiju. </string
   <string name="QuoteView_audio">Audio</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Attēls</string>
-  <string name="QuoteView_view_once_media">Multivides ziņa</string>
+  <!-- Removed by excludeNonTranslatables <string name="QuoteView_media">Multivides ziņa</string> -->
   <string name="QuoteView_sticker">Uzlīme</string>
   <string name="QuoteView_document">Dokuments </string>
   <string name="QuoteView_you">Jūs</string>

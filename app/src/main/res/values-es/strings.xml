@@ -639,10 +639,10 @@ número de teléfono
   <string name="RegistrationActivity_country_code_description">Código de país</string>
   <string name="RegistrationActivity_call">Llamada</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_view_photo">Foto</string>
-  <string name="RevealableMessageView_view_video">Vídeo</string>
+  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_photo">Foto</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_video">Vídeo</string> -->
   <string name="RevealableMessageView_viewed">Visto</string>
-  <string name="RevealableMessageView_media">Multimedia</string>
+  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_outgoing_media">Multimedia</string> -->
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Fallo al guardar los cambios de la imagen</string>
   <!--Search-->
@@ -704,8 +704,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="ThreadRecord_missed_call">Llamada perdida</string>
   <string name="ThreadRecord_media_message">Mensaje multimedia</string>
   <string name="ThreadRecord_sticker">Cromo</string>
-  <string name="ThreadRecord_view_once_photo">Foto con caducidad</string>
-  <string name="ThreadRecord_view_once_video">Vídeo con caducidad</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_disappearing_photo">Foto con caducidad</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_disappearing_video">Vídeo con caducidad</string> -->
   <string name="ThreadRecord_s_is_on_signal">¡%s usa Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Desaparición de mensajes desactivada.</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">El tiempo de desaparición de mensajes se ha fijado en %s</string>
@@ -796,8 +796,8 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="MessageNotifier_mark_read">Marcar como leído</string>
   <string name="MessageNotifier_media_message">Mensaje multimedia</string>
   <string name="MessageNotifier_sticker">Cromo</string>
-  <string name="MessageNotifier_view_once_photo">Foto con caducidad</string>
-  <string name="MessageNotifier_view_once_video">Vídeo con caducidad</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_disappearing_photo">Foto con caducidad</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_disappearing_video">Vídeo con caducidad</string> -->
   <string name="MessageNotifier_reply">Responder</string>
   <string name="MessageNotifier_signal_message">Mensaje de Signal</string>
   <string name="MessageNotifier_unsecured_sms">SMS no cifrado</string>
@@ -943,7 +943,7 @@ Se recibió un mensaje de intercambio de claves para una versión no válida del
   <string name="QuoteView_audio">Audio</string>
   <string name="QuoteView_video">Vídeo</string>
   <string name="QuoteView_photo">Foto</string>
-  <string name="QuoteView_view_once_media">Mensaje multimedia</string>
+  <!-- Removed by excludeNonTranslatables <string name="QuoteView_media">Mensaje multimedia</string> -->
   <string name="QuoteView_sticker">Cromo</string>
   <string name="QuoteView_document">Documento</string>
   <string name="QuoteView_you">Tú</string>

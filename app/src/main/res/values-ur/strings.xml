@@ -586,10 +586,10 @@
   <string name="RegistrationActivity_country_code_description">ملک کا کوڈ</string>
   <string name="RegistrationActivity_call">کال</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_view_photo">تصویر</string>
-  <string name="RevealableMessageView_view_video">ویڈیو</string>
+  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_photo">تصویر</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_video">ویڈیو</string> -->
   <string name="RevealableMessageView_viewed">دیکھا ہوا</string>
-  <string name="RevealableMessageView_media">میڈیا</string>
+  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_outgoing_media">میڈیا</string> -->
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">تصویر محفوظ کرنے کی تبدیلی میں ناکامی</string>
   <!--Search-->
@@ -648,8 +648,8 @@
   <string name="ThreadRecord_missed_call">کال مس ہو گئی</string>
   <string name="ThreadRecord_media_message">میڈیا پیغام</string>
   <string name="ThreadRecord_sticker">اسٹیکر</string>
-  <string name="ThreadRecord_view_once_photo">تصویر غائب ہو رہی ہے</string>
-  <string name="ThreadRecord_view_once_video">ویڈیو غائب ہو رہی ہے</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_disappearing_photo">تصویر غائب ہو رہی ہے</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_disappearing_video">ویڈیو غائب ہو رہی ہے</string> -->
   <string name="ThreadRecord_s_is_on_signal">%s Signal پر ہے!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">غیر فعال پیغامات غائب ہو رہے ہیں</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">غائب پیغام ٹائم %s سے ترتیب دے رہے ہیں</string>
@@ -729,8 +729,8 @@
   <string name="MessageNotifier_mark_read">پڑھے ہوئے پر نشان لگائیں</string>
   <string name="MessageNotifier_media_message">میڈیا پیغام</string>
   <string name="MessageNotifier_sticker">اسٹیکر</string>
-  <string name="MessageNotifier_view_once_photo">تصویر غائب ہو رہی ہے</string>
-  <string name="MessageNotifier_view_once_video">ویڈیو غائب ہو رہی ہے</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_disappearing_photo">تصویر غائب ہو رہی ہے</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_disappearing_video">ویڈیو غائب ہو رہی ہے</string> -->
   <string name="MessageNotifier_reply">جواب دیں</string>
   <string name="MessageNotifier_signal_message">Signal پیغامات</string>
   <string name="MessageNotifier_unsecured_sms">غیر محفوظ ایس ایم ایس</string>
@@ -869,7 +869,7 @@
   <string name="QuoteView_audio">آڈیو</string>
   <string name="QuoteView_video">ویڈیو</string>
   <string name="QuoteView_photo">تصویر</string>
-  <string name="QuoteView_view_once_media">میڈیا پیغام</string>
+  <!-- Removed by excludeNonTranslatables <string name="QuoteView_media">میڈیا پیغام</string> -->
   <string name="QuoteView_sticker">اسٹیکر</string>
   <string name="QuoteView_document">دستاویز</string>
   <string name="QuoteView_you">تم</string>

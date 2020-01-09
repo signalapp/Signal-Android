@@ -680,10 +680,10 @@ Send neges heb ei ddiogelu?</string>
   <string name="RegistrationActivity_country_code_description">Cod gwlad</string>
   <string name="RegistrationActivity_call">Galw</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_view_photo">Llun</string>
-  <string name="RevealableMessageView_view_video">Fideo</string>
+  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_photo">Llun</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_video">Fideo</string> -->
   <string name="RevealableMessageView_viewed">Gwelwyd</string>
-  <string name="RevealableMessageView_media">Cyfryngau</string>
+  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_outgoing_media">Cyfryngau</string> -->
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Methu cadw newidiadau i ddelweddau</string>
   <!--Search-->
@@ -743,8 +743,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="ThreadRecord_missed_call">Galwad coll</string>
   <string name="ThreadRecord_media_message">Neges cyfryngau</string>
   <string name="ThreadRecord_sticker">Sticer</string>
-  <string name="ThreadRecord_view_once_photo">Llun yn diflannu</string>
-  <string name="ThreadRecord_view_once_video">Fideos yn diflannu</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_disappearing_photo">Llun yn diflannu</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_disappearing_video">Fideos yn diflannu</string> -->
   <string name="ThreadRecord_s_is_on_signal">Mae %s ar Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Negeseuon diflanedig wedi\'u hanalluogi</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Amser neges diflanedig wedi\'i osod i %s</string>
@@ -835,8 +835,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="MessageNotifier_mark_read">Marcio wedi\'i ddarllen</string>
   <string name="MessageNotifier_media_message">Neges cyfryngau</string>
   <string name="MessageNotifier_sticker">Sticer</string>
-  <string name="MessageNotifier_view_once_photo">Llun yn diflannu</string>
-  <string name="MessageNotifier_view_once_video">Fideos yn diflannu</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_disappearing_photo">Llun yn diflannu</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_disappearing_video">Fideos yn diflannu</string> -->
   <string name="MessageNotifier_reply">Ymateb</string>
   <string name="MessageNotifier_signal_message">Neges Signal</string>
   <string name="MessageNotifier_unsecured_sms">SMS anniogel</string>
@@ -984,7 +984,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="QuoteView_audio">Sain</string>
   <string name="QuoteView_video">Fideo</string>
   <string name="QuoteView_photo">Llun</string>
-  <string name="QuoteView_view_once_media">Neges cyfrwng</string>
+  <!-- Removed by excludeNonTranslatables <string name="QuoteView_media">Neges cyfrwng</string> -->
   <string name="QuoteView_sticker">Sticer</string>
   <string name="QuoteView_document">Dogfen</string>
   <string name="QuoteView_you">Chi</string>

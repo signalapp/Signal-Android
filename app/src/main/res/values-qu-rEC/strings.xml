@@ -491,9 +491,9 @@ riksichinami kanki
   <string name="RegistrationActivity_continue">Katina</string>
   <string name="RegistrationActivity_call">Kayachina</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_view_photo">Shuyu</string>
-  <string name="RevealableMessageView_view_video">Shuyukuyuriy</string>
-  <string name="RevealableMessageView_media">Uyayrikuchikkuna</string>
+  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_photo">Shuyu</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_video">Shuyukuyuriy</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_outgoing_media">Uyayrikuchikkuna</string> -->
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Kikinpa mushukyachishka shuyu mana allichirirka.</string>
   <!--Search-->
@@ -735,7 +735,7 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <string name="QuoteView_audio">Uyariy</string>
   <string name="QuoteView_video">Shuyukuyuriy</string>
   <string name="QuoteView_photo">Shuyu</string>
-  <string name="QuoteView_view_once_media">Multimedia chaski</string>
+  <!-- Removed by excludeNonTranslatables <string name="QuoteView_media">Multimedia chaski</string> -->
   <string name="QuoteView_document">Panka</string>
   <string name="QuoteView_you">Kikin</string>
   <string name="QuoteView_original_missing">Mana kallari chaskita taririnchu</string>

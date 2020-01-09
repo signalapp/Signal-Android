@@ -587,10 +587,10 @@
   <string name="RegistrationActivity_country_code_description">国家码</string>
   <string name="RegistrationActivity_call">拨号</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_view_photo">图片</string>
-  <string name="RevealableMessageView_view_video">视频</string>
+  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_photo">图片</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_video">视频</string> -->
   <string name="RevealableMessageView_viewed">已阅</string>
-  <string name="RevealableMessageView_media">媒体</string>
+  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_outgoing_media">媒体</string> -->
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">无法保存图像更改</string>
   <!--Search-->
@@ -649,8 +649,8 @@
   <string name="ThreadRecord_missed_call">未接来电</string>
   <string name="ThreadRecord_media_message">多媒体信息</string>
   <string name="ThreadRecord_sticker">表情</string>
-  <string name="ThreadRecord_view_once_photo">闪照</string>
-  <string name="ThreadRecord_view_once_video">自毁视频</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_disappearing_photo">闪照</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_disappearing_video">自毁视频</string> -->
   <string name="ThreadRecord_s_is_on_signal">%s 在 Signal 上！</string>
   <string name="ThreadRecord_disappearing_messages_disabled">阅后即焚功能已关闭</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">信息销毁时间设置为 %s</string>
@@ -730,8 +730,8 @@
   <string name="MessageNotifier_mark_read">标记为已读</string>
   <string name="MessageNotifier_media_message">媒体信息</string>
   <string name="MessageNotifier_sticker">表情包</string>
-  <string name="MessageNotifier_view_once_photo">闪照</string>
-  <string name="MessageNotifier_view_once_video">自毁视频</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_disappearing_photo">闪照</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_disappearing_video">自毁视频</string> -->
   <string name="MessageNotifier_reply">回复</string>
   <string name="MessageNotifier_signal_message">Signal 消息</string>
   <string name="MessageNotifier_unsecured_sms">未加密的短信</string>
@@ -871,7 +871,7 @@
   <string name="QuoteView_audio">音频</string>
   <string name="QuoteView_video">视频</string>
   <string name="QuoteView_photo">图片</string>
-  <string name="QuoteView_view_once_media">附件信息</string>
+  <!-- Removed by excludeNonTranslatables <string name="QuoteView_media">附件信息</string> -->
   <string name="QuoteView_sticker">表情包</string>
   <string name="QuoteView_document">文档</string>
   <string name="QuoteView_you">您</string>

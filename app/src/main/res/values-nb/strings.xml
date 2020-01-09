@@ -633,10 +633,10 @@ skrev inn (%s) er ugyldig.</string>
   <string name="RegistrationActivity_country_code_description">Landskode</string>
   <string name="RegistrationActivity_call">Ring</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_view_photo">Bilde</string>
-  <string name="RevealableMessageView_view_video">Video</string>
+  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_photo">Bilde</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_video">Video</string> -->
   <string name="RevealableMessageView_viewed">Sett</string>
-  <string name="RevealableMessageView_media">Media</string>
+  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_outgoing_media">Media</string> -->
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Klarte ikke å lagre bildeendringer</string>
   <!--Search-->
@@ -696,8 +696,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="ThreadRecord_missed_call">Ubesvart anrop</string>
   <string name="ThreadRecord_media_message">Mediemelding</string>
   <string name="ThreadRecord_sticker">Klistremerke</string>
-  <string name="ThreadRecord_view_once_photo">Forsvinner foto</string>
-  <string name="ThreadRecord_view_once_video">Forsvinnende video</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_disappearing_photo">Forsvinner foto</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_disappearing_video">Forsvinnende video</string> -->
   <string name="ThreadRecord_s_is_on_signal"> %s er på Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Forsvinnende meldinger deaktivert</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Utløpstid for meldinger endret til %s</string>
@@ -788,8 +788,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="MessageNotifier_mark_read">Merk som lest</string>
   <string name="MessageNotifier_media_message">Mediemelding</string>
   <string name="MessageNotifier_sticker">Klistremerke</string>
-  <string name="MessageNotifier_view_once_photo">Forsvinner foto</string>
-  <string name="MessageNotifier_view_once_video">Forsvinnende video</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_disappearing_photo">Forsvinner foto</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_disappearing_video">Forsvinnende video</string> -->
   <string name="MessageNotifier_reply">Svar</string>
   <string name="MessageNotifier_signal_message">Signal-melding</string>
   <string name="MessageNotifier_unsecured_sms">Usikret SMS</string>
@@ -935,7 +935,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="QuoteView_audio">Lyd</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Bilde</string>
-  <string name="QuoteView_view_once_media">Mediemelding</string>
+  <!-- Removed by excludeNonTranslatables <string name="QuoteView_media">Mediemelding</string> -->
   <string name="QuoteView_sticker">Klistremerke</string>
   <string name="QuoteView_document">Dokument</string>
   <string name="QuoteView_you">Deg</string>

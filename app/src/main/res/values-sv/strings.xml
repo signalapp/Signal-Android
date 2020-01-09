@@ -635,10 +635,10 @@ angav (%s) är ogiltigt.</string>
   <string name="RegistrationActivity_country_code_description">Landskod</string>
   <string name="RegistrationActivity_call">Ring</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_view_photo">Foto</string>
-  <string name="RevealableMessageView_view_video">Video</string>
+  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_photo">Foto</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_video">Video</string> -->
   <string name="RevealableMessageView_viewed">Visat</string>
-  <string name="RevealableMessageView_media">Media</string>
+  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_outgoing_media">Media</string> -->
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Misslyckades med att spara bildändringar</string>
   <!--Search-->
@@ -698,8 +698,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="ThreadRecord_missed_call">Missat samtal</string>
   <string name="ThreadRecord_media_message">Mediameddelande</string>
   <string name="ThreadRecord_sticker">Klistermärke</string>
-  <string name="ThreadRecord_view_once_photo">Försvinnande foto</string>
-  <string name="ThreadRecord_view_once_video">Försvinnande video</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_disappearing_photo">Försvinnande foto</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_disappearing_video">Försvinnande video</string> -->
   <string name="ThreadRecord_s_is_on_signal">%s finns på Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Försvinnande meddelanden inaktiverat</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Tiden för försvinnande meddelanden inställd till %s</string>
@@ -790,8 +790,8 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="MessageNotifier_mark_read">Läst</string>
   <string name="MessageNotifier_media_message">Mediameddelande</string>
   <string name="MessageNotifier_sticker">Klistermärke</string>
-  <string name="MessageNotifier_view_once_photo">Försvinnande foto</string>
-  <string name="MessageNotifier_view_once_video">Försvinnande video</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_disappearing_photo">Försvinnande foto</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_disappearing_video">Försvinnande video</string> -->
   <string name="MessageNotifier_reply">Svara</string>
   <string name="MessageNotifier_signal_message">Signal-meddelande</string>
   <string name="MessageNotifier_unsecured_sms">Osäkert SMS</string>
@@ -937,7 +937,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="QuoteView_audio">Ljud</string>
   <string name="QuoteView_video">Filmer</string>
   <string name="QuoteView_photo">Foto</string>
-  <string name="QuoteView_view_once_media">Mediameddelande</string>
+  <!-- Removed by excludeNonTranslatables <string name="QuoteView_media">Mediameddelande</string> -->
   <string name="QuoteView_sticker">Klistermärke</string>
   <string name="QuoteView_document">Dokument</string>
   <string name="QuoteView_you">Du</string>

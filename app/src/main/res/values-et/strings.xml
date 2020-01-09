@@ -639,10 +639,10 @@
   <string name="RegistrationActivity_country_code_description">Riigikood</string>
   <string name="RegistrationActivity_call">Helista</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_view_photo">Foto</string>
-  <string name="RevealableMessageView_view_video">Video</string>
+  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_photo">Foto</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_video">Video</string> -->
   <string name="RevealableMessageView_viewed">Vaadatud</string>
-  <string name="RevealableMessageView_media">Meedia</string>
+  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_outgoing_media">Meedia</string> -->
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Pildi muutuste salvestamine ebaõnnestus</string>
   <!--Search-->
@@ -704,8 +704,8 @@
   <string name="ThreadRecord_missed_call">Vastamata kõne</string>
   <string name="ThreadRecord_media_message">Meediasõnum</string>
   <string name="ThreadRecord_sticker">Kleeps</string>
-  <string name="ThreadRecord_view_once_photo">Haihtuv foto</string>
-  <string name="ThreadRecord_view_once_video">Haihtuv video</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_disappearing_photo">Haihtuv foto</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_disappearing_video">Haihtuv video</string> -->
   <string name="ThreadRecord_s_is_on_signal">%s on Signalis!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Haihtuvad sõnumid keelatud</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Haihtuva sõnumi ajaks on seatud %s</string>
@@ -796,8 +796,8 @@
   <string name="MessageNotifier_mark_read">Märgi loetuks</string>
   <string name="MessageNotifier_media_message">Meediasõnum</string>
   <string name="MessageNotifier_sticker">Kleeps</string>
-  <string name="MessageNotifier_view_once_photo">Haihtuv foto</string>
-  <string name="MessageNotifier_view_once_video">Haihtuv video</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_disappearing_photo">Haihtuv foto</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_disappearing_video">Haihtuv video</string> -->
   <string name="MessageNotifier_reply">Vasta</string>
   <string name="MessageNotifier_signal_message">Signali sõnum</string>
   <string name="MessageNotifier_unsecured_sms">Turvamata SMS</string>
@@ -943,7 +943,7 @@
   <string name="QuoteView_audio">Heli</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Foto</string>
-  <string name="QuoteView_view_once_media">Meediasõnum</string>
+  <!-- Removed by excludeNonTranslatables <string name="QuoteView_media">Meediasõnum</string> -->
   <string name="QuoteView_sticker">Kleeps</string>
   <string name="QuoteView_document">Dokument</string>
   <string name="QuoteView_you">Sina</string>

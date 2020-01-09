@@ -636,10 +636,10 @@
   <string name="RegistrationActivity_country_code_description">Kod vendi</string>
   <string name="RegistrationActivity_call">Thirrje</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_view_photo">Foto</string>
-  <string name="RevealableMessageView_view_video">Video</string>
+  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_photo">Foto</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_video">Video</string> -->
   <string name="RevealableMessageView_viewed">Parë</string>
-  <string name="RevealableMessageView_media">Media</string>
+  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_outgoing_media">Media</string> -->
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">S’u arrit të ruheshin ndryshime të figurës.</string>
   <!--Search-->
@@ -699,8 +699,8 @@
   <string name="ThreadRecord_missed_call">Thirrje e humbur</string>
   <string name="ThreadRecord_media_message">Mesazh media</string>
   <string name="ThreadRecord_sticker">Ngjitës</string>
-  <string name="ThreadRecord_view_once_photo">Foto që tretet</string>
-  <string name="ThreadRecord_view_once_video">Video që zhduket</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_disappearing_photo">Foto që tretet</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_disappearing_video">Video që zhduket</string> -->
   <string name="ThreadRecord_s_is_on_signal">%s është në Signal! </string>
   <string name="ThreadRecord_disappearing_messages_disabled">Zhdukja e mesazheve është e çaktivizuar</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Koha për zhdukje mesazhesh është vënë %s</string>
@@ -791,8 +791,8 @@
   <string name="MessageNotifier_mark_read">Vëri shenjë si të lexuar</string>
   <string name="MessageNotifier_media_message">Mesazh media</string>
   <string name="MessageNotifier_sticker">Ngjitës</string>
-  <string name="MessageNotifier_view_once_photo">Foto që tretet</string>
-  <string name="MessageNotifier_view_once_video">Video që zhduket</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_disappearing_photo">Foto që tretet</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_disappearing_video">Video që zhduket</string> -->
   <string name="MessageNotifier_reply">Përgjigju</string>
   <string name="MessageNotifier_signal_message">Mesazhe Signal</string>
   <string name="MessageNotifier_unsecured_sms">SMS e pasiguruar</string>
@@ -938,7 +938,7 @@
   <string name="QuoteView_audio">Audio</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Foto</string>
-  <string name="QuoteView_view_once_media">Mesazh media</string>
+  <!-- Removed by excludeNonTranslatables <string name="QuoteView_media">Mesazh media</string> -->
   <string name="QuoteView_sticker">Ngjitës</string>
   <string name="QuoteView_document">Dokument</string>
   <string name="QuoteView_you">Ju</string>

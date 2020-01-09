@@ -321,8 +321,10 @@
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">Untuk beberapa situs populer di internet sekarang ada pilihan pratinjau tautan</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">Anda dapat menonaktifkan atau mengaktifkan fitur ini kapanpun pada pengaturan Signal Anda (Privasi &gt; Kirim pratinjau tautan).</string>
   <string name="ExperienceUpgradeActivity_got_it">Paham</string>
+  <string name="ExperienceUpgradeActivity_introducing_stickers">Memperkenalkan stiker</string>
   <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">Mengapa menggunakan kata-kata saat Anda bisa menggunakan stiker?</string>
   <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">Mengapa menggunakan kata-kata saat Anda bisa menggunakan stiker? Ketuk ikon ini pada papan ketik Anda:</string>
+  <string name="ExperienceUpgradeActivity_lets_go">Ayo!</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Mengambil pesan…</string>
   <!--GcmRefreshJob-->
@@ -460,6 +462,7 @@
     <item quantity="other">Anda tidak bisa membagikan lebih dari %d media.</item>
   </plurals>
   <string name="MediaSendActivity_select_recipients_description">Pilih penerima</string>
+  <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">Ketuk di sini untuk membuat pesan ini menghikang setelah diihat.</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Semua media</string>
   <!--MessageRecord-->
@@ -614,10 +617,10 @@ isikan (%s) tidak valid.
   <string name="RegistrationActivity_country_code_description">Kode negara</string>
   <string name="RegistrationActivity_call">Panggil</string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_view_photo">Foto</string>
-  <string name="RevealableMessageView_view_video">Video</string>
+  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_photo">Foto</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_video">Video</string> -->
   <string name="RevealableMessageView_viewed">Dilihat</string>
-  <string name="RevealableMessageView_media">Media</string>
+  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_outgoing_media">Media</string> -->
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Gagal menyimpan perubahan gambar.</string>
   <!--Search-->
@@ -679,8 +682,8 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="ThreadRecord_missed_call">Panggilan tak terjawab</string>
   <string name="ThreadRecord_media_message">Pesan media</string>
   <string name="ThreadRecord_sticker">Stiker</string>
-  <string name="ThreadRecord_view_once_photo">Foto akan menghilang</string>
-  <string name="ThreadRecord_view_once_video">Video akan menghilang</string>
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_disappearing_photo">Foto akan menghilang</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_disappearing_video">Video akan menghilang</string> -->
   <string name="ThreadRecord_s_is_on_signal">%s ada di Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Pesan menghilang dinonaktifkan</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Waktu penghilangan pesan diatur menjadi %s</string>
@@ -771,8 +774,8 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="MessageNotifier_mark_read">Tandai sudah dibaca</string>
   <string name="MessageNotifier_media_message">Pesan media</string>
   <string name="MessageNotifier_sticker">Stiker</string>
-  <string name="MessageNotifier_view_once_photo">Foto akan menghilang</string>
-  <string name="MessageNotifier_view_once_video">Video akan menghilang</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_disappearing_photo">Foto akan menghilang</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_disappearing_video">Video akan menghilang</string> -->
   <string name="MessageNotifier_reply">Balas</string>
   <string name="MessageNotifier_signal_message">Pesan Signal</string>
   <string name="MessageNotifier_unsecured_sms">SMS tidak terenkripsi</string>
@@ -917,7 +920,7 @@ Menerima pesan pertukaran kunci untuk versi protokol yang tidak valid.
   <string name="QuoteView_audio">Audio</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Foto</string>
-  <string name="QuoteView_view_once_media">Pesan berisi media</string>
+  <!-- Removed by excludeNonTranslatables <string name="QuoteView_media">Pesan berisi media</string> -->
   <string name="QuoteView_sticker">Stiker</string>
   <string name="QuoteView_document">Dokumen</string>
   <string name="QuoteView_you">Anda</string>

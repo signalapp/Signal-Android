@@ -499,9 +499,9 @@
   <string name="RegistrationActivity_continue">ရှေ့ဆက်ပါ</string>
   <string name="RegistrationActivity_call">ဖုန်းခေါ်ဆိုမှု </string>
   <!--RevealableMessageView-->
-  <string name="RevealableMessageView_view_photo">ရုပ်ပုံ</string>
-  <string name="RevealableMessageView_view_video">ရုပ်မြင်သံကြား</string>
-  <string name="RevealableMessageView_media">ရုပ်၊သံ၊ပုံ များ</string>
+  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_photo">ရုပ်ပုံ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_video">ရုပ်မြင်သံကြား</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_outgoing_media">ရုပ်၊သံ၊ပုံ များ</string> -->
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">ပြောင်းလဲလိုက်သည့် ရုပ်ပုံကို သိမ်းလို့ မရပါ</string>
   <!--Search-->
@@ -737,7 +737,7 @@
   <string name="QuoteView_audio">အသံ</string>
   <string name="QuoteView_video">ဗီဒီယို</string>
   <string name="QuoteView_photo">ရုပ်ပုံ</string>
-  <string name="QuoteView_view_once_media">ရုပ်/သံ/ပုံပါ စာ</string>
+  <!-- Removed by excludeNonTranslatables <string name="QuoteView_media">ရုပ်/သံ/ပုံပါ စာ</string> -->
   <string name="QuoteView_document">စာရွက်စာတမ်း</string>
   <string name="QuoteView_you">သင်</string>
   <!--conversation_fragment-->
