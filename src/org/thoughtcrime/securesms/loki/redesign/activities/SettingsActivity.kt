@@ -90,6 +90,7 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
         privacyButton.setOnClickListener { showPrivacySettings() }
         notificationsButton.setOnClickListener { showNotificationSettings() }
         chatsButton.setOnClickListener { showChatSettings() }
+        linkedDevicesButton.setOnClickListener { showLinkedDevices() }
         seedButton.setOnClickListener { showSeed() }
         clearAllDataButton.setOnClickListener { clearAllData() }
     }
@@ -262,6 +263,11 @@ class SettingsActivity : PassphraseRequiredActionBarActivity() {
 
     private fun showChatSettings() {
         val intent = Intent(this, ChatSettingsActivity::class.java)
+        push(intent)
+    }
+
+    private fun showLinkedDevices() {
+        val intent = Intent(this, LinkedDevicesActivity::class.java)
         push(intent)
     }
 

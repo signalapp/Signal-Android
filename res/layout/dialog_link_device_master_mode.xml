@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/default_dialog_background_inset"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingLeft="32dp"
+    android:paddingTop="@dimen/medium_spacing"
+    android:paddingRight="32dp"
+    android:paddingBottom="@dimen/medium_spacing">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_spacing"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/qrCodeImageView"
+            android:layout_width="128dp"
+            android:layout_height="128dp" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/large_spacing"
+        android:text="Waiting for Device"
+        android:textColor="@color/text"
+        android:textStyle="bold"
+        android:textSize="@dimen/medium_font_size" />
+
+    <TextView
+        android:id="@+id/explanationTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/large_spacing"
+        android:text="Create a new account on your other device and click &quot;Link to an existing account&quot; to start the linking process"
+        android:textColor="@color/text"
+        android:alpha="0.6"
+        android:textSize="@dimen/small_font_size"
+        android:textAlignment="center" />
+
+    <TextView
+        android:id="@+id/mnemonicTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="puffin circle idled"
+        android:textColor="@color/text"
+        android:textSize="@dimen/small_font_size"
+        android:textAlignment="center"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/large_spacing"
+        android:orientation="horizontal">
+
+        <Button
+            style="@style/UnimportantDialogButton"
+            android:id="@+id/cancelButton"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/small_button_height"
+            android:layout_weight="1"
+            android:text="Cancel" />
+
+        <Button
+            style="@style/ProminentDialogButton"
+            android:id="@+id/authorizeButton"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/small_button_height"
+            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/medium_spacing"
+            android:text="Authorize"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+</LinearLayout>

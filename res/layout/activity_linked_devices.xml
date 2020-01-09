@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/default_session_background">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:layout_centerInParent="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/medium_font_size"
+            android:textColor="@color/text"
+            android:text="You don't have any linked devices yet" />
+
+        <Button
+            style="@style/MediumProminentOutlineButton"
+            android:id="@+id/linkDeviceButton"
+            android:layout_width="196dp"
+            android:layout_height="@dimen/medium_button_height"
+            android:layout_marginTop="@dimen/medium_spacing"
+            android:text="Link a Device" />
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -160,6 +160,8 @@
             android:name="org.thoughtcrime.securesms.loki.redesign.activities.NotificationSettingsActivity" />
         <activity
             android:name="org.thoughtcrime.securesms.loki.redesign.activities.ChatSettingsActivity" />
+        <activity
+            android:name="org.thoughtcrime.securesms.loki.redesign.activities.LinkedDevicesActivity" />
         <!-- Session -->
         <activity android:name="org.thoughtcrime.securesms.loki.LinkedDevicesActivity" />
         <activity
