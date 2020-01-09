@@ -1077,7 +1077,7 @@ public class ConversationFragment extends Fragment
                                                                  .withMimeType(thumbnailSlide.getContentType())
                                                                  .createForSingleSessionOnDisk(requireContext());
 
-          DatabaseFactory.getAttachmentDatabase(requireContext()).deleteAttachmentFilesForMessage(messageRecord.getId());
+          DatabaseFactory.getAttachmentDatabase(requireContext()).deleteAttachmentFilesForViewOnceMessage(messageRecord.getId());
 
           ApplicationContext.getInstance(requireContext())
                             .getViewOnceMessageManager()
@@ -1095,7 +1095,7 @@ public class ConversationFragment extends Fragment
         } else {
           Log.w(TAG, "Failed to open view-once photo. Showing a toast and deleting the attachments for the message just in case.");
           Toast.makeText(requireContext(), R.string.ConversationFragment_failed_to_open_message, Toast.LENGTH_SHORT).show();
-          SignalExecutors.BOUNDED.execute(() -> DatabaseFactory.getAttachmentDatabase(requireContext()).deleteAttachmentFilesForMessage(messageRecord.getId()));
+          SignalExecutors.BOUNDED.execute(() -> DatabaseFactory.getAttachmentDatabase(requireContext()).deleteAttachmentFilesForViewOnceMessage(messageRecord.getId()));
         }
       });
     }

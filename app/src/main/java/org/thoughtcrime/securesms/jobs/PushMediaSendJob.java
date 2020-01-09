@@ -150,7 +150,7 @@ public class PushMediaSendJob extends PushSendJob {
       }
 
       if (message.isViewOnce()) {
-        DatabaseFactory.getAttachmentDatabase(context).deleteAttachmentFilesForMessage(messageId);
+        DatabaseFactory.getAttachmentDatabase(context).deleteAttachmentFilesForViewOnceMessage(messageId);
       }
 
       log(TAG, "Sent message: " + messageId);

@@ -217,12 +217,15 @@ public abstract class PushSendJob extends SendJob {
   protected Optional<SignalServiceDataMessage.Quote> getQuoteFor(OutgoingMediaMessage message) {
     if (message.getOutgoingQuote() == null) return Optional.absent();
 
-    long                                                  quoteId          = message.getOutgoingQuote().getId();
-    String                                                quoteBody        = message.getOutgoingQuote().getText();
-    RecipientId                                           quoteAuthor      = message.getOutgoingQuote().getAuthor();
-    List<SignalServiceDataMessage.Quote.QuotedAttachment> quoteAttachments = new LinkedList<>();
+    long                                                  quoteId             = message.getOutgoingQuote().getId();
+    String                                                quoteBody           = message.getOutgoingQuote().getText();
+    RecipientId                                           quoteAuthor         = message.getOutgoingQuote().getAuthor();
+    List<SignalServiceDataMessage.Quote.QuotedAttachment> quoteAttachments    = new LinkedList<>();
+    List<Attachment>                                      filteredAttachments = Stream.of(message.getOutgoingQuote().getAttachments())
+                                                                                      .filterNot(a -> MediaUtil.isViewOnceType(a.getContentType()))
+                                                                                      .toList();
 
-    for (Attachment attachment : message.getOutgoingQuote().getAttachments()) {
+    for (Attachment attachment : filteredAttachments) {
       BitmapUtil.ScaleResult  thumbnailData = null;
       SignalServiceAttachment thumbnail     = null;
       String                  thumbnailType = MediaUtil.IMAGE_JPEG;

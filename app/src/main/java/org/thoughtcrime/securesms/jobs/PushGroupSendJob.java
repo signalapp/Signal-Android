@@ -12,7 +12,6 @@ import org.thoughtcrime.securesms.ApplicationContext;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
-import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.GroupReceiptDatabase.GroupReceiptInfo;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
@@ -203,7 +202,7 @@ public class PushGroupSendJob extends PushSendJob {
         }
 
         if (message.isViewOnce()) {
-          DatabaseFactory.getAttachmentDatabase(context).deleteAttachmentFilesForMessage(messageId);
+          DatabaseFactory.getAttachmentDatabase(context).deleteAttachmentFilesForViewOnceMessage(messageId);
         }
       } else if (!networkFailures.isEmpty()) {
         throw new RetryLaterException();

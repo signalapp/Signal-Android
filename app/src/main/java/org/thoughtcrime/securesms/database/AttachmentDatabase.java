@@ -320,8 +320,8 @@ public class AttachmentDatabase extends Database {
     notifyAttachmentListeners();
   }
 
-  public void deleteAttachmentFilesForMessage(long mmsId) {
-    Log.d(TAG, "[deleteAttachmentFilesForMessage] mmsId: " + mmsId);
+  public void deleteAttachmentFilesForViewOnceMessage(long mmsId) {
+    Log.d(TAG, "[deleteAttachmentFilesForViewOnceMessage] mmsId: " + mmsId);
 
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
     Cursor cursor           = null;
@@ -355,6 +355,7 @@ public class AttachmentDatabase extends Database {
     values.put(HEIGHT, 0);
     values.put(TRANSFER_STATE, TRANSFER_PROGRESS_DONE);
     values.put(BLUR_HASH, (String) null);
+    values.put(CONTENT_TYPE, MediaUtil.VIEW_ONCE);
 
     database.update(TABLE_NAME, values, MMS_ID + " = ?", new String[] {mmsId + ""});
     notifyAttachmentListeners();
@@ -364,7 +365,6 @@ public class AttachmentDatabase extends Database {
       notifyConversationListeners(threadId);
     }
   }
-
 
   public void deleteAttachment(@NonNull AttachmentId id) {
     Log.d(TAG, "[deleteAttachment] attachmentId: " + id);

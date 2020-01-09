@@ -54,7 +54,7 @@ public class ViewOnceMessageManager extends TimedEventManager<ViewOnceExpiration
   @Override
   protected void executeEvent(@NonNull ViewOnceExpirationInfo event) {
     Log.i(TAG, "Deleting attachments for message " + event.getMessageId());
-    attachmentDatabase.deleteAttachmentFilesForMessage(event.getMessageId());
+    attachmentDatabase.deleteAttachmentFilesForViewOnceMessage(event.getMessageId());
   }
 
   @WorkerThread

@@ -105,6 +105,10 @@ public abstract class Slide {
     return false;
   }
 
+  public boolean hasViewOnce() {
+    return false;
+  }
+
   public @NonNull String getContentDescription() { return ""; }
 
   public @NonNull Attachment asAttachment() {

@@ -29,6 +29,7 @@ import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver;
+import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.Util;
 
@@ -149,8 +150,7 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
                        @NonNull Recipient author,
                        @Nullable String body,
                        boolean originalMissing,
-                       @NonNull SlideDeck attachments,
-                       boolean isViewOnce)
+                       @NonNull SlideDeck attachments)
   {
     if (this.author != null) this.author.removeForeverObserver(this);
 
@@ -161,7 +161,7 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
 
     this.author.observeForever(this);
     setQuoteAuthor(author);
-    setQuoteText(body, attachments, isViewOnce);
+    setQuoteText(body, attachments);
     setQuoteAttachment(glideRequests, attachments);
     setQuoteMissingFooter(originalMissing);
   }
@@ -197,7 +197,7 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
     mainView.setBackgroundColor(author.getColor().toQuoteBackgroundColor(getContext(), outgoing));
   }
 
-  private void setQuoteText(@Nullable String body, @NonNull SlideDeck attachments, boolean isViewOnce) {
+  private void setQuoteText(@Nullable String body, @NonNull SlideDeck attachments) {
     if (!TextUtils.isEmpty(body) || !attachments.containsMediaSlide()) {
       bodyView.setVisibility(VISIBLE);
       bodyView.setText(body == null ? "" : body);
@@ -213,9 +213,10 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
     List<Slide> imageSlides    = Stream.of(attachments.getSlides()).filter(Slide::hasImage).limit(1).toList();
     List<Slide> videoSlides    = Stream.of(attachments.getSlides()).filter(Slide::hasVideo).limit(1).toList();
     List<Slide> stickerSlides  = Stream.of(attachments.getSlides()).filter(Slide::hasSticker).limit(1).toList();
+    List<Slide> viewOnceSlides = Stream.of(attachments.getSlides()).filter(Slide::hasViewOnce).limit(1).toList();
 
     // Given that most types have images, we specifically check images last
-    if (isViewOnce) {
+    if (!viewOnceSlides.isEmpty()) {
       mediaDescriptionText.setText(R.string.QuoteView_media);
     } else if (!audioSlides.isEmpty()) {
       mediaDescriptionText.setText(R.string.QuoteView_audio);
@@ -233,10 +234,14 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
   private void setQuoteAttachment(@NonNull GlideRequests glideRequests, @NonNull SlideDeck slideDeck) {
     List<Slide> imageVideoSlides = Stream.of(slideDeck.getSlides()).filter(s -> s.hasImage() || s.hasVideo() || s.hasSticker()).limit(1).toList();
     List<Slide> documentSlides   = Stream.of(attachments.getSlides()).filter(Slide::hasDocument).limit(1).toList();
+    List<Slide> viewOnceSlides   = Stream.of(attachments.getSlides()).filter(Slide::hasViewOnce).limit(1).toList();
 
     attachmentVideoOverlayView.setVisibility(GONE);
 
-    if (!imageVideoSlides.isEmpty() && imageVideoSlides.get(0).getThumbnailUri() != null) {
+    if (!viewOnceSlides.isEmpty()) {
+      thumbnailView.setVisibility(GONE);
+      attachmentContainerView.setVisibility(GONE);
+    } else if (!imageVideoSlides.isEmpty() && imageVideoSlides.get(0).getThumbnailUri() != null) {
       thumbnailView.setVisibility(VISIBLE);
       attachmentContainerView.setVisibility(GONE);
       dismissView.setBackgroundResource(R.drawable.dismiss_background);

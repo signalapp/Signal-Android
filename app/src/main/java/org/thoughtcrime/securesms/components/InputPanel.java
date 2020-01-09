@@ -154,10 +154,9 @@ public class InputPanel extends LinearLayout
                        long id,
                        @NonNull Recipient author,
                        @NonNull String body,
-                       @NonNull SlideDeck attachments,
-                       boolean isViewOnce)
+                       @NonNull SlideDeck attachments)
   {
-    this.quoteView.setQuote(glideRequests, id, author, body, false, attachments, isViewOnce);
+    this.quoteView.setQuote(glideRequests, id, author, body, false, attachments);
     this.quoteView.setVisibility(View.VISIBLE);
 
     if (this.linkPreview.getVisibility() == View.VISIBLE) {

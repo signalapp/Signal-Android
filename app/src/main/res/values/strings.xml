@@ -819,6 +819,7 @@
     <string name="ThreadRecord_sticker">Sticker</string>
     <string name="ThreadRecord_disappearing_photo">Disappearing photo</string>
     <string name="ThreadRecord_disappearing_video">Disappearing video</string>
+    <string name="ThreadRecord_disappearing_media">Disappearing media</string>
     <string name="ThreadRecord_s_is_on_signal">%s is on Signal!</string>
     <string name="ThreadRecord_disappearing_messages_disabled">Disappearing messages disabled</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">Disappearing message time set to %s</string>

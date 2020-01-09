@@ -656,7 +656,7 @@ public final class PushProcessMessageJob extends BaseJob {
         handleReaction(content, message.getMessage());
         threadId = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(getSyncMessageDestination(message));
         threadId = threadId != -1 ? threadId : null;
-      } else if (message.getMessage().getAttachments().isPresent() || message.getMessage().getQuote().isPresent() || message.getMessage().getPreviews().isPresent() || message.getMessage().getSticker().isPresent()) {
+      } else if (message.getMessage().getAttachments().isPresent() || message.getMessage().getQuote().isPresent() || message.getMessage().getPreviews().isPresent() || message.getMessage().getSticker().isPresent() || message.getMessage().isViewOnce()) {
         threadId = handleSynchronizeSentMediaMessage(message);
       } else {
         threadId = handleSynchronizeSentTextMessage(message);
@@ -742,7 +742,7 @@ public final class PushProcessMessageJob extends BaseJob {
     MessageRecord record    = DatabaseFactory.getMmsSmsDatabase(context).getMessageFor(timestamp, author);
 
     if (record != null && record.isMms()) {
-      DatabaseFactory.getAttachmentDatabase(context).deleteAttachmentFilesForMessage(record.getId());
+      DatabaseFactory.getAttachmentDatabase(context).deleteAttachmentFilesForViewOnceMessage(record.getId());
     }
 
     MessageNotifier.setLastDesktopActivityTimestamp(envelopeTimestamp);
@@ -842,7 +842,8 @@ public final class PushProcessMessageJob extends BaseJob {
     Optional<List<Contact>>     sharedContacts  = getContacts(message.getMessage().getSharedContacts());
     Optional<List<LinkPreview>> previews        = getLinkPreviews(message.getMessage().getPreviews(), message.getMessage().getBody().or(""));
     boolean                     viewOnce        = message.getMessage().isViewOnce();
-    List<Attachment>            syncAttachments = viewOnce ? Collections.emptyList() : PointerAttachment.forPointers(message.getMessage().getAttachments());
+    List<Attachment>            syncAttachments = viewOnce ? Collections.singletonList(new TombstoneAttachment(MediaUtil.VIEW_ONCE, false))
+                                                           : PointerAttachment.forPointers(message.getMessage().getAttachments());
 
     if (sticker.isPresent()) {
       syncAttachments.add(sticker.get());
@@ -1289,7 +1290,9 @@ public final class PushProcessMessageJob extends BaseJob {
       if (message.isMms()) {
         MmsMessageRecord mmsMessage = (MmsMessageRecord) message;
 
-        if (!mmsMessage.isViewOnce()) {
+        if (mmsMessage.isViewOnce()) {
+          attachments.add(new TombstoneAttachment(MediaUtil.VIEW_ONCE, true));
+        } else {
           attachments = mmsMessage.getSlideDeck().asAttachments();
 
           if (attachments.isEmpty()) {
@@ -1298,8 +1301,6 @@ public final class PushProcessMessageJob extends BaseJob {
                                      .map(lp -> lp.getThumbnail().get())
                                      .toList());
           }
-        } else if (quote.get().getAttachments().size() > 0) {
-          attachments.add(new TombstoneAttachment(quote.get().getAttachments().get(0).getContentType(), true));
         }
       }
 

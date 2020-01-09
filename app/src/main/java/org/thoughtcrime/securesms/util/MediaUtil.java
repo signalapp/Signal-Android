@@ -34,6 +34,7 @@ import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.StickerSlide;
 import org.thoughtcrime.securesms.mms.TextSlide;
 import org.thoughtcrime.securesms.mms.VideoSlide;
+import org.thoughtcrime.securesms.mms.ViewOnceSlide;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 
 import java.io.FileNotFoundException;
@@ -56,6 +57,7 @@ public class MediaUtil {
   public static final String VIDEO_UNSPECIFIED = "video/*";
   public static final String VCARD             = "text/x-vcard";
   public static final String LONG_TEXT         = "text/x-signal-plain";
+  public static final String VIEW_ONCE         = "application/x-signal-view-once";
 
   public static SlideType getSlideTypeFromContentType(@NonNull String contentType) {
     if (isGif(contentType)) {
@@ -70,6 +72,8 @@ public class MediaUtil {
       return SlideType.MMS;
     } else if (isLongTextType(contentType)) {
       return SlideType.LONG_TEXT;
+    } else if (isViewOnceType(contentType)) {
+      return SlideType.VIEW_ONCE;
     } else {
       return SlideType.DOCUMENT;
     }
@@ -87,6 +91,7 @@ public class MediaUtil {
       case AUDIO     : return new AudioSlide(context, attachment);
       case MMS       : return new MmsSlide(context, attachment);
       case LONG_TEXT : return new TextSlide(context, attachment);
+      case VIEW_ONCE : return new ViewOnceSlide(context, attachment);
       case DOCUMENT  : return new DocumentSlide(context, attachment);
       default        : throw new AssertionError();
     }
@@ -269,6 +274,10 @@ public class MediaUtil {
     return (null != contentType) && contentType.equals(LONG_TEXT);
   }
 
+  public static boolean isViewOnceType(String contentType) {
+    return (null != contentType) && contentType.equals(VIEW_ONCE);
+  }
+
   public static boolean hasVideoThumbnail(Uri uri) {
     if (BlobProvider.isAuthority(uri) && MediaUtil.isVideo(BlobProvider.getMimeType(uri)) && Build.VERSION.SDK_INT >= 23) {
       return true;
@@ -373,6 +382,7 @@ public class MediaUtil {
     AUDIO,
     MMS,
     LONG_TEXT,
+    VIEW_ONCE,
     DOCUMENT
   }
 }
