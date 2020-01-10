@@ -40,25 +40,20 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.provider.Browser;
-import android.provider.ContactsContract;
 import android.provider.Telephony;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.pm.ShortcutInfoCompat;
 import android.support.v4.content.pm.ShortcutManagerCompat;
 import android.support.v4.graphics.drawable.IconCompat;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Pair;
 import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -152,7 +147,6 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.loki.FriendRequestViewDelegate;
 import org.thoughtcrime.securesms.loki.LokiAPIUtilities;
 import org.thoughtcrime.securesms.loki.LokiMessageDatabase;
 import org.thoughtcrime.securesms.loki.LokiThreadDatabase;
@@ -161,6 +155,7 @@ import org.thoughtcrime.securesms.loki.LokiUserDatabase;
 import org.thoughtcrime.securesms.loki.MentionCandidateSelectionView;
 import org.thoughtcrime.securesms.loki.MultiDeviceUtilities;
 import org.thoughtcrime.securesms.loki.redesign.activities.HomeActivity;
+import org.thoughtcrime.securesms.loki.redesign.views.FriendRequestViewDelegate;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mediasend.MediaSendActivity;
 import org.thoughtcrime.securesms.mms.AttachmentManager;
@@ -210,7 +205,6 @@ import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.DirectoryHelper;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
-import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
@@ -303,7 +297,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private   AnimatingToggle             buttonToggle;
   private   SendButton                  sendButton;
   private   ImageButton                 attachButton;
-  protected ConversationTitleView       titleView;
+  private   TextView                    titleTextView;
   private   TextView                    charactersLeft;
   private   ConversationFragment        fragment;
   private   Button                      unblockButton;
@@ -477,7 +471,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     initializeIdentityRecords();
     composeText.setTransport(sendButton.getSelectedTransport());
 
-    titleView.setTitle(glideRequests, recipient);
+    updateTitleTextView(glideRequests, recipient);
     setActionBarColor(recipient.getColor());
     setBlockedUserState(recipient, isSecureText, isDefaultSms);
     setGroupShareProfileReminder(recipient);
@@ -564,7 +558,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     case GROUP_EDIT:
       recipient = Recipient.from(this, data.getParcelableExtra(GroupCreateActivity.GROUP_ADDRESS_EXTRA), true);
       recipient.addListener(this);
-      titleView.setTitle(glideRequests, recipient);
+      updateTitleTextView(glideRequests, recipient);
       NotificationChannels.updateContactChannelName(this, recipient);
       setBlockedUserState(recipient, isSecureText, isDefaultSms);
       supportInvalidateOptionsMenu();
@@ -662,130 +656,130 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
   }
 
-  @Override
-  public boolean onPrepareOptionsMenu(Menu menu) {
-    MenuInflater inflater = this.getMenuInflater();
-    menu.clear();
-
-    boolean isLokiPublicChat = isGroupConversation(); // TODO: Figure out a better way of determining this
-
-    if (isSecureText && !isLokiPublicChat) { // TODO:
-      if (recipient.getExpireMessages() > 0) {
-        inflater.inflate(R.menu.conversation_expiring_on, menu);
-
-        final MenuItem item       = menu.findItem(R.id.menu_expiring_messages);
-        final View     actionView = MenuItemCompat.getActionView(item);
-        final TextView badgeView  = actionView.findViewById(R.id.expiration_badge);
-
-        badgeView.setText(ExpirationUtil.getExpirationAbbreviatedDisplayValue(this, recipient.getExpireMessages()));
-        actionView.setOnClickListener(v -> onOptionsItemSelected(item));
-      } else {
-        inflater.inflate(R.menu.conversation_expiring_off, menu);
-      }
-    }
-
-    if (isSingleConversation()) {
-      /*
-      if (isSecureText) inflater.inflate(R.menu.conversation_callable_secure, menu);
-      else              inflater.inflate(R.menu.conversation_callable_insecure, menu);
-       */
-    } else if (isGroupConversation() && !isLokiPublicChat) {
-      inflater.inflate(R.menu.conversation_group_options, menu);
-
-      if (!isPushGroupConversation()) {
-        inflater.inflate(R.menu.conversation_mms_group_options, menu);
-        if (distributionType == ThreadDatabase.DistributionTypes.BROADCAST) {
-          menu.findItem(R.id.menu_distribution_broadcast).setChecked(true);
-        } else {
-          menu.findItem(R.id.menu_distribution_conversation).setChecked(true);
-        }
-      } else if (isActiveGroup()) {
-        inflater.inflate(R.menu.conversation_push_group_options, menu);
-      }
-    }
-
-    inflater.inflate(R.menu.conversation, menu);
-
-    if (isSingleConversation() && isSecureText) {
-      inflater.inflate(R.menu.conversation_secure, menu);
-    } else if (isSingleConversation()) {
-      inflater.inflate(R.menu.conversation_insecure, menu);
-    }
-
-    if (recipient != null && recipient.isMuted()) inflater.inflate(R.menu.conversation_muted, menu);
-    else                                          inflater.inflate(R.menu.conversation_unmuted, menu);
-
-    /*
-    if (isSingleConversation() && getRecipient().getContactUri() == null) {
-      inflater.inflate(R.menu.conversation_add_to_contacts, menu);
-    }
-
-
-    if (recipient != null && recipient.isLocalNumber()) {
-      if (isSecureText) menu.findItem(R.id.menu_call_secure).setVisible(false);
-      else              menu.findItem(R.id.menu_call_insecure).setVisible(false);
-
-      MenuItem muteItem = menu.findItem(R.id.menu_mute_notifications);
-
-      if (muteItem != null) {
-        muteItem.setVisible(false);
-      }
-    }
-     */
-
-    searchViewItem = menu.findItem(R.id.menu_search);
-
-    SearchView                     searchView    = (SearchView) searchViewItem.getActionView();
-    SearchView.OnQueryTextListener queryListener = new SearchView.OnQueryTextListener() {
-      @Override
-      public boolean onQueryTextSubmit(String query) {
-        searchViewModel.onQueryUpdated(query, threadId);
-        searchNav.showLoading();
-        fragment.onSearchQueryUpdated(query);
-        return true;
-      }
-
-      @Override
-      public boolean onQueryTextChange(String query) {
-        searchViewModel.onQueryUpdated(query, threadId);
-        searchNav.showLoading();
-        fragment.onSearchQueryUpdated(query);
-        return true;
-      }
-    };
-
-    searchViewItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
-      @Override
-      public boolean onMenuItemActionExpand(MenuItem item) {
-        searchView.setOnQueryTextListener(queryListener);
-        searchViewModel.onSearchOpened();
-        searchNav.setVisibility(View.VISIBLE);
-        searchNav.setData(0, 0);
-        inputPanel.setVisibility(View.GONE);
-
-        for (int i = 0; i < menu.size(); i++) {
-          if (!menu.getItem(i).equals(searchViewItem)) {
-            menu.getItem(i).setVisible(false);
-          }
-        }
-        return true;
-      }
-
-      @Override
-      public boolean onMenuItemActionCollapse(MenuItem item) {
-        searchView.setOnQueryTextListener(null);
-        searchViewModel.onSearchClosed();
-        searchNav.setVisibility(View.GONE);
-        inputPanel.setVisibility(View.VISIBLE);
-        fragment.onSearchQueryUpdated(null);
-        invalidateOptionsMenu();
-        return true;
-      }
-    });
-
-    super.onPrepareOptionsMenu(menu);
-    return true;
-  }
+//  @Override
+//  public boolean onPrepareOptionsMenu(Menu menu) {
+//    MenuInflater inflater = this.getMenuInflater();
+//    menu.clear();
+//
+//    boolean isLokiPublicChat = isGroupConversation(); // TODO: Figure out a better way of determining this
+//
+//    if (isSecureText && !isLokiPublicChat) { // TODO:
+//      if (recipient.getExpireMessages() > 0) {
+//        inflater.inflate(R.menu.conversation_expiring_on, menu);
+//
+//        final MenuItem item       = menu.findItem(R.id.menu_expiring_messages);
+//        final View     actionView = MenuItemCompat.getActionView(item);
+//        final TextView badgeView  = actionView.findViewById(R.id.expiration_badge);
+//
+//        badgeView.setText(ExpirationUtil.getExpirationAbbreviatedDisplayValue(this, recipient.getExpireMessages()));
+//        actionView.setOnClickListener(v -> onOptionsItemSelected(item));
+//      } else {
+//        inflater.inflate(R.menu.conversation_expiring_off, menu);
+//      }
+//    }
+//
+//    if (isSingleConversation()) {
+//      /*
+//      if (isSecureText) inflater.inflate(R.menu.conversation_callable_secure, menu);
+//      else              inflater.inflate(R.menu.conversation_callable_insecure, menu);
+//       */
+//    } else if (isGroupConversation() && !isLokiPublicChat) {
+//      inflater.inflate(R.menu.conversation_group_options, menu);
+//
+//      if (!isPushGroupConversation()) {
+//        inflater.inflate(R.menu.conversation_mms_group_options, menu);
+//        if (distributionType == ThreadDatabase.DistributionTypes.BROADCAST) {
+//          menu.findItem(R.id.menu_distribution_broadcast).setChecked(true);
+//        } else {
+//          menu.findItem(R.id.menu_distribution_conversation).setChecked(true);
+//        }
+//      } else if (isActiveGroup()) {
+//        inflater.inflate(R.menu.conversation_push_group_options, menu);
+//      }
+//    }
+//
+//    inflater.inflate(R.menu.conversation, menu);
+//
+//    if (isSingleConversation() && isSecureText) {
+//      inflater.inflate(R.menu.conversation_secure, menu);
+//    } else if (isSingleConversation()) {
+//      inflater.inflate(R.menu.conversation_insecure, menu);
+//    }
+//
+//    if (recipient != null && recipient.isMuted()) inflater.inflate(R.menu.conversation_muted, menu);
+//    else                                          inflater.inflate(R.menu.conversation_unmuted, menu);
+//
+//    /*
+//    if (isSingleConversation() && getRecipient().getContactUri() == null) {
+//      inflater.inflate(R.menu.conversation_add_to_contacts, menu);
+//    }
+//
+//
+//    if (recipient != null && recipient.isLocalNumber()) {
+//      if (isSecureText) menu.findItem(R.id.menu_call_secure).setVisible(false);
+//      else              menu.findItem(R.id.menu_call_insecure).setVisible(false);
+//
+//      MenuItem muteItem = menu.findItem(R.id.menu_mute_notifications);
+//
+//      if (muteItem != null) {
+//        muteItem.setVisible(false);
+//      }
+//    }
+//     */
+//
+//    searchViewItem = menu.findItem(R.id.menu_search);
+//
+//    SearchView                     searchView    = (SearchView) searchViewItem.getActionView();
+//    SearchView.OnQueryTextListener queryListener = new SearchView.OnQueryTextListener() {
+//      @Override
+//      public boolean onQueryTextSubmit(String query) {
+//        searchViewModel.onQueryUpdated(query, threadId);
+//        searchNav.showLoading();
+//        fragment.onSearchQueryUpdated(query);
+//        return true;
+//      }
+//
+//      @Override
+//      public boolean onQueryTextChange(String query) {
+//        searchViewModel.onQueryUpdated(query, threadId);
+//        searchNav.showLoading();
+//        fragment.onSearchQueryUpdated(query);
+//        return true;
+//      }
+//    };
+//
+//    searchViewItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
+//      @Override
+//      public boolean onMenuItemActionExpand(MenuItem item) {
+//        searchView.setOnQueryTextListener(queryListener);
+//        searchViewModel.onSearchOpened();
+//        searchNav.setVisibility(View.VISIBLE);
+//        searchNav.setData(0, 0);
+//        inputPanel.setVisibility(View.GONE);
+//
+//        for (int i = 0; i < menu.size(); i++) {
+//          if (!menu.getItem(i).equals(searchViewItem)) {
+//            menu.getItem(i).setVisible(false);
+//          }
+//        }
+//        return true;
+//      }
+//
+//      @Override
+//      public boolean onMenuItemActionCollapse(MenuItem item) {
+//        searchView.setOnQueryTextListener(null);
+//        searchViewModel.onSearchClosed();
+//        searchNav.setVisibility(View.GONE);
+//        inputPanel.setVisibility(View.VISIBLE);
+//        fragment.onSearchQueryUpdated(null);
+//        invalidateOptionsMenu();
+//        return true;
+//      }
+//    });
+//
+//    super.onPrepareOptionsMenu(menu);
+//    return true;
+//  }
 
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
@@ -1168,11 +1162,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private boolean handleDisplayQuickContact() {
     if (recipient.getAddress().isGroup()) return false;
 
-    if (recipient.getContactUri() != null) {
-      ContactsContract.QuickContact.showQuickContact(ConversationActivity.this, titleView, recipient.getContactUri(), ContactsContract.QuickContact.MODE_LARGE, null);
-    } else {
-      handleAddToContacts();
-    }
+//    if (recipient.getContactUri() != null) {
+//      ContactsContract.QuickContact.showQuickContact(ConversationActivity.this, titleView, recipient.getContactUri(), ContactsContract.QuickContact.MODE_LARGE, null);
+//    } else {
+//      handleAddToContacts();
+//    }
 
     return true;
   }
@@ -1552,7 +1546,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
           unverifiedBannerView.get().hide();
         }
 
-        titleView.setVerified(isSecureText && identityRecords.isVerified());
+//        titleView.setVerified(isSecureText && identityRecords.isVerified());
 
         future.set(true);
       }
@@ -1563,7 +1557,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   }
 
   private void initializeViews() {
-    titleView              = findViewById(R.id.conversation_title_view);
+    titleTextView          = findViewById(R.id.titleTextView);
     buttonToggle           = ViewUtil.findById(this, R.id.button_toggle);
     sendButton             = ViewUtil.findById(this, R.id.send_button);
     attachButton           = ViewUtil.findById(this, R.id.attach_button);
@@ -1648,7 +1642,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     ActionBar supportActionBar = getSupportActionBar();
     if (supportActionBar == null) throw new AssertionError();
 
-    supportActionBar.setDisplayHomeAsUpEnabled(true);
+//    supportActionBar.setDisplayHomeAsUpEnabled(true);
     supportActionBar.setDisplayShowTitleEnabled(false);
   }
 
@@ -1774,8 +1768,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     Log.i(TAG, "onModified(" + recipient.getAddress().serialize() + ")");
     Util.runOnMain(() -> {
       Log.i(TAG, "onModifiedRun(): " + recipient.getRegistered());
-      titleView.setTitle(glideRequests, recipient);
-      titleView.setVerified(identityRecords.isVerified());
+      updateTitleTextView(glideRequests, recipient);
+//      titleView.setVerified(identityRecords.isVerified());
       setBlockedUserState(recipient, isSecureText, isDefaultSms);
       setActionBarColor(recipient.getColor());
       setGroupShareProfileReminder(recipient);
@@ -1971,8 +1965,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private void setActionBarColor(MaterialColor color) {
     ActionBar supportActionBar = getSupportActionBar();
     if (supportActionBar == null) throw new AssertionError();
-    supportActionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.core_grey_90)));
-    setStatusBarColor(getResources().getColor(R.color.black));
+    supportActionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.action_bar_background)));
+    setStatusBarColor(getResources().getColor(R.color.action_bar_background));
   }
 
   private void setBlockedUserState(Recipient recipient, boolean isSecureText, boolean isDefaultSms) {
@@ -3040,6 +3034,10 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         future.set(false);
       }
     }
+  }
+
+  private void updateTitleTextView(GlideRequests glide, Recipient recipient) {
+
   }
 
   // region Loki
