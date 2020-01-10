@@ -29,6 +29,7 @@ import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.GroupReceiptDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.JobDatabase;
+import org.thoughtcrime.securesms.database.KeyValueDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.OneTimePreKeyDatabase;
 import org.thoughtcrime.securesms.database.PushDatabase;
@@ -99,8 +100,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int STORAGE_SERVICE                  = 38;
   private static final int REACTIONS_UNREAD_INDEX           = 39;
   private static final int RESUMABLE_DOWNLOADS              = 40;
+  private static final int KEY_VALUE_STORE                  = 41;
 
-  private static final int    DATABASE_VERSION = 40;
+  private static final int    DATABASE_VERSION = 41;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -142,6 +144,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     db.execSQL(SessionDatabase.CREATE_TABLE);
     db.execSQL(StickerDatabase.CREATE_TABLE);
     db.execSQL(StorageKeyDatabase.CREATE_TABLE);
+    db.execSQL(KeyValueDatabase.CREATE_TABLE);
     executeStatements(db, SearchDatabase.CREATE_TABLE);
     executeStatements(db, JobDatabase.CREATE_TABLE);
 
@@ -682,6 +685,13 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
       if (oldVersion < RESUMABLE_DOWNLOADS) {
         db.execSQL("ALTER TABLE part ADD COLUMN transfer_file TEXT DEFAULT NULL");
+      }
+
+      if (oldVersion < KEY_VALUE_STORE) {
+        db.execSQL("CREATE TABLE key_value (_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                                           "key TEXT UNIQUE, " +
+                                           "value TEXT, " +
+                                           "type INTEGER)");
       }
 
       db.setTransactionSuccessful();

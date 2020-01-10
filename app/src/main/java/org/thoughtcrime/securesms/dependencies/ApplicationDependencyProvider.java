@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.jobmanager.JobMigrator;
 import org.thoughtcrime.securesms.jobmanager.impl.JsonDataSerializer;
 import org.thoughtcrime.securesms.jobs.FastJobStorage;
 import org.thoughtcrime.securesms.jobs.JobManagerFactories;
+import org.thoughtcrime.securesms.keyvalue.KeyValueStore;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.push.SecurityEventListener;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
@@ -117,6 +118,11 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
   @Override
   public @NonNull FrameRateTracker provideFrameRateTracker() {
     return new FrameRateTracker(context);
+  }
+
+  @Override
+  public @NonNull KeyValueStore provideKeyValueStore() {
+    return new KeyValueStore(context);
   }
 
   private static class DynamicCredentialsProvider implements CredentialsProvider {
