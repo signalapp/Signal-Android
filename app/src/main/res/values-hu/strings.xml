@@ -239,6 +239,8 @@
   <string name="ConversationFragment_failed_to_open_message">Nem sikerült megnyitni az üzenetet</string>
   <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Az üzenetet jobbra húzva gyorsan válaszolhatsz rá</string>
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Az üzenetet balra húzva gyorsan válaszolhatsz rá</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_view_once_message_are_not_stored_in_your_conversation_history">Az egyszer megjelenő üzenetek nem kerülnek be a beszélgetésnaplóba</string> -->
+  <string name="ConversationFragment_you_already_viewed_this_message">Ezt az üzenetet egyszer már megtekintetted</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Nincs böngésző telepítve a készülékedre.</string>
   <!--ConversationListFragment-->
@@ -641,10 +643,10 @@ szám (%s) érvénytelen.
   <string name="RegistrationActivity_country_code_description">Országkód</string>
   <string name="RegistrationActivity_call">Hívás</string>
   <!--RevealableMessageView-->
-  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_photo">Kép</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_video">Videó</string> -->
+  <string name="RevealableMessageView_view_photo">Fotó megtekintése</string>
+  <string name="RevealableMessageView_view_video">Videó megtekintése</string>
   <string name="RevealableMessageView_viewed">Megtekintve</string>
-  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_outgoing_media">Média</string> -->
+  <string name="RevealableMessageView_media">Média</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Nem sikerült elmenteni a kép változásait</string>
   <!--Search-->
@@ -706,8 +708,9 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="ThreadRecord_missed_call">Nem fogadott hívás</string>
   <string name="ThreadRecord_media_message">Média üzenet</string>
   <string name="ThreadRecord_sticker">Matrica</string>
-  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_disappearing_photo">Eltűnő fotó</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_disappearing_video">Eltűnő videó</string> -->
+  <string name="ThreadRecord_view_once_photo">Egyszer megjelenő fotó</string>
+  <string name="ThreadRecord_view_once_video">Egyszer megjelenő videó</string>
+  <string name="ThreadRecord_view_once_media">Egyszer megjelenő médiafájl</string>
   <string name="ThreadRecord_s_is_on_signal">%s a Signal-on van!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Eltűnő üzenetek letiltva</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Eltűnő üzenet ideje beállítva erre: %s</string>
@@ -798,8 +801,8 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="MessageNotifier_mark_read">Olvasottnak jelöl</string>
   <string name="MessageNotifier_media_message">Médiaüzenet</string>
   <string name="MessageNotifier_sticker">Matrica</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_disappearing_photo">Eltűnő fotó</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_disappearing_video">Eltűnő videó</string> -->
+  <string name="MessageNotifier_view_once_photo">Egyszer megjelenő fotó</string>
+  <string name="MessageNotifier_view_once_video">Egyszer megjelenő videó</string>
   <string name="MessageNotifier_reply">Válasz</string>
   <string name="MessageNotifier_signal_message">Signal üzenet</string>
   <string name="MessageNotifier_unsecured_sms">Titkosítatlan SMS</string>
@@ -946,7 +949,7 @@ Kulcs-csere üzenet érkezett érvénytelen protokoll verzióhoz.
   <string name="QuoteView_audio">Hang</string>
   <string name="QuoteView_video">Videó</string>
   <string name="QuoteView_photo">Fotó</string>
-  <!-- Removed by excludeNonTranslatables <string name="QuoteView_media">Médiaüzenet</string> -->
+  <string name="QuoteView_view_once_media">Egyszer megjelenő médiafájl</string>
   <string name="QuoteView_sticker">Matrica</string>
   <string name="QuoteView_document">Dokumentum</string>
   <string name="QuoteView_you">Te</string>

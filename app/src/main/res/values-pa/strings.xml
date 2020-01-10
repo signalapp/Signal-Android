@@ -582,10 +582,8 @@
   <string name="RegistrationActivity_country_code_description">ਦੇਸ਼ ਦਾ ਕੋਡ</string>
   <string name="RegistrationActivity_call">ਕਾਲ</string>
   <!--RevealableMessageView-->
-  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_photo">ਫੋਟੋ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_video">ਵੀਡੀਓ</string> -->
   <string name="RevealableMessageView_viewed">ਵੇਖਿਆ</string>
-  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_outgoing_media">ਮੀਡੀਆ</string> -->
+  <string name="RevealableMessageView_media">ਮੀਡੀਆ</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">ਚਿੱਤਰ ਬਦਲਾਅ ਨੂੰ ਸੁਰੱਖਿਅਤ ਕਰਨ ਵਿੱਚ ਅਸਫਲ</string>
   <!--Search-->
@@ -645,8 +643,6 @@
   <string name="ThreadRecord_missed_call">ਮਿਸਡ ਕਾਲ</string>
   <string name="ThreadRecord_media_message">ਮੀਡੀਆ ਸੁਨੇਹਾ</string>
   <string name="ThreadRecord_sticker">ਸਟਿੱਕਰ</string>
-  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_disappearing_photo">ਅਲੋਪ ਹੋ ਰਹੀ ਫੋਟੋ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_disappearing_video">ਅਲੋਪ ਹੋ ਰਹੀ ਵੀਡੀਓ</string> -->
   <string name="ThreadRecord_s_is_on_signal">%s Signal ਤੇ ਹੈ! </string>
   <string name="ThreadRecord_disappearing_messages_disabled">ਅਲੋਪ ਹੋਣ ਵਾਲੇ ਸੁਨੇਹੇ ਅਸਮਰੱਥ</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">ਗੁੰਮ ਹੋਣ ਵਾਲੇ ਸੁਨੇਹਿਆਂ ਦਾ ਸਮਾਂ %s ਤੇ ਸੈੱਟ ਕੀਤਾ ਗਿਆ</string>
@@ -725,8 +721,6 @@
   <string name="MessageNotifier_mark_read">ਪੜ੍ਹਿਆ ਹੋਇਆ ਮਾਰਕ ਕਰੋ </string>
   <string name="MessageNotifier_media_message">ਮੀਡੀਆ ਸੁਨੇਹਾ</string>
   <string name="MessageNotifier_sticker">ਸਟਿੱਕਰ</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_disappearing_photo">ਅਲੋਪ ਹੋ ਰਹੀ ਫੋਟੋ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_disappearing_video">ਅਲੋਪ ਹੋ ਰਹੀ ਵੀਡੀਓ</string> -->
   <string name="MessageNotifier_reply">ਜਵਾਬ </string>
   <string name="MessageNotifier_signal_message">Signal ਸੁਨੇਹਾ</string>
   <string name="MessageNotifier_unsecured_sms">ਅਸੁਰੱਖਿਅਤ ਐਸਐਮਐਸ</string>
@@ -865,7 +859,6 @@
   <string name="QuoteView_audio">ਆਡੀਓ)</string>
   <string name="QuoteView_video">ਵੀਡੀਓ</string>
   <string name="QuoteView_photo">ਫੋਟੋ</string>
-  <!-- Removed by excludeNonTranslatables <string name="QuoteView_media">ਮੀਡੀਆ ਸੁਨੇਹਾ</string> -->
   <string name="QuoteView_sticker">ਸਟਿੱਕਰ</string>
   <string name="QuoteView_document">ਦਸਤਾਵੇਜ਼</string>
   <string name="QuoteView_you">ਤੁਸੀਂ</string>

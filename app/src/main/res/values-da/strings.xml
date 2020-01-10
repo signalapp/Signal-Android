@@ -239,6 +239,8 @@
   <string name="ConversationFragment_failed_to_open_message">Fejl ved åbning af besked</string>
   <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Du kan swipe til højre på enhver besked, for at svare hurtigt</string>
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Du kan swipe til venstre på enhver besked, for at svare hurtigt</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_view_once_message_are_not_stored_in_your_conversation_history">Se én gang-beskeder gemmes ikke i din historik for beskeder</string> -->
+  <string name="ConversationFragment_you_already_viewed_this_message">Beskeden er allerede læst</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Ingen browser installeret på enheden</string>
   <!--ConversationListFragment-->
@@ -423,7 +425,7 @@
   </plurals>
   <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
     <item quantity="one">Dette vil slette den markerede fil permanent. Alle beskedtekster associeret med denne fil vil også blive slettet.</item>
-    <item quantity="other">Dette vil slette alle %1$d markerede filer permanent. Alle beskedtekster associeret med disse filer vil også blive slettet.</item>
+    <item quantity="other">Dette vil slette alle %1$d markerede filer permanent. Alle beskedtekster associeret med disse filer vil også blive slettet</item>
   </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">Sletter</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">Sletter beskeder…</string>
@@ -484,6 +486,7 @@
     <item quantity="other">Du kan ikke dele flere end %d filer</item>
   </plurals>
   <string name="MediaSendActivity_select_recipients_description">Vælg modtagere</string>
+  <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">Tap her - så forsvinder beskeden efter at være blevet set</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Alle mediefiler</string>
   <!--MessageRecord-->
@@ -638,10 +641,10 @@ nummer (%s) er ugyldigt</string>
   <string name="RegistrationActivity_country_code_description">Landekode</string>
   <string name="RegistrationActivity_call">Ring op</string>
   <!--RevealableMessageView-->
-  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_photo">Billed</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_video">Video</string> -->
+  <string name="RevealableMessageView_view_photo">Vis billede</string>
+  <string name="RevealableMessageView_view_video">Se video</string>
   <string name="RevealableMessageView_viewed">Er set</string>
-  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_outgoing_media">Medie</string> -->
+  <string name="RevealableMessageView_media">Medie</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Fejl ved forsøg på at gemme redigeret billede</string>
   <!--Search-->
@@ -703,8 +706,9 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="ThreadRecord_missed_call">Mistet opkald</string>
   <string name="ThreadRecord_media_message">Mediebesked</string>
   <string name="ThreadRecord_sticker">Klistermærke</string>
-  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_disappearing_photo">Billed med tidsudløb</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_disappearing_video">Video med tidsudløb</string> -->
+  <string name="ThreadRecord_view_once_photo">Se billed én gang</string>
+  <string name="ThreadRecord_view_once_video">Se video én gang</string>
+  <string name="ThreadRecord_view_once_media">Se medie én gang</string>
   <string name="ThreadRecord_s_is_on_signal">%s er på Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Beskeder med tidsudløb deaktiveret</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Beskeder udløber efter %s</string>
@@ -795,8 +799,8 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="MessageNotifier_mark_read">Markér som læst</string>
   <string name="MessageNotifier_media_message">Mediebesked</string>
   <string name="MessageNotifier_sticker">Klistermærke</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_disappearing_photo">Billed med tidsudløb</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_disappearing_video">Video med tidsudløb</string> -->
+  <string name="MessageNotifier_view_once_photo">Se billed én gang</string>
+  <string name="MessageNotifier_view_once_video">Se video én gang</string>
   <string name="MessageNotifier_reply">Svar</string>
   <string name="MessageNotifier_signal_message">Signalbesked</string>
   <string name="MessageNotifier_unsecured_sms">Usikret SMS</string>
@@ -942,7 +946,7 @@ Modtog en nøgle besked, for en ugyldig protokol-version.
   <string name="QuoteView_audio">Lyd</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Billed</string>
-  <!-- Removed by excludeNonTranslatables <string name="QuoteView_media">Mediebesked</string> -->
+  <string name="QuoteView_view_once_media">Se medie én gang</string>
   <string name="QuoteView_sticker">Klistermærke</string>
   <string name="QuoteView_document">Dokument</string>
   <string name="QuoteView_you">Dig</string>

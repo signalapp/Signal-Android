@@ -589,10 +589,9 @@
   <string name="RegistrationActivity_country_code_description">Código do país</string>
   <string name="RegistrationActivity_call">Ligar</string>
   <!--RevealableMessageView-->
-  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_photo">Foto</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_video">Vídeo</string> -->
+  <string name="RevealableMessageView_view_photo">Ver foto</string>
   <string name="RevealableMessageView_viewed">Vista</string>
-  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_outgoing_media">Mídia</string> -->
+  <string name="RevealableMessageView_media">Mídia</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Falha ao salvar alterações na imagem</string>
   <!--Search-->
@@ -654,8 +653,6 @@
   <string name="ThreadRecord_missed_call">Ligação perdida</string>
   <string name="ThreadRecord_media_message">MMS</string>
   <string name="ThreadRecord_sticker">Figurinha</string>
-  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_disappearing_photo">Foto efêmera</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_disappearing_video">Vídeo efêmero</string> -->
   <string name="ThreadRecord_s_is_on_signal">%s está no Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Mensagens efêmeras desabilitadas</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Expiração da mensagem efêmera definida para %s</string>
@@ -734,8 +731,6 @@
   <string name="MessageNotifier_mark_read">Marcar como lida</string>
   <string name="MessageNotifier_media_message">Mensagem multimídia</string>
   <string name="MessageNotifier_sticker">Figurinha</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_disappearing_photo">Foto efêmera</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_disappearing_video">Vídeo efêmero</string> -->
   <string name="MessageNotifier_reply">Responder</string>
   <string name="MessageNotifier_signal_message">Mensagem no Signal</string>
   <string name="MessageNotifier_unsecured_sms">SMS inseguro</string>
@@ -873,7 +868,6 @@
   <string name="QuoteView_audio">Áudio</string>
   <string name="QuoteView_video">Vídeo</string>
   <string name="QuoteView_photo">Foto</string>
-  <!-- Removed by excludeNonTranslatables <string name="QuoteView_media">Mensagem de mídia (MMS)</string> -->
   <string name="QuoteView_sticker">Figurinha</string>
   <string name="QuoteView_document">Documento</string>
   <string name="QuoteView_you">Você</string>

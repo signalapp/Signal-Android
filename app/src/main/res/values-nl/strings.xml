@@ -238,6 +238,8 @@
   <string name="ConversationFragment_failed_to_open_message">Openen van bericht is mislukt</string>
   <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Je kunt elk bericht naar rechts vegen om snel een reactie te schijven</string>
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Je kunt elk bericht naar links vegen om snel een reactie te schijven</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_view_once_message_are_not_stored_in_your_conversation_history">Eenmaligeweergave-berichten worden niet worden niet opgeslagen in je gespreksgeschiedenis, je kunt ze dus niet terug zien.</string> -->
+  <string name="ConversationFragment_you_already_viewed_this_message">Je hebt dit bericht al weergegeven</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Er is geen browser op je apparaat geïnstalleerd.</string>
   <!--ConversationListFragment-->
@@ -642,10 +644,10 @@ Signal heeft ook toegang nodig tot de foto\'s, media en bestanden op je apparaat
   <string name="RegistrationActivity_country_code_description">Landcode</string>
   <string name="RegistrationActivity_call">Bellen</string>
   <!--RevealableMessageView-->
-  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_photo">Foto</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_video">Video</string> -->
+  <string name="RevealableMessageView_view_photo">Foto weergeven</string>
+  <string name="RevealableMessageView_view_video">Video weergeven</string>
   <string name="RevealableMessageView_viewed">Gezien</string>
-  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_outgoing_media">Media</string> -->
+  <string name="RevealableMessageView_media">Eenmaligeweergave-media</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Mislukt om bewerkte afbeelding op te slaan</string>
   <!--Search-->
@@ -707,8 +709,9 @@ Signal heeft ook toegang nodig tot de foto\'s, media en bestanden op je apparaat
   <string name="ThreadRecord_missed_call">Gemiste oproep</string>
   <string name="ThreadRecord_media_message">Mediabericht</string>
   <string name="ThreadRecord_sticker">Sticker</string>
-  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_disappearing_photo">Zelf-wissende foto</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_disappearing_video">Zelf-wissende video</string> -->
+  <string name="ThreadRecord_view_once_photo">Eenmaligeweergave-foto</string>
+  <string name="ThreadRecord_view_once_video">Eenmaligeweergave-video</string>
+  <string name="ThreadRecord_view_once_media">Eenmaligeweergave-media</string>
   <string name="ThreadRecord_s_is_on_signal">%s gebruikt nu ook Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Zelf-wissende berichten uitgeschakeld</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Berichten zullen zichzelf wissen %s nadat ze gelezen zijn</string>
@@ -799,8 +802,8 @@ Signal heeft ook toegang nodig tot de foto\'s, media en bestanden op je apparaat
   <string name="MessageNotifier_mark_read">Markeren als gelezen</string>
   <string name="MessageNotifier_media_message">Mediabericht</string>
   <string name="MessageNotifier_sticker">Sticker</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_disappearing_photo">Zelf-wissende foto</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_disappearing_video">Zelf-wissende video</string> -->
+  <string name="MessageNotifier_view_once_photo">Eenmaligeweergave-foto</string>
+  <string name="MessageNotifier_view_once_video">Eenmaligeweergave-video</string>
   <string name="MessageNotifier_reply">Reageren</string>
   <string name="MessageNotifier_signal_message">Signal-bericht</string>
   <string name="MessageNotifier_unsecured_sms">Onbeveiligde sms</string>
@@ -946,7 +949,7 @@ Signal heeft ook toegang nodig tot de foto\'s, media en bestanden op je apparaat
   <string name="QuoteView_audio">Audio</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Afbeelding</string>
-  <!-- Removed by excludeNonTranslatables <string name="QuoteView_media">Mediabericht</string> -->
+  <string name="QuoteView_view_once_media">Eenmaligeweergave-media</string>
   <string name="QuoteView_sticker">Sticker</string>
   <string name="QuoteView_document">Document</string>
   <string name="QuoteView_you">Jij</string>
@@ -1100,7 +1103,7 @@ Signal heeft ook toegang nodig tot de foto\'s, media en bestanden op je apparaat
   <string name="unknown_sender_view__add_to_contacts">TOEVOEGEN AAN CONTACTEN</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">NIET TOEVOEGEN, MAAR MIJN PROFIEL WEL ZICHTBAAR MAKEN</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Als je wilt verifiëren dat je direct met %s communiceert zonder dat je communicatie wordt onderschept, vergelijk dan het bovenstaande nummer met het nummer op het apparaat van je gesprekspartner. Je kunt ook de QR-code op zijn telefoon scannen, of hem vragen jouw QR-code te scannen. <a href="https://signal.org/redirect/safety-numbers">Meer leren hierover.</a>]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Als je wilt verifiëren dat je direct met %s communiceert zonder dat je communicatie wordt onderschept, ga dan na dat het bovenstaande nummer overeen komt met het nummer op het apparaat van je gesprekspartner. Je kunt ook de QR-code op zijn telefoon scannen, of hem vragen jouw QR-code te scannen. <a href="https://signal.org/redirect/safety-numbers">Meer leren hierover.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Tik om te scannen</string>
   <string name="verify_display_fragment__loading">Aan het laden…</string>
   <string name="verify_display_fragment__verified">Ik heb deze contactpersoon geverifieerd</string>

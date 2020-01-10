@@ -73,12 +73,14 @@
   <string name="BucketedThreadMedia_This_week">Wiki hii</string>
   <string name="BucketedThreadMedia_This_month">Mwezi huu</string>
   <string name="BucketedThreadMedia_Large">Kubwa</string>
+  <string name="BucketedThreadMedia_Medium">Wastani</string>
   <string name="BucketedThreadMedia_Small">Ndogo</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">Simu inaingia</string>
   <!--CameraActivity-->
   <string name="CameraActivity_image_save_failure">imeshindikana kuhifadhi picha</string>
   <!--CameraXFragment-->
+  <string name="CameraXFragment_tap_for_photo_hold_for_video">Gusa ili upate picha, shika ili upate filamu</string>
   <string name="CameraXFragment_capture_description">Twaa</string>
   <string name="CameraXFragment_change_camera_description">Geuza kamera</string>
   <string name="CameraXFragment_open_gallery_description">Fungua kichanja</string>
@@ -99,15 +101,19 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">hakuna kivinjari cha web kilichopatikana</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">Simu ya mkononi inapigwa sasa hivi.</string>
+  <string name="CommunicationActions_start_video_call">Anza upigaji simu wa video?</string>
+  <string name="CommunicationActions_start_voice_call">Anza upigaji simu wa sauti pekee?</string>
   <string name="CommunicationActions_cancel">futa</string>
   <string name="CommunicationActions_call">wito</string>
   <!--ConfirmIdentityDialog-->
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Nambari yako ya usalama ya 1 %1$s imebadilika. Hii inamaanisha kuwa kuna mtu anajaribu kuingilia mawasiliano yako, ama tu 2 %2$s amesimiza upya Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Unaweza kufafanua nambari yako ya usalama na anwani hii.</string>
   <string name="ConfirmIdentityDialog_accept">Kubali</string>
   <!--ContactsCursorLoader-->
   <string name="ContactsCursorLoader_recent_chats">Majadiliano ya hivi karibuni</string>
   <string name="ContactsCursorLoader_contacts">Mawasiliano</string>
   <string name="ContactsCursorLoader_groups">Makundi</string>
+  <string name="ContactsCursorLoader_phone_number_search">Utafutaji wa nambari ya simu</string>
   <!--ContactsDatabase-->
   <string name="ContactsDatabase_message_s">Ujumbe %s</string>
   <string name="ContactsDatabase_signal_call_s">Wito wa Signal %s</string>
@@ -510,10 +516,9 @@ nambari yako ya simu</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Ingiza msimbo tuetuma kwa 1%s</string>
   <string name="RegistrationActivity_call">wito</string>
   <!--RevealableMessageView-->
-  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_photo">picha</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_video">Video</string> -->
+  <string name="RevealableMessageView_view_photo">Onyesha Picha</string>
   <string name="RevealableMessageView_viewed">Imeonyeshwa</string>
-  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_outgoing_media">Midia</string> -->
+  <string name="RevealableMessageView_media">Midia</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">imefeli kuhifadhi picha zilizobadilika</string>
   <!--Search-->
@@ -562,7 +567,6 @@ nambari yako ya simu</string>
   <string name="ThreadRecord_called_you">ulipigiwa simu</string>
   <string name="ThreadRecord_missed_call">Simu zilizopotea</string>
   <string name="ThreadRecord_media_message">Ujumbe wa vyombo vya habari</string>
-  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_disappearing_photo">Picha inatoweka</string> -->
   <string name="ThreadRecord_s_is_on_signal">%s yupo Signal</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Uumbe zilizopotea  imezuiliwa</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Ujumbe unapotea kwa mpangilio wa muda  kwa 1%s</string>
@@ -635,7 +639,6 @@ nambari yako ya simu</string>
   <string name="MessageNotifier_mark_all_as_read">nakili yote kama haijasomeka</string>
   <string name="MessageNotifier_mark_read">soma nakili</string>
   <string name="MessageNotifier_media_message">Ujumbe wa vyombo vya habari</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_disappearing_photo">Picha inatoweka</string> -->
   <string name="MessageNotifier_reply">jibu</string>
   <string name="MessageNotifier_signal_message">ujumbe wa Signal</string>
   <string name="MessageNotifier_unsecured_sms">ujumbe sio salama</string>
@@ -767,7 +770,6 @@ nambari yako ya simu</string>
   <string name="QuoteView_audio">Sauti</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">picha</string>
-  <!-- Removed by excludeNonTranslatables <string name="QuoteView_media">Ujumbe wa vyombo vya habari</string> -->
   <string name="QuoteView_document">nyaraka</string>
   <string name="QuoteView_you">Wewe</string>
   <string name="QuoteView_original_missing">Meseji halisi haipatikani</string>

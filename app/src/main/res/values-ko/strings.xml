@@ -527,9 +527,7 @@
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">%s 번호로 보낸 코드를 입력하세요</string>
   <string name="RegistrationActivity_call">전화걸기</string>
   <!--RevealableMessageView-->
-  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_photo">사진</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_video">비디오</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_outgoing_media">미디어</string> -->
+  <string name="RevealableMessageView_media">미디어</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">이미지 변경점을 저장할 수 없음</string>
   <!--Search-->
@@ -793,7 +791,6 @@
   <string name="QuoteView_audio">오디오</string>
   <string name="QuoteView_video">동영상</string>
   <string name="QuoteView_photo">사진</string>
-  <!-- Removed by excludeNonTranslatables <string name="QuoteView_media">미디어 메시지</string> -->
   <string name="QuoteView_sticker">스티커</string>
   <string name="QuoteView_document">문서</string>
   <string name="QuoteView_you">나</string>

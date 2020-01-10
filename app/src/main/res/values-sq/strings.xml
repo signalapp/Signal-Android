@@ -238,6 +238,8 @@
   <string name="ConversationFragment_failed_to_open_message">S’u arrit të hapet mesazhe</string>
   <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Për t’u përgjigjur shpejt e shpejt, mund të fërkoni ekranin për djathtas</string>
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Për t’u përgjigjur shpejt e shpejt, mund të fërkoni ekranin për majtas</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_view_once_message_are_not_stored_in_your_conversation_history">Mesazhet për t’u parë vetëm një herë nuk depozitohen në historikun e bisedave tuaja</string> -->
+  <string name="ConversationFragment_you_already_viewed_this_message">E patë tashmë këtë mesazh</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Në pajisjen tuaj s\’ka shfletues të instaluar.</string>
   <!--ConversationListFragment-->
@@ -636,10 +638,10 @@
   <string name="RegistrationActivity_country_code_description">Kod vendi</string>
   <string name="RegistrationActivity_call">Thirrje</string>
   <!--RevealableMessageView-->
-  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_photo">Foto</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_video">Video</string> -->
+  <string name="RevealableMessageView_view_photo">Shihni Foton</string>
+  <string name="RevealableMessageView_view_video">Shiheni Videon</string>
   <string name="RevealableMessageView_viewed">Parë</string>
-  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_outgoing_media">Media</string> -->
+  <string name="RevealableMessageView_media">Media</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">S’u arrit të ruheshin ndryshime të figurës.</string>
   <!--Search-->
@@ -699,8 +701,9 @@
   <string name="ThreadRecord_missed_call">Thirrje e humbur</string>
   <string name="ThreadRecord_media_message">Mesazh media</string>
   <string name="ThreadRecord_sticker">Ngjitës</string>
-  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_disappearing_photo">Foto që tretet</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_disappearing_video">Video që zhduket</string> -->
+  <string name="ThreadRecord_view_once_photo">Foto për t’u parë vetëm një herë</string>
+  <string name="ThreadRecord_view_once_video">Video për t’u parë vetëm një herë</string>
+  <string name="ThreadRecord_view_once_media">Media për t’u parë vetëm një herë</string>
   <string name="ThreadRecord_s_is_on_signal">%s është në Signal! </string>
   <string name="ThreadRecord_disappearing_messages_disabled">Zhdukja e mesazheve është e çaktivizuar</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Koha për zhdukje mesazhesh është vënë %s</string>
@@ -791,8 +794,8 @@
   <string name="MessageNotifier_mark_read">Vëri shenjë si të lexuar</string>
   <string name="MessageNotifier_media_message">Mesazh media</string>
   <string name="MessageNotifier_sticker">Ngjitës</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_disappearing_photo">Foto që tretet</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_disappearing_video">Video që zhduket</string> -->
+  <string name="MessageNotifier_view_once_photo">Foto për t’u parë vetëm një herë</string>
+  <string name="MessageNotifier_view_once_video">Video për t’u parë vetëm një herë</string>
   <string name="MessageNotifier_reply">Përgjigju</string>
   <string name="MessageNotifier_signal_message">Mesazhe Signal</string>
   <string name="MessageNotifier_unsecured_sms">SMS e pasiguruar</string>
@@ -938,7 +941,7 @@
   <string name="QuoteView_audio">Audio</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Foto</string>
-  <!-- Removed by excludeNonTranslatables <string name="QuoteView_media">Mesazh media</string> -->
+  <string name="QuoteView_view_once_media">Media për t’u parë vetëm një herë</string>
   <string name="QuoteView_sticker">Ngjitës</string>
   <string name="QuoteView_document">Dokument</string>
   <string name="QuoteView_you">Ju</string>

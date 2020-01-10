@@ -258,6 +258,8 @@
   <string name="ConversationFragment_failed_to_open_message">Odpiranje sporočila ni uspelo</string>
   <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Za hiter odgovor na sporočilo podrsajte na desno</string>
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Za hiter odgovor na sporočilo podrsajte na levo</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_view_once_message_are_not_stored_in_your_conversation_history">Sporočila za enkraten ogled se ne shranjujejo v zgodovino pogovorov</string> -->
+  <string name="ConversationFragment_you_already_viewed_this_message">To sporočilo ste že videli</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Na svoji napravi nimate nameščenega spletnega brskalnika.</string>
   <!--ConversationListFragment-->
@@ -676,10 +678,10 @@
   <string name="RegistrationActivity_country_code_description">Koda države</string>
   <string name="RegistrationActivity_call">Kliči</string>
   <!--RevealableMessageView-->
-  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_photo">Slika</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_video">Video</string> -->
+  <string name="RevealableMessageView_view_photo">Ogled fotografije</string>
+  <string name="RevealableMessageView_view_video">Ogled videa</string>
   <string name="RevealableMessageView_viewed">Ogledano</string>
-  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_outgoing_media">Medijske datoteke</string> -->
+  <string name="RevealableMessageView_media">Medijske datoteke</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Shranjevanje slik ni uspelo.</string>
   <!--Search-->
@@ -739,8 +741,9 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="ThreadRecord_missed_call">Neodgovorjen klic</string>
   <string name="ThreadRecord_media_message">Večpredstavno sporočilo</string>
   <string name="ThreadRecord_sticker">Nalepka</string>
-  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_disappearing_photo">Izginjajoča fotografija</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_disappearing_video">Izginjajoči video</string> -->
+  <string name="ThreadRecord_view_once_photo">Slika za enkraten ogled</string>
+  <string name="ThreadRecord_view_once_video">Video za enkraten ogled</string>
+  <string name="ThreadRecord_view_once_media">Medijska datoteka za enkraten ogled</string>
   <string name="ThreadRecord_s_is_on_signal">%s uporablja Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Izginjajoča sporočila so izklopljena</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Čas poteka sporočila je nastavljen na %s</string>
@@ -831,8 +834,8 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="MessageNotifier_mark_read">Označi kot prebrano</string>
   <string name="MessageNotifier_media_message">Večpredstavno sporočilo</string>
   <string name="MessageNotifier_sticker">Nalepka</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_disappearing_photo">Izginjajoča fotografija</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_disappearing_video">Izginjajoči video</string> -->
+  <string name="MessageNotifier_view_once_photo">Slika za enkraten ogled</string>
+  <string name="MessageNotifier_view_once_video">Video za enkraten ogled</string>
   <string name="MessageNotifier_reply">Odgovor</string>
   <string name="MessageNotifier_signal_message">Sporočilo Signal</string>
   <string name="MessageNotifier_unsecured_sms">Nezavarovan SMS</string>
@@ -980,7 +983,7 @@ Prejeto sporočilo za izmenjavo ključev za napačno različico protokola.</stri
   <string name="QuoteView_audio">Zvok</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Fotografija</string>
-  <!-- Removed by excludeNonTranslatables <string name="QuoteView_media">Multimedijsko sporočilo</string> -->
+  <string name="QuoteView_view_once_media">Medijska datoteka za enkraten ogled</string>
   <string name="QuoteView_sticker">Nalepka</string>
   <string name="QuoteView_document">Dokument</string>
   <string name="QuoteView_you">Vi</string>

@@ -238,6 +238,8 @@
   <string name="ConversationFragment_failed_to_open_message">Ha fallat obrir el missatge.</string>
   <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Podeu lliscar cap a la dreta en qualsevol missatge per respondre ràpidament.</string>
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Podeu lliscar cap a l’esquerra en qualsevol missatge per respondre ràpidament.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_view_once_message_are_not_stored_in_your_conversation_history">Els missatges d\'una sola visualització no es desen a l\'historial de converses.</string> -->
+  <string name="ConversationFragment_you_already_viewed_this_message">Ja heu vist aquest missatge.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">No hi ha cap navegador instal·lat al dispositiu.</string>
   <!--ConversationListFragment-->
@@ -635,10 +637,10 @@ especificat (%s) no és vàlid.</string>
   <string name="RegistrationActivity_country_code_description">Codi de país</string>
   <string name="RegistrationActivity_call">Truca</string>
   <!--RevealableMessageView-->
-  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_photo">Foto</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_video">Vídeo</string> -->
+  <string name="RevealableMessageView_view_photo">Mostra la fotografia</string>
+  <string name="RevealableMessageView_view_video">Mostra el vídeo</string>
   <string name="RevealableMessageView_viewed">Vista</string>
-  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_outgoing_media">Contingut</string> -->
+  <string name="RevealableMessageView_media">Contingut</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">No s\'ha pogut desar els canvis en la imatge</string>
   <!--Search-->
@@ -698,8 +700,9 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="ThreadRecord_missed_call">Trucada perduda</string>
   <string name="ThreadRecord_media_message">Missatge multimèdia</string>
   <string name="ThreadRecord_sticker">Adhesiu</string>
-  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_disappearing_photo">Fotografia efímera</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_disappearing_video">Vídeo efímer</string> -->
+  <string name="ThreadRecord_view_once_photo">Fotografia d\'una sola visualització</string>
+  <string name="ThreadRecord_view_once_video">Vídeo d\'una sola visualització</string>
+  <string name="ThreadRecord_view_once_media">Contingut d\'una sola visualització</string>
   <string name="ThreadRecord_s_is_on_signal">%s és al Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Missatges efímers inhabilitats</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">El temps del missatge efímer s\'ha establit a %s</string>
@@ -790,8 +793,8 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="MessageNotifier_mark_read">Marca\'l com a llegit</string>
   <string name="MessageNotifier_media_message">Missatge multimèdia</string>
   <string name="MessageNotifier_sticker">Adhesiu</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_disappearing_photo">Fotografia efímera</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_disappearing_video">Vídeo efímer</string> -->
+  <string name="MessageNotifier_view_once_photo">Fotografia d\'una sola visualització</string>
+  <string name="MessageNotifier_view_once_video">Vídeo d\'una sola visualització</string>
   <string name="MessageNotifier_reply">Respon</string>
   <string name="MessageNotifier_signal_message">Missatge del Signal</string>
   <string name="MessageNotifier_unsecured_sms">SMS no segur</string>
@@ -937,7 +940,7 @@ S\'ha rebut un missatge d\'intercanvi de claus per a una versió del protocol no
   <string name="QuoteView_audio">Àudio</string>
   <string name="QuoteView_video">Vídeo</string>
   <string name="QuoteView_photo">Foto</string>
-  <!-- Removed by excludeNonTranslatables <string name="QuoteView_media">Missatge multimèdia</string> -->
+  <string name="QuoteView_view_once_media">Contingut d\'una sola visualització</string>
   <string name="QuoteView_sticker">Adhesiu</string>
   <string name="QuoteView_document">Document</string>
   <string name="QuoteView_you">Jo</string>

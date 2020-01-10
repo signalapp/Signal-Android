@@ -584,10 +584,8 @@
   <string name="RegistrationActivity_country_code_description">Позивни број државе</string>
   <string name="RegistrationActivity_call">Позови</string>
   <!--RevealableMessageView-->
-  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_photo">Слика</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_video">Видео</string> -->
   <string name="RevealableMessageView_viewed">Погледано</string>
-  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_outgoing_media">Медији</string> -->
+  <string name="RevealableMessageView_media">Медији</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Неуспех уписа промене слике</string>
   <!--Search-->
@@ -642,8 +640,6 @@
   <string name="ThreadRecord_missed_call">Пропуштен позив</string>
   <string name="ThreadRecord_media_message">Мултимедијална порука</string>
   <string name="ThreadRecord_sticker">Налепница</string>
-  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_disappearing_photo">Нестајућа фотографија</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_disappearing_video">Нестајући видео запис</string> -->
   <string name="ThreadRecord_s_is_on_signal">%s је на Signalу!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Нестајуће поруке искључене</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Време нестајања поруке постављено на %s</string>
@@ -717,8 +713,6 @@
   <string name="MessageNotifier_mark_read">Означи прочитаним</string>
   <string name="MessageNotifier_media_message">Мултимедијална порука</string>
   <string name="MessageNotifier_sticker">Налепница</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_disappearing_photo">Нестајућа фотографија</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_disappearing_video">Нестајући видео запис</string> -->
   <string name="MessageNotifier_reply">Одговори</string>
   <string name="MessageNotifier_signal_message">Порука на Signalу</string>
   <string name="MessageNotifier_unsecured_sms">Необезбеђени СМС</string>
@@ -851,7 +845,6 @@
   <string name="QuoteView_audio">Звук</string>
   <string name="QuoteView_video">Видео</string>
   <string name="QuoteView_photo">Слика</string>
-  <!-- Removed by excludeNonTranslatables <string name="QuoteView_media">Без текста</string> -->
   <string name="QuoteView_sticker">Налепница</string>
   <string name="QuoteView_document">Документ</string>
   <string name="QuoteView_you">Ви</string>

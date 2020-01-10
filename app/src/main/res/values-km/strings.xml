@@ -570,10 +570,9 @@
   <string name="RegistrationActivity_country_code_description">កូដប្រទេស</string>
   <string name="RegistrationActivity_call">ហៅចេញ</string>
   <!--RevealableMessageView-->
-  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_photo">រូបភាព</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_video">វីដេអូ</string> -->
+  <string name="RevealableMessageView_view_photo">បើកមើលរូបភាព</string>
   <string name="RevealableMessageView_viewed">បានបើកមើល</string>
-  <!-- Removed by excludeNonTranslatables <string name="RevealableMessageView_outgoing_media">ព័ត៌មាន</string> -->
+  <string name="RevealableMessageView_media">ព័ត៌មាន</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">បានបរាជ័យក្នុងការរក្សាទុកការផ្លាស់ប្តូររូបភាព</string>
   <!--Search-->
@@ -633,8 +632,6 @@
   <string name="ThreadRecord_missed_call">ការហៅមិនបានទទួល</string>
   <string name="ThreadRecord_media_message">សារក្នុងប្រព័ន្ធផ្សព្វផ្សាយ</string>
   <string name="ThreadRecord_sticker">ស្ទីកគ័រ</string>
-  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_disappearing_photo">រួបភាពបាត់ទៅវិញ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ThreadRecord_disappearing_video">វីដេអូបាត់ទៅវិញ</string> -->
   <string name="ThreadRecord_s_is_on_signal">%s ប្រើ Signal!​</string>
   <string name="ThreadRecord_disappearing_messages_disabled">សារបាត់ទៅវិញបានបិទ</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">កំណត់រយៈពេលលុបសារ %s</string>
@@ -714,8 +711,6 @@
   <string name="MessageNotifier_mark_read">សម្គាល់ថាបានអាន</string>
   <string name="MessageNotifier_media_message">សារក្នុងប្រព័ន្ធផ្សព្វផ្សាយ</string>
   <string name="MessageNotifier_sticker">ស្ទីកគ័រ</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_disappearing_photo">រួបភាពបាត់ទៅវិញ</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MessageNotifier_disappearing_video">វីដេអូបាត់ទៅវិញ</string> -->
   <string name="MessageNotifier_reply">ឆ្លើយតប</string>
   <string name="MessageNotifier_signal_message">សារ Signal </string>
   <string name="MessageNotifier_unsecured_sms">SMS គ្មានសុវត្ថិភាព</string>
@@ -853,7 +848,6 @@
   <string name="QuoteView_audio">សំឡេង</string>
   <string name="QuoteView_video">វីដេអូ</string>
   <string name="QuoteView_photo">រូបភាព</string>
-  <!-- Removed by excludeNonTranslatables <string name="QuoteView_media">សារក្នុងប្រព័ន្ធផ្សព្វផ្សាយ</string> -->
   <string name="QuoteView_sticker">ស្ទីកគ័រ</string>
   <string name="QuoteView_document">ឯកសារ</string>
   <string name="QuoteView_you">អ្នក</string>
