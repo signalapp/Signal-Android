@@ -20,6 +20,8 @@
     <color name="fake_chat_bubble_text">#000000</color>
     <color name="app_icon_background">#333132</color>
     <color name="progress_bar_background">#0AFFFFFF</color>
+    <color name="compose_view_background">#1B1B1B</color>
+    <color name="compose_text_view_background">#141414</color>
     <!-- Session -->
 
     <!-- Loki -->

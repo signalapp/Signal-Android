@@ -90,6 +90,7 @@ class EnterSessionIDFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        sessionIDEditText.imeOptions = sessionIDEditText.imeOptions or 16777216 // Always use incognito keyboard
         requestDeviceLinkButton.setOnClickListener { requestDeviceLinkIfPossible() }
     }
 

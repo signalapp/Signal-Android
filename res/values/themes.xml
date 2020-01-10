@@ -35,7 +35,7 @@
         <item name="colorPrimary">@color/action_bar_background</item>
         <item name="colorPrimaryDark">@color/action_bar_background</item>
         <item name="colorAccent">@color/textsecure_primary_dark</item>
-        <item name="android:navigationBarColor">@color/navigation_bar_background</item>
+        <item name="android:navigationBarColor">@color/compose_view_background</item>
 
         <item name="recipient_preference_blocked">#d00000</item>
         <item name="contact_selection_label_text">#66000000</item>
@@ -64,7 +64,7 @@
         <item name="colorPrimary">@color/action_bar_background</item>
         <item name="colorPrimaryDark">@color/action_bar_background</item>
         <item name="colorAccent">@color/signal_primary_dark</item>
-        <item name="android:navigationBarColor">@color/navigation_bar_background</item>
+        <item name="android:navigationBarColor">@color/compose_view_background</item>
 
         <item name="recipient_preference_blocked">#d00000</item>
         <item name="contact_selection_label_text">#66eeeeee</item>
@@ -154,14 +154,14 @@
         <item name="actionModeCloseDrawable">@drawable/ic_close_white_24dp</item>
         <item name="colorPrimary">@color/action_bar_background</item>
         <item name="colorPrimaryDark">@color/action_bar_background</item>
-        <item name="colorAccent">@color/textsecure_primary_dark</item>
-        <item name="colorControlActivated">@color/signal_primary</item>
-        <item name="colorControlHighlight">@color/signal_primary</item>
+        <item name="colorAccent">@color/accent</item>
+        <item name="colorControlActivated">@color/accent</item>
+        <item name="colorControlHighlight">@color/accent</item>
         <item name="android:windowBackground">@color/loki_darkest_gray</item>
         <item name="alertDialogTheme">@style/AppCompatAlertDialogStyleLight</item>
         <item name="android:alertDialogTheme">@style/AppCompatDialogStyleLight</item>
         <item name="bottomSheetDialogTheme">@style/Theme.MaterialComponents.Light.BottomSheetDialog</item>
-        <item name="android:navigationBarColor">@color/navigation_bar_background</item>
+        <item name="android:navigationBarColor">@color/compose_view_background</item>
         <!--<item name="android:windowContentOverlay">@drawable/compat_actionbar_shadow_background</item>-->
 
         <item name="attachment_type_selector_background">@color/white</item>
@@ -191,8 +191,8 @@
         <item name="conversation_editor_text_color">#ff111111</item>
         <item name="conversation_input_background">@drawable/compose_background_light</item>
         <item name="conversation_input_inline_attach_icon_tint">@color/core_grey_60</item>
-        <item name="conversation_transport_sms_indicator">@drawable/ic_send_sms_insecure</item>
-        <item name="conversation_transport_push_indicator">@drawable/ic_send_push</item>
+        <item name="conversation_transport_sms_indicator">@drawable/ic_arrow_up</item>
+        <item name="conversation_transport_push_indicator">@drawable/ic_arrow_up</item>
         <item name="conversation_transport_popup_background">@color/white</item>
         <item name="conversation_emoji_toggle">@drawable/ic_emoji_filled_keyboard_light</item>
         <item name="conversation_sticker_toggle">@drawable/ic_sticker_filled_keyboard_light</item>
@@ -213,11 +213,11 @@
 
         <item name="verification_background">@color/core_grey_05</item>
 
-        <item name="emoji_tab_strip_background">@color/core_grey_05</item>
+        <item name="emoji_tab_strip_background">@color/cell_background</item>
         <item name="emoji_tab_indicator">#66555555</item>
         <item name="emoji_tab_underline">#44555555</item>
         <item name="emoji_tab_seperator">@color/gray20</item>
-        <item name="emoji_drawer_background">@color/core_grey_02</item>
+        <item name="emoji_drawer_background">@color/compose_view_background</item>
         <item name="emoji_text_color">@color/black</item>
 
         <item name="emoji_category_recent">@drawable/ic_recent_light_20</item>
@@ -340,14 +340,14 @@
         <item name="actionModeCloseDrawable">@drawable/ic_close_white_24dp</item>
         <item name="android:textColor">@color/text_color_dark_theme</item>
         <item name="android:textColorSecondary">@color/text_color_secondary_dark_theme</item>
-        <item name="colorAccent">@color/textsecure_primary_dark</item>
-        <item name="colorControlActivated">@color/signal_primary_dark</item>
-        <item name="colorControlHighlight">@color/signal_primary_dark</item>
+        <item name="colorAccent">@color/accent</item>
+        <item name="colorControlActivated">@color/accent</item>
+        <item name="colorControlHighlight">@color/accent</item>
         <item name="android:windowBackground">@color/loki_darkest_gray</item>
         <item name="alertDialogTheme">@style/AppCompatAlertDialogStyleDark</item>
         <item name="android:alertDialogTheme">@style/AppCompatDialogStyleDark</item>
         <item name="bottomSheetDialogTheme">@style/Theme.MaterialComponents.BottomSheetDialog</item>
-        <item name="android:navigationBarColor">@color/navigation_bar_background</item>
+        <item name="android:navigationBarColor">@color/compose_view_background</item>
 
         <item name="attachment_type_selector_background">@color/gray95</item>
         <item name="attachment_document_icon_small">@drawable/ic_document_small_dark</item>
@@ -428,11 +428,11 @@
         <item name="conversation_sticker_footer_icon_color">@color/core_grey_25</item>
         <item name="conversation_sticker_author_color">@color/core_grey_05</item>
 
-        <item name="emoji_tab_strip_background">@color/core_grey_85</item>
-        <item name="emoji_tab_indicator">@color/gray65</item>
+        <item name="emoji_tab_strip_background">@color/compose_view_background</item>
+        <item name="emoji_tab_indicator">@color/accent</item>
         <item name="emoji_tab_underline">@color/gray78</item>
         <item name="emoji_tab_seperator">@color/gray70</item>
-        <item name="emoji_drawer_background">@color/core_grey_95</item>
+        <item name="emoji_drawer_background">@color/compose_text_view_background</item>
         <item name="emoji_text_color">@color/white</item>
 
         <item name="emoji_category_recent">@drawable/ic_recent_dark_20</item>

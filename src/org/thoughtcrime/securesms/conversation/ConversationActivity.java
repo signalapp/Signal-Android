@@ -31,7 +31,6 @@ import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.graphics.PorterDuff.Mode;
 import android.graphics.drawable.ColorDrawable;
 import android.hardware.Camera;
 import android.net.Uri;
@@ -1604,8 +1603,6 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       calculateCharactersRemaining();
       updateLinkPreviewState();
       composeText.setTransport(newTransport);
-      buttonToggle.getBackground().setColorFilter(newTransport.getBackgroundColor(), Mode.MULTIPLY);
-      buttonToggle.getBackground().invalidateSelf();
       if (manuallySelected) recordTransportPreference(newTransport);
     });
 
@@ -2237,8 +2234,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private void setInputPanelEnabled(boolean enabled) {
     Util.runOnMain(() -> {
       updateToggleButtonState();
-      int hintID = enabled ? R.string.activity_conversation_default_hint : R.string.activity_conversation_pending_friend_request_hint;
-      inputPanel.setHint(getResources().getString(hintID));
+      String hint = enabled ? "Message" : "Pending message request";
+      inputPanel.setHint(hint);
       inputPanel.setEnabled(enabled);
       if (enabled) {
         inputPanel.composeText.requestFocus();

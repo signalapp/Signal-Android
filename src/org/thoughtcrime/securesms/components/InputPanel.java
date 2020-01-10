@@ -24,7 +24,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import network.loki.messenger.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiKeyboardProvider;
 import org.thoughtcrime.securesms.components.emoji.EmojiToggle;
 import org.thoughtcrime.securesms.components.emoji.MediaKeyboard;
@@ -47,6 +46,8 @@ import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+
+import network.loki.messenger.R;
 
 public class InputPanel extends LinearLayout
     implements MicrophoneRecorderView.Listener,
@@ -108,7 +109,8 @@ public class InputPanel extends LinearLayout
     this.buttonToggle           = findViewById(R.id.button_toggle);
     this.recordingContainer     = findViewById(R.id.recording_container);
     this.recordLockCancel       = findViewById(R.id.record_cancel);
-    this.slideToCancel          = new SlideToCancel(findViewById(R.id.slide_to_cancel));
+    View slideToCancelView      = findViewById(R.id.slide_to_cancel);
+    this.slideToCancel          = new SlideToCancel(slideToCancelView);
     this.microphoneRecorderView = findViewById(R.id.recorder_view);
     this.microphoneRecorderView.setListener(this);
     this.recordTime             = new RecordTime(findViewById(R.id.record_time),

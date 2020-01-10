@@ -125,6 +125,7 @@ class EnterChatURLFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        chatURLEditText.imeOptions = chatURLEditText.imeOptions or 16777216 // Always use incognito keyboard
         joinPublicChatButton.setOnClickListener { joinPublicChatIfPossible() }
     }
 

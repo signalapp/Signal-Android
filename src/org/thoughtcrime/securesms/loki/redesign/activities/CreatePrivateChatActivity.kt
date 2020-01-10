@@ -111,6 +111,7 @@ class EnterPublicKeyFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        publicKeyTextView.imeOptions = publicKeyTextView.imeOptions or 16777216 // Always use incognito keyboard
         publicKeyTextView.text = hexEncodedPublicKey
         copyButton.setOnClickListener { copyPublicKey() }
         shareButton.setOnClickListener { sharePublicKey() }

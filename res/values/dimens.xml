@@ -155,7 +155,7 @@
 
     <dimen name="alertview_small_icon_size">14dp</dimen>
 
-    <dimen name="recording_voice_lock_target">-150dp</dimen>
+    <dimen name="recording_voice_lock_target">-96dp</dimen>
 
     <dimen name="default_margin">16dp</dimen>
     <dimen name="drawable_padding">24dp</dimen>

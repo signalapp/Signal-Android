@@ -10,6 +10,8 @@ import org.thoughtcrime.securesms.util.CharacterCalculator;
 import org.thoughtcrime.securesms.util.CharacterCalculator.CharacterState;
 import org.whispersystems.libsignal.util.guava.Optional;
 
+import network.loki.messenger.R;
+
 public class TransportOption implements Parcelable {
 
   public enum Type {
@@ -84,7 +86,7 @@ public class TransportOption implements Parcelable {
   }
 
   public @DrawableRes int getDrawable() {
-    return drawable;
+    return R.drawable.ic_arrow_up;
   }
 
   public int getBackgroundColor() {

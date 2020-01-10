@@ -20,6 +20,7 @@ class DisplayNameActivity : BaseActionBarActivity() {
         super.onCreate(savedInstanceState)
         setUpActionBarSessionLogo()
         setContentView(R.layout.activity_display_name_v2)
+        displayNameEditText.imeOptions = displayNameEditText.imeOptions or 16777216 // Always use incognito keyboard
         registerButton.setOnClickListener { register() }
     }
 

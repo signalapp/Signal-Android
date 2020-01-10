@@ -233,6 +233,7 @@
                     android:id="@+id/close_button"
                     android:layout_width="53dp"
                     android:layout_height="53dp"
+                    android:paddingTop="4dp"
                     android:src="@drawable/ic_keyboard_arrow_down_white_24dp"
                     android:scaleType="center"
                     android:contentDescription="@string/attachment_type_selector__drawer_description"
