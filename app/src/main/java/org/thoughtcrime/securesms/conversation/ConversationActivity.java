@@ -2854,8 +2854,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     } else {
       SlideDeck slideDeck = messageRecord.isMms() ? ((MmsMessageRecord) messageRecord).getSlideDeck() : new SlideDeck();
 
-      if (messageRecord.isMms() && ((MmsMessageRecord) messageRecord).isViewOnce() && slideDeck.getSlides().size() > 0) {
-        Attachment attachment = new TombstoneAttachment(slideDeck.getSlides().get(0).getContentType(), true);
+      if (messageRecord.isMms() && ((MmsMessageRecord) messageRecord).isViewOnce()) {
+        Attachment attachment = new TombstoneAttachment(MediaUtil.VIEW_ONCE, true);
         slideDeck = new SlideDeck();
         slideDeck.addSlide(MediaUtil.getSlideForAttachment(this, attachment));
       }
