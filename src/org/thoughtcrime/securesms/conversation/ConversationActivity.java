@@ -223,7 +223,6 @@ import org.whispersystems.signalservice.loki.api.LokiStorageAPI;
 import org.whispersystems.signalservice.loki.messaging.LokiMessageFriendRequestStatus;
 import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus;
 import org.whispersystems.signalservice.loki.messaging.Mention;
-import org.whispersystems.signalservice.loki.utilities.Analytics;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -330,9 +329,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private int        distributionType;
   private boolean    archived;
   private boolean    isSecureText;
-  private boolean    isDefaultSms          = true;
-  private boolean    isMmsEnabled          = true;
-  private boolean    isSecurityInitialized = false;
+  private boolean    isDefaultSms            = true;
+  private boolean    isMmsEnabled            = true;
+  private boolean    isSecurityInitialized   = false;
+  private int        expandedKeyboardHeight  = 0;
+  private int        collapsedKeyboardHeight = Integer.MAX_VALUE;
+  private int        keyboardHeight          = 0;
 
   private final IdentityRecordList      identityRecords = new IdentityRecordList();
   private final DynamicNoActionBarTheme dynamicTheme    = new DynamicNoActionBarTheme();
@@ -416,15 +418,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     LokiAPIUtilities.INSTANCE.populateUserHexEncodedPublicKeyCacheIfNeeded(threadId, this);
 
-    if (this.recipient.isGroupRecipient()) {
-      if (this.recipient.getName().equals("Loki Public Chat")) {
-        Analytics.Companion.getShared().track("Loki Public Chat Opened");
-      } else {
-        Analytics.Companion.getShared().track("RSS Feed Opened");
-      }
-    } else {
-      Analytics.Companion.getShared().track("Conversation Opened");
-    }
+    View rootView = findViewById(R.id.rootView);
+    rootView.getViewTreeObserver().addOnGlobalLayoutListener(() -> {
+      int height = rootView.getRootView().getHeight() - rootView.getHeight();
+      expandedKeyboardHeight = Math.max(expandedKeyboardHeight, height);
+      collapsedKeyboardHeight = Math.min(collapsedKeyboardHeight, height);
+      keyboardHeight = Math.max(expandedKeyboardHeight - collapsedKeyboardHeight, keyboardHeight);
+    });
   }
 
   @Override
@@ -1173,7 +1173,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private void handleAddAttachment() {
     if (this.isMmsEnabled || isSecureText) {
       if (attachmentTypeSelector == null) {
-        attachmentTypeSelector = new AttachmentTypeSelector(this, getSupportLoaderManager(), new AttachmentTypeListener());
+        attachmentTypeSelector = new AttachmentTypeSelector(this, getSupportLoaderManager(), new AttachmentTypeListener(), keyboardHeight);
       }
       attachmentTypeSelector.show(this, attachButton);
     } else {

@@ -26,9 +26,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
-import network.loki.messenger.R;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.util.ViewUtil;
+
+import network.loki.messenger.R;
 
 public class AttachmentTypeSelector extends PopupWindow {
 
@@ -59,7 +60,7 @@ public class AttachmentTypeSelector extends PopupWindow {
   private @Nullable View                      currentAnchor;
   private @Nullable AttachmentClickedListener listener;
 
-  public AttachmentTypeSelector(@NonNull Context context, @NonNull LoaderManager loaderManager, @Nullable AttachmentClickedListener listener) {
+  public AttachmentTypeSelector(@NonNull Context context, @NonNull LoaderManager loaderManager, @Nullable AttachmentClickedListener listener, int keyboardHeight) {
     super(context);
 
     LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -95,6 +96,14 @@ public class AttachmentTypeSelector extends PopupWindow {
     setInputMethodMode(PopupWindow.INPUT_METHOD_NOT_NEEDED);
     setFocusable(true);
     setTouchable(true);
+
+    int thresholdInDP = 200;
+    float scale = context.getResources().getDisplayMetrics().density;
+    int thresholdInPX = (int)(thresholdInDP * scale);
+    View contentView = ViewUtil.findById(layout, R.id.contentView);
+    LinearLayout.LayoutParams contentViewLayoutParams = (LinearLayout.LayoutParams)contentView.getLayoutParams();
+    contentViewLayoutParams.height = keyboardHeight > thresholdInPX ? keyboardHeight : LinearLayout.LayoutParams.WRAP_CONTENT;
+    contentView.setLayoutParams(contentViewLayoutParams);
 
     loaderManager.initLoader(1, null, recentRail);
   }

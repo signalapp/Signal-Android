@@ -12,9 +12,11 @@
         android:background="@drawable/attachment_selector_shadow"/>
 
     <LinearLayout
+        android:id="@+id/contentView"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_vertical"
         android:background="?attachment_type_selector_background">
 
         <org.thoughtcrime.securesms.components.RecentPhotoViewRail
