@@ -428,7 +428,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         expandedKeyboardHeight = height;
       }
       collapsedKeyboardHeight = Math.min(collapsedKeyboardHeight, height);
-      keyboardHeight = Math.max(expandedKeyboardHeight - collapsedKeyboardHeight, keyboardHeight);
+      keyboardHeight = expandedKeyboardHeight - collapsedKeyboardHeight;
     });
   }
 
