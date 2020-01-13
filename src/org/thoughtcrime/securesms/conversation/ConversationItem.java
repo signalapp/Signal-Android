@@ -60,7 +60,6 @@ import org.thoughtcrime.securesms.MessageDetailsActivity;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.components.AlertView;
 import org.thoughtcrime.securesms.components.AudioView;
-import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.components.ConversationItemFooter;
 import org.thoughtcrime.securesms.components.ConversationItemThumbnail;
 import org.thoughtcrime.securesms.components.DocumentView;
@@ -87,10 +86,11 @@ import org.thoughtcrime.securesms.jobs.SmsSendJob;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.loki.redesign.views.FriendRequestView;
-import org.thoughtcrime.securesms.loki.redesign.views.FriendRequestViewDelegate;
 import org.thoughtcrime.securesms.loki.LokiMessageDatabase;
 import org.thoughtcrime.securesms.loki.MentionUtilities;
+import org.thoughtcrime.securesms.loki.redesign.views.FriendRequestView;
+import org.thoughtcrime.securesms.loki.redesign.views.FriendRequestViewDelegate;
+import org.thoughtcrime.securesms.loki.redesign.views.ProfilePictureView;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.PartAuthority;
@@ -154,7 +154,7 @@ public class ConversationItem extends LinearLayout
   private   TextView               groupSender;
   private   TextView               groupSenderProfileName;
   private   View                   groupSenderHolder;
-  private   AvatarImageView        contactPhoto;
+  private   ProfilePictureView     profilePictureView;
   private   ImageView              moderatorIconImageView;
   private   ViewGroup              contactPhotoHolder;
   private   AlertView              alertView;
@@ -211,7 +211,7 @@ public class ConversationItem extends LinearLayout
     this.groupSender             =            findViewById(R.id.group_message_sender);
     this.groupSenderProfileName  =            findViewById(R.id.group_message_sender_profile);
     this.alertView               =            findViewById(R.id.indicators_parent);
-    this.contactPhoto            =            findViewById(R.id.contact_photo);
+    this.profilePictureView      =            findViewById(R.id.profilePictureView);
     this.moderatorIconImageView  =            findViewById(R.id.moderator_icon_image_view);
     this.contactPhotoHolder      =            findViewById(R.id.contact_photo_container);
     this.bodyBubble              =            findViewById(R.id.body_bubble);
@@ -356,9 +356,9 @@ public class ConversationItem extends LinearLayout
 
   private void setBubbleState(MessageRecord messageRecord) {
     if (messageRecord.isOutgoing()) {
-      bodyBubble.getBackground().setColorFilter(defaultBubbleColor, PorterDuff.Mode.MULTIPLY);
+      bodyBubble.getBackground().setColorFilter(getResources().getColor(R.color.sent_message_background), PorterDuff.Mode.MULTIPLY);
     } else {
-      bodyBubble.getBackground().setColorFilter(messageRecord.getRecipient().getColor().toConversationColor(context), PorterDuff.Mode.MULTIPLY);
+      bodyBubble.getBackground().setColorFilter(getResources().getColor(R.color.received_message_background), PorterDuff.Mode.MULTIPLY);
     }
 
     if (audioViewStub.resolved()) {
@@ -745,13 +745,16 @@ public class ConversationItem extends LinearLayout
 
   private void setContactPhoto(@NonNull Recipient recipient) {
     LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams)bodyBubble.getLayoutParams();
-    float scale = getResources().getDisplayMetrics().density;
-    float marginInDP = groupThread ? 44 : 8;
-    int marginInPX = Math.round(marginInDP * scale);
-    layoutParams.setMarginStart(marginInPX);
+    int groupThreadMargin = (int)(getResources().getDimension(R.dimen.large_spacing) + getResources().getDimension(R.dimen.small_profile_picture_size));
+    int defaultMargin = 0;
+    layoutParams.setMarginStart(groupThread ? groupThreadMargin : defaultMargin);
     bodyBubble.setLayoutParams(layoutParams);
-    if (contactPhoto == null) return;
-    contactPhoto.setAvatar(glideRequests, recipient, true);
+    if (profilePictureView == null) return;
+    profilePictureView.setHexEncodedPublicKey(recipient.getAddress().toString());
+    profilePictureView.setAdditionalHexEncodedPublicKey(null);
+    profilePictureView.setRSSFeed(false);
+    profilePictureView.setGlide(glideRequests);
+    profilePictureView.update();
   }
 
   private SpannableString linkifyMessageBody(SpannableString messageBody, boolean shouldLinkifyAllLinks) {
@@ -936,7 +939,7 @@ public class ConversationItem extends LinearLayout
       }
 
       if (!next.isPresent() || next.get().isUpdate() || !current.getRecipient().getAddress().equals(next.get().getRecipient().getAddress())) {
-        contactPhoto.setVisibility(VISIBLE);
+        profilePictureView.setVisibility(VISIBLE);
         int visibility = View.GONE;
 
         LokiPublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(context).getPublicChat(messageRecord.getThreadId());
@@ -947,7 +950,7 @@ public class ConversationItem extends LinearLayout
 
         moderatorIconImageView.setVisibility(visibility);
       } else {
-        contactPhoto.setVisibility(GONE);
+        profilePictureView.setVisibility(GONE);
         moderatorIconImageView.setVisibility(GONE);
 
       }
@@ -964,17 +967,13 @@ public class ConversationItem extends LinearLayout
   private void setMessageShape(@NonNull MessageRecord current, @NonNull Optional<MessageRecord> previous, @NonNull Optional<MessageRecord> next, boolean isGroupThread) {
     int background;
     if (isSingularMessage(current, previous, next, isGroupThread)) {
-      background = current.isOutgoing() ? R.drawable.message_bubble_background_sent_alone
-                                        : R.drawable.message_bubble_background_received_alone;
+      background = current.isOutgoing() ? R.drawable.message_bubble_background_sent_alone : R.drawable.message_bubble_background_received_alone;
     } else if (isStartOfMessageCluster(current, previous, isGroupThread)) {
-      background = current.isOutgoing() ? R.drawable.message_bubble_background_sent_start
-                                        : R.drawable.message_bubble_background_received_start;
+      background = current.isOutgoing() ? R.drawable.message_bubble_background_sent_start : R.drawable.message_bubble_background_received_start;
     } else if (isEndOfMessageCluster(current, next, isGroupThread)) {
-      background = current.isOutgoing() ? R.drawable.message_bubble_background_sent_end
-                                        : R.drawable.message_bubble_background_received_end;
+      background = current.isOutgoing() ? R.drawable.message_bubble_background_sent_end : R.drawable.message_bubble_background_received_end;
     } else {
-      background = current.isOutgoing() ? R.drawable.message_bubble_background_sent_middle
-                                        : R.drawable.message_bubble_background_received_middle;
+      background = current.isOutgoing() ? R.drawable.message_bubble_background_sent_middle : R.drawable.message_bubble_background_received_middle;
     }
 
     bodyBubble.setBackgroundResource(background);

@@ -19,25 +19,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/conversation_individual_right_gutter"
-        android:paddingStart="8dp"
+        android:paddingStart="@dimen/large_spacing"
         android:clipToPadding="false"
         android:clipChildren="false">
 
         <RelativeLayout
             android:id="@+id/contact_photo_container"
-            android:layout_width="36dp"
+            android:layout_width="@dimen/small_profile_picture_size"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentBottom="true">
+            android:layout_alignParentStart="true">
 
-            <org.thoughtcrime.securesms.components.AvatarImageView
-                android:id="@+id/contact_photo"
-                android:foreground="@drawable/contact_photo_background"
-                android:layout_width="@dimen/conversation_item_avatar_size"
-                android:layout_height="@dimen/conversation_item_avatar_size"
-                android:layout_marginBottom="2dp"
-                android:cropToPadding="true"
-                android:contentDescription="@string/conversation_item_received__contact_photo_description" />
+            <org.thoughtcrime.securesms.loki.redesign.views.ProfilePictureView
+                android:id="@+id/profilePictureView"
+                android:layout_marginTop="2dp"
+                android:layout_width="@dimen/small_profile_picture_size"
+                android:layout_height="@dimen/small_profile_picture_size" />
 
             <ImageView
                 android:id="@+id/moderator_icon_image_view"
@@ -64,7 +60,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/message_bubble_edge_margin"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="@dimen/large_spacing"
                 android:orientation="vertical"
                 android:clipToPadding="false"
                 android:clipChildren="false"
@@ -175,7 +171,7 @@
                     android:id="@+id/conversation_item_body"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/message_bubble_top_padding"
+                    android:layout_marginTop="14dp"
                     android:layout_marginBottom="@dimen/message_bubble_collapsed_footer_padding"
                     android:layout_marginStart="@dimen/message_bubble_horizontal_padding"
                     android:layout_marginEnd="@dimen/message_bubble_horizontal_padding"
@@ -197,7 +193,7 @@
                     android:layout_marginBottom="@dimen/message_bubble_bottom_padding"
                     android:clipChildren="false"
                     android:clipToPadding="false"
-                    android:alpha="0.7"
+                    android:alpha="0.6"
                     app:footer_text_color="?conversation_item_received_text_secondary_color"
                     app:footer_icon_color="?conversation_item_received_text_secondary_color"/>
 

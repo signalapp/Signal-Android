@@ -232,14 +232,14 @@
         <item name="emoji_category_emoticons">@drawable/ic_emoji_emoticon_light_20</item>
         <item name="emoji_variation_selector_background">@drawable/emoji_variation_selector_background_light</item>
 
-        <item name="conversation_item_bubble_background">@color/core_grey_05</item>
+        <item name="conversation_item_bubble_background">@color/sent_message_background</item>
         <item name="conversation_item_sent_text_primary_color">@color/core_grey_90</item>
         <item name="conversation_item_sent_text_secondary_color">@color/core_grey_60</item>
         <item name="conversation_item_sent_icon_color">@color/core_grey_60</item>
         <item name="conversation_item_sent_download_icon_color">@color/core_grey_60</item>
         <item name="conversation_item_sent_text_indicator_tab_color">#99000000</item>
-        <item name="conversation_item_received_text_primary_color">@color/core_white</item>
-        <item name="conversation_item_received_text_secondary_color">@color/core_white</item>
+        <item name="conversation_item_received_text_primary_color">@color/text</item>
+        <item name="conversation_item_received_text_secondary_color">@color/text</item>
         <item name="conversation_item_update_text_color">@color/core_grey_60</item>
         <item name="conversation_item_last_seen_text_color">@color/core_grey_90</item>
         <item name="conversation_item_last_seen_line_color">@color/core_grey_60</item>
@@ -368,14 +368,14 @@
 
         <item name="conversation_group_member_name">#99ffffff</item>
 
-        <item name="conversation_item_bubble_background">@color/core_grey_75</item>
+        <item name="conversation_item_bubble_background">@color/sent_message_background</item>
         <item name="conversation_item_sent_text_primary_color">@color/core_grey_05</item>
         <item name="conversation_item_sent_text_secondary_color">@color/core_grey_25</item>
         <item name="conversation_item_sent_icon_color">@color/core_grey_25</item>
         <item name="conversation_item_sent_download_icon_color">@color/core_white</item>
         <item name="conversation_item_sent_text_indicator_tab_color">#99ffffff</item>
-        <item name="conversation_item_received_text_primary_color">@color/core_grey_05</item>
-        <item name="conversation_item_received_text_secondary_color">@color/core_grey_25</item>
+        <item name="conversation_item_received_text_primary_color">@color/text</item>
+        <item name="conversation_item_received_text_secondary_color">@color/text</item>
         <item name="conversation_item_sent_indicator_text_background">@drawable/conversation_item_sent_indicator_text_shape_dark</item>
         <item name="conversation_item_update_text_color">@color/core_grey_45</item>
         <item name="conversation_item_last_seen_text_color">@color/core_grey_25</item>
@@ -447,10 +447,10 @@
         <item name="emoji_category_emoticons">@drawable/ic_emoji_emoticon_dark_20</item>
         <item name="emoji_variation_selector_background">@drawable/emoji_variation_selector_background_dark</item>
 
-        <item name="linkpreview_background_color">@color/core_grey_95</item>
-        <item name="linkpreview_primary_text_color">@color/core_white</item>
-        <item name="linkpreview_secondary_text_color">@color/core_grey_25</item>
-        <item name="linkpreview_divider_color">@color/core_grey_60</item>
+        <item name="linkpreview_background_color">@color/black</item>
+        <item name="linkpreview_primary_text_color">@color/text</item>
+        <item name="linkpreview_secondary_text_color">@color/text</item>
+        <item name="linkpreview_divider_color">@color/transparent</item>
 
         <item name="quick_camera_icon">@drawable/quick_camera_dark</item>
         <item name="quick_mic_icon">@drawable/ic_mic_white_24dp</item>

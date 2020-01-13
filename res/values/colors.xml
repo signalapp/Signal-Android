@@ -22,6 +22,8 @@
     <color name="progress_bar_background">#0AFFFFFF</color>
     <color name="compose_view_background">#1B1B1B</color>
     <color name="compose_text_view_background">#141414</color>
+    <color name="received_message_background">#222325</color>
+    <color name="sent_message_background">#3F4146</color>
     <!-- Session -->
 
     <!-- Loki -->

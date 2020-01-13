@@ -2924,7 +2924,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   @Override
   public void onMessageActionToolbarOpened() {
-    searchViewItem.collapseActionView();
+    // searchViewItem.collapseActionView();
   }
 
   @Override

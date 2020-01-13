@@ -192,8 +192,8 @@ public class InputPanel extends LinearLayout
       this.linkPreview.setVisibility(View.GONE);
     }
 
-    int cornerRadius = quoteView.getVisibility() == VISIBLE ? readDimen(R.dimen.message_corner_collapse_radius)
-                                                            : readDimen(R.dimen.message_corner_radius);
+    int largeCornerRadius = (int)(16 * getResources().getDisplayMetrics().density);
+    int cornerRadius = quoteView.getVisibility() == VISIBLE ? readDimen(R.dimen.message_corner_collapse_radius) : largeCornerRadius;
 
     this.linkPreview.setCorners(cornerRadius, cornerRadius);
   }
