@@ -25,11 +25,10 @@
               android:paddingTop="4dp"
               android:paddingBottom="4dp"
               android:layout_marginTop="8dp"
-              style="@style/Signal.Text.Caption"
-              android:textColor="?attr/conversation_item_sticky_date_text_color"
-              android:textAllCaps="true"
+              android:textSize="@dimen/small_font_size"
+              android:textColor="#99FFFFFF"
               android:background="?attr/conversation_item_sticky_date_background"
-              android:elevation="9dp"
+              android:elevation="10dp"
               android:visibility="gone"
               tools:text="March 1, 2015" />
 

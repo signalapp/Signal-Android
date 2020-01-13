@@ -50,7 +50,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="2dp"
             android:maxLines="1"
-            android:textSize="@dimen/very_small_font_size"
+            android:textSize="@dimen/small_font_size"
             android:textColor="?linkpreview_secondary_text_color"
             android:alpha="0.6"
             app:layout_constraintStart_toEndOf="@+id/linkpreview_thumbnail"

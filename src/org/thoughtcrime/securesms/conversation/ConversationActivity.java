@@ -421,7 +421,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     View rootView = findViewById(R.id.rootView);
     rootView.getViewTreeObserver().addOnGlobalLayoutListener(() -> {
       int height = rootView.getRootView().getHeight() - rootView.getHeight();
-      expandedKeyboardHeight = Math.max(expandedKeyboardHeight, height);
+      int thresholdInDP = 120;
+      float scale = getResources().getDisplayMetrics().density;
+      int thresholdInPX = (int)(thresholdInDP * scale);
+      if (expandedKeyboardHeight == 0 || height > thresholdInPX) {
+        expandedKeyboardHeight = height;
+      }
       collapsedKeyboardHeight = Math.min(collapsedKeyboardHeight, height);
       keyboardHeight = Math.max(expandedKeyboardHeight - collapsedKeyboardHeight, keyboardHeight);
     });
@@ -1175,6 +1180,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       if (attachmentTypeSelector == null) {
         attachmentTypeSelector = new AttachmentTypeSelector(this, getSupportLoaderManager(), new AttachmentTypeListener(), keyboardHeight);
       }
+      attachmentTypeSelector.keyboardHeight = keyboardHeight;
       attachmentTypeSelector.show(this, attachButton);
     } else {
       handleManualMmsRequired();

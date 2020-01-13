@@ -70,7 +70,7 @@ class FriendRequestView(context: Context, attrs: AttributeSet?, defStyleAttr: In
         if (isUISetUp) { return }
         isUISetUp = true
         orientation = VERTICAL
-        setPadding(resources.getDimension(R.dimen.large_spacing).toInt(), 0, resources.getDimension(R.dimen.large_spacing).toInt(), 0)
+        setPadding(toPx(48, resources), 0, toPx(48, resources), 0)
         addView(topSpacer)
         addView(label)
         if (!message!!.isOutgoing) {
