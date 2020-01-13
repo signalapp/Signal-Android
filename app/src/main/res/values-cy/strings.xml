@@ -260,6 +260,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="ConversationFragment_failed_to_open_message">Methu agor neges</string>
   <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Gallwch lusgo i\'r dde ar unrhyw neges i ateb yn sydyn</string>
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Gallwch lusgo i\'r chwith ar unrhyw neges i ateb yn sydyn</string>
+  <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Mae ffeiliau cyfrwng gweld unwaith a anfonwyd yn cael eu tynnu ar ôl eu hanfon.</string>
+  <string name="ConversationFragment_you_already_viewed_this_message">Rydych eisoes wedi gweld y neges hon</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Nid oes porwr wedi\'i osod ar eich dyfais.</string>
   <!--ConversationListFragment-->
@@ -527,6 +529,7 @@ Send neges heb ei ddiogelu?</string>
     <item quantity="other">Nid oes modd rhannu mwy na %d eitem.</item>
   </plurals>
   <string name="MediaSendActivity_select_recipients_description">Dewis derbynwyr</string>
+  <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">Tapiwch yma i wneud i\'r neges ddiflannu ar ôl iddi gael ei gweld.</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Pob cyfrwng</string>
   <!--MessageRecord-->
@@ -681,6 +684,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="RegistrationActivity_call">Galw</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_view_photo">Gweld Llun</string>
+  <string name="RevealableMessageView_view_video">Gweld Fideo</string>
   <string name="RevealableMessageView_viewed">Gwelwyd</string>
   <string name="RevealableMessageView_media">Cyfryngau</string>
   <!--ScribbleActivity-->
@@ -742,6 +746,9 @@ Send neges heb ei ddiogelu?</string>
   <string name="ThreadRecord_missed_call">Galwad coll</string>
   <string name="ThreadRecord_media_message">Neges cyfryngau</string>
   <string name="ThreadRecord_sticker">Sticer</string>
+  <string name="ThreadRecord_view_once_photo">Llun gweld unwaith</string>
+  <string name="ThreadRecord_view_once_video">Fideo gweld unwaith</string>
+  <string name="ThreadRecord_view_once_media">Cyfrwng gweld unwaith</string>
   <string name="ThreadRecord_s_is_on_signal">Mae %s ar Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Negeseuon diflanedig wedi\'u hanalluogi</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Amser neges diflanedig wedi\'i osod i %s</string>
@@ -832,6 +839,8 @@ Send neges heb ei ddiogelu?</string>
   <string name="MessageNotifier_mark_read">Marcio wedi\'i ddarllen</string>
   <string name="MessageNotifier_media_message">Neges cyfryngau</string>
   <string name="MessageNotifier_sticker">Sticer</string>
+  <string name="MessageNotifier_view_once_photo">Llun gweld unwaith</string>
+  <string name="MessageNotifier_view_once_video">Fideo gweld unwaith</string>
   <string name="MessageNotifier_reply">Ymateb</string>
   <string name="MessageNotifier_signal_message">Neges Signal</string>
   <string name="MessageNotifier_unsecured_sms">SMS anniogel</string>
@@ -979,6 +988,7 @@ Send neges heb ei ddiogelu?</string>
   <string name="QuoteView_audio">Sain</string>
   <string name="QuoteView_video">Fideo</string>
   <string name="QuoteView_photo">Llun</string>
+  <string name="QuoteView_view_once_media">Cyfrwng gweld unwaith</string>
   <string name="QuoteView_sticker">Sticer</string>
   <string name="QuoteView_document">Dogfen</string>
   <string name="QuoteView_you">Chi</string>

@@ -238,6 +238,8 @@
   <string name="ConversationFragment_failed_to_open_message">Sõnumi avamine ebaõnnestus</string>
   <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Sa saad kiiresti vastamiseks mistahes sõnumil paremale viibata</string>
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Sa saad kiiresti vastamiseks mistahes sõnumil vasakule viibata</string>
+  <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Väljuvad korra vaatamise meediafailid eemaldatakse pärast nende saatmist automaatselt</string>
+  <string name="ConversationFragment_you_already_viewed_this_message">Sa juba vaatasid seda sõnumit</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Sinu seadmesse pole installitud brauserit.</string>
   <!--ConversationListFragment-->
@@ -483,6 +485,7 @@
     <item quantity="other">Sa ei saa jagada rohkem kui %d üksust.</item>
   </plurals>
   <string name="MediaSendActivity_select_recipients_description">Vali saajad</string>
+  <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">Koputa siia, et panna see sõnum haihtuma pärast selle vaatamist.</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Kogu meedia</string>
   <!--MessageRecord-->
@@ -640,6 +643,7 @@
   <string name="RegistrationActivity_call">Helista</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_view_photo">Vaata pilti</string>
+  <string name="RevealableMessageView_view_video">Vaata videot</string>
   <string name="RevealableMessageView_viewed">Vaadatud</string>
   <string name="RevealableMessageView_media">Meedia</string>
   <!--ScribbleActivity-->
@@ -703,6 +707,9 @@
   <string name="ThreadRecord_missed_call">Vastamata kõne</string>
   <string name="ThreadRecord_media_message">Meediasõnum</string>
   <string name="ThreadRecord_sticker">Kleeps</string>
+  <string name="ThreadRecord_view_once_photo">Korra vaatamise foto</string>
+  <string name="ThreadRecord_view_once_video">Korra vaatamise video</string>
+  <string name="ThreadRecord_view_once_media">Korra vaatamise meedia</string>
   <string name="ThreadRecord_s_is_on_signal">%s on Signalis!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Haihtuvad sõnumid keelatud</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Haihtuva sõnumi ajaks on seatud %s</string>
@@ -793,6 +800,8 @@
   <string name="MessageNotifier_mark_read">Märgi loetuks</string>
   <string name="MessageNotifier_media_message">Meediasõnum</string>
   <string name="MessageNotifier_sticker">Kleeps</string>
+  <string name="MessageNotifier_view_once_photo">Korra vaatamise foto</string>
+  <string name="MessageNotifier_view_once_video">Korra vaatamise video</string>
   <string name="MessageNotifier_reply">Vasta</string>
   <string name="MessageNotifier_signal_message">Signali sõnum</string>
   <string name="MessageNotifier_unsecured_sms">Turvamata SMS</string>
@@ -938,6 +947,7 @@
   <string name="QuoteView_audio">Heli</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Foto</string>
+  <string name="QuoteView_view_once_media">Korra vaatamise meedia</string>
   <string name="QuoteView_sticker">Kleeps</string>
   <string name="QuoteView_document">Dokument</string>
   <string name="QuoteView_you">Sina</string>

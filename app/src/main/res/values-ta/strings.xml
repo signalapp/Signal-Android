@@ -73,6 +73,7 @@
   <string name="BucketedThreadMedia_This_week">இந்த வாரம்</string>
   <string name="BucketedThreadMedia_This_month">இந்த மாதம்</string>
   <string name="BucketedThreadMedia_Large">பெரிய</string>
+  <string name="BucketedThreadMedia_Medium">நடுத்தர</string>
   <string name="BucketedThreadMedia_Small">சிறிய</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">உள்வரும் அழைப்பு</string>
@@ -100,6 +101,8 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">இணைய உலாவி இல்லை.</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">ஒரு செல்லுலார் அழைப்பு ஏற்கனவே செயல்பாட்டில் உள்ளது.</string>
+  <string name="CommunicationActions_start_video_call">வீடியோ அழைப்பைத் தொடங்கவா?</string>
+  <string name="CommunicationActions_start_voice_call">குரல் அழைப்பைத் தொடங்கவா?</string>
   <string name="CommunicationActions_cancel">ரத்து</string>
   <string name="CommunicationActions_call">அழைப்பு</string>
   <!--ConfirmIdentityDialog-->
@@ -235,6 +238,8 @@
   <string name="ConversationFragment_failed_to_open_message">செய்தியைத் திறப்பதில் தோல்வி</string>
   <string name="ConversationFragment_you_can_swipe_to_the_right_reply">விரைவாக பதிலளிக்க எந்த செய்தியிலும் வலதுபுறமாக ஸ்வைப் செய்யலாம்</string>
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">விரைவாக பதிலளிக்க, எந்த செய்தியிலும் இடதுபுறமாக ஸ்வைப் செய்யலாம்</string>
+  <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">வெளிச்செல்லும் பார்வைஒருமுறை அப்படித்தான் ஊடக கோப்புகள் அனுப்பப்பட்ட பின் தானாகவே அகற்றப்படும்</string>
+  <string name="ConversationFragment_you_already_viewed_this_message">நீங்கள் ஏற்கனவே இந்த செய்தியைப் பார்த்தீர்கள்</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">உங்கள் சாதனத்தில் எந்த உலாவியும் நிறுவப்படவில்லை.</string>
   <!--ConversationListFragment-->
@@ -302,6 +307,7 @@
   <string name="DeviceListItem_last_active_s">கடைசியாக செயலில் %s</string>
   <string name="DeviceListItem_today">இன்று</string>
   <!--DocumentView-->
+  <string name="DocumentView_unnamed_file">பெயரிடப்படாத கோப்பு</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">காணாமல் போன விளையாட்டு சேவைகளை மேம்படுத்தவும்</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">இந்த சாதனம் Play சேவைகளை ஆதரிக்காது. செயலற்ற நிலையில் செய்திகளை மீட்டெடுப்பதில் இருந்து Signal லைத் தடுக்கும் கணினி பேட்டரி மேம்படுத்தல்களை முடக்க தட்டவும்.</string>
@@ -331,8 +337,10 @@
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">விருப்ப இணைப்பு முன்னோட்டங்கள் இப்போது இணையத்தில் மிகவும் பிரபலமான சில தளங்களுக்கு துணைபுரிகின்றன.</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">உங்கள் Signal அமைப்புகளில் எப்போது வேண்டுமானாலும் இந்த அம்சத்தை முடக்கலாம் அல்லது இயக்கலாம் (தனியுரிமை &amp; ஜிடி; இணைப்பு மாதிரிக்காட்சிகளை அனுப்பு).</string>
   <string name="ExperienceUpgradeActivity_got_it">அறிந்துகொண்டேன் .</string>
+  <string name="ExperienceUpgradeActivity_introducing_stickers">ஸ்டிக்கர்களை அறிமுகப்படுத்துகிறோம்</string>
   <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">நீங்கள் ஸ்டிக்கர்களைப் பயன்படுத்தும்போது ஏன் வார்த்தைகளைப் பயன்படுத்த வேண்டும்?</string>
   <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">நீங்கள் ஸ்டிக்கர்களைப் பயன்படுத்தும்போது ஏன் வார்த்தைகளைப் பயன்படுத்த வேண்டும்? உங்கள் விசைப்பலகையில் இந்த ஐகானைத் தட்டவும்:</string>
+  <string name="ExperienceUpgradeActivity_lets_go">நாம்\'கள் போ</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">ஒரு செய்தியை மீட்டெடுக்கிறது …</string>
   <!--GcmRefreshJob-->
@@ -373,6 +381,8 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">பகிர்</string>
   <string name="InviteActivity_choose_contacts">தொடர்புகளைத் தேர்வுசெய்க</string>
+  <string name="InviteActivity_share_with_contacts">தொடர்புகளுடன் பகிரவும்</string>
+  <string name="InviteActivity_choose_how_to_share">பகிர்வது எப்படி என்பதைத் தேர்வுசெய்க</string>
   <string name="InviteActivity_cancel">ரத்து செய் </string>
   <string name="InviteActivity_sending">அனுப்புகிறது …</string>
   <string name="InviteActivity_heart_content_description">இதயம்</string>
@@ -405,15 +415,45 @@
   <string name="MmsDownloader_error_reading_mms_settings">வயர்லெஸ் வழங்குநர் எம்எம்எஸ் அமைப்புகளைப் படிப்பதில் பிழை</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">ஊடகம்</string>
+  <string name="MediaOverviewActivity_Files">கோப்புகள்</string>
   <string name="MediaOverviewActivity_Audio">ஒலி</string>
+  <string name="MediaOverviewActivity_All">அனைத்து</string>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+    <item quantity="one">தேர்ந்தெடுத்ததை அழி உருப்படியை?</item>
+    <item quantity="other">தேர்ந்தெடுக்கப்பட்ட உருப்படிகளை நீக்கவா?</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+    <item quantity="one">இது தேர்ந்தெடுக்கப்பட்ட கோப்பை நிரந்தரமாக நீக்கும். இதனுடன் தொடர்புடைய எந்த செய்தி உரையும்உருப்படியை நீக்கப்படும்.</item>
+    <item quantity="other">இது அனைத்தையும் நிரந்தரமாக நீக்கும் %1$d தேர்ந்தெடுக்கப்பட்ட கோப்புகள். இந்த உருப்படிகளுடன் தொடர்புடைய எந்த செய்தி உரையும் நீக்கப்படும்.</item>
+  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">நீக்கப்படுகிறது</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">செய்திகள் நீக்கப்படுகிறது…</string>
   <string name="MediaOverviewActivity_Select_all">அனைத்தையும்  தேர்வுசெய்</string>
   <string name="MediaOverviewActivity_collecting_attachments">இணைப்பு சேமிக்கபடுகிறது</string>
+  <string name="MediaOverviewActivity_Sort_by">மூலம் வரிசைப்படுத்து</string>
+  <string name="MediaOverviewActivity_Newest">புதியது</string>
+  <string name="MediaOverviewActivity_Oldest">பழமையான</string>
+  <string name="MediaOverviewActivity_Storage_used">சேமிப்பு பயன்படுத்தப்படும்</string>
+  <string name="MediaOverviewActivity_All_storage_use">அனைத்து சேமிப்பு பயன்படுத்த</string>
+  <string name="MediaOverviewActivity_Grid_view_description">கட்டம் காட்சி</string>
+  <string name="MediaOverviewActivity_List_view_description">பட்டியல் காட்சி</string>
+  <string name="MediaOverviewActivity_Selected_description">தேர்ந்தெடுக்கப்பட்ட</string>
+  <plurals name="MediaOverviewActivity_d_items_s">
+    <item quantity="one">%1$d உருப்படியை%2$s</item>
+    <item quantity="other">%1$d  பொருட்களை%2$s</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_d_items">
+    <item quantity="one">%1$d பொருட்களை</item>
+    <item quantity="other">%1$d உருப்படியை</item>
+  </plurals>
   <string name="MediaOverviewActivity_file">கோப்பு</string>
   <string name="MediaOverviewActivity_audio">ஒலி</string>
   <string name="MediaOverviewActivity_video">காணொளி</string>
   <string name="MediaOverviewActivity_image">படம் </string>
+  <string name="MediaOverviewActivity_sent_by_s">அனுப்பியது %1$s</string>
+  <string name="MediaOverviewActivity_sent_by_you">அனுப்பியதுநீங்கள்</string>
+  <string name="MediaOverviewActivity_sent_by_s_to_s">அனுப்பியது %1$s க்கு%2$s</string>
+  <string name="MediaOverviewActivity_sent_by_you_to_s">நீங்கள் அனுப்பியது %1$s</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal அழைப்புப் போய்க்கொண்டிருக்கிறது</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal அழைப்பு நிறுவுப்படுகிறது</string>
@@ -445,6 +485,7 @@
     <item quantity="other">நீங்கள் %d ஐ விட அதிகமாக பகிர முடியாது.</item>
   </plurals>
   <string name="MediaSendActivity_select_recipients_description">பெறுநர்களைத் தேர்ந்தெடுக்கவும்</string>
+  <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">தட்டவும் இந்த செய்தியை உருவாக்க இங்கே மறைந்துவிடும் அதைப் பார்த்த பிறகு.</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">அனைத்து ஊடகங்களும்</string>
   <!--MessageRecord-->
@@ -511,10 +552,16 @@
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">நீங்கள் நிறுவிய Google Play சேவைகளின் பதிப்பு சரியாக செயல்படவில்லை. Google Play சேவைகளை மீண்டும் நிறுவி மீண்டும் முயற்சிக்கவும்.</string>
   <!--ProfileEditNameFragment-->
+  <string name="ProfileEditNameFragment_profile_name">சுயவிவரப் பெயர்</string>
+  <string name="ProfileEditNameFragment_your_profile_name_can_be_seen_by_your_contacts">உங்கள் சுயவிவரப் பெயரைக் காணலாம் உங்கள் தொடர்புகள் மற்றும் மூலம் மற்ற பயனர்கள் அல்லது குழுக்கள் எப்போது நீங்கள் உரையாடலைத் தொடங்கவும் அல்லது உரையாடல் கோரிக்கையை ஏற்கவும்.</string>
   <string name="ProfileEditNameFragment_save">சேமி</string>
   <!--ProfileEditOverviewFragment-->
   <string name="ProfileEditOverviewFragment_profile">விவரம்</string>
+  <string name="ProfileEditOverviewFragment_profile_name">சுயவிவரப் பெயர்</string>
   <string name="ProfileEditOverviewFragment_username">பயனர்பெயர்</string>
+  <string name="ProfileEditOverviewFragment_create_a_profile_name">சுயவிவரப் பெயரை உருவாக்கவும்</string>
+  <string name="ProfileEditOverviewFragment_create_a_username">பயனர்பெயரை உருவாக்கவும்</string>
+  <string name="ProfileEditOverviewFragment_your_signal_profile_can_be_seen_by">நீங்கள் ஒரு உரையாடலைத் தொடங்கும்போது அல்லது உரையாடல் கோரிக்கையை ஏற்கும்போது உங்கள் தொடர்புகள் மற்றும் பிற பயனர்கள் அல்லது குழுக்களால் உங்கள் Signal சுயவிவரத்தைக் காணலாம். <a href="https://support.signal.org/hc/en-us/articles/360007459591-Signal-Profiles">மேலும் அறிய இங்கே தட்டவும்</a>.</string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">இச் செயலியை மதிப்புரை செய்க</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">இச் செயலியின்  பயன்பாட்டை விரும்பினால் தயை கூர்ந்து  எங்கள் செயலியை   மதிப்புரை செய்க    </string>
@@ -583,6 +630,8 @@
   <string name="RegistrationActivity_failed_to_verify_the_captcha">CAPTCHA ஐ சரிபார்க்க முடியவில்லை</string>
   <string name="RegistrationActivity_next">அடுத்தது</string>
   <string name="RegistrationActivity_continue">தொடர்</string>
+  <string name="RegistrationActivity_continue_d_attempts_left">தொடரவும் (%d முயற்சிகள் இடது)</string>
+  <string name="RegistrationActivity_continue_last_attempt">தொடரவும் (கடைசி முயற்சி!)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">உங்களுடன் தனியுரிமையைப் பெறுங்கள். ஒவ்வொரு செய்தியிலும் நீங்கள் நீங்கலாய் இருங்கள் .</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">தொடங்க உங்கள் தொலைபேசி எண்ணை உள்ளிடவும்</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">சரிபார்ப்புக் குறியீட்டைப் பெறுவீர்கள். கேரியர் கட்டணங்கள் பொருந்தக்கூடும்.</string>
@@ -592,6 +641,7 @@
   <string name="RegistrationActivity_call">அழை</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_view_photo">புகைப்படத்தைக் காண்க</string>
+  <string name="RevealableMessageView_view_video">வீடியோவைக் காண்க</string>
   <string name="RevealableMessageView_viewed">பார்க்கப்பட்டவை</string>
   <string name="RevealableMessageView_media">ஊடகம்</string>
   <!--ScribbleActivity-->
@@ -653,6 +703,9 @@
   <string name="ThreadRecord_missed_call">தவறிய அழைப்பு</string>
   <string name="ThreadRecord_media_message">பல்லூடகச் செய்தி</string>
   <string name="ThreadRecord_sticker">ஓட்டி</string>
+  <string name="ThreadRecord_view_once_photo">ஒரு முறை புகைப்படம் காண்க</string>
+  <string name="ThreadRecord_view_once_video">ஒரு முறை புகைப்படம் காண்க</string>
+  <string name="ThreadRecord_view_once_media">காண்கஒருமுறை அப்படித்தான் ஊடக</string>
   <string name="ThreadRecord_s_is_on_signal">%s Signal உள்ளது!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">காணாமல் போன செய்திகள் முடக்கப்பட்டுள்ளன</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">காணாமல் போன செய்தி நேரம் %s ஆக அமைக்கப்பட்டுள்ளது</string>
@@ -681,6 +734,16 @@
   <string name="UsernameEditFragment_username">பயனர்பெயர்</string>
   <string name="UsernameEditFragment_submit">சமர்ப்பி</string>
   <string name="UsernameEditFragment_delete">அழி</string>
+  <string name="UsernameEditFragment_successfully_set_username">வெற்றிகரமாக தொகுப்பு பயனர் பெயர்.</string>
+  <string name="UsernameEditFragment_successfully_removed_username">பயனர்பெயரை வெற்றிகரமாக நீக்கியது.</string>
+  <string name="UsernameEditFragment_encountered_a_network_error">பிணைய பிழையை எதிர்கொண்டது.</string>
+  <string name="UsernameEditFragment_this_username_is_taken">இந்த பயனர்பெயர் எடுக்கப்பட்டது.</string>
+  <string name="UsernameEditFragment_this_username_is_available">இந்த பயனர்பெயர் கிடைப்பில்.</string>
+  <string name="UsernameEditFragment_usernames_can_only_include">பயனர்பெயர்களில் a-Z, 0-9 மற்றும் அடிக்கோடிட்டு மட்டுமே சேர்க்க முடியும்.</string>
+  <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">பயனர்பெயர்கள் எண்ணுடன் தொடங்க முடியாது.</string>
+  <string name="UsernameEditFragment_username_is_invalid">பயனர்பெயர் தவறானது.</string>
+  <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">பயனர்பெயர்கள் இடையில் இருக்க வேண்டும் %1$d மற்றும் %2$d  எழுத்துக்கள்.</string>
+  <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">பிற Signal பயனர்கள் உங்கள் தொலைபேசி எண்ணை அறியாமல் உங்கள் தனிப்பட்ட பயனர்பெயருக்கு செய்தி கோரிக்கைகளை அனுப்பலாம். பயனர்பெயரைத் தேர்ந்தெடுப்பது விருப்பமானது.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">உங்கள் தொடர்பு Signal பழைய பதிப்பை இயக்குகிறது. உங்கள் பாதுகாப்பு எண்ணைச் சரிபார்க்கும் முன் புதுப்பிக்குமாறு அவர்களிடம் கேளுங்கள்.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">உங்கள் தொடர்பு, பொருந்தாத QR குறியீடு வடிவத்துடன் Signal புதிய பதிப்பை இயக்குகிறது. ஒப்பீடு செய்ய  புதுப்பிக்கவும்.</string>
@@ -720,6 +783,7 @@
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">அனுமதியின்றி வெளிப்புற சேமிப்பகத்தில் சேமிக்க முடியவில்லை</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">செய்தியை நீக்கவா?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">இது இந்த செய்தியை நிரந்தரமாக நீக்கும்.</string>
+  <string name="MediaPreviewActivity_s_to_s">%1$s to %2$s</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%2$d உரையாடல்களில் %1$d புதிய செய்திகள்</string>
   <string name="MessageNotifier_most_recent_from_s">இதிலிருந்து மிக சமீபத்தியது: %1$s</string>
@@ -732,6 +796,8 @@
   <string name="MessageNotifier_mark_read">படித்தாக குறியிடு</string>
   <string name="MessageNotifier_media_message">மீடியா செய்தி</string>
   <string name="MessageNotifier_sticker">ஓட்டி</string>
+  <string name="MessageNotifier_view_once_photo">ஒரு முறை புகைப்படம் காண்க</string>
+  <string name="MessageNotifier_view_once_video">ஒரு முறை புகைப்படம் காண்க</string>
   <string name="MessageNotifier_reply">மறுமொழி கூறு</string>
   <string name="MessageNotifier_signal_message">Signal செய்தி</string>
   <string name="MessageNotifier_unsecured_sms">பாதுகாப்பற்ற எஸ்.எம்.எஸ்</string>
@@ -739,6 +805,7 @@
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">சமீபத்திய அறிவிப்புகளைச் சரிபார்க்க Signal திறக்கவும்.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">தொடர்பு</string>
+  <string name="MessageNotifier_reacted_to_your_message">உங்கள் செய்திக்கு பதிலளித்தது: %1$s</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">இயல்புநிலை</string>
   <string name="NotificationChannel_calls">அழைப்புகள்</string>
@@ -750,6 +817,8 @@
   <string name="NotificationChannel_group_messages">செய்திகள்</string>
   <string name="NotificationChannel_missing_display_name">முன் தெரிந்திராத</string>
   <!--ProfileEditNameFragment-->
+  <string name="ProfileEditNameFragment_successfully_set_profile_name">சுயவிவரப் பெயரை வெற்றிகரமாக அமைக்கவும்.</string>
+  <string name="ProfileEditNameFragment_encountered_a_network_error">பிணைய பிழையை எதிர்கொண்டது.</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal பூட்டப்பட்டிருக்கும் போது விரைவான பதில் கிடைக்காது!</string>
   <string name="QuickResponseService_problem_sending_message">செய்தி அனுப்புவதில் பிரச்சணை!</string>
@@ -765,6 +834,8 @@
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">புதிய செய்தி</string>
   <!--ThumbnailView-->
+  <string name="ThumbnailView_Play_video_description">வீடியோவை இயக்கு</string>
+  <string name="ThumbnailView_Has_a_caption_description">ஒரு தலைப்பு உள்ளது</string>
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">
     <item quantity="one">%d பொருள்</item>
@@ -830,6 +901,8 @@
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">உங்கள் தொடர்புகளைக் காண்பிக்க Signal கு தொடர்புகளின் அனுமதி தேவைப்படுகிறது, ஆனால் அது நிரந்தரமாக மறுக்கப்பட்டது. பயன்பாடு அமைப்புகள் மெனுவில் தொடரவும், \"அனுமதிகள்\" என்பதைத் தேர்ந்தெடுத்து, \"தொடர்புகளை\" இயக்கவும்.</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">தொடர்புகளை மீட்டெடுப்பதில் பிழை, உங்கள் பிணைய இணைப்பைச் சரிபார்க்கவும்</string>
+  <string name="ContactSelectionListFragment_username_not_found">பயனர்பெயர் கிடைக்கவில்லை</string>
+  <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" Signal பயனர் அல்ல. தயவுசெய்து பயனர்பெயரை சரிபார்த்து மீண்டும் முயற்சிக்கவும்.</string>
   <string name="ContactSelectionListFragment_okay">சரி</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">தடுக்கப்பட்ட தொடர்புகள் இல்லை</string>
@@ -870,6 +943,7 @@
   <string name="QuoteView_audio">கேட்பொலி</string>
   <string name="QuoteView_video">காணொளி</string>
   <string name="QuoteView_photo">புகைப்பட</string>
+  <string name="QuoteView_view_once_media">காண்கஒருமுறை அப்படித்தான் ஊடக</string>
   <string name="QuoteView_sticker">ஓட்டி</string>
   <string name="QuoteView_document">ஆவணம்</string>
   <string name="QuoteView_you">நீங்கள்</string>
@@ -1147,6 +1221,7 @@
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">உரையாடல் ஒரு குறிப்பிட்ட நீளத்தை தாண்டியவுடன் பழைய செய்திகளை தானாக நீக்கு</string>
   <string name="preferences__delete_old_messages">பழைய செய்திகளை நீக்க</string>
   <string name="preferences__chats">அரட்டைகள் மற்றும் ஊடகங்கள்</string>
+  <string name="preferences__storage">சேமிப்பு</string>
   <string name="preferences__conversation_length_limit">உரையாடலின் நீள அளவு</string>
   <string name="preferences__trim_all_conversations_now">எல்லா உரையாடல்களையும் இப்போது ஒழுங்கமைக்கவும்</string>
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">எல்லா உரையாடல்களையும் ஸ்கேன் செய்து உரையாடல் நீள வரம்புகளைச் செயல்படுத்தவும்</string>
@@ -1175,7 +1250,12 @@
   <string name="preferences_chats__when_roaming">ரோமிங் செய்யும் போது</string>
   <string name="preferences_chats__media_auto_download">மீடியா தானாக பதிவிறக்கம்</string>
   <string name="preferences_chats__message_trimming">செய்தி ஒழுங்கமைத்தல்</string>
+  <string name="preferences_storage__storage_usage">சேமிப்பக பயன்பாடு</string>
+  <string name="preferences_storage__photos">புகைப்படங்கள்</string>
+  <string name="preferences_storage__videos">வீடியோக்கள்</string>
+  <string name="preferences_storage__files">கோப்புகள்</string>
   <string name="preferences_storage__audio">ஒலி</string>
+  <string name="preferences_storage__review_storage">விமர்சனம் சேமிப்பு</string>
   <string name="preferences_advanced__use_system_emoji">கணினி ஈமோஜியைப் பயன்படுத்தவும்</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Signal  உள்ளமைக்கப்பட்ட ஈமோஜி ஆதரவை முடக்கு</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">உங்கள் ஐபி முகவரியை உங்கள் தொடர்புக்கு வெளிப்படுத்தாமல் இருக்க Signal சேவையகம் மூலம் அனைத்து அழைப்புகளையும் ரிலே செய்யவும். இயக்குவது அழைப்பு தரத்தை குறைக்கும்.</string>
@@ -1209,6 +1289,7 @@
   <string name="conversation_callable_insecure__menu_call">அழை</string>
   <!--conversation_callable_secure-->
   <string name="conversation_callable_secure__menu_call">Signal அழைப்பு</string>
+  <string name="conversation_callable_secure__menu_video">Signal வீடியோ அழைப்பு</string>
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">செய்தி விவரங்கள்</string>
   <string name="conversation_context__menu_copy_text">உரை நகலெடு</string>
@@ -1217,6 +1298,7 @@
   <string name="conversation_context__menu_resend_message">செய்தியை மீண்டும் அனுப்பு</string>
   <string name="conversation_context__menu_reply_to_message">செய்திக்கு பதில்</string>
   <!--conversation_context_reacction-->
+  <string name="conversation_context__reaction_multi_select">தேர்வு பல</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">இணைப்பைச் சேமி</string>
   <!--conversation_expiring_off-->
@@ -1295,6 +1377,7 @@
   <string name="reminder_header_share_text">அதிகமான நண்பர்கள் Signal ஐ பயன்படுத்தும் போது, அது அதிக சிறப்படைகிறது .</string>
   <string name="reminder_header_service_outage_text">Signal தொழில்நுட்ப சிக்கல்களை எதிர்கொள்கிறது. சேவையை விரைவாக மீட்டெடுக்க நாங்கள் விரைவாக வேலை செய்து  வருகிறோம்.</string>
   <string name="reminder_header_the_latest_signal_features_wont_work">அண்ட்ராய்டு இன் இந்த பதிப்பில் சமீபத்திய Signal அம்சங்கள் இயங்காது. எதிர்கால Signal புதுப்பிப்புகளைப் பெற இந்த சாதனத்தை மேம்படுத்தவும்.</string>
+  <string name="reminder_header_progress">%1$d%%</string>
   <!--media_preview-->
   <string name="media_preview__save_title">சேமி</string>
   <string name="media_preview__forward_title">முன்னோக்கி</string>
@@ -1309,14 +1392,27 @@
   <string name="trimmer__deleting_old_messages">பழையசெய்திகள் நீக்கப்படுகிறது…</string>
   <string name="trimmer__old_messages_successfully_deleted">பழையசெய்திகள் நீக்கப்பட்டது</string>
   <!--Insights-->
+  <string name="Insights__percent">%</string>
   <string name="Insights__title">நுண்ணறிவு</string>
   <string name="InsightsDashboardFragment__title">நுண்ணறிவு</string>
+  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal நெறிமுறை தானாகவே பாதுகாக்கப்படுகிறது %1$d%% கடந்த காலங்களில் உங்கள் வெளிச்செல்லும் செய்திகளின் %2$d நாட்களில். Signal பயனர்களிடையேயான உரையாடல்கள் எப்போதும் இறுதி முதல் இறுதி வரை குறியாக்கம் செய்யப்படுகின்றன.</string>
+  <string name="InsightsDashboardFragment__boost_your_signal">Signal பூஸ்ட்</string>
   <string name="InsightsDashboardFragment__not_enough_data">போதிய தரவு இல்லை</string>
+  <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">உங்கள் நுண்ணறிவு சதவீதம் கடந்த காலங்களில் வெளிச்செல்லும் செய்திகளின் அடிப்படையில் கணக்கிடப்படுகிறது %1$d காணாமல் போன அல்லது நீக்கப்படாத நாட்கள்.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">புதிய உரையாடலை தொடங்கு</string>
+  <string name="InsightsDashboardFragment__invite_your_contacts">பாதுகாப்பாக தொடர்பு கொள்ளத் தொடங்குங்கள் மற்றும் குறியாக்கமில்லாத எஸ்எம்எஸ் செய்திகளின் வரம்புகளுக்கு அப்பாற்பட்ட புதிய அம்சங்களை Signal சேர கூடுதல் தொடர்புகளை அழைப்பதன் மூலம் இயக்கவும்.</string>
+  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">இந்த புள்ளிவிவரங்கள் உள்நாட்டில் உருவாக்கப்பட்டன உங்கள் சாதனம் மற்றும் மட்டுமே பார்க்க முடியும் நீங்கள். அவை ஒருபோதும் எங்கும் பரவுவதில்லை.</string>
   <string name="InsightsDashboardFragment__encrypted_messages">மறையாக்கப்பட்ட செய்திகள்</string>
   <string name="InsightsDashboardFragment__cancel">ரத்து</string>
   <string name="InsightsDashboardFragment__send">அனுப்புக</string>
+  <string name="InsightsModalFragment__title">நுண்ணறிவுகளை அறிமுகப்படுத்துகிறது</string>
+  <string name="InsightsModalFragment__description">எத்தனை என்று கண்டுபிடிக்கவும் உங்கள் வெளிச்செல்லும் செய்திகள் பாதுகாப்பாக அனுப்பப்பட்டன, பின்னர் விரைவாக புதிய தொடர்புகளை அழைக்கவும் உங்கள் Signal சதவிதம்.</string>
+  <string name="InsightsModalFragment__view_insights">நுண்ணறிவுகளைக் காண்க</string>
   <string name="FirstInviteReminder__title">Signal க்கு அழைக்கவும்</string>
+  <string name="FirstInviteReminder__description">நீங்கள் அனுப்பும் மறைகுறியாக்கப்பட்ட செய்திகளின் எண்ணிக்கையை அதிகரிக்கலாம் %1$d%%</string>
+  <string name="SecondInviteReminder__title">உங்கள் Signal அதிகரிக்கவும்</string>
+  <string name="SecondInviteReminder__description">அழைக்கவும் %1$s</string>
+  <string name="InsightsReminder__view_insights">நுண்ணறிவுகளைக் காண்க</string>
   <string name="InsightsReminder__invite">அழை</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">போக்குவரத்து குறும்படம்</string>
@@ -1407,6 +1503,8 @@
   <string name="RegistrationLockDialog_error_connecting_to_the_service">சேவைக்கு இணைப்பதில் பிழை</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">பதிவு பூட்டு பின் முடக்கவா?</string>
   <string name="RegistrationLockDialog_disable">முடக்கு</string>
+  <string name="RegistrationActivity_pin_incorrect">பின் தவறானது</string>
+  <string name="RegistrationActivity_you_have_d_tries_remaining">உங்களிடம் உள்ளது %d மீதமுள்ள முயற்சிக்கிறது</string>
   <string name="preferences_chats__backups">காப்புப் பிரதிகள்</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal பூட்டப்பட்டுள்ளது</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">திறக்க தட்டவும் </string>
@@ -1416,5 +1514,14 @@
   <string name="MessageRequestBottomView_accept">ஒப்புக்கொள்</string>
   <string name="MessageRequestBottomView_delete">அழி</string>
   <string name="MessageRequestBottomView_block">தடு </string>
+  <string name="MessageRequestBottomView_do_you_want_to_let">நீங்கள் செய்திகளைப் பெற விரும்புகிறீர்களா %1$s?</string>
+  <string name="MessageRequestProfileView_member_of_one_group">உறுப்பினர்%1$s</string>
+  <string name="MessageRequestProfileView_member_of_two_groups">உறுப்பினர் %1$s மற்றும் %2$s</string>
+  <string name="MessageRequestProfileView_member_of_many_groups">உறுப்பினர் %1$s, %2$s, மற்றும் %3$s</string>
+  <string name="MessageRequestProfileView_members">%1$d உறுப்பினர்கள்</string>
+  <plurals name="MessageRequestProfileView_member_of_others">
+    <item quantity="one">%d மற்ற</item>
+    <item quantity="other">%d மற்றவைகள்</item>
+  </plurals>
   <!--EOF-->
 </resources>

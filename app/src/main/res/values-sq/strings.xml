@@ -238,7 +238,7 @@
   <string name="ConversationFragment_failed_to_open_message">S’u arrit të hapet mesazhe</string>
   <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Për t’u përgjigjur shpejt e shpejt, mund të fërkoni ekranin për djathtas</string>
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Për t’u përgjigjur shpejt e shpejt, mund të fërkoni ekranin për majtas</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_view_once_message_are_not_stored_in_your_conversation_history">Mesazhet për t’u parë vetëm një herë nuk depozitohen në historikun e bisedave tuaja</string> -->
+  <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Kartela media për parje vetëm një herë, që duhen dërguar, hiqen automatikisht pasi të jenë dërguar.</string>
   <string name="ConversationFragment_you_already_viewed_this_message">E patë tashmë këtë mesazh</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Në pajisjen tuaj s\’ka shfletues të instaluar.</string>

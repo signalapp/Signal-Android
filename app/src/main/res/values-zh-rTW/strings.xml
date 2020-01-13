@@ -228,7 +228,6 @@
   <string name="ConversationFragment_failed_to_open_message">開啟訊息失敗</string>
   <string name="ConversationFragment_you_can_swipe_to_the_right_reply">你可以在任何訊息上向右滑動以快速回覆</string>
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">你可以在任何訊息上向左滑動以快速回覆</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_view_once_message_are_not_stored_in_your_conversation_history">一次性訊息不會儲存在你的對話歷程中</string> -->
   <string name="ConversationFragment_you_already_viewed_this_message">你已經看過這個訊息</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">您的裝置上未安裝瀏覽器。</string>

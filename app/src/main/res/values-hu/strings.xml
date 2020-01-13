@@ -239,7 +239,7 @@
   <string name="ConversationFragment_failed_to_open_message">Nem sikerült megnyitni az üzenetet</string>
   <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Az üzenetet jobbra húzva gyorsan válaszolhatsz rá</string>
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Az üzenetet balra húzva gyorsan válaszolhatsz rá</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_view_once_message_are_not_stored_in_your_conversation_history">Az egyszer megjelenő üzenetek nem kerülnek be a beszélgetésnaplóba</string> -->
+  <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">A kimenő egyszer megjelenő médiafájlokat automatikusan töröljük feladásukat követően</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Ezt az üzenetet egyszer már megtekintetted</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Nincs böngésző telepítve a készülékedre.</string>

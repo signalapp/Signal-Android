@@ -258,7 +258,7 @@
   <string name="ConversationFragment_failed_to_open_message">Nie udało się otworzyć wiadomości</string>
   <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Możesz przesunąć wiadomość w prawo, by szybko odpowiedzieć.</string>
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Możesz przesunąć wiadomość w lewo, by szybko odpowiedzieć.</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_view_once_message_are_not_stored_in_your_conversation_history">Wiadomości jednorazowe nie są przechowywane w Twojej historii konwersacji</string> -->
+  <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Wychodzące wiadomości jednorazowe są automatycznie usuwane po wysłaniu</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Już widziałeś(aś) tę wiadomość</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Twoje urządzenie nie ma zainstalowanej przeglądarki.</string>

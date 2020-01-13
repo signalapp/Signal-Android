@@ -258,6 +258,8 @@
   <string name="ConversationFragment_failed_to_open_message">Nepodarilo sa otvoriť správu</string>
   <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Pre rýchlu odpoveď môžete na akejkoľvek správe prejsť prstom doprava</string>
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Pre rýchlu odpoveď môžete na akejkoľvek správe prejsť prstom doľava</string>
+  <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Odchádzajúce mediálne súbory na jedno zobrazenie sa po odoslaní automaticky odstránia</string>
+  <string name="ConversationFragment_you_already_viewed_this_message">Túto správu ste si už zobrazili</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Nemáte nainštalovaný žiadny prehliadač.</string>
   <!--ConversationListFragment-->
@@ -747,6 +749,9 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="ThreadRecord_missed_call">Zmeškaný hovor</string>
   <string name="ThreadRecord_media_message">Multimediálna správa</string>
   <string name="ThreadRecord_sticker">Nálepka</string>
+  <string name="ThreadRecord_view_once_photo">Fotka na jedno zobrazenie</string>
+  <string name="ThreadRecord_view_once_video">Video na jedno zobrazenie</string>
+  <string name="ThreadRecord_view_once_media">Médiá na jedno zobrazenie</string>
   <string name="ThreadRecord_s_is_on_signal">%s je na Signale!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Miznúce správy vypnuté</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Čas miznúcich správ bol nastavený na %s</string>
@@ -837,6 +842,8 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="MessageNotifier_mark_read">Označiť ako prečítané</string>
   <string name="MessageNotifier_media_message">Multimediálna správa</string>
   <string name="MessageNotifier_sticker">Nálepka</string>
+  <string name="MessageNotifier_view_once_photo">Fotka na jedno zobrazenie</string>
+  <string name="MessageNotifier_view_once_video">Video na jedno zobrazenie</string>
   <string name="MessageNotifier_reply">Odpovedať</string>
   <string name="MessageNotifier_signal_message">Signal správa</string>
   <string name="MessageNotifier_unsecured_sms">Nezabezpečená SMS</string>
@@ -984,6 +991,7 @@ Bola prijatá správa výmeny kľúčov s neplatnou verziou protokolu.
   <string name="QuoteView_audio">Zvuk</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Fotka</string>
+  <string name="QuoteView_view_once_media">Médiá na jedno zobrazenie</string>
   <string name="QuoteView_sticker">Nálepka</string>
   <string name="QuoteView_document">Dokument</string>
   <string name="QuoteView_you">Vy</string>

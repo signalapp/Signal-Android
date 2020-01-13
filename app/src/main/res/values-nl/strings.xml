@@ -238,7 +238,7 @@
   <string name="ConversationFragment_failed_to_open_message">Openen van bericht is mislukt</string>
   <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Je kunt elk bericht naar rechts vegen om snel een reactie te schijven</string>
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Je kunt elk bericht naar links vegen om snel een reactie te schijven</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_view_once_message_are_not_stored_in_your_conversation_history">Eenmaligeweergave-berichten worden niet worden niet opgeslagen in je gespreksgeschiedenis, je kunt ze dus niet terug zien.</string> -->
+  <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Uitgaande eenmaligeweergave-mediabestanden worden automatisch gewist zodra ze zijn verzonden. Je kunt ze dus niet terugzien.</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Je hebt dit bericht al weergegeven</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Er is geen browser op je apparaat geïnstalleerd.</string>

@@ -258,7 +258,7 @@
   <string name="ConversationFragment_failed_to_open_message">Odpiranje sporočila ni uspelo</string>
   <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Za hiter odgovor na sporočilo podrsajte na desno</string>
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Za hiter odgovor na sporočilo podrsajte na levo</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_view_once_message_are_not_stored_in_your_conversation_history">Sporočila za enkraten ogled se ne shranjujejo v zgodovino pogovorov</string> -->
+  <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Poslane medijske datoteke za enkraten ogled so avtomatično odstranjene s seznama </string>
   <string name="ConversationFragment_you_already_viewed_this_message">To sporočilo ste že videli</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Na svoji napravi nimate nameščenega spletnega brskalnika.</string>

@@ -238,7 +238,6 @@
   <string name="ConversationFragment_failed_to_open_message">İleti açılamadı</string>
   <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Herhangi bir iletiyi hızlıca yanıtlamak için sağa kaydırabilirsiniz</string>
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Herhangi bir iletiyi hızlıca yanıtlamak için sola kaydırabilirsiniz</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_view_once_message_are_not_stored_in_your_conversation_history">Tek görümlük iletiler sohbet geçmişinizde depolanmaz</string> -->
   <string name="ConversationFragment_you_already_viewed_this_message">Bu iletiyi zaten görüntülediniz</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Cihazınıza yüklü tarayıcı bulunmamaktadır.</string>

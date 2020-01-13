@@ -26,7 +26,7 @@
   <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Signalとメッセージ通知のロックを無効にします</string>
   <string name="ApplicationPreferencesActivity_disable">無効</string>
   <string name="ApplicationPreferencesActivity_unregistering">登録取り消し</string>
-  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Signalの登録を解除しています…</string>
+  <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Signalの登録を削除しています…</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Signalでのメッセージ・通話を無効にしますか？</string>
   <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">サーバーから登録を取消します。Signalを使ったメッセージのやり取りや通話はできなくなります。 再びSignalを使うためには、あなたの電話番号を再登録をする必要があります。</string>
   <string name="ApplicationPreferencesActivity_error_connecting_to_server">サーバー接続中にエラーが発生しました！</string>
@@ -228,6 +228,7 @@
   <string name="ConversationFragment_failed_to_open_message">メッセージの開封に失敗しました</string>
   <string name="ConversationFragment_you_can_swipe_to_the_right_reply">メッセージを右にスワイプすると返信できます。</string>
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">メッセージを左にスワイプすると返信できます。</string>
+  <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">使い捨てメディアファイルは、送信後に自動で削除されます。</string>
   <string name="ConversationFragment_you_already_viewed_this_message">このメッセージは閲覧済みです</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">ブラウザがインストールされていません</string>
@@ -612,6 +613,7 @@
   <string name="RegistrationActivity_call">通話</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_view_photo">写真を見る</string>
+  <string name="RevealableMessageView_view_video">動画を見る</string>
   <string name="RevealableMessageView_viewed">閲覧済み</string>
   <string name="RevealableMessageView_media">メディア</string>
   <!--ScribbleActivity-->
@@ -671,6 +673,9 @@
   <string name="ThreadRecord_missed_call">不在着信</string>
   <string name="ThreadRecord_media_message">メディアでのメッセージ</string>
   <string name="ThreadRecord_sticker">ステッカー</string>
+  <string name="ThreadRecord_view_once_photo">使い捨て写真</string>
+  <string name="ThreadRecord_view_once_video">使い捨て動画</string>
+  <string name="ThreadRecord_view_once_media">使い捨てメディア</string>
   <string name="ThreadRecord_s_is_on_signal">%sがSignalに登録しています！</string>
   <string name="ThreadRecord_disappearing_messages_disabled">消えるメッセージが無効にされました</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">消えるメッセージの消去時間が%sに設定されました</string>
@@ -761,6 +766,8 @@
   <string name="MessageNotifier_mark_read">既読にする</string>
   <string name="MessageNotifier_media_message">メディアメッセージ</string>
   <string name="MessageNotifier_sticker">ステッカー</string>
+  <string name="MessageNotifier_view_once_photo">使い捨て写真</string>
+  <string name="MessageNotifier_view_once_video">使い捨て動画</string>
   <string name="MessageNotifier_reply">返信</string>
   <string name="MessageNotifier_signal_message">Signalメッセージ</string>
   <string name="MessageNotifier_unsecured_sms">安全でないSMS</string>
@@ -905,6 +912,7 @@
   <string name="QuoteView_audio">音声</string>
   <string name="QuoteView_video">動画</string>
   <string name="QuoteView_photo">写真</string>
+  <string name="QuoteView_view_once_media">使い捨てメディア</string>
   <string name="QuoteView_sticker">ステッカー</string>
   <string name="QuoteView_document">ドキュメント</string>
   <string name="QuoteView_you">あなた</string>

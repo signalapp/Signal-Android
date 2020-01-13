@@ -106,7 +106,7 @@
   <string name="CommunicationActions_cancel">Avbryt</string>
   <string name="CommunicationActions_call">Ring</string>
   <!--ConfirmIdentityDialog-->
-  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Ditt säkerhetsnummer med %1$s har ändrats. Detta kan antingen betyda att någon försöker avlyssna er kommunikation, eller att %2$s helt enkelt ominstallerat Signal.</string>
+  <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Ditt säkerhetsnummer med %1$s har ändrats. Detta kan antingen betyda att någon försöker avlyssna er kommunikation, eller att %2$s helt enkelt har installerat om Signal.</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Du kan vilja bekräfta säkerhetsnummer med denna kontakt.</string>
   <string name="ConfirmIdentityDialog_accept">Acceptera</string>
   <!--ContactsCursorLoader-->
@@ -238,8 +238,8 @@
   <string name="ConversationFragment_failed_to_open_message">Det gick inte att öppna meddelandet</string>
   <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Du kan dra åt höger på ett meddelande för att snabbt svara</string>
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Du kan dra åt vänster på ett meddelande för att snabbt svara</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_view_once_message_are_not_stored_in_your_conversation_history">Visa-när meddelanden inte lagras i konversationshistoriken</string> -->
-  <string name="ConversationFragment_you_already_viewed_this_message">Du har redan visat det här meddelandet</string>
+  <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Filer för utgående engångsmedia raderas automatiskt efter att de har skickats</string>
+  <string name="ConversationFragment_you_already_viewed_this_message">Du har redan sett det här meddelandet</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Det finns ingen webbläsare installerad på din enhet.</string>
   <!--ConversationListFragment-->
@@ -1094,7 +1094,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="unknown_sender_view__add_to_contacts">LÄGG TILL KONTAKT</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">LÄGG INTE TILL, MEN GÖR PROFILEN SYNLIG</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Om du vill bekräfta säkerheten för din krypteringen med %s, jämför numret ovan med numret på deras enhet. Alternativt så kan du skanna koden på deras telefon eller be dem skanna din kod. <a href="https://signal.org/redirect/safety-numbers">Läs mer.</a>]]></string>
+  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Om du vill bekräfta säkerheten för din kryptering med %s, jämför numret ovan med numret på deras enhet. Alternativt så kan du skanna QR-koden på deras telefon eller be dem skanna din kod. <a href="https://signal.org/redirect/safety-numbers">Läs mer.</a>]]></string>
   <string name="verify_display_fragment__tap_to_scan">Tryck för att skanna</string>
   <string name="verify_display_fragment__loading">Hämtar in…</string>
   <string name="verify_display_fragment__verified">Bekräftat</string>
@@ -1198,7 +1198,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences__cyan">Turkos</string>
   <string name="preferences__magenta">Lila</string>
   <string name="preferences__white">Vit</string>
-  <string name="preferences__none">Inga</string>
+  <string name="preferences__none">Ingen</string>
   <string name="preferences__fast">Snabb</string>
   <string name="preferences__normal">Normal</string>
   <string name="preferences__slow">Långsam</string>
@@ -1466,7 +1466,7 @@ Tog emot meddelande för nyckelutbyte för ogiltig protokollversion.</string>
   <string name="preferences_app_protection__screen_lock">Skärmlås</string>
   <string name="preferences_app_protection__lock_signal_access_with_android_screen_lock_or_fingerprint">Lås åtkomst till Signal med Androids skärmlås eller fingeravtryck</string>
   <string name="preferences_app_protection__screen_lock_inactivity_timeout">Skärmlåsets tidsgräns för inaktivitet </string>
-  <string name="AppProtectionPreferenceFragment_none">Inga</string>
+  <string name="AppProtectionPreferenceFragment_none">Ingen</string>
   <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">PIN-koden för registreringslåset är inte samma som den SMS-bekräftelsekod du precis fick. Ange PIN-koden du tidigare ställde in i appen.</string>
   <string name="registration_activity__registration_lock_pin">PIN-kod för registreringslås</string>
   <string name="registration_activity__forgot_pin">Glömt PIN-kod?</string>

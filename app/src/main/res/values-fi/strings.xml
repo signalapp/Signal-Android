@@ -238,7 +238,7 @@
   <string name="ConversationFragment_failed_to_open_message">Viestin avaaminen epäonnistui</string>
   <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Voit pyyhkäistä oikealle missä tahansa viestissä vastataksesi nopeasti</string>
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Voit pyyhkäistä vasemmalle missä tahansa viestissä vastataksesi nopeasti</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_view_once_message_are_not_stored_in_your_conversation_history">Kerran katsottavia viestejä ei säilytetä keskusteluhistoriassasi</string> -->
+  <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Lähtevät kerran katsottavat mediatiedostot poistetaan automaattisesti lähettämisen jälkeen</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Olet jo katsonut tämän viestin</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Laitteessasi ei ole verkkoselainta asennettuna.</string>

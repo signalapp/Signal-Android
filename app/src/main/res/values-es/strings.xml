@@ -238,7 +238,7 @@
   <string name="ConversationFragment_failed_to_open_message">Fallo al abrir mensaje</string>
   <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Puedes arrastrar hacia la derecha sobre cualquier mensaje para responder rápidamente</string>
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Puedes arrastrar hacia la izquierda sobre cualquier mensaje para responder rápidamente</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_view_once_message_are_not_stored_in_your_conversation_history">Los mensajes para ver solo una vez no se almacenan en tu historial de chat.</string> -->
+  <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Los medios que envías para ver solo una vez se eliminan automáticamente tras enviar.</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Ya has visto este mensaje</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">No hay ningún navegador instalado</string>

@@ -239,7 +239,6 @@
   <string name="ConversationFragment_failed_to_open_message">Fejl ved åbning af besked</string>
   <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Du kan swipe til højre på enhver besked, for at svare hurtigt</string>
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Du kan swipe til venstre på enhver besked, for at svare hurtigt</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationFragment_view_once_message_are_not_stored_in_your_conversation_history">Se én gang-beskeder gemmes ikke i din historik for beskeder</string> -->
   <string name="ConversationFragment_you_already_viewed_this_message">Beskeden er allerede læst</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Ingen browser installeret på enheden</string>
