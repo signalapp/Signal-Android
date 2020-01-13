@@ -9,7 +9,7 @@
     android:orientation="vertical">
 
     <EditText
-        style="@style/SmallSessionEditText"
+        style="@style/SessionEditText"
         android:id="@+id/publicKeyEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

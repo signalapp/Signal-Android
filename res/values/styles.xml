@@ -117,6 +117,18 @@
         <item name="android:maxLines">1</item>
     </style>
 
+    <style name="SmallSessionEditText">
+        <item name="android:background">@drawable/session_id_text_view_background</item>
+        <item name="android:paddingLeft">@dimen/medium_spacing</item>
+        <item name="android:paddingTop">@dimen/large_spacing</item>
+        <item name="android:paddingRight">@dimen/medium_spacing</item>
+        <item name="android:paddingBottom">@dimen/large_spacing</item>
+        <item name="android:textSize">@dimen/small_font_size</item>
+        <item name="android:textColor">@color/text</item>
+        <item name="android:textCursorDrawable">@drawable/session_edit_text_cursor</item>
+        <item name="android:maxLines">1</item>
+    </style>
+
     <style name="FakeChatViewIncomingMessageBubble">
         <item name="android:background">@drawable/fake_chat_view_incoming_message_background</item>
         <item name="android:paddingLeft">@dimen/medium_spacing</item>

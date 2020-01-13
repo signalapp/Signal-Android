@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/very_large_spacing"
         android:layout_marginRight="@dimen/very_large_spacing"
-        android:textSize="@dimen/very_large_font_size"
+        android:textSize="@dimen/large_font_size"
         android:textStyle="bold"
         android:textColor="@color/text"
         android:text="Pick your display name" />
@@ -25,19 +25,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/very_large_spacing"
-        android:layout_marginTop="@dimen/medium_spacing"
+        android:layout_marginTop="6dp"
         android:layout_marginRight="@dimen/very_large_spacing"
-        android:textSize="@dimen/medium_font_size"
+        android:textSize="@dimen/small_font_size"
         android:textColor="@color/text"
         android:text="This is how others will be able to recognize you." />
 
     <EditText
-        style="@style/SessionEditText"
+        style="@style/SmallSessionEditText"
         android:id="@+id/displayNameEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/very_large_spacing"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="12dp"
         android:layout_marginRight="@dimen/very_large_spacing"
         android:hint="Enter a display name" />
 
@@ -53,7 +53,7 @@
         android:layout_height="@dimen/medium_button_height"
         android:layout_marginLeft="@dimen/massive_spacing"
         android:layout_marginRight="@dimen/massive_spacing"
-        android:layout_marginBottom="@dimen/medium_spacing"
+        android:layout_marginBottom="@dimen/small_spacing"
         android:text="Continue" />
 
 </LinearLayout>
