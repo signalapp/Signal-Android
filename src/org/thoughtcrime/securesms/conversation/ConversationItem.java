@@ -102,7 +102,6 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientModifiedListener;
 import org.thoughtcrime.securesms.stickers.StickerUrl;
 import org.thoughtcrime.securesms.util.DateUtils;
-import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.LongClickCopySpan;
 import org.thoughtcrime.securesms.util.LongClickMovementMethod;
@@ -367,15 +366,7 @@ public class ConversationItem extends LinearLayout
   }
 
   private void setAudioViewTint(MessageRecord messageRecord, Recipient recipient) {
-    if (messageRecord.isOutgoing()) {
-      if (DynamicTheme.LIGHT.equals(TextSecurePreferences.getTheme(context))) {
-        audioViewStub.get().setTint(getContext().getResources().getColor(R.color.core_grey_60), defaultBubbleColor);
-      } else {
-        audioViewStub.get().setTint(Color.WHITE, defaultBubbleColor);
-      }
-    } else {
-      audioViewStub.get().setTint(Color.WHITE, recipient.getColor().toConversationColor(context));
-    }
+    audioViewStub.get().setTint(Color.WHITE, getResources().getColor(R.color.action_bar_background));
   }
 
   private void setInteractionState(MessageRecord messageRecord, boolean pulseHighlight) {
@@ -470,6 +461,10 @@ public class ConversationItem extends LinearLayout
     bodyText.setClickable(false);
     bodyText.setFocusable(false);
     bodyText.setTextSize(TypedValue.COMPLEX_UNIT_SP, TextSecurePreferences.getMessageBodyTextSize(context));
+    bodyBubble.setPadding(0, 0, 0, 0);
+    if (messageRecord.isOutgoing() && !(isCaptionlessMms(messageRecord) && !hasAudio(messageRecord))) {
+      bodyBubble.setPadding(0, 0, 0, (int) getResources().getDimension(R.dimen.medium_spacing));
+    }
     if (isCaptionlessMms(messageRecord)) {
       bodyText.setVisibility(View.GONE);
     } else {
