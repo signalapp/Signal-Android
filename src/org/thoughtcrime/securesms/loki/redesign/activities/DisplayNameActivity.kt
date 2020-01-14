@@ -9,8 +9,8 @@ import network.loki.messenger.R
 import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.BaseActionBarActivity
 import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.thoughtcrime.securesms.loki.redesign.utilities.push
 import org.thoughtcrime.securesms.loki.redesign.utilities.setUpActionBarSessionLogo
+import org.thoughtcrime.securesms.loki.redesign.utilities.show
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.crypto.ProfileCipher
 
@@ -51,6 +51,6 @@ class DisplayNameActivity : BaseActionBarActivity() {
         }
         val intent = Intent(this, HomeActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-        push(intent)
+        show(intent)
     }
 }

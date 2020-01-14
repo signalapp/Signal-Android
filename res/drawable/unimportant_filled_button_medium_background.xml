@@ -5,7 +5,7 @@
 
     <solid  android:color="@color/unimportant_button_background" />
 
-    <corners android:radius="24dp" />
+    <corners android:radius="22dp" />
 
     <stroke android:width="@dimen/border_thickness" android:color="@color/unimportant_button_background" />
 </shape>

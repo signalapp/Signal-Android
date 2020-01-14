@@ -45,15 +45,14 @@
             android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="20dp"
-            android:padding="5dp"
+            android:layout_marginEnd="@dimen/medium_spacing"
+            android:layout_marginBottom="@dimen/medium_spacing"
             android:layout_gravity="bottom|end"
-            android:background="@drawable/circle_tintable"
-            android:tint="@color/grey_600"
-            android:elevation="1dp"
-            android:alpha="0.9"
+            android:background="@drawable/scroll_to_bottom_button_background"
+            android:padding="@dimen/small_spacing"
+            android:tint="@color/text"
+            android:elevation="10dp"
             android:contentDescription="@string/conversation_fragment__scroll_to_the_bottom_content_description"
-            android:src="@drawable/ic_scroll_down"/>
+            android:src="@drawable/ic_keyboard_arrow_down_white_24dp"/>
 
 </FrameLayout>

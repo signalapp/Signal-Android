@@ -108,9 +108,9 @@
     <style name="SessionEditText">
         <item name="android:background">@drawable/session_id_text_view_background</item>
         <item name="android:paddingLeft">@dimen/medium_spacing</item>
-        <item name="android:paddingTop">@dimen/very_large_spacing</item>
+        <item name="android:paddingTop">30dp</item>
         <item name="android:paddingRight">@dimen/medium_spacing</item>
-        <item name="android:paddingBottom">@dimen/very_large_spacing</item>
+        <item name="android:paddingBottom">30dp</item>
         <item name="android:textSize">@dimen/small_font_size</item>
         <item name="android:textColor">@color/text</item>
         <item name="android:textCursorDrawable">@drawable/session_edit_text_cursor</item>

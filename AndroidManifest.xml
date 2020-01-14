@@ -359,7 +359,7 @@
         <activity
             android:name="org.thoughtcrime.securesms.mediasend.MediaSendActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-            android:theme="@style/TextSecure.DarkNoActionBar"
+            android:theme="@style/Session.DarkTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name="org.thoughtcrime.securesms.PassphraseChangeActivity"
@@ -486,7 +486,7 @@
             android:theme="@style/TextSecure.DarkTheme" />
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
-            android:theme="@style/TextSecure.DarkTheme" />
+            android:theme="@style/Session.DarkTheme" />
         <activity
             android:name="org.thoughtcrime.securesms.CreateProfileActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
