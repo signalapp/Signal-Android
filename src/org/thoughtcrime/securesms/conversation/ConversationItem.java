@@ -470,7 +470,10 @@ public class ConversationItem extends LinearLayout
     bodyText.setClickable(false);
     bodyText.setFocusable(false);
     bodyText.setTextSize(TypedValue.COMPLEX_UNIT_SP, TextSecurePreferences.getMessageBodyTextSize(context));
-
+    bodyBubble.setPadding(0, 0, 0, 0);
+    if (messageRecord.isOutgoing() && !isCaptionlessMms(messageRecord)) {
+      bodyBubble.setPadding(0, 0, 0, (int) getResources().getDimension(R.dimen.medium_spacing));
+    }
     if (isCaptionlessMms(messageRecord)) {
       bodyText.setVisibility(View.GONE);
     } else {
