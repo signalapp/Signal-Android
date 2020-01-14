@@ -717,12 +717,12 @@
     <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Services is updating or temporarily unavailable. Please try again.</string>
     <string name="RegistrationActivity_terms_and_privacy">Terms &amp; Privacy Policy</string>
     <string name="RegistrationActivity_we_must_ask_you_to_agree_to_our_terms_of_service">We must ask you be aware of and agree to our <a href="https://signal.org/legal/#terms-of-service">Terms of Service</a> if you wish to use Signal.\nSignal is designed to never collect or store any sensitive information. Please read our Privacy Policy to understand how we safeguard the information you provide when using our Services. For the purpose of operating our Services, you agree to our data practices as described in our Privacy Policy, as well as the transfer of your encrypted information and metadata to the United States and other countries where we have or use facilities, service providers or partners. Examples would be Third Party Providers sending you a verification code and processing your support tickets.</string>
-    <string name="RegistrationActivity_explicit_consent__i_agree">I agree</string>
+    <string name="RegistrationActivity_explicit_consent__i_agree">I agree to the Terms of Service</string>
     <string name="RegistrationActivity_explicit_consent__exit_signal">Exit Signal</string>
     <string name="RegistrationActivity_no_browser">Unable to open this link. No web browser found.</string>
     <string name="RegistrationActivity_more_information">More information</string>
     <string name="RegistrationActivity_less_information">Less information</string>
-    <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal requires permission to view your contacts, in order to send messages and initiate calls to your contacts. Signal also requires permission to access media on your device in order to add files as attachments. Finally, Signal requires permission to view your call status, so Signal calls won\'t interfere with other calls.</string>
+    <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal needs permission to read your contacts, in order to send messages and make secure calls to contacts from your address book. Signal also requires permission to read and write your media to add files as attachments and to save media on your device. Finally, Signal needs to read the call status, so Signal calls won\'t interfere with other calls.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Unable to connect to service. Please check network connection and try again.</string>
     <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">To easily verify your phone number, Signal can automatically detect your verification code if you allow Signal to view SMS messages.</string>
     <plurals name="RegistrationActivity_debug_log_hint">
@@ -876,11 +876,11 @@
     <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string>
 
     <!-- MessageDisplayHelper -->
-    <string name="MessageDisplayHelper_bad_encrypted_message">Message encrypted incorrectly</string>
+    <string name="MessageDisplayHelper_bad_encrypted_message">Message cannot be decrypted</string>
     <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Message encrypted for non-existing session</string>
 
     <!-- MmsMessageRecord -->
-    <string name="MmsMessageRecord_bad_encrypted_mms_message">Bad encrypted MMS message</string>
+    <string name="MmsMessageRecord_bad_encrypted_mms_message">MMS message cannot be decrypted</string>
     <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS message encrypted for non-existing session</string>
 
     <!-- MuteDialog -->
@@ -1418,7 +1418,7 @@
     <string name="preferences__pref_enter_sends_title">Enter key sends</string>
     <string name="preferences__pressing_the_enter_key_will_send_text_messages">Pressing the Enter key will send text messages</string>
     <string name="preferences__send_link_previews">Send link previews</string>
-    <string name="preferences__previews_are_supported_for">Also send a preview image if your message contains a link to Imgur, Instagram, Pinterest, Reddit, or YouTube.</string>
+    <string name="preferences__previews_are_supported_for">Attach a preview image to your message if it contains a link to Imgur, Instagram, Pinterest, Reddit, or YouTube.</string>
     <string name="preferences__choose_identity">Choose identity</string>
     <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Choose your contact entry from the contacts list.</string>
     <string name="preferences__change_passphrase">Change passphrase</string>
@@ -1517,7 +1517,7 @@
     <string name="preferences_chats__chats">Chats</string>
     <string name="preferences_notifications__messages">Messages</string>
     <string name="preferences_notifications__events">Events</string>
-    <string name="preferences_notifications__in_chat_sounds">Also sound if Signal is open already</string>
+    <string name="preferences_notifications__in_chat_sounds">Also sound if Signal is on foreground</string>
     <string name="preferences_notifications__show">Show</string>
     <string name="preferences_notifications__calls">Calls</string>
     <string name="preferences_notifications__ringtone">Ringtone</string>
@@ -1722,7 +1722,7 @@
     <string name="registration_activity__skip">Skip</string>
     <string name="registration_activity__register">Register</string>
     <string name="preferences_chats__chat_backups">Let Signal create backups</string>
-    <string name="preferences_chats__backup_chats_to_external_storage">Allow Signal to create encrypted backup files of your chats and media to /Signal/Backups on your phone\'s internal storage. If enabled Signal will create backups automatically every 24 hours. Only the two most recent successful backups will be kept.</string>
+    <string name="preferences_chats__backup_chats_to_external_storage">Allow Signal to create encrypted backup files of your chats and media to /Signal/Backups on your phone\'s internal storage. If enabled, Signal will automatically create a backup each day. Only the two most recent successful backups will be kept.</string>
     <string name="preferences_chats__create_backup">Create backup file now</string>
     <string name="RegistrationActivity_enter_backup_passphrase">Enter backup passphrase</string>
     <string name="RegistrationActivity_restore">Restore</string>
@@ -1762,7 +1762,7 @@
     <string name="registration_activity__the_registration_lock_pin_is_not_the_same_as_the_sms_verification_code_you_just_received_please_enter_the_pin_you_previously_configured_in_the_application">The Registration Lock PIN is not the same as the SMS verification code you just received. Please enter the PIN you previously configured in the application.</string>
     <string name="registration_activity__registration_lock_pin">Registration Lock PIN</string>
     <string name="registration_activity__forgot_pin">Forgot PIN?</string>
-    <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">Make up your own PIN, which must consist of four or more digits. If you forget your PIN, you could be locked out of your Signal account for up to seven days.</string>
+    <string name="registration_lock_dialog_view__the_pin_can_consist_of_four_or_more_digits_if_you_forget_your_pin_you_could_be_locked_out_of_your_account_for_up_to_seven_days">Create a PIN, which must consist of four or more digits. If you forget your PIN, you could be locked out of your Signal account for up to seven days.</string>
     <string name="registration_lock_dialog_view__enter_pin">Enter PIN</string>
     <string name="registration_lock_dialog_view__confirm_pin">Confirm PIN</string>
     <string name="registration_lock_reminder_view__enter_your_registration_lock_pin">Enter your Registration Lock PIN</string>
