@@ -13,5 +13,7 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
+    - name: Validate Gradle Wrapper
+      uses: gradle/wrapper-validation-action@v1
     - name: Build with Gradle
       run: ./gradlew qa
