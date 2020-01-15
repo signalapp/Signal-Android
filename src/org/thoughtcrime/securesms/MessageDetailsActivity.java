@@ -114,11 +114,13 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
 
   @Override
   public void onCreate(Bundle bundle, boolean ready) {
+    super.onCreate(bundle, ready);
     setContentView(R.layout.message_details_activity);
     running = true;
 
     initializeResources();
     initializeActionBar();
+    getWindow().setNavigationBarColor(getResources().getColor(R.color.navigation_bar_background));
     getSupportLoaderManager().initLoader(0, null, this);
   }
 
@@ -129,7 +131,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
     dynamicLanguage.onResume(this);
 
     assert getSupportActionBar() != null;
-    getSupportActionBar().setTitle(R.string.AndroidManifest__message_details);
+    getSupportActionBar().setTitle("Message Details");
 
     MessageNotifier.setVisibleThread(threadId);
   }
@@ -148,12 +150,9 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
 
   private void initializeActionBar() {
     assert getSupportActionBar() != null;
-    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     Recipient recipient = Recipient.from(this, getIntent().getParcelableExtra(ADDRESS_EXTRA), true);
     recipient.addListener(this);
-
-    setActionBarColor(recipient.getColor());
   }
 
   private void setActionBarColor(MaterialColor color) {

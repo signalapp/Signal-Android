@@ -24,6 +24,17 @@
         <item name="preferenceTheme">@style/Session.SettingsTheme</item>
         <item name="colorAccent">@color/accent</item>
     </style>
+
+    <style name="Session.DarkTheme.SubtitleActionBar" parent="@style/Theme.AppCompat">
+        <item name="actionBarStyle">@style/Session.DarkSubtitleActionBar</item>
+        <item name="colorPrimary">@color/action_bar_background</item>
+        <item name="colorPrimaryDark">@color/action_bar_background</item>
+        <item name="android:navigationBarColor">@color/navigation_bar_background</item>
+        <item name="alertDialogTheme">@style/Session.AlertDialog</item>
+        <item name="android:windowBackground">@drawable/default_session_background</item>
+        <item name="preferenceTheme">@style/Session.SettingsTheme</item>
+        <item name="colorAccent">@color/accent</item>
+    </style>
     <!-- Session -->
 
     <style name="TextSecure.LightNoActionBar" parent="@style/TextSecure.LightTheme">
@@ -45,9 +56,9 @@
 
         <item name="media_overview_toolbar_background">@color/white</item>
         <item name="media_overview_toolbar_foreground">@color/gray70</item>
-        <item name="media_overview_header_foreground">@color/gray50</item>
+        <item name="media_overview_header_foreground">@color/text</item>
         <item name="media_overview_document_primary">@color/core_grey_90</item>
-        <item name="media_overview_document_secondary">@color/core_grey_60</item>
+        <item name="media_overview_document_secondary">#99FFFFFF</item>
     </style>
 
     <style name="TextSecure.DarkNoActionBar" parent="@style/TextSecure.BaseDarkNoActionBar">
@@ -72,11 +83,11 @@
         <item name="contact_selection_lay_user">#afeeeeee</item>
         <item name="contact_selection_header_text">#66eeeeee</item>
 
-        <item name="media_overview_toolbar_background">@color/black</item>
+        <item name="media_overview_toolbar_background">@color/transparent</item>
         <item name="media_overview_toolbar_foreground">@color/white</item>
-        <item name="media_overview_header_foreground">@color/gray10</item>
+        <item name="media_overview_header_foreground">@color/text</item>
         <item name="media_overview_document_primary">@color/core_grey_05</item>
-        <item name="media_overview_document_secondary">@color/core_grey_25</item>
+        <item name="media_overview_document_secondary">#99FFFFFF</item>
     </style>
 
     <style name="TextSecure.HighlightTheme" parent="@style/TextSecure.LightTheme">

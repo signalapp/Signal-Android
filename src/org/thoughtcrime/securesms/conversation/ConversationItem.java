@@ -267,10 +267,10 @@ public class ConversationItem extends LinearLayout
     setGroupAuthorColor(messageRecord);
     setAuthor(messageRecord, previousMessageRecord, nextMessageRecord, groupThread);
     setQuote(messageRecord, previousMessageRecord, nextMessageRecord, groupThread);
-    adjustMarginsIfNeeded(messageRecord);
     setMessageSpacing(context, messageRecord, previousMessageRecord, nextMessageRecord, groupThread);
     setFooter(messageRecord, nextMessageRecord, locale, groupThread);
     setFriendRequestView(messageRecord);
+    adjustMarginsIfNeeded(messageRecord);
   }
 
   @Override
@@ -424,6 +424,16 @@ public class ConversationItem extends LinearLayout
            !hasSticker(messageRecord);
   }
 
+  private boolean hasOnlyDocument(MessageRecord messageRecord) {
+    return messageRecord.getBody().length() == 0 &&
+           !hasThumbnail(messageRecord)          &&
+           !hasAudio(messageRecord)              &&
+           hasDocument(messageRecord)            &&
+           !hasSharedContact(messageRecord)      &&
+           !hasSticker(messageRecord)            &&
+           !hasQuote(messageRecord);
+  }
+
   private boolean hasOnlyText(MessageRecord messageRecord) {
     return messageRecord.getBody().length() != 0 &&
            !hasThumbnail(messageRecord)          &&
@@ -515,6 +525,21 @@ public class ConversationItem extends LinearLayout
       senderHolderLayoutParams.bottomMargin = (int)getResources().getDimension(R.dimen.medium_spacing);
     }
     groupSenderHolder.setLayoutParams(senderHolderLayoutParams);
+    if (documentViewStub.resolved()) {
+      LinearLayout.LayoutParams documentViewLayoutParams = (LinearLayout.LayoutParams)documentViewStub.get().getLayoutParams();
+      int bottomMargin = 0;
+      if (hasOnlyDocument(messageRecord)) {
+        if (footer.getVisibility() == VISIBLE) {
+          bottomMargin = (int)(4 * getResources().getDisplayMetrics().density);
+        } else {
+          bottomMargin = (int)(-4 * getResources().getDisplayMetrics().density);
+        }
+      } else {
+        bottomMargin = (int)(4 * getResources().getDisplayMetrics().density);
+      }
+      documentViewLayoutParams.bottomMargin = bottomMargin;
+      documentViewStub.get().setLayoutParams(documentViewLayoutParams);
+    }
   }
 
   private void setMediaAttributes(@NonNull MessageRecord           messageRecord,

@@ -307,7 +307,8 @@
         <activity
             android:name="org.thoughtcrime.securesms.MessageDetailsActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-            android:label="@string/AndroidManifest__message_details"
+            android:label="Message Details"
+            android:theme="@style/Session.DarkTheme"
             android:launchMode="singleTask"
             android:windowSoftInputMode="stateHidden" />
         <activity
@@ -414,13 +415,14 @@
             android:name="org.thoughtcrime.securesms.MediaPreviewActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
             android:label="@string/AndroidManifest__media_preview"
+            android:theme="@style/Session.DarkTheme.SubtitleActionBar"
             android:launchMode="singleTask"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name="org.thoughtcrime.securesms.MediaOverviewActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
             android:launchMode="singleTask"
-            android:theme="@style/TextSecure.LightNoActionBar"
+            android:theme="@style/Session.DarkTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name="org.thoughtcrime.securesms.DummyActivity"

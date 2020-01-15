@@ -12,20 +12,17 @@
         android:paddingStart="16dp"
         android:paddingEnd="8dp">
 
-    <org.thoughtcrime.securesms.components.AvatarImageView
-            android:id="@+id/contact_photo_image"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:foreground="@drawable/contact_photo_background"
-            android:cropToPadding="true"
-            tools:src="@color/blue_600"
-            android:contentDescription="@string/SingleContactSelectionActivity_contact_photo" />
+    <org.thoughtcrime.securesms.loki.redesign.views.ProfilePictureView
+        android:id="@+id/profilePictureView"
+        android:layout_width="@dimen/medium_profile_picture_size"
+        android:layout_height="@dimen/medium_profile_picture_size" />
 
     <LinearLayout android:layout_width="0dp"
                   android:layout_height="wrap_content"
                   android:layout_weight="1"
                   android:layout_marginStart="16dp"
                   android:paddingEnd="16dp"
+                  android:gravity="center_vertical"
                   android:orientation="vertical">
 
         <org.thoughtcrime.securesms.components.emoji.EmojiTextView
@@ -35,14 +32,16 @@
                 android:checkMark="?android:attr/listChoiceIndicatorMultiple"
                 android:singleLine="true"
                 android:ellipsize="marquee"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textSize="16sp"
+                android:textSize="@dimen/medium_font_size"
+                android:textColor="@color/text"
+                android:textStyle="bold"
                 tools:text="Frieeeeeeedrich Nieeeeeeeeeetzsche" />
 
         <LinearLayout android:id="@+id/number_container"
                       android:orientation="horizontal"
                       android:layout_width="wrap_content"
-                      android:layout_height="wrap_content">
+                      android:layout_height="wrap_content"
+                      android:visibility="gone">
 
             <TextView android:id="@+id/number"
                       android:layout_width="wrap_content"

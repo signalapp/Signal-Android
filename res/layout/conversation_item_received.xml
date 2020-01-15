@@ -18,7 +18,6 @@
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/conversation_individual_right_gutter"
         android:paddingStart="@dimen/large_spacing"
         android:clipToPadding="false"
         android:clipChildren="false">
@@ -58,7 +57,7 @@
                 android:id="@+id/body_bubble"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/message_bubble_edge_margin"
+                android:layout_marginEnd="@dimen/massive_spacing"
                 android:layout_marginStart="@dimen/large_spacing"
                 android:paddingTop="@dimen/medium_spacing"
                 android:paddingBottom="@dimen/medium_spacing"
@@ -163,7 +162,7 @@
                     android:layout="@layout/conversation_item_received_document"
                     android:layout_width="210dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/medium_spacing"
+                    android:layout_marginBottom="4dp"
                     android:layout_marginStart="@dimen/message_bubble_horizontal_padding"
                     android:layout_marginEnd="@dimen/message_bubble_horizontal_padding" />
 

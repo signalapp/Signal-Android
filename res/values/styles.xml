@@ -11,9 +11,33 @@
         <item name="android:elevation">0dp</item>
     </style>
 
+    <style name="Session.DarkSubtitleActionBar" parent="@style/Widget.AppCompat.ActionBar">
+        <item name="background">@color/action_bar_background</item>
+        <item name="android:background">@color/action_bar_background</item>
+        <item name="titleTextStyle">@style/Session.DarkSubtitleActionBar.TitleTextStyle</item>
+        <item name="android:titleTextStyle">@style/Session.DarkSubtitleActionBar.TitleTextStyle</item>
+        <item name="subtitleTextStyle">@style/Session.DarkSubtitleActionBar.SubtitleTextStyle</item>
+        <item name="android:subtitleTextStyle">@style/Session.DarkSubtitleActionBar.SubtitleTextStyle</item>
+        <item name="elevation">0dp</item>
+        <item name="android:elevation">0dp</item>
+    </style>
+
     <style name="Session.DarkActionBar.TitleTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="android:textColor">@color/text</item>
         <item name="android:textSize">@dimen/very_large_font_size</item>
+    </style>
+
+    <style name="Session.DarkSubtitleActionBar.TitleTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/text</item>
+        <item name="android:textSize">@dimen/large_font_size</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="Session.DarkSubtitleActionBar.SubtitleTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/text</item>
+        <item name="android:textSize">@dimen/small_font_size</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">normal</item>
     </style>
 
     <style name="Session.AlertDialog" parent="ThemeOverlay.AppCompat.Dialog.Alert">

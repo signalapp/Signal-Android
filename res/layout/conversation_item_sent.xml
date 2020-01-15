@@ -36,7 +36,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginStart="@dimen/message_bubble_edge_margin"
+                android:layout_marginStart="@dimen/massive_spacing"
                 android:paddingTop="@dimen/medium_spacing"
                 android:paddingBottom="@dimen/medium_spacing"
                 android:layout_gravity="end"
@@ -99,7 +99,7 @@
                     android:layout_width="210dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/message_bubble_horizontal_padding"
-                    android:layout_marginBottom="@dimen/medium_spacing"
+                    android:layout_marginBottom="4dp"
                     android:layout_marginEnd="@dimen/message_bubble_horizontal_padding" />
 
                 <org.thoughtcrime.securesms.components.emoji.EmojiTextView

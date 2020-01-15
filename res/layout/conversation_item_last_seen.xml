@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:paddingTop="24dp"
-    android:paddingBottom="20dp">
+    android:paddingBottom="18dp">
 
     <View
         android:layout_width="match_parent"

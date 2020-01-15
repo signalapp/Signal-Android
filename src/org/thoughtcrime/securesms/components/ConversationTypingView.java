@@ -8,11 +8,12 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import network.loki.messenger.R;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
 import java.util.List;
+
+import network.loki.messenger.R;
 
 public class ConversationTypingView extends LinearLayout {
 
@@ -40,7 +41,7 @@ public class ConversationTypingView extends LinearLayout {
     }
 
     Recipient typist = typists.get(0);
-    bubble.getBackground().setColorFilter(typist.getColor().toConversationColor(getContext()), PorterDuff.Mode.MULTIPLY);
+    bubble.getBackground().setColorFilter(getResources().getColor(R.color.received_message_background), PorterDuff.Mode.MULTIPLY);
 
     if (isGroupThread) {
       avatar.setAvatar(glideRequests, typist, false);
