@@ -228,6 +228,7 @@
   <string name="ConversationFragment_failed_to_open_message">បរាជ័យក្នុងការបើកសារ</string>
   <string name="ConversationFragment_you_can_swipe_to_the_right_reply">អ្នកអាចអូសទៅស្តាំលើសារណាមួយ ដើម្បីឆ្លើយតបរហ័ស</string>
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">អ្នកអាចអូសទៅឆ្វេងលើសារណាមួយ ដើម្បីឆ្លើយតបរហ័ស</string>
+  <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">ឯកសារមេឌាមើល-ម្តង ដែលផ្ញើចេញ ត្រូវលុបចោលដោយស្វ័យប្រវត្តិបន្ទាប់ពីបានផ្ញើចេញ</string>
   <string name="ConversationFragment_you_already_viewed_this_message">អ្នកបានបើកមើលសារនេះ</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">ពំុមានកម្មវិធីរុករកបានដំឡើងនៅលើឧបករណ៍របស់អ្នកទេ។</string>
@@ -717,6 +718,7 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">ឈ្មោះអ្នកប្រើប្រាស់មិនអាចចាប់ផ្តើមពីលេខ។</string>
   <string name="UsernameEditFragment_username_is_invalid">ឈ្មោះអ្នកប្រើប្រាស់មិនត្រឹមត្រូវ។</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">ឈ្មោះអ្នកប្រើប្រាស់ត្រូវនៅចន្លោះតួអក្សរ%1$d និង%2$d ។</string>
+  <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">អ្នកប្រើប្រាស់ Signal ផ្សេងអាចផ្ញើសារស្នើសុំមកកាន់ឈ្មោះអ្នកប្រើប្រាស់តែមួយគត់របស់អ្នក ដោយមិនចាំបាច់ដឹងលេខទូរស័ព្ទរបស់អ្នកទេ។ ការជ្រើសរើសឈ្មោះអ្នកប្រើប្រាស់មួយ គឺជាជម្រើស។ </string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">លេខទំនាក់ទំនងអ្នក កំពុងប្រើប្រាស់នៅលើSignal ជំនាន់ចាស់។ សូមប្រាប់គេឲ្យធ្វើបច្ចុប្បន្នភាពកម្មវិធី មុនពេលផ្ទៀងផ្ទាត់លេខសុវត្ថិភាព។ </string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">លេខទំនាក់ទំនងអ្នក កំពុងប្រើប្រាស់ Signalកំណែថ្មីជាង ជាមួយទម្រង់QRកូដ ដែលមិនត្រូវគ្នា។ សូមធ្វើបច្ចុប្បន្នភាព ដើម្បីប្រៀបធៀប។ </string>
@@ -778,6 +780,7 @@
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">បើក Signal ដើម្បីឆែកមើលការជូនដំណឹងថ្មីៗ។</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">ទំនាក់ទំនង</string>
+  <string name="MessageNotifier_reacted_to_your_message">ប្រតិកម្មទៅសាររបស់អ្នក៖ %1$s</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">លំនាំដើម</string>
   <string name="NotificationChannel_calls">ការហៅ</string>
@@ -789,6 +792,7 @@
   <string name="NotificationChannel_group_messages">សារ</string>
   <string name="NotificationChannel_missing_display_name">មិនស្គាល់</string>
   <!--ProfileEditNameFragment-->
+  <string name="ProfileEditNameFragment_successfully_set_profile_name">កំណត់ឈ្មោះប្រវត្តិរូបដោយជោគជ័យ។</string>
   <string name="ProfileEditNameFragment_encountered_a_network_error">បានជួបប្រទះកំហុសបណ្តាញ។</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">មិនមានការឆ្លើយតបភ្លាមៗ នៅពេល Signal ត្រូវបានចាក់សោរ!</string>
@@ -872,6 +876,7 @@
   <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signalត្រូវការសិទ្ធិប្រើប្រាស់បញ្ជី​ទំនាក់ទំនង ដើម្បីបង្ហាញបញ្ជីទំនាក់ទំនងរបស់អ្នក ប៉ុន្តែវាត្រូវបានបដិសេធរហូត។  សូមបន្តទៅ ការកំណត់ ជ្រើសរើស \"អនុញ្ញាត\" និងបើក \"បញ្ជីទំនាក់ទំនង\"។</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">មានបញ្ហាក្នុងការទាញយកបញ្ជីទំនាក់ទំនង, សូមពិនិត្យការតភ្ជាប់បណ្តាញរបស់អ្នក</string>
   <string name="ContactSelectionListFragment_username_not_found">រកមិនឃើញឈ្មោះអ្នកប្រើប្រាស់</string>
+  <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" មិនមែនជាអ្នកប្រើប្រាស់ Signal ទេ។ សូមពិនិត្យឈ្មោះអ្នកប្រើប្រាស់ និងសាកល្បងម្តងទៀត។ </string>
   <string name="ContactSelectionListFragment_okay">យល់ព្រម</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">ពុំមានលេខដែលបានបិទ</string>
@@ -1353,10 +1358,24 @@
   <string name="Insights__percent">%</string>
   <string name="Insights__title">ព័ត៌មានលំអិត</string>
   <string name="InsightsDashboardFragment__title">ព័ត៌មានលំអិត</string>
+  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">ប្រូតូកូល Signal បានការពារ %1$d%% នៃសារផ្ញើចេញក្នុងរយៈពេល %2$d ថ្ងៃដោយស្វ័យប្រវត្តិ។ ការសន្ទនារវាងអ្នកប្រើប្រាស់ Signal  តែងតែត្រូវបានអ៊ីនគ្រីបតែងសងខាង។</string>
+  <string name="InsightsDashboardFragment__boost_your_signal">ជំរុញ Signal </string>
   <string name="InsightsDashboardFragment__not_enough_data">មិនមានទិន្នន័យគ្រប់គ្រាន់</string>
+  <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">ភាគរយព័ត៌មានលំអិតរបស់អ្នកត្រូវបានគណនា ផ្អែកលើសារផ្ញើចេញក្នុងរយៈពេល  %1$d ថ្ងៃ ដែលមិនបានបាត់ទៅវិញ ឬលុបចោល។</string>
+  <string name="InsightsDashboardFragment__start_a_conversation">ចាប់ផ្តើមការសន្ទនា</string>
+  <string name="InsightsDashboardFragment__invite_your_contacts">ចាប់ផ្តើមការទំនាក់ទំនងដោយសុវត្ថិភាព និង​បើកមុខងារថ្មី ដែលហួសពីដែនកំណត់ នៃសារ SMS មិនសម្ងាត់ ដោយការអញ្ជើញបញ្ជីទំនាក់ទំនងមកចូលរួម Signal។</string>
+  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">ស្ថិតិទាំងនេះត្រូវបានបង្កើតនិងរក្សាទុកក្នុងឧបករណ៍របស់អ្នក និងអាចមើលឃើញដោយអ្នកតែប៉ុណ្ណោះ។ វាមិនត្រូវបញ្ជូនទៅកន្លែងណាមួយឡើយ។</string>
+  <string name="InsightsDashboardFragment__encrypted_messages">សារសម្ងាត់</string>
   <string name="InsightsDashboardFragment__cancel">បោះបង់</string>
   <string name="InsightsDashboardFragment__send">ផ្ញើ</string>
+  <string name="InsightsModalFragment__title">ការណែនាំព័ត៌មានលំអិត</string>
+  <string name="InsightsModalFragment__description">ពិនិត្យមើលចំនួនសារផ្ញើចេញដែលត្រូវបានផ្ញើដោយសុវត្ថិភាព បន្ទាប់មកអញ្ជើញលេខទំនាក់ទំនងថ្មី ដើម្បីជំរុញភាគរយ Signal របស់អ្នក។</string>
+  <string name="InsightsModalFragment__view_insights">បង្ហាញព័ត៌មានលំអិត</string>
   <string name="FirstInviteReminder__title">អញ្ជើញចូលប្រើSignal</string>
+  <string name="FirstInviteReminder__description">អ្នកអាចបង្កើនចំនួនសារសម្ងាត់ដែលអ្នកផ្ញើដោយ %1$d%%</string>
+  <string name="SecondInviteReminder__title">ជំរុញ Signal របស់អ្នក</string>
+  <string name="SecondInviteReminder__description">អញ្ជើញ%1$s</string>
+  <string name="InsightsReminder__view_insights">បង្ហាញព័ត៌មានលំអិត</string>
   <string name="InsightsReminder__invite">អញ្ជើញ</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">រូបសញ្ញាជញ្ជូន</string>
@@ -1447,6 +1466,8 @@
   <string name="RegistrationLockDialog_error_connecting_to_the_service">បញ្ហាក្នុងការភ្ជាប់ទៅសេវា</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">បិទលេខ PIN សម្រាប់ចាក់សោរការចុះឈ្មោះ?</string>
   <string name="RegistrationLockDialog_disable">បិទ</string>
+  <string name="RegistrationActivity_pin_incorrect">PIN មិនត្រឹមត្រូវ</string>
+  <string name="RegistrationActivity_you_have_d_tries_remaining">អ្នកនៅសល់ការសាកល្បង %d ដង</string>
   <string name="preferences_chats__backups">បម្រុងទុក</string>
   <string name="prompt_passphrase_activity__signal_is_locked"> Signal ជាប់សោរ</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">ចុច ដើម្បីដោះសោរ</string>
@@ -1456,5 +1477,13 @@
   <string name="MessageRequestBottomView_accept">យល់ព្រម</string>
   <string name="MessageRequestBottomView_delete">លុប</string>
   <string name="MessageRequestBottomView_block">រារាំង</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let">តើអ្នកចង់ទទួលសារពី %1$s?</string>
+  <string name="MessageRequestProfileView_member_of_one_group">សមាជិកនៃ %1$s</string>
+  <string name="MessageRequestProfileView_member_of_two_groups">សមាជិកនៃ %1$s និង%2$s</string>
+  <string name="MessageRequestProfileView_member_of_many_groups">សមាជិកនៃ %1$s, %2$s, និង%3$s</string>
+  <string name="MessageRequestProfileView_members">%1$d សមាជិក</string>
+  <plurals name="MessageRequestProfileView_member_of_others">
+    <item quantity="other">%d ផ្សេងៗ</item>
+  </plurals>
   <!--EOF-->
 </resources>

@@ -238,6 +238,7 @@
   <string name="ConversationFragment_failed_to_open_message">Ha fallat obrir el missatge.</string>
   <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Podeu lliscar cap a la dreta en qualsevol missatge per respondre ràpidament.</string>
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Podeu lliscar cap a l’esquerra en qualsevol missatge per respondre ràpidament.</string>
+  <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Els fitxers multimèdia d\'una sola visualització se suprimeixen automàticament un cop enviats.</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Ja heu vist aquest missatge.</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">No hi ha cap navegador instal·lat al dispositiu.</string>

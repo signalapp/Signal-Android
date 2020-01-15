@@ -677,6 +677,7 @@
   <string name="UsernameEditFragment_username">用户名</string>
   <string name="UsernameEditFragment_submit">提交</string>
   <string name="UsernameEditFragment_delete">删除</string>
+  <string name="UsernameEditFragment_username_is_invalid">用户名无效。</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">您的联系人使用的是旧版本的 Signal，在请求对方验证安全码前，请先让对方升级 Signal 客户端。</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">您的联系人使用的是新版本的 Signal，程序无法识别这个联系人的二维码。请升级您的 Signal 。</string>

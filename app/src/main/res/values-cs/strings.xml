@@ -258,6 +258,8 @@
   <string name="ConversationFragment_failed_to_open_message">Zprávu se nepovedlo otevřít</string>
   <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Chcete-li rychle odpovědět, přejeďte prstem na zprávě do prava </string>
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Chcete-li rychle odpovědět, přejeďte prstem na zprávě do leva</string>
+  <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Odchozí soubory médií pro jednorázové zobrazení jsou po odeslání automaticky odstraněny</string>
+  <string name="ConversationFragment_you_already_viewed_this_message">Tuto zprávu jste už zobrazili</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Nemáte na vašem zařízení nainstalován žádný prohlížeč.</string>
   <!--ConversationListFragment-->
@@ -525,6 +527,7 @@
     <item quantity="other">Nemůžete sdílet více než  %d položek.</item>
   </plurals>
   <string name="MediaSendActivity_select_recipients_description">Zvolte příjemce</string>
+  <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">Klepněte zde, aby tato zpráva zmizela potom, co bude zobrazena.</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Všechna média</string>
   <!--MessageRecord-->
@@ -682,6 +685,7 @@ telefonní číslo
   <string name="RegistrationActivity_call">Volat</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_view_photo">Zobrazit fotku</string>
+  <string name="RevealableMessageView_view_video">Zobrazit video</string>
   <string name="RevealableMessageView_viewed">Zobrazeno</string>
   <string name="RevealableMessageView_media">Média</string>
   <!--ScribbleActivity-->
@@ -745,6 +749,9 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="ThreadRecord_missed_call">Zmeškaný hovor</string>
   <string name="ThreadRecord_media_message">Multimediální zpráva</string>
   <string name="ThreadRecord_sticker">Nálepka</string>
+  <string name="ThreadRecord_view_once_photo">Fotografie pro jednorázové zobrazení</string>
+  <string name="ThreadRecord_view_once_video">Video pro jednorázové zobrazení</string>
+  <string name="ThreadRecord_view_once_media">Média pro jednorázové zobrazení</string>
   <string name="ThreadRecord_s_is_on_signal">%s má Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Zmizení zpráv je zakázáno</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Čas zmizení zprávy nastaven na %s</string>
@@ -835,6 +842,8 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="MessageNotifier_mark_read">Označit jako přečtené</string>
   <string name="MessageNotifier_media_message">Multimediální zpráva</string>
   <string name="MessageNotifier_sticker">Nálepka</string>
+  <string name="MessageNotifier_view_once_photo">Fotografie pro jednorázové zobrazení</string>
+  <string name="MessageNotifier_view_once_video">Video pro jednorázové zobrazení</string>
   <string name="MessageNotifier_reply">Odpověď</string>
   <string name="MessageNotifier_signal_message">Zpráva Signal</string>
   <string name="MessageNotifier_unsecured_sms">Nezabezpečená SMS</string>
@@ -982,6 +991,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="QuoteView_audio">Audio</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Fotografie</string>
+  <string name="QuoteView_view_once_media">Média pro jednorázové zobrazení</string>
   <string name="QuoteView_sticker">Nálepka</string>
   <string name="QuoteView_document">Dokument</string>
   <string name="QuoteView_you">Vy</string>

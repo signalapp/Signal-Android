@@ -238,6 +238,8 @@
   <string name="ConversationFragment_failed_to_open_message">Falha ao abrir a mensagem</string>
   <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Pode deslizar qualquer mensagem para a direita para responder rapidamente</string>
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Pode deslizar qualquer mensagem para a esquerda para responder rapidamente</string>
+  <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Os ficheiros media de saída são removidos automaticamente depois de terem sido enviados</string>
+  <string name="ConversationFragment_you_already_viewed_this_message">Já viu esta mensagem</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Não existe nenhum navegador instalado no seu dispositivo.</string>
   <!--ConversationListFragment-->
@@ -636,8 +638,9 @@ especificou (%s) é inválido.</string>
   <string name="RegistrationActivity_call">Telefonar</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_view_photo">Ver fotografia</string>
+  <string name="RevealableMessageView_view_video">Ver vídeo</string>
   <string name="RevealableMessageView_viewed">Vista(s)</string>
-  <string name="RevealableMessageView_media">Média</string>
+  <string name="RevealableMessageView_media">Media</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">Falha ao guardar as alterações da imagem</string>
   <!--Search-->
@@ -699,6 +702,9 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="ThreadRecord_missed_call">Chamada perdida</string>
   <string name="ThreadRecord_media_message">Mensagem multimédia</string>
   <string name="ThreadRecord_sticker">Autocolante</string>
+  <string name="ThreadRecord_view_once_photo">Fotografia de visualização única</string>
+  <string name="ThreadRecord_view_once_video">Vídeo de visualização única</string>
+  <string name="ThreadRecord_view_once_media">Media de visualização única</string>
   <string name="ThreadRecord_s_is_on_signal">%s está no Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Destruição de mensagens desactivada</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">O tempo a decorrer até que as mensagens sejam destruídas está definido para %s</string>
@@ -789,6 +795,8 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="MessageNotifier_mark_read">Marcar como lida</string>
   <string name="MessageNotifier_media_message">Mensagem multimédia</string>
   <string name="MessageNotifier_sticker">Autocolante</string>
+  <string name="MessageNotifier_view_once_photo">Fotografia de visualização única</string>
+  <string name="MessageNotifier_view_once_video">Vídeo de visualização única</string>
   <string name="MessageNotifier_reply">Responder</string>
   <string name="MessageNotifier_signal_message">Mensagem do Signal</string>
   <string name="MessageNotifier_unsecured_sms">SMS inseguro</string>
@@ -934,6 +942,7 @@ Mensagem de troca de chaves inválida para esta versão do protocolo.
   <string name="QuoteView_audio">Áudio</string>
   <string name="QuoteView_video">Vídeo</string>
   <string name="QuoteView_photo">Foto</string>
+  <string name="QuoteView_view_once_media">Media de visualização única</string>
   <string name="QuoteView_sticker">Autocolante</string>
   <string name="QuoteView_document">Documento</string>
   <string name="QuoteView_you">Você</string>

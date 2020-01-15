@@ -228,6 +228,8 @@
   <string name="ConversationFragment_failed_to_open_message">Không thể mở tin nhắn</string>
   <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Bạn có thể vuốt tin nhắn sang bên phải để trả lời nhanh</string>
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Bạn có thể vuốt tin nhắn sang bên trái để trả lời nhanh</string>
+  <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Tin nhắn đa phương tiện xem một lần sẽ tự động xóa sau khi được gửi</string>
+  <string name="ConversationFragment_you_already_viewed_this_message">Bạn đã xem tin nhắn này rồi</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Bạn chưa cài trình duyệt nào trên điện thoại.</string>
   <!--ConversationListFragment-->
@@ -414,7 +416,7 @@
   <string name="MediaOverviewActivity_Newest">Mới nhất</string>
   <string name="MediaOverviewActivity_Oldest">Cũ nhất</string>
   <string name="MediaOverviewActivity_Storage_used">Bộ nhớ đã sử dung</string>
-  <string name="MediaOverviewActivity_All_storage_use">Toàn bộ tệp lưu trữ</string>
+  <string name="MediaOverviewActivity_All_storage_use">Tất cả dung lượng bộ nhớ</string>
   <string name="MediaOverviewActivity_Grid_view_description">Hiển thị theo ô</string>
   <string name="MediaOverviewActivity_List_view_description">Hiển thị theo danh sách</string>
   <string name="MediaOverviewActivity_Selected_description">Đã chọn</string>
@@ -614,6 +616,7 @@ mã quốc gia bạn</string>
   <string name="RegistrationActivity_call">Gọi</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_view_photo">Xem ảnh</string>
+  <string name="RevealableMessageView_view_video">Xem video</string>
   <string name="RevealableMessageView_viewed">Đã xem</string>
   <string name="RevealableMessageView_media">Đa phương tiện</string>
   <!--ScribbleActivity-->
@@ -675,6 +678,9 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="ThreadRecord_missed_call">Cuộc gọi nhỡ</string>
   <string name="ThreadRecord_media_message">Tin nhắn đa phương tiện</string>
   <string name="ThreadRecord_sticker">Nhãn dán</string>
+  <string name="ThreadRecord_view_once_photo">Ảnh xem một lần</string>
+  <string name="ThreadRecord_view_once_video">Video xem một lần</string>
+  <string name="ThreadRecord_view_once_media">Đa phương tiện xem một lần</string>
   <string name="ThreadRecord_s_is_on_signal">%s đang sử dụng Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Tin nhắn tự hủy đã được vô hiệu hóa</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Tin nhắn sẽ tự hủy sau %s</string>
@@ -765,6 +771,8 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="MessageNotifier_mark_read">Đánh dấu đã đọc</string>
   <string name="MessageNotifier_media_message">Tin nhắn đa phương tiện</string>
   <string name="MessageNotifier_sticker">Nhãn dán</string>
+  <string name="MessageNotifier_view_once_photo">Ảnh xem một lần</string>
+  <string name="MessageNotifier_view_once_video">Video xem một lần</string>
   <string name="MessageNotifier_reply">Trả lời</string>
   <string name="MessageNotifier_signal_message">Tin nhắn Signal</string>
   <string name="MessageNotifier_unsecured_sms">SMS không bảo mật</string>
@@ -909,6 +917,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="QuoteView_audio">Âm thanh</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Ảnh</string>
+  <string name="QuoteView_view_once_media">Đa phương tiện xem một lần</string>
   <string name="QuoteView_sticker">Nhãn dán</string>
   <string name="QuoteView_document">Tài liệu</string>
   <string name="QuoteView_you">Bạn</string>
@@ -1349,18 +1358,18 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="Insights__percent">%</string>
   <string name="Insights__title">Phân tích</string>
   <string name="InsightsDashboardFragment__title">Phân tích</string>
-  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Giao thức Signal đã tự động bảo vệ %1$d%% số tin nhắn bạn gửi đi trong %2$d ngày trước. Cuộc trò chuyện giữa những người dùng Signal luôn được mã hóa đầu cuối.</string>
+  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Giao thức Signal đã tự động bảo vệ %1$d%% số tin nhắn bạn gửi đi trong %2$d ngày trước. Cuộc trò chuyện giữa những người dùng Signal luôn được mã hóa hai chiều.</string>
   <string name="InsightsDashboardFragment__boost_your_signal">Tăng tỉ lệ Signal</string>
   <string name="InsightsDashboardFragment__not_enough_data">Không đủ dữ liệu</string>
-  <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Dữ liệu Phân tích của bạn được tính dựa vào số tin nhắn gửi đi trong %1$d ngày trước mà không bị xóa hay tự hủy.</string>
+  <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Số phần trăm Dữ liệu Phân tích của bạn được tính dựa vào số tin nhắn gửi đi trong %1$d ngày trước mà không bị xóa hay tự hủy.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Bắt đầu cuộc trò chuyện</string>
-  <string name="InsightsDashboardFragment__invite_your_contacts">Hãy trò chuyện riêng tư và kích hoạt những tính năng mới vượt trên giới hạn của SMS lỗi thời bằng cách mời liên hệ của bạn sử dụng Signal.</string>
-  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Những số liệu này được tạo trên thiết bị của bạn và chỉ được truy cập bởi bạn. Nó không được gửi đi bất cứ đâu.</string>
+  <string name="InsightsDashboardFragment__invite_your_contacts">Hãy trò chuyện riêng tư và kích hoạt những tính năng mới vượt trên giới hạn của SMS không được bảo mật bằng cách mời liên hệ của bạn sử dụng Signal.</string>
+  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">Những số liệu này được tạo cục bộ trên thiết bị của bạn và chỉ được truy cập bởi bạn. Nó không được gửi đi bất cứ đâu.</string>
   <string name="InsightsDashboardFragment__encrypted_messages">Tin nhắn mã hóa</string>
   <string name="InsightsDashboardFragment__cancel">Hủy</string>
   <string name="InsightsDashboardFragment__send">Gửi</string>
-  <string name="InsightsModalFragment__title">Xin giới thiệu tính năng Phân tích</string>
-  <string name="InsightsModalFragment__description">Tìm hiểu xem bao nhiêu tin nhắn của bạn được gửi đi một cách bảo mật và mời liên hệ để tăng tỉ lệ Signal.</string>
+  <string name="InsightsModalFragment__title">Giới thiệu tính năng Phân tích</string>
+  <string name="InsightsModalFragment__description">Tìm hiểu xem bao nhiêu tin nhắn của bạn được gửi đi một cách bảo mật và mời liên hệ để tăng tỉ lệ sử dụng Signal.</string>
   <string name="InsightsModalFragment__view_insights">Xem Phân tích</string>
   <string name="FirstInviteReminder__title">Mời dùng Signal</string>
   <string name="FirstInviteReminder__description">Bạn có thể tăng %1$d%% số lượng tin nhắn mã hóa gửi đi.</string>
@@ -1474,7 +1483,7 @@ Nhận thông tin trao đổi mã khóa về phiên bản giao thức không h�
   <string name="MessageRequestProfileView_member_of_many_groups">Thành viên của %1$s, %2$s và %3$s</string>
   <string name="MessageRequestProfileView_members">%1$d thành viên</string>
   <plurals name="MessageRequestProfileView_member_of_others">
-    <item quantity="other">%d khác</item>
+    <item quantity="other">%d người khác</item>
   </plurals>
   <!--EOF-->
 </resources>

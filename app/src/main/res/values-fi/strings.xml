@@ -89,10 +89,10 @@
   <string name="CameraContacts_signal_contacts">Signal-yhteystiedot</string>
   <string name="CameraContacts_signal_groups">Signal-ryhmät</string>
   <string name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">%d keskustelua on enimmäismäärä, joihin voit jakaa. </string>
-  <string name="CameraContacts_select_signal_recipients">Valitse Signal -vastaanottajat liitteelle:</string>
+  <string name="CameraContacts_select_signal_recipients">Valitse Signal-vastaanottajat liitteelle:</string>
   <string name="CameraContacts_no_signal_contacts">Ei Signal-yhteystietoja</string>
-  <string name="CameraContacts_you_can_only_use_the_camera_button">Voit käyttää kamerapainiketta vain valokuvien lähettämiseen Signal -yhteystiedoillesi.</string>
-  <string name="CameraContacts_cant_find_who_youre_looking_for">Etkö löydä ketä olet etsimässä?</string>
+  <string name="CameraContacts_you_can_only_use_the_camera_button">Voit käyttää kamerapainiketta vain valokuvien lähettämiseen Signal-yhteystiedoillesi.</string>
+  <string name="CameraContacts_cant_find_who_youre_looking_for">Etkö löydä etsimääsi?</string>
   <string name="CameraContacts_invite_a_contact_to_join_signal">Kutsu yhteystieto Signaliin</string>
   <string name="CameraContacts__menu_search">Hae</string>
   <!--ClearProfileActivity-->
@@ -1424,7 +1424,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Avaa nähdäksesi odottavat viestit</string>
   <string name="ExperienceUpgradeActivity_unlock_to_complete_update">Avaa lukitus päivityksen loppuunsaattamiseksi</string>
   <string name="ExperienceUpgradeActivity_please_unlock_signal_to_complete_update">Avaa Signalin lukitus päivityksen loppuunsaattamiseksi</string>
-  <string name="enter_backup_passphrase_dialog__backup_passphrase">Varmuuskopioi salalause</string>
+  <string name="enter_backup_passphrase_dialog__backup_passphrase">Varmuuskopion salalause</string>
   <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Varmuuskopiot tallennetaan laitteesi tallennustilaan ja ne salataan allaolevalla salalauseella. Ilman tätä salalausetta et voi palauttaa varmuuskopiota.</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Olen kirjoittanut ylös tämän salalauseen. Ilman sitä, en pysty palauttamaan varmuuskopiota.</string>
   <string name="registration_activity__restore_backup">Palauta varmuuskopio</string>

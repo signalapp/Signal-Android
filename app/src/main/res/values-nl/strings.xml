@@ -621,9 +621,9 @@ weergaven.</string>
   <string name="RegistrationActivity_no_browser">Kan deze koppeling niet openen; geen webbrowser gevonden.</string>
   <string name="RegistrationActivity_more_information">Meer informatie</string>
   <string name="RegistrationActivity_less_information">Minder informatie</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal heeft toegang nodig tot je contactenlijst om berichten te kunnen verzenden aan opgeslagen contacten en om beveiligde oproepen naar hen te kunnen maken.
-Signal heeft ook toegang nodig tot de foto\'s, media en bestanden op je apparaat, om bestanden bij te kunnen voegen als bijlage.
-</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal moet je contactenlijst lezen om berichten te kunnen verzenden en om beveiligde oproepen tot stand te kunnen brengen naar je opgeslagen contacten.
+Signal moet ook bestanden kunnen lezen van en schrijven naar de externe opslag, om deze bij te kunnen voegen als bijlagen en om ontvangen bijlagen op te kunnen slaan.
+Tot slot moet Signal de telefoonstatus kunnen lezen om te voorkomen dat Signal-oproepen je andere oproepen verstoren.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Verbinden met dienst niet mogelijk. Controleer je netwerkverbinding en probeer het opnieuw.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Als je Signal toestaat sms-berichten te lezen, kan het je registratiecode automatisch detecteren om je telefoonnummer eenvoudig te verifiëren.</string>
   <plurals name="RegistrationActivity_debug_log_hint">
@@ -709,7 +709,7 @@ Signal heeft ook toegang nodig tot de foto\'s, media en bestanden op je apparaat
   <string name="ThreadRecord_missed_call">Gemiste oproep</string>
   <string name="ThreadRecord_media_message">Mediabericht</string>
   <string name="ThreadRecord_sticker">Sticker</string>
-  <string name="ThreadRecord_view_once_photo">Eenmaligeweergave-foto</string>
+  <string name="ThreadRecord_view_once_photo">Eenmaligeweergave-afbeelding</string>
   <string name="ThreadRecord_view_once_video">Eenmaligeweergave-video</string>
   <string name="ThreadRecord_view_once_media">Eenmaligeweergave-media</string>
   <string name="ThreadRecord_s_is_on_signal">%s gebruikt nu ook Signal!</string>
@@ -762,10 +762,10 @@ Signal heeft ook toegang nodig tot de foto\'s, media en bestanden op je apparaat
   <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Kan QR-code niet scannen zonder toegang tot camera</string>
   <!--ViewOnceMessageActivity-->
   <!--MessageDisplayHelper-->
-  <string name="MessageDisplayHelper_bad_encrypted_message">Verkeerd versleuteld bericht</string>
+  <string name="MessageDisplayHelper_bad_encrypted_message">Bericht kan niet worden ontsleuteld</string>
   <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Bericht versleuteld voor niet-bestaande sessie</string>
   <!--MmsMessageRecord-->
-  <string name="MmsMessageRecord_bad_encrypted_mms_message">Verkeerd versleuteld mms-bericht</string>
+  <string name="MmsMessageRecord_bad_encrypted_mms_message">Mms-bericht kan niet worden ontsleuteld</string>
   <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Mms-bericht versleuteld voor niet-bestaande sessie</string>
   <!--MuteDialog-->
   <string name="MuteDialog_mute_notifications">Demp meldingen</string>
@@ -802,7 +802,7 @@ Signal heeft ook toegang nodig tot de foto\'s, media en bestanden op je apparaat
   <string name="MessageNotifier_mark_read">Markeren als gelezen</string>
   <string name="MessageNotifier_media_message">Mediabericht</string>
   <string name="MessageNotifier_sticker">Sticker</string>
-  <string name="MessageNotifier_view_once_photo">Eenmaligeweergave-foto</string>
+  <string name="MessageNotifier_view_once_photo">Eenmaligeweergave-afbeelding</string>
   <string name="MessageNotifier_view_once_video">Eenmaligeweergave-video</string>
   <string name="MessageNotifier_reply">Reageren</string>
   <string name="MessageNotifier_signal_message">Signal-bericht</string>
@@ -1269,7 +1269,7 @@ Signal heeft ook toegang nodig tot de foto\'s, media en bestanden op je apparaat
   <string name="preferences_chats__chats">Gesprekken</string>
   <string name="preferences_notifications__messages">Berichten</string>
   <string name="preferences_notifications__events">Gebeurtenissen</string>
-  <string name="preferences_notifications__in_chat_sounds">Ook geluid als Signal al geopend is</string>
+  <string name="preferences_notifications__in_chat_sounds">Ook geluid als Signal in voorgrond</string>
   <string name="preferences_notifications__show">Laat zien</string>
   <string name="preferences_notifications__calls">Oproepen</string>
   <string name="preferences_notifications__ringtone">Beltoon</string>
@@ -1441,7 +1441,7 @@ Ze wordt nooit verzonden.</string>
   <string name="registration_activity__skip">Overslaan</string>
   <string name="registration_activity__register">Registreren</string>
   <string name="preferences_chats__chat_backups">Laat Signal back-ups maken</string>
-  <string name="preferences_chats__backup_chats_to_external_storage">Sta Signal toe om versleutelde back-ups van gesprekken en media te maken naar /Signal/Backups op je interne opslag. Als dit is ingeschakeld maakt Signal automatisch elke 24 uur een back-up. Alleen de twee meest recente geslaagde back-ups worden bewaard.</string>
+  <string name="preferences_chats__backup_chats_to_external_storage">Sta Signal toe om versleutelde back-ups van gesprekken en media te maken naar /Signal/Backups op je interne opslag. Als dit is ingeschakeld maakt Signal automatisch elke dag een back-up. Alleen de twee meest recente geslaagde back-ups worden bewaard.</string>
   <string name="preferences_chats__create_backup">Nu een back-up maken</string>
   <string name="RegistrationActivity_enter_backup_passphrase">Voer back-upwachtwoord in</string>
   <string name="RegistrationActivity_restore">Herstellen</string>

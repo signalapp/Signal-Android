@@ -238,6 +238,7 @@
   <string name="ConversationFragment_failed_to_open_message">اشکال در باز کردن پیام</string>
   <string name="ConversationFragment_you_can_swipe_to_the_right_reply">برای پاسخ سریع می توانید در هر پیام به راست بکشید</string>
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">برای پاسخ سریع می توانید به سمت چپ روی هر پیام بکشید</string>
+  <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">فایل های یکبار مصرف خروحی پس از ارسال به صورت خودکار حذف می شوند</string>
   <string name="ConversationFragment_you_already_viewed_this_message">شما قبلاً این پیام را مشاهده کردید</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">هیچ مرورگری بر روی دستگاه شما نصب نیست.</string>
@@ -637,6 +638,7 @@
   <string name="RegistrationActivity_call">تماس</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_view_photo">مشاهده عکس</string>
+  <string name="RevealableMessageView_view_video">نمایش ویدئو</string>
   <string name="RevealableMessageView_viewed">Viewed</string>
   <string name="RevealableMessageView_media">رسانه</string>
   <!--ScribbleActivity-->
@@ -698,6 +700,9 @@
   <string name="ThreadRecord_missed_call">تماس از دست رفته</string>
   <string name="ThreadRecord_media_message">پیام رسانه‌ای</string>
   <string name="ThreadRecord_sticker">استیکر</string>
+  <string name="ThreadRecord_view_once_photo">عکس یکبار مصرف</string>
+  <string name="ThreadRecord_view_once_video">ویدئو یکبار مصرف</string>
+  <string name="ThreadRecord_view_once_media">رسانه یکبار مصرف</string>
   <string name="ThreadRecord_s_is_on_signal">%s در Signal است!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">پیام های نابود شونده غیر فعال شد</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">زمان پنهان شدن پیام بر روی %s تنظیم شد</string>
@@ -788,6 +793,8 @@
   <string name="MessageNotifier_mark_read">علامت گذاری به عنوان خوانده شده</string>
   <string name="MessageNotifier_media_message">پیام رسانه‌ای</string>
   <string name="MessageNotifier_sticker">استیکر</string>
+  <string name="MessageNotifier_view_once_photo">عکس یکبار مصرف</string>
+  <string name="MessageNotifier_view_once_video">ویدئو یکبار مصرف</string>
   <string name="MessageNotifier_reply">پاسخ</string>
   <string name="MessageNotifier_signal_message">پیام Signal</string>
   <string name="MessageNotifier_unsecured_sms">پیامک ناامن</string>
@@ -933,6 +940,7 @@
   <string name="QuoteView_audio">صدا</string>
   <string name="QuoteView_video">ویدئو</string>
   <string name="QuoteView_photo">تصویر</string>
+  <string name="QuoteView_view_once_media">رسانه یکبار مصرف</string>
   <string name="QuoteView_sticker">استیکر</string>
   <string name="QuoteView_document">سند</string>
   <string name="QuoteView_you">شما</string>

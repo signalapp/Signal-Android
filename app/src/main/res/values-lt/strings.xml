@@ -258,6 +258,8 @@
   <string name="ConversationFragment_failed_to_open_message">Nepavyko atverti žinutės</string>
   <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Norėdami greitai atsakyti į žinutę, galite perbraukti ją į dešinę</string>
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Norėdami greitai atsakyti į žinutę, galite perbraukti ją į kairę</string>
+  <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Vienąkartinio žiūrėjimo medija yra automatiškai pašalinama po to kai ji yra išsiųsta.</string>
+  <string name="ConversationFragment_you_already_viewed_this_message">Jūs jau peržiūrėjote šią žinutę</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Jūsų įrenginyje nėra įdiegtos naršyklės.</string>
   <!--ConversationListFragment-->
@@ -447,6 +449,7 @@
   <string name="MediaOverviewActivity_Media">Medija</string>
   <string name="MediaOverviewActivity_Files">Failai</string>
   <string name="MediaOverviewActivity_Audio">Garso įrašai</string>
+  <string name="MediaOverviewActivity_All">Visi</string>
   <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
     <item quantity="one">Ištrinti pažymėtą elementą</item>
     <item quantity="few">Ištrinti pažymėtus elementus?</item>
@@ -482,6 +485,7 @@
   <string name="MediaOverviewActivity_image">Paveikslas</string>
   <string name="MediaOverviewActivity_sent_by_s">Išsiuntė %1$s</string>
   <string name="MediaOverviewActivity_sent_by_you">Išsiuntėte jūs</string>
+  <string name="MediaOverviewActivity_sent_by_you_to_s">Jūs išsiuntėte %1$s žinutę</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal skambutis yra eigoje</string>
   <string name="NotificationBarManager__establishing_signal_call">Užmezgiamas Signal skambutis</string>
@@ -515,6 +519,7 @@
     <item quantity="other">Jūs negalite bendrinti daugiau nei %d elementą.</item>
   </plurals>
   <string name="MediaSendActivity_select_recipients_description">Pasirinkti gavėjus</string>
+  <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">Spauskitė čia, kad padaryti šią žinutę išnykstančia po to kai ji yra peržiūrima.</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">Visa medija</string>
   <!--MessageRecord-->
@@ -582,6 +587,7 @@
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Jūsų turima įdiegta „Google Play“ paslaugų versija nefunkcionuoja tinkamai. Prašome iš naujo įdiegti „Google Play“ paslaugas ir bandyti dar kartą.</string>
   <!--ProfileEditNameFragment-->
   <string name="ProfileEditNameFragment_profile_name">Profilio pavadinimas</string>
+  <string name="ProfileEditNameFragment_your_profile_name_can_be_seen_by_your_contacts">Jūsų profilio vardas gali būti matomas jūsų kontaktų ir kitų žmonių ar grupių, kai jūs inicijuojate pokalbį ar priėmate pakalbio pakvietimą</string>
   <string name="ProfileEditNameFragment_save">Įrašyti</string>
   <!--ProfileEditOverviewFragment-->
   <string name="ProfileEditOverviewFragment_profile">Profilis</string>
@@ -589,6 +595,8 @@
   <string name="ProfileEditOverviewFragment_username">Naudotojo vardas</string>
   <string name="ProfileEditOverviewFragment_create_a_profile_name">Sukurti profilio pavadinimą</string>
   <string name="ProfileEditOverviewFragment_create_a_username">Sukurti naudotojo vardą</string>
+  <string name="ProfileEditOverviewFragment_your_signal_profile_can_be_seen_by">Jūsų profilio vardas gali būti matomas jūsų kontaktų ir kitų žmonių ar grupių, kai jūs inicijuojate pokalbį ar priėmate pakalbio pakvietimą.
+<a href="https://support.signal.org/hc/en-us/articles/360007459591-Signal-Profiles">Sauskite čia, kad sužinotumėte daugiau</a></string>
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Įvertinkite šią programėlę</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Jeigu jūs mėgaujatės naudodamiesi šia programėle, skirkite minutėlę mums padėti ir įvertinkite ją.</string>
@@ -735,6 +743,9 @@
   <string name="ThreadRecord_missed_call">Praleistas skambutis</string>
   <string name="ThreadRecord_media_message">Medijos žinutė</string>
   <string name="ThreadRecord_sticker">Lipdukas</string>
+  <string name="ThreadRecord_view_once_photo">Vienąkart matoma nuotrauka</string>
+  <string name="ThreadRecord_view_once_video">Vienąkart matomas video</string>
+  <string name="ThreadRecord_view_once_media">Vienąkart matoma medija</string>
   <string name="ThreadRecord_s_is_on_signal">%s atėjo į Signal!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">Išnykstančios žinutės išjungtos</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">Išnykstančių žinučių laikas nustatytas į %s</string>
@@ -772,6 +783,7 @@
   <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Naudotojo vardai negali prasidėti skaitmenimi.</string>
   <string name="UsernameEditFragment_username_is_invalid">Naudotojo vardas yra neteisingas.</string>
   <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">Naudotojo varduose privalo būti nuo %1$d iki %2$d simbolių.</string>
+  <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">Kiti Signal vartotojai gali išsiųsti pokalbių pakvietimus su jūsų unikaliu vartotojo vardu, nežinodami jūsų numerio. Vartotojo vardas nėra būtinas. </string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Jūsų adresatas naudoja seną Signal versiją. Prieš patvirtindami savo saugumo numerį, paprašykite, kad jis atnaujintų programėlę.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Jūsų adresatas naudoja naujesnę Signal versiją su nesuderinamu QR kodo formatu. Norėdami palyginti, atsinaujinkite programėlę.</string>
@@ -824,6 +836,8 @@
   <string name="MessageNotifier_mark_read">Žymėti kaip skaitytą</string>
   <string name="MessageNotifier_media_message">Medijos žinutė</string>
   <string name="MessageNotifier_sticker">Lipdukas</string>
+  <string name="MessageNotifier_view_once_photo">Vienąkart matoma nuotrauka</string>
+  <string name="MessageNotifier_view_once_video">Vienąkart matomas video</string>
   <string name="MessageNotifier_reply">Atsakyti</string>
   <string name="MessageNotifier_signal_message">Signal žinutė</string>
   <string name="MessageNotifier_unsecured_sms">Neapsaugota SMS</string>
@@ -831,6 +845,7 @@
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Atverkite Signal, norėdami patikrinti paskiausius pranešimus.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">Adresatas</string>
+  <string name="MessageNotifier_reacted_to_your_message">%1$s sureagavo į jūsų žinutę</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">Numatytoji</string>
   <string name="NotificationChannel_calls">Skambučiai</string>
@@ -970,6 +985,7 @@
   <string name="QuoteView_audio">Garso įrašai</string>
   <string name="QuoteView_video">Vaizdo įrašai</string>
   <string name="QuoteView_photo">Nuotrauka</string>
+  <string name="QuoteView_view_once_media">Vienąkart matoma medija</string>
   <string name="QuoteView_sticker">Lipdukas</string>
   <string name="QuoteView_document">Dokumentas</string>
   <string name="QuoteView_you">Jūs</string>
@@ -1338,6 +1354,7 @@
   <string name="conversation_context__menu_resend_message">Iš naujo siųsti žinutę</string>
   <string name="conversation_context__menu_reply_to_message">Atsakyti į žinutę</string>
   <!--conversation_context_reacction-->
+  <string name="conversation_context__reaction_multi_select">Pasirinkite kelis</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">Įrašyti priedą</string>
   <!--conversation_expiring_off-->
@@ -1436,6 +1453,7 @@
   <string name="Insights__percent">%</string>
   <string name="Insights__title">Įžvalgos</string>
   <string name="InsightsDashboardFragment__title">Įžvalgos</string>
+  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal protokolas automatiškai apsaugojo %1$d%% jūsų žinučių per %2$d dienų. Pokalbiai tarp Signal vartotojų yra visąlaik apsaugoti ištiesiniu šiftavimu.</string>
   <string name="InsightsDashboardFragment__not_enough_data">Trūksta duomenų</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Pradėti pokalbį</string>
   <string name="InsightsDashboardFragment__invite_your_contacts">Nuo šiol, pakvietę daugiau adresatų naudotis Signal, bendraukite saugiai ir įjunkite naujas ypatybes, kurios viršija nešifruotų SMS žinučių apribojimus.</string>
@@ -1553,5 +1571,7 @@
   <string name="MessageRequestBottomView_do_you_want_to_let">Ar norite gauti žinutes nuo %1$s?</string>
   <string name="MessageRequestProfileView_member_of_one_group">%1$s grupės dalyvis</string>
   <string name="MessageRequestProfileView_member_of_two_groups"> %1$s ir %2$s grupių dalyvis</string>
+  <string name="MessageRequestProfileView_member_of_many_groups">%1$s, %2$s ir %3$s narys</string>
+  <string name="MessageRequestProfileView_members">%1$d nariai</string>
   <!--EOF-->
 </resources>
