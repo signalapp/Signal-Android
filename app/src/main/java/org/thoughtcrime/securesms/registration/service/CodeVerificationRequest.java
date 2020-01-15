@@ -186,12 +186,14 @@ public final class CodeVerificationRequest {
 
     TextSecurePreferences.setLocalNumber(context, credentials.getE164number());
     TextSecurePreferences.setLocalUuid(context, uuid);
+    ApplicationDependencies.getRecipientCache().clearSelf();
+
     TextSecurePreferences.setFcmToken(context, fcmToken);
     TextSecurePreferences.setFcmDisabled(context, !present);
     TextSecurePreferences.setWebsocketRegistered(context, true);
 
     DatabaseFactory.getIdentityDatabase(context)
-                   .saveIdentity(Recipient.self().getId(),
+                   .saveIdentity(selfId,
                                  identityKey.getPublicKey(), IdentityDatabase.VerifiedStatus.VERIFIED,
                                  true, System.currentTimeMillis(), true);
 
