@@ -31,6 +31,7 @@ import org.thoughtcrime.securesms.conversation.ConversationStickerSuggestionAdap
 import org.thoughtcrime.securesms.database.model.StickerRecord;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.loki.redesign.utilities.MentionUtilities;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.QuoteModel;
@@ -152,8 +153,8 @@ public class InputPanel extends LinearLayout
     composeText.setMediaListener(listener);
   }
 
-  public void setQuote(@NonNull GlideRequests glideRequests, long id, @NonNull Recipient author, @NonNull String body, @NonNull SlideDeck attachments, @NonNull Recipient conversationRecipient) {
-    this.quoteView.setQuote(glideRequests, id, author, body, false, attachments, conversationRecipient);
+  public void setQuote(@NonNull GlideRequests glideRequests, long id, @NonNull Recipient author, @NonNull String body, @NonNull SlideDeck attachments, @NonNull Recipient conversationRecipient, long threadID) {
+    this.quoteView.setQuote(glideRequests, id, author, MentionUtilities.highlightMentions(body, threadID, getContext()), false, attachments, conversationRecipient);
     this.quoteView.setVisibility(View.VISIBLE);
 
     if (this.linkPreview.getVisibility() == View.VISIBLE) {

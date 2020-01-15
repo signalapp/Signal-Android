@@ -23,7 +23,7 @@
 
             <ImageView
                 android:id="@+id/quote_bar"
-                android:layout_width="@dimen/quote_corner_radius_bottom"
+                android:layout_width="@dimen/accent_line_thickness"
                 android:layout_height="match_parent"
                 android:src="@color/white"
                 tools:tint="@color/purple_400" />
@@ -43,8 +43,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/Signal.Text.Caption"
-                    android:textColor="@color/core_black"
-                    android:textStyle="bold"
+                    android:textColor="@color/text"
+                    android:fontFamily="sans-serif-medium"
+                    android:textSize="@dimen/small_font_size"
                     android:maxLines="1"
                     android:ellipsize="end"
                     tools:text="Peter Parker" />
@@ -71,7 +72,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         style="@style/Signal.Text.Body"
-                        android:textColor="@color/core_grey_90"
+                        android:textColor="@color/text"
+                        android:textSize="@dimen/medium_font_size"
                         android:maxLines="1"
                         android:ellipsize="end"
                         tools:text="The-Amazing-Spider-Man.cba" />
@@ -95,6 +97,7 @@
                     android:id="@+id/quote_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
                     style="@style/Signal.Text.Body"
                     android:ellipsize="end"
                     android:maxLines="2"
@@ -154,7 +157,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:src="@drawable/ic_broken_link"
-                android:tint="?attr/quote_missing_icon_color"/>
+                android:tint="@color/text"/>
 
             <TextView
                 android:id="@+id/quote_missing_text"
@@ -162,7 +165,7 @@
                 android:layout_height="wrap_content"
                 style="@style/Signal.Text.Caption"
                 android:text="@string/QuoteView_original_missing"
-                android:textColor="@color/core_grey_90"/>
+                android:textColor="@color/text"/>
 
         </LinearLayout>
 
@@ -178,6 +181,6 @@
         android:layout_gravity="top|end"
         android:background="@drawable/dismiss_background"
         android:src="@drawable/ic_close_white_18dp"
-        android:tint="@color/gray70" />
+        android:tint="#99FFFFFF" />
 
 </merge>

@@ -110,8 +110,8 @@
     <dimen name="conversation_item_avatar_size">36dp</dimen>
 
     <dimen name="quote_corner_radius_large">10dp</dimen>
-    <dimen name="quote_corner_radius_bottom">4dp</dimen>
-    <dimen name="quote_corner_radius_preview">18dp</dimen>
+    <dimen name="quote_corner_radius_bottom">2dp</dimen>
+    <dimen name="quote_corner_radius_preview">16dp</dimen>
 
     <integer name="media_overview_cols">3</integer>
     <dimen name="message_details_table_row_pad">10dp</dimen>

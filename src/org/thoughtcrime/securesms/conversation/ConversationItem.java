@@ -87,7 +87,7 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.loki.LokiMessageDatabase;
-import org.thoughtcrime.securesms.loki.MentionUtilities;
+import org.thoughtcrime.securesms.loki.redesign.utilities.MentionUtilities;
 import org.thoughtcrime.securesms.loki.redesign.views.FriendRequestView;
 import org.thoughtcrime.securesms.loki.redesign.views.FriendRequestViewDelegate;
 import org.thoughtcrime.securesms.loki.redesign.views.ProfilePictureView;
@@ -267,6 +267,7 @@ public class ConversationItem extends LinearLayout
     setGroupAuthorColor(messageRecord);
     setAuthor(messageRecord, previousMessageRecord, nextMessageRecord, groupThread);
     setQuote(messageRecord, previousMessageRecord, nextMessageRecord, groupThread);
+    adjustMarginsIfNeeded(messageRecord);
     setMessageSpacing(context, messageRecord, previousMessageRecord, nextMessageRecord, groupThread);
     setFooter(messageRecord, nextMessageRecord, locale, groupThread);
     setFriendRequestView(messageRecord);
@@ -423,6 +424,16 @@ public class ConversationItem extends LinearLayout
            !hasSticker(messageRecord);
   }
 
+  private boolean hasOnlyText(MessageRecord messageRecord) {
+    return messageRecord.getBody().length() != 0 &&
+           !hasThumbnail(messageRecord)          &&
+           !hasAudio(messageRecord)              &&
+           !hasDocument(messageRecord)           &&
+           !hasSharedContact(messageRecord)      &&
+           !hasSticker(messageRecord)            &&
+           !hasQuote(messageRecord);
+  }
+
   private boolean hasDocument(MessageRecord messageRecord) {
     return messageRecord.isMms() && ((MmsMessageRecord)messageRecord).getSlideDeck().getDocumentSlide() != null;
   }
@@ -461,10 +472,6 @@ public class ConversationItem extends LinearLayout
     bodyText.setClickable(false);
     bodyText.setFocusable(false);
     bodyText.setTextSize(TypedValue.COMPLEX_UNIT_SP, TextSecurePreferences.getMessageBodyTextSize(context));
-    bodyBubble.setPadding(0, 0, 0, 0);
-    if (messageRecord.isOutgoing() && !(isCaptionlessMms(messageRecord) && !hasAudio(messageRecord))) {
-      bodyBubble.setPadding(0, 0, 0, (int) getResources().getDimension(R.dimen.medium_spacing));
-    }
     if (isCaptionlessMms(messageRecord)) {
       bodyText.setVisibility(View.GONE);
     } else {
@@ -481,6 +488,33 @@ public class ConversationItem extends LinearLayout
       bodyText.setText(text);
       bodyText.setVisibility(View.VISIBLE);
     }
+  }
+
+  private void adjustMarginsIfNeeded(MessageRecord messageRecord) {
+    LinearLayout.LayoutParams bodyTextLayoutParams = (LinearLayout.LayoutParams)bodyText.getLayoutParams();
+    bodyTextLayoutParams.topMargin = 0;
+    if (hasOnlyThumbnail(messageRecord)) {
+      int topPadding = 0;
+      if (groupSenderHolder.getVisibility() == VISIBLE) {
+        topPadding = (int)getResources().getDimension(R.dimen.medium_spacing);
+      }
+      int bottomPadding = 0;
+      if (messageRecord.getBody().length() > 0) {
+        bodyTextLayoutParams.topMargin = (int)getResources().getDimension(R.dimen.medium_spacing);
+        bottomPadding = (int)getResources().getDimension(R.dimen.medium_spacing);
+      }
+      bodyBubble.setPadding(0, topPadding, 0, bottomPadding);
+    } else {
+      bodyBubble.setPadding(0, (int)getResources().getDimension(R.dimen.medium_spacing), 0, (int)getResources().getDimension(R.dimen.medium_spacing));
+    }
+    bodyText.setLayoutParams(bodyTextLayoutParams);
+    LinearLayout.LayoutParams senderHolderLayoutParams = (LinearLayout.LayoutParams)groupSenderHolder.getLayoutParams();
+    if (groupSenderHolder.getVisibility() == VISIBLE && hasOnlyText(messageRecord)) {
+      senderHolderLayoutParams.bottomMargin = (int)(getResources().getDisplayMetrics().density * 4);
+    } else {
+      senderHolderLayoutParams.bottomMargin = (int)getResources().getDimension(R.dimen.medium_spacing);
+    }
+    groupSenderHolder.setLayoutParams(senderHolderLayoutParams);
   }
 
   private void setMediaAttributes(@NonNull MessageRecord           messageRecord,
@@ -741,7 +775,9 @@ public class ConversationItem extends LinearLayout
     LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams)bodyBubble.getLayoutParams();
     int groupThreadMargin = (int)(getResources().getDimension(R.dimen.large_spacing) + getResources().getDimension(R.dimen.small_profile_picture_size));
     int defaultMargin = 0;
-    layoutParams.setMarginStart(groupThread ? groupThreadMargin : defaultMargin);
+    String threadName = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(messageRecord.getThreadId()).getName();
+    boolean isRSSFeed = threadName.equals("Loki News") || threadName.equals("Loki Messenger Updates");
+    layoutParams.setMarginStart((groupThread && !isRSSFeed) ? groupThreadMargin : defaultMargin);
     bodyBubble.setLayoutParams(layoutParams);
     if (profilePictureView == null) return;
     profilePictureView.setHexEncodedPublicKey(recipient.getAddress().toString());
@@ -921,7 +957,9 @@ public class ConversationItem extends LinearLayout
   }
 
   private void setAuthor(@NonNull MessageRecord current, @NonNull Optional<MessageRecord> previous, @NonNull Optional<MessageRecord> next, boolean isGroupThread) {
-    if (isGroupThread && !current.isOutgoing()) {
+    String threadName = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(current.getThreadId()).getName();
+    boolean isRSSFeed = threadName.equals("Loki News") || threadName.equals("Loki Messenger Updates");
+    if (isGroupThread && !isRSSFeed && !current.isOutgoing()) {
       contactPhotoHolder.setVisibility(VISIBLE);
 
       if (!previous.isPresent() || previous.get().isUpdate() || !current.getRecipient().getAddress().equals(previous.get().getRecipient().getAddress()) ||
@@ -932,7 +970,7 @@ public class ConversationItem extends LinearLayout
         groupSenderHolder.setVisibility(GONE);
       }
 
-      if (!next.isPresent() || next.get().isUpdate() || !current.getRecipient().getAddress().equals(next.get().getRecipient().getAddress())) {
+      if (!previous.isPresent() || previous.get().isUpdate() || !current.getRecipient().getAddress().equals(previous.get().getRecipient().getAddress())) {
         profilePictureView.setVisibility(VISIBLE);
         int visibility = View.GONE;
 
