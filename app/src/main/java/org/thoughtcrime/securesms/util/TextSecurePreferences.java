@@ -216,6 +216,8 @@ public class TextSecurePreferences {
 
   private static final String STORAGE_MANIFEST_VERSION = "pref_storage_manifest_version";
 
+  private static final String ARGON2_TESTED = "argon2_tested";
+
   public static boolean isScreenLockEnabled(@NonNull Context context) {
     return getBooleanPreference(context, SCREEN_LOCK, false);
   }
@@ -1337,6 +1339,14 @@ public class TextSecurePreferences {
 
   public static void setStorageManifestVersion(Context context, long version) {
     setLongPreference(context, STORAGE_MANIFEST_VERSION, version);
+  }
+
+  public static boolean isArgon2Tested(Context context) {
+    return getBooleanPreference(context, ARGON2_TESTED, false);
+  }
+
+  public static void setArgon2Tested(Context context, boolean tested) {
+    setBooleanPreference(context, ARGON2_TESTED, tested);
   }
 
   public static void setBooleanPreference(Context context, String key, boolean value) {

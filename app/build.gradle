@@ -117,6 +117,7 @@ dependencies {
 
     implementation project(':libsignal-service')
 
+    implementation 'org.signal:argon2:13.0@aar'
     implementation 'org.signal:ringrtc-android:0.3.1'
 
     implementation "me.leolin:ShortcutBadger:1.1.16"
