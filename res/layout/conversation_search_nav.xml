@@ -6,7 +6,7 @@
     android:id="@+id/conversation_search_nav"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?conversation_background"
+    android:background="@color/compose_view_background"
     android:visibility="gone"
     tools:visibility="visible"
     tools:parentTag="android.support.constraint.ConstraintLayout">

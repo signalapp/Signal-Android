@@ -52,12 +52,6 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
 
-            <ImageView
-                android:id="@+id/settingsButton"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_gear" />
-
         </LinearLayout>
 
     </android.support.v7.widget.Toolbar>

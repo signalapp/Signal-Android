@@ -35,7 +35,7 @@
 
     <color name="signal_primary">@color/accent</color>
     <color name="signal_primary_dark">@color/accent</color>
-    <color name="signal_primary_alpha33">#5578be20</color>
+    <color name="signal_primary_alpha33">#5500F782</color>
     <color name="signal_primary_alpha_focus">#882090ea</color>
 
     <color name="textsecure_primary">@color/signal_primary</color>

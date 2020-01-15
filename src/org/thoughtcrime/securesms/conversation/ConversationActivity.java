@@ -31,6 +31,7 @@ import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
 import android.hardware.Camera;
 import android.net.Uri;
@@ -45,14 +46,18 @@ import android.support.annotation.Nullable;
 import android.support.v4.content.pm.ShortcutInfoCompat;
 import android.support.v4.content.pm.ShortcutManagerCompat;
 import android.support.v4.graphics.drawable.IconCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Pair;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -204,6 +209,7 @@ import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.DirectoryHelper;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
+import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
@@ -660,130 +666,130 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
   }
 
-//  @Override
-//  public boolean onPrepareOptionsMenu(Menu menu) {
-//    MenuInflater inflater = this.getMenuInflater();
-//    menu.clear();
-//
-//    boolean isLokiPublicChat = isGroupConversation(); // TODO: Figure out a better way of determining this
-//
-//    if (isSecureText && !isLokiPublicChat) { // TODO:
-//      if (recipient.getExpireMessages() > 0) {
-//        inflater.inflate(R.menu.conversation_expiring_on, menu);
-//
-//        final MenuItem item       = menu.findItem(R.id.menu_expiring_messages);
-//        final View     actionView = MenuItemCompat.getActionView(item);
-//        final TextView badgeView  = actionView.findViewById(R.id.expiration_badge);
-//
-//        badgeView.setText(ExpirationUtil.getExpirationAbbreviatedDisplayValue(this, recipient.getExpireMessages()));
-//        actionView.setOnClickListener(v -> onOptionsItemSelected(item));
-//      } else {
-//        inflater.inflate(R.menu.conversation_expiring_off, menu);
-//      }
-//    }
-//
-//    if (isSingleConversation()) {
-//      /*
-//      if (isSecureText) inflater.inflate(R.menu.conversation_callable_secure, menu);
-//      else              inflater.inflate(R.menu.conversation_callable_insecure, menu);
-//       */
-//    } else if (isGroupConversation() && !isLokiPublicChat) {
-//      inflater.inflate(R.menu.conversation_group_options, menu);
-//
-//      if (!isPushGroupConversation()) {
-//        inflater.inflate(R.menu.conversation_mms_group_options, menu);
-//        if (distributionType == ThreadDatabase.DistributionTypes.BROADCAST) {
-//          menu.findItem(R.id.menu_distribution_broadcast).setChecked(true);
-//        } else {
-//          menu.findItem(R.id.menu_distribution_conversation).setChecked(true);
-//        }
-//      } else if (isActiveGroup()) {
-//        inflater.inflate(R.menu.conversation_push_group_options, menu);
-//      }
-//    }
-//
-//    inflater.inflate(R.menu.conversation, menu);
-//
-//    if (isSingleConversation() && isSecureText) {
-//      inflater.inflate(R.menu.conversation_secure, menu);
-//    } else if (isSingleConversation()) {
-//      inflater.inflate(R.menu.conversation_insecure, menu);
-//    }
-//
-//    if (recipient != null && recipient.isMuted()) inflater.inflate(R.menu.conversation_muted, menu);
-//    else                                          inflater.inflate(R.menu.conversation_unmuted, menu);
-//
-//    /*
-//    if (isSingleConversation() && getRecipient().getContactUri() == null) {
-//      inflater.inflate(R.menu.conversation_add_to_contacts, menu);
-//    }
-//
-//
-//    if (recipient != null && recipient.isLocalNumber()) {
-//      if (isSecureText) menu.findItem(R.id.menu_call_secure).setVisible(false);
-//      else              menu.findItem(R.id.menu_call_insecure).setVisible(false);
-//
-//      MenuItem muteItem = menu.findItem(R.id.menu_mute_notifications);
-//
-//      if (muteItem != null) {
-//        muteItem.setVisible(false);
-//      }
-//    }
-//     */
-//
-//    searchViewItem = menu.findItem(R.id.menu_search);
-//
-//    SearchView                     searchView    = (SearchView) searchViewItem.getActionView();
-//    SearchView.OnQueryTextListener queryListener = new SearchView.OnQueryTextListener() {
-//      @Override
-//      public boolean onQueryTextSubmit(String query) {
-//        searchViewModel.onQueryUpdated(query, threadId);
-//        searchNav.showLoading();
-//        fragment.onSearchQueryUpdated(query);
-//        return true;
-//      }
-//
-//      @Override
-//      public boolean onQueryTextChange(String query) {
-//        searchViewModel.onQueryUpdated(query, threadId);
-//        searchNav.showLoading();
-//        fragment.onSearchQueryUpdated(query);
-//        return true;
-//      }
-//    };
-//
-//    searchViewItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
-//      @Override
-//      public boolean onMenuItemActionExpand(MenuItem item) {
-//        searchView.setOnQueryTextListener(queryListener);
-//        searchViewModel.onSearchOpened();
-//        searchNav.setVisibility(View.VISIBLE);
-//        searchNav.setData(0, 0);
-//        inputPanel.setVisibility(View.GONE);
-//
-//        for (int i = 0; i < menu.size(); i++) {
-//          if (!menu.getItem(i).equals(searchViewItem)) {
-//            menu.getItem(i).setVisible(false);
-//          }
-//        }
-//        return true;
-//      }
-//
-//      @Override
-//      public boolean onMenuItemActionCollapse(MenuItem item) {
-//        searchView.setOnQueryTextListener(null);
-//        searchViewModel.onSearchClosed();
-//        searchNav.setVisibility(View.GONE);
-//        inputPanel.setVisibility(View.VISIBLE);
-//        fragment.onSearchQueryUpdated(null);
-//        invalidateOptionsMenu();
-//        return true;
-//      }
-//    });
-//
-//    super.onPrepareOptionsMenu(menu);
-//    return true;
-//  }
+  @Override
+  public boolean onPrepareOptionsMenu(Menu menu) {
+    MenuInflater inflater = this.getMenuInflater();
+    menu.clear();
+
+    boolean isLokiPublicChat = isGroupConversation(); // TODO: Figure out a better way of determining this
+
+    if (isSecureText && !isLokiPublicChat) { // TODO:
+      if (recipient.getExpireMessages() > 0) {
+        inflater.inflate(R.menu.conversation_expiring_on, menu);
+
+        final MenuItem item       = menu.findItem(R.id.menu_expiring_messages);
+        final View     actionView = MenuItemCompat.getActionView(item);
+        final TextView badgeView  = actionView.findViewById(R.id.expiration_badge);
+
+        badgeView.setText(ExpirationUtil.getExpirationAbbreviatedDisplayValue(this, recipient.getExpireMessages()));
+        actionView.setOnClickListener(v -> onOptionsItemSelected(item));
+      } else {
+        inflater.inflate(R.menu.conversation_expiring_off, menu);
+      }
+    }
+
+    if (isSingleConversation()) {
+      /*
+      if (isSecureText) inflater.inflate(R.menu.conversation_callable_secure, menu);
+      else              inflater.inflate(R.menu.conversation_callable_insecure, menu);
+       */
+    } else if (isGroupConversation() && !isLokiPublicChat) {
+      inflater.inflate(R.menu.conversation_group_options, menu);
+
+      if (!isPushGroupConversation()) {
+        inflater.inflate(R.menu.conversation_mms_group_options, menu);
+        if (distributionType == ThreadDatabase.DistributionTypes.BROADCAST) {
+          menu.findItem(R.id.menu_distribution_broadcast).setChecked(true);
+        } else {
+          menu.findItem(R.id.menu_distribution_conversation).setChecked(true);
+        }
+      } else if (isActiveGroup()) {
+        inflater.inflate(R.menu.conversation_push_group_options, menu);
+      }
+    }
+
+    inflater.inflate(R.menu.conversation, menu);
+
+    if (isSingleConversation() && isSecureText) {
+      inflater.inflate(R.menu.conversation_secure, menu);
+    } else if (isSingleConversation()) {
+      inflater.inflate(R.menu.conversation_insecure, menu);
+    }
+
+    if (recipient != null && recipient.isMuted()) inflater.inflate(R.menu.conversation_muted, menu);
+    else                                          inflater.inflate(R.menu.conversation_unmuted, menu);
+
+    /*
+    if (isSingleConversation() && getRecipient().getContactUri() == null) {
+      inflater.inflate(R.menu.conversation_add_to_contacts, menu);
+    }
+
+
+    if (recipient != null && recipient.isLocalNumber()) {
+      if (isSecureText) menu.findItem(R.id.menu_call_secure).setVisible(false);
+      else              menu.findItem(R.id.menu_call_insecure).setVisible(false);
+
+      MenuItem muteItem = menu.findItem(R.id.menu_mute_notifications);
+
+      if (muteItem != null) {
+        muteItem.setVisible(false);
+      }
+    }
+     */
+
+    searchViewItem = menu.findItem(R.id.menu_search);
+
+    SearchView                     searchView    = (SearchView) searchViewItem.getActionView();
+    SearchView.OnQueryTextListener queryListener = new SearchView.OnQueryTextListener() {
+      @Override
+      public boolean onQueryTextSubmit(String query) {
+        searchViewModel.onQueryUpdated(query, threadId);
+        searchNav.showLoading();
+        fragment.onSearchQueryUpdated(query);
+        return true;
+      }
+
+      @Override
+      public boolean onQueryTextChange(String query) {
+        searchViewModel.onQueryUpdated(query, threadId);
+        searchNav.showLoading();
+        fragment.onSearchQueryUpdated(query);
+        return true;
+      }
+    };
+
+    searchViewItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
+      @Override
+      public boolean onMenuItemActionExpand(MenuItem item) {
+        searchView.setOnQueryTextListener(queryListener);
+        searchViewModel.onSearchOpened();
+        searchNav.setVisibility(View.VISIBLE);
+        searchNav.setData(0, 0);
+        inputPanel.setVisibility(View.GONE);
+
+        for (int i = 0; i < menu.size(); i++) {
+          if (!menu.getItem(i).equals(searchViewItem)) {
+            menu.getItem(i).setVisible(false);
+          }
+        }
+        return true;
+      }
+
+      @Override
+      public boolean onMenuItemActionCollapse(MenuItem item) {
+        searchView.setOnQueryTextListener(null);
+        searchViewModel.onSearchClosed();
+        searchNav.setVisibility(View.GONE);
+        inputPanel.setVisibility(View.VISIBLE);
+        fragment.onSearchQueryUpdated(null);
+        invalidateOptionsMenu();
+        return true;
+      }
+    });
+
+    super.onPrepareOptionsMenu(menu);
+    return true;
+  }
 
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
@@ -1640,6 +1646,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   protected void initializeActionBar() {
     Toolbar toolbar = findViewById(R.id.toolbar);
+    toolbar.getOverflowIcon().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);
     setSupportActionBar(toolbar);
 
     ActionBar supportActionBar = getSupportActionBar();
@@ -2933,7 +2940,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   @Override
   public void onMessageActionToolbarOpened() {
-    // searchViewItem.collapseActionView();
+     searchViewItem.collapseActionView();
   }
 
   @Override
