@@ -14,9 +14,10 @@
     <TextView android:id="@+id/no_documents"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:textSize="24sp"
+              android:textSize="@dimen/medium_font_size"
               android:gravity="center"
               android:visibility="gone"
+              android:textColor="@color/text"
               android:text="@string/media_overview_documents_fragment__no_documents_found" />
 
 </RelativeLayout>

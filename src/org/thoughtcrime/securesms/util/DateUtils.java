@@ -17,16 +17,15 @@
 package org.thoughtcrime.securesms.util;
 
 import android.content.Context;
-import android.os.Build;
 import android.support.annotation.NonNull;
 import android.text.format.DateFormat;
-
-import network.loki.messenger.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
+
+import network.loki.messenger.R;
 
 /**
  * Utility methods to help display dates in a nice, easily readable way.
@@ -49,7 +48,7 @@ public class DateUtils extends android.text.format.DateUtils {
     return (int) to.convert(System.currentTimeMillis() - millis, TimeUnit.MILLISECONDS);
   }
 
-  private static String getFormattedDateTime(long time, String template, Locale locale) {
+  public static String getFormattedDateTime(long time, String template, Locale locale) {
     final String localizedPattern = getLocalizedPattern(template, locale);
     return new SimpleDateFormat(localizedPattern, locale).format(new Date(time));
   }

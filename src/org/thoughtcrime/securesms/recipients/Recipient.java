@@ -84,7 +84,7 @@ public class Recipient implements RecipientModifiedListener {
   private           Uri                  contactUri;
   private @Nullable Uri                  messageRingtone       = null;
   private @Nullable Uri                  callRingtone          = null;
-  private           long                 mutedUntil            = 0;
+  public            long                 mutedUntil            = 0;
   private           boolean              blocked               = false;
   private           VibrateState         messageVibrate        = VibrateState.DEFAULT;
   private           VibrateState         callVibrate           = VibrateState.DEFAULT;

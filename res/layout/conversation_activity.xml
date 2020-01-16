@@ -38,13 +38,28 @@
                     android:textSize="@dimen/large_font_size"
                     android:fontFamily="sans-serif-medium" />
 
-                <TextView
-                    android:id="@+id/subtitleTextView"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="26 members"
-                    android:textColor="@color/text"
-                    android:textSize="@dimen/small_font_size" />
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/muteIndicatorImageView"
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:src="@drawable/ic_mute"
+                        android:layout_marginRight="4dp"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/subtitleTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="26 members"
+                        android:textColor="@color/text"
+                        android:textSize="@dimen/small_font_size" />
+
+                </LinearLayout>
 
             </LinearLayout>
 

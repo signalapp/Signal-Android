@@ -70,6 +70,7 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -159,10 +160,10 @@ import org.thoughtcrime.securesms.loki.LokiMessageDatabase;
 import org.thoughtcrime.securesms.loki.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.LokiThreadDatabaseDelegate;
 import org.thoughtcrime.securesms.loki.LokiUserDatabase;
-import org.thoughtcrime.securesms.loki.redesign.views.MentionCandidateSelectionView;
 import org.thoughtcrime.securesms.loki.MultiDeviceUtilities;
 import org.thoughtcrime.securesms.loki.redesign.activities.HomeActivity;
 import org.thoughtcrime.securesms.loki.redesign.views.FriendRequestViewDelegate;
+import org.thoughtcrime.securesms.loki.redesign.views.MentionCandidateSelectionView;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mediasend.MediaSendActivity;
 import org.thoughtcrime.securesms.mms.AttachmentManager;
@@ -208,6 +209,7 @@ import org.thoughtcrime.securesms.stickers.StickerPackInstallEvent;
 import org.thoughtcrime.securesms.stickers.StickerSearchRepository;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.CommunicationActions;
+import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.DirectoryHelper;
 import org.thoughtcrime.securesms.util.DynamicLanguage;
@@ -229,6 +231,7 @@ import org.whispersystems.libsignal.InvalidMessageException;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.loki.api.LokiAPI;
 import org.whispersystems.signalservice.loki.api.LokiStorageAPI;
+import org.whispersystems.signalservice.loki.api.PairingAuthorisation;
 import org.whispersystems.signalservice.loki.messaging.LokiMessageFriendRequestStatus;
 import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus;
 import org.whispersystems.signalservice.loki.messaging.Mention;
@@ -238,6 +241,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
@@ -320,6 +324,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private   ConversationSearchBottomBar searchNav;
   private   MenuItem                    searchViewItem;
   private   ProgressBar                 messageStatusProgressBar;
+  private   ImageView                   muteIndicatorImageView;
   private   TextView                    actionBarSubtitleTextView;
 
   private   AttachmentTypeSelector attachmentTypeSelector;
@@ -511,6 +516,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     composeText.setTransport(sendButton.getSelectedTransport());
 
     updateTitleTextView(glideRequests, recipient);
+    updateSubtitleTextView();
     setActionBarColor(recipient.getColor());
     setBlockedUserState(recipient, isSecureText, isDefaultSms);
     setGroupShareProfileReminder(recipient);
@@ -601,6 +607,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       recipient = Recipient.from(this, data.getParcelableExtra(GroupCreateActivity.GROUP_ADDRESS_EXTRA), true);
       recipient.addListener(this);
       updateTitleTextView(glideRequests, recipient);
+      updateSubtitleTextView();
       NotificationChannels.updateContactChannelName(this, recipient);
       setBlockedUserState(recipient, isSecureText, isDefaultSms);
       supportInvalidateOptionsMenu();
@@ -1622,6 +1629,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     mentionCandidateSelectionViewContainer = ViewUtil.findById(this, R.id.mentionCandidateSelectionViewContainer);
     mentionCandidateSelectionView = ViewUtil.findById(this, R.id.userSelectionView);
     messageStatusProgressBar = ViewUtil.findById(this, R.id.messageStatusProgressBar);
+    muteIndicatorImageView = ViewUtil.findById(this, R.id.muteIndicatorImageView);
     actionBarSubtitleTextView = ViewUtil.findById(this, R.id.subtitleTextView);
 
     ImageButton quickCameraToggle      = ViewUtil.findById(this, R.id.quick_camera_toggle);
@@ -1814,6 +1822,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     Util.runOnMain(() -> {
       Log.i(TAG, "onModifiedRun(): " + recipient.getRegistered());
       updateTitleTextView(glideRequests, recipient);
+      updateSubtitleTextView();
 //      titleView.setVerified(identityRecords.isVerified());
       setBlockedUserState(recipient, isSecureText, isDefaultSms);
       setActionBarColor(recipient.getColor());
@@ -3090,10 +3099,26 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
   // region Loki
   private void updateTitleTextView(GlideRequests glide, Recipient recipient) {
-
+    String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this);
+    List<PairingAuthorisation> deviceLinks = DatabaseFactory.getLokiAPIDatabase(this).getPairingAuthorisations(userHexEncodedPublicKey);
+    HashSet<String> userLinkedDeviceHexEncodedPublicKeys = new HashSet<>();
+    for (PairingAuthorisation deviceLink : deviceLinks) {
+      userLinkedDeviceHexEncodedPublicKeys.add(deviceLink.getPrimaryDevicePublicKey().toLowerCase());
+      userLinkedDeviceHexEncodedPublicKeys.add(deviceLink.getSecondaryDevicePublicKey().toLowerCase());
+    }
+    userLinkedDeviceHexEncodedPublicKeys.add(userHexEncodedPublicKey.toLowerCase());
+    if (recipient == null) {
+      titleTextView.setText("Compose");
+    } else if (userLinkedDeviceHexEncodedPublicKeys.contains(recipient.getAddress().toString().toLowerCase())) {
+      titleTextView.setText("Note to Self");
+    } else {
+      titleTextView.setText(recipient.getName());
+    }
   }
 
   private void updateSubtitleTextView() {
+    muteIndicatorImageView.setVisibility(View.GONE);
+    actionBarSubtitleTextView.setVisibility(View.VISIBLE);
     if (messageStatus != null) {
       switch (messageStatus) {
         case "calculatingPoW": actionBarSubtitleTextView.setText("Encrypting message"); break;
@@ -3102,8 +3127,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         case "messageSent": actionBarSubtitleTextView.setText("Message sent securely"); break;
         case "messageFailed": actionBarSubtitleTextView.setText("Message failed to send"); break;
       }
-    } else {
+    } else if (recipient.isGroupRecipient()) {
       actionBarSubtitleTextView.setText("26 members");
+    } else if (recipient.isMuted()) {
+      muteIndicatorImageView.setVisibility(View.VISIBLE);
+      actionBarSubtitleTextView.setText("Muted until " + DateUtils.getFormattedDateTime(recipient.mutedUntil, "EEE, MMM d, yyyy HH:mm", Locale.getDefault()));
+    } else {
+      actionBarSubtitleTextView.setVisibility(View.GONE);
     }
   }
 
