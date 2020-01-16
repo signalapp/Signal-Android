@@ -1,21 +1,21 @@
-package org.thoughtcrime.securesms.loki
+package org.thoughtcrime.securesms.loki.redesign.views
 
 import android.content.Context
-import android.graphics.Outline
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewOutlineProvider
 import android.widget.LinearLayout
-import kotlinx.android.synthetic.main.cell_mention_candidate_selection_view.view.*
+import kotlinx.android.synthetic.main.view_mention_candidate.view.*
 import network.loki.messenger.R
+import org.thoughtcrime.securesms.mms.GlideRequests
 import org.whispersystems.signalservice.loki.api.LokiPublicChatAPI
 import org.whispersystems.signalservice.loki.messaging.Mention
 
-class MentionCandidateSelectionViewCell(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : LinearLayout(context, attrs, defStyleAttr) {
+class MentionCandidateView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : LinearLayout(context, attrs, defStyleAttr) {
     var mentionCandidate = Mention("", "")
         set(newValue) { field = newValue; update() }
+    var glide: GlideRequests? = null
     var publicChatServer: String? = null
     var publicChatChannel: Long? = null
 
@@ -24,25 +24,18 @@ class MentionCandidateSelectionViewCell(context: Context, attrs: AttributeSet?, 
 
     companion object {
 
-        fun inflate(layoutInflater: LayoutInflater, parent: ViewGroup): MentionCandidateSelectionViewCell {
-            return layoutInflater.inflate(R.layout.cell_mention_candidate_selection_view, parent, false) as MentionCandidateSelectionViewCell
+        fun inflate(layoutInflater: LayoutInflater, parent: ViewGroup): MentionCandidateView {
+            return layoutInflater.inflate(R.layout.view_mention_candidate, parent, false) as MentionCandidateView
         }
-    }
-
-    override fun onFinishInflate() {
-        super.onFinishInflate()
-        profilePictureImageViewContainer.outlineProvider = object : ViewOutlineProvider() {
-
-            override fun getOutline(view: View, outline: Outline) {
-                outline.setOval(0, 0, view.width, view.height)
-            }
-        }
-        profilePictureImageViewContainer.clipToOutline = true
     }
 
     private fun update() {
         displayNameTextView.text = mentionCandidate.displayName
-        profilePictureImageView.update(mentionCandidate.hexEncodedPublicKey)
+        profilePictureView.hexEncodedPublicKey = mentionCandidate.hexEncodedPublicKey
+        profilePictureView.additionalHexEncodedPublicKey = null
+        profilePictureView.isRSSFeed = false
+        profilePictureView.glide = glide!!
+        profilePictureView.update()
         if (publicChatServer != null && publicChatChannel != null) {
             val isUserModerator = LokiPublicChatAPI.isUserModerator(mentionCandidate.hexEncodedPublicKey, publicChatChannel!!, publicChatServer!!)
             moderatorIconImageView.visibility = if (isUserModerator) View.VISIBLE else View.GONE

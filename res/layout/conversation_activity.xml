@@ -126,7 +126,26 @@
                 android:clipChildren="false"
                 android:clipToPadding="false">
 
-                <include layout="@layout/view_mention_candidate_selection" />
+                <LinearLayout
+                    android:id="@+id/mentionCandidateSelectionViewContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:background="@color/separator" />
+
+                    <include layout="@layout/view_mention_candidate_selection" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:background="@color/separator" />
+
+                </LinearLayout>
 
                 <FrameLayout
                     android:layout_width="match_parent"

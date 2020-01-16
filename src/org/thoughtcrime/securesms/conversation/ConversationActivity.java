@@ -159,7 +159,7 @@ import org.thoughtcrime.securesms.loki.LokiMessageDatabase;
 import org.thoughtcrime.securesms.loki.LokiThreadDatabase;
 import org.thoughtcrime.securesms.loki.LokiThreadDatabaseDelegate;
 import org.thoughtcrime.securesms.loki.LokiUserDatabase;
-import org.thoughtcrime.securesms.loki.MentionCandidateSelectionView;
+import org.thoughtcrime.securesms.loki.redesign.views.MentionCandidateSelectionView;
 import org.thoughtcrime.securesms.loki.MultiDeviceUtilities;
 import org.thoughtcrime.securesms.loki.redesign.activities.HomeActivity;
 import org.thoughtcrime.securesms.loki.redesign.views.FriendRequestViewDelegate;
@@ -355,6 +355,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private String messageStatus = null;
 
   // Mentions
+  private View mentionCandidateSelectionViewContainer;
   private MentionCandidateSelectionView mentionCandidateSelectionView;
   private int currentMentionStartIndex = -1;
   private ArrayList<Mention> mentions = new ArrayList<>();
@@ -420,6 +421,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
             }
             composeText.setSelection(composeText.length(), composeText.length());
             composeText.addTextChangedListener(mentionTextWatcher);
+            mentionCandidateSelectionView.setGlide(glideRequests);
             mentionCandidateSelectionView.setOnMentionCandidateSelected( mentionCandidate -> {
               mentions.add(mentionCandidate);
               String oldText = composeText.getText().toString();
@@ -1617,6 +1619,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     inlineAttachmentToggle = ViewUtil.findById(this, R.id.inline_attachment_container);
     inputPanel             = ViewUtil.findById(this, R.id.bottom_panel);
     searchNav              = ViewUtil.findById(this, R.id.conversation_search_nav);
+    mentionCandidateSelectionViewContainer = ViewUtil.findById(this, R.id.mentionCandidateSelectionViewContainer);
     mentionCandidateSelectionView = ViewUtil.findById(this, R.id.userSelectionView);
     messageStatusProgressBar = ViewUtil.findById(this, R.id.messageStatusProgressBar);
     actionBarSubtitleTextView = ViewUtil.findById(this, R.id.subtitleTextView);
@@ -2865,6 +2868,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       if (isBackspace) {
         currentMentionStartIndex = -1;
         mentionCandidateSelectionView.hide();
+        mentionCandidateSelectionViewContainer.setVisibility(View.GONE);
         ArrayList<Mention> mentionsToRemove = new ArrayList<>();
         for (Mention mention : mentions) {
           if (!text.contains(mention.getDisplayName())) {
@@ -2889,14 +2893,17 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         if (lastCharacter == '@' && Character.isWhitespace(secondToLastCharacter)) {
           List<Mention> mentionCandidates = LokiAPI.Companion.getMentionCandidates("", threadId, userHexEncodedPublicKey, threadDatabase, userDatabase);
           currentMentionStartIndex = lastCharacterIndex;
+          mentionCandidateSelectionViewContainer.setVisibility(View.VISIBLE);
           mentionCandidateSelectionView.show(mentionCandidates, threadId);
         } else if (Character.isWhitespace(lastCharacter)) {
           currentMentionStartIndex = -1;
           mentionCandidateSelectionView.hide();
+          mentionCandidateSelectionViewContainer.setVisibility(View.GONE);
         } else {
           if (currentMentionStartIndex != -1) {
             String query = text.substring(currentMentionStartIndex + 1); // + 1 to get rid of the @
             List<Mention> mentionCandidates = LokiAPI.Companion.getMentionCandidates(query, threadId, userHexEncodedPublicKey, threadDatabase, userDatabase);
+            mentionCandidateSelectionViewContainer.setVisibility(View.VISIBLE);
             mentionCandidateSelectionView.show(mentionCandidates, threadId);
           }
         }
