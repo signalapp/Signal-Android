@@ -64,6 +64,7 @@ class ConversationView : LinearLayout {
         val senderDisplayName = if (thread.recipient.isLocalNumber) context.getString(R.string.note_to_self) else thread.recipient.name
         displayNameTextView.text = senderDisplayName
         timestampTextView.text = DateUtils.getBriefRelativeTimeSpanString(context, Locale.getDefault(), thread.date)
+        muteIndicatorImageView.visibility = if (thread.recipient.isMuted) VISIBLE else GONE
         val rawSnippet = thread.getDisplayBody(context)
         val snippet = highlightMentions(rawSnippet, thread.threadId, context)
         snippetTextView.text = snippet
