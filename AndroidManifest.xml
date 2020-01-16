@@ -289,6 +289,7 @@
             android:name="org.thoughtcrime.securesms.conversation.ConversationActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
             android:launchMode="singleTask"
+            android:theme="@style/Session.DarkTheme.NoActionBar"
             android:parentActivityName="org.thoughtcrime.securesms.ConversationListActivity"
             android:windowSoftInputMode="stateUnchanged">
             <meta-data

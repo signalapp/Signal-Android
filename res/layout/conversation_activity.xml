@@ -15,7 +15,8 @@
         app:contentInsetLeft="24dp"
         app:contentInsetRight="20dp"
         android:background="@color/action_bar_background"
-        android:theme="@style/Session.DarkActionBar">
+        android:theme="@style/Session.DarkActionBar"
+        app:popupTheme="@style/Session.DarkActionBar">
 
         <LinearLayout
             android:layout_width="match_parent"

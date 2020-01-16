@@ -12,6 +12,8 @@
         <item name="android:windowBackground">@drawable/default_session_background</item>
         <item name="preferenceTheme">@style/Session.SettingsTheme</item>
         <item name="colorAccent">@color/accent</item>
+        <item name="actionModeBackground">@color/compose_view_background</item>
+        <item name="windowActionModeOverlay">true</item>
     </style>
 
     <style name="Session.DarkTheme.NoActionBar" parent="@style/Theme.AppCompat.NoActionBar">
@@ -23,6 +25,8 @@
         <item name="android:windowBackground">@drawable/default_session_background</item>
         <item name="preferenceTheme">@style/Session.SettingsTheme</item>
         <item name="colorAccent">@color/accent</item>
+        <item name="actionModeBackground">@color/compose_view_background</item>
+        <item name="windowActionModeOverlay">true</item>
     </style>
 
     <style name="Session.DarkTheme.SubtitleActionBar" parent="@style/Theme.AppCompat">
@@ -34,6 +38,8 @@
         <item name="android:windowBackground">@drawable/default_session_background</item>
         <item name="preferenceTheme">@style/Session.SettingsTheme</item>
         <item name="colorAccent">@color/accent</item>
+        <item name="actionModeBackground">@color/compose_view_background</item>
+        <item name="windowActionModeOverlay">true</item>
     </style>
     <!-- Session -->
 
@@ -160,13 +166,15 @@
     <style name="TextSecure.LightTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
         <item name="theme_type">light</item>
         <item name="actionBarStyle">@style/Session.DarkActionBar</item>
+        <item name="searchViewStyle">@style/TextSecure.BaseDarkTheme.SearchView</item>
         <item name="actionBarTabBarStyle">@style/TextSecure.LightActionBar.TabBar</item>
-        <item name="actionModeBackground">@color/gray50</item>
+        <item name="actionModeBackground">@color/compose_view_background</item>
         <item name="actionModeCloseDrawable">@drawable/ic_close_white_24dp</item>
         <item name="colorPrimary">@color/action_bar_background</item>
         <item name="colorPrimaryDark">@color/action_bar_background</item>
         <item name="colorAccent">@color/accent</item>
         <item name="colorControlActivated">@color/accent</item>
+        <item name="colorControlNormal">@color/text</item>
         <item name="colorControlHighlight">@color/accent</item>
         <item name="android:windowBackground">@color/loki_darkest_gray</item>
         <item name="alertDialogTheme">@style/AppCompatAlertDialogStyleLight</item>
@@ -345,14 +353,16 @@
     <style name="TextSecure.BaseDarkTheme" parent="@style/Theme.AppCompat">
         <item name="theme_type">dark</item>
         <item name="actionBarStyle">@style/Session.DarkActionBar</item>
+        <item name="searchViewStyle">@style/TextSecure.BaseDarkTheme.SearchView</item>
         <item name="actionBarTabBarStyle">@style/TextSecure.DarkActionBar.TabBar</item>
         <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Dark</item>
-        <item name="actionModeBackground">@color/gray50</item>
+        <item name="actionModeBackground">@color/compose_view_background</item>
         <item name="actionModeCloseDrawable">@drawable/ic_close_white_24dp</item>
         <item name="android:textColor">@color/text_color_dark_theme</item>
         <item name="android:textColorSecondary">@color/text_color_secondary_dark_theme</item>
         <item name="colorAccent">@color/accent</item>
         <item name="colorControlActivated">@color/accent</item>
+        <item name="colorControlNormal">@color/text</item>
         <item name="colorControlHighlight">@color/accent</item>
         <item name="android:windowBackground">@color/loki_darkest_gray</item>
         <item name="alertDialogTheme">@style/AppCompatAlertDialogStyleDark</item>

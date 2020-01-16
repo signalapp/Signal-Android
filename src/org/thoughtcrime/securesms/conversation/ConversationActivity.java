@@ -739,7 +739,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     searchViewItem = menu.findItem(R.id.menu_search);
 
-    SearchView                     searchView    = (SearchView) searchViewItem.getActionView();
+    SearchView                     searchView    = (SearchView)searchViewItem.getActionView();
     SearchView.OnQueryTextListener queryListener = new SearchView.OnQueryTextListener() {
       @Override
       public boolean onQueryTextSubmit(String query) {

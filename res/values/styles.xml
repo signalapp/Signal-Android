@@ -40,6 +40,10 @@
         <item name="android:textStyle">normal</item>
     </style>
 
+    <style name="TextSecure.BaseDarkTheme.SearchView" parent="@style/Widget.AppCompat.SearchView">
+        <item name="closeIcon">@drawable/ic_close_white_24dp</item>
+    </style>
+
     <style name="Session.AlertDialog" parent="ThemeOverlay.AppCompat.Dialog.Alert">
         <item name="buttonBarNegativeButtonStyle">@style/Session.AlertDialog.NegativeButtonStyle</item>
         <item name="buttonBarPositiveButtonStyle">@style/Session.AlertDialog.PositiveButtonStyle</item>

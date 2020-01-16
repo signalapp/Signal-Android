@@ -47,6 +47,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -966,6 +967,15 @@ public class ConversationFragment extends Fragment
         list.getAdapter().notifyDataSetChanged();
 
         actionMode = ((AppCompatActivity)getActivity()).startSupportActionMode(actionModeCallback);
+
+        View titleTextView = (getActivity().findViewById(R.id.action_bar_title));
+        if (titleTextView != null) {
+          titleTextView.setBackgroundColor(getResources().getColor(R.color.transparent));
+          ViewParent titleTextViewContainerView = titleTextView.getParent();
+          if (titleTextViewContainerView != null) {
+            ((View)titleTextViewContainerView).setBackgroundColor(getResources().getColor(R.color.transparent));
+          }
+        }
       }
     }
 
@@ -1082,7 +1092,6 @@ public class ConversationFragment extends Fragment
       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
         Window window = getActivity().getWindow();
         statusBarColor = window.getStatusBarColor();
-        window.setStatusBarColor(getResources().getColor(R.color.action_mode_status_bar));
       }
 
       setCorrectMenuVisibility(menu);
