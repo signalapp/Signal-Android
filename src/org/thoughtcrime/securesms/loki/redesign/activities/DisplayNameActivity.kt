@@ -40,11 +40,12 @@ class DisplayNameActivity : BaseActionBarActivity() {
         TextSecurePreferences.setProfileName(this, displayName)
         TextSecurePreferences.setHasSeenWelcomeScreen(this, true)
         TextSecurePreferences.setPromptedPushRegistration(this, true)
+        val application = ApplicationContext.getInstance(this)
+        application.setUpStorageAPIIfNeeded()
+        application.setUpP2PAPI()
         val publicChatAPI = ApplicationContext.getInstance(this).lokiPublicChatAPI
         if (publicChatAPI != null) {
             // TODO: This won't be necessary anymore when we don't auto-join the Loki Public Chat anymore
-            val application = ApplicationContext.getInstance(this)
-            application.setUpStorageAPIIfNeeded()
             application.createDefaultPublicChatsIfNeeded()
             val servers = DatabaseFactory.getLokiThreadDatabase(this).getAllPublicChatServers()
             servers.forEach { publicChatAPI.setDisplayName(displayName, it) }

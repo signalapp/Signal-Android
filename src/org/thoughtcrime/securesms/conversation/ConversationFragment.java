@@ -510,7 +510,6 @@ public class ConversationFragment extends Fragment
     builder.setMessage(getActivity().getResources().getQuantityString(R.plurals.ConversationFragment_this_will_permanently_delete_all_n_selected_messages, messagesCount, messagesCount));
     builder.setCancelable(true);
 
-    // Loki - The delete option is only visible to the user in a public chat
     LokiPublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(getContext()).getPublicChat(threadId);
 
     builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
@@ -522,42 +521,52 @@ public class ConversationFragment extends Fragment
         {
           @Override
           protected Void doInBackground(MessageRecord... messageRecords) {
-            ArrayList<Long> serverIDs = new ArrayList<>();
-            ArrayList<Long> ignoredMessages = new ArrayList<>();
-            ArrayList<Long> failedMessages = new ArrayList<>();
-            boolean isSentByUser = true;
-            LokiPublicChatAPI publicChatAPI = ApplicationContext.getInstance(getContext()).getLokiPublicChatAPI();
-            for (MessageRecord messageRecord : messageRecords) {
-              isSentByUser = isSentByUser && messageRecord.isOutgoing();
-              Long serverID = DatabaseFactory.getLokiMessageDatabase(getContext()).getServerID(messageRecord.id);
-              if (serverID != null) {
-                serverIDs.add(serverID);
-              } else {
-                ignoredMessages.add(messageRecord.getId());
-              }
-            }
-            if (publicChat != null && publicChatAPI != null) {
-              publicChatAPI
-              .deleteMessages(serverIDs, publicChat.getChannel(), publicChat.getServer(), isSentByUser)
-              .success(l -> {
-                for (MessageRecord messageRecord : messageRecords) {
-                  Long serverID = DatabaseFactory.getLokiMessageDatabase(getContext()).getServerID(messageRecord.id);
-                  if (l.contains(serverID)) {
-                    if (messageRecord.isMms()) {
-                      DatabaseFactory.getMmsDatabase(getActivity()).delete(messageRecord.getId());
-                    } else {
-                      DatabaseFactory.getSmsDatabase(getActivity()).deleteMessage(messageRecord.getId());
-                    }
-                  } else if (!ignoredMessages.contains(serverID)) {
-                    failedMessages.add(messageRecord.getId());
-                    Log.d("Loki", "Failed to delete message: " + messageRecord.getId() + ".");
-                  }
+            if (publicChat != null) {
+              ArrayList<Long> serverIDs = new ArrayList<>();
+              ArrayList<Long> ignoredMessages = new ArrayList<>();
+              ArrayList<Long> failedMessages = new ArrayList<>();
+              boolean isSentByUser = true;
+              LokiPublicChatAPI publicChatAPI = ApplicationContext.getInstance(getContext()).getLokiPublicChatAPI();
+              for (MessageRecord messageRecord : messageRecords) {
+                isSentByUser = isSentByUser && messageRecord.isOutgoing();
+                Long serverID = DatabaseFactory.getLokiMessageDatabase(getContext()).getServerID(messageRecord.id);
+                if (serverID != null) {
+                  serverIDs.add(serverID);
+                } else {
+                  ignoredMessages.add(messageRecord.getId());
                 }
-                return null;
-              }). fail(e -> {
-                Log.d("Loki", "Couldn't delete message due to error: " + e.toString() + ".");
-                return null;
-              });
+              }
+              if (publicChat != null && publicChatAPI != null) {
+                publicChatAPI
+                .deleteMessages(serverIDs, publicChat.getChannel(), publicChat.getServer(), isSentByUser)
+                .success(l -> {
+                  for (MessageRecord messageRecord : messageRecords) {
+                    Long serverID = DatabaseFactory.getLokiMessageDatabase(getContext()).getServerID(messageRecord.id);
+                    if (l.contains(serverID)) {
+                      if (messageRecord.isMms()) {
+                        DatabaseFactory.getMmsDatabase(getActivity()).delete(messageRecord.getId());
+                      } else {
+                        DatabaseFactory.getSmsDatabase(getActivity()).deleteMessage(messageRecord.getId());
+                      }
+                    } else if (!ignoredMessages.contains(serverID)) {
+                      failedMessages.add(messageRecord.getId());
+                      Log.d("Loki", "Failed to delete message: " + messageRecord.getId() + ".");
+                    }
+                  }
+                  return null;
+                }). fail(e -> {
+                  Log.d("Loki", "Couldn't delete message due to error: " + e.toString() + ".");
+                  return null;
+                });
+              }
+            } else {
+              for (MessageRecord messageRecord : messageRecords) {
+                if (messageRecord.isMms()) {
+                  DatabaseFactory.getMmsDatabase(getActivity()).delete(messageRecord.getId());
+                } else {
+                  DatabaseFactory.getSmsDatabase(getActivity()).deleteMessage(messageRecord.getId());
+                }
+              }
             }
             return null;
           }

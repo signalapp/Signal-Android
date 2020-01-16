@@ -80,7 +80,7 @@ class JoinPublicChatActivity : PassphraseRequiredActionBarActivity(), ScanQRCode
             finish()
         }.failUi {
             hideLoader()
-            Toast.makeText(this, "Couldn't Join Channel", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Couldn't join channel", Toast.LENGTH_SHORT).show()
         }
     }
     // endregion
