@@ -5,6 +5,6 @@
         android:id="@+id/audio_view"
         android:layout_width="210dp"
         android:layout_height="wrap_content"
-        app:foregroundTintColor="@color/grey_500"
+        app:foregroundTintColor="@color/black"
         app:backgroundTintColor="@color/white"
         android:visibility="gone"/>

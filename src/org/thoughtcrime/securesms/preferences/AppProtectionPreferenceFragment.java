@@ -12,7 +12,6 @@ import android.support.v7.preference.Preference;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.ApplicationContext;
-import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.BlockedContactsActivity;
 import org.thoughtcrime.securesms.PassphraseChangeActivity;
 import org.thoughtcrime.securesms.components.SwitchPreferenceCompat;
@@ -72,8 +71,6 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
     disablePassphrase.setOnPreferenceChangeListener(new DisablePassphraseClickListener());
 
     initializeVisibility();
-
-    Analytics.Companion.getShared().track("Privacy Settings Opened");
   }
 
   @Override
@@ -84,8 +81,6 @@ public class AppProtectionPreferenceFragment extends CorrectedPreferenceFragment
   @Override
   public void onResume() {
     super.onResume();
-    ((ApplicationPreferencesActivity) getActivity()).getSupportActionBar().setTitle(R.string.preferences__privacy);
-
     if (!TextSecurePreferences.isPasswordDisabled(getContext())) initializePassphraseTimeoutSummary();
     else                                                         initializeScreenLockTimeoutSummary();
 

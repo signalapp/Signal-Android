@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/doubleModeImageViewContainer"
+        android:layout_width="@dimen/medium_profile_picture_size"
+        android:layout_height="@dimen/medium_profile_picture_size">
+
+        <RelativeLayout
+            android:layout_width="@dimen/small_profile_picture_size"
+            android:layout_height="@dimen/small_profile_picture_size"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true">
+
+            <ImageView
+                android:id="@+id/doubleModeImageView1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/profile_picture_view_small_background" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/profile_picture_view_small_foreground" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="@dimen/small_profile_picture_size"
+            android:layout_height="@dimen/small_profile_picture_size"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true">
+
+            <ImageView
+                android:id="@+id/doubleModeImageView2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/profile_picture_view_small_background" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/profile_picture_view_small_foreground" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/singleModeImageViewContainer"
+        android:layout_width="@dimen/medium_profile_picture_size"
+        android:layout_height="@dimen/medium_profile_picture_size">
+
+        <ImageView
+            android:id="@+id/singleModeImageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/profile_picture_view_medium_background" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/profile_picture_view_medium_foreground" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/rssTextView"
+        android:layout_width="@dimen/medium_profile_picture_size"
+        android:layout_height="@dimen/medium_profile_picture_size"
+        android:gravity="center"
+        android:text="RSS"
+        android:textColor="@color/text"
+        android:textSize="@dimen/small_font_size"
+        android:background="@drawable/profile_picture_view_rss_medium_background" />
+
+    <RelativeLayout
+        android:id="@+id/largeSingleModeImageViewContainer"
+        android:layout_width="@dimen/large_profile_picture_size"
+        android:layout_height="@dimen/large_profile_picture_size">
+
+        <ImageView
+            android:id="@+id/largeSingleModeImageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/profile_picture_view_large_background" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/profile_picture_view_large_foreground" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,17 +1,21 @@
-package org.thoughtcrime.securesms.loki
+package org.thoughtcrime.securesms.loki.redesign.views
 
 import android.content.Context
 import android.os.Build
 import android.util.AttributeSet
+import android.util.TypedValue
 import android.view.Gravity
 import android.view.View
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
+import com.github.ybq.android.spinkit.style.DoubleBounce
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.model.MessageRecord
+import org.thoughtcrime.securesms.loki.getColorWithID
+import org.thoughtcrime.securesms.loki.toPx
 import org.whispersystems.signalservice.loki.messaging.LokiMessageFriendRequestStatus
 
 class FriendRequestView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : LinearLayout(context, attrs, defStyleAttr) {
@@ -28,14 +32,16 @@ class FriendRequestView(context: Context, attrs: AttributeSet?, defStyleAttr: In
 
     private val label by lazy {
         val result = TextView(context)
-        result.setTextColor(resources.getColorWithID(R.color.white, context.theme))
+        result.setTextColor(resources.getColorWithID(R.color.text, context.theme))
         result.textAlignment = TextView.TEXT_ALIGNMENT_CENTER
+        result.setTextSize(TypedValue.COMPLEX_UNIT_PX, resources.getDimension(R.dimen.small_font_size))
         result
     }
 
     private val buttonLinearLayout by lazy {
         val result = LinearLayout(context)
         result.orientation = HORIZONTAL
+        result.setPadding(0, resources.getDimension(R.dimen.medium_spacing).toInt(), 0, 0)
         result
     }
 
@@ -64,39 +70,45 @@ class FriendRequestView(context: Context, attrs: AttributeSet?, defStyleAttr: In
         if (isUISetUp) { return }
         isUISetUp = true
         orientation = VERTICAL
+        setPadding(toPx(48, resources), 0, toPx(48, resources), 0)
         addView(topSpacer)
         addView(label)
         if (!message!!.isOutgoing) {
             val loader = ProgressBar(context)
             loader.isIndeterminate = true
-            val color = resources.getColorWithID(R.color.white, context.theme)
-            loader.indeterminateDrawable.setColorFilter(color, android.graphics.PorterDuff.Mode.SRC_IN)
+            loader.indeterminateDrawable = DoubleBounce()
             val loaderLayoutParams = LayoutParams(LayoutParams.MATCH_PARENT, toPx(24, resources))
             loader.layoutParams = loaderLayoutParams
             loaderContainer.addView(loader)
             addView(loaderContainer)
             fun button(): Button {
                 val result = Button(context)
-                result.setBackgroundColor(resources.getColorWithID(R.color.transparent, context.theme))
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     result.elevation = 0f
                     result.stateListAnimator = null
                 }
-                val buttonLayoutParams = LayoutParams(0, toPx(50, resources))
+                result.setTextColor(resources.getColorWithID(R.color.text, context.theme))
+                result.setTextSize(TypedValue.COMPLEX_UNIT_PX, resources.getDimension(R.dimen.small_font_size))
+                result.isAllCaps = false
+                result.setPadding(0, 0, 0, 0)
+                val buttonLayoutParams = LayoutParams(0, resources.getDimension(R.dimen.small_button_height).toInt())
                 buttonLayoutParams.weight = 1f
                 result.layoutParams = buttonLayoutParams
                 return result
             }
-            val acceptButton = button()
-            acceptButton.text = resources.getString(R.string.view_friend_request_accept_button_title)
-            acceptButton.setTextColor(resources.getColorWithID(R.color.signal_primary, context.theme))
-            acceptButton.setOnClickListener { accept() }
-            buttonLinearLayout.addView(acceptButton)
             val rejectButton = button()
             rejectButton.text = resources.getString(R.string.view_friend_request_reject_button_title)
-            rejectButton.setTextColor(resources.getColorWithID(R.color.red, context.theme))
+            rejectButton.setBackgroundResource(R.drawable.unimportant_dialog_button_background)
             rejectButton.setOnClickListener { reject() }
             buttonLinearLayout.addView(rejectButton)
+            val acceptButton = button()
+            acceptButton.text = resources.getString(R.string.view_friend_request_accept_button_title)
+            acceptButton.setBackgroundResource(R.drawable.prominent_dialog_button_background)
+            val acceptButtonLayoutParams = acceptButton.layoutParams as LayoutParams
+            acceptButtonLayoutParams.setMargins(resources.getDimension(R.dimen.medium_spacing).toInt(), 0, 0, 0)
+            acceptButton.layoutParams = acceptButtonLayoutParams
+            acceptButton.setOnClickListener { accept() }
+            buttonLinearLayout.addView(acceptButton)
             buttonLinearLayout.layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, toPx(50, resources))
             addView(buttonLinearLayout)
         }
@@ -156,3 +168,18 @@ class FriendRequestView(context: Context, attrs: AttributeSet?, defStyleAttr: In
     }
     // endregion
 }
+
+// region Delegate
+interface FriendRequestViewDelegate {
+    /**
+     * Implementations of this method should update the thread's friend request status
+     * and send a friend request accepted message.
+     */
+    fun acceptFriendRequest(friendRequest: MessageRecord)
+    /**
+     * Implementations of this method should update the thread's friend request status
+     * and remove the pre keys associated with the contact.
+     */
+    fun rejectFriendRequest(friendRequest: MessageRecord)
+}
+// endregion

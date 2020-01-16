@@ -1,5 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- Session -->
+
+    <!-- Font Sizes -->
+    <dimen name="very_small_font_size">10sp</dimen>
+    <dimen name="small_font_size">13sp</dimen>
+    <dimen name="medium_font_size">15sp</dimen>
+    <dimen name="large_font_size">20sp</dimen>
+    <dimen name="very_large_font_size">25sp</dimen>
+    <dimen name="massive_font_size">50sp</dimen>
+
+    <!-- Element Sizes -->
+    <dimen name="small_button_height">34dp</dimen>
+    <dimen name="medium_button_height">44dp</dimen>
+    <dimen name="accent_line_thickness">4dp</dimen>
+    <dimen name="very_small_profile_picture_size">26dp</dimen>
+    <dimen name="small_profile_picture_size">36dp</dimen>
+    <dimen name="medium_profile_picture_size">46dp</dimen>
+    <dimen name="large_profile_picture_size">76dp</dimen>
+    <dimen name="conversation_view_status_indicator_size">14dp</dimen>
+    <dimen name="border_thickness">1dp</dimen>
+    <dimen name="profile_picture_border_thickness">1dp</dimen>
+    <dimen name="new_conversation_button_size">56dp</dimen>
+    <dimen name="tab_bar_height">48dp</dimen>
+    <dimen name="text_view_corner_radius">8dp</dimen>
+    <dimen name="fake_chat_view_bubble_width">224dp</dimen>
+    <dimen name="fake_chat_view_bubble_corner_radius">10dp</dimen>
+    <dimen name="fake_chat_view_height">234dp</dimen>
+    <dimen name="setting_button_height">72dp</dimen>
+    <dimen name="dialog_corner_radius">8dp</dimen>
+    <dimen name="dialog_button_corner_radius">4dp</dimen>
+
+    <!-- Distances -->
+    <dimen name="small_spacing">8dp</dimen>
+    <dimen name="medium_spacing">16dp</dimen>
+    <dimen name="large_spacing">24dp</dimen>
+    <dimen name="very_large_spacing">35dp</dimen>
+    <dimen name="massive_spacing">64dp</dimen>
+    <dimen name="new_conversation_button_bottom_offset">56dp</dimen>
+    <dimen name="onboarding_button_bottom_offset">40dp</dimen>
+
+    <!-- Session -->
+
     <dimen name="emoji_drawer_size">32sp</dimen>
     <dimen name="min_keyboard_size">50dp</dimen>
     <dimen name="default_custom_keyboard_size">220dp</dimen>
@@ -30,15 +73,15 @@
     <dimen name="album_5_cell_size_big">104dp</dimen>
     <dimen name="album_5_cell_size_small">69dp</dimen>
 
-    <dimen name="message_corner_radius">16dp</dimen>
+    <dimen name="message_corner_radius">10dp</dimen>
     <dimen name="message_corner_collapse_radius">4dp</dimen>
     <dimen name="message_bubble_corner_radius">2dp</dimen>
     <dimen name="message_bubble_shadow_distance">1.5dp</dimen>
-    <dimen name="message_bubble_horizontal_padding">12dp</dimen>
-    <dimen name="message_bubble_top_padding">6dp</dimen>
-    <dimen name="message_bubble_collapsed_footer_padding">6dp</dimen>
+    <dimen name="message_bubble_horizontal_padding">@dimen/medium_spacing</dimen>
+    <dimen name="message_bubble_top_padding">@dimen/medium_spacing</dimen>
+    <dimen name="message_bubble_collapsed_footer_padding">@dimen/small_spacing</dimen>
     <dimen name="message_bubble_edge_margin">32dp</dimen>
-    <dimen name="message_bubble_bottom_padding">8dp</dimen>
+    <dimen name="message_bubble_bottom_padding">@dimen/medium_spacing</dimen>
     <dimen name="media_bubble_remove_button_size">24dp</dimen>
     <dimen name="media_bubble_edit_button_size">24dp</dimen>
     <dimen name="media_bubble_default_dimens">210dp</dimen>
@@ -59,17 +102,17 @@
     <dimen name="thumbnail_default_radius">4dp</dimen>
 
     <dimen name="conversation_compose_height">40dp</dimen>
-    <dimen name="conversation_individual_right_gutter">16dp</dimen>
-    <dimen name="conversation_individual_left_gutter">16dp</dimen>
-    <dimen name="conversation_group_left_gutter">52dp</dimen>
+    <dimen name="conversation_individual_right_gutter">@dimen/large_spacing</dimen>
+    <dimen name="conversation_individual_left_gutter">@dimen/large_spacing</dimen>
+    <dimen name="conversation_group_left_gutter">60dp</dimen>
     <dimen name="conversation_vertical_message_spacing_default">8dp</dimen>
     <dimen name="conversation_vertical_message_spacing_collapse">1dp</dimen>
 
     <dimen name="conversation_item_avatar_size">36dp</dimen>
 
     <dimen name="quote_corner_radius_large">10dp</dimen>
-    <dimen name="quote_corner_radius_bottom">4dp</dimen>
-    <dimen name="quote_corner_radius_preview">18dp</dimen>
+    <dimen name="quote_corner_radius_bottom">2dp</dimen>
+    <dimen name="quote_corner_radius_preview">16dp</dimen>
 
     <integer name="media_overview_cols">3</integer>
     <dimen name="message_details_table_row_pad">10dp</dimen>
@@ -113,7 +156,7 @@
 
     <dimen name="alertview_small_icon_size">14dp</dimen>
 
-    <dimen name="recording_voice_lock_target">-150dp</dimen>
+    <dimen name="recording_voice_lock_target">-96dp</dimen>
 
     <dimen name="default_margin">16dp</dimen>
     <dimen name="drawable_padding">24dp</dimen>

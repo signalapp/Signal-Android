@@ -24,7 +24,6 @@ import com.pnikosis.materialishprogress.ProgressWheel;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-import network.loki.messenger.R;
 import org.thoughtcrime.securesms.audio.AudioSlidePlayer;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
@@ -34,6 +33,8 @@ import org.thoughtcrime.securesms.mms.SlideClickListener;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
+
+import network.loki.messenger.R;
 
 
 public class AudioView extends FrameLayout implements AudioSlidePlayer.Listener {

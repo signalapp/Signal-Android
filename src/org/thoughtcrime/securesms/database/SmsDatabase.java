@@ -330,6 +330,28 @@ public class SmsDatabase extends MessagingDatabase {
     database.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {String.valueOf(id)});
   }
 
+  public boolean isOutgoingMessage(long timestamp) {
+    SQLiteDatabase database     = databaseHelper.getWritableDatabase();
+    Cursor         cursor       = null;
+    boolean        isOutgoing   = false;
+
+    try {
+      cursor = database.query(TABLE_NAME, new String[] { ID, THREAD_ID, ADDRESS, TYPE },
+              DATE_SENT + " = ?", new String[] { String.valueOf(timestamp) },
+              null, null, null, null);
+
+      while (cursor.moveToNext()) {
+        if (Types.isOutgoingMessageType(cursor.getLong(cursor.getColumnIndexOrThrow(TYPE)))) {
+            isOutgoing = true;
+        }
+      }
+    } finally {
+      if (cursor != null) cursor.close();
+    }
+
+    return isOutgoing;
+  }
+
   public void incrementReceiptCount(SyncMessageId messageId, boolean deliveryReceipt, boolean readReceipt) {
     SQLiteDatabase database     = databaseHelper.getWritableDatabase();
     Cursor         cursor       = null;

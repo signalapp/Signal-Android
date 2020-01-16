@@ -13,13 +13,14 @@
 
     <ImageView
         android:id="@+id/microphone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
         android:layout_marginStart="14dp"
         android:importantForAccessibility="no"
-        android:tint="@color/red_500"
+        android:tint="@color/destructive"
         android:visibility="invisible"
-        app:srcCompat="@drawable/ic_mic_filled_24"
+        android:scaleType="centerInside"
+        app:srcCompat="@drawable/ic_microphone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -30,11 +31,12 @@
         style="@style/Signal.Text.Body"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="2dp"
+        android:layout_marginStart="4dp"
         android:ellipsize="none"
         android:singleLine="true"
-        android:textColor="@color/core_grey_60"
+        android:textColor="#99FFFFFF"
         android:visibility="gone"
+        android:textSize="@dimen/small_font_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/microphone"
         app:layout_constraintTop_toTopOf="parent"
@@ -47,17 +49,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="@dimen/medium_spacing"
         android:ellipsize="none"
         android:gravity="center_vertical"
         android:padding="4dp"
         android:text="@string/conversation_input_panel__cancel"
-        android:textAllCaps="true"
-        android:textColor="@color/red_500"
+        android:textSize="@dimen/small_font_size"
+        android:textColor="@color/destructive"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/frameLayout"
         app:layout_constraintTop_toTopOf="parent"
         tools:visibility="visible" />
 
@@ -70,19 +71,33 @@
         app:layout_constraintStart_toEndOf="@+id/record_time"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
+        <LinearLayout
             android:id="@+id/slide_to_cancel"
-            style="@style/Signal.Text.Caption"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_keyboard_arrow_left_grey600_24dp"
-            android:ellipsize="none"
+            android:orientation="horizontal"
             android:gravity="center_vertical"
-            android:text="@string/conversation_input_panel__slide_to_cancel"
-            android:textAllCaps="true"
-            android:textColor="@color/core_grey_60"
             android:visibility="gone"
-            tools:visibility="visible" />
+            tools:visibility="visible">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="1dp"
+                android:src="@drawable/ic_keyboard_arrow_left_grey600_24dp"
+                android:tint="#99FFFFFF"
+                android:scaleType="centerInside" />
+
+            <TextView
+                style="@style/Signal.Text.Caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/small_font_size"
+                android:ellipsize="none"
+                android:text="@string/conversation_input_panel__slide_to_cancel"
+                android:textColor="#99FFFFFF" />
+
+        </LinearLayout>
 
     </FrameLayout>
 

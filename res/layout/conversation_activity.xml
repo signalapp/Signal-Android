@@ -1,24 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootView"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/default_session_background">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/conversation_list_toolbar_background"
-        android:theme="?attr/actionBarStyle"
-        app:contentInsetStartWithNavigation="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:navigationIcon="?homeAsUpIndicator"
-        tools:background="#ff007f00">
+        android:minHeight="?attr/actionBarSize"
+        app:contentInsetLeft="24dp"
+        app:contentInsetRight="20dp"
+        android:background="@color/action_bar_background"
+        android:theme="@style/Session.DarkActionBar"
+        app:popupTheme="@style/Session.DarkActionBar">
 
-        <include layout="@layout/conversation_title_view" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/titleTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Conversation"
+                    android:textColor="@color/text"
+                    android:textSize="@dimen/large_font_size"
+                    android:fontFamily="sans-serif-medium" />
+
+                <TextView
+                    android:id="@+id/subtitleTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="26 members"
+                    android:textColor="@color/text"
+                    android:textSize="@dimen/small_font_size" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+        </LinearLayout>
 
     </android.support.v7.widget.Toolbar>
 
@@ -36,6 +71,19 @@
             android:gravity="bottom"
             android:orientation="vertical"
             android:paddingTop="?attr/actionBarSize">
+
+            <ProgressBar
+                android:id="@+id/messageStatusProgressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/accent_line_thickness"
+                android:paddingLeft="-2dp"
+                android:paddingRight="-2dp"
+                android:progressTint="@color/accent"
+                android:progressBackgroundTint="@color/transparent"
+                android:alpha="0"
+                android:indeterminate="false"
+                android:progress="80" />
 
             <ViewStub
                 android:id="@+id/group_share_profile_view_stub"
@@ -74,9 +122,30 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:clipChildren="false"
+                android:clipToPadding="false">
 
-                <include layout="@layout/view_mention_candidate_selection" />
+                <LinearLayout
+                    android:id="@+id/mentionCandidateSelectionViewContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:background="@color/separator" />
+
+                    <include layout="@layout/view_mention_candidate_selection" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:background="@color/separator" />
+
+                </LinearLayout>
 
                 <FrameLayout
                     android:layout_width="match_parent"

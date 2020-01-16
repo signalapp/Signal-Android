@@ -31,7 +31,6 @@ import android.widget.TextView;
 import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.BindableConversationItem;
-import network.loki.messenger.R;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.conversation.ConversationAdapter.HeaderViewHolder;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -41,7 +40,7 @@ import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.loki.FriendRequestViewDelegate;
+import org.thoughtcrime.securesms.loki.redesign.views.FriendRequestViewDelegate;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -64,6 +63,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
+
+import network.loki.messenger.R;
 
 /**
  * A cursor adapter for a conversation thread.  Ultimately

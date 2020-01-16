@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Loki Messenger</string>
+    <string name="app_name">Session</string>
     <string name="install_url" translatable="false">https://signal.org/install</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
@@ -172,13 +172,13 @@
     <string name="ConversationActivity_unable_to_record_audio">Unable to record audio!</string>
     <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">There is no app available to handle this link on your device.</string>
 
-    <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">To send audio messages, allow Loki Messenger access to your microphone.</string>
-    <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Loki Messenger requires the Microphone permission in order to send audio messages, but it has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Microphone\".</string>
-    <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">To call %s, Loki Messenger needs access to your microphone and camera.</string>
-    <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Loki Messenger needs the Microphone and Camera permissions in order to call %s, but they have been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Microphone\" and \"Camera\".</string>
-    <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">To capture photos and video, allow Loki Messenger access to the camera.</string>
-    <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Loki Messenger needs the Camera permission to take photos or video, but it has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Camera\".</string>
-    <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Loki Messenger needs Camera permissions to take photos or video</string>
+    <string name="ConversationActivity_to_send_audio_messages_allow_signal_access_to_your_microphone">Session needs microphone access to send audio messages.</string>
+    <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Session needs microphone access to send audio messages, but it has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Microphone\".</string>
+    <string name="ConversationActivity_to_call_s_signal_needs_access_to_your_microphone_and_camera">Session needs microphone and camera access to make calls.</string>
+    <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Session needs microphone and camera access to call %s, but they have been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Microphone\" and \"Camera\".</string>
+    <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Session needs camera access to take photos and videos.</string>
+    <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Session needs camera access to take photos and videos, but it has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Camera\".</string>
+    <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Session needs camera access to take photos or videos.</string>
 
     <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
     <string name="ConversationActivity_signal_cannot_sent_sms_mms_messages_because_it_is_not_your_default_sms_app">Loki Messenger cannot send SMS/MMS messages because it is not your default SMS app. Would you like to change this in your Android settings?</string>
@@ -388,8 +388,8 @@
     <string name="GroupMembersDialog_me">Me</string>
 
     <!-- CropImageActivity -->
-    <string name="CropImageActivity_group_avatar">Group avatar</string>
-    <string name="CropImageActivity_profile_avatar">Avatar</string>
+    <string name="CropImageActivity_group_avatar">Group Photo</string>
+    <string name="CropImageActivity_profile_avatar">Photo</string>
 
     <!-- InputPanel -->
     <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Tap and hold to record a voice message, release to send</string>
@@ -496,8 +496,8 @@
     <string name="MessageRecord_s_joined_signal">%s is on Loki Messenger!</string>
     <string name="MessageRecord_you_disabled_disappearing_messages">You disabled disappearing messages.</string>
     <string name="MessageRecord_s_disabled_disappearing_messages">%1$s disabled disappearing messages.</string>
-    <string name="MessageRecord_you_set_disappearing_message_time_to_s">You set the disappearing message timer to %1$s.</string>
-    <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s set the disappearing message timer to %2$s.</string>
+    <string name="MessageRecord_you_set_disappearing_message_time_to_s">You set the disappearing message timer to %1$s</string>
+    <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s set the disappearing message timer to %2$s</string>
     <string name="MessageRecord_your_safety_number_with_s_has_changed">Your safety number with %s has changed.</string>
     <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">You marked your safety number with %s verified</string>
     <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">You marked your safety number with %s verified from another device</string>
@@ -1611,14 +1611,14 @@
     <string name="fragment_add_public_chat_connection_failed_message">Couldn\'t Connect</string>
     <!-- Friend request view -->
     <string name="view_friend_request_accept_button_title">Accept</string>
-    <string name="view_friend_request_reject_button_title">Reject</string>
-    <string name="view_friend_request_incoming_pending_message">%1$s sent you a friend request</string>
-    <string name="view_friend_request_incoming_accepted_message">You\'ve accepted %1$s\'s friend request</string>
-    <string name="view_friend_request_incoming_declined_message">You\'ve declined %1$s\'s friend request</string>
-    <string name="view_friend_request_incoming_expired_message">%1$s\'s friend request has expired</string>
-    <string name="view_friend_request_outgoing_pending_message">You\'ve sent %1$s a friend request</string>
-    <string name="view_friend_request_outgoing_accepted_message">%1$s accepted your friend request</string>
-    <string name="view_friend_request_outgoing_expired_message">Your friend request to %1$s has expired</string>
+    <string name="view_friend_request_reject_button_title">Decline</string>
+    <string name="view_friend_request_incoming_pending_message">%1$s sent you a message request</string>
+    <string name="view_friend_request_incoming_accepted_message">You\'ve accepted %1$s\'s message request</string>
+    <string name="view_friend_request_incoming_declined_message">You\'ve declined %1$s\'s message request</string>
+    <string name="view_friend_request_incoming_expired_message">%1$s\'s message request has expired</string>
+    <string name="view_friend_request_outgoing_pending_message">You\'ve sent %1$s a message request</string>
+    <string name="view_friend_request_outgoing_accepted_message">%1$s accepted your message request</string>
+    <string name="view_friend_request_outgoing_expired_message">Your message request to %1$s has expired</string>
     <!-- Conversation activity -->
     <string name="activity_conversation_pending_friend_request_hint">Pending Friend Request…</string>
     <string name="activity_conversation_default_hint">New Message</string>
@@ -1651,5 +1651,11 @@
     <!-- Device unlink dialog -->
     <string name="dialog_device_unlink_title">Device unlinked</string>
     <string name="dialog_device_unlink_message">This device has been successfully unlinked</string>
+
+    <!-- Loki -->
+
+    <!-- Session -->
+    <string name="activity_register_public_key_copied_message">Copied to clipboard</string>
+    <!-- Session -->
 
 </resources>

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/default_session_background">
 
     <FrameLayout
         android:id="@+id/mediasend_fragment_container"
@@ -37,7 +38,7 @@
             android:paddingBottom="2dp"
             android:gravity="center"
             android:background="@drawable/media_count_number_background"
-            android:textColor="@color/signal_primary"
+            android:textColor="@color/accent"
             android:textSize="18sp"
             tools:text="3" />
 

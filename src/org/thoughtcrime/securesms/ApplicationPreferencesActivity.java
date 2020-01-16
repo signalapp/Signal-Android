@@ -37,6 +37,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.preference.Preference;
+import android.util.Log;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
@@ -365,7 +366,7 @@ public class ApplicationPreferencesActivity extends PassphraseRequiredActionBarA
                     .setNeutralButton(R.string.activity_settings_seed_dialog_ok_button_title, null)
                     .show();
           } catch (Exception e) {
-            // Do nothing
+            Log.d("Loki", e.getMessage());
           }
           break;
         default:

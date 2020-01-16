@@ -9,6 +9,7 @@
     android:gravity="center_vertical"
     android:orientation="horizontal"
     android:clickable="true"
+    android:background="@color/compose_view_background"
     android:paddingStart="16dp"
     android:paddingEnd="16dp"
     android:paddingTop="6dp"
@@ -96,8 +97,11 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_weight="1"
+                        android:textColorHint="#99FFFFFF"
+                        android:textSize="@dimen/small_font_size"
                         android:nextFocusForward="@+id/send_button"
                         android:nextFocusRight="@+id/send_button"
+                        android:textCursorDrawable="@drawable/session_edit_text_cursor"
                         tools:visibility="invisible"
                         tools:hint="Send TextSecure message" >
                         <requestFocus />
@@ -178,7 +182,6 @@
         android:layout_width="@dimen/conversation_compose_height"
         android:layout_height="@dimen/conversation_compose_height"
         android:layout_marginStart="12dp"
-        android:background="@drawable/circle_tintable"
         android:layout_gravity="bottom">
 
         <ImageButton
@@ -187,7 +190,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:background="@drawable/circle_touch_highlight_background"
-            android:src="@drawable/ic_add_white_24dp"
+            android:src="@drawable/ic_circle_plus"
             android:contentDescription="@string/ConversationActivity_add_attachment"
             android:nextFocusLeft="@+id/embedded_text_editor" />
 
@@ -195,11 +198,7 @@
             android:id="@+id/send_button"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingTop="6dp"
-            android:paddingEnd="6dp"
-            android:paddingBottom="6dp"
-            android:paddingStart="11dp"
-            android:scaleType="fitCenter"
+            android:scaleType="centerInside"
             android:contentDescription="@string/conversation_activity__send"
             android:nextFocusLeft="@+id/embedded_text_editor"
             android:src="?conversation_transport_sms_indicator"

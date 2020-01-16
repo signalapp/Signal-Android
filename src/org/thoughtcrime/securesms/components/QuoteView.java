@@ -105,7 +105,7 @@ public class QuoteView extends FrameLayout implements RecipientModifiedListener 
     this.dismissView                  = findViewById(R.id.quote_dismiss);
     this.mediaDescriptionText         = findViewById(R.id.media_type);
     this.missingLinkText              = findViewById(R.id.quote_missing_text);
-    this.largeCornerRadius            = getResources().getDimensionPixelSize(R.dimen.quote_corner_radius_large);
+    this.largeCornerRadius            = getResources().getDimensionPixelSize(R.dimen.quote_corner_radius_bottom);
     this.smallCornerRadius            = getResources().getDimensionPixelSize(R.dimen.quote_corner_radius_bottom);
 
     cornerMask = new CornerMask(this);
@@ -209,8 +209,8 @@ public class QuoteView extends FrameLayout implements RecipientModifiedListener 
     authorView.setText(isOwnNumber ? getContext().getString(R.string.QuoteView_you) : quoteeDisplayName);
 
     // We use the raw color resource because Android 4.x was struggling with tints here
-    quoteBarView.setImageResource(author.getColor().toQuoteBarColorResource(getContext(), outgoing));
-    mainView.setBackgroundColor(author.getColor().toQuoteBackgroundColor(getContext(), outgoing));
+    quoteBarView.setImageResource(R.color.accent);
+    mainView.setBackgroundColor(getResources().getColor(outgoing ? R.color.received_message_background : R.color.sent_message_background));
   }
 
   private void setQuoteText(@Nullable String body, @NonNull SlideDeck attachments) {
@@ -278,7 +278,7 @@ public class QuoteView extends FrameLayout implements RecipientModifiedListener 
 
   private void setQuoteMissingFooter(boolean missing) {
     footerView.setVisibility(missing ? VISIBLE : GONE);
-    footerView.setBackgroundColor(author.getColor().toQuoteFooterColor(getContext(), messageType != MESSAGE_TYPE_INCOMING));
+    footerView.setBackgroundColor(getResources().getColor(R.color.quote_not_found_background));
   }
 
   public long getQuoteId() {

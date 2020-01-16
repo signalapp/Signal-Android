@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.loki
+package org.thoughtcrime.securesms.loki.redesign.views
 
 import android.content.Context
 import android.util.AttributeSet
@@ -8,11 +8,15 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ListView
 import org.thoughtcrime.securesms.database.DatabaseFactory
+import org.thoughtcrime.securesms.loki.toPx
+import org.thoughtcrime.securesms.mms.GlideRequests
 import org.whispersystems.signalservice.loki.messaging.Mention
 
 class MentionCandidateSelectionView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : ListView(context, attrs, defStyleAttr) {
     private var mentionCandidates = listOf<Mention>()
         set(newValue) { field = newValue; mentionCandidateSelectionViewAdapter.mentionCandidates = newValue }
+    var glide: GlideRequests? = null
+        set(newValue) { field = newValue; mentionCandidateSelectionViewAdapter.glide = newValue }
     var publicChatServer: String? = null
         set(newValue) { field = newValue; mentionCandidateSelectionViewAdapter.publicChatServer = publicChatServer }
     var publicChatChannel: Long? = null
@@ -24,6 +28,7 @@ class MentionCandidateSelectionView(context: Context, attrs: AttributeSet?, defS
     private class Adapter(private val context: Context) : BaseAdapter() {
         var mentionCandidates = listOf<Mention>()
             set(newValue) { field = newValue; notifyDataSetChanged() }
+        var glide: GlideRequests? = null
         var publicChatServer: String? = null
         var publicChatChannel: Long? = null
 
@@ -40,8 +45,9 @@ class MentionCandidateSelectionView(context: Context, attrs: AttributeSet?, defS
         }
 
         override fun getView(position: Int, cellToBeReused: View?, parent: ViewGroup): View {
-            val cell = cellToBeReused as MentionCandidateSelectionViewCell? ?: MentionCandidateSelectionViewCell.inflate(LayoutInflater.from(context), parent)
+            val cell = cellToBeReused as MentionCandidateView? ?: MentionCandidateView.inflate(LayoutInflater.from(context), parent)
             val mentionCandidate = getItem(position)
+            cell.glide = glide
             cell.mentionCandidate = mentionCandidate
             cell.publicChatServer = publicChatServer
             cell.publicChatChannel = publicChatChannel
@@ -53,6 +59,7 @@ class MentionCandidateSelectionView(context: Context, attrs: AttributeSet?, defS
     constructor(context: Context) : this(context, null)
 
     init {
+        clipToOutline = true
         adapter = mentionCandidateSelectionViewAdapter
         mentionCandidateSelectionViewAdapter.mentionCandidates = mentionCandidates
         setOnItemClickListener { _, _, position, _ ->
@@ -68,7 +75,7 @@ class MentionCandidateSelectionView(context: Context, attrs: AttributeSet?, defS
         }
         this.mentionCandidates = mentionCandidates
         val layoutParams = this.layoutParams as ViewGroup.LayoutParams
-        layoutParams.height = toPx(6 + Math.min(mentionCandidates.count(), 4) * 52, resources)
+        layoutParams.height = toPx(Math.min(mentionCandidates.count(), 4) * 44, resources)
         this.layoutParams = layoutParams
     }
 

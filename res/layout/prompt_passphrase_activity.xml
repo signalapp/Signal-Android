@@ -6,7 +6,7 @@
                 android:id="@+id/prompt_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/loki_darkest_gray"
+                android:background="@drawable/default_session_background"
                 android:orientation="vertical">
 
     <View android:id="@+id/shim"
@@ -36,33 +36,32 @@
 
     </android.support.v7.widget.Toolbar>
 
-
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
             android:orientation="vertical"
-            android:background="?login_floating_background"
+            android:gravity="center_horizontal"
             android:layout_centerInParent="true"
-            android:padding="20dp"
-            android:elevation="10dp">
+            android:padding="20dp">
 
         <TextView
             style="@style/Signal.Text.Body"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/prompt_passphrase_activity__signal_is_locked"
+            android:text="Session is Locked"
             android:textStyle="bold"
+            android:textSize="@dimen/large_font_size"
             android:textAlignment="center"
-            android:textColor="@color/white"
+            android:textColor="@color/text"
             android:layout_marginBottom="32dp" />
 
         <ImageView
             android:id="@+id/fingerprint_auth_container"
             android:src="@drawable/ic_fingerprint_white_48dp"
             android:background="@drawable/circle_tintable"
-            android:backgroundTint="@color/signal_primary"
+            android:backgroundTint="@color/accent"
             android:padding="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -70,20 +69,12 @@
             android:layout_marginBottom="32dp"
             tools:visibility="visible"/>
 
-        <com.dd.CircularProgressButton
+        <Button
+            style="@style/MediumProminentOutlineButton"
             android:id="@+id/lock_screen_auth_container"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_gravity="center_horizontal"
-            android:background="@color/signal_primary"
-            android:textColor="@color/white"
-            app:cpb_colorIndicator="@color/white"
-            app:cpb_colorProgress="@color/textsecure_primary"
-            app:cpb_cornerRadius="4dp"
-            app:cpb_selectorIdle="@drawable/progress_button_state"
-            app:cpb_textIdle="@string/prompt_passphrase_activity__tap_to_unlock"
-            android:elevation="0dp"
-            android:stateListAnimator="@null" />
+            android:layout_width="196dp"
+            android:layout_height="@dimen/medium_button_height"
+            android:text="Tap to Unlock" />
 
         <RelativeLayout android:id="@+id/password_auth_container"
                         android:layout_width="match_parent"

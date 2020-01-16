@@ -14,12 +14,10 @@ import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.text.TextUtils;
 
-import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.components.SwitchPreferenceCompat;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.signalservice.loki.utilities.Analytics;
 
 import network.loki.messenger.R;
 
@@ -121,19 +119,11 @@ public class NotificationsPreferenceFragment extends ListSummaryPreferenceFragme
     // initializeCallRingtoneSummary(findPreference(TextSecurePreferences.CALL_RINGTONE_PREF));
     initializeMessageVibrateSummary((SwitchPreferenceCompat)findPreference(TextSecurePreferences.VIBRATE_PREF));
     // initializeCallVibrateSummary((SwitchPreferenceCompat)findPreference(TextSecurePreferences.CALL_VIBRATE_PREF));
-
-    Analytics.Companion.getShared().track("Notification Settings Opened");
   }
 
   @Override
   public void onCreatePreferences(@Nullable Bundle savedInstanceState, String rootKey) {
     addPreferencesFromResource(R.xml.preferences_notifications);
-  }
-
-  @Override
-  public void onResume() {
-    super.onResume();
-    ((ApplicationPreferencesActivity) getActivity()).getSupportActionBar().setTitle(R.string.preferences__notifications);
   }
 
   @Override

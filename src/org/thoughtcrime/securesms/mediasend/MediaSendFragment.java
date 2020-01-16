@@ -28,7 +28,6 @@ import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.TextView;
 
-import network.loki.messenger.R;
 import org.thoughtcrime.securesms.TransportOption;
 import org.thoughtcrime.securesms.components.ComposeText;
 import org.thoughtcrime.securesms.components.ControllableViewPager;
@@ -65,6 +64,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
+
+import network.loki.messenger.R;
 
 /**
  * Allows the user to edit and caption a set of media items before choosing to send them.
@@ -169,7 +170,7 @@ public class MediaSendFragment extends Fragment implements ViewTreeObserver.OnGl
     sendButton.addOnTransportChangedListener((newTransport, manuallySelected) -> {
       presentCharactersRemaining();
       composeText.setTransport(newTransport);
-      sendButtonBkg.getBackground().setColorFilter(newTransport.getBackgroundColor(), PorterDuff.Mode.MULTIPLY);
+      sendButtonBkg.getBackground().setColorFilter(getResources().getColor(R.color.transparent), PorterDuff.Mode.MULTIPLY);
       sendButtonBkg.getBackground().invalidateSelf();
     });
 

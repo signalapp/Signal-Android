@@ -1,5 +1,193 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Session -->
+    <style name="Session.DarkActionBar" parent="@style/Widget.AppCompat.ActionBar">
+        <item name="background">@color/action_bar_background</item>
+        <item name="android:background">@color/action_bar_background</item>
+        <item name="titleTextStyle">@style/Session.DarkActionBar.TitleTextStyle</item>
+        <item name="android:titleTextStyle">@style/Session.DarkActionBar.TitleTextStyle</item>
+        <item name="elevation">0dp</item>
+        <item name="android:elevation">0dp</item>
+    </style>
+
+    <style name="Session.DarkSubtitleActionBar" parent="@style/Widget.AppCompat.ActionBar">
+        <item name="background">@color/action_bar_background</item>
+        <item name="android:background">@color/action_bar_background</item>
+        <item name="titleTextStyle">@style/Session.DarkSubtitleActionBar.TitleTextStyle</item>
+        <item name="android:titleTextStyle">@style/Session.DarkSubtitleActionBar.TitleTextStyle</item>
+        <item name="subtitleTextStyle">@style/Session.DarkSubtitleActionBar.SubtitleTextStyle</item>
+        <item name="android:subtitleTextStyle">@style/Session.DarkSubtitleActionBar.SubtitleTextStyle</item>
+        <item name="elevation">0dp</item>
+        <item name="android:elevation">0dp</item>
+    </style>
+
+    <style name="Session.DarkActionBar.TitleTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/text</item>
+        <item name="android:textSize">@dimen/very_large_font_size</item>
+    </style>
+
+    <style name="Session.DarkSubtitleActionBar.TitleTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/text</item>
+        <item name="android:textSize">@dimen/large_font_size</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="Session.DarkSubtitleActionBar.SubtitleTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/text</item>
+        <item name="android:textSize">@dimen/small_font_size</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="TextSecure.BaseDarkTheme.SearchView" parent="@style/Widget.AppCompat.SearchView">
+        <item name="closeIcon">@drawable/ic_close_white_24dp</item>
+    </style>
+
+    <style name="Session.AlertDialog" parent="ThemeOverlay.AppCompat.Dialog.Alert">
+        <item name="buttonBarNegativeButtonStyle">@style/Session.AlertDialog.NegativeButtonStyle</item>
+        <item name="buttonBarPositiveButtonStyle">@style/Session.AlertDialog.PositiveButtonStyle</item>
+    </style>
+
+    <style name="Session.AlertDialog.NegativeButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:textColor">@color/accent</item>
+    </style>
+
+    <style name="Session.AlertDialog.PositiveButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:textColor">@color/accent</item>
+    </style>
+
+    <style name="Session.DarkTabLayout" parent="Widget.Design.TabLayout">
+        <item name="tabIndicatorColor">@color/accent</item>
+        <item name="tabIndicatorHeight">@dimen/accent_line_thickness</item>
+        <item name="tabBackground">@color/action_bar_background</item>
+        <item name="tabRippleColor">@color/cell_selected</item>
+        <item name="tabTextAppearance">@style/Session.DarkTabLayout.TextAppearance</item>
+        <item name="tabSelectedTextColor">@color/text</item>
+    </style>
+
+    <style name="Session.DarkTabLayout.TextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">@dimen/medium_font_size</item>
+        <item name="android:textColor">@color/unimportant</item>"
+        <item name="textAllCaps">false</item>
+    </style>
+
+    <style name="MediumProminentFilledButton">
+        <item name="android:background">@drawable/prominent_filled_button_medium_background</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">@dimen/medium_font_size</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">@color/text</item>
+    </style>
+
+    <style name="MediumProminentOutlineButton">
+        <item name="android:background">@drawable/prominent_outline_button_medium_background</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">@dimen/medium_font_size</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">@color/accent</item>
+    </style>
+
+    <style name="MediumUnimportantFilledButton">
+        <item name="android:background">@drawable/unimportant_filled_button_medium_background</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">@dimen/medium_font_size</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">@color/text</item>
+    </style>
+
+    <style name="MediumUnimportantOutlineButton">
+        <item name="android:background">@drawable/unimportant_outline_button_medium_background</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">@dimen/medium_font_size</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">@color/text</item>
+    </style>
+
+    <style name="UnimportantDialogButton">
+        <item name="android:background">@drawable/unimportant_dialog_button_background</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">@dimen/small_font_size</item>
+        <item name="android:textColor">@color/text</item>
+    </style>
+
+    <style name="ProminentDialogButton">
+        <item name="android:background">@drawable/prominent_dialog_button_background</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">@dimen/small_font_size</item>
+        <item name="android:textColor">@color/text</item>
+    </style>
+
+    <style name="DestructiveDialogButton">
+        <item name="android:background">@drawable/destructive_dialog_button_background</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">@dimen/small_font_size</item>
+        <item name="android:textColor">@color/text</item>
+    </style>
+
+    <style name="SessionIDTextView">
+        <item name="android:background">@drawable/session_id_text_view_background</item>
+        <item name="android:padding">@dimen/medium_spacing</item>
+        <item name="android:textSize">@dimen/large_font_size</item>
+        <item name="android:textColor">@color/text</item>
+        <item name="android:fontFamily">@font/space_mono_regular</item>
+    </style>
+
+    <style name="SessionEditText">
+        <item name="android:background">@drawable/session_id_text_view_background</item>
+        <item name="android:paddingLeft">@dimen/medium_spacing</item>
+        <item name="android:paddingTop">30dp</item>
+        <item name="android:paddingRight">@dimen/medium_spacing</item>
+        <item name="android:paddingBottom">30dp</item>
+        <item name="android:textSize">@dimen/small_font_size</item>
+        <item name="android:textColor">@color/text</item>
+        <item name="android:textCursorDrawable">@drawable/session_edit_text_cursor</item>
+        <item name="android:maxLines">1</item>
+    </style>
+
+    <style name="SmallSessionEditText">
+        <item name="android:background">@drawable/session_id_text_view_background</item>
+        <item name="android:paddingLeft">@dimen/medium_spacing</item>
+        <item name="android:paddingTop">@dimen/large_spacing</item>
+        <item name="android:paddingRight">@dimen/medium_spacing</item>
+        <item name="android:paddingBottom">@dimen/large_spacing</item>
+        <item name="android:textSize">@dimen/small_font_size</item>
+        <item name="android:textColor">@color/text</item>
+        <item name="android:textCursorDrawable">@drawable/session_edit_text_cursor</item>
+        <item name="android:maxLines">1</item>
+    </style>
+
+    <style name="FakeChatViewIncomingMessageBubble">
+        <item name="android:background">@drawable/fake_chat_view_incoming_message_background</item>
+        <item name="android:paddingLeft">@dimen/medium_spacing</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingRight">@dimen/medium_spacing</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="android:textSize">@dimen/medium_font_size</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">@color/fake_chat_bubble_text</item>
+        <item name="android:elevation">20dp</item>
+    </style>
+
+    <style name="FakeChatViewOutgoingMessageBubble">
+        <item name="android:background">@drawable/fake_chat_view_outgoing_message_background</item>
+        <item name="android:paddingLeft">@dimen/medium_spacing</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingRight">@dimen/medium_spacing</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="android:textSize">@dimen/medium_font_size</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">@color/text</item>
+        <item name="android:elevation">20dp</item>
+    </style>
+
+    <style name="Session.SettingsTheme" parent="PreferenceThemeOverlay.v14.Material" >
+        <item name="android:textColor">@color/text</item>
+        <item name="android:textColorSecondary">#99FFFFFF</item>
+        <item name="android:textSize">@dimen/medium_font_size</item>
+    </style>
+    <!-- Session -->
+
     <style name="NoAnimation.Theme.BlackScreen" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowAnimationStyle">@null</item>
         <item name="android:windowBackground">@android:color/black</item>
@@ -184,8 +372,8 @@
     </style>
 
     <style name="AttachmentTypeLabel">
-        <item name="android:textColor">#ff999999</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#99FFFFFF</item>
+        <item name="android:textSize">@dimen/small_font_size</item>
     </style>
 
     <style name="Button.Primary" parent="Base.Widget.AppCompat.Button.Colored">
@@ -233,7 +421,6 @@
         <item name="android:clickable">false</item>
         <item name="android:focusable">false</item>
     </style>
-
 
     <style name="PreferenceThemeOverlay.Fix" parent="PreferenceThemeOverlay.v14.Material">
     </style>

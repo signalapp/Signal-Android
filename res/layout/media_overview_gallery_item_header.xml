@@ -11,8 +11,6 @@
               android:layout_height="wrap_content"
               android:layout_gravity="start|center_vertical"
               android:textColor="?attr/media_overview_header_foreground"
-              android:textSize="14sp"
-              android:textStyle="bold"
-              android:textAllCaps="true"
+              android:textSize="@dimen/small_font_size"
               tools:text="March 1, 2015" />
 </FrameLayout>

@@ -16,7 +16,6 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.SlidesClickedListener;
-import org.thoughtcrime.securesms.util.ThemeUtil;
 
 import network.loki.messenger.R;
 import okhttp3.HttpUrl;
@@ -64,7 +63,7 @@ public class LinkPreviewView extends FrameLayout {
     cornerMask    = new CornerMask(this);
     outliner      = new Outliner();
 
-    outliner.setColor(ThemeUtil.getThemedColor(getContext(), R.attr.conversation_item_image_outline_color));
+    outliner.setColor(getResources().getColor(R.color.transparent));
 
     if (attrs != null) {
       TypedArray typedArray   = getContext().getTheme().obtainStyledAttributes(attrs, R.styleable.LinkPreviewView, 0, 0);

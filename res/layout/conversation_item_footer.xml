@@ -21,6 +21,7 @@
             android:autoLink="none"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="@dimen/very_small_font_size"
             android:linksClickable="false"
             style="@style/Signal.Text.Caption.MessageSent"
             android:textColor="?conversation_item_sent_text_secondary_color"

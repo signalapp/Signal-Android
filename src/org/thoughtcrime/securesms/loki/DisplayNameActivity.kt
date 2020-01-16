@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.ApplicationContext
 import org.thoughtcrime.securesms.BaseActionBarActivity
 import org.thoughtcrime.securesms.ConversationListActivity
 import org.thoughtcrime.securesms.database.DatabaseFactory
+import org.thoughtcrime.securesms.loki.redesign.utilities.show
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.crypto.ProfileCipher
 import org.whispersystems.signalservice.loki.utilities.Analytics
@@ -44,7 +45,7 @@ class DisplayNameActivity : BaseActionBarActivity() {
         application.setUpP2PAPI()
         application.startLongPollingIfNeeded()
         application.setUpStorageAPIIfNeeded()
-        startActivity(Intent(this, ConversationListActivity::class.java))
+        show(Intent(this, ConversationListActivity::class.java))
         finish()
         val publicChatAPI = ApplicationContext.getInstance(this).lokiPublicChatAPI
         if (publicChatAPI != null) {

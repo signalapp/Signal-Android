@@ -236,6 +236,26 @@ public class MmsDatabase extends MessagingDatabase {
     }
   }
 
+  public boolean isOutgoingMessage(long timestamp) {
+    SQLiteDatabase database   = databaseHelper.getWritableDatabase();
+    Cursor         cursor     = null;
+    boolean        isOutgoing = false;
+
+    try {
+      cursor = database.query(TABLE_NAME, new String[] { ID, THREAD_ID, MESSAGE_BOX, ADDRESS }, DATE_SENT + " = ?", new String[] { String.valueOf(timestamp) }, null, null, null, null);
+
+      while (cursor.moveToNext()) {
+        if (Types.isOutgoingMessageType(cursor.getLong(cursor.getColumnIndexOrThrow(MESSAGE_BOX)))) {
+          isOutgoing = true;
+        }
+      }
+    } finally {
+      if (cursor != null)
+        cursor.close();
+    }
+    return isOutgoing;
+  }
+
   public void incrementReceiptCount(SyncMessageId messageId, long timestamp, boolean deliveryReceipt, boolean readReceipt) {
     SQLiteDatabase database = databaseHelper.getWritableDatabase();
     Cursor         cursor   = null;

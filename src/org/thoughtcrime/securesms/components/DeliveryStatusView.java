@@ -2,21 +2,15 @@ package org.thoughtcrime.securesms.components;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Color;
-import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import network.loki.messenger.R;
-
-import pl.tajchert.sample.DotsTextView;
 
 public class DeliveryStatusView extends FrameLayout {
 
@@ -66,7 +60,7 @@ public class DeliveryStatusView extends FrameLayout {
   }
 
   public void setPending() {
-    this.setVisibility(View.VISIBLE);
+    this.setVisibility(View.GONE);
     pendingIndicator.setVisibility(View.VISIBLE);
     pendingIndicator.startAnimation(ROTATION_ANIMATION);
     sentIndicator.setVisibility(View.GONE);
@@ -75,7 +69,7 @@ public class DeliveryStatusView extends FrameLayout {
   }
 
   public void setSent() {
-    this.setVisibility(View.VISIBLE);
+    this.setVisibility(View.GONE);
     pendingIndicator.setVisibility(View.GONE);
     pendingIndicator.clearAnimation();
     sentIndicator.setVisibility(View.VISIBLE);
@@ -84,7 +78,7 @@ public class DeliveryStatusView extends FrameLayout {
   }
 
   public void setDelivered() {
-    this.setVisibility(View.VISIBLE);
+    this.setVisibility(View.GONE);
     pendingIndicator.setVisibility(View.GONE);
     pendingIndicator.clearAnimation();
     sentIndicator.setVisibility(View.GONE);
@@ -93,7 +87,7 @@ public class DeliveryStatusView extends FrameLayout {
   }
 
   public void setRead() {
-    this.setVisibility(View.VISIBLE);
+    this.setVisibility(View.GONE);
     pendingIndicator.setVisibility(View.GONE);
     pendingIndicator.clearAnimation();
     sentIndicator.setVisibility(View.GONE);
