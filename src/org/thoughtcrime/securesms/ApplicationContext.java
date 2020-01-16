@@ -73,6 +73,7 @@ import org.thoughtcrime.securesms.loki.LokiRSSFeedPoller;
 import org.thoughtcrime.securesms.loki.LokiUserDatabase;
 import org.thoughtcrime.securesms.loki.MultiDeviceUtilities;
 import org.thoughtcrime.securesms.loki.redesign.activities.HomeActivity;
+import org.thoughtcrime.securesms.loki.redesign.utilities.Broadcaster;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.providers.BlobProvider;
@@ -151,6 +152,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   private LokiRSSFeedPoller lokiMessengerUpdatesFeedPoller = null;
   private LokiPublicChatManager lokiPublicChatManager = null;
   private LokiPublicChatAPI lokiPublicChatAPI = null;
+  public Broadcaster broadcaster = null;
   public SignalCommunicationModule communicationModule;
   public MixpanelAPI mixpanel;
 
@@ -164,6 +166,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   public void onCreate() {
     super.onCreate();
     Log.i(TAG, "onCreate()");
+    broadcaster = new Broadcaster(this);
     checkNeedsDatabaseReset();
     startKovenant();
     initializeSecurityProvider();
@@ -504,7 +507,7 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
     if (userHexEncodedPublicKey == null) return;
     LokiAPIDatabase lokiAPIDatabase = DatabaseFactory.getLokiAPIDatabase(this);
     Context context = this;
-    lokiLongPoller = new LokiLongPoller(userHexEncodedPublicKey, lokiAPIDatabase, protos -> {
+    lokiLongPoller = new LokiLongPoller(userHexEncodedPublicKey, lokiAPIDatabase, broadcaster, protos -> {
       for (SignalServiceProtos.Envelope proto : protos) {
         new PushContentReceiveJob(context).processEnvelope(new SignalServiceEnvelope(proto));
       }

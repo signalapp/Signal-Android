@@ -801,7 +801,7 @@ public class ConversationItem extends LinearLayout
     int groupThreadMargin = (int)(getResources().getDimension(R.dimen.large_spacing) + getResources().getDimension(R.dimen.small_profile_picture_size));
     int defaultMargin = 0;
     String threadName = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(messageRecord.getThreadId()).getName();
-    boolean isRSSFeed = threadName.equals("Loki News") || threadName.equals("Loki Messenger Updates");
+    boolean isRSSFeed = threadName != null && (threadName.equals("Loki News") || threadName.equals("Loki Messenger Updates"));
     layoutParams.setMarginStart((groupThread && !isRSSFeed) ? groupThreadMargin : defaultMargin);
     bodyBubble.setLayoutParams(layoutParams);
     if (profilePictureView == null) return;
@@ -983,7 +983,7 @@ public class ConversationItem extends LinearLayout
 
   private void setAuthor(@NonNull MessageRecord current, @NonNull Optional<MessageRecord> previous, @NonNull Optional<MessageRecord> next, boolean isGroupThread) {
     String threadName = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(current.getThreadId()).getName();
-    boolean isRSSFeed = threadName.equals("Loki News") || threadName.equals("Loki Messenger Updates");
+    boolean isRSSFeed = threadName != null && (threadName.equals("Loki News") || threadName.equals("Loki Messenger Updates"));
     if (isGroupThread && !isRSSFeed && !current.isOutgoing()) {
       contactPhotoHolder.setVisibility(VISIBLE);
 

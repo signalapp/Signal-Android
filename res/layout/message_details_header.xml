@@ -3,7 +3,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:tools="http://schemas.android.com/tools"
               android:orientation="vertical"
-              android:background="@drawable/default_session_background"
+              android:background="@color/transparent"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
@@ -35,7 +35,7 @@
                       tools:visibility="visible"
                       android:text="@string/message_details_header__issues_need_your_attention"
                       android:drawableStart="@drawable/ic_error"
-                      android:gravity="center_vertical" />
+                      android:layout_gravity="center_vertical" />
 
             <Button
                 android:id="@+id/resend_button"

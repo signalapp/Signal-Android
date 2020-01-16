@@ -38,11 +38,13 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Vibrator;
 import android.provider.Browser;
 import android.provider.Telephony;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.content.pm.ShortcutInfoCompat;
 import android.support.v4.content.pm.ShortcutManagerCompat;
 import android.support.v4.graphics.drawable.IconCompat;
@@ -68,6 +70,7 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -316,6 +319,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private   MentionTextWatcher          mentionTextWatcher;
   private   ConversationSearchBottomBar searchNav;
   private   MenuItem                    searchViewItem;
+  private   ProgressBar                 messageStatusProgressBar;
+  private   TextView                    actionBarSubtitleTextView;
 
   private   AttachmentTypeSelector attachmentTypeSelector;
   private   AttachmentManager      attachmentManager;
@@ -346,6 +351,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
   private final DynamicNoActionBarTheme dynamicTheme    = new DynamicNoActionBarTheme();
   private final DynamicLanguage         dynamicLanguage = new DynamicLanguage();
 
+  private ArrayList<BroadcastReceiver> broadcastReceivers = new ArrayList<>();
+  private String messageStatus = null;
+
   // Mentions
   private MentionCandidateSelectionView mentionCandidateSelectionView;
   private int currentMentionStartIndex = -1;
@@ -375,6 +383,12 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
 
     fragment = initFragment(R.id.fragment_content, new ConversationFragment(), dynamicLanguage.getCurrentLocale());
     fragment.friendRequestViewDelegate = this;
+
+    registerMessageStatusObserver("calculatingPoW");
+    registerMessageStatusObserver("contactingNetwork");
+    registerMessageStatusObserver("sendingMessage");
+    registerMessageStatusObserver("messageSent");
+    registerMessageStatusObserver("messageFailed");
 
     initializeReceivers();
     initializeActionBar();
@@ -436,6 +450,19 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       collapsedKeyboardHeight = Math.min(collapsedKeyboardHeight, height);
       keyboardHeight = expandedKeyboardHeight - collapsedKeyboardHeight;
     });
+  }
+
+  private void registerMessageStatusObserver(String status) {
+    BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+
+      @Override
+      public void onReceive(Context context, Intent intent) {
+        long timestamp = intent.getLongExtra("long", 0);
+        handleMessageStatusChanged(status, timestamp);
+      }
+    };
+    broadcastReceivers.add(broadcastReceiver);
+    LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver, new IntentFilter(status));
   }
 
   @Override
@@ -533,6 +560,9 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     saveDraft();
     if (recipient != null)               recipient.removeListener(this);
     if (securityUpdateReceiver != null)  unregisterReceiver(securityUpdateReceiver);
+    for (BroadcastReceiver broadcastReceiver : broadcastReceivers) {
+      LocalBroadcastManager.getInstance(this).unregisterReceiver(broadcastReceiver);
+    }
     super.onDestroy();
   }
 
@@ -1588,6 +1618,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     inputPanel             = ViewUtil.findById(this, R.id.bottom_panel);
     searchNav              = ViewUtil.findById(this, R.id.conversation_search_nav);
     mentionCandidateSelectionView = ViewUtil.findById(this, R.id.userSelectionView);
+    messageStatusProgressBar = ViewUtil.findById(this, R.id.messageStatusProgressBar);
+    actionBarSubtitleTextView = ViewUtil.findById(this, R.id.subtitleTextView);
 
     ImageButton quickCameraToggle      = ViewUtil.findById(this, R.id.quick_camera_toggle);
     ImageButton inlineAttachmentButton = ViewUtil.findById(this, R.id.inline_attachment_button);
@@ -3049,11 +3081,92 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     }
   }
 
+  // region Loki
   private void updateTitleTextView(GlideRequests glide, Recipient recipient) {
 
   }
 
-  // region Loki
+  private void updateSubtitleTextView() {
+    if (messageStatus != null) {
+      switch (messageStatus) {
+        case "calculatingPoW": actionBarSubtitleTextView.setText("Encrypting message"); break;
+        case "contactingNetwork": actionBarSubtitleTextView.setText("Tracing a path"); break;
+        case "sendingMessage": actionBarSubtitleTextView.setText("Sending message"); break;
+        case "messageSent": actionBarSubtitleTextView.setText("Message sent securely"); break;
+        case "messageFailed": actionBarSubtitleTextView.setText("Message failed to send"); break;
+      }
+    } else {
+      actionBarSubtitleTextView.setText("26 members");
+    }
+  }
+
+  private void setMessageStatusProgressAnimatedIfPossible(int progress) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+      messageStatusProgressBar.setProgress(progress, true);
+    } else {
+      messageStatusProgressBar.setProgress(progress);
+    }
+  }
+
+  private void updateMessageStatusProgressBar() {
+    if (messageStatus != null) {
+        messageStatusProgressBar.setAlpha(1.0f);
+      switch (messageStatus) {
+        case "calculatingPoW": setMessageStatusProgressAnimatedIfPossible(25); break;
+        case "contactingNetwork": setMessageStatusProgressAnimatedIfPossible(50); break;
+        case "sendingMessage": setMessageStatusProgressAnimatedIfPossible(75); break;
+        case "messageSent":
+          setMessageStatusProgressAnimatedIfPossible(100);
+          new Handler().postDelayed(() -> messageStatusProgressBar.animate().alpha(0).setDuration(250).start(), 250);
+          new Handler().postDelayed(() -> messageStatusProgressBar.setProgress(0), 500);
+          break;
+        case "messageFailed":
+          messageStatusProgressBar.animate().alpha(0).setDuration(250).start();
+          new Handler().postDelayed(() -> messageStatusProgressBar.setProgress(0), 250);
+          break;
+      }
+    }
+  }
+
+  private void handleMessageStatusChanged(String newMessageStatus, long timestamp) {
+    if (timestamp == 0) { return; }
+    updateForNewMessageStatusIfNeeded(newMessageStatus, timestamp);
+    if (newMessageStatus.equals("messageFailed") || newMessageStatus.equals("messageSent")) {
+      new Handler().postDelayed(() -> clearMessageStatusIfNeeded(timestamp), 1000);
+    }
+  }
+
+  private int precedence(String messageStatus) {
+    if (messageStatus != null) {
+      switch (messageStatus) {
+        case "calculatingPoW": return 0;
+        case "contactingNetwork": return 1;
+        case "sendingMessage": return 2;
+        case "messageSent": return 3;
+        case "messageFailed": return 4;
+        default: return -1;
+      }
+    } else {
+        return -1;
+    }
+  }
+
+  private void updateForNewMessageStatusIfNeeded(String newMessageStatus, long timestamp) {
+    if (!DatabaseFactory.getSmsDatabase(this).isOutgoingMessage(timestamp) && !DatabaseFactory.getMmsDatabase(this).isOutgoingMessage(timestamp)) { return; }
+    if (precedence(newMessageStatus) > precedence(messageStatus)) {
+      messageStatus = newMessageStatus;
+      updateSubtitleTextView();
+      updateMessageStatusProgressBar();
+    }
+  }
+
+  private void clearMessageStatusIfNeeded(long timestamp) {
+    if (!DatabaseFactory.getSmsDatabase(this).isOutgoingMessage(timestamp) && !DatabaseFactory.getMmsDatabase(this).isOutgoingMessage(timestamp)) { return; }
+    messageStatus = null;
+    updateSubtitleTextView();
+    updateMessageStatusProgressBar();
+  }
+
   @Override
   public void acceptFriendRequest(@NotNull MessageRecord friendRequest) {
     // Send the accept to the original friend request thread id

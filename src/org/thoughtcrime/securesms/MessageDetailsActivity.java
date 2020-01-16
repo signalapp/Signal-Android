@@ -160,7 +160,7 @@ public class MessageDetailsActivity extends PassphraseRequiredActionBarActivity 
     getSupportActionBar().setBackgroundDrawable(new ColorDrawable(color.toActionBarColor(this)));
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-      getWindow().setStatusBarColor(color.toStatusBarColor(this));
+      // getWindow().setStatusBarColor(color.toStatusBarColor(this));
     }
   }
 
