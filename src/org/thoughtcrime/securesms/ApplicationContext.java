@@ -202,8 +202,6 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
       mixpanel.trackMap(event, properties);
       return Unit.INSTANCE;
     };
-    // Loki - Set up public chat manager
-    lokiPublicChatManager = new LokiPublicChatManager(this);
     // Loki - Set the cache
     LokiDotNetAPI.setCache(new Cache(this.getCacheDir(), OK_HTTP_CACHE_SIZE));
     // Loki - Update device mappings
@@ -213,6 +211,8 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
         checkNeedsRevocation();
       }
     }
+    // Loki - Set up public chat manager
+    lokiPublicChatManager = new LokiPublicChatManager(this);
     updatePublicChatProfileAvatarIfNeeded();
   }
 
@@ -282,10 +282,12 @@ public class ApplicationContext extends MultiDexApplication implements Dependenc
   public @Nullable LokiPublicChatAPI getLokiPublicChatAPI() {
     if (lokiPublicChatAPI == null && IdentityKeyUtil.hasIdentityKey(this)) {
       String userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this);
-      byte[] userPrivateKey = IdentityKeyUtil.getIdentityKeyPair(this).getPrivateKey().serialize();
-      LokiAPIDatabase apiDatabase = DatabaseFactory.getLokiAPIDatabase(this);
-      LokiUserDatabase userDatabase = DatabaseFactory.getLokiUserDatabase(this);
-      lokiPublicChatAPI = new LokiPublicChatAPI(userHexEncodedPublicKey, userPrivateKey, apiDatabase, userDatabase);
+      if (userHexEncodedPublicKey != null) {
+        byte[] userPrivateKey = IdentityKeyUtil.getIdentityKeyPair(this).getPrivateKey().serialize();
+        LokiAPIDatabase apiDatabase = DatabaseFactory.getLokiAPIDatabase(this);
+        LokiUserDatabase userDatabase = DatabaseFactory.getLokiUserDatabase(this);
+        lokiPublicChatAPI = new LokiPublicChatAPI(userHexEncodedPublicKey, userPrivateKey, apiDatabase, userDatabase);
+      }
     }
     return lokiPublicChatAPI;
   }
