@@ -126,44 +126,60 @@
 
         <!-- Session -->
         <activity
-            android:name="org.thoughtcrime.securesms.loki.redesign.activities.LandingActivity" />
+            android:name="org.thoughtcrime.securesms.loki.redesign.activities.LandingActivity"
+            android:screenOrientation="portrait" />
         <activity
-            android:name="org.thoughtcrime.securesms.loki.redesign.activities.RegisterActivity" />
+            android:name="org.thoughtcrime.securesms.loki.redesign.activities.RegisterActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name="org.thoughtcrime.securesms.loki.redesign.activities.RestoreActivity"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name="org.thoughtcrime.securesms.loki.redesign.activities.LinkDeviceActivity"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name="org.thoughtcrime.securesms.loki.redesign.activities.DisplayNameActivity"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name="org.thoughtcrime.securesms.loki.redesign.activities.HomeActivity"
+            android:screenOrientation="portrait"
             android:launchMode="singleTask"
             android:theme="@style/Session.DarkTheme.NoActionBar" />
         <activity
             android:name="org.thoughtcrime.securesms.loki.redesign.activities.SettingsActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/Session.DarkTheme.NoActionBar" />
         <activity
-            android:name="org.thoughtcrime.securesms.loki.redesign.activities.QRCodeActivity" />
+            android:name="org.thoughtcrime.securesms.loki.redesign.activities.QRCodeActivity"
+            android:screenOrientation="portrait" />
         <activity
-            android:name="org.thoughtcrime.securesms.loki.redesign.activities.CreatePrivateChatActivity" />
+            android:name="org.thoughtcrime.securesms.loki.redesign.activities.CreatePrivateChatActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name="org.thoughtcrime.securesms.loki.redesign.activities.JoinPublicChatActivity"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="org.thoughtcrime.securesms.loki.redesign.activities.SeedActivity" />
+            android:name="org.thoughtcrime.securesms.loki.redesign.activities.SeedActivity"
+            android:screenOrientation="portrait" />
         <activity
-            android:name="org.thoughtcrime.securesms.loki.redesign.activities.PrivacySettingsActivity" />
+            android:name="org.thoughtcrime.securesms.loki.redesign.activities.PrivacySettingsActivity"
+            android:screenOrientation="portrait" />
         <activity
-            android:name="org.thoughtcrime.securesms.loki.redesign.activities.NotificationSettingsActivity" />
+            android:name="org.thoughtcrime.securesms.loki.redesign.activities.NotificationSettingsActivity"
+            android:screenOrientation="portrait" />
         <activity
-            android:name="org.thoughtcrime.securesms.loki.redesign.activities.ChatSettingsActivity" />
+            android:name="org.thoughtcrime.securesms.loki.redesign.activities.ChatSettingsActivity"
+            android:screenOrientation="portrait" />
         <activity
-            android:name="org.thoughtcrime.securesms.loki.redesign.activities.LinkedDevicesActivity" />
+            android:name="org.thoughtcrime.securesms.loki.redesign.activities.LinkedDevicesActivity"
+            android:screenOrientation="portrait" />
         <!-- Session -->
-        <activity android:name="org.thoughtcrime.securesms.loki.LinkedDevicesActivity" />
+        <activity android:name="org.thoughtcrime.securesms.loki.LinkedDevicesActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name="org.thoughtcrime.securesms.WebRtcCallActivity"
             android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|screenSize|fontScale"
@@ -208,6 +224,7 @@
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
             android:excludeFromRecents="true"
             android:launchMode="singleTask"
+            android:screenOrientation="portrait"
             android:noHistory="true"
             android:taskAffinity=""
             android:theme="@style/TextSecure.LightNoActionBar"
@@ -289,6 +306,7 @@
             android:name="org.thoughtcrime.securesms.conversation.ConversationActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
             android:launchMode="singleTask"
+            android:screenOrientation="portrait"
             android:theme="@style/Session.DarkTheme.NoActionBar"
             android:parentActivityName="org.thoughtcrime.securesms.ConversationListActivity"
             android:windowSoftInputMode="stateUnchanged">
@@ -296,7 +314,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="PsiClass:ConversationListActivity" />
         </activity>
-        <activity android:name="org.thoughtcrime.securesms.longmessage.LongMessageActivity" />
+        <activity
+            android:name="org.thoughtcrime.securesms.longmessage.LongMessageActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name="org.thoughtcrime.securesms.conversation.ConversationPopupActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
@@ -309,6 +329,7 @@
             android:name="org.thoughtcrime.securesms.MessageDetailsActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
             android:label="Message Details"
+            android:screenOrientation="portrait"
             android:theme="@style/Session.DarkTheme"
             android:launchMode="singleTask"
             android:windowSoftInputMode="stateHidden" />
@@ -357,6 +378,7 @@
             android:name="org.thoughtcrime.securesms.giph.ui.GiphyActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
             android:theme="@style/TextSecure.LightNoActionBar"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name="org.thoughtcrime.securesms.mediasend.MediaSendActivity"
@@ -416,6 +438,7 @@
             android:name="org.thoughtcrime.securesms.MediaPreviewActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
             android:label="@string/AndroidManifest__media_preview"
+            android:screenOrientation="portrait"
             android:theme="@style/Session.DarkTheme.SubtitleActionBar"
             android:launchMode="singleTask"
             android:windowSoftInputMode="stateHidden" />
@@ -423,6 +446,7 @@
             android:name="org.thoughtcrime.securesms.MediaOverviewActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
             android:launchMode="singleTask"
+            android:screenOrientation="portrait"
             android:theme="@style/Session.DarkTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden" />
         <activity
@@ -489,6 +513,7 @@
             android:theme="@style/TextSecure.DarkTheme" />
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/Session.DarkTheme" />
         <activity
             android:name="org.thoughtcrime.securesms.CreateProfileActivity"
