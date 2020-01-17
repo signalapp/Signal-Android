@@ -4,6 +4,7 @@ import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.util.JsonUtils;
 import org.whispersystems.signalservice.api.RegistrationLockData;
+import org.whispersystems.signalservice.api.kbs.MasterKey;
 import org.whispersystems.signalservice.internal.contacts.entities.TokenResponse;
 import org.whispersystems.signalservice.internal.registrationpin.PinStretcher;
 
@@ -51,8 +52,13 @@ public final class KbsValues {
     editor.commit();
   }
 
-  public byte[] getMasterKey() {
-    return store.getBlob(REGISTRATION_LOCK_MASTER_KEY, null);
+  public @Nullable MasterKey getMasterKey() {
+    byte[] blob = store.getBlob(REGISTRATION_LOCK_MASTER_KEY, null);
+    if (blob != null) {
+      return new MasterKey(blob);
+    } else {
+      return null;
+    }
   }
 
   public @Nullable String getRegistrationLockToken() {

@@ -21,10 +21,10 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.InvalidKeyException;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
+import org.whispersystems.signalservice.api.kbs.MasterKey;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 import org.whispersystems.signalservice.api.storage.SignalStorageManifest;
 import org.whispersystems.signalservice.api.storage.SignalStorageRecord;
-import org.whispersystems.signalservice.api.storage.SignalStorageUtil;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -69,14 +69,14 @@ public class StorageForcePushJob extends BaseJob {
   protected void onRun() throws IOException, RetryLaterException {
     if (!FeatureFlags.STORAGE_SERVICE) throw new AssertionError();
 
-    byte[] kbsMasterKey = SignalStore.kbsValues().getMasterKey();
+    MasterKey kbsMasterKey = SignalStore.kbsValues().getMasterKey();
 
     if (kbsMasterKey == null) {
       Log.w(TAG, "No KBS master key is set! Must abort.");
       return;
     }
 
-    byte[]                      storageServiceKey  = SignalStorageUtil.computeStorageServiceKey(kbsMasterKey);
+    byte[]                      storageServiceKey  = kbsMasterKey.deriveStorageServiceKey();
     SignalServiceAccountManager accountManager     = ApplicationDependencies.getSignalServiceAccountManager();
     RecipientDatabase           recipientDatabase  = DatabaseFactory.getRecipientDatabase(context);
     StorageKeyDatabase          storageKeyDatabase = DatabaseFactory.getStorageKeyDatabase(context);
