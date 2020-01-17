@@ -5,6 +5,7 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.NavigableSet;
@@ -24,7 +25,8 @@ public class RegistrationLockReminders {
   public static final long INITIAL_INTERVAL = INTERVALS.first();
 
   public static boolean needsReminder(@NonNull Context context) {
-    if (!TextSecurePreferences.isRegistrationLockEnabled(context)) return false;
+    if (!TextSecurePreferences.isV1RegistrationLockEnabled(context) &&
+        !SignalStore.kbsValues().isV2RegistrationLockEnabled()) return false;
 
     long lastReminderTime = TextSecurePreferences.getRegistrationLockLastReminderTime(context);
     long nextIntervalTime = TextSecurePreferences.getRegistrationLockNextReminderInterval(context);

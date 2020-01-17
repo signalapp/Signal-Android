@@ -17,11 +17,11 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.jobs.RotateCertificateJob;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.lock.RegistrationLockReminders;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.migrations.RegistrationPinV2MigrationJob;
 import org.thoughtcrime.securesms.push.AccountManagerFactory;
-import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.service.DirectoryRefreshListener;
 import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener;
@@ -203,10 +203,12 @@ public final class CodeVerificationRequest {
     TextSecurePreferences.setSignedPreKeyRegistered(context, true);
     TextSecurePreferences.setPromptedPushRegistration(context, true);
     TextSecurePreferences.setUnauthorizedReceived(context, false);
-    TextSecurePreferences.setRegistrationLockMasterKey(context, kbsData, System.currentTimeMillis());
+    SignalStore.kbsValues().setRegistrationLockMasterKey(kbsData);
     if (kbsData == null) {
       //noinspection deprecation Only acceptable place to write the old pin.
       TextSecurePreferences.setDeprecatedRegistrationLockPin(context, pin);
+      //noinspection deprecation Only acceptable place to write the old pin enabled state.
+      TextSecurePreferences.setV1RegistrationLockEnabled(context, pin != null);
       if (pin != null) {
         if (FeatureFlags.KBS) {
           Log.i(TAG, "Pin V1 successfully entered during registration, scheduling a migration to Pin V2");
@@ -216,7 +218,6 @@ public final class CodeVerificationRequest {
     } else {
       repostPinToResetTries(context, pin, kbsData);
     }
-    TextSecurePreferences.setRegistrationLockEnabled(context, pin != null);
     if (pin != null) {
       TextSecurePreferences.setRegistrationLockLastReminderTime(context, System.currentTimeMillis());
       TextSecurePreferences.setRegistrationLockNextReminderInterval(context, RegistrationLockReminders.INITIAL_INTERVAL);
@@ -231,7 +232,8 @@ public final class CodeVerificationRequest {
     try {
       RegistrationLockData newData = keyBackupService.newPinChangeSession(kbsData.getTokenResponse())
                                                      .setPin(pin);
-      TextSecurePreferences.setRegistrationLockMasterKey(context, newData, System.currentTimeMillis());
+      SignalStore.kbsValues().setRegistrationLockMasterKey(newData);
+      TextSecurePreferences.clearOldRegistrationLockPin(context);
     } catch (IOException e) {
       Log.w(TAG, "May have failed to reset pin attempts!", e);
     } catch (UnauthenticatedResponseException e) {

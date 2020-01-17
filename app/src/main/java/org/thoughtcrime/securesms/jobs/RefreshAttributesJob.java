@@ -7,6 +7,8 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
+import org.thoughtcrime.securesms.keyvalue.KbsValues;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
@@ -43,20 +45,19 @@ public class RefreshAttributesJob extends BaseJob {
 
   @Override
   public void onRun() throws IOException {
-    int     registrationId              = TextSecurePreferences.getLocalRegistrationId(context);
-    boolean fetchesMessages             = TextSecurePreferences.isFcmDisabled(context);
-    byte[]  unidentifiedAccessKey       = UnidentifiedAccessUtil.getSelfUnidentifiedAccessKey(context);
-    boolean universalUnidentifiedAccess = TextSecurePreferences.isUniversalUnidentifiedAccess(context);
-    String  pin                         = null;
-    String  registrationLockToken       = null;
+    int       registrationId              = TextSecurePreferences.getLocalRegistrationId(context);
+    boolean   fetchesMessages             = TextSecurePreferences.isFcmDisabled(context);
+    byte[]    unidentifiedAccessKey       = UnidentifiedAccessUtil.getSelfUnidentifiedAccessKey(context);
+    boolean   universalUnidentifiedAccess = TextSecurePreferences.isUniversalUnidentifiedAccess(context);
+    String    pin                         = null;
+    String    registrationLockToken       = null;
+    KbsValues kbsValues                   = SignalStore.kbsValues();
 
-    if (TextSecurePreferences.isRegistrationLockEnabled(context)) {
-      if (TextSecurePreferences.hasOldRegistrationLockPin(context)) {
-        //noinspection deprecation Ok to read here as they have not migrated
-        pin = TextSecurePreferences.getDeprecatedRegistrationLockPin(context);
-      } else {
-        registrationLockToken = TextSecurePreferences.getRegistrationLockToken(context);
-      }
+    if (kbsValues.isV2RegistrationLockEnabled()) {
+      registrationLockToken = kbsValues.getRegistrationLockToken();
+    } else if (TextSecurePreferences.isV1RegistrationLockEnabled(context)) {
+      //noinspection deprecation Ok to read here as they have not migrated
+      pin = TextSecurePreferences.getDeprecatedV1RegistrationLockPin(context);
     }
 
     SignalServiceAccountManager signalAccountManager = ApplicationDependencies.getSignalServiceAccountManager();

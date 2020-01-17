@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
@@ -109,7 +110,7 @@ public class StorageSyncJob extends BaseJob {
     SignalServiceAccountManager accountManager     = ApplicationDependencies.getSignalServiceAccountManager();
     RecipientDatabase           recipientDatabase  = DatabaseFactory.getRecipientDatabase(context);
     StorageKeyDatabase          storageKeyDatabase = DatabaseFactory.getStorageKeyDatabase(context);
-    byte[]                      kbsMasterKey       = TextSecurePreferences.getMasterKey(context);
+    byte[]                      kbsMasterKey       = SignalStore.kbsValues().getMasterKey();
 
     if (kbsMasterKey == null) {
       Log.w(TAG, "No KBS master key is set! Must abort.");

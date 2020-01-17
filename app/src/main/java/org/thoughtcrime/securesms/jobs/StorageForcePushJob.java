@@ -12,22 +12,19 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.InvalidKeyException;
-import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
-import org.whispersystems.signalservice.api.storage.SignalContactRecord;
 import org.whispersystems.signalservice.api.storage.SignalStorageManifest;
 import org.whispersystems.signalservice.api.storage.SignalStorageRecord;
 import org.whispersystems.signalservice.api.storage.SignalStorageUtil;
-import org.whispersystems.signalservice.internal.storage.protos.StorageRecord;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -72,7 +69,7 @@ public class StorageForcePushJob extends BaseJob {
   protected void onRun() throws IOException, RetryLaterException {
     if (!FeatureFlags.STORAGE_SERVICE) throw new AssertionError();
 
-    byte[] kbsMasterKey = TextSecurePreferences.getMasterKey(context);
+    byte[] kbsMasterKey = SignalStore.kbsValues().getMasterKey();
 
     if (kbsMasterKey == null) {
       Log.w(TAG, "No KBS master key is set! Must abort.");

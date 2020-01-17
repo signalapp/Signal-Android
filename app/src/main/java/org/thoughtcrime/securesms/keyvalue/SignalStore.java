@@ -12,6 +12,10 @@ public final class SignalStore {
 
   private SignalStore() {}
 
+  public static KbsValues kbsValues() {
+    return new KbsValues(getStore());
+  }
+
   /**
    * Ensures any pending writes are finished. Only intended to be called by
    * {@link SignalUncaughtExceptionHandler}.

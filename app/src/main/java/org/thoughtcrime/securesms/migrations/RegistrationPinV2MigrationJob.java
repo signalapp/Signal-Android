@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.jobs.BaseJob;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -54,18 +55,13 @@ public final class RegistrationPinV2MigrationJob extends BaseJob {
       return;
     }
 
-    if (!TextSecurePreferences.isRegistrationLockEnabled(context)) {
+    if (!TextSecurePreferences.isV1RegistrationLockEnabled(context)) {
       Log.i(TAG, "Registration lock disabled");
       return;
     }
 
-    if (!TextSecurePreferences.hasOldRegistrationLockPin(context)) {
-      Log.i(TAG, "No old pin to migrate");
-      return;
-    }
-
     //noinspection deprecation Only acceptable place to read the old pin.
-    String registrationLockPin = TextSecurePreferences.getDeprecatedRegistrationLockPin(context);
+    String registrationLockPin = TextSecurePreferences.getDeprecatedV1RegistrationLockPin(context);
 
     if (registrationLockPin == null | TextUtils.isEmpty(registrationLockPin)) {
       Log.i(TAG, "No old pin to migrate");
@@ -79,7 +75,8 @@ public final class RegistrationPinV2MigrationJob extends BaseJob {
                                                                          .newPinChangeSession()
                                                                          .setPin(registrationLockPin);
 
-      TextSecurePreferences.setRegistrationLockMasterKey(context, registrationPinV2Key, System.currentTimeMillis());
+      SignalStore.kbsValues().setRegistrationLockMasterKey(registrationPinV2Key);
+      TextSecurePreferences.clearOldRegistrationLockPin(context);
     } catch (InvalidPinException e) {
       Log.w(TAG, "The V1 pin cannot be migrated.", e);
       return;

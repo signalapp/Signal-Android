@@ -7,17 +7,16 @@ import android.net.Uri;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
-import android.text.TextUtils;
 
 import androidx.annotation.ArrayRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
-import androidx.core.content.ContextCompat;
 
 import org.greenrobot.eventbus.EventBus;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraintObserver;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.lock.RegistrationLockReminders;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference;
@@ -25,7 +24,6 @@ import org.whispersystems.libsignal.util.Medium;
 import org.whispersystems.signalservice.api.RegistrationLockData;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.contacts.entities.TokenResponse;
-import org.whispersystems.signalservice.internal.registrationpin.PinStretcher;
 
 import java.io.IOException;
 import java.security.SecureRandom;
@@ -158,16 +156,13 @@ public class TextSecurePreferences {
   public static final String SCREEN_LOCK         = "pref_android_screen_lock";
   public static final String SCREEN_LOCK_TIMEOUT = "pref_android_screen_lock_timeout";
 
-  public static final  String REGISTRATION_LOCK_PREF                   = "pref_registration_lock";
-  private static final String REGISTRATION_LOCK_PIN_PREF               = "pref_registration_lock_pin";
-  private static final String REGISTRATION_LOCK_TOKEN_PREF             = "pref_registration_lock_token";
-  private static final String REGISTRATION_LOCK_PIN_KEY_2_PREF         = "pref_registration_lock_pin_key_2";
-  private static final String REGISTRATION_LOCK_MASTER_KEY             = "pref_registration_lock_master_key";
-  private static final String REGISTRATION_LOCK_TOKEN_RESPONSE         = "pref_registration_lock_token_response";
+  @Deprecated
+  public static final  String REGISTRATION_LOCK_PREF_V1                = "pref_registration_lock";
+  @Deprecated
+  private static final String REGISTRATION_LOCK_PIN_PREF_V1            = "pref_registration_lock_pin";
+
   private static final String REGISTRATION_LOCK_LAST_REMINDER_TIME     = "pref_registration_lock_last_reminder_time";
   private static final String REGISTRATION_LOCK_NEXT_REMINDER_INTERVAL = "pref_registration_lock_next_reminder_interval";
-  private static final String REGISTRATION_LOCK_SERVER_CONSISTENT      = "pref_registration_lock_server_consistent";
-  private static final String REGISTRATION_LOCK_SERVER_CONSISTENT_TIME = "pref_registration_lock_server_consistent_time";
 
   private static final String SERVICE_OUTAGE         = "pref_service_outage";
   private static final String LAST_OUTAGE_CHECK_TIME = "pref_last_outage_check_time";
@@ -234,31 +229,34 @@ public class TextSecurePreferences {
     setLongPreference(context, SCREEN_LOCK_TIMEOUT, value);
   }
 
-  public static boolean isRegistrationLockEnabled(@NonNull Context context) {
-    return getBooleanPreference(context, REGISTRATION_LOCK_PREF, false);
+  public static boolean isV1RegistrationLockEnabled(@NonNull Context context) {
+    //noinspection deprecation
+    return getBooleanPreference(context, REGISTRATION_LOCK_PREF_V1, false);
   }
 
-  public static void setRegistrationLockEnabled(@NonNull Context context, boolean value) {
-    setBooleanPreference(context, REGISTRATION_LOCK_PREF, value);
+  /**
+   * @deprecated Use only during re-reg where user had pinV1.
+   */
+  @Deprecated
+  public static void setV1RegistrationLockEnabled(@NonNull Context context, boolean value) {
+    //noinspection deprecation
+    setBooleanPreference(context, REGISTRATION_LOCK_PREF_V1, value);
   }
 
   /**
    * @deprecated Use only for migrations to the Key Backup Store registration pinV2.
    */
   @Deprecated
-  public static @Nullable String getDeprecatedRegistrationLockPin(@NonNull Context context) {
-    return getStringPreference(context, REGISTRATION_LOCK_PIN_PREF, null);
-  }
-
-  public static boolean hasOldRegistrationLockPin(@NonNull Context context) {
+  public static @Nullable String getDeprecatedV1RegistrationLockPin(@NonNull Context context) {
     //noinspection deprecation
-    return !TextUtils.isEmpty(getDeprecatedRegistrationLockPin(context));
+    return getStringPreference(context, REGISTRATION_LOCK_PIN_PREF_V1, null);
   }
 
   public static void clearOldRegistrationLockPin(@NonNull Context context) {
+    //noinspection deprecation
     PreferenceManager.getDefaultSharedPreferences(context)
                      .edit()
-                     .remove(REGISTRATION_LOCK_PIN_PREF)
+                     .remove(REGISTRATION_LOCK_PIN_PREF_V1)
                      .apply();
   }
 
@@ -267,96 +265,8 @@ public class TextSecurePreferences {
    */
   @Deprecated
   public static void setDeprecatedRegistrationLockPin(@NonNull Context context, String pin) {
-    setStringPreference(context, REGISTRATION_LOCK_PIN_PREF, pin);
-  }
-
-  /** Clears old pin preference at same time if non-null */
-  public static void setRegistrationLockMasterKey(@NonNull Context context, @Nullable RegistrationLockData registrationLockData, long time) {
-    SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(context)
-            .edit()
-            .putBoolean(REGISTRATION_LOCK_SERVER_CONSISTENT, true)
-            .putLong(REGISTRATION_LOCK_SERVER_CONSISTENT_TIME, time);
-
-    if (registrationLockData == null) {
-      editor.remove(REGISTRATION_LOCK_TOKEN_RESPONSE)
-            .remove(REGISTRATION_LOCK_MASTER_KEY)
-            .remove(REGISTRATION_LOCK_TOKEN_PREF)
-            .remove(REGISTRATION_LOCK_PIN_KEY_2_PREF);
-    } else {
-      PinStretcher.MasterKey masterKey = registrationLockData.getMasterKey();
-      String tokenResponse;
-      try {
-        tokenResponse = JsonUtils.toJson(registrationLockData.getTokenResponse());
-      } catch (IOException e) {
-        throw new AssertionError(e);
-      }
-
-      editor.remove(REGISTRATION_LOCK_PIN_PREF) // Removal of V1 pin
-            .putBoolean(REGISTRATION_LOCK_PREF, true)
-            .putString(REGISTRATION_LOCK_TOKEN_RESPONSE, tokenResponse)
-            .putString(REGISTRATION_LOCK_MASTER_KEY, Base64.encodeBytes(masterKey.getMasterKey()))
-            .putString(REGISTRATION_LOCK_TOKEN_PREF, masterKey.getRegistrationLock())
-            .putString(REGISTRATION_LOCK_PIN_KEY_2_PREF, Base64.encodeBytes(masterKey.getPinKey2()));
-    }
-
-    editor.apply();
-  }
-
-  public static byte[] getMasterKey(@NonNull Context context) {
-    String key = getStringPreference(context, REGISTRATION_LOCK_MASTER_KEY, null);
-    if (key == null) {
-      return null;
-    }
-    try {
-      return Base64.decode(key);
-    } catch (IOException e) {
-      throw new AssertionError(e);
-    }
-  }
-
-  public static void setRegistrationLockServerConsistent(@NonNull Context context, boolean consistent, long time) {
-    PreferenceManager.getDefaultSharedPreferences(context)
-                     .edit()
-                     .putBoolean(REGISTRATION_LOCK_SERVER_CONSISTENT, consistent)
-                     .putLong(REGISTRATION_LOCK_SERVER_CONSISTENT_TIME, time)
-                     .apply();
-  }
-
-  public static @Nullable String getRegistrationLockToken(@NonNull Context context) {
-    return getStringPreference(context, REGISTRATION_LOCK_TOKEN_PREF, null);
-  }
-
-  public static void setRegistrationLockTokenResponse(@NonNull Context context, @NonNull TokenResponse tokenResponse) {
-    String tokenResponseString;
-    try {
-      tokenResponseString = JsonUtils.toJson(tokenResponse);
-    } catch (IOException e) {
-      throw new AssertionError(e);
-    }
-    setStringPreference(context, REGISTRATION_LOCK_TOKEN_RESPONSE, tokenResponseString);
-  }
-
-  public static @Nullable TokenResponse getRegistrationLockTokenResponse(@NonNull Context context) {
-    String token = getStringPreference(context, REGISTRATION_LOCK_TOKEN_RESPONSE, null);
-
-    if (token == null) return null;
-
-    try {
-      return JsonUtils.fromJson(token, TokenResponse.class);
-    } catch (IOException e) {
-      Log.w(TAG, e);
-      return null;
-    }
-  }
-
-  public static @Nullable byte[] getRegistrationLockPinKey2(@NonNull Context context){
-    String pinKey2 = getStringPreference(context, REGISTRATION_LOCK_PIN_KEY_2_PREF, null);
-    try {
-      return pinKey2 != null ? Base64.decode(pinKey2) : null;
-    } catch (IOException e) {
-      Log.w(TAG, e);
-      return null;
-    }
+    //noinspection deprecation
+    setStringPreference(context, REGISTRATION_LOCK_PIN_PREF_V1, pin);
   }
 
   public static long getRegistrationLockLastReminderTime(@NonNull Context context) {
