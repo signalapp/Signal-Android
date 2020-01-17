@@ -33,7 +33,7 @@ class LinkDeviceMasterModeDialog : DialogFragment(), DeviceLinkingSessionListene
         contentView = LayoutInflater.from(context!!).inflate(R.layout.dialog_link_device_master_mode, null)
         val size = toPx(128, resources)
         val hexEncodedPublicKey = TextSecurePreferences.getLocalNumber(context!!)
-        val qrCode = QRCodeUtilities.encode(hexEncodedPublicKey, size)
+        val qrCode = QRCodeUtilities.encode(hexEncodedPublicKey, size, false, false)
         contentView.qrCodeImageView.setImageBitmap(qrCode)
         contentView.cancelButton.setOnClickListener { onDeviceLinkCanceled() }
         contentView.authorizeButton.setOnClickListener { authorizeDeviceLink() }

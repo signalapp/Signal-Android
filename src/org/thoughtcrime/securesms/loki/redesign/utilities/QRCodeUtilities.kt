@@ -9,7 +9,7 @@ import com.google.zxing.qrcode.QRCodeWriter
 
 object QRCodeUtilities {
 
-    fun encode(data: String, size: Int, hasTransparentBackground: Boolean = true): Bitmap {
+    fun encode(data: String, size: Int, isInverted: Boolean = false, hasTransparentBackground: Boolean = true): Bitmap {
         try {
             val hints = hashMapOf( EncodeHintType.MARGIN to 1 )
             val result = QRCodeWriter().encode(data, BarcodeFormat.QR_CODE, size, size, hints)
@@ -17,9 +17,9 @@ object QRCodeUtilities {
             for (y in 0 until result.height) {
                 for (x in 0 until result.width) {
                     if (result.get(x, y)) {
-                        bitmap.setPixel(x, y, Color.WHITE)
+                        bitmap.setPixel(x, y, if (isInverted) Color.WHITE else Color.BLACK)
                     } else if (!hasTransparentBackground) {
-                        bitmap.setPixel(x, y, Color.BLACK)
+                        bitmap.setPixel(x, y, if (isInverted) Color.BLACK else Color.WHITE)
                     }
                 }
             }
