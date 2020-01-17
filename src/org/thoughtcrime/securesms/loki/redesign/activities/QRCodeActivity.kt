@@ -138,7 +138,7 @@ class ViewMyQRCodeFragment : Fragment() {
             file.createNewFile()
             val fos = FileOutputStream(file)
             val size = toPx(280, resources)
-            val qrCode = QRCodeUtilities.encode(hexEncodedPublicKey, size, false)
+            val qrCode = QRCodeUtilities.encode(hexEncodedPublicKey, size, false, false)
             qrCode.compress(Bitmap.CompressFormat.PNG, 100, fos)
             fos.flush()
             fos.close()
