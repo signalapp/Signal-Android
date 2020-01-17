@@ -33,6 +33,8 @@
                     android:id="@+id/titleTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:text="Conversation"
                     android:textColor="@color/text"
                     android:textSize="@dimen/large_font_size"

@@ -3112,7 +3112,7 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     } else if (userLinkedDeviceHexEncodedPublicKeys.contains(recipient.getAddress().toString().toLowerCase())) {
       titleTextView.setText("Note to Self");
     } else {
-      titleTextView.setText(recipient.getName());
+      titleTextView.setText((recipient.getName() == null || recipient.getName().isEmpty()) ? recipient.getAddress().toString() : recipient.getName());
     }
   }
 

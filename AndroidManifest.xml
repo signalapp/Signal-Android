@@ -383,6 +383,7 @@
         <activity
             android:name="org.thoughtcrime.securesms.mediasend.MediaSendActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
+            android:screenOrientation="portrait"
             android:theme="@style/Session.DarkTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden" />
         <activity
