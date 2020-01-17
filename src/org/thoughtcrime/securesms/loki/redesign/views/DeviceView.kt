@@ -7,6 +7,7 @@ import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.view_device.view.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.devicelist.Device
+import org.thoughtcrime.securesms.loki.toPx
 
 class DeviceView : LinearLayout {
     var device: Device? = null
@@ -38,6 +39,10 @@ class DeviceView : LinearLayout {
     // region Updating
     fun bind(device: Device) {
         titleTextView.text = if (!device.name.isNullOrBlank()) device.name else "Unnamed Device"
+        // FIXME: Hacky way of getting the view to be screen width
+        val titleTextViewLayoutParams = titleTextView.layoutParams
+        titleTextViewLayoutParams.width = resources.displayMetrics.widthPixels - toPx(32, resources)
+        titleTextView.layoutParams = titleTextViewLayoutParams
         subtitleTextView.text = device.shortId
     }
     // endregion
