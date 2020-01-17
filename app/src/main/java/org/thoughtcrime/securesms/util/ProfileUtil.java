@@ -70,7 +70,7 @@ public class ProfileUtil {
     SignalServiceMessagePipe authPipe         = IncomingMessageObserver.getPipe();
     SignalServiceMessagePipe unidentifiedPipe = IncomingMessageObserver.getUnidentifiedPipe();
     SignalServiceMessagePipe pipe             = unidentifiedPipe != null && unidentifiedAccess.isPresent() ? unidentifiedPipe
-        : authPipe;
+                                                                                                           : authPipe;
 
     if (pipe != null) {
       try {

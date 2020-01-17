@@ -456,6 +456,28 @@ public class RecipientDatabase extends Database {
     }
   }
 
+  public void updatePhoneNumbers(@NonNull Map<String, String> mapping) {
+    if (mapping.isEmpty()) return;
+
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+
+    db.beginTransaction();
+    try {
+      String query = PHONE + " = ?";
+
+      for (Map.Entry<String, String> entry : mapping.entrySet()) {
+        ContentValues values = new ContentValues();
+        values.put(PHONE, entry.getValue());
+
+        db.updateWithOnConflict(TABLE_NAME, values, query, new String[] { entry.getKey() }, SQLiteDatabase.CONFLICT_IGNORE);
+      }
+
+      db.setTransactionSuccessful();
+    } finally {
+      db.endTransaction();
+    }
+  }
+
   private @NonNull RecipientId getByStorageKeyOrThrow(byte[] storageKey) {
     SQLiteDatabase db    = databaseHelper.getReadableDatabase();
     String         query = STORAGE_SERVICE_KEY + " = ?";

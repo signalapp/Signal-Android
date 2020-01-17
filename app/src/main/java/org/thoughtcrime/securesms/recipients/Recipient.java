@@ -214,11 +214,18 @@ public class Recipient {
    */
   @WorkerThread
   public static @NonNull Recipient externalContact(@NonNull Context context, @NonNull String identifier) {
+    RecipientDatabase db = DatabaseFactory.getRecipientDatabase(context);
+    RecipientId       id = null;
+
     if (UuidUtil.isUuid(identifier)) {
       throw new UuidRecipientError();
+    } else if (NumberUtil.isValidEmail(identifier)) {
+      id = db.getOrInsertFromEmail(identifier);
     } else {
-      return external(context, identifier);
+      id = db.getOrInsertFromE164(identifier);
     }
+
+    return Recipient.resolved(id);
   }
 
   /**
