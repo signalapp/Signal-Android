@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/default_dialog_background_inset"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingLeft="32dp"
+    android:paddingTop="@dimen/medium_spacing"
+    android:paddingRight="32dp"
+    android:paddingBottom="@dimen/medium_spacing">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Change Device Name"
+        android:textColor="@color/text"
+        android:textStyle="bold"
+        android:textSize="@dimen/medium_font_size" />
+
+    <EditText
+        style="@style/SessionEditText"
+        android:id="@+id/deviceNameEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/medium_spacing"
+        android:layout_marginTop="@dimen/large_spacing"
+        android:layout_marginRight="@dimen/medium_spacing"
+        android:textAlignment="center"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        android:hint="Enter a name" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/large_spacing"
+        android:orientation="horizontal">
+
+        <Button
+            style="@style/UnimportantDialogButton"
+            android:id="@+id/cancelButton"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/small_button_height"
+            android:layout_weight="1"
+            android:text="Cancel" />
+
+        <Button
+            style="@style/UnimportantDialogButton"
+            android:id="@+id/okButton"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/small_button_height"
+            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/medium_spacing"
+            android:text="OK" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -9,20 +9,33 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_linked_devices.*
 import network.loki.messenger.R
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity
+import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.devicelist.Device
+import org.thoughtcrime.securesms.loki.DeviceListBottomSheetFragment
+import org.thoughtcrime.securesms.loki.redesign.dialogs.EditDeviceNameDialog
+import org.thoughtcrime.securesms.loki.redesign.dialogs.EditDeviceNameDialogDelegate
 import org.thoughtcrime.securesms.loki.redesign.dialogs.LinkDeviceMasterModeDialog
 import org.thoughtcrime.securesms.loki.redesign.dialogs.LinkDeviceMasterModeDialogDelegate
 import org.thoughtcrime.securesms.loki.signAndSendPairingAuthorisationMessage
+import org.thoughtcrime.securesms.sms.MessageSender
+import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
+import org.whispersystems.signalservice.loki.api.LokiStorageAPI
 import org.whispersystems.signalservice.loki.api.PairingAuthorisation
 
-class LinkedDevicesActivity : PassphraseRequiredActionBarActivity, LoaderManager.LoaderCallbacks<List<Device>>, LinkDeviceMasterModeDialogDelegate {
-    private val linkedDevicesAdapter = LinkedDevicesAdapter(this)
+class LinkedDevicesActivity : PassphraseRequiredActionBarActivity, LoaderManager.LoaderCallbacks<List<Device>>, DeviceClickListener, EditDeviceNameDialogDelegate, LinkDeviceMasterModeDialogDelegate {
     private var devices = listOf<Device>()
         set(value) { field = value; linkedDevicesAdapter.devices = value }
+
+    private val linkedDevicesAdapter by lazy {
+        val result = LinkedDevicesAdapter(this)
+        result.deviceClickListener = this
+        result
+    }
 
     // region Lifecycle
     constructor() : super()
@@ -60,12 +73,16 @@ class LinkedDevicesActivity : PassphraseRequiredActionBarActivity, LoaderManager
         this.devices = devices
         emptyStateContainer.visibility = if (devices.isEmpty()) View.VISIBLE else View.GONE
     }
+
+    override fun handleDeviceNameChanged(device: Device) {
+        LoaderManager.getInstance(this).restartLoader(0, null, this)
+    }
     // endregion
 
     // region Interaction
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId
-        when (id) {
+        when(id) {
             R.id.linkDeviceButton -> linkDevice()
             else -> { /* Do nothing */ }
         }
@@ -86,11 +103,38 @@ class LinkedDevicesActivity : PassphraseRequiredActionBarActivity, LoaderManager
         }
     }
 
+    override fun onDeviceClick(device: Device) {
+        val bottomSheet = DeviceListBottomSheetFragment()
+        bottomSheet.onEditTapped = {
+            bottomSheet.dismiss()
+            val editDeviceNameDialog = EditDeviceNameDialog()
+            editDeviceNameDialog.device = device
+            editDeviceNameDialog.delegate = this
+            editDeviceNameDialog.show(supportFragmentManager, "Edit Device Name Dialog")
+        }
+        bottomSheet.onUnlinkTapped = {
+            bottomSheet.dismiss()
+            unlinkDevice(device.id)
+        }
+        bottomSheet.show(supportFragmentManager, bottomSheet.tag)
+    }
+
+    private fun unlinkDevice(slaveDeviceHexEncodedPublicKey: String) {
+        val userHexEncodedPublicKey = TextSecurePreferences.getLocalNumber(this)
+        val database = DatabaseFactory.getLokiAPIDatabase(this)
+        database.removePairingAuthorisation(userHexEncodedPublicKey, slaveDeviceHexEncodedPublicKey)
+        LokiStorageAPI.shared.updateUserDeviceMappings().success {
+            MessageSender.sendUnpairRequest(this, slaveDeviceHexEncodedPublicKey)
+        }
+        LoaderManager.getInstance(this).restartLoader(0, null, this)
+        Toast.makeText(this, "Your device was unlinked successfully", Toast.LENGTH_LONG).show()
+    }
+
     override fun onDeviceLinkRequestAuthorized(authorization: PairingAuthorisation) {
         AsyncTask.execute {
             signAndSendPairingAuthorisationMessage(this, authorization)
             Util.runOnMain {
-
+                LoaderManager.getInstance(this).restartLoader(0, null, this)
             }
         }
     }
