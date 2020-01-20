@@ -308,11 +308,11 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/Session.DarkTheme.NoActionBar"
-            android:parentActivityName="org.thoughtcrime.securesms.ConversationListActivity"
+            android:parentActivityName="org.thoughtcrime.securesms.loki.redesign.activities.HomeActivity"
             android:windowSoftInputMode="stateUnchanged">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="PsiClass:ConversationListActivity" />
+                android:value="PsiClass:HomeActivity" />
         </activity>
         <activity
             android:name="org.thoughtcrime.securesms.longmessage.LongMessageActivity"
