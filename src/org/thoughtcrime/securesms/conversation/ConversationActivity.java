@@ -3127,11 +3127,11 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         case "messageSent": actionBarSubtitleTextView.setText("Message sent securely"); break;
         case "messageFailed": actionBarSubtitleTextView.setText("Message failed to send"); break;
       }
-    } else if (recipient.isGroupRecipient()) {
-      actionBarSubtitleTextView.setText("26 members");
     } else if (recipient.isMuted()) {
       muteIndicatorImageView.setVisibility(View.VISIBLE);
       actionBarSubtitleTextView.setText("Muted until " + DateUtils.getFormattedDateTime(recipient.mutedUntil, "EEE, MMM d, yyyy HH:mm", Locale.getDefault()));
+    } else if (recipient.isGroupRecipient()) {
+      actionBarSubtitleTextView.setText("26 members");
     } else {
       actionBarSubtitleTextView.setVisibility(View.GONE);
     }

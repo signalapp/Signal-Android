@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 import org.thoughtcrime.securesms.database.Address;
+import org.thoughtcrime.securesms.loki.redesign.activities.HomeActivity;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 
@@ -37,7 +38,7 @@ public class ShortcutLauncherActivity extends AppCompatActivity {
 
     if (serializedAddress == null) {
       Toast.makeText(this, R.string.ShortcutLauncherActivity_invalid_shortcut, Toast.LENGTH_SHORT).show();
-      startActivity(new Intent(this, ConversationListActivity.class));
+      startActivity(new Intent(this, HomeActivity.class));
       finish();
       return;
     }
@@ -45,7 +46,7 @@ public class ShortcutLauncherActivity extends AppCompatActivity {
     Address          address   = Address.fromSerialized(serializedAddress);
     Recipient        recipient = Recipient.from(this, address, true);
     TaskStackBuilder backStack = TaskStackBuilder.create(this)
-                                                 .addNextIntent(new Intent(this, ConversationListActivity.class));
+                                                 .addNextIntent(new Intent(this, HomeActivity.class));
 
     CommunicationActions.startConversation(this, recipient, null, backStack);
     finish();
