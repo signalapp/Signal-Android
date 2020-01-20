@@ -68,7 +68,7 @@
 
     <!-- AttachmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">Can\'t find an app to select media.</string>
-    <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal requires permission to use the external storage in order to attach photos, videos, or audio, but that permission has been permanently denied. Please continue to the app settings menu, select \"Permissions\", and enable \"Storage\".</string>
+    <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal requires permission to use the external storage in order to attach images, videos, or audio, but that permission has been permanently denied. Please continue to the app settings menu, select \"Permissions\", and enable \"Storage\".</string>
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal requires permission to view your contacts in order to attach contact information, but that permission has been permanently denied. Please continue to the app settings menu, select \"Permissions\", and enable \"Contacts\".</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal requires permission to view your location in order to attach a location, but that permission has been permanently denied. Please continue to the app settings menu, select \"Permissions\", and enable \"Location\".</string>
     <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Signal requires permission to use the camera in order to take photos, but that permission has been permanently denied. Please continue to the app settings menu, select \"Permissions\", and enable \"Camera\".</string>
@@ -119,7 +119,7 @@
 
     <!-- ClearProfileActivity -->
     <string name="ClearProfileActivity_remove">Remove</string>
-    <string name="ClearProfileActivity_remove_profile_photo">Remove profile photo?</string>
+    <string name="ClearProfileActivity_remove_profile_photo">Remove profile picture?</string>
 
     <!-- CommunicationActions -->
     <string name="CommunicationActions_no_browser_found">No web browser found.</string>
@@ -315,9 +315,9 @@
 
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity_your_profile_info">Your profile information</string>
-    <string name="CreateProfileActivity_error_setting_profile_photo">Error setting profile photo</string>
+    <string name="CreateProfileActivity_error_setting_profile_photo">Error setting profile picture</string>
     <string name="CreateProfileActivity_problem_setting_profile">Problem setting profile</string>
-    <string name="CreateProfileActivity_profile_photo">Profile photo</string>
+    <string name="CreateProfileActivity_profile_photo">Profile picture</string>
     <string name="CreateProfileActivity_too_long">Too long</string>
     <string name="CreateProfileActivity_profile_name">Profile Name</string>
     <string name="CreateProfileActivity_set_up_your_profile">Set up your profile</string>
@@ -386,7 +386,7 @@
     <string name="ExperienceUpgradeActivity_signal_now_supports_secure_video_calling_long">Signal now supports secure video calling. Tap to explore.</string>
 
     <string name="ExperienceUpgradeActivity_ready_for_your_closeup">Ready for your closeup?</string>
-    <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Now you can make a profile photo and name visible to your friends on Signal</string>
+    <string name="ExperienceUpgradeActivity_now_you_can_share_a_profile_photo_and_name_with_friends_on_signal">Now you can make a profile picture and name visible to your friends on Signal</string>
     <string name="ExperienceUpgradeActivity_signal_profiles_are_here">Signal profiles are here</string>
 
     <string name="ExperienceUpgradeActivity_introducing_typing_indicators">Introducing typing indicators.</string>
@@ -435,8 +435,8 @@
     <string name="GroupCreateActivity_youre_already_in_the_group">You\'re already in the group.</string>
 
     <!-- GroupShareProfileView -->
-    <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Make your profile name and photo visible to this group?</string>
-    <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Do you want to make your profile name and photo visible to all current and future members of this group?</string>
+    <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Make your profile name and picture visible to this group?</string>
+    <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Do you want to make your profile name and picture visible to all current and future members of this group?</string>
     <string name="GroupShareProfileView_make_visible">Make visible</string>
 
     <!-- GroupMembersDialog -->
@@ -444,7 +444,7 @@
 
     <!-- CropImageActivity -->
     <string name="CropImageActivity_group_avatar">Group avatar</string>
-    <string name="CropImageActivity_profile_avatar">Avatar</string>
+    <string name="CropImageActivity_profile_avatar">Profile picture</string>
 
     <!-- InputPanel -->
     <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">Tap and hold to record a voice message, release to send</string>
@@ -744,7 +744,7 @@
     <string name="RegistrationActivity_call">Call me</string>
 
     <!-- RevealableMessageView -->
-    <string name="RevealableMessageView_photo">Photo</string>
+    <string name="RevealableMessageView_photo">Image</string>
     <string name="RevealableMessageView_video">Video</string>
     <string name="RevealableMessageView_viewed">Viewed</string>
     <string name="RevealableMessageView_outgoing_media">Media</string>
@@ -815,7 +815,7 @@
     <string name="ThreadRecord_missed_call">Missed call</string>
     <string name="ThreadRecord_media_message">Media message</string>
     <string name="ThreadRecord_sticker">Sticker</string>
-    <string name="ThreadRecord_disappearing_photo">Disappearing photo</string>
+    <string name="ThreadRecord_disappearing_photo">Disappearing image</string>
     <string name="ThreadRecord_disappearing_video">Disappearing video</string>
     <string name="ThreadRecord_s_is_on_signal">%s now uses Signal!</string>
     <string name="ThreadRecord_disappearing_messages_disabled">Disappearing messages disabled</string>
@@ -832,10 +832,10 @@
 
     <!-- UnknownSenderView -->
     <string name="UnknownSenderView_block_s">Block %s?</string>
-    <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Blocked contacts cannot see that they have been blocked; on his side your phone still seems to ring, and messages still appear as delivered, but those messages and calls won\'t be shown to you.</string>
+    <string name="UnknownSenderView_blocked_contacts_will_no_longer_be_able_to_send_you_messages_or_call_you">Blocked contacts cannot see that they have been blocked: Your profile picture will remain visable, but will not update when you change it; to the blocked contact it seems your phone still rings when they call, but your phone won\'t actually ring; messages still appear as delivered, but those messages won\'t be visible to you.</string>
     <string name="UnknownSenderView_block">Block</string>
     <string name="UnknownSenderView_share_profile_with_s">Make profile visible to %s?</string>
-    <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">The easiest way to make your profile avatar and profile name visible is to add the sender to your contacts. If you do not wish to, you can still make your profile visible this way.</string>
+    <string name="UnknownSenderView_the_easiest_way_to_share_your_profile_information_is_to_add_the_sender_to_your_contacts">The easiest way to make your profile name and picture visible is to add the sender to your contacts. If you do not wish to, you can still make your profile visible this way.</string>
     <string name="UnknownSenderView_share_profile">Make profile visible</string>
 
     <!-- UntrustedSendDialog -->
@@ -924,7 +924,7 @@
     <string name="MessageNotifier_mark_read">Mark read</string>
     <string name="MessageNotifier_media_message">Media message</string>
     <string name="MessageNotifier_sticker">Sticker</string>
-    <string name="MessageNotifier_disappearing_photo">Disappearing photo</string>
+    <string name="MessageNotifier_disappearing_photo">Disappearing image</string>
     <string name="MessageNotifier_disappearing_video">Disappearing video</string>
     <string name="MessageNotifier_reply">Reply</string>
     <string name="MessageNotifier_signal_message">Signal Message</string>
@@ -1001,7 +1001,7 @@
     <string name="WebRtcCallControls_tap_to_enable_your_video">Tap to enable your video</string>
 
     <!-- WebRtcCallControls Content Descriptions -->
-    <string name="WebRtcCallControls_contact_photo_description">Contact photo</string>
+    <string name="WebRtcCallControls_contact_photo_description">Contact picture</string>
     <string name="WebRtcCallControls_speaker_button_description">Speaker</string>
     <string name="WebRtcCallControls_bluetooth_button_description">Bluetooth</string>
     <string name="WebRtcCallControls_mute_button_description">Mute</string>
@@ -1050,7 +1050,7 @@
     <string name="contact_selection_group_activity__finding_contacts">Loading contacts&#8230;</string>
 
     <!-- single_contact_selection_activity -->
-    <string name="SingleContactSelectionActivity_contact_photo">Contact Photo</string>
+    <string name="SingleContactSelectionActivity_contact_photo">Contact Picture</string>
 
     <!-- ContactSelectionListFragment-->
     <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal requires permission to view your contacts in order to display your contacts, but that permission has been permanently denied. Please continue to the app settings menu, select \"Permissions\", and enable \"Contacts\".</string>
@@ -1096,7 +1096,7 @@
     <string name="conversation_item_sent__message_read">Message read</string>
 
     <!-- conversation_item_received -->
-    <string name="conversation_item_received__contact_photo_description">Contact photo</string>
+    <string name="conversation_item_received__contact_photo_description">Contact picture</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">Play … Pause</string>
@@ -1280,7 +1280,7 @@
     <string name="GroupUtil_group_name_is_now">Group name is now \'%1$s\'.</string>
 
     <!-- profile_group_share_view -->
-    <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Make your profile name and photo visible to this group?</string>
+    <string name="profile_group_share_view__make_your_profile_name_and_photo_visible_to_this_group">Make your profile name and picture visible to this group?</string>
 
     <!-- prompt_passphrase_activity -->
     <string name="prompt_passphrase_activity__unlock">Unlock</string>
@@ -1365,7 +1365,7 @@
     <string name="AndroidManifest__linked_devices">Linked devices</string>
     <string name="AndroidManifest__invite_friends">Invite friends</string>
     <string name="AndroidManifest_archived_conversations">Archived conversations</string>
-    <string name="AndroidManifest_remove_photo">Remove photo</string>
+    <string name="AndroidManifest_remove_photo">Remove picture</string>
 
     <!-- arrays.xml -->
     <string name="arrays__import_export">Import</string>
@@ -1503,7 +1503,7 @@
     <string name="preferences_chats__media_auto_download">Media auto-download</string>
     <string name="preferences_chats__message_trimming">Message storage limits</string>
     <string name="preferences_storage__storage_usage">Storage usage</string>
-    <string name="preferences_storage__photos">Photos</string>
+    <string name="preferences_storage__photos">Images</string>
     <string name="preferences_storage__videos">Videos</string>
     <string name="preferences_storage__files">Files</string>
     <string name="preferences_storage__audio">Audio</string>
@@ -1581,7 +1581,7 @@
     <string name="conversation_list_search_description">Search</string>
 
     <!-- conversation_list_item_view -->
-    <string name="conversation_list_item_view__contact_photo_image">Contact Photo Image</string>
+    <string name="conversation_list_item_view__contact_photo_image">Contact Picture</string>
     <string name="conversation_list_item_view__archived">Archived</string>
 
     <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Inbox zeeerrro</string>
