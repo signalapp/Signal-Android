@@ -32,7 +32,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Messages"
+                android:text="Session"
                 android:textColor="@color/text"
                 android:textSize="@dimen/very_large_font_size"
                 android:fontFamily="sans-serif-medium"
