@@ -232,6 +232,7 @@
     <attr name="sticker_management_divider_color" format="color" />
     <attr name="sticker_management_empty_background_color" format="color" />
     <attr name="sticker_management_action_button_color" format="color" />
+    <attr name="sticker_management_item_background" format="color" />
     <attr name="sticker_popup_background" format="color" />
     <attr name="sticker_preview_toolbar_background" format="color" />
     <attr name="sticker_preview_status_bar_color" format="color" />

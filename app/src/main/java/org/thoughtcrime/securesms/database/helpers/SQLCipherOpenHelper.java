@@ -101,8 +101,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int KEY_VALUE_STORE                  = 41;
   private static final int ATTACHMENT_DISPLAY_ORDER         = 42;
   private static final int SPLIT_PROFILE_NAMES              = 43;
+  private static final int STICKER_PACK_ORDER               = 44;
 
-  private static final int    DATABASE_VERSION = 43;
+  private static final int    DATABASE_VERSION = 44;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -701,6 +702,10 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
       if (oldVersion < SPLIT_PROFILE_NAMES) {
         db.execSQL("ALTER TABLE recipient ADD COLUMN profile_family_name TEXT DEFAULT NULL");
         db.execSQL("ALTER TABLE recipient ADD COLUMN profile_joined_name TEXT DEFAULT NULL");
+      }
+
+      if (oldVersion < STICKER_PACK_ORDER) {
+        db.execSQL("ALTER TABLE sticker ADD COLUMN pack_order INTEGER DEFAULT 0");
       }
 
       db.setTransactionSuccessful();

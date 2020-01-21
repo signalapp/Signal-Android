@@ -29,6 +29,7 @@ import org.thoughtcrime.securesms.util.adapter.SectionedRecyclerViewAdapter;
 import org.thoughtcrime.securesms.util.adapter.StableIdGenerator;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 final class StickerManagementAdapter extends SectionedRecyclerViewAdapter<String, StickerManagementAdapter.StickerSection> {
@@ -91,6 +92,30 @@ final class StickerManagementAdapter extends SectionedRecyclerViewAdapter<String
     if (holder instanceof StickerViewHolder) {
       ((StickerViewHolder) holder).recycle();
     }
+  }
+
+  boolean onMove(int start, int end) {
+    StickerSection installed = sections.get(0);
+
+    if (!installed.isContent(start)) {
+      return false;
+    }
+
+    if (!installed.isContent(end)) {
+      return false;
+    }
+
+    installed.swap(start, end);
+    notifyItemMoved(start, end);
+    return true;
+  }
+
+  boolean isMovable(int position) {
+    return sections.get(0).isContent(position);
+  }
+
+  @NonNull List<StickerPackRecord> getInstalledPacksInOrder() {
+    return sections.get(0).records;
   }
 
   void setPackLists(@NonNull List<StickerPackRecord> installedPacks,
@@ -183,6 +208,21 @@ final class StickerManagementAdapter extends SectionedRecyclerViewAdapter<String
         ((EmptyViewHolder) viewHolder).bind(emptyResId);
       } else {
         ((StickerViewHolder) viewHolder).bind(glideRequests, eventListener, records.get(localPosition - 1), localPosition == records.size());
+      }
+    }
+
+    void swap(int start, int end) {
+      int localStart = getLocalPosition(start) - 1;
+      int localEnd   = getLocalPosition(end) - 1;
+
+      if (localStart < localEnd) {
+        for (int i = localStart; i < localEnd; i++) {
+          Collections.swap(records, i, i + 1);
+        }
+      } else {
+        for (int i = localStart; i > localEnd; i--) {
+          Collections.swap(records, i, i - 1);
+        }
       }
     }
   }

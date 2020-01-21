@@ -100,6 +100,12 @@ final class StickerManagementRepository {
     });
   }
 
+  void setPackOrder(@NonNull List<StickerPackRecord> packsInOrder) {
+    SignalExecutors.SERIAL.execute(() -> {
+      stickerDatabase.updatePackOrder(packsInOrder);
+    });
+  }
+
   static class PackResult {
 
     private final List<StickerPackRecord> installedPacks;

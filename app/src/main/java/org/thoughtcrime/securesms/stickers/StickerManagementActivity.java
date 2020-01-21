@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.MenuItem;
@@ -12,6 +13,7 @@ import android.view.MenuItem;
 import org.thoughtcrime.securesms.PassphraseRequiredActionBarActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.ShareActivity;
+import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 
@@ -22,9 +24,8 @@ public final class StickerManagementActivity extends PassphraseRequiredActionBar
 
   private final DynamicTheme dynamicTheme = new DynamicTheme();
 
-  private RecyclerView             list;
-  private StickerManagementAdapter adapter;
-
+  private RecyclerView               list;
+  private StickerManagementAdapter   adapter;
   private StickerManagementViewModel viewModel;
 
   public static Intent getIntent(@NonNull Context context) {
@@ -96,6 +97,7 @@ public final class StickerManagementActivity extends PassphraseRequiredActionBar
 
     list.setLayoutManager(new LinearLayoutManager(this));
     list.setAdapter(adapter);
+    new ItemTouchHelper(new StickerManagementItemTouchHelper(new ItemTouchCallback())).attachToRecyclerView(list);
   }
 
   private void initToolbar() {
@@ -113,5 +115,22 @@ public final class StickerManagementActivity extends PassphraseRequiredActionBar
 
       adapter.setPackLists(packResult.getInstalledPacks(), packResult.getAvailablePacks(), packResult.getBlessedPacks());
     });
+  }
+
+  private class ItemTouchCallback implements StickerManagementItemTouchHelper.Callback {
+    @Override
+    public boolean onMove(int start, int end) {
+      return adapter.onMove(start, end);
+    }
+
+    @Override
+    public boolean isMovable(int position) {
+      return adapter.isMovable(position);
+    }
+
+    @Override
+    public void onMoveCommitted() {
+      viewModel.onOrderChanged(adapter.getInstalledPacksInOrder());
+    }
   }
 }

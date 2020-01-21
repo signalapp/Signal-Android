@@ -127,6 +127,10 @@ public abstract class SectionedRecyclerViewAdapter<IdType, SectionImpl extends S
       return localPosition >= 0 && localPosition < size();
     }
 
+    public boolean isContent(int globalPosition) {
+      return handles(globalPosition) && getViewType(globalPosition) == TYPE_CONTENT;
+    }
+
     public final int size() {
       if (getContentSize() == 0 && hasEmptyState()) {
         return 2;

@@ -10,7 +10,11 @@ import android.os.Handler;
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.database.DatabaseContentProviders;
+import org.thoughtcrime.securesms.database.model.StickerPackRecord;
+import org.thoughtcrime.securesms.database.model.StickerRecord;
 import org.thoughtcrime.securesms.stickers.StickerManagementRepository.PackResult;
+
+import java.util.List;
 
 final class StickerManagementViewModel extends ViewModel {
 
@@ -54,6 +58,10 @@ final class StickerManagementViewModel extends ViewModel {
 
   void onStickerPackInstallClicked(@NonNull String packId, @NonNull String packKey) {
     repository.installStickerPack(packId, packKey, false);
+  }
+
+  void onOrderChanged(List<StickerPackRecord> packsInOrder) {
+    repository.setPackOrder(packsInOrder);
   }
 
   @Override

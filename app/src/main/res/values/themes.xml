@@ -358,6 +358,7 @@
         <item name="sticker_management_divider_color">@color/core_grey_15</item>
         <item name="sticker_management_empty_background_color">@color/core_grey_05</item>
         <item name="sticker_management_action_button_color">@color/core_grey_90</item>
+        <item name="sticker_management_item_background">@drawable/selectable_background_light</item>
         <item name="sticker_popup_background">@color/transparent_white_60</item>
         <item name="sticker_preview_toolbar_background">@color/core_white</item>
         <item name="sticker_preview_status_bar_color">@color/core_grey_05</item>
@@ -600,6 +601,7 @@
         <item name="sticker_management_divider_color">@color/core_grey_75</item>
         <item name="sticker_management_empty_background_color">@color/core_grey_85</item>
         <item name="sticker_management_action_button_color">@color/core_grey_25</item>
+        <item name="sticker_management_item_background">@drawable/selectable_background_dark</item>
         <item name="sticker_popup_background">@color/transparent_black_60</item>
         <item name="sticker_preview_toolbar_background">@color/core_grey_95</item>
         <item name="sticker_preview_status_bar_color">@color/core_grey_85</item>

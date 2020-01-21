@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
 import android.text.TextUtils;
 import android.util.Pair;
 
@@ -29,6 +30,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.List;
 
 public class StickerDatabase extends Database {
 
@@ -43,6 +45,7 @@ public class StickerDatabase extends Database {
   private static final String STICKER_ID  = "sticker_id";
   private static final String EMOJI       = "emoji";
   private static final String COVER       = "cover";
+  private static final String PACK_ORDER  = "pack_order";
   private static final String INSTALLED   = "installed";
   private static final String LAST_USED   = "last_used";
   public  static final String FILE_PATH   = "file_path";
@@ -56,6 +59,7 @@ public class StickerDatabase extends Database {
                                                                                   PACK_AUTHOR  + " TEXT NOT NULL, " +
                                                                                   STICKER_ID   + " INTEGER, " +
                                                                                   COVER        + " INTEGER, " +
+                                                                                  PACK_ORDER   + " INTEGER, " +
                                                                                   EMOJI        + " TEXT NOT NULL, " +
                                                                                   LAST_USED    + " INTEGER, " +
                                                                                   INSTALLED    + " INTEGER," +
@@ -130,7 +134,7 @@ public class StickerDatabase extends Database {
   public @Nullable Cursor getInstalledStickerPacks() {
     String   selection = COVER + " = ? AND " + INSTALLED + " = ?";
     String[] args      = new String[] { "1", "1" };
-    Cursor   cursor    = databaseHelper.getReadableDatabase().query(TABLE_NAME, null, selection, args, null, null, null);
+    Cursor   cursor    = databaseHelper.getReadableDatabase().query(TABLE_NAME, null, selection, args, null, null, PACK_ORDER + " ASC");
 
     setNotifyStickerPackListeners(cursor);
     return cursor;
@@ -153,7 +157,7 @@ public class StickerDatabase extends Database {
   public @Nullable Cursor getAllStickerPacks(@Nullable String limit) {
     String   query  = COVER + " = ?";
     String[] args   = new String[] { "1" };
-    Cursor   cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, null, query, args, null, null, null, limit);
+    Cursor   cursor = databaseHelper.getReadableDatabase().query(TABLE_NAME, null, query, args, null, null, PACK_ORDER + " ASC", limit);
     setNotifyStickerPackListeners(cursor);
 
     return cursor;
@@ -272,13 +276,35 @@ public class StickerDatabase extends Database {
 
     db.beginTransaction();
     try {
-
       updatePackInstalled(db, packId, false, false);
       deleteStickersInPackExceptCover(db, packId);
 
       db.setTransactionSuccessful();
       notifyStickerPackListeners();
       notifyStickerListeners();
+    } finally {
+      db.endTransaction();
+    }
+  }
+
+  public void updatePackOrder(@NonNull List<StickerPackRecord> packsInOrder) {
+    SQLiteDatabase db = databaseHelper.getWritableDatabase();
+
+    db.beginTransaction();
+    try {
+      String selection = PACK_ID + " = ? AND " + COVER + " = ?";
+
+      for (int i = 0; i < packsInOrder.size(); i++) {
+        String[]      args   = new String[]{ packsInOrder.get(i).getPackId(), "1" };
+        ContentValues values = new ContentValues();
+
+        values.put(PACK_ORDER, i);
+
+        db.update(TABLE_NAME, values, selection, args);
+      }
+
+      db.setTransactionSuccessful();
+      notifyStickerPackListeners();
     } finally {
       db.endTransaction();
     }

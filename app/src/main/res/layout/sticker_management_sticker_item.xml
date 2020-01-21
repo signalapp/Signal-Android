@@ -8,7 +8,7 @@
     android:layout_marginBottom="8dp"
     android:paddingStart="@dimen/sticker_management_horizontal_margin"
     android:paddingEnd="@dimen/sticker_management_horizontal_margin"
-    android:background="?selectableItemBackground">
+    android:background="?sticker_management_item_background">
 
     <ImageView
         android:id="@+id/sticker_management_cover"
