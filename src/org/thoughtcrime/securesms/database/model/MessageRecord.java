@@ -92,7 +92,7 @@ public abstract class MessageRecord extends DisplayRecord {
     if (isGroupUpdate() && isOutgoing()) {
       return new SpannableString(context.getString(R.string.MessageRecord_you_updated_group));
     } else if (isGroupUpdate()) {
-      return new SpannableString(GroupUtil.getDescription(context, getBody(), getRecipient()).toString(getIndividualRecipient()));
+      return new SpannableString(GroupUtil.getDescription(context, getBody()).toString(getIndividualRecipient()));
     } else if (isGroupQuit() && isOutgoing()) {
       return new SpannableString(context.getString(R.string.MessageRecord_left_group));
     } else if (isGroupQuit()) {

@@ -7,10 +7,8 @@ import android.support.annotation.WorkerThread;
 
 import com.google.protobuf.ByteString;
 
-import network.loki.messenger.BuildConfig;
 import network.loki.messenger.R;
 import org.thoughtcrime.securesms.database.Address;
-import org.thoughtcrime.securesms.database.Database;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.GroupDatabase.*;
@@ -114,25 +112,17 @@ public class GroupUtil {
   }
 
 
-  public static @NonNull GroupDescription getDescription(@NonNull Context context, @Nullable String encodedGroup, @Nullable Recipient groupRecipient) {
-    // Make sure we always are passing a group recipient
-    if (BuildConfig.DEBUG && groupRecipient != null && !groupRecipient.isGroupRecipient()) {
-      throw new AssertionError();
-    }
-
+  public static @NonNull GroupDescription getDescription(@NonNull Context context, @Nullable String encodedGroup) {
     if (encodedGroup == null) {
-      return new GroupDescription(context, null, null);
+      return new GroupDescription(context, null);
     }
 
     try {
       GroupContext groupContext = GroupContext.parseFrom(Base64.decode(encodedGroup));
-      GroupRecord groupRecord = groupRecipient != null
-              ? DatabaseFactory.getGroupDatabase(context).getGroup(groupRecipient.getAddress().toGroupString()).orNull()
-              : null;
-      return new GroupDescription(context, groupContext, groupRecord);
+      return new GroupDescription(context, groupContext);
     } catch (IOException e) {
       Log.w(TAG, e);
-      return new GroupDescription(context, null, null);
+      return new GroupDescription(context, null);
     }
   }
 
@@ -144,8 +134,7 @@ public class GroupUtil {
     private final List<Recipient> removedMembers;
     private boolean ourDeviceWasRemoved;
 
-    public GroupDescription(@NonNull Context context, @Nullable GroupContext groupContext) { this(context, groupContext, null); }
-    public GroupDescription(@NonNull Context context, @Nullable GroupContext groupContext, @Nullable GroupRecord groupRecord) {
+    public GroupDescription(@NonNull Context context, @Nullable GroupContext groupContext) {
       this.context      = context.getApplicationContext();
       this.groupContext = groupContext;
 
@@ -155,7 +144,7 @@ public class GroupUtil {
 
       if (groupContext != null && !groupContext.getMembersList().isEmpty()) {
         List<String> memberList = groupContext.getMembersList();
-        List<Address> currentMembers = groupRecord != null ? groupRecord.getMembers() : null;
+        List<Address> currentMembers = getCurrentGroupMembers();
 
         // Add them to the member or removed members lists
         for (String member : memberList) {
@@ -233,6 +222,24 @@ public class GroupUtil {
     }
 
     return result;
+    }
+
+    private List<Address> getCurrentGroupMembers() {
+      if (groupContext == null) { return null; }
+      GroupDatabase groupDatabase = DatabaseFactory.getGroupDatabase(context);
+      byte[] decodedGroupId = groupContext.getId().toByteArray();
+      String signalGroupId = getEncodedId(decodedGroupId, false);
+      String publicChatId = getEncodedPublicChatId(decodedGroupId);
+      String rssFeedId = getEncodedRSSFeedId(decodedGroupId);
+      GroupRecord groupRecord = null;
+      if (!groupDatabase.isUnknownGroup(signalGroupId)) {
+        groupRecord = groupDatabase.getGroup(signalGroupId).orNull();
+      } else if (!groupDatabase.isUnknownGroup(publicChatId)) {
+        groupRecord = groupDatabase.getGroup(publicChatId).orNull();
+      } else if (!groupDatabase.isUnknownGroup(rssFeedId)) {
+        groupRecord = groupDatabase.getGroup(rssFeedId).orNull();
+      }
+      return (groupRecord != null) ? groupRecord.getMembers() : null;
     }
   }
 }
