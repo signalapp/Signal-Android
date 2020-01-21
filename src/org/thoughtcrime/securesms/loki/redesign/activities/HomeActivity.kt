@@ -203,6 +203,10 @@ class HomeActivity : PassphraseRequiredActionBarActivity, ConversationClickListe
                 override fun run() {
                     AsyncTask.execute {
                         threadDatabase.deleteConversation(threadID)
+                        val publicChat = DatabaseFactory.getLokiThreadDatabase(activity).getPublicChat(threadID)
+                        if (publicChat != null) {
+                            ApplicationContext.getInstance(activity).lokiPublicChatAPI!!.leave(publicChat.channel, publicChat.server)
+                        }
                         MessageNotifier.updateNotification(activity)
                     }
                 }

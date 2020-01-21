@@ -74,6 +74,7 @@ class JoinPublicChatActivity : PassphraseRequiredActionBarActivity(), ScanQRCode
         application.lokiPublicChatManager.addChat(url, channel).successUi {
             lokiPublicChatAPI.getMessages(channel, url)
             lokiPublicChatAPI.setDisplayName(displayName, url)
+            lokiPublicChatAPI.join(channel, url)
             val profileKey: ByteArray = ProfileKeyUtil.getProfileKey(this)
             val profileUrl: String? = TextSecurePreferences.getProfileAvatarUrl(this)
             lokiPublicChatAPI.setProfilePicture(url, profileKey, profileUrl)

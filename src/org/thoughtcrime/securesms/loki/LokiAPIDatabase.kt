@@ -55,6 +55,11 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         private val grantSignature = "grant_signature"
         @JvmStatic val createPairingAuthorisationTableCommand = "CREATE TABLE $pairingAuthorisationCache ($primaryDevicePublicKey TEXT, $secondaryDevicePublicKey TEXT, " +
             "$requestSignature TEXT NULLABLE DEFAULT NULL, $grantSignature TEXT NULLABLE DEFAULT NULL, PRIMARY KEY ($primaryDevicePublicKey, $secondaryDevicePublicKey));"
+        // User count cache
+        private val userCountCache = "loki_user_count_cache"
+        private val publicChatID = "public_chat_id"
+        private val userCount = "user_count"
+        @JvmStatic val createUserCountTableCommand = "CREATE TABLE $userCountCache ($publicChatID STRING PRIMARY KEY, $userCount INTEGER DEFAULT 0);"
     }
 
     override fun getSwarmCache(hexEncodedPublicKey: String): Set<LokiAPITarget>? {
@@ -193,6 +198,21 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
     fun removePairingAuthorisation(primaryDevicePublicKey: String, secondaryDevicePublicKey: String) {
         val database = databaseHelper.writableDatabase
         database.delete(pairingAuthorisationCache, "${Companion.primaryDevicePublicKey} = ? OR ${Companion.secondaryDevicePublicKey} = ?", arrayOf( primaryDevicePublicKey, secondaryDevicePublicKey ))
+    }
+
+    fun getUserCount(group: Long, server: String): Int? {
+        val database = databaseHelper.readableDatabase
+        val index = "$server.$group"
+        return database.get(userCountCache, "$publicChatID = ?", wrap(index)) { cursor ->
+            cursor.getInt(userCount)
+        }?.toInt()
+    }
+
+    override fun setUserCount(userCount: Int, group: Long, server: String) {
+        val database = databaseHelper.writableDatabase
+        val index = "$server.$group"
+        val row = wrap(mapOf( publicChatID to index, LokiAPIDatabase.userCount to userCount.toString() ))
+        database.insertOrUpdate(userCountCache, row, "$publicChatID = ?", wrap(index))
     }
 }
 

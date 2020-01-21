@@ -57,6 +57,7 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Pair;
+import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -230,6 +231,7 @@ import org.thoughtcrime.securesms.util.views.Stub;
 import org.whispersystems.libsignal.InvalidMessageException;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.loki.api.LokiAPI;
+import org.whispersystems.signalservice.loki.api.LokiPublicChat;
 import org.whispersystems.signalservice.loki.api.LokiStorageAPI;
 import org.whispersystems.signalservice.loki.api.PairingAuthorisation;
 import org.whispersystems.signalservice.loki.messaging.LokiMessageFriendRequestStatus;
@@ -444,6 +446,14 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     });
 
     LokiAPIUtilities.INSTANCE.populateUserHexEncodedPublicKeyCacheIfNeeded(threadId, this);
+
+    LokiPublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(this).getPublicChat(threadId);
+    if (publicChat != null) {
+      ApplicationContext.getInstance(this).getLokiPublicChatAPI().getUserCount(publicChat.getChannel(), publicChat.getServer()).success(integer -> {
+        updateSubtitleTextView();
+        return Unit.INSTANCE;
+      });
+    }
 
     View rootView = findViewById(R.id.rootView);
     rootView.getViewTreeObserver().addOnGlobalLayoutListener(() -> {
@@ -3130,11 +3140,23 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
     } else if (recipient.isMuted()) {
       muteIndicatorImageView.setVisibility(View.VISIBLE);
       actionBarSubtitleTextView.setText("Muted until " + DateUtils.getFormattedDateTime(recipient.mutedUntil, "EEE, MMM d, yyyy HH:mm", Locale.getDefault()));
-    } else if (recipient.isGroupRecipient()) {
-      actionBarSubtitleTextView.setText("26 members");
+    } else if (recipient.isGroupRecipient() && recipient.getName() != null && !recipient.getName().equals("Loki Messenger Updates") && !recipient.getName().equals("Loki News")) {
+      LokiPublicChat publicChat = DatabaseFactory.getLokiThreadDatabase(this).getPublicChat(threadId);
+      if (publicChat != null) {
+        Integer userCount = DatabaseFactory.getLokiAPIDatabase(this).getUserCount(publicChat.getChannel(), publicChat.getServer());
+        if (userCount == null) { userCount = 0; }
+        if (userCount > 2500) {
+          actionBarSubtitleTextView.setText("2500+ members");
+        } else {
+          actionBarSubtitleTextView.setText(userCount + " members");
+        }
+      } else {
+        actionBarSubtitleTextView.setVisibility(View.GONE);
+      }
     } else {
       actionBarSubtitleTextView.setVisibility(View.GONE);
     }
+    titleTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension((actionBarSubtitleTextView.getVisibility() == View.GONE) ? R.dimen.very_large_font_size : R.dimen.large_font_size));
   }
 
   private void setMessageStatusProgressAnimatedIfPossible(int progress) {
