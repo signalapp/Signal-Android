@@ -388,9 +388,6 @@ public class MessageNotifier {
   }
 
   private static void sendInThreadNotification(Context context, Recipient recipient) {
-    // Mute group chats
-    if (recipient.isGroupRecipient()) { return; }
-
     if (!TextSecurePreferences.isInThreadNotifications(context) ||
         ServiceUtil.getAudioManager(context).getRingerMode() != AudioManager.RINGER_MODE_NORMAL)
     {
@@ -471,7 +468,7 @@ public class MessageNotifier {
         slideDeck = ((MediaMmsMessageRecord)record).getSlideDeck();
       }
 
-      if ((threadRecipients == null || !threadRecipients.isMuted()) && (threadRecipients == null || !threadRecipients.isGroupRecipient())) {
+      if (threadRecipients == null || !threadRecipients.isMuted()) {
         notificationState.addNotification(new NotificationItem(id, mms, recipient, conversationRecipient, threadRecipients, threadId, body, timestamp, slideDeck));
       }
     }

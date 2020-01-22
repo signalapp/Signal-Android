@@ -1045,8 +1045,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
       if (smsMessageId.isPresent()) database.deleteMessage(smsMessageId.get());
 
-      boolean isGroupMessage = message.getGroupInfo().isPresent();
-      if (threadId != null && !isGroupMessage) {
+      if (threadId != null) {
         MessageNotifier.updateNotification(context, threadId);
       }
 

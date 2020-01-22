@@ -1179,6 +1179,14 @@ public class TextSecurePreferences {
     setLongPreference(context, "background_poll_time", backgroundPollTime);
   }
 
+  public static long getPublicChatBackgroundPollTime(Context context) {
+    return getLongPreference(context, "public_chat_background_poll_time", 0L);
+  }
+
+  public static void setPublicChatBackgroundPollTime(Context context, long backgroundPollTime) {
+    setLongPreference(context, "public_chat_background_poll_time", backgroundPollTime);
+  }
+
   public static boolean isChatSetUp(Context context, String id) {
     return getBooleanPreference(context, "is_chat_set_up" + "?chat=" + id, false);
   }

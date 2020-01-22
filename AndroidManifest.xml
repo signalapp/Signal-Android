@@ -806,12 +806,19 @@
             <intent-filter>
                 <action android:name="info.guardianproject.panic.action.TRIGGER" />
             </intent-filter>
-        </receiver> <!-- Loki -->
+        </receiver>
+        <!-- Session -->
         <receiver android:name="org.thoughtcrime.securesms.loki.BackgroundPollWorker">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
-        </receiver> <!-- Loki -->
+        </receiver>
+        <receiver android:name="org.thoughtcrime.securesms.loki.BackgroundPublicChatPollWorker">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        <!-- Session -->
         <service
             android:name="org.thoughtcrime.securesms.jobmanager.JobSchedulerScheduler$SystemService"
             android:enabled="@bool/enable_job_service"
