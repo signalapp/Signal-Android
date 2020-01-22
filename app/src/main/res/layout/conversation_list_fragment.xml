@@ -76,8 +76,8 @@
       android:minHeight="?attr/actionBarSize"
       android:theme="?attr/actionBarStyle"
       android:visibility="gone"
-      app:titleTextAppearance="@style/TextSecure.TitleTextStyle"
-      app:layout_constraintTop_toTopOf="parent" />
+      app:layout_constraintTop_toTopOf="parent"
+      app:titleTextAppearance="@style/TextSecure.TitleTextStyle" />
 
   <org.thoughtcrime.securesms.components.SearchToolbar
       android:id="@+id/search_toolbar"
@@ -110,13 +110,13 @@
       android:id="@+id/search_no_results"
       android:layout_width="0dp"
       android:layout_height="0dp"
-      android:gravity="center"
       android:background="?attr/search_background"
+      android:gravity="center"
       android:visibility="gone"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/toolbar_barrier"
       app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/toolbar_barrier"
       tools:text="@string/SearchFragment_no_results" />
 
   <LinearLayout
@@ -156,7 +156,7 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       app:layout_constraintTop_toBottomOf="@id/toolbar_barrier"
-      tools:visibility="gone"/>
+      tools:visibility="gone" />
 
   <androidx.recyclerview.widget.RecyclerView
       android:id="@+id/list"
@@ -170,7 +170,7 @@
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintTop_toBottomOf="@id/reminder"
       tools:listitem="@layout/conversation_list_item_view"
-      tools:visibility="gone"/>
+      tools:visibility="gone" />
 
   <org.thoughtcrime.securesms.components.registration.PulsingFloatingActionButton
       android:id="@+id/camera_fab"
@@ -193,8 +193,27 @@
       android:contentDescription="@string/conversation_list_fragment__fab_content_description"
       android:focusable="true"
       android:tint="?conversation_list_compose_icon_tint"
-      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintBottom_toTopOf="@id/megaphone_container"
       app:layout_constraintEnd_toEndOf="parent"
       app:srcCompat="@drawable/ic_compose_solid_24" />
+
+  <androidx.cardview.widget.CardView
+      android:id="@+id/megaphone_container"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_margin="8dp"
+      android:clipToPadding="false"
+      android:clipChildren="false"
+      android:visibility="gone"
+      app:contentPadding="0dp"
+      app:cardCornerRadius="8dp"
+      app:cardElevation="4dp"
+      app:cardPreventCornerOverlap="false"
+      app:cardUseCompatPadding="true"
+      app:cardBackgroundColor="?megaphone_background"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

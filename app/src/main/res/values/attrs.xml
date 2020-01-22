@@ -247,6 +247,12 @@
     <attr name="login_top_background" format="color"/>
     <attr name="login_floating_background" format="reference"/>
 
+    <attr name="megaphone_background" format="color"/>
+    <attr name="megaphone_background_shadow" format="color|reference"/>
+    <attr name="megaphone_body_text_color" format="color"/>
+    <attr name="megaphone_reactions_shade" format="color"/>
+    <attr name="megaphone_reactions_close_tint" format="color"/>
+
     <declare-styleable name="ColorPreference">
         <attr name="itemLayout" format="reference" />
         <attr name="choices" format="reference" />

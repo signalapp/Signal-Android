@@ -29,7 +29,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -41,13 +40,16 @@ import androidx.annotation.MenuRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.annotation.PluralsRes;
+import androidx.annotation.StringRes;
 import androidx.annotation.WorkerThread;
 import androidx.appcompat.widget.Toolbar;
 import androidx.appcompat.widget.TooltipCompat;
+import androidx.lifecycle.DefaultLifecycleObserver;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.ProcessLifecycleOwner;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.Loader;
@@ -57,7 +59,7 @@ import androidx.appcompat.view.ActionMode;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.ItemTouchHelper;
-import android.text.TextUtils;
+
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -77,7 +79,6 @@ import org.thoughtcrime.securesms.MainNavigator;
 import org.thoughtcrime.securesms.NewConversationActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.conversationlist.ConversationListAdapter.ItemClickListener;
-import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.components.RatingManager;
 import org.thoughtcrime.securesms.components.SearchToolbar;
 import org.thoughtcrime.securesms.components.recyclerview.DeleteItemAnimator;
@@ -93,9 +94,6 @@ import org.thoughtcrime.securesms.components.reminder.ServiceOutageReminder;
 import org.thoughtcrime.securesms.components.reminder.ShareReminder;
 import org.thoughtcrime.securesms.components.reminder.SystemSmsImportReminder;
 import org.thoughtcrime.securesms.components.reminder.UnauthorizedReminder;
-import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
-import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto;
-import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
 import org.thoughtcrime.securesms.conversationlist.model.MessageResult;
 import org.thoughtcrime.securesms.conversationlist.model.SearchResult;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -110,6 +108,10 @@ import org.thoughtcrime.securesms.jobs.ServiceOutageDetectionJob;
 import org.thoughtcrime.securesms.lock.RegistrationLockDialog;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.mediasend.MediaSendActivity;
+import org.thoughtcrime.securesms.megaphone.Megaphone;
+import org.thoughtcrime.securesms.megaphone.MegaphoneListener;
+import org.thoughtcrime.securesms.megaphone.MegaphoneViewBuilder;
+import org.thoughtcrime.securesms.megaphone.Megaphones;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
@@ -137,7 +139,8 @@ public class ConversationListFragment extends MainFragment implements LoaderMana
                                                                       ActionMode.Callback,
                                                                       ItemClickListener,
                                                                       ConversationListSearchAdapter.EventListener,
-                                                                      MainNavigator.BackHandler
+                                                                      MainNavigator.BackHandler,
+                                                                      MegaphoneListener
 {
   private static final String TAG = Log.tag(ConversationListFragment.class);
 
@@ -163,6 +166,7 @@ public class ConversationListFragment extends MainFragment implements LoaderMana
   private ConversationListAdapter       defaultAdapter;
   private ConversationListSearchAdapter searchAdapter;
   private StickyHeaderDecoration        searchAdapterDecoration;
+  private ViewGroup                     megaphoneContainer;
 
   public static ConversationListFragment newInstance() {
     return new ConversationListFragment();
@@ -181,16 +185,17 @@ public class ConversationListFragment extends MainFragment implements LoaderMana
 
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-    reminderView     = view.findViewById(R.id.reminder);
-    list             = view.findViewById(R.id.list);
-    fab              = view.findViewById(R.id.fab);
-    cameraFab        = view.findViewById(R.id.camera_fab);
-    emptyState       = view.findViewById(R.id.empty_state);
-    emptyImage       = view.findViewById(R.id.empty);
-    searchEmptyState = view.findViewById(R.id.search_no_results);
-    searchToolbar    = view.findViewById(R.id.search_toolbar);
-    searchAction     = view.findViewById(R.id.search_action);
-    toolbarShadow    = view.findViewById(R.id.conversation_list_toolbar_shadow);
+    reminderView       = view.findViewById(R.id.reminder);
+    list               = view.findViewById(R.id.list);
+    fab                = view.findViewById(R.id.fab);
+    cameraFab          = view.findViewById(R.id.camera_fab);
+    emptyState         = view.findViewById(R.id.empty_state);
+    emptyImage         = view.findViewById(R.id.empty);
+    searchEmptyState   = view.findViewById(R.id.search_no_results);
+    searchToolbar      = view.findViewById(R.id.search_toolbar);
+    searchAction       = view.findViewById(R.id.search_action);
+    toolbarShadow      = view.findViewById(R.id.conversation_list_toolbar_shadow);
+    megaphoneContainer = view.findViewById(R.id.megaphone_container);
 
     Toolbar toolbar = view.findViewById(getToolbarRes());
     toolbar.setVisibility(View.VISIBLE);
@@ -339,6 +344,26 @@ public class ConversationListFragment extends MainFragment implements LoaderMana
     });
   }
 
+  @Override
+  public void onMegaphoneNavigationRequested(@NonNull Intent intent) {
+    startActivity(intent);
+  }
+
+  @Override
+  public void onMegaphoneToastRequested(int stringRes) {
+    Toast.makeText(requireContext(), stringRes, Toast.LENGTH_SHORT).show();
+  }
+
+  @Override
+  public void onMegaphoneSnooze(@NonNull Megaphone megaphone) {
+    viewModel.onMegaphoneSnoozed(megaphone);
+  }
+
+  @Override
+  public void onMegaphoneCompleted(@NonNull Megaphone megaphone) {
+    viewModel.onMegaphoneCompleted(megaphone.getEvent());
+  }
+
   private void initializeProfileIcon(@NonNull Recipient recipient) {
     ImageView icon = requireView().findViewById(R.id.toolbar_icon);
 
@@ -406,17 +431,50 @@ public class ConversationListFragment extends MainFragment implements LoaderMana
   private void initializeViewModel() {
     viewModel = ViewModelProviders.of(this, new ConversationListViewModel.Factory()).get(ConversationListViewModel.class);
 
-    viewModel.getSearchResult().observe(this, result -> {
-      result = result != null ? result : SearchResult.EMPTY;
-      searchAdapter.updateResults(result);
+    viewModel.getSearchResult().observe(this, this::onSearchResultChanged);
+    viewModel.getMegaphone().observe(this, this::onMegaphoneChanged);
 
-      if (result.isEmpty() && activeAdapter == searchAdapter) {
-        searchEmptyState.setText(getString(R.string.SearchFragment_no_results, result.getQuery()));
-        searchEmptyState.setVisibility(View.VISIBLE);
-      } else {
-        searchEmptyState.setVisibility(View.GONE);
+    ProcessLifecycleOwner.get().getLifecycle().addObserver(new DefaultLifecycleObserver() {
+      @Override
+      public void onStart(@NonNull LifecycleOwner owner) {
+        viewModel.onVisible();
       }
     });
+  }
+
+  private void onSearchResultChanged(@Nullable SearchResult result) {
+    result = result != null ? result : SearchResult.EMPTY;
+    searchAdapter.updateResults(result);
+
+    if (result.isEmpty() && activeAdapter == searchAdapter) {
+      searchEmptyState.setText(getString(R.string.SearchFragment_no_results, result.getQuery()));
+      searchEmptyState.setVisibility(View.VISIBLE);
+    } else {
+      searchEmptyState.setVisibility(View.GONE);
+    }
+  }
+
+  private void onMegaphoneChanged(@Nullable Megaphone megaphone) {
+    if (megaphone == null) {
+      megaphoneContainer.setVisibility(View.GONE);
+      megaphoneContainer.removeAllViews();
+      return;
+    }
+
+    View view = MegaphoneViewBuilder.build(requireContext(), megaphone, this);
+
+    megaphoneContainer.removeAllViews();
+
+    if (view != null) {
+      megaphoneContainer.addView(view);
+      megaphoneContainer.setVisibility(View.VISIBLE);
+    } else {
+      megaphoneContainer.setVisibility(View.GONE);
+
+      if (megaphone.getOnVisibleListener() != null) {
+        megaphone.getOnVisibleListener().onVisible(megaphone, this);
+      }
+    }
   }
 
   private void updateReminders() {

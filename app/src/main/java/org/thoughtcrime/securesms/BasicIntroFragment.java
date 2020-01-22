@@ -36,8 +36,8 @@ public class BasicIntroFragment extends Fragment {
     super.onCreate(savedInstanceState);
     if (getArguments() != null) {
       drawable = getArguments().getInt(ARG_DRAWABLE);
-      text     = getArguments().getInt(ARG_TEXT    );
-      subtext  = getArguments().getInt(ARG_SUBTEXT );
+      text     = getArguments().getInt(ARG_TEXT);
+      subtext  = getArguments().getInt(ARG_SUBTEXT);
     }
   }
 

@@ -29,6 +29,7 @@ import org.thoughtcrime.securesms.database.GroupReceiptDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.JobDatabase;
 import org.thoughtcrime.securesms.database.KeyValueDatabase;
+import org.thoughtcrime.securesms.database.MegaphoneDatabase;
 import org.thoughtcrime.securesms.database.MmsDatabase;
 import org.thoughtcrime.securesms.database.OneTimePreKeyDatabase;
 import org.thoughtcrime.securesms.database.PushDatabase;
@@ -102,8 +103,9 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
   private static final int ATTACHMENT_DISPLAY_ORDER         = 42;
   private static final int SPLIT_PROFILE_NAMES              = 43;
   private static final int STICKER_PACK_ORDER               = 44;
+  private static final int MEGAPHONES                       = 45;
 
-  private static final int    DATABASE_VERSION = 44;
+  private static final int    DATABASE_VERSION = 45;
   private static final String DATABASE_NAME    = "signal.db";
 
   private final Context        context;
@@ -146,6 +148,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
     db.execSQL(StickerDatabase.CREATE_TABLE);
     db.execSQL(StorageKeyDatabase.CREATE_TABLE);
     db.execSQL(KeyValueDatabase.CREATE_TABLE);
+    db.execSQL(MegaphoneDatabase.CREATE_TABLE);
     executeStatements(db, SearchDatabase.CREATE_TABLE);
     executeStatements(db, JobDatabase.CREATE_TABLE);
 
@@ -706,6 +709,14 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper {
 
       if (oldVersion < STICKER_PACK_ORDER) {
         db.execSQL("ALTER TABLE sticker ADD COLUMN pack_order INTEGER DEFAULT 0");
+      }
+
+      if (oldVersion < MEGAPHONES) {
+        db.execSQL("CREATE TABLE megaphone (_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                                           "event TEXT UNIQUE, "  +
+                                           "seen_count INTEGER, " +
+                                           "last_seen INTEGER, "  +
+                                           "finished INTEGER)");
       }
 
       db.setTransactionSuccessful();

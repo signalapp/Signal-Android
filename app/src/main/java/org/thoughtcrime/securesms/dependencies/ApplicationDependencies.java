@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.IncomingMessageProcessor;
 import org.thoughtcrime.securesms.gcm.MessageRetriever;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.keyvalue.KeyValueStore;
+import org.thoughtcrime.securesms.megaphone.MegaphoneRepository;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.recipients.LiveRecipientCache;
 import org.thoughtcrime.securesms.service.IncomingMessageObserver;
@@ -42,6 +43,7 @@ public class ApplicationDependencies {
   private static JobManager                   jobManager;
   private static FrameRateTracker             frameRateTracker;
   private static KeyValueStore                keyValueStore;
+  private static MegaphoneRepository          megaphoneRepository;
 
   public static synchronized void init(@NonNull Application application, @NonNull Provider provider) {
     if (ApplicationDependencies.application != null || ApplicationDependencies.provider != null) {
@@ -167,6 +169,16 @@ public class ApplicationDependencies {
     return keyValueStore;
   }
 
+  public static synchronized @NonNull MegaphoneRepository getMegaphoneRepository() {
+    assertInitialization();
+
+    if (megaphoneRepository == null) {
+      megaphoneRepository = provider.provideMegaphoneRepository();
+    }
+
+    return megaphoneRepository;
+  }
+
   private static void assertInitialization() {
     if (application == null || provider == null) {
       throw new UninitializedException();
@@ -184,6 +196,7 @@ public class ApplicationDependencies {
     @NonNull JobManager provideJobManager();
     @NonNull FrameRateTracker provideFrameRateTracker();
     @NonNull KeyValueStore provideKeyValueStore();
+    @NonNull MegaphoneRepository provideMegaphoneRepository();
   }
 
   private static class UninitializedException extends IllegalStateException {

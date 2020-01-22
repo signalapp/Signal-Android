@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.jobs.FastJobStorage;
 import org.thoughtcrime.securesms.jobs.JobManagerFactories;
 import org.thoughtcrime.securesms.keyvalue.KeyValueStore;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.megaphone.MegaphoneRepository;
 import org.thoughtcrime.securesms.push.SecurityEventListener;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.recipients.LiveRecipientCache;
@@ -123,6 +124,11 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
   @Override
   public @NonNull KeyValueStore provideKeyValueStore() {
     return new KeyValueStore(context);
+  }
+
+  @Override
+  public @NonNull MegaphoneRepository provideMegaphoneRepository() {
+    return new MegaphoneRepository(context);
   }
 
   private static class DynamicCredentialsProvider implements CredentialsProvider {
