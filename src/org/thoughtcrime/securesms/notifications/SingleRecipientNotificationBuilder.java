@@ -129,7 +129,9 @@ public class SingleRecipientNotificationBuilder extends AbstractNotificationBuil
       } else {
         displayName = DatabaseFactory.getLokiUserDatabase(context).getDisplayName(hexEncodedPublicKey);
       }
-      stringBuilder.append(Util.getBoldedString(displayName + ": "));
+      if (displayName != null) {
+        stringBuilder.append(Util.getBoldedString(displayName + ": "));
+      }
     }
 
     if (privacy.isDisplayMessage()) {
