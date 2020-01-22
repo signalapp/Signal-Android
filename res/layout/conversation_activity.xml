@@ -57,6 +57,8 @@
                         android:id="@+id/subtitleTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:maxLines="1"
+                        android:ellipsize="end"
                         android:text="26 members"
                         android:textColor="@color/text"
                         android:textSize="@dimen/small_font_size" />

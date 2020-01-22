@@ -237,6 +237,7 @@ import org.whispersystems.signalservice.loki.api.PairingAuthorisation;
 import org.whispersystems.signalservice.loki.messaging.LokiMessageFriendRequestStatus;
 import org.whispersystems.signalservice.loki.messaging.LokiThreadFriendRequestStatus;
 import org.whispersystems.signalservice.loki.messaging.Mention;
+import org.whispersystems.signalservice.loki.utilities.PublicKeyValidation;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -3147,9 +3148,13 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
         } else {
           actionBarSubtitleTextView.setText(userCount + " members");
         }
+      } else if (PublicKeyValidation.isValid(recipient.getAddress().toString())) {
+        actionBarSubtitleTextView.setText(recipient.getAddress().toString());
       } else {
         actionBarSubtitleTextView.setVisibility(View.GONE);
       }
+    } else if (PublicKeyValidation.isValid(recipient.getAddress().toString())) {
+      actionBarSubtitleTextView.setText(recipient.getAddress().toString());
     } else {
       actionBarSubtitleTextView.setVisibility(View.GONE);
     }
