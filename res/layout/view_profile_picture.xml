@@ -67,14 +67,13 @@
 
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/rssTextView"
+    <ImageView
+        android:id="@+id/rssImageView"
         android:layout_width="@dimen/medium_profile_picture_size"
         android:layout_height="@dimen/medium_profile_picture_size"
         android:gravity="center"
-        android:text="RSS"
-        android:textColor="@color/text"
-        android:textSize="@dimen/small_font_size"
+        android:src="@drawable/session_logo_white"
+        android:padding="12dp"
         android:background="@drawable/profile_picture_view_rss_medium_background" />
 
     <RelativeLayout

@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- Session -->
+    <dimen name="medium_button_height">44dp</dimen>
+    <dimen name="tab_bar_height">48dp</dimen>
+    <dimen name="setting_button_height">72dp</dimen>
+    <!-- Session -->
+
     <dimen name="album_total_width">300dp</dimen>
     <dimen name="album_2_total_height">150dp</dimen>
     <dimen name="album_2_cell_width">149dp</dimen>

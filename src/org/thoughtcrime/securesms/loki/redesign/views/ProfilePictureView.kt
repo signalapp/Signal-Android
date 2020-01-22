@@ -56,7 +56,7 @@ class ProfilePictureView : RelativeLayout {
         doubleModeImageViewContainer.visibility = if (additionalHexEncodedPublicKey != null && !isRSSFeed) View.VISIBLE else View.INVISIBLE
         singleModeImageViewContainer.visibility = if (additionalHexEncodedPublicKey == null && !isRSSFeed && !isLarge) View.VISIBLE else View.INVISIBLE
         largeSingleModeImageViewContainer.visibility = if (additionalHexEncodedPublicKey == null && !isRSSFeed && isLarge) View.VISIBLE else View.INVISIBLE
-        rssTextView.visibility = if (isRSSFeed) View.VISIBLE else View.INVISIBLE
+        rssImageView.visibility = if (isRSSFeed) View.VISIBLE else View.INVISIBLE
         fun setProfilePictureIfNeeded(imageView: ImageView, hexEncodedPublicKey: String, @DimenRes sizeID: Int) {
             glide.clear(imageView)
             if (hexEncodedPublicKey.isNotEmpty()) {
