@@ -1737,7 +1737,7 @@
     <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Registration Lock helps protect your phone number from unauthorized registration attempts. This feature can be disabled at any time in your Signal privacy settings</string>
     <string name="RegistrationLockDialog_registration_lock">Registration Lock</string>
     <string name="RegistrationLockDialog_enable">Enable</string>
-    <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">The Registration Lock PIN must be at least 4 digits.</string>
+    <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_d_digits">The Registration Lock PIN must be at least %d digits.</string>
     <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">The two PINs you entered do not match.</string>
     <string name="RegistrationLockDialog_error_connecting_to_the_service">Error connecting to the service</string>
     <string name="RegistrationLockDialog_disable_registration_lock_pin">Disable Registration Lock PIN?</string>

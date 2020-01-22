@@ -3,8 +3,6 @@ package org.whispersystems.signalservice.api.kbs;
 import org.whispersystems.signalservice.api.crypto.HmacSIV;
 import org.whispersystems.signalservice.api.crypto.InvalidCiphertextException;
 
-import java.security.SecureRandom;
-
 import static java.util.Arrays.copyOfRange;
 
 /**
@@ -33,11 +31,10 @@ public final class HashedPin {
   /**
    * Creates a new {@link KbsData} to store on KBS.
    */
-  public KbsData createNewKbsData(SecureRandom random) {
-    byte[] M = new byte[32];
-    random.nextBytes(M);
+  public KbsData createNewKbsData(MasterKey masterKey) {
+    byte[] M   = masterKey.serialize();
     byte[] IVC = HmacSIV.encrypt(K, M);
-    return new KbsData(M, kbsAccessKey, IVC);
+    return new KbsData(masterKey, kbsAccessKey, IVC);
   }
 
   /**
@@ -45,6 +42,10 @@ public final class HashedPin {
    */
   public KbsData decryptKbsDataIVCipherText(byte[] IVC) throws InvalidCiphertextException {
     byte[] masterKey = HmacSIV.decrypt(K, IVC);
-    return new KbsData(masterKey, kbsAccessKey, IVC);
+    return new KbsData(new MasterKey(masterKey), kbsAccessKey, IVC);
+  }
+
+  public byte[] getKbsAccessKey() {
+    return kbsAccessKey;
   }
 }

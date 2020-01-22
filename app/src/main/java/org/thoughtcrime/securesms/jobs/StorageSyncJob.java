@@ -110,7 +110,7 @@ public class StorageSyncJob extends BaseJob {
     SignalServiceAccountManager accountManager     = ApplicationDependencies.getSignalServiceAccountManager();
     RecipientDatabase           recipientDatabase  = DatabaseFactory.getRecipientDatabase(context);
     StorageKeyDatabase          storageKeyDatabase = DatabaseFactory.getStorageKeyDatabase(context);
-    MasterKey                   kbsMasterKey       = SignalStore.kbsValues().getMasterKey();
+    MasterKey                   kbsMasterKey       = SignalStore.kbsValues().getPinBackedMasterKey();
 
     if (kbsMasterKey == null) {
       Log.w(TAG, "No KBS master key is set! Must abort.");

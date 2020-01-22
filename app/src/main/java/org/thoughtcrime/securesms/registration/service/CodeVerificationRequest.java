@@ -17,7 +17,9 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.jobs.RotateCertificateJob;
+import org.thoughtcrime.securesms.keyvalue.KbsValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.lock.PinHashing;
 import org.thoughtcrime.securesms.lock.RegistrationLockReminders;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.migrations.RegistrationPinV2MigrationJob;
@@ -36,11 +38,12 @@ import org.whispersystems.signalservice.api.KeyBackupService;
 import org.whispersystems.signalservice.api.KeyBackupServicePinException;
 import org.whispersystems.signalservice.api.RegistrationLockData;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
+import org.whispersystems.signalservice.api.kbs.HashedPin;
+import org.whispersystems.signalservice.api.kbs.MasterKey;
 import org.whispersystems.signalservice.api.push.exceptions.RateLimitException;
 import org.whispersystems.signalservice.internal.contacts.crypto.UnauthenticatedResponseException;
 import org.whispersystems.signalservice.internal.contacts.entities.TokenResponse;
 import org.whispersystems.signalservice.internal.push.LockedException;
-import org.whispersystems.signalservice.internal.registrationpin.InvalidPinException;
 
 import java.io.IOException;
 import java.util.List;
@@ -160,11 +163,12 @@ public final class CodeVerificationRequest {
 
     SignalServiceAccountManager accountManager   = AccountManagerFactory.createUnauthenticated(context, credentials.getE164number(), credentials.getPassword());
     RegistrationLockData        kbsData          = restoreMasterKey(pin, basicStorageCredentials, kbsTokenResponse);
-    String                      registrationLock = kbsData != null ? kbsData.getMasterKey().getRegistrationLock() : null;
+    String                      registrationLock = kbsData != null ? kbsData.getMasterKey().deriveRegistrationLock() : null;
     boolean                     present          = fcmToken != null;
+    String                      pinForServer     = basicStorageCredentials == null ? pin : null;
 
     UUID uuid = accountManager.verifyAccountWithCode(code, null, registrationId, !present,
-                                                     pin, registrationLock,
+                                                     pinForServer, registrationLock,
                                                      unidentifiedAccessKey, universalUnidentifiedAccess);
 
     IdentityKeyPair    identityKey  = IdentityKeyUtil.getIdentityKeyPair(context);
@@ -203,8 +207,8 @@ public final class CodeVerificationRequest {
     TextSecurePreferences.setSignedPreKeyRegistered(context, true);
     TextSecurePreferences.setPromptedPushRegistration(context, true);
     TextSecurePreferences.setUnauthorizedReceived(context, false);
-    SignalStore.kbsValues().setRegistrationLockMasterKey(kbsData);
     if (kbsData == null) {
+      SignalStore.kbsValues().clearRegistrationLock();
       //noinspection deprecation Only acceptable place to write the old pin.
       TextSecurePreferences.setDeprecatedRegistrationLockPin(context, pin);
       //noinspection deprecation Only acceptable place to write the old pin enabled state.
@@ -216,6 +220,7 @@ public final class CodeVerificationRequest {
         }
       }
     } else {
+      SignalStore.kbsValues().setRegistrationLockMasterKey(kbsData, PinHashing.localPinHash(pin));
       repostPinToResetTries(context, pin, kbsData);
     }
     if (pin != null) {
@@ -227,19 +232,23 @@ public final class CodeVerificationRequest {
   private static void repostPinToResetTries(@NonNull Context context, @Nullable String pin, @NonNull RegistrationLockData kbsData) {
     if (!FeatureFlags.KBS) return;
 
+    if (pin == null) return;
+
     KeyBackupService keyBackupService = ApplicationDependencies.getKeyBackupService();
 
     try {
-      RegistrationLockData newData = keyBackupService.newPinChangeSession(kbsData.getTokenResponse())
-                                                     .setPin(pin);
-      SignalStore.kbsValues().setRegistrationLockMasterKey(newData);
+      KbsValues                         kbsValues        = SignalStore.kbsValues();
+      MasterKey                         masterKey        = kbsValues.getOrCreateMasterKey();
+      KeyBackupService.PinChangeSession pinChangeSession = keyBackupService.newPinChangeSession(kbsData.getTokenResponse());
+      HashedPin                         hashedPin        = PinHashing.hashPin(pin, pinChangeSession);
+      RegistrationLockData              newData          = pinChangeSession.setPin(hashedPin, masterKey);
+
+      kbsValues.setRegistrationLockMasterKey(newData, PinHashing.localPinHash(pin));
       TextSecurePreferences.clearOldRegistrationLockPin(context);
     } catch (IOException e) {
       Log.w(TAG, "May have failed to reset pin attempts!", e);
     } catch (UnauthenticatedResponseException e) {
       Log.w(TAG, "Failed to reset pin attempts", e);
-    } catch (InvalidPinException e) {
-      throw new AssertionError(e);
     }
   }
 
@@ -267,7 +276,8 @@ public final class CodeVerificationRequest {
 
     try {
       Log.i(TAG, "Restoring pin from KBS");
-      RegistrationLockData kbsData = session.restorePin(pin);
+      HashedPin            hashedPin = PinHashing.hashPin(pin, session);
+      RegistrationLockData kbsData   = session.restorePin(hashedPin);
       if (kbsData != null) {
         Log.i(TAG, "Found registration lock token on KBS.");
       } else {
@@ -280,9 +290,6 @@ public final class CodeVerificationRequest {
     } catch (KeyBackupServicePinException e) {
       Log.w(TAG, "Incorrect pin", e);
       throw new KeyBackupSystemWrongPinException(e.getToken());
-    } catch (InvalidPinException e) {
-      Log.w(TAG, "Invalid pin", e);
-      return null;
     }
   }
 

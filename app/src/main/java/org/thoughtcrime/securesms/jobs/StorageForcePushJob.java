@@ -69,7 +69,7 @@ public class StorageForcePushJob extends BaseJob {
   protected void onRun() throws IOException, RetryLaterException {
     if (!FeatureFlags.STORAGE_SERVICE) throw new AssertionError();
 
-    MasterKey kbsMasterKey = SignalStore.kbsValues().getMasterKey();
+    MasterKey kbsMasterKey = SignalStore.kbsValues().getPinBackedMasterKey();
 
     if (kbsMasterKey == null) {
       Log.w(TAG, "No KBS master key is set! Must abort.");

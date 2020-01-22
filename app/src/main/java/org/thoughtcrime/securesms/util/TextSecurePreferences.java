@@ -162,7 +162,7 @@ public class TextSecurePreferences {
   @Deprecated
   private static final String REGISTRATION_LOCK_PIN_PREF_V1            = "pref_registration_lock_pin";
 
-  private static final String REGISTRATION_LOCK_LAST_REMINDER_TIME     = "pref_registration_lock_last_reminder_time";
+  private static final String REGISTRATION_LOCK_LAST_REMINDER_TIME     = "pref_registration_lock_last_reminder_time_2";
   private static final String REGISTRATION_LOCK_NEXT_REMINDER_INTERVAL = "pref_registration_lock_next_reminder_interval";
 
   private static final String SERVICE_OUTAGE         = "pref_service_outage";

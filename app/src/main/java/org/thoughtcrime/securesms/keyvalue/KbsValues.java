@@ -1,22 +1,22 @@
 package org.thoughtcrime.securesms.keyvalue;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.util.JsonUtils;
 import org.whispersystems.signalservice.api.RegistrationLockData;
 import org.whispersystems.signalservice.api.kbs.MasterKey;
 import org.whispersystems.signalservice.internal.contacts.entities.TokenResponse;
-import org.whispersystems.signalservice.internal.registrationpin.PinStretcher;
 
 import java.io.IOException;
+import java.security.SecureRandom;
 
 public final class KbsValues {
 
-  private static final String REGISTRATION_LOCK_PREF_V2        = "kbs.registration_lock_v2";
-  private static final String REGISTRATION_LOCK_TOKEN_PREF     = "kbs.registration_lock_token";
-  private static final String REGISTRATION_LOCK_PIN_KEY_2_PREF = "kbs.registration_lock_pin_key_2";
-  private static final String REGISTRATION_LOCK_MASTER_KEY     = "kbs.registration_lock_master_key";
-  private static final String REGISTRATION_LOCK_TOKEN_RESPONSE = "kbs.registration_lock_token_response";
+  private static final String V2_LOCK_ENABLED     = "kbs.v2_lock_enabled";
+  private static final String MASTER_KEY          = "kbs.registration_lock_master_key";
+  private static final String TOKEN_RESPONSE      = "kbs.token_response";
+  private static final String LOCK_LOCAL_PIN_HASH = "kbs.registration_lock_local_pin_hash";
 
   private final KeyValueStore store;
 
@@ -24,58 +24,85 @@ public final class KbsValues {
     this.store = store;
   }
 
-  public void setRegistrationLockMasterKey(@Nullable RegistrationLockData registrationLockData) {
-    KeyValueStore.Writer editor = store.beginWrite();
-
-    if (registrationLockData == null) {
-      editor.remove(REGISTRATION_LOCK_PREF_V2)
-            .remove(REGISTRATION_LOCK_TOKEN_RESPONSE)
-            .remove(REGISTRATION_LOCK_MASTER_KEY)
-            .remove(REGISTRATION_LOCK_TOKEN_PREF)
-            .remove(REGISTRATION_LOCK_PIN_KEY_2_PREF);
-    } else {
-      PinStretcher.MasterKey masterKey     = registrationLockData.getMasterKey();
-      String                 tokenResponse;
-      try {
-        tokenResponse = JsonUtils.toJson(registrationLockData.getTokenResponse());
-      } catch (IOException e) {
-        throw new AssertionError(e);
-      }
-
-      editor.putBoolean(REGISTRATION_LOCK_PREF_V2, true)
-            .putString(REGISTRATION_LOCK_TOKEN_RESPONSE, tokenResponse)
-            .putBlob(REGISTRATION_LOCK_MASTER_KEY, masterKey.getMasterKey())
-            .putString(REGISTRATION_LOCK_TOKEN_PREF, masterKey.getRegistrationLock())
-            .putBlob(REGISTRATION_LOCK_PIN_KEY_2_PREF, masterKey.getPinKey2());
-    }
-
-    editor.commit();
+  /**
+   * Deliberately does not clear the {@link #MASTER_KEY}.
+   */
+  public void clearRegistrationLock() {
+    store.beginWrite()
+         .remove(V2_LOCK_ENABLED)
+         .remove(TOKEN_RESPONSE)
+         .remove(LOCK_LOCAL_PIN_HASH)
+         .commit();
   }
 
-  public @Nullable MasterKey getMasterKey() {
-    byte[] blob = store.getBlob(REGISTRATION_LOCK_MASTER_KEY, null);
-    if (blob != null) {
-      return new MasterKey(blob);
-    } else {
-      return null;
+  public synchronized void setRegistrationLockMasterKey(@NonNull RegistrationLockData registrationLockData, @NonNull String localPinHash) {
+    MasterKey masterKey     = registrationLockData.getMasterKey();
+    String    tokenResponse;
+    try {
+      tokenResponse = JsonUtils.toJson(registrationLockData.getTokenResponse());
+    } catch (IOException e) {
+      throw new AssertionError(e);
     }
+
+    store.beginWrite()
+         .putBoolean(V2_LOCK_ENABLED, true)
+         .putString(TOKEN_RESPONSE, tokenResponse)
+         .putBlob(MASTER_KEY, masterKey.serialize())
+         .putString(LOCK_LOCAL_PIN_HASH, localPinHash)
+         .commit();
+  }
+
+  /**
+   * Finds or creates the master key. Therefore this will always return a master key whether backed
+   * up or not.
+   * <p>
+   * If you only want a key when it's backed up, use {@link #getPinBackedMasterKey()}.
+   */
+  public synchronized @NonNull MasterKey getOrCreateMasterKey() {
+    byte[] blob = store.getBlob(MASTER_KEY, null);
+
+    if (blob == null) {
+      store.beginWrite()
+           .putBlob(MASTER_KEY, MasterKey.createNew(new SecureRandom()).serialize())
+           .commit();
+      blob = store.getBlob(MASTER_KEY, null);
+    }
+
+    return new MasterKey(blob);
+  }
+
+  /**
+   * Returns null if master key is not backed up by a pin.
+   */
+  public synchronized @Nullable MasterKey getPinBackedMasterKey() {
+    if (!isV2RegistrationLockEnabled()) return null;
+    return getMasterKey();
+  }
+
+  private synchronized @Nullable MasterKey getMasterKey() {
+    byte[] blob = store.getBlob(MASTER_KEY, null);
+    return blob != null ? new MasterKey(blob) : null;
   }
 
   public @Nullable String getRegistrationLockToken() {
-    return store.getString(REGISTRATION_LOCK_TOKEN_PREF, null);
+    MasterKey masterKey = getPinBackedMasterKey();
+    if (masterKey == null) {
+      return null;
+    } else {
+      return masterKey.deriveRegistrationLock();
+    }
   }
 
-  public @Nullable byte[] getRegistrationLockPinKey2() {
-    return store.getBlob(REGISTRATION_LOCK_PIN_KEY_2_PREF, null);
+  public @Nullable String getLocalPinHash() {
+    return store.getString(LOCK_LOCAL_PIN_HASH, null);
   }
 
   public boolean isV2RegistrationLockEnabled() {
-    return store.getBoolean(REGISTRATION_LOCK_PREF_V2, false);
+    return store.getBoolean(V2_LOCK_ENABLED, false);
   }
 
-  public @Nullable
-  TokenResponse getRegistrationLockTokenResponse() {
-    String token = store.getString(REGISTRATION_LOCK_TOKEN_RESPONSE, null);
+  public @Nullable TokenResponse getRegistrationLockTokenResponse() {
+    String token = store.getString(TOKEN_RESPONSE, null);
 
     if (token == null) return null;
 

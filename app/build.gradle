@@ -176,19 +176,11 @@ dependencies {
     testImplementation 'org.powermock:powermock-classloading-xstream:1.6.1'
 
     testImplementation 'androidx.test:core:1.2.0'
-    androidTestImplementation 'androidx.multidex:multidex:2.0.1'
-    androidTestImplementation 'androidx.multidex:multidex-instrumentation:2.0.0'
-    androidTestImplementation 'com.google.dexmaker:dexmaker:1.2'
-    androidTestImplementation 'com.google.dexmaker:dexmaker-mockito:1.2'
-    androidTestImplementation ('org.assertj:assertj-core:1.7.1') {
-        exclude group: 'org.hamcrest', module: 'hamcrest-core'
-    }
-    androidTestImplementation ('com.squareup.assertj:assertj-android:1.1.1') {
-        exclude group: 'org.hamcrest',        module: 'hamcrest-core'
-        exclude group: 'com.android.support', module: 'support-annotations'
-    }
     testImplementation 'org.robolectric:robolectric:4.2'
     testImplementation 'org.robolectric:shadows-multidex:4.2'
+
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }
 
 dependencyVerification {
@@ -238,8 +230,8 @@ android {
         buildConfigField "String", "USER_AGENT", "\"OWA\""
         buildConfigField "boolean", "DEV_BUILD", "false"
         buildConfigField "String", "MRENCLAVE", "\"cd6cfc342937b23b1bdd3bbf9721aa5615ac9ff50a75c5527d441cd3276826c9\""
-        buildConfigField "String", "KEY_BACKUP_ENCLAVE_NAME", "\"f2e2a5004794a6c1bac5c4949eadbc243dd02e02d1a93f10fe24584fb70815d8\""
-        buildConfigField "String", "KEY_BACKUP_MRENCLAVE", "\"f51f435802ada769e67aaf5744372bb7e7d519eecf996d335eb5b46b872b5789\""
+        buildConfigField "String", "KEY_BACKUP_ENCLAVE_NAME", "\"\""
+        buildConfigField "String", "KEY_BACKUP_MRENCLAVE", "\"a3baab19ef6ce6f34ab9ebb25ba722725ae44a8872dc0ff08ad6d83a9489de87\""
         buildConfigField "String", "UNIDENTIFIED_SENDER_TRUST_ROOT", "\"BXu6QIKVz5MA8gstzfOgRQGqyLqOwNKHL6INkv3IHWMF\""
         buildConfigField "String[]", "LANGUAGES", "new String[]{\"" + autoResConfig().collect { s -> s.replace('-r', '_') }.join('", "') + '"}'
         buildConfigField "int", "CANONICAL_VERSION_CODE", "$canonicalVersionCode"
@@ -258,6 +250,8 @@ android {
                 universalApk true
             }
         }
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     compileOptions {
@@ -309,7 +303,7 @@ android {
             buildConfigField "String", "SIGNAL_CONTACT_DISCOVERY_URL", "\"https://api-staging.directory.signal.org\""
             buildConfigField "String", "SIGNAL_KEY_BACKUP_URL", "\"https://api-staging.backup.signal.org\""
             buildConfigField "String", "MRENCLAVE", "\"ba4ebb438bc07713819ee6c98d94037747006d7df63fc9e44d2d6f1fec962a79\""
-            buildConfigField "String", "KEY_BACKUP_ENCLAVE_NAME", "\"b5a865941f95887018c86725cc92308d34a3084dc2b4e7bd2de5e5e1690b50c6\""
+            buildConfigField "String", "KEY_BACKUP_ENCLAVE_NAME", "\"a1e9c1d3f352b5c4f0fc7a421b98119e60e5ff703c28fbea85c66bfa7306deab\""
             buildConfigField "String", "UNIDENTIFIED_SENDER_TRUST_ROOT", "\"BbqY1DzohE4NUZoVF+L18oUPrK3kILllLEJh2UnPSsEx\""
         }
         release {

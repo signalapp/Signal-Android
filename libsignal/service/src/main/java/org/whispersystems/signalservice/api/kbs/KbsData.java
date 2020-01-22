@@ -8,8 +8,8 @@ public final class KbsData {
   private final byte[]    kbsAccessKey;
   private final byte[]    cipherText;
 
-  KbsData(byte[] masterKey, byte[] kbsAccessKey, byte[] cipherText) {
-    this.masterKey    = new MasterKey(masterKey);
+  KbsData(MasterKey masterKey, byte[] kbsAccessKey, byte[] cipherText) {
+    this.masterKey    = masterKey;
     this.kbsAccessKey = kbsAccessKey;
     this.cipherText   = cipherText;
   }
