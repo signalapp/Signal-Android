@@ -14,7 +14,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.imageeditor.ColorableRenderer;
@@ -55,10 +54,9 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
 
   private EditorModel restoredModel;
 
-  @Nullable private EditorElement                currentSelection;
-            private int                          imageMaxHeight;
-            private int                          imageMaxWidth;
-            private ImageEditorFragmentViewModel viewModel;
+  @Nullable private EditorElement currentSelection;
+            private int           imageMaxHeight;
+            private int           imageMaxWidth;
 
   public static class Data {
     private final Bundle bundle;
@@ -123,11 +121,6 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
     imageMaxHeight = mediaConstraints.getImageMaxHeight(requireContext());
 
     StickerSearchRepository repository = new StickerSearchRepository(requireContext());
-
-    viewModel = ViewModelProviders.of(this, new ImageEditorFragmentViewModel.Factory(requireActivity().getApplication(), repository))
-                                  .get(ImageEditorFragmentViewModel.class);
-
-    viewModel.getStickersAvailability().observe(this, isAvailable -> imageEditorHud.setStickersAvailable(isAvailable));
   }
 
   @Nullable
