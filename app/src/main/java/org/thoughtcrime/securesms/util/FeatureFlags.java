@@ -56,7 +56,6 @@ public final class FeatureFlags {
     put(USERNAMES, false);
     put(KBS, false);
     put(STORAGE_SERVICE, false);
-    put(REACTION_SENDING, false);
   }};
 
   private static final Map<String, Boolean> REMOTE_VALUES = new HashMap<>();
