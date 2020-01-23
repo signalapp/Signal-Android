@@ -29,7 +29,7 @@
         android:layout_marginRight="@dimen/very_large_spacing"
         android:textSize="@dimen/small_font_size"
         android:textColor="@color/text"
-        android:text="This is how others will be able to recognize you." />
+        android:text="This will be your name when you use Session." />
 
     <EditText
         style="@style/SmallSessionEditText"

@@ -39,7 +39,7 @@
         android:layout_height="@dimen/medium_button_height"
         android:layout_marginLeft="@dimen/massive_spacing"
         android:layout_marginRight="@dimen/massive_spacing"
-        android:text="Create Account" />
+        android:text="Create Session ID" />
 
     <Button
         style="@style/MediumProminentOutlineButton"

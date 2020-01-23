@@ -29,7 +29,7 @@
         android:layout_marginRight="@dimen/very_large_spacing"
         android:textSize="@dimen/medium_font_size"
         android:textColor="@color/text"
-        android:text="Your Session ID is the unique address that people can use to contact you on Session. With no connection to your real identity, your Session ID is totally anonymous and private by design." />
+        android:text="Your Session ID is the unique address people can use to contact you on Session. With no connection to your real identity, your Session ID is totally anonymous and private by design." />
 
     <TextView
         style="@style/SessionIDTextView"

@@ -38,7 +38,7 @@ class SeedActivity : BaseActionBarActivity() {
         val seedReminderViewTitle = SpannableString("You're almost finished! 90%")
         seedReminderViewTitle.setSpan(ForegroundColorSpan(resources.getColorWithID(R.color.accent, theme)), 24, 27, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         seedReminderView.title = seedReminderViewTitle
-        seedReminderView.subtitle = "Press the redacted words to view your recovery phrase and secure your account"
+        seedReminderView.subtitle = "Tap and hold the redacted words to reveal your recovery phrase, then store it safely to secure your Session ID."
         seedReminderView.setProgress(90, false)
         seedReminderView.hideContinueButton()
         var redactedSeed = seed

@@ -3,14 +3,10 @@ package org.thoughtcrime.securesms.loki.redesign.activities
 import android.Manifest
 import android.content.Intent
 import android.graphics.Bitmap
-import android.graphics.Typeface
 import android.os.Bundle
 import android.os.Environment
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentPagerAdapter
-import android.text.Spannable
-import android.text.SpannableStringBuilder
-import android.text.style.StyleSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -124,9 +120,9 @@ class ViewMyQRCodeFragment : Fragment() {
         val size = toPx(280, resources)
         val qrCode = QRCodeUtilities.encode(hexEncodedPublicKey, size, false, false)
         qrCodeImageView.setImageBitmap(qrCode)
-        val explanation = SpannableStringBuilder("This is your unique public QR code. Other users can scan this to start a conversation with you.")
-        explanation.setSpan(StyleSpan(Typeface.BOLD), 8, 34, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-        explanationTextView.text = explanation
+//        val explanation = SpannableStringBuilder("This is your unique public QR code. Other users can scan this to start a conversation with you.")
+//        explanation.setSpan(StyleSpan(Typeface.BOLD), 8, 34, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        explanationTextView.text = "This is your QR code. Other users can scan it to start a session with you."
         shareButton.setOnClickListener { shareQRCode() }
     }
 

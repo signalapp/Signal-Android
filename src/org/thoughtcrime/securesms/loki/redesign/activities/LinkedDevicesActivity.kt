@@ -43,7 +43,7 @@ class LinkedDevicesActivity : PassphraseRequiredActionBarActivity, LoaderManager
     override fun onCreate(savedInstanceState: Bundle?, isReady: Boolean) {
         super.onCreate(savedInstanceState, isReady)
         setContentView(R.layout.activity_linked_devices)
-        supportActionBar!!.title = "Linked Devices"
+        supportActionBar!!.title = "Devices"
         recyclerView.adapter = linkedDevicesAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
         linkDeviceButton.setOnClickListener { linkDevice() }

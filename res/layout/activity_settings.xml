@@ -219,7 +219,7 @@
                 android:textSize="@dimen/medium_font_size"
                 android:textStyle="bold"
                 android:gravity="center"
-                android:text="Linked Devices" />
+                android:text="Devices" />
 
             <View
                 android:id="@+id/seedButtonTopSeparator"
@@ -236,7 +236,7 @@
                 android:textSize="@dimen/medium_font_size"
                 android:textStyle="bold"
                 android:gravity="center"
-                android:text="Show Recovery Phrase" />
+                android:text="Recovery Phrase" />
 
             <View
                 android:layout_width="match_parent"

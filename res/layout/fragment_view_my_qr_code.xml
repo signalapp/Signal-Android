@@ -54,7 +54,7 @@
                 android:textSize="@dimen/medium_font_size"
                 android:textColor="@color/text"
                 android:textAlignment="center"
-                android:text="This is your unique public QR code. Other users can scan this to start a conversation with you." />
+                android:text="This is your QR code. Other users can scan it to start a session with you." />
 
             <Button
                 style="@style/MediumUnimportantOutlineButton"

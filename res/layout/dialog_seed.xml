@@ -33,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/large_spacing"
-        android:text="This is your personal recovery phrase. It can be used to restore your account or migrate your account to a new device."
+        android:text="This is your recovery phrase. With it, you can restore or migrate your Session ID to a new device."
         android:textColor="@color/text"
         android:textSize="@dimen/small_font_size"
         android:textAlignment="center"

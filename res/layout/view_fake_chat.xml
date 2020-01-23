@@ -22,7 +22,7 @@
         android:layout_width="@dimen/fake_chat_view_bubble_width"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/medium_spacing"
-        android:text="It's a secure, decentralized private messaging app"
+        android:text="It's a decentralized, encrypted messaging app"
         android:layout_gravity="left" />
 
     <TextView

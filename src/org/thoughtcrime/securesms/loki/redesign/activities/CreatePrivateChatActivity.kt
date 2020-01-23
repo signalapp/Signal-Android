@@ -34,7 +34,7 @@ class CreatePrivateChatActivity : PassphraseRequiredActionBarActivity(), ScanQRC
         // Set content view
         setContentView(R.layout.activity_create_private_chat)
         // Set title
-        supportActionBar!!.title = "New Conversation"
+        supportActionBar!!.title = "New Session"
         // Set up view pager
         viewPager.adapter = adapter
         tabLayout.setupWithViewPager(viewPager)
@@ -78,7 +78,7 @@ private class CreatePrivateChatActivityAdapter(val activity: CreatePrivateChatAc
             1 -> {
                 val result = ScanQRCodeWrapperFragment()
                 result.delegate = activity
-                result.message = "Users can share their QR code by going into their account settings and tapping \"Share QR Code\""
+                result.message = "Scan a user’s QR code to start a session. QR codes can be found by tapping the QR code icon in account settings."
                 result
             }
             else -> throw IllegalStateException()

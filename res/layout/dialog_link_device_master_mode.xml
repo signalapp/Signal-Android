@@ -39,7 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/large_spacing"
-        android:text="Create a new account on your other device and click &quot;Link to an existing account&quot; to start the linking process"
+        android:text="Open Session on your secondary device and tap &quot;Link to an existing account&quot;"
         android:textColor="@color/text"
         android:alpha="0.6"
         android:textSize="@dimen/small_font_size"

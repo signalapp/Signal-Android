@@ -35,7 +35,7 @@
         android:layout_marginRight="@dimen/very_large_spacing"
         android:textSize="@dimen/medium_font_size"
         android:textColor="@color/text"
-        android:text="Think of this as the crypto-equivalent of a social security number. This allows whomever has it complete access to your account." />
+        android:text="Your recovery phrase is the master key to your Session ID — you can use it to restore your Session ID if you lose access to your device. Store your recovery phrase in a safe place, and don’t give it to anyone. To restore your Session ID, launch Session and tap Continue your Session." />
 
     <TextView
         style="@style/SessionIDTextView"

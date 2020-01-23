@@ -33,7 +33,7 @@ class JoinPublicChatActivity : PassphraseRequiredActionBarActivity(), ScanQRCode
         // Set content view
         setContentView(R.layout.activity_join_public_chat)
         // Set title
-        supportActionBar!!.title = "Join Channel"
+        supportActionBar!!.title = "Join Open Group"
         // Set up view pager
         viewPager.adapter = adapter
         tabLayout.setupWithViewPager(viewPager)
@@ -100,7 +100,7 @@ private class JoinPublicChatActivityAdapter(val activity: JoinPublicChatActivity
             1 -> {
                 val result = ScanQRCodeWrapperFragment()
                 result.delegate = activity
-                result.message = "Scan the QR code of the channel you'd like to join"
+                result.message = "Scan the QR code of the open group you'd like to join"
                 result
             }
             else -> throw IllegalStateException()
@@ -109,7 +109,7 @@ private class JoinPublicChatActivityAdapter(val activity: JoinPublicChatActivity
 
     override fun getPageTitle(index: Int): CharSequence? {
         return when (index) {
-            0 -> "Enter Channel URL"
+            0 -> "Open Group URL"
             1 -> "Scan QR Code"
             else -> throw IllegalStateException()
         }

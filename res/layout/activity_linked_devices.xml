@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/medium_font_size"
             android:textColor="@color/text"
-            android:text="You don't have any linked devices yet" />
+            android:text="You haven't linked any devices yet" />
 
         <Button
             style="@style/MediumProminentOutlineButton"

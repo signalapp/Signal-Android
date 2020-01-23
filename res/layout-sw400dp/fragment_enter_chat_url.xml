@@ -28,7 +28,7 @@
         android:textColor="@color/text"
         android:alpha="0.6"
         android:textAlignment="center"
-        android:text="Enter the URL of the channel you'd like to join" />
+        android:text="Enter an open group URL" />
 
     <View
         android:layout_width="0dp"

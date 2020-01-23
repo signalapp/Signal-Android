@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/large_spacing"
-        android:text="This will delete your entire account, including all data, any messages currently linked to your Session ID, as well as your personal key pair."
+        android:text="This will permanently delete your Session ID, including all messages, sessions, and contacts."
         android:textColor="@color/text"
         android:textSize="@dimen/small_font_size"
         android:textAlignment="center" />
