@@ -12,7 +12,6 @@ import org.thoughtcrime.securesms.keyvalue.KeyValueStore;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.recipients.LiveRecipientCache;
 import org.thoughtcrime.securesms.service.IncomingMessageObserver;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.FrameRateTracker;
 import org.thoughtcrime.securesms.util.IasKeyStore;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -69,7 +68,6 @@ public class ApplicationDependencies {
   }
 
   public static synchronized @NonNull KeyBackupService getKeyBackupService() {
-    if (!FeatureFlags.kbs()) throw new AssertionError();
     return getSignalServiceAccountManager().getKeyBackupService(IasKeyStore.getIasKeyStore(application),
                                                                 BuildConfig.KEY_BACKUP_ENCLAVE_NAME,
                                                                 BuildConfig.KEY_BACKUP_MRENCLAVE,

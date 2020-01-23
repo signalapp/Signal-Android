@@ -40,7 +40,6 @@ public final class FeatureFlags {
   private static final String PROFILE_DISPLAY   = generateKey("profileDisplay");
   private static final String MESSAGE_REQUESTS  = generateKey("messageRequests");
   private static final String USERNAMES         = generateKey("usernames");
-  private static final String KBS               = generateKey("kbs");
   private static final String STORAGE_SERVICE   = generateKey("storageService");
   private static final String REACTION_SENDING  = generateKey("reactionSending");
 
@@ -54,7 +53,6 @@ public final class FeatureFlags {
     put(PROFILE_DISPLAY, false);
     put(MESSAGE_REQUESTS, false);
     put(USERNAMES, false);
-    put(KBS, false);
     put(STORAGE_SERVICE, false);
   }};
 
@@ -105,16 +103,9 @@ public final class FeatureFlags {
     return value;
   }
 
-  /** Set or migrate PIN to KBS */
-  public static boolean kbs() {
-    return getValue(KBS, false);
-  }
-
-  /** Storage service. Requires {@link #kbs()}. */
+  /** Storage service. */
   public static boolean storageService() {
-    boolean value = getValue(STORAGE_SERVICE, false);
-    if (value && !kbs()) throw new MissingFlagRequirementError();
-    return value;
+    return getValue(STORAGE_SERVICE, false);
   }
 
   /** Send support for reactions. */

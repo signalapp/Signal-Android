@@ -27,7 +27,6 @@ import org.thoughtcrime.securesms.push.AccountManagerFactory;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.service.DirectoryRefreshListener;
 import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.IdentityKeyPair;
 import org.whispersystems.libsignal.state.PreKeyRecord;
@@ -55,7 +54,6 @@ public final class CodeVerificationRequest {
 
   static TokenResponse getToken(@Nullable String basicStorageCredentials) throws IOException {
     if (basicStorageCredentials == null) return null;
-    if (!FeatureFlags.kbs()) return null;
     return ApplicationDependencies.getKeyBackupService().getToken(basicStorageCredentials);
   }
 
@@ -214,10 +212,8 @@ public final class CodeVerificationRequest {
       //noinspection deprecation Only acceptable place to write the old pin enabled state.
       TextSecurePreferences.setV1RegistrationLockEnabled(context, pin != null);
       if (pin != null) {
-        if (FeatureFlags.kbs()) {
-          Log.i(TAG, "Pin V1 successfully entered during registration, scheduling a migration to Pin V2");
-          ApplicationDependencies.getJobManager().add(new RegistrationPinV2MigrationJob());
-        }
+        Log.i(TAG, "Pin V1 successfully entered during registration, scheduling a migration to Pin V2");
+        ApplicationDependencies.getJobManager().add(new RegistrationPinV2MigrationJob());
       }
     } else {
       SignalStore.kbsValues().setRegistrationLockMasterKey(kbsData, PinHashing.localPinHash(pin));
@@ -230,8 +226,6 @@ public final class CodeVerificationRequest {
   }
 
   private static void repostPinToResetTries(@NonNull Context context, @Nullable String pin, @NonNull RegistrationLockData kbsData) {
-    if (!FeatureFlags.kbs()) return;
-
     if (pin == null) return;
 
     KeyBackupService keyBackupService = ApplicationDependencies.getKeyBackupService();
@@ -261,11 +255,6 @@ public final class CodeVerificationRequest {
 
     if (basicStorageCredentials == null) {
       Log.i(TAG, "No storage credentials supplied, pin is not on KBS");
-      return null;
-    }
-
-    if (!FeatureFlags.kbs()) {
-      Log.w(TAG, "User appears to have a KBS pin, but this build has KBS off.");
       return null;
     }
 

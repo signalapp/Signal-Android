@@ -54,6 +54,16 @@
     "bytes": "d9a1d9a2d9a3d9a4d9a541"
   },
   {
+    "name": "Leading and trailing spaces around non-arabic digits",
+    "pin": "  ١٢٣٤٥  ",
+    "bytes": "3132333435"
+  },
+  {
+    "name": "Space in non-arabic digits",
+    "pin": "١٢٣ ٤٥٦",
+    "bytes": "d9a1d9a2d9a320d9a4d9a5d9a6"
+  },
+  {
     "name": "NFKD Test, Double Char",
     "pin": "Ä",
     "bytes": "41cc88"

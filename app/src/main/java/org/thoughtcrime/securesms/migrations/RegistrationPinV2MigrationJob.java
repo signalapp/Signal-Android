@@ -13,7 +13,6 @@ import org.thoughtcrime.securesms.keyvalue.KbsValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.lock.PinHashing;
 import org.thoughtcrime.securesms.logging.Log;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.KeyBackupService;
 import org.whispersystems.signalservice.api.KeyBackupServicePinException;
@@ -23,6 +22,7 @@ import org.whispersystems.signalservice.api.kbs.MasterKey;
 import org.whispersystems.signalservice.internal.contacts.crypto.UnauthenticatedResponseException;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Deliberately not a {@link MigrationJob} because it is not something that needs to run at app start.
@@ -41,6 +41,7 @@ public final class RegistrationPinV2MigrationJob extends BaseJob {
                        .addConstraint(NetworkConstraint.KEY)
                        .setLifespan(Job.Parameters.IMMORTAL)
                        .setMaxAttempts(Job.Parameters.UNLIMITED)
+                       .setMaxBackoff(TimeUnit.HOURS.toMillis(2))
                        .build());
   }
 
@@ -55,11 +56,6 @@ public final class RegistrationPinV2MigrationJob extends BaseJob {
 
   @Override
   protected void onRun() throws IOException, UnauthenticatedResponseException, KeyBackupServicePinException {
-    if (!FeatureFlags.kbs()) {
-      Log.i(TAG, "Not migrating pin to KBS");
-      return;
-    }
-
     if (!TextSecurePreferences.isV1RegistrationLockEnabled(context)) {
       Log.i(TAG, "Registration lock disabled");
       return;

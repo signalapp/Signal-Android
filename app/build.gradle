@@ -117,7 +117,7 @@ dependencies {
 
     implementation project(':libsignal-service')
 
-    implementation 'org.signal:argon2:13.0@aar'
+    implementation 'org.signal:argon2:13.1@aar'
     implementation 'org.signal:ringrtc-android:0.3.1'
 
     implementation "me.leolin:ShortcutBadger:1.1.16"
@@ -229,7 +229,7 @@ android {
         buildConfigField "int", "CONTENT_PROXY_PORT", "443"
         buildConfigField "String", "SIGNAL_AGENT", "\"OWA\""
         buildConfigField "String", "MRENCLAVE", "\"cd6cfc342937b23b1bdd3bbf9721aa5615ac9ff50a75c5527d441cd3276826c9\""
-        buildConfigField "String", "KEY_BACKUP_ENCLAVE_NAME", "\"\""
+        buildConfigField "String", "KEY_BACKUP_ENCLAVE_NAME", "\"fe7c1bfae98f9b073d220366ea31163ee82f6d04bead774f71ca8e5c40847bfe\""
         buildConfigField "String", "KEY_BACKUP_MRENCLAVE", "\"a3baab19ef6ce6f34ab9ebb25ba722725ae44a8872dc0ff08ad6d83a9489de87\""
         buildConfigField "String", "UNIDENTIFIED_SENDER_TRUST_ROOT", "\"BXu6QIKVz5MA8gstzfOgRQGqyLqOwNKHL6INkv3IHWMF\""
         buildConfigField "String[]", "LANGUAGES", "new String[]{\"" + autoResConfig().collect { s -> s.replace('-r', '_') }.join('", "') + '"}'
