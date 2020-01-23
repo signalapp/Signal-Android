@@ -996,6 +996,7 @@ public class ConversationFragment extends Fragment
 
       if (FeatureFlags.reactionSending() &&
           messageRecord.isSecure()       &&
+          !messageRecord.isUpdate()      &&
           ((ConversationAdapter) list.getAdapter()).getSelectedItems().isEmpty())
       {
         isReacting = true;
