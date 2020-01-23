@@ -36,7 +36,7 @@ public class AccountManagerFactory {
     }
 
     return new SignalServiceAccountManager(new SignalServiceNetworkAccess(context).getConfiguration(number),
-                                           uuid, number, password, BuildConfig.USER_AGENT);
+                                           uuid, number, password, BuildConfig.SIGNAL_AGENT);
   }
 
   /**
@@ -57,7 +57,7 @@ public class AccountManagerFactory {
     }
 
     return new SignalServiceAccountManager(new SignalServiceNetworkAccess(context).getConfiguration(number),
-                                           null, number, password, BuildConfig.USER_AGENT);
+                                           null, number, password, BuildConfig.SIGNAL_AGENT);
   }
 
 }

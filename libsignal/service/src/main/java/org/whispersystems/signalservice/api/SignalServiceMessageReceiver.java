@@ -51,7 +51,7 @@ public class SignalServiceMessageReceiver {
   private final PushServiceSocket          socket;
   private final SignalServiceConfiguration urls;
   private final CredentialsProvider        credentialsProvider;
-  private final String                     userAgent;
+  private final String                     signalAgent;
   private final ConnectivityListener       connectivityListener;
   private final SleepTimer                 sleepTimer;
 
@@ -66,11 +66,11 @@ public class SignalServiceMessageReceiver {
    */
   public SignalServiceMessageReceiver(SignalServiceConfiguration urls,
                                       UUID uuid, String e164, String password,
-                                      String signalingKey, String userAgent,
+                                      String signalingKey, String signalAgent,
                                       ConnectivityListener listener,
                                       SleepTimer timer)
   {
-    this(urls, new StaticCredentialsProvider(uuid, e164, password, signalingKey), userAgent, listener, timer);
+    this(urls, new StaticCredentialsProvider(uuid, e164, password, signalingKey), signalAgent, listener, timer);
   }
 
   /**
@@ -81,14 +81,14 @@ public class SignalServiceMessageReceiver {
    */
   public SignalServiceMessageReceiver(SignalServiceConfiguration urls,
                                       CredentialsProvider credentials,
-                                      String userAgent,
+                                      String signalAgent,
                                       ConnectivityListener listener,
                                       SleepTimer timer)
   {
     this.urls                 = urls;
     this.credentialsProvider  = credentials;
-    this.socket               = new PushServiceSocket(urls, credentials, userAgent);
-    this.userAgent            = userAgent;
+    this.socket               = new PushServiceSocket(urls, credentials, signalAgent);
+    this.signalAgent          = signalAgent;
     this.connectivityListener = listener;
     this.sleepTimer           = timer;
   }
@@ -199,7 +199,7 @@ public class SignalServiceMessageReceiver {
   public SignalServiceMessagePipe createMessagePipe() {
     WebSocketConnection webSocket = new WebSocketConnection(urls.getSignalServiceUrls()[0].getUrl(),
                                                             urls.getSignalServiceUrls()[0].getTrustStore(),
-                                                            Optional.of(credentialsProvider), userAgent, connectivityListener,
+                                                            Optional.of(credentialsProvider), signalAgent, connectivityListener,
                                                             sleepTimer);
 
     return new SignalServiceMessagePipe(webSocket, Optional.of(credentialsProvider));
@@ -208,7 +208,7 @@ public class SignalServiceMessageReceiver {
   public SignalServiceMessagePipe createUnidentifiedMessagePipe() {
     WebSocketConnection webSocket = new WebSocketConnection(urls.getSignalServiceUrls()[0].getUrl(),
                                                             urls.getSignalServiceUrls()[0].getTrustStore(),
-                                                            Optional.<CredentialsProvider>absent(), userAgent, connectivityListener,
+                                                            Optional.<CredentialsProvider>absent(), signalAgent, connectivityListener,
                                                             sleepTimer);
 
     return new SignalServiceMessagePipe(webSocket, Optional.of(credentialsProvider));

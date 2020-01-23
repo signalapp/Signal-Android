@@ -95,22 +95,22 @@ public class SignalServiceAccountManager {
    * @param uuid The Signal Service UUID.
    * @param e164 The Signal Service phone number.
    * @param password A Signal Service password.
-   * @param userAgent A string which identifies the client software.
+   * @param signalAgent A string which identifies the client software.
    */
   public SignalServiceAccountManager(SignalServiceConfiguration configuration,
                                      UUID uuid, String e164, String password,
-                                     String userAgent)
+                                     String signalAgent)
   {
-    this(configuration, new StaticCredentialsProvider(uuid, e164, password, null), userAgent);
+    this(configuration, new StaticCredentialsProvider(uuid, e164, password, null), signalAgent);
   }
 
   public SignalServiceAccountManager(SignalServiceConfiguration configuration,
                                      CredentialsProvider credentialsProvider,
-                                     String userAgent)
+                                     String signalAgent)
   {
-    this.pushServiceSocket = new PushServiceSocket(configuration, credentialsProvider, userAgent);
+    this.pushServiceSocket = new PushServiceSocket(configuration, credentialsProvider, signalAgent);
     this.credentials       = credentialsProvider;
-    this.userAgent         = userAgent;
+    this.userAgent         = signalAgent;
   }
 
   public byte[] getSenderCertificate() throws IOException {

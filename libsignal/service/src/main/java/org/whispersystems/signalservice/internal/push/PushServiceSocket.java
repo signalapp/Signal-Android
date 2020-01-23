@@ -168,12 +168,12 @@ public class PushServiceSocket {
   private final OkHttpClient               attachmentClient;
 
   private final CredentialsProvider credentialsProvider;
-  private final String              userAgent;
+  private final String              signalAgent;
   private final SecureRandom        random;
 
-  public PushServiceSocket(SignalServiceConfiguration signalServiceConfiguration, CredentialsProvider credentialsProvider, String userAgent) {
+  public PushServiceSocket(SignalServiceConfiguration signalServiceConfiguration, CredentialsProvider credentialsProvider, String signalAgent) {
     this.credentialsProvider               = credentialsProvider;
-    this.userAgent                         = userAgent;
+    this.signalAgent                       = signalAgent;
     this.serviceClients                    = createServiceConnectionHolders(signalServiceConfiguration.getSignalServiceUrls());
     this.cdnClients                        = createConnectionHolders(signalServiceConfiguration.getSignalCdnUrls());
     this.contactDiscoveryClients           = createConnectionHolders(signalServiceConfiguration.getSignalContactDiscoveryUrls());
@@ -1068,8 +1068,8 @@ public class PushServiceSocket {
         }
       }
 
-      if (userAgent != null) {
-        request.addHeader("X-Signal-Agent", userAgent);
+      if (signalAgent != null) {
+        request.addHeader("X-Signal-Agent", signalAgent);
       }
 
       if (connectionHolder.getHostHeader().isPresent()) {

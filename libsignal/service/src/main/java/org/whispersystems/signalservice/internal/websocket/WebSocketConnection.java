@@ -54,7 +54,7 @@ public class WebSocketConnection extends WebSocketListener {
   private final String                        wsUri;
   private final TrustStore                    trustStore;
   private final Optional<CredentialsProvider> credentialsProvider;
-  private final String                        userAgent;
+  private final String                        signalAgent;
   private final ConnectivityListener          listener;
   private final SleepTimer                    sleepTimer;
 
@@ -66,13 +66,13 @@ public class WebSocketConnection extends WebSocketListener {
   public WebSocketConnection(String httpUri,
                              TrustStore trustStore,
                              Optional<CredentialsProvider> credentialsProvider,
-                             String userAgent,
+                             String signalAgent,
                              ConnectivityListener listener,
                              SleepTimer timer)
   {
     this.trustStore          = trustStore;
     this.credentialsProvider = credentialsProvider;
-    this.userAgent           = userAgent;
+    this.signalAgent         = signalAgent;
     this.listener            = listener;
     this.sleepTimer          = timer;
     this.attempts            = 0;
@@ -108,8 +108,8 @@ public class WebSocketConnection extends WebSocketListener {
 
       Request.Builder requestBuilder = new Request.Builder().url(filledUri);
 
-      if (userAgent != null) {
-        requestBuilder.addHeader("X-Signal-Agent", userAgent);
+      if (signalAgent != null) {
+        requestBuilder.addHeader("X-Signal-Agent", signalAgent);
       }
 
       if (listener != null) {

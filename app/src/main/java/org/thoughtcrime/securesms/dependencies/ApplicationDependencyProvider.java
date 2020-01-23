@@ -57,7 +57,7 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
   public @NonNull SignalServiceAccountManager provideSignalServiceAccountManager() {
     return new SignalServiceAccountManager(networkAccess.getConfiguration(context),
                                            new DynamicCredentialsProvider(context),
-                                           BuildConfig.USER_AGENT);
+                                           BuildConfig.SIGNAL_AGENT);
   }
 
   @Override
@@ -65,7 +65,7 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
       return new SignalServiceMessageSender(networkAccess.getConfiguration(context),
                                             new DynamicCredentialsProvider(context),
                                             new SignalProtocolStoreImpl(context),
-                                            BuildConfig.USER_AGENT,
+                                            BuildConfig.SIGNAL_AGENT,
                                             TextSecurePreferences.isMultiDevice(context),
                                             Optional.fromNullable(IncomingMessageObserver.getPipe()),
                                             Optional.fromNullable(IncomingMessageObserver.getUnidentifiedPipe()),
@@ -78,7 +78,7 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
                                                                          : new UptimeSleepTimer();
     return new SignalServiceMessageReceiver(networkAccess.getConfiguration(context),
                                             new DynamicCredentialsProvider(context),
-                                            BuildConfig.USER_AGENT,
+                                            BuildConfig.SIGNAL_AGENT,
                                             new PipeConnectivityListener(),
                                             sleepTimer);
   }
