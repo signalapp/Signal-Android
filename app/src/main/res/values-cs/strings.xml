@@ -45,8 +45,8 @@
   <string name="ApplicationPreferencesActivity_off">vyp.</string>
   <string name="ApplicationPreferencesActivity_Off">Vyp.</string>
   <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
-  <string name="ApplicationPreferencesActivity_privacy_summary">Zámek obrazovky %1$s, Registrační zámek %2$s</string>
-  <string name="ApplicationPreferencesActivity_appearance_summary">Motiv %1$s, jazyk %2$s</string>
+  <string name="ApplicationPreferencesActivity_privacy_summary">Zámek obrazovky %1$s, Zámek registrace %2$s</string>
+  <string name="ApplicationPreferencesActivity_appearance_summary">Motiv %1$s, Jazyk %2$s</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minuta</item>
@@ -298,12 +298,12 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Ověřeno</string>
   <!--CreateProfileActivity-->
-  <string name="CreateProfileActivity_your_profile_info">Váš profil</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateProfileActivity_your_profile_info">Váš profil</string> -->
   <string name="CreateProfileActivity_error_setting_profile_photo">Chyba při nastavení profilové fotografie</string>
   <string name="CreateProfileActivity_problem_setting_profile">Problém při nastavení profilu</string>
   <string name="CreateProfileActivity_profile_photo">Profilová fotografie</string>
-  <string name="CreateProfileActivity_too_long">Příliš dlouhý</string>
-  <string name="CreateProfileActivity_profile_name">Profilové jméno</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateProfileActivity_too_long">Příliš dlouhý</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CreateProfileActivity_profile_name">Profilové jméno</string> -->
   <string name="CreateProfileActivity_set_up_your_profile">Nastavit váš profil</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Profily Signal jsou end-to-end šifrované a služba Signal nemá žádný přístup k těmto informacím.</string>
   <string name="CreateProfileActivity_set_avatar_description">Nastavit avatar</string>
@@ -593,16 +593,16 @@
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Verze služby Google Play, kterou máte nainstalovánu, nepracuje správně. Prosím, přeinstalujte službu Google Play a zkuste to znovu.</string>
   <!--ProfileEditNameFragment-->
-  <string name="ProfileEditNameFragment_profile_name">Název profilu</string>
-  <string name="ProfileEditNameFragment_your_profile_name_can_be_seen_by_your_contacts">Váš profil mohou vidět vaše kontakty a ostatní uživatelé nebo skupiny, když zahájíte konverzaci nebo přijmete požadavek na zahájení konverzace. </string>
-  <string name="ProfileEditNameFragment_save">Uložit</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileEditNameFragment_profile_name">Název profilu</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileEditNameFragment_your_profile_name_can_be_seen_by_your_contacts">Váš profil mohou vidět vaše kontakty a ostatní uživatelé nebo skupiny, když zahájíte konverzaci nebo přijmete požadavek na zahájení konverzace. </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileEditNameFragment_save">Uložit</string> -->
   <!--ProfileEditOverviewFragment-->
-  <string name="ProfileEditOverviewFragment_profile">Profil</string>
-  <string name="ProfileEditOverviewFragment_profile_name">Název profilu</string>
-  <string name="ProfileEditOverviewFragment_username">Uživatelské jméno</string>
-  <string name="ProfileEditOverviewFragment_create_a_profile_name">Vytvořit název profilu</string>
-  <string name="ProfileEditOverviewFragment_create_a_username">Vytvořit uživatelské jméno</string>
-  <string name="ProfileEditOverviewFragment_your_signal_profile_can_be_seen_by">Váš Signal profil mohou vidět vaše kontakty a ostatní uživatelé nebo skupiny, když zahájíte konverzaci nebo přijmete požadavek na zahájení konverzace. <a href="https://support.signal.org/hc/en-us/articles/360007459591-Signal-Profiles">Pro více informací klepněte zde</a>.</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileEditOverviewFragment_profile">Profil</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileEditOverviewFragment_profile_name">Název profilu</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileEditOverviewFragment_username">Uživatelské jméno</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileEditOverviewFragment_create_a_profile_name">Vytvořit název profilu</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileEditOverviewFragment_create_a_username">Vytvořit uživatelské jméno</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileEditOverviewFragment_your_signal_profile_can_be_seen_by">Váš Signal profil mohou vidět vaše kontakty a ostatní uživatelé nebo skupiny, když zahájíte konverzaci nebo přijmete požadavek na zahájení konverzace. <a href="https://support.signal.org/hc/en-us/articles/360007459591-Signal-Profiles">Pro více informací klepněte zde</a>.</string> -->
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Ohodnotit tuto aplikaci</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">Pokud jste s aplikací spokojeni, prosím věnujte chvilku jejímu ohodnocení. Pomůže nám to.</string>
@@ -1124,10 +1124,10 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal vyžaduje informace o nastavení MMS, aby mohly být média a skupinové zprávy doručovány prostřednictvím operátora. Vaše zařízení tyto informace neposkytuje, což se občas stává u zamknutých zařízení a jiných omezujících nastavení.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Pro odesílání médií a skupinových zpráv klepněte na \"OK\" a vyplňte požadované informace. Nastavení MMS pro vašeho operátora lze většinou zjistit hledáním \"*váš operátor* APN\". Toto stačí udělat pouze jednou.</string>
   <!--profile_create_activity-->
-  <string name="profile_create_activity__set_later">Nastavit později</string>
-  <string name="profile_create_activity__finish">HOTOVO</string>
-  <string name="profile_create_activity__who_can_see_this_information">Kdo může vidět tuto informaci?</string>
-  <string name="profile_create_activity__your_name">Vaše jméno</string>
+  <!-- Removed by excludeNonTranslatables <string name="profile_create_activity__set_later">Nastavit později</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="profile_create_activity__finish">HOTOVO</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="profile_create_activity__who_can_see_this_information">Kdo může vidět tuto informaci?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="profile_create_activity__your_name">Vaše jméno</string> -->
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Sdílená média</string>
   <!--recipient_preferences-->
@@ -1340,7 +1340,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="preferences_communication__sealed_sender_display_indicators">Zobrazit indikátory</string>
   <string name="preferences_communication__sealed_sender_display_indicators_description">Zobrazit stavovou ikonu když zvolíte \"Detail zprávy\" u zprávy poslané s použitím funkce utajený odesílatel.</string>
   <string name="preferences_communication__sealed_sender_allow_from_anyone">Povolit od kohokoliv</string>
-  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Povolit utajené odesílatele pro příchozí zprávy od lidí, které nemáte kontaktech a se kterými nesdílíte Váš profil.</string>
+  <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Povolit utajené odesílatele pro příchozí zprávy od lidí, které nemáte kontaktech a se kterými nesdílíte váš profil.</string>
   <string name="preferences_communication__sealed_sender_learn_more">Zjistit více</string>
   <!--****************************************-->
   <!--menus-->
@@ -1459,7 +1459,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="Insights__percent">%</string>
   <string name="Insights__title">Postřehy</string>
   <string name="InsightsDashboardFragment__title">Postřehy</string>
-  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Protokolem Signal bylo automaticky chráněno %1$d%% odchozích zpráv za posledních %2$d dnů. Konverzace mezi uživateli Signalu jsou vždy zašifrovány. </string>
+  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Protokolem Signal bylo automaticky chráněno %1$d%% odchozích zpráv za posledních %2$d dnů. Konverzace mezi uživateli Signalu jsou vždy end-to-end šifrovány. </string>
   <string name="InsightsDashboardFragment__boost_your_signal">Podpořte Signal</string>
   <string name="InsightsDashboardFragment__not_enough_data">Nedostatek dat</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Procento je vypočteno na základě odchozích zpráv za posledních %1$d dnů, které nezmizely ani nebyly smazány. </string>
@@ -1562,7 +1562,7 @@ Obdržen požadavek na výměnu klíčů pro neplatnou verzi protokolu.
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Zámek registrace chrání vaše telefonní číslo před pokusy o jeho nepovolenou registraci. Tato vlastnost může být vypnuta kdykoliv v nastavení zabezpečení Signalu.</string>
   <string name="RegistrationLockDialog_registration_lock">Zámek registrace</string>
   <string name="RegistrationLockDialog_enable">Povolit</string>
-  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">PIN zámku registrace musí obsahovat minimálně 4 číslice.</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">PIN zámku registrace musí obsahovat minimálně 4 číslice.</string> -->
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Dva zadané PINy nejsou shodné.</string>
   <string name="RegistrationLockDialog_error_connecting_to_the_service">Chyba při připojování k službě</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">Zakázat PIN zámku registrace?</string>

@@ -73,6 +73,7 @@
   <string name="BucketedThreadMedia_This_week">এই সপ্তাহ</string>
   <string name="BucketedThreadMedia_This_month">এই মাস</string>
   <string name="BucketedThreadMedia_Large">বড়</string>
+  <string name="BucketedThreadMedia_Medium">মধ্যম</string>
   <string name="BucketedThreadMedia_Small">ছোট</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">আগত কল</string>
@@ -100,8 +101,10 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">কোন ওয়েব ব্রাউজার পাওয়া যায়নি।</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">একটি সেলুলার কল ইতিমধ্যে চলছে।</string>
+  <string name="CommunicationActions_start_video_call">ভিডিও কল শুরু করুন?</string>
+  <string name="CommunicationActions_start_voice_call">ভয়েস কল শুরু করুন?</string>
   <string name="CommunicationActions_cancel">বাতিল</string>
-  <string name="CommunicationActions_call">কল</string>
+  <string name="CommunicationActions_call">কল করুন</string>
   <!--ConfirmIdentityDialog-->
   <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">%1$s এর সাথে আপনার নিরাপত্তা নাম্বার পরিবর্তিত হয়েছে। এর মানে এটা হতে পারে যে কেউ আপনার যোগাযোগে বাধা দেওয়ার চেষ্টা করছে কিংবা %2$s পুনরায় Signal ইনস্টল করেছে।</string>
   <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">আপনি হয়ত এই পরিচিতির সাথে আপনার নিরাপত্তা নাম্বার যাচাই করতে চাইবেন।</string>
@@ -224,7 +227,7 @@
     <item quantity="one">সংযুক্তি স্টোরেজে সংরক্ষন করা হচ্ছে…</item>
     <item quantity="other">%1$dসংযুক্তি সমুহ স্টোরেজে সংক্ষরন করা হচ্ছে…</item>
   </plurals>
-  <string name="ConversationFragment_pending">পেন্ডিং…</string>
+  <string name="ConversationFragment_pending">অমীমাংসিত…</string>
   <string name="ConversationFragment_push">ডাটা (Signal)</string>
   <string name="ConversationFragment_mms">এমএমএস</string>
   <string name="ConversationFragment_sms">এসএমএস</string>
@@ -235,6 +238,8 @@
   <string name="ConversationFragment_failed_to_open_message">বার্তা দেখাতে ব্যর্থ</string>
   <string name="ConversationFragment_you_can_swipe_to_the_right_reply">দ্রুত উত্তর দেওয়ার জন্য আপনি যে কোনও বার্তায় ডানদিকে সোয়াইপ করতে পারেন</string>
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">দ্রুত উত্তর দেওয়ার জন্য আপনি কোনও বার্তায় বাম দিকে সোয়াইপ করতে পারেন</string>
+  <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">একবার দেখার যোগ্য বহির্গামী মিডিয়া ফাইলগুলি প্রেরণের পরে সেগুলি স্বয়ংক্রিয়ভাবে মুছে ফেলা হবে</string>
+  <string name="ConversationFragment_you_already_viewed_this_message">আপনি ইতিমধ্যে এই বার্তাটি দেখেছেন</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">আপনার ডিভাইসে কোন ব্রাউজার ইন্সটল করা নেই।</string>
   <!--ConversationListFragment-->
@@ -265,12 +270,12 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">যাচাইকৃত</string>
   <!--CreateProfileActivity-->
-  <string name="CreateProfileActivity_your_profile_info">আপনার প্রোফাইলের তথ্য</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateProfileActivity_your_profile_info">আপনার প্রোফাইলের তথ্য</string> -->
   <string name="CreateProfileActivity_error_setting_profile_photo">প্রোফাইলের ছবি সেট করতে সমস্যা হয়েছে</string>
   <string name="CreateProfileActivity_problem_setting_profile">প্রোফাইল সেট করতে সমস্যা হয়েছে</string>
   <string name="CreateProfileActivity_profile_photo">প্রোফাইলের ছবি</string>
-  <string name="CreateProfileActivity_too_long">বেশী দীর্ঘ</string>
-  <string name="CreateProfileActivity_profile_name">প্রোফাইল নাম</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateProfileActivity_too_long">বেশী দীর্ঘ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CreateProfileActivity_profile_name">প্রোফাইল নাম</string> -->
   <string name="CreateProfileActivity_set_up_your_profile">আপনার প্রোফাইল সেট করুন</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal প্রোফাইলগুলি এক প্রান্ত থেকে অপর প্রান্ত অব্দি এনক্রিপ্ট করা হয় এবং Signal পরিষেবাটির কখনও এই তথ্যে প্রবেশাধিকার থাকে না।</string>
   <string name="CreateProfileActivity_set_avatar_description">প্রোফাইলের ছবি সেট করুন</string>
@@ -302,6 +307,7 @@
   <string name="DeviceListItem_last_active_s">শেষ সক্রিয় %s</string>
   <string name="DeviceListItem_today">আজ</string>
   <!--DocumentView-->
+  <string name="DocumentView_unnamed_file">নামহীন ফাইল</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">অনুপস্থিত প্লে সার্ভিসের জন্য অনুকুল করা</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">এই ডিভাইস প্লে সার্ভিস সমর্থন করে না। সিস্টেম ব্যাটারি অপ্টিমাইজেশন অক্ষম করতে আলতো চাপুন, যা নিষ্ক্রিয় অবস্থায় বার্তা পুনরুদ্ধার থেকে Signal -কে বাধা দেয়।</string>
@@ -331,8 +337,10 @@
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">ঐচ্ছিক লিঙ্ক পূর্বরূপগুলি এখন ইন্টারনেটের বেশ কয়েকটি জনপ্রিয় সাইটের জন্য সমর্থিত।</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">আপনি আপনার Signal সেটিংসে এই বৈশিষ্ট্যটি যে কোনও সময় অক্ষম বা সক্ষম করতে পারেন (গোপনীয়তা এবং লিঙ্কের পূর্বরূপ প্রেরণ করুন)।</string>
   <string name="ExperienceUpgradeActivity_got_it">বুঝতে পেরেছি</string>
+  <string name="ExperienceUpgradeActivity_introducing_stickers">স্টিকারের সাথে পরিচিত হন</string>
   <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">আপনি যখন স্টিকার ব্যবহার করতে পারেন তখন কেন শব্দ ব্যবহার করবেন?</string>
   <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">আপনি যখন স্টিকার ব্যবহার করতে পারেন তখন কেন শব্দ ব্যবহার করবেন? আপনার কীবোর্ডে এই আইকনটি আলতো চাপুন:</string>
+  <string name="ExperienceUpgradeActivity_lets_go">শুরু করা যাক</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">একটি বার্তা আনয়ন করা হচ্ছে…</string>
   <!--GcmRefreshJob-->
@@ -373,6 +381,8 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">শেয়ার করুন</string>
   <string name="InviteActivity_choose_contacts">পরিচিতি সমূহ চয়ন করুন</string>
+  <string name="InviteActivity_share_with_contacts">পরিচিতিদের সাথে শেয়ার করুন</string>
+  <string name="InviteActivity_choose_how_to_share">কিভাবে শেয়ার করবেন তা চয়ন করুন</string>
   <string name="InviteActivity_cancel">বাতিল</string>
   <string name="InviteActivity_sending">পাঠানো হচ্ছে</string>
   <string name="InviteActivity_heart_content_description">হৃদয়</string>
@@ -405,15 +415,45 @@
   <string name="MmsDownloader_error_reading_mms_settings">ওয়্যারলেস সরবরাহকারীর এমএমএস সেটিংস পড়তে ত্রুটি</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">মিডিয়া</string>
+  <string name="MediaOverviewActivity_Files">ফাইলসমূহ</string>
   <string name="MediaOverviewActivity_Audio">শব্দ</string>
+  <string name="MediaOverviewActivity_All">সব</string>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+    <item quantity="one">নির্বাচিত আইটেম মুছে ফেলবেন?</item>
+    <item quantity="other">নির্বাচিত আইটেম গুলো মুছে ফেলবেন?</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+    <item quantity="one">এটি স্থায়ীভাবে নির্বাচিত সমস্ত ফাইল মুছবে। এই আইটেমগুলির সাথে সম্পর্কিত কোনও বার্তা পাঠ্যও মুছে ফেলা হবে।</item>
+    <item quantity="other">এটি স্থায়ীভাবে নির্বাচিত সমস্ত %1$d ফাইল মুছবে। এই আইটেমগুলির সাথে সম্পর্কিত অন্য বার্তা পাঠ্যও মুছে ফেলা হবে।</item>
+  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">মোছা হচ্ছে…</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">বার্তা সমূহ মোছা হচ্ছে…</string>
   <string name="MediaOverviewActivity_Select_all">সবগুলো নির্বাচন করুন</string>
   <string name="MediaOverviewActivity_collecting_attachments">সংযুক্তি সমুহ সংগ্রহ করা হচ্ছে…</string>
+  <string name="MediaOverviewActivity_Sort_by">ক্রমানুসার</string>
+  <string name="MediaOverviewActivity_Newest">নতুন</string>
+  <string name="MediaOverviewActivity_Oldest">পুরাতন</string>
+  <string name="MediaOverviewActivity_Storage_used">স্টোরেজ ব্যবহৃত</string>
+  <string name="MediaOverviewActivity_All_storage_use">সকল স্টোরেজ ব্যবহৃত</string>
+  <string name="MediaOverviewActivity_Grid_view_description">গার্ড ভিউ</string>
+  <string name="MediaOverviewActivity_List_view_description">লিস্ট ভিউ</string>
+  <string name="MediaOverviewActivity_Selected_description">নির্বাচিত</string>
+  <plurals name="MediaOverviewActivity_d_items_s">
+    <item quantity="one">%1$d আইটেম %2$s</item>
+    <item quantity="other">%1$d আইটেমগুলি %2$s</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_d_items">
+    <item quantity="one">%1$d আইটেম</item>
+    <item quantity="other">%1$d আইটেমগুলি</item>
+  </plurals>
   <string name="MediaOverviewActivity_file">ফাইল</string>
   <string name="MediaOverviewActivity_audio">শব্দ</string>
   <string name="MediaOverviewActivity_video">ভিডিও</string>
   <string name="MediaOverviewActivity_image">ছবি</string>
+  <string name="MediaOverviewActivity_sent_by_s">%1$s দ্বারা প্রেরিত</string>
+  <string name="MediaOverviewActivity_sent_by_you">আপনার প্রেরিত</string>
+  <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s দ্বারা %2$s কে প্রেরিত</string>
+  <string name="MediaOverviewActivity_sent_by_you_to_s">%1$sকে আপনার প্রেরিত </string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal কল চলমান </string>
   <string name="NotificationBarManager__establishing_signal_call">Signal কল স্থাপন করা হচ্ছে</string>
@@ -445,6 +485,7 @@
     <item quantity="other">%dটার বেশী জিনিষ শেয়ার করতে পারবেন না।</item>
   </plurals>
   <string name="MediaSendActivity_select_recipients_description">প্রাপক নির্বাচন করুন</string>
+  <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">এই বার্তাটি দেখার পরে অদৃশ্য হয়ে যাওয়ার জন্য এখানে আলতো চাপুন।</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">সমস্ত মিডিয়া</string>
   <!--MessageRecord-->
@@ -501,7 +542,7 @@
   <string name="PassphrasePromptActivity_watermark_content_description">Signal আইকন</string>
   <string name="PassphrasePromptActivity_ok_button_content_description">পাসফ্রেজ সাবমিট করুন</string>
   <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">অকার্যকর পাসফ্রেজ!</string>
-  <string name="PassphrasePromptActivity_unlock_signal">Signal লক্ খুলুন</string>
+  <string name="PassphrasePromptActivity_unlock_signal">Signal আনলক করুন</string>
   <!--PlacePickerActivity-->
   <string name="PlacePickerActivity_title">ম্যাপ</string>
   <string name="PlacePickerActivity_not_a_valid_address">কোনও বৈধ ঠিকানা নয়</string>
@@ -510,10 +551,16 @@
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">আপনার ইনস্টল করা গুগল প্লে পরিষেবাদির সংস্করণটি সঠিকভাবে কাজ করছে না। গুগল প্লে পরিষেবাগুলি পুনরায় ইনস্টল করুন এবং আবার চেষ্টা করুন।</string>
   <!--ProfileEditNameFragment-->
-  <string name="ProfileEditNameFragment_save">সংরক্ষন</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileEditNameFragment_profile_name">প্রোফাইল নাম</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileEditNameFragment_your_profile_name_can_be_seen_by_your_contacts">আপনি যখন কোনও কথোপকথন শুরু করেন বা কোনও কথোপকথনের অনুরোধ গ্রহণ করেন তখন আপনার প্রোফাইল নামটি আপনার পরিচিতিগুলি এবং অন্যান্য ব্যবহারকারী বা গ্রুপ দ্বারা দেখা যায়।</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileEditNameFragment_save">সংরক্ষন</string> -->
   <!--ProfileEditOverviewFragment-->
-  <string name="ProfileEditOverviewFragment_profile">প্রোফাইল</string>
-  <string name="ProfileEditOverviewFragment_username">ব্যবহারকারীর নাম</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileEditOverviewFragment_profile">প্রোফাইল</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileEditOverviewFragment_profile_name">প্রোফাইল নাম</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileEditOverviewFragment_username">ব্যবহারকারীর নাম</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileEditOverviewFragment_create_a_profile_name">প্রোফাইল নাম তৈরি করুন</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileEditOverviewFragment_create_a_username">একটি ব্যবহারকারীর নাম তৈরি করুন</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileEditOverviewFragment_your_signal_profile_can_be_seen_by">আপনি যখন কোনও কথোপকথন শুরু করেন বা কোনও কথোপকথনের অনুরোধ গ্রহণ করেন তখন আপনার Signal প্রোফাইল নামটি আপনার পরিচিতিগুলি এবং অন্যান্য ব্যবহারকারী বা গ্রুপ দ্বারা দেখা যায়।<a href="https://support.signal.org/hc/en-us/articles/360007459591-Signal-Profiles">আরও জানতে এখানে আলতো চাপুন</a>|</string> -->
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">এই এপটিকে রেটিং দিন</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">আপনি যদি এই অ্যাপ ব্যবহার করে উপভোগ করেন, তবে দয়া করে এটি রেটিং দিতে কিছুক্ষণ সময় দিয়ে আমাদের সহায়তা করুন।</string>
@@ -580,6 +627,8 @@
   <string name="RegistrationActivity_failed_to_verify_the_captcha">ক্যাপচা যাচাই করতে ব্যর্থ</string>
   <string name="RegistrationActivity_next">পরবর্তী</string>
   <string name="RegistrationActivity_continue">চলতে থাকুন</string>
+  <string name="RegistrationActivity_continue_d_attempts_left">চালিয়ে যান ( %d প্রচেষ্টা বাকি আছে)</string>
+  <string name="RegistrationActivity_continue_last_attempt">চালিয়ে যান (সর্বশেষ প্রচেষ্টা)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">আপনার গোপনীয়তা বজায় রাখুন।\n প্রতিটি বার্তায় নিজস্ব থাকুন।</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">শুরু করতে আপনার ফোন নাম্বার লিখুন</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">আপনি একটি যাচাইকরণ কোড পাবেন। ক্যারিয়ারের হার প্রযোজ্য হতে পারে।</string>
@@ -589,6 +638,7 @@
   <string name="RegistrationActivity_call">কল করুন</string>
   <!--RevealableMessageView-->
   <string name="RevealableMessageView_view_photo">ছবি দেখুন</string>
+  <string name="RevealableMessageView_view_video">ভিডিও দেখুন</string>
   <string name="RevealableMessageView_viewed">দেখা হয়ে গেছে</string>
   <string name="RevealableMessageView_media">মিডিয়া</string>
   <!--ScribbleActivity-->
@@ -650,6 +700,9 @@
   <string name="ThreadRecord_missed_call">ব্যর্থ কল</string>
   <string name="ThreadRecord_media_message">মিডিয়া বার্তা</string>
   <string name="ThreadRecord_sticker">স্টিকার</string>
+  <string name="ThreadRecord_view_once_photo">একবার দেখার যোগ্য ছবি</string>
+  <string name="ThreadRecord_view_once_video">একবার দেখার যোগ্য ভিডিও</string>
+  <string name="ThreadRecord_view_once_media">একবার দেখা যাবে এমন মিডিয়া</string>
   <string name="ThreadRecord_s_is_on_signal">%s Signal এ যোগ দিয়েছেন!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">অদৃশ্য হওয়া বার্তাগুলি অক্ষম করা হয়েছে</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">অদৃশ্য হয়ে যাওয়া বার্তার সময়টি %s এ সেট করা হয়েছে</string>
@@ -678,6 +731,16 @@
   <string name="UsernameEditFragment_username">ব্যবহারকারীর নাম</string>
   <string name="UsernameEditFragment_submit">সাবমিট</string>
   <string name="UsernameEditFragment_delete">মুছে দিন</string>
+  <string name="UsernameEditFragment_successfully_set_username">সফলভাবে ব্যবহারকারীর নাম সেট করা হয়েছে।</string>
+  <string name="UsernameEditFragment_successfully_removed_username">সফলভাবে ব্যবহারকারীর নাম মুছে ফেলা হয়েছে।</string>
+  <string name="UsernameEditFragment_encountered_a_network_error">একটি নেটওয়ার্ক ত্রুটি সম্মুখীন।</string>
+  <string name="UsernameEditFragment_this_username_is_taken">এই ব্যবহারকারীর নাম নেওয়া হয়েছে|</string>
+  <string name="UsernameEditFragment_this_username_is_available">নামটি ব্যবহার করা যাবে|</string>
+  <string name="UsernameEditFragment_usernames_can_only_include">ব্যবহারকারীর নামগুলিতে কেবল a-Z, 0-9 এবং আন্ডারস্কোর অন্তর্ভুক্ত থাকতে পারে।</string>
+  <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">ব্যবহারকারীর নাম সংখ্যা দিয়ে শুরু করতে পারে না।</string>
+  <string name="UsernameEditFragment_username_is_invalid">ব্যবহারকারীর নাম অবৈধ|</string>
+  <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">ব্যবহারকারীর নামগুলি অবশ্যই %1$d এবং %2$d অক্ষরের মধ্যে থাকতে হবে।</string>
+  <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">অন্যান্য Signal ব্যবহারকারীরা আপনার ফোন নম্বরটি না জেনে আপনার অনন্য ব্যবহারকারী নামের মাধ্যমে আপনার কাছে বার্তা অনুরোধ পাঠাতে পারে। ব্যবহারকারীর নাম নির্বাচন করা ঐচ্ছিক।</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">আপনার পরিচিতি Signal এর একটি পুরানো সংস্করণ চলাচ্ছেন। আপনার নিরাপত্তা নাম্বার যাচাই করার আগে দয়া করে তাকে আপডেট করতে বলুন।</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">আপনার পরিচিতি একটি অসঙ্গত QR কোড ফর্ম্যাট সহ সিগন্যালের একটি নতুন সংস্করণ চলাচ্ছেন। তুলনা করার জন্য আপডেট করুন।</string>
@@ -717,6 +780,7 @@
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">অনুমতি ব্যতীত বাহ্যিক স্টোরেজে সংরক্ষণ করতে অক্ষম</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">বার্তা মুছে দিন?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">স্থায়ীভাবে এই বার্তাটি মুছে দিন।</string>
+  <string name="MediaPreviewActivity_s_to_s">%1$s থেকে %2$s</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$dটি নতুন বার্তা%2$dটি কথোপকথন</string>
   <string name="MessageNotifier_most_recent_from_s">%1$sথেকে অতি সাম্প্রতিক :</string>
@@ -729,6 +793,8 @@
   <string name="MessageNotifier_mark_read">পঠিত বলে সনাক্ত কর</string>
   <string name="MessageNotifier_media_message">মিডিয়া বার্তা</string>
   <string name="MessageNotifier_sticker">স্টিকার</string>
+  <string name="MessageNotifier_view_once_photo">একবার দেখার যোগ্য ছবি</string>
+  <string name="MessageNotifier_view_once_video">একবার দেখার যোগ্য ভিডিও</string>
   <string name="MessageNotifier_reply">প্রত্যুত্তর</string>
   <string name="MessageNotifier_signal_message">Signal বার্তা</string>
   <string name="MessageNotifier_unsecured_sms">অনিরাপদ এসএমএস</string>
@@ -736,6 +802,7 @@
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">সাম্প্রতিক বিজ্ঞপ্তিগুলি দেখার জন্য Signal খুলুন।</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">পরিচিতি</string>
+  <string name="MessageNotifier_reacted_to_your_message">আপনার বার্তায় প্রতিক্রিয়া জানিয়েছে: %1$s</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">সচারচর</string>
   <string name="NotificationChannel_calls">কল সমূহ</string>
@@ -747,6 +814,8 @@
   <string name="NotificationChannel_group_messages">বার্তা সমূহ</string>
   <string name="NotificationChannel_missing_display_name">অজানা</string>
   <!--ProfileEditNameFragment-->
+  <string name="ProfileEditNameFragment_successfully_set_profile_name">সফলভাবে প্রোফাইল নাম সেট করা হয়েছে।</string>
+  <string name="ProfileEditNameFragment_encountered_a_network_error">একটি নেটওয়ার্ক ত্রুটি সম্মুখীন।</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal লক্ করা থাকলে দ্রুত প্রত্যুত্তর দেওয়া সম্ভব নয়!</string>
   <string name="QuickResponseService_problem_sending_message">বার্তা প্রেরণে সমস্যা!</string>
@@ -762,6 +831,8 @@
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">নতুন বার্তা</string>
   <!--ThumbnailView-->
+  <string name="ThumbnailView_Play_video_description">ভিডিও চালান</string>
+  <string name="ThumbnailView_Has_a_caption_description">একটি ক্যাপশন আছে</string>
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">
     <item quantity="one">%d টি বস্তু</item>
@@ -827,6 +898,8 @@
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">আপনার পরিচিতিসমূহ দেখানোর জন্য Signal এর পরিচিতি পাঠের অনুমতি প্রয়োজন তবে এটি স্থায়ীভাবে অস্বীকার করা হয়েছে। দয়া করে অ্যাপ্লিকেশন সেটিংসে যান এবং \"অনুমতিগুলি\" নির্বাচন করুন এবং \"পরিচিতি\" সক্ষম করুন।</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">পরিচিতি পুনরুদ্ধারে ত্রুটি, আপনার নেটওয়ার্ক সংযোগটি পরীক্ষা করুন</string>
+  <string name="ContactSelectionListFragment_username_not_found">ব্যবহারকারীর নাম খুঁজে পাওয়া যায়নি</string>
+  <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" কোনও Signal ব্যবহারকারী নয়। দয়া করে ব্যবহারকারীর নামটি পরীক্ষা করুন এবং আবার চেষ্টা করুন।</string>
   <string name="ContactSelectionListFragment_okay">ঠিক আছে</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">কোনও অবরুদ্ধ পরিচিতি নেই</string>
@@ -867,6 +940,7 @@
   <string name="QuoteView_audio">অডিও</string>
   <string name="QuoteView_video">ভিডিও</string>
   <string name="QuoteView_photo">ছবি</string>
+  <string name="QuoteView_view_once_media">একবার দেখা যাবে এমন মিডিয়া</string>
   <string name="QuoteView_sticker">স্টিকার</string>
   <string name="QuoteView_document">নথিপত্র</string>
   <string name="QuoteView_you">আপনি</string>
@@ -985,10 +1059,10 @@
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">আপনার ওয়্যারলেস ক্যারিয়ারের মাধ্যমে মিডিয়া এবং গ্রুপ বার্তাগুলি সরবরাহ করার জন্য সিগন্যালের এমএমএস সেটিংস প্রয়োজন। আপনার ডিভাইসএ এই তথ্যটি পাওয়া যাচ্ছে না, যা লক্ করা ডিভাইস এবং অন্যান্য বিধিনিষেধযুক্ত কনফিগারেশনের জন্য প্রায়শ সত্য|</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">মিডিয়া এবং গ্রুপ বার্তা প্রেরণ করতে, \'ঠিক আছে\' আলতো চাপুন এবং অনুরোধ করা সেটিংসটি সম্পূর্ণ করুন। আপনার ক্যারিয়ারের এমএমএস সেটিংস সাধারণত \'আপনার ক্যারিয়ার এপিএন\' অনুসন্ধান করে সনাক্ত করা যায়। আপনার কেবল এটি একবার করা দরকার।</string>
   <!--profile_create_activity-->
-  <string name="profile_create_activity__set_later">পরে সেট করুন</string>
-  <string name="profile_create_activity__finish">শেষ</string>
-  <string name="profile_create_activity__who_can_see_this_information">কে এই তথ্য দেখতে পাবে?</string>
-  <string name="profile_create_activity__your_name">আপনার নাম</string>
+  <!-- Removed by excludeNonTranslatables <string name="profile_create_activity__set_later">পরে সেট করুন</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="profile_create_activity__finish">শেষ</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="profile_create_activity__who_can_see_this_information">কে এই তথ্য দেখতে পাবে?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="profile_create_activity__your_name">আপনার নাম</string> -->
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">শেয়ার করা মিডিয়া</string>
   <!--recipient_preferences-->
@@ -1142,6 +1216,7 @@
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">কোনও কথোপকথন একটি নির্দিষ্ট দৈর্ঘ্য ছাড়িয়ে গেলে স্বয়ংক্রিয়ভাবে পুরানো বার্তাগুলি মুছে দিন</string>
   <string name="preferences__delete_old_messages">পুরানো বার্তা মুছে দিন</string>
   <string name="preferences__chats">চ্যাট আর মিডিয়া</string>
+  <string name="preferences__storage">স্টোরেজ</string>
   <string name="preferences__conversation_length_limit">কথোপকথন দৈর্ঘ্য সীমা</string>
   <string name="preferences__trim_all_conversations_now">এখন সমস্ত কথোপকথন সংক্ষিপ্ত করুন</string>
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">সমস্ত কথোপকথন স্ক্যান করুন এবং কথোপকথন দৈর্ঘ্যের সীমাটি প্রয়োগ করুন</string>
@@ -1170,7 +1245,12 @@
   <string name="preferences_chats__when_roaming">রোমিং করার সময়</string>
   <string name="preferences_chats__media_auto_download">মিডিয়া অটো-ডাউনলোড</string>
   <string name="preferences_chats__message_trimming">বার্তা ছাঁটাই</string>
+  <string name="preferences_storage__storage_usage">স্টোরেজ ব্যবহার</string>
+  <string name="preferences_storage__photos">ছবিসমূহ</string>
+  <string name="preferences_storage__videos">ভিডিওসমূহ</string>
+  <string name="preferences_storage__files">ফাইলসমূহ</string>
   <string name="preferences_storage__audio">শব্দ</string>
+  <string name="preferences_storage__review_storage">স্টোরেজ পর্যালোচনা</string>
   <string name="preferences_advanced__use_system_emoji">সিস্টেম ইমোজি ব্যবহার করুন</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Signal এর অন্তর্নির্মিত ইমোজি সমর্থন অক্ষম করুন</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">আপনার যোগাযোগের আইপি ঠিকানাটি প্রকাশ না করার জন্য Signal সার্ভারের মাধ্যমে কল সমূহ রিলে করুন। সক্ষম করা কল এর মান হ্রাস পাবে|</string>
@@ -1199,11 +1279,12 @@
   <!--menus-->
   <!--****************************************-->
   <!--contact_selection_list-->
-  <string name="contact_selection_list__unknown_contact">প্রতি নতুন বার্তা …</string>
+  <string name="contact_selection_list__unknown_contact">নতুন বার্তা …</string>
   <!--conversation_callable_insecure-->
   <string name="conversation_callable_insecure__menu_call">কল করুন</string>
   <!--conversation_callable_secure-->
   <string name="conversation_callable_secure__menu_call">Signal কল</string>
+  <string name="conversation_callable_secure__menu_video">Signal ভিডিও কল</string>
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">বার্তার খুঁটিনাটি</string>
   <string name="conversation_context__menu_copy_text">টেক্সট কপি করুন</string>
@@ -1212,6 +1293,7 @@
   <string name="conversation_context__menu_resend_message">বার্তা পুনরায় পাঠান</string>
   <string name="conversation_context__menu_reply_to_message">বার্তার জবাব দিন</string>
   <!--conversation_context_reacction-->
+  <string name="conversation_context__reaction_multi_select">একাধিক নির্বাচন করুন</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">সংযুক্তি সংরক্ষন করুন</string>
   <!--conversation_expiring_off-->
@@ -1290,6 +1372,7 @@
   <string name="reminder_header_share_text">বন্ধুরা যত বেশি Signal ব্যবহার করে তত ভাল হয়।</string>
   <string name="reminder_header_service_outage_text">Signal  প্রযুক্তিগত অসুবিধাগুলি অনুভব করছে। আমরা যত তাড়াতাড়ি সম্ভব সেবা পুনরুদ্ধার করতে কঠোর পরিশ্রম করছি।</string>
   <string name="reminder_header_the_latest_signal_features_wont_work">সর্বশেষতম Signal বৈশিষ্ট্যগুলি অ্যানড্রয়েড এর এই সংস্করণে কাজ করবে না। ভবিষ্যতে Signal আপডেটগুলি পেতে দয়া করে এই ডিভাইস টি আপগ্রেড করুন।</string>
+  <string name="reminder_header_progress">%1$d%%</string>
   <!--media_preview-->
   <string name="media_preview__save_title">সংরক্ষণ</string>
   <string name="media_preview__forward_title">ফরওয়ার্ড</string>
@@ -1304,11 +1387,27 @@
   <string name="trimmer__deleting_old_messages">পুরানো বার্তাগুলি মোছা হচ্ছে …‌</string>
   <string name="trimmer__old_messages_successfully_deleted">পুরানো বার্তা সফলভাবে মোছা হয়েছে</string>
   <!--Insights-->
+  <string name="Insights__percent">%</string>
   <string name="Insights__title">অন্তর্দৃষ্টি</string>
   <string name="InsightsDashboardFragment__title">অন্তর্দৃষ্টি</string>
+  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal প্রোটোকল গত %2$d দিনগুলিতে স্বয়ংক্রিয়ভাবে আপনার বহির্গামী বার্তাগুলির %1$d%% সুরক্ষিত করেছে। Signal ব্যবহারকারীদের মধ্যে কথোপকথন সর্বদা এক প্রান্ত থেকে অপর প্রান্ত এনক্রিপ্ট থাকে।</string>
+  <string name="InsightsDashboardFragment__boost_your_signal">Signal প্রচার করা</string>
+  <string name="InsightsDashboardFragment__not_enough_data">পর্যাপ্ত তথ্য নেই</string>
+  <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">আপনার অন্তর্দৃষ্টি শতাংশ বিগত %1$d দিনের মধ্যে বহির্গামী বার্তাগুলির উপর ভিত্তি করে গণনা করা হয় যা নিখোঁজ হয়নি বা মোছা হয়নি।</string>
+  <string name="InsightsDashboardFragment__start_a_conversation">একটি কথোপকথন শুরু করুন</string>
+  <string name="InsightsDashboardFragment__invite_your_contacts">সুরক্ষিতভাবে যোগাযোগ শুরু করুন এবং Signal যোগ দেওয়ার জন্য আরও পরিচিতিগুলিকে আমন্ত্রণ জানিয়ে এনক্রিপ্ট করা এসএমএস বার্তাগুলির সীমা ছাড়িয়ে যাওয়ার মতো নতুন বৈশিষ্ট্য সক্ষম করুন|</string>
+  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">এই পরিসংখ্যানগুলি স্থানীয়ভাবে আপনার ডিভাইসে তৈরি হয়েছিল এবং কেবলমাত্র আপনার দ্বারা দেখা যেতে পারে। এগুলি কখনই কোথাও সঞ্চারিত হয় না।</string>
+  <string name="InsightsDashboardFragment__encrypted_messages">এনক্রিপ্ট করা বার্তা</string>
   <string name="InsightsDashboardFragment__cancel">বাতিল</string>
   <string name="InsightsDashboardFragment__send">পাঠান</string>
+  <string name="InsightsModalFragment__title">অন্তর্দৃষ্টি উপস্থাপন করছি</string>
+  <string name="InsightsModalFragment__description">আপনার কতগুলি বহির্গামী বার্তাগুলি সুরক্ষিতভাবে প্রেরণ করা হয়েছে তা সন্ধান করুন, তারপরে আপনার Signal শতাংশকে বাড়িয়ে তুলতে দ্রুত নতুন পরিচিতিকে আমন্ত্রণ জানান।</string>
+  <string name="InsightsModalFragment__view_insights">অন্তর্দৃষ্টি দেখুন</string>
   <string name="FirstInviteReminder__title">Signal এ আমন্ত্রন জানান</string>
+  <string name="FirstInviteReminder__description">আপনি %1$d%% দ্বারা প্রেরিত এনক্রিপ্ট হওয়া বার্তাগুলির সংখ্যা বাড়িয়ে দিতে পারেন</string>
+  <string name="SecondInviteReminder__title">আপনার Signal প্রচার করুন</string>
+  <string name="SecondInviteReminder__description">%1$s কে আমন্ত্রণ জানান</string>
+  <string name="InsightsReminder__view_insights">অন্তর্দৃষ্টি দেখুন</string>
   <string name="InsightsReminder__invite">আমন্ত্রণ</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">পরিবহন আইকন</string>
@@ -1354,7 +1453,7 @@
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">ব্যাকআপগুলি তৈরি করতে Signal এর জন্য বাহ্যিক স্টোরেজ অনুমতি প্রয়োজন, তবে এটি স্থায়ীভাবে অস্বীকার করা হয়েছে। দয়া করে অ্যাপ্লিকেশন সেটিংস যান, \"অনুমতিগুলি\" নির্বাচন করুন এবং \"স্টোরেজ\" সক্ষম করুন।</string>
   <string name="ChatsPreferenceFragment_last_backup_s">শেষ ব্যাকঅাপ: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">চলমান</string>
-  <string name="LocalBackupJob_creating_backup">ব্যাকঅাপ তৈরি করা হচ্ছে …</string>
+  <string name="LocalBackupJob_creating_backup">ব্যাকআপ তৈরি করা হচ্ছে …</string>
   <string name="ProgressPreference_d_messages_so_far">এযাবৎ %d টি বার্তা</string>
   <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">%s এ প্রেরিত যাচাইকরণ কোডটি প্রবেশ করুন।</string>
   <string name="RegistrationActivity_wrong_number">ভুল নাম্বার</string>
@@ -1394,11 +1493,13 @@
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">রেজিস্ট্রেশন লক আপনার ফোন নাম্বার অননুমোদিত রেজিস্ট্রেশন প্রচেষ্টা থেকে রক্ষা করতে সহায়তা করে। আপনার Signal গোপনীয়তা সেটিংস থেকে এই বৈশিষ্ট্যটি যে কোনও সময় অক্ষম করা যেতে পারে।</string>
   <string name="RegistrationLockDialog_registration_lock">রেজিস্ট্রেশন লক</string>
   <string name="RegistrationLockDialog_enable">সক্ষম করুন</string>
-  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">রেজিস্ট্রেশন লক এর পিন কোড অবশ্যই কমপক্ষে 4 ডিজিটের হতে হবে।</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">রেজিস্ট্রেশন লক এর পিন কোড অবশ্যই কমপক্ষে 4 ডিজিটের হতে হবে।</string> -->
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">আপনি যে দুটি পিন লিখেছেন তা মিলছে না।</string>
   <string name="RegistrationLockDialog_error_connecting_to_the_service">পরিষেবাটিতে সংযোগ করার সময় ত্রুটি</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">রেজিস্ট্রেশন লক এর পিন কোড অক্ষম করতে চান?</string>
   <string name="RegistrationLockDialog_disable">অকেজো</string>
+  <string name="RegistrationActivity_pin_incorrect">পিন সঠিক নয়</string>
+  <string name="RegistrationActivity_you_have_d_tries_remaining">আপনার %d টি প্রচেষ্টা বাকি আছে</string>
   <string name="preferences_chats__backups">ব্যাকআপ সমূহ</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal লক্ করা আছে</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">লক্ খুলতে ট্যাপ করুন</string>
@@ -1408,5 +1509,14 @@
   <string name="MessageRequestBottomView_accept">মানছি</string>
   <string name="MessageRequestBottomView_delete">মুছে দিন</string>
   <string name="MessageRequestBottomView_block">অবরূদ্ধ</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let">আপনি কি %1$s এর নিকট থেকে বার্তা পেতে চান?</string>
+  <string name="MessageRequestProfileView_member_of_one_group">%1$sএর সদস্য</string>
+  <string name="MessageRequestProfileView_member_of_two_groups">%1$s এবং %2$s এর সদস্য</string>
+  <string name="MessageRequestProfileView_member_of_many_groups">%1$s, %2$s, এবং %3$s এর সদস্য</string>
+  <string name="MessageRequestProfileView_members">%1$d সদস্য</string>
+  <plurals name="MessageRequestProfileView_member_of_others">
+    <item quantity="one">%dঅন্যান্য</item>
+    <item quantity="other">%d অন্যান্য</item>
+  </plurals>
   <!--EOF-->
 </resources>

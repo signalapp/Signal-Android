@@ -73,6 +73,7 @@
   <string name="BucketedThreadMedia_This_week">ह्या आवठवड्यात</string>
   <string name="BucketedThreadMedia_This_month">ह्या महिन्यात</string>
   <string name="BucketedThreadMedia_Large">मोठे</string>
+  <string name="BucketedThreadMedia_Medium">मध्यम</string>
   <string name="BucketedThreadMedia_Small">छोटे</string>
   <!--CallScreen-->
   <string name="CallScreen_Incoming_call">येणारा कॉल</string>
@@ -100,6 +101,8 @@
   <!--CommunicationActions-->
   <string name="CommunicationActions_no_browser_found">कुठलाही वेब ब्राऊझर सापडला नाही.</string>
   <string name="CommunicationActions_a_cellular_call_is_already_in_progress">एक सेल्यूलर कॉल प्रगतीमध्ये आहे.</string>
+  <string name="CommunicationActions_start_video_call">व्हिडिओ कॉल चालू करायचा?</string>
+  <string name="CommunicationActions_start_voice_call">व्हॉईस कॉल चालू करायचा?</string>
   <string name="CommunicationActions_cancel">रद्द करा</string>
   <string name="CommunicationActions_call">कॉल करा</string>
   <!--ConfirmIdentityDialog-->
@@ -235,6 +238,8 @@
   <string name="ConversationFragment_failed_to_open_message">संदेश उघडण्यात अयशस्वी</string>
   <string name="ConversationFragment_you_can_swipe_to_the_right_reply">जलद प्रतिसाद देण्यासाठी आपण कुठल्याही संदेशावर उजवीकडे स्वाइप करू शकता</string>
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">जलद प्रतिसाद देण्यासाठी आपण कुठल्याही संदेशावर डावीकडे स्वाइप करू शकता</string>
+  <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">पाठविल्यानंतर बाहेर जाणाऱ्या एकदा-बघा मिडिया फाईल स्वयंचलितपणे काढल्या जातील</string>
+  <string name="ConversationFragment_you_already_viewed_this_message">आपण आधीच हा संदेश पाहिला आहे</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">आपल्या डिव्हाईसवर कुठलेही ब्राऊझर स्थापन केलेले नाही.</string>
   <!--ConversationListFragment-->
@@ -265,12 +270,12 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">सत्यापित</string>
   <!--CreateProfileActivity-->
-  <string name="CreateProfileActivity_your_profile_info">आपली प्रोफाईल माहिती</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateProfileActivity_your_profile_info">आपली प्रोफाईल माहिती</string> -->
   <string name="CreateProfileActivity_error_setting_profile_photo">प्रोफाईल फोटो सेट करण्यात त्रुटी</string>
   <string name="CreateProfileActivity_problem_setting_profile">प्रोफाईल सेट करण्यात समस्या</string>
   <string name="CreateProfileActivity_profile_photo">प्रोफाईल फोटो</string>
-  <string name="CreateProfileActivity_too_long">खूप लांब</string>
-  <string name="CreateProfileActivity_profile_name">प्रोफाईल नाव</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateProfileActivity_too_long">खूप लांब</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CreateProfileActivity_profile_name">प्रोफाईल नाव</string> -->
   <string name="CreateProfileActivity_set_up_your_profile">आपली प्रोफाईल सेट अप करा</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Signal प्रोफाईल एंड-टू-एंड एन्क्रिप्टेड असतात, आणि Signal सेवेला या माहितीचा अॅक्सेस कधीही नसतो.</string>
   <string name="CreateProfileActivity_set_avatar_description">अवतार सेट करा</string>
@@ -302,6 +307,7 @@
   <string name="DeviceListItem_last_active_s">%s शेवटचा सक्रिय</string>
   <string name="DeviceListItem_today">आज</string>
   <!--DocumentView-->
+  <string name="DocumentView_unnamed_file">अनामित फाईल</string>
   <!--DozeReminder-->
   <string name="DozeReminder_optimize_for_missing_play_services">नसलेल्या प्ले सेवांकरिता ऑप्टीमाईझ करा</string>
   <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">हा डिव्हाईस प्ले सेवांचे समर्थन करत नाही. निष्क्रिय असल्यावर संदेश पुनर्प्राप्त करताना अवरोधित करणारे सिस्टिम बॅटरी ऑप्टीमाईझेशन अक्षम करण्यासाठी टॅप करा.</string>
@@ -331,8 +337,10 @@
   <string name="ExperienceUpgradeActivity_optional_link_previews_are_now_supported">इंटरनेट वरील सर्वात लोकप्रिय साईट पैकी काहींकरिता पर्यायी दुवा पुनरावलोकन आता समर्थित आहे.</string>
   <string name="ExperienceUpgradeActivity_you_can_disable_or_enable_this_feature_link_previews">आपण हे वैशिष्ट्य कुठल्याही वेळी आपल्या Signal सेटिंग मध्ये (गोपनीयताआणि दुवा पुनरावलोकन पाठवा)अक्षम किंवा सक्षम करू शकता.</string>
   <string name="ExperienceUpgradeActivity_got_it">कळले</string>
+  <string name="ExperienceUpgradeActivity_introducing_stickers">सादर करत आहे स्टिकर</string>
   <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers">स्टिकर वापरू शकत असताना शब्द का वापरायचे?</string>
-  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">आपण स्टिकर वापरू शकत असल्यावर शब्द का वापरायचे? आपल्या कीबोर्ड करिता हे चिन्ह टॅप करा:</string>
+  <string name="ExperienceUpgradeActivity_why_use_words_when_you_can_use_stickers_tap_this_icon">आपण स्टिकर वापरू शकत असल्यावर शब्द का वापरायचे? आपल्या कीबोर्ड करीता हे चिन्ह टॅप करा:</string>
+  <string name="ExperienceUpgradeActivity_lets_go">चला</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">संदेश पुनर्प्राप्त करत आहे…</string>
   <!--GcmRefreshJob-->
@@ -373,6 +381,8 @@
   <!--InviteActivity-->
   <string name="InviteActivity_share">सामायिक करा</string>
   <string name="InviteActivity_choose_contacts">संपर्क निवडा</string>
+  <string name="InviteActivity_share_with_contacts">संपर्कांसोबत सामायिक करा</string>
+  <string name="InviteActivity_choose_how_to_share">सामायिक कसे करायचे ते निवडा</string>
   <string name="InviteActivity_cancel">रद्द करा</string>
   <string name="InviteActivity_sending">पाठवत आहे…</string>
   <string name="InviteActivity_heart_content_description">हृदय</string>
@@ -405,15 +415,45 @@
   <string name="MmsDownloader_error_reading_mms_settings">वायरलेस प्रदाता MMS सेटिंग वाचण्यात त्रुटी</string>
   <!--MediaOverviewActivity-->
   <string name="MediaOverviewActivity_Media">मीडिया</string>
+  <string name="MediaOverviewActivity_Files">फाईल</string>
   <string name="MediaOverviewActivity_Audio">ऑडिओ</string>
+  <string name="MediaOverviewActivity_All">सर्व</string>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
+    <item quantity="one">निवडलेला आयटम हटवायचा?</item>
+    <item quantity="other">निवडलेले आयटम हटवायचे?</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
+    <item quantity="one">हे निवडलेली फाईल कायमचे हटवेल. या आयटम सोबत संबंधित कुठलाही संदेश मजकूर देखील हटविला जाईल.</item>
+    <item quantity="other">हे %1$d निवडलेल्या सर्व फाईल कायमचे हटवेल. या आयटम सोबत संबंधित कुठलाही संदेश मजकूर देखील हटविला जाईल.</item>
+  </plurals>
   <string name="MediaOverviewActivity_Media_delete_progress_title">हटवत आहे</string>
   <string name="MediaOverviewActivity_Media_delete_progress_message">संदेश हटवत आहे…</string>
   <string name="MediaOverviewActivity_Select_all">सर्व निवडा</string>
   <string name="MediaOverviewActivity_collecting_attachments">संलग्न गोळा करत आहे…</string>
+  <string name="MediaOverviewActivity_Sort_by">द्वारे क्रमवारी लावा</string>
+  <string name="MediaOverviewActivity_Newest">नवीनतम</string>
+  <string name="MediaOverviewActivity_Oldest">सर्वात जुने</string>
+  <string name="MediaOverviewActivity_Storage_used">वापरलेले संचयन</string>
+  <string name="MediaOverviewActivity_All_storage_use">सर्व संचयन वापर</string>
+  <string name="MediaOverviewActivity_Grid_view_description">ग्रिड दृश्य</string>
+  <string name="MediaOverviewActivity_List_view_description">यादी दृश्य</string>
+  <string name="MediaOverviewActivity_Selected_description">निवडलेले</string>
+  <plurals name="MediaOverviewActivity_d_items_s">
+    <item quantity="one">%1$d आयटम %2$s</item>
+    <item quantity="other">%1$d आयटम %2$s</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_d_items">
+    <item quantity="one">%1$d आयटम</item>
+    <item quantity="other">%1$d आयटम</item>
+  </plurals>
   <string name="MediaOverviewActivity_file">फाईल</string>
   <string name="MediaOverviewActivity_audio">ऑडिओ</string>
   <string name="MediaOverviewActivity_video">व्हिडिओ</string>
   <string name="MediaOverviewActivity_image">चित्र</string>
+  <string name="MediaOverviewActivity_sent_by_s">%1$s द्वारे पाठवले</string>
+  <string name="MediaOverviewActivity_sent_by_you">आपल्या द्वारे पाठवले</string>
+  <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s द्वारा %2$s यास पाठवले</string>
+  <string name="MediaOverviewActivity_sent_by_you_to_s">%1$s यास आपल्याद्वारे पाठवले</string>
   <!--- NotificationBarManager-->
   <string name="NotificationBarManager_signal_call_in_progress">Signal कॉल प्रगती मध्ये</string>
   <string name="NotificationBarManager__establishing_signal_call">Signal कॉल प्रस्थापित करत आहे</string>
@@ -445,6 +485,7 @@
     <item quantity="other">आपण %d आयटम पेक्षा जास्त सामायिक करू शकत नाही.</item>
   </plurals>
   <string name="MediaSendActivity_select_recipients_description">प्राप्तकर्ते निवडा</string>
+  <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">संदेश बघितल्यानंतर अदृश्य करण्यासाठी येथे टॅप करा.</string>
   <!--MediaRepository-->
   <string name="MediaRepository_all_media">सर्व मिडिया</string>
   <!--MessageRecord-->
@@ -511,10 +552,16 @@
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">आपण स्थापन केलेली Google प्ले सेवेची आवृत्ती व्यवस्थित कार्य करत नाही. कृपया Google प्ले सेवा पुन्हा स्थापन करा आणि पुन्हा प्रयत्न करा.</string>
   <!--ProfileEditNameFragment-->
-  <string name="ProfileEditNameFragment_save">जतन करा</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileEditNameFragment_profile_name">प्रोफाईल नाव</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileEditNameFragment_your_profile_name_can_be_seen_by_your_contacts">आपला प्रोफाईल नाव  आपल्या संपर्कांद्वारे आणि इतर वापरकर्ते किंवा गट जे संभाषण प्रारंभ करतात किंवा संभाषण विनंती स्वीकारतात त्यांच्याद्वारे पाहिले जाऊ शकतात. </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileEditNameFragment_save">जतन करा</string> -->
   <!--ProfileEditOverviewFragment-->
-  <string name="ProfileEditOverviewFragment_profile">प्रोफाईल</string>
-  <string name="ProfileEditOverviewFragment_username">वापरकर्तानाव</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileEditOverviewFragment_profile">प्रोफाईल</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileEditOverviewFragment_profile_name">प्रोफाईल नाव</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileEditOverviewFragment_username">वापरकर्तानाव</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileEditOverviewFragment_create_a_profile_name">प्रोफाईल नाव तयार करा</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileEditOverviewFragment_create_a_username">एक वापरकर्तानाव तयार करा</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ProfileEditOverviewFragment_your_signal_profile_can_be_seen_by">आपले Signal प्रोफाईल नाव आपल्या संपर्कांद्वारे आणि इतर वापरकर्ते किंवा गट जे संभाषण प्रारंभ करतात किंवा संभाषण विनंती स्वीकारतात त्यांच्याद्वारे पाहिले जाऊ शकतात. <a href="https://support.signal.org/hc/en-us/articles/360007459591-Signal-Profiles">अधिक जाणून घेण्यासाठी येथे टॅप करा</a>.</string> -->
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">ह्या अॅपला रेट करा</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">जर आपल्याला हा अॅप वापरणे आवडत असेल, तर कृपया एक क्षण काढून आम्हाला रेट करून आमची मदत करा.</string>
@@ -582,6 +629,8 @@
   <string name="RegistrationActivity_failed_to_verify_the_captcha">कॅप्चा सत्यापित करण्यात अयशस्वी</string>
   <string name="RegistrationActivity_next">पुढे</string>
   <string name="RegistrationActivity_continue">सुरू ठेवा</string>
+  <string name="RegistrationActivity_continue_d_attempts_left">सुरू ठेवा (%d प्रयत्ने उर्वरित)</string>
+  <string name="RegistrationActivity_continue_last_attempt">सुरू ठेवा (शेवटचा प्रयत्न!)</string>
   <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">गोपनीयता आपल्यासोबत न्या.\nप्रत्येक संदेशात आपण स्वतः रहा.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">सुरूवात करण्यासाठी आपला फोन नंबर प्रविष्ट करा</string>
   <string name="RegistrationActivity_you_will_receive_a_verification_code">आपल्याला एक सत्यापन कोड प्राप्त होईल. वाहक रेट लागू होऊ शकतात.</string>
@@ -590,8 +639,10 @@
   <string name="RegistrationActivity_country_code_description">देश कोड</string>
   <string name="RegistrationActivity_call">कॉल करा</string>
   <!--RevealableMessageView-->
+  <string name="RevealableMessageView_view_photo">फोटो बघा</string>
+  <string name="RevealableMessageView_view_video">व्हिडिओ बघा</string>
   <string name="RevealableMessageView_viewed">बघितले</string>
-  <string name="RevealableMessageView_media">मीडिया</string>
+  <string name="RevealableMessageView_media">मिडिया</string>
   <!--ScribbleActivity-->
   <string name="ScribbleActivity_save_failure">चित्र बदल जतन करण्यात अयशस्वी</string>
   <!--Search-->
@@ -652,6 +703,9 @@
   <string name="ThreadRecord_missed_call">सुटलेला कॉल</string>
   <string name="ThreadRecord_media_message">मिडिया संदेश</string>
   <string name="ThreadRecord_sticker">स्टिकर</string>
+  <string name="ThreadRecord_view_once_photo">एकदा-बघा फोटो</string>
+  <string name="ThreadRecord_view_once_video">एकदा-बघा व्हिडिओ</string>
+  <string name="ThreadRecord_view_once_media">एकदा-बघा मिडिया</string>
   <string name="ThreadRecord_s_is_on_signal">%s Signal वर आहे!</string>
   <string name="ThreadRecord_disappearing_messages_disabled">हरवणारे संदेश अक्षम केले</string>
   <string name="ThreadRecord_disappearing_message_time_updated_to_s">हरवणारा संदेश वेळ %s वर सेट केली</string>
@@ -678,8 +732,18 @@
   <string name="UnverifiedSendDialog_send">पाठवा</string>
   <!--UsernameEditFragment-->
   <string name="UsernameEditFragment_username">वापरकर्तानाव</string>
-  <string name="UsernameEditFragment_submit">प्रविष्ट करा</string>
+  <string name="UsernameEditFragment_submit">सादर करा</string>
   <string name="UsernameEditFragment_delete">हटवा</string>
+  <string name="UsernameEditFragment_successfully_set_username">वापरकर्तानाव यशस्वीरीत्या सेट.</string>
+  <string name="UsernameEditFragment_successfully_removed_username">वापरकर्तानाव यशस्वीरीत्या काढले.</string>
+  <string name="UsernameEditFragment_encountered_a_network_error">एक नेटवर्क त्रुटी आढळली.</string>
+  <string name="UsernameEditFragment_this_username_is_taken">हे वापरकर्तानाव घेतलेले आहे.</string>
+  <string name="UsernameEditFragment_this_username_is_available">हे वापरकर्तानाव उपलब्ध आहे.</string>
+  <string name="UsernameEditFragment_usernames_can_only_include">वापरकर्तानावांमध्ये फक्त a-Z, 0-9, आणि अंडरस्कोर याचा समावेश असू शकतो.</string>
+  <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">वापरकर्तानाव अंकांसोबत सोबत चालू होऊ शकत नाही.</string>
+  <string name="UsernameEditFragment_username_is_invalid">वापरकर्तानाव अवैध आहे.</string>
+  <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">वापरकर्तानाव %1$d आणि %2$d कॅरेक्टर मध्येच असायला हवे.</string>
+  <string name="UsernameEditFragment_other_signal_users_can_send_message_requests_to_your_unique_username">इतर Signal वापरकर्ते आपला फोन नंबर न जाणता आपल्या ऐकमेव वापरकर्त्यानावावर संदेश विनंत्या पाठवू शकतात. वापरकर्तानाव निवडणे पर्यायी आहे.</string>
   <!--VerifyIdentityActivity-->
   <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">आपला संपर्क Signal ची जुनी आवृत्ती वापरत आहे.आपला सुरक्षितता नंबर सत्यापित करण्यापूर्वी कृपया त्यांना अद्यतन करण्यास विचारा.</string>
   <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">आपला संपर्क विसंगत QR कोड स्वरूपन सोबत Signal ची नवीन आवृत्ती वापरत आहे. तुलना करण्यासाठी कृपया अद्यतन करा.</string>
@@ -719,6 +783,7 @@
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">परवानग्यांविना बाह्य संचयनात जतन करण्यात अक्षम</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">संदेश हटवायचा?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">हे कायमचे ह्या संदेशाला हटवेल.</string>
+  <string name="MediaPreviewActivity_s_to_s">%1$s ते %2$s</string>
   <!--MessageNotifier-->
   <string name="MessageNotifier_d_new_messages_in_d_conversations">%2$d संभाषणांमध्ये %1$d नवीन संदेश</string>
   <string name="MessageNotifier_most_recent_from_s">याकडून सर्वात अलीकडील: %1$s</string>
@@ -731,6 +796,8 @@
   <string name="MessageNotifier_mark_read">वाचले चिन्हांकित करा</string>
   <string name="MessageNotifier_media_message">मिडिया संदेश</string>
   <string name="MessageNotifier_sticker">स्टिकर</string>
+  <string name="MessageNotifier_view_once_photo">एकदा-बघा फोटो</string>
+  <string name="MessageNotifier_view_once_video">एकदा-बघा व्हिडिओ</string>
   <string name="MessageNotifier_reply">प्रत्युत्तर द्या</string>
   <string name="MessageNotifier_signal_message">Signal संदेश</string>
   <string name="MessageNotifier_unsecured_sms">असुरक्षित SMS</string>
@@ -738,6 +805,7 @@
   <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">अलीकडील सूचनांसाठी Signal उघडा.</string>
   <string name="MessageNotifier_contact_message">%1$s %2$s</string>
   <string name="MessageNotifier_unknown_contact_message">संपर्क</string>
+  <string name="MessageNotifier_reacted_to_your_message">आपल्या संदेशाला प्रतिसाद दिला: %1$s</string>
   <!--Notification Channels-->
   <string name="NotificationChannel_messages">पूर्वनिर्धारित</string>
   <string name="NotificationChannel_calls">कॉल</string>
@@ -749,6 +817,8 @@
   <string name="NotificationChannel_group_messages">संदेश</string>
   <string name="NotificationChannel_missing_display_name">अज्ञात</string>
   <!--ProfileEditNameFragment-->
+  <string name="ProfileEditNameFragment_successfully_set_profile_name">प्रोफाईल नाव यशस्वीरीत्या सेट.</string>
+  <string name="ProfileEditNameFragment_encountered_a_network_error">एक नेटवर्क त्रुटी आढळली.</string>
   <!--QuickResponseService-->
   <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal लॉक केलेले असताना जलद प्रतिसाद अनुपलब्ध!</string>
   <string name="QuickResponseService_problem_sending_message">संदेश पाठविण्यात त्रुटी!</string>
@@ -764,6 +834,8 @@
   <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
   <string name="SingleRecipientNotificationBuilder_new_message">नवीन संदेश</string>
   <!--ThumbnailView-->
+  <string name="ThumbnailView_Play_video_description">व्हिडिओ प्ले करा</string>
+  <string name="ThumbnailView_Has_a_caption_description">यास कॅप्शन आहे</string>
   <!--TransferControlView-->
   <plurals name="TransferControlView_n_items">
     <item quantity="one">%d आयटम</item>
@@ -829,6 +901,8 @@
   <!--ContactSelectionListFragment-->
   <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">संपर्क दाखवण्यासाठी Signal ला संपर्क परवानगीची आवश्यकता असते, पण ती कायमची नाकारली गेली आहे. कृपया अॅप सेटिंग मेनू मध्ये सुरू ठेवा, \"परवानग्या\" निवडा, आणि \"संपर्क\" सक्षम करा.</string>
   <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">संपर्क पुनर्प्राप्त करण्यात त्रुटी, आपले  नेटवर्क कनेक्शन तपासा</string>
+  <string name="ContactSelectionListFragment_username_not_found">वापरकर्तानाव आढळले नाही</string>
+  <string name="ContactSelectionListFragment_s_is_not_a_signal_user">\"%1$s\" Signal वापरकर्ता नाही. कृपया वापरकर्तानाव तपासा आणि पुन्हा प्रयत्न करा.</string>
   <string name="ContactSelectionListFragment_okay">ठीक आहे</string>
   <!--blocked_contacts_fragment-->
   <string name="blocked_contacts_fragment__no_blocked_contacts">कुठेलही अवरोधित संपर्क नाहीत</string>
@@ -869,6 +943,7 @@
   <string name="QuoteView_audio">ऑडिओ</string>
   <string name="QuoteView_video">व्हिडिओ</string>
   <string name="QuoteView_photo">फोटो</string>
+  <string name="QuoteView_view_once_media">एकदा-बघा मिडिया</string>
   <string name="QuoteView_sticker">स्टिकर</string>
   <string name="QuoteView_document">दस्तऐवज</string>
   <string name="QuoteView_you">आपण</string>
@@ -987,10 +1062,10 @@
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">आपल्या वायरलेस वाहकाद्वारे मिडिया आणि गट संदेश पोहोचविण्यासाठी Signal ला MMS सेटिंगची आवश्यकता असते. आपला डिव्हाईस ही माहिती उपलब्ध करून देत नाही, जे लॉक असलेल्या डिव्हाईस करिता आणि इतर प्रतिबंधक कॉन्फिगरेशन यांकरिता कधी कधी खरे असते.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">मिडिया आणि गट संदेश पाठविण्यासाठी, \'ठीक\' टॅप करा आणि विनंती केलेल्या सेटिंग पूर्ण करा. आपल्या वाहकासाठीच्या MMS सेटिंग सामान्यपणे \'आपला वाहक APN\' शोधून सापडू शकते. आपल्याला हे फक्त एकदा करावे लागेल.</string>
   <!--profile_create_activity-->
-  <string name="profile_create_activity__set_later">नंतर सेट करा</string>
-  <string name="profile_create_activity__finish">संपवा</string>
-  <string name="profile_create_activity__who_can_see_this_information">ही माहिती कोण बघू शकतो?</string>
-  <string name="profile_create_activity__your_name">आपले नाव</string>
+  <!-- Removed by excludeNonTranslatables <string name="profile_create_activity__set_later">नंतर सेट करा</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="profile_create_activity__finish">संपवा</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="profile_create_activity__who_can_see_this_information">ही माहिती कोण बघू शकतो?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="profile_create_activity__your_name">आपले नाव</string> -->
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">सामायिक केलेली मिडिया</string>
   <!--recipient_preferences-->
@@ -1144,6 +1219,7 @@
   <string name="preferences__automatically_delete_older_messages_once_a_conversation_exceeds_a_specified_length">एकदा संभाषण एका निर्दिष्ट लांबीच्या पुढे गेले की स्वयंचलितपणे जुने संदेश हटवा</string>
   <string name="preferences__delete_old_messages">जुने संदेश हटवा</string>
   <string name="preferences__chats">चॅट आणि मिडिया</string>
+  <string name="preferences__storage">संचयन</string>
   <string name="preferences__conversation_length_limit">संभाषण लांबी मर्यादा</string>
   <string name="preferences__trim_all_conversations_now">आता संभाषण ट्रिम करा</string>
   <string name="preferences__scan_through_all_conversations_and_enforce_conversation_length_limits">सर्व संभाषणातून स्कॅन करा आणि संभाषण लांबी मर्यादा अंमलात आणा</string>
@@ -1172,7 +1248,12 @@
   <string name="preferences_chats__when_roaming">रोमिंग असताना</string>
   <string name="preferences_chats__media_auto_download">मिडिया स्वयं-डाऊनलोड करा</string>
   <string name="preferences_chats__message_trimming">संदेश ट्रि्मिंग</string>
+  <string name="preferences_storage__storage_usage">संचयन वापर</string>
+  <string name="preferences_storage__photos">फोटो</string>
+  <string name="preferences_storage__videos">व्हिडिओ</string>
+  <string name="preferences_storage__files">फाईल</string>
   <string name="preferences_storage__audio">ऑडिओ</string>
+  <string name="preferences_storage__review_storage">संचयन पुनरावलोकन करा</string>
   <string name="preferences_advanced__use_system_emoji">सिस्टिम ईमोजी वापरा</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Signal चे बिल्ट-इन ईमोजी समर्थन अक्षम करा</string>
   <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">आपल्या संपर्काला आपला IP पत्ता कळू न देण्यासाठी सर्व कॉल Signal सर्व्हर वरून रीले करा. सक्षम केल्याने कॉल दर्जा कमी होईल.</string>
@@ -1206,6 +1287,7 @@
   <string name="conversation_callable_insecure__menu_call">कॉल करा</string>
   <!--conversation_callable_secure-->
   <string name="conversation_callable_secure__menu_call">Signal कॉल</string>
+  <string name="conversation_callable_secure__menu_video">Signal व्हिडिओ कॉल</string>
   <!--conversation_context-->
   <string name="conversation_context__menu_message_details">संदेश तपशील</string>
   <string name="conversation_context__menu_copy_text">मजकूर कॉपी करा</string>
@@ -1214,6 +1296,7 @@
   <string name="conversation_context__menu_resend_message">संदेश पुन्हा पाठवा</string>
   <string name="conversation_context__menu_reply_to_message">संदेशाला प्रत्युत्तर द्या</string>
   <!--conversation_context_reacction-->
+  <string name="conversation_context__reaction_multi_select">अनेक निवडा</string>
   <!--conversation_context_image-->
   <string name="conversation_context_image__save_attachment">संलग्न जतन करा</string>
   <!--conversation_expiring_off-->
@@ -1292,6 +1375,7 @@
   <string name="reminder_header_share_text">जितके जास्त मित्र Signal वापरतील, तेवढे चांगले ते होईल.</string>
   <string name="reminder_header_service_outage_text">Signal तांत्रिक समस्या अनुभवत आहे. आम्ही लवकरात लवकर सेवा पुनर्स्थित करण्यासाठी कठोर परिश्रम करत आहोत.</string>
   <string name="reminder_header_the_latest_signal_features_wont_work">नवीनतम Signal वैशिष्ट्ये Android च्या या आवृत्तीवर कार्य करणार नाहीत. भविष्यातील Signal अद्यतने प्राप्त करण्यासाठी कृपया हा डिव्हाईस श्रेणीसुधारित करा.</string>
+  <string name="reminder_header_progress">%1$d%%</string>
   <!--media_preview-->
   <string name="media_preview__save_title">जतन करा</string>
   <string name="media_preview__forward_title">फॉर्वर्ड करा</string>
@@ -1306,11 +1390,27 @@
   <string name="trimmer__deleting_old_messages">जुने संदेश हटवत आहे…</string>
   <string name="trimmer__old_messages_successfully_deleted">जुने संदेश यशस्वीरीत्या हटवले</string>
   <!--Insights-->
+  <string name="Insights__percent">%</string>
   <string name="Insights__title">अंतर्दृष्टी</string>
   <string name="InsightsDashboardFragment__title">अंतर्दृष्टी</string>
+  <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Signal प्रोटोकॉल याने स्वयंचलितपणे%2$d दिवसांमध्ये %1$d%% आपले जाणारे संदेश संरक्षित केलेत. Signal वापरकर्त्यांमधील संभाषण हे नेहमी एंड-टू-एंड एन्क्रिप्टेड असते.</string>
+  <string name="InsightsDashboardFragment__boost_your_signal">Signal बूस्ट</string>
+  <string name="InsightsDashboardFragment__not_enough_data">पुरेसा डेटा नाही</string>
+  <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">मागील %1$d दिवसांच्या जाणारे संदेश जे अदृश्य झाले नाहीत किंवा हटविले गेले नाहीत त्यांच्या आधारावर आपली ईन्साईट टक्केवारी याची गणना केली जाते.</string>
+  <string name="InsightsDashboardFragment__start_a_conversation">संभाषण चालू करा</string>
+  <string name="InsightsDashboardFragment__invite_your_contacts">सुरक्षितपणे परस्परसंवाद चालू करा आणि Signal मध्ये सामील होण्यासाठी अधिक संपर्कांना आमंत्रित करून नवीन वैशिष्ट्ये सक्षम करा जे अनएन्क्रिप्टेड SMS संदेशांच्या मर्यादेच्या पलीकडे जातात.</string>
+  <string name="InsightsDashboardFragment__this_stat_was_generated_locally">ही आकडेवारी आपल्या डिव्हाईस वर स्थानिकरीत्या उत्पन्न केली गेली आहे आणि फक्त आपल्या द्वारा बघितली जाऊ शकते. ते कुठेही प्रक्षेपित केले जात नाही.</string>
+  <string name="InsightsDashboardFragment__encrypted_messages">एन्क्रिप्टेड संदेश</string>
   <string name="InsightsDashboardFragment__cancel">रद्द करा</string>
   <string name="InsightsDashboardFragment__send">पाठवा</string>
+  <string name="InsightsModalFragment__title">सादर करत आहे ईन्साईट</string>
+  <string name="InsightsModalFragment__description">आपले किती जाणारे संदेश सुरक्षितपणे पाठविले गेले ते शोधा, नंतर आपली Signal टक्केवारी वाढविण्याकरिता पटकन नवीन संपर्कांना आमंत्रित करा.</string>
+  <string name="InsightsModalFragment__view_insights">ईन्साईट बघा</string>
   <string name="FirstInviteReminder__title">Signal वर आमंत्रित करा</string>
+  <string name="FirstInviteReminder__description">आपण पाठवणारे एन्क्रिप्टेड संदेश आपण %1$d%% ने वाढवू शकता </string>
+  <string name="SecondInviteReminder__title">आपला Signal बूस्ट करा</string>
+  <string name="SecondInviteReminder__description">%1$s ला आमंत्रित करा</string>
+  <string name="InsightsReminder__view_insights">ईन्साईट बघा</string>
   <string name="InsightsReminder__invite">आमंत्रित करा</string>
   <!--transport_selection_list_item-->
   <string name="transport_selection_list_item__transport_icon">वाहतूक चिन्ह</string>
@@ -1396,19 +1496,30 @@
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">नोंदणी लॉक आपल्या फोन नंबरला अनाधिकृत नोंदणी प्रयत्नांपासून संरक्षित करण्यास मदत करते. हे वैशिष्ट्य आपल्या Signal गोपनीयता सेटिंग मध्ये कधीही अक्षम केले जाऊ शकते</string>
   <string name="RegistrationLockDialog_registration_lock">नोंदणी लॉक</string>
   <string name="RegistrationLockDialog_enable">सक्षम करा</string>
-  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">नोंदणी लॉक PIN किमान 4 अंकी असायला हवे.</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">नोंदणी लॉक PIN किमान 4 अंकी असायला हवे.</string> -->
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">आपण प्रविष्ट केलेले दोन PIN जुळत नाहीत.</string>
   <string name="RegistrationLockDialog_error_connecting_to_the_service">सेवेसोबत कनेक्ट करण्यात त्रुटी</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">नोंदणी लॉक PIN अक्षम करायचे?</string>
   <string name="RegistrationLockDialog_disable">अक्षम करा</string>
+  <string name="RegistrationActivity_pin_incorrect">चुकीचा PIN</string>
+  <string name="RegistrationActivity_you_have_d_tries_remaining">आपल्याकडे %d प्रयत्न उर्वरित</string>
   <string name="preferences_chats__backups">बॅकअप</string>
   <string name="prompt_passphrase_activity__signal_is_locked">Signal लॉक केले आहे</string>
   <string name="prompt_passphrase_activity__tap_to_unlock">अनलॉक करण्यासाठी टॅप करा</string>
   <string name="RegistrationLockDialog_reminder">स्मरणपत्र:</string>
   <string name="recipient_preferences__about">याबद्दल</string>
   <string name="Recipient_unknown">अज्ञात</string>
-  <string name="MessageRequestBottomView_accept">स्वीकार करा</string>
+  <string name="MessageRequestBottomView_accept">स्वीकारा</string>
   <string name="MessageRequestBottomView_delete">हटवा</string>
   <string name="MessageRequestBottomView_block">अवरोधित करा</string>
+  <string name="MessageRequestBottomView_do_you_want_to_let">%1$s कडून आपण संदेश प्राप्त करू इच्छिता?</string>
+  <string name="MessageRequestProfileView_member_of_one_group">%1$s चा सदस्य</string>
+  <string name="MessageRequestProfileView_member_of_two_groups">%1$s आणि %2$s चा सदस्य</string>
+  <string name="MessageRequestProfileView_member_of_many_groups">%1$s, %2$s, आणि %3$s चा सदस्य </string>
+  <string name="MessageRequestProfileView_members">%1$d सदस्य</string>
+  <plurals name="MessageRequestProfileView_member_of_others">
+    <item quantity="one">%d इतर</item>
+    <item quantity="other">%d इतर</item>
+  </plurals>
   <!--EOF-->
 </resources>

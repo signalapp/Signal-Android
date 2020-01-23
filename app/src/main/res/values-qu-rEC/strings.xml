@@ -227,11 +227,11 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Shinapachami</string>
   <!--CreateProfileActivity-->
-  <string name="CreateProfileActivity_your_profile_info">Ñukanchikpa kallariwillaykuna</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateProfileActivity_your_profile_info">Ñukanchikpa kallariwillaykuna</string> -->
   <string name="CreateProfileActivity_error_setting_profile_photo">Ñawishuyuta mana churay usharirkachu </string>
   <string name="CreateProfileActivity_problem_setting_profile">Kallariwillayta churankapak llaki tiyan</string>
   <string name="CreateProfileActivity_profile_photo">Ñawishuyu</string>
-  <string name="CreateProfileActivity_too_long">Ñawishuyu yapa suni</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateProfileActivity_too_long">Ñawishuyu yapa suni</string> -->
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Kanpa shuyu munashkatapacha akllakun: %s</string>
   <string name="CustomDefaultPreference_using_default">Ña rurashka shuyuta akllakunki: %s</string>
@@ -430,7 +430,7 @@
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">Kunan Google Play Services tiyakuka mana alli katikunchu. Google Play Servicesta kutinlla churamupay.</string>
   <!--ProfileEditNameFragment-->
-  <string name="ProfileEditNameFragment_save">Allichina</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileEditNameFragment_save">Allichina</string> -->
   <!--ProfileEditOverviewFragment-->
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">Kay aplicacionka imashinatak kan</string>
@@ -853,10 +853,10 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal ukuka MMS configuracion audiovisuales chaskikunata shinallata tantanakuypatapash internetpi kachachun munanmi. Kikinpa antahillayka mana kay willayta riksichinkachu,  kay shinakunaka wakinpillami pakashka antahillaypika rikurin.</string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">Audiovisualpa chaskikunata tantanakuypatapash kachankapakka \"Aceptar\" shimita llapipay, shinashpa configuración mañashkakunata paktachipay. Internetpa MMS configuraciontaka \'el APN de su proveedor\'  ukupi maskayta ushanmi. Kaytaka shukkutinllami ruranata mutsurin.</string>
   <!--profile_create_activity-->
-  <string name="profile_create_activity__set_later">Hipalla rurasha</string>
-  <string name="profile_create_activity__finish">TUKUCHISHKA</string>
-  <string name="profile_create_activity__who_can_see_this_information">Pitak kay willaytaka rikuy ushan.</string>
-  <string name="profile_create_activity__your_name">Kikinpa shuti</string>
+  <!-- Removed by excludeNonTranslatables <string name="profile_create_activity__set_later">Hipalla rurasha</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="profile_create_activity__finish">TUKUCHISHKA</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="profile_create_activity__who_can_see_this_information">Pitak kay willaytaka rikuy ushan.</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="profile_create_activity__your_name">Kikinpa shuti</string> -->
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Yallichirishka uyayrikuchikkuna.</string>
   <!--recipient_preferences-->
@@ -1237,7 +1237,7 @@ Shuk ranti pakallayupay chaski chayamurka, shuk ñawpa mana alli protocolo kashk
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">Pakashka yupayka kikinpa williwilli yupayta wakaychitami yanapanka, mana arinishka killkarikunamanta. Kay wakaychitaka maykan pachapipash,  kikinpalla Signal configuración ukuman yaykushpa anchuchinallami.</string>
   <string name="RegistrationLockDialog_registration_lock">Mana killkarina</string>
   <string name="RegistrationLockDialog_enable">Paskana</string>
-  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">PIN killkarishka yupayka chusku \"4\" yupaytallapashmi charina.</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">PIN killkarishka yupayka chusku \"4\" yupaytallapashmi charina.</string> -->
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">Ishkay PIN yupay churashkaka mana paktalla kanchu.</string>
   <string name="RegistrationLockDialog_error_connecting_to_the_service">Mana tinkirita ushnakichu</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">PIN killkashkata anchuchinayanchu</string>

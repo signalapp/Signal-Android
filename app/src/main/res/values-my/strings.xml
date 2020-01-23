@@ -232,12 +232,12 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">အတည်ပြုပြီး</string>
   <!--CreateProfileActivity-->
-  <string name="CreateProfileActivity_your_profile_info">ကိုယ်ရေးအချက်အလက် </string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateProfileActivity_your_profile_info">ကိုယ်ရေးအချက်အလက် </string> -->
   <string name="CreateProfileActivity_error_setting_profile_photo">ဓါတ်ပုံတင်ရာတွင် အခက်အခဲရှိ </string>
   <string name="CreateProfileActivity_problem_setting_profile">ကိုယ်ပိုင်အကောင့်ပြုလုပ်ရာတွင် ပြဿနာရှိ </string>
   <string name="CreateProfileActivity_profile_photo">ကိုယ့်ပုံ </string>
-  <string name="CreateProfileActivity_too_long">ရှည်လွန်းသည် </string>
-  <string name="CreateProfileActivity_profile_name">ပရိုဖိုင်းနာမည်</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateProfileActivity_too_long">ရှည်လွန်းသည် </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CreateProfileActivity_profile_name">ပရိုဖိုင်းနာမည်</string> -->
   <string name="CreateProfileActivity_set_up_your_profile">သင့် ပရိုဖိုင်ကိုပြင်ဆင်ပါ</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">အထူးပြုသုံး %s</string>
@@ -438,9 +438,9 @@
   <!--PlayServicesProblemFragment-->
   <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">သင်သွင်းထားသော Google Play ဗားရှင်းသည် ကောင်းကောင်းအလုပ်မလုပ်ပါသဖြင့် အသစ်ပြန်သွင်းပြီး ထပ်မံစမ်းသပ်ကြည့်ပါ။</string>
   <!--ProfileEditNameFragment-->
-  <string name="ProfileEditNameFragment_save">သိမ်းသည် </string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileEditNameFragment_save">သိမ်းသည် </string> -->
   <!--ProfileEditOverviewFragment-->
-  <string name="ProfileEditOverviewFragment_profile">ပရိဖိုင်း</string>
+  <!-- Removed by excludeNonTranslatables <string name="ProfileEditOverviewFragment_profile">ပရိဖိုင်း</string> -->
   <!--RatingManager-->
   <string name="RatingManager_rate_this_app">ဒီ app ကို အမှတ်ပေးပါ</string>
   <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">ဒီ app ကိုကြိုက်လျှင် အချိန်အနည်းငယ်မျှ ပေးပြီး အမှတ်ပေးပေးပါ။</string>
@@ -834,10 +834,10 @@
   <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal သည် MMS အပြင်အဆင်ကို သင့်ဖုန်းမှတစ်ဆင့် မီဒီယာနှင့် အဖွဲ့သတင်းစကားများကိုပေးပို့နိုင်အောင်လုပ်ထားရန်လိုအပ်သည်။ ယင်းသို့ပြုလုပ်နိုင်ခြင်းသည် လော့ပိတ်ထားသော ဖုန်းများနှင့် အခြားသော ကန့်သတ်ဒီဇိုင်းပုံစံများအတွက်ပါအကြုံးဝင်သဖြင့် သင့်ဖုန်းကအထူးတလည် မဖော်ပြပါ။ </string>
   <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">ရုပ်၊သံ၊ပုံ နှင့်စာများပို့ရန် \'အိုခေ\' နှိပ်ပြီးပြောင်းလိုသော ပြင်ဆင်ချက်များပြုလုပ်ပါ။ ကိုယ်အသုံးပြုသော အော်ပရေတာ၏ MMS ပြင်ဆင်ချက်များကို \'your carrier APN\'  ဟုရေးပြီးရှာဖွေနိုင်ပါသည်။ ယခုပြင်ဆင်ချက်ကို တစ်ကြိမ်တည်းလုပ်ရန်လိုပါသည်။</string>
   <!--profile_create_activity-->
-  <string name="profile_create_activity__set_later">နောက်မှပြင်မယ် </string>
-  <string name="profile_create_activity__finish">ပြီးပြီ </string>
-  <string name="profile_create_activity__who_can_see_this_information">ဒီအချက်အလက်ကို ဘယ်သူမြင်နိုင်သလဲ? </string>
-  <string name="profile_create_activity__your_name">သင့်အမည်</string>
+  <!-- Removed by excludeNonTranslatables <string name="profile_create_activity__set_later">နောက်မှပြင်မယ် </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="profile_create_activity__finish">ပြီးပြီ </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="profile_create_activity__who_can_see_this_information">ဒီအချက်အလက်ကို ဘယ်သူမြင်နိုင်သလဲ? </string> -->
+  <!-- Removed by excludeNonTranslatables <string name="profile_create_activity__your_name">သင့်အမည်</string> -->
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">မျှဝေပြီးသား ရုပ်/သံ/ပုံများ</string>
   <!--recipient_preferences-->
@@ -1213,7 +1213,7 @@
   <string name="RegistrationLockDialog_registration_lock_helps_protect_your_phone_number_from_unauthorized_registration_attempts">မှတ်ပုံတင်ခြင်း ပိတ်ထားမှုသည် သင်၏ဖုန်းကို အသိအမှတ်မပြုထားသော မှတ်ပုံတင်မှုများပြုလုပ်ခြင်းမှ ကာကွယ်ပေးပါသည်။ ဤဝန်ဆောင်မှုကို သင်၏ Signal ကိုယ်ရေးအချက်အလက်များလုံခြုံမှုအပြင်အဆင်များတွင် အချိန်မရွေးပိတ်ထားနိုင်ပါသည်။</string>
   <string name="RegistrationLockDialog_registration_lock">မှတ်ပုံတင်မှု ပိတ်ထားခြင်း</string>
   <string name="RegistrationLockDialog_enable">လုပ်ဆောင်သည်</string>
-  <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">မှတ်ပုံတင်မည့် PIN နံပါတ်အရေအတွက်သည် အနည်းဆုံး ၄ လုံး ရှိရမည်။</string>
+  <!-- Removed by excludeNonTranslatables <string name="RegistrationLockDialog_the_registration_lock_pin_must_be_at_least_four_digits">မှတ်ပုံတင်မည့် PIN နံပါတ်အရေအတွက်သည် အနည်းဆုံး ၄ လုံး ရှိရမည်။</string> -->
   <string name="RegistrationLockDialog_the_two_pins_you_entered_do_not_match">မိမိဝင်ရောက်ထားသော PIN နှစ်ခုမှာ တူညီမှုမရှိပါ။</string>
   <string name="RegistrationLockDialog_error_connecting_to_the_service">ဝန်ဆောင်မှုနှင့် ဆက်သွယ်ရာတွင် အခက်အခဲဖြစ်နေသည်</string>
   <string name="RegistrationLockDialog_disable_registration_lock_pin">မှတ်ပုံတင်မှု ပိတ်ထားသည့် PIN ကို မလုပ်တော့ဘူးလား။</string>

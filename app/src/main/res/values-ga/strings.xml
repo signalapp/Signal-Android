@@ -240,12 +240,12 @@
   <!--ConversationTitleView-->
   <string name="ConversationTitleView_verified">Fíordheimhnithe</string>
   <!--CreateProfileActivity-->
-  <string name="CreateProfileActivity_your_profile_info">Do eolas próifíle</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateProfileActivity_your_profile_info">Do eolas próifíle</string> -->
   <string name="CreateProfileActivity_error_setting_profile_photo">Tharla botún ag athrú do ghrianghraf próifíle</string>
   <string name="CreateProfileActivity_problem_setting_profile">Fadhb ag athrú do phróifíl</string>
   <string name="CreateProfileActivity_profile_photo">Grianghraf próifíle</string>
-  <string name="CreateProfileActivity_too_long">Ró-fhada</string>
-  <string name="CreateProfileActivity_profile_name">Ainm Próifíle</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreateProfileActivity_too_long">Ró-fhada</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="CreateProfileActivity_profile_name">Ainm Próifíle</string> -->
   <string name="CreateProfileActivity_set_up_your_profile">Cumraigh do phroifíl</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Ag baint feidhme as saincheapú: %s</string>
@@ -825,10 +825,10 @@ a shonrú</string>
   <string name="prompt_passphrase_activity__unlock">Bain an glas de</string>
   <!--prompt_mms_activity-->
   <!--profile_create_activity-->
-  <string name="profile_create_activity__set_later">Socraigh níos déanaí</string>
-  <string name="profile_create_activity__finish">CRÍOCHNAIGH</string>
-  <string name="profile_create_activity__who_can_see_this_information">Cé féadann an t-eolas seo a fhéiceáil?</string>
-  <string name="profile_create_activity__your_name">Do ainm</string>
+  <!-- Removed by excludeNonTranslatables <string name="profile_create_activity__set_later">Socraigh níos déanaí</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="profile_create_activity__finish">CRÍOCHNAIGH</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="profile_create_activity__who_can_see_this_information">Cé féadann an t-eolas seo a fhéiceáil?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="profile_create_activity__your_name">Do ainm</string> -->
   <!--recipient_preferences_activity-->
   <string name="recipient_preference_activity__shared_media">Méain comhroinnte</string>
   <!--recipient_preferences-->

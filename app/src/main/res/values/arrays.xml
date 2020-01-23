@@ -6,6 +6,7 @@
 <!-- en --><item>English</item>
 <!-- ar --><item>Arabic العربية</item>
 <!-- az --><item>Azərbaycan</item>
+<!-- jv --><item>Basa Jawa</item>
 <!-- bn --><item>Bengali বাংলা</item>
 <!-- bs --><item>Bosanski</item>
 <!-- bg --><item>Bulgarian български</item>
@@ -25,12 +26,15 @@
 <!-- ga --><item>Gaeilge</item>
 <!-- gl --><item>Galego</item>
 <!-- el --><item>Greek ελληνικά</item>
+<!-- gu --><item>Gujarati ગુજરાતી</item>
+<!-- ha --><item>Hausa</item>
 <!-- he/iw --><item>Hebrew עברית</item>
 <!-- hi --><item>Hindi हिंदी</item>
 <!-- hr --><item>Hrvatski</item>
 <!-- id/in --><item>Indonesia</item>
 <!-- it --><item>Italiano</item>
 <!-- ja --><item>Japanese 日本語</item>
+<!-- kn --><item>Kannada ಕನ್ನಡ</item>
 <!-- km --><item>Khmer ភាសាខ្មែរ</item>
 <!-- sw --><item>Kiswahili</item>
 <!-- ko --><item>Korean 한국어</item>
@@ -73,6 +77,7 @@
       <item>en</item>
       <item>ar</item>
       <item>az</item>
+      <item>jv</item>
       <item>bn</item>
       <item>bs</item>
       <item>bg</item>
@@ -92,12 +97,15 @@
       <item>ga</item>
       <item>gl</item>
       <item>el</item>
+      <item>gu</item>
+      <item>ha</item>
       <item>iw</item>
       <item>hi</item>
       <item>hr</item>
       <item>in</item>
       <item>it</item>
       <item>ja</item>
+      <item>kn</item>
       <item>km</item>
       <item>sw</item>
       <item>ko</item>
