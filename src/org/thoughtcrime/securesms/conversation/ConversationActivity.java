@@ -3143,8 +3143,8 @@ public class ConversationActivity extends PassphraseRequiredActionBarActivity
       if (publicChat != null) {
         Integer userCount = DatabaseFactory.getLokiAPIDatabase(this).getUserCount(publicChat.getChannel(), publicChat.getServer());
         if (userCount == null) { userCount = 0; }
-        if (userCount > 2500) {
-          actionBarSubtitleTextView.setText("2500+ members");
+        if (userCount >= 200) {
+          actionBarSubtitleTextView.setText("200+ members");
         } else {
           actionBarSubtitleTextView.setText(userCount + " members");
         }
