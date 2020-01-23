@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.net.CompositeRequestController;
 import org.thoughtcrime.securesms.net.ContentProxySafetyInterceptor;
 import org.thoughtcrime.securesms.net.ContentProxySelector;
 import org.thoughtcrime.securesms.net.RequestController;
+import org.thoughtcrime.securesms.net.UserAgentInterceptor;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.stickers.StickerRemoteUri;
 import org.thoughtcrime.securesms.stickers.StickerUrl;
@@ -60,6 +61,7 @@ public class LinkPreviewRepository {
   public LinkPreviewRepository() {
     this.client = new OkHttpClient.Builder()
                                   .proxySelector(new ContentProxySelector())
+                                  .addInterceptor(new UserAgentInterceptor())
                                   .addNetworkInterceptor(new ContentProxySafetyInterceptor())
                                   .cache(null)
                                   .build();

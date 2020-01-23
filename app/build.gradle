@@ -228,7 +228,6 @@ android {
         buildConfigField "String", "CONTENT_PROXY_HOST", "\"contentproxy.signal.org\""
         buildConfigField "int", "CONTENT_PROXY_PORT", "443"
         buildConfigField "String", "SIGNAL_AGENT", "\"OWA\""
-        buildConfigField "boolean", "DEV_BUILD", "false"
         buildConfigField "String", "MRENCLAVE", "\"cd6cfc342937b23b1bdd3bbf9721aa5615ac9ff50a75c5527d441cd3276826c9\""
         buildConfigField "String", "KEY_BACKUP_ENCLAVE_NAME", "\"\""
         buildConfigField "String", "KEY_BACKUP_MRENCLAVE", "\"a3baab19ef6ce6f34ab9ebb25ba722725ae44a8872dc0ff08ad6d83a9489de87\""

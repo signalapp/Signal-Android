@@ -200,7 +200,8 @@ public class SignalServiceMessageReceiver {
     WebSocketConnection webSocket = new WebSocketConnection(urls.getSignalServiceUrls()[0].getUrl(),
                                                             urls.getSignalServiceUrls()[0].getTrustStore(),
                                                             Optional.of(credentialsProvider), signalAgent, connectivityListener,
-                                                            sleepTimer);
+                                                            sleepTimer,
+                                                            urls.getNetworkInterceptors());
 
     return new SignalServiceMessagePipe(webSocket, Optional.of(credentialsProvider));
   }
@@ -209,7 +210,8 @@ public class SignalServiceMessageReceiver {
     WebSocketConnection webSocket = new WebSocketConnection(urls.getSignalServiceUrls()[0].getUrl(),
                                                             urls.getSignalServiceUrls()[0].getTrustStore(),
                                                             Optional.<CredentialsProvider>absent(), signalAgent, connectivityListener,
-                                                            sleepTimer);
+                                                            sleepTimer,
+                                                            urls.getNetworkInterceptors());
 
     return new SignalServiceMessagePipe(webSocket, Optional.of(credentialsProvider));
   }

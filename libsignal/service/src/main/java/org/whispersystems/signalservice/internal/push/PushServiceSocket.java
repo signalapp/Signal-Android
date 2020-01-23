@@ -94,6 +94,7 @@ import javax.net.ssl.X509TrustManager;
 import okhttp3.Call;
 import okhttp3.ConnectionSpec;
 import okhttp3.Credentials;
+import okhttp3.Interceptor;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
@@ -165,7 +166,6 @@ public class PushServiceSocket {
   private final ConnectionHolder[]         contactDiscoveryClients;
   private final ConnectionHolder[]         keyBackupServiceClients;
   private final ConnectionHolder[]         storageClients;
-  private final OkHttpClient               attachmentClient;
 
   private final CredentialsProvider credentialsProvider;
   private final String              signalAgent;
@@ -174,12 +174,11 @@ public class PushServiceSocket {
   public PushServiceSocket(SignalServiceConfiguration signalServiceConfiguration, CredentialsProvider credentialsProvider, String signalAgent) {
     this.credentialsProvider               = credentialsProvider;
     this.signalAgent                       = signalAgent;
-    this.serviceClients                    = createServiceConnectionHolders(signalServiceConfiguration.getSignalServiceUrls());
-    this.cdnClients                        = createConnectionHolders(signalServiceConfiguration.getSignalCdnUrls());
-    this.contactDiscoveryClients           = createConnectionHolders(signalServiceConfiguration.getSignalContactDiscoveryUrls());
-    this.keyBackupServiceClients           = createConnectionHolders(signalServiceConfiguration.getSignalKeyBackupServiceUrls());
-    this.storageClients                    = createConnectionHolders(signalServiceConfiguration.getSignalStorageUrls());
-    this.attachmentClient                  = createAttachmentClient();
+    this.serviceClients                    = createServiceConnectionHolders(signalServiceConfiguration.getSignalServiceUrls(), signalServiceConfiguration.getNetworkInterceptors());
+    this.cdnClients                        = createConnectionHolders(signalServiceConfiguration.getSignalCdnUrls(), signalServiceConfiguration.getNetworkInterceptors());
+    this.contactDiscoveryClients           = createConnectionHolders(signalServiceConfiguration.getSignalContactDiscoveryUrls(), signalServiceConfiguration.getNetworkInterceptors());
+    this.keyBackupServiceClients           = createConnectionHolders(signalServiceConfiguration.getSignalKeyBackupServiceUrls(), signalServiceConfiguration.getNetworkInterceptors());
+    this.storageClients                    = createConnectionHolders(signalServiceConfiguration.getSignalStorageUrls(), signalServiceConfiguration.getNetworkInterceptors());
     this.random                            = new SecureRandom();
   }
 
@@ -1246,58 +1245,45 @@ public class PushServiceSocket {
     throw new NonSuccessfulResponseCodeException("Response: " + response);
   }
 
-  private ServiceConnectionHolder[] createServiceConnectionHolders(SignalUrl[] urls) {
+  private ServiceConnectionHolder[] createServiceConnectionHolders(SignalUrl[] urls, List<Interceptor> interceptors) {
     List<ServiceConnectionHolder> serviceConnectionHolders = new LinkedList<>();
 
     for (SignalUrl url : urls) {
-      serviceConnectionHolders.add(new ServiceConnectionHolder(createConnectionClient(url),
-                                                               createConnectionClient(url),
+      serviceConnectionHolders.add(new ServiceConnectionHolder(createConnectionClient(url, interceptors),
+                                                               createConnectionClient(url, interceptors),
                                                                url.getUrl(), url.getHostHeader()));
     }
 
     return serviceConnectionHolders.toArray(new ServiceConnectionHolder[0]);
   }
 
-  private ConnectionHolder[] createConnectionHolders(SignalUrl[] urls) {
+  private ConnectionHolder[] createConnectionHolders(SignalUrl[] urls, List<Interceptor> interceptors) {
     List<ConnectionHolder> connectionHolders = new LinkedList<>();
 
     for (SignalUrl url : urls) {
-      connectionHolders.add(new ConnectionHolder(createConnectionClient(url), url.getUrl(), url.getHostHeader()));
+      connectionHolders.add(new ConnectionHolder(createConnectionClient(url, interceptors), url.getUrl(), url.getHostHeader()));
     }
 
     return connectionHolders.toArray(new ConnectionHolder[0]);
   }
 
-  private OkHttpClient createConnectionClient(SignalUrl url) {
+  private OkHttpClient createConnectionClient(SignalUrl url, List<Interceptor> interceptors) {
     try {
       TrustManager[] trustManagers = BlacklistingTrustManager.createFor(url.getTrustStore());
 
       SSLContext context = SSLContext.getInstance("TLS");
       context.init(null, trustManagers, null);
 
-      return new OkHttpClient.Builder()
-                             .sslSocketFactory(new Tls12SocketFactory(context.getSocketFactory()), (X509TrustManager)trustManagers[0])
-                             .connectionSpecs(url.getConnectionSpecs().or(Util.immutableList(ConnectionSpec.RESTRICTED_TLS)))
-                             .build();
+      OkHttpClient.Builder builder = new OkHttpClient.Builder()
+                                                     .sslSocketFactory(new Tls12SocketFactory(context.getSocketFactory()), (X509TrustManager)trustManagers[0])
+                                                     .connectionSpecs(url.getConnectionSpecs().or(Util.immutableList(ConnectionSpec.RESTRICTED_TLS)));
+
+      for (Interceptor interceptor : interceptors) {
+        builder.addInterceptor(interceptor);
+      }
+
+      return builder.build();
     } catch (NoSuchAlgorithmException | KeyManagementException e) {
-      throw new AssertionError(e);
-    }
-  }
-
-  private OkHttpClient createAttachmentClient() {
-    try {
-      SSLContext context = SSLContext.getInstance("TLS");
-      context.init(null, null, null);
-
-      TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
-      trustManagerFactory.init((KeyStore)null);
-
-      return new OkHttpClient.Builder()
-                             .sslSocketFactory(new Tls12SocketFactory(context.getSocketFactory()),
-                                               (X509TrustManager)trustManagerFactory.getTrustManagers()[0])
-                             .connectionSpecs(Util.immutableList(ConnectionSpec.RESTRICTED_TLS))
-                             .build();
-    } catch (NoSuchAlgorithmException | KeyManagementException | KeyStoreException e) {
       throw new AssertionError(e);
     }
   }
@@ -1363,23 +1349,6 @@ public class PushServiceSocket {
     @JsonProperty
     private AuthCredentials backupCredentials;
   }
-
-  private static class AttachmentDescriptor {
-    @JsonProperty
-    private long id;
-
-    @JsonProperty
-    private String location;
-
-    public long getId() {
-      return id;
-    }
-
-    public String getLocation() {
-      return location;
-    }
-  }
-
 
   private static class ConnectionHolder {
 

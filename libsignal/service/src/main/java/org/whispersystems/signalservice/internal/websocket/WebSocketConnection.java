@@ -20,6 +20,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
@@ -32,6 +33,7 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
 import okhttp3.ConnectionSpec;
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -57,6 +59,7 @@ public class WebSocketConnection extends WebSocketListener {
   private final String                        signalAgent;
   private final ConnectivityListener          listener;
   private final SleepTimer                    sleepTimer;
+  private final List<Interceptor>             interceptors;
 
   private WebSocket           client;
   private KeepAliveSender     keepAliveSender;
@@ -68,13 +71,15 @@ public class WebSocketConnection extends WebSocketListener {
                              Optional<CredentialsProvider> credentialsProvider,
                              String signalAgent,
                              ConnectivityListener listener,
-                             SleepTimer timer)
+                             SleepTimer timer,
+                             List<Interceptor> interceptors)
   {
     this.trustStore          = trustStore;
     this.credentialsProvider = credentialsProvider;
     this.signalAgent         = signalAgent;
     this.listener            = listener;
     this.sleepTimer          = timer;
+    this.interceptors        = interceptors;
     this.attempts            = 0;
     this.connected           = false;
 
@@ -99,12 +104,17 @@ public class WebSocketConnection extends WebSocketListener {
 
       Pair<SSLSocketFactory, X509TrustManager> socketFactory = createTlsSocketFactory(trustStore);
 
-      OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                                                  .sslSocketFactory(new Tls12SocketFactory(socketFactory.first()), socketFactory.second())
-                                                  .connectionSpecs(Util.immutableList(ConnectionSpec.RESTRICTED_TLS))
-                                                  .readTimeout(KEEPALIVE_TIMEOUT_SECONDS + 10, TimeUnit.SECONDS)
-                                                  .connectTimeout(KEEPALIVE_TIMEOUT_SECONDS + 10, TimeUnit.SECONDS)
-                                                  .build();
+      OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder()
+                                                           .sslSocketFactory(new Tls12SocketFactory(socketFactory.first()), socketFactory.second())
+                                                           .connectionSpecs(Util.immutableList(ConnectionSpec.RESTRICTED_TLS))
+                                                           .readTimeout(KEEPALIVE_TIMEOUT_SECONDS + 10, TimeUnit.SECONDS)
+                                                           .connectTimeout(KEEPALIVE_TIMEOUT_SECONDS + 10, TimeUnit.SECONDS);
+
+      for (Interceptor interceptor : interceptors) {
+        clientBuilder.addInterceptor(interceptor);
+      }
+
+      OkHttpClient okHttpClient = clientBuilder.build();
 
       Request.Builder requestBuilder = new Request.Builder().url(filledUri);
 

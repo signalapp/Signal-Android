@@ -57,6 +57,7 @@ import com.annimon.stream.Stream;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.thoughtcrime.securesms.ApplicationContext;
+import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -558,17 +559,7 @@ public class SubmitLogFragment extends Fragment {
     builder.append("Refresh Rate : ").append(String.format(Locale.ENGLISH, "%.2f", FrameRateTracker.getDisplayRefreshRate(context))).append(" hz").append("\n");
     builder.append("Average FPS  : ").append(String.format(Locale.ENGLISH, "%.2f", ApplicationDependencies.getFrameRateTracker().getRunningAverageFps())).append("\n");
     builder.append("First Version: ").append(TextSecurePreferences.getFirstInstallVersion(context)).append("\n");
-    builder.append("App          : ");
-    try {
-      builder.append(pm.getApplicationLabel(pm.getApplicationInfo(context.getPackageName(), 0)))
-             .append(" ")
-             .append(pm.getPackageInfo(context.getPackageName(), 0).versionName)
-             .append(" (")
-             .append(Util.getManifestApkVersion(context))
-             .append(")\n");
-    } catch (PackageManager.NameNotFoundException nnfe) {
-      builder.append("Unknown\n");
-    }
+    builder.append("App          : ").append(BuildConfig.VERSION_NAME);
 
     return builder;
   }

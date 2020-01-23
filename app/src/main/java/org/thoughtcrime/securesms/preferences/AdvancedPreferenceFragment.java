@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.widget.Toast;
@@ -17,6 +18,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.preference.CheckBoxPreference;
 import androidx.preference.Preference;
 
+import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.logging.Log;
 
@@ -113,17 +115,12 @@ public class AdvancedPreferenceFragment extends CorrectedPreferenceFragment {
   }
 
   private @NonNull String getVersion(@Nullable Context context) {
-    try {
-      if (context == null) return "";
+    if (context == null) return "";
 
-      String app     = context.getString(R.string.app_name);
-      String version = context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionName;
+    String app     = context.getString(R.string.app_name);
+    String version = BuildConfig.VERSION_NAME;
 
-      return String.format("%s %s", app, version);
-    } catch (PackageManager.NameNotFoundException e) {
-      Log.w(TAG, e);
-      return context.getString(R.string.app_name);
-    }
+    return String.format("%s %s", app, version);
   }
 
   private class IdentityPreferenceClickListener implements Preference.OnPreferenceClickListener {
