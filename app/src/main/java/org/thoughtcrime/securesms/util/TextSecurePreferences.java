@@ -16,15 +16,12 @@ import androidx.core.app.NotificationCompat;
 import org.greenrobot.eventbus.EventBus;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraintObserver;
-import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.lock.RegistrationLockReminders;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference;
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.whispersystems.libsignal.util.Medium;
-import org.whispersystems.signalservice.api.RegistrationLockData;
 import org.whispersystems.signalservice.api.util.UuidUtil;
-import org.whispersystems.signalservice.internal.contacts.entities.TokenResponse;
 
 import java.io.IOException;
 import java.security.SecureRandom;
@@ -162,8 +159,9 @@ public class TextSecurePreferences {
   @Deprecated
   private static final String REGISTRATION_LOCK_PIN_PREF_V1            = "pref_registration_lock_pin";
 
-  private static final String REGISTRATION_LOCK_LAST_REMINDER_TIME     = "pref_registration_lock_last_reminder_time_2";
-  private static final String REGISTRATION_LOCK_NEXT_REMINDER_INTERVAL = "pref_registration_lock_next_reminder_interval";
+  private static final String REGISTRATION_LOCK_LAST_REMINDER_TIME          = "pref_registration_lock_last_reminder_time";
+  private static final String REGISTRATION_LOCK_LAST_REMINDER_TIME_POST_KBS = "pref_registration_lock_last_reminder_time_post_kbs";
+  private static final String REGISTRATION_LOCK_NEXT_REMINDER_INTERVAL      = "pref_registration_lock_next_reminder_interval";
 
   private static final String SERVICE_OUTAGE         = "pref_service_outage";
   private static final String LAST_OUTAGE_CHECK_TIME = "pref_last_outage_check_time";
@@ -271,11 +269,16 @@ public class TextSecurePreferences {
   }
 
   public static long getRegistrationLockLastReminderTime(@NonNull Context context) {
-    return getLongPreference(context, REGISTRATION_LOCK_LAST_REMINDER_TIME, 0);
+    return getLongPreference(context, getAppropriateReminderKey(), 0);
   }
 
   public static void setRegistrationLockLastReminderTime(@NonNull Context context, long time) {
-    setLongPreference(context, REGISTRATION_LOCK_LAST_REMINDER_TIME, time);
+    setLongPreference(context, getAppropriateReminderKey(), time);
+  }
+
+  private static String getAppropriateReminderKey() {
+    return FeatureFlags.kbs() ? REGISTRATION_LOCK_LAST_REMINDER_TIME_POST_KBS
+                              : REGISTRATION_LOCK_LAST_REMINDER_TIME;
   }
 
   public static long getRegistrationLockNextReminderInterval(@NonNull Context context) {

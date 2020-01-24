@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.keyvalue.KbsValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.lock.PinHashing;
 import org.thoughtcrime.securesms.logging.Log;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.api.KeyBackupService;
 import org.whispersystems.signalservice.api.KeyBackupServicePinException;
@@ -56,6 +57,11 @@ public final class RegistrationPinV2MigrationJob extends BaseJob {
 
   @Override
   protected void onRun() throws IOException, UnauthenticatedResponseException, KeyBackupServicePinException {
+    if (!FeatureFlags.kbs()) {
+      Log.i(TAG, "Not migrating pin to KBS");
+      return;
+    }
+
     if (!TextSecurePreferences.isV1RegistrationLockEnabled(context)) {
       Log.i(TAG, "Registration lock disabled");
       return;

@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
 
 import com.annimon.stream.Stream;
+import com.google.android.collect.Sets;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -20,7 +21,6 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
-import java.util.TreeSet;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -50,6 +50,7 @@ public final class FeatureFlags {
   private static final String PROFILE_DISPLAY   = generateKey("profileDisplay");
   private static final String MESSAGE_REQUESTS  = generateKey("messageRequests");
   private static final String USERNAMES         = generateKey("usernames");
+  private static final String KBS               = generateKey("kbs");
   private static final String STORAGE_SERVICE   = generateKey("storageService");
   private static final String REACTION_SENDING  = generateKey("reactionSending");
 
@@ -73,14 +74,15 @@ public final class FeatureFlags {
    * will be updated arbitrarily at runtime. This will make values more responsive, but also places
    * more burden on the reader to ensure that the app experience remains consistent.
    */
-  private static final Set<String> HOT_SWAPPABLE = new TreeSet<String>() {{
-  }};
+  private static final Set<String> HOT_SWAPPABLE = Sets.newHashSet(
+    KBS
+  );
 
   /**
    * Flags in this set will stay true forever once they receive a true value from a remote config.
    */
-  private static final Set<String> STICKY = new HashSet<String>() {{
-  }};
+  private static final Set<String> STICKY = Sets.newHashSet(
+  );
 
   private static final Map<String, Boolean> REMOTE_VALUES = new TreeMap<>();
 
@@ -139,9 +141,16 @@ public final class FeatureFlags {
     return value;
   }
 
-  /** Storage service. */
-  public static synchronized boolean storageService() {
-    return getValue(STORAGE_SERVICE, false);
+  /** Set or migrate PIN to KBS */
+  public static boolean kbs() {
+    return getValue(KBS, false);
+  }
+
+  /** Storage service. Requires {@link #kbs()}. */
+  public static boolean storageService() {
+    boolean value = getValue(STORAGE_SERVICE, false);
+    if (value && !kbs()) throw new MissingFlagRequirementError();
+    return value;
   }
 
   /** Send support for reactions. */

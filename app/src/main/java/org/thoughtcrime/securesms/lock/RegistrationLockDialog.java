@@ -35,6 +35,7 @@ import org.thoughtcrime.securesms.keyvalue.KbsValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.logging.Log;
 import org.thoughtcrime.securesms.migrations.RegistrationPinV2MigrationJob;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ThemeUtil;
@@ -125,8 +126,10 @@ public final class RegistrationLockDialog {
         dialog.dismiss();
         RegistrationLockReminders.scheduleReminder(context, true);
 
-        Log.i(TAG, "Pin V1 successfully remembered, scheduling a migration to V2");
-        ApplicationDependencies.getJobManager().add(new RegistrationPinV2MigrationJob());
+        if (FeatureFlags.kbs()) {
+          Log.i(TAG, "Pin V1 successfully remembered, scheduling a migration to V2");
+          ApplicationDependencies.getJobManager().add(new RegistrationPinV2MigrationJob());
+        }
       }
     });
   }
@@ -198,25 +201,32 @@ public final class RegistrationLockDialog {
           @Override
           protected Boolean doInBackground(Void... voids) {
             try {
-              Log.i(TAG, "Setting pin on KBS");
+              if (FeatureFlags.kbs()) {
+                Log.i(TAG, "Setting pin on KBS");
 
-              KbsValues                         kbsValues        = SignalStore.kbsValues();
-              MasterKey                         masterKey        = kbsValues.getOrCreateMasterKey();
-              KeyBackupService                  keyBackupService = ApplicationDependencies.getKeyBackupService();
-              KeyBackupService.PinChangeSession pinChangeSession = keyBackupService.newPinChangeSession();
-              HashedPin                         hashedPin        = PinHashing.hashPin(pinValue, pinChangeSession);
-              RegistrationLockData              kbsData          = pinChangeSession.setPin(hashedPin, masterKey);
-              RegistrationLockData              restoredData     = keyBackupService.newRestoreSession(kbsData.getTokenResponse())
-                                                                                   .restorePin(hashedPin);
+                KbsValues                         kbsValues        = SignalStore.kbsValues();
+                MasterKey                         masterKey        = kbsValues.getOrCreateMasterKey();
+                KeyBackupService                  keyBackupService = ApplicationDependencies.getKeyBackupService();
+                KeyBackupService.PinChangeSession pinChangeSession = keyBackupService.newPinChangeSession();
+                HashedPin                         hashedPin        = PinHashing.hashPin(pinValue, pinChangeSession);
+                RegistrationLockData              kbsData          = pinChangeSession.setPin(hashedPin, masterKey);
+                RegistrationLockData              restoredData     = keyBackupService.newRestoreSession(kbsData.getTokenResponse())
+                                                                                     .restorePin(hashedPin);
 
-              if (!restoredData.getMasterKey().equals(masterKey)) {
-                throw new AssertionError("Failed to set the pin correctly");
+                if (!restoredData.getMasterKey().equals(masterKey)) {
+                  throw new AssertionError("Failed to set the pin correctly");
+                } else {
+                  Log.i(TAG, "Set and retrieved pin on KBS successfully");
+                }
+
+                kbsValues.setRegistrationLockMasterKey(restoredData, PinHashing.localPinHash(pinValue));
+                TextSecurePreferences.clearOldRegistrationLockPin(context);
               } else {
-                Log.i(TAG, "Set and retrieved pin on KBS successfully");
+                Log.i(TAG, "Setting V1 pin");
+                SignalServiceAccountManager accountManager = ApplicationDependencies.getSignalServiceAccountManager();
+                accountManager.setPin(pinValue);
+                TextSecurePreferences.setDeprecatedRegistrationLockPin(context, pinValue);
               }
-
-              kbsValues.setRegistrationLockMasterKey(restoredData, PinHashing.localPinHash(pinValue));
-              TextSecurePreferences.clearOldRegistrationLockPin(context);
               TextSecurePreferences.setRegistrationLockLastReminderTime(context, System.currentTimeMillis());
               TextSecurePreferences.setRegistrationLockNextReminderInterval(context, RegistrationLockReminders.INITIAL_INTERVAL);
               return true;
@@ -272,13 +282,16 @@ public final class RegistrationLockDialog {
           @Override
           protected Boolean doInBackground(Void... voids) {
             try {
-              Log.i(TAG, "Removing v2 registration lock pin from server");
-              KbsValues     kbsValues    = SignalStore.kbsValues();
-              TokenResponse currentToken = kbsValues.getRegistrationLockTokenResponse();
+              KbsValues kbsValues = SignalStore.kbsValues();
 
-              KeyBackupService keyBackupService = ApplicationDependencies.getKeyBackupService();
-              keyBackupService.newPinChangeSession(currentToken).removePin();
-              kbsValues.clearRegistrationLock();
+              if (kbsValues.isV2RegistrationLockEnabled()) {
+                Log.i(TAG, "Removing v2 registration lock pin from server");
+                TokenResponse currentToken = kbsValues.getRegistrationLockTokenResponse();
+
+                KeyBackupService keyBackupService = ApplicationDependencies.getKeyBackupService();
+                keyBackupService.newPinChangeSession(currentToken).removePin();
+                kbsValues.clearRegistrationLock();
+              }
 
               // It is possible a migration has not occurred, in this case, we need to remove the old V1 Pin
               if (TextSecurePreferences.isV1RegistrationLockEnabled(context)) {
