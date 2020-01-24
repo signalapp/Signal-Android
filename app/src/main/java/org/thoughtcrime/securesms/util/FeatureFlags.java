@@ -3,6 +3,9 @@ package org.thoughtcrime.securesms.util;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.VisibleForTesting;
+
+import com.annimon.stream.Stream;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -12,9 +15,12 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.logging.Log;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
+import java.util.TreeSet;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -28,6 +34,10 @@ import java.util.concurrent.TimeUnit;
  * - If you would like to force a value for testing, place an entry in {@link #FORCED_VALUES}. When
  *   launching a feature that is planned to be updated via a remote config, do not forget to
  *   remove the entry!
+ *
+ * Other interesting things you can do:
+ * - Make a flag {@link #HOT_SWAPPABLE}
+ * - Make a flag {@link #STICKY}
  */
 public final class FeatureFlags {
 
@@ -56,71 +66,141 @@ public final class FeatureFlags {
     put(STORAGE_SERVICE, false);
   }};
 
-  private static final Map<String, Boolean> REMOTE_VALUES = new HashMap<>();
+  /**
+   * By default, flags are only updated once at app start. This is to ensure that values don't
+   * change within an app session, simplifying logic. However, given that this can delay how often
+   * a flag is updated, you can put a flag in here to mark it as 'hot swappable'. Flags in this set
+   * will be updated arbitrarily at runtime. This will make values more responsive, but also places
+   * more burden on the reader to ensure that the app experience remains consistent.
+   */
+  private static final Set<String> HOT_SWAPPABLE = new TreeSet<String>() {{
+  }};
+
+  /**
+   * Flags in this set will stay true forever once they receive a true value from a remote config.
+   */
+  private static final Set<String> STICKY = new HashSet<String>() {{
+  }};
+
+  private static final Map<String, Boolean> REMOTE_VALUES = new TreeMap<>();
 
   private FeatureFlags() {}
 
-  public static void init() {
-    scheduleFetchIfNecessary();
+  public static synchronized void init() {
     REMOTE_VALUES.putAll(parseStoredConfig());
+    Log.i(TAG, "init() " + REMOTE_VALUES.toString());
   }
 
-  public static void updateDiskCache(@NonNull Map<String, Boolean> config) {
-    try {
-      JSONObject filtered = new JSONObject();
+  public static synchronized void refresh() {
+    long timeSinceLastFetch = System.currentTimeMillis() - SignalStore.getRemoteConfigLastFetchTime();
 
-      for (Map.Entry<String, Boolean> entry : config.entrySet()) {
-        if (entry.getKey().startsWith(PREFIX)) {
-          filtered.put(entry.getKey(), (boolean) entry.getValue());
-        }
-      }
-
-      SignalStore.setRemoteConfig(filtered.toString());
-    } catch (JSONException e) {
-      throw new AssertionError(e);
+    if (timeSinceLastFetch > FETCH_INTERVAL) {
+      Log.i(TAG, "Scheduling remote config refresh.");
+      ApplicationDependencies.getJobManager().add(new RemoteConfigRefreshJob());
+    } else {
+      Log.i(TAG, "Skipping remote config refresh. Refreshed " + timeSinceLastFetch + " ms ago.");
     }
   }
 
+  public static synchronized void update(@NonNull Map<String, Boolean> config) {
+    Map<String, Boolean> memory = REMOTE_VALUES;
+    Map<String, Boolean> disk   = parseStoredConfig();
+    UpdateResult         result = updateInternal(config, memory, disk, HOT_SWAPPABLE, STICKY);
+
+    SignalStore.setRemoteConfig(mapToJson(result.getDisk()).toString());
+    REMOTE_VALUES.clear();
+    REMOTE_VALUES.putAll(result.getMemory());
+
+    Log.i(TAG, "[Memory] Before: " + memory.toString());
+    Log.i(TAG, "[Memory] After : " + result.getMemory().toString());
+    Log.i(TAG, "[Disk]   Before: " + disk.toString());
+    Log.i(TAG, "[Disk]   After : " + result.getDisk().toString());
+  }
+
   /** UUID-related stuff that shouldn't be activated until the user-facing launch. */
-  public static boolean uuids() {
+  public static synchronized boolean uuids() {
     return getValue(UUIDS, false);
   }
 
   /** Favoring profile names when displaying contacts. */
-  public static boolean profileDisplay() {
+  public static synchronized boolean profileDisplay() {
     return getValue(PROFILE_DISPLAY, false);
   }
 
   /** MessageRequest stuff */
-  public static boolean messageRequests() {
+  public static synchronized boolean messageRequests() {
     return getValue(MESSAGE_REQUESTS, false);
   }
 
   /** Creating usernames, sending messages by username. Requires {@link #uuids()}. */
-  public static boolean usernames() {
+  public static synchronized boolean usernames() {
     boolean value = getValue(USERNAMES, false);
     if (value && !uuids()) throw new MissingFlagRequirementError();
     return value;
   }
 
   /** Storage service. */
-  public static boolean storageService() {
+  public static synchronized boolean storageService() {
     return getValue(STORAGE_SERVICE, false);
   }
 
   /** Send support for reactions. */
-  public static boolean reactionSending() {
+  public static synchronized boolean reactionSending() {
     return getValue(REACTION_SENDING, false);
   }
 
   /** Only for rendering debug info. */
-  public static @NonNull Map<String, Boolean> getRemoteValues() {
+  public static synchronized @NonNull Map<String, Boolean> getRemoteValues() {
     return new TreeMap<>(REMOTE_VALUES);
   }
 
   /** Only for rendering debug info. */
-  public static @NonNull Map<String, Boolean> getForcedValues() {
+  public static synchronized @NonNull Map<String, Boolean> getForcedValues() {
     return new TreeMap<>(FORCED_VALUES);
+  }
+
+  @VisibleForTesting
+  static @NonNull UpdateResult updateInternal(@NonNull Map<String, Boolean> remote,
+                                              @NonNull Map<String, Boolean> localMemory,
+                                              @NonNull Map<String, Boolean> localDisk,
+                                              @NonNull Set<String>          hotSwap,
+                                              @NonNull Set<String>          sticky)
+  {
+    Map<String, Boolean> newMemory = new TreeMap<>(localMemory);
+    Map<String, Boolean> newDisk   = new TreeMap<>(localDisk);
+
+    Set<String> allKeys = new HashSet<>();
+    allKeys.addAll(remote.keySet());
+    allKeys.addAll(localDisk.keySet());
+    allKeys.addAll(localMemory.keySet());
+
+    Stream.of(allKeys)
+          .filter(k -> k.startsWith(PREFIX))
+          .forEach(key -> {
+            Boolean remoteValue = remote.get(key);
+            Boolean diskValue   = localDisk.get(key);
+            Boolean newValue    = remoteValue;
+
+            if (sticky.contains(key)) {
+              newValue = diskValue == Boolean.TRUE ? Boolean.TRUE : newValue;
+            }
+
+            if (newValue != null) {
+              newDisk.put(key, newValue);
+            } else {
+              newDisk.remove(key);
+            }
+
+            if (hotSwap.contains(key)) {
+              if (newValue != null) {
+                newMemory.put(key, newValue);
+              } else {
+                newMemory.remove(key);
+              }
+            }
+          });
+
+    return new UpdateResult(newMemory, newDisk);
   }
 
   private static @NonNull String generateKey(@NonNull String key) {
@@ -139,17 +219,6 @@ public final class FeatureFlags {
     }
 
     return defaultValue;
-  }
-
-  private static void scheduleFetchIfNecessary() {
-    long timeSinceLastFetch = System.currentTimeMillis() - SignalStore.getRemoteConfigLastFetchTime();
-
-    if (timeSinceLastFetch > FETCH_INTERVAL) {
-      Log.i(TAG, "Scheduling remote config refresh.");
-      ApplicationDependencies.getJobManager().add(new RemoteConfigRefreshJob());
-    } else {
-      Log.i(TAG, "Skipping remote config refresh. Refreshed " + timeSinceLastFetch + " ms ago.");
-    }
   }
 
   private static Map<String, Boolean> parseStoredConfig() {
@@ -177,6 +246,39 @@ public final class FeatureFlags {
     return parsed;
   }
 
+  private static JSONObject mapToJson(@NonNull Map<String, Boolean> map) {
+    try {
+      JSONObject json = new JSONObject();
+
+      for (Map.Entry<String, Boolean> entry : map.entrySet()) {
+        json.put(entry.getKey(), (boolean) entry.getValue());
+      }
+
+      return json;
+    } catch (JSONException e) {
+      throw new AssertionError(e);
+    }
+  }
+
   private static final class MissingFlagRequirementError extends Error {
+  }
+
+  @VisibleForTesting
+  static final class UpdateResult {
+    private final Map<String, Boolean> memory;
+    private final Map<String, Boolean> disk;
+
+    UpdateResult(@NonNull Map<String, Boolean> memory, @NonNull Map<String, Boolean> disk) {
+      this.memory = memory;
+      this.disk   = disk;
+    }
+
+    public @NonNull Map<String, Boolean> getMemory() {
+      return memory;
+    }
+
+    public @NonNull Map<String, Boolean> getDisk() {
+      return disk;
+    }
   }
 }
