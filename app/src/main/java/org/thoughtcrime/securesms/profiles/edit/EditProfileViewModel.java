@@ -20,7 +20,7 @@ class EditProfileViewModel extends ViewModel {
                                                                                             pair -> ProfileName.fromParts(pair.first(), pair.second()));
   private final MutableLiveData<byte[]>           internalAvatar      = new MutableLiveData<>();
   private final MutableLiveData<Optional<String>> internalUsername    = new MutableLiveData<>();
-  private final EditProfileRepository repository;
+  private final EditProfileRepository             repository;
 
   private EditProfileViewModel(@NonNull EditProfileRepository repository) {
     this.repository = repository;
@@ -68,10 +68,6 @@ class EditProfileViewModel extends ViewModel {
     }
 
     repository.uploadProfile(profileName, internalAvatar.getValue(), uploadResultConsumer);
-  }
-
-  private ProfileName currentProfileName() {
-    return internalProfileName.getValue();
   }
 
   static class Factory implements ViewModelProvider.Factory {

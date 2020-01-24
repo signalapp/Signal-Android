@@ -5,6 +5,7 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
 
 import com.annimon.stream.Stream;
 
@@ -24,8 +25,8 @@ public final class ProfileName implements Parcelable {
   private final String joinedName;
 
   private ProfileName(@Nullable String givenName, @Nullable String familyName) {
-    this.givenName  = sanitize(givenName);
-    this.familyName = sanitize(familyName);
+    this.givenName  = givenName  == null ? "" : givenName;
+    this.familyName = familyName == null ? "" : familyName;
     this.joinedName = getJoinedName(this.givenName, this.familyName);
   }
 
@@ -43,7 +44,8 @@ public final class ProfileName implements Parcelable {
     return familyName;
   }
 
-  public boolean isProfileNameCJKV() {
+  @VisibleForTesting
+  boolean isProfileNameCJKV() {
     return isCJKV(givenName, familyName);
   }
 
@@ -51,8 +53,12 @@ public final class ProfileName implements Parcelable {
     return joinedName.isEmpty();
   }
 
+  public boolean isGivenNameEmpty() {
+    return givenName.isEmpty();
+  }
+
   public @NonNull String serialize() {
-    if (isEmpty()) {
+    if (isGivenNameEmpty()) {
       return "";
     }
 
@@ -87,12 +93,19 @@ public final class ProfileName implements Parcelable {
    * Creates a profile name, trimming chars until it fits the limits.
    */
   public static @NonNull ProfileName fromParts(@Nullable String givenName, @Nullable String familyName) {
-    if (givenName == null || givenName.isEmpty()) return EMPTY;
+    givenName  = givenName  == null ? "" : givenName;
+    familyName = familyName == null ? "" : familyName;
+
+    givenName  = trimToFit(givenName .trim());
+    familyName = trimToFit(familyName.trim());
 
     return new ProfileName(givenName, familyName);
   }
 
-  private static @NonNull String sanitize(@Nullable String name) {
+  /**
+   * Trims a name string to fit into the byte length requirement.
+   */
+  public static @NonNull String trimToFit(@Nullable String name) {
     if (name == null) return "";
 
     // At least one byte per char, so shorten string to reduce loop

@@ -10,7 +10,7 @@ import static org.junit.Assert.assertTrue;
 
 public final class ProfileNameTest {
 
-@Test
+  @Test
   public void givenEmpty_thenIExpectSaneDefaults() {
     // GIVEN
     ProfileName profileName = ProfileName.EMPTY;
@@ -23,7 +23,7 @@ public final class ProfileNameTest {
   }
 
   @Test
-  public void givenNullProfileName_whenIFromDataString_thenIExpectSaneDefaults() {
+  public void givenNullProfileName_whenIFromSerialized_thenIExpectExactlyEmpty() {
     // GIVEN
     ProfileName profileName = ProfileName.fromSerialized(null);
 
@@ -128,6 +128,7 @@ public final class ProfileNameTest {
 
     // THEN
     assertEquals("Blank String should be returned (For back compat)", "", data);
+    assertEquals("Family", name.getFamilyName());
   }
 
   @Test
@@ -160,5 +161,19 @@ public final class ProfileNameTest {
 
     assertEquals("GivenSomeVeryLongNameSomeV", name.getGivenName());
     assertEquals("FamilySomeVeryLongNameSome", name.getFamilyName());
+  }
+
+  @Test
+  public void givenProfileNameWithGivenNameAndFamilyNameWithSpaces_whenIToDataString_thenIExpectTrimmedProfileName() {
+    // GIVEN
+    ProfileName name = ProfileName.fromParts(" Given ", "  Family");
+
+    // WHEN
+    String data = name.serialize();
+
+    // THEN
+    assertEquals(data, "Given\0Family");
+    assertEquals(name.getGivenName(), "Given");
+    assertEquals(name.getFamilyName(), "Family");
   }
 }
