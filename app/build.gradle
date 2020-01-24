@@ -118,7 +118,8 @@ dependencies {
     implementation project(':libsignal-service')
 
     implementation 'org.signal:argon2:13.1@aar'
-    implementation 'org.signal:ringrtc-android:0.3.1'
+
+    implementation 'org.signal:ringrtc-android:0.3.3'
 
     implementation "me.leolin:ShortcutBadger:1.1.16"
     implementation 'se.emilsjolander:stickylistheaders:2.7.0'
