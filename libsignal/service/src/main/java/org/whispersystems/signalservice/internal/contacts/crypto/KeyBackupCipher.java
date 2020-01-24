@@ -46,7 +46,7 @@ public final class KeyBackupCipher {
 
     Request requestData = Request.newBuilder().setBackup(backupRequest).build();
 
-    return createKeyBackupRequest(requestData, remoteAttestation);
+    return createKeyBackupRequest(requestData, remoteAttestation, "backup");
   }
 
   public static KeyBackupRequest createKeyRestoreRequest(byte[] kbsAccessKey,
@@ -66,7 +66,7 @@ public final class KeyBackupCipher {
 
     Request request = Request.newBuilder().setRestore(restoreRequest).build();
 
-    return createKeyBackupRequest(request, remoteAttestation);
+    return createKeyBackupRequest(request, remoteAttestation, "restore");
   }
 
   public static KeyBackupRequest createKeyDeleteRequest(TokenResponse token,
@@ -80,7 +80,7 @@ public final class KeyBackupCipher {
 
     Request request = Request.newBuilder().setDelete(deleteRequest).build();
 
-    return createKeyBackupRequest(request, remoteAttestation);
+    return createKeyBackupRequest(request, remoteAttestation, "delete");
   }
 
   public static BackupResponse getKeyBackupResponse(KeyBackupResponse response, RemoteAttestation remoteAttestation)
@@ -109,13 +109,13 @@ public final class KeyBackupCipher {
     return DeleteResponse.parseFrom(data);
   }
 
-  private static KeyBackupRequest createKeyBackupRequest(Request requestData, RemoteAttestation remoteAttestation) {
+  private static KeyBackupRequest createKeyBackupRequest(Request requestData, RemoteAttestation remoteAttestation, String type) {
     byte[] clientKey   = remoteAttestation.getKeys().getClientKey();
     byte[] aad         = remoteAttestation.getRequestId();
 
     AESCipher.AESEncryptedResult aesEncryptedResult = AESCipher.encrypt(clientKey, aad, requestData.toByteArray());
 
-    return new KeyBackupRequest(aesEncryptedResult.aad, aesEncryptedResult.iv, aesEncryptedResult.data, aesEncryptedResult.mac);
+    return new KeyBackupRequest(aesEncryptedResult.aad, aesEncryptedResult.iv, aesEncryptedResult.data, aesEncryptedResult.mac, type);
   }
 
   private static byte[] decryptData(KeyBackupResponse response, RemoteAttestation remoteAttestation) throws InvalidCiphertextException {

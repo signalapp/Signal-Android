@@ -18,14 +18,18 @@ public class KeyBackupRequest {
   @JsonProperty
   private byte[] mac;
 
+  @JsonProperty
+  private String type;
+
   public KeyBackupRequest() {
   }
 
-  public KeyBackupRequest(byte[] requestId, byte[] iv, byte[] data, byte[] mac) {
-    this.requestId    = requestId;
-    this.iv           = iv;
-    this.data         = data;
-    this.mac          = mac;
+  public KeyBackupRequest(byte[] requestId, byte[] iv, byte[] data, byte[] mac, String type) {
+    this.requestId = requestId;
+    this.iv        = iv;
+    this.data      = data;
+    this.mac       = mac;
+    this.type      = type;
   }
 
   public byte[] getRequestId() {
@@ -44,8 +48,12 @@ public class KeyBackupRequest {
     return mac;
   }
 
+  public String getType() {
+    return type;
+  }
+
   public String toString() {
-    return "{ requestId: " + Hex.toString(requestId) + ", iv: " + Hex.toString(iv) + ", data: " + Hex.toString(data) + ", mac: " + Hex.toString(mac) + "}";
+    return "{ type:" + type + ", requestId: " + Hex.toString(requestId) + ", iv: " + Hex.toString(iv) + ", data: " + Hex.toString(data) + ", mac: " + Hex.toString(mac) + "}";
   }
 
 }
