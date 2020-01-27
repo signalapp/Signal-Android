@@ -66,9 +66,13 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
         val database = databaseHelper.readableDatabase
         return database.get(swarmCache, "${Companion.hexEncodedPublicKey} = ?", wrap(hexEncodedPublicKey)) { cursor ->
             val swarmAsString = cursor.getString(cursor.getColumnIndexOrThrow(swarm))
-            swarmAsString.split(", ").map { targetAsString ->
-                val components = targetAsString.split("?port=")
-                LokiAPITarget(components[0], components[1].toInt())
+            swarmAsString.split(", ").mapNotNull { targetAsString ->
+                val components = targetAsString.split("-")
+                val address = components[0]
+                val port = components.getOrNull(1)?.toIntOrNull() ?: return@mapNotNull null
+                val idKey = components.getOrNull(2) ?: return@mapNotNull null
+                val encryptionKey = components.getOrNull(3)?: return@mapNotNull null
+                LokiAPITarget(address, port, LokiAPITarget.KeySet(idKey, encryptionKey))
             }
         }?.toSet()
     }
@@ -76,7 +80,12 @@ class LokiAPIDatabase(context: Context, helper: SQLCipherOpenHelper) : Database(
     override fun setSwarmCache(hexEncodedPublicKey: String, newValue: Set<LokiAPITarget>) {
         val database = databaseHelper.writableDatabase
         val swarmAsString = newValue.joinToString(", ") { target ->
-            "${target.address}?port=${target.port}"
+            var string = "${target.address}-${target.port}"
+            val keySet = target.publicKeySet
+            if (keySet != null) {
+                string += "-${keySet.idKey}-${keySet.encryptionKey}"
+            }
+            string
         }
         val row = wrap(mapOf( Companion.hexEncodedPublicKey to hexEncodedPublicKey, swarm to swarmAsString ))
         database.insertOrUpdate(swarmCache, row, "${Companion.hexEncodedPublicKey} = ?", wrap(hexEncodedPublicKey))
