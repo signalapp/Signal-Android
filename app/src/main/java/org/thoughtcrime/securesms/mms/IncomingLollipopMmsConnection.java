@@ -123,7 +123,10 @@ public class IncomingLollipopMmsConnection extends LollipopMmsConnection impleme
 
       Log.i(TAG, baos.size() + "-byte response: ");// + Hex.dump(baos.toByteArray()));
 
-      RetrieveConf retrieved = (RetrieveConf) new PduParser(baos.toByteArray()).parse();
+      Bundle  configValues            = smsManager.getCarrierConfigValues();
+      boolean parseContentDisposition = configValues.getBoolean(SmsManager.MMS_CONFIG_SUPPORT_MMS_CONTENT_DISPOSITION);
+
+      RetrieveConf retrieved = (RetrieveConf) new PduParser(baos.toByteArray(), parseContentDisposition).parse();
 
       if (retrieved == null) return null;
 
