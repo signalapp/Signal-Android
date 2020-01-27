@@ -129,6 +129,7 @@ class RegisterActivity : BaseActionBarActivity() {
             IdentityKeyUtil.getIdentityKeyPair(this).publicKey, IdentityDatabase.VerifiedStatus.VERIFIED,
             true, System.currentTimeMillis(), true)
         TextSecurePreferences.setLocalNumber(this, userHexEncodedPublicKey)
+        TextSecurePreferences.setRestorationTime(this, 0)
         TextSecurePreferences.setHasViewedSeed(this, false)
         val intent = Intent(this, DisplayNameActivity::class.java)
         push(intent)

@@ -13,30 +13,23 @@ import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.internal.util.JsonUtil
 import java.io.IOException
-import java.lang.IllegalStateException
 import java.util.concurrent.TimeUnit
 
 data class BackgroundMessage private constructor(val data: Map<String, Any>) {
+
   companion object {
+
     @JvmStatic
     fun create(recipient: String) = BackgroundMessage(mapOf("recipient" to recipient))
+
     @JvmStatic
-    fun createFriendRequest(recipient: String, messageBody: String) = BackgroundMessage(mapOf(
-            "recipient" to recipient,
-            "body" to messageBody,
-            "friendRequest" to true
-    ))
+    fun createFriendRequest(recipient: String, messageBody: String) = BackgroundMessage(mapOf( "recipient" to recipient, "body" to messageBody, "friendRequest" to true ))
+
     @JvmStatic
-    fun createUnpairingRequest(recipient: String) = BackgroundMessage(mapOf(
-            "recipient" to recipient,
-            "unpairingRequest" to true
-    ))
+    fun createUnpairingRequest(recipient: String) = BackgroundMessage(mapOf( "recipient" to recipient, "unpairingRequest" to true ))
+
     @JvmStatic
-    fun createSessionRestore(recipient: String) = BackgroundMessage(mapOf(
-            "recipient" to recipient,
-            "friendRequest" to true,
-            "sessionRestore" to true
-    ))
+    fun createSessionRestore(recipient: String) = BackgroundMessage(mapOf( "recipient" to recipient, "friendRequest" to true, "sessionRestore" to true ))
             
     internal fun parse(serialized: String): BackgroundMessage {
       val data = JsonUtil.fromJson(serialized, Map::class.java) as? Map<String, Any> ?: throw AssertionError("JSON parsing failed")

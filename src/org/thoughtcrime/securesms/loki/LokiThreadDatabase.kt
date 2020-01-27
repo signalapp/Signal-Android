@@ -154,9 +154,9 @@ class LokiThreadDatabase(context: Context, helper: SQLCipherOpenHelper) : Databa
 
     fun getSessionRestoreDevices(threadID: Long): Set<String> {
         return TextSecurePreferences.getStringPreference(context, "session_restore_devices_$threadID", "")
-                .split(",")
-                .filter { PublicKeyValidation.isValid(it) }
-                .toSet()
+            .split(",")
+            .filter { PublicKeyValidation.isValid(it) }
+            .toSet()
     }
 
     fun removeAllSessionRestoreDevices(threadID: Long) {

@@ -41,7 +41,6 @@ import org.thoughtcrime.securesms.crypto.storage.SignalProtocolStoreImpl;
 import org.thoughtcrime.securesms.crypto.storage.TextSecureSessionStore;
 import org.thoughtcrime.securesms.database.Address;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
-import org.thoughtcrime.securesms.database.Database;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.GroupReceiptDatabase;
@@ -282,7 +281,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
 
       // Loki - Ignore any friend requests that we got before restoration
       if (envelope.isFriendRequest() && envelope.getTimestamp() < TextSecurePreferences.getRestorationTime(context)) {
-        Log.i(TAG, "Ignoring friend request that was received before restoration");
+        Log.d("Loki", "Ignoring friend request received before restoration.");
         return;
       }
 
@@ -339,7 +338,7 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
             MultiDeviceUtilities.checkForRevocation(context);
           }
         } else {
-          // Loki - We shouldn't process session restore message any further
+          // Loki - Don't process session restore message any further
           if (message.isSessionRestore()) { return; }
           if (message.isEndSession()) handleEndSessionMessage(content, smsMessageId);
           else if (message.isGroupUpdate()) handleGroupMessage(content, message, smsMessageId);
@@ -1199,18 +1198,18 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
         ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);
         LokiThreadDatabase lokiThreadDatabase = DatabaseFactory.getLokiThreadDatabase(context);
 
-        // Store the latest PreKeyBundle
+        // Loki - Store the latest pre key bundle
         if (registrationID > 0) {
           Log.d("Loki", "Received a pre key bundle from: " + content.getSender() + ".");
           PreKeyBundle preKeyBundle = lokiMessage.getPreKeyBundleMessage().getPreKeyBundle(registrationID);
           lokiPreKeyBundleDatabase.setPreKeyBundle(content.getSender(), preKeyBundle);
 
-          // If we got a friend request and we were friends with this user then we need to reset our session
+          // Loki - If we received a friend request, but we were already friends with this user, then reset the session
           if (envelope.isFriendRequest()) {
             long threadID = threadDatabase.getThreadIdIfExistsFor(sender);
             if (lokiThreadDatabase.getFriendRequestStatus(threadID) == LokiThreadFriendRequestStatus.FRIENDS) {
               resetSession(content.getSender(), threadID);
-              // Let our other devices know that we have reset session
+              // Let our other devices know that we have reset the session
               MessageSender.syncContact(context, sender.getAddress());
             }
           }
@@ -1388,13 +1387,9 @@ public class PushDecryptJob extends BaseJob implements InjectableType {
       SmsDatabase smsDatabase = DatabaseFactory.getSmsDatabase(context);
       Recipient recipient = Recipient.from(context, Address.fromSerialized(sender), false);
       long threadID = DatabaseFactory.getThreadDatabase(context).getThreadIdIfExistsFor(recipient);
-      if (threadID < 0) {
-        return null;
-      }
+      if (threadID < 0) { return null; }
       int messageCount = smsDatabase.getMessageCountForThread(threadID);
-      if (messageCount <= 0) {
-        return null;
-      }
+      if (messageCount <= 0) { return null; }
       long lastMessageID = smsDatabase.getIDForMessageAtIndex(threadID, messageCount - 1);
       return smsDatabase.getMessage(lastMessageID);
     } catch (Exception e) {
